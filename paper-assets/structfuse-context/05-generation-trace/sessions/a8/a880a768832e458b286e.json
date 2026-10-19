@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a880a768832e458b286e",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "infra p2b status check",
+  "task_key": "worker_infra_p2b_status_check_20260512T143123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_p2b_status_check_20260512T143123_result.json",
+    "occurrence": 1,
+    "bytes": 673,
+    "sha256": "dcd93624cea51e49501a5f509d67d6c09412c709284f4a7511c4229981274c87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 4 100% 利用率，8025 MiB 已用。Run 2 (p2b_random_s123) 已进入 Epoch 1 训练。\n\n---\n\n**汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| PID 117618 | **DEAD** — run 2 在 evaluate 阶段崩溃 |\n| 死因 | 空 tokens 导致 0 长度 tensor reshape 失败 (`contrastive_model.py:165`) |\n| Bug 修复 | 已打补丁：(1) 空 tokens fallback 为 `\"[empty]\"`；(2) `_pad_2d` 保证 `max_len >= 1` |\n| Run 1 eval | **recall@1=94.49%, recall@5=98.43%, recall@10=98.43%** (127 samples, 25 candidates) |\n| GPU 4 | 100% 利用率，run 2 已重启训练 (PID 132149) |\n| 剩余 | Runs 2-9 将依次自动执行（`run_p2b_all.sh`） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-p2b-status-check.md"
+}

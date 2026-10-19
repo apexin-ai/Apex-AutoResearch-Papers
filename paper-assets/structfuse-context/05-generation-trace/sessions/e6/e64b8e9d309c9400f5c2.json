@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e64b8e9d309c9400f5c2",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code negative difficulty analysis",
+  "task_key": "worker_code_negative_difficulty_analysis_20260513T184724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_negative_difficulty_analysis_20260513T184724_result.json",
+    "occurrence": 1,
+    "bytes": 1576,
+    "sha256": "5c0047b91b67090fd6297361fa5d7e45013801951be3cdffa16ea18c85162b5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。关键发现：\n\n## 结果摘要\n\n| 策略 | Qwen mean sim | StarCoder mean sim | Delta |\n|------|------|------|------|\n| Random | 0.899 | 0.553 | -0.346 |\n| Embedding Distance | 0.960 | 0.668 | -0.292 |\n| Dataflow-Aware | 0.950 | 0.659 | -0.291 |\n\n## 关键发现\n\n**1. StarCoder pretrained embeddings 天然分辨力远强于 Qwen。** StarCoder 的 query-negative cosine similarity 整体低 0.29-0.35，说明 StarCoder pretrained 表征本身就能更好地区分 query 和 negative。\n\n**2. Dataflow negatives 并非对 StarCoder \"更容易\"——恰恰相反。** \n- StarCoder: dataflow mean=0.659 vs random mean=0.553（dataflow 比 random **更难**区分，+0.106）\n- Qwen: dataflow mean=0.950 vs random mean=0.899（同趋势，+0.051）\n\nDataflow negatives 在两个模型上都比 random 更难（更高 similarity），但这个差距在 StarCoder 上更大。\n\n**3. 为什么 dataflow 对 StarCoder 没用的解释：** 不是因为 dataflow negatives 太简单。所有策略的负样本在 StarCoder 上都已经有较低的 cosine similarity（0.55-0.67），StarCoder pretrained 的表征空间本身就把不相关代码分得很开。**训练信号的边际收益小**——不管用什么策略，StarCoder 已经 \"懂\" 了。\n\n**产出文件（服务器 bjb1-42106）：**\n- 统计数据：`/root/autodl-tmp/structfuse/artifacts/negative_difficulty_stats.json`\n- 图表：`negative_difficulty_{qwen,starcoder,comparison}.{pdf,png}`\n- 脚本：`/root/structfuse/analysis/negative_difficulty.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-negative-difficulty-analysis.md"
+}

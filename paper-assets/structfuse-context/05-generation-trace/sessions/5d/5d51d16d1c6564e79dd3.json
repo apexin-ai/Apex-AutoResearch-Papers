@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d51d16d1c6564e79dd3",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "write checkpoint criterion table",
+  "task_key": "worker_write_checkpoint-criterion-table_20260515T061544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_checkpoint-criterion-table_20260515T061544_result.json",
+    "occurrence": 1,
+    "bytes": 560,
+    "sha256": "2dc17e920fa2b7d8ce3734052620a8487290dad8c16e363f040077ee5c491d96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入。表格包含 4 个已完成 run 的数据行、embedding/dataflow placeholder 行、summary row、caption（引用 D036 决策）和 encoder-dependent pattern 注释。\n\n输出路径：`artifacts/paper_drafts/checkpoint_criterion_table.tex`\n\n注意：`register_artifact` 工具不可用，产出信息已在 memory.md 的 \"Checkpoint Criterion 与 K 分析\" 部分有记录，无需额外注册。编译时需确保 `\\cmark` 和 `\\xmark` 已定义（常见于 `pifont` 或 `amssymb` 包，或自行 `\\newcommand`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-checkpoint-criterion-table.md"
+}

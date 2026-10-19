@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f004d48fccfda3512c8b",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "research related work expansion",
+  "task_key": "worker_research_related-work-expansion_20260514T211428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related-work-expansion_20260514T211428_result.json",
+    "occurrence": 1,
+    "bytes": 1167,
+    "sha256": "c7a009c29aa221e9487d128f13e0542609c67c62869e27a4c8521bfd2a8faf5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**产出**:\n- `literature_map.yaml` — 从 ~22 entries (6 需验证) 扩展到 **37 verified entries**，7 个 categories\n- `artifacts/literature/related_work_expansion_report.md` — 完整报告\n\n**关键发现**:\n\n1. **CoCoHaNeRe 找到了**: \"Effective Hard Negative Mining for Contrastive Learning-Based Code Search\", ACM TOSEM 2025。**但有重要 nuance**: 它的论点是非可微 embedding negatives \"slow and ineffective\"，并非直接说 embedding negatives 有害。Claim 1 的 \"correcting misconception\" framing 需要调整——更准确的表述是 \"challenging the premise that complex gradient-based mechanisms are necessary\"。\n\n2. **新增 15 篇**: SweRank, SWE-Fixer, CoCoHaNeRe, CL-DRD, ContraCode, CodeRetriever, ARISE, DeepSeek-Coder, RepoFusion, LocAgent, CodexGraph, RANGER, FAISS, Tree-sitter, + 1 篇从旧 category 移入新 category\n\n3. **修正 2 处错误**: SWE-smith venue (→NeurIPS 2025 Spotlight), contrastive learning paper 标题和 venue 都是错的\n\n4. **GRACE 没找到**对应的 code-specific 论文，已 drop\n\n5. **Recency**: 70% citations from 2022+, 27% from 2025"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-expansion.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "10570fa23a647d47ad06",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "code neg difficulty mechanism analysis",
+  "task_key": "worker_code_neg-difficulty-mechanism-analysis_20260515T231044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_neg-difficulty-mechanism-analysis_20260515T231044.log",
+    "occurrence": 1,
+    "bytes": 570143,
+    "sha256": "324da001d3dbf13085bd293ce207717590ef8badacc46404469d124e66d4a5fc"
+  },
+  "statistics": {
+    "messages": 197,
+    "user_turns": 0,
+    "tool_calls": 73,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 73,
+      "tool_result": 73,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 197,
+      "chunks": [
+        {
+          "path": "10570fa23a647d47ad06-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "10570fa23a647d47ad06-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-neg-difficulty-mechanism-analysis.md"
+}

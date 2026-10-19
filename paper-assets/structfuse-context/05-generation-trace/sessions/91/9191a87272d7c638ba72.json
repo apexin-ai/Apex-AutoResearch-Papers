@@ -1,0 +1,1086 @@
+{
+  "schema_version": "1.0",
+  "id": "9191a87272d7c638ba72",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "fix checkpoint criterion analysis",
+  "task_key": "worker_fix_checkpoint-criterion-analysis_20260515T035621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_checkpoint-criterion-analysis_20260515T035621.log",
+    "occurrence": 1,
+    "bytes": 84068,
+    "sha256": "5c6bb20701c9e1cef97a7e5486202b8d44f590b87641d2f28deb85ac3a63392b"
+  },
+  "statistics": {
+    "messages": 24,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 7,
+      "tool_result": 7,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+                "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "4f5547d1-49a6-4dcc-876c-9b63755b90bb",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-structfuse-context/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778825400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "14d1ca70-208b-4a47-9a6c-f41532ab5360",
+                "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me find and read the file first.",
+              "signature": "Et8BClkIDRgCKkAAiXUEr2sJvicmfw7DCJNz00KvXjTvG522Y3Wjy06lhDvoLFjQKFPxbYZEsHjAbV7ihdU+0ybp5Lm1BFCCrD2fMg9jbGF1ZGUtb3B1cy00LTY4ABIMP077nuqwj8aMSxqYGgwL0aOdfnKGe4CLmmciMFLKEy0MCRT6nC7a70/xwlWGBwolgoYyfItiRmsZTv8NiVArCzPyrxd9X6qakMkKSyo0o+yw5QFUfZ4W8HK/bqwttLc7TGQitHksm3HPXOrEmXsjPbryoJkfsl1IFA7WvJyz6rQcGBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "0968b895-8fea-4b10-8883-5124c27425fc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HWCy6uYCSxagMwgcqdrvKa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11424,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11424
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WE4StaM72vrqfpAYZEHx62",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/checkpoint_criterion_analysis.md",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "b405529d-ad54-461d-b540-d2a839ce6235",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HWCy6uYCSxagMwgcqdrvKa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11424,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11424
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T03:56:30.655Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WE4StaM72vrqfpAYZEHx62",
+              "type": "tool_result",
+              "content": "artifacts/_project/report/checkpoint_criterion_analysis.md\nartifacts/checkpoint_criterion_analysis.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "0d1b5bc1-c485-4a26-b485-88394f1b9d38",
+            "tool_use_result": {
+              "filenames": [
+                "artifacts/_project/report/checkpoint_criterion_analysis.md",
+                "artifacts/checkpoint_criterion_analysis.md"
+              ],
+              "durationMs": 8,
+              "numFiles": 2,
+              "truncated": false
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YMfUjxgFNKpWaT6tQdQPvj",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/checkpoint_criterion_analysis.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "1b078242-b875-4fda-835c-44d54837fe1f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ei7oGMMnR36U2Hf7XQ6G8f",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 166,
+                "cache_read_input_tokens": 22871,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 166
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T03:56:33.717Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context.",
+              "is_error": true,
+              "tool_use_id": "toolu_01YMfUjxgFNKpWaT6tQdQPvj"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "a6f5be24-ab39-4e49-9760-94d7be7e693b",
+            "tool_use_result": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context."
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper_drafts 目录不存在，读取两个实际存在的文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "5f6fc5c5-e691-4a3a-b704-d5c2a59aaf0f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ezvq3Yh7Vscd97JDTTQG7D",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 153,
+                "cache_read_input_tokens": 23037,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 153
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SkmqmCGhnr7t5wUJNRNuax",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/checkpoint_criterion_analysis.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "2cc5b5b7-9dfa-4251-babe-45bb6b241cab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ezvq3Yh7Vscd97JDTTQG7D",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 153,
+                "cache_read_input_tokens": 23037,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 153
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T03:56:36.536Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SkmqmCGhnr7t5wUJNRNuax",
+              "type": "tool_result",
+              "content": "1\t# Checkpoint Criterion Analysis: best_by_val_loss vs best_by_R@1\n2\t\n3\t**Date**: 2026-05-15\n4\t**Purpose**: Ablation material for paper — analyze dual checkpoint selection divergence and K=7 rationale.\n5\t\n6\t## 1. Dual Checkpoint Mechanism\n7\t\n8\tThe training script (`training/train.py`) maintains two independent best checkpoints:\n9\t- **best_by_val_loss**: Updated when `val_loss < best_val_loss` (also drives early stopping)\n10\t- **best_by_recall_at_1**: Updated when `R@1 > best_R@1` (independent of early stopping)\n11\t\n12\tBoth are evaluated at `eval_steps=500` intervals. The final eval at training end does NOT update either checkpoint.\n13\t\n14\t---\n15\t\n16\t## 2. Full M2 Runs — Checkpoint Alignment Table\n17\t\n18\t| Run | Encoder | Strategy | Seed | best_by_val_loss | best_by_R@1 | Aligned? | R@1 gap | Evidence |\n19\t|-----|---------|----------|------|-----------------|-------------|----------|---------|----------|\n20\t| m2_full_qwen | Qwen2.5-Coder-3B | random | 42 | step 1000 (vl=0.4651, R@1=0.5527) | step 1000 (R@1=0.5527) | **Yes** | 0pp | timestamps 35s apart |\n21\t| m2_full_qwen | Qwen2.5-Coder-3B | random | 43 | step 500 (vl=0.4476, R@1=0.5357) | step 1500 (R@1=0.5554) | **No** | +1.97pp | timestamps 4.12h apart |\n22\t| m2_full_qwen | Qwen2.5-Coder-3B | random | 44 | step 500 (vl=0.4252, R@1=0.6009) | step 500 (R@1=0.6009) | **Yes** | 0pp | timestamps 6s apart |\n23\t| m2_full_starcoder | StarCoder2-3B | random | 42 | step 1000 (vl=0.6134, R@1=0.454) | step 2500 (R@1=0.4604) | **No** | +0.64pp | timestamps 8.34h apart |\n24\t\n25\t### Full eval trajectory for diverged runs\n26\t\n27\t**Qwen random_s43** (early stopped at step 1500):\n28\t\n29\t| Step | val_loss | R@1 | best_by_val_loss? | best_by_R@1? |\n30\t|------|----------|-----|-------------------|--------------|\n31\t| 500 | **0.4476** | 0.5357 | **Yes** (saved) | Yes (first) |\n32\t| 1000 | 0.4637 | 0.5285 | No (↑ vs 0.4476) | No (↓ vs 0.5357) |\n33\t| 1500 | ? | **0.5554** | No (early stop triggered) | **Yes** (saved) |\n34\t\n35\tval_loss and R@1 diverge: val_loss selects the less-overfit step 500, R@1 selects the better-ranking step 1500.\n36\t\n37\t**StarCoder random_s42** (3 full epochs):\n38\t\n39\t| Step | val_loss | R@1 | best_by_val_loss? | best_by_R@1? |\n40\t|------|----------|-----|-------------------|--------------|\n41\t| 500 | 0.6194 | 0.435 | Yes (first) | Yes (first) |\n42\t| 1000 | **0.6134** | 0.454 | **Yes** (saved) | Yes (saved) |\n43\t| 1500 | 0.6528 | 0.449 | No | No |\n44\t| 2000 | 0.6698 | 0.4456 | No | No |\n45\t| 2500 | 0.6342 | **0.4604** | No | **Yes** (saved) |\n46\t| 3000 | 0.6516 | 0.4544 | No | No |\n47\t| 3500 | 0.6588 | 0.4534 | No | No |\n48\t| 4000 | 0.6637 | 0.4547 | No | No |\n49\t\n50\tStarCoder shows a dramatic divergence: val_loss overfits immediately after step 1000, but R@1 continues improving until step 2500 — 1500 steps (and 8+ hours) later.\n51\t\n52\t---\n53\t\n54\t## 3. Pilot Runs (24 repos) — Checkpoint Alignment\n55\t\n56\t| Encoder | Strategy | Seed | best_by_val_loss | best_by_R@1 | Aligned? |\n57\t|---------|----------|------|-----------------|-------------|----------|\n58\t| Qwen | random | 42 | step 500 (vl=0.4834) | step 500 (R@1=0.5357) | **Yes** |\n59\t| Qwen | embedding | 42 | step 500 (vl=0.4603) | step 500 (R@1=0.5557) | **Yes** |\n60\t| Qwen | dataflow | 42 | step 500 (vl=0.5602) | step 500 (R@1=0.5436) | **Yes** |\n61\t| SC2 | embedding | 42 | step 1000 (vl=0.4816) | step 1000 (R@1=0.5078)* | **Yes** |\n62\t| SC2 | dataflow | 42 | step 1000 (vl=0.5255) | step 1000 (R@1=0.4869)* | **Yes** |\n63\t\n64\t*Note: pilot runs only had 2 eval points (step 500, 1000) before training ended. Final eval (R@1=0.5174 for embedding, 0.5078 for dataflow) was higher than step 1000 but does NOT update best_by_R@1 checkpoints per code logic. Fewer eval points make alignment more likely by chance.\n65\t\n66\t---\n67\t\n68\t## 4. Alignment Rate Summary\n69\t\n70\t### Full M2 runs (completed, with 3+ eval points):\n71\t- **2 / 4 aligned = 50%**\n72\t\n73\t### All runs including pilots:\n74\t- **7 / 9 aligned = 78%**\n75\t- But pilot alignment is inflated due to only 2 eval points\n76\t\n77\t### Pattern observed:\n78\t- **Qwen tends to align** (2/3 full runs = 67%), likely because Qwen's pretrained representations have very high cosine similarity ceiling (pos_sim=0.985), so overfitting and R@1 degradation track together\n79\t- **StarCoder tends to diverge** (0/1 full run, but 1500-step gap is extreme), likely because StarCoder's wider margin (2.6-4.1x Qwen) gives the model more room to improve ranking after the loss curve inflects\n80\t\n81\t---\n82\t\n83\t## 5. Recommendation: Which Criterion to Report\n84\t\n85\t### Primary: Report best_by_R@1\n86\t- R@1 is the target metric; val_loss is a proxy\n87\t- When diverged, best_by_R@1 always gives equal or better R@1 (by definition)\n88\t- The R@1 gap when diverged is meaningful: +1.97pp (Qwen s43), +0.64pp (SC2 s42)\n89\t- Reporting val_loss-selected checkpoint would understate performance by up to ~2pp\n90\t\n91\t### Secondary: Report both in ablation\n92\tPresent a \"checkpoint criterion ablation\" table showing:\n93\t\n94\t| Run | R@1 (best_by_R@1) | R@1 (best_by_val_loss) | Delta |\n95\t|-----|-------------------|----------------------|-------|\n96\t| Qwen random_s42 | 0.5527 | 0.5527 | 0pp |\n97\t| Qwen random_s43 | 0.5554 | 0.5357 | +1.97pp |\n98\t| Qwen random_s44 | 0.6009 | 0.6009 | 0pp |\n99\t| SC2 random_s42 | 0.4604 | 0.454 | +0.64pp |\n100\t\n101\t**Mean delta across all completed runs: +0.65pp**\n102\t\n103\t### Ablation narrative:\n104\t> \"We maintain dual checkpoints during training: one minimizing validation loss, one maximizing R@1. In 50% of full-scale runs, the two criteria selected different training steps. When diverged, the R@1-selected checkpoint outperformed the val_loss-selected one by 0.64–1.97 percentage points. This divergence was more pronounced for StarCoder2-3B, where the best R@1 occurred 1500 steps after the val_loss minimum — consistent with the larger pretrained margin enabling continued representation improvement beyond the loss inflection point. We report R@1-selected checkpoints throughout.\"\n105\t\n106\t---\n107\t\n108\t## 6. K = num_negatives Analysis\n109\t\n110\t### Current setting: K=7 across all experiments\n111\t\n112\tAll proper experiments use K=7 (num_negatives=7):\n113\t- m2_full_qwen: K=7\n114\t- m2_full_starcoder: K=7\n115\t- m2_embed_verify (pilot): K=7\n116\t- plan_013_starcoder (pilot): K=7\n117\t- plan_014 temp ablation: K=7\n118\t- plan_018 BM25: K=7\n119\t\n120\tOnly the discarded early MVP (p2b_5reruns) used K=3, but with entirely different settings (batch_size=2, max_seq_length=512, 127 samples) — not comparable.\n121\t\n122\t### No K ablation exists\n123\t\n124\tThere is no experiment varying K while holding other parameters constant.\n125\t\n126\t### K=7 Rationale (for paper)\n127\t\n128\t**Why K=7 is reasonable:**\n129\t\n130\t1. **batch_size=8 constraint**: With batch_size=8, each query sees 1 positive + K negatives = 8 candidates total. K=7 fills the contrastive batch exactly, giving the InfoNCE denominator maximum diversity per GPU memory budget.\n131\t\n132\t2. **Consistent with literature**: DPR (Karpukhin et al., 2020) uses K=7 in-batch negatives for dense retrieval. SimCSE uses 7 negatives. This is a standard choice for contrastive learning with similar batch sizes.\n133\t\n134\t3. **hard_negative_ratio=0.5**: With K=7, approximately 3-4 negatives are hard-mined (embedding/dataflow/BM25) and 3-4 are random. This balances signal from hard negatives with diversity from random negatives.\n135\t\n136\t4. **Practical ceiling**: The pool sizes vary by repo (median ~50 files, some <10). For small repos, K>7 would exhaust the candidate pool and force fallback to random padding. K=7 keeps the mining meaningful across repo sizes.\n137\t\n138\t### If reviewers ask about K sensitivity:\n139\t\n140\tAcknowledge as a limitation:\n141\t> \"We fix K=7 to match batch size and follow established practice in dense retrieval (DPR). A systematic K ablation (e.g., K ∈ {3, 5, 7, 15}) could further characterize the interaction between negative count and mining strategy. We leave this for future work.\"\n142\t\n143\tMitigating evidence:\n144\t- The neg_difficulty_analysis (completed) shows that the pretrained margin for different strategies is stable regardless of K, because the mining selects from a pre-computed ranked list — K merely controls how deep into that list we go.\n145\t- BM25 overlap analysis shows that at K=7, strategy overlap is already differentiated (BM25 vs random Jaccard = 0.067 for medium repos), so K=7 provides sufficient strategy discrimination.\n146\t\n147\t---\n148\t\n149\t## 7. Running Experiments (will update when complete)\n150\t\n151\tThe following runs are still in progress and will provide more data:\n152\t\n153\t| Run | Status | ETA |\n154\t|-----|--------|-----|\n155\t| SC2 random_s43 | step 1500/2810 | ~May 15 18:00 |\n156\t| SC2 random_s44 | queued | ~May 16 |\n157\t| Qwen embedding_s42-44 | s43 running | ~May 17 |\n158\t| Qwen dataflow_s42-44 | queued | ~May 18 |\n159\t| SC2 embedding_s42-44 | queued | ~May 19 |\n160\t| SC2 dataflow_s42-44 | queued | ~May 20 |\n161\t\n162\t**Key question**: Does the alignment pattern differ by strategy? The current data is all `random` strategy. Embedding and dataflow negatives may produce different loss/R@1 dynamics due to harder negatives making the loss landscape steeper.\n163\t\n164\t---\n165\t\n166\t## 8. Data Sources\n167\t\n168\t- Registry: `read_registry(project=\"structfuse-context\", fields=[\"*\"])`\n169\t- Checkpoint directories: `/root/autodl-tmp/structfuse/checkpoints/m2_full_{qwen,starcoder}/`\n170\t- Training code: `/root/structfuse/training/train.py` (lines 437, 455 for checkpoint logic)\n171\t- File timestamps: `stat -c \"%Y\" model.pt` for alignment verification\n172\t- Configs: `training_config.json` in each checkpoint directory\n173\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "aae7f92a-828d-4546-87e3-b0a0777812cb",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/checkpoint_criterion_analysis.md",
+                "content": "# Checkpoint Criterion Analysis: best_by_val_loss vs best_by_R@1\n\n**Date**: 2026-05-15\n**Purpose**: Ablation material for paper — analyze dual checkpoint selection divergence and K=7 rationale.\n\n## 1. Dual Checkpoint Mechanism\n\nThe training script (`training/train.py`) maintains two independent best checkpoints:\n- **best_by_val_loss**: Updated when `val_loss < best_val_loss` (also drives early stopping)\n- **best_by_recall_at_1**: Updated when `R@1 > best_R@1` (independent of early stopping)\n\nBoth are evaluated at `eval_steps=500` intervals. The final eval at training end does NOT update either checkpoint.\n\n---\n\n## 2. Full M2 Runs — Checkpoint Alignment Table\n\n| Run | Encoder | Strategy | Seed | best_by_val_loss | best_by_R@1 | Aligned? | R@1 gap | Evidence |\n|-----|---------|----------|------|-----------------|-------------|----------|---------|----------|\n| m2_full_qwen | Qwen2.5-Coder-3B | random | 42 | step 1000 (vl=0.4651, R@1=0.5527) | step 1000 (R@1=0.5527) | **Yes** | 0pp | timestamps 35s apart |\n| m2_full_qwen | Qwen2.5-Coder-3B | random | 43 | step 500 (vl=0.4476, R@1=0.5357) | step 1500 (R@1=0.5554) | **No** | +1.97pp | timestamps 4.12h apart |\n| m2_full_qwen | Qwen2.5-Coder-3B | random | 44 | step 500 (vl=0.4252, R@1=0.6009) | step 500 (R@1=0.6009) | **Yes** | 0pp | timestamps 6s apart |\n| m2_full_starcoder | StarCoder2-3B | random | 42 | step 1000 (vl=0.6134, R@1=0.454) | step 2500 (R@1=0.4604) | **No** | +0.64pp | timestamps 8.34h apart |\n\n### Full eval trajectory for diverged runs\n\n**Qwen random_s43** (early stopped at step 1500):\n\n| Step | val_loss | R@1 | best_by_val_loss? | best_by_R@1? |\n|------|----------|-----|-------------------|--------------|\n| 500 | **0.4476** | 0.5357 | **Yes** (saved) | Yes (first) |\n| 1000 | 0.4637 | 0.5285 | No (↑ vs 0.4476) | No (↓ vs 0.5357) |\n| 1500 | ? | **0.5554** | No (early stop triggered) | **Yes** (saved) |\n\nval_loss and R@1 diverge: val_loss selects the less-overfit step 500, R@1 selects the better-ranking step 1500.\n\n**StarCoder random_s42** (3 full epochs):\n\n| Step | val_loss | R@1 | best_by_val_loss? | best_by_R@1? |\n|------|----------|-----|-------------------|--------------|\n| 500 | 0.6194 | 0.435 | Yes (first) | Yes (first) |\n| 1000 | **0.6134** | 0.454 | **Yes** (saved) | Yes (saved) |\n| 1500 | 0.6528 | 0.449 | No | No |\n| 2000 | 0.6698 | 0.4456 | No | No |\n| 2500 | 0.6342 | **0.4604** | No | **Yes** (saved) |\n| 3000 | 0.6516 | 0.4544 | No | No |\n| 3500 | 0.6588 | 0.4534 | No | No |\n| 4000 | 0.6637 | 0.4547 | No | No |\n\nStarCoder shows a dramatic divergence: val_loss overfits immediately after step 1000, but R@1 continues improving until step 2500 — 1500 steps (and 8+ hours) later.\n\n---\n\n## 3. Pilot Runs (24 repos) — Checkpoint Alignment\n\n| Encoder | Strategy | Seed | best_by_val_loss | best_by_R@1 | Aligned? |\n|---------|----------|------|-----------------|-------------|----------|\n| Qwen | random | 42 | step 500 (vl=0.4834) | step 500 (R@1=0.5357) | **Yes** |\n| Qwen | embedding | 42 | step 500 (vl=0.4603) | step 500 (R@1=0.5557) | **Yes** |\n| Qwen | dataflow | 42 | step 500 (vl=0.5602) | step 500 (R@1=0.5436) | **Yes** |\n| SC2 | embedding | 42 | step 1000 (vl=0.4816) | step 1000 (R@1=0.5078)* | **Yes** |\n| SC2 | dataflow | 42 | step 1000 (vl=0.5255) | step 1000 (R@1=0.4869)* | **Yes** |\n\n*Note: pilot runs only had 2 eval points (step 500, 1000) before training ended. Final eval (R@1=0.5174 for embedding, 0.5078 for dataflow) was higher than step 1000 but does NOT update best_by_R@1 checkpoints per code logic. Fewer eval points make alignment more likely by chance.\n\n---\n\n## 4. Alignment Rate Summary\n\n### Full M2 runs (completed, with 3+ eval points):\n- **2 / 4 aligned = 50%**\n\n### All runs including pilots:\n- **7 / 9 aligned = 78%**\n- But pilot alignment is inflated due to only 2 eval points\n\n### Pattern observed:\n- **Qwen tends to align** (2/3 full runs = 67%), likely because Qwen's pretrained representations have very high cosine similarity ceiling (pos_sim=0.985), so overfitting and R@1 degradation track together\n- **StarCoder tends to diverge** (0/1 full run, but 1500-step gap is extreme), likely because StarCoder's wider margin (2.6-4.1x Qwen) gives the model more room to improve ranking after the loss curve inflects\n\n---\n\n## 5. Recommendation: Which Criterion to Report\n\n### Primary: Report best_by_R@1\n- R@1 is the target metric; val_loss is a proxy\n- When diverged, best_by_R@1 always gives equal or better R@1 (by definition)\n- The R@1 gap when diverged is meaningful: +1.97pp (Qwen s43), +0.64pp (SC2 s42)\n- Reporting val_loss-selected checkpoint would understate performance by up to ~2pp\n\n### Secondary: Report both in ablation\nPresent a \"checkpoint criterion ablation\" table showing:\n\n| Run | R@1 (best_by_R@1) | R@1 (best_by_val_loss) | Delta |\n|-----|-------------------|----------------------|-------|\n| Qwen random_s42 | 0.5527 | 0.5527 | 0pp |\n| Qwen random_s43 | 0.5554 | 0.5357 | +1.97pp |\n| Qwen random_s44 | 0.6009 | 0.6009 | 0pp |\n| SC2 random_s42 | 0.4604 | 0.454 | +0.64pp |\n\n**Mean delta across all completed runs: +0.65pp**\n\n### Ablation narrative:\n> \"We maintain dual checkpoints during training: one minimizing validation loss, one maximizing R@1. In 50% of full-scale runs, the two criteria selected different training steps. When diverged, the R@1-selected checkpoint outperformed the val_loss-selected one by 0.64–1.97 percentage points. This divergence was more pronounced for StarCoder2-3B, where the best R@1 occurred 1500 steps after the val_loss minimum — consistent with the larger pretrained margin enabling continued representation improvement beyond the loss inflection point. We report R@1-selected checkpoints throughout.\"\n\n---\n\n## 6. K = num_negatives Analysis\n\n### Current setting: K=7 across all experiments\n\nAll proper experiments use K=7 (num_negatives=7):\n- m2_full_qwen: K=7\n- m2_full_starcoder: K=7\n- m2_embed_verify (pilot): K=7\n- plan_013_starcoder (pilot): K=7\n- plan_014 temp ablation: K=7\n- plan_018 BM25: K=7\n\nOnly the discarded early MVP (p2b_5reruns) used K=3, but with entirely different settings (batch_size=2, max_seq_length=512, 127 samples) — not comparable.\n\n### No K ablation exists\n\nThere is no experiment varying K while holding other parameters constant.\n\n### K=7 Rationale (for paper)\n\n**Why K=7 is reasonable:**\n\n1. **batch_size=8 constraint**: With batch_size=8, each query sees 1 positive + K negatives = 8 candidates total. K=7 fills the contrastive batch exactly, giving the InfoNCE denominator maximum diversity per GPU memory budget.\n\n2. **Consistent with literature**: DPR (Karpukhin et al., 2020) uses K=7 in-batch negatives for dense retrieval. SimCSE uses 7 negatives. This is a standard choice for contrastive learning with similar batch sizes.\n\n3. **hard_negative_ratio=0.5**: With K=7, approximately 3-4 negatives are hard-mined (embedding/dataflow/BM25) and 3-4 are random. This balances signal from hard negatives with diversity from random negatives.\n\n4. **Practical ceiling**: The pool sizes vary by repo (median ~50 files, some <10). For small repos, K>7 would exhaust the candidate pool and force fallback to random padding. K=7 keeps the mining meaningful across repo sizes.\n\n### If reviewers ask about K sensitivity:\n\nAcknowledge as a limitation:\n> \"We fix K=7 to match batch size and follow established practice in dense retrieval (DPR). A systematic K ablation (e.g., K ∈ {3, 5, 7, 15}) could further characterize the interaction between negative count and mining strategy. We leave this for future work.\"\n\nMitigating evidence:\n- The neg_difficulty_analysis (completed) shows that the pretrained margin for different strategies is stable regardless of K, because the mining selects from a pre-computed ranked list — K merely controls how deep into that list we go.\n- BM25 overlap analysis shows that at K=7, strategy overlap is already differentiated (BM25 vs random Jaccard = 0.067 for medium repos), so K=7 provides sufficient strategy discrimination.\n\n---\n\n## 7. Running Experiments (will update when complete)\n\nThe following runs are still in progress and will provide more data:\n\n| Run | Status | ETA |\n|-----|--------|-----|\n| SC2 random_s43 | step 1500/2810 | ~May 15 18:00 |\n| SC2 random_s44 | queued | ~May 16 |\n| Qwen embedding_s42-44 | s43 running | ~May 17 |\n| Qwen dataflow_s42-44 | queued | ~May 18 |\n| SC2 embedding_s42-44 | queued | ~May 19 |\n| SC2 dataflow_s42-44 | queued | ~May 20 |\n\n**Key question**: Does the alignment pattern differ by strategy? The current data is all `random` strategy. Embedding and dataflow negatives may produce different loss/R@1 dynamics due to harder negatives making the loss landscape steeper.\n\n---\n\n## 8. Data Sources\n\n- Registry: `read_registry(project=\"structfuse-context\", fields=[\"*\"])`\n- Checkpoint directories: `/root/autodl-tmp/structfuse/checkpoints/m2_full_{qwen,starcoder}/`\n- Training code: `/root/structfuse/training/train.py` (lines 437, 455 for checkpoint logic)\n- File timestamps: `stat -c \"%Y\" model.pt` for alignment verification\n- Configs: `training_config.json` in each checkpoint directory\n",
+                "numLines": 173,
+                "startLine": 1,
+                "totalLines": 173
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CRWZvtVyUggoYfYmrE7pgF",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/_project/report/checkpoint_criterion_analysis.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "c75107cd-2947-49b9-8f75-45cc29f251a4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ezvq3Yh7Vscd97JDTTQG7D",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 153,
+                "cache_read_input_tokens": 23037,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 153
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T03:56:36.767Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CRWZvtVyUggoYfYmrE7pgF",
+              "type": "tool_result",
+              "content": "1\t# Checkpoint Criterion Analysis: best_by_val_loss vs best_by_R@1\n2\t\n3\t**Date**: 2026-05-15\n4\t**Purpose**: Ablation material for paper — analyze dual checkpoint selection divergence and K=7 rationale.\n5\t\n6\t## 1. Dual Checkpoint Mechanism\n7\t\n8\tThe training script (`training/train.py`) maintains two independent best checkpoints:\n9\t- **best_by_val_loss**: Updated when `val_loss < best_val_loss` (also drives early stopping)\n10\t- **best_by_recall_at_1**: Updated when `R@1 > best_R@1` (independent of early stopping)\n11\t\n12\tBoth are evaluated at `eval_steps=500` intervals. The final eval at training end does NOT update either checkpoint.\n13\t\n14\t---\n15\t\n16\t## 2. Full M2 Runs — Checkpoint Alignment Table\n17\t\n18\t| Run | Encoder | Strategy | Seed | best_by_val_loss | best_by_R@1 | Aligned? | R@1 gap | Evidence |\n19\t|-----|---------|----------|------|-----------------|-------------|----------|---------|----------|\n20\t| m2_full_qwen | Qwen2.5-Coder-3B | random | 42 | step 1000 (vl=0.4651, R@1=0.5527) | step 1000 (R@1=0.5527) | **Yes** | 0pp | timestamps 35s apart |\n21\t| m2_full_qwen | Qwen2.5-Coder-3B | random | 43 | step 500 (vl=0.4476, R@1=0.5357) | step 1500 (R@1=0.5554) | **No** | +1.97pp | timestamps 4.12h apart |\n22\t| m2_full_qwen | Qwen2.5-Coder-3B | random | 44 | step 500 (vl=0.4252, R@1=0.6009) | step 500 (R@1=0.6009) | **Yes** | 0pp | timestamps 6s apart |\n23\t| m2_full_starcoder | StarCoder2-3B | random | 42 | step 1000 (vl=0.6134, R@1=0.454) | step 2500 (R@1=0.4604) | **No** | +0.64pp | timestamps 8.34h apart |\n24\t\n25\t### Full eval trajectory for diverged runs\n26\t\n27\t**Qwen random_s43** (early stopped at step 1500):\n28\t\n29\t| Step | val_loss | R@1 | best_by_val_loss? | best_by_R@1? |\n30\t|------|----------|-----|-------------------|--------------|\n31\t| 500 | **0.4476** | 0.5357 | **Yes** (saved) | Yes (first) |\n32\t| 1000 | 0.4637 | 0.5285 | No (↑ vs 0.4476) | No (↓ vs 0.5357) |\n33\t| 1500 | ? | **0.5554** | No (early stop triggered) | **Yes** (saved) |\n34\t\n35\tval_loss and R@1 diverge: val_loss selects the less-overfit step 500, R@1 selects the better-ranking step 1500.\n36\t\n37\t**StarCoder random_s42** (3 full epochs):\n38\t\n39\t| Step | val_loss | R@1 | best_by_val_loss? | best_by_R@1? |\n40\t|------|----------|-----|-------------------|--------------|\n41\t| 500 | 0.6194 | 0.435 | Yes (first) | Yes (first) |\n42\t| 1000 | **0.6134** | 0.454 | **Yes** (saved) | Yes (saved) |\n43\t| 1500 | 0.6528 | 0.449 | No | No |\n44\t| 2000 | 0.6698 | 0.4456 | No | No |\n45\t| 2500 | 0.6342 | **0.4604** | No | **Yes** (saved) |\n46\t| 3000 | 0.6516 | 0.4544 | No | No |\n47\t| 3500 | 0.6588 | 0.4534 | No | No |\n48\t| 4000 | 0.6637 | 0.4547 | No | No |\n49\t\n50\tStarCoder shows a dramatic divergence: val_loss overfits immediately after step 1000, but R@1 continues improving until step 2500 — 1500 steps (and 8+ hours) later.\n51\t\n52\t---\n53\t\n54\t## 3. Pilot Runs (24 repos) — Checkpoint Alignment\n55\t\n56\t| Encoder | Strategy | Seed | best_by_val_loss | best_by_R@1 | Aligned? |\n57\t|---------|----------|------|-----------------|-------------|----------|\n58\t| Qwen | random | 42 | step 500 (vl=0.4834) | step 500 (R@1=0.5357) | **Yes** |\n59\t| Qwen | embedding | 42 | step 500 (vl=0.4603) | step 500 (R@1=0.5557) | **Yes** |\n60\t| Qwen | dataflow | 42 | step 500 (vl=0.5602) | step 500 (R@1=0.5436) | **Yes** |\n61\t| SC2 | embedding | 42 | step 1000 (vl=0.4816) | step 1000 (R@1=0.5078)* | **Yes** |\n62\t| SC2 | dataflow | 42 | step 1000 (vl=0.5255) | step 1000 (R@1=0.4869)* | **Yes** |\n63\t\n64\t*Note: pilot runs only had 2 eval points (step 500, 1000) before training ended. Final eval (R@1=0.5174 for embedding, 0.5078 for dataflow) was higher than step 1000 but does NOT update best_by_R@1 checkpoints per code logic. Fewer eval points make alignment more likely by chance.\n65\t\n66\t---\n67\t\n68\t## 4. Alignment Rate Summary\n69\t\n70\t### Full M2 runs (completed, with 3+ eval points):\n71\t- **2 / 4 aligned = 50%**\n72\t\n73\t### All runs including pilots:\n74\t- **7 / 9 aligned = 78%**\n75\t- But pilot alignment is inflated due to only 2 eval points\n76\t\n77\t### Pattern observed:\n78\t- **Qwen tends to align** (2/3 full runs = 67%), likely because Qwen's pretrained representations have very high cosine similarity ceiling (pos_sim=0.985), so overfitting and R@1 degradation track together\n79\t- **StarCoder tends to diverge** (0/1 full run, but 1500-step gap is extreme), likely because StarCoder's wider margin (2.6-4.1x Qwen) gives the model more room to improve ranking after the loss curve inflects\n80\t\n81\t---\n82\t\n83\t## 5. Recommendation: Which Criterion to Report\n84\t\n85\t### Primary: Report best_by_R@1\n86\t- R@1 is the target metric; val_loss is a proxy\n87\t- When diverged, best_by_R@1 always gives equal or better R@1 (by definition)\n88\t- The R@1 gap when diverged is meaningful: +1.97pp (Qwen s43), +0.64pp (SC2 s42)\n89\t- Reporting val_loss-selected checkpoint would understate performance by up to ~2pp\n90\t\n91\t### Secondary: Report both in ablation\n92\tPresent a \"checkpoint criterion ablation\" table showing:\n93\t\n94\t| Run | R@1 (best_by_R@1) | R@1 (best_by_val_loss) | Delta |\n95\t|-----|-------------------|----------------------|-------|\n96\t| Qwen random_s42 | 0.5527 | 0.5527 | 0pp |\n97\t| Qwen random_s43 | 0.5554 | 0.5357 | +1.97pp |\n98\t| Qwen random_s44 | 0.6009 | 0.6009 | 0pp |\n99\t| SC2 random_s42 | 0.4604 | 0.454 | +0.64pp |\n100\t\n101\t**Mean delta across all completed runs: +0.65pp**\n102\t\n103\t### Ablation narrative:\n104\t> \"We maintain dual checkpoints during training: one minimizing validation loss, one maximizing R@1. In 50% of full-scale runs, the two criteria selected different training steps. When diverged, the R@1-selected checkpoint outperformed the val_loss-selected one by 0.64–1.97 percentage points. This divergence was more pronounced for StarCoder2-3B, where the best R@1 occurred 1500 steps after the val_loss minimum — consistent with the larger pretrained margin enabling continued representation improvement beyond the loss inflection point. We report R@1-selected checkpoints throughout.\"\n105\t\n106\t---\n107\t\n108\t## 6. K = num_negatives Analysis\n109\t\n110\t### Current setting: K=7 across all experiments\n111\t\n112\tAll proper experiments use K=7 (num_negatives=7):\n113\t- m2_full_qwen: K=7\n114\t- m2_full_starcoder: K=7\n115\t- m2_embed_verify (pilot): K=7\n116\t- plan_013_starcoder (pilot): K=7\n117\t- plan_014 temp ablation: K=7\n118\t- plan_018 BM25: K=7\n119\t\n120\tOnly the discarded early MVP (p2b_5reruns) used K=3, but with entirely different settings (batch_size=2, max_seq_length=512, 127 samples) — not comparable.\n121\t\n122\t### No K ablation exists\n123\t\n124\tThere is no experiment varying K while holding other parameters constant.\n125\t\n126\t### K=7 Rationale (for paper)\n127\t\n128\t**Why K=7 is reasonable:**\n129\t\n130\t1. **batch_size=8 constraint**: With batch_size=8, each query sees 1 positive + K negatives = 8 candidates total. K=7 fills the contrastive batch exactly, giving the InfoNCE denominator maximum diversity per GPU memory budget.\n131\t\n132\t2. **Consistent with literature**: DPR (Karpukhin et al., 2020) uses K=7 in-batch negatives for dense retrieval. SimCSE uses 7 negatives. This is a standard choice for contrastive learning with similar batch sizes.\n133\t\n134\t3. **hard_negative_ratio=0.5**: With K=7, approximately 3-4 negatives are hard-mined (embedding/dataflow/BM25) and 3-4 are random. This balances signal from hard negatives with diversity from random negatives.\n135\t\n136\t4. **Practical ceiling**: The pool sizes vary by repo (median ~50 files, some <10). For small repos, K>7 would exhaust the candidate pool and force fallback to random padding. K=7 keeps the mining meaningful across repo sizes.\n137\t\n138\t### If reviewers ask about K sensitivity:\n139\t\n140\tAcknowledge as a limitation:\n141\t> \"We fix K=7 to match batch size and follow established practice in dense retrieval (DPR). A systematic K ablation (e.g., K ∈ {3, 5, 7, 15}) could further characterize the interaction between negative count and mining strategy. We leave this for future work.\"\n142\t\n143\tMitigating evidence:\n144\t- The neg_difficulty_analysis (completed) shows that the pretrained margin for different strategies is stable regardless of K, because the mining selects from a pre-computed ranked list — K merely controls how deep into that list we go.\n145\t- BM25 overlap analysis shows that at K=7, strategy overlap is already differentiated (BM25 vs random Jaccard = 0.067 for medium repos), so K=7 provides sufficient strategy discrimination.\n146\t\n147\t---\n148\t\n149\t## 7. Running Experiments (will update when complete)\n150\t\n151\tThe following runs are still in progress and will provide more data:\n152\t\n153\t| Run | Status | ETA |\n154\t|-----|--------|-----|\n155\t| SC2 random_s43 | step 1500/2810 | ~May 15 18:00 |\n156\t| SC2 random_s44 | queued | ~May 16 |\n157\t| Qwen embedding_s42-44 | s43 running | ~May 17 |\n158\t| Qwen dataflow_s42-44 | queued | ~May 18 |\n159\t| SC2 embedding_s42-44 | queued | ~May 19 |\n160\t| SC2 dataflow_s42-44 | queued | ~May 20 |\n161\t\n162\t**Key question**: Does the alignment pattern differ by strategy? The current data is all `random` strategy. Embedding and dataflow negatives may produce different loss/R@1 dynamics due to harder negatives making the loss landscape steeper.\n163\t\n164\t---\n165\t\n166\t## 8. Data Sources\n167\t\n168\t- Registry: `read_registry(project=\"structfuse-context\", fields=[\"*\"])`\n169\t- Checkpoint directories: `/root/autodl-tmp/structfuse/checkpoints/m2_full_{qwen,starcoder}/`\n170\t- Training code: `/root/structfuse/training/train.py` (lines 437, 455 for checkpoint logic)\n171\t- File timestamps: `stat -c \"%Y\" model.pt` for alignment verification\n172\t- Configs: `training_config.json` in each checkpoint directory\n173\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "36b5618f-9ecd-456c-9d75-55572ed372aa",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/_project/report/checkpoint_criterion_analysis.md",
+                "content": "# Checkpoint Criterion Analysis: best_by_val_loss vs best_by_R@1\n\n**Date**: 2026-05-15\n**Purpose**: Ablation material for paper — analyze dual checkpoint selection divergence and K=7 rationale.\n\n## 1. Dual Checkpoint Mechanism\n\nThe training script (`training/train.py`) maintains two independent best checkpoints:\n- **best_by_val_loss**: Updated when `val_loss < best_val_loss` (also drives early stopping)\n- **best_by_recall_at_1**: Updated when `R@1 > best_R@1` (independent of early stopping)\n\nBoth are evaluated at `eval_steps=500` intervals. The final eval at training end does NOT update either checkpoint.\n\n---\n\n## 2. Full M2 Runs — Checkpoint Alignment Table\n\n| Run | Encoder | Strategy | Seed | best_by_val_loss | best_by_R@1 | Aligned? | R@1 gap | Evidence |\n|-----|---------|----------|------|-----------------|-------------|----------|---------|----------|\n| m2_full_qwen | Qwen2.5-Coder-3B | random | 42 | step 1000 (vl=0.4651, R@1=0.5527) | step 1000 (R@1=0.5527) | **Yes** | 0pp | timestamps 35s apart |\n| m2_full_qwen | Qwen2.5-Coder-3B | random | 43 | step 500 (vl=0.4476, R@1=0.5357) | step 1500 (R@1=0.5554) | **No** | +1.97pp | timestamps 4.12h apart |\n| m2_full_qwen | Qwen2.5-Coder-3B | random | 44 | step 500 (vl=0.4252, R@1=0.6009) | step 500 (R@1=0.6009) | **Yes** | 0pp | timestamps 6s apart |\n| m2_full_starcoder | StarCoder2-3B | random | 42 | step 1000 (vl=0.6134, R@1=0.454) | step 2500 (R@1=0.4604) | **No** | +0.64pp | timestamps 8.34h apart |\n\n### Full eval trajectory for diverged runs\n\n**Qwen random_s43** (early stopped at step 1500):\n\n| Step | val_loss | R@1 | best_by_val_loss? | best_by_R@1? |\n|------|----------|-----|-------------------|--------------|\n| 500 | **0.4476** | 0.5357 | **Yes** (saved) | Yes (first) |\n| 1000 | 0.4637 | 0.5285 | No (↑ vs 0.4476) | No (↓ vs 0.5357) |\n| 1500 | ? | **0.5554** | No (early stop triggered) | **Yes** (saved) |\n\nval_loss and R@1 diverge: val_loss selects the less-overfit step 500, R@1 selects the better-ranking step 1500.\n\n**StarCoder random_s42** (3 full epochs):\n\n| Step | val_loss | R@1 | best_by_val_loss? | best_by_R@1? |\n|------|----------|-----|-------------------|--------------|\n| 500 | 0.6194 | 0.435 | Yes (first) | Yes (first) |\n| 1000 | **0.6134** | 0.454 | **Yes** (saved) | Yes (saved) |\n| 1500 | 0.6528 | 0.449 | No | No |\n| 2000 | 0.6698 | 0.4456 | No | No |\n| 2500 | 0.6342 | **0.4604** | No | **Yes** (saved) |\n| 3000 | 0.6516 | 0.4544 | No | No |\n| 3500 | 0.6588 | 0.4534 | No | No |\n| 4000 | 0.6637 | 0.4547 | No | No |\n\nStarCoder shows a dramatic divergence: val_loss overfits immediately after step 1000, but R@1 continues improving until step 2500 — 1500 steps (and 8+ hours) later.\n\n---\n\n## 3. Pilot Runs (24 repos) — Checkpoint Alignment\n\n| Encoder | Strategy | Seed | best_by_val_loss | best_by_R@1 | Aligned? |\n|---------|----------|------|-----------------|-------------|----------|\n| Qwen | random | 42 | step 500 (vl=0.4834) | step 500 (R@1=0.5357) | **Yes** |\n| Qwen | embedding | 42 | step 500 (vl=0.4603) | step 500 (R@1=0.5557) | **Yes** |\n| Qwen | dataflow | 42 | step 500 (vl=0.5602) | step 500 (R@1=0.5436) | **Yes** |\n| SC2 | embedding | 42 | step 1000 (vl=0.4816) | step 1000 (R@1=0.5078)* | **Yes** |\n| SC2 | dataflow | 42 | step 1000 (vl=0.5255) | step 1000 (R@1=0.4869)* | **Yes** |\n\n*Note: pilot runs only had 2 eval points (step 500, 1000) before training ended. Final eval (R@1=0.5174 for embedding, 0.5078 for dataflow) was higher than step 1000 but does NOT update best_by_R@1 checkpoints per code logic. Fewer eval points make alignment more likely by chance.\n\n---\n\n## 4. Alignment Rate Summary\n\n### Full M2 runs (completed, with 3+ eval points):\n- **2 / 4 aligned = 50%**\n\n### All runs including pilots:\n- **7 / 9 aligned = 78%**\n- But pilot alignment is inflated due to only 2 eval points\n\n### Pattern observed:\n- **Qwen tends to align** (2/3 full runs = 67%), likely because Qwen's pretrained representations have very high cosine similarity ceiling (pos_sim=0.985), so overfitting and R@1 degradation track together\n- **StarCoder tends to diverge** (0/1 full run, but 1500-step gap is extreme), likely because StarCoder's wider margin (2.6-4.1x Qwen) gives the model more room to improve ranking after the loss curve inflects\n\n---\n\n## 5. Recommendation: Which Criterion to Report\n\n### Primary: Report best_by_R@1\n- R@1 is the target metric; val_loss is a proxy\n- When diverged, best_by_R@1 always gives equal or better R@1 (by definition)\n- The R@1 gap when diverged is meaningful: +1.97pp (Qwen s43), +0.64pp (SC2 s42)\n- Reporting val_loss-selected checkpoint would understate performance by up to ~2pp\n\n### Secondary: Report both in ablation\nPresent a \"checkpoint criterion ablation\" table showing:\n\n| Run | R@1 (best_by_R@1) | R@1 (best_by_val_loss) | Delta |\n|-----|-------------------|----------------------|-------|\n| Qwen random_s42 | 0.5527 | 0.5527 | 0pp |\n| Qwen random_s43 | 0.5554 | 0.5357 | +1.97pp |\n| Qwen random_s44 | 0.6009 | 0.6009 | 0pp |\n| SC2 random_s42 | 0.4604 | 0.454 | +0.64pp |\n\n**Mean delta across all completed runs: +0.65pp**\n\n### Ablation narrative:\n> \"We maintain dual checkpoints during training: one minimizing validation loss, one maximizing R@1. In 50% of full-scale runs, the two criteria selected different training steps. When diverged, the R@1-selected checkpoint outperformed the val_loss-selected one by 0.64–1.97 percentage points. This divergence was more pronounced for StarCoder2-3B, where the best R@1 occurred 1500 steps after the val_loss minimum — consistent with the larger pretrained margin enabling continued representation improvement beyond the loss inflection point. We report R@1-selected checkpoints throughout.\"\n\n---\n\n## 6. K = num_negatives Analysis\n\n### Current setting: K=7 across all experiments\n\nAll proper experiments use K=7 (num_negatives=7):\n- m2_full_qwen: K=7\n- m2_full_starcoder: K=7\n- m2_embed_verify (pilot): K=7\n- plan_013_starcoder (pilot): K=7\n- plan_014 temp ablation: K=7\n- plan_018 BM25: K=7\n\nOnly the discarded early MVP (p2b_5reruns) used K=3, but with entirely different settings (batch_size=2, max_seq_length=512, 127 samples) — not comparable.\n\n### No K ablation exists\n\nThere is no experiment varying K while holding other parameters constant.\n\n### K=7 Rationale (for paper)\n\n**Why K=7 is reasonable:**\n\n1. **batch_size=8 constraint**: With batch_size=8, each query sees 1 positive + K negatives = 8 candidates total. K=7 fills the contrastive batch exactly, giving the InfoNCE denominator maximum diversity per GPU memory budget.\n\n2. **Consistent with literature**: DPR (Karpukhin et al., 2020) uses K=7 in-batch negatives for dense retrieval. SimCSE uses 7 negatives. This is a standard choice for contrastive learning with similar batch sizes.\n\n3. **hard_negative_ratio=0.5**: With K=7, approximately 3-4 negatives are hard-mined (embedding/dataflow/BM25) and 3-4 are random. This balances signal from hard negatives with diversity from random negatives.\n\n4. **Practical ceiling**: The pool sizes vary by repo (median ~50 files, some <10). For small repos, K>7 would exhaust the candidate pool and force fallback to random padding. K=7 keeps the mining meaningful across repo sizes.\n\n### If reviewers ask about K sensitivity:\n\nAcknowledge as a limitation:\n> \"We fix K=7 to match batch size and follow established practice in dense retrieval (DPR). A systematic K ablation (e.g., K ∈ {3, 5, 7, 15}) could further characterize the interaction between negative count and mining strategy. We leave this for future work.\"\n\nMitigating evidence:\n- The neg_difficulty_analysis (completed) shows that the pretrained margin for different strategies is stable regardless of K, because the mining selects from a pre-computed ranked list — K merely controls how deep into that list we go.\n- BM25 overlap analysis shows that at K=7, strategy overlap is already differentiated (BM25 vs random Jaccard = 0.067 for medium repos), so K=7 provides sufficient strategy discrimination.\n\n---\n\n## 7. Running Experiments (will update when complete)\n\nThe following runs are still in progress and will provide more data:\n\n| Run | Status | ETA |\n|-----|--------|-----|\n| SC2 random_s43 | step 1500/2810 | ~May 15 18:00 |\n| SC2 random_s44 | queued | ~May 16 |\n| Qwen embedding_s42-44 | s43 running | ~May 17 |\n| Qwen dataflow_s42-44 | queued | ~May 18 |\n| SC2 embedding_s42-44 | queued | ~May 19 |\n| SC2 dataflow_s42-44 | queued | ~May 20 |\n\n**Key question**: Does the alignment pattern differ by strategy? The current data is all `random` strategy. Embedding and dataflow negatives may produce different loss/R@1 dynamics due to harder negatives making the loss landscape steeper.\n\n---\n\n## 8. Data Sources\n\n- Registry: `read_registry(project=\"structfuse-context\", fields=[\"*\"])`\n- Checkpoint directories: `/root/autodl-tmp/structfuse/checkpoints/m2_full_{qwen,starcoder}/`\n- Training code: `/root/structfuse/training/train.py` (lines 437, 455 for checkpoint logic)\n- File timestamps: `stat -c \"%Y\" model.pt` for alignment verification\n- Configs: `training_config.json` in each checkpoint directory\n",
+                "numLines": 173,
+                "startLine": 1,
+                "totalLines": 173
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Both files are identical. The problematic text is on line 134 in both files:\n\n```\n3. **hard_negative_ratio=0.5**: With K=7, approximately 3-4 negatives are hard-mined (embedding/dataflow/BM25) and 3-4 are random. This balances signal from hard negatives with diversity from random negatives.\n```\n\nI need to replace this with a description about \"K=7 negatives are randomly sampled from a pool of 50 strategy-specific candidates per query\". \n\nI'm checking the file and confirming that line 134 is the only place where `hard_negative_ratio` appears. I'll replace the entire point 3 while keeping the numbered list format intact, updating it to reflect that K=7 negatives are randomly sampled from a pool of 50 strategy-specific candidates per query.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "e1be3b4b-0e31-480b-9d2f-dfc7ed72438d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CULFadAkBBr4KSBezkHzLM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7548,
+                "cache_read_input_tokens": 23190,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7548
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件内容相同，`hard_negative_ratio` 只出现在第 134 行（第 3 点）。修改两份文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "f221ef80-0283-47ea-a8b4-6a24f9e61d4f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CULFadAkBBr4KSBezkHzLM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7548,
+                "cache_read_input_tokens": 23190,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7548
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PYiHCUdHty5MuGTkT9thrb",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/checkpoint_criterion_analysis.md",
+                "old_string": "3. **hard_negative_ratio=0.5**: With K=7, approximately 3-4 negatives are hard-mined (embedding/dataflow/BM25) and 3-4 are random. This balances signal from hard negatives with diversity from random negatives.",
+                "new_string": "3. **Negative sampling procedure**: K=7 negatives are randomly sampled from a pool of 50 strategy-specific candidates per query. This pool size provides sufficient diversity while keeping the sampling meaningful across different mining strategies."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "e25977e4-53d9-4449-8c0f-c5905ac246f7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CULFadAkBBr4KSBezkHzLM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7548,
+                "cache_read_input_tokens": 23190,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7548
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T03:56:50.668Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PYiHCUdHty5MuGTkT9thrb",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/checkpoint_criterion_analysis.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "4be54efd-7fe6-402e-a211-6e703f7e644c",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/checkpoint_criterion_analysis.md",
+              "oldString": "3. **hard_negative_ratio=0.5**: With K=7, approximately 3-4 negatives are hard-mined (embedding/dataflow/BM25) and 3-4 are random. This balances signal from hard negatives with diversity from random negatives.",
+              "newString": "3. **Negative sampling procedure**: K=7 negatives are randomly sampled from a pool of 50 strategy-specific candidates per query. This pool size provides sufficient diversity while keeping the sampling meaningful across different mining strategies.",
+              "originalFile": "# Checkpoint Criterion Analysis: best_by_val_loss vs best_by_R@1\n\n**Date**: 2026-05-15\n**Purpose**: Ablation material for paper — analyze dual checkpoint selection divergence and K=7 rationale.\n\n## 1. Dual Checkpoint Mechanism\n\nThe training script (`training/train.py`) maintains two independent best checkpoints:\n- **best_by_val_loss**: Updated when `val_loss < best_val_loss` (also drives early stopping)\n- **best_by_recall_at_1**: Updated when `R@1 > best_R@1` (independent of early stopping)\n\nBoth are evaluated at `eval_steps=500` intervals. The final eval at training end does NOT update either checkpoint.\n\n---\n\n## 2. Full M2 Runs — Checkpoint Alignment Table\n\n| Run | Encoder | Strategy | Seed | best_by_val_loss | best_by_R@1 | Aligned? | R@1 gap | Evidence |\n|-----|---------|----------|------|-----------------|-------------|----------|---------|----------|\n| m2_full_qwen | Qwen2.5-Coder-3B | random | 42 | step 1000 (vl=0.4651, R@1=0.5527) | step 1000 (R@1=0.5527) | **Yes** | 0pp | timestamps 35s apart |\n| m2_full_qwen | Qwen2.5-Coder-3B | random | 43 | step 500 (vl=0.4476, R@1=0.5357) | step 1500 (R@1=0.5554) | **No** | +1.97pp | timestamps 4.12h apart |\n| m2_full_qwen | Qwen2.5-Coder-3B | random | 44 | step 500 (vl=0.4252, R@1=0.6009) | step 500 (R@1=0.6009) | **Yes** | 0pp | timestamps 6s apart |\n| m2_full_starcoder | StarCoder2-3B | random | 42 | step 1000 (vl=0.6134, R@1=0.454) | step 2500 (R@1=0.4604) | **No** | +0.64pp | timestamps 8.34h apart |\n\n### Full eval trajectory for diverged runs\n\n**Qwen random_s43** (early stopped at step 1500):\n\n| Step | val_loss | R@1 | best_by_val_loss? | best_by_R@1? |\n|------|----------|-----|-------------------|--------------|\n| 500 | **0.4476** | 0.5357 | **Yes** (saved) | Yes (first) |\n| 1000 | 0.4637 | 0.5285 | No (↑ vs 0.4476) | No (↓ vs 0.5357) |\n| 1500 | ? | **0.5554** | No (early stop triggered) | **Yes** (saved) |\n\nval_loss and R@1 diverge: val_loss selects the less-overfit step 500, R@1 selects the better-ranking step 1500.\n\n**StarCoder random_s42** (3 full epochs):\n\n| Step | val_loss | R@1 | best_by_val_loss? | best_by_R@1? |\n|------|----------|-----|-------------------|--------------|\n| 500 | 0.6194 | 0.435 | Yes (first) | Yes (first) |\n| 1000 | **0.6134** | 0.454 | **Yes** (saved) | Yes (saved) |\n| 1500 | 0.6528 | 0.449 | No | No |\n| 2000 | 0.6698 | 0.4456 | No | No |\n| 2500 | 0.6342 | **0.4604** | No | **Yes** (saved) |\n| 3000 | 0.6516 | 0.4544 | No | No |\n| 3500 | 0.6588 | 0.4534 | No | No |\n| 4000 | 0.6637 | 0.4547 | No | No |\n\nStarCoder shows a dramatic divergence: val_loss overfits immediately after step 1000, but R@1 continues improving until step 2500 — 1500 steps (and 8+ hours) later.\n\n---\n\n## 3. Pilot Runs (24 repos) — Checkpoint Alignment\n\n| Encoder | Strategy | Seed | best_by_val_loss | best_by_R@1 | Aligned? |\n|---------|----------|------|-----------------|-------------|----------|\n| Qwen | random | 42 | step 500 (vl=0.4834) | step 500 (R@1=0.5357) | **Yes** |\n| Qwen | embedding | 42 | step 500 (vl=0.4603) | step 500 (R@1=0.5557) | **Yes** |\n| Qwen | dataflow | 42 | step 500 (vl=0.5602) | step 500 (R@1=0.5436) | **Yes** |\n| SC2 | embedding | 42 | step 1000 (vl=0.4816) | step 1000 (R@1=0.5078)* | **Yes** |\n| SC2 | dataflow | 42 | step 1000 (vl=0.5255) | step 1000 (R@1=0.4869)* | **Yes** |\n\n*Note: pilot runs only had 2 eval points (step 500, 1000) before training ended. Final eval (R@1=0.5174 for embedding, 0.5078 for dataflow) was higher than step 1000 but does NOT update best_by_R@1 checkpoints per code logic. Fewer eval points make alignment more likely by chance.\n\n---\n\n## 4. Alignment Rate Summary\n\n### Full M2 runs (completed, with 3+ eval points):\n- **2 / 4 aligned = 50%**\n\n### All runs including pilots:\n- **7 / 9 aligned = 78%**\n- But pilot alignment is inflated due to only 2 eval points\n\n### Pattern observed:\n- **Qwen tends to align** (2/3 full runs = 67%), likely because Qwen's pretrained representations have very high cosine similarity ceiling (pos_sim=0.985), so overfitting and R@1 degradation track together\n- **StarCoder tends to diverge** (0/1 full run, but 1500-step gap is extreme), likely because StarCoder's wider margin (2.6-4.1x Qwen) gives the model more room to improve ranking after the loss curve inflects\n\n---\n\n## 5. Recommendation: Which Criterion to Report\n\n### Primary: Report best_by_R@1\n- R@1 is the target metric; val_loss is a proxy\n- When diverged, best_by_R@1 always gives equal or better R@1 (by definition)\n- The R@1 gap when diverged is meaningful: +1.97pp (Qwen s43), +0.64pp (SC2 s42)\n- Reporting val_loss-selected checkpoint would understate performance by up to ~2pp\n\n### Secondary: Report both in ablation\nPresent a \"checkpoint criterion ablation\" table showing:\n\n| Run | R@1 (best_by_R@1) | R@1 (best_by_val_loss) | Delta |\n|-----|-------------------|----------------------|-------|\n| Qwen random_s42 | 0.5527 | 0.5527 | 0pp |\n| Qwen random_s43 | 0.5554 | 0.5357 | +1.97pp |\n| Qwen random_s44 | 0.6009 | 0.6009 | 0pp |\n| SC2 random_s42 | 0.4604 | 0.454 | +0.64pp |\n\n**Mean delta across all completed runs: +0.65pp**\n\n### Ablation narrative:\n> \"We maintain dual checkpoints during training: one minimizing validation loss, one maximizing R@1. In 50% of full-scale runs, the two criteria selected different training steps. When diverged, the R@1-selected checkpoint outperformed the val_loss-selected one by 0.64–1.97 percentage points. This divergence was more pronounced for StarCoder2-3B, where the best R@1 occurred 1500 steps after the val_loss minimum — consistent with the larger pretrained margin enabling continued representation improvement beyond the loss inflection point. We report R@1-selected checkpoints throughout.\"\n\n---\n\n## 6. K = num_negatives Analysis\n\n### Current setting: K=7 across all experiments\n\nAll proper experiments use K=7 (num_negatives=7):\n- m2_full_qwen: K=7\n- m2_full_starcoder: K=7\n- m2_embed_verify (pilot): K=7\n- plan_013_starcoder (pilot): K=7\n- plan_014 temp ablation: K=7\n- plan_018 BM25: K=7\n\nOnly the discarded early MVP (p2b_5reruns) used K=3, but with entirely different settings (batch_size=2, max_seq_length=512, 127 samples) — not comparable.\n\n### No K ablation exists\n\nThere is no experiment varying K while holding other parameters constant.\n\n### K=7 Rationale (for paper)\n\n**Why K=7 is reasonable:**\n\n1. **batch_size=8 constraint**: With batch_size=8, each query sees 1 positive + K negatives = 8 candidates total. K=7 fills the contrastive batch exactly, giving the InfoNCE denominator maximum diversity per GPU memory budget.\n\n2. **Consistent with literature**: DPR (Karpukhin et al., 2020) uses K=7 in-batch negatives for dense retrieval. SimCSE uses 7 negatives. This is a standard choice for contrastive learning with similar batch sizes.\n\n3. **hard_negative_ratio=0.5**: With K=7, approximately 3-4 negatives are hard-mined (embedding/dataflow/BM25) and 3-4 are random. This balances signal from hard negatives with diversity from random negatives.\n\n4. **Practical ceiling**: The pool sizes vary by repo (median ~50 files, some <10). For small repos, K>7 would exhaust the candidate pool and force fallback to random padding. K=7 keeps the mining meaningful across repo sizes.\n\n### If reviewers ask about K sensitivity:\n\nAcknowledge as a limitation:\n> \"We fix K=7 to match batch size and follow established practice in dense retrieval (DPR). A systematic K ablation (e.g., K ∈ {3, 5, 7, 15}) could further characterize the interaction between negative count and mining strategy. We leave this for future work.\"\n\nMitigating evidence:\n- The neg_difficulty_analysis (completed) shows that the pretrained margin for different strategies is stable regardless of K, because the mining selects from a pre-computed ranked list — K merely controls how deep into that list we go.\n- BM25 overlap analysis shows that at K=7, strategy overlap is already differentiated (BM25 vs random Jaccard = 0.067 for medium repos), so K=7 provides sufficient strategy discrimination.\n\n---\n\n## 7. Running Experiments (will update when complete)\n\nThe following runs are still in progress and will provide more data:\n\n| Run | Status | ETA |\n|-----|--------|-----|\n| SC2 random_s43 | step 1500/2810 | ~May 15 18:00 |\n| SC2 random_s44 | queued | ~May 16 |\n| Qwen embedding_s42-44 | s43 running | ~May 17 |\n| Qwen dataflow_s42-44 | queued | ~May 18 |\n| SC2 embedding_s42-44 | queued | ~May 19 |\n| SC2 dataflow_s42-44 | queued | ~May 20 |\n\n**Key question**: Does the alignment pattern differ by strategy? The current data is all `random` strategy. Embedding and dataflow negatives may produce different loss/R@1 dynamics due to harder negatives making the loss landscape steeper.\n\n---\n\n## 8. Data Sources\n\n- Registry: `read_registry(project=\"structfuse-context\", fields=[\"*\"])`\n- Checkpoint directories: `/root/autodl-tmp/structfuse/checkpoints/m2_full_{qwen,starcoder}/`\n- Training code: `/root/structfuse/training/train.py` (lines 437, 455 for checkpoint logic)\n- File timestamps: `stat -c \"%Y\" model.pt` for alignment verification\n- Configs: `training_config.json` in each checkpoint directory\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 131,
+                  "oldLines": 7,
+                  "newStart": 131,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " 2. **Consistent with literature**: DPR (Karpukhin et al., 2020) uses K=7 in-batch negatives for dense retrieval. SimCSE uses 7 negatives. This is a standard choice for contrastive learning with similar batch sizes.",
+                    " ",
+                    "-3. **hard_negative_ratio=0.5**: With K=7, approximately 3-4 negatives are hard-mined (embedding/dataflow/BM25) and 3-4 are random. This balances signal from hard negatives with diversity from random negatives.",
+                    "+3. **Negative sampling procedure**: K=7 negatives are randomly sampled from a pool of 50 strategy-specific candidates per query. This pool size provides sufficient diversity while keeping the sampling meaningful across different mining strategies.",
+                    " ",
+                    " 4. **Practical ceiling**: The pool sizes vary by repo (median ~50 files, some <10). For small repos, K>7 would exhaust the candidate pool and force fallback to random padding. K=7 keeps the mining meaningful across repo sizes.",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DVR6c3jwygwydRA36RybA6",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/_project/report/checkpoint_criterion_analysis.md",
+                "old_string": "3. **hard_negative_ratio=0.5**: With K=7, approximately 3-4 negatives are hard-mined (embedding/dataflow/BM25) and 3-4 are random. This balances signal from hard negatives with diversity from random negatives.",
+                "new_string": "3. **Negative sampling procedure**: K=7 negatives are randomly sampled from a pool of 50 strategy-specific candidates per query. This pool size provides sufficient diversity while keeping the sampling meaningful across different mining strategies."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "03a4518c-25b0-4a58-a7d4-4a87ac774860",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CULFadAkBBr4KSBezkHzLM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7548,
+                "cache_read_input_tokens": 23190,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7548
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T03:56:51.964Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DVR6c3jwygwydRA36RybA6",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/_project/report/checkpoint_criterion_analysis.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "35aa8260-59eb-4a3f-935d-0854e9642cbb",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/_project/report/checkpoint_criterion_analysis.md",
+              "oldString": "3. **hard_negative_ratio=0.5**: With K=7, approximately 3-4 negatives are hard-mined (embedding/dataflow/BM25) and 3-4 are random. This balances signal from hard negatives with diversity from random negatives.",
+              "newString": "3. **Negative sampling procedure**: K=7 negatives are randomly sampled from a pool of 50 strategy-specific candidates per query. This pool size provides sufficient diversity while keeping the sampling meaningful across different mining strategies.",
+              "originalFile": "# Checkpoint Criterion Analysis: best_by_val_loss vs best_by_R@1\n\n**Date**: 2026-05-15\n**Purpose**: Ablation material for paper — analyze dual checkpoint selection divergence and K=7 rationale.\n\n## 1. Dual Checkpoint Mechanism\n\nThe training script (`training/train.py`) maintains two independent best checkpoints:\n- **best_by_val_loss**: Updated when `val_loss < best_val_loss` (also drives early stopping)\n- **best_by_recall_at_1**: Updated when `R@1 > best_R@1` (independent of early stopping)\n\nBoth are evaluated at `eval_steps=500` intervals. The final eval at training end does NOT update either checkpoint.\n\n---\n\n## 2. Full M2 Runs — Checkpoint Alignment Table\n\n| Run | Encoder | Strategy | Seed | best_by_val_loss | best_by_R@1 | Aligned? | R@1 gap | Evidence |\n|-----|---------|----------|------|-----------------|-------------|----------|---------|----------|\n| m2_full_qwen | Qwen2.5-Coder-3B | random | 42 | step 1000 (vl=0.4651, R@1=0.5527) | step 1000 (R@1=0.5527) | **Yes** | 0pp | timestamps 35s apart |\n| m2_full_qwen | Qwen2.5-Coder-3B | random | 43 | step 500 (vl=0.4476, R@1=0.5357) | step 1500 (R@1=0.5554) | **No** | +1.97pp | timestamps 4.12h apart |\n| m2_full_qwen | Qwen2.5-Coder-3B | random | 44 | step 500 (vl=0.4252, R@1=0.6009) | step 500 (R@1=0.6009) | **Yes** | 0pp | timestamps 6s apart |\n| m2_full_starcoder | StarCoder2-3B | random | 42 | step 1000 (vl=0.6134, R@1=0.454) | step 2500 (R@1=0.4604) | **No** | +0.64pp | timestamps 8.34h apart |\n\n### Full eval trajectory for diverged runs\n\n**Qwen random_s43** (early stopped at step 1500):\n\n| Step | val_loss | R@1 | best_by_val_loss? | best_by_R@1? |\n|------|----------|-----|-------------------|--------------|\n| 500 | **0.4476** | 0.5357 | **Yes** (saved) | Yes (first) |\n| 1000 | 0.4637 | 0.5285 | No (↑ vs 0.4476) | No (↓ vs 0.5357) |\n| 1500 | ? | **0.5554** | No (early stop triggered) | **Yes** (saved) |\n\nval_loss and R@1 diverge: val_loss selects the less-overfit step 500, R@1 selects the better-ranking step 1500.\n\n**StarCoder random_s42** (3 full epochs):\n\n| Step | val_loss | R@1 | best_by_val_loss? | best_by_R@1? |\n|------|----------|-----|-------------------|--------------|\n| 500 | 0.6194 | 0.435 | Yes (first) | Yes (first) |\n| 1000 | **0.6134** | 0.454 | **Yes** (saved) | Yes (saved) |\n| 1500 | 0.6528 | 0.449 | No | No |\n| 2000 | 0.6698 | 0.4456 | No | No |\n| 2500 | 0.6342 | **0.4604** | No | **Yes** (saved) |\n| 3000 | 0.6516 | 0.4544 | No | No |\n| 3500 | 0.6588 | 0.4534 | No | No |\n| 4000 | 0.6637 | 0.4547 | No | No |\n\nStarCoder shows a dramatic divergence: val_loss overfits immediately after step 1000, but R@1 continues improving until step 2500 — 1500 steps (and 8+ hours) later.\n\n---\n\n## 3. Pilot Runs (24 repos) — Checkpoint Alignment\n\n| Encoder | Strategy | Seed | best_by_val_loss | best_by_R@1 | Aligned? |\n|---------|----------|------|-----------------|-------------|----------|\n| Qwen | random | 42 | step 500 (vl=0.4834) | step 500 (R@1=0.5357) | **Yes** |\n| Qwen | embedding | 42 | step 500 (vl=0.4603) | step 500 (R@1=0.5557) | **Yes** |\n| Qwen | dataflow | 42 | step 500 (vl=0.5602) | step 500 (R@1=0.5436) | **Yes** |\n| SC2 | embedding | 42 | step 1000 (vl=0.4816) | step 1000 (R@1=0.5078)* | **Yes** |\n| SC2 | dataflow | 42 | step 1000 (vl=0.5255) | step 1000 (R@1=0.4869)* | **Yes** |\n\n*Note: pilot runs only had 2 eval points (step 500, 1000) before training ended. Final eval (R@1=0.5174 for embedding, 0.5078 for dataflow) was higher than step 1000 but does NOT update best_by_R@1 checkpoints per code logic. Fewer eval points make alignment more likely by chance.\n\n---\n\n## 4. Alignment Rate Summary\n\n### Full M2 runs (completed, with 3+ eval points):\n- **2 / 4 aligned = 50%**\n\n### All runs including pilots:\n- **7 / 9 aligned = 78%**\n- But pilot alignment is inflated due to only 2 eval points\n\n### Pattern observed:\n- **Qwen tends to align** (2/3 full runs = 67%), likely because Qwen's pretrained representations have very high cosine similarity ceiling (pos_sim=0.985), so overfitting and R@1 degradation track together\n- **StarCoder tends to diverge** (0/1 full run, but 1500-step gap is extreme), likely because StarCoder's wider margin (2.6-4.1x Qwen) gives the model more room to improve ranking after the loss curve inflects\n\n---\n\n## 5. Recommendation: Which Criterion to Report\n\n### Primary: Report best_by_R@1\n- R@1 is the target metric; val_loss is a proxy\n- When diverged, best_by_R@1 always gives equal or better R@1 (by definition)\n- The R@1 gap when diverged is meaningful: +1.97pp (Qwen s43), +0.64pp (SC2 s42)\n- Reporting val_loss-selected checkpoint would understate performance by up to ~2pp\n\n### Secondary: Report both in ablation\nPresent a \"checkpoint criterion ablation\" table showing:\n\n| Run | R@1 (best_by_R@1) | R@1 (best_by_val_loss) | Delta |\n|-----|-------------------|----------------------|-------|\n| Qwen random_s42 | 0.5527 | 0.5527 | 0pp |\n| Qwen random_s43 | 0.5554 | 0.5357 | +1.97pp |\n| Qwen random_s44 | 0.6009 | 0.6009 | 0pp |\n| SC2 random_s42 | 0.4604 | 0.454 | +0.64pp |\n\n**Mean delta across all completed runs: +0.65pp**\n\n### Ablation narrative:\n> \"We maintain dual checkpoints during training: one minimizing validation loss, one maximizing R@1. In 50% of full-scale runs, the two criteria selected different training steps. When diverged, the R@1-selected checkpoint outperformed the val_loss-selected one by 0.64–1.97 percentage points. This divergence was more pronounced for StarCoder2-3B, where the best R@1 occurred 1500 steps after the val_loss minimum — consistent with the larger pretrained margin enabling continued representation improvement beyond the loss inflection point. We report R@1-selected checkpoints throughout.\"\n\n---\n\n## 6. K = num_negatives Analysis\n\n### Current setting: K=7 across all experiments\n\nAll proper experiments use K=7 (num_negatives=7):\n- m2_full_qwen: K=7\n- m2_full_starcoder: K=7\n- m2_embed_verify (pilot): K=7\n- plan_013_starcoder (pilot): K=7\n- plan_014 temp ablation: K=7\n- plan_018 BM25: K=7\n\nOnly the discarded early MVP (p2b_5reruns) used K=3, but with entirely different settings (batch_size=2, max_seq_length=512, 127 samples) — not comparable.\n\n### No K ablation exists\n\nThere is no experiment varying K while holding other parameters constant.\n\n### K=7 Rationale (for paper)\n\n**Why K=7 is reasonable:**\n\n1. **batch_size=8 constraint**: With batch_size=8, each query sees 1 positive + K negatives = 8 candidates total. K=7 fills the contrastive batch exactly, giving the InfoNCE denominator maximum diversity per GPU memory budget.\n\n2. **Consistent with literature**: DPR (Karpukhin et al., 2020) uses K=7 in-batch negatives for dense retrieval. SimCSE uses 7 negatives. This is a standard choice for contrastive learning with similar batch sizes.\n\n3. **hard_negative_ratio=0.5**: With K=7, approximately 3-4 negatives are hard-mined (embedding/dataflow/BM25) and 3-4 are random. This balances signal from hard negatives with diversity from random negatives.\n\n4. **Practical ceiling**: The pool sizes vary by repo (median ~50 files, some <10). For small repos, K>7 would exhaust the candidate pool and force fallback to random padding. K=7 keeps the mining meaningful across repo sizes.\n\n### If reviewers ask about K sensitivity:\n\nAcknowledge as a limitation:\n> \"We fix K=7 to match batch size and follow established practice in dense retrieval (DPR). A systematic K ablation (e.g., K ∈ {3, 5, 7, 15}) could further characterize the interaction between negative count and mining strategy. We leave this for future work.\"\n\nMitigating evidence:\n- The neg_difficulty_analysis (completed) shows that the pretrained margin for different strategies is stable regardless of K, because the mining selects from a pre-computed ranked list — K merely controls how deep into that list we go.\n- BM25 overlap analysis shows that at K=7, strategy overlap is already differentiated (BM25 vs random Jaccard = 0.067 for medium repos), so K=7 provides sufficient strategy discrimination.\n\n---\n\n## 7. Running Experiments (will update when complete)\n\nThe following runs are still in progress and will provide more data:\n\n| Run | Status | ETA |\n|-----|--------|-----|\n| SC2 random_s43 | step 1500/2810 | ~May 15 18:00 |\n| SC2 random_s44 | queued | ~May 16 |\n| Qwen embedding_s42-44 | s43 running | ~May 17 |\n| Qwen dataflow_s42-44 | queued | ~May 18 |\n| SC2 embedding_s42-44 | queued | ~May 19 |\n| SC2 dataflow_s42-44 | queued | ~May 20 |\n\n**Key question**: Does the alignment pattern differ by strategy? The current data is all `random` strategy. Embedding and dataflow negatives may produce different loss/R@1 dynamics due to harder negatives making the loss landscape steeper.\n\n---\n\n## 8. Data Sources\n\n- Registry: `read_registry(project=\"structfuse-context\", fields=[\"*\"])`\n- Checkpoint directories: `/root/autodl-tmp/structfuse/checkpoints/m2_full_{qwen,starcoder}/`\n- Training code: `/root/structfuse/training/train.py` (lines 437, 455 for checkpoint logic)\n- File timestamps: `stat -c \"%Y\" model.pt` for alignment verification\n- Configs: `training_config.json` in each checkpoint directory\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 131,
+                  "oldLines": 7,
+                  "newStart": 131,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " 2. **Consistent with literature**: DPR (Karpukhin et al., 2020) uses K=7 in-batch negatives for dense retrieval. SimCSE uses 7 negatives. This is a standard choice for contrastive learning with similar batch sizes.",
+                    " ",
+                    "-3. **hard_negative_ratio=0.5**: With K=7, approximately 3-4 negatives are hard-mined (embedding/dataflow/BM25) and 3-4 are random. This balances signal from hard negatives with diversity from random negatives.",
+                    "+3. **Negative sampling procedure**: K=7 negatives are randomly sampled from a pool of 50 strategy-specific candidates per query. This pool size provides sufficient diversity while keeping the sampling meaningful across different mining strategies.",
+                    " ",
+                    " 4. **Practical ceiling**: The pool sizes vary by repo (median ~50 files, some <10). For small repos, K>7 would exhaust the candidate pool and force fallback to random padding. K=7 keeps the mining meaningful across repo sizes.",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证无残留。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "96f9b102-3dd0-46fa-92c7-45f9f2beb138",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012D3cheC6BzKtyo9ZN8PC1V",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1097,
+                "cache_read_input_tokens": 30738,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1097
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011Se81Z8s76gNkfFwYuXbt9",
+              "name": "Grep",
+              "input": {
+                "pattern": "hard_negative_ratio",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "38d27cd1-473b-4088-a462-f7ab0d78b164",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012D3cheC6BzKtyo9ZN8PC1V",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1097,
+                "cache_read_input_tokens": 30738,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1097
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T03:56:54.825Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011Se81Z8s76gNkfFwYuXbt9",
+              "type": "tool_result",
+              "content": "artifacts/code/extraction/build_training_data.py:155:    hard_negative_ratio: float,\nartifacts/code/extraction/build_training_data.py:159:    - hard_negative_ratio fraction: BM25-similar but structurally disconnected\nartifacts/code/extraction/build_training_data.py:171:    num_hard = int(num_negatives * hard_negative_ratio)\nartifacts/code/extraction/build_training_data.py:215:    hard_negative_ratio: float,\nartifacts/code/extraction/build_training_data.py:286:        num_negatives, hard_negative_ratio,\nartifacts/code/extraction/build_training_data.py:381:                args.num_negatives, args.hard_negative_ratio, args.max_seq_length,\nartifacts/m2_full_qwen/report/m2_full_qwen_analysis.md:31:- num_negatives: 7, hard_negative_ratio: 0.5\nartifacts/m2_full_qwen_analysis.md:31:- num_negatives: 7, hard_negative_ratio: 0.5\nartifacts/_project/intermediate/build_training_data.py:155:    hard_negative_ratio: float,\nartifacts/_project/intermediate/build_training_data.py:159:    - hard_negative_ratio fraction: BM25-similar but structurally disconnected\nartifacts/_project/intermediate/build_training_data.py:171:    num_hard = int(num_negatives * hard_negative_ratio)\nartifacts/_project/intermediate/build_training_data.py:215:    hard_negative_ratio: float,\nartifacts/_project/intermediate/build_training_data.py:286:        num_negatives, hard_negative_ratio,\nartifacts/_project/intermediate/build_training_data.py:381:                args.num_negatives, args.hard_negative_ratio, args.max_seq_length,\nartifacts/dream_reports/dream_20260514T162530/logs/review_best.log:138:[Omitted long matching line]\nartifacts/dream_reports/dream_20260512T204322/logs/phase2_median_attempt0.log:105:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "7d6b1c73-1ea0-4212-902e-3c1cf7686f69",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "artifacts/code/extraction/build_training_data.py:155:    hard_negative_ratio: float,\nartifacts/code/extraction/build_training_data.py:159:    - hard_negative_ratio fraction: BM25-similar but structurally disconnected\nartifacts/code/extraction/build_training_data.py:171:    num_hard = int(num_negatives * hard_negative_ratio)\nartifacts/code/extraction/build_training_data.py:215:    hard_negative_ratio: float,\nartifacts/code/extraction/build_training_data.py:286:        num_negatives, hard_negative_ratio,\nartifacts/code/extraction/build_training_data.py:381:                args.num_negatives, args.hard_negative_ratio, args.max_seq_length,\nartifacts/m2_full_qwen/report/m2_full_qwen_analysis.md:31:- num_negatives: 7, hard_negative_ratio: 0.5\nartifacts/m2_full_qwen_analysis.md:31:- num_negatives: 7, hard_negative_ratio: 0.5\nartifacts/_project/intermediate/build_training_data.py:155:    hard_negative_ratio: float,\nartifacts/_project/intermediate/build_training_data.py:159:    - hard_negative_ratio fraction: BM25-similar but structurally disconnected\nartifacts/_project/intermediate/build_training_data.py:171:    num_hard = int(num_negatives * hard_negative_ratio)\nartifacts/_project/intermediate/build_training_data.py:215:    hard_negative_ratio: float,\nartifacts/_project/intermediate/build_training_data.py:286:        num_negatives, hard_negative_ratio,\nartifacts/_project/intermediate/build_training_data.py:381:                args.num_negatives, args.hard_negative_ratio, args.max_seq_length,\nartifacts/dream_reports/dream_20260514T162530/logs/review_best.log:138:[Omitted long matching line]\nartifacts/dream_reports/dream_20260512T204322/logs/phase2_median_attempt0.log:105:[Omitted long matching line]",
+              "numLines": 16
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 `checkpoint_criterion_analysis.md` 文件已无 `hard_negative_ratio` 残留。其他文件中的出现属于代码（`build_training_data.py`）和其他分析报告，不在本次修改范围内。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "uuid": "8e48695a-efcc-4487-a9c7-ac0fc0dbff38",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MaDvGfowp8ZrsvpzpF5E5w",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 781,
+                "cache_read_input_tokens": 31835,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 781
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 `checkpoint_criterion_analysis.md` 文件已无 `hard_negative_ratio` 残留。其他文件中的出现属于代码（`build_training_data.py`）和其他分析报告，不在本次修改范围内。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 30398,
+            "duration_api_ms": 31362,
+            "num_turns": 8,
+            "stop_reason": "end_turn",
+            "session_id": "186be690-7efb-46fa-96e6-0faf1e4e29bd",
+            "total_cost_usd": 0.24298925,
+            "usage": {
+              "input_tokens": 8,
+              "cache_creation_input_tokens": 21169,
+              "cache_read_input_tokens": 143118,
+              "output_tokens": 1524,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21169,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 73,
+                  "cache_read_input_tokens": 31835,
+                  "cache_creation_input_tokens": 781,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 781
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 894,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.000984,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 8,
+                "outputTokens": 1524,
+                "cacheReadInputTokens": 143118,
+                "cacheCreationInputTokens": 21169,
+                "webSearchRequests": 0,
+                "costUSD": 0.24200525,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "9c2a1979-6055-4a38-aca3-acee77775e61"
+          },
+          "id": "event-000024"
+        }
+      ],
+      "message_count": 24
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-checkpoint-criterion-analysis.md"
+}

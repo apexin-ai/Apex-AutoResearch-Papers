@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "3dc5e07332d9b4f6dab9",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "code plan 018 bm25 phase1",
+  "task_key": "worker_code_plan_018_bm25_phase1_20260514T163821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_018_bm25_phase1_20260514T163821.log",
+    "occurrence": 1,
+    "bytes": 778230,
+    "sha256": "1bb09501b0716ee59238013931b4fb0877ae3dd9404a0c1334b058a177bb3b76"
+  },
+  "statistics": {
+    "messages": 365,
+    "user_turns": 0,
+    "tool_calls": 148,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 65,
+      "tool_call": 148,
+      "tool_result": 148,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 365,
+      "chunks": [
+        {
+          "path": "3dc5e07332d9b4f6dab9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dc5e07332d9b4f6dab9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dc5e07332d9b4f6dab9-part-0003.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan-018-bm25-phase1.md"
+}

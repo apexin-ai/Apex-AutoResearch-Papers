@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e74bf7d9bb4be1ec671e",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops gpu audit resubmit cuda4",
+  "task_key": "worker_ops_gpu-audit-resubmit-cuda4_20260513T020958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-audit-resubmit-cuda4_20260513T020958_result.json",
+    "occurrence": 1,
+    "bytes": 1453,
+    "sha256": "228bf4f9ce2aae040800d8102dfd1c88dbdac80ceaf9aeedf3aec005d05b33a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:4 被一个**不同的**实验占用。以下是完整审计结果：\n\n```\n=== GPU 审计 ===\nGPU 0: RTX 4090 D, 17109/24564 MiB, 100% util\nGPU 1: RTX 4090 D, 0/24564 MiB, 0% util (空闲)\nGPU 2: RTX 4090 D, 22101/24564 MiB, 17% util\nGPU 3: RTX 4090 D, 22099/24564 MiB, 73% util\nGPU 4: RTX 4090 D, 9269/24564 MiB, 100% util ← 被占用\nGPU 5: RTX 4090 D, 2609/24564 MiB, 77% util\n\n=== cuda:4 占用进程 ===\nPID: 795791 (python, 9260 MiB)\n启动时间: 2026-05-13 09:55 (今天)\n命令: python training/train.py --train-file m2_pilot_data/train_random.jsonl ...\n这是一个旧版 M2 pilot 实验（m2_pilot_data，非 m2_early_pilot_data），\n参数也不同：--num-negatives 3 --max-seq-length 1024\n环境: CUDA_VISIBLE_DEVICES=4, WANDB_MODE=offline\n\n=== tmux sessions ===\n仅有 hgate-dpo003-merged（来自其他项目，窗口为空）\n\n=== wrapper 脚本 ===\nrun_m2_early_pilot.sh 所有关键修复均已到位：\n✓ WANDB_MODE=offline\n✓ TRANSFORMERS_OFFLINE=1 + HF_HUB_OFFLINE=1\n✓ 本地模型路径 /root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B\n✓ --batch-size 2\n```\n\n**cuda:4 当前无法使用**——被 PID 795791（旧版 m2_pilot 实验）占用，显存 9260 MiB，利用率 100%。\n\n需要你确认：是否终止 PID 795791 以释放 cuda:4 来提交 m2_early_pilot_v4？这个旧实验使用的是不同数据集和参数，看起来是之前的遗留进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-audit-resubmit-cuda4.md"
+}

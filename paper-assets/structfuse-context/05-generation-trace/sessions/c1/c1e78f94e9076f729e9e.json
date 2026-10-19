@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1e78f94e9076f729e9e",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "write fixed checkpoint table",
+  "task_key": "worker_write_fixed-checkpoint-table_20260515T061857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_fixed-checkpoint-table_20260515T061857_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "31bd260e2c1815fc0b0ee5e6227204b1aaa6f8209b59c7ea919b21d00ec69b49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。`art_20260515_b69433` 已注册。\n\n表格内容：\n- **s43**: @500 和 @1000 两行有完整 embedding vs random 对比（Δ=+0.89pp, +1.05pp），@1500 embedding 待补\n- **s42**: 3 个 step 的 random 数据已填，embedding 列标 `---`（尚未开始）\n- **s44**: 未纳入表格主体（registry 无 per-step 明细），在 table note 中说明 best R@1=0.6009\n- Table note 明确标注数据缺失原因和预计补全时间\n\n需要 `\\usepackage{multirow}` 和 `\\usepackage{booktabs}`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-fixed-checkpoint-table.md"
+}

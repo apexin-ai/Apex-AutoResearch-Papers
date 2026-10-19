@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba3d2b8eb120b94de99e",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "fix d041 neg difficulty check",
+  "task_key": "worker_fix_d041-neg-difficulty-check_20260515T021009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d041-neg-difficulty-check_20260515T021009_result.json",
+    "occurrence": 1,
+    "bytes": 910,
+    "sha256": "fa3ee96b1d25723aa2871f47a69f4682811fd0f173e2be01065df12ee00408f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。\n\n**discussion_v2.md §5.2** — 在分析开头增加了一句，明确区分三种策略的 *选样本方法* 和 *评估难度方法*：\n\n> \"the three strategies differ in *selection method*—random sampling, cosine-similarity ranking in the pretrained embedding space (embedding-distance), and BM25 lexical ranking within CodeQL-identified structurally connected files (dataflow-aware)—while the analysis *evaluates* the resulting negatives' difficulty uniformly via pretrained encoder cosine similarity as a common metric.\"\n\n**related_work_v1.md** — 无混淆问题（描述为 \"structure-grounded negatives derived from inter-procedural data-flow analysis\"，准确且不涉及选样本机制细节）。\n\n两个文件均已添加 `<!-- D041 dataflow-aware BM25 fix: 2026-05-15 -->` 标记，Claim 2 修改未被回退。`_project/paper/` 副本已同步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d041-neg-difficulty-check.md"
+}

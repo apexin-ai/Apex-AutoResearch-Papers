@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2eee1ec13cae7d9b5640",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "critical fix model download",
+  "task_key": "worker_critical_fix_model_download_20260512T133837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_critical_fix_model_download_20260512T133837_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "177edb7fde4165a441ae9b86c8c206401cddaafdd6993dbd3908794032414896"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出汇总：\n\n1. **temp 文件清理** ✓ — `._____temp/` 已删除，`.incomplete` 和 `.tmp` 文件已清理\n2. **下载方式** — HF CLI（杀掉了冗余的 ModelScope 进程；发现原 HF 进程因清理操作导致 temp 文件句柄失效，重新启动了下载）\n3. **文件大小验证** ✓\n   - `model-00001-of-00002.safetensors`: **4.7GB**\n   - `model-00002-of-00002.safetensors`: **1.2GB**\n   - 总计: **5.8GB**\n4. **transformers 加载验证** ✓\n   - hidden_size=2048, num_hidden_layers=36\n   - vocab_size=151643\n   - **Model verification PASSED**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/critical-fix-model-download.md"
+}

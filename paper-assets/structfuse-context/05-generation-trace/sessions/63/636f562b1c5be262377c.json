@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "636f562b1c5be262377c",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "code m2 embed verify prep",
+  "task_key": "worker_code_m2-embed-verify-prep_20260513T044048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_m2-embed-verify-prep_20260513T044048.log",
+    "occurrence": 1,
+    "bytes": 1033839,
+    "sha256": "807c83ebe234424a425b6cff49ea80ed27ba476b9c213599fc72747d87ead7d8"
+  },
+  "statistics": {
+    "messages": 456,
+    "user_turns": 1,
+    "tool_calls": 155,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 138,
+      "tool_call": 155,
+      "tool_result": 155,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 410,
+      "chunks": [
+        {
+          "path": "636f562b1c5be262377c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "636f562b1c5be262377c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "636f562b1c5be262377c-part-0003.json",
+          "message_count": 50
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 46,
+      "chunks": [
+        {
+          "path": "636f562b1c5be262377c-part-0003.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-m2-embed-verify-prep.md"
+}

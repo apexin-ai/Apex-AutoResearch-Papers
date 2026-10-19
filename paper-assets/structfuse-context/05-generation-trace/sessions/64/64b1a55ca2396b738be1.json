@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64b1a55ca2396b738be1",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code neg difficulty mechanism analysis",
+  "task_key": "worker_code_neg-difficulty-mechanism-analysis_20260515T231044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_neg-difficulty-mechanism-analysis_20260515T231044_result.json",
+    "occurrence": 1,
+    "bytes": 1730,
+    "sha256": "67f077d0eff4e78091869747f10df49229975ac7169ca2d71474815515598186"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已全部就绪。总结：\n\n---\n\n## 产出\n\n| 文件 | 路径 |\n|------|------|\n| eval_trajectories.csv | `/root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/eval_trajectories.csv` |\n| 图表 PDF | `/root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/overfitting_mechanism.pdf` |\n| 图表 PNG | `/root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/overfitting_mechanism.png` |\n\n## eval_trajectories.csv\n\n43 行（1 header + 42 eval records），覆盖 10 个 (model, strategy, seed) 组合：\n\n| 模型 | 策略 | Seeds | Eval 点数 |\n|------|------|-------|----------|\n| Qwen | random | 42,43,44 | 9+3+3 |\n| Qwen | embedding_distance | 43,44 | 3+4 |\n| Qwen | dataflow_aware | 43 | 2 |\n| StarCoder | random | 42,43,44 | 8+5+3 |\n| StarCoder | embedding_distance | 42 | 2 |\n\n缺失：Qwen embedding_distance_s42、所有 dataflow_aware 的 s42/s44、StarCoder dataflow_aware 全部（这些 runs 的 wandb 数据不存在）。\n\n## Panel B: Margin vs Eval-Loss Slope 相关性\n\n| 统计量 | 值 |\n|--------|-----|\n| **Pearson r** | **-0.60** |\n| **p-value** | **0.069** |\n| Spearman ρ | -0.43 |\n| Spearman p | 0.215 |\n\n方向正确：**lower margin（harder negatives）→ steeper eval loss increase（faster overfitting）**。Pearson 边缘显著 (p=0.069)，样本量受限（n=10）。\n\n## 异常/说明\n\n- Qwen random_s42 的 wandb 第一个 run (x4vmv7bj) 在 step 50 crash，数据来自重试 run (pthrowuk)\n- StarCoder random_s43 有 3 个重试 runs，取 eval 点数最多的一个\n- 多个 runs 只有 2-3 个 eval 点（early stopping 或训练仍在进行中）\n- R@10 全为 1.0（pool size 太小，区分度不够）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-neg-difficulty-mechanism-analysis.md"
+}

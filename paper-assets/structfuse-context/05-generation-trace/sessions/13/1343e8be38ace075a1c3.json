@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1343e8be38ace075a1c3",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "writing claim3 scalability section",
+  "task_key": "worker_writing_claim3-scalability-section_20260515T140413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_claim3-scalability-section_20260515T140413_result.json",
+    "occurrence": 1,
+    "bytes": 883,
+    "sha256": "336d2b606481ff5e021022caf67448e13ff861ce603e7c7443accca07a81bf6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Claim 3 scalability 小节已写入 `experiments_v1.md` (lines 88–107)。\n\n**新增内容结构**:\n- **Setup**: 131 repos → 123 成功 clone，按文件数分 4 tier，测量 timeout/处理时间/Z%\n- **Completion and runtime**: 0% timeout，mean 8.93s/instance，p95=31.95s，max=633.68s，109.58h 总耗时；解释 2-hop bounded 保证\n- **Structural connectivity by tier**: 内联表格，Z% 从 small 28.4% 到 xlarge 81.2% 单调递增，median Z% xlarge=96%\n- **Bounded data-flow scalability guarantee**: bounded vs unbounded 对比，zero-timeout 确认可行性，Z% 递增表明 bounded scope 在大 repo 反而捕获更多结构关系\n- **脚注**: 标注当前为 M1 pass，M1v2 re-extraction 将更新数据\n\n所有数字标注 `plan_006_scalability` 来源。未引用 error_rate，未使用 \"significantly\"，未修改 Claim 1/2 部分。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-claim3-scalability-section.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd8241f5529a8a43d645",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops checkpoint cleanup",
+  "task_key": "worker_ops_checkpoint-cleanup_20260513T013416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_checkpoint-cleanup_20260513T013416_result.json",
+    "occurrence": 1,
+    "bytes": 395,
+    "sha256": "5996c9f9e034ae7632fc6c855de81165ea373e8fbf6b5da9497fde54809ef8e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n1. **清理前 checkpoints 各子目录大小**：checkpoints 目录已经是空的，无任何子目录（`p2b_*`、`tau_pilot*` 均不存在）\n2. **清理后 checkpoints 残留情况**：无残留\n3. **磁盘可用空间**：`/root/autodl-tmp/` 总 169G，已用 109G，可用 **61G**（64% 使用率）\n\nMVP checkpoints 已被清理过，无需再次删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-checkpoint-cleanup.md"
+}

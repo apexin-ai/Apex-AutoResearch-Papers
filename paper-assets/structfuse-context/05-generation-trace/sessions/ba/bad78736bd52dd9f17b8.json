@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bad78736bd52dd9f17b8",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "write introduction v1",
+  "task_key": "worker_write_introduction-v1_20260515T083143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_introduction-v1_20260515T083143_result.json",
+    "occurrence": 1,
+    "bytes": 849,
+    "sha256": "b58a370c32c88db009cf5e4deb9511ff226267dcafaee1267761c54124233018"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 工具不可用（未在 MCP 工具列表中）。文件已写入：\n\n`/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/introduction_v1.md`\n\n**与旧版的关键变更**：\n- 移除 \"challenges the prevailing assumption\"、\"we demonstrate\" 等断言式表述（D049 合规）\n- Claim 1 改为 \"establishes a strong zero-cost baseline\"，不再对标 CoCoHaNeRe\n- Claim 2 用 exploratory observation + preliminary mechanistic analysis 措辞\n- 同时报告 pilot（+1.6–2.0pp）和 M2 seed 43（+0.52pp best_by_R@1, +0.82pp mean fixed-checkpoint）两组数据\n- 5 段结构：重要性→NLP hard negative mining + CoCoHaNeRe gap→结构信号 insight→主要发现→contributions\n- ~800 words，全部 `\\cite{}` key 与 references.bib 对齐"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-introduction-v1.md"
+}

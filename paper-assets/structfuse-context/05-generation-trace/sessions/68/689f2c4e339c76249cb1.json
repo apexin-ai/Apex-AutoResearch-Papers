@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "689f2c4e339c76249cb1",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "monitor progress check may15",
+  "task_key": "worker_monitor_progress_check_may15_20260514T211439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_progress_check_may15_20260514T211439_result.json",
+    "occurrence": 1,
+    "bytes": 1602,
+    "sha256": "55ddd988a70f265bcefdd78be5e941308514e3d25c5caccdd35c23048df0742f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总如下：\n\n---\n\n## 实验状态汇总 (2026-05-15 05:15 CST)\n\n### 1. m2_full_qwen_continued ✅ 正常运行\n| 项目 | 值 |\n|------|-----|\n| PID | 337267 (uptime 09:50:41) |\n| GPU | cuda:0, 100% util, 51.5/97.9GB, 68°C |\n| 当前子任务 | random_s44 (第 3/7 个) |\n| 进度 | step 850/1408, epoch 1/2 |\n| eval@500 | **R@1=0.6009**, val_loss=0.4252 |\n| 已完成 | random_s42 (R@1=0.5527), random_s43 (R@1=0.5554) |\n| 剩余 | 5 个子任务 (emb_dist×2, dataflow×2, bm25) |\n| 预计完成 | ~40-45h 后 |\n\nrandom_s44 的 R@1=0.6009 是目前 Qwen 所有 runs 中最高的。\n\n### 2. m2_full_starcoder_resumed ✅ 正常运行\n| 项目 | 值 |\n|------|-----|\n| PID | 519791 (uptime 03:11:44) |\n| GPU | cuda:1, 100% util, 53.9/97.9GB, 72°C |\n| 当前子任务 | random_s43 (第 1/9 个) |\n| 进度 | step 550/1405, epoch 1/2 |\n| eval@500 | R@1=0.4708, val_loss=0.5279 |\n| 剩余 | 8 个子任务 |\n| 预计完成 | ~65-70h 后 |\n\nStarCoder R@1 明显低于 Qwen (0.47 vs 0.60)，符合预期（Qwen2.5-Coder 编码能力更强）。\n\n### 3. m1_reextract_v2 ✅ 正常运行\n| 项目 | 值 |\n|------|-----|\n| Workers | 4 CPU |\n| 运行时间 | ~25h (启动 May 14 03:59) |\n| 总量 | 28,276 instances / 82 repo groups |\n| 产出 | 40,225 JSON files |\n| 活跃 repos | sqlfluff 250/1272, bleach 350/455, conan 450/972, MONAI 150/524 |\n| 进度 | ~82% (上次检查 80.8%, 仅剩 4 个大 repo) |\n| 预计完成 | ~15:00 CST May 15 |\n| 磁盘 | 98GB 可用，充足 |\n\n无异常，三个实验均健康运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-progress-check-may15.md"
+}

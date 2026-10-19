@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49f37ed5001ece641098",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code dynamic mining impl",
+  "task_key": "worker_code_dynamic_mining_impl_20260513T002931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dynamic_mining_impl_20260513T002931_result.json",
+    "occurrence": 1,
+    "bytes": 968,
+    "sha256": "24da6410d0d930d190d55f1a06684a536fe56844e04b151243e25b978a3730c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改到位。总结：\n\n**build_m1_training_data.py** (354 → 432 行):\n- 新增 `--embedding-mining-mode {static,dynamic}` 参数（默认 `static`）\n- `static` 模式：行为完全不变\n- `dynamic` 模式：\n  - 跳过 BM25 计算和 strategy pool 构建\n  - 输出 `candidate_pools.jsonl`（每个 instance 的所有候选文件 + content + dataflow 连通性）\n  - 输出 `train_dynamic.jsonl`（全部非正样本文件作为 neg_candidates）\n  - 输出 `val.jsonl` + `dataflow_graph.json`\n\n**training/train.py** (477 → 576 行):\n- 新增 `--dynamic-mining` flag 和 `--candidate-pool-file` 参数\n- 启用时：启动阶段加载 `candidate_pools.jsonl`\n- 每 epoch 开始：调用 `_mine_dynamic_negatives()`，用当前 encoder 重新编码所有候选文件，按 cosine similarity 选 top-k hardest negatives，通过 `refresh_negatives()` 更新训练数据\n- 未启用时：走原有 pre-mined negatives 路径"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dynamic-mining-impl.md"
+}

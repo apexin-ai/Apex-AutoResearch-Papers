@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "316f23c7661716ea3335",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ssh plan014 script update d025",
+  "task_key": "worker_ssh_plan014_script_update_d025_20260514T010306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan014_script_update_d025_20260514T010306_result.json",
+    "occurrence": 1,
+    "bytes": 1364,
+    "sha256": "5d1129405127d4773e7da9802f8e778ff9af9faaf68f8bbfc5d451a97a5feb04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个脚本语法检查全部通过，数据文件都存在。\n\n---\n\n**修改总结**\n\n| 项目 | 原值 | 新值 |\n|------|------|------|\n| strategies | random, embedding_distance, dataflow_aware (3) | random, embedding_distance (2) |\n| epochs | 3 | 2 |\n| GPU | CUDA_VISIBLE_DEVICES=0 硬编码 | 主脚本接受 `--gpu` / `CUDA_ID` 环境变量 |\n| 总 runs | 9 | 6 |\n\n**6 runs 双卡分配**\n\n| cuda:0 (`run_plan014_temp_cuda0.sh`) | cuda:1 (`run_plan014_temp_cuda1.sh`) |\n|--------------------------------------|--------------------------------------|\n| τ=0.05 × random | τ=0.1 × embedding_distance |\n| τ=0.05 × embedding_distance | τ=0.2 × random |\n| τ=0.1 × random | τ=0.2 × embedding_distance |\n\n每卡 3 runs，工作量均衡（同 strategy 数据量相同，2 epochs 训练时间基本一致）。\n\n**预估 wall time**：原 9 runs × 3 epochs 单卡串行。改为 3 runs × 2 epochs 双卡并行，单卡 wall time ≈ 原来的 3/9 × 2/3 = **约 22%**。若原先单 run 约 40min（Qwen-3B + LoRA + batch 8），双卡并行总 wall time ≈ 3 × 27min ≈ **~80min**。\n\n**启动方式**：\n```bash\nnohup bash /root/structfuse-context/run_plan014_temp_cuda0.sh > /tmp/plan014_cuda0.log 2>&1 &\nnohup bash /root/structfuse-context/run_plan014_temp_cuda1.sh > /tmp/plan014_cuda1.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan014-script-update-d025.md"
+}

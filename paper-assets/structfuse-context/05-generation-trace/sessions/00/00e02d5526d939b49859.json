@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00e02d5526d939b49859",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "viz neg difficulty figure v2",
+  "task_key": "worker_viz_neg_difficulty_figure_v2_20260514T103252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_neg_difficulty_figure_v2_20260514T103252_result.json",
+    "occurrence": 1,
+    "bytes": 1835,
+    "sha256": "6d5f68b7a3c9802c93629592b695c085d155c56e9593d272d26426fb9383c49b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n### 结果\n\n**图表文件**\n\n| 文件 | 路径 | 大小 |\n|------|------|------|\n| 分布图 PDF | `/root/structfuse-context/artifacts/figures/neg_difficulty_distribution.pdf` | 81.6 KB |\n| 分布图 PNG | `/root/structfuse-context/artifacts/figures/neg_difficulty_distribution.png` | 239.9 KB |\n| Margin 图 PDF | `/root/structfuse-context/artifacts/figures/neg_margin_comparison.pdf` | 19.2 KB |\n| Margin 图 PNG | `/root/structfuse-context/artifacts/figures/neg_margin_comparison.png` | 93.2 KB |\n\n脚本：`/root/structfuse-context/evaluation/plot_neg_difficulty.py`\n\n**数据来源**：聚合统计合成（quantile-interpolated sampling + KDE）。脚本使用 5 点分位数（lo, p25, median, p75, hi）做分段线性插值采样，再加 KDE 平滑。**非 per-instance 真实分布，等替换真实数据后重新生成 camera-ready 版本。**\n\n**图表描述（论文 caption）**\n\n- **Fig 1** (neg_difficulty_distribution): *Distribution of query–negative cosine similarities under three negative sampling strategies (Random, Embedding, Dataflow) for Qwen2.5-Coder-3B (left) and StarCoder2-3B (right). Dashed red line indicates mean positive similarity. StarCoder2 shows wider separation between strategies; Qwen2.5-Coder yields highly concentrated distributions near 1.0, reflecting its narrower representational space. Distributions synthesized from aggregated quantile statistics.*\n\n- **Fig 2** (neg_margin_comparison): *Mean positive–negative similarity margin across encoders and negative strategies. Error bars show standard error of the mean. Random negatives yield the largest margin; embedding-based negatives are hardest (smallest margin), with dataflow negatives intermediate. StarCoder2 exhibits consistently larger margins than Qwen2.5-Coder.*"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-neg-difficulty-figure-v2.md"
+}

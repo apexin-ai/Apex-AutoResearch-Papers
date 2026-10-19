@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ca4579ed0428b2063de",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "check m2 progress 20260514 v3",
+  "task_key": "worker_check_m2_progress_20260514_v3_20260514T204214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_m2_progress_20260514_v3_20260514T204214_result.json",
+    "occurrence": 1,
+    "bytes": 1341,
+    "sha256": "4165b07d5bcfaa4de1e207fa0938ac264b840f7698e99e4b7900d8540e80d1e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## M2 全量训练进度\n\n### Qwen (cuda:0, PID 337267) ✅ 正常运行\n- **GPU**: 100%, 51.5/97.9 GB VRAM\n- **进程**: alive, 9h18m uptime\n- **当前**: run 3/10 — **random_s44**, epoch 1/2, **step 650/2816**\n- **eval@500**: R@1=**0.6009**, val_loss=0.4252 (比 s43 的 0.5501 大幅提升)\n- **已完成**:\n  - random_s42: R@1=0.5527 (pre-done)\n  - random_s43: R@1=0.5501, 耗时 6h34m\n- **剩余**: random_s44 (77%) + embedding×3 + dataflow×3 = 7.77 runs\n- **ETA**: ~50h ≈ **2 天** (按 6.5h/run 估算)\n\n### StarCoder (cuda:1, PID 519791) ✅ 正常运行\n- **GPU**: 100%, 53.9/97.9 GB VRAM\n- **进程**: alive, 2h39m uptime (之前的脚本被 kill，已用新脚本恢复)\n- **当前**: run 2/9+ — **random_s43**, epoch 1/2, **step 500/2810**\n- **无 eval 结果**（eval@500 可能刚触发或即将触发）\n- **已完成**: random_s42: R@1=0.4604 (pre-done)\n- **剩余**: random_s43 (82%) + random_s44 + embedding×3 + dataflow×3 = 7.82 runs\n- **ETA**: ~96h ≈ **4 天** (StarCoder 训练速度约为 Qwen 的一半，~195 steps/h vs ~428 steps/h)\n\n### 关键观察\n1. Qwen random_s44 的 R@1=0.6009 @step500 非常强，远超 s42 (0.5527) 和 s43 (0.5501)\n2. StarCoder 比 Qwen 慢约 2x，GPU memory 占用也更高 (53.9 vs 51.5 GB)\n3. 两个实验都正常推进，无异常"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-m2-progress-20260514-v3.md"
+}

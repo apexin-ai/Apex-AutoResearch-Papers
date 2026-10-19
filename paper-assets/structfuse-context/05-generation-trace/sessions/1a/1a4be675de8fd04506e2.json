@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a4be675de8fd04506e2",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "monitor m1 urgent status",
+  "task_key": "worker_monitor_m1_urgent_status_20260513T012645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_m1_urgent_status_20260513T012645_result.json",
+    "occurrence": 1,
+    "bytes": 443,
+    "sha256": "c963c404498d0e5416357b51dfbc668424ec8a047dbfccc58ce91f62df8a1975"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 项目 | 结果 |\n|------|------|\n| **M1 进程 (PID 577864)** | **RUNNING**，已运行 4h38m59s |\n| **JSON 文件数** | 5,336 个 |\n| **唯一 repo 数** | 23 个 |\n| **备用路径** | 0 个文件（空） |\n| **磁盘 /root/autodl-tmp/** | 153G / 169G 已用 (91%) |\n| **GPU** | GPU0: 30%, 11.4/24GB · GPU1: 43%, 10.8/24GB · GPU2: 40%, 21.6/24GB · GPU3: 100%, 21.6/24GB · GPU4: 0%, 空闲 · GPU5: 0%, 空闲 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-m1-urgent-status.md"
+}

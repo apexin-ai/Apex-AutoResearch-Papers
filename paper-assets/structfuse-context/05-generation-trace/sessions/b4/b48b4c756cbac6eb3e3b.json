@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b48b4c756cbac6eb3e3b",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops experiment plan status sync",
+  "task_key": "worker_ops_experiment-plan-status-sync_20260513T104040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_experiment-plan-status-sync_20260513T104040_result.json",
+    "occurrence": 1,
+    "bytes": 861,
+    "sha256": "7b6ada807f135d2efc2dcb59011572573a36428e02a69c4295b818cb515ff1a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部更新完成。\n\n**ROADMAP.md 更新内容：**\n- M1 进度：27% → **71%** (109/222 repos)，ETA 从 5/14 下午提前到今晚/明早\n- m2_embed_verify：random ✅ done，embedding best R@1=**55.6%** (>random 53.6%，+2pp)，dataflow pending\n- plan_013：random ✅ + embedding ✅ done，dataflow running step 500\n- flash-attn 2.8.3 已装\n- Registry experiment_plan 关联标记为已完善（4 个活跃 plan 均已关联）\n\n**Registry 更新内容：**\n- m1_extraction / m2_embed_verify / plan_013_starcoder 的 notes 均已同步最新状态\n\n**Plan ↔ Registry 关联检查结果：** 无缺失。plan_001→m1_extraction, plan_002→m2_embed_verify, plan_006→plan_006_scalability, plan_013→plan_013_starcoder 均已正确关联。未启动的 plan (003-005, 007-012, 014-017) 无 registry_id 是预期行为。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-experiment-plan-status-sync.md"
+}

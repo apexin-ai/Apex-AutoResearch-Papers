@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0",
+  "id": "78b6359b7b38f3fb0962",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "ssh neg difficulty 2048",
+  "task_key": "worker_ssh_neg_difficulty_2048_20260513T193914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_neg_difficulty_2048_20260513T193914.log",
+    "occurrence": 1,
+    "bytes": 2467347,
+    "sha256": "9f9b43da912e68d10ce6b1cb0a04165c2fefecac22107fb72565786871794790"
+  },
+  "statistics": {
+    "messages": 2390,
+    "user_turns": 2,
+    "tool_calls": 1094,
+    "roles": {
+      "log": 1,
+      "system": 16,
+      "record": 1,
+      "assistant": 179,
+      "tool_call": 1094,
+      "tool_result": 1094,
+      "result": 3,
+      "user": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 941,
+      "chunks": [
+        {
+          "path": "78b6359b7b38f3fb0962-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "78b6359b7b38f3fb0962-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "78b6359b7b38f3fb0962-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "78b6359b7b38f3fb0962-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "78b6359b7b38f3fb0962-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "78b6359b7b38f3fb0962-part-0006.json",
+          "message_count": 41
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1435,
+      "chunks": [
+        {
+          "path": "78b6359b7b38f3fb0962-part-0006.json",
+          "message_count": 139
+        },
+        {
+          "path": "78b6359b7b38f3fb0962-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "78b6359b7b38f3fb0962-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "78b6359b7b38f3fb0962-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "78b6359b7b38f3fb0962-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "78b6359b7b38f3fb0962-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "78b6359b7b38f3fb0962-part-0012.json",
+          "message_count": 180
+        },
+        {
+          "path": "78b6359b7b38f3fb0962-part-0013.json",
+          "message_count": 180
+        },
+        {
+          "path": "78b6359b7b38f3fb0962-part-0014.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "78b6359b7b38f3fb0962-part-0014.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-neg-difficulty-2048.md"
+}

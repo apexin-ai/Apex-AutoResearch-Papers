@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ee3aa15027ea81937f2",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "write experiments skeleton",
+  "task_key": "worker_write_experiments-skeleton_20260514T225046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_experiments-skeleton_20260514T225046_result.json",
+    "occurrence": 1,
+    "bytes": 1003,
+    "sha256": "08d167f3f71292c332f43004a8ac9d7da9269395f9f8765334d18835665079f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/paper_drafts/experiments_v1.md` 并注册（`art_20260514_25f2bc`）。\n\n**已填入的确认数据：**\n- §4.4 Table 4: neg_difficulty 全部 6 个 cell（2 encoder × 3 strategy 的 pos_sim/neg_sim/margin），含 saturation asymmetry 分析和 margin ratio 2.6–4.1×\n- §4.4 Table 6: CodeQL scalability 全部数据（0% timeout, 123 repos, 4 tiers 的 coverage/Z%）\n- §4.3 Table 2: pilot 结果（Qwen +2.0pp, StarCoder +1.6pp embedding vs random）\n- §4.2: 所有训练配置（LoRA, InfoNCE, optimizer, dual checkpoint, 硬件）\n\n**`\\placeholder{}` 标记的待填项：**\n- Table 1 主结果（18 runs 的 mean±std，M2 尚在跑）\n- Table 3 pool size sensitivity（plan_019 未执行）\n- Dynamic mining control（plan_015 未执行）\n- SWE-bench Lite downstream（plan_003 未执行）\n- Table 5 stratified analysis（plan_005 待 M2 checkpoint）\n- BM25 baseline 和 BM25-mined negatives 训练结果（plan_018 Phase 2 待执行）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-experiments-skeleton.md"
+}

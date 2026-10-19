@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d49b4100313ad5daefe0",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "research citation verify 017",
+  "task_key": "worker_research_citation_verify_017_20260514T170911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_citation_verify_017_20260514T170911_result.json",
+    "occurrence": 1,
+    "bytes": 2240,
+    "sha256": "498ae20ebc64ab53314794083b8bca516685edb3ecac25a60c7492ac7f36b94a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## RANGER\n- **真实性**：✅ 确认存在\n- **正确 arXiv ID**：2509.25257（与标注一致）\n- **正确作者**：Pratik Shah, Rajat Ghosh, Aryan Singhal, Debojyoti Dutta → \"Shah et al., 2025\" ✅\n- **正确标题**：*RANGER -- Repository-Level Agent for Graph-Enhanced Retrieval* ✅\n- **描述准确性**：\n  - \"Knowledge graph + MCTS traversal\" — ✅ 准确，论文使用代码知识图谱 + MCTS 引导的图探索\n  - \"MCTS-guided graph exploration\" — ✅ 准确\n  - \"dual-stage (Cypher + MCTS)\" — ✅ 准确，entity 查询走 Cypher lookup，NL 查询走 MCTS 探索\n  - \"heavy inference cost\" — ⚠️ 编辑性判断。论文实际说的是 cross-encoder 评分成本高，MCTS 是为了让它 tractable。可保留但建议措辞改为 \"higher inference cost due to cross-encoder scoring\"\n- **需要修正**：arXiv ID 序号虽高但确认真实存在（2025年9月 arXiv 月投稿量已超 25000）。无需修正核心信息。\n\n---\n\n## ARISE\n- **真实性**：✅ 确认存在\n- **正确 arXiv ID**：2605.03117（与标注一致）\n- **正确作者**：Shahd Seddik, Fatemeh Fard → \"Seddik & Fard, 2026\" ✅\n- **正确标题**：*ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair*\n  - ⚠️ Discussion 中标题缺少 \"A\"、\"Representation and Toolset\"，建议补全\n- **描述准确性**：\n  - \"Multi-granularity program graph (statement nodes + def-use edges)\" — ✅ 准确\n  - \"intra-procedural def-use edges + data-flow slicing tool\" — ✅ 准确，论文明确提到 three-tier tool API 将 data-flow slicing 作为 first-class queryable primitive\n  - \"SWE-bench Lite (300 issues)\" — ✅ 准确（300 real GitHub issues, 11 Python repos）\n  - \"+17.0 Function Recall@1\" — ✅ 准确（相比 SWE-agent baseline）\n- **需要修正**：标题应补全为完整形式\n\n---\n\n**结论**：两篇引用均为真实论文，核心描述准确。修正项仅为：\n1. RANGER \"heavy inference cost\" 措辞可更精确\n2. ARISE 标题需补全\n\nSources:\n- [RANGER - arXiv](https://arxiv.org/abs/2509.25257)\n- [ARISE - arXiv](https://arxiv.org/abs/2605.03117)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-citation-verify-017.md"
+}

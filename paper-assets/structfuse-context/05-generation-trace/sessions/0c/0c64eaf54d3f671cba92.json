@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c64eaf54d3f671cba92",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops unixcoder s43 s44 fix relaunch",
+  "task_key": "worker_ops_unixcoder_s43_s44_fix_relaunch_20260516T093551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_unixcoder_s43_s44_fix_relaunch_20260516T093551_result.json",
+    "occurrence": 1,
+    "bytes": 102,
+    "sha256": "207d0ac40f18bf285f47814b3fc3889412d23c444f1a4c0db95fa97d60c8b105"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "60 秒等待已完成。训练在等待前已确认启动成功，无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-unixcoder-s43-s44-fix-relaunch.md"
+}

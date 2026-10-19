@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c4029e022fbcb94d578",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops bjb1 data sync path fix",
+  "task_key": "worker_ops_bjb1-data-sync-path-fix_20260513T033421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1-data-sync-path-fix_20260513T033421_result.json",
+    "occurrence": 1,
+    "bytes": 912,
+    "sha256": "e5dc9881e1ee8301390300f86e8b564f43ccc8e38ecd5c74461ee8da42f39e19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出汇报：\n\n```\n=== 模型路径 ===\nsymlink 创建: OK\n验证: safetensors 文件可访问 YES (2 files)\n路径: /root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B → 嵌套 ModelScope 目录\n\n=== 数据同步 ===\n方案: B (bjb1 直接 scp 拉取 cqa1，同账户 SSH key 互通)\n数据位置: /root/autodl-tmp/structfuse/m2_pilot_data/\n文件: dataflow_graph.json(41M), train_dataflow.jsonl(239M), train_embedding.jsonl(274M), train_random.jsonl(242M), val.jsonl(86M)\ntrain_random.jsonl: 2670 行\nval.jsonl: 748 行\n\n=== Dry-run ===\n模型加载: OK (Qwen2.5-Coder-3B, 2 shards)\n数据读取: OK (random negatives)\n训练进展: 150+ steps in 90s (被 timeout 正常终止)\n  step  50: loss=0.3716  lr=7.37e-06\n  step 100: loss=0.3516  lr=1.47e-05\n  step 150: loss=0.4246  lr=2.00e-05\nGPU 1 显存: 8262 MiB\n结论: READY FOR FULL TRAINING\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-data-sync-path-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0728f90e3a62ec105c44",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "check bm25 watcher and phase1",
+  "task_key": "worker_check_bm25_watcher_and_phase1_20260514T202819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_bm25_watcher_and_phase1_20260514T202819_result.json",
+    "occurrence": 1,
+    "bytes": 1607,
+    "sha256": "66331f5cec9cb2a340960f46bc97dac1bfdc2917087197e65286d6eee22442a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n## 1. Watcher tmux sessions — 存活，正在等待\n\n| Session | 状态 | 监控对象 |\n|---------|------|----------|\n| `bm25_starcoder_watcher` | ✅ 存活 | PID 519791 — 实际运行 `run_m2_full_starcoder_resume.sh`（已跑 ~2.5h） |\n| `bm25_qwen_watcher` | ✅ 存活 | PID 337267 — 实际运行 `run_m2_full_qwen.sh`（已跑 ~9h） |\n\n两个 watcher 都在阻塞等待前序训练完成，尚未启动 BM25 训练。\n\n## 2. BM25 数据文件 — 完整\n\n| 文件 | 大小 | Records |\n|------|------|---------|\n| train_bm25_s42.jsonl | 1.48 GB | 11,308 |\n| train_bm25_s43.jsonl | 1.46 GB | 11,236 |\n| train_bm25_s44.jsonl | 1.53 GB | 11,264 |\n| val_bm25_s42.jsonl | 361 MB | 2,980 |\n| val_bm25_s43.jsonl | 331 MB | 3,052 |\n| val_bm25_s44.jsonl | 310 MB | 3,024 |\n\n6 个文件全部存在，train ~11K records、val ~3K records，符合预期。\n\n## 3. 训练脚本 — 参数正确\n\n两个脚本关键参数一致：\n\n| 参数 | StarCoder | Qwen |\n|------|-----------|------|\n| MODEL_PATH | `/root/autodl-tmp/models/bigcode/starcoder2-3b/bigcode/starcoder2-3b` ✅ | `/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B` ✅ |\n| GPU | `${1:-0}` ✅ | `${1:-0}` ✅ |\n| s42 | epochs=3, patience=0（无 early stopping）✅ | 同 ✅ |\n| s43/s44 | epochs=2, patience=2 ✅ | 同 ✅ |\n| 其他 | batch_size=8, num_negatives=7, max_seq_len=2048, lr=2e-5, LoRA, gradient_ckpt | 同 |\n\n## 4. 问题\n\n无。Phase 1 数据完整，脚本参数正确，watcher 正常等待前序任务完成后将自动启动 BM25 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bm25-watcher-and-phase1.md"
+}

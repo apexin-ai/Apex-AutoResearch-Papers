@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ece391b493fd09c9469",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ssh dir rename check",
+  "task_key": "worker_ssh_dir_rename_check_20260513T184355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_dir_rename_check_20260513T184355_result.json",
+    "occurrence": 1,
+    "bytes": 742,
+    "sha256": "eed3adaf2ec2270ce02b82978a180e5e38cbd0af00dda50b037c2d9c8cc9f338"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果明确：\n\n**数据构建状态**：`/tmp/build_starcoder_m2.log` 不存在。StarCoder 数据构建已集成在 `run_m2_full_starcoder.sh` 的 Phase 1 中，不单独产出该日志文件。训练已在运行中。\n\n**重命名安全检查**：两个 wrapper 脚本均硬编码了 `/root/structfuse` 路径：\n- `run_m2_full_qwen.sh`: `TRAIN_SCRIPT=\"/root/structfuse/training/train.py\"`\n- `run_m2_full_starcoder.sh`: `PROJECT_ROOT=\"/root/structfuse\"`，后续引用 `${PROJECT_ROOT}/training/train.py` 和 `${PROJECT_ROOT}/scripts/build_m1_training_data.py`\n\n**结论**：训练 wrapper 脚本持有 `/root/structfuse` 路径引用，重命名会中断后续 runs。等全部 18 runs 完成后再重命名。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-dir-rename-check.md"
+}

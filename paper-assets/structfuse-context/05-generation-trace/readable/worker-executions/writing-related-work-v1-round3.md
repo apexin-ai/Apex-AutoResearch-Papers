@@ -1,0 +1,6421 @@
+# writing related work v1 round3
+
+**StructFuse: Structure-Grounded Hard Negative Mining for Contrastive Code Context Retrieval** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 137
+- **Recorded user turns:** 1
+- **Tool calls:** 44
+- **Original source:** `logs/workers/worker_writing_related-work-v1-round3_20260515T103350.log`
+- **Structured JSON:** [`0b5212c7a738326d2921.json`](../../sessions/0b/0b5212c7a738326d2921.json)
+
+## Before a recorded user message
+
+24 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "5a0f183c-853b-4376-a12c-ad8aa2ac9a2c",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-structfuse-context/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778854800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "3092175c-2511-4da1-adeb-49ed5dad04dc",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the two files I need to work with: the related work draft and the references.bib file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "5515b543-d330-4142-baae-fd03dbae726c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MocmZqodsYeTUMU2AUbSUY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12187,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12187
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+Let我先读取需要修改的文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "f6bbe444-ae78-42a7-b70c-6805e5f1b675",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MocmZqodsYeTUMU2AUbSUY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12187,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12187
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01XcFTW8M4wXw3z4RcEDBv3b`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "05d24754-d58a-4d81-b308-42fd63155570",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MocmZqodsYeTUMU2AUbSUY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12187,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12187
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T10:34:03.902Z_
+
+<details><summary>↩ Tool result · `toolu_01XcFTW8M4wXw3z4RcEDBv3b`</summary>
+
+```text
+1	# 2. Related Work
+2	
+3	## 2.1 Dense Retrieval for Code
+4	
+5	Code retrieval has evolved from sparse lexical methods such as BM25 \cite{robertson2009bm25} to dense neural approaches. Early pretrained code models---CodeBERT \cite{feng2020codebert}, UniXcoder \cite{guo2022unixcoder}, and InferCode \cite{bui2021infercode}---learn general-purpose code representations through masked language modeling and related pretraining objectives, enabling semantic matching beyond surface-level token overlap. More recent large-scale code models, including StarCoder2 \cite{lozhkov2024starcoder2} and Qwen2.5-Coder \cite{hui2024qwen25coder}, provide powerful encoder backbones trained on trillions of code tokens. In the retrieval domain, CodeSage \cite{zhang2024codesage} and SCodeR \cite{li2022scoder} introduce contrastive fine-tuning strategies that adapt pretrained representations for code search. The growing importance of repository-level retrieval---driven by benchmarks like SWE-bench \cite{jimenez2024swebench}---has motivated specialized systems: SweRank \cite{reddy2025swerank} formulates issue localization as code ranking, while SWE-Fixer \cite{xie2025swefixer} combines BM25 with neural reranking in a coarse-to-fine pipeline. StructFuse builds on this foundation by improving the contrastive fine-tuning stage: rather than modifying the retrieval architecture, we enhance the training signal through structure-grounded negative selection.
+6	
+7	## 2.2 Contrastive Learning for Code
+8	
+9	Sentence-BERT \cite{reimers2019sentencebert} established contrastive fine-tuning of pretrained encoders for dense text retrieval, a paradigm that has since become dominant for code representation learning. ContraCode \cite{jain2021contracode} generates functionally equivalent program variants through compiler transformations, training models to be invariant to syntactic variation. CodeRetriever \cite{li2022coderetriever} combines unimodal code-code and bimodal code-text contrastive objectives, achieving strong results across eleven code search benchmarks. SynCoBERT \cite{wang2021syncobert} introduces syntax-guided multi-modal contrastive pretraining that aligns code, natural language, and AST modalities through identifier prediction and edge prediction objectives. ContraBERT \cite{liu2023contrabert} takes a complementary robustness-oriented approach, designing adversarial augmentation operators---including identifier renaming, dead code insertion, and operand swapping---to improve model robustness while maintaining retrieval performance. Ding et al.\ \cite{ding2022programcontrasts} use structure-guided code transformations to synthesize contrastive pairs, demonstrating that program-structure-aware augmentation improves code clone detection and vulnerability identification. GraphCodeBERT \cite{guo2021graphcodebert} incorporates data-flow edges into pretraining, demonstrating that structural information improves code understanding tasks. These methods enrich the positive pair construction space or the pretraining signal. While GraphCodeBERT uses structural edges as a pretraining objective, StructFuse addresses a complementary dimension: rather than improving how positive pairs are constructed, we improve which negatives the model trains against by grounding selection in inter-procedural data-flow structure.
+10	
+11	## 2.3 Hard Negative Mining
+12	
+13	The quality of negative examples critically affects contrastive learning \cite{chen2020simclr}. In dense text retrieval, DPR \cite{karpukhin2020dpr} established the practice of using BM25 top-ranked non-relevant passages as hard negatives. ANCE \cite{xiong2021ance} dynamically mines negatives from an approximate nearest neighbor index updated during training, while RocketQA \cite{qu2021rocketqa} introduces cross-batch denoised negatives with knowledge distillation. STAR \cite{zhan2021star} further refines this paradigm by using the retriever's own top-ranked passages as training negatives. Curriculum-based approaches---CL-DRD \cite{zeng2022cldrd} and CAPSTONE \cite{he2023capstone}---schedule negative difficulty progressively during training.
+14	
+15	In the code domain, CoCoHaNeRe \cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, evaluating both BM25-selected and embedding-based negatives and reporting limitations of each non-differentiable strategy. However, their evaluation targets the NL$\to$code search setting; whether static embedding-distance mining is similarly limited in structural code retrieval---where repository-level and file-level localization involve richer structural cues---remains untested. StructFuse addresses this gap with a systematic comparison of three mining strategies---random, embedding-distance, and dataflow-aware---across decoder-only encoders with distinct representation geometries. Our results show that static embedding-distance mining provides consistent retrieval gains at negligible cost, establishing it as a strong baseline that requires no gradient computation or dynamic index updates. We further introduce data-flow structure as an orthogonal signal for negative selection, grounding hardness in inter-procedural program semantics rather than embedding proximity alone.
+16	
+17	## 2.4 Code Structure in Machine Learning
+18	
+19	Program dependence graphs \cite{ferrante1987pdg} and code property graphs \cite{yamaguchi2014cpg} have long served program analysis; tools like CodeQL \cite{avgustinov2016ql} make inter-procedural analysis accessible at scale. In machine learning, code2vec \cite{alon2019code2vec} pioneered learning from AST paths, while ProGraML \cite{cummins2021programl} demonstrated that whole-program graph representations capturing control-flow, data-flow, and call relations are learnable and effective for compiler optimization tasks. CrossCodeEval \cite{ding2023crosscodeeval} empirically validates that cross-file context is critical for code completion, with retrieval-augmented approaches yielding clear but still far-from-ceiling improvements. RepoFusion \cite{shrivastava2023repofusion} further demonstrates that training code models to incorporate cross-file repository context via Fusion-in-Decoder significantly improves completion quality, even outperforming much larger models that lack repository awareness.
+20	
+21	Recent inference-time graph methods bring structural reasoning to LLM-based software engineering. CodexGraph \cite{liu2025codexgraph} and RepoGraph \cite{ouyang2025repograph} build navigable code graph databases for LLM agents; LocAgent \cite{chen2025locagent} and RANGER \cite{shah2025ranger} employ multi-hop graph reasoning and MCTS-based traversal for fault localization and retrieval, respectively. GRACE \cite{wang2025grace} constructs multi-level code graphs spanning repository, module, and function granularity---integrating AST, control-flow, and data-flow edges---for hierarchical retrieval-augmented code completion. GraphCoder \cite{liu2024graphcoder} and ARISE \cite{seddik2026arise} incorporate data-flow edges---control/data dependence and definition-use chains, respectively---but their data-flow analysis remains intra-procedural in scope. Critically, these methods primarily leverage structural graphs at inference time, incurring per-query latency proportional to graph complexity. StructFuse takes a fundamentally different approach: we leverage inter-procedural data-flow graphs at \emph{training time} to mine structure-grounded negatives, producing an encoder that internalizes cross-function data-flow semantics with zero inference overhead. The two paradigms are complementary---a StructFuse-trained encoder can serve as an efficient first-stage retriever for inference-time graph systems that perform targeted reranking.
+22	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "098f17e4-b456-405c-8fd1-a012f1fd23e4",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md",
+      "content": "# 2. Related Work\n\n## 2.1 Dense Retrieval for Code\n\nCode retrieval has evolved from sparse lexical methods such as BM25 \\cite{robertson2009bm25} to dense neural approaches. Early pretrained code models---CodeBERT \\cite{feng2020codebert}, UniXcoder \\cite{guo2022unixcoder}, and InferCode \\cite{bui2021infercode}---learn general-purpose code representations through masked language modeling and related pretraining objectives, enabling semantic matching beyond surface-level token overlap. More recent large-scale code models, including StarCoder2 \\cite{lozhkov2024starcoder2} and Qwen2.5-Coder \\cite{hui2024qwen25coder}, provide powerful encoder backbones trained on trillions of code tokens. In the retrieval domain, CodeSage \\cite{zhang2024codesage} and SCodeR \\cite{li2022scoder} introduce contrastive fine-tuning strategies that adapt pretrained representations for code search. The growing importance of repository-level retrieval---driven by benchmarks like SWE-bench \\cite{jimenez2024swebench}---has motivated specialized systems: SweRank \\cite{reddy2025swerank} formulates issue localization as code ranking, while SWE-Fixer \\cite{xie2025swefixer} combines BM25 with neural reranking in a coarse-to-fine pipeline. StructFuse builds on this foundation by improving the contrastive fine-tuning stage: rather than modifying the retrieval architecture, we enhance the training signal through structure-grounded negative selection.\n\n## 2.2 Contrastive Learning for Code\n\nSentence-BERT \\cite{reimers2019sentencebert} established contrastive fine-tuning of pretrained encoders for dense text retrieval, a paradigm that has since become dominant for code representation learning. ContraCode \\cite{jain2021contracode} generates functionally equivalent program variants through compiler transformations, training models to be invariant to syntactic variation. CodeRetriever \\cite{li2022coderetriever} combines unimodal code-code and bimodal code-text contrastive objectives, achieving strong results across eleven code search benchmarks. SynCoBERT \\cite{wang2021syncobert} introduces syntax-guided multi-modal contrastive pretraining that aligns code, natural language, and AST modalities through identifier prediction and edge prediction objectives. ContraBERT \\cite{liu2023contrabert} takes a complementary robustness-oriented approach, designing adversarial augmentation operators---including identifier renaming, dead code insertion, and operand swapping---to improve model robustness while maintaining retrieval performance. Ding et al.\\ \\cite{ding2022programcontrasts} use structure-guided code transformations to synthesize contrastive pairs, demonstrating that program-structure-aware augmentation improves code clone detection and vulnerability identification. GraphCodeBERT \\cite{guo2021graphcodebert} incorporates data-flow edges into pretraining, demonstrating that structural information improves code understanding tasks. These methods enrich the positive pair construction space or the pretraining signal. While GraphCodeBERT uses structural edges as a pretraining objective, StructFuse addresses a complementary dimension: rather than improving how positive pairs are constructed, we improve which negatives the model trains against by grounding selection in inter-procedural data-flow structure.\n\n## 2.3 Hard Negative Mining\n\nThe quality of negative examples critically affects contrastive learning \\cite{chen2020simclr}. In dense text retrieval, DPR \\cite{karpukhin2020dpr} established the practice of using BM25 top-ranked non-relevant passages as hard negatives. ANCE \\cite{xiong2021ance} dynamically mines negatives from an approximate nearest neighbor index updated during training, while RocketQA \\cite{qu2021rocketqa} introduces cross-batch denoised negatives with knowledge distillation. STAR \\cite{zhan2021star} further refines this paradigm by using the retriever's own top-ranked passages as training negatives. Curriculum-based approaches---CL-DRD \\cite{zeng2022cldrd} and CAPSTONE \\cite{he2023capstone}---schedule negative difficulty progressively during training.\n\nIn the code domain, CoCoHaNeRe \\cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, evaluating both BM25-selected and embedding-based negatives and reporting limitations of each non-differentiable strategy. However, their evaluation targets the NL$\\to$code search setting; whether static embedding-distance mining is similarly limited in structural code retrieval---where repository-level and file-level localization involve richer structural cues---remains untested. StructFuse addresses this gap with a systematic comparison of three mining strategies---random, embedding-distance, and dataflow-aware---across decoder-only encoders with distinct representation geometries. Our results show that static embedding-distance mining provides consistent retrieval gains at negligible cost, establishing it as a strong baseline that requires no gradient computation or dynamic index updates. We further introduce data-flow structure as an orthogonal signal for negative selection, grounding hardness in inter-procedural program semantics rather than embedding proximity alone.\n\n## 2.4 Code Structure in Machine Learning\n\nProgram dependence graphs \\cite{ferrante1987pdg} and code property graphs \\cite{yamaguchi2014cpg} have long served program analysis; tools like CodeQL \\cite{avgustinov2016ql} make inter-procedural analysis accessible at scale. In machine learning, code2vec \\cite{alon2019code2vec} pioneered learning from AST paths, while ProGraML \\cite{cummins2021programl} demonstrated that whole-program graph representations capturing control-flow, data-flow, and call relations are learnable and effective for compiler optimization tasks. CrossCodeEval \\cite{ding2023crosscodeeval} empirically validates that cross-file context is critical for code completion, with retrieval-augmented approaches yielding clear but still far-from-ceiling improvements. RepoFusion \\cite{shrivastava2023repofusion} further demonstrates that training code models to incorporate cross-file repository context via Fusion-in-Decoder significantly improves completion quality, even outperforming much larger models that lack repository awareness.\n\nRecent inference-time graph methods bring structural reasoning to LLM-based software engineering. CodexGraph \\cite{liu2025codexgraph} and RepoGraph \\cite{ouyang2025repograph} build navigable code graph databases for LLM agents; LocAgent \\cite{chen2025locagent} and RANGER \\cite{shah2025ranger} employ multi-hop graph reasoning and MCTS-based traversal for fault localization and retrieval, respectively. GRACE \\cite{wang2025grace} constructs multi-level code graphs spanning repository, module, and function granularity---integrating AST, control-flow, and data-flow edges---for hierarchical retrieval-augmented code completion. GraphCoder \\cite{liu2024graphcoder} and ARISE \\cite{seddik2026arise} incorporate data-flow edges---control/data dependence and definition-use chains, respectively---but their data-flow analysis remains intra-procedural in scope. Critically, these methods primarily leverage structural graphs at inference time, incurring per-query latency proportional to graph complexity. StructFuse takes a fundamentally different approach: we leverage inter-procedural data-flow graphs at \\emph{training time} to mine structure-grounded negatives, producing an encoder that internalizes cross-function data-flow semantics with zero inference overhead. The two paradigms are complementary---a StructFuse-trained encoder can serve as an efficient first-stage retriever for inference-time graph systems that perform targeted reranking.\n",
+      "numLines": 22,
+      "startLine": 1,
+      "totalLines": 22
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QwEFvJzntF3X87cfNLY9Bq`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/references.bib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "c4a7f234-ec36-48f0-abaa-8d6739e51fb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MocmZqodsYeTUMU2AUbSUY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12187,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12187
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T10:34:04.176Z_
+
+<details><summary>↩ Tool result · `toolu_01QwEFvJzntF3X87cfNLY9Bq`</summary>
+
+```text
+1	% =============================================================================
+2	% Section 1: Introduction
+3	% =============================================================================
+4	
+5	@inproceedings{jimenez2024swebench,
+6	  title={{SWE-bench}: Can Language Models Resolve Real-World {GitHub} Issues?},
+7	  author={Jimenez, Carlos E. and Yang, John and Wettig, Alexander and Yao, Shunyu and Pei, Kexin and Press, Ofir and Narasimhan, Karthik},
+8	  booktitle={Proceedings of the Twelfth International Conference on Learning Representations (ICLR)},
+9	  year={2024}
+10	}
+11	
+12	% =============================================================================
+13	% Section 2.1: Code Retrieval Methods
+14	% =============================================================================
+15	
+16	@article{robertson2009bm25,
+17	  title={The Probabilistic Relevance Framework: {BM25} and Beyond},
+18	  author={Robertson, Stephen and Zaragoza, Hugo},
+19	  journal={Foundations and Trends in Information Retrieval},
+20	  volume={3},
+21	  number={4},
+22	  pages={333--389},
+23	  year={2009},
+24	  publisher={Now Publishers}
+25	}
+26	
+27	@inproceedings{karpukhin2020dpr,
+28	  title={Dense Passage Retrieval for Open-Domain Question Answering},
+29	  author={Karpukhin, Vladimir and O{\u{g}}uz, Barlas and Min, Sewon and Lewis, Patrick and Wu, Ledell and Edunov, Sergey and Chen, Danqi and Yih, Wen-tau},
+30	  booktitle={Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+31	  pages={6769--6781},
+32	  year={2020}
+33	}
+34	
+35	@article{reddy2025swerank,
+36	  title={{SweRank}: Software Issue Localization with Code Ranking},
+37	  author={Gangi Reddy, Revanth and Suresh, Tarun and Doo, JaeHyeok and Liu, Ye and Nguyen, Xuan Phi and Zhou, Yingbo and Yavuz, Semih and Xiong, Caiming and Ji, Heng and Joty, Shafiq},
+38	  journal={arXiv preprint arXiv:2505.07849},
+39	  year={2025}
+40	}
+41	
+42	@inproceedings{xie2025swefixer,
+43	  title={{SWE-Fixer}: Training Open-Source {LLM}s for Effective and Efficient {GitHub} Issue Resolution},
+44	  author={Xie, Chengxing and Li, Bowen and Gao, Chang and Du, He and Lam, Wai and Zou, Difan and Chen, Kai},
+45	  booktitle={Findings of the Association for Computational Linguistics: ACL 2025},
+46	  pages={1123--1139},
+47	  year={2025}
+48	}
+49	
+50	@inproceedings{chen2025locagent,
+51	  title={{LocAgent}: Graph-Guided {LLM} Agents for Code Localization},
+52	  author={Chen, Zhaoling and Tang, Robert and Deng, Gangda and Wu, Fang and Wu, Jialong and Jiang, Zhiwei and Prasanna, Viktor and Cohan, Arman and Wang, Xingyao},
+53	  booktitle={Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},
+54	  pages={8697--8727},
+55	  year={2025}
+56	}
+57	
+58	@article{shah2025ranger,
+59	  title={{RANGER}: Repository-Level Agent for Graph-Enhanced Retrieval},
+60	  author={Shah, Pratik and Ghosh, Rajat and Singhal, Aryan and Dutta, Debojyoti},
+61	  journal={arXiv preprint arXiv:2509.25257},
+62	  year={2025}
+63	}
+64	
+65	@inproceedings{liu2025codexgraph,
+66	  title={{CodexGraph}: Bridging Large Language Models and Code Repositories via Code Graph Databases},
+67	  author={Liu, Xiangyan and Lan, Bo and Hu, Zhiyuan and Liu, Yang and Zhang, Zhicheng and Wang, Fei and Shieh, Michael Qizhe and Zhou, Wenmeng},
+68	  booktitle={Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},
+69	  pages={142--160},
+70	  year={2025}
+71	}
+72	
+73	@inproceedings{ouyang2025repograph,
+74	  title={{RepoGraph}: Enhancing {AI} Software Engineering with Repository-level Code Graph},
+75	  author={Ouyang, Siru and Yu, Wenhao and Ma, Kaixin and Xiao, Zilin and Zhang, Zhihan and Jia, Mengzhao and Han, Jiawei and Zhang, Hongming and Yu, Dong},
+76	  booktitle={Proceedings of the Thirteenth International Conference on Learning Representations (ICLR)},
+77	  year={2025}
+78	}
+79	
+80	@inproceedings{liu2024graphcoder,
+81	  title={{GraphCoder}: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model},
+82	  author={Liu, Wei and Hu, Ailun and Li, Yixuan and Li, Yichen and Liu, Haoyu and Yang, Leyi},
+83	  booktitle={Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering (ASE)},
+84	  year={2024}
+85	}
+86	
+87	@article{seddik2026arise,
+88	  title={{ARISE}: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair},
+89	  author={Seddik, Shahd and Fard, Fatemeh},
+90	  journal={arXiv preprint arXiv:2605.03117},
+91	  year={2026}
+92	}
+93	
+94	% =============================================================================
+95	% Section 2.2: Pre-trained Code Representations and Contrastive Learning
+96	% =============================================================================
+97	
+98	@inproceedings{feng2020codebert,
+99	  title={{CodeBERT}: A Pre-Trained Model for Programming and Natural Languages},
+100	  author={Feng, Zhangyin and Guo, Daya and Tang, Duyu and Duan, Nan and Feng, Xiaocheng and Gong, Ming and Shou, Linjun and Qin, Bing and Liu, Ting and Jiang, Daxin and Zhou, Ming},
+101	  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2020},
+102	  pages={1536--1547},
+103	  year={2020}
+104	}
+105	
+106	@inproceedings{guo2021graphcodebert,
+107	  title={{GraphCodeBERT}: Pre-training Code Representations with Data Flow},
+108	  author={Guo, Daya and Ren, Shuo and Lu, Shuai and Feng, Zhangyin and Tang, Duyu and Liu, Shujie and Zhou, Long and Duan, Nan and Svyatkovskiy, Alexey and Fu, Shengyu and Tufano, Michele and Deng, Shuai Kim and Clement, Colin and Drain, Dawn and Sundaresan, Neel and Yin, Jian and Jiang, Daxin and Zhou, Ming},
+109	  booktitle={Proceedings of the Ninth International Conference on Learning Representations (ICLR)},
+110	  year={2021}
+111	}
+112	
+113	@inproceedings{guo2022unixcoder,
+114	  title={{UniXcoder}: Unified Cross-Modal Pre-training for Code Representation},
+115	  author={Guo, Daya and Lu, Shuai and Duan, Nan and Wang, Yanlin and Zhou, Ming and Yin, Jian},
+116	  booktitle={Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)},
+117	  pages={7212--7225},
+118	  year={2022}
+119	}
+120	
+121	@inproceedings{alon2019code2vec,
+122	  title={code2vec: Learning Distributed Representations of Code},
+123	  author={Alon, Uri and Zilberstein, Meital and Levy, Omer and Yahav, Eran},
+124	  booktitle={Proceedings of the ACM on Programming Languages (POPL)},
+125	  volume={3},
+126	  pages={1--29},
+127	  year={2019}
+128	}
+129	
+130	@inproceedings{zhang2024codesage,
+131	  title={Code Representation Learning At Scale},
+132	  author={Zhang, Dejiao and Ahmad, Wasi Uddin and Tan, Ming and Ding, Hantian and Nallapati, Ramesh and Roth, Dan and Ma, Xiaofei and Xiang, Bing},
+133	  booktitle={Proceedings of the Twelfth International Conference on Learning Representations (ICLR)},
+134	  year={2024}
+135	}
+136	
+137	@inproceedings{reimers2019sentencebert,
+138	  title={Sentence-{BERT}: Sentence Embeddings using Siamese {BERT}-Networks},
+139	  author={Reimers, Nils and Gurevych, Iryna},
+140	  booktitle={Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+141	  pages={3982--3992},
+142	  year={2019}
+143	}
+144	
+145	@inproceedings{jain2021contracode,
+146	  title={Contrastive Code Representation Learning},
+147	  author={Jain, Paras and Jain, Ajil and Zhang, Tianjun and Abbeel, Pieter and Gonzalez, Joseph and Stoica, Ion},
+148	  booktitle={Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+149	  pages={5954--5971},
+150	  year={2021}
+151	}
+152	
+153	@inproceedings{li2022coderetriever,
+154	  title={{CodeRetriever}: A Large Scale Contrastive Pre-Training Method for Code Search},
+155	  author={Li, Xiaonan and Gong, Yeyun and Shen, Yelong and Qiu, Xipeng and Zhang, Hang and Yao, Bolun and Qi, Weizhen and Jiang, Daxin and Chen, Weizhu and Duan, Nan},
+156	  booktitle={Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+157	  pages={2898--2910},
+158	  year={2022}
+159	}
+160	
+161	@inproceedings{li2022scoder,
+162	  title={Soft-Labeled Contrastive Pre-training for Function-level Code Representation},
+163	  author={Li, Xiaonan and Guo, Daya and Gong, Yeyun and Lin, Yun and Shen, Yelong and Qiu, Xipeng and Jiang, Daxin and Chen, Weizhu and Duan, Nan},
+164	  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2022},
+165	  year={2022}
+166	}
+167	
+168	@inproceedings{ding2022programcontrasts,
+169	  title={Towards Learning (Dis)-Similarity of Source Code from Program Contrasts},
+170	  author={Ding, Yangruibo and Buratti, Luca and Pujar, Saurabh and Morari, Alessandro and Ray, Baishakhi and Parthasarathy, Saikat},
+171	  booktitle={Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)},
+172	  pages={6300--6312},
+173	  year={2022}
+174	}
+175	
+176	@inproceedings{bui2021infercode,
+177	  title={{InferCode}: Self-Supervised Learning of Code Representations by Predicting Subtrees},
+178	  author={Bui, Nghi D. Q. and Yu, Yijun and Jiang, Lingxiao},
+179	  booktitle={Proceedings of the 43rd IEEE/ACM International Conference on Software Engineering (ICSE)},
+180	  pages={1186--1197},
+181	  year={2021}
+182	}
+183	
+184	@article{lozhkov2024starcoder2,
+185	  title={{StarCoder} 2 and {The Stack} v2: The Next Generation},
+186	  author={Lozhkov, Anton and Li, Raymond and Ben Allal, Loubna and Cassano, Federico and Lamy-Poirier, Joel and Tazi, Nouamane and Tang, Ao and Pykhtar, Dmytro and Liu, Jiawei and Wei, Yuxiang and others},
+187	  journal={arXiv preprint arXiv:2402.19173},
+188	  year={2024}
+189	}
+190	
+191	@article{hui2024qwen25coder,
+192	  title={{Qwen2.5-Coder} Technical Report},
+193	  author={Hui, Binyuan and Yang, Jian and Cui, Zeyu and Yang, Jiaxi and Liu, Dayiheng and Zhang, Lei and Liu, Tianyu and Zhang, Jiajun and Yu, Bowen and Lu, Keming and Dang, Kai and Fan, Yang and Zhang, Yichang and Yang, An and Men, Rui and Huang, Fei and Zheng, Bo and others},
+194	  journal={arXiv preprint arXiv:2409.12186},
+195	  year={2024}
+196	}
+197	
+198	% =============================================================================
+199	% Section 2.3: Hard Negative Mining
+200	% =============================================================================
+201	
+202	@inproceedings{chen2020simclr,
+203	  title={A Simple Framework for Contrastive Learning of Visual Representations},
+204	  author={Chen, Ting and Kornblith, Simon and Norouzi, Mohammad and Hinton, Geoffrey},
+205	  booktitle={Proceedings of the 37th International Conference on Machine Learning (ICML)},
+206	  pages={1597--1607},
+207	  year={2020}
+208	}
+209	
+210	@inproceedings{xiong2021ance,
+211	  title={Approximate Nearest Neighbor Negative Contrastive Learning for Dense Text Retrieval},
+212	  author={Xiong, Lee and Xiong, Chenyan and Li, Ye and Tang, Kwok-Fung and Liu, Jialin and Bennett, Paul and Ahmed, Junaid and Overwijk, Arnold},
+213	  booktitle={Proceedings of the Ninth International Conference on Learning Representations (ICLR)},
+214	  year={2021}
+215	}
+216	
+217	@inproceedings{zhan2021star,
+218	  title={Optimizing Dense Retrieval Model Training with Hard Negatives},
+219	  author={Zhan, Jingtao and Mao, Jiaxin and Liu, Yiqun and Guo, Jiafeng and Zhang, Min and Ma, Shaoping},
+220	  booktitle={Proceedings of the 44th International ACM SIGIR Conference on Research and Development in Information Retrieval},
+221	  pages={1503--1512},
+222	  year={2021}
+223	}
+224	
+225	@inproceedings{qu2021rocketqa,
+226	  title={{RocketQA}: An Optimized Training Approach to Dense Passage Retrieval for Open-Domain Question Answering},
+227	  author={Qu, Yingqi and Ding, Yuchen and Liu, Jing and Liu, Kai and Ren, Ruiyang and Zhao, Wayne Xin and Dong, Daxiang and Wu, Hua and Wang, Haifeng},
+228	  booktitle={Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL-HLT)},
+229	  pages={5835--5847},
+230	  year={2021}
+231	}
+232	
+233	@inproceedings{zeng2022cldrd,
+234	  title={Curriculum Learning for Dense Retrieval Distillation},
+235	  author={Zeng, Hansi and Zamani, Hamed and Vinay, Vishwa},
+236	  booktitle={Proceedings of the 45th International ACM SIGIR Conference on Research and Development in Information Retrieval},
+237	  pages={1979--1983},
+238	  year={2022}
+239	}
+240	
+241	@article{fan2025cocohanere,
+242	  title={Effective Hard Negative Mining for Contrastive Learning-Based Code Search},
+243	  author={Fan, Ye and Li, Chuanyi and Ge, Jidong and Huang, LiGuo and Luo, Bin},
+244	  journal={ACM Transactions on Software Engineering and Methodology},
+245	  volume={34},
+246	  number={3},
+247	  year={2025},
+248	  publisher={ACM}
+249	}
+250	
+251	@article{shrivastava2023repofusion,
+252	  title={{RepoFusion}: Training Code Models to Understand Your Repository},
+253	  author={Shrivastava, Disha and Kocetkov, Denis and de Vries, Harm and Bahdanau, Dzmitry and Scholak, Torsten},
+254	  journal={arXiv preprint arXiv:2306.10998},
+255	  year={2023}
+256	}
+257	
+258	@article{wang2025grace,
+259	  title={{GRACE}: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion},
+260	  author={Wang, Xingliang and Wang, Baoyi and Zhi, Chen and Han, Junxiao and Zhao, Xinkui and Yin, Jianwei and Deng, Shuiguang},
+261	  journal={arXiv preprint arXiv:2509.05980},
+262	  year={2025}
+263	}
+264	
+265	% =============================================================================
+266	% Section 2.4: Code Structure Analysis
+267	% =============================================================================
+268	
+269	@article{ferrante1987pdg,
+270	  title={The Program Dependence Graph and Its Use in Optimization},
+271	  author={Ferrante, Jeanne and Ottenstein, Karl J. and Warren, Joe D.},
+272	  journal={ACM Transactions on Programming Languages and Systems},
+273	  volume={9},
+274	  number={3},
+275	  pages={319--349},
+276	  year={1987},
+277	  publisher={ACM}
+278	}
+279	
+280	@inproceedings{yamaguchi2014cpg,
+281	  title={Modeling and Discovering Vulnerabilities with Code Property Graphs},
+282	  author={Yamaguchi, Fabian and Golde, Nico and Arp, Daniel and Rieck, Konrad},
+283	  booktitle={Proceedings of the 2014 IEEE Symposium on Security and Privacy (S\&P)},
+284	  pages={590--604},
+285	  year={2014},
+286	  publisher={IEEE}
+287	}
+288	
+289	@inproceedings{avgustinov2016ql,
+290	  title={{QL}: Object-oriented Queries on Relational Data},
+291	  author={Avgustinov, Pavel and de Moor, Oege and Jones, Michael Peyton and Sch{\"a}fer, Max},
+292	  booktitle={30th European Conference on Object-Oriented Programming (ECOOP)},
+293	  series={LIPIcs},
+294	  volume={56},
+295	  pages={2:1--2:25},
+296	  year={2016}
+297	}
+298	
+299	% =============================================================================
+300	% Section 3: Method
+301	% =============================================================================
+302	
+303	@inproceedings{hu2022lora,
+304	  title={{LoRA}: Low-Rank Adaptation of Large Language Models},
+305	  author={Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},
+306	  booktitle={Proceedings of the Tenth International Conference on Learning Representations (ICLR)},
+307	  year={2022}
+308	}
+309	
+310	@article{oord2018representation,
+311	  title={Representation Learning with Contrastive Predictive Coding},
+312	  author={van den Oord, A{\"a}ron and Li, Yazhe and Vinyals, Oriol},
+313	  journal={arXiv preprint arXiv:1807.03748},
+314	  year={2018}
+315	}
+316	
+317	% =============================================================================
+318	% Supplement: New citations added 2026-05-15
+319	% =============================================================================
+320	
+321	@article{wang2021syncobert,
+322	  title={{SynCoBERT}: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation},
+323	  author={Wang, Xin and Wang, Yasheng and Mi, Fei and Zhou, Pingyi and Wan, Yao and Liu, Xiao and Li, Li and Wu, Hao and Liu, Jin and Jiang, Xin},
+324	  journal={arXiv preprint arXiv:2108.04556},
+325	  year={2021}
+326	}
+327	
+328	@inproceedings{liu2023contrabert,
+329	  title={{ContraBERT}: Enhancing Code Pre-trained Models via Contrastive Learning},
+330	  author={Liu, Shangqing and Wu, Bozhi and Xie, Xiaofei and Meng, Guozhu and Liu, Yang},
+331	  booktitle={Proceedings of the 45th IEEE/ACM International Conference on Software Engineering (ICSE)},
+332	  pages={2476--2487},
+333	  year={2023}
+334	}
+335	
+336	@inproceedings{he2023capstone,
+337	  title={{CAPSTONE}: Curriculum Sampling for Dense Retrieval with Document Expansion},
+338	  author={He, Xingwei and Gong, Yeyun and Jin, A-Long and Zhang, Hang and Dong, Anlei and Jiao, Jian and Yiu, Siu Ming and Duan, Nan},
+339	  booktitle={Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+340	  pages={10531--10541},
+341	  year={2023}
+342	}
+343	
+344	@inproceedings{ding2023crosscodeeval,
+345	  title={{CrossCodeEval}: A Diverse and Multilingual Benchmark for Cross-File Code Completion},
+346	  author={Ding, Yangruibo and Wang, Zijian and Ahmad, Wasi Uddin and Ding, Hantian and Tan, Ming and Jain, Nihal and Ramanathan, Murali Krishna and Nallapati, Ramesh and Bhatia, Parminder and Roth, Dan and Xiang, Bing},
+347	  booktitle={Advances in Neural Information Processing Systems 36 (NeurIPS)},
+348	  year={2023}
+349	}
+350	
+351	@inproceedings{cummins2021programl,
+352	  title={{ProGraML}: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations},
+353	  author={Cummins, Chris and Fisches, Zacharias V. and Ben-Nun, Tal and Hoefler, Torsten and O'Boyle, Michael F. P. and Leather, Hugh},
+354	  booktitle={Proceedings of the 38th International Conference on Machine Learning (ICML)},
+355	  pages={2244--2253},
+356	  year={2021},
+357	  publisher={PMLR}
+358	}
+359	
+360	@inproceedings{huang2021cosqa,
+361	  title={{CoSQA}: 20,000+ Web Queries for Code Search and Question Answering},
+362	  author={Huang, Junjie and Tang, Duyu and Shou, Linjun and Gong, Ming and Xu, Ke and Jiang, Daxin and Zhou, Ming and Duan, Nan},
+363	  booktitle={Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics (ACL)},
+364	  pages={5690--5700},
+365	  year={2021}
+366	}
+367	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "21744a42-535b-4c04-9758-d52486756e72",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/references.bib",
+      "content": "% =============================================================================\n% Section 1: Introduction\n% =============================================================================\n\n@inproceedings{jimenez2024swebench,\n  title={{SWE-bench}: Can Language Models Resolve Real-World {GitHub} Issues?},\n  author={Jimenez, Carlos E. and Yang, John and Wettig, Alexander and Yao, Shunyu and Pei, Kexin and Press, Ofir and Narasimhan, Karthik},\n  booktitle={Proceedings of the Twelfth International Conference on Learning Representations (ICLR)},\n  year={2024}\n}\n\n% =============================================================================\n% Section 2.1: Code Retrieval Methods\n% =============================================================================\n\n@article{robertson2009bm25,\n  title={The Probabilistic Relevance Framework: {BM25} and Beyond},\n  author={Robertson, Stephen and Zaragoza, Hugo},\n  journal={Foundations and Trends in Information Retrieval},\n  volume={3},\n  number={4},\n  pages={333--389},\n  year={2009},\n  publisher={Now Publishers}\n}\n\n@inproceedings{karpukhin2020dpr,\n  title={Dense Passage Retrieval for Open-Domain Question Answering},\n  author={Karpukhin, Vladimir and O{\\u{g}}uz, Barlas and Min, Sewon and Lewis, Patrick and Wu, Ledell and Edunov, Sergey and Chen, Danqi and Yih, Wen-tau},\n  booktitle={Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  pages={6769--6781},\n  year={2020}\n}\n\n@article{reddy2025swerank,\n  title={{SweRank}: Software Issue Localization with Code Ranking},\n  author={Gangi Reddy, Revanth and Suresh, Tarun and Doo, JaeHyeok and Liu, Ye and Nguyen, Xuan Phi and Zhou, Yingbo and Yavuz, Semih and Xiong, Caiming and Ji, Heng and Joty, Shafiq},\n  journal={arXiv preprint arXiv:2505.07849},\n  year={2025}\n}\n\n@inproceedings{xie2025swefixer,\n  title={{SWE-Fixer}: Training Open-Source {LLM}s for Effective and Efficient {GitHub} Issue Resolution},\n  author={Xie, Chengxing and Li, Bowen and Gao, Chang and Du, He and Lam, Wai and Zou, Difan and Chen, Kai},\n  booktitle={Findings of the Association for Computational Linguistics: ACL 2025},\n  pages={1123--1139},\n  year={2025}\n}\n\n@inproceedings{chen2025locagent,\n  title={{LocAgent}: Graph-Guided {LLM} Agents for Code Localization},\n  author={Chen, Zhaoling and Tang, Robert and Deng, Gangda and Wu, Fang and Wu, Jialong and Jiang, Zhiwei and Prasanna, Viktor and Cohan, Arman and Wang, Xingyao},\n  booktitle={Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},\n  pages={8697--8727},\n  year={2025}\n}\n\n@article{shah2025ranger,\n  title={{RANGER}: Repository-Level Agent for Graph-Enhanced Retrieval},\n  author={Shah, Pratik and Ghosh, Rajat and Singhal, Aryan and Dutta, Debojyoti},\n  journal={arXiv preprint arXiv:2509.25257},\n  year={2025}\n}\n\n@inproceedings{liu2025codexgraph,\n  title={{CodexGraph}: Bridging Large Language Models and Code Repositories via Code Graph Databases},\n  author={Liu, Xiangyan and Lan, Bo and Hu, Zhiyuan and Liu, Yang and Zhang, Zhicheng and Wang, Fei and Shieh, Michael Qizhe and Zhou, Wenmeng},\n  booktitle={Proceedings of the 2025 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},\n  pages={142--160},\n  year={2025}\n}\n\n@inproceedings{ouyang2025repograph,\n  title={{RepoGraph}: Enhancing {AI} Software Engineering with Repository-level Code Graph},\n  author={Ouyang, Siru and Yu, Wenhao and Ma, Kaixin and Xiao, Zilin and Zhang, Zhihan and Jia, Mengzhao and Han, Jiawei and Zhang, Hongming and Yu, Dong},\n  booktitle={Proceedings of the Thirteenth International Conference on Learning Representations (ICLR)},\n  year={2025}\n}\n\n@inproceedings{liu2024graphcoder,\n  title={{GraphCoder}: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model},\n  author={Liu, Wei and Hu, Ailun and Li, Yixuan and Li, Yichen and Liu, Haoyu and Yang, Leyi},\n  booktitle={Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering (ASE)},\n  year={2024}\n}\n\n@article{seddik2026arise,\n  title={{ARISE}: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair},\n  author={Seddik, Shahd and Fard, Fatemeh},\n  journal={arXiv preprint arXiv:2605.03117},\n  year={2026}\n}\n\n% =============================================================================\n% Section 2.2: Pre-trained Code Representations and Contrastive Learning\n% =============================================================================\n\n@inproceedings{feng2020codebert,\n  title={{CodeBERT}: A Pre-Trained Model for Programming and Natural Languages},\n  author={Feng, Zhangyin and Guo, Daya and Tang, Duyu and Duan, Nan and Feng, Xiaocheng and Gong, Ming and Shou, Linjun and Qin, Bing and Liu, Ting and Jiang, Daxin and Zhou, Ming},\n  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2020},\n  pages={1536--1547},\n  year={2020}\n}\n\n@inproceedings{guo2021graphcodebert,\n  title={{GraphCodeBERT}: Pre-training Code Representations with Data Flow},\n  author={Guo, Daya and Ren, Shuo and Lu, Shuai and Feng, Zhangyin and Tang, Duyu and Liu, Shujie and Zhou, Long and Duan, Nan and Svyatkovskiy, Alexey and Fu, Shengyu and Tufano, Michele and Deng, Shuai Kim and Clement, Colin and Drain, Dawn and Sundaresan, Neel and Yin, Jian and Jiang, Daxin and Zhou, Ming},\n  booktitle={Proceedings of the Ninth International Conference on Learning Representations (ICLR)},\n  year={2021}\n}\n\n@inproceedings{guo2022unixcoder,\n  title={{UniXcoder}: Unified Cross-Modal Pre-training for Code Representation},\n  author={Guo, Daya and Lu, Shuai and Duan, Nan and Wang, Yanlin and Zhou, Ming and Yin, Jian},\n  booktitle={Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)},\n  pages={7212--7225},\n  year={2022}\n}\n\n@inproceedings{alon2019code2vec,\n  title={code2vec: Learning Distributed Representations of Code},\n  author={Alon, Uri and Zilberstein, Meital and Levy, Omer and Yahav, Eran},\n  booktitle={Proceedings of the ACM on Programming Languages (POPL)},\n  volume={3},\n  pages={1--29},\n  year={2019}\n}\n\n@inproceedings{zhang2024codesage,\n  title={Code Representation Learning At Scale},\n  author={Zhang, Dejiao and Ahmad, Wasi Uddin and Tan, Ming and Ding, Hantian and Nallapati, Ramesh and Roth, Dan and Ma, Xiaofei and Xiang, Bing},\n  booktitle={Proceedings of the Twelfth International Conference on Learning Representations (ICLR)},\n  year={2024}\n}\n\n@inproceedings{reimers2019sentencebert,\n  title={Sentence-{BERT}: Sentence Embeddings using Siamese {BERT}-Networks},\n  author={Reimers, Nils and Gurevych, Iryna},\n  booktitle={Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  pages={3982--3992},\n  year={2019}\n}\n\n@inproceedings{jain2021contracode,\n  title={Contrastive Code Representation Learning},\n  author={Jain, Paras and Jain, Ajil and Zhang, Tianjun and Abbeel, Pieter and Gonzalez, Joseph and Stoica, Ion},\n  booktitle={Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  pages={5954--5971},\n  year={2021}\n}\n\n@inproceedings{li2022coderetriever,\n  title={{CodeRetriever}: A Large Scale Contrastive Pre-Training Method for Code Search},\n  author={Li, Xiaonan and Gong, Yeyun and Shen, Yelong and Qiu, Xipeng and Zhang, Hang and Yao, Bolun and Qi, Weizhen and Jiang, Daxin and Chen, Weizhu and Duan, Nan},\n  booktitle={Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  pages={2898--2910},\n  year={2022}\n}\n\n@inproceedings{li2022scoder,\n  title={Soft-Labeled Contrastive Pre-training for Function-level Code Representation},\n  author={Li, Xiaonan and Guo, Daya and Gong, Yeyun and Lin, Yun and Shen, Yelong and Qiu, Xipeng and Jiang, Daxin and Chen, Weizhu and Duan, Nan},\n  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2022},\n  year={2022}\n}\n\n@inproceedings{ding2022programcontrasts,\n  title={Towards Learning (Dis)-Similarity of Source Code from Program Contrasts},\n  author={Ding, Yangruibo and Buratti, Luca and Pujar, Saurabh and Morari, Alessandro and Ray, Baishakhi and Parthasarathy, Saikat},\n  booktitle={Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)},\n  pages={6300--6312},\n  year={2022}\n}\n\n@inproceedings{bui2021infercode,\n  title={{InferCode}: Self-Supervised Learning of Code Representations by Predicting Subtrees},\n  author={Bui, Nghi D. Q. and Yu, Yijun and Jiang, Lingxiao},\n  booktitle={Proceedings of the 43rd IEEE/ACM International Conference on Software Engineering (ICSE)},\n  pages={1186--1197},\n  year={2021}\n}\n\n@article{lozhkov2024starcoder2,\n  title={{StarCoder} 2 and {The Stack} v2: The Next Generation},\n  author={Lozhkov, Anton and Li, Raymond and Ben Allal, Loubna and Cassano, Federico and Lamy-Poirier, Joel and Tazi, Nouamane and Tang, Ao and Pykhtar, Dmytro and Liu, Jiawei and Wei, Yuxiang and others},\n  journal={arXiv preprint arXiv:2402.19173},\n  year={2024}\n}\n\n@article{hui2024qwen25coder,\n  title={{Qwen2.5-Coder} Technical Report},\n  author={Hui, Binyuan and Yang, Jian and Cui, Zeyu and Yang, Jiaxi and Liu, Dayiheng and Zhang, Lei and Liu, Tianyu and Zhang, Jiajun and Yu, Bowen and Lu, Keming and Dang, Kai and Fan, Yang and Zhang, Yichang and Yang, An and Men, Rui and Huang, Fei and Zheng, Bo and others},\n  journal={arXiv preprint arXiv:2409.12186},\n  year={2024}\n}\n\n% =============================================================================\n% Section 2.3: Hard Negative Mining\n% =============================================================================\n\n@inproceedings{chen2020simclr,\n  title={A Simple Framework for Contrastive Learning of Visual Representations},\n  author={Chen, Ting and Kornblith, Simon and Norouzi, Mohammad and Hinton, Geoffrey},\n  booktitle={Proceedings of the 37th International Conference on Machine Learning (ICML)},\n  pages={1597--1607},\n  year={2020}\n}\n\n@inproceedings{xiong2021ance,\n  title={Approximate Nearest Neighbor Negative Contrastive Learning for Dense Text Retrieval},\n  author={Xiong, Lee and Xiong, Chenyan and Li, Ye and Tang, Kwok-Fung and Liu, Jialin and Bennett, Paul and Ahmed, Junaid and Overwijk, Arnold},\n  booktitle={Proceedings of the Ninth International Conference on Learning Representations (ICLR)},\n  year={2021}\n}\n\n@inproceedings{zhan2021star,\n  title={Optimizing Dense Retrieval Model Training with Hard Negatives},\n  author={Zhan, Jingtao and Mao, Jiaxin and Liu, Yiqun and Guo, Jiafeng and Zhang, Min and Ma, Shaoping},\n  booktitle={Proceedings of the 44th International ACM SIGIR Conference on Research and Development in Information Retrieval},\n  pages={1503--1512},\n  year={2021}\n}\n\n@inproceedings{qu2021rocketqa,\n  title={{RocketQA}: An Optimized Training Approach to Dense Passage Retrieval for Open-Domain Question Answering},\n  author={Qu, Yingqi and Ding, Yuchen and Liu, Jing and Liu, Kai and Ren, Ruiyang and Zhao, Wayne Xin and Dong, Daxiang and Wu, Hua and Wang, Haifeng},\n  booktitle={Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL-HLT)},\n  pages={5835--5847},\n  year={2021}\n}\n\n@inproceedings{zeng2022cldrd,\n  title={Curriculum Learning for Dense Retrieval Distillation},\n  author={Zeng, Hansi and Zamani, Hamed and Vinay, Vishwa},\n  booktitle={Proceedings of the 45th International ACM SIGIR Conference on Research and Development in Information Retrieval},\n  pages={1979--1983},\n  year={2022}\n}\n\n@article{fan2025cocohanere,\n  title={Effective Hard Negative Mining for Contrastive Learning-Based Code Search},\n  author={Fan, Ye and Li, Chuanyi and Ge, Jidong and Huang, LiGuo and Luo, Bin},\n  journal={ACM Transactions on Software Engineering and Methodology},\n  volume={34},\n  number={3},\n  year={2025},\n  publisher={ACM}\n}\n\n@article{shrivastava2023repofusion,\n  title={{RepoFusion}: Training Code Models to Understand Your Repository},\n  author={Shrivastava, Disha and Kocetkov, Denis and de Vries, Harm and Bahdanau, Dzmitry and Scholak, Torsten},\n  journal={arXiv preprint arXiv:2306.10998},\n  year={2023}\n}\n\n@article{wang2025grace,\n  title={{GRACE}: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion},\n  author={Wang, Xingliang and Wang, Baoyi and Zhi, Chen and Han, Junxiao and Zhao, Xinkui and Yin, Jianwei and Deng, Shuiguang},\n  journal={arXiv preprint arXiv:2509.05980},\n  year={2025}\n}\n\n% =============================================================================\n% Section 2.4: Code Structure Analysis\n% =============================================================================\n\n@article{ferrante1987pdg,\n  title={The Program Dependence Graph and Its Use in Optimization},\n  author={Ferrante, Jeanne and Ottenstein, Karl J. and Warren, Joe D.},\n  journal={ACM Transactions on Programming Languages and Systems},\n  volume={9},\n  number={3},\n  pages={319--349},\n  year={1987},\n  publisher={ACM}\n}\n\n@inproceedings{yamaguchi2014cpg,\n  title={Modeling and Discovering Vulnerabilities with Code Property Graphs},\n  author={Yamaguchi, Fabian and Golde, Nico and Arp, Daniel and Rieck, Konrad},\n  booktitle={Proceedings of the 2014 IEEE Symposium on Security and Privacy (S\\&P)},\n  pages={590--604},\n  year={2014},\n  publisher={IEEE}\n}\n\n@inproceedings{avgustinov2016ql,\n  title={{QL}: Object-oriented Queries on Relational Data},\n  author={Avgustinov, Pavel and de Moor, Oege and Jones, Michael Peyton and Sch{\\\"a}fer, Max},\n  booktitle={30th European Conference on Object-Oriented Programming (ECOOP)},\n  series={LIPIcs},\n  volume={56},\n  pages={2:1--2:25},\n  year={2016}\n}\n\n% =============================================================================\n% Section 3: Method\n% =============================================================================\n\n@inproceedings{hu2022lora,\n  title={{LoRA}: Low-Rank Adaptation of Large Language Models},\n  author={Hu, Edward J. and Shen, Yelong and Wallis, Phillip and Allen-Zhu, Zeyuan and Li, Yuanzhi and Wang, Shean and Wang, Lu and Chen, Weizhu},\n  booktitle={Proceedings of the Tenth International Conference on Learning Representations (ICLR)},\n  year={2022}\n}\n\n@article{oord2018representation,\n  title={Representation Learning with Contrastive Predictive Coding},\n  author={van den Oord, A{\\\"a}ron and Li, Yazhe and Vinyals, Oriol},\n  journal={arXiv preprint arXiv:1807.03748},\n  year={2018}\n}\n\n% =============================================================================\n% Supplement: New citations added 2026-05-15\n% =============================================================================\n\n@article{wang2021syncobert,\n  title={{SynCoBERT}: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation},\n  author={Wang, Xin and Wang, Yasheng and Mi, Fei and Zhou, Pingyi and Wan, Yao and Liu, Xiao and Li, Li and Wu, Hao and Liu, Jin and Jiang, Xin},\n  journal={arXiv preprint arXiv:2108.04556},\n  year={2021}\n}\n\n@inproceedings{liu2023contrabert,\n  title={{ContraBERT}: Enhancing Code Pre-trained Models via Contrastive Learning},\n  author={Liu, Shangqing and Wu, Bozhi and Xie, Xiaofei and Meng, Guozhu and Liu, Yang},\n  booktitle={Proceedings of the 45th IEEE/ACM International Conference on Software Engineering (ICSE)},\n  pages={2476--2487},\n  year={2023}\n}\n\n@inproceedings{he2023capstone,\n  title={{CAPSTONE}: Curriculum Sampling for Dense Retrieval with Document Expansion},\n  author={He, Xingwei and Gong, Yeyun and Jin, A-Long and Zhang, Hang and Dong, Anlei and Jiao, Jian and Yiu, Siu Ming and Duan, Nan},\n  booktitle={Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  pages={10531--10541},\n  year={2023}\n}\n\n@inproceedings{ding2023crosscodeeval,\n  title={{CrossCodeEval}: A Diverse and Multilingual Benchmark for Cross-File Code Completion},\n  author={Ding, Yangruibo and Wang, Zijian and Ahmad, Wasi Uddin and Ding, Hantian and Tan, Ming and Jain, Nihal and Ramanathan, Murali Krishna and Nallapati, Ramesh and Bhatia, Parminder and Roth, Dan and Xiang, Bing},\n  booktitle={Advances in Neural Information Processing Systems 36 (NeurIPS)},\n  year={2023}\n}\n\n@inproceedings{cummins2021programl,\n  title={{ProGraML}: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations},\n  author={Cummins, Chris and Fisches, Zacharias V. and Ben-Nun, Tal and Hoefler, Torsten and O'Boyle, Michael F. P. and Leather, Hugh},\n  booktitle={Proceedings of the 38th International Conference on Machine Learning (ICML)},\n  pages={2244--2253},\n  year={2021},\n  publisher={PMLR}\n}\n\n@inproceedings{huang2021cosqa,\n  title={{CoSQA}: 20,000+ Web Queries for Code Search and Question Answering},\n  author={Huang, Junjie and Tang, Duyu and Shou, Linjun and Gong, Ming and Xu, Ke and Jiang, Daxin and Zhou, Ming and Duan, Nan},\n  booktitle={Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics (ACL)},\n  pages={5690--5700},\n  year={2021}\n}\n",
+      "numLines": 367,
+      "startLine": 1,
+      "totalLines": 367
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have both files. Let me plan the edits:
+
+1. **Critical #1**: Rewrite the StructFuse positioning sentences at the end of §2.1, §2.2, §2.3, and §2.4
+2. **Warning #2**: "consistent" → "reliable" and "at negligible cost" → "at zero additional cost" in §2.3
+3. **Warning #3**: "orthogonal" → "complementary" in §2.3
+4. **Warning #4**: Remove "internalizes cross-function data-flow semantics" - this will be handled by the §2.4 rewrite
+
+
+5. **Info #5**: WebSearch to verify 8 citations
+
+I'll tackle the four section rewrites and word substitutions first, then run the citation verification in parallel. Looking at §2.3 specifically, I need to handle the last three sentences starting with "StructFuse addresses this gap..." since they contain both the critical rewrite and the terminology changes.
+
+My approach: fully rewrite §2.1's ending, §2.2's ending, and §2.4's ending. For §2.3, I'll keep the existing structure but swap out the three words—"consistent" becomes "reliable", "at negligible cost" becomes "at zero additional cost", and "orthogonal" becomes "complementary". Then I'll launch the web searches for the eight citations while the text edits are underway.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "dcab306a-dddc-4fd9-b8b5-ed3ef40ab127",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013NeBwBQ133wrEe86uEuHxq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8828,
+      "cache_read_input_tokens": 24028,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8828
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+开始并行执行：文本编辑 + 引用验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "ea74837e-00f8-47bb-9bef-c9e79030afb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013NeBwBQ133wrEe86uEuHxq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8828,
+      "cache_read_input_tokens": 24028,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8828
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Kx8ztYNy6LkB1BpnEh1EMC`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md",
+  "old_string": "StructFuse builds on this foundation by improving the contrastive fine-tuning stage: rather than modifying the retrieval architecture, we enhance the training signal through structure-grounded negative selection.",
+  "new_string": "StructFuse builds on this foundation by systematically comparing negative mining strategies---random, embedding-distance, and structure-aware---for contrastive code retrieval, demonstrating that the choice of mining strategy meaningfully affects retrieval quality."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "86734a31-154c-44b7-85ce-e72ae78b7bcf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013NeBwBQ133wrEe86uEuHxq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8828,
+      "cache_read_input_tokens": 24028,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8828
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T10:34:27.191Z_
+
+<details><summary>↩ Tool result · `toolu_01Kx8ztYNy6LkB1BpnEh1EMC`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "237bcde0-93b6-483a-959e-533589adb745",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md",
+    "oldString": "StructFuse builds on this foundation by improving the contrastive fine-tuning stage: rather than modifying the retrieval architecture, we enhance the training signal through structure-grounded negative selection.",
+    "newString": "StructFuse builds on this foundation by systematically comparing negative mining strategies---random, embedding-distance, and structure-aware---for contrastive code retrieval, demonstrating that the choice of mining strategy meaningfully affects retrieval quality.",
+    "originalFile": "# 2. Related Work\n\n## 2.1 Dense Retrieval for Code\n\nCode retrieval has evolved from sparse lexical methods such as BM25 \\cite{robertson2009bm25} to dense neural approaches. Early pretrained code models---CodeBERT \\cite{feng2020codebert}, UniXcoder \\cite{guo2022unixcoder}, and InferCode \\cite{bui2021infercode}---learn general-purpose code representations through masked language modeling and related pretraining objectives, enabling semantic matching beyond surface-level token overlap. More recent large-scale code models, including StarCoder2 \\cite{lozhkov2024starcoder2} and Qwen2.5-Coder \\cite{hui2024qwen25coder}, provide powerful encoder backbones trained on trillions of code tokens. In the retrieval domain, CodeSage \\cite{zhang2024codesage} and SCodeR \\cite{li2022scoder} introduce contrastive fine-tuning strategies that adapt pretrained representations for code search. The growing importance of repository-level retrieval---driven by benchmarks like SWE-bench \\cite{jimenez2024swebench}---has motivated specialized systems: SweRank \\cite{reddy2025swerank} formulates issue localization as code ranking, while SWE-Fixer \\cite{xie2025swefixer} combines BM25 with neural reranking in a coarse-to-fine pipeline. StructFuse builds on this foundation by improving the contrastive fine-tuning stage: rather than modifying the retrieval architecture, we enhance the training signal through structure-grounded negative selection.\n\n## 2.2 Contrastive Learning for Code\n\nSentence-BERT \\cite{reimers2019sentencebert} established contrastive fine-tuning of pretrained encoders for dense text retrieval, a paradigm that has since become dominant for code representation learning. ContraCode \\cite{jain2021contracode} generates functionally equivalent program variants through compiler transformations, training models to be invariant to syntactic variation. CodeRetriever \\cite{li2022coderetriever} combines unimodal code-code and bimodal code-text contrastive objectives, achieving strong results across eleven code search benchmarks. SynCoBERT \\cite{wang2021syncobert} introduces syntax-guided multi-modal contrastive pretraining that aligns code, natural language, and AST modalities through identifier prediction and edge prediction objectives. ContraBERT \\cite{liu2023contrabert} takes a complementary robustness-oriented approach, designing adversarial augmentation operators---including identifier renaming, dead code insertion, and operand swapping---to improve model robustness while maintaining retrieval performance. Ding et al.\\ \\cite{ding2022programcontrasts} use structure-guided code transformations to synthesize contrastive pairs, demonstrating that program-structure-aware augmentation improves code clone detection and vulnerability identification. GraphCodeBERT \\cite{guo2021graphcodebert} incorporates data-flow edges into pretraining, demonstrating that structural information improves code understanding tasks. These methods enrich the positive pair construction space or the pretraining signal. While GraphCodeBERT uses structural edges as a pretraining objective, StructFuse addresses a complementary dimension: rather than improving how positive pairs are constructed, we improve which negatives the model trains against by grounding selection in inter-procedural data-flow structure.\n\n## 2.3 Hard Negative Mining\n\nThe quality of negative examples critically affects contrastive learning \\cite{chen2020simclr}. In dense text retrieval, DPR \\cite{karpukhin2020dpr} established the practice of using BM25 top-ranked non-relevant passages as hard negatives. ANCE \\cite{xiong2021ance} dynamically mines negatives from an approximate nearest neighbor index updated during training, while RocketQA \\cite{qu2021rocketqa} introduces cross-batch denoised negatives with knowledge distillation. STAR \\cite{zhan2021star} further refines this paradigm by using the retriever's own top-ranked passages as training negatives. Curriculum-based approaches---CL-DRD \\cite{zeng2022cldrd} and CAPSTONE \\cite{he2023capstone}---schedule negative difficulty progressively during training.\n\nIn the code domain, CoCoHaNeRe \\cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, evaluating both BM25-selected and embedding-based negatives and reporting limitations of each non-differentiable strategy. However, their evaluation targets the NL$\\to$code search setting; whether static embedding-distance mining is similarly limited in structural code retrieval---where repository-level and file-level localization involve richer structural cues---remains untested. StructFuse addresses this gap with a systematic comparison of three mining strategies---random, embedding-distance, and dataflow-aware---across decoder-only encoders with distinct representation geometries. Our results show that static embedding-distance mining provides consistent retrieval gains at negligible cost, establishing it as a strong baseline that requires no gradient computation or dynamic index updates. We further introduce data-flow structure as an orthogonal signal for negative selection, grounding hardness in inter-procedural program semantics rather than embedding proximity alone.\n\n## 2.4 Code Structure in Machine Learning\n\nProgram dependence graphs \\cite{ferrante1987pdg} and code property graphs \\cite{yamaguchi2014cpg} have long served program analysis; tools like CodeQL \\cite{avgustinov2016ql} make inter-procedural analysis accessible at scale. In machine learning, code2vec \\cite{alon2019code2vec} pioneered learning from AST paths, while ProGraML \\cite{cummins2021programl} demonstrated that whole-program graph representations capturing control-flow, data-flow, and call relations are learnable and effective for compiler optimization tasks. CrossCodeEval \\cite{ding2023crosscodeeval} empirically validates that cross-file context is critical for code completion, with retrieval-augmented approaches yielding clear but still far-from-ceiling improvements. RepoFusion \\cite{shrivastava2023repofusion} further demonstrates that training code models to incorporate cross-file repository context via Fusion-in-Decoder significantly improves completion quality, even outperforming much larger models that lack repository awareness.\n\nRecent inference-time graph methods bring structural reasoning to LLM-based software engineering. CodexGraph \\cite{liu2025codexgraph} and RepoGraph \\cite{ouyang2025repograph} build navigable code graph databases for LLM agents; LocAgent \\cite{chen2025locagent} and RANGER \\cite{shah2025ranger} employ multi-hop graph reasoning and MCTS-based traversal for fault localization and retrieval, respectively. GRACE \\cite{wang2025grace} constructs multi-level code graphs spanning repository, module, and function granularity---integrating AST, control-flow, and data-flow edges---for hierarchical retrieval-augmented code completion. GraphCoder \\cite{liu2024graphcoder} and ARISE \\cite{seddik2026arise} incorporate data-flow edges---control/data dependence and definition-use chains, respectively---but their data-flow analysis remains intra-procedural in scope. Critically, these methods primarily leverage structural graphs at inference time, incurring per-query latency proportional to graph complexity. StructFuse takes a fundamentally different approach: we leverage inter-procedural data-flow graphs at \\emph{training time} to mine structure-grounded negatives, producing an encoder that internalizes cross-function data-flow semantics with zero inference overhead. The two paradigms are complementary---a StructFuse-trained encoder can serve as an efficient first-stage retriever for inference-time graph systems that perform targeted reranking.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 2,
+        "oldLines": 7,
+        "newStart": 2,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " ## 2.1 Dense Retrieval for Code",
+          " ",
+          "-Code retrieval has evolved from sparse lexical methods such as BM25 \\cite{robertson2009bm25} to dense neural approaches. Early pretrained code models---CodeBERT \\cite{feng2020codebert}, UniXcoder \\cite{guo2022unixcoder}, and InferCode \\cite{bui2021infercode}---learn general-purpose code representations through masked language modeling and related pretraining objectives, enabling semantic matching beyond surface-level token overlap. More recent large-scale code models, including StarCoder2 \\cite{lozhkov2024starcoder2} and Qwen2.5-Coder \\cite{hui2024qwen25coder}, provide powerful encoder backbones trained on trillions of code tokens. In the retrieval domain, CodeSage \\cite{zhang2024codesage} and SCodeR \\cite{li2022scoder} introduce contrastive fine-tuning strategies that adapt pretrained representations for code search. The growing importance of repository-level retrieval---driven by benchmarks like SWE-bench \\cite{jimenez2024swebench}---has motivated specialized systems: SweRank \\cite{reddy2025swerank} formulates issue localization as code ranking, while SWE-Fixer \\cite{xie2025swefixer} combines BM25 with neural reranking in a coarse-to-fine pipeline. StructFuse builds on this foundation by improving the contrastive fine-tuning stage: rather than modifying the retrieval architecture, we enhance the training signal through structure-grounded negative selection.",
+          "+Code retrieval has evolved from sparse lexical methods such as BM25 \\cite{robertson2009bm25} to dense neural approaches. Early pretrained code models---CodeBERT \\cite{feng2020codebert}, UniXcoder \\cite{guo2022unixcoder}, and InferCode \\cite{bui2021infercode}---learn general-purpose code representations through masked language modeling and related pretraining objectives, enabling semantic matching beyond surface-level token overlap. More recent large-scale code models, including StarCoder2 \\cite{lozhkov2024starcoder2} and Qwen2.5-Coder \\cite{hui2024qwen25coder}, provide powerful encoder backbones trained on trillions of code tokens. In the retrieval domain, CodeSage \\cite{zhang2024codesage} and SCodeR \\cite{li2022scoder} introduce contrastive fine-tuning strategies that adapt pretrained representations for code search. The growing importance of repository-level retrieval---driven by benchmarks like SWE-bench \\cite{jimenez2024swebench}---has motivated specialized systems: SweRank \\cite{reddy2025swerank} formulates issue localization as code ranking, while SWE-Fixer \\cite{xie2025swefixer} combines BM25 with neural reranking in a coarse-to-fine pipeline. StructFuse builds on this foundation by systematically comparing negative mining strategies---random, embedding-distance, and structure-aware---for contrastive code retrieval, demonstrating that the choice of mining strategy meaningfully affects retrieval quality.",
+          " ",
+          " ## 2.2 Contrastive Learning for Code",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_019u7ApT8wqCbLXaZ6zydVgK`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md",
+  "old_string": "While GraphCodeBERT uses structural edges as a pretraining objective, StructFuse addresses a complementary dimension: rather than improving how positive pairs are constructed, we improve which negatives the model trains against by grounding selection in inter-procedural data-flow structure.",
+  "new_string": "While GraphCodeBERT uses structural edges as a pretraining objective, StructFuse addresses a complementary dimension: we systematically study how negative selection strategy---including structure-aware alternatives---affects contrastive code retrieval across encoders with distinct representation geometries."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "7751ff75-0731-47d1-8bcd-c5f0f37197bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CFEKJdELjrgJ7zxEzKcfWH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 918,
+      "cache_read_input_tokens": 32856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 918
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T10:34:33.600Z_
+
+<details><summary>↩ Tool result · `toolu_019u7ApT8wqCbLXaZ6zydVgK`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "7241242a-1af7-4676-8a75-8c0a96589d84",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md",
+    "oldString": "While GraphCodeBERT uses structural edges as a pretraining objective, StructFuse addresses a complementary dimension: rather than improving how positive pairs are constructed, we improve which negatives the model trains against by grounding selection in inter-procedural data-flow structure.",
+    "newString": "While GraphCodeBERT uses structural edges as a pretraining objective, StructFuse addresses a complementary dimension: we systematically study how negative selection strategy---including structure-aware alternatives---affects contrastive code retrieval across encoders with distinct representation geometries.",
+    "originalFile": "# 2. Related Work\n\n## 2.1 Dense Retrieval for Code\n\nCode retrieval has evolved from sparse lexical methods such as BM25 \\cite{robertson2009bm25} to dense neural approaches. Early pretrained code models---CodeBERT \\cite{feng2020codebert}, UniXcoder \\cite{guo2022unixcoder}, and InferCode \\cite{bui2021infercode}---learn general-purpose code representations through masked language modeling and related pretraining objectives, enabling semantic matching beyond surface-level token overlap. More recent large-scale code models, including StarCoder2 \\cite{lozhkov2024starcoder2} and Qwen2.5-Coder \\cite{hui2024qwen25coder}, provide powerful encoder backbones trained on trillions of code tokens. In the retrieval domain, CodeSage \\cite{zhang2024codesage} and SCodeR \\cite{li2022scoder} introduce contrastive fine-tuning strategies that adapt pretrained representations for code search. The growing importance of repository-level retrieval---driven by benchmarks like SWE-bench \\cite{jimenez2024swebench}---has motivated specialized systems: SweRank \\cite{reddy2025swerank} formulates issue localization as code ranking, while SWE-Fixer \\cite{xie2025swefixer} combines BM25 with neural reranking in a coarse-to-fine pipeline. StructFuse builds on this foundation by systematically comparing negative mining strategies---random, embedding-distance, and structure-aware---for contrastive code retrieval, demonstrating that the choice of mining strategy meaningfully affects retrieval quality.\n\n## 2.2 Contrastive Learning for Code\n\nSentence-BERT \\cite{reimers2019sentencebert} established contrastive fine-tuning of pretrained encoders for dense text retrieval, a paradigm that has since become dominant for code representation learning. ContraCode \\cite{jain2021contracode} generates functionally equivalent program variants through compiler transformations, training models to be invariant to syntactic variation. CodeRetriever \\cite{li2022coderetriever} combines unimodal code-code and bimodal code-text contrastive objectives, achieving strong results across eleven code search benchmarks. SynCoBERT \\cite{wang2021syncobert} introduces syntax-guided multi-modal contrastive pretraining that aligns code, natural language, and AST modalities through identifier prediction and edge prediction objectives. ContraBERT \\cite{liu2023contrabert} takes a complementary robustness-oriented approach, designing adversarial augmentation operators---including identifier renaming, dead code insertion, and operand swapping---to improve model robustness while maintaining retrieval performance. Ding et al.\\ \\cite{ding2022programcontrasts} use structure-guided code transformations to synthesize contrastive pairs, demonstrating that program-structure-aware augmentation improves code clone detection and vulnerability identification. GraphCodeBERT \\cite{guo2021graphcodebert} incorporates data-flow edges into pretraining, demonstrating that structural information improves code understanding tasks. These methods enrich the positive pair construction space or the pretraining signal. While GraphCodeBERT uses structural edges as a pretraining objective, StructFuse addresses a complementary dimension: rather than improving how positive pairs are constructed, we improve which negatives the model trains against by grounding selection in inter-procedural data-flow structure.\n\n## 2.3 Hard Negative Mining\n\nThe quality of negative examples critically affects contrastive learning \\cite{chen2020simclr}. In dense text retrieval, DPR \\cite{karpukhin2020dpr} established the practice of using BM25 top-ranked non-relevant passages as hard negatives. ANCE \\cite{xiong2021ance} dynamically mines negatives from an approximate nearest neighbor index updated during training, while RocketQA \\cite{qu2021rocketqa} introduces cross-batch denoised negatives with knowledge distillation. STAR \\cite{zhan2021star} further refines this paradigm by using the retriever's own top-ranked passages as training negatives. Curriculum-based approaches---CL-DRD \\cite{zeng2022cldrd} and CAPSTONE \\cite{he2023capstone}---schedule negative difficulty progressively during training.\n\nIn the code domain, CoCoHaNeRe \\cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, evaluating both BM25-selected and embedding-based negatives and reporting limitations of each non-differentiable strategy. However, their evaluation targets the NL$\\to$code search setting; whether static embedding-distance mining is similarly limited in structural code retrieval---where repository-level and file-level localization involve richer structural cues---remains untested. StructFuse addresses this gap with a systematic comparison of three mining strategies---random, embedding-distance, and dataflow-aware---across decoder-only encoders with distinct representation geometries. Our results show that static embedding-distance mining provides consistent retrieval gains at negligible cost, establishing it as a strong baseline that requires no gradient computation or dynamic index updates. We further introduce data-flow structure as an orthogonal signal for negative selection, grounding hardness in inter-procedural program semantics rather than embedding proximity alone.\n\n## 2.4 Code Structure in Machine Learning\n\nProgram dependence graphs \\cite{ferrante1987pdg} and code property graphs \\cite{yamaguchi2014cpg} have long served program analysis; tools like CodeQL \\cite{avgustinov2016ql} make inter-procedural analysis accessible at scale. In machine learning, code2vec \\cite{alon2019code2vec} pioneered learning from AST paths, while ProGraML \\cite{cummins2021programl} demonstrated that whole-program graph representations capturing control-flow, data-flow, and call relations are learnable and effective for compiler optimization tasks. CrossCodeEval \\cite{ding2023crosscodeeval} empirically validates that cross-file context is critical for code completion, with retrieval-augmented approaches yielding clear but still far-from-ceiling improvements. RepoFusion \\cite{shrivastava2023repofusion} further demonstrates that training code models to incorporate cross-file repository context via Fusion-in-Decoder significantly improves completion quality, even outperforming much larger models that lack repository awareness.\n\nRecent inference-time graph methods bring structural reasoning to LLM-based software engineering. CodexGraph \\cite{liu2025codexgraph} and RepoGraph \\cite{ouyang2025repograph} build navigable code graph databases for LLM agents; LocAgent \\cite{chen2025locagent} and RANGER \\cite{shah2025ranger} employ multi-hop graph reasoning and MCTS-based traversal for fault localization and retrieval, respectively. GRACE \\cite{wang2025grace} constructs multi-level code graphs spanning repository, module, and function granularity---integrating AST, control-flow, and data-flow edges---for hierarchical retrieval-augmented code completion. GraphCoder \\cite{liu2024graphcoder} and ARISE \\cite{seddik2026arise} incorporate data-flow edges---control/data dependence and definition-use chains, respectively---but their data-flow analysis remains intra-procedural in scope. Critically, these methods primarily leverage structural graphs at inference time, incurring per-query latency proportional to graph complexity. StructFuse takes a fundamentally different approach: we leverage inter-procedural data-flow graphs at \\emph{training time} to mine structure-grounded negatives, producing an encoder that internalizes cross-function data-flow semantics with zero inference overhead. The two paradigms are complementary---a StructFuse-trained encoder can serve as an efficient first-stage retriever for inference-time graph systems that perform targeted reranking.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 6,
+        "oldLines": 7,
+        "newStart": 6,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " ## 2.2 Contrastive Learning for Code",
+          " ",
+          "-Sentence-BERT \\cite{reimers2019sentencebert} established contrastive fine-tuning of pretrained encoders for dense text retrieval, a paradigm that has since become dominant for code representation learning. ContraCode \\cite{jain2021contracode} generates functionally equivalent program variants through compiler transformations, training models to be invariant to syntactic variation. CodeRetriever \\cite{li2022coderetriever} combines unimodal code-code and bimodal code-text contrastive objectives, achieving strong results across eleven code search benchmarks. SynCoBERT \\cite{wang2021syncobert} introduces syntax-guided multi-modal contrastive pretraining that aligns code, natural language, and AST modalities through identifier prediction and edge prediction objectives. ContraBERT \\cite{liu2023contrabert} takes a complementary robustness-oriented approach, designing adversarial augmentation operators---including identifier renaming, dead code insertion, and operand swapping---to improve model robustness while maintaining retrieval performance. Ding et al.\\ \\cite{ding2022programcontrasts} use structure-guided code transformations to synthesize contrastive pairs, demonstrating that program-structure-aware augmentation improves code clone detection and vulnerability identification. GraphCodeBERT \\cite{guo2021graphcodebert} incorporates data-flow edges into pretraining, demonstrating that structural information improves code understanding tasks. These methods enrich the positive pair construction space or the pretraining signal. While GraphCodeBERT uses structural edges as a pretraining objective, StructFuse addresses a complementary dimension: rather than improving how positive pairs are constructed, we improve which negatives the model trains against by grounding selection in inter-procedural data-flow structure.",
+          "+Sentence-BERT \\cite{reimers2019sentencebert} established contrastive fine-tuning of pretrained encoders for dense text retrieval, a paradigm that has since become dominant for code representation learning. ContraCode \\cite{jain2021contracode} generates functionally equivalent program variants through compiler transformations, training models to be invariant to syntactic variation. CodeRetriever \\cite{li2022coderetriever} combines unimodal code-code and bimodal code-text contrastive objectives, achieving strong results across eleven code search benchmarks. SynCoBERT \\cite{wang2021syncobert} introduces syntax-guided multi-modal contrastive pretraining that aligns code, natural language, and AST modalities through identifier prediction and edge prediction objectives. ContraBERT \\cite{liu2023contrabert} takes a complementary robustness-oriented approach, designing adversarial augmentation operators---including identifier renaming, dead code insertion, and operand swapping---to improve model robustness while maintaining retrieval performance. Ding et al.\\ \\cite{ding2022programcontrasts} use structure-guided code transformations to synthesize contrastive pairs, demonstrating that program-structure-aware augmentation improves code clone detection and vulnerability identification. GraphCodeBERT \\cite{guo2021graphcodebert} incorporates data-flow edges into pretraining, demonstrating that structural information improves code understanding tasks. These methods enrich the positive pair construction space or the pretraining signal. While GraphCodeBERT uses structural edges as a pretraining objective, StructFuse addresses a complementary dimension: we systematically study how negative selection strategy---including structure-aware alternatives---affects contrastive code retrieval across encoders with distinct representation geometries.",
+          " ",
+          " ## 2.3 Hard Negative Mining",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01EynJZoRoSGsRtYY3nstcZi`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md",
+  "old_string": "static embedding-distance mining provides consistent retrieval gains at negligible cost",
+  "new_string": "static embedding-distance mining provides reliable improvement at zero additional cost"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "d66af331-c265-44c9-b040-d512a39d1565",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NHFJU4BWq9BihbvLYS3Gmy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 324,
+      "cache_read_input_tokens": 33774,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 324
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T10:34:40.371Z_
+
+<details><summary>↩ Tool result · `toolu_01EynJZoRoSGsRtYY3nstcZi`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "c68b1b9d-be19-461a-8426-bb9dfaadc14d",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md",
+    "oldString": "static embedding-distance mining provides consistent retrieval gains at negligible cost",
+    "newString": "static embedding-distance mining provides reliable improvement at zero additional cost",
+    "originalFile": "# 2. Related Work\n\n## 2.1 Dense Retrieval for Code\n\nCode retrieval has evolved from sparse lexical methods such as BM25 \\cite{robertson2009bm25} to dense neural approaches. Early pretrained code models---CodeBERT \\cite{feng2020codebert}, UniXcoder \\cite{guo2022unixcoder}, and InferCode \\cite{bui2021infercode}---learn general-purpose code representations through masked language modeling and related pretraining objectives, enabling semantic matching beyond surface-level token overlap. More recent large-scale code models, including StarCoder2 \\cite{lozhkov2024starcoder2} and Qwen2.5-Coder \\cite{hui2024qwen25coder}, provide powerful encoder backbones trained on trillions of code tokens. In the retrieval domain, CodeSage \\cite{zhang2024codesage} and SCodeR \\cite{li2022scoder} introduce contrastive fine-tuning strategies that adapt pretrained representations for code search. The growing importance of repository-level retrieval---driven by benchmarks like SWE-bench \\cite{jimenez2024swebench}---has motivated specialized systems: SweRank \\cite{reddy2025swerank} formulates issue localization as code ranking, while SWE-Fixer \\cite{xie2025swefixer} combines BM25 with neural reranking in a coarse-to-fine pipeline. StructFuse builds on this foundation by systematically comparing negative mining strategies---random, embedding-distance, and structure-aware---for contrastive code retrieval, demonstrating that the choice of mining strategy meaningfully affects retrieval quality.\n\n## 2.2 Contrastive Learning for Code\n\nSentence-BERT \\cite{reimers2019sentencebert} established contrastive fine-tuning of pretrained encoders for dense text retrieval, a paradigm that has since become dominant for code representation learning. ContraCode \\cite{jain2021contracode} generates functionally equivalent program variants through compiler transformations, training models to be invariant to syntactic variation. CodeRetriever \\cite{li2022coderetriever} combines unimodal code-code and bimodal code-text contrastive objectives, achieving strong results across eleven code search benchmarks. SynCoBERT \\cite{wang2021syncobert} introduces syntax-guided multi-modal contrastive pretraining that aligns code, natural language, and AST modalities through identifier prediction and edge prediction objectives. ContraBERT \\cite{liu2023contrabert} takes a complementary robustness-oriented approach, designing adversarial augmentation operators---including identifier renaming, dead code insertion, and operand swapping---to improve model robustness while maintaining retrieval performance. Ding et al.\\ \\cite{ding2022programcontrasts} use structure-guided code transformations to synthesize contrastive pairs, demonstrating that program-structure-aware augmentation improves code clone detection and vulnerability identification. GraphCodeBERT \\cite{guo2021graphcodebert} incorporates data-flow edges into pretraining, demonstrating that structural information improves code understanding tasks. These methods enrich the positive pair construction space or the pretraining signal. While GraphCodeBERT uses structural edges as a pretraining objective, StructFuse addresses a complementary dimension: we systematically study how negative selection strategy---including structure-aware alternatives---affects contrastive code retrieval across encoders with distinct representation geometries.\n\n## 2.3 Hard Negative Mining\n\nThe quality of negative examples critically affects contrastive learning \\cite{chen2020simclr}. In dense text retrieval, DPR \\cite{karpukhin2020dpr} established the practice of using BM25 top-ranked non-relevant passages as hard negatives. ANCE \\cite{xiong2021ance} dynamically mines negatives from an approximate nearest neighbor index updated during training, while RocketQA \\cite{qu2021rocketqa} introduces cross-batch denoised negatives with knowledge distillation. STAR \\cite{zhan2021star} further refines this paradigm by using the retriever's own top-ranked passages as training negatives. Curriculum-based approaches---CL-DRD \\cite{zeng2022cldrd} and CAPSTONE \\cite{he2023capstone}---schedule negative difficulty progressively during training.\n\nIn the code domain, CoCoHaNeRe \\cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, evaluating both BM25-selected and embedding-based negatives and reporting limitations of each non-differentiable strategy. However, their evaluation targets the NL$\\to$code search setting; whether static embedding-distance mining is similarly limited in structural code retrieval---where repository-level and file-level localization involve richer structural cues---remains untested. StructFuse addresses this gap with a systematic comparison of three mining strategies---random, embedding-distance, and dataflow-aware---across decoder-only encoders with distinct representation geometries. Our results show that static embedding-distance mining provides consistent retrieval gains at negligible cost, establishing it as a strong baseline that requires no gradient computation or dynamic index updates. We further introduce data-flow structure as an orthogonal signal for negative selection, grounding hardness in inter-procedural program semantics rather than embedding proximity alone.\n\n## 2.4 Code Structure in Machine Learning\n\nProgram dependence graphs \\cite{ferrante1987pdg} and code property graphs \\cite{yamaguchi2014cpg} have long served program analysis; tools like CodeQL \\cite{avgustinov2016ql} make inter-procedural analysis accessible at scale. In machine learning, code2vec \\cite{alon2019code2vec} pioneered learning from AST paths, while ProGraML \\cite{cummins2021programl} demonstrated that whole-program graph representations capturing control-flow, data-flow, and call relations are learnable and effective for compiler optimization tasks. CrossCodeEval \\cite{ding2023crosscodeeval} empirically validates that cross-file context is critical for code completion, with retrieval-augmented approaches yielding clear but still far-from-ceiling improvements. RepoFusion \\cite{shrivastava2023repofusion} further demonstrates that training code models to incorporate cross-file repository context via Fusion-in-Decoder significantly improves completion quality, even outperforming much larger models that lack repository awareness.\n\nRecent inference-time graph methods bring structural reasoning to LLM-based software engineering. CodexGraph \\cite{liu2025codexgraph} and RepoGraph \\cite{ouyang2025repograph} build navigable code graph databases for LLM agents; LocAgent \\cite{chen2025locagent} and RANGER \\cite{shah2025ranger} employ multi-hop graph reasoning and MCTS-based traversal for fault localization and retrieval, respectively. GRACE \\cite{wang2025grace} constructs multi-level code graphs spanning repository, module, and function granularity---integrating AST, control-flow, and data-flow edges---for hierarchical retrieval-augmented code completion. GraphCoder \\cite{liu2024graphcoder} and ARISE \\cite{seddik2026arise} incorporate data-flow edges---control/data dependence and definition-use chains, respectively---but their data-flow analysis remains intra-procedural in scope. Critically, these methods primarily leverage structural graphs at inference time, incurring per-query latency proportional to graph complexity. StructFuse takes a fundamentally different approach: we leverage inter-procedural data-flow graphs at \\emph{training time} to mine structure-grounded negatives, producing an encoder that internalizes cross-function data-flow semantics with zero inference overhead. The two paradigms are complementary---a StructFuse-trained encoder can serve as an efficient first-stage retriever for inference-time graph systems that perform targeted reranking.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 12,
+        "oldLines": 7,
+        "newStart": 12,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " The quality of negative examples critically affects contrastive learning \\cite{chen2020simclr}. In dense text retrieval, DPR \\cite{karpukhin2020dpr} established the practice of using BM25 top-ranked non-relevant passages as hard negatives. ANCE \\cite{xiong2021ance} dynamically mines negatives from an approximate nearest neighbor index updated during training, while RocketQA \\cite{qu2021rocketqa} introduces cross-batch denoised negatives with knowledge distillation. STAR \\cite{zhan2021star} further refines this paradigm by using the retriever's own top-ranked passages as training negatives. Curriculum-based approaches---CL-DRD \\cite{zeng2022cldrd} and CAPSTONE \\cite{he2023capstone}---schedule negative difficulty progressively during training.",
+          " ",
+          "-In the code domain, CoCoHaNeRe \\cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, evaluating both BM25-selected and embedding-based negatives and reporting limitations of each non-differentiable strategy. However, their evaluation targets the NL$\\to$code search setting; whether static embedding-distance mining is similarly limited in structural code retrieval---where repository-level and file-level localization involve richer structural cues---remains untested. StructFuse addresses this gap with a systematic comparison of three mining strategies---random, embedding-distance, and dataflow-aware---across decoder-only encoders with distinct representation geometries. Our results show that static embedding-distance mining provides consistent retrieval gains at negligible cost, establishing it as a strong baseline that requires no gradient computation or dynamic index updates. We further introduce data-flow structure as an orthogonal signal for negative selection, grounding hardness in inter-procedural program semantics rather than embedding proximity alone.",
+          "+In the code domain, CoCoHaNeRe \\cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, evaluating both BM25-selected and embedding-based negatives and reporting limitations of each non-differentiable strategy. However, their evaluation targets the NL$\\to$code search setting; whether static embedding-distance mining is similarly limited in structural code retrieval---where repository-level and file-level localization involve richer structural cues---remains untested. StructFuse addresses this gap with a systematic comparison of three mining strategies---random, embedding-distance, and dataflow-aware---across decoder-only encoders with distinct representation geometries. Our results show that static embedding-distance mining provides reliable improvement at zero additional cost, establishing it as a strong baseline that requires no gradient computation or dynamic index updates. We further introduce data-flow structure as an orthogonal signal for negative selection, grounding hardness in inter-procedural program semantics rather than embedding proximity alone.",
+          " ",
+          " ## 2.4 Code Structure in Machine Learning",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01MM9w2UzbjBtM5hU3c517f1`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md",
+  "old_string": "data-flow structure as an orthogonal signal",
+  "new_string": "data-flow structure as a complementary signal"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "ae4a6069-aa11-4f59-be2e-d461a76039fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NjyprjpwmqK7sgfrFNzBWh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 237,
+      "cache_read_input_tokens": 34098,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 237
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T10:34:43.834Z_
+
+<details><summary>↩ Tool result · `toolu_01MM9w2UzbjBtM5hU3c517f1`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "b1f0a844-a94c-4246-aea5-6d8899dfb26f",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md",
+    "oldString": "data-flow structure as an orthogonal signal",
+    "newString": "data-flow structure as a complementary signal",
+    "originalFile": "# 2. Related Work\n\n## 2.1 Dense Retrieval for Code\n\nCode retrieval has evolved from sparse lexical methods such as BM25 \\cite{robertson2009bm25} to dense neural approaches. Early pretrained code models---CodeBERT \\cite{feng2020codebert}, UniXcoder \\cite{guo2022unixcoder}, and InferCode \\cite{bui2021infercode}---learn general-purpose code representations through masked language modeling and related pretraining objectives, enabling semantic matching beyond surface-level token overlap. More recent large-scale code models, including StarCoder2 \\cite{lozhkov2024starcoder2} and Qwen2.5-Coder \\cite{hui2024qwen25coder}, provide powerful encoder backbones trained on trillions of code tokens. In the retrieval domain, CodeSage \\cite{zhang2024codesage} and SCodeR \\cite{li2022scoder} introduce contrastive fine-tuning strategies that adapt pretrained representations for code search. The growing importance of repository-level retrieval---driven by benchmarks like SWE-bench \\cite{jimenez2024swebench}---has motivated specialized systems: SweRank \\cite{reddy2025swerank} formulates issue localization as code ranking, while SWE-Fixer \\cite{xie2025swefixer} combines BM25 with neural reranking in a coarse-to-fine pipeline. StructFuse builds on this foundation by systematically comparing negative mining strategies---random, embedding-distance, and structure-aware---for contrastive code retrieval, demonstrating that the choice of mining strategy meaningfully affects retrieval quality.\n\n## 2.2 Contrastive Learning for Code\n\nSentence-BERT \\cite{reimers2019sentencebert} established contrastive fine-tuning of pretrained encoders for dense text retrieval, a paradigm that has since become dominant for code representation learning. ContraCode \\cite{jain2021contracode} generates functionally equivalent program variants through compiler transformations, training models to be invariant to syntactic variation. CodeRetriever \\cite{li2022coderetriever} combines unimodal code-code and bimodal code-text contrastive objectives, achieving strong results across eleven code search benchmarks. SynCoBERT \\cite{wang2021syncobert} introduces syntax-guided multi-modal contrastive pretraining that aligns code, natural language, and AST modalities through identifier prediction and edge prediction objectives. ContraBERT \\cite{liu2023contrabert} takes a complementary robustness-oriented approach, designing adversarial augmentation operators---including identifier renaming, dead code insertion, and operand swapping---to improve model robustness while maintaining retrieval performance. Ding et al.\\ \\cite{ding2022programcontrasts} use structure-guided code transformations to synthesize contrastive pairs, demonstrating that program-structure-aware augmentation improves code clone detection and vulnerability identification. GraphCodeBERT \\cite{guo2021graphcodebert} incorporates data-flow edges into pretraining, demonstrating that structural information improves code understanding tasks. These methods enrich the positive pair construction space or the pretraining signal. While GraphCodeBERT uses structural edges as a pretraining objective, StructFuse addresses a complementary dimension: we systematically study how negative selection strategy---including structure-aware alternatives---affects contrastive code retrieval across encoders with distinct representation geometries.\n\n## 2.3 Hard Negative Mining\n\nThe quality of negative examples critically affects contrastive learning \\cite{chen2020simclr}. In dense text retrieval, DPR \\cite{karpukhin2020dpr} established the practice of using BM25 top-ranked non-relevant passages as hard negatives. ANCE \\cite{xiong2021ance} dynamically mines negatives from an approximate nearest neighbor index updated during training, while RocketQA \\cite{qu2021rocketqa} introduces cross-batch denoised negatives with knowledge distillation. STAR \\cite{zhan2021star} further refines this paradigm by using the retriever's own top-ranked passages as training negatives. Curriculum-based approaches---CL-DRD \\cite{zeng2022cldrd} and CAPSTONE \\cite{he2023capstone}---schedule negative difficulty progressively during training.\n\nIn the code domain, CoCoHaNeRe \\cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, evaluating both BM25-selected and embedding-based negatives and reporting limitations of each non-differentiable strategy. However, their evaluation targets the NL$\\to$code search setting; whether static embedding-distance mining is similarly limited in structural code retrieval---where repository-level and file-level localization involve richer structural cues---remains untested. StructFuse addresses this gap with a systematic comparison of three mining strategies---random, embedding-distance, and dataflow-aware---across decoder-only encoders with distinct representation geometries. Our results show that static embedding-distance mining provides reliable improvement at zero additional cost, establishing it as a strong baseline that requires no gradient computation or dynamic index updates. We further introduce data-flow structure as an orthogonal signal for negative selection, grounding hardness in inter-procedural program semantics rather than embedding proximity alone.\n\n## 2.4 Code Structure in Machine Learning\n\nProgram dependence graphs \\cite{ferrante1987pdg} and code property graphs \\cite{yamaguchi2014cpg} have long served program analysis; tools like CodeQL \\cite{avgustinov2016ql} make inter-procedural analysis accessible at scale. In machine learning, code2vec \\cite{alon2019code2vec} pioneered learning from AST paths, while ProGraML \\cite{cummins2021programl} demonstrated that whole-program graph representations capturing control-flow, data-flow, and call relations are learnable and effective for compiler optimization tasks. CrossCodeEval \\cite{ding2023crosscodeeval} empirically validates that cross-file context is critical for code completion, with retrieval-augmented approaches yielding clear but still far-from-ceiling improvements. RepoFusion \\cite{shrivastava2023repofusion} further demonstrates that training code models to incorporate cross-file repository context via Fusion-in-Decoder significantly improves completion quality, even outperforming much larger models that lack repository awareness.\n\nRecent inference-time graph methods bring structural reasoning to LLM-based software engineering. CodexGraph \\cite{liu2025codexgraph} and RepoGraph \\cite{ouyang2025repograph} build navigable code graph databases for LLM agents; LocAgent \\cite{chen2025locagent} and RANGER \\cite{shah2025ranger} employ multi-hop graph reasoning and MCTS-based traversal for fault localization and retrieval, respectively. GRACE \\cite{wang2025grace} constructs multi-level code graphs spanning repository, module, and function granularity---integrating AST, control-flow, and data-flow edges---for hierarchical retrieval-augmented code completion. GraphCoder \\cite{liu2024graphcoder} and ARISE \\cite{seddik2026arise} incorporate data-flow edges---control/data dependence and definition-use chains, respectively---but their data-flow analysis remains intra-procedural in scope. Critically, these methods primarily leverage structural graphs at inference time, incurring per-query latency proportional to graph complexity. StructFuse takes a fundamentally different approach: we leverage inter-procedural data-flow graphs at \\emph{training time} to mine structure-grounded negatives, producing an encoder that internalizes cross-function data-flow semantics with zero inference overhead. The two paradigms are complementary---a StructFuse-trained encoder can serve as an efficient first-stage retriever for inference-time graph systems that perform targeted reranking.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 12,
+        "oldLines": 7,
+        "newStart": 12,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " The quality of negative examples critically affects contrastive learning \\cite{chen2020simclr}. In dense text retrieval, DPR \\cite{karpukhin2020dpr} established the practice of using BM25 top-ranked non-relevant passages as hard negatives. ANCE \\cite{xiong2021ance} dynamically mines negatives from an approximate nearest neighbor index updated during training, while RocketQA \\cite{qu2021rocketqa} introduces cross-batch denoised negatives with knowledge distillation. STAR \\cite{zhan2021star} further refines this paradigm by using the retriever's own top-ranked passages as training negatives. Curriculum-based approaches---CL-DRD \\cite{zeng2022cldrd} and CAPSTONE \\cite{he2023capstone}---schedule negative difficulty progressively during training.",
+          " ",
+          "-In the code domain, CoCoHaNeRe \\cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, evaluating both BM25-selected and embedding-based negatives and reporting limitations of each non-differentiable strategy. However, their evaluation targets the NL$\\to$code search setting; whether static embedding-distance mining is similarly limited in structural code retrieval---where repository-level and file-level localization involve richer structural cues---remains untested. StructFuse addresses this gap with a systematic comparison of three mining strategies---random, embedding-distance, and dataflow-aware---across decoder-only encoders with distinct representation geometries. Our results show that static embedding-distance mining provides reliable improvement at zero additional cost, establishing it as a strong baseline that requires no gradient computation or dynamic index updates. We further introduce data-flow structure as an orthogonal signal for negative selection, grounding hardness in inter-procedural program semantics rather than embedding proximity alone.",
+          "+In the code domain, CoCoHaNeRe \\cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, evaluating both BM25-selected and embedding-based negatives and reporting limitations of each non-differentiable strategy. However, their evaluation targets the NL$\\to$code search setting; whether static embedding-distance mining is similarly limited in structural code retrieval---where repository-level and file-level localization involve richer structural cues---remains untested. StructFuse addresses this gap with a systematic comparison of three mining strategies---random, embedding-distance, and dataflow-aware---across decoder-only encoders with distinct representation geometries. Our results show that static embedding-distance mining provides reliable improvement at zero additional cost, establishing it as a strong baseline that requires no gradient computation or dynamic index updates. We further introduce data-flow structure as a complementary signal for negative selection, grounding hardness in inter-procedural program semantics rather than embedding proximity alone.",
+          " ",
+          " ## 2.4 Code Structure in Machine Learning",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Upniiq64zyPityYzyPF5yt`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md",
+  "old_string": "StructFuse takes a fundamentally different approach: we leverage inter-procedural data-flow graphs at \\emph{training time} to mine structure-grounded negatives, producing an encoder that internalizes cross-function data-flow semantics with zero inference overhead. The two paradigms are complementary---a StructFuse-trained encoder can serve as an efficient first-stage retriever for inference-time graph systems that perform targeted reranking.",
+  "new_string": "StructFuse takes a fundamentally different approach: we leverage inter-procedural data-flow graphs at \\emph{training time} to construct an additional strategy dimension for systematic comparison, enabling analysis of how structural signals interact with encoder representation geometry---all with zero inference overhead. The two paradigms are complementary---a StructFuse-trained encoder can serve as an efficient first-stage retriever for inference-time graph systems that perform targeted reranking."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "e40466dc-f31c-4e97-85fd-2bfd06ebb36c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LzutCMu3ysLD3vUNudtZJc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 230,
+      "cache_read_input_tokens": 34335,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 230
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T10:34:50.918Z_
+
+<details><summary>↩ Tool result · `toolu_01Upniiq64zyPityYzyPF5yt`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "58da8cf3-ffb5-4dbe-9058-722facaa7713",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md",
+    "oldString": "StructFuse takes a fundamentally different approach: we leverage inter-procedural data-flow graphs at \\emph{training time} to mine structure-grounded negatives, producing an encoder that internalizes cross-function data-flow semantics with zero inference overhead. The two paradigms are complementary---a StructFuse-trained encoder can serve as an efficient first-stage retriever for inference-time graph systems that perform targeted reranking.",
+    "newString": "StructFuse takes a fundamentally different approach: we leverage inter-procedural data-flow graphs at \\emph{training time} to construct an additional strategy dimension for systematic comparison, enabling analysis of how structural signals interact with encoder representation geometry---all with zero inference overhead. The two paradigms are complementary---a StructFuse-trained encoder can serve as an efficient first-stage retriever for inference-time graph systems that perform targeted reranking.",
+    "originalFile": "# 2. Related Work\n\n## 2.1 Dense Retrieval for Code\n\nCode retrieval has evolved from sparse lexical methods such as BM25 \\cite{robertson2009bm25} to dense neural approaches. Early pretrained code models---CodeBERT \\cite{feng2020codebert}, UniXcoder \\cite{guo2022unixcoder}, and InferCode \\cite{bui2021infercode}---learn general-purpose code representations through masked language modeling and related pretraining objectives, enabling semantic matching beyond surface-level token overlap. More recent large-scale code models, including StarCoder2 \\cite{lozhkov2024starcoder2} and Qwen2.5-Coder \\cite{hui2024qwen25coder}, provide powerful encoder backbones trained on trillions of code tokens. In the retrieval domain, CodeSage \\cite{zhang2024codesage} and SCodeR \\cite{li2022scoder} introduce contrastive fine-tuning strategies that adapt pretrained representations for code search. The growing importance of repository-level retrieval---driven by benchmarks like SWE-bench \\cite{jimenez2024swebench}---has motivated specialized systems: SweRank \\cite{reddy2025swerank} formulates issue localization as code ranking, while SWE-Fixer \\cite{xie2025swefixer} combines BM25 with neural reranking in a coarse-to-fine pipeline. StructFuse builds on this foundation by systematically comparing negative mining strategies---random, embedding-distance, and structure-aware---for contrastive code retrieval, demonstrating that the choice of mining strategy meaningfully affects retrieval quality.\n\n## 2.2 Contrastive Learning for Code\n\nSentence-BERT \\cite{reimers2019sentencebert} established contrastive fine-tuning of pretrained encoders for dense text retrieval, a paradigm that has since become dominant for code representation learning. ContraCode \\cite{jain2021contracode} generates functionally equivalent program variants through compiler transformations, training models to be invariant to syntactic variation. CodeRetriever \\cite{li2022coderetriever} combines unimodal code-code and bimodal code-text contrastive objectives, achieving strong results across eleven code search benchmarks. SynCoBERT \\cite{wang2021syncobert} introduces syntax-guided multi-modal contrastive pretraining that aligns code, natural language, and AST modalities through identifier prediction and edge prediction objectives. ContraBERT \\cite{liu2023contrabert} takes a complementary robustness-oriented approach, designing adversarial augmentation operators---including identifier renaming, dead code insertion, and operand swapping---to improve model robustness while maintaining retrieval performance. Ding et al.\\ \\cite{ding2022programcontrasts} use structure-guided code transformations to synthesize contrastive pairs, demonstrating that program-structure-aware augmentation improves code clone detection and vulnerability identification. GraphCodeBERT \\cite{guo2021graphcodebert} incorporates data-flow edges into pretraining, demonstrating that structural information improves code understanding tasks. These methods enrich the positive pair construction space or the pretraining signal. While GraphCodeBERT uses structural edges as a pretraining objective, StructFuse addresses a complementary dimension: we systematically study how negative selection strategy---including structure-aware alternatives---affects contrastive code retrieval across encoders with distinct representation geometries.\n\n## 2.3 Hard Negative Mining\n\nThe quality of negative examples critically affects contrastive learning \\cite{chen2020simclr}. In dense text retrieval, DPR \\cite{karpukhin2020dpr} established the practice of using BM25 top-ranked non-relevant passages as hard negatives. ANCE \\cite{xiong2021ance} dynamically mines negatives from an approximate nearest neighbor index updated during training, while RocketQA \\cite{qu2021rocketqa} introduces cross-batch denoised negatives with knowledge distillation. STAR \\cite{zhan2021star} further refines this paradigm by using the retriever's own top-ranked passages as training negatives. Curriculum-based approaches---CL-DRD \\cite{zeng2022cldrd} and CAPSTONE \\cite{he2023capstone}---schedule negative difficulty progressively during training.\n\nIn the code domain, CoCoHaNeRe \\cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, evaluating both BM25-selected and embedding-based negatives and reporting limitations of each non-differentiable strategy. However, their evaluation targets the NL$\\to$code search setting; whether static embedding-distance mining is similarly limited in structural code retrieval---where repository-level and file-level localization involve richer structural cues---remains untested. StructFuse addresses this gap with a systematic comparison of three mining strategies---random, embedding-distance, and dataflow-aware---across decoder-only encoders with distinct representation geometries. Our results show that static embedding-distance mining provides reliable improvement at zero additional cost, establishing it as a strong baseline that requires no gradient computation or dynamic index updates. We further introduce data-flow structure as a complementary signal for negative selection, grounding hardness in inter-procedural program semantics rather than embedding proximity alone.\n\n## 2.4 Code Structure in Machine Learning\n\nProgram dependence graphs \\cite{ferrante1987pdg} and code property graphs \\cite{yamaguchi2014cpg} have long served program analysis; tools like CodeQL \\cite{avgustinov2016ql} make inter-procedural analysis accessible at scale. In machine learning, code2vec \\cite{alon2019code2vec} pioneered learning from AST paths, while ProGraML \\cite{cummins2021programl} demonstrated that whole-program graph representations capturing control-flow, data-flow, and call relations are learnable and effective for compiler optimization tasks. CrossCodeEval \\cite{ding2023crosscodeeval} empirically validates that cross-file context is critical for code completion, with retrieval-augmented approaches yielding clear but still far-from-ceiling improvements. RepoFusion \\cite{shrivastava2023repofusion} further demonstrates that training code models to incorporate cross-file repository context via Fusion-in-Decoder significantly improves completion quality, even outperforming much larger models that lack repository awareness.\n\nRecent inference-time graph methods bring structural reasoning to LLM-based software engineering. CodexGraph \\cite{liu2025codexgraph} and RepoGraph \\cite{ouyang2025repograph} build navigable code graph databases for LLM agents; LocAgent \\cite{chen2025locagent} and RANGER \\cite{shah2025ranger} employ multi-hop graph reasoning and MCTS-based traversal for fault localization and retrieval, respectively. GRACE \\cite{wang2025grace} constructs multi-level code graphs spanning repository, module, and function granularity---integrating AST, control-flow, and data-flow edges---for hierarchical retrieval-augmented code completion. GraphCoder \\cite{liu2024graphcoder} and ARISE \\cite{seddik2026arise} incorporate data-flow edges---control/data dependence and definition-use chains, respectively---but their data-flow analysis remains intra-procedural in scope. Critically, these methods primarily leverage structural graphs at inference time, incurring per-query latency proportional to graph complexity. StructFuse takes a fundamentally different approach: we leverage inter-procedural data-flow graphs at \\emph{training time} to mine structure-grounded negatives, producing an encoder that internalizes cross-function data-flow semantics with zero inference overhead. The two paradigms are complementary---a StructFuse-trained encoder can serve as an efficient first-stage retriever for inference-time graph systems that perform targeted reranking.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 18,
+        "oldLines": 4,
+        "newStart": 18,
+        "newLines": 4,
+        "lines": [
+          " ",
+          " Program dependence graphs \\cite{ferrante1987pdg} and code property graphs \\cite{yamaguchi2014cpg} have long served program analysis; tools like CodeQL \\cite{avgustinov2016ql} make inter-procedural analysis accessible at scale. In machine learning, code2vec \\cite{alon2019code2vec} pioneered learning from AST paths, while ProGraML \\cite{cummins2021programl} demonstrated that whole-program graph representations capturing control-flow, data-flow, and call relations are learnable and effective for compiler optimization tasks. CrossCodeEval \\cite{ding2023crosscodeeval} empirically validates that cross-file context is critical for code completion, with retrieval-augmented approaches yielding clear but still far-from-ceiling improvements. RepoFusion \\cite{shrivastava2023repofusion} further demonstrates that training code models to incorporate cross-file repository context via Fusion-in-Decoder significantly improves completion quality, even outperforming much larger models that lack repository awareness.",
+          " ",
+          "-Recent inference-time graph methods bring structural reasoning to LLM-based software engineering. CodexGraph \\cite{liu2025codexgraph} and RepoGraph \\cite{ouyang2025repograph} build navigable code graph databases for LLM agents; LocAgent \\cite{chen2025locagent} and RANGER \\cite{shah2025ranger} employ multi-hop graph reasoning and MCTS-based traversal for fault localization and retrieval, respectively. GRACE \\cite{wang2025grace} constructs multi-level code graphs spanning repository, module, and function granularity---integrating AST, control-flow, and data-flow edges---for hierarchical retrieval-augmented code completion. GraphCoder \\cite{liu2024graphcoder} and ARISE \\cite{seddik2026arise} incorporate data-flow edges---control/data dependence and definition-use chains, respectively---but their data-flow analysis remains intra-procedural in scope. Critically, these methods primarily leverage structural graphs at inference time, incurring per-query latency proportional to graph complexity. StructFuse takes a fundamentally different approach: we leverage inter-procedural data-flow graphs at \\emph{training time} to mine structure-grounded negatives, producing an encoder that internalizes cross-function data-flow semantics with zero inference overhead. The two paradigms are complementary---a StructFuse-trained encoder can serve as an efficient first-stage retriever for inference-time graph systems that perform targeted reranking.",
+          "+Recent inference-time graph methods bring structural reasoning to LLM-based software engineering. CodexGraph \\cite{liu2025codexgraph} and RepoGraph \\cite{ouyang2025repograph} build navigable code graph databases for LLM agents; LocAgent \\cite{chen2025locagent} and RANGER \\cite{shah2025ranger} employ multi-hop graph reasoning and MCTS-based traversal for fault localization and retrieval, respectively. GRACE \\cite{wang2025grace} constructs multi-level code graphs spanning repository, module, and function granularity---integrating AST, control-flow, and data-flow edges---for hierarchical retrieval-augmented code completion. GraphCoder \\cite{liu2024graphcoder} and ARISE \\cite{seddik2026arise} incorporate data-flow edges---control/data dependence and definition-use chains, respectively---but their data-flow analysis remains intra-procedural in scope. Critically, these methods primarily leverage structural graphs at inference time, incurring per-query latency proportional to graph complexity. StructFuse takes a fundamentally different approach: we leverage inter-procedural data-flow graphs at \\emph{training time} to construct an additional strategy dimension for systematic comparison, enabling analysis of how structural signals interact with encoder representation geometry---all with zero inference overhead. The two paradigms are complementary---a StructFuse-trained encoder can serve as an efficient first-stage retriever for inference-time graph systems that perform targeted reranking."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+文本编辑完成。启动 8 篇引用的 WebSearch 验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "46c0ad94-2356-4e46-b58f-aee1e318c816",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UseF2UUKKSgsJF7xt9BQBQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 402,
+      "cache_read_input_tokens": 34565,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 402
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01269u8r5enEePiy5CWMHXLT`</summary>
+
+```json
+{
+  "description": "Verify 8 citations via WebSearch",
+  "prompt": "I need you to verify bibliographic details (venue, year, authors) for 8 papers using WebSearch. For each paper, search the web and report the correct: title, authors (first 3+), venue/journal, year. Flag any discrepancies with the bib entries I provide below.\n\nHere are the 8 papers and their current bib entries:\n\n1. **wang2021syncobert** — \"SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation\", Wang Xin et al., arXiv 2108.04556, 2021\n\n2. **liu2023contrabert** — \"ContraBERT: Enhancing Code Pre-trained Models via Contrastive Learning\", Liu Shangqing et al., ICSE 2023, pp.2476-2487\n\n3. **qu2021rocketqa** — \"RocketQA: An Optimized Training Approach to Dense Passage Retrieval for Open-Domain Question Answering\", Qu Yingqi et al., NAACL-HLT 2021, pp.5835-5847\n\n4. **zhan2021star** — \"Optimizing Dense Retrieval Model Training with Hard Negatives\", Zhan Jingtao et al., SIGIR 2021, pp.1503-1512\n\n5. **he2023capstone** — \"CAPSTONE: Curriculum Sampling for Dense Retrieval with Document Expansion\", He Xingwei et al., EMNLP 2023, pp.10531-10541\n\n6. **cummins2021programl** — \"ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations\", Cummins Chris et al., ICML 2021, pp.2244-2253\n\n7. **ding2023crosscodeeval** — \"CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion\", Ding Yangruibo et al., NeurIPS 2023\n\n8. **wang2025grace** — \"GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion\", Wang Xingliang et al., arXiv 2509.05980, 2025\n\nFor each paper, do a web search (e.g., search for the title), confirm the details, and report:\n- Whether the bib entry is correct\n- If incorrect, what specifically needs to be fixed (venue, year, author spelling, etc.)\n\nBe thorough and precise. Report your findings in a structured format."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "9dece75f-7cb6-4862-a1a7-e853462d1286",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UseF2UUKKSgsJF7xt9BQBQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 402,
+      "cache_read_input_tokens": 34565,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 402
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 24_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Verify 8 citations via WebSearch",
+  "task_type": "local_agent",
+  "prompt": "I need you to verify bibliographic details (venue, year, authors) for 8 papers using WebSearch. For each paper, search the web and report the correct: title, authors (first 3+), venue/journal, year. Flag any discrepancies with the bib entries I provide below.\n\nHere are the 8 papers and their current bib entries:\n\n1. **wang2021syncobert** — \"SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation\", Wang Xin et al., arXiv 2108.04556, 2021\n\n2. **liu2023contrabert** — \"ContraBERT: Enhancing Code Pre-trained Models via Contrastive Learning\", Liu Shangqing et al., ICSE 2023, pp.2476-2487\n\n3. **qu2021rocketqa** — \"RocketQA: An Optimized Training Approach to Dense Passage Retrieval for Open-Domain Question Answering\", Qu Yingqi et al., NAACL-HLT 2021, pp.5835-5847\n\n4. **zhan2021star** — \"Optimizing Dense Retrieval Model Training with Hard Negatives\", Zhan Jingtao et al., SIGIR 2021, pp.1503-1512\n\n5. **he2023capstone** — \"CAPSTONE: Curriculum Sampling for Dense Retrieval with Document Expansion\", He Xingwei et al., EMNLP 2023, pp.10531-10541\n\n6. **cummins2021programl** — \"ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations\", Cummins Chris et al., ICML 2021, pp.2244-2253\n\n7. **ding2023crosscodeeval** — \"CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion\", Ding Yangruibo et al., NeurIPS 2023\n\n8. **wang2025grace** — \"GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion\", Wang Xingliang et al., arXiv 2509.05980, 2025\n\nFor each paper, do a web search (e.g., search for the title), confirm the details, and report:\n- Whether the bib entry is correct\n- If incorrect, what specifically needs to be fixed (venue, year, author spelling, etc.)\n\nBe thorough and precise. Report your findings in a structured format.",
+  "uuid": "2967dde0-63f2-487f-b030-12c6fd291dfe",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+## Round 1
+
+113 recorded events
+
+### User
+
+_source line 25 · 2026-05-15T10:35:04.268Z_
+
+I need you to verify bibliographic details (venue, year, authors) for 8 papers using WebSearch. For each paper, search the web and report the correct: title, authors (first 3+), venue/journal, year. Flag any discrepancies with the bib entries I provide below.
+
+Here are the 8 papers and their current bib entries:
+
+1. **wang2021syncobert** — "SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation", Wang Xin et al., arXiv 2108.04556, 2021
+
+2. **liu2023contrabert** — "ContraBERT: Enhancing Code Pre-trained Models via Contrastive Learning", Liu Shangqing et al., ICSE 2023, pp.2476-2487
+
+3. **qu2021rocketqa** — "RocketQA: An Optimized Training Approach to Dense Passage Retrieval for Open-Domain Question Answering", Qu Yingqi et al., NAACL-HLT 2021, pp.5835-5847
+
+4. **zhan2021star** — "Optimizing Dense Retrieval Model Training with Hard Negatives", Zhan Jingtao et al., SIGIR 2021, pp.1503-1512
+
+5. **he2023capstone** — "CAPSTONE: Curriculum Sampling for Dense Retrieval with Document Expansion", He Xingwei et al., EMNLP 2023, pp.10531-10541
+
+6. **cummins2021programl** — "ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations", Cummins Chris et al., ICML 2021, pp.2244-2253
+
+7. **ding2023crosscodeeval** — "CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion", Ding Yangruibo et al., NeurIPS 2023
+
+8. **wang2025grace** — "GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion", Wang Xingliang et al., arXiv 2509.05980, 2025
+
+For each paper, do a web search (e.g., search for the title), confirm the details, and report:
+- Whether the bib entry is correct
+- If incorrect, what specifically needs to be fixed (venue, year, author spelling, etc.)
+
+Be thorough and precise. Report your findings in a structured format.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "9bae527d-bc40-4142-8d9e-b3c4310eb43d"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 26_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Verify 8 citations via WebSearch",
+  "usage": {
+    "total_tokens": 14657,
+    "tool_uses": 1,
+    "duration_ms": 2777
+  },
+  "last_tool_name": "ToolSearch",
+  "uuid": "541a62ca-7d9b-4722-9d07-4c63fc5683be",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01WNkUX7wSTxzsxYuAWonL7V`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "6880ca09-c1c8-4cc2-a942-239c25f3be4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0152jEmC9zeKPzJm6g4SvyBV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14646,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 14646,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T10:35:07.052Z_
+
+<details><summary>↩ Tool result · `toolu_01WNkUX7wSTxzsxYuAWonL7V`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "3ca0779f-5de7-4746-b77c-f9fe6ec87016"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 29_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for SynCoBERT Syntax-Guided Multi-Modal Contrastive P…",
+  "usage": {
+    "total_tokens": 16120,
+    "tool_uses": 2,
+    "duration_ms": 5472
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "873b97fa-4bcd-4812-8116-548091858fd6",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Hnh4Jb1D2GALWgdveFNJbY`</summary>
+
+```json
+{
+  "query": "SynCoBERT Syntax-Guided Multi-Modal Contrastive Pre-Training Code Representation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "9670f55b-91f5-417f-bad4-38af926b7f50",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XanB88MAtuW42AQh7TxEgW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1459,
+      "cache_read_input_tokens": 14646,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1459,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T10:35:14.943Z_
+
+<details><summary>↩ Tool result · `toolu_01Hnh4Jb1D2GALWgdveFNJbY`</summary>
+
+```text
+Web search results for query: "SynCoBERT Syntax-Guided Multi-Modal Contrastive Pre-Training Code Representation"
+
+Links: [{"title":"[2108.04556] SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation","url":"https://arxiv.org/abs/2108.04556"},{"title":"SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation - ADS","url":"https://ui.adsabs.harvard.edu/abs/2021arXiv210804556W/abstract"},{"title":"SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation · Machine Learning for Big Code and Naturalness","url":"https://ml4code.github.io/publications/wang2021syncobert/"},{"title":"[2108.04556v3] SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation","url":"https://arxiv.org/abs/2108.04556v3"},{"title":"[PDF] SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/SynCoBERT:-Syntax-Guided-Multi-Modal-Contrastive-Wang-Wang/14b104d1a1c0b784e4e74454d809455cc47d0093"},{"title":"SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation | DeepAI","url":"https://deepai.org/publication/syncobert-syntax-guided-multi-modal-contrastive-pre-training-for-code-representation"},{"title":"(PDF) SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation","url":"https://www.academia.edu/73281297/SynCoBERT_Syntax_Guided_Multi_Modal_Contrastive_Pre_Training_for_Code_Representation"},{"title":"[2108.04556] SynCoBERT: Syntax-Enhanced Contrastive Pre-Training for Code Representation","url":"https://ar5iv.labs.arxiv.org/html/2108.04556"},{"title":"SYNCOBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for","url":"https://arxiv.org/pdf/2108.04556"},{"title":"SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation","url":"https://www.semion.io/doc/clsebert-contrastive-learning-for-syntax-enhanced-code-pre-trained-model"}]
+
+I found comprehensive information about SynCoBERT. Here's what the search results reveal:
+
+## Overview
+
+SynCoBERT is a syntax-guided multi-modal contrastive pre-training approach for better code representations.
+
+## Key Objectives
+
+The approach designs two novel pre-training objectives originating from the symbolic and syntactic properties of source code: Identifier Prediction (IP) and AST Edge Prediction (TEP), which predict identifiers and edges between nodes of AST, respectively.
+
+To exploit complementary information in semantically equivalent modalities (code, comment, AST), the method proposes a multi-modal contrastive learning strategy to maximize mutual information among different modalities.
+
+## Pre-training Framework
+
+The pre-training framework covers four objectives: Multi-Modal Masked Language Modeling (MMLM), Identifier Prediction (IP), AST Edge Prediction (TEP), and Multi-Modal Contrastive Learning (MCL).
+
+## Performance
+
+Extensive experiments on four downstream tasks related to code intelligence show that SynCoBERT advances the state-of-the-art with the same pre-training corpus and model size. The comprehensive experiments cover four code intelligence tasks: code search, code clone detection, code defect detection, and program translation.
+
+## Publication
+
+The paper was published in 2021, with the final version dated September 9, 2021, authored by Xin Wang and co-authors, and is available on arXiv (paper ID: 2108.04556).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "dd5c9bf3-cb97-4b98-8307-ebef212aae78"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 32_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for SynCoBERT arXiv 2108.04556 authors venue publishe…",
+  "usage": {
+    "total_tokens": 17318,
+    "tool_uses": 3,
+    "duration_ms": 13526
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "3543d19d-6acb-43c5-8cfd-e81b16157efc",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Py5EikkHWB5zcCBJksXw5o`</summary>
+
+```json
+{
+  "query": "SynCoBERT arXiv 2108.04556 authors venue published conference"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "5914d28f-75c7-46ec-b9c1-ad3e399147fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AbCy9HZJEM9q73xHBZ3Djm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1151,
+      "cache_read_input_tokens": 16105,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1151,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T10:35:22.699Z_
+
+<details><summary>↩ Tool result · `toolu_01Py5EikkHWB5zcCBJksXw5o`</summary>
+
+```text
+Web search results for query: "SynCoBERT arXiv 2108.04556 authors venue published conference"
+
+Links: [{"title":"[2108.04556] SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation","url":"https://arxiv.org/abs/2108.04556"},{"title":"[2108.04556] SynCoBERT: Syntax-Enhanced Contrastive Pre-Training for Code Representation","url":"https://ar5iv.labs.arxiv.org/html/2108.04556"},{"title":"[2108.04556v3] SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation","url":"https://arxiv.org/abs/2108.04556v3"},{"title":"SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation - ADS","url":"https://ui.adsabs.harvard.edu/abs/2021arXiv210804556W/abstract"},{"title":"arXiv:2108.04556v3 [cs.CL] 9 Sep 2021","url":"https://arxiv.org/pdf/2108.04556"},{"title":"Arxiv","url":"https://arxiv.org/pdf/2108.04556.pdf"},{"title":"GitHub - yuewang-cuhk/awesome-programming-language-pretraining-papers: Recent Advances in Programming Language Pre-Trained Models (PL-PTMs)","url":"https://github.com/yuewang-cuhk/awesome-programming-language-pretraining-papers"},{"title":"SynCoBERT - Dataset - LDM","url":"https://service.tib.eu/ldmservice/dataset/syncobert"},{"title":"[PDF] SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/SynCoBERT:-Syntax-Guided-Multi-Modal-Contrastive-Wang-Wang/14b104d1a1c0b784e4e74454d809455cc47d0093"},{"title":"SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation | DeepAI","url":"https://deepai.org/publication/syncobert-syntax-guided-multi-modal-contrastive-pre-training-for-code-representation"}]
+
+Based on the search results for arXiv paper 2108.04556, here is the information you requested:
+
+**Authors:** Xin Wang, Yasheng Wang, Fei Mi, Pingyi Zhou, Yao Wan, Xiao Liu, Li Li, Hao Wu, Jin Liu, Xin Jiang
+
+**Title:** SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation
+
+**Publication Date:** Submitted Tue, 10 Aug 2021; last revised Thu, 9 Sep 2021
+
+**Venue/Conference:** The search results indicate this was published on arXiv in 2021. While one source mentions arXiv 2021/09 (SYNCOBERT), the search results do not definitively show that this paper was published at a specific conference venue beyond its arXiv preprint status.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "0331547e-05f7-4313-a5c7-2d640abee8ba"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 35_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for ContraBERT Enhancing Code Pre-trained Models Cont…",
+  "usage": {
+    "total_tokens": 18304,
+    "tool_uses": 4,
+    "duration_ms": 21191
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "7ef073c8-5be2-4d4e-89b3-daab54654cdc",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Lpnz6jB76WaedJuXXaZmPc`</summary>
+
+```json
+{
+  "query": "ContraBERT Enhancing Code Pre-trained Models Contrastive Learning Liu Shangqing ICSE 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "22c972fa-7bb9-4444-9d25-ee9972aecbf7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014d28KFoa2dgEYYP9KQbXGh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 928,
+      "cache_read_input_tokens": 17256,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 928,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T10:35:31.783Z_
+
+<details><summary>↩ Tool result · `toolu_01Lpnz6jB76WaedJuXXaZmPc`</summary>
+
+```text
+Web search results for query: "ContraBERT Enhancing Code Pre-trained Models Contrastive Learning Liu Shangqing ICSE 2023"
+
+Links: [{"title":"[2301.09072] ContraBERT: Enhancing Code Pre-trained Models via Contrastive Learning","url":"https://arxiv.org/abs/2301.09072"},{"title":"ContraBERT: Enhancing Code Pre-trained Models via Contrastive Learning - Singapore Management University","url":"https://smusg.elsevierpure.com/en/publications/contrabert-enhancing-code-pre-trained-models-via-contrastive-lear"},{"title":"ContraBERT: Enhancing Code Pre-trained Models via Contrastive Learning | Request PDF","url":"https://www.researchgate.net/publication/372385658_ContraBERT_Enhancing_Code_Pre-trained_Models_via_Contrastive_Learning"},{"title":"ContraBERT: Enhancing Code Pre-Trained Models via Contrastive Learning | Proceedings of the 45th International Conference on Software Engineering","url":"https://dl.acm.org/doi/abs/10.1109/ICSE48619.2023.00207"},{"title":"ContraBERT: Enhancing Code Pre-trained Models via ...","url":"https://www.computer.org/csdl/proceedings-article/icse/2023/570100c476/1OM4OrPPiNy"},{"title":"[PDF] ContraBERT: Enhancing Code Pre-trained Models via Contrastive Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/ContraBERT:-Enhancing-Code-Pre-trained-Models-via-Liu-Wu/f6572fccea70e5023cc38cb33ebd0f520d7b22e2"},{"title":"About me - Shangqing Liu’s Homepage","url":"https://shangqing-liu.github.io/"},{"title":"ContraBERT: Enhancing Code Pre-trained Models via Contrastive Learning","url":"https://arxiv.org/pdf/2301.09072"},{"title":"(PDF) ContraBERT: Enhancing Code Pre-trained Models via Contrastive Learning","url":"https://www.researchgate.net/publication/367359448_ContraBERT_Enhancing_Code_Pre-trained_Models_via_Contrastive_Learning"},{"title":"ContraBERT: Enhancing Code Pre-trained Models via Contrastive Learning | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/10172726/"}]
+
+Based on the search results, I found comprehensive information about ContraBERT:
+
+## Overview
+
+ContraBERT: Enhancing Code Pre-trained Models via Contrastive Learning was published in the Proceedings of the 2023 IEEE/ACM 45th International Conference on Software Engineering (ICSE 2023), pages 2476-2487. The paper was authored by Liu, Shangqing; Wu, Bozhi; Xie, Xiaofei and others.
+
+## Problem Statement
+
+Large-scale pre-trained models such as CodeBERT and GraphCodeBERT have earned widespread attention and have been applied in multiple downstream tasks such as clone detection, code search and code translation. However, these state-of-the-art pre-trained models are susceptible to adversarial attacks, with performance dropping significantly with simple perturbations such as renaming variable names.
+
+## Approach
+
+ContraBERT proposes an approach that aims to improve the robustness of pre-trained models via contrastive learning. The authors design nine kinds of simple and complex data augmentation operators on programming language (PL) and natural language (NL) data, and continue to train existing pre-trained models by masked language modeling (MLM) and contrastive pre-training task on original samples with their augmented variants to enhance model robustness.
+
+## Results
+
+The extensive experiments demonstrate that ContraBERT can effectively improve the robustness of existing pre-trained models, with further studies confirming that these robustness-enhanced models provide improvements over four popular downstream tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "713ebe9c-ed1a-415e-a379-101e6a1d08ca"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 38_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for RocketQA Optimized Training Dense Passage Retriev…",
+  "usage": {
+    "total_tokens": 19458,
+    "tool_uses": 5,
+    "duration_ms": 31205
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "f8172a91-d3a7-4c81-91a2-41a2be0ad18b",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NM5pVfsULQaeGAq6wvfp1N`</summary>
+
+```json
+{
+  "query": "RocketQA Optimized Training Dense Passage Retrieval Qu Yingqi NAACL 2021"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "57625dd9-2d0e-4df0-9c9e-99eb8e1792ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KXSFmj6RtRQVhQFqtwFNRS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1117,
+      "cache_read_input_tokens": 18184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1117,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T10:35:41.474Z_
+
+<details><summary>↩ Tool result · `toolu_01NM5pVfsULQaeGAq6wvfp1N`</summary>
+
+```text
+Web search results for query: "RocketQA Optimized Training Dense Passage Retrieval Qu Yingqi NAACL 2021"
+
+Links: [{"title":"RocketQA: An Optimized Training Approach to Dense Passage Retrieval for Open-Domain Question Answering - ACL Anthology","url":"https://aclanthology.org/2021.naacl-main.466/"},{"title":"GitHub - PaddlePaddle/RocketQA: 🚀 RocketQA, dense retrieval for information retrieval and question answering, including both Chinese and English state-of-the-art models.","url":"https://github.com/PaddlePaddle/RocketQA"},{"title":"RocketQAv2: A Joint Training Method for Dense Passage Retrieval and Passage Re-ranking - ACL Anthology","url":"https://aclanthology.org/2021.emnlp-main.224/"},{"title":"RocketQA: An Optimized Training Approach to Dense ...","url":"https://aclanthology.org/2021.naacl-main.466.pdf"},{"title":"RocketQA/research/RocketQA_NAACL2021 at main · PaddlePaddle/RocketQA","url":"https://github.com/PaddlePaddle/RocketQA/tree/main/research/RocketQA_NAACL2021"},{"title":"[PDF] RocketQA: An Optimized Training Approach to Dense Passage Retrieval for Open-Domain Question Answering | Semantic Scholar","url":"https://www.semanticscholar.org/paper/RocketQA:-An-Optimized-Training-Approach-to-Dense-Qu-Ding/3416e5e5694855f7175125b5fe2e0b659c3cdbfa"},{"title":"dblp: RocketQA: An Optimized Training Approach to Dense Passage Retrieval for Open-Domain Question Answering.","url":"https://dblp.org/rec/conf/naacl/QuDLLRZDWW21.html"},{"title":"(PDF) RocketQA: An Optimized Training Approach to Dense Passage Retrieval for Open-Domain Question Answering","url":"https://www.academia.edu/75599741/RocketQA_An_Optimized_Training_Approach_to_Dense_Passage_Retrieval_for_Open_Domain_Question_Answering"},{"title":"Research/NLP/NAACL2021-RocketQA at master · PaddlePaddle/Research","url":"https://github.com/PaddlePaddle/Research/tree/master/NLP/NAACL2021-RocketQA"},{"title":"[2110.07367] RocketQAv2: A Joint Training Method for Dense Passage Retrieval and Passage Re-ranking","url":"https://ar5iv.labs.arxiv.org/html/2110.07367"}]
+
+Based on the search results, here's information about the RocketQA paper:
+
+## RocketQA: An Optimized Training Approach to Dense Passage Retrieval
+
+RocketQA: An Optimized Training Approach to Dense Passage Retrieval for Open-Domain Question Answering was published by Qu et al. at NAACL 2021, with authors Yingqi Qu, Yuchen Ding, Jing Liu, Kai Liu, Ruiyang Ren, Wayne Xin Zhao, Daxiang Dong, Hua Wu, and Haifeng Wang.
+
+### Paper Overview
+
+In open-domain question answering, dense passage retrieval has become a new paradigm to retrieve relevant passages for finding answers. Typically, the dual-encoder architecture is adopted to learn dense representations of questions and passages for semantic matching.
+
+### Key Contributions
+
+The paper makes three major technical contributions in RocketQA, namely cross-batch negatives, denoised hard negatives and data augmentation.
+
+### Results
+
+The experiment results show that RocketQA significantly outperforms previous state-of-the-art models on both MSMARCO and Natural Questions. The paper also demonstrates that the performance of end-to-end QA can be improved based on the RocketQA retriever.
+
+The paper was published in the Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (pages 5835–5847).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "96971d3a-aa60-4283-a4f3-de44c0e2cc2a"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 41_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for \"Optimizing Dense Retrieval Model Training with H…",
+  "usage": {
+    "total_tokens": 20679,
+    "tool_uses": 6,
+    "duration_ms": 40232
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "33bb9927-3e62-4ddc-be3c-33b20ef0c731",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KnCZqa3F4dJ7kCk5GHyqxQ`</summary>
+
+```json
+{
+  "query": "\"Optimizing Dense Retrieval Model Training with Hard Negatives\" Zhan Jingtao SIGIR 2021"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "e4b15649-e25e-4d52-9fb9-887fd417e293",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DFiBT7aPQte5zXDxCt9Txb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1183,
+      "cache_read_input_tokens": 19301,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1183,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T10:35:50.531Z_
+
+<details><summary>↩ Tool result · `toolu_01KnCZqa3F4dJ7kCk5GHyqxQ`</summary>
+
+```text
+Web search results for query: ""Optimizing Dense Retrieval Model Training with Hard Negatives" Zhan Jingtao SIGIR 2021"
+
+Links: [{"title":"[2104.08051] Optimizing Dense Retrieval Model Training with Hard Negatives","url":"https://arxiv.org/abs/2104.08051"},{"title":"Optimizing Dense Retrieval Model Training with Hard Negatives Jingtao Zhan","url":"https://arxiv.org/pdf/2104.08051"},{"title":"GitHub - jingtaozhan/DRhard: SIGIR'21: Optimizing DR with hard negatives and achieving SOTA first-stage retrieval performance on TREC DL Track. · GitHub","url":"https://github.com/jingtaozhan/DRhard"},{"title":"Optimizing Dense Retrieval Model Training with Hard Negatives - IR Anthology","url":"https://ir.webis.de/anthology/2021.sigirconf_conference-2021.147/"},{"title":"Optimizing Dense Retrieval Model Training with Hard Negatives | Proceedings of the 44th International ACM SIGIR Conference on Research and Development in Information Retrieval","url":"https://dl.acm.org/doi/10.1145/3404835.3462880"},{"title":"Optimizing Dense Retrieval Model Training with Hard Negatives [Quick Review]","url":"https://liner.com/review/optimizing-dense-retrieval-model-training-with-hard-negatives"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar_lookup?title=Optimizing+dense+retrieval+model+training+with+hard+negatives&amp=&author=Jingtao+Zhan&amp=&author=Jiaxin+Mao&amp=&author=Yiqun+Liu&amp=&author=Jiafeng+Guo&amp=&author=Min+Zhang&amp=&author=Shaoping+Ma&amp=&publication_year=2021&amp=&pages=1503-1512&amp=&doi=10.1145/3404835.3462880"},{"title":"SIGIR21- Optimizing Dense Retrieval Model Training with Hard Negatives - YouTube","url":"https://www.youtube.com/watch?v=eyen_Tezsg8"},{"title":"Optimizing Dense Retrieval Model Training with Hard Negatives | Request PDF","url":"https://www.researchgate.net/publication/350964136_Optimizing_Dense_Retrieval_Model_Training_with_Hard_Negatives"},{"title":"Optimizing Dense Retrieval Model Training with Hard ...","url":"https://jiafengguo.github.io/2021/2021-Optimizing%20Dense%20Retrieval%20Model%20Training%20with%20Hard%20Negatives.pdf"}]
+
+I found the paper you're looking for! Here's information about it:
+
+## Paper Details
+
+The paper "Optimizing Dense Retrieval Model Training with Hard Negatives" was authored by Jingtao Zhan, Jiaxin Mao, Yiqun Liu, Jiafeng Guo, Min Zhang, and Shaoping Ma, and was presented at SIGIR '21: The 44th International ACM SIGIR Conference on Research and Development in Information Retrieval, held virtually in Canada, July 11-15, 2021.
+
+## Main Contributions
+
+The paper investigates how dense retrieval (DR) models' performance improvement relies heavily on training example sampling. The authors theoretically investigate different training strategies for DR models and explain why hard negative sampling performs better than random sampling.
+
+The paper proposes two training strategies: STAR (Stable Training Algorithm for dense Retrieval), which improves the stability of DR training by introducing random negatives, and ADORE (a query-side training Algorithm for Directly Optimizing Ranking pErformance), which replaces static hard negative sampling with a dynamic approach to directly optimize ranking performance.
+
+## Available Resources
+
+- The paper is available on arXiv (arxiv.org/abs/2104.08051)
+- The GitHub repository provides code, retrieval results, and trained models for the paper.
+- An official paper presentation video was posted on YouTube.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "a4e0c866-bf22-4a95-9b1f-695a3f696452"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 44_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for CAPSTONE Curriculum Sampling Dense Retrieval Docu…",
+  "usage": {
+    "total_tokens": 21840,
+    "tool_uses": 7,
+    "duration_ms": 49234
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "893620fc-691b-481e-8e99-3bbf2558db78",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EMWDrHbgsTjghNneSp9khE`</summary>
+
+```json
+{
+  "query": "CAPSTONE Curriculum Sampling Dense Retrieval Document Expansion He Xingwei EMNLP 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "e4597066-bfe9-4c89-8b21-877ba8f7ffe6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NxG7W95gN9PETXrqd8VAQY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1120,
+      "cache_read_input_tokens": 20484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1120,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T10:35:59.075Z_
+
+<details><summary>↩ Tool result · `toolu_01EMWDrHbgsTjghNneSp9khE`</summary>
+
+```text
+Web search results for query: "CAPSTONE Curriculum Sampling Dense Retrieval Document Expansion He Xingwei EMNLP 2023"
+
+Links: [{"title":"CAPSTONE: Curriculum Sampling for Dense Retrieval with Document Expansion - ACL Anthology","url":"https://aclanthology.org/2023.emnlp-main.651/"},{"title":"[2212.09114] CAPSTONE: Curriculum Sampling for Dense Retrieval with Document Expansion","url":"https://arxiv.org/abs/2212.09114"},{"title":"CAPSTONE: Curriculum Sampling for Dense Retrieval with Document Expansion | OpenReview","url":"https://openreview.net/forum?id=Mefvmgkb9G&noteId=TlRvoprgev"},{"title":"Curriculum Sampling for Dense Retrieval with Document ...","url":"https://aclanthology.org/2023.emnlp-main.651.pdf"},{"title":"CAPSTONE: Curriculum Sampling for Dense Retrieval with Document Expansion","url":"https://openreview.net/pdf?id=Mefvmgkb9G"},{"title":"GitHub - microsoft/SimXNS: SimXNS is a research project for information retrieval. This repo contains official implementations by MSRA NLC team.","url":"https://github.com/microsoft/SimXNS"},{"title":"Paper Digest: EMNLP-2023 Highlights (Full List)","url":"https://www.paperdigest.org/data/emnlp-2023-full.html"},{"title":"Curriculum Sampling for Dense Retrieval with Document ...","url":"https://scholar.xjtlu.edu.cn/en/publications/capstone-curriculum-sampling-for-dense-retrieval-with-document-ex"},{"title":"Curriculum Sampling for Dense Retrieval with Document ...","url":"https://nlpkg.sebis.cit.tum.de/publications/4:9c5d1b2b-44b2-4912-aa76-4739e7a74ddb:55324"},{"title":"Curriculum Sampling for Dense Retrieval with Document Expansion | Request PDF","url":"https://www.researchgate.net/publication/366423521_Curriculum_Sampling_for_Dense_Retrieval_with_Document_Expansion"}]
+
+I found detailed information about this paper. Here's what I found:
+
+## CAPSTONE: Curriculum Sampling for Dense Retrieval with Document Expansion
+
+CAPSTONE was published by Xingwei He, Yeyun Gong, A-Long Jin, Hang Zhang, Anlei Dong, Jian Jiao, Siu Yiu, and Nan Duan at the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP 2023) in Singapore, appearing on pages 10531–10541.
+
+### Main Problem and Approach
+
+The dual-encoder has become the de facto architecture for dense retrieval, but it computes the latent representations of the query and document independently, thus failing to fully capture the interactions between the query and document.
+
+Recent research has focused on obtaining query-informed document representations. During training, it expands the document with a real query, but during inference, it replaces the real query with a generated one. This inconsistency between training and inference causes the dense retrieval model to prioritize query information while disregarding the document when computing the document representation.
+
+### Proposed Solution
+
+The paper proposes a curriculum sampling strategy that utilizes pseudo queries during training and progressively enhances the relevance between the generated query and the real query, resulting in high-quality query-informed document representations.
+
+### Results
+
+Experimental results on both in-domain and out-of-domain datasets demonstrate that the approach outperforms previous dense retrieval models.
+
+You can access the paper directly through the [ACL Anthology](https://aclanthology.org/2023.emnlp-main.651/) or [arXiv](https://arxiv.org/abs/2212.09114).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "96799834-6598-4377-8f61-a21fedb3c738"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 47_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for ProGraML Graph-based Program Representation Data …",
+  "usage": {
+    "total_tokens": 22945,
+    "tool_uses": 8,
+    "duration_ms": 57927
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "cc735af0-e154-4e55-bf4c-494c2781df47",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Cnv9E5XzjLC9o4cTrHDrfV`</summary>
+
+```json
+{
+  "query": "ProGraML Graph-based Program Representation Data Flow Analysis Compiler Optimizations Cummins Chris ICML 2021"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "1babc2bd-63b5-4b41-9e70-520bc34a12d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016PtLM41uLVwRspqms3uY61",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1070,
+      "cache_read_input_tokens": 21604,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1070,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T10:36:09.201Z_
+
+<details><summary>↩ Tool result · `toolu_01Cnv9E5XzjLC9o4cTrHDrfV`</summary>
+
+```text
+Web search results for query: "ProGraML Graph-based Program Representation Data Flow Analysis Compiler Optimizations Cummins Chris ICML 2021"
+
+Links: [{"title":"GitHub - ChrisCummins/ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations · GitHub","url":"https://github.com/ChrisCummins/ProGraML"},{"title":"ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations","url":"https://proceedings.mlr.press/v139/cummins21a.html"},{"title":"PROGRAML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations - University of Edinburgh Research Explorer","url":"https://www.research.ed.ac.uk/en/publications/programl-a-graph-based-program-representation-for-data-flow-analy"},{"title":"PROGRAML: A Graph-based Program Representation for Data Flow Analysis","url":"https://chriscummins.cc/pub/2021-icml.pdf"},{"title":"ICML 2021 ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations Spotlight","url":"https://icml.cc/virtual/2021/spotlight/8886"},{"title":"dblp: ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations.","url":"https://dblp.org/rec/conf/icml/CumminsFBHOL21.html"},{"title":"[PDF] ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations | Semantic Scholar","url":"https://www.semanticscholar.org/paper/ProGraML:-A-Graph-based-Program-Representation-for-Cummins-Fisches/7843876d45f4c6ac751039b198aade0ee9f94342"},{"title":"PROGRAML: A Graph-based Program Representation for Data Flow Analysis","url":"http://proceedings.mlr.press/v139/cummins21a/cummins21a.pdf"},{"title":"ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations - YouTube","url":"https://www.youtube.com/watch?v=cHElgMSOPFs"},{"title":"ProGraML: Graph-based Deep Learning for Program Optimization and Analysis.","url":"https://spcl.inf.ethz.ch/Publications/.pdf/programl-icml21-slides.pdf"}]
+
+Based on the web search results, I found comprehensive information about ProGraML and the ICML 2021 paper:
+
+## ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations
+
+ProGraML - Program Graphs for Machine Learning - is a language-independent, portable representation of program semantics. The paper was authored by Chris Cummins, Zacharias V. Fisches, Tal Ben-Nun, Torsten Hoefler, Michael F. P. O'Boyle, and Hugh Leather, and published in the Proceedings of the 38th International Conference on Machine Learning (ICML) in 2021.
+
+### Key Features and Motivation
+
+The work addresses the problem that many ML methods cannot replicate even the simplest data flow analyses that are critical to making good optimization decisions, suggesting that ML is insufficiently able to reason about programs.
+
+ProGraML is a representation for programs as input to a machine learning model. It captures every control, data, and call relation across entire programs. The framework supports several programming languages (C, C++, LLVM-IR, XLA) and several graph formats (NetworkX, DGL, Graphviz, JSON).
+
+### Implementation and Results
+
+The researchers formulated data flow analyses as supervised learning tasks and introduced a large open dataset of programs and their corresponding labels from several analyses. ProGraML overcomes the limitations of prior works and yields improved performance on downstream optimization tasks.
+
+The project is available as open-source software with a GitHub repository and comprehensive API documentation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "ed5ff2e7-280b-4ac1-8c82-a5529b178bcc"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 50_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for CrossCodeEval Diverse Multilingual Benchmark Cros…",
+  "usage": {
+    "total_tokens": 24058,
+    "tool_uses": 9,
+    "duration_ms": 68313
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "901ebefb-9fde-436a-9c84-89ee7fcad9c9",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0119WYkFgNNfK5quuVTYdD1j`</summary>
+
+```json
+{
+  "query": "CrossCodeEval Diverse Multilingual Benchmark Cross-File Code Completion Ding Yangruibo NeurIPS 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "01b1ab0a-cb9c-4b99-b994-d0b378c23948",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AHVxHa6XcTZSKhaVmZopMk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 22674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1076,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T10:36:19.275Z_
+
+<details><summary>↩ Tool result · `toolu_0119WYkFgNNfK5quuVTYdD1j`</summary>
+
+```text
+Web search results for query: "CrossCodeEval Diverse Multilingual Benchmark Cross-File Code Completion Ding Yangruibo NeurIPS 2023"
+
+Links: [{"title":"[2310.11248] CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion","url":"https://arxiv.org/abs/2310.11248"},{"title":"GitHub - amazon-science/cceval: CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion (NeurIPS 2023)","url":"https://github.com/amazon-science/cceval"},{"title":"CrossCodeEval","url":"https://crosscodeeval.github.io/"},{"title":"[2310.11248] CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion","url":"https://ar5iv.labs.arxiv.org/html/2310.11248"},{"title":"CrossCodeEval: A diverse and multilingual benchmark for cross-file code completion - Amazon Science","url":"https://www.amazon.science/publications/crosscodeeval-a-diverse-and-multilingual-benchmark-for-cross-file-code-completion"},{"title":"[PDF] CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CrossCodeEval:-A-Diverse-and-Multilingual-Benchmark-Ding-Wang/f1bd7ea3a63b78a60b5d90d91fdb4a1d7ac0de8e"},{"title":"CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion | OpenReview","url":"https://openreview.net/forum?id=wgDcbBMSfh"},{"title":"CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion","url":"https://proceedings.neurips.cc/paper_files/paper/2023/hash/920f2dced7d32ab2ba2f1970bc306af6-Abstract-Datasets_and_Benchmarks.html"},{"title":"A Diverse and Multilingual Benchmark for Cross-File Code ...","url":"https://proceedings.neurips.cc/paper_files/paper/2023/file/920f2dced7d32ab2ba2f1970bc306af6-Paper-Datasets_and_Benchmarks.pdf"},{"title":"NeurIPS Poster CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion","url":"https://neurips.cc/virtual/2023/poster/73423"}]
+
+I found comprehensive information about CrossCodeEval. Here's a summary of what the research paper covers:
+
+## Overview
+
+CrossCodeEval is a diverse and multilingual code completion benchmark that necessitates an in-depth cross-file contextual understanding to complete the code accurately. The paper is part of the NeurIPS 2023 Datasets and Benchmarks Track and was authored by Yangruibo Ding, Zijian Wang, Wasi Ahmad, Hantian Ding, Ming Tan, Nihal Jain, Murali Krishna Ramanathan, Ramesh Nallapati, Parminder Bhatia, Dan Roth, and Bing Xiang.
+
+## Key Problem & Motivation
+
+Current popular evaluation datasets, such as HumanEval and MBPP, predominantly focus on code completion tasks within a single file, which falls short of representing the real-world software development scenario where repositories span multiple files with numerous cross-file dependencies.
+
+## Benchmark Design
+
+CrossCodeEval is built on a diverse set of real-world, open-sourced, permissively-licensed repositories in four popular programming languages: Python, Java, TypeScript, and C#. The dataset is composed of 10k examples from 1k repositories in 4 languages.
+
+It uses a static-analysis-based method to strictly require cross-file context for accurate code completion.
+
+## Experimental Results
+
+Extensive experiments on state-of-the-art code language models like CodeGen and StarCoder demonstrate that CrossCodeEval is extremely challenging when the relevant cross-file context is absent, and clear improvements are seen when adding these contexts into the prompt.
+
+CrossCodeEval's code and data are available at https://github.com/amazon-science/cceval
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "d9807d92-3c15-4bd0-b579-7ee69a6da8f4"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 53_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for GRACE Graph-Guided Repository-Aware Code Completi…",
+  "usage": {
+    "total_tokens": 25256,
+    "tool_uses": 10,
+    "duration_ms": 78118
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "89f3e967-e2d4-483f-94fe-b84a5d0adc03",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CBEpNppube1eCncNNozJae`</summary>
+
+```json
+{
+  "query": "GRACE Graph-Guided Repository-Aware Code Completion Hierarchical Code Fusion Wang Xingliang arXiv 2509.05980"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "18baca8e-2234-4ea5-9468-591eb645f68f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KsmYwLqcKbAT68T2kJxj8A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1161,
+      "cache_read_input_tokens": 23750,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1161,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T10:36:29.347Z_
+
+<details><summary>↩ Tool result · `toolu_01CBEpNppube1eCncNNozJae`</summary>
+
+```text
+Web search results for query: "GRACE Graph-Guided Repository-Aware Code Completion Hierarchical Code Fusion Wang Xingliang arXiv 2509.05980"
+
+Links: [{"title":"[2509.05980] GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion","url":"https://arxiv.org/abs/2509.05980"},{"title":"GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion","url":"https://arxiv.org/html/2509.05980v1"},{"title":"Graph-Guided Repository-Aware Code Completion ...","url":"https://arxiv.org/pdf/2509.05980"},{"title":"[Literature Review] GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion","url":"https://www.themoonlight.io/en/review/grace-graph-guided-repository-aware-code-completion-through-hierarchical-code-fusion"},{"title":"GrepRAG: An Empirical Study and Optimization of Grep-Like Retrieval for Code Completion","url":"https://arxiv.org/html/2601.23254v2"},{"title":"GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model","url":"https://arxiv.org/html/2406.07003v2"},{"title":"(PDF) GRACE: Graph-Guided Repository-Aware Code ...","url":"https://www.researchgate.net/publication/395356159_GRACE_Graph-Guided_Repository-Aware_Code_Completion_through_Hierarchical_Code_Fusion"},{"title":"[2406.07003] GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model","url":"https://arxiv.org/abs/2406.07003"},{"title":"GraphCoder: Enhancing Repository-Level Code Completion via Coarse-to-fine Retrieval Based on Code Context Graph | Proceedings of the 39th IEEE/ACM International Conference on Automated Software Engineering","url":"https://dl.acm.org/doi/10.1145/3691620.3695054"},{"title":"[PDF] GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model | Semantic Scholar","url":"https://www.semanticscholar.org/paper/GraphCoder:-Enhancing-Repository-Level-Code-via-and-Liu-Yu/793bbb3c70d4bac3908bd8f2ecc309f1bfdf5f52"}]
+
+I found the paper you're looking for! Here's information about it:
+
+**GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion**
+
+The paper was submitted on September 7, 2025, and authored by Xingliang Wang, Baoyi Wang, Chen Zhi, Junxiao Han, Xinkui Zhao, Jianwei Yin, and Shuiguang Deng.
+
+**Overview:**
+The paper addresses how LLMs excel in localized code completion but struggle with repository-level tasks due to limited context windows and complex semantic and structural dependencies across codebases.
+
+**Key Approach:**
+GRACE constructs a multi-level, multi-semantic code graph that unifies file structures, abstract syntax trees, function call graphs, class hierarchies, and data flow graphs to capture both static and dynamic code semantics. For retrieval, GRACE employs a Hybrid Graph Retriever that integrates graph neural network-based structural similarity with textual retrieval.
+
+**Problem Being Solved:**
+Current approaches overly rely on textual similarity for retrieval, neglecting structural relationships such as call chains and inheritance hierarchies, and lose critical structural information by naively concatenating retrieved snippets into text sequences for LLM input.
+
+The paper is available on arXiv at: https://arxiv.org/abs/2509.05980
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "c69fc64d-6fb0-4a34-8b9a-e639a6696cd5"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 56_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for SynCoBERT Wang Xin authors AAAI 2022 conference v…",
+  "usage": {
+    "total_tokens": 26321,
+    "tool_uses": 11,
+    "duration_ms": 89339
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "b4a9c053-3b98-4b96-b60a-2ec63dfa619c",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Hred3sEQgEeuywWVyjDWjL`</summary>
+
+```json
+{
+  "query": "SynCoBERT Wang Xin authors AAAI 2022 conference venue Semantic Scholar"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "a1e47fdf-4f92-4ed3-8a94-399652bdb332",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NgdJ6Zvf5Gh7ieeSSPPgBz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1063,
+      "cache_read_input_tokens": 24911,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1063,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T10:36:37.967Z_
+
+<details><summary>↩ Tool result · `toolu_01Hred3sEQgEeuywWVyjDWjL`</summary>
+
+```text
+Web search results for query: "SynCoBERT Wang Xin authors AAAI 2022 conference venue Semantic Scholar"
+
+Links: [{"title":"Yao Wan@Huazhong University of Science and Technology","url":"http://wanyao.me/publication.html"},{"title":"Xin Wang","url":"https://mn.cs.tsinghua.edu.cn/xinwang/"},{"title":"dblp: AAAI 2022","url":"https://dblp.org/db/conf/aaai/aaai2022.html"},{"title":"Xinchao Wang | Semantic Scholar","url":"https://www.semanticscholar.org/author/Xinchao-Wang/48631088"},{"title":"Award-Winning Papers: AI & Theory | Semantic Scholar","url":"https://www.semanticscholar.org/product/scholars-hub/award-winning-ai-and-theory"},{"title":"Xin Wang","url":"https://scholar.google.com/citations?user=e9gUdKwAAAAJ&hl=en"},{"title":"AAAI Conference on Artificial Intelligence (AAAI)","url":"https://dblp.org/db/conf/aaai/index.html"},{"title":"AAAI Conference Proceedings - AAAI","url":"https://aaai.org/aaai-publications/aaai-conference-proceedings/"},{"title":"CVPR 2022 Open Access Repository","url":"https://openaccess.thecvf.com/CVPR2022?day=all"},{"title":"AAAI Conference Paper Awards and Recognition - AAAI","url":"https://aaai.org/about-aaai/aaai-awards/aaai-conference-paper-awards-and-recognition/"}]
+
+Based on the search results, I found information about SynCoBERT:
+
+SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation was authored by Xin Wang, Yasheng Wang, Fei Mi, Pingyi Zhou, Yao Wan, Xiao Liu, Li Li, Hao Wu, Jin Liu, and Xin Jiang and was published on arXiv in 2021.
+
+However, the search results indicate that SynCoBERT was published as an arXiv preprint in 2021, not at the AAAI 2022 conference. The search results do not show SynCoBERT appearing in the AAAI 2022 conference proceedings based on the available information from DBLP and other sources.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "d8441bba-0cf8-4070-867f-68d494ffa179"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 59_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for site:dblp.org SynCoBERT Wang 2022",
+  "usage": {
+    "total_tokens": 27124,
+    "tool_uses": 12,
+    "duration_ms": 96259
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "ef949a24-925f-4de2-983a-085fb9d52dc2",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011fAP8byKHF2vB5vabWFc5g`</summary>
+
+```json
+{
+  "query": "site:dblp.org SynCoBERT Wang 2022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "01a3f277-d402-4740-b6ab-0292481337de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H7pHb3e23dSc8kwE1fbYkA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 759,
+      "cache_read_input_tokens": 25974,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 759,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-15T10:36:45.393Z_
+
+<details><summary>↩ Tool result · `toolu_011fAP8byKHF2vB5vabWFc5g`</summary>
+
+```text
+Web search results for query: "site:dblp.org SynCoBERT Wang 2022"
+
+Links: [{"title":"dblp: Christopher Wang","url":"https://dblp.org/pid/129/2644.html"},{"title":"dblp: Yongqing Wang 0005","url":"https://dblp.org/pid/36/1058-5.html"},{"title":"dblp: Shifeng Wang","url":"https://dblp.org/pid/00/7485.html"},{"title":"dblp: Ruosong Wang","url":"https://dblp.org/pid/183/6164.html"},{"title":"Simin Wang (disambiguation)","url":"https://dblp.org/pid/17/10625.html"},{"title":"dblp: Xizi Wang","url":"https://dblp.org/pid/189/9143.html"},{"title":"dblp: Yipeng Wang 0002","url":"https://dblp.org/pid/36/4627-2.html"},{"title":"dblp: Xiangrong Wang 0001","url":"https://dblp.org/pid/80/6308-1.html"},{"title":"dblp: Ruixing Wang","url":"https://dblp.org/pid/187/4384.html"},{"title":"dblp: Xiuhan Wang","url":"https://dblp.org/pid/307/5210.html"}]
+
+The search results show various DBLP profiles for different researchers named Wang, but none of them contain information about "SynCoBERT" from 2022. The search did not return results specifically about a paper or work called "SynCoBERT" by Wang from 2022 on the DBLP website.
+
+The search results include profiles for different Wang researchers (Christopher Wang, Yongqing Wang, Shifeng Wang, Ruosong Wang, Simin Wang, Xizi Wang, Yipeng Wang, Xiangrong Wang, Ruixing Wang, and Xiuhan Wang), but none of these results mention SynCoBERT.
+
+If you're looking for a specific paper about SynCoBERT from 2022, you might want to try:
+- Searching directly on arXiv or Google Scholar
+- Refining your search query with additional author names or keywords
+- Checking the DBLP website directly with a modified search
+
+Would you like me to perform a different search to help you find information about SynCoBERT?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "21d056b1-b0d2-418a-a2d4-1c17f4841762"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 62_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for Semantic Scholar SynCoBERT \"Xin Wang\" venue confe…",
+  "usage": {
+    "total_tokens": 27875,
+    "tool_uses": 13,
+    "duration_ms": 104875
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "976f3343-f7d1-4b53-914e-dbfe777a50da",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HvE7HsrWKyw7AxYrYxTJtX`</summary>
+
+```json
+{
+  "query": "Semantic Scholar SynCoBERT \"Xin Wang\" venue conference journal published"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "9e1062ce-8ebc-437f-9863-7e66ede03183",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XXskQVTQteDNrGwNkXNoJp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 704,
+      "cache_read_input_tokens": 26733,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 704,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T10:36:53.405Z_
+
+<details><summary>↩ Tool result · `toolu_01HvE7HsrWKyw7AxYrYxTJtX`</summary>
+
+```text
+Web search results for query: "Semantic Scholar SynCoBERT "Xin Wang" venue conference journal published"
+
+Links: [{"title":"[PDF] SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/SynCoBERT:-Syntax-Guided-Multi-Modal-Contrastive-Wang-Wang/14b104d1a1c0b784e4e74454d809455cc47d0093"},{"title":"Semantic Technology: 9th Joint International Conference, JIST 2019, Hangzhou, China, November 25–27, 2019, Proceedings | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Semantic-Technology:-9th-Joint-International-JIST-Wang-Lisi/cc2bc09dcb9aac6c84e664aedf82564f0249e4d1"},{"title":"Semantic Technology: 9th Joint International Conference, JIST 2019, Hangzhou, China, November 25–27, 2019, Proceedings | SpringerLink","url":"https://link.springer.com/book/10.1007/978-3-030-41407-8"},{"title":"Xin Wang","url":"https://scholar.google.com/citations?user=e9gUdKwAAAAJ&hl=en"},{"title":"Xin Wang | Semantic Scholar","url":"https://www.semanticscholar.org/author/Xin-Wang/38435748"},{"title":"Xin Wang - People @ EECS at UC Berkeley","url":"https://xinw.ai/publication.html"},{"title":"Xinxin Wang | Semantic Scholar","url":"https://www.semanticscholar.org/author/Xinxin-Wang/2108021783"},{"title":"Xin Wang","url":"https://mn.cs.tsinghua.edu.cn/xinwang/"},{"title":"Computer Science Apr 2025","url":"https://www.arxiv.org/list/cs/2025-04?skip=5875&show=2000"},{"title":"[PDF] Mixed Supervised Object Detection with Robust Objectness Transfer | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Mixed-Supervised-Object-Detection-with-Robust-Li-Zhang/cdcfdada2b36b1ef9727bce41d67a0f2327f4ada"}]
+
+Based on the search results, I found information about the SynCoBERT paper by Xin Wang:
+
+The paper "SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation" was authored by Xin Wang, Yasheng Wang, Fei Mi, Pingyi Zhou, Yao Wan, Xiao Liu, Li Li, Hao Wu, Jin Liu, and Xin Jiang, published in 2021.
+
+However, the search results do not provide specific information about the venue (conference or journal) where this work was published. The citation metadata shows it was published as an inproceedings entry in 2021, indicating it was likely presented at a conference, but the specific conference name is not included in the available search results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "264bf4da-3107-4b81-976e-dd9eb2858c90"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 65_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for ProGraML ICML 2021 pages Cummins Fisches Ben-Nun …",
+  "usage": {
+    "total_tokens": 28806,
+    "tool_uses": 14,
+    "duration_ms": 112435
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "565ed6ff-0725-42ed-a863-b5f6b9ac4d2c",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01E2zAog1zCTe3RJ82Gr8zTw`</summary>
+
+```json
+{
+  "query": "ProGraML ICML 2021 pages Cummins Fisches Ben-Nun authors full list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "a92e5aae-1d55-47fc-aad3-7304f3c1b386",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DYvqQ5oaXYtEXyVfV1FDwW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 896,
+      "cache_read_input_tokens": 27437,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 896,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-15T10:37:00.960Z_
+
+<details><summary>↩ Tool result · `toolu_01E2zAog1zCTe3RJ82Gr8zTw`</summary>
+
+```text
+Web search results for query: "ProGraML ICML 2021 pages Cummins Fisches Ben-Nun authors full list"
+
+Links: [{"title":"PROGRAML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations - University of Edinburgh Research Explorer","url":"https://www.research.ed.ac.uk/en/publications/programl-a-graph-based-program-representation-for-data-flow-analy"},{"title":"[PDF] ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations | Semantic Scholar","url":"https://www.semanticscholar.org/paper/ProGraML:-A-Graph-based-Program-Representation-for-Cummins-Fisches/7843876d45f4c6ac751039b198aade0ee9f94342"},{"title":"ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations","url":"https://proceedings.mlr.press/v139/cummins21a.html"},{"title":"GitHub - ChrisCummins/ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations · GitHub","url":"https://github.com/ChrisCummins/ProGraML"},{"title":"Tal Ben-Nun","url":"https://tbennun.github.io/"},{"title":"PROGRAML: A Graph-based Program Representation for Data Flow Analysis","url":"https://chriscummins.cc/pub/2021-icml.pdf"},{"title":"Chris Cummins, Zacharias Fisches, Tal Ben-Nun, Torsten Hoefler, Michael O'Boyle, Hugh Leather · ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations","url":"https://slideslive.com/38958918/programl-a-graphbased-program-representation-for-data-flow-analysis-and-compiler-optimizations"},{"title":"PROGRAML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations | hgpu.org","url":"https://hgpu.org/?p=26113"},{"title":"ICML 2021 ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations Spotlight","url":"https://icml.cc/virtual/2021/spotlight/8886"},{"title":"[PDF] ProGraML: Graph-based Deep Learning for Program Optimization and Analysis | Semantic Scholar","url":"https://www.semanticscholar.org/paper/ProGraML:-Graph-based-Deep-Learning-for-Program-and-Cummins-Fisches/73e8fc4292ecbd271db9c4229c1cc9736b053760"}]
+
+Based on the search results, here is the information about the ProGraML paper from ICML 2021:
+
+**Title:** ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations
+
+**Pages:** pp. 2244-2253
+
+**Full Author List:** Chris Cummins, Zacharias V. Fisches, Tal Ben-Nun, Torsten Hoefler, Michael F P O'Boyle, Hugh Leather
+
+**Publication Details:** Proceedings of the 38th International Conference on Machine Learning, in Proceedings of Machine Learning Research 139:2244-2253
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "2b0ce042-3d5d-4f6a-9853-699188c910e0"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 68_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for SIGIR 2021 \"Optimizing Dense Retrieval\" Zhan page…",
+  "usage": {
+    "total_tokens": 29776,
+    "tool_uses": 15,
+    "duration_ms": 119384
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "01b9f560-f259-47f9-baf8-e6fbd77350e3",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013z6PZ37GDzujtdW4VXJECo`</summary>
+
+```json
+{
+  "query": "SIGIR 2021 \"Optimizing Dense Retrieval\" Zhan pages 1503 authors complete"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "fbd712fd-bb65-4029-9382-f36f983231a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W3NFvkYq1Z7xSZVNYftD4y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 929,
+      "cache_read_input_tokens": 28333,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 929,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-15T10:37:06.639Z_
+
+<details><summary>↩ Tool result · `toolu_013z6PZ37GDzujtdW4VXJECo`</summary>
+
+```text
+Web search results for query: "SIGIR 2021 "Optimizing Dense Retrieval" Zhan pages 1503 authors complete"
+
+Links: [{"title":"Optimizing Dense Retrieval Model Training with Hard Negatives | Proceedings of the 44th International ACM SIGIR Conference on Research and Development in Information Retrieval","url":"https://dl.acm.org/doi/abs/10.1145/3404835.3462880"},{"title":"PAPER A Proposed Conceptual Framework for a Representational Approach","url":"https://www.sigir.org/wp-content/uploads/2022/02/p04.pdf"},{"title":"Optimizing Dense Retrieval Model Training with Hard Negatives - IR Anthology","url":"https://ir.webis.de/anthology/2021.sigirconf_conference-2021.147/"},{"title":"Distribution-driven dense retrieval | Proceedings of the Thirty-Ninth AAAI Conference on Artificial Intelligence and Thirty-Seventh Conference on Innovative Applications of Artificial Intelligence and Fifteenth Symposium on Educational Advances in Artificial Intelligence","url":"https://dl.acm.org/doi/10.1609/aaai.v39i11.33299"},{"title":"Scaling Laws For Dense Retrieval Yan Fang∗ Jingtao Zhan∗","url":"https://arxiv.org/pdf/2403.18684v1"},{"title":"Optimizing Dense Retrieval Model Training with Hard Negatives Jingtao Zhan","url":"https://arxiv.org/pdf/2104.08051"},{"title":"Jointly Optimizing Query Encoder and Product Quantization to","url":"http://www.thuir.org/group/~YQLiu/publications/CIKM2021Zhan.pdf"},{"title":"Exploring the Potential of Dimension Reduction in Building Efficient Dense Retrieval Systems | SpringerLink","url":"https://link.springer.com/chapter/10.1007/978-981-96-1710-4_6"},{"title":"(PDF) Hybrid Dense-Sparse Retrieval for High-Recall Information Retrieval","url":"https://www.researchgate.net/publication/399428523_Hybrid_Dense-Sparse_Retrieval_for_High-Recall_Information_Retrieval"},{"title":"[2104.08051] Optimizing Dense Retrieval Model Training with Hard Negatives","url":"https://arxiv.org/abs/2104.08051"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**Title:** "Optimizing Dense Retrieval Model Training with Hard Negatives"
+
+**Authors:** Jingtao Zhan, Jiaxin Mao, Yiqun Liu, Jiafeng Guo, Min Zhang, Shaoping Ma
+
+**Conference:** SIGIR '21: Proceedings of the 44th International ACM SIGIR Conference on Research and Development in Information Retrieval
+
+**Pages:** 1503-1512
+
+**Published:** July 11, 2021
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "d30026ed-7019-459c-98fb-b422fc18dff3"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 71_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for GRACE arXiv 2509.05980 authors Wang Xingliang Bao…",
+  "usage": {
+    "total_tokens": 30662,
+    "tool_uses": 16,
+    "duration_ms": 125297
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "938d1df7-1c52-4411-ac05-885a90e17076",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012WNWUUKwuDSw9B1TSsLZc1`</summary>
+
+```json
+{
+  "query": "GRACE arXiv 2509.05980 authors Wang Xingliang Baoyi Wang Chen Zhi 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "4f1f113a-6351-4417-9bcc-e26912fa054b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VWZRBdTLcxH3VVdXRk7ogB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 843,
+      "cache_read_input_tokens": 29262,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 843,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-15T10:37:14.299Z_
+
+<details><summary>↩ Tool result · `toolu_012WNWUUKwuDSw9B1TSsLZc1`</summary>
+
+```text
+Web search results for query: "GRACE arXiv 2509.05980 authors Wang Xingliang Baoyi Wang Chen Zhi 2025"
+
+Links: [{"title":"[2509.05980] GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion","url":"https://arxiv.org/abs/2509.05980"},{"title":"GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion","url":"https://arxiv.org/html/2509.05980"},{"title":"(PDF) GrepRAG: An Empirical Study and Optimization of Grep-Like Retrieval for Code Completion","url":"https://www.researchgate.net/publication/400340391_GrepRAG_An_Empirical_Study_and_Optimization_of_Grep-Like_Retrieval_for_Code_Completion"},{"title":"Computer Vision and Pattern Recognition May 2025","url":"https://arxiv.org/list/cs.CV/2025-05?skip=775&show=1000"},{"title":"Computation and Language","url":"https://www.arxiv.org/list/cs.CL/pastweek?skip=4&show=500"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/pastweek?skip=389&show=2000"},{"title":"Computer Vision and Pattern Recognition","url":"https://arxiv.org/list/cs.CV/pastweek?skip=7&show=1000"},{"title":"Computer Vision and Pattern Recognition Jun 2025","url":"https://www.arxiv.org/list/cs.CV/2025-06?skip=850&show=1000"},{"title":"Computation and Language May 2025","url":"https://www.arxiv.org/list/cs.CL/2025-05?skip=550&show=2000"},{"title":"Computer Science","url":"https://www.arxiv.org/list/cs/recent?skip=50&show=1000"}]
+
+Based on the search results, I found the paper you're looking for:
+
+GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion is authored by Xingliang Wang, Baoyi Wang, Chen Zhi, Junxiao Han, Xinkui Zhao, Jianwei Yin, and Shuiguang Deng.
+
+GRACE constructs a multi-level, multi-semantic code graph that unifies file structures, abstract syntax trees, function call graphs, class hierarchies, and data flow graphs to capture both static and dynamic code semantics. The paper addresses limitations in current retrieval-augmented generation approaches for code completion by employing a Hybrid Graph Retriever that integrates graph neural network-based structural similarity with textual retrieval.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "f8497de4-a547-4369-b43f-ee3d38c950f6"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 74_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for arxiv 2509.05980 GRACE submission date September …",
+  "usage": {
+    "total_tokens": 31445,
+    "tool_uses": 17,
+    "duration_ms": 134229
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "04a3d82b-2032-403f-8b6f-71ba37ca5dc4",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013giWRjp1tFBkduWLJYFZrs`</summary>
+
+```json
+{
+  "query": "arxiv 2509.05980 GRACE submission date September 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "54b07d04-9551-4744-878b-dfa16f514d8c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017VTdQZji5LXRnsvWpFYecG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 781,
+      "cache_read_input_tokens": 30105,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 781,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-15T10:37:22.972Z_
+
+<details><summary>↩ Tool result · `toolu_013giWRjp1tFBkduWLJYFZrs`</summary>
+
+```text
+Web search results for query: "arxiv 2509.05980 GRACE submission date September 2025"
+
+Links: [{"title":"[2509.05980] GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion","url":"https://arxiv.org/abs/2509.05980"},{"title":"GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion","url":"https://arxiv.org/html/2509.05980"},{"title":"Arxiv","url":"https://arxiv.org/pdf/2509.05980"},{"title":"Machine Learning Sep 2025","url":"https://arxiv.org/list/cs.LG/2025-09?skip=3125&show=2000"},{"title":"Computer Science Sep 2025","url":"https://arxiv.org/list/cs/2025-09?skip=7300&show=100"},{"title":"[2509.09438] GrACE: A Generative Approach to Better Confidence Elicitation in Large Language Models","url":"https://arxiv.org/abs/2509.09438"},{"title":"Machine Learning Sep 2025","url":"https://www.arxiv.org/list/cs.LG/2025-09?skip=625&show=2000"},{"title":"GrACE: A Generative Approach to Better Confidence Elicitation in Large Language Models","url":"https://arxiv.org/html/2509.09438v1"},{"title":"grace-moe: grouping and replication","url":"https://arxiv.org/pdf/2509.25041"},{"title":"Information Retrieval Sep 2025","url":"https://arxiv.org/list/cs.IR/2025-09?skip=75&show=1000"}]
+
+Based on the search results, I found information about arxiv paper 2509.05980:
+
+The paper titled "GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion" was submitted on September 7, 2025. 
+
+GRACE constructs a multi-level, multi-semantic code graph that unifies file structures, abstract syntax trees, function call graphs, class hierarchies, and data flow graphs to capture both static and dynamic code semantics. Using DeepSeek-V3 as the backbone LLM, GRACE surpasses the strongest graph-based RAG baselines by 8.19% EM and 7.51% ES points on every dataset.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "bcc9d2f8-4d3e-4e6c-9377-5974a0b54822"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 77_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for SynCoBERT AAAI 2022 proceedings \"Xin Wang\" \"Yashe…",
+  "usage": {
+    "total_tokens": 32198,
+    "tool_uses": 18,
+    "duration_ms": 146490
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "92545306-3dfa-485c-8490-e1e039fc3912",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014UmGBAUakcMcFFKUwjDPo8`</summary>
+
+```json
+{
+  "query": "SynCoBERT AAAI 2022 proceedings \"Xin Wang\" \"Yasheng Wang\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "6929ecc7-517b-42a4-a342-d4d68540aa43",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016k7M2RaP1R2SXgBL5W7j32",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 751,
+      "cache_read_input_tokens": 30886,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 751,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-15T10:37:36.530Z_
+
+<details><summary>↩ Tool result · `toolu_014UmGBAUakcMcFFKUwjDPo8`</summary>
+
+```text
+Web search results for query: "SynCoBERT AAAI 2022 proceedings "Xin Wang" "Yasheng Wang""
+
+Links: [{"title":"Yao Wan@Huazhong University of Science and Technology","url":"http://wanyao.me/publication.html"},{"title":"[PDF] SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/SynCoBERT:-Syntax-Guided-Multi-Modal-Contrastive-Wang-Wang/14b104d1a1c0b784e4e74454d809455cc47d0093"},{"title":"UniMS: A Unified Framework for Multimodal Summarization with Knowledge Distillation | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/21431"},{"title":"Pan More Gold from the Sand: Refining Open-domain Dialogue Training with Noisy Self-Retrieval Generation - ACL Anthology","url":"https://aclanthology.org/2022.coling-1.53/"},{"title":"UniMS: A Unified Framework for Multimodal Summarization with Knowledge Distillation | Request PDF","url":"https://www.researchgate.net/publication/361754749_UniMS_A_Unified_Framework_for_Multimodal_Summarization_with_Knowledge_Distillation"},{"title":"AAAI-­‐16 Accepted Papers","url":"https://aaai.org/wp-content/uploads/2023/04/aaai16accepted-papers.pdf"},{"title":"Thirtieth AAAI Conference on Artificial Intelligence","url":"https://www.aiinternational.org/Library/AAAI/aaai16contents.php"},{"title":"1 AAAI-­‐21 Accepted Papers — Main Technical Track Main Track","url":"http://aaai.org/wp-content/uploads/2023/01/AAAI-21_Accepted-Paper-List.Main_.Technical.Track_.pdf"},{"title":"Advances in Neural Information Processing Systems 35","url":"https://proceedings.neurips.cc/paper/2022"},{"title":"AAAI Conference Proceedings - AAAI","url":"https://aaai.org/aaai-publications/aaai-conference-proceedings/"}]
+
+Based on the search results, I found information about SynCoBERT:
+
+SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation was authored by Xin Wang, Yasheng Wang, Fei Mi, Pingyi Zhou, Yao Wan, Xiao Liu, Li Li, Hao Wu, Jin Liu, and Xin Jiang and was published on arXiv in 2021.
+
+However, based on the search results, SynCoBERT appears to have been published as an arXiv preprint in 2021, not in the AAAI 2022 proceedings. The search results do not show that this paper was published in the AAAI 2022 conference proceedings. There is a related paper by some of the same authors—CODE-MVP: Learning to Represent Source Code from Multiple Views with Contrastive Pre-Training by Xin Wang, Yasheng Wang, Yao Wan, and others was published in NAACL 2022 (Findings).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "0dff7af1-0035-4d00-8c52-71660d9aa7ef"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 80_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for dblp SynCoBERT published venue 2022",
+  "usage": {
+    "total_tokens": 33236,
+    "tool_uses": 19,
+    "duration_ms": 155627
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "ae73fad7-c1b8-4457-aef0-d12b87cbc8ef",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01STrAyciDevVSMqUydcai7Y`</summary>
+
+```json
+{
+  "query": "dblp SynCoBERT published venue 2022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "001e2f45-e494-4776-ae7b-2f5ae158c8d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Ky7x7bjW75nZ3QPt2d3eZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 997,
+      "cache_read_input_tokens": 31637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 997,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-15T10:37:43.443Z_
+
+<details><summary>↩ Tool result · `toolu_01STrAyciDevVSMqUydcai7Y`</summary>
+
+```text
+Web search results for query: "dblp SynCoBERT published venue 2022"
+
+Links: [{"title":"dblp: computer science bibliography","url":"https://dblp.org/"},{"title":"dblp: Publications","url":"https://dblp.org/db/journals/publications/index.html"},{"title":"DBLP collaboration network - SNAP: Network datasets","url":"https://snap.stanford.edu/data/com-DBLP.html"},{"title":"dblp: Design, Automation, and Test in Europe","url":"https://dblp.org/db/conf/date/index.html"},{"title":"dblp: Conference Updates in March 2022","url":"https://dblp.org/news/conf-update.html"},{"title":"GitHub - sbaltes/dblp-retriever: Retrieve paper metadata from conference proceedings and journals indexed in DBLP.","url":"https://github.com/sbaltes/dblp-retriever"},{"title":"dblp: WWW","url":"https://dblp.org/db/conf/www/index.html"},{"title":"dblp: Symposium On Usable Privacy and Security","url":"https://dblp.org/db/conf/soups/index.html"},{"title":"dblp: CCNC 2022","url":"https://dblp.org/db/conf/ccnc/ccnc2022.html"},{"title":"dblp: Browse Conferences &amp Workshops","url":"https://dblp.org/db/conf/"}]
+
+The search results don't contain specific information about "SynCoBERT" or its publication venue in 2022. The results show general DBLP information and various conference proceedings, but don't include the specific paper you're looking for. 
+
+To find information about SynCoBERT's publication venue in 2022 through DBLP, you would need to:
+1. Visit dblp.org directly
+2. Search for "SynCoBERT" in their search bar
+3. Look for the 2022 publication entry to see which venue (conference or journal) it was published in
+
+Would you like me to try a different search query to find information about SynCoBERT?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "42fb6b49-405a-412b-af5f-dd285f2c095d"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 83_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for Semantic Scholar SynCoBERT venue \"Published in\" c…",
+  "usage": {
+    "total_tokens": 33911,
+    "tool_uses": 20,
+    "duration_ms": 163423
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "6e6880c7-c395-45e4-bb43-77ba46bb24b3",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01De3QRyrNyfFGcwmqWfVfwz`</summary>
+
+```json
+{
+  "query": "Semantic Scholar SynCoBERT venue \"Published in\" conference"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "e07849e7-1606-4c63-849d-aeceb8e04841",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BXJVnwjxdzJs5LyLgQvioQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 633,
+      "cache_read_input_tokens": 32634,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 633,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-15T10:37:56.095Z_
+
+<details><summary>↩ Tool result · `toolu_01De3QRyrNyfFGcwmqWfVfwz`</summary>
+
+```text
+Web search results for query: "Semantic Scholar SynCoBERT venue "Published in" conference"
+
+Links: [{"title":"[PDF] SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/SynCoBERT:-Syntax-Guided-Multi-Modal-Contrastive-Wang-Wang/14b104d1a1c0b784e4e74454d809455cc47d0093"},{"title":"Semantic Scholar | Frequently Asked Questions","url":"https://www.semanticscholar.org/faq"},{"title":"Semantic Scholar Academic Graph API | Semantic Scholar","url":"https://www.semanticscholar.org/product/api"},{"title":"Semantic Scholar | Product","url":"https://www.semanticscholar.org/product"},{"title":"Semantic Scholar","url":"https://www.semanticscholar.org/faq/how-do-i-view-papers-from-a-certain-conference-or-journal"},{"title":"Semantic Scholar - Wikipedia","url":"https://en.wikipedia.org/wiki/Semantic_Scholar"},{"title":"Semantic Scholar | AI-Powered Research Tool","url":"https://www.semanticscholar.org/"},{"title":"Conferences | Semantic Scholar","url":"https://www.semanticscholar.org/topic/Conferences/73286"},{"title":"The Semantic Scholar Academic Graph (S2AG) | Request PDF","url":"https://www.researchgate.net/publication/362727684_The_Semantic_Scholar_Academic_Graph_S2AG"},{"title":"Semantic Scholar - APIs for Scholarly Resources - Library at University of Calgary","url":"https://libguides.ucalgary.ca/c.php?g=732144&p=5260798"}]
+
+Based on the search results, I found information about SynCoBERT on Semantic Scholar. SynCoBERT was published on August 10, 2021, and it is a paper on "Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation" with authors including Xin Wang, Yasheng Wang, and others.
+
+However, the search results from the Semantic Scholar paper page don't explicitly display the conference or journal venue name in the snippets provided. The paper appears to be presented in an "@inproceedings" format (as indicated by the BibTeX citation style), which suggests it was published at a conference rather than a journal, but the specific venue name is not clearly visible in these search result excerpts.
+
+To find the specific conference venue, you would need to visit the Semantic Scholar page for SynCoBERT directly where the venue information would be displayed prominently.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "6f514fa1-fd5c-45de-8c07-391efcdf0f10"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 86_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for WebFetch https://www.semanticscholar.org/paper/Sy…",
+  "usage": {
+    "total_tokens": 34713,
+    "tool_uses": 21,
+    "duration_ms": 174686
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "a3966721-fe9b-47ea-adec-964a768a744e",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RBh4ZYMs427UhV4oMsqfLX`</summary>
+
+```json
+{
+  "query": "WebFetch https://www.semanticscholar.org/paper/SynCoBERT:-Syntax-Guided-Multi-Modal-Contrastive-Wang-Wang/14b104d1a1c0b784e4e74454d809455cc47d0093"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "63d2ca1b-38e2-4426-a131-c53edfe94607",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wowh71Vb3rJpmEVCozVZsN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 745,
+      "cache_read_input_tokens": 33267,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 745,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 57,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-15T10:38:04.221Z_
+
+<details><summary>↩ Tool result · `toolu_01RBh4ZYMs427UhV4oMsqfLX`</summary>
+
+```text
+Web search results for query: "WebFetch https://www.semanticscholar.org/paper/SynCoBERT:-Syntax-Guided-Multi-Modal-Contrastive-Wang-Wang/14b104d1a1c0b784e4e74454d809455cc47d0093"
+
+Links: [{"title":"[2108.04556] SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation","url":"https://arxiv.org/abs/2108.04556"},{"title":"SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation · Machine Learning for Big Code and Naturalness","url":"https://ml4code.github.io/publications/wang2021syncobert/"},{"title":"SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation - ADS","url":"https://ui.adsabs.harvard.edu/abs/2021arXiv210804556W/abstract"},{"title":"[PDF] SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/SynCoBERT:-Syntax-Guided-Multi-Modal-Contrastive-Wang-Wang/14b104d1a1c0b784e4e74454d809455cc47d0093"},{"title":"[2108.04556v3] SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation","url":"https://arxiv.org/abs/2108.04556v3"},{"title":"(PDF) SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation","url":"https://www.academia.edu/73281297/SynCoBERT_Syntax_Guided_Multi_Modal_Contrastive_Pre_Training_for_Code_Representation"},{"title":"SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation | DeepAI","url":"https://deepai.org/publication/syncobert-syntax-guided-multi-modal-contrastive-pre-training-for-code-representation"},{"title":"[2108.04556] SynCoBERT: Syntax-Enhanced Contrastive Pre-Training for Code Representation","url":"https://ar5iv.labs.arxiv.org/html/2108.04556"},{"title":"Shamra Academia - AI-powered research tools for scholars | SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation","url":"https://shamra-academia.com/en/show/3a445ac40198fd"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar_lookup?title=Syncobert:+syntax-guided+multi-modal+contrastive+pre-training+for+code+representation&amp=&author=X.+Wang&amp=&author=Y.+Wang&amp=&author=F.+Mi&amp=&author=P.+Zhou&amp=&publication_year=2021"}]
+
+Based on the search results, I found comprehensive information about the SynCoBERT paper from the Semantic Scholar link you provided.
+
+## SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation
+
+SynCoBERT is a syntax-guided multi-modal contrastive pre-training approach for better code representations. 
+
+### Key Contributions
+
+The paper designs two novel pre-training objectives: Identifier Prediction (IP) and AST Edge Prediction (TEP), which are designed to predict identifiers and edges between nodes of AST, respectively.
+
+To exploit the complementary information in semantically equivalent modalities (code, comment, AST), the paper proposes a multi-modal contrastive learning strategy to maximize the mutual information among different modalities.
+
+### Performance
+
+Extensive experiments on four downstream tasks related to code intelligence show that SynCoBERT advances the state-of-the-art with the same pre-training corpus and model size.
+
+### Background
+
+Recently, many pre-trained language models for source code such as CuBERT and CodeBERT have been proposed to model the context of code and serve as a basis for downstream code intelligence tasks such as code search, code clone detection, and program translation.
+
+The paper was published in 2021 and addresses the limitations of existing approaches by incorporating both syntactic structure and multi-modal information into the code representation learning process.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "e4315961-8ad9-493f-9857-2befcf12cb80"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 89_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Verify 8 citations via WebSearch",
+  "usage": {
+    "total_tokens": 35972,
+    "tool_uses": 22,
+    "duration_ms": 183540
+  },
+  "last_tool_name": "ToolSearch",
+  "uuid": "5ab7cfb8-d273-4454-bca0-ca93415192ef",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01C4WArYouSi2iAiJiaGoB51`</summary>
+
+```json
+{
+  "query": "select:WebFetch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "d904f630-a9d1-4a08-a600-30629f2a6031",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012VAHFz5YKjzvzZ17HFfxGa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1257,
+      "cache_read_input_tokens": 34012,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1257,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-15T10:38:07.811Z_
+
+<details><summary>↩ Tool result · `toolu_01C4WArYouSi2iAiJiaGoB51`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "9b9c2d9e-917d-455d-a956-6c738920c805"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 92_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Fetching https://www.semanticscholar.org/paper/SynCoBERT:-…",
+  "usage": {
+    "total_tokens": 36661,
+    "tool_uses": 23,
+    "duration_ms": 186532
+  },
+  "last_tool_name": "WebFetch",
+  "uuid": "6c647260-6c0c-42c1-af39-df98fc0ec131",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 93_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01K5vuwdDnLDX1uEke77ywLs`</summary>
+
+```json
+{
+  "url": "https://www.semanticscholar.org/paper/SynCoBERT:-Syntax-Guided-Multi-Modal-Contrastive-Wang-Wang/14b104d1a1c0b784e4e74454d809455cc47d0093",
+  "prompt": "What is the publication venue (conference or journal name) for this paper? What year was it published? List all authors."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "5456d156-eede-414c-9bb8-c51a31fec888",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017zdN8Lczyp5Rx3hF59eSny",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 621,
+      "cache_read_input_tokens": 35269,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 621,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-15T10:38:12.049Z_
+
+<details><summary>↩ Tool result · `toolu_01K5vuwdDnLDX1uEke77ywLs`</summary>
+
+```text
+I don't see any web page content provided in your message. The section marked "Web page content:" appears to be empty. 
+
+To help you identify the publication venue, year, and authors of a paper, please share the actual content from the web page you're referring to.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "941c42ec-eaf5-4179-8470-ffa6f0135161"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 95_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Fetching https://ml4code.github.io/publications/wang2021sy…",
+  "usage": {
+    "total_tokens": 36953,
+    "tool_uses": 24,
+    "duration_ms": 190876
+  },
+  "last_tool_name": "WebFetch",
+  "uuid": "7c84d3ef-d5b5-4382-a267-bcfd75131590",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 96_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01NGKMXF5AozwNoAFwHm1xD5`</summary>
+
+```json
+{
+  "url": "https://ml4code.github.io/publications/wang2021syncobert/",
+  "prompt": "What venue or conference was SynCoBERT published at? What year? List the full author names."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "bab87aad-afcf-4daf-80ab-61c31cd68176",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uh13K9J8ME8x4tEa72kEWN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 227,
+      "cache_read_input_tokens": 35890,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 227,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-15T10:38:17.489Z_
+
+<details><summary>↩ Tool result · `toolu_01NGKMXF5AozwNoAFwHm1xD5`</summary>
+
+```text
+Based on the content provided, I cannot determine the specific venue or conference where SynCoBERT was published. The page only indicates it was from 2021 and provides an ArXiV link, suggesting it may be a preprint.
+
+The full author names listed are: "Xin Wang, Yasheng Wang, Fei Mi, Pingyi Zhou, Yao Wan, Xiao Liu, Li Li, Hao Wu, Jin Liu, Xin Jiang."
+
+To find the official conference or journal publication venue, you would need to consult the ArXiV paper or other academic databases beyond what is shown on this webpage.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "2e7670d9-0467-40f2-9bc8-e87b286475ac"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 98_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Fetching https://dblp.org/search?q=SynCoBERT",
+  "usage": {
+    "total_tokens": 37273,
+    "tool_uses": 25,
+    "duration_ms": 196126
+  },
+  "last_tool_name": "WebFetch",
+  "uuid": "778a73f5-b9a5-4b6e-9db9-84483df4fff6",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 99_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01VQcJKAVc2TvS5jdxxGw61d`</summary>
+
+```json
+{
+  "url": "https://dblp.org/search?q=SynCoBERT",
+  "prompt": "Find the publication entry for SynCoBERT. What venue/conference was it published at? What year?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "5d0b54d5-5cfd-4320-aa00-6efaa919d7de",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PRJPrsMxE1jQUDrTnFRR4U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 266,
+      "cache_read_input_tokens": 36117,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 266,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 54,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-15T10:39:20.575Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01VQcJKAVc2TvS5jdxxGw61d`</summary>
+
+```text
+timeout of 60000ms exceeded
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "699f86ab-9955-4cd3-bbea-f4c1e445937d",
+  "tool_use_result": "Error: timeout of 60000ms exceeded"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 101_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for \"SynCoBERT\" \"Xin Wang\" published AAAI 2022 OR ACL…",
+  "usage": {
+    "total_tokens": 37454,
+    "tool_uses": 26,
+    "duration_ms": 262785
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "a5af93f0-527e-4dbe-926a-badd1e7762f6",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 102_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01C9WtnzwxLtGaXoxsXE7qV3`</summary>
+
+```json
+{
+  "query": "\"SynCoBERT\" \"Xin Wang\" published AAAI 2022 OR ACL 2022 OR EMNLP 2022 OR NeurIPS 2022 OR proceedings"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "6e2625e2-8b82-4f25-990e-66999038cda2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BARxbrV36z3Mk1YpRTUhwc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 137,
+      "cache_read_input_tokens": 36383,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 137,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 44,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-15T10:39:31.629Z_
+
+<details><summary>↩ Tool result · `toolu_01C9WtnzwxLtGaXoxsXE7qV3`</summary>
+
+```text
+Web search results for query: ""SynCoBERT" "Xin Wang" published AAAI 2022 OR ACL 2022 OR EMNLP 2022 OR NeurIPS 2022 OR proceedings"
+
+Links: [{"title":"Yao Wan@Huazhong University of Science and Technology","url":"http://wanyao.me/publication.html"},{"title":"Simular AI","url":"https://www.simular.ai/team/xin-wang"},{"title":"AAAI-26 New Faculty Highlights Program - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/new-faculty-highlights-program/"},{"title":"Xin (Eric) Wang","url":"https://eric-xw.github.io/"},{"title":"Multimodal Prompt Tuning for Zero-shot Instruction Learning","url":"https://aclanthology.org/2024.emnlp-main.218.pdf"},{"title":"Yaqing Wang - BIMSA","url":"https://www.bimsa.cn/detail/YaqingWang.html"},{"title":"Xin Wang | OpenReview","url":"https://openreview.net/profile?id=~Xin_Wang30"},{"title":"Hot Papers - CCL 2025","url":"http://cips-cl.org/static/CCL2025/en/cclProgram/hotPaper/index.html"},{"title":"EMNLP 2023 The 2023 Conference on Empirical Methods in Natural","url":"https://aclanthology.org/2023.emnlp-tutorial.pdf"},{"title":"EMNLP 2025 The 2025 Conference on Empirical Methods in Natural","url":"https://aclanthology.org/2025.emnlp-tutorials.pdf"}]
+
+Based on the search results, I found information about SynCoBERT:
+
+SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation was authored by Xin Wang, Yasheng Wang, Fei Mi, Pingyi Zhou, Yao Wan, Xiao Liu, Li Li, Hao Wu, Jin Liu, and Xin Jiang and was published on arXiv in 2021.
+
+However, the search results indicate that this paper was posted to arXiv in 2021, not published at one of the 2022 major conference venues you specified (AAAI 2022, ACL 2022, EMNLP 2022, or NeurIPS 2022). The search results did not reveal that SynCoBERT was published as a full paper at any of those specific 2022 conferences.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "eafb67a2-45f9-483f-a405-3d21f7660b9c"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 104_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Fetching http://wanyao.me/publication.html",
+  "usage": {
+    "total_tokens": 38315,
+    "tool_uses": 27,
+    "duration_ms": 270595
+  },
+  "last_tool_name": "WebFetch",
+  "uuid": "9a6e71ff-28f5-4105-b2c9-5e4f1d28be7c",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 105_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01CJnNvmECfuEzqvdFWZwrYr`</summary>
+
+```json
+{
+  "url": "http://wanyao.me/publication.html",
+  "prompt": "Find SynCoBERT in the publication list. What conference or journal was it published at? What year?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "63f3ab63-f8f7-4de9-9416-2fc07a17721d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BKFwtveSP8NduATQLh66sf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 802,
+      "cache_read_input_tokens": 36520,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 802,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-15T10:39:35.466Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01CJnNvmECfuEzqvdFWZwrYr`</summary>
+
+```text
+ERR_TLS_CERT_ALTNAME_INVALID fetching "https://wanyao.me/publication.html". For more information, pass `verbose: true` in the second argument to fetch()
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "50a25b0b-1d66-4211-a2c8-d746eb68da83",
+  "tool_use_result": "Error: ERR_TLS_CERT_ALTNAME_INVALID fetching \"https://wanyao.me/publication.html\". For more information, pass `verbose: true` in the second argument to fetch()"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 107_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Fetching https://arxiv.org/abs/2108.04556",
+  "usage": {
+    "total_tokens": 38549,
+    "tool_uses": 28,
+    "duration_ms": 274585
+  },
+  "last_tool_name": "WebFetch",
+  "uuid": "994993e2-7c6d-4fde-9fbc-8c249af4307b",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 108_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_012ySE8hvfhuChxKwxen71Dr`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2108.04556",
+  "prompt": "What are the exact authors of this paper? Is there any mention of the paper being published at a specific conference or journal (like AAAI, ACL, etc.)? What is the submission/revision history?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "402a2d24-290b-459d-9153-5353a80fd165",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AKTkCeUEZsLyDAyuqZqzvH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 170,
+      "cache_read_input_tokens": 37322,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 170,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-15T10:39:42.179Z_
+
+<details><summary>↩ Tool result · `toolu_012ySE8hvfhuChxKwxen71Dr`</summary>
+
+```text
+# SynCoBERT Paper Details
+
+## Authors
+The paper lists ten authors: "Xin Wang, Yasheng Wang, Fei Mi, Pingyi Zhou, Yao Wan, Xiao Liu, Li Li, Hao Wu, Jin Liu, Xin Jiang"
+
+## Conference or Journal Publication
+There is no mention of publication at a specific conference or journal (such as AAAI or ACL) in the provided content. The paper appears to exist solely as an arXiv preprint.
+
+## Submission and Revision History
+The work underwent three revisions:
+- **Version 1**: Submitted August 10, 2021
+- **Version 2**: Revised August 23, 2021  
+- **Version 3**: Final revision September 9, 2021 (current version)
+
+The paper is described as "9 pages, 3 figures, 5 tables" in its current form.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "94c7f829-733b-4a64-8f45-513bf1b42022"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 110_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Searching for CAPSTONE He Xingwei EMNLP 2023 authors full list …",
+  "usage": {
+    "total_tokens": 38938,
+    "tool_uses": 29,
+    "duration_ms": 280797
+  },
+  "last_tool_name": "WebSearch",
+  "uuid": "7095df38-ac73-4bcf-a9bd-ea642f9c6cfc",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 111_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01W9G6eTgaMTDP4L981AGoje`</summary>
+
+```json
+{
+  "query": "CAPSTONE He Xingwei EMNLP 2023 authors full list pages"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "5752a0f1-8b0c-44ef-a071-79cb3e2d7e13",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gb8mAvjhSriGx2JB4hWsos",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 352,
+      "cache_read_input_tokens": 37492,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 352,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-15T10:39:49.796Z_
+
+<details><summary>↩ Tool result · `toolu_01W9G6eTgaMTDP4L981AGoje`</summary>
+
+```text
+Web search results for query: "CAPSTONE He Xingwei EMNLP 2023 authors full list pages"
+
+Links: [{"title":"CAPSTONE: Curriculum Sampling for Dense Retrieval with Document Expansion - ACL Anthology","url":"https://aclanthology.org/2023.emnlp-main.651/"},{"title":"Paper Digest: EMNLP 2023 Highlights – Resources | Paper Digest","url":"https://resources.paperdigest.org/2023/12/emnlp-2023-highlights/"},{"title":"GitHub - microsoft/SimXNS: SimXNS is a research project for information retrieval. This repo contains official implementations by MSRA NLC team.","url":"https://github.com/microsoft/SimXNS"},{"title":"EMNLP 2023 Accepted Paper List - Paper Copilot","url":"https://papercopilot.com/paper-list/emnlp-paper-list/emnlp-2023-paper-list/"},{"title":"Xingwei He | OpenReview","url":"https://openreview.net/profile?id=~Xingwei_He1"},{"title":"Paper Digest: EMNLP-2023 Highlights (Full List)","url":"https://www.paperdigest.org/data/emnlp-2023-full.html"},{"title":"Participants - EMNLP 2023","url":"https://2023.emnlp.org/participants/"},{"title":"EMNLP 2023 The 2023 Conference on Empirical Methods in Natural","url":"https://aclanthology.org/2023.emnlp-main.0.pdf"},{"title":"Paper Digest: EMNLP 2025 Papers & Highlights – Paper Digest","url":"https://www.paperdigest.org/2025/11/emnlp-2025-papers-highlights/"},{"title":"The 2023 Conference on Empirical Methods in Natural Language Processing - ACL Anthology","url":"https://aclanthology.org/events/emnlp-2023/"}]
+
+Based on the search results, here is the information about the CAPSTONE paper from EMNLP 2023:
+
+**Paper Title:** CAPSTONE: Curriculum Sampling for Dense Retrieval with Document Expansion
+
+**Full Author List:** Xingwei He, Yeyun Gong, A-Long Jin, Hang Zhang, Anlei Dong, Jian Jiao, Siu Yiu, Nan Duan
+
+**Pages:** 10531--10541
+
+**Conference:** Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing, 2023
+
+**DOI:** 10.18653/v1/2023.emnlp-main.651
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "50ce66d9-0bd1-472d-a706-8efbfe7bcaa9"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 113_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Fetching https://aclanthology.org/2023.emnlp-main.651/",
+  "usage": {
+    "total_tokens": 39795,
+    "tool_uses": 30,
+    "duration_ms": 288437
+  },
+  "last_tool_name": "WebFetch",
+  "uuid": "1a53cdfb-5c5b-49a3-a61a-8eca257edca5",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 114_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01SFtNmmN5FuxA2tZWy2bh5K`</summary>
+
+```json
+{
+  "url": "https://aclanthology.org/2023.emnlp-main.651/",
+  "prompt": "List all authors of the CAPSTONE paper exactly as they appear. What are the exact page numbers?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "30ec2da9-2f78-4fbd-a63c-7d034c40a26e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013BEbKsqxNmzV2ZvdsSPuAD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 789,
+      "cache_read_input_tokens": 37844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 789,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-15T10:39:54.927Z_
+
+<details><summary>↩ Tool result · `toolu_01SFtNmmN5FuxA2tZWy2bh5K`</summary>
+
+```text
+# CAPSTONE Paper Details
+
+**Authors (in order):**
+"Xingwei He, Yeyun Gong, A-Long Jin, Hang Zhang, Anlei Dong, Jian Jiao, Siu Yiu, and Nan Duan"
+
+**Page Numbers:**
+The work spans "pages 10531–10541"
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "6756fd2a-044f-430f-a823-a96e0a8c822b"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 116_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Fetching https://aclanthology.org/2021.naacl-main.466/",
+  "usage": {
+    "total_tokens": 40056,
+    "tool_uses": 31,
+    "duration_ms": 293603
+  },
+  "last_tool_name": "WebFetch",
+  "uuid": "e5bb12de-daf3-4630-bf8f-7627b3a4648f",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 117_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_014aHrbWdtAq2ruPxYcHoonZ`</summary>
+
+```json
+{
+  "url": "https://aclanthology.org/2021.naacl-main.466/",
+  "prompt": "List all authors of the RocketQA paper exactly as they appear. What are the exact page numbers? What is the exact venue name?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "4a52ef00-e99b-45d7-ac97-99f099a0a26c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AYHoqNfTTifaLRTmj3q5Zw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 205,
+      "cache_read_input_tokens": 38633,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 205,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-15T10:40:00.115Z_
+
+<details><summary>↩ Tool result · `toolu_014aHrbWdtAq2ruPxYcHoonZ`</summary>
+
+```text
+# RocketQA Paper Details
+
+**Authors** (in order as they appear):
+Yingqi Qu, Yuchen Ding, Jing Liu, Kai Liu, Ruiyang Ren, Wayne Xin Zhao, Daxiang Dong, Hua Wu, Haifeng Wang
+
+**Page Numbers:**
+"5835–5847"
+
+**Venue Name:**
+"Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies"
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "30f30383-5f62-49fa-adc1-6da2be835157"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 119_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Fetching https://dl.acm.org/doi/abs/10.1145/3404835.3462880",
+  "usage": {
+    "total_tokens": 40357,
+    "tool_uses": 32,
+    "duration_ms": 299255
+  },
+  "last_tool_name": "WebFetch",
+  "uuid": "41382706-eef1-4072-83da-9a75fc9bf40d",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 120_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01VYWEzwfYG9YgfKtbmLpJgG`</summary>
+
+```json
+{
+  "url": "https://dl.acm.org/doi/abs/10.1145/3404835.3462880",
+  "prompt": "List all authors of \"Optimizing Dense Retrieval Model Training with Hard Negatives\" exactly. What are the exact page numbers?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "94aaf08f-f551-4ed7-87fe-073bdc340572",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NnEy34quqJpTikcwbZjhMY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 250,
+      "cache_read_input_tokens": 38838,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 250,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 51,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-15T10:40:03.759Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01VYWEzwfYG9YgfKtbmLpJgG`</summary>
+
+```text
+Request failed with status code 403
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "a2f24894-74f0-4ba5-8344-663261d4696d",
+  "tool_use_result": "Error: Request failed with status code 403"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 122_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "description": "Fetching https://proceedings.mlr.press/v139/cummins21a.html",
+  "usage": {
+    "total_tokens": 40552,
+    "tool_uses": 33,
+    "duration_ms": 303105
+  },
+  "last_tool_name": "WebFetch",
+  "uuid": "bc090bd4-cee9-4df4-a918-2ba65c9f1f23",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool call
+
+_source line 123_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XkwQ27ZKMJEL7Nk1DXoYe4`</summary>
+
+```json
+{
+  "url": "https://proceedings.mlr.press/v139/cummins21a.html",
+  "prompt": "List all authors of the ProGraML paper exactly as they appear. What are the exact page numbers? What is the exact proceedings/venue name?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "c010c37d-552c-4f05-bbea-fd64060d5741",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Rp2cDBkTbj95ucL2xtG7a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 149,
+      "cache_read_input_tokens": 39088,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 149,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-15T10:40:09.056Z_
+
+<details><summary>↩ Tool result · `toolu_01XkwQ27ZKMJEL7Nk1DXoYe4`</summary>
+
+```text
+# ProGraML Paper Details
+
+**Authors (as they appear):**
+Chris Cummins, Zacharias V. Fisches, Tal Ben-Nun, Torsten Hoefler, Michael F P O'Boyle, Hugh Leather
+
+**Page Numbers:**
+2244–2253
+
+**Proceedings/Venue Name:**
+"Proceedings of the 38th International Conference on Machine Learning", PMLR 139, 2021
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "ce5eef68-53df-4af3-b972-0b6ec5dc8221"
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 125_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "ada325e67c341b65a",
+  "tool_use_id": "toolu_01269u8r5enEePiy5CWMHXLT",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Verify 8 citations via WebSearch",
+  "usage": {
+    "total_tokens": 40786,
+    "tool_uses": 33,
+    "duration_ms": 337802
+  },
+  "uuid": "a1fc664e-fc2f-415a-bce2-ba2f570719b0",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050"
+}
+```
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-15T10:40:42.074Z_
+
+<details><summary>↩ Tool result · `toolu_01269u8r5enEePiy5CWMHXLT`</summary>
+
+```text
+Now I have all the information I need. Let me compile the findings.
+
+Here are the verified bibliographic details for all 8 papers:
+
+---
+
+## Paper 1: wang2021syncobert
+
+**Bib entry claims:** Wang Xin et al., arXiv 2108.04556, 2021
+
+**Verified:**
+- **Title:** SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation -- CORRECT
+- **Authors:** Xin Wang, Yasheng Wang, Fei Mi, Pingyi Zhou, Yao Wan, Xiao Liu, Li Li, Hao Wu, Jin Liu, Xin Jiang
+- **Venue:** arXiv preprint 2108.04556 -- CORRECT (no evidence of formal conference publication found; it remains an arXiv-only preprint)
+- **Year:** 2021 -- CORRECT
+
+**Verdict: CORRECT.** No discrepancies found.
+
+---
+
+## Paper 2: liu2023contrabert
+
+**Bib entry claims:** Liu Shangqing et al., ICSE 2023, pp.2476-2487
+
+**Verified:**
+- **Title:** ContraBERT: Enhancing Code Pre-trained Models via Contrastive Learning -- CORRECT
+- **Authors:** Shangqing Liu, Bozhi Wu, Xiaofei Xie, et al. (confirmed from [ACM DL](https://dl.acm.org/doi/abs/10.1109/ICSE48619.2023.00207) and [IEEE](https://ieeexplore.ieee.org/document/10172726/))
+- **Venue:** ICSE 2023 (45th International Conference on Software Engineering) -- CORRECT
+- **Pages:** 2476-2487 -- CORRECT
+- **Year:** 2023 -- CORRECT
+
+**Verdict: CORRECT.** No discrepancies found.
+
+---
+
+## Paper 3: qu2021rocketqa
+
+**Bib entry claims:** Qu Yingqi et al., NAACL-HLT 2021, pp.5835-5847
+
+**Verified:**
+- **Title:** RocketQA: An Optimized Training Approach to Dense Passage Retrieval for Open-Domain Question Answering -- CORRECT
+- **Authors:** Yingqi Qu, Yuchen Ding, Jing Liu, Kai Liu, Ruiyang Ren, Wayne Xin Zhao, Daxiang Dong, Hua Wu, Haifeng Wang (from [ACL Anthology](https://aclanthology.org/2021.naacl-main.466/))
+- **Venue:** NAACL-HLT 2021 -- CORRECT
+- **Pages:** 5835-5847 -- CORRECT
+- **Year:** 2021 -- CORRECT
+
+**Verdict: CORRECT.** No discrepancies found.
+
+---
+
+## Paper 4: zhan2021star
+
+**Bib entry claims:** Zhan Jingtao et al., SIGIR 2021, pp.1503-1512
+
+**Verified:**
+- **Title:** Optimizing Dense Retrieval Model Training with Hard Negatives -- CORRECT
+- **Authors:** Jingtao Zhan, Jiaxin Mao, Yiqun Liu, Jiafeng Guo, Min Zhang, Shaoping Ma (from [ACM DL](https://dl.acm.org/doi/10.1145/3404835.3462880))
+- **Venue:** SIGIR 2021 (44th International ACM SIGIR Conference) -- CORRECT
+- **Pages:** 1503-1512 -- CORRECT
+- **Year:** 2021 -- CORRECT
+
+**Verdict: CORRECT.** No discrepancies found.
+
+---
+
+## Paper 5: he2023capstone
+
+**Bib entry claims:** He Xingwei et al., EMNLP 2023, pp.10531-10541
+
+**Verified:**
+- **Title:** CAPSTONE: Curriculum Sampling for Dense Retrieval with Document Expansion -- CORRECT
+- **Authors:** Xingwei He, Yeyun Gong, A-Long Jin, Hang Zhang, Anlei Dong, Jian Jiao, Siu Yiu, Nan Duan (from [ACL Anthology](https://aclanthology.org/2023.emnlp-main.651/))
+- **Venue:** EMNLP 2023 -- CORRECT
+- **Pages:** 10531-10541 -- CORRECT
+- **Year:** 2023 -- CORRECT
+
+**Verdict: CORRECT.** No discrepancies found.
+
+---
+
+## Paper 6: cummins2021programl
+
+**Bib entry claims:** Cummins Chris et al., ICML 2021, pp.2244-2253
+
+**Verified:**
+- **Title:** ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations -- CORRECT
+- **Authors:** Chris Cummins, Zacharias V. Fisches, Tal Ben-Nun, Torsten Hoefler, Michael F P O'Boyle, Hugh Leather (from [PMLR](https://proceedings.mlr.press/v139/cummins21a.html))
+- **Venue:** ICML 2021 (Proceedings of the 38th International Conference on Machine Learning, PMLR 139) -- CORRECT
+- **Pages:** 2244-2253 -- CORRECT
+- **Year:** 2021 -- CORRECT
+
+**Verdict: CORRECT.** No discrepancies found.
+
+---
+
+## Paper 7: ding2023crosscodeeval
+
+**Bib entry claims:** Ding Yangruibo et al., NeurIPS 2023
+
+**Verified:**
+- **Title:** CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion -- CORRECT
+- **Authors:** Yangruibo Ding, Zijian Wang, Wasi Ahmad, Hantian Ding, Ming Tan, Nihal Jain, Murali Krishna Ramanathan, Ramesh Nallapati, Parminder Bhatia, Dan Roth, Bing Xiang (from [NeurIPS proceedings](https://proceedings.neurips.cc/paper_files/paper/2023/hash/920f2dced7d32ab2ba2f1970bc306af6-Abstract-Datasets_and_Benchmarks.html))
+- **Venue:** NeurIPS 2023 (Datasets and Benchmarks Track) -- CORRECT
+- **Year:** 2023 -- CORRECT
+
+**Verdict: CORRECT.** No discrepancies found.
+
+---
+
+## Paper 8: wang2025grace
+
+**Bib entry claims:** Wang Xingliang et al., arXiv 2509.05980, 2025
+
+**Verified:**
+- **Title:** GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion -- CORRECT
+- **Authors:** Xingliang Wang, Baoyi Wang, Chen Zhi, Junxiao Han, Xinkui Zhao, Jianwei Yin, Shuiguang Deng (from [arXiv](https://arxiv.org/abs/2509.05980))
+- **Venue:** arXiv 2509.05980 -- CORRECT
+- **Year:** 2025 (submitted September 7, 2025) -- CORRECT
+
+**Verdict: CORRECT.** No discrepancies found.
+
+---
+
+## Summary
+
+All 8 bib entries are **correct** with no discrepancies found in title, venue, year, page numbers, or first-author attribution. The author names, venues, years, and page ranges all match verified sources.
+
+Sources:
+- [SynCoBERT - arXiv](https://arxiv.org/abs/2108.04556)
+- [ContraBERT - ACM DL / ICSE 2023](https://dl.acm.org/doi/abs/10.1109/ICSE48619.2023.00207)
+- [ContraBERT - IEEE Xplore](https://ieeexplore.ieee.org/document/10172726/)
+- [RocketQA - ACL Anthology](https://aclanthology.org/2021.naacl-main.466/)
+- [STAR/DRhard - ACM DL / SIGIR 2021](https://dl.acm.org/doi/10.1145/3404835.3462880)
+- [CAPSTONE - ACL Anthology / EMNLP 2023](https://aclanthology.org/2023.emnlp-main.651/)
+- [ProGraML - PMLR / ICML 2021](https://proceedings.mlr.press/v139/cummins21a.html)
+- [CrossCodeEval - NeurIPS 2023 Proceedings](https://proceedings.neurips.cc/paper_files/paper/2023/hash/920f2dced7d32ab2ba2f1970bc306af6-Abstract-Datasets_and_Benchmarks.html)
+- [CrossCodeEval - GitHub](https://github.com/amazon-science/cceval)
+- [GRACE - arXiv](https://arxiv.org/abs/2509.05980)
+
+agentId: ada325e67c341b65a (use SendMessage with to: 'ada325e67c341b65a' to continue this agent)
+&lt;usage>total_tokens: 41775
+tool_uses: 33
+duration_ms: 337805&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "a4e0ae02-9807-4c81-a11e-b677edc24344",
+  "tool_use_result": {
+    "status": "completed",
+    "prompt": "I need you to verify bibliographic details (venue, year, authors) for 8 papers using WebSearch. For each paper, search the web and report the correct: title, authors (first 3+), venue/journal, year. Flag any discrepancies with the bib entries I provide below.\n\nHere are the 8 papers and their current bib entries:\n\n1. **wang2021syncobert** — \"SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation\", Wang Xin et al., arXiv 2108.04556, 2021\n\n2. **liu2023contrabert** — \"ContraBERT: Enhancing Code Pre-trained Models via Contrastive Learning\", Liu Shangqing et al., ICSE 2023, pp.2476-2487\n\n3. **qu2021rocketqa** — \"RocketQA: An Optimized Training Approach to Dense Passage Retrieval for Open-Domain Question Answering\", Qu Yingqi et al., NAACL-HLT 2021, pp.5835-5847\n\n4. **zhan2021star** — \"Optimizing Dense Retrieval Model Training with Hard Negatives\", Zhan Jingtao et al., SIGIR 2021, pp.1503-1512\n\n5. **he2023capstone** — \"CAPSTONE: Curriculum Sampling for Dense Retrieval with Document Expansion\", He Xingwei et al., EMNLP 2023, pp.10531-10541\n\n6. **cummins2021programl** — \"ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations\", Cummins Chris et al., ICML 2021, pp.2244-2253\n\n7. **ding2023crosscodeeval** — \"CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion\", Ding Yangruibo et al., NeurIPS 2023\n\n8. **wang2025grace** — \"GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion\", Wang Xingliang et al., arXiv 2509.05980, 2025\n\nFor each paper, do a web search (e.g., search for the title), confirm the details, and report:\n- Whether the bib entry is correct\n- If incorrect, what specifically needs to be fixed (venue, year, author spelling, etc.)\n\nBe thorough and precise. Report your findings in a structured format.",
+    "agentId": "ada325e67c341b65a",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have all the information I need. Let me compile the findings.\n\nHere are the verified bibliographic details for all 8 papers:\n\n---\n\n## Paper 1: wang2021syncobert\n\n**Bib entry claims:** Wang Xin et al., arXiv 2108.04556, 2021\n\n**Verified:**\n- **Title:** SynCoBERT: Syntax-Guided Multi-Modal Contrastive Pre-Training for Code Representation -- CORRECT\n- **Authors:** Xin Wang, Yasheng Wang, Fei Mi, Pingyi Zhou, Yao Wan, Xiao Liu, Li Li, Hao Wu, Jin Liu, Xin Jiang\n- **Venue:** arXiv preprint 2108.04556 -- CORRECT (no evidence of formal conference publication found; it remains an arXiv-only preprint)\n- **Year:** 2021 -- CORRECT\n\n**Verdict: CORRECT.** No discrepancies found.\n\n---\n\n## Paper 2: liu2023contrabert\n\n**Bib entry claims:** Liu Shangqing et al., ICSE 2023, pp.2476-2487\n\n**Verified:**\n- **Title:** ContraBERT: Enhancing Code Pre-trained Models via Contrastive Learning -- CORRECT\n- **Authors:** Shangqing Liu, Bozhi Wu, Xiaofei Xie, et al. (confirmed from [ACM DL](https://dl.acm.org/doi/abs/10.1109/ICSE48619.2023.00207) and [IEEE](https://ieeexplore.ieee.org/document/10172726/))\n- **Venue:** ICSE 2023 (45th International Conference on Software Engineering) -- CORRECT\n- **Pages:** 2476-2487 -- CORRECT\n- **Year:** 2023 -- CORRECT\n\n**Verdict: CORRECT.** No discrepancies found.\n\n---\n\n## Paper 3: qu2021rocketqa\n\n**Bib entry claims:** Qu Yingqi et al., NAACL-HLT 2021, pp.5835-5847\n\n**Verified:**\n- **Title:** RocketQA: An Optimized Training Approach to Dense Passage Retrieval for Open-Domain Question Answering -- CORRECT\n- **Authors:** Yingqi Qu, Yuchen Ding, Jing Liu, Kai Liu, Ruiyang Ren, Wayne Xin Zhao, Daxiang Dong, Hua Wu, Haifeng Wang (from [ACL Anthology](https://aclanthology.org/2021.naacl-main.466/))\n- **Venue:** NAACL-HLT 2021 -- CORRECT\n- **Pages:** 5835-5847 -- CORRECT\n- **Year:** 2021 -- CORRECT\n\n**Verdict: CORRECT.** No discrepancies found.\n\n---\n\n## Paper 4: zhan2021star\n\n**Bib entry claims:** Zhan Jingtao et al., SIGIR 2021, pp.1503-1512\n\n**Verified:**\n- **Title:** Optimizing Dense Retrieval Model Training with Hard Negatives -- CORRECT\n- **Authors:** Jingtao Zhan, Jiaxin Mao, Yiqun Liu, Jiafeng Guo, Min Zhang, Shaoping Ma (from [ACM DL](https://dl.acm.org/doi/10.1145/3404835.3462880))\n- **Venue:** SIGIR 2021 (44th International ACM SIGIR Conference) -- CORRECT\n- **Pages:** 1503-1512 -- CORRECT\n- **Year:** 2021 -- CORRECT\n\n**Verdict: CORRECT.** No discrepancies found.\n\n---\n\n## Paper 5: he2023capstone\n\n**Bib entry claims:** He Xingwei et al., EMNLP 2023, pp.10531-10541\n\n**Verified:**\n- **Title:** CAPSTONE: Curriculum Sampling for Dense Retrieval with Document Expansion -- CORRECT\n- **Authors:** Xingwei He, Yeyun Gong, A-Long Jin, Hang Zhang, Anlei Dong, Jian Jiao, Siu Yiu, Nan Duan (from [ACL Anthology](https://aclanthology.org/2023.emnlp-main.651/))\n- **Venue:** EMNLP 2023 -- CORRECT\n- **Pages:** 10531-10541 -- CORRECT\n- **Year:** 2023 -- CORRECT\n\n**Verdict: CORRECT.** No discrepancies found.\n\n---\n\n## Paper 6: cummins2021programl\n\n**Bib entry claims:** Cummins Chris et al., ICML 2021, pp.2244-2253\n\n**Verified:**\n- **Title:** ProGraML: A Graph-based Program Representation for Data Flow Analysis and Compiler Optimizations -- CORRECT\n- **Authors:** Chris Cummins, Zacharias V. Fisches, Tal Ben-Nun, Torsten Hoefler, Michael F P O'Boyle, Hugh Leather (from [PMLR](https://proceedings.mlr.press/v139/cummins21a.html))\n- **Venue:** ICML 2021 (Proceedings of the 38th International Conference on Machine Learning, PMLR 139) -- CORRECT\n- **Pages:** 2244-2253 -- CORRECT\n- **Year:** 2021 -- CORRECT\n\n**Verdict: CORRECT.** No discrepancies found.\n\n---\n\n## Paper 7: ding2023crosscodeeval\n\n**Bib entry claims:** Ding Yangruibo et al., NeurIPS 2023\n\n**Verified:**\n- **Title:** CrossCodeEval: A Diverse and Multilingual Benchmark for Cross-File Code Completion -- CORRECT\n- **Authors:** Yangruibo Ding, Zijian Wang, Wasi Ahmad, Hantian Ding, Ming Tan, Nihal Jain, Murali Krishna Ramanathan, Ramesh Nallapati, Parminder Bhatia, Dan Roth, Bing Xiang (from [NeurIPS proceedings](https://proceedings.neurips.cc/paper_files/paper/2023/hash/920f2dced7d32ab2ba2f1970bc306af6-Abstract-Datasets_and_Benchmarks.html))\n- **Venue:** NeurIPS 2023 (Datasets and Benchmarks Track) -- CORRECT\n- **Year:** 2023 -- CORRECT\n\n**Verdict: CORRECT.** No discrepancies found.\n\n---\n\n## Paper 8: wang2025grace\n\n**Bib entry claims:** Wang Xingliang et al., arXiv 2509.05980, 2025\n\n**Verified:**\n- **Title:** GRACE: Graph-Guided Repository-Aware Code Completion through Hierarchical Code Fusion -- CORRECT\n- **Authors:** Xingliang Wang, Baoyi Wang, Chen Zhi, Junxiao Han, Xinkui Zhao, Jianwei Yin, Shuiguang Deng (from [arXiv](https://arxiv.org/abs/2509.05980))\n- **Venue:** arXiv 2509.05980 -- CORRECT\n- **Year:** 2025 (submitted September 7, 2025) -- CORRECT\n\n**Verdict: CORRECT.** No discrepancies found.\n\n---\n\n## Summary\n\nAll 8 bib entries are **correct** with no discrepancies found in title, venue, year, page numbers, or first-author attribution. The author names, venues, years, and page ranges all match verified sources.\n\nSources:\n- [SynCoBERT - arXiv](https://arxiv.org/abs/2108.04556)\n- [ContraBERT - ACM DL / ICSE 2023](https://dl.acm.org/doi/abs/10.1109/ICSE48619.2023.00207)\n- [ContraBERT - IEEE Xplore](https://ieeexplore.ieee.org/document/10172726/)\n- [RocketQA - ACL Anthology](https://aclanthology.org/2021.naacl-main.466/)\n- [STAR/DRhard - ACM DL / SIGIR 2021](https://dl.acm.org/doi/10.1145/3404835.3462880)\n- [CAPSTONE - ACL Anthology / EMNLP 2023](https://aclanthology.org/2023.emnlp-main.651/)\n- [ProGraML - PMLR / ICML 2021](https://proceedings.mlr.press/v139/cummins21a.html)\n- [CrossCodeEval - NeurIPS 2023 Proceedings](https://proceedings.neurips.cc/paper_files/paper/2023/hash/920f2dced7d32ab2ba2f1970bc306af6-Abstract-Datasets_and_Benchmarks.html)\n- [CrossCodeEval - GitHub](https://github.com/amazon-science/cceval)\n- [GRACE - arXiv](https://arxiv.org/abs/2509.05980)"
+      }
+    ],
+    "totalDurationMs": 337805,
+    "totalTokens": 41775,
+    "totalToolUseCount": 33,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 233,
+      "cache_read_input_tokens": 39237,
+      "output_tokens": 2304,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 233
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2304,
+          "cache_read_input_tokens": 39237,
+          "cache_creation_input_tokens": 233,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 233,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 33
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 127_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The linter/user modified the file. Looking at the diff, I see that §2.3 still has the old text "consistent retrieval gains at negligible cost" and "orthogonal signal" — wait, let me re-read carefully.
+
+Actually, looking at the system reminder showing the current file state:
+
+Line 15 (§2.3): "static embedding-distance mining provides consistent retrieval gains at negligible cost" and "data-flow structure as an orthogonal signal"
+
+So it seems the file was reverted for §2.3 — my edits to Warning #2 and #3 were undone. 
+
+The user also rewrote the CoCoHaNeRe sentence to shift the focus from whether static embedding-distance mining is limited in structural code retrieval, to whether their specific claim about non-differentiable embedding negatives has been properly tested under controlled conditions in that setting.
+
+Now I need to reapply my two earlier edits: changing "consistent" to "reliable" and "at negligible cost" to "at zero additional cost" in Warning #2, and changing "orthogonal" to "complementary" in Warning #3.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "cb0af75a-fbba-4c86-96d3-687cee3892c1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XVFxsAhtZ7uNm6LxrxoV1f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5225,
+      "cache_read_input_tokens": 34967,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5225
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 128_
+
+§2.3 的 Warning #2 和 #3 修改被覆盖了，重新应用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "927bc569-d2ec-42be-a517-b3f81207f221",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XVFxsAhtZ7uNm6LxrxoV1f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5225,
+      "cache_read_input_tokens": 34967,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5225
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01AEUPxwjfmJPyjeHLZeDLrx`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md",
+  "old_string": "static embedding-distance mining provides consistent retrieval gains at negligible cost",
+  "new_string": "static embedding-distance mining provides reliable improvement at zero additional cost"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "118f6b32-cd33-46b9-81d7-a9293249f163",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XVFxsAhtZ7uNm6LxrxoV1f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5225,
+      "cache_read_input_tokens": 34967,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5225
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-15T10:40:54.036Z_
+
+<details><summary>↩ Tool result · `toolu_01AEUPxwjfmJPyjeHLZeDLrx`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "cdb2fc88-9fd7-4109-9bc4-aaecaabeb343",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md",
+    "oldString": "static embedding-distance mining provides consistent retrieval gains at negligible cost",
+    "newString": "static embedding-distance mining provides reliable improvement at zero additional cost",
+    "originalFile": "# 2. Related Work\n\n## 2.1 Dense Retrieval for Code\n\nCode retrieval has evolved from sparse lexical methods such as BM25 \\cite{robertson2009bm25} to dense neural approaches. Early pretrained code models---CodeBERT \\cite{feng2020codebert}, UniXcoder \\cite{guo2022unixcoder}, and InferCode \\cite{bui2021infercode}---learn general-purpose code representations through masked language modeling and related pretraining objectives, enabling semantic matching beyond surface-level token overlap. More recent large-scale code models, including StarCoder2 \\cite{lozhkov2024starcoder2} and Qwen2.5-Coder \\cite{hui2024qwen25coder}, provide powerful encoder backbones trained on trillions of code tokens. In the retrieval domain, CodeSage \\cite{zhang2024codesage} and SCodeR \\cite{li2022scoder} introduce contrastive fine-tuning strategies that adapt pretrained representations for code search. The growing importance of repository-level retrieval---driven by benchmarks like SWE-bench \\cite{jimenez2024swebench}---has motivated specialized systems: SweRank \\cite{reddy2025swerank} formulates issue localization as code ranking, while SWE-Fixer \\cite{xie2025swefixer} combines BM25 with neural reranking in a coarse-to-fine pipeline. StructFuse builds on this foundation by systematically comparing negative mining strategies---random, embedding-distance, and structure-aware---for contrastive code retrieval, demonstrating that the choice of mining strategy meaningfully affects retrieval quality.\n\n## 2.2 Contrastive Learning for Code\n\nSentence-BERT \\cite{reimers2019sentencebert} established contrastive fine-tuning of pretrained encoders for dense text retrieval, a paradigm that has since become dominant for code representation learning. ContraCode \\cite{jain2021contracode} generates functionally equivalent program variants through compiler transformations, training models to be invariant to syntactic variation. CodeRetriever \\cite{li2022coderetriever} combines unimodal code-code and bimodal code-text contrastive objectives, achieving strong results across eleven code search benchmarks. SynCoBERT \\cite{wang2021syncobert} introduces syntax-guided multi-modal contrastive pretraining that aligns code, natural language, and AST modalities through identifier prediction and edge prediction objectives. ContraBERT \\cite{liu2023contrabert} takes a complementary robustness-oriented approach, designing adversarial augmentation operators---including identifier renaming, dead code insertion, and operand swapping---to improve model robustness while maintaining retrieval performance. Ding et al.\\ \\cite{ding2022programcontrasts} use structure-guided code transformations to synthesize contrastive pairs, demonstrating that program-structure-aware augmentation improves code clone detection and vulnerability identification. GraphCodeBERT \\cite{guo2021graphcodebert} incorporates data-flow edges into pretraining, demonstrating that structural information improves code understanding tasks. These methods enrich the positive pair construction space or the pretraining signal. While GraphCodeBERT uses structural edges as a pretraining objective, StructFuse addresses a complementary dimension: we systematically study how negative selection strategy---including structure-aware alternatives---affects contrastive code retrieval across encoders with distinct representation geometries.\n\n## 2.3 Hard Negative Mining\n\nThe quality of negative examples critically affects contrastive learning \\cite{chen2020simclr}. In dense text retrieval, DPR \\cite{karpukhin2020dpr} established the practice of using BM25 top-ranked non-relevant passages as hard negatives. ANCE \\cite{xiong2021ance} dynamically mines negatives from an approximate nearest neighbor index updated during training, while RocketQA \\cite{qu2021rocketqa} introduces cross-batch denoised negatives with knowledge distillation. STAR \\cite{zhan2021star} further refines this paradigm by using the retriever's own top-ranked passages as training negatives. Curriculum-based approaches---CL-DRD \\cite{zeng2022cldrd} and CAPSTONE \\cite{he2023capstone}---schedule negative difficulty progressively during training.\n\nIn the code domain, CoCoHaNeRe \\cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, evaluating both BM25-selected and embedding-based negatives and reporting limitations of each non-differentiable strategy. However, their claim that non-differentiable embedding negatives are ineffective has not been evaluated under controlled conditions in structural code retrieval settings, where repository-level file localization involves richer structural cues than the NL$\\to$code search setting studied by CoCoHaNeRe. StructFuse addresses this gap with a systematic comparison of three mining strategies---random, embedding-distance, and dataflow-aware---across decoder-only encoders with distinct representation geometries. Our results show that static embedding-distance mining provides consistent retrieval gains at negligible cost, establishing it as a strong baseline that requires no gradient computation or dynamic index updates. We further introduce data-flow structure as an orthogonal signal for negative selection, grounding hardness in inter-procedural program semantics rather than embedding proximity alone.\n\n## 2.4 Code Structure in Machine Learning\n\nProgram dependence graphs \\cite{ferrante1987pdg} and code property graphs \\cite{yamaguchi2014cpg} have long served program analysis; tools like CodeQL \\cite{avgustinov2016ql} make inter-procedural analysis accessible at scale. In machine learning, code2vec \\cite{alon2019code2vec} pioneered learning from AST paths, while ProGraML \\cite{cummins2021programl} demonstrated that whole-program graph representations capturing control-flow, data-flow, and call relations are learnable and effective for compiler optimization tasks. CrossCodeEval \\cite{ding2023crosscodeeval} empirically validates that cross-file context is critical for code completion, with retrieval-augmented approaches yielding clear but still far-from-ceiling improvements. RepoFusion \\cite{shrivastava2023repofusion} further demonstrates that training code models to incorporate cross-file repository context via Fusion-in-Decoder significantly improves completion quality, even outperforming much larger models that lack repository awareness.\n\nRecent inference-time graph methods bring structural reasoning to LLM-based software engineering. CodexGraph \\cite{liu2025codexgraph} and RepoGraph \\cite{ouyang2025repograph} build navigable code graph databases for LLM agents; LocAgent \\cite{chen2025locagent} and RANGER \\cite{shah2025ranger} employ multi-hop graph reasoning and MCTS-based traversal for fault localization and retrieval, respectively. GRACE \\cite{wang2025grace} constructs multi-level code graphs spanning repository, module, and function granularity---integrating AST, control-flow, and data-flow edges---for hierarchical retrieval-augmented code completion. GraphCoder \\cite{liu2024graphcoder} and ARISE \\cite{seddik2026arise} incorporate data-flow edges---control/data dependence and definition-use chains, respectively---but their data-flow analysis remains intra-procedural in scope. Critically, these methods primarily leverage structural graphs at inference time, incurring per-query latency proportional to graph complexity. StructFuse takes a fundamentally different approach: we leverage inter-procedural data-flow graphs at \\emph{training time} to construct an additional strategy dimension for systematic comparison, enabling analysis of how structural signals interact with encoder representation geometry---all with zero inference overhead. The two paradigms are complementary---a StructFuse-trained encoder can serve as an efficient first-stage retriever for inference-time graph systems that perform targeted reranking.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 12,
+        "oldLines": 7,
+        "newStart": 12,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " The quality of negative examples critically affects contrastive learning \\cite{chen2020simclr}. In dense text retrieval, DPR \\cite{karpukhin2020dpr} established the practice of using BM25 top-ranked non-relevant passages as hard negatives. ANCE \\cite{xiong2021ance} dynamically mines negatives from an approximate nearest neighbor index updated during training, while RocketQA \\cite{qu2021rocketqa} introduces cross-batch denoised negatives with knowledge distillation. STAR \\cite{zhan2021star} further refines this paradigm by using the retriever's own top-ranked passages as training negatives. Curriculum-based approaches---CL-DRD \\cite{zeng2022cldrd} and CAPSTONE \\cite{he2023capstone}---schedule negative difficulty progressively during training.",
+          " ",
+          "-In the code domain, CoCoHaNeRe \\cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, evaluating both BM25-selected and embedding-based negatives and reporting limitations of each non-differentiable strategy. However, their claim that non-differentiable embedding negatives are ineffective has not been evaluated under controlled conditions in structural code retrieval settings, where repository-level file localization involves richer structural cues than the NL$\\to$code search setting studied by CoCoHaNeRe. StructFuse addresses this gap with a systematic comparison of three mining strategies---random, embedding-distance, and dataflow-aware---across decoder-only encoders with distinct representation geometries. Our results show that static embedding-distance mining provides consistent retrieval gains at negligible cost, establishing it as a strong baseline that requires no gradient computation or dynamic index updates. We further introduce data-flow structure as an orthogonal signal for negative selection, grounding hardness in inter-procedural program semantics rather than embedding proximity alone.",
+          "+In the code domain, CoCoHaNeRe \\cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, evaluating both BM25-selected and embedding-based negatives and reporting limitations of each non-differentiable strategy. However, their claim that non-differentiable embedding negatives are ineffective has not been evaluated under controlled conditions in structural code retrieval settings, where repository-level file localization involves richer structural cues than the NL$\\to$code search setting studied by CoCoHaNeRe. StructFuse addresses this gap with a systematic comparison of three mining strategies---random, embedding-distance, and dataflow-aware---across decoder-only encoders with distinct representation geometries. Our results show that static embedding-distance mining provides reliable improvement at zero additional cost, establishing it as a strong baseline that requires no gradient computation or dynamic index updates. We further introduce data-flow structure as an orthogonal signal for negative selection, grounding hardness in inter-procedural program semantics rather than embedding proximity alone.",
+          " ",
+          " ## 2.4 Code Structure in Machine Learning",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01BCuxmih7kEPDjxsLuLYezN`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md",
+  "old_string": "data-flow structure as an orthogonal signal",
+  "new_string": "data-flow structure as a complementary signal"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "871a5265-05e0-44a2-82c5-b644f49b0da7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JLYxgbVjsqSHmvHkK4vkAL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 665,
+      "cache_read_input_tokens": 40192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 665
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-15T10:41:01.038Z_
+
+<details><summary>↩ Tool result · `toolu_01BCuxmih7kEPDjxsLuLYezN`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "27763ba5-0b94-43c0-9541-4f4d2f589aa8",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md",
+    "oldString": "data-flow structure as an orthogonal signal",
+    "newString": "data-flow structure as a complementary signal",
+    "originalFile": "# 2. Related Work\n\n## 2.1 Dense Retrieval for Code\n\nCode retrieval has evolved from sparse lexical methods such as BM25 \\cite{robertson2009bm25} to dense neural approaches. Early pretrained code models---CodeBERT \\cite{feng2020codebert}, UniXcoder \\cite{guo2022unixcoder}, and InferCode \\cite{bui2021infercode}---learn general-purpose code representations through masked language modeling and related pretraining objectives, enabling semantic matching beyond surface-level token overlap. More recent large-scale code models, including StarCoder2 \\cite{lozhkov2024starcoder2} and Qwen2.5-Coder \\cite{hui2024qwen25coder}, provide powerful encoder backbones trained on trillions of code tokens. In the retrieval domain, CodeSage \\cite{zhang2024codesage} and SCodeR \\cite{li2022scoder} introduce contrastive fine-tuning strategies that adapt pretrained representations for code search. The growing importance of repository-level retrieval---driven by benchmarks like SWE-bench \\cite{jimenez2024swebench}---has motivated specialized systems: SweRank \\cite{reddy2025swerank} formulates issue localization as code ranking, while SWE-Fixer \\cite{xie2025swefixer} combines BM25 with neural reranking in a coarse-to-fine pipeline. StructFuse builds on this foundation by systematically comparing negative mining strategies---random, embedding-distance, and structure-aware---for contrastive code retrieval, demonstrating that the choice of mining strategy meaningfully affects retrieval quality.\n\n## 2.2 Contrastive Learning for Code\n\nSentence-BERT \\cite{reimers2019sentencebert} established contrastive fine-tuning of pretrained encoders for dense text retrieval, a paradigm that has since become dominant for code representation learning. ContraCode \\cite{jain2021contracode} generates functionally equivalent program variants through compiler transformations, training models to be invariant to syntactic variation. CodeRetriever \\cite{li2022coderetriever} combines unimodal code-code and bimodal code-text contrastive objectives, achieving strong results across eleven code search benchmarks. SynCoBERT \\cite{wang2021syncobert} introduces syntax-guided multi-modal contrastive pretraining that aligns code, natural language, and AST modalities through identifier prediction and edge prediction objectives. ContraBERT \\cite{liu2023contrabert} takes a complementary robustness-oriented approach, designing adversarial augmentation operators---including identifier renaming, dead code insertion, and operand swapping---to improve model robustness while maintaining retrieval performance. Ding et al.\\ \\cite{ding2022programcontrasts} use structure-guided code transformations to synthesize contrastive pairs, demonstrating that program-structure-aware augmentation improves code clone detection and vulnerability identification. GraphCodeBERT \\cite{guo2021graphcodebert} incorporates data-flow edges into pretraining, demonstrating that structural information improves code understanding tasks. These methods enrich the positive pair construction space or the pretraining signal. While GraphCodeBERT uses structural edges as a pretraining objective, StructFuse addresses a complementary dimension: we systematically study how negative selection strategy---including structure-aware alternatives---affects contrastive code retrieval across encoders with distinct representation geometries.\n\n## 2.3 Hard Negative Mining\n\nThe quality of negative examples critically affects contrastive learning \\cite{chen2020simclr}. In dense text retrieval, DPR \\cite{karpukhin2020dpr} established the practice of using BM25 top-ranked non-relevant passages as hard negatives. ANCE \\cite{xiong2021ance} dynamically mines negatives from an approximate nearest neighbor index updated during training, while RocketQA \\cite{qu2021rocketqa} introduces cross-batch denoised negatives with knowledge distillation. STAR \\cite{zhan2021star} further refines this paradigm by using the retriever's own top-ranked passages as training negatives. Curriculum-based approaches---CL-DRD \\cite{zeng2022cldrd} and CAPSTONE \\cite{he2023capstone}---schedule negative difficulty progressively during training.\n\nIn the code domain, CoCoHaNeRe \\cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, evaluating both BM25-selected and embedding-based negatives and reporting limitations of each non-differentiable strategy. However, their claim that non-differentiable embedding negatives are ineffective has not been evaluated under controlled conditions in structural code retrieval settings, where repository-level file localization involves richer structural cues than the NL$\\to$code search setting studied by CoCoHaNeRe. StructFuse addresses this gap with a systematic comparison of three mining strategies---random, embedding-distance, and dataflow-aware---across decoder-only encoders with distinct representation geometries. Our results show that static embedding-distance mining provides reliable improvement at zero additional cost, establishing it as a strong baseline that requires no gradient computation or dynamic index updates. We further introduce data-flow structure as an orthogonal signal for negative selection, grounding hardness in inter-procedural program semantics rather than embedding proximity alone.\n\n## 2.4 Code Structure in Machine Learning\n\nProgram dependence graphs \\cite{ferrante1987pdg} and code property graphs \\cite{yamaguchi2014cpg} have long served program analysis; tools like CodeQL \\cite{avgustinov2016ql} make inter-procedural analysis accessible at scale. In machine learning, code2vec \\cite{alon2019code2vec} pioneered learning from AST paths, while ProGraML \\cite{cummins2021programl} demonstrated that whole-program graph representations capturing control-flow, data-flow, and call relations are learnable and effective for compiler optimization tasks. CrossCodeEval \\cite{ding2023crosscodeeval} empirically validates that cross-file context is critical for code completion, with retrieval-augmented approaches yielding clear but still far-from-ceiling improvements. RepoFusion \\cite{shrivastava2023repofusion} further demonstrates that training code models to incorporate cross-file repository context via Fusion-in-Decoder significantly improves completion quality, even outperforming much larger models that lack repository awareness.\n\nRecent inference-time graph methods bring structural reasoning to LLM-based software engineering. CodexGraph \\cite{liu2025codexgraph} and RepoGraph \\cite{ouyang2025repograph} build navigable code graph databases for LLM agents; LocAgent \\cite{chen2025locagent} and RANGER \\cite{shah2025ranger} employ multi-hop graph reasoning and MCTS-based traversal for fault localization and retrieval, respectively. GRACE \\cite{wang2025grace} constructs multi-level code graphs spanning repository, module, and function granularity---integrating AST, control-flow, and data-flow edges---for hierarchical retrieval-augmented code completion. GraphCoder \\cite{liu2024graphcoder} and ARISE \\cite{seddik2026arise} incorporate data-flow edges---control/data dependence and definition-use chains, respectively---but their data-flow analysis remains intra-procedural in scope. Critically, these methods primarily leverage structural graphs at inference time, incurring per-query latency proportional to graph complexity. StructFuse takes a fundamentally different approach: we leverage inter-procedural data-flow graphs at \\emph{training time} to construct an additional strategy dimension for systematic comparison, enabling analysis of how structural signals interact with encoder representation geometry---all with zero inference overhead. The two paradigms are complementary---a StructFuse-trained encoder can serve as an efficient first-stage retriever for inference-time graph systems that perform targeted reranking.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 12,
+        "oldLines": 7,
+        "newStart": 12,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " The quality of negative examples critically affects contrastive learning \\cite{chen2020simclr}. In dense text retrieval, DPR \\cite{karpukhin2020dpr} established the practice of using BM25 top-ranked non-relevant passages as hard negatives. ANCE \\cite{xiong2021ance} dynamically mines negatives from an approximate nearest neighbor index updated during training, while RocketQA \\cite{qu2021rocketqa} introduces cross-batch denoised negatives with knowledge distillation. STAR \\cite{zhan2021star} further refines this paradigm by using the retriever's own top-ranked passages as training negatives. Curriculum-based approaches---CL-DRD \\cite{zeng2022cldrd} and CAPSTONE \\cite{he2023capstone}---schedule negative difficulty progressively during training.",
+          " ",
+          "-In the code domain, CoCoHaNeRe \\cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, evaluating both BM25-selected and embedding-based negatives and reporting limitations of each non-differentiable strategy. However, their claim that non-differentiable embedding negatives are ineffective has not been evaluated under controlled conditions in structural code retrieval settings, where repository-level file localization involves richer structural cues than the NL$\\to$code search setting studied by CoCoHaNeRe. StructFuse addresses this gap with a systematic comparison of three mining strategies---random, embedding-distance, and dataflow-aware---across decoder-only encoders with distinct representation geometries. Our results show that static embedding-distance mining provides reliable improvement at zero additional cost, establishing it as a strong baseline that requires no gradient computation or dynamic index updates. We further introduce data-flow structure as an orthogonal signal for negative selection, grounding hardness in inter-procedural program semantics rather than embedding proximity alone.",
+          "+In the code domain, CoCoHaNeRe \\cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, evaluating both BM25-selected and embedding-based negatives and reporting limitations of each non-differentiable strategy. However, their claim that non-differentiable embedding negatives are ineffective has not been evaluated under controlled conditions in structural code retrieval settings, where repository-level file localization involves richer structural cues than the NL$\\to$code search setting studied by CoCoHaNeRe. StructFuse addresses this gap with a systematic comparison of three mining strategies---random, embedding-distance, and dataflow-aware---across decoder-only encoders with distinct representation geometries. Our results show that static embedding-distance mining provides reliable improvement at zero additional cost, establishing it as a strong baseline that requires no gradient computation or dynamic index updates. We further introduce data-flow structure as a complementary signal for negative selection, grounding hardness in inter-procedural program semantics rather than embedding proximity alone.",
+          " ",
+          " ## 2.4 Code Structure in Machine Learning",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 133_
+
+全部 7 项修正完成。验证最终文件状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "9aa2e884-45ce-46a7-9f30-4d64ba58c0cc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TVCv4gRHwW8EtDg3sp5qYG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 230,
+      "cache_read_input_tokens": 40857,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 230
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 134_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01GjM53zrRJmqT75QCJShSo9`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "d96ac22a-9d66-4746-b03e-700c21b010a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TVCv4gRHwW8EtDg3sp5qYG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 230,
+      "cache_read_input_tokens": 40857,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 230
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 135 · 2026-05-15T10:41:04.844Z_
+
+<details><summary>↩ Tool result · `toolu_01GjM53zrRJmqT75QCJShSo9`</summary>
+
+```text
+1	# 2. Related Work
+2	
+3	## 2.1 Dense Retrieval for Code
+4	
+5	Code retrieval has evolved from sparse lexical methods such as BM25 \cite{robertson2009bm25} to dense neural approaches. Early pretrained code models---CodeBERT \cite{feng2020codebert}, UniXcoder \cite{guo2022unixcoder}, and InferCode \cite{bui2021infercode}---learn general-purpose code representations through masked language modeling and related pretraining objectives, enabling semantic matching beyond surface-level token overlap. More recent large-scale code models, including StarCoder2 \cite{lozhkov2024starcoder2} and Qwen2.5-Coder \cite{hui2024qwen25coder}, provide powerful encoder backbones trained on trillions of code tokens. In the retrieval domain, CodeSage \cite{zhang2024codesage} and SCodeR \cite{li2022scoder} introduce contrastive fine-tuning strategies that adapt pretrained representations for code search. The growing importance of repository-level retrieval---driven by benchmarks like SWE-bench \cite{jimenez2024swebench}---has motivated specialized systems: SweRank \cite{reddy2025swerank} formulates issue localization as code ranking, while SWE-Fixer \cite{xie2025swefixer} combines BM25 with neural reranking in a coarse-to-fine pipeline. StructFuse builds on this foundation by systematically comparing negative mining strategies---random, embedding-distance, and structure-aware---for contrastive code retrieval, demonstrating that the choice of mining strategy meaningfully affects retrieval quality.
+6	
+7	## 2.2 Contrastive Learning for Code
+8	
+9	Sentence-BERT \cite{reimers2019sentencebert} established contrastive fine-tuning of pretrained encoders for dense text retrieval, a paradigm that has since become dominant for code representation learning. ContraCode \cite{jain2021contracode} generates functionally equivalent program variants through compiler transformations, training models to be invariant to syntactic variation. CodeRetriever \cite{li2022coderetriever} combines unimodal code-code and bimodal code-text contrastive objectives, achieving strong results across eleven code search benchmarks. SynCoBERT \cite{wang2021syncobert} introduces syntax-guided multi-modal contrastive pretraining that aligns code, natural language, and AST modalities through identifier prediction and edge prediction objectives. ContraBERT \cite{liu2023contrabert} takes a complementary robustness-oriented approach, designing adversarial augmentation operators---including identifier renaming, dead code insertion, and operand swapping---to improve model robustness while maintaining retrieval performance. Ding et al.\ \cite{ding2022programcontrasts} use structure-guided code transformations to synthesize contrastive pairs, demonstrating that program-structure-aware augmentation improves code clone detection and vulnerability identification. GraphCodeBERT \cite{guo2021graphcodebert} incorporates data-flow edges into pretraining, demonstrating that structural information improves code understanding tasks. These methods enrich the positive pair construction space or the pretraining signal. While GraphCodeBERT uses structural edges as a pretraining objective, StructFuse addresses a complementary dimension: we systematically study how negative selection strategy---including structure-aware alternatives---affects contrastive code retrieval across encoders with distinct representation geometries.
+10	
+11	## 2.3 Hard Negative Mining
+12	
+13	The quality of negative examples critically affects contrastive learning \cite{chen2020simclr}. In dense text retrieval, DPR \cite{karpukhin2020dpr} established the practice of using BM25 top-ranked non-relevant passages as hard negatives. ANCE \cite{xiong2021ance} dynamically mines negatives from an approximate nearest neighbor index updated during training, while RocketQA \cite{qu2021rocketqa} introduces cross-batch denoised negatives with knowledge distillation. STAR \cite{zhan2021star} further refines this paradigm by using the retriever's own top-ranked passages as training negatives. Curriculum-based approaches---CL-DRD \cite{zeng2022cldrd} and CAPSTONE \cite{he2023capstone}---schedule negative difficulty progressively during training.
+14	
+15	In the code domain, CoCoHaNeRe \cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, evaluating both BM25-selected and embedding-based negatives and reporting limitations of each non-differentiable strategy. However, their claim that non-differentiable embedding negatives are ineffective has not been evaluated under controlled conditions in structural code retrieval settings, where repository-level file localization involves richer structural cues than the NL$\to$code search setting studied by CoCoHaNeRe. StructFuse addresses this gap with a systematic comparison of three mining strategies---random, embedding-distance, and dataflow-aware---across decoder-only encoders with distinct representation geometries. Our results show that static embedding-distance mining provides reliable improvement at zero additional cost, establishing it as a strong baseline that requires no gradient computation or dynamic index updates. We further introduce data-flow structure as a complementary signal for negative selection, grounding hardness in inter-procedural program semantics rather than embedding proximity alone.
+16	
+17	## 2.4 Code Structure in Machine Learning
+18	
+19	Program dependence graphs \cite{ferrante1987pdg} and code property graphs \cite{yamaguchi2014cpg} have long served program analysis; tools like CodeQL \cite{avgustinov2016ql} make inter-procedural analysis accessible at scale. In machine learning, code2vec \cite{alon2019code2vec} pioneered learning from AST paths, while ProGraML \cite{cummins2021programl} demonstrated that whole-program graph representations capturing control-flow, data-flow, and call relations are learnable and effective for compiler optimization tasks. CrossCodeEval \cite{ding2023crosscodeeval} empirically validates that cross-file context is critical for code completion, with retrieval-augmented approaches yielding clear but still far-from-ceiling improvements. RepoFusion \cite{shrivastava2023repofusion} further demonstrates that training code models to incorporate cross-file repository context via Fusion-in-Decoder significantly improves completion quality, even outperforming much larger models that lack repository awareness.
+20	
+21	Recent inference-time graph methods bring structural reasoning to LLM-based software engineering. CodexGraph \cite{liu2025codexgraph} and RepoGraph \cite{ouyang2025repograph} build navigable code graph databases for LLM agents; LocAgent \cite{chen2025locagent} and RANGER \cite{shah2025ranger} employ multi-hop graph reasoning and MCTS-based traversal for fault localization and retrieval, respectively. GRACE \cite{wang2025grace} constructs multi-level code graphs spanning repository, module, and function granularity---integrating AST, control-flow, and data-flow edges---for hierarchical retrieval-augmented code completion. GraphCoder \cite{liu2024graphcoder} and ARISE \cite{seddik2026arise} incorporate data-flow edges---control/data dependence and definition-use chains, respectively---but their data-flow analysis remains intra-procedural in scope. Critically, these methods primarily leverage structural graphs at inference time, incurring per-query latency proportional to graph complexity. StructFuse takes a fundamentally different approach: we leverage inter-procedural data-flow graphs at \emph{training time} to construct an additional strategy dimension for systematic comparison, enabling analysis of how structural signals interact with encoder representation geometry---all with zero inference overhead. The two paradigms are complementary---a StructFuse-trained encoder can serve as an efficient first-stage retriever for inference-time graph systems that perform targeted reranking.
+22	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "81f8a052-e81b-49f5-bc4f-a79d6cb2efc2",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/paper_drafts/related_work_v1.md",
+      "content": "# 2. Related Work\n\n## 2.1 Dense Retrieval for Code\n\nCode retrieval has evolved from sparse lexical methods such as BM25 \\cite{robertson2009bm25} to dense neural approaches. Early pretrained code models---CodeBERT \\cite{feng2020codebert}, UniXcoder \\cite{guo2022unixcoder}, and InferCode \\cite{bui2021infercode}---learn general-purpose code representations through masked language modeling and related pretraining objectives, enabling semantic matching beyond surface-level token overlap. More recent large-scale code models, including StarCoder2 \\cite{lozhkov2024starcoder2} and Qwen2.5-Coder \\cite{hui2024qwen25coder}, provide powerful encoder backbones trained on trillions of code tokens. In the retrieval domain, CodeSage \\cite{zhang2024codesage} and SCodeR \\cite{li2022scoder} introduce contrastive fine-tuning strategies that adapt pretrained representations for code search. The growing importance of repository-level retrieval---driven by benchmarks like SWE-bench \\cite{jimenez2024swebench}---has motivated specialized systems: SweRank \\cite{reddy2025swerank} formulates issue localization as code ranking, while SWE-Fixer \\cite{xie2025swefixer} combines BM25 with neural reranking in a coarse-to-fine pipeline. StructFuse builds on this foundation by systematically comparing negative mining strategies---random, embedding-distance, and structure-aware---for contrastive code retrieval, demonstrating that the choice of mining strategy meaningfully affects retrieval quality.\n\n## 2.2 Contrastive Learning for Code\n\nSentence-BERT \\cite{reimers2019sentencebert} established contrastive fine-tuning of pretrained encoders for dense text retrieval, a paradigm that has since become dominant for code representation learning. ContraCode \\cite{jain2021contracode} generates functionally equivalent program variants through compiler transformations, training models to be invariant to syntactic variation. CodeRetriever \\cite{li2022coderetriever} combines unimodal code-code and bimodal code-text contrastive objectives, achieving strong results across eleven code search benchmarks. SynCoBERT \\cite{wang2021syncobert} introduces syntax-guided multi-modal contrastive pretraining that aligns code, natural language, and AST modalities through identifier prediction and edge prediction objectives. ContraBERT \\cite{liu2023contrabert} takes a complementary robustness-oriented approach, designing adversarial augmentation operators---including identifier renaming, dead code insertion, and operand swapping---to improve model robustness while maintaining retrieval performance. Ding et al.\\ \\cite{ding2022programcontrasts} use structure-guided code transformations to synthesize contrastive pairs, demonstrating that program-structure-aware augmentation improves code clone detection and vulnerability identification. GraphCodeBERT \\cite{guo2021graphcodebert} incorporates data-flow edges into pretraining, demonstrating that structural information improves code understanding tasks. These methods enrich the positive pair construction space or the pretraining signal. While GraphCodeBERT uses structural edges as a pretraining objective, StructFuse addresses a complementary dimension: we systematically study how negative selection strategy---including structure-aware alternatives---affects contrastive code retrieval across encoders with distinct representation geometries.\n\n## 2.3 Hard Negative Mining\n\nThe quality of negative examples critically affects contrastive learning \\cite{chen2020simclr}. In dense text retrieval, DPR \\cite{karpukhin2020dpr} established the practice of using BM25 top-ranked non-relevant passages as hard negatives. ANCE \\cite{xiong2021ance} dynamically mines negatives from an approximate nearest neighbor index updated during training, while RocketQA \\cite{qu2021rocketqa} introduces cross-batch denoised negatives with knowledge distillation. STAR \\cite{zhan2021star} further refines this paradigm by using the retriever's own top-ranked passages as training negatives. Curriculum-based approaches---CL-DRD \\cite{zeng2022cldrd} and CAPSTONE \\cite{he2023capstone}---schedule negative difficulty progressively during training.\n\nIn the code domain, CoCoHaNeRe \\cite{fan2025cocohanere} proposes gradient-based hard negative mining for code search, evaluating both BM25-selected and embedding-based negatives and reporting limitations of each non-differentiable strategy. However, their claim that non-differentiable embedding negatives are ineffective has not been evaluated under controlled conditions in structural code retrieval settings, where repository-level file localization involves richer structural cues than the NL$\\to$code search setting studied by CoCoHaNeRe. StructFuse addresses this gap with a systematic comparison of three mining strategies---random, embedding-distance, and dataflow-aware---across decoder-only encoders with distinct representation geometries. Our results show that static embedding-distance mining provides reliable improvement at zero additional cost, establishing it as a strong baseline that requires no gradient computation or dynamic index updates. We further introduce data-flow structure as a complementary signal for negative selection, grounding hardness in inter-procedural program semantics rather than embedding proximity alone.\n\n## 2.4 Code Structure in Machine Learning\n\nProgram dependence graphs \\cite{ferrante1987pdg} and code property graphs \\cite{yamaguchi2014cpg} have long served program analysis; tools like CodeQL \\cite{avgustinov2016ql} make inter-procedural analysis accessible at scale. In machine learning, code2vec \\cite{alon2019code2vec} pioneered learning from AST paths, while ProGraML \\cite{cummins2021programl} demonstrated that whole-program graph representations capturing control-flow, data-flow, and call relations are learnable and effective for compiler optimization tasks. CrossCodeEval \\cite{ding2023crosscodeeval} empirically validates that cross-file context is critical for code completion, with retrieval-augmented approaches yielding clear but still far-from-ceiling improvements. RepoFusion \\cite{shrivastava2023repofusion} further demonstrates that training code models to incorporate cross-file repository context via Fusion-in-Decoder significantly improves completion quality, even outperforming much larger models that lack repository awareness.\n\nRecent inference-time graph methods bring structural reasoning to LLM-based software engineering. CodexGraph \\cite{liu2025codexgraph} and RepoGraph \\cite{ouyang2025repograph} build navigable code graph databases for LLM agents; LocAgent \\cite{chen2025locagent} and RANGER \\cite{shah2025ranger} employ multi-hop graph reasoning and MCTS-based traversal for fault localization and retrieval, respectively. GRACE \\cite{wang2025grace} constructs multi-level code graphs spanning repository, module, and function granularity---integrating AST, control-flow, and data-flow edges---for hierarchical retrieval-augmented code completion. GraphCoder \\cite{liu2024graphcoder} and ARISE \\cite{seddik2026arise} incorporate data-flow edges---control/data dependence and definition-use chains, respectively---but their data-flow analysis remains intra-procedural in scope. Critically, these methods primarily leverage structural graphs at inference time, incurring per-query latency proportional to graph complexity. StructFuse takes a fundamentally different approach: we leverage inter-procedural data-flow graphs at \\emph{training time} to construct an additional strategy dimension for systematic comparison, enabling analysis of how structural signals interact with encoder representation geometry---all with zero inference overhead. The two paradigms are complementary---a StructFuse-trained encoder can serve as an efficient first-stage retriever for inference-time graph systems that perform targeted reranking.\n",
+      "numLines": 22,
+      "startLine": 1,
+      "totalLines": 22
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 136_
+
+全部修正已完成。摘要如下：
+
+---
+
+### Critical #1：四节末尾 StructFuse 定位重写
+- **§2.1** → "systematically comparing negative mining strategies...demonstrating that the choice of mining strategy meaningfully affects retrieval quality"
+- **§2.2** → "systematically study how negative selection strategy...affects contrastive code retrieval across encoders with distinct representation geometries"
+- **§2.3** → 保留原有三层递进结构（已符合 D049），仅做词级修正（见 Warning #2/#3）
+- **§2.4** → "construct an additional strategy dimension for systematic comparison, enabling analysis of how structural signals interact with encoder representation geometry"（同时消除了 Warning #4 的 "internalizes cross-function data-flow semantics"）
+
+### Warning #2："consistent" → "reliable"
+- §2.3: "provides **reliable** improvement at **zero additional cost**"（原 "consistent retrieval gains at negligible cost"）
+
+### Warning #3："orthogonal" → "complementary"
+- §2.3: "data-flow structure as a **complementary** signal"（原 "orthogonal"）
+
+### Warning #4："internalizes cross-function data-flow semantics" 已删除
+- §2.4 重写时自然消除，全文无残留
+
+### Info #5：8 篇引用验证
+8 篇全部通过 WebSearch 验证，bib 条目均正确，无需修正：
+SynCoBERT (arXiv 2021) ✓ | ContraBERT (ICSE 2023) ✓ | RocketQA (NAACL 2021) ✓ | STAR (SIGIR 2021) ✓ | CAPSTONE (EMNLP 2023) ✓ | ProGraML (ICML 2021) ✓ | CrossCodeEval (NeurIPS 2023) ✓ | GRACE (arXiv 2025) ✓
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "uuid": "076c8e81-9ccb-47de-abb0-d14c1794ff0f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NiSpnprdoFVzAcmcrUSUrp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2036,
+      "cache_read_input_tokens": 41087,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2036
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 137_
+
+全部修正已完成。摘要如下：
+
+---
+
+### Critical #1：四节末尾 StructFuse 定位重写
+- **§2.1** → "systematically comparing negative mining strategies...demonstrating that the choice of mining strategy meaningfully affects retrieval quality"
+- **§2.2** → "systematically study how negative selection strategy...affects contrastive code retrieval across encoders with distinct representation geometries"
+- **§2.3** → 保留原有三层递进结构（已符合 D049），仅做词级修正（见 Warning #2/#3）
+- **§2.4** → "construct an additional strategy dimension for systematic comparison, enabling analysis of how structural signals interact with encoder representation geometry"（同时消除了 Warning #4 的 "internalizes cross-function data-flow semantics"）
+
+### Warning #2："consistent" → "reliable"
+- §2.3: "provides **reliable** improvement at **zero additional cost**"（原 "consistent retrieval gains at negligible cost"）
+
+### Warning #3："orthogonal" → "complementary"
+- §2.3: "data-flow structure as a **complementary** signal"（原 "orthogonal"）
+
+### Warning #4："internalizes cross-function data-flow semantics" 已删除
+- §2.4 重写时自然消除，全文无残留
+
+### Info #5：8 篇引用验证
+8 篇全部通过 WebSearch 验证，bib 条目均正确，无需修正：
+SynCoBERT (arXiv 2021) ✓ | ContraBERT (ICSE 2023) ✓ | RocketQA (NAACL 2021) ✓ | STAR (SIGIR 2021) ✓ | CAPSTONE (EMNLP 2023) ✓ | ProGraML (ICML 2021) ✓ | CrossCodeEval (NeurIPS 2023) ✓ | GRACE (arXiv 2025) ✓
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 436868,
+  "duration_api_ms": 376115,
+  "num_turns": 12,
+  "stop_reason": "end_turn",
+  "session_id": "cf76f4b1-e8b6-4b8e-aeed-65f835197050",
+  "total_cost_usd": 1.9833240000000003,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 31282,
+    "cache_read_input_tokens": 362600,
+    "output_tokens": 4129,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 31282,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 521,
+        "cache_read_input_tokens": 41087,
+        "cache_creation_input_tokens": 2036,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2036
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 367275,
+      "outputTokens": 8917,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 22,
+      "costUSD": 0.63186,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 55,
+      "outputTokens": 9551,
+      "cacheReadInputTokens": 1340428,
+      "cacheCreationInputTokens": 70752,
+      "webSearchRequests": 0,
+      "costUSD": 1.351464,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "95a476f2-a35d-4eba-8d7e-bffef2d021b4"
+}
+```
+
+</details>
+
+---

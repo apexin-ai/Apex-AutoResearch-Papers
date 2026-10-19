@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "293e80f829d4afb87d92",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "draw fig2 mining strategies",
+  "task_key": "worker_draw_fig2-mining-strategies_20260514T233945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_draw_fig2-mining-strategies_20260514T233945_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "8ecc5e5d1c1d02147344275c3ce3129e427d80d95378998580ef7f1b883d2830"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出完成：\n\n- **PDF**: `artifacts/paper_figures/fig2_mining_strategies.pdf`\n- **PNG**: `artifacts/paper_figures/fig2_mining_strategies.png`\n- **脚本**: `artifacts/paper_figures/fig2_mining_strategies.py`\n- 已注册 `art_20260514_a5287e`\n\n图表设计要点：\n- 10 个节点（1 query + 9 files），相同布局跨 3 个 panel\n- 结构边 P→a, P→i，reachable = {a, i}\n- **(a) Random**: 选 {f, g, h}（远处散布，easy negatives）\n- **(b) Embedding**: 选 {d, i, a}（最近 3 个，但 i/a 结构连通）\n- **(c) Dataflow**: 选 {d, c, e}（最近且结构断开），i/a 标 ✕ 排除并注释 \"reachable via G\"\n- Panel (b) 添加虚线 embedding 距离圈，panel (c) 加粗 dataflow 边强调结构信息的使用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/draw-fig2-mining-strategies.md"
+}

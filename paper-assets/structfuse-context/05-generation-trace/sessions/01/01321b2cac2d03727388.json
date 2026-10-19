@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01321b2cac2d03727388",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "infra batch extract dryrun",
+  "task_key": "worker_infra_batch_extract_dryrun_20260512T143141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_batch_extract_dryrun_20260512T143141_result.json",
+    "occurrence": 1,
+    "bytes": 1868,
+    "sha256": "0793adfc608c3abed76a4f506b6e065a97de87186fbe23de3fcc6acc627cfa4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-run 总结\n\n### 修复的 bug（2 个）\n\n1. **`--format=csv` 不是 `codeql query run` 的有效参数**（`batch_extract.py` + `extract_dataflow.py`）\n   - 修复：分两步执行 — `codeql query run` 输出 BQRS → `codeql bqrs decode --format=csv` 转 CSV\n\n2. **`--external` 参数接受 CSV 文件路径，不是直接值**\n   - 修复：将 buggyFunctionName/buggyFileName 写入临时 CSV 文件，再用文件路径传参\n\n3. **CSV header 解析**（已修复）\n   - `parse_call_graph_csv`: `bqrs decode` 输出 header 带引号 `\"target_func\"`, 原始检测 `line.startswith(\"target_func\")` 失败\n   - `parse_dataflow_csv`: header 以 `\"col0\"` 开头 + 列映射错位（path-problem 查询前 3 列是 CodeQL 内部列）\n\n### 运行结果\n\n| 指标 | 值 |\n|------|-----|\n| 总 instances | 5 |\n| CodeQL 成功 | 0 (阈值=5) / 1 (阈值=1) |\n| Beniget fallback | 5 / 4 |\n| 失败 | 0 |\n| 平均耗时 | 6.4s/instance（含 CodeQL query ~5s + Beniget ~1s） |\n| 全量预估 | 50869 × 6.4s ÷ workers |\n\n### CodeQL 命中率低的原因\n\n- 4/5 instance 的 `buggy_function` 是 **class 名**（Client, ImplicitGrant 等），但 `call_graph.ql` 用 `Function f` 匹配，不匹配 Python class\n- 1/5 的 `list_to_scope` 是函数，CodeQL 找到 3 entries / 2 files，但 < `min_reachable_files=5` 阈值\n\n### JSONL 输出格式\n\n字段完整：`instance_id, repo, github_repo, base_commit, buggy_file, buggy_function, gold_patch_files, call_graph, dataflow_paths, inter_procedural, extraction_method, extraction_time_s, error`\n\n### 待改进\n\n- `call_graph.ql` 应支持 Python class（`Class` 类型），否则大量 class 级 buggy function 永远无法走 CodeQL 路径\n- dataflow parser 列映射已修复，但仅在服务器端；本地 `extract_dataflow.py` 也需同步修复"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-batch-extract-dryrun.md"
+}

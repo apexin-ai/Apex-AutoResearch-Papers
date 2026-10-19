@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5720c60224310d93b3a",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code eval swebench verify",
+  "task_key": "worker_code_eval-swebench-verify_20260515T061841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-swebench-verify_20260515T061841_result.json",
+    "occurrence": 1,
+    "bytes": 1365,
+    "sha256": "3ad784058b7218a6a9e5fb77726fcf7f14722ea71773308ed94f99789a93a962"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本均就绪，`--help` 正常。总结：\n\n---\n\n### 脚本状态：✓ 就绪\n\n**1. `evaluation/eval_swebench.py`** — 检索质量评估（Retrieval-only）\n\n| 项目 | 内容 |\n|------|------|\n| 输入 | `--checkpoint-path` (M2 best checkpoint 或 `mock`) |\n| 检索 | 加载 StructFuse checkpoint encoder，cosine similarity 排序 |\n| 指标 | Recall@{1,5,10,20}, MRR |\n| 输出 | `per_instance_results.jsonl` + `summary.json` |\n| dry-run | `--checkpoint-path mock --dry-run --num-instances 5`（无 GPU） |\n| repo cache | `--repo-cache-dir /root/autodl-tmp/structfuse/swebench_repos/` |\n\n**2. `scripts/eval_swebench_e2e.py`** — 端到端评估（Retrieval + LLM Agent patch）\n\n| 项目 | 内容 |\n|------|------|\n| 输入 | `--retriever-checkpoint` + `--strategy {random,embedding_distance,dataflow_aware}` |\n| API 调用 | env vars: `STRUCTFUSE_LLM_BACKEND=api`, `STRUCTFUSE_LLM_API_BASE`, `STRUCTFUSE_LLM_API_KEY`, `STRUCTFUSE_LLM_MODEL` |\n| 检索 | StructFuse checkpoint encoder |\n| 指标 | resolve rate + 95% bootstrap CI |\n| 输出 | `results.jsonl` + `summary.json` |\n| repo cache | `--repo-cache-dir` 支持 `org_name` 和 `org__name` 命名 |\n\n**3. 预克隆 repos** — 12/12 就绪：django, flask, matplotlib, pytest, requests, scikit-learn, sphinx, sympy, astropy, pylint, seaborn, xarray"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-swebench-verify.md"
+}

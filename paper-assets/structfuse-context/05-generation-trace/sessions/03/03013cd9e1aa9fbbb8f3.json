@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "03013cd9e1aa9fbbb8f3",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "experiment p2b eval 9runs pool26",
+  "task_key": "worker_experiment_p2b_eval_9runs_pool26_20260512T192122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_p2b_eval_9runs_pool26_20260512T192122.log",
+    "occurrence": 1,
+    "bytes": 792772,
+    "sha256": "accf8a30e815420eae5ea3e988b224d2f669bb3c2d1c93c37161d45b78b0dc03"
+  },
+  "statistics": {
+    "messages": 399,
+    "user_turns": 0,
+    "tool_calls": 145,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 105,
+      "tool_call": 145,
+      "tool_result": 145,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 399,
+      "chunks": [
+        {
+          "path": "03013cd9e1aa9fbbb8f3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "03013cd9e1aa9fbbb8f3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "03013cd9e1aa9fbbb8f3-part-0003.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-p2b-eval-9runs-pool26.md"
+}

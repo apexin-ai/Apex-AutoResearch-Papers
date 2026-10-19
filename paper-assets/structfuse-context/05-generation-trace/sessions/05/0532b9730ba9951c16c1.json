@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0532b9730ba9951c16c1",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops training progress watcher check 0516",
+  "task_key": "worker_ops_training-progress-watcher-check-0516_20260515T164937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_training-progress-watcher-check-0516_20260515T164937_result.json",
+    "occurrence": 1,
+    "bytes": 1954,
+    "sha256": "1da6e3341287033744711b04f1f700a8658e203f5ecf23576a29f290cae141c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总如下：\n\n---\n\n## 状态总结 (2026-05-16 01:00 CST)\n\n### GPU\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0 | RTX PRO 6000 Blackwell | 100% | 50/98 GiB |\n| 1 | RTX PRO 6000 Blackwell | 100% | 55/98 GiB |\n\n### Qwen 链 (cuda:0, PID 337267) — 正在跑 5/7\n\n**当前**: dataflow_aware_s43, step 200\n\n| subrun | best val_loss (step) | best R@1 (step) | early stop |\n|--------|---------------------|-----------------|------------|\n| random_s43 | 0.4476 (@500) | 0.5554 (@1500) | @1500 |\n| random_s44 | 0.4252 (@500) | 0.6009 (@500) | @1500 |\n| embed_dist_s43 | 0.4541 (@500) | 0.5606 (@1500) | @1500 |\n| embed_dist_s44 | 0.4341 (@1000) | 0.5942 (@500) | @2000 |\n\n剩余: dataflow_aware_s44, bm25_s42。**ETA ~May 16 14:00-18:00 CST**\n\n### StarCoder 链 (cuda:1, PID 519791) — 2/9 完成，第 3 个即将开始\n\n**当前**: random_s44 的 python 进程 (PID 913995, 8h23m) 在 early stop@1500 后做 final eval/save，尚未退出。bm25_s42 待启动。\n\n| subrun | best val_loss (step) | best R@1 (step) | early stop |\n|--------|---------------------|-----------------|------------|\n| random_s43 | 0.5239 (@1500) | 0.4912 (@1500) | @2500 |\n| random_s44 | 0.5913 (@500) | 0.4871 (@1500) | @1500 |\n\n剩余 7 个 subrun。**ETA ~May 19-20 CST**\n\n### Watcher 活性\n- **PID 966920** (Qwen s42 supplement): 存活 (1d 1h)\n- **PID 20226** (StarCoder s42 supplement): 存活 (51m)\n\n### 关键观察\n- Qwen 链未完成，watcher 966920 仍在等待。Qwen 预计今天下午完成，届时 watcher 应自动触发 s42 supplement (embed_s42 + dataflow_s42 + bm25_s42)\n- StarCoder random_s44 进程 early stop 后仍在运行（8h+），可能在做较慢的 final eval/model save，**暂不需要干预但值得关注**——如果下次检查该进程仍未退出则需排查\n- Qwen R@1 (~0.55-0.60) 显著优于 StarCoder (~0.49)，符合预期"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-training-progress-watcher-check-0516.md"
+}

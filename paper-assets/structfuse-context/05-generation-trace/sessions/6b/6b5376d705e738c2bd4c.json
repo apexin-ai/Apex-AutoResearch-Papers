@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b5376d705e738c2bd4c",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops m1 disk cleanup",
+  "task_key": "worker_ops_m1-disk-cleanup_20260513T085524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_m1-disk-cleanup_20260513T085524_result.json",
+    "occurrence": 1,
+    "bytes": 842,
+    "sha256": "06cea532d79c3f981e01f713c0363e7ba0c40f2388e2891d2a1721fbb4a668e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理结果\n\n| 指标 | 值 |\n|------|------|\n| 删除 repo 目录数 | 33 个 |\n| 释放空间 | ~571 MB |\n| 当前磁盘 | 160G/169G used, 9.1G avail, 95% |\n| m1_repos/ 剩余 | 20G（17 个目录，全属于 9 个活跃 repo） |\n| 风险 | 无。仅删除了已完成提取且非活跃的 repo clone |\n\n**核心问题**：m1_repos/ 仍占 20G，几乎全是活跃 repo 的 CodeQL DB：\n\n| CodeQL DB | 大小 |\n|-----------|------|\n| cantools | 6.9G |\n| paramiko | 4.4G |\n| pygments | 3.6G |\n| pyasn1 | 1.7G |\n| python-docx | 1.4G |\n| deepdiff | 917M |\n| feedparser | 375M |\n| furl | 68M |\n\n这些 DB 在脚本运行期间无法删除。如果需要更多空间，需要等脚本处理完某个 repo 后再逐个清理其 CodeQL DB，或者查看磁盘其他大目录是否有可清理的空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-m1-disk-cleanup.md"
+}

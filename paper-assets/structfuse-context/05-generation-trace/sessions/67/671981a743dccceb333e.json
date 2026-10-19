@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "671981a743dccceb333e",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops kill repobench eval",
+  "task_key": "worker_ops_kill_repobench_eval_20260516T081309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_repobench_eval_20260516T081309_result.json",
+    "occurrence": 1,
+    "bytes": 673,
+    "sha256": "1b1f6388e164c499c003c2b79bd882086c8ba1493821af99adf0d04012071cba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，汇总如下：\n\n| 项目 | 状态 |\n|------|------|\n| **RepoBench 进程** | 全部已 kill（PID 159855/158952/158947/159860 均 DEAD） |\n| **cuda:1 内存** | 从 ~94 GiB 降至 **69,936 MiB (~68 GiB)**，释放约 **24 GiB** |\n| **D062 eval** | 正常运行中（PID 158647/158653，已运行 ~21 分钟，在 cuda:0 上跑 selection set） |\n| **RepoBench 已完成结果** | **无**（`repobench_*.json` 不存在，说明 repobench eval 在输出结果前被 kill，后续重启需从头跑） |\n\ncuda:1 已释放约 24 GiB，D062 eval 不受影响。RepoBench 没有产出任何 checkpoint，后续重启需要全部重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-repobench-eval.md"
+}

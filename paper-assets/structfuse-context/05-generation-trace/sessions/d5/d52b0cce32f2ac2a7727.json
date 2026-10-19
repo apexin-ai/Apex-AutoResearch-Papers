@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d52b0cce32f2ac2a7727",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ssh rename structfuse investigation",
+  "task_key": "worker_ssh_rename_structfuse_investigation_20260513T222818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rename_structfuse_investigation_20260513T222818_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "99766a0cabae71e23ac2abcfe675056bee2a76c2fbb229775a42065eb43f6c19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。报告写入 `artifacts/rename_safety_report.md`。\n\n核心发现：**重命名已经执行完毕**，当前 `/root/structfuse` 是指向 `/root/structfuse-context` 的符号链接，两个训练进程 cwd 均已指向新目录，训练不受影响。\n\n需注意：\n- 2 个 shell 脚本 + 10 个 Python 文件中仍有旧路径 `/root/structfuse/` 的硬编码引用，目前靠符号链接兜底\n- **符号链接不能现在删除** — 两个脚本的 loop 每轮 run 都会重新解析这些绝对路径\n- 训练结束后应批量 sed 替换这些路径，然后删除符号链接"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-rename-structfuse-investigation.md"
+}

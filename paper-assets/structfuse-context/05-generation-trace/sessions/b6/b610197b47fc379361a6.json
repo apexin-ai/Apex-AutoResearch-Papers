@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b610197b47fc379361a6",
+  "project": "structfuse-context",
+  "kind": "history",
+  "title": "agent / loop_5_1778781850.md",
+  "task_key": "loop_5_1778781850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778781850.md",
+    "occurrence": 1,
+    "bytes": 4766,
+    "sha256": "a4afa53eea48adbe1210f032129dfd1abc80909830216fa51363d8c88cb3a204"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_wall_time\nupdated: '2026-05-14T14:57:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-42106 的 cuda:0 和 cuda:1，**不得使用其他卡**（历史违规 D005、m2_early_pilot_v3）\n- StructFuse 术语：必须说 \"bounded inter-procedural data-flow (2-hop call-graph scope)\"，**禁止** \"taint tracking\"、\"full inter-procedural\"（Reviewer WARNING 已修复，再犯会被 CRITICAL）\n- s42 用 3 epochs（提供 overfitting curve），s43/s44 及后续 runs 用 **2 epochs + --early-stopping-patience 2**（D026/D027）\n- m2_full_qwen registry 状态卡在 ANALYZING（cron 误触发，s42 进程退出），实际仍 RUNNING。状态机不允许回退，**不要试图转 DONE**，9 runs 中仅完成 1 个\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：bjb1-42106，2× RTX PRO 6000 Blackwell 98GB\n- **Python**：`/root/miniconda3/bin/python`，conda base 环境（不是 venv）\n- **代码**：`/root/structfuse-context/`（主）和 `/root/structfuse/`（运行副本，训练从这里跑）\n- **模型**：`/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B`、`bigcode/starcoder2-3b`\n- **训练数据**：`/root/autodl-tmp/structfuse/full_m2_training_data/`（train/val per strategy × seed）\n- **M1 数据**：`/root/autodl-tmp/structfuse/full_m1_data/all.jsonl`（15,897 structural instances）\n- **Checkpoints**：`/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/` 和 `m2_full_starcoder/`\n- **SWE-bench repos**：`/root/autodl-tmp/structfuse/swebench_repos/`（12 repos pre-cloned）\n- **活跃 tmux sessions**：\n  - `m2_qwen_s43`：Qwen random_s43 运行中（cuda:0），PID 需 SSH 确认\n  - `m2_starcoder_s43`：等 StarCoder s42 (PID 76627) 结束后自动启动（cuda:1）\n- **活跃 cron**：m1_reextract_v2（CodeQL 提取，~56% 进度）、m2_full_starcoder\n- **磁盘**：/root/autodl-tmp 90GB 余，/root 21GB 余\n\n### 3. 📊 当前状态\n**刚做完**：kill 旧 bash 循环 + 设置 s43 自动重启（tmux 轮询方式），处理了 s42 完成回调，取消了误触发的诊断 Worker。\n\n**RUNNING 实验**：\n- **m2_full_qwen**（ANALYZING，实际 RUNNING）：random_s42 DONE (R@1=0.5527 @step1000)，random_s43 正在跑（日志因 tee buffering 延迟），剩余 8 runs\n- **m2_full_starcoder**（RUNNING）：random_s42 ~71% (step 3000/4242)，s43 tmux 已准备好自动接力\n- **m1_reextract_v2**（RUNNING）：CodeQL 提取 46/82 groups (56%)，预计 ~04:00 May 15 完成\n\n**等待中**：\n- Qwen s43 eval@500 日志 flush（确认正常训练）\n- StarCoder s42 完成 → tmux 自动启动 s43\n- m1_reextract_v2 完成回调\n\n### 4. 📋 待办（条件触发式）\n- **Qwen s43 eval@500 出现** → 补录 metrics 到 registry，确认 early stopping 生效\n- **StarCoder s42 cron 回调** → 确认 tmux `m2_starcoder_s43` 自动启动 s43，补录 s42 最终 metrics（从 checkpoint training_config.json 恢复，不依赖日志）\n- **m1_reextract_v2 完成** → 按 on-experiment-done skill 处理，更新 structural data rate，汇报 Director\n- **M2 任一 encoder 全部 9 runs 完成** → 统计检验（bootstrap CI, paired t-test），plan_005 分层分析（脚本已就绪 analyze_stratified.py）\n- **M2 best checkpoint 就绪** → 立即启动 plan_003 SWE-bench eval（命令已就绪，repos 已 clone）+ plan_004 RepoBench-R eval（脚本已就绪 eval_repobench.py）\n- **GPU 空闲** → plan_014 temperature ablation（脚本 D025 缩减版，6 runs ~70h）\n\n### 5. 🎯 战略上下文\n- **核心方向**：\"Hard negative mining for code retrieval: what works, what doesn't, and why\"——系统性分析 + 机制解释\n- **D024 framing 重写**：旧 Claim 2 (\"embedding harms\") 已证伪并移除。新叙事：embedding universally helps → dataflow conditionally helps → mechanistic explanation via representation saturation\n- **关键路径**：M2 (~May 18) → plan_014 (~May 19.5) → plan_003 (~May 21) → 统计+初稿 (~May 24) → **ARR deadline May 25**\n- **n=3 统计功效限制**：pilot <2pp 差异在 df=2 下极难显著，Discussion 必须讨论\n- **plan_013 pilot negative**：dataflow ranking 跨编码器不一致（Qwen: dataflow > random; StarCoder: dataflow < random）。full M2 用 3 seeds 量化 interaction effect\n- **易踩的坑**：\n  - m2_full_qwen 状态 ANALYZING ≠ 实验完成，是 cron 误触发\n  - 日志空 ≠ crash，tee pipe block buffering 导致延迟\n  - `/root/structfuse/` 和 `/root/structfuse-context/` 代码可能不同步，以 structfuse-context 为 truth source\n  - 已完成的 CPU 准备工作：eval_swebench.py + eval_repobench.py + analyze_stratified.py + plot_neg_difficulty.py + discussion_draft.md + plan017_literature_comparison.md，不要重做\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778781850.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aecfd7c728b5a5ec0a76",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops m2 continuation submit",
+  "task_key": "worker_ops_m2-continuation-submit_20260513T085449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_m2-continuation-submit_20260513T085449_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "d14d05597cb1021a732d1eb0feb49a40719c470108b76a0e1a8d57e2731e0816"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇报：\n\n---\n\n**Random 策略完成** (step 1642/1642)\n\n| 指标 | Best @step500 | Final @step1642 |\n|------|-----------|-------------|\n| val_loss | **0.4834** | 0.5978 |\n| R@1 | **0.5357** | 0.5122 |\n| R@5 | 0.9808 | 0.9826 |\n| R@10 | 1.0 | 1.0 |\n\n- Best checkpoint: `.../random_s42/best` (step 500)\n- Final checkpoint: `.../random_s42/final`\n- 最佳模型在 Epoch 1 中段（step 500）取得，之后持续过拟合\n\n**接续状态**：`run_m2_embed_verify.sh` 原脚本已自动启动 **embedding_distance** 策略（PID 37880, cuda:1, 18750 MiB, 17:04 开始），之后会自动继续 dataflow_aware。**不需要手动启动接续脚本**，否则会造成 GPU 冲突。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-m2-continuation-submit.md"
+}

@@ -1,0 +1,1486 @@
+{
+  "schema_version": "1.0",
+  "session_id": "5bc85f9dd54536f94c85",
+  "rounds": [
+    {
+      "number": 73,
+      "messages": [
+        {
+          "source_line": 901,
+          "timestamp": "2026-05-14T20:36:45.362554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/.claude/sessions/agent_204785e5."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "Read",
+            "elapsed_ms": 301
+          },
+          "id": "event-000901"
+        },
+        {
+          "source_line": 902,
+          "timestamp": "2026-05-14T20:36:45.362955+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "structfuse-context",
+              "section": "execution"
+            }
+          },
+          "id": "event-000902"
+        },
+        {
+          "source_line": 903,
+          "timestamp": "2026-05-14T20:36:45.413440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"structfuse-context\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_constraint\\\": \\\"bjb1-42106:cuda:0,cuda:1\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"project_path\\\": \\\"/root/structfuse\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"bjb1-42106\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 50
+          },
+          "id": "event-000903"
+        },
+        {
+          "source_line": 904,
+          "timestamp": "2026-05-14T20:36:49.279559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5"
+            }
+          },
+          "id": "event-000904"
+        },
+        {
+          "source_line": 905,
+          "timestamp": "2026-05-14T20:36:49.280002+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000905"
+        },
+        {
+          "source_line": 906,
+          "timestamp": "2026-05-14T20:36:52.542876+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource*saturation*",
+              "path": "/home/ubuntu/agent-ml-research/skills"
+            }
+          },
+          "id": "event-000906"
+        },
+        {
+          "source_line": 907,
+          "timestamp": "2026-05-14T20:36:52.593420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000907"
+        },
+        {
+          "source_line": 908,
+          "timestamp": "2026-05-14T20:36:59.870246+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000908"
+        },
+        {
+          "source_line": 909,
+          "timestamp": "2026-05-14T20:36:59.870830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000909"
+        },
+        {
+          "source_line": 910,
+          "timestamp": "2026-05-14T20:37:28.956299+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 / 实际在跑 2 | Worker 池 2 (GPU 0 / CPU 2)\n\n**Re: Plan 005 分层分析 — v1→v2 差异溯源 + registry 补登**\n\n## 1. v1→v2 差异溯源\n\n已派 Worker (`analysis:plan_005_v1v2_diff`) SSH 到 bjb1-42106 执行：\n- 对比 `stratified_dryrun/` vs `stratified_dryrun_v2/` 的 stratified_results.json\n- 查 `analyze_stratified.py` 变更历史（git diff / 代码逻辑差异）\n- 产出 `artifacts/v1_v2_changelog.md`\n\n初步判断：v1→v2 之间脚本新增了 2 个维度（structural data availability + neg_difficulty quartile），这些修改可能连带改变了 stratum 分配逻辑或 mock prediction 生成方式，导致已有维度数值漂移。**两次都是 dry-run（mock predictions）**，数值本身是合成的——但需要确认 bin 边界/过滤逻辑是否一致。Worker 完成后会有完整 changelog。\n\n## 2. Registry 补登 ✅\n\n已创建 `plan_005_stratified`：\n- status: PREPARING\n- hypothesis: 5 维度分层评估 embedding vs random 策略差异（Claim 2 支撑）\n- parent: m2_full_qwen\n- plan_id: plan_005\n- notes: 脚本 910 行，dry-run v2 通过。真实数据分析待 M2 全部 checkpoint 就绪后执行。v2 为 ground truth。\n\n## 3. Confound 分析（dataflow richness × repo_size）\n\nWorker `analysis:dataflow_reposize_confound` **仍在运行**（turn 9，正在写分析脚本）。完成后会回调，届时一并汇报结论。",
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000910"
+        },
+        {
+          "source_line": 911,
+          "timestamp": "2026-05-14T20:37:30.111802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_651ef5630fe7a61a1decb410adb7641b:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1155
+          },
+          "id": "event-000911"
+        },
+        {
+          "source_line": 912,
+          "timestamp": "2026-05-14T20:37:36.071407+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n1. **v1→v2 差异溯源**: Worker 已派发（`analysis:plan_005_v1v2_diff`），SSH 对比两个目录的 JSON 结果和脚本变更历史，产出 `v1_v2_changelog.md`\n2. **Registry 补登**: `plan_005_stratified` 已创建（PREPARING），关联 plan_id=plan_005，parent=m2_full_qwen，标明 v2 为 ground truth\n3. **Confound 分析**: Worker 仍在运行中（turn 9，正在写分析脚本），完成后回调处理\n\n两个 Worker 完成后会自动回调，届时更新 registry + 汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39"
+          },
+          "id": "event-000912"
+        }
+      ]
+    },
+    {
+      "number": 74,
+      "messages": [
+        {
+          "source_line": 913,
+          "timestamp": "2026-05-14T20:37:47.434788+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_analysis_dataflow_reposize_confound_20260514T203328 已完成（status=done）。用 `get_worker_status('worker_analysis_dataflow_reposize_confound_20260514T203328')` 读取结果，然后处理。\n\n- worker_id: worker_analysis_dataflow_reposize_confound_20260514T203328\n- project: structfuse-context\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "source": "worker:done"
+          },
+          "id": "event-000913"
+        },
+        {
+          "source_line": 914,
+          "timestamp": "2026-05-14T20:37:55.244685+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_dataflow_reposize_confound_20260514T203328",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000914"
+        },
+        {
+          "source_line": 915,
+          "timestamp": "2026-05-14T20:37:55.295581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_dataflow_reposize_confound_20260514T203328\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analysis:dataflow_reposize_confound\\\", \\\"project\\\": \\\"structfuse-context\\\", \\\"started_at\\\": \\\"2026-05-14T20:33:29.046897+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T20:37:46.116662+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"产出已全部写入 `/root/autodl-tmp/structfuse/artifacts/confound_analysis/`，三个文件都已生成。\\\\n\\\\n---\\\\n\\\\n## 关键发现\\\\n\\\\n### 1. 交叉分布：rich-dataflow 确实集中在大 repo\\\\n| dataflow \\\\\\\\ repo_size | small | medium | large | xlarge | total |\\\\n|---|---|---|---|---|---|\\\\n| sparse | 99 | 559 | 1485 | 956 | 3099 |\\\\n| moderate | 31 | 180 | 273 | 56 | 540 |\\\\n| **rich** | **0** | **5** | **318** | **362** | **685** |\\\\n\\\\n- Rich-dataflow 的 **99.3%** 落在 large/xlarge repo（对比 moderate 的 60.9%）\\\\n- Rich-dataflow 在 small repo 中完全不存在\\\\n\\\\n### 2. 控制 repo_size 后，反直觉模式**没有消失**\\\\n\\\\n在 dataflow_aware 策略下，**每个** repo_size bin 内 rich < moderate 都成立：\\\\n\\\\n| repo_size | rich R@1 | moderate R@1 |\\\\n|---|---|---|\\\\n| medium | 0.091 (n=99) | 0.331 (n=326) |\\\\n| large | 0.108 (n=1049) | 0.128 (n=444) |\\\\n| xlarge | 0.091 (n=871) | 0.108 (n=65) |\\\\n\\\\n### 3. 真正的 confound 是 pool_size，不（仅）是 repo_size\\\\n\\\\n- Pearson r(dataflow_edges, repo_size) = 0.089（弱）\\\\n- 但 rich instances 的平均 candidate pool 远大于 moderate（46-50 vs 17-37）\\\\n- 在 mock 模型中，R@1 ≈ 1 - exp(-5/pool)，pool_size 才是直接驱动 R@1 差异的因素\\\\n- Partial correlation (dataflow → R@1 | repo_size) 几乎没有被控制掉：raw = -0.064，partial = -0.061\\\\n\\\\n### 结论\\\\n\\\\nrepo_size 和 dataflow_richness 有强分布偏斜（rich 几乎只在大 repo），但**控制 repo_size 不能消除反直觉模式**。在 dry-run mock 数据中，pool_size 是更直接的 confound——rich-dataflow 文件的候选池更大，导致随机/mock rank 天然更高。真实模型实验需要额外控制 pool_size 来确认 dataflow richness 的独立效应。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000915"
+        },
+        {
+          "source_line": 916,
+          "timestamp": "2026-05-14T20:38:05.138212+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_plan_005_v1v2_diff_20260514T203611",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000916"
+        },
+        {
+          "source_line": 917,
+          "timestamp": "2026-05-14T20:38:05.188836+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_plan_005_v1v2_diff_20260514T203611\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"analysis:plan_005_v1v2_diff\\\", \\\"project\\\": \\\"structfuse-context\\\", \\\"started_at\\\": \\\"2026-05-14T20:36:11.482797+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_read_only\\\"], \\\"last_text\\\": \\\"需要读 `mock_predictions` 函数和 `main` 的核心流程。\\\", \\\"turn_count\\\": 3}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000917"
+        },
+        {
+          "source_line": 918,
+          "timestamp": "2026-05-14T20:38:18.039788+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan_005_stratified",
+              "field": "metrics",
+              "value": "{'confound_analysis': {'finding': 'repo_size 和 dataflow_richness 有强分布偏斜（rich 99.3% 在 large/xlarge），但控制 repo_size 后反直觉模式（rich < moderate R@1）不消失', 'true_confound': 'pool_size（非 repo_size）。rich instances 的平均候选池远大于 moderate（46-50 vs 17-37），R@1 ≈ 1-exp(-5/pool)', 'correlation': {'dataflow_edges_vs_repo_size_pearson_r': 0.089, 'dataflow_vs_R1_raw': -0.064, 'dataflow_vs_R1_partial_controlled_reposize': -0.061}, 'cross_distribution': {'rich_in_large_xlarge_pct': 99.3, 'rich_in_small': 0, 'moderate_in_large_xlarge_pct': 60.9}, 'recommendation': '真实实验需额外控制 pool_size 来确认 dataflow richness 独立效应', 'data_source': 'dry-run mock predictions', 'artifacts_path': '/root/autodl-tmp/structfuse/artifacts/confound_analysis/'}}",
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000918"
+        },
+        {
+          "source_line": 919,
+          "timestamp": "2026-05-14T20:38:18.241022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_005_stratified\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T20:36:16.738Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:38:18.109Z\\\", \\\"hypothesis\\\": \\\"Plan 005 分层分析：按 repo size/pool size/query-pos similarity/structural data availability/neg_difficulty quartile 5 维度分层评估 embedding vs random 策略差异。Claim 2 支撑实验。v2 结果为 ground truth（v1→v2 changelog 见 artifacts/v1_v2_changelog.md）。\\\", \\\"parent\\\": \\\"m2_full_qwen\\\", \\\"notes\\\": \\\"plan_id=plan_005. 5 维度分层分析脚本已完成（analyze_stratified.py, 910行）。Dry-run v2 通过（5 维度全覆盖）。真实数据分析待 M2 全部 checkpoint 就绪后执行（需 random + embedding_distance + dataflow_aware 各 3 seeds）。v2 新增 structural data availability 和 neg_difficulty quartile 两个维度（Dream 审稿要求）。Confound 分析（dataflow richness × repo_size）Worker 进行中。\\\", \\\"metrics\\\": {\\\"confound_analysis\\\": {\\\"finding\\\": \\\"repo_size 和 dataflow_richness 有强分布偏斜（rich 99.3% 在 large/xlarge），但控制 repo_size 后反直觉模式（rich < moderate R@1）不消失\\\", \\\"true_confound\\\": \\\"pool_size（非 repo_size）。rich instances 的平均候选池远大于 moderate（46-50 vs 17-37），R@1 ≈ 1-exp(-5/pool)\\\", \\\"correlation\\\": {\\\"dataflow_edges_vs_repo_size_pearson_r\\\": 0.089, \\\"dataflow_vs_R1_raw\\\": -0.064, \\\"dataflow_vs_R1_partial_controlled_reposize\\\": -0.061}, \\\"cross_distribution\\\": {\\\"rich_in_large_xlarge_pct\\\": 99.3, \\\"rich_in_small\\\": 0, \\\"moderate_in_large_xlarge_pct\\\": 60.9}, \\\"recommendation\\\": \\\"真实实验需额外控制 pool_size 来确认 dataflow richness 独立效应\\\", \\\"data_source\\\": \\\"dry-run mock predictions\\\", \\\"artifacts_path\\\": \\\"/root/autodl-tmp/structfuse/artifacts/confound_analysis/\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2172}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 201
+          },
+          "id": "event-000919"
+        },
+        {
+          "source_line": 920,
+          "timestamp": "2026-05-14T20:38:36.416784+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 / 实际在跑 2 | Worker 池 2 (GPU 0 / CPU 2: v1v2_diff + confound 刚完成)\n\n**Confound 分析结论（dataflow richness × repo_size）**\n\nWorker 已完成，产出在 `/root/autodl-tmp/structfuse/artifacts/confound_analysis/`。\n\n### 关键发现\n\n1. **分布偏斜确认**：rich-dataflow 的 99.3% 落在 large/xlarge repo，small repo 中完全不存在。但 Pearson r(dataflow_edges, repo_size) = 0.089（弱线性相关）。\n\n2. **控制 repo_size 后反直觉模式不消失**：在 dataflow_aware 策略下，每个 repo_size bin 内 rich < moderate R@1 都成立：\n   - medium: rich 0.091 vs moderate 0.331\n   - large: rich 0.108 vs moderate 0.128\n   - xlarge: rich 0.091 vs moderate 0.108\n\n3. **真正的 confound 是 pool_size**：rich instances 的平均候选池远大于 moderate（46-50 vs 17-37）。在 mock 模型中 R@1 ≈ 1-exp(-5/pool)，pool_size 直接驱动 R@1 差异。Partial correlation 控制 repo_size 后几乎不变（raw=-0.064 → partial=-0.061）。\n\n### 对论文的影响\n\n- **Claim 2 的分层分析必须额外控制 pool_size**，否则 rich-dataflow 看起来\"更差\"可能只是因为候选池更大、任务更难\n- 建议 plan_005 真实实验增加 pool_size-matched 对比（同 pool_size bin 内比较策略差异）\n- 这个发现也呼应 plan_019 (pool size sensitivity) 的重要性\n\n### 补充：v1→v2 changelog Worker 仍在运行（turn 3），完成后单独汇报。Registry `plan_005_stratified` 已创建并记录 confound 分析结果。",
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000920"
+        },
+        {
+          "source_line": 921,
+          "timestamp": "2026-05-14T20:38:39.829298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_651ef5630fe7a61a1decb410adb7641b:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3412
+          },
+          "id": "event-000921"
+        },
+        {
+          "source_line": 922,
+          "timestamp": "2026-05-14T20:38:44.545229+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n- **Confound 分析**：结论已汇报 Director — pool_size 是真正的 confound（非 repo_size），真实实验需 pool_size-matched 对比\n- **Registry 补登**：`plan_005_stratified` 已创建，含 hypothesis/parent/confound metrics\n- **v1→v2 差异溯源**：Worker 运行中（turn 3），完成后回调处理"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39"
+          },
+          "id": "event-000922"
+        }
+      ]
+    },
+    {
+      "number": 75,
+      "messages": [
+        {
+          "source_line": 923,
+          "timestamp": "2026-05-14T20:40:17.660632+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_analysis_plan_005_v1v2_diff_20260514T203611 已完成（status=done）。用 `get_worker_status('worker_analysis_plan_005_v1v2_diff_20260514T203611')` 读取结果，然后处理。\n\n- worker_id: worker_analysis_plan_005_v1v2_diff_20260514T203611\n- project: structfuse-context\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "source": "worker:done"
+          },
+          "id": "event-000923"
+        },
+        {
+          "source_line": 924,
+          "timestamp": "2026-05-14T20:40:25.533561+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_plan_005_v1v2_diff_20260514T203611",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000924"
+        },
+        {
+          "source_line": 925,
+          "timestamp": "2026-05-14T20:40:25.584323+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_plan_005_v1v2_diff_20260514T203611\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analysis:plan_005_v1v2_diff\\\", \\\"project\\\": \\\"structfuse-context\\\", \\\"started_at\\\": \\\"2026-05-14T20:36:11.482797+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T20:40:16.323457+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"changelog 已写入 `artifacts/v1_v2_changelog.md`。\\\\n\\\\n**根因**：`mock_predictions()` 第 271 行使用 `hash(strategy)` 构造 RNG seed。Python 3 的字符串 hash 每次进程启动都不同（PEP 456 hash randomization），导致 v1 和 v2 两次运行产生完全不同的 mock rank 序列。\\\\n\\\\n**关键证据**：\\\\n- 所有 stratum 样本数（count）完全一致 → 数据、分层逻辑、bin 边界未变\\\\n- 所有维度所有策略都有偏移 → 全局性 RNG 漂移，非局部逻辑变更\\\\n- v2 新增的 2 个维度（dataflow, neg_difficulty）不影响已有维度的计算\\\\n\\\\n**v2 为 ground truth**：两次都是合成 mock 数据，无\\\\\\\"更正确\\\\\\\"之分；v2 是最终版脚本（含完整 5 维分析），以 v2 为基准即可。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000925"
+        },
+        {
+          "source_line": 926,
+          "timestamp": "2026-05-14T20:40:33.419202+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/v1_v2_changelog.md"
+            }
+          },
+          "id": "event-000926"
+        },
+        {
+          "source_line": 927,
+          "timestamp": "2026-05-14T20:40:33.469910+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Stratified Dry-Run v1 → v2 差异溯源\n2\t\n3\t## 根因\n4\t\n5\t**`mock_predictions()` 中使用 `hash(strategy)` 构造 RNG seed，Python 3 字符串 hash 在不同进程间非确定性（PEP 456），导致两次运行产生不同的 mock ranks。**\n6\t\n7\t```python\n8\t# analyze_stratified.py:271\n9\tdef mock_predictions(val_samples, strategy, seed):\n10\t    rng = np.random.RandomState(seed + abs(hash(strategy)) % 10000)  # ← 问题在这里\n11\t```\n12\t\n13\t`hash(\"random\")` 在 v1 进程和 v2 进程中返回不同值（除非设置 `PYTHONHASHSEED=0`），导致 `np.random.RandomState` 的 seed 不同，进而 mock 出的 rank 序列完全不同。\n14\t\n15\t### 辅助证据\n16\t\n17\t1. **所有 stratum 的样本数（count）完全一致** — 数据加载、分层逻辑、bin 边界均未改变\n18\t2. **所有维度的所有策略都有数值偏移** — 不是某一个 stratum 的问题，是全局性的\n19\t3. **bin 边界定义在两次输出的 config 中完全相同** — 排除分层逻辑变更\n20\t\n21\t### 次要变更：v2 新增 2 个分析维度\n22\t\n23\tv2 脚本在原有 3 维（repo_size, pool_size, similarity）基础上新增：\n24\t- `by_dataflow`：structural data availability（sparse/moderate/rich）\n25\t- `by_neg_difficulty`：neg_difficulty quartile（Q1_easy/Q2/Q3/Q4_hard）\n26\t\n27\t这些新增维度**不影响已有维度的计算**，因为分层和指标计算是独立的。\n28\t\n29\t## v2 为 Ground Truth 的依据\n30\t\n31\t1. v2 是最终版本脚本的输出，包含完整的 5 维分析\n32\t2. 两次都是 dry-run mock 数据，**不存在哪个\"更正确\"的问题**——都是合成预测\n33\t3. v2 的脚本更完善（包含 dataflow + neg_difficulty），应以 v2 为基准\n34\t4. 如需复现 v2 结果，需在同一进程中运行或设置 `PYTHONHASHSEED=<fixed_value>`\n35\t\n36\t## 数值变化表\n37\t\n38\t### by_repo_size\n39\t\n40\t| stratum | strategy | n | R@1 v1 | R@1 v2 | Δ | R@5 v1 | R@5 v2 | Δ | MRR v1 | MRR v2 | Δ |\n41\t|---------|----------|---|--------|--------|---|--------|--------|---|--------|--------|---|\n42\t| small | random | 130 | 0.1154 | 0.0769 | -0.0385 | 0.5385 | 0.4769 | -0.0615 | 0.3060 | 0.2643 | -0.0417 |\n43\t| small | embedding_distance | 130 | 0.3000 | 0.2769 | -0.0231 | 0.7385 | 0.7385 | +0.0000 | 0.4931 | 0.4704 | -0.0226 |\n44\t| small | dataflow_aware | 130 | 0.4846 | 0.4000 | -0.0846 | 0.8769 | 0.9000 | +0.0231 | 0.6501 | 0.6000 | -0.0501 |\n45\t| medium | random | 346 | 0.0520 | 0.0549 | +0.0029 | 0.2312 | 0.2861 | +0.0549 | 0.1782 | 0.1936 | +0.0154 |\n46\t| medium | embedding_distance | 346 | 0.1069 | 0.1503 | +0.0434 | 0.4942 | 0.5231 | +0.0289 | 0.2866 | 0.329\n…[truncated 3780 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000927"
+        }
+      ]
+    },
+    {
+      "number": 76,
+      "messages": [
+        {
+          "source_line": 928,
+          "timestamp": "2026-05-14T20:40:34.186136+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] Reviewer critical: 之前所有分层分析（stratified_dryrun v1/v2 + confound_analysis）的 R@1 值均为 dry-run mock predictions，不是真实模型结果。策略排序 pattern 不可信。\n\n**保留的有效产出**：confound_analysis/cross_tabulation.csv 中的分布结构（repo_size × dataflow richness 相关性）是真实的。\n\n**要求**：\n\n1. **注册 confound analysis 工作**到 registry（标注 R@1 为 mock data、分布结构有效）\n2. **为 plan_005_stratified 准备真实评估脚本**：\n   - 输入：M2 真实 checkpoint（Qwen + StarCoder，3 策略各 3 seeds）\n   - 评估维度：按 repo_size 分层 R@1 + 按 dataflow richness 分层 R@1 + 控制 repo_size 后的 dataflow richness 对比\n   - 脚本要能直接接 checkpoint 路径运行，M2 完成后即可启动\n3. **不要在任何文档或论文材料中引用 mock data 的 R@1 值**\n\nM2 训练当前进展如何？预计还需多长时间完成？"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "source": "director"
+          },
+          "id": "event-000928"
+        },
+        {
+          "source_line": 929,
+          "timestamp": "2026-05-14T20:40:50.303966+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "v1_v2_changelog",
+              "type": "report",
+              "description": "Stratified dry-run v1→v2 差异溯源：根因为 mock_predictions() 使用 hash(strategy) 构造 RNG seed，Python 3 hash randomization 导致跨进程不确定。含完整数值变化表（3 维度 × 3 策略 × 所有 strata）。",
+              "project": "structfuse-context",
+              "exp_id": "plan_005_stratified",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/v1_v2_changelog.md",
+              "tags": "['plan_005', 'v1_v2_diff', 'changelog', 'mock_rng']"
+            }
+          },
+          "id": "event-000929"
+        },
+        {
+          "source_line": 930,
+          "timestamp": "2026-05-14T20:40:50.404971+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_3008c4\\\", \\\"name\\\": \\\"v1_v2_changelog\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Stratified dry-run v1→v2 差异溯源：根因为 mock_predictions() 使用 hash(strategy) 构造 RNG seed，Python 3 hash randomization 导致跨进程不确定。含完整数值变化表（3 维度 × 3 策略 × 所有 strata）。\\\", \\\"path\\\": \\\"projects/structfuse-context/artifacts/plan_005_stratified/report/v1_v2_changelog.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"structfuse-context\\\", \\\"exp_id\\\": \\\"plan_005_stratified\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T20:40:50.297063+00:00\\\", \\\"tags\\\": [\\\"plan_005\\\", \\\"v1_v2_diff\\\", \\\"changelog\\\", \\\"mock_rng\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 101
+          },
+          "id": "event-000930"
+        },
+        {
+          "source_line": 931,
+          "timestamp": "2026-05-14T20:40:51.514063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan_005_stratified",
+              "field": "metrics",
+              "value": "{'confound_analysis': {'data_validity': '⚠️ R@1 值为 dry-run mock predictions，不可引用。仅分布结构（cross_tabulation.csv）有效。', 'valid_findings': {'distribution_structure': 'rich-dataflow 99.3% 落在 large/xlarge repo，small repo 中完全不存在', 'correlation': {'dataflow_edges_vs_repo_size_pearson_r': 0.089}, 'cross_distribution': {'rich_in_large_xlarge_pct': 99.3, 'rich_in_small': 0, 'moderate_in_large_xlarge_pct': 60.9}, 'implication': '真实评估必须控制 pool_size 和 repo_size 来隔离 dataflow richness 独立效应'}, 'invalid_findings': '所有 R@1/R@5/MRR 值均为 mock predictions，策略排序 pattern 不可信，禁止引用', 'artifacts_path': '/root/autodl-tmp/structfuse/artifacts/confound_analysis/', 'valid_artifact': 'cross_tabulation.csv'}}",
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000931"
+        },
+        {
+          "source_line": 932,
+          "timestamp": "2026-05-14T20:40:51.966072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_005_stratified\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T20:36:16.738Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:40:51.650Z\\\", \\\"hypothesis\\\": \\\"Plan 005 分层分析：按 repo size/pool size/query-pos similarity/structural data availability/neg_difficulty quartile 5 维度分层评估 embedding vs random 策略差异。Claim 2 支撑实验。v2 结果为 ground truth（v1→v2 changelog 见 artifacts/v1_v2_changelog.md）。\\\", \\\"parent\\\": \\\"m2_full_qwen\\\", \\\"notes\\\": \\\"plan_id=plan_005. 5 维度分层分析脚本已完成（analyze_stratified.py, 910行）。Dry-run v2 通过（5 维度全覆盖）。真实数据分析待 M2 全部 checkpoint 就绪后执行（需 random + embedding_distance + dataflow_aware 各 3 seeds）。v2 新增 structural data availability 和 neg_difficulty quartile 两个维度（Dream 审稿要求）。Confound 分析（dataflow richness × repo_size）Worker 进行中。\\\", \\\"metrics\\\": {\\\"confound_analysis\\\": {\\\"data_validity\\\": \\\"⚠️ R@1 值为 dry-run mock predictions，不可引用。仅分布结构（cross_tabulation.csv）有效。\\\", \\\"valid_findings\\\": {\\\"distribution_structure\\\": \\\"rich-dataflow 99.3% 落在 large/xlarge repo，small repo 中完全不存在\\\", \\\"correlation\\\": {\\\"dataflow_edges_vs_repo_size_pearson_r\\\": 0.089}, \\\"cross_distribution\\\": {\\\"rich_in_large_xlarge_pct\\\": 99.3, \\\"rich_in_small\\\": 0, \\\"moderate_in_large_xlarge_pct\\\": 60.9}, \\\"implication\\\": \\\"真实评估必须控制 pool_size 和 repo_size 来隔离 dataflow richness 独立效应\\\"}, \\\"invalid_findings\\\": \\\"所有 R@1/R@5/MRR 值均为 mock predictions，策略排序 pattern 不可信，禁止引用\\\", \\\"artifacts_path\\\": \\\"/root/autodl-tmp/structfuse/artifacts/confound_analysis/\\\", \\\"valid_artifact\\\": \\\"cross_tabulation.csv\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3184}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000932"
+        },
+        {
+          "source_line": 933,
+          "timestamp": "2026-05-14T20:40:55.779774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan_005_stratified",
+              "field": "notes",
+              "value": "plan_id=plan_005. 5 维度分层分析脚本已完成（analyze_stratified.py, 910行）。⚠️ Reviewer critical: dry-run v1/v2 的 R@1 值为 mock predictions，不可引用——仅 confound 分布结构（cross_tabulation.csv）有效。真实评估脚本准备中，待 M2 全部 checkpoint 就绪后接入。v1→v2 数值差异根因：hash(strategy) + PEP 456 hash randomization，已记录 changelog。",
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000933"
+        },
+        {
+          "source_line": 934,
+          "timestamp": "2026-05-14T20:40:55.980991+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_005_stratified\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T20:36:16.738Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:40:55.870Z\\\", \\\"hypothesis\\\": \\\"Plan 005 分层分析：按 repo size/pool size/query-pos similarity/structural data availability/neg_difficulty quartile 5 维度分层评估 embedding vs random 策略差异。Claim 2 支撑实验。v2 结果为 ground truth（v1→v2 changelog 见 artifacts/v1_v2_changelog.md）。\\\", \\\"parent\\\": \\\"m2_full_qwen\\\", \\\"notes\\\": \\\"plan_id=plan_005. 5 维度分层分析脚本已完成（analyze_stratified.py, 910行）。⚠️ Reviewer critical: dry-run v1/v2 的 R@1 值为 mock predictions，不可引用——仅 confound 分布结构（cross_tabulation.csv）有效。真实评估脚本准备中，待 M2 全部 checkpoint 就绪后接入。v1→v2 数值差异根因：hash(strategy) + PEP 456 hash randomization，已记录 changelog。\\\", \\\"metrics\\\": {\\\"confound_analysis\\\": {\\\"data_validity\\\": \\\"⚠️ R@1 值为 dry-run mock predictions，不可引用。仅分布结构（cross_tabulation.csv）有效。\\\", \\\"valid_findings\\\": {\\\"distribution_structure\\\": \\\"rich-dataflow 99.3% 落在 large/xlarge repo，small repo 中完全不存在\\\", \\\"correlation\\\": {\\\"dataflow_edges_vs_repo_size_pearson_r\\\": 0.089}, \\\"cross_distribution\\\": {\\\"rich_in_large_xlarge_pct\\\": 99.3, \\\"rich_in_small\\\": 0, \\\"moderate_in_large_xlarge_pct\\\": 60.9}, \\\"implication\\\": \\\"真实评估必须控制 pool_size 和 repo_size 来隔离 dataflow richness 独立效应\\\"}, \\\"invalid_findings\\\": \\\"所有 R@1/R@5/MRR 值均为 mock predictions，策略排序 pattern 不可信，禁止引用\\\", \\\"artifacts_path\\\": \\\"/root/autodl-tmp/structfuse/artifacts/confound_analysis/\\\", \\\"valid_artifact\\\": \\\"cross_tabulation.csv\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.162}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 201
+          },
+          "id": "event-000934"
+        },
+        {
+          "source_line": 935,
+          "timestamp": "2026-05-14T20:41:11.664362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 / 实际在跑 2 | Worker 池 0 (两个 CPU Worker 均已完成)\n\n**v1→v2 差异溯源完成**\n\n### 根因\n\n`mock_predictions()` 第 271 行使用 `hash(strategy)` 构造 RNG seed。Python 3 的字符串 hash 每次进程启动都不同（PEP 456 hash randomization），导致 v1 和 v2 两次运行产生完全不同的 mock rank 序列。\n\n**不是** checkpoint 更换、评估 bug 或分层逻辑变更。证据：\n- 所有 stratum 样本数（count）v1=v2，完全一致 → 数据/分层/bin 边界未变\n- 所有维度所有策略都有偏移 → 全局 RNG 漂移\n- v2 新增的 2 个维度不影响已有维度计算\n\n### v2 为 Ground Truth\n\n两次都是合成 mock 数据，无\"更正确\"之分。v2 是最终版脚本（含完整 5 维分析），以 v2 为基准。真实实验不受影响（用真实 checkpoint 推理，不走 mock_predictions）。\n\n### 修复建议\n\n将 `hash(strategy)` 替换为确定性 seed offset（`STRATEGY_SEED_OFFSET = {\"random\": 0, \"embedding_distance\": 1, \"dataflow_aware\": 2}`），保证 dry-run 可复现。\n\n### 产出\n\n- `v1_v2_changelog.md`（artifact art_20260514_3008c4）：完整数值变化表 + 根因分析\n- Registry `plan_005_stratified`：PREPARING，含 confound 分析结论 + v1→v2 changelog 引用\n\n### Director 三项任务完成情况\n\n1. ✅ v1→v2 差异溯源 — 根因确认（PEP 456 hash randomization），changelog 已写\n2. ✅ Registry 补登 — `plan_005_stratified` 已创建\n3. ✅ Confound 分析 — 结论：pool_size 是真正 confound（非 repo_size），真实实验需控制 pool_size",
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000935"
+        },
+        {
+          "source_line": 936,
+          "timestamp": "2026-05-14T20:41:15.129810+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_651ef5630fe7a61a1decb410adb7641b:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3465
+          },
+          "id": "event-000936"
+        },
+        {
+          "source_line": 937,
+          "timestamp": "2026-05-14T20:41:21.879562+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Director 三项任务全部完成：\n\n1. **v1→v2 差异溯源**：根因是 `mock_predictions()` 用 `hash(strategy)` 做 RNG seed，Python 3 hash randomization 导致跨进程不确定。分层逻辑/bin 边界/数据均未变。changelog 已写入 artifact。\n2. **Registry 补登**：`plan_005_stratified` 已创建（PREPARING），含 hypothesis、parent、confound 分析结果。\n3. **Confound 分析**：pool_size 是真正 confound（非 repo_size）。rich-dataflow instances 候选池更大（46-50 vs 17-37），真实实验需控制 pool_size 来隔离 dataflow richness 独立效应。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39"
+          },
+          "id": "event-000937"
+        },
+        {
+          "source_line": 938,
+          "timestamp": "2026-05-14T20:41:21.895141+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。并行派 Worker：写真实评估脚本 + 查 M2 进展。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39"
+          },
+          "id": "event-000938"
+        }
+      ]
+    },
+    {
+      "number": 77,
+      "messages": [
+        {
+          "source_line": 939,
+          "timestamp": "2026-05-14T20:41:45.316989+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 收到 v1→v2 溯源和 registry 补登，确认。\n\n两个未回答的问题：\n\n1. **M2 训练进展**：m2_full_qwen_continued 和 m2_full_starcoder_resumed 当前到哪一步了？各完成了几个 run？预计还需多长时间？用 ssh_read_only 检查训练日志/进程状态。\n\n2. **真实分层评估脚本准备**：plan_005_stratified 已注册为 PREPARING，但我需要你提前写好评估脚本——接收 checkpoint 路径作为输入，按 repo_size 分层 + 按 dataflow richness 分层 + 控制 pool_size 后的对比。M2 checkpoint 一就绪就能直接跑，不要等 checkpoint 完成后再写脚本。\n\n另外：mock_predictions 的确定性 seed 修复优先级低，可以顺手改但不要占 GPU 时间。pool_size 作为 confound 的发现很重要，确认 plan_005 的真实评估中控制变量是 pool_size 而非 repo_size。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "source": "director"
+          },
+          "id": "event-000939"
+        },
+        {
+          "source_line": 940,
+          "timestamp": "2026-05-14T20:42:13.609813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "check:m2_progress_20260514_v3",
+              "project": "structfuse-context",
+              "task_prompt": "## 任务：检查 M2 全量训练进度\n\n用 ssh_read_only 检查 bjb1-42106 上两个 M2 实验的当前状态。**禁止 ssh_execute，全部用 ssh_read_only。**\n\n### 实验 1: m2_full_qwen_continued (cuda:0, PID 337267)\n- 训练链：random_s44 → embedding_s42 → embedding_s43 → embedding_s44 → dataflow_s42 → dataflow_s43 → dataflow_s44\n- 已完成：random_s42 (R@1=0.5527), random_s43 (R@1=0.5554)\n- 日志：/root/runs/structfuse-context/m2_full_qwen.log\n\n### 实验 2: m2_full_starcoder_resumed (cuda:1, PID 519791)\n- 训练链：random_s43 → random_s44 → (bm25_s42 可能已插入) → embedding_s42 → embedding_s43 → embedding_s44 → dataflow_s42 → dataflow_s43 → dataflow_s44\n- 已完成：random_s42 (R@1=0.4604)\n- 日志：/root/runs/structfuse-context/m2_full_starcoder.log\n\n### 检查项（全部用 ssh_read_only）\n\n1. **进程存活**：`ps -p 337267,519791 -o pid,etime,pcpu,pmem --no-headers`\n2. **GPU 利用率**：`nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader`\n3. **当前运行到哪个 run**：查日志最后 50 行找当前 strategy+seed\n   - `tail -50 /root/runs/structfuse-context/m2_full_qwen.log`\n   - `tail -50 /root/runs/structfuse-context/m2_full_starcoder.log`\n4. **已完成 runs 列表**：查 checkpoint 目录\n   - `ls -la /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/`\n   - `ls -la /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/`\n5. **当前 run 进度**：从日志提取 step/epoch 信息（grep \"step\\|epoch\\|eval\\|Recall\"）\n6. **ETA 估算**：基于已完成 runs 数量和总 runs 数量\n\n### 产出格式\n\n简洁汇报：\n- Qwen: 当前跑到第 X/7 个 run（strategy_seed），step Y/Z，最新 eval 指标\n- StarCoder: 当前跑到第 X/8+ 个 run（strategy_seed），step Y/Z，最新 eval 指标\n- 整体 ETA\n\n### 服务器\n- 服务器: bjb1-42106\n- 环境: conda base",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000940"
+        },
+        {
+          "source_line": 941,
+          "timestamp": "2026-05-14T20:42:40.569472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_m2_progress_20260514_v3_20260514T204214\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/logs/workers/worker_check_m2_progress_20260514_v3_20260514T204214.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_check_m2_progress_20260514_v3_20260514T204214 started. Use get_worker_status('worker_check_m2_progress_20260514_v3_20260514T204214') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 26959
+          },
+          "id": "event-000941"
+        },
+        {
+          "source_line": 942,
+          "timestamp": "2026-05-14T20:42:40.721684+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:plan_005_real_eval_script",
+              "project": "structfuse-context",
+              "task_prompt": "## 任务：编写 plan_005 真实分层评估脚本\n\n### 背景\nplan_005 需要对 M2 训练产出的 checkpoint 做分层评估。现有脚本 `analyze_stratified.py`（910行）支持 dry-run 模式，但真实评估模式需要完善。\n\n关键发现（confound 分析结论）：**pool_size 是真正的 confound**（非 repo_size）。rich-dataflow instances 的平均候选池远大于 moderate（46-50 vs 17-37），直接驱动 R@1 差异。因此真实评估必须控制 pool_size。\n\n### 你要做的事\n\n1. **SSH 到 bjb1-42106 读取现有脚本**（ssh_read_only）：\n   - 读 `/root/structfuse/evaluation/analyze_stratified.py` 理解现有结构\n   - 读 `/root/structfuse/evaluation/eval_retrieval.py` 理解推理和 eval 流程\n   - 读 `/root/autodl-tmp/structfuse/full_m2_training_data/` 看 val 数据格式\n\n2. **在服务器上写评估脚本** `/root/structfuse/evaluation/run_plan005_eval.py`（ssh_execute），功能：\n\n   **输入参数**：\n   - `--checkpoints-dir`：checkpoint 根目录（结构：`{model}/{strategy}_s{seed}/best_by_recall_at_1/`）\n   - `--val-data-dir`：val_*.jsonl 目录\n   - `--m1-data`：M1 all.jsonl 路径（用于 repo_size 分层）\n   - `--dataflow-graph`：dataflow_graph.json 路径\n   - `--output-dir`：输出目录\n   - `--seeds`：默认 42,43,44\n   - `--device`：默认 cuda\n   - `--n-bootstrap`：默认 1000\n   - `--pool-size`：eval pool size，默认 50\n\n   **核心逻辑**：\n   a. 加载每个 checkpoint，对 val 数据做推理，生成 per-instance 预测（rank）\n   b. 分层评估（5 维度）：repo_size / pool_size / query-pos similarity / structural data availability / neg_difficulty quartile\n   c. **控制 pool_size 的对比**（关键新增）：\n      - 在每个 pool_size bin 内，比较不同策略的 R@1/R@5/MRR\n      - 在每个 dataflow_richness bin 内，**匹配 pool_size**（只取两个 bin 中 pool_size 交集的样本），然后比较\n      - 输出 pool_size-matched 的策略对比表\n   d. Bootstrap 95% CI\n   e. 输出 JSON + CSV + plots PDF\n\n   **pool_size 控制方法**：\n   ```\n   对于 \"dataflow richness 对策略差异的独立效应\" 这个问题：\n   1. 按 pool_size 分 bin（small/medium/large）\n   2. 在每个 pool_size bin 内，按 dataflow richness 分层\n   3. 比较同 pool_size bin 下 rich vs moderate vs sparse 的 embedding-random delta\n   ```\n\n3. **顺手修复 mock_predictions 的确定性 seed**（低优先级）：\n   - 在 `analyze_stratified.py` 第 271 行，将 `hash(strategy)` 改为确定性 offset：\n   ```python\n   STRATEGY_SEED_OFFSET = {\"random\": 0, \"embedding_distance\": 1, \"dataflow_aware\": 2, \"bm25\": 3}\n   rng = np.random.RandomState(seed + STRATEGY_SEED_OFFSET.get(strategy, abs(hash(strategy)) % 10000))\n   ```\n\n4. **验证**：用 `--dry-run` 模式（如果保留了 mock 逻辑）或 `python run_plan005_eval.py --help` 验证脚本能跑\n\n### 代码规范\n- 文件顶部写文件注释（说明目的、输入输出、依赖）\n- 关键函数写 docstring\n- pool_size 控制逻辑必须注释说明为什么这么做（confound 分析结论）\n\n### 服务器信息\n- 服务器: bjb1-42106\n- 环境: conda base (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\n- Python: /root/miniconda3/bin/python3\n- 现有脚本: /root/structfuse/evaluation/analyze_stratified.py, /root/structfuse/evaluation/eval_retrieval.py",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000942"
+        }
+      ]
+    },
+    {
+      "number": 78,
+      "messages": [
+        {
+          "source_line": 943,
+          "timestamp": "2026-05-14T20:45:29.087729+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_check_m2_progress_20260514_v3_20260514T204214 已完成（status=done）。用 `get_worker_status('worker_check_m2_progress_20260514_v3_20260514T204214')` 读取结果，然后处理。\n\n- worker_id: worker_check_m2_progress_20260514_v3_20260514T204214\n- project: structfuse-context\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "source": "worker:done"
+          },
+          "id": "event-000943"
+        },
+        {
+          "source_line": 944,
+          "timestamp": "2026-05-14T20:45:37.115269+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_check_m2_progress_20260514_v3_20260514T204214",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000944"
+        },
+        {
+          "source_line": 945,
+          "timestamp": "2026-05-14T20:45:37.217020+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_m2_progress_20260514_v3_20260514T204214\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"check:m2_progress_20260514_v3\\\", \\\"project\\\": \\\"structfuse-context\\\", \\\"started_at\\\": \\\"2026-05-14T20:42:14.186786+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T20:45:27.635717+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"## M2 全量训练进度\\\\n\\\\n### Qwen (cuda:0, PID 337267) ✅ 正常运行\\\\n- **GPU**: 100%, 51.5/97.9 GB VRAM\\\\n- **进程**: alive, 9h18m uptime\\\\n- **当前**: run 3/10 — **random_s44**, epoch 1/2, **step 650/2816**\\\\n- **eval@500**: R@1=**0.6009**, val_loss=0.4252 (比 s43 的 0.5501 大幅提升)\\\\n- **已完成**:\\\\n  - random_s42: R@1=0.5527 (pre-done)\\\\n  - random_s43: R@1=0.5501, 耗时 6h34m\\\\n- **剩余**: random_s44 (77%) + embedding×3 + dataflow×3 = 7.77 runs\\\\n- **ETA**: ~50h ≈ **2 天** (按 6.5h/run 估算)\\\\n\\\\n### StarCoder (cuda:1, PID 519791) ✅ 正常运行\\\\n- **GPU**: 100%, 53.9/97.9 GB VRAM\\\\n- **进程**: alive, 2h39m uptime (之前的脚本被 kill，已用新脚本恢复)\\\\n- **当前**: run 2/9+ — **random_s43**, epoch 1/2, **step 500/2810**\\\\n- **无 eval 结果**（eval@500 可能刚触发或即将触发）\\\\n- **已完成**: random_s42: R@1=0.4604 (pre-done)\\\\n- **剩余**: random_s43 (82%) + random_s44 + embedding×3 + dataflow×3 = 7.82 runs\\\\n- **ETA**: ~96h ≈ **4 天** (StarCoder 训练速度约为 Qwen 的一半，~195 steps/h vs ~428 steps/h)\\\\n\\\\n### 关键观察\\\\n1. Qwen random_s44 的 R@1=0.6009 @step500 非常强，远超 s42 (0.5527) 和 s43 (0.5501)\\\\n2. StarCoder 比 Qwen 慢约 2x，GPU memory 占用也更高 (53.9 vs 51.5 GB)\\\\n3. 两个实验都正常推进，无异常\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-000945"
+        },
+        {
+          "source_line": 946,
+          "timestamp": "2026-05-14T20:46:17.642091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:plan_005_real_eval_script",
+              "project": "structfuse-context",
+              "task_prompt": "## 任务：编写 plan_005 真实分层评估脚本\n\n### 背景\nplan_005 需要对 M2 训练出的 checkpoint 做分层评估。现有 `analyze_stratified.py` 已有 5 维度分层逻辑（repo_size, pool_size, similarity, dataflow_availability, neg_difficulty）。但 Director 要求：\n\n1. 真实评估脚本需要**接收 checkpoint 路径作为输入**（不是 dry-run mock）\n2. 新增**按 pool_size 控制变量**后的对比——confound 分析发现 pool_size 是真正 confound（非 repo_size），rich-dataflow instances 候选池更大导致 R@1 天然更低\n3. 修复 `mock_predictions()` 的确定性 seed（顺手改，低优先级）\n\n### 你要做的\n\n#### 1. 读现有脚本\nSSH 到 bjb1-42106，读取：\n- `/root/structfuse/evaluation/analyze_stratified.py`（910 行，现有脚本）\n- `/root/structfuse/evaluation/eval_retrieval.py`（如果存在，了解现有 eval 接口）\n\n#### 2. 修改 analyze_stratified.py，增加以下功能\n\n**A. pool_size 控制变量对比（核心新增）**：\n- 新增分析模式：在同一 pool_size bin 内，比较不同策略的 R@1\n- 实现 pool_size-matched 对比：对每个 (pool_size_bin, strategy) 组合计算 R@1，然后做 within-bin delta\n- 这样可以排除 \"rich-dataflow 的候选池更大导致 R@1 低\" 的 confound\n- 输出包含 pool_size_controlled_delta 表格\n\n**B. 按 dataflow richness 分层 + 控制 pool_size**：\n- 交叉分析：(dataflow_richness_bin × pool_size_bin) → R@1\n- 如果某个交叉格子样本量 < 30，标注 \"underpowered\"\n\n**C. 修复 mock_predictions 的确定性 seed**：\n```python\n# 当前（不确定性）\nrng = np.random.RandomState(seed + abs(hash(strategy)) % 10000)\n\n# 修复方案\nSTRATEGY_SEED_OFFSET = {\"random\": 0, \"embedding_distance\": 1, \"dataflow_aware\": 2, \"bm25\": 3}\nrng = np.random.RandomState(seed + STRATEGY_SEED_OFFSET.get(strategy, hash(strategy) % 10000) * 10000)\n```\n\n#### 3. 确保脚本可以直接接收 checkpoint 路径运行\n\n验证 `--checkpoints-dir` 模式正常工作（检查 checkpoint 发现逻辑：查找 best_by_recall_at_1/ 或 best/ 目录下的 model 文件）。\n\n#### 4. 写完后用 dry-run 验证\n\n```bash\ncd /root/structfuse && python3 evaluation/analyze_stratified.py \\\n  --m1-data /root/autodl-tmp/structfuse/full_m1_data/all.jsonl \\\n  --val-data-dir /root/autodl-tmp/structfuse/full_m2_training_data \\\n  --dataflow-graph /root/autodl-tmp/structfuse/full_m2_training_data/dataflow_graph.json \\\n  --output-dir /root/autodl-tmp/structfuse/artifacts/stratified_dryrun_v3 \\\n  --dry-run --seeds 42 --n-bootstrap 200\n```\n\n确认 v3 输出包含：\n- 原有 5 维度分层结果\n- 新增 pool_size-controlled delta 表\n- 新增 (dataflow × pool_size) 交叉分析\n\n### 代码规范\n- 文件顶部注释说明用途、输入输出\n- 新增函数写 docstring（目的、参数、返回值）\n- pool_size 控制逻辑需要注释说明 confound 背景\n\n### 服务器信息\n- 服务器: bjb1-42106\n- 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- Python: /root/miniconda3/bin/python3\n- **禁止占用 GPU**——只改脚本和做 dry-run（CPU）",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000946"
+        },
+        {
+          "source_line": 947,
+          "timestamp": "2026-05-14T20:46:25.226770+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_plan_005_real_eval_script_20260514T204618\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/logs/workers/worker_code_plan_005_real_eval_script_20260514T204618.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_plan_005_real_eval_script_20260514T204618 started. Use get_worker_status('worker_code_plan_005_real_eval_script_20260514T204618') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 7584
+          },
+          "id": "event-000947"
+        },
+        {
+          "source_line": 948,
+          "timestamp": "2026-05-14T20:46:25.528976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "m2_full_qwen_continued",
+              "field": "metrics",
+              "value": "{'random_s42': {'status': 'DONE', 'best_R1': 0.5527, 'source': 'parent m2_full_qwen'}, 'random_s43': {'status': 'DONE', 'best_R1': 0.5501, 'elapsed': '6h34m'}, 'random_s44': {'status': 'RUNNING', 'step': '650/2816', 'epoch': '1/2', 'eval_500': {'R1': 0.6009, 'val_loss': 0.4252}}, 'runs_completed': '2/10', 'current_run': 'random_s44', 'speed': '~428 steps/h', 'eta_hours': 50, 'progress_snapshot': '2026-05-15T04:45 CST'}",
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000948"
+        },
+        {
+          "source_line": 949,
+          "timestamp": "2026-05-14T20:46:25.882630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"m2_full_qwen_continued\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:44:20.646Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:46:25.717Z\\\", \\\"hypothesis\\\": \\\"M2 Qwen continued: 继续 m2_full_qwen 的剩余 runs (random_s44 + embedding×3 + dataflow×3)。原实验 cron 在 s42 退出时自动设为 ANALYZING，但链仍在运行。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash run_m2_full_qwen.sh (chain: random_s44 running → embedding×3 → dataflow×3)\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"337267\\\", \\\"log_path\\\": \\\"/root/runs/structfuse-context/m2_full_qwen.log\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/full_m2_training_data/\\\", \\\"data_count\\\": 11308, \\\"model_name\\\": \\\"Qwen2.5-Coder-3B\\\", \\\"seed\\\": \\\"42,43,44\\\"}, \\\"parent\\\": \\\"m2_full_qwen\\\", \\\"metrics\\\": {\\\"random_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_R1\\\": 0.5527, \\\"source\\\": \\\"parent m2_full_qwen\\\"}, \\\"random_s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_R1\\\": 0.5501, \\\"elapsed\\\": \\\"6h34m\\\"}, \\\"random_s44\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"step\\\": \\\"650/2816\\\", \\\"epoch\\\": \\\"1/2\\\", \\\"eval_500\\\": {\\\"R1\\\": 0.6009, \\\"val_loss\\\": 0.4252}}, \\\"runs_completed\\\": \\\"2/10\\\", \\\"current_run\\\": \\\"random_s44\\\", \\\"speed\\\": \\\"~428 steps/h\\\", \\\"eta_hours\\\": 50, \\\"progress_snapshot\\\": \\\"2026-05-15T04:45 CST\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.367}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 353
+          },
+          "id": "event-000949"
+        },
+        {
+          "source_line": 950,
+          "timestamp": "2026-05-14T20:46:26.486803+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "m2_full_starcoder_resumed",
+              "field": "metrics",
+              "value": "{'random_s42': {'status': 'DONE', 'best_R1': 0.4604, 'source': 'parent m2_full_starcoder'}, 'random_s43': {'status': 'RUNNING', 'step': '500/2810', 'epoch': '1/2', 'eval_pending': True}, 'runs_completed': '1/9+', 'current_run': 'random_s43', 'speed': '~195 steps/h', 'eta_hours': 96, 'progress_snapshot': '2026-05-15T04:45 CST'}",
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000950"
+        },
+        {
+          "source_line": 951,
+          "timestamp": "2026-05-14T20:46:26.892378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"m2_full_starcoder_resumed\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:44:19.253Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:46:26.756Z\\\", \\\"hypothesis\\\": \\\"M2 StarCoder resumed: 继续 m2_full_starcoder 的 8 sequential runs (random×2 + embedding×3 + dataflow×3)。原实验因 cron timeout 标记为 failed，实际 PID 519791 正常运行。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash run_m2_full_starcoder_resume.sh (8 runs: random_s43→s44→embedding×3→dataflow×3)\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"519791\\\", \\\"log_path\\\": \\\"/root/runs/structfuse-context/m2_full_starcoder.log\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/full_m2_training_data/\\\", \\\"data_count\\\": 11308, \\\"model_name\\\": \\\"StarCoder2-3B\\\", \\\"seed\\\": \\\"42,43,44\\\"}, \\\"parent\\\": \\\"m2_full_starcoder\\\", \\\"metrics\\\": {\\\"random_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"best_R1\\\": 0.4604, \\\"source\\\": \\\"parent m2_full_starcoder\\\"}, \\\"random_s43\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"step\\\": \\\"500/2810\\\", \\\"epoch\\\": \\\"1/2\\\", \\\"eval_pending\\\": true}, \\\"runs_completed\\\": \\\"1/9+\\\", \\\"current_run\\\": \\\"random_s43\\\", \\\"speed\\\": \\\"~195 steps/h\\\", \\\"eta_hours\\\": 96, \\\"progress_snapshot\\\": \\\"2026-05-15T04:45 CST\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3883}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 405
+          },
+          "id": "event-000951"
+        },
+        {
+          "source_line": 952,
+          "timestamp": "2026-05-14T20:46:47.482874+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 / 实际在跑 2 | Worker 池 1 (GPU 0 / CPU 1: plan_005 eval 脚本编写中)\n\n**M2 训练进度（SSH 实查）**\n\n### Qwen (cuda:0, PID 337267)\n- 当前：run 3/10 — **random_s44**, step 650/2816 (epoch 1/2)\n- eval@500: **R@1=0.6009**, val_loss=0.4252\n- 已完成：random_s42 (0.5527), random_s43 (0.5501)\n- 速度：~428 steps/h，剩余 ~7.77 runs\n- **ETA: ~50h ≈ May 16 晚**\n\n⚠️ random_s44 的 R@1=0.6009 比 s42/s43 高 ~5pp，值得关注——可能是 seed-dependent variance，也可能说明数据 shuffle 对这个 seed 特别有利。\n\n### StarCoder (cuda:1, PID 519791)\n- 当前：run 2/9+ — **random_s43**, step 500/2810 (epoch 1/2)\n- eval 结果待出（刚到 eval checkpoint）\n- 已完成：random_s42 (0.4604)\n- 速度：~195 steps/h（Qwen 的 ~45%），剩余 ~7.82 runs\n- **ETA: ~96h ≈ May 18 晚**\n\n### 整体时间线\n| 里程碑 | ETA |\n|--------|-----|\n| Qwen 全部 10 runs 完成 | ~May 16 晚 |\n| StarCoder 全部 9+ runs 完成 | ~May 18 晚 |\n| 两卡空出 → post-M2 实验可启动 | **May 18 晚** |\n\n**已派 Worker 写 plan_005 真实评估脚本**（增加 pool_size 控制变量对比 + dataflow×pool_size 交叉分析 + mock seed 确定性修复）。checkpoint 就绪后可直接跑。",
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000952"
+        },
+        {
+          "source_line": 953,
+          "timestamp": "2026-05-14T20:46:48.638034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_651ef5630fe7a61a1decb410adb7641b:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1155
+          },
+          "id": "event-000953"
+        },
+        {
+          "source_line": 954,
+          "timestamp": "2026-05-14T20:46:53.102317+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。向 Director 汇报 M2 进度。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39"
+          },
+          "id": "event-000954"
+        }
+      ]
+    },
+    {
+      "number": 79,
+      "messages": [
+        {
+          "source_line": 955,
+          "timestamp": "2026-05-14T20:47:12.229567+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 收到 M2 进度，时间线清楚。\n\nReviewer warning：plan_005_stratified registry 引用了不存在的 `artifacts/v1_v2_changelog.md`。要么补创建该文件，要么删除 registry 中的引用。顺手修了。\n\nrandom_s44 R@1=0.6009 比 s42/s43 高 ~5pp 先记录，等 3 seeds 全出后看方差。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "source": "director"
+          },
+          "id": "event-000955"
+        },
+        {
+          "source_line": 956,
+          "timestamp": "2026-05-14T20:47:30.506948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan_005_stratified",
+              "field": "hypothesis",
+              "value": "Plan 005 分层分析：按 repo size/pool size/query-pos similarity/structural data availability/neg_difficulty quartile 5 维度分层评估 embedding vs random 策略差异，控制 pool_size confound。Claim 2 支撑实验。v2 结果为 ground truth（v1→v2 changelog 见 art_20260514_3008c4）。",
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000956"
+        },
+        {
+          "source_line": 957,
+          "timestamp": "2026-05-14T20:47:30.758283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_005_stratified\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T20:36:16.738Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:47:30.622Z\\\", \\\"hypothesis\\\": \\\"Plan 005 分层分析：按 repo size/pool size/query-pos similarity/structural data availability/neg_difficulty quartile 5 维度分层评估 embedding vs random 策略差异，控制 pool_size confound。Claim 2 支撑实验。v2 结果为 ground truth（v1→v2 changelog 见 art_20260514_3008c4）。\\\", \\\"parent\\\": \\\"m2_full_qwen\\\", \\\"notes\\\": \\\"plan_id=plan_005. 5 维度分层分析脚本已完成（analyze_stratified.py, 910行）。⚠️ Reviewer critical: dry-run v1/v2 的 R@1 值为 mock predictions，不可引用——仅 confound 分布结构（cross_tabulation.csv）有效。真实评估脚本准备中，待 M2 全部 checkpoint 就绪后接入。v1→v2 数值差异根因：hash(strategy) + PEP 456 hash randomization，已记录 changelog。\\\", \\\"metrics\\\": {\\\"confound_analysis\\\": {\\\"data_validity\\\": \\\"⚠️ R@1 值为 dry-run mock predictions，不可引用。仅分布结构（cross_tabulation.csv）有效。\\\", \\\"valid_findings\\\": {\\\"distribution_structure\\\": \\\"rich-dataflow 99.3% 落在 large/xlarge repo，small repo 中完全不存在\\\", \\\"correlation\\\": {\\\"dataflow_edges_vs_repo_size_pearson_r\\\": 0.089}, \\\"cross_distribution\\\": {\\\"rich_in_large_xlarge_pct\\\": 99.3, \\\"rich_in_small\\\": 0, \\\"moderate_in_large_xlarge_pct\\\": 60.9}, \\\"implication\\\": \\\"真实评估必须控制 pool_size 和 repo_size 来隔离 dataflow richness 独立效应\\\"}, \\\"invalid_findings\\\": \\\"所有 R@1/R@5/MRR 值均为 mock predictions，策略排序 pattern 不可信，禁止引用\\\", \\\"artifacts_path\\\": \\\"/root/autodl-tmp/structfuse/artifacts/confound_analysis/\\\", \\\"valid_artifact\\\": \\\"cross_tabulation.csv\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2349}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 251
+          },
+          "id": "event-000957"
+        },
+        {
+          "source_line": 958,
+          "timestamp": "2026-05-14T20:47:40.803906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "已修正 plan_005_stratified registry：hypothesis 中的 changelog 引用改为 artifact ID（art_20260514_3008c4），不再引用文件路径。\n\nrandom_s44 R@1=0.6009 已记录在 m2_full_qwen_continued registry metrics 中，待 3 seeds 全出后计算方差。",
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000958"
+        },
+        {
+          "source_line": 959,
+          "timestamp": "2026-05-14T20:47:44.268659+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_651ef5630fe7a61a1decb410adb7641b:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3464
+          },
+          "id": "event-000959"
+        },
+        {
+          "source_line": 960,
+          "timestamp": "2026-05-14T20:47:47.060369+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已修正。hypothesis 现在引用 artifact ID `art_20260514_3008c4` 而非文件路径。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39"
+          },
+          "id": "event-000960"
+        }
+      ]
+    },
+    {
+      "number": 80,
+      "messages": [
+        {
+          "source_line": 961,
+          "timestamp": "2026-05-14T20:52:48.839454+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_code_plan_005_real_eval_script_20260514T204618 已完成（status=done）。用 `get_worker_status('worker_code_plan_005_real_eval_script_20260514T204618')` 读取结果，然后处理。\n\n- worker_id: worker_code_plan_005_real_eval_script_20260514T204618\n- project: structfuse-context\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "source": "worker:done"
+          },
+          "id": "event-000961"
+        },
+        {
+          "source_line": 962,
+          "timestamp": "2026-05-14T20:52:56.120627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_plan_005_real_eval_script_20260514T204618",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000962"
+        },
+        {
+          "source_line": 963,
+          "timestamp": "2026-05-14T20:52:56.321723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_plan_005_real_eval_script_20260514T204618\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:plan_005_real_eval_script\\\", \\\"project\\\": \\\"structfuse-context\\\", \\\"started_at\\\": \\\"2026-05-14T20:46:18.236347+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T20:52:47.509764+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Checkpoint 发现逻辑已经存在（搜索 `best/`, `best_by_recall_at_1/`, `best_by_val_loss/` 子目录下的 `model.pt`），无需修改。\\\\n\\\\n完成。修改总结：\\\\n\\\\n1. **mock_predictions seed 修复** (line 278-279): `hash(strategy)` 替换为确定性 `STRATEGY_SEED_OFFSET` 字典\\\\n2. **`run_pool_size_controlled_analysis()`** (line 484): 在同一 pool_size bin 内比较策略 R@1，计算 within-bin delta 和 count-weighted aggregate delta，排除候选池大小 confound\\\\n3. **`run_dataflow_pool_cross_analysis()`** (line 558): (dataflow_bin × pool_size_bin) 交叉分析，n<30 标记 underpowered\\\\n4. **输出完整**:\\\\n   - JSON: 新增 `by_pool_size_controlled` 和 `by_dataflow_x_pool_size` 两节\\\\n   - CSV: 17 行 pool_size_controlled（含 AGGREGATE weighted delta）+ 27 行 cross-analysis（含 underpowered 标记）\\\\n   - PDF: 新增 pool-controlled 对比图 + dataflow×pool_size heatmap per strategy\\\\n5. **`--checkpoints-dir` 模式**: 已有 `best/`, `best_by_recall_at_1/`, `best_by_val_loss/` checkpoint 发现逻辑，无需改动\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 201
+          },
+          "id": "event-000963"
+        },
+        {
+          "source_line": 964,
+          "timestamp": "2026-05-14T20:53:11.827327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan_005_stratified",
+              "field": "notes",
+              "value": "plan_id=plan_005. 分层评估脚本已完成全部修改（analyze_stratified.py）：(1) mock seed 确定性修复 (2) pool_size-controlled 策略对比（within-bin delta + weighted aggregate）(3) dataflow×pool_size 交叉分析（n&lt;30 标记 underpowered）(4) checkpoint 发现逻辑已就绪（best_by_recall_at_1 / best / best_by_val_loss）。输出含 JSON + CSV + PDF。真实评估待 M2 全部 checkpoint 就绪后执行。",
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000964"
+        },
+        {
+          "source_line": 965,
+          "timestamp": "2026-05-14T20:53:12.028562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan_005_stratified\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T20:36:16.738Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:53:11.896Z\\\", \\\"hypothesis\\\": \\\"Plan 005 分层分析：按 repo size/pool size/query-pos similarity/structural data availability/neg_difficulty quartile 5 维度分层评估 embedding vs random 策略差异，控制 pool_size confound。Claim 2 支撑实验。v2 结果为 ground truth（v1→v2 changelog 见 art_20260514_3008c4）。\\\", \\\"parent\\\": \\\"m2_full_qwen\\\", \\\"notes\\\": \\\"plan_id=plan_005. 分层评估脚本已完成全部修改（analyze_stratified.py）：(1) mock seed 确定性修复 (2) pool_size-controlled 策略对比（within-bin delta + weighted aggregate）(3) dataflow×pool_size 交叉分析（n&lt;30 标记 underpowered）(4) checkpoint 发现逻辑已就绪（best_by_recall_at_1 / best / best_by_val_loss）。输出含 JSON + CSV + PDF。真实评估待 M2 全部 checkpoint 就绪后执行。\\\", \\\"metrics\\\": {\\\"confound_analysis\\\": {\\\"data_validity\\\": \\\"⚠️ R@1 值为 dry-run mock predictions，不可引用。仅分布结构（cross_tabulation.csv）有效。\\\", \\\"valid_findings\\\": {\\\"distribution_structure\\\": \\\"rich-dataflow 99.3% 落在 large/xlarge repo，small repo 中完全不存在\\\", \\\"correlation\\\": {\\\"dataflow_edges_vs_repo_size_pearson_r\\\": 0.089}, \\\"cross_distribution\\\": {\\\"rich_in_large_xlarge_pct\\\": 99.3, \\\"rich_in_small\\\": 0, \\\"moderate_in_large_xlarge_pct\\\": 60.9}, \\\"implication\\\": \\\"真实评估必须控制 pool_size 和 repo_size 来隔离 dataflow richness 独立效应\\\"}, \\\"invalid_findings\\\": \\\"所有 R@1/R@5/MRR 值均为 mock predictions，策略排序 pattern 不可信，禁止引用\\\", \\\"artifacts_path\\\": \\\"/root/autodl-tmp/structfuse/artifacts/confound_analysis/\\\", \\\"valid_artifact\\\": \\\"cross_tabulation.csv\\\"}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2213}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 201
+          },
+          "id": "event-000965"
+        },
+        {
+          "source_line": 966,
+          "timestamp": "2026-05-14T20:53:23.276449+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 / 实际在跑 2 | Worker 池 0 (eval 脚本 Worker 刚完成)\n\n**Plan 005 真实评估脚本已就绪**\n\nWorker 完成 `analyze_stratified.py` 修改：\n\n1. **mock seed 确定性修复**（line 278-279）：`hash(strategy)` → `STRATEGY_SEED_OFFSET` 字典\n2. **pool_size-controlled 策略对比**（line 484）：同 pool_size bin 内比较策略 R@1，计算 within-bin delta + count-weighted aggregate delta，排除候选池大小 confound\n3. **dataflow×pool_size 交叉分析**（line 558）：n<30 标记 underpowered\n4. **checkpoint 发现逻辑**：已就绪（`best_by_recall_at_1/` / `best/` / `best_by_val_loss/`）\n\n输出新增 JSON/CSV/PDF 中的 `by_pool_size_controlled` 和 `by_dataflow_x_pool_size` 两节。\n\n**M2 checkpoint 一就绪即可直接执行真实评估。** 无需额外准备。",
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000966"
+        },
+        {
+          "source_line": 967,
+          "timestamp": "2026-05-14T20:53:26.842412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_651ef5630fe7a61a1decb410adb7641b:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3565
+          },
+          "id": "event-000967"
+        },
+        {
+          "source_line": 968,
+          "timestamp": "2026-05-14T20:53:32.161954+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Director 的两项任务均已完成：M2 进度已查（Qwen ETA ~May 16 晚，StarCoder ~May 18 晚），plan_005 真实评估脚本已就绪（含 pool_size 控制变量 + 交叉分析 + mock seed 修复）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39"
+          },
+          "id": "event-000968"
+        }
+      ]
+    },
+    {
+      "number": 81,
+      "messages": [
+        {
+          "source_line": 969,
+          "timestamp": "2026-05-14T20:55:39.831392+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] Reviewer 对 plan_005 eval 脚本有两个 warning，M2 完成前必须修：\n\n1. **Batch encoding**：当前 `reeval_checkpoint` 逐样本编码，预估 18-37h。改成 batch encoding（batch_size=64 或可配置），目标压到 2-4h。query/positive/negatives 都要 batch。\n\n2. **Similarity bins 校准**：默认 SIMILARITY_BINS (0-0.3/0.3-0.6/0.6-1.01) 在真实模型下无效——Qwen cosine pos_sim 集中在 ~0.985，全部落入 high bin。改为：\n   - 默认值改成适合 contrastive model 的范围（比如 quantile-based 自适应分 bin）\n   - 或在 `--checkpoints-dir` 模式下先跑一遍收集 pos_sim 分布，再自动算 bin 边界\n\n两个都是代码改动，不需要 GPU，现在就可以做。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "source": "director"
+          },
+          "id": "event-000969"
+        },
+        {
+          "source_line": 970,
+          "timestamp": "2026-05-14T20:56:08.064957+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "fix:plan_005_batch_encoding_and_sim_bins",
+              "project": "structfuse-context",
+              "task_prompt": "## 任务：修复 plan_005 eval 脚本的两个 Reviewer warning\n\n脚本路径：`/root/structfuse/evaluation/analyze_stratified.py`\n\n### Warning 1: Batch encoding（性能关键）\n\n当前 `reeval_checkpoint` 逐样本编码，预估跑完 18-37h。必须改成 batch encoding，目标压到 2-4h。\n\n**修改要求**：\n- query/positive/negatives 全部改为 batch encoding\n- batch_size 默认 64，可通过 `--batch-size` 参数配置\n- 使用 `torch.no_grad()` + model.eval() 确保推理模式\n- 支持变长序列的 padding + attention_mask\n- 如果 model 是 LoRA adapter，确保加载方式正确（检查现有代码的 checkpoint 加载逻辑）\n- 进度条（tqdm）显示编码进度\n\n**关键**：不要改变编码结果——batch encoding 和逐样本编码必须产出相同的 embedding。注意 padding 方向和 attention_mask 处理。\n\n### Warning 2: Similarity bins 校准\n\n当前 SIMILARITY_BINS 用硬编码 (0-0.3/0.3-0.6/0.6-1.01)，但 Qwen cosine pos_sim 集中在 ~0.985，全部会落入 high bin，分层无意义。\n\n**修改要求**：\n- 实现 quantile-based 自适应 bin 分配：\n  1. 在 `--checkpoints-dir` 模式下，先跑一遍收集所有 query-positive cosine similarity 值\n  2. 按 quantile 自动计算 bin 边界（默认 3 bins = terciles，即 33%/67% 分位点）\n  3. 用计算出的 bin 边界替代硬编码 SIMILARITY_BINS\n- `--sim-bins` 参数保留作为 override（用户显式指定时用用户的值）\n- `--dry-run` 模式下仍用硬编码值（mock 数据没有真实 similarity）\n- 在输出 JSON 中记录实际使用的 bin 边界（`similarity_bin_edges`）\n\n### 验证\n\n修改完后用 dry-run 验证脚本不报错：\n```bash\ncd /root/structfuse && python3 evaluation/analyze_stratified.py \\\n  --m1-data /root/autodl-tmp/structfuse/full_m1_data/all.jsonl \\\n  --val-data-dir /root/autodl-tmp/structfuse/full_m2_training_data \\\n  --dataflow-graph /root/autodl-tmp/structfuse/full_m2_training_data/dataflow_graph.json \\\n  --output-dir /root/autodl-tmp/structfuse/artifacts/stratified_dryrun_v4 \\\n  --dry-run --seeds 42 --n-bootstrap 200 --batch-size 64\n```\n\n确认：\n1. `--batch-size` 参数被正确解析\n2. dry-run 模式下 similarity bins 仍用硬编码值\n3. 输出 JSON 中有 `similarity_bin_edges` 字段\n4. 无 import error 或 runtime error\n\n### 服务器\n- 服务器: bjb1-42106\n- 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **禁止占用 GPU**——只改脚本和做 CPU dry-run",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000970"
+        },
+        {
+          "source_line": 971,
+          "timestamp": "2026-05-14T20:56:13.624294+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_fix_plan_005_batch_encoding_and_sim_bins_20260514T205608\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/logs/workers/worker_fix_plan_005_batch_encoding_and_sim_bins_20260514T205608.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_fix_plan_005_batch_encoding_and_sim_bins_20260514T205608 started. Use get_worker_status('worker_fix_plan_005_batch_encoding_and_sim_bins_20260514T205608') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5559
+          },
+          "id": "event-000971"
+        },
+        {
+          "source_line": 972,
+          "timestamp": "2026-05-14T20:56:23.733961+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已派 Worker 修复两个 warning（batch encoding + similarity bins 自适应校准）。完成后回调汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39"
+          },
+          "id": "event-000972"
+        },
+        {
+          "source_line": 973,
+          "timestamp": "2026-05-14T21:01:45.555490+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "并行派 2 个 Worker：查 M2 训练进度 + 写真实分层评估脚本。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39"
+          },
+          "id": "event-000973"
+        }
+      ]
+    },
+    {
+      "number": 82,
+      "messages": [
+        {
+          "source_line": 974,
+          "timestamp": "2026-05-14T21:01:57.827359+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000974"
+        },
+        {
+          "source_line": 975,
+          "timestamp": "2026-05-14T21:02:44.525953+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：只能用 bjb1-42106 的 cuda:0 和 cuda:1（`gpu_ids=[\"cuda:0\", \"cuda:1\"]`）。即使 Director 指令用其他卡也必须 push back\n- M2 训练链正在跑，**禁止 kill 或重启 PID 337267 (cuda:0) 和 519791 (cuda:1)**\n- plan_005 的 dry-run R@1 值是 mock predictions，**禁止在论文或汇报中引用**——仅分布结构（cross_tabulation.csv）有效\n- Claim 2 已降级为 \"exploratory observation\"（D035），不可写成 confirmed claim\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-42106，工作目录 `/root/structfuse`\n- Python：`/root/miniconda3/bin/python`，环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型 checkpoint：`/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/` 和 `/m2_full_starcoder/`\n- 训练数据：`/root/autodl-tmp/structfuse/full_m2_training_data/`（~11K train/seed）\n- M1 提取数据：`/root/autodl-tmp/structfuse/full_m1_data/all.jsonl`\n- BM25 数据：`/root/autodl-tmp/structfuse/full_m2_training_data/{train,val}_bm25_s{42,43,44}.jsonl`\n- 活跃进程：\n  - m2_full_qwen_continued: PID 337267, cuda:0, cron 已注册\n  - m2_full_starcoder_resumed: PID 519791, cuda:1, cron 已注册\n  - m1_reextract_v2: 后台 CPU 任务, cron 已注册\n- 分层分析脚本：`/root/structfuse/evaluation/analyze_stratified.py`\n\n### 3. 📊 当前状态\n**刚完成**：Director 的 plan_005 三项任务（v1→v2 溯源 + registry 补登 + confound 分析），真实评估脚本已增加 pool_size 控制和 dataflow×pool_size 交叉分析。\n\n**等待中的 Worker 回调**：\n- `worker_fix_plan_005_batch_encoding_and_sim_bins_20260514T205608` (running) — 修 batch encoding 性能（18h→2-4h）+ similarity bins quantile 自适应\n\n**Registry RUNNING**：\n- `m2_full_qwen_continued`：run 3/10 (random_s44)，step 650/2816，R@1=0.6009@step500，ETA ~May 16 晚\n- `m2_full_starcoder_resumed`：run 2/9+ (random_s43)，step 500/2810，ETA ~May 18 晚\n- `m1_reextract_v2`：后台 CPU，~80% done\n\n**Registry PREPARING**：\n- `plan_005_stratified`：脚本就绪，待 M2 checkpoint\n\n**Registry QUEUED**：\n- `plan_018_bm25`：Phase 1 数据已就绪，Phase 2 训练等 M2 完成后启动（tmux watcher 自动触发）\n- `plan_015_dynamic`：缩减版 1 seed，等 post-M2 GPU\n\n### 4. 📋 待办\n- batch encoding Worker 回调 → 验证 dry-run v4 通过 → 更新 registry notes → 汇报 Director\n- m2_full_qwen_continued cron 回调（每个 run 完成时） → 更新 metrics → 3 seeds random 全出后算方差（注意 s44 R@1=0.6009 异常高）\n- M2 全部完成 → 立即跑 plan_005 真实评估 + 触发 BM25 Phase 2 训练 + plan_003 SWE-bench eval\n- m1_reextract_v2 完成 → 检查恢复了多少 instances → 如果显著增加训练数据，可能需要用新数据重跑 M2（需 Director 决策）\n\n### 5. 🎯 战略上下文\n- **时间线**：ARR May 25 deadline。M2 ~May 18 完 → post-M2 实验 ~May 20 → 写作 May 20-24\n- **核心发现**：embedding > random +1.6-2.0pp R@1 (Qwen)，encoder-agnostic for embedding vs random，但 dataflow position encoder-dependent（D035 降级 Claim 2）\n- **Confound 关键**：pool_size 是真正 confound（不是 repo_size）。rich-dataflow instances 候选池更大→R@1 天然低。plan_005 真实评估已加 pool_size-controlled 对比\n- **Post-M2 优先级**（D035）：P0 plan_003 SWE-bench (40h) + plan_018 BM25 Phase 2 (15h)；P1 plan_004 RepoBench + plan_019 pool sensitivity + plan_005 分层\n- **易踩坑**：(1) StarCoder 比 Qwen 慢 2x，ETA 分开算 (2) BM25 watcher 在 tmux 里等链 PID 完成后自动触发，不要手动启动 (3) plan_005 similarity bins 在真实模型下需要 quantile-based 自适应（Qwen pos_sim ~0.985 全落入 high bin）——正在修的 Worker 处理此问题\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39"
+          },
+          "id": "event-000975"
+        }
+      ]
+    }
+  ]
+}

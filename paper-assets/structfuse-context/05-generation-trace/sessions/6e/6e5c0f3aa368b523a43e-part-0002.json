@@ -1,0 +1,597 @@
+{
+  "schema_version": "1.0",
+  "session_id": "6e5c0f3aa368b523a43e",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-15T17:47:44.943Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QZS2cWZPQqSnSLH6U42T4g",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  [eval@500] {'val_loss': 0.4476428985947238, 'recall@1': 0.5357142857142857, 'recall@5': 0.9698558322411533, 'recall@10': 1.0}\\\\n  [eval@1000] {'val_loss': 0.4637672980834741, 'recall@1': 0.5285058977719528, 'recall@5': 0.9672346002621232, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.5476617613712114, 'recall@1': 0.5553735255570118, 'recall@5': 0.9544560943643512, 'recall@10': 1.0}\\\\n  [eval@1000] {'val_loss': 0.4637672980834741, 'recall@1': 0.5285058977719528, 'recall@5': 0.9672346002621232, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.5476617613712114, 'recall@1': 0.5553735255570118, 'recall@5': 0.9544560943643512, 'recall@10': 1.0}\\\\n  [eval@500] {'val_loss': 0.4251521137498674, 'recall@1': 0.6008597883597884, 'recall@5': 0.9583333333333334, 'recall@10': 1.0}\\\\n  [eval@1000] {'val_loss': 0.46949244308329763, 'recall@1': 0.5638227513227513, 'recall@5': 0.9523809523809523, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.49175971771082866, 'recall@1': 0.5591931216931217, 'recall@5': 0.9503968253968254, 'recall@10': 1.0}\\\\n  [eval@1000] {'val_loss': 0.46949244308329763, 'recall@1': 0.5638227513227513, 'recall@5': 0.9523809523809523, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.49175971771082866, 'recall@1': 0.5591931216931217, 'recall@5': 0.9503968253968254, 'recall@10': 1.0}\\\\n  [eval@500] {'val_loss': 0.45413682116671594, 'recall@1': 0.5445609436435125, 'recall@5': 0.9665792922673656, 'recall@10': 1.0}\\\\n  [eval@1000] {'val_loss': 0.47089352574917154, 'recall@1': 0.5389908256880734, 'recall@5': 0.9655963302752294, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.49263691808418086, 'recall@1': 0.5606159895150721, 'recall@5': 0.9629750982961992, 'recall@10': 1.0}\\\\n  [eval@1000] {'val_loss': 0.47089352574917154, 'recall@1': 0.5389908256880734, 'recall@5': 0.9655963302752294, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.49263691808418086, 'recall@1': 0.5606159895150721, 'recall@5': 0.9629750982961992, 'recall@10': 1.0}\\\\n  [eval@500] {'val_loss': 0.44032017948726815, 'recall@1': 0.5942460317460317, 'recall@5': 0.9563492063492064, 'recall@10': 1.0}\\\\n  [eval@1000] {'val_loss': 0.4341431890648824, 'recall@1': 0.5813492063492064, 'recall@5': 0.9642857142857143, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.5255766192342711, 'recall@1': 0.5472883597883598, 'recall@5': 0.9421296296296297, 'recall@10': 1.0}\\\\n  [eval@2000] {'val_loss': 0.5182343455691817, 'recall@1': 0.5390211640211641, 'recall@5': 0.9467592592592593, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.5255766192342711, 'recall@1': 0.5472883597883598, 'recall@5': 0.9421296296296297, 'recall@10': 1.0}\\\\n  [eval@2000] {'val_loss': 0.5182343455691817, 'recall@1': 0.5390211640211641, 'recall@5': 0.9467592592592593, 'recall@10': 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61eb5811-6de9-4ea8-ab93-789b54c0892c",
+            "uuid": "cbe2d21f-b734-413a-bcb9-b0d25c73cca8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  [eval@500] {'val_loss': 0.4476428985947238, 'recall@1': 0.5357142857142857, 'recall@5': 0.9698558322411533, 'recall@10': 1.0}\\\\n  [eval@1000] {'val_loss': 0.4637672980834741, 'recall@1': 0.5285058977719528, 'recall@5': 0.9672346002621232, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.5476617613712114, 'recall@1': 0.5553735255570118, 'recall@5': 0.9544560943643512, 'recall@10': 1.0}\\\\n  [eval@1000] {'val_loss': 0.4637672980834741, 'recall@1': 0.5285058977719528, 'recall@5': 0.9672346002621232, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.5476617613712114, 'recall@1': 0.5553735255570118, 'recall@5': 0.9544560943643512, 'recall@10': 1.0}\\\\n  [eval@500] {'val_loss': 0.4251521137498674, 'recall@1': 0.6008597883597884, 'recall@5': 0.9583333333333334, 'recall@10': 1.0}\\\\n  [eval@1000] {'val_loss': 0.46949244308329763, 'recall@1': 0.5638227513227513, 'recall@5': 0.9523809523809523, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.49175971771082866, 'recall@1': 0.5591931216931217, 'recall@5': 0.9503968253968254, 'recall@10': 1.0}\\\\n  [eval@1000] {'val_loss': 0.46949244308329763, 'recall@1': 0.5638227513227513, 'recall@5': 0.9523809523809523, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.49175971771082866, 'recall@1': 0.5591931216931217, 'recall@5': 0.9503968253968254, 'recall@10': 1.0}\\\\n  [eval@500] {'val_loss': 0.45413682116671594, 'recall@1': 0.5445609436435125, 'recall@5': 0.9665792922673656, 'recall@10': 1.0}\\\\n  [eval@1000] {'val_loss': 0.47089352574917154, 'recall@1': 0.5389908256880734, 'recall@5': 0.9655963302752294, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.49263691808418086, 'recall@1': 0.5606159895150721, 'recall@5': 0.9629750982961992, 'recall@10': 1.0}\\\\n  [eval@1000] {'val_loss': 0.47089352574917154, 'recall@1': 0.5389908256880734, 'recall@5': 0.9655963302752294, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.49263691808418086, 'recall@1': 0.5606159895150721, 'recall@5': 0.9629750982961992, 'recall@10': 1.0}\\\\n  [eval@500] {'val_loss': 0.44032017948726815, 'recall@1': 0.5942460317460317, 'recall@5': 0.9563492063492064, 'recall@10': 1.0}\\\\n  [eval@1000] {'val_loss': 0.4341431890648824, 'recall@1': 0.5813492063492064, 'recall@5': 0.9642857142857143, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.5255766192342711, 'recall@1': 0.5472883597883598, 'recall@5': 0.9421296296296297, 'recall@10': 1.0}\\\\n  [eval@2000] {'val_loss': 0.5182343455691817, 'recall@1': 0.5390211640211641, 'recall@5': 0.9467592592592593, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.5255766192342711, 'recall@1': 0.5472883597883598, 'recall@5': 0.9421296296296297, 'recall@10': 1.0}\\\\n  [eval@2000] {'val_loss': 0.5182343455691817, 'recall@1': 0.5390211640211641, 'recall@5': 0.9467592592592593, 'recall@10': 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  [eval@500] {'val_loss': 0.4476428985947238, 'recall@1': 0.5357142857142857, 'recall@5': 0.9698558322411533, 'recall@10': 1.0}\\n  [eval@1000] {'val_loss': 0.4637672980834741, 'recall@1': 0.5285058977719528, 'recall@5': 0.9672346002621232, 'recall@10': 1.0}\\n  [eval@1500] {'val_loss': 0.5476617613712114, 'recall@1': 0.5553735255570118, 'recall@5': 0.9544560943643512, 'recall@10': 1.0}\\n  [eval@1000] {'val_loss': 0.4637672980834741, 'recall@1': 0.5285058977719528, 'recall@5': 0.9672346002621232, 'recall@10': 1.0}\\n  [eval@1500] {'val_loss': 0.5476617613712114, 'recall@1': 0.5553735255570118, 'recall@5': 0.9544560943643512, 'recall@10': 1.0}\\n  [eval@500] {'val_loss': 0.4251521137498674, 'recall@1': 0.6008597883597884, 'recall@5': 0.9583333333333334, 'recall@10': 1.0}\\n  [eval@1000] {'val_loss': 0.46949244308329763, 'recall@1': 0.5638227513227513, 'recall@5': 0.9523809523809523, 'recall@10': 1.0}\\n  [eval@1500] {'val_loss': 0.49175971771082866, 'recall@1': 0.5591931216931217, 'recall@5': 0.9503968253968254, 'recall@10': 1.0}\\n  [eval@1000] {'val_loss': 0.46949244308329763, 'recall@1': 0.5638227513227513, 'recall@5': 0.9523809523809523, 'recall@10': 1.0}\\n  [eval@1500] {'val_loss': 0.49175971771082866, 'recall@1': 0.5591931216931217, 'recall@5': 0.9503968253968254, 'recall@10': 1.0}\\n  [eval@500] {'val_loss': 0.45413682116671594, 'recall@1': 0.5445609436435125, 'recall@5': 0.9665792922673656, 'recall@10': 1.0}\\n  [eval@1000] {'val_loss': 0.47089352574917154, 'recall@1': 0.5389908256880734, 'recall@5': 0.9655963302752294, 'recall@10': 1.0}\\n  [eval@1500] {'val_loss': 0.49263691808418086, 'recall@1': 0.5606159895150721, 'recall@5': 0.9629750982961992, 'recall@10': 1.0}\\n  [eval@1000] {'val_loss': 0.47089352574917154, 'recall@1': 0.5389908256880734, 'recall@5': 0.9655963302752294, 'recall@10': 1.0}\\n  [eval@1500] {'val_loss': 0.49263691808418086, 'recall@1': 0.5606159895150721, 'recall@5': 0.9629750982961992, 'recall@10': 1.0}\\n  [eval@500] {'val_loss': 0.44032017948726815, 'recall@1': 0.5942460317460317, 'recall@5': 0.9563492063492064, 'recall@10': 1.0}\\n  [eval@1000] {'val_loss': 0.4341431890648824, 'recall@1': 0.5813492063492064, 'recall@5': 0.9642857142857143, 'recall@10': 1.0}\\n  [eval@1500] {'val_loss': 0.5255766192342711, 'recall@1': 0.5472883597883598, 'recall@5': 0.9421296296296297, 'recall@10': 1.0}\\n  [eval@2000] {'val_loss': 0.5182343455691817, 'recall@1': 0.5390211640211641, 'recall@5': 0.9467592592592593, 'recall@10': 1.0}\\n  [eval@1500] {'val_loss': 0.5255766192342711, 'recall@1': 0.5472883597883598, 'recall@5': 0.9421296296296297, 'recall@10': 1.0}\\n  [eval@2000] {'val_loss': 0.5182343455691817, 'recall@1': 0.5390211640211641, 'recall@5': 0.9467592592592593, 'recall@10': 1.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NioqhRgsKvYMumqCVwAWae",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "account": "root",
+                "command": "grep \"Final eval\" /root/runs/m2_full_qwen/s43plus_all.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61eb5811-6de9-4ea8-ab93-789b54c0892c",
+            "uuid": "d60dabd2-143a-4f40-8230-8d9d24df9455",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014i3qr7DxxFmB7D9RZRPzx9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 258,
+                "cache_read_input_tokens": 98699,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 258
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-15T17:47:45.452Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NioqhRgsKvYMumqCVwAWae",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[Final eval] {'val_loss': 0.5434050835463979, 'recall@1': 0.5501310615989515, 'recall@5': 0.9583879423328965, 'recall@10': 1.0}\\\\n[Final eval] {'val_loss': 0.5434050835463979, 'recall@1': 0.5501310615989515, 'recall@5': 0.9583879423328965, 'recall@10': 1.0}\\\\n[Final eval] {'val_loss': 0.4943022895702925, 'recall@1': 0.5542328042328042, 'recall@5': 0.9513888888888888, 'recall@10': 1.0}\\\\n[Final eval] {'val_loss': 0.4943022895702925, 'recall@1': 0.5542328042328042, 'recall@5': 0.9513888888888888, 'recall@10': 1.0}\\\\n[Final eval] {'val_loss': 0.4875504152256102, 'recall@1': 0.5655307994757536, 'recall@5': 0.966251638269987, 'recall@10': 1.0}\\\\n[Final eval] {'val_loss': 0.4875504152256102, 'recall@1': 0.5655307994757536, 'recall@5': 0.966251638269987, 'recall@10': 1.0}\\\\n[Final eval] {'val_loss': 0.5123182460172939, 'recall@1': 0.546957671957672, 'recall@5': 0.9480820105820106, 'recall@10': 1.0}\\\\n[Final eval] {'val_loss': 0.5123182460172939, 'recall@1': 0.546957671957672, 'recall@5': 0.9480820105820106, 'recall@10': 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61eb5811-6de9-4ea8-ab93-789b54c0892c",
+            "uuid": "af2962aa-cd13-476d-8afc-29089c9f4549",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[Final eval] {'val_loss': 0.5434050835463979, 'recall@1': 0.5501310615989515, 'recall@5': 0.9583879423328965, 'recall@10': 1.0}\\\\n[Final eval] {'val_loss': 0.5434050835463979, 'recall@1': 0.5501310615989515, 'recall@5': 0.9583879423328965, 'recall@10': 1.0}\\\\n[Final eval] {'val_loss': 0.4943022895702925, 'recall@1': 0.5542328042328042, 'recall@5': 0.9513888888888888, 'recall@10': 1.0}\\\\n[Final eval] {'val_loss': 0.4943022895702925, 'recall@1': 0.5542328042328042, 'recall@5': 0.9513888888888888, 'recall@10': 1.0}\\\\n[Final eval] {'val_loss': 0.4875504152256102, 'recall@1': 0.5655307994757536, 'recall@5': 0.966251638269987, 'recall@10': 1.0}\\\\n[Final eval] {'val_loss': 0.4875504152256102, 'recall@1': 0.5655307994757536, 'recall@5': 0.966251638269987, 'recall@10': 1.0}\\\\n[Final eval] {'val_loss': 0.5123182460172939, 'recall@1': 0.546957671957672, 'recall@5': 0.9480820105820106, 'recall@10': 1.0}\\\\n[Final eval] {'val_loss': 0.5123182460172939, 'recall@1': 0.546957671957672, 'recall@5': 0.9480820105820106, 'recall@10': 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[Final eval] {'val_loss': 0.5434050835463979, 'recall@1': 0.5501310615989515, 'recall@5': 0.9583879423328965, 'recall@10': 1.0}\\n[Final eval] {'val_loss': 0.5434050835463979, 'recall@1': 0.5501310615989515, 'recall@5': 0.9583879423328965, 'recall@10': 1.0}\\n[Final eval] {'val_loss': 0.4943022895702925, 'recall@1': 0.5542328042328042, 'recall@5': 0.9513888888888888, 'recall@10': 1.0}\\n[Final eval] {'val_loss': 0.4943022895702925, 'recall@1': 0.5542328042328042, 'recall@5': 0.9513888888888888, 'recall@10': 1.0}\\n[Final eval] {'val_loss': 0.4875504152256102, 'recall@1': 0.5655307994757536, 'recall@5': 0.966251638269987, 'recall@10': 1.0}\\n[Final eval] {'val_loss': 0.4875504152256102, 'recall@1': 0.5655307994757536, 'recall@5': 0.966251638269987, 'recall@10': 1.0}\\n[Final eval] {'val_loss': 0.5123182460172939, 'recall@1': 0.546957671957672, 'recall@5': 0.9480820105820106, 'recall@10': 1.0}\\n[Final eval] {'val_loss': 0.5123182460172939, 'recall@1': 0.546957671957672, 'recall@5': 0.9480820105820106, 'recall@10': 1.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The s43plus_all.log matches the individual log files. The data in s43plus_all.log is duplicated (each eval appears twice), likely because of the tee + combined log.\n\nNow I have all the data I need. Let me also check for the embedding_distance_s42 run - it's listed in the run_m2_s42_supplement.sh. Let me check if that run has started or not.\n\nActually, from the registry data:\n- m2_full_qwen_continued: completed subruns include random_s43, random_s44, embedding_distance_s43, embedding_distance_s44; current is dataflow_aware_s43 (5/7); remaining are dataflow_aware_s44, bm25_s42\n\n\n- The s42 supplement runs appear to be part of a separate experiment, so I need to check their status independently. Looking more closely at m2_full_qwen_continued, the chain has 7 runs total: random_s43, random_s44, embedding_distance_s43, embedding_distance_s44, dataflow_aware_s43, dataflow_aware_s44, and bm25_s42, but the original m2_full_qwen included random_s42 which is already done.\n\nSince the task asks for completed Qwen subruns only, I should focus on the 5 finished runs and exclude dataflow_aware_s43 since it's still running at step 500 with no evaluation results yet. Now I'm creating the JSON output and verifying that the registry and log data align—for instance, random_s42 shows eval_500 with val_loss=0.4869 in the registry and val_loss=0.486931 in the logs, which match closely enough.\n\nI notice the registry only captures summary metrics like best_val_loss and best_R@1 for the continued runs, whereas the logs contain the full evaluation history at each checkpoint.\n\nNow I'm organizing the trajectory data from the logs into a structured format, pulling the validation metrics at each evaluation step for random_s42 across its full training run. Looking at the validation metrics across different random seeds, I can see step 1000 consistently performs best with the lowest validation loss of 0.4651 and R@1 score of 0.5527. For the random_s43 run with early stopping at 1500 steps, the trajectory shows similar performance patterns with validation loss starting around 0.448 and gradually increasing through the training steps. Looking at the performance trajectory for random_s44, the model peaks early at step 500 with the best validation loss and R@1 score, then gradually degrades as training continues. The embedding_distance_s43 run is starting similarly with comparable metrics at the first checkpoint. Looking at the embedding_distance_s44 results, performance peaks at step 500 with the best R@1 score of 0.594, though validation loss is slightly better at step 1000. The dataflow_aware_s43 model is still in progress at step 500 with no evaluation metrics yet, and I'm noting that random_s42 has incomplete logging with missing evaluations after step 3500.\n\nGenerating JSON output...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61eb5811-6de9-4ea8-ab93-789b54c0892c",
+            "uuid": "450e579d-77cb-432f-abc8-c5f8ab9d9b31",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ag1jET2yrdw5z23zngipi2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2397,
+                "cache_read_input_tokens": 98957,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2397
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有完成的 Qwen runs 的日志数据已收集完毕。dataflow_aware_s43 仍在运行（step 500，尚无 eval 数据）。\n\n现在生成 JSON。已有完整轨迹的5个完成 runs：random_s42/s43/s44、embedding_distance_s43/s44。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61eb5811-6de9-4ea8-ab93-789b54c0892c",
+            "uuid": "11b0b263-1d72-43a4-860b-f57d1d661be4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ag1jET2yrdw5z23zngipi2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2397,
+                "cache_read_input_tokens": 98957,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2397
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jbxvf8m9mXXBu39oijQ7vG",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/analysis/",
+                "description": "Create analysis output directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61eb5811-6de9-4ea8-ab93-789b54c0892c",
+            "uuid": "b417c8ea-8188-46a5-af30-7725cde3e1ea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ag1jET2yrdw5z23zngipi2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2397,
+                "cache_read_input_tokens": 98957,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2397
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": "2026-05-15T17:48:26.890Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jbxvf8m9mXXBu39oijQ7vG",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61eb5811-6de9-4ea8-ab93-789b54c0892c",
+            "uuid": "24a63d42-8d8c-4833-9322-656cf2b35a62",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JWQZLaGENgvEdEJr1RWNfj",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/analysis/qwen_training_trajectories.json",
+                "content": "{\n  \"metadata\": {\n    \"generated_at\": \"2026-05-16T02:00:00+08:00\",\n    \"source\": \"registry + server logs (cross-validated)\",\n    \"encoder\": \"Qwen2.5-Coder-3B\",\n    \"model_path\": \"/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B\",\n    \"training_config\": {\n      \"lr\": 2e-5,\n      \"batch_size\": 8,\n      \"num_negatives\": 7,\n      \"hard_negative_ratio\": 0.5,\n      \"max_seq_length\": 2048,\n      \"temperature\": 0.07,\n      \"lora_rank\": 16,\n      \"proj_dim\": 256,\n      \"warmup_ratio\": 0.1,\n      \"weight_decay\": 0.01,\n      \"gradient_checkpointing\": true,\n      \"eval_steps\": 500,\n      \"save_steps\": 1000,\n      \"pos_weight_alpha\": 1.0,\n      \"use_fusion_head\": false\n    },\n    \"data_source\": \"/root/autodl-tmp/structfuse/full_m2_training_data/\",\n    \"notes\": {\n      \"s42_regime\": \"3 epochs, no early stopping (early_stopping_patience=0)\",\n      \"s43_s44_regime\": \"2 epochs, early_stopping_patience=2\",\n      \"val_loss_criterion\": \"early stopping tracks val_loss only; R@1 best saved independently\",\n      \"registry_vs_log_discrepancy\": \"registry had rounded values (3-4 sig figs); log values are full precision. Registry for random_s42 was missing eval@3500, eval@4000, and final_eval. All other values match after rounding.\"\n    },\n    \"incomplete_runs\": {\n      \"dataflow_aware_s43\": \"running, at step 500 (no eval checkpoint yet as of 2026-05-16T02:00 CST)\",\n      \"dataflow_aware_s44\": \"queued (after dataflow_aware_s43)\",\n      \"embedding_distance_s42\": \"not yet started (in s42_supplement batch)\",\n      \"dataflow_aware_s42\": \"not yet started (in s42_supplement batch)\",\n      \"bm25_s42\": \"queued (after dataflow_aware_s44)\",\n      \"bm25_s43\": \"not yet started\",\n      \"bm25_s44\": \"not yet started\"\n    }\n  },\n  \"runs\": {\n    \"random_s42\": {\n      \"seed\": 42,\n      \"strategy\": \"random\",\n      \"regime\": \"3 epochs, no early stop\",\n      \"num_epochs\": 3,\n      \"total_steps\": 4242,\n      \"steps_per_epoch\": 1414,\n      \"early_stopping_patience\": 0,\n      \"early_stopped\": false,\n      \"train_samples\": 11308,\n      \"val_samples\": 2980,\n      \"best_by_val_loss\": {\n        \"step\": 1000,\n        \"val_loss\": 0.4650662785708504,\n        \"R@1\": 0.5526845637583893,\n        \"R@5\": 0.9593959731543624,\n        \"R@10\": 1.0\n      },\n      \"best_by_R@1\": {\n        \"step\": 1000,\n        \"val_loss\": 0.4650662785708504,\n        \"R@1\": 0.5526845637583893,\n        \"R@5\": 0.9593959731543624,\n        \"R@10\": 1.0\n      },\n      \"trajectory\": [\n        {\n          \"step\": 500,\n          \"epoch\": 1,\n          \"val_loss\": 0.486931758338973,\n          \"R@1\": 0.5332214765100671,\n          \"R@5\": 0.9540268456375839,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1000,\n          \"epoch\": 1,\n          \"val_loss\": 0.4650662785708504,\n          \"R@1\": 0.5526845637583893,\n          \"R@5\": 0.9593959731543624,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1500,\n          \"epoch\": 2,\n          \"val_loss\": 0.5364526285221113,\n          \"R@1\": 0.5228187919463088,\n          \"R@5\": 0.9550335570469799,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 2000,\n          \"epoch\": 2,\n          \"val_loss\": 0.5162166327238082,\n          \"R@1\": 0.5228187919463088,\n          \"R@5\": 0.9543624161073826,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 2500,\n          \"epoch\": 2,\n          \"val_loss\": 0.5264100839827685,\n          \"R@1\": 0.5268456375838926,\n          \"R@5\": 0.9563758389261745,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 3000,\n          \"epoch\": 3,\n          \"val_loss\": 0.5405804200060416,\n          \"R@1\": 0.5355704697986577,\n          \"R@5\": 0.9493288590604027,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 3500,\n          \"epoch\": 3,\n          \"val_loss\": 0.5600887083367213,\n          \"R@1\": 0.5335570469798657,\n          \"R@5\": 0.9493288590604027,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 4000,\n          \"epoch\": 3,\n          \"val_loss\": 0.5509598255757517,\n          \"R@1\": 0.5345637583892617,\n          \"R@5\": 0.9439597315436241,\n          \"R@10\": 1.0\n        }\n      ],\n      \"final_eval\": {\n        \"val_loss\": 0.545638095677499,\n        \"R@1\": 0.5503355704697986,\n        \"R@5\": 0.9463087248322147,\n        \"R@10\": 1.0\n      },\n      \"wandb_run_id\": \"pthrowuk\",\n      \"wandb_run_name\": \"m2_full_random_s42\",\n      \"log_file\": \"/root/runs/m2_full_qwen/random_s42.log\"\n    },\n    \"random_s43\": {\n      \"seed\": 43,\n      \"strategy\": \"random\",\n      \"regime\": \"2 epochs, early stopped at step 1500\",\n      \"num_epochs\": 2,\n      \"total_steps\": 2810,\n      \"steps_per_epoch\": 1405,\n      \"early_stopping_patience\": 2,\n      \"early_stopped\": true,\n      \"early_stop_step\": 1500,\n      \"train_samples\": 11236,\n      \"val_samples\": 3052,\n      \"best_by_val_loss\": {\n        \"step\": 500,\n        \"val_loss\": 0.4476428985947238,\n        \"R@1\": 0.5357142857142857,\n        \"R@5\": 0.9698558322411533,\n        \"R@10\": 1.0\n      },\n      \"best_by_R@1\": {\n        \"step\": 1500,\n        \"val_loss\": 0.5476617613712114,\n        \"R@1\": 0.5553735255570118,\n        \"R@5\": 0.9544560943643512,\n        \"R@10\": 1.0\n      },\n      \"trajectory\": [\n        {\n          \"step\": 500,\n          \"epoch\": 1,\n          \"val_loss\": 0.4476428985947238,\n          \"R@1\": 0.5357142857142857,\n          \"R@5\": 0.9698558322411533,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1000,\n          \"epoch\": 1,\n          \"val_loss\": 0.4637672980834741,\n          \"R@1\": 0.5285058977719528,\n          \"R@5\": 0.9672346002621232,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1500,\n          \"epoch\": 2,\n          \"val_loss\": 0.5476617613712114,\n          \"R@1\": 0.5553735255570118,\n          \"R@5\": 0.9544560943643512,\n          \"R@10\": 1.0\n        }\n      ],\n      \"final_eval\": {\n        \"val_loss\": 0.5434050835463979,\n        \"R@1\": 0.5501310615989515,\n        \"R@5\": 0.9583879423328965,\n        \"R@10\": 1.0\n      },\n      \"wandb_run_id\": \"ejygo7zh\",\n      \"wandb_run_name\": \"m2_full_random_s43\",\n      \"log_file\": \"/root/runs/m2_full_qwen/random_s43.log\"\n    },\n    \"random_s44\": {\n      \"seed\": 44,\n      \"strategy\": \"random\",\n      \"regime\": \"2 epochs, early stopped at step 1500\",\n      \"num_epochs\": 2,\n      \"total_steps\": 2816,\n      \"steps_per_epoch\": 1408,\n      \"early_stopping_patience\": 2,\n      \"early_stopped\": true,\n      \"early_stop_step\": 1500,\n      \"train_samples\": 11264,\n      \"val_samples\": 3024,\n      \"best_by_val_loss\": {\n        \"step\": 500,\n        \"val_loss\": 0.4251521137498674,\n        \"R@1\": 0.6008597883597884,\n        \"R@5\": 0.9583333333333334,\n        \"R@10\": 1.0\n      },\n      \"best_by_R@1\": {\n        \"step\": 500,\n        \"val_loss\": 0.4251521137498674,\n        \"R@1\": 0.6008597883597884,\n        \"R@5\": 0.9583333333333334,\n        \"R@10\": 1.0\n      },\n      \"trajectory\": [\n        {\n          \"step\": 500,\n          \"epoch\": 1,\n          \"val_loss\": 0.4251521137498674,\n          \"R@1\": 0.6008597883597884,\n          \"R@5\": 0.9583333333333334,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1000,\n          \"epoch\": 1,\n          \"val_loss\": 0.46949244308329763,\n          \"R@1\": 0.5638227513227513,\n          \"R@5\": 0.9523809523809523,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1500,\n          \"epoch\": 2,\n          \"val_loss\": 0.49175971771082866,\n          \"R@1\": 0.5591931216931217,\n          \"R@5\": 0.9503968253968254,\n          \"R@10\": 1.0\n        }\n      ],\n      \"final_eval\": {\n        \"val_loss\": 0.4943022895702925,\n        \"R@1\": 0.5542328042328042,\n        \"R@5\": 0.9513888888888888,\n        \"R@10\": 1.0\n      },\n      \"wandb_run_id\": \"hfo1edho\",\n      \"wandb_run_name\": \"m2_full_random_s44\",\n      \"log_file\": \"/root/runs/m2_full_qwen/random_s44.log\"\n    },\n    \"embedding_distance_s43\": {\n      \"seed\": 43,\n      \"strategy\": \"embedding_distance\",\n      \"regime\": \"2 epochs, early stopped at step 1500\",\n      \"num_epochs\": 2,\n      \"total_steps\": 2810,\n      \"steps_per_epoch\": 1405,\n      \"early_stopping_patience\": 2,\n      \"early_stopped\": true,\n      \"early_stop_step\": 1500,\n      \"train_samples\": 11236,\n      \"val_samples\": 3052,\n      \"best_by_val_loss\": {\n        \"step\": 500,\n        \"val_loss\": 0.45413682116671594,\n        \"R@1\": 0.5445609436435125,\n        \"R@5\": 0.9665792922673656,\n        \"R@10\": 1.0\n      },\n      \"best_by_R@1\": {\n        \"step\": 1500,\n        \"val_loss\": 0.49263691808418086,\n        \"R@1\": 0.5606159895150721,\n        \"R@5\": 0.9629750982961992,\n        \"R@10\": 1.0\n      },\n      \"trajectory\": [\n        {\n          \"step\": 500,\n          \"epoch\": 1,\n          \"val_loss\": 0.45413682116671594,\n          \"R@1\": 0.5445609436435125,\n          \"R@5\": 0.9665792922673656,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1000,\n          \"epoch\": 1,\n          \"val_loss\": 0.47089352574917154,\n          \"R@1\": 0.5389908256880734,\n          \"R@5\": 0.9655963302752294,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1500,\n          \"epoch\": 2,\n          \"val_loss\": 0.49263691808418086,\n          \"R@1\": 0.5606159895150721,\n          \"R@5\": 0.9629750982961992,\n          \"R@10\": 1.0\n        }\n      ],\n      \"final_eval\": {\n        \"val_loss\": 0.4875504152256102,\n        \"R@1\": 0.5655307994757536,\n        \"R@5\": 0.966251638269987,\n        \"R@10\": 1.0\n      },\n      \"wandb_run_id\": \"4iueajjf\",\n      \"wandb_run_name\": \"m2_full_embedding_distance_s43\",\n      \"log_file\": \"/root/runs/m2_full_qwen/embedding_distance_s43.log\"\n    },\n    \"embedding_distance_s44\": {\n      \"seed\": 44,\n      \"strategy\": \"embedding_distance\",\n      \"regime\": \"2 epochs, early stopped at step 2000\",\n      \"num_epochs\": 2,\n      \"total_steps\": 2816,\n      \"steps_per_epoch\": 1408,\n      \"early_stopping_patience\": 2,\n      \"early_stopped\": true,\n      \"early_stop_step\": 2000,\n      \"train_samples\": 11264,\n      \"val_samples\": 3024,\n      \"best_by_val_loss\": {\n        \"step\": 1000,\n        \"val_loss\": 0.4341431890648824,\n        \"R@1\": 0.5813492063492064,\n        \"R@5\": 0.9642857142857143,\n        \"R@10\": 1.0\n      },\n      \"best_by_R@1\": {\n        \"step\": 500,\n        \"val_loss\": 0.44032017948726815,\n        \"R@1\": 0.5942460317460317,\n        \"R@5\": 0.9563492063492064,\n        \"R@10\": 1.0\n      },\n      \"trajectory\": [\n        {\n          \"step\": 500,\n          \"epoch\": 1,\n          \"val_loss\": 0.44032017948726815,\n          \"R@1\": 0.5942460317460317,\n          \"R@5\": 0.9563492063492064,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1000,\n          \"epoch\": 1,\n          \"val_loss\": 0.4341431890648824,\n          \"R@1\": 0.5813492063492064,\n          \"R@5\": 0.9642857142857143,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1500,\n          \"epoch\": 2,\n          \"val_loss\": 0.5255766192342711,\n          \"R@1\": 0.5472883597883598,\n          \"R@5\": 0.9421296296296297,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 2000,\n          \"epoch\": 2,\n          \"val_loss\": 0.5182343455691817,\n          \"R@1\": 0.5390211640211641,\n          \"R@5\": 0.9467592592592593,\n          \"R@10\": 1.0\n        }\n      ],\n      \"final_eval\": {\n        \"val_loss\": 0.5123182460172939,\n        \"R@1\": 0.546957671957672,\n        \"R@5\": 0.9480820105820106,\n        \"R@10\": 1.0\n      },\n      \"wandb_run_id\": \"tdmforx1\",\n      \"wandb_run_name\": \"m2_full_embedding_distance_s44\",\n      \"log_file\": \"/root/runs/m2_full_qwen/embedding_distance_s44.log\"\n    }\n  },\n  \"summary\": {\n    \"completed_runs\": 5,\n    \"strategies_with_data\": [\"random\", \"embedding_distance\"],\n    \"seeds_with_data\": {\n      \"random\": [42, 43, 44],\n      \"embedding_distance\": [43, 44]\n    },\n    \"cross_strategy_comparison\": {\n      \"note\": \"Compare same-seed runs. s42 only has random (3 epochs). s43 and s44 have both random and embedding_distance.\",\n      \"s43_random_vs_embedding\": {\n        \"random_best_R@1\": 0.5554,\n        \"embedding_best_R@1\": 0.5606,\n        \"delta_R@1\": 0.0052,\n        \"random_best_val_loss\": 0.4476,\n        \"embedding_best_val_loss\": 0.4541,\n        \"delta_val_loss\": 0.0065\n      },\n      \"s44_random_vs_embedding\": {\n        \"random_best_R@1\": 0.6009,\n        \"embedding_best_R@1\": 0.5942,\n        \"delta_R@1\": -0.0067,\n        \"random_best_val_loss\": 0.4252,\n        \"embedding_best_val_loss\": 0.4341,\n        \"delta_val_loss\": 0.0089\n      }\n    },\n    \"key_observations\": [\n      \"All runs reach R@10=1.0 at every eval step (val set too easy for R@10 discrimination)\",\n      \"R@5 consistently 0.94-0.97, also near ceiling\",\n      \"Best R@1 typically at step 500-1000 (first epoch), overfitting starts in epoch 2\",\n      \"val_loss and R@1 can diverge: random_s43 best val_loss at step 500 but best R@1 at step 1500\",\n      \"s44 val set appears systematically easier (R@1~0.60 vs s42/s43~0.55), consistent across strategies\",\n      \"embedding_distance vs random delta is small (+0.52pp for s43, -0.67pp for s44) and sign-inconsistent\"\n    ]\n  }\n}\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61eb5811-6de9-4ea8-ab93-789b54c0892c",
+            "uuid": "388d4e56-3d53-4284-becf-2ec4829e61df",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F6SrmG7YWo2FYYBhoPFq7h",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2682,
+                "cache_read_input_tokens": 101354,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2682
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": "2026-05-15T17:49:34.066Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JWQZLaGENgvEdEJr1RWNfj",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/analysis/qwen_training_trajectories.json"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61eb5811-6de9-4ea8-ab93-789b54c0892c",
+            "uuid": "fe457f61-ba2e-4db5-bfb1-eb751477f217",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/analysis/qwen_training_trajectories.json",
+              "content": "{\n  \"metadata\": {\n    \"generated_at\": \"2026-05-16T02:00:00+08:00\",\n    \"source\": \"registry + server logs (cross-validated)\",\n    \"encoder\": \"Qwen2.5-Coder-3B\",\n    \"model_path\": \"/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B\",\n    \"training_config\": {\n      \"lr\": 2e-5,\n      \"batch_size\": 8,\n      \"num_negatives\": 7,\n      \"hard_negative_ratio\": 0.5,\n      \"max_seq_length\": 2048,\n      \"temperature\": 0.07,\n      \"lora_rank\": 16,\n      \"proj_dim\": 256,\n      \"warmup_ratio\": 0.1,\n      \"weight_decay\": 0.01,\n      \"gradient_checkpointing\": true,\n      \"eval_steps\": 500,\n      \"save_steps\": 1000,\n      \"pos_weight_alpha\": 1.0,\n      \"use_fusion_head\": false\n    },\n    \"data_source\": \"/root/autodl-tmp/structfuse/full_m2_training_data/\",\n    \"notes\": {\n      \"s42_regime\": \"3 epochs, no early stopping (early_stopping_patience=0)\",\n      \"s43_s44_regime\": \"2 epochs, early_stopping_patience=2\",\n      \"val_loss_criterion\": \"early stopping tracks val_loss only; R@1 best saved independently\",\n      \"registry_vs_log_discrepancy\": \"registry had rounded values (3-4 sig figs); log values are full precision. Registry for random_s42 was missing eval@3500, eval@4000, and final_eval. All other values match after rounding.\"\n    },\n    \"incomplete_runs\": {\n      \"dataflow_aware_s43\": \"running, at step 500 (no eval checkpoint yet as of 2026-05-16T02:00 CST)\",\n      \"dataflow_aware_s44\": \"queued (after dataflow_aware_s43)\",\n      \"embedding_distance_s42\": \"not yet started (in s42_supplement batch)\",\n      \"dataflow_aware_s42\": \"not yet started (in s42_supplement batch)\",\n      \"bm25_s42\": \"queued (after dataflow_aware_s44)\",\n      \"bm25_s43\": \"not yet started\",\n      \"bm25_s44\": \"not yet started\"\n    }\n  },\n  \"runs\": {\n    \"random_s42\": {\n      \"seed\": 42,\n      \"strategy\": \"random\",\n      \"regime\": \"3 epochs, no early stop\",\n      \"num_epochs\": 3,\n      \"total_steps\": 4242,\n      \"steps_per_epoch\": 1414,\n      \"early_stopping_patience\": 0,\n      \"early_stopped\": false,\n      \"train_samples\": 11308,\n      \"val_samples\": 2980,\n      \"best_by_val_loss\": {\n        \"step\": 1000,\n        \"val_loss\": 0.4650662785708504,\n        \"R@1\": 0.5526845637583893,\n        \"R@5\": 0.9593959731543624,\n        \"R@10\": 1.0\n      },\n      \"best_by_R@1\": {\n        \"step\": 1000,\n        \"val_loss\": 0.4650662785708504,\n        \"R@1\": 0.5526845637583893,\n        \"R@5\": 0.9593959731543624,\n        \"R@10\": 1.0\n      },\n      \"trajectory\": [\n        {\n          \"step\": 500,\n          \"epoch\": 1,\n          \"val_loss\": 0.486931758338973,\n          \"R@1\": 0.5332214765100671,\n          \"R@5\": 0.9540268456375839,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1000,\n          \"epoch\": 1,\n          \"val_loss\": 0.4650662785708504,\n          \"R@1\": 0.5526845637583893,\n          \"R@5\": 0.9593959731543624,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1500,\n          \"epoch\": 2,\n          \"val_loss\": 0.5364526285221113,\n          \"R@1\": 0.5228187919463088,\n          \"R@5\": 0.9550335570469799,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 2000,\n          \"epoch\": 2,\n          \"val_loss\": 0.5162166327238082,\n          \"R@1\": 0.5228187919463088,\n          \"R@5\": 0.9543624161073826,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 2500,\n          \"epoch\": 2,\n          \"val_loss\": 0.5264100839827685,\n          \"R@1\": 0.5268456375838926,\n          \"R@5\": 0.9563758389261745,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 3000,\n          \"epoch\": 3,\n          \"val_loss\": 0.5405804200060416,\n          \"R@1\": 0.5355704697986577,\n          \"R@5\": 0.9493288590604027,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 3500,\n          \"epoch\": 3,\n          \"val_loss\": 0.5600887083367213,\n          \"R@1\": 0.5335570469798657,\n          \"R@5\": 0.9493288590604027,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 4000,\n          \"epoch\": 3,\n          \"val_loss\": 0.5509598255757517,\n          \"R@1\": 0.5345637583892617,\n          \"R@5\": 0.9439597315436241,\n          \"R@10\": 1.0\n        }\n      ],\n      \"final_eval\": {\n        \"val_loss\": 0.545638095677499,\n        \"R@1\": 0.5503355704697986,\n        \"R@5\": 0.9463087248322147,\n        \"R@10\": 1.0\n      },\n      \"wandb_run_id\": \"pthrowuk\",\n      \"wandb_run_name\": \"m2_full_random_s42\",\n      \"log_file\": \"/root/runs/m2_full_qwen/random_s42.log\"\n    },\n    \"random_s43\": {\n      \"seed\": 43,\n      \"strategy\": \"random\",\n      \"regime\": \"2 epochs, early stopped at step 1500\",\n      \"num_epochs\": 2,\n      \"total_steps\": 2810,\n      \"steps_per_epoch\": 1405,\n      \"early_stopping_patience\": 2,\n      \"early_stopped\": true,\n      \"early_stop_step\": 1500,\n      \"train_samples\": 11236,\n      \"val_samples\": 3052,\n      \"best_by_val_loss\": {\n        \"step\": 500,\n        \"val_loss\": 0.4476428985947238,\n        \"R@1\": 0.5357142857142857,\n        \"R@5\": 0.9698558322411533,\n        \"R@10\": 1.0\n      },\n      \"best_by_R@1\": {\n        \"step\": 1500,\n        \"val_loss\": 0.5476617613712114,\n        \"R@1\": 0.5553735255570118,\n        \"R@5\": 0.9544560943643512,\n        \"R@10\": 1.0\n      },\n      \"trajectory\": [\n        {\n          \"step\": 500,\n          \"epoch\": 1,\n          \"val_loss\": 0.4476428985947238,\n          \"R@1\": 0.5357142857142857,\n          \"R@5\": 0.9698558322411533,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1000,\n          \"epoch\": 1,\n          \"val_loss\": 0.4637672980834741,\n          \"R@1\": 0.5285058977719528,\n          \"R@5\": 0.9672346002621232,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1500,\n          \"epoch\": 2,\n          \"val_loss\": 0.5476617613712114,\n          \"R@1\": 0.5553735255570118,\n          \"R@5\": 0.9544560943643512,\n          \"R@10\": 1.0\n        }\n      ],\n      \"final_eval\": {\n        \"val_loss\": 0.5434050835463979,\n        \"R@1\": 0.5501310615989515,\n        \"R@5\": 0.9583879423328965,\n        \"R@10\": 1.0\n      },\n      \"wandb_run_id\": \"ejygo7zh\",\n      \"wandb_run_name\": \"m2_full_random_s43\",\n      \"log_file\": \"/root/runs/m2_full_qwen/random_s43.log\"\n    },\n    \"random_s44\": {\n      \"seed\": 44,\n      \"strategy\": \"random\",\n      \"regime\": \"2 epochs, early stopped at step 1500\",\n      \"num_epochs\": 2,\n      \"total_steps\": 2816,\n      \"steps_per_epoch\": 1408,\n      \"early_stopping_patience\": 2,\n      \"early_stopped\": true,\n      \"early_stop_step\": 1500,\n      \"train_samples\": 11264,\n      \"val_samples\": 3024,\n      \"best_by_val_loss\": {\n        \"step\": 500,\n        \"val_loss\": 0.4251521137498674,\n        \"R@1\": 0.6008597883597884,\n        \"R@5\": 0.9583333333333334,\n        \"R@10\": 1.0\n      },\n      \"best_by_R@1\": {\n        \"step\": 500,\n        \"val_loss\": 0.4251521137498674,\n        \"R@1\": 0.6008597883597884,\n        \"R@5\": 0.9583333333333334,\n        \"R@10\": 1.0\n      },\n      \"trajectory\": [\n        {\n          \"step\": 500,\n          \"epoch\": 1,\n          \"val_loss\": 0.4251521137498674,\n          \"R@1\": 0.6008597883597884,\n          \"R@5\": 0.9583333333333334,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1000,\n          \"epoch\": 1,\n          \"val_loss\": 0.46949244308329763,\n          \"R@1\": 0.5638227513227513,\n          \"R@5\": 0.9523809523809523,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1500,\n          \"epoch\": 2,\n          \"val_loss\": 0.49175971771082866,\n          \"R@1\": 0.5591931216931217,\n          \"R@5\": 0.9503968253968254,\n          \"R@10\": 1.0\n        }\n      ],\n      \"final_eval\": {\n        \"val_loss\": 0.4943022895702925,\n        \"R@1\": 0.5542328042328042,\n        \"R@5\": 0.9513888888888888,\n        \"R@10\": 1.0\n      },\n      \"wandb_run_id\": \"hfo1edho\",\n      \"wandb_run_name\": \"m2_full_random_s44\",\n      \"log_file\": \"/root/runs/m2_full_qwen/random_s44.log\"\n    },\n    \"embedding_distance_s43\": {\n      \"seed\": 43,\n      \"strategy\": \"embedding_distance\",\n      \"regime\": \"2 epochs, early stopped at step 1500\",\n      \"num_epochs\": 2,\n      \"total_steps\": 2810,\n      \"steps_per_epoch\": 1405,\n      \"early_stopping_patience\": 2,\n      \"early_stopped\": true,\n      \"early_stop_step\": 1500,\n      \"train_samples\": 11236,\n      \"val_samples\": 3052,\n      \"best_by_val_loss\": {\n        \"step\": 500,\n        \"val_loss\": 0.45413682116671594,\n        \"R@1\": 0.5445609436435125,\n        \"R@5\": 0.9665792922673656,\n        \"R@10\": 1.0\n      },\n      \"best_by_R@1\": {\n        \"step\": 1500,\n        \"val_loss\": 0.49263691808418086,\n        \"R@1\": 0.5606159895150721,\n        \"R@5\": 0.9629750982961992,\n        \"R@10\": 1.0\n      },\n      \"trajectory\": [\n        {\n          \"step\": 500,\n          \"epoch\": 1,\n          \"val_loss\": 0.45413682116671594,\n          \"R@1\": 0.5445609436435125,\n          \"R@5\": 0.9665792922673656,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1000,\n          \"epoch\": 1,\n          \"val_loss\": 0.47089352574917154,\n          \"R@1\": 0.5389908256880734,\n          \"R@5\": 0.9655963302752294,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1500,\n          \"epoch\": 2,\n          \"val_loss\": 0.49263691808418086,\n          \"R@1\": 0.5606159895150721,\n          \"R@5\": 0.9629750982961992,\n          \"R@10\": 1.0\n        }\n      ],\n      \"final_eval\": {\n        \"val_loss\": 0.4875504152256102,\n        \"R@1\": 0.5655307994757536,\n        \"R@5\": 0.966251638269987,\n        \"R@10\": 1.0\n      },\n      \"wandb_run_id\": \"4iueajjf\",\n      \"wandb_run_name\": \"m2_full_embedding_distance_s43\",\n      \"log_file\": \"/root/runs/m2_full_qwen/embedding_distance_s43.log\"\n    },\n    \"embedding_distance_s44\": {\n      \"seed\": 44,\n      \"strategy\": \"embedding_distance\",\n      \"regime\": \"2 epochs, early stopped at step 2000\",\n      \"num_epochs\": 2,\n      \"total_steps\": 2816,\n      \"steps_per_epoch\": 1408,\n      \"early_stopping_patience\": 2,\n      \"early_stopped\": true,\n      \"early_stop_step\": 2000,\n      \"train_samples\": 11264,\n      \"val_samples\": 3024,\n      \"best_by_val_loss\": {\n        \"step\": 1000,\n        \"val_loss\": 0.4341431890648824,\n        \"R@1\": 0.5813492063492064,\n        \"R@5\": 0.9642857142857143,\n        \"R@10\": 1.0\n      },\n      \"best_by_R@1\": {\n        \"step\": 500,\n        \"val_loss\": 0.44032017948726815,\n        \"R@1\": 0.5942460317460317,\n        \"R@5\": 0.9563492063492064,\n        \"R@10\": 1.0\n      },\n      \"trajectory\": [\n        {\n          \"step\": 500,\n          \"epoch\": 1,\n          \"val_loss\": 0.44032017948726815,\n          \"R@1\": 0.5942460317460317,\n          \"R@5\": 0.9563492063492064,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1000,\n          \"epoch\": 1,\n          \"val_loss\": 0.4341431890648824,\n          \"R@1\": 0.5813492063492064,\n          \"R@5\": 0.9642857142857143,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 1500,\n          \"epoch\": 2,\n          \"val_loss\": 0.5255766192342711,\n          \"R@1\": 0.5472883597883598,\n          \"R@5\": 0.9421296296296297,\n          \"R@10\": 1.0\n        },\n        {\n          \"step\": 2000,\n          \"epoch\": 2,\n          \"val_loss\": 0.5182343455691817,\n          \"R@1\": 0.5390211640211641,\n          \"R@5\": 0.9467592592592593,\n          \"R@10\": 1.0\n        }\n      ],\n      \"final_eval\": {\n        \"val_loss\": 0.5123182460172939,\n        \"R@1\": 0.546957671957672,\n        \"R@5\": 0.9480820105820106,\n        \"R@10\": 1.0\n      },\n      \"wandb_run_id\": \"tdmforx1\",\n      \"wandb_run_name\": \"m2_full_embedding_distance_s44\",\n      \"log_file\": \"/root/runs/m2_full_qwen/embedding_distance_s44.log\"\n    }\n  },\n  \"summary\": {\n    \"completed_runs\": 5,\n    \"strategies_with_data\": [\"random\", \"embedding_distance\"],\n    \"seeds_with_data\": {\n      \"random\": [42, 43, 44],\n      \"embedding_distance\": [43, 44]\n    },\n    \"cross_strategy_comparison\": {\n      \"note\": \"Compare same-seed runs. s42 only has random (3 epochs). s43 and s44 have both random and embedding_distance.\",\n      \"s43_random_vs_embedding\": {\n        \"random_best_R@1\": 0.5554,\n        \"embedding_best_R@1\": 0.5606,\n        \"delta_R@1\": 0.0052,\n        \"random_best_val_loss\": 0.4476,\n        \"embedding_best_val_loss\": 0.4541,\n        \"delta_val_loss\": 0.0065\n      },\n      \"s44_random_vs_embedding\": {\n        \"random_best_R@1\": 0.6009,\n        \"embedding_best_R@1\": 0.5942,\n        \"delta_R@1\": -0.0067,\n        \"random_best_val_loss\": 0.4252,\n        \"embedding_best_val_loss\": 0.4341,\n        \"delta_val_loss\": 0.0089\n      }\n    },\n    \"key_observations\": [\n      \"All runs reach R@10=1.0 at every eval step (val set too easy for R@10 discrimination)\",\n      \"R@5 consistently 0.94-0.97, also near ceiling\",\n      \"Best R@1 typically at step 500-1000 (first epoch), overfitting starts in epoch 2\",\n      \"val_loss and R@1 can diverge: random_s43 best val_loss at step 500 but best R@1 at step 1500\",\n      \"s44 val set appears systematically easier (R@1~0.60 vs s42/s43~0.55), consistent across strategies\",\n      \"embedding_distance vs random delta is small (+0.52pp for s43, -0.67pp for s44) and sign-inconsistent\"\n    ]\n  }\n}\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "注册 artifact。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61eb5811-6de9-4ea8-ab93-789b54c0892c",
+            "uuid": "065dfae2-b9d2-4fb7-88df-1915b49eb55b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011eZ7BenUVwtLcgf2NTWvzy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5424,
+                "cache_read_input_tokens": 104036,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5424
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YSXspAQmNEYrj2JeK3s4iu",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "Qwen Training Trajectories",
+                "type": "data",
+                "description": "Complete training trajectories for 5 finished Qwen2.5-Coder-3B M2 runs (random×3 + embedding_distance×2). Full eval metrics at every 500 steps: val_loss, R@1, R@5, R@10. Cross-validated registry vs server logs. For §4.3.3 Training Dynamics analysis.",
+                "project": "structfuse-context",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/analysis/qwen_training_trajectories.json",
+                "tags": [
+                  "qwen",
+                  "training-dynamics",
+                  "m2",
+                  "trajectories",
+                  "section-4.3.3"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61eb5811-6de9-4ea8-ab93-789b54c0892c",
+            "uuid": "7ade6c03-24f2-492b-8a58-72b54bf9ad9d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011eZ7BenUVwtLcgf2NTWvzy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5424,
+                "cache_read_input_tokens": 104036,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5424
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-15T17:49:41.181Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YSXspAQmNEYrj2JeK3s4iu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_56de57\\\", \\\"name\\\": \\\"Qwen Training Trajectories\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Complete training trajectories for 5 finished Qwen2.5-Coder-3B M2 runs (random×3 + embedding_distance×2). Full eval metrics at every 500 steps: val_loss, R@1, R@5, R@10. Cross-validated registry vs server logs. For §4.3.3 Training Dynamics analysis.\\\", \\\"path\\\": \\\"projects/structfuse-context/artifacts/_project/data/qwen_training_trajectories.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"structfuse-context\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T17:49:41.050627+00:00\\\", \\\"tags\\\": [\\\"qwen\\\", \\\"training-dynamics\\\", \\\"m2\\\", \\\"trajectories\\\", \\\"section-4.3.3\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61eb5811-6de9-4ea8-ab93-789b54c0892c",
+            "uuid": "0692236f-7500-40e8-9e6c-34f109651610",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_56de57\\\", \\\"name\\\": \\\"Qwen Training Trajectories\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Complete training trajectories for 5 finished Qwen2.5-Coder-3B M2 runs (random×3 + embedding_distance×2). Full eval metrics at every 500 steps: val_loss, R@1, R@5, R@10. Cross-validated registry vs server logs. For §4.3.3 Training Dynamics analysis.\\\", \\\"path\\\": \\\"projects/structfuse-context/artifacts/_project/data/qwen_training_trajectories.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"structfuse-context\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T17:49:41.050627+00:00\\\", \\\"tags\\\": [\\\"qwen\\\", \\\"training-dynamics\\\", \\\"m2\\\", \\\"trajectories\\\", \\\"section-4.3.3\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_56de57\", \"name\": \"Qwen Training Trajectories\", \"type\": \"data\", \"description\": \"Complete training trajectories for 5 finished Qwen2.5-Coder-3B M2 runs (random×3 + embedding_distance×2). Full eval metrics at every 500 steps: val_loss, R@1, R@5, R@10. Cross-validated registry vs server logs. For §4.3.3 Training Dynamics analysis.\", \"path\": \"projects/structfuse-context/artifacts/_project/data/qwen_training_trajectories.json\", \"url\": null, \"project\": \"structfuse-context\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T17:49:41.050627+00:00\", \"tags\": [\"qwen\", \"training-dynamics\", \"m2\", \"trajectories\", \"section-4.3.3\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`art_20260515_56de57` 已注册。\n\n**产出**: `artifacts/analysis/qwen_training_trajectories.json`\n\n**覆盖 5 个已完成 Qwen runs**:\n| Run | Strategy | Seed | Regime | Eval Steps | Best R@1 |\n|-----|----------|------|--------|------------|----------|\n| random_s42 | random | 42 | 3 epochs, no ES | 8 + final | 0.5527 (step 1000) |\n| random_s43 | random | 43 | ES@1500 | 3 + final | 0.5554 (step 1500) |\n| random_s44 | random | 44 | ES@1500 | 3 + final | 0.6009 (step 500) |\n| emb_dist_s43 | embedding_distance | 43 | ES@1500 | 3 + final | 0.5606 (step 1500) |\n| emb_dist_s44 | embedding_distance | 44 | ES@2000 | 4 + final | 0.5942 (step 500) |\n\n**交叉验证**: registry 数据和 server log 数值一致（registry 为四舍五入）。registry 对 random_s42 缺少 eval@3500/4000/final_eval，已从 log 补全。\n\n**未完成 runs**: dataflow_aware_s43 正在运行（step ~500），dataflow_aware_s44/embedding_distance_s42/dataflow_aware_s42/bm25_s42~s44 尚未开始。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61eb5811-6de9-4ea8-ab93-789b54c0892c",
+            "uuid": "7e21e4dc-efc8-4bd3-bd80-5ed3ec2d698b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J9iaPGwW7Cmt5gWPRUer5D",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 758,
+                "cache_read_input_tokens": 109460,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 758
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`art_20260515_56de57` 已注册。\n\n**产出**: `artifacts/analysis/qwen_training_trajectories.json`\n\n**覆盖 5 个已完成 Qwen runs**:\n| Run | Strategy | Seed | Regime | Eval Steps | Best R@1 |\n|-----|----------|------|--------|------------|----------|\n| random_s42 | random | 42 | 3 epochs, no ES | 8 + final | 0.5527 (step 1000) |\n| random_s43 | random | 43 | ES@1500 | 3 + final | 0.5554 (step 1500) |\n| random_s44 | random | 44 | ES@1500 | 3 + final | 0.6009 (step 500) |\n| emb_dist_s43 | embedding_distance | 43 | ES@1500 | 3 + final | 0.5606 (step 1500) |\n| emb_dist_s44 | embedding_distance | 44 | ES@2000 | 4 + final | 0.5942 (step 500) |\n\n**交叉验证**: registry 数据和 server log 数值一致（registry 为四舍五入）。registry 对 random_s42 缺少 eval@3500/4000/final_eval，已从 log 补全。\n\n**未完成 runs**: dataflow_aware_s43 正在运行（step ~500），dataflow_aware_s44/embedding_distance_s42/dataflow_aware_s42/bm25_s42~s44 尚未开始。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 307967,
+            "duration_api_ms": 303823,
+            "num_turns": 59,
+            "stop_reason": "end_turn",
+            "session_id": "61eb5811-6de9-4ea8-ab93-789b54c0892c",
+            "total_cost_usd": 1.8655452499999998,
+            "usage": {
+              "input_tokens": 25,
+              "cache_creation_input_tokens": 98377,
+              "cache_read_input_tokens": 1480502,
+              "output_tokens": 20330,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 98377,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 432,
+                  "cache_read_input_tokens": 109460,
+                  "cache_creation_input_tokens": 758,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 758
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1968,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002063,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 25,
+                "outputTokens": 20330,
+                "cacheReadInputTokens": 1480502,
+                "cacheCreationInputTokens": 98377,
+                "webSearchRequests": 0,
+                "costUSD": 1.8634822499999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "21dad078-9c78-414c-9224-39af35aad457"
+          },
+          "id": "event-000153"
+        }
+      ]
+    }
+  ]
+}

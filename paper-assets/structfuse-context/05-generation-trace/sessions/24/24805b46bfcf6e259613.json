@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24805b46bfcf6e259613",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops training progress check",
+  "task_key": "worker_ops_training-progress-check_20260515T204124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_training-progress-check_20260515T204124_result.json",
+    "occurrence": 1,
+    "bytes": 2387,
+    "sha256": "14d67698f8316426a1148b9703eba2b2a4ecd8a974d2da2e56d6f7902b24d860"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据采集完毕。汇总如下：\n\n---\n\n## 服务器状态\n\n### GPU 利用率\n| GPU | Utilization | Memory |\n|-----|------------|--------|\n| 0 (Qwen) | 100% | 74,175 / 97,887 MiB |\n| 1 (StarCoder) | 100% | 54,767 / 97,887 MiB |\n\n### 进程状态\n| PID | Model | Uptime | Script |\n|-----|-------|--------|--------|\n| 337267 | Qwen (cuda:0) | 1d 09h 17m | `run_m2_full_qwen.sh` |\n| 519791 | StarCoder (cuda:1) | 1d 02h 38m | `run_m2_full_starcoder_resume.sh` |\n\n两个进程均存活，GPU 满载运行。\n\n---\n\n## 当前训练进度\n\n### StarCoder embed_s42 (cuda:1) — step ~600/4242\n- **eval@500 已出**: val_loss=**0.6154**, R@1=**0.4372**, R@5=0.9094\n- 下次 eval@1000\n\n### Qwen dataflow_s43 (cuda:0) — step ~900/2810\n- **eval@500 已出**: val_loss=**0.4617**, R@1=**0.5495**, R@5=0.9728\n- 下次 eval@1000\n\n---\n\n## 已完成 Subruns 汇总\n\n### Qwen (m2_full_qwen)\n\n| Subrun | Best val_loss (step) | Best R@1 (step) | Stop Step | Status |\n|--------|---------------------|-----------------|-----------|--------|\n| random_s42 | 0.4651 (1000) | 0.5527 (1000) | 4000 (full) | completed |\n| random_s43 | 0.4476 (500) | 0.5554 (1500) | 1500 | early stopped |\n| random_s44 | **0.4252** (500) | **0.6009** (500) | 1500 | early stopped |\n| embed_dist_s43 | 0.4541 (500) | 0.5606 (1500) | 1500 | early stopped |\n| embed_dist_s44 | 0.4341 (1000) | 0.5942 (500) | 2000 | early stopped |\n| dataflow_s43 | 0.4617 (500) | 0.5495 (500) | — | **training** |\n\n### StarCoder (m2_full_starcoder)\n\n| Subrun | Best val_loss (step) | Best R@1 (step) | Stop Step | Status |\n|--------|---------------------|-----------------|-----------|--------|\n| random_s42 | 0.6134 (1000) | 0.4604 (2500) | 4000 (full) | completed |\n| random_s43 | 0.5239 (1500) | 0.4912 (1500) | 2500 | early stopped |\n| random_s44 | 0.5913 (500) | 0.4871 (1500) | 1500 | early stopped |\n| embed_dist_s42 | 0.6154 (500) | 0.4372 (500) | — | **training** |\n\n---\n\n**要点**：\n- Qwen 全面优于 StarCoder，最佳 R@1 达 0.6009 (random_s44) vs StarCoder 最佳 0.4912 (random_s43)\n- Qwen dataflow_s43 首次 eval 的 R@1=0.5495 表现正常，在 random 策略的范围内，还需更多 eval 才能判断 dataflow 策略效果\n- StarCoder embed_s42 首次 eval R@1=0.4372 偏低（对比 random_s43 的 0.4912），后续 eval 可能回升"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-training-progress-check.md"
+}

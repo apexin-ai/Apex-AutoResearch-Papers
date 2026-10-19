@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48711b435bc78090af4a",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "fix plan 003 repo clone",
+  "task_key": "worker_fix_plan_003_repo_clone_20260514T190217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_plan_003_repo_clone_20260514T190217_result.json",
+    "occurrence": 1,
+    "bytes": 1609,
+    "sha256": "7df389e3fa91dff28595820be585631bb72c2661a7795b8e8f6558a975314c52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。总结：\n\n---\n\n## 修复结果\n\n### 修改的文件\n\n**1. `/root/structfuse/evaluation/eval_swebench.py` — `setup_repo()` 函数 (line ~143-151)**\n\n修复前：\n```python\nsubprocess.run([\"git\", \"clone\", cached, repo_dir], ...)\n```\n修复后：\n```python\nsubprocess.run([\"git\", \"clone\", \"--filter=blob:none\", cached, repo_dir], ...)\nsubprocess.run([\"git\", \"remote\", \"set-url\", \"origin\", f\"https://github.com/{repo}.git\"], cwd=repo_dir, ...)\n```\n同时将 checkout timeout 从 60s 增大到 300s。\n\n**2. `/root/structfuse/scripts/eval_swebench_e2e.py` — `checkout_repo()` 函数 (line ~236-241)**\n\n同样的修复：添加 `--filter=blob:none` + `set-url origin` 到 GitHub。\n\n### 根因\n\n预 clone 的 repo 使用 `--filter=blob:none` partial clone，只有 commit/tree 对象，blob 按需下载。从这些 cache 目录 `git clone` 到工作目录时：\n1. 新 clone 没有继承 promisor 配置 → git 不知道可以 lazy-fetch blob\n2. origin URL 指向本地 cache（也缺 blob）→ fetch 无处可取\n\n**修复方案**：clone 时加 `--filter=blob:none` 使新 repo 自动配置 promisor，然后把 origin URL 重定向到 GitHub，blob 按需从 GitHub 下载。\n\n### Dry-run 验证\n\n```\nInstance: astropy__astropy-12907\nStatus:   valid (无 error)\nRecall@1: 1.0000\nMRR:      1.0000\nGold file: astropy/modeling/separable.py → 排名第 1 (score=0.5254)\nCandidates: 871 .py files\nDuration: 133s (含 ~25s blob 下载 + ~108s 编码推理)\n```\n\nPipeline 无阻塞，可正式运行全量评测。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-plan-003-repo-clone.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5ea805d439dbed68608",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "experiment eval 4runs v2",
+  "task_key": "worker_experiment_eval_4runs_v2_20260512T170825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_eval_4runs_v2_20260512T170825_result.json",
+    "occurrence": 1,
+    "bytes": 1059,
+    "sha256": "47f6cd952137249b768474a4d5b95692d512b5e2fe265b8a8dd40b68b5afc2d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个 eval 已实际运行完成。pool_size = 26（1 positive + 25 negatives），所有 127 个样本一致。\n\n## 结果汇总\n\n| strategy | seed | ckpt | recall@1 | recall@5 | recall@10 | pool_size |\n|----------|------|------|----------|----------|-----------|-----------|\n| random   | 42   | final | 0.9449   | 0.9843   | 0.9843    | 26        |\n| random   | 123  | final | 0.9449   | 0.9921   | 0.9921    | 26        |\n| random   | 456  | final | 0.9291   | 0.9921   | 0.9921    | 26        |\n| emb_dist | 42   | final | 0.6693   | 0.8898   | 0.9291    | 26        |\n\n**关键发现**：\n- **random 策略**三个 seed 的 recall@1 均在 92.9%–94.5%，recall@5/10 在 98.4%–99.2%，非常稳定\n- **embedding_distance 策略**显著差于 random：recall@1 仅 66.9%（下降 ~27pp），recall@5 降到 89.0%，recall@10 降到 92.9%\n- embedding_distance 的负采样让模型面对更难的 negatives，但 final checkpoint 的表现明显退化，可能是训练不够充分或 hard negative 策略需要调整"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-eval-4runs-v2.md"
+}

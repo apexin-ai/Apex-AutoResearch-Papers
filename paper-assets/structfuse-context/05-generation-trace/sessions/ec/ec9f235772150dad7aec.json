@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec9f235772150dad7aec",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops m1 moto stop",
+  "task_key": "worker_ops_m1_moto_stop_20260516T025914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_m1_moto_stop_20260516T025914_result.json",
+    "occurrence": 1,
+    "bytes": 600,
+    "sha256": "f80230799529f27f667d2da27e0d63b1bb2a0d64616a65586af1d0de5dd95433"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n- **moto 重试循环已终止** — 杀掉了 batch_extract 主进程及其所有子进程（含 CodeQL java 进程），tmux session `m1_reextract_v2` 自动关闭\n- **最终数据量**: `all.jsonl` = **44,173 行**，71/72 repos 完成，跳过 getmoto/moto（536 instances, ~1.2%）\n- **Registry 已更新**: `m1_reextract_v2` → status=DONE, conclusion=success，metrics 记录了跳过 moto 的决策\n\n注：registry notes 中提到 combine script 已就绪（`/root/structfuse/scripts/combine_m1_reextract.py`），如需合并数据可后续执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-m1-moto-stop.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18aeb3eca84319651363",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "monitor m2 m1 status check",
+  "task_key": "worker_monitor_m2-m1-status-check_20260513T025149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_m2-m1-status-check_20260513T025149_result.json",
+    "occurrence": 1,
+    "bytes": 2341,
+    "sha256": "f5416879a4b295cda998d64ee11535e125f95fd93ca0da7aec487835b1968d3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕，汇总如下。\n\n---\n\n```\n=== M2 Early Pilot ===\nPID 795791: 存活（运行 ~57 分钟）\nGPU 4: 9342 MiB / 24564 MiB, 83% 利用率\n状态: 运行中 — 策略 random, Epoch 2 刚开始（Epoch 1 完成 1300 steps）\n\n训练顺序: random → embedding_distance → dataflow_aware（各 3 epochs）\n当前在第 1 个策略的 Epoch 2。\n\nEval 指标 (random 策略):\n  eval@500:  val_loss=0.5391  recall@1=0.5134  recall@5=0.5134  recall@10=0.5134  ← best\n  eval@1000: val_loss=0.5492  recall@1=0.5281  recall@5=0.5281  recall@10=0.5281\n\nCheckpoints:\n  m2_pilot_random_s42/best/ — model.pt + tokenizer（best val_loss=0.5391 时保存）\n\n注意: recall@1/5/10 值相同，可能候选集太小或评估逻辑有问题。\n\n=== M1 提取 ===\nPID 577864: 存活（运行 6h04m）\n131 unique (repo, commit) groups，50869 instances 总量\n已启动: 26/131 repos（含 1 个 clone 失败: pdfminer）\n预估总时间: ~54h (8 workers)，当前约 11% 进度\n\n最新进度（各 repo 最后汇报）:\n  oauthlib/oauthlib:              850/940   接近完成\n  Cog-Creators/Red-DiscordBot:    450/460   接近完成\n  mahmoud/boltons:                600/737\n  pygments/pygments:              550/1430\n  cantools/cantools:              500/1440\n  pyupio/safety:                  450/759\n  marshmallow-code/webargs:       250/321\n  joke2k/faker:                   200/360\n  google/textfsm:                  50/79\n  小 repo (seatgeek/thefuzz 32, madzak/python-json-logger 38, Knio/dominate 42 等) 已完成或接近完成\n\n跳过(clone 失败): pdfminer/pdfminer 660 instances\nskip_log: 660 条\n\n磁盘: 53G free / 169G total (70% used)\n\n=== 数据盘总览（迁移用）===\nM1 数据:   2.5G   /root/autodl-tmp/structfuse/m1_extraction/\nM2 数据:   879M   /root/autodl-tmp/structfuse/m2_pilot_data/\nCheckpoints: 5.8G   /root/autodl-tmp/structfuse/checkpoints/\n模型:      5.8G   /root/autodl-tmp/structfuse/models/\nHF cache:  22G    /root/autodl-tmp/.hf_cache/\n代码:      31G    /root/structfuse/（含 data/.git 等，实际代码远小于此）\n```\n\n**关键问题**: recall@1 = recall@5 = recall@10 完全相同（0.513/0.528），建议训练完成后检查 eval 逻辑——可能是候选池大小 ≤ 1 或 ranking 没有真正区分。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-m2-m1-status-check.md"
+}

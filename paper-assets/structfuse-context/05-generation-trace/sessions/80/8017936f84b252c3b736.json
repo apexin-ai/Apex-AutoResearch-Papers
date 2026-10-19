@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8017936f84b252c3b736",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "diagnose qwen dual process",
+  "task_key": "worker_diagnose_qwen_dual_process_20260513T163829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_qwen_dual_process_20260513T163829_result.json",
+    "occurrence": 1,
+    "bytes": 1550,
+    "sha256": "9d618ef3b3eedf0e357de069f2af6bfa876060b1377d8dbb0dbd4d18a5e863a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "排查完毕，结论如下：\n\n## 排查结果\n\n### PID 状态\n\n| PID | 状态 | 说明 |\n|-----|------|------|\n| **61362** | **已死亡** | 不存在 |\n| **62033** | **已死亡** | 不存在 |\n| **67518** | 存活，运行 5m50s | agent-ml 启动的 wrapper bash 进程 |\n| **67530** | 存活，运行 5m50s，RSS ~4GB | 主 train.py 进程，**唯一占用 GPU 的进程**（cuda:0，49372 MiB） |\n| **67870-67873** | 存活，RSS 各 ~2.9GB | 67530 的 4 个子进程 |\n\n### 进程树\n\n```\n67518 (bash wrapper)\n └─ 67522 (timeout)\n     └─ 67523 (bash run_m2_full_qwen.sh)\n         └─ 67530 (python train.py)  ← 主进程，占 GPU\n             ├─ 67870 (python train.py)  ← DataLoader worker\n             ├─ 67871 (python train.py)\n             ├─ 67872 (python train.py)\n             └─ 67873 (python train.py)\n```\n\n### train.py 多进程分析\n\n- **无** DDP / DataParallel / mp.spawn / torch.multiprocessing\n- **有** `num_workers=4`（训练 DataLoader）和 `num_workers=2`（验证 DataLoader）\n- 4 个子进程（67870-67873）正是训练 DataLoader 的 4 个 worker，由 PyTorch 自动 fork 产生\n\n### 结论\n\n**预期行为，无异常。**\n\n原来的 PID 61362 和 62033 已经不存在（可能是之前的训练已结束或被终止）。当前只有一个训练实例在跑（PID 67530），它的 4 个子进程是 DataLoader worker，不是重复启动。tmux session `m2_full_qwen` 只有 1 个窗口，一切正常。无需任何操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-qwen-dual-process.md"
+}

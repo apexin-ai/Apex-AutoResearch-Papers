@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11e5480214fc9e47a028",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "fix discussion draft typos",
+  "task_key": "worker_fix_discussion_draft_typos_20260514T102249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_discussion_draft_typos_20260514T102249_result.json",
+    "occurrence": 1,
+    "bytes": 235,
+    "sha256": "59adc206fea3535a70c13100d0bc4bf0cf20fc102f2f0765a30bfcde2e9f4114"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修改已完成并验证：\n\n- 第25行：`9 seeds × 3 strategies × 2 encoders` → `3 seeds × 3 strategies × 2 encoders = 18 runs total`\n- 第23行：`a planned re-extraction` → `an ongoing re-extraction`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-discussion-draft-typos.md"
+}

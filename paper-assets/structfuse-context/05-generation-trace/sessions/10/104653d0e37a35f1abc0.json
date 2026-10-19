@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "104653d0e37a35f1abc0",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "diagnose m2 qwen cuda0 status",
+  "task_key": "worker_diagnose_m2_qwen_cuda0_status_20260514T145916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_m2_qwen_cuda0_status_20260514T145916_result.json",
+    "occurrence": 1,
+    "bytes": 676,
+    "sha256": "5122e402d5fdadcff48f8d2b73a3003ab83da8088c1925c594806b7a19c888f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总结\n\n**m2_full_qwen 进度**: 2/9 runs（random_s42 已完成，random_s43 进行中）\n\n**random_s43 当前状态**:\n- cuda:0 上运行中，GPU 利用率 99%，VRAM 50.5/97.9 GB\n- Epoch 1, step 900/1405（总进度 900/2810 ≈ 32%）\n- Loss 从 0.68 降到 0.04-0.12 区间，收敛正常\n- 最新 eval@500: val_loss=0.4476, R@1=0.5357, R@5=0.9699, R@10=1.0\n\n**时间估算**: 剩余 ~86 小时（≈ 3.6 天），预计 5月18日 05:00 CST 全部完成\n\n**磁盘**: 65G 剩余，充足\n\n**注意**: 日志现在正常输出到 `/root/runs/m2_full_qwen/random_s43.log` 和 `s43plus_all.log`，之前 tee buffer 的问题已解决。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-m2-qwen-cuda0-status.md"
+}

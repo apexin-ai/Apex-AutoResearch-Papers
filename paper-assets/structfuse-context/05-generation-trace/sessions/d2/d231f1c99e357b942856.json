@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "d231f1c99e357b942856",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "experiment mvp p2b contrastive",
+  "task_key": "worker_experiment_mvp_p2b_contrastive_20260512T115900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_mvp_p2b_contrastive_20260512T115900.log",
+    "occurrence": 1,
+    "bytes": 1254305,
+    "sha256": "517693d2fdf92052f84c062af39d8842fb4a98e7cc69c1883585b7bf81c6efe4"
+  },
+  "statistics": {
+    "messages": 590,
+    "user_turns": 1,
+    "tool_calls": 205,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 172,
+      "tool_call": 205,
+      "tool_result": 205,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 403,
+      "chunks": [
+        {
+          "path": "d231f1c99e357b942856-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d231f1c99e357b942856-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d231f1c99e357b942856-part-0003.json",
+          "message_count": 43
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 187,
+      "chunks": [
+        {
+          "path": "d231f1c99e357b942856-part-0003.json",
+          "message_count": 137
+        },
+        {
+          "path": "d231f1c99e357b942856-part-0004.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-mvp-p2b-contrastive.md"
+}

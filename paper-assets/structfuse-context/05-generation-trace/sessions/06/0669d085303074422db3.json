@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "0669d085303074422db3",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "analysis bootstrap fix and rerun",
+  "task_key": "worker_analysis_bootstrap-fix-and-rerun_20260515T150001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-fix-and-rerun_20260515T150001.log",
+    "occurrence": 1,
+    "bytes": 1192016,
+    "sha256": "18f492fb57ddae50cc79543fd8f1f0c32ea624f916ed250e50b7e9544c0a9a62"
+  },
+  "statistics": {
+    "messages": 891,
+    "user_turns": 1,
+    "tool_calls": 413,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 56,
+      "tool_call": 413,
+      "tool_result": 413,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 876,
+      "chunks": [
+        {
+          "path": "0669d085303074422db3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0669d085303074422db3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0669d085303074422db3-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "0669d085303074422db3-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "0669d085303074422db3-part-0005.json",
+          "message_count": 156
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "0669d085303074422db3-part-0005.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-bootstrap-fix-and-rerun.md"
+}

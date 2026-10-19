@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28a9b8e5777ef15a4c4c",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "check urgent 3issues 20260514",
+  "task_key": "worker_check_urgent_3issues_20260514_20260514T190956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_urgent_3issues_20260514_20260514T190956_result.json",
+    "occurrence": 1,
+    "bytes": 5846,
+    "sha256": "6d8e5f440c68250228e1ecf7bc9d6ae658892269b51b48ff4964d3da004ae6de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 问题 1：Qwen chain 状态\n\n### 1a. 进程\n\n`ps aux` 中相关进程：\n- **PID 73543** — 原始 tmux session `m2_full_qwen`（May 13 启动）\n- **PID 966920** — `bash /root/structfuse/watch_and_chain_qwen_s42.sh`（May 14 启动，pts/0）\n- **PID 504138** — GPU 0 上的 python 训练进程，占用 **50632 MiB** VRAM\n\n`pstree` 被 read-only 白名单拦截。\n\n### 1b. output 目录\n\n```\n/root/autodl-tmp/structfuse/full_m2_outputs/\ntotal 0\ndrwxr-xr-x 2 root root 31 May 14 00:59 random_s42\n```\n\n仅一个子目录，来自初始被 kill 的那次运行。\n\n### 1c. 产出文件\n\n```\n/root/autodl-tmp/structfuse/full_m2_outputs/random_s42/train.log\n```\n\n仅一个 log，无 .pt / .json / .safetensors。\n\n### 1d. chain 脚本 (`run_m2_full_qwen.sh`)\n\n- `OUT_BASE=\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen\"` ← **主输出路径**（不在 `full_m2_outputs`）\n- `TRAIN_SCRIPT=\"/root/structfuse-context/training/train.py\"`\n- STRATEGIES: random / embedding_distance / dataflow_aware, SEEDS: 43 44 = 6 runs\n- 追加 bm25_s42 = **共 7 runs**（TOTAL_RUNS 变量写的 9，实际 7）\n- LOG_DIR: `/root/runs/m2_full_qwen/`\n\n### 1e. `/root/runs/structfuse-context/m2_full_qwen.log`\n\n```\n==========================================\n[1/9] Starting: random_s42 at Thu May 14 01:39:30 CST 2026\n==========================================\nEXIT_CODE=0\n```\n\n这是原始 tmux wrapper 的 log，session 已退出（exit code 0）。\n\n### 1f. 其他 log\n\n- `/root/runs/structfuse/ ` 下无 `run_m2_full_qwen*.log`\n- `/tmp/` 下找到：`/tmp/model_download_qwen.log`、`/tmp/agent-ml-exit/m2_full_qwen.exit`、`/tmp/edit_qwen.py`\n\n**exit 文件内容**：`0|2026-05-14T11:17:27Z`（原始 tmux session 在 5/14 19:17 CST 退出，code 0）\n\n### 1g. GPU 0 进程\n\n```\n504138, python, 50632 MiB\n```\n\n**PID 504138 的 cmdline**：\n```\npython /root/structfuse-context/training/train.py\n  --train-file .../train_random_s44.jsonl\n  --val-file .../val_random_s44.jsonl\n  --output-dir /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s44\n  --hard-negative-strategy random --seed 44\n  --batch-size 8 --num-epochs 2 --eval-steps 500\n```\n\n### 1h. wandb\n\n`full_m2_outputs/` 下无 wandb runs（因为实际输出在 `checkpoints/m2_full_qwen/`）。\n\n### 实际 chain 进度（`/root/runs/m2_full_qwen/s43plus_all.log`）\n\n| Run | Status | 关键指标 |\n|-----|--------|---------|\n| **1/9 random_s43** | ✅ DONE (May 14 19:24 → May 15 01:58) | Early stopped @step 1500, best val_loss=0.4476 @500, best R@1=0.5554 |\n| **2/9 random_s44** | 🔄 IN PROGRESS | Step 350, loss=0.2364, lr=2e-5（健康下降中） |\n| 3-7 | ⏳ pending | embedding_distance_s43/s44, dataflow_aware_s43/s44, bm25_s42 |\n\n### Checkpoint 目录\n\n```\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/\n  random_s42/  → best_by_val_loss/ best_by_recall_at_1/ final/  ✅\n  random_s43/  → best_by_val_loss/ best_by_recall_at_1/ final/  ✅\n  random_s44/  → (empty, training in progress)\n```\n\n### Watcher (`watch_and_chain_qwen_s42.sh`, PID 966920)\n\n监视 PID 337267（已不存在）。`kill -0 337267` 应该立即 fail，所以 while 循环已退出。Watcher 应该已经开始执行 `run_m2_s42_supplement.sh`，但 `/root/runs/m2_full_qwen/` 下无 `s42_supplement.log`，且 GPU 0 被 random_s44 占用。Watcher 可能正在等待 conda activate 或已静默失败。\n\n### 结论\n\n**Qwen chain 未卡住。** GPU 0 上 random_s44 正在训练（step 350/~2816），loss 健康下降。2/7 runs 已完成，5 runs 待完成。\n\n---\n\n## 问题 2：m1_reextract_v2 输出路径\n\n### 2a. 完整命令行\n\n```\npython extraction/batch_extract.py\n  --metadata /tmp/m1_failed_metadata.jsonl\n  --output-dir /root/autodl-tmp/structfuse/full_m1_data\n  --repos-dir /root/autodl-tmp/structfuse/full_m1_data/repos\n  --workers 4 --timeout 300 --python-only\n  --skip-log /root/autodl-tmp/structfuse/full_m1_data/skip_log_rerun.jsonl\n```\n\n多个子进程活跃（PID 209821/209824/209825），多个 CodeQL java 进程正在跑。\n\n### 2b. 输出文件\n\n```\n/root/autodl-tmp/structfuse/full_m1_data/all.jsonl  (6.56 GB, modified May 13 18:46)\n```\n\n`/root/structfuse/` 下无 all.jsonl / recovered.jsonl。\n\n### 2c. m1_reextract_v2.log 最后 10 行\n\n```\n2026-05-15 03:09:33 [INFO] [Project-MONAI__MONAI...] CodeQL call_graph: 2331 entries, 283 reachable files\n2026-05-15 03:09:45 [INFO] [facebookresearch__hydra...] CodeQL call_graph: 22 entries, 10 reachable files\n2026-05-15 03:09:47 [INFO] [dask__dask...] CodeQL call_graph: 342 entries, 82 reachable files\n2026-05-15 03:09:57 [INFO] [facebookresearch__hydra...] CodeQL call_graph: 132 entries, 26 reachable files\n2026-05-15 03:10:08 [INFO] [facebookresearch__hydra...] CodeQL call_graph: 76 entries, 28 reachable files\n2026-05-15 03:10:11 [INFO] [conan-io__conan...] CodeQL call_graph: 147 entries, 66 reachable files\n2026-05-15 03:10:19 [INFO] [facebookresearch__hydra...] CodeQL call_graph: 285 entries, 44 reachable files\n2026-05-15 03:10:30 [INFO] [facebookresearch__hydra...] CodeQL call_graph: 43 entries, 21 reachable files\n2026-05-15 03:10:41 [INFO] [facebookresearch__hydra...] CodeQL call_graph: 200 entries, 40 reachable files\n2026-05-15 03:10:46 [INFO] [dask__dask...] CodeQL call_graph: 796 entries, 172 reachable files\n```\n\n**活跃运行中**，最新日志时间 03:10（几分钟前）。\n\n---\n\n## 问题 3：tmux watcher 状态\n\n### 3a. tmux ls\n\n```\nTMUX_BLOCKED — 'tmux' is not allowed in read-only mode\n```\n\n### 3b. tmux capture-pane\n\n同样被拦截，无法执行。\n\n**结论**：`tmux ls` 和 `tmux capture-pane` 均被 `ssh_read_only` 白名单阻止，需要 `ssh_execute` 才能查看 tmux sessions。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-urgent-3issues-20260514.md"
+}

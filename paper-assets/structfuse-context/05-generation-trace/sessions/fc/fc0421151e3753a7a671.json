@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc0421151e3753a7a671",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "prep plan005 analysis script",
+  "task_key": "worker_prep_plan005-analysis-script_20260515T010617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_plan005-analysis-script_20260515T010617_result.json",
+    "occurrence": 1,
+    "bytes": 1760,
+    "sha256": "3aef7e636c3971db5abbdd57b1cf16552096f411764d9509930544a14350ef97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果总结\n\n### 脚本状态\n- **实际路径**：`/root/structfuse/evaluation/analyze_stratified.py`（1308 行，完整可用）\n- **功能**：覆盖 Plan 005 所有 5+2 维度：repo_size, pool_size, similarity, dataflow, neg_difficulty + pool_size_controlled + dataflow×pool_size 交叉分析\n- **已有产出**：`stratified_dryrun_v4`（今天 05:06 生成），刚重新验证生成了 `stratified_dryrun_v5`\n\n### 现在就能跑的（0 GPU）\n| 步骤 | 状态 |\n|------|------|\n| `--dry-run` 全流程（mock predictions） | ✅ 已验证通过，21秒完成 |\n| 数据分层标签生成（5 维度 bin assignment） | ✅ dry-run 中已含 |\n| cross_tabulation（dataflow × pool_size） | ✅ 产出中有 |\n| bootstrap CI 计算 | ✅ 用 mock 数据验证了 |\n| 分层统计摘要 CSV + PDF 图 | ✅ 三个文件均已生成 |\n| confound 分析（`scripts/analyze_confound.py`） | ✅ 16秒完成，report 已存 |\n| BM25 overlap stratified 分析 | ✅ 20秒完成 |\n\n### 必须等 M2 checkpoint 的步骤\n| 步骤 | 依赖 |\n|------|------|\n| 真实模型 embedding 编码 | 需 `--checkpoints-dir` 中的 M2 权重 |\n| 真实 R@1/R@5/MRR 计算 | 需真实 predictions |\n| 正式 similarity bins（基于 cosine sim 而非 text overlap） | 需模型 encode |\n\n### 数据就绪性\n- M1 metadata: ✅ 44173 instances, 123 repos\n- Val JSONL: ✅ 4 strategies × 3 seeds × 2980 samples\n- Dataflow graph: ✅ 376069 file entries\n- Confound analysis report: ✅ 已生成\n\n**结论**：数据预处理和脚本验证已全部完成。dry-run pipeline 端到端通过。等 M2 checkpoint 就绪后，只需将 `--dry-run` 替换为 `--checkpoints-dir <path>` 即可获得真实评估结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-plan005-analysis-script.md"
+}

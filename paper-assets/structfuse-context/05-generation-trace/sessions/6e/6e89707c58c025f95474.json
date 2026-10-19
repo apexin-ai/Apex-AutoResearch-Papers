@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e89707c58c025f95474",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "check training status all",
+  "task_key": "worker_check_training_status_all_20260516T080728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_training_status_all_20260516T080728_result.json",
+    "occurrence": 1,
+    "bytes": 2789,
+    "sha256": "ab53457a4eae9f91f93a761a7867477c1c38c43261e1e1ae2c65ddbe8198b5c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 全局训练状态快照 — 2026-05-16 16:10 CST\n\n### GPU 状态\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 81,077 / 97,887 MiB (83%) | 99% |\n| 1 | 94,329 / 97,887 MiB (96%) | 100% |\n\n### 进程状态\n\n| 任务 | PID | 状态 | 当前进度 | 详情 |\n|------|-----|------|---------|------|\n| **Qwen 主链** | 337267 | **运行中** | [6/9] `dataflow_aware_s44`, step 800/~2816 (28%) | 5/9 completed. loss=0.0433, best R@1=0.5701, val_loss=0.4944 |\n| **StarCoder 链** | 519791 (→129747) | **运行中** | `embedding_distance_s43`, step 800/~2810 (28%) | 4 subruns done (random×3 + emb_dist_s42). loss=0.3149, best R@1=0.4810, val_loss=0.5229 |\n| **UniXcoder** | 161238/161239 | **刚完成/过渡中** | `embedding_distance_s42` early stopped @ step 1200 | random_s42 ✓ (有 final), emb_dist_s42 ✓ (best val_loss=0.4466 @ step 600, R@1=0.5440). 原 PID 149858 已退出 |\n| **RepoBench eval** | 159860 (→158952) | **运行中** | 等待 `repobench_random_s42` eval 完成 | PID 158952 运行 ~16min, eval Qwen random_s42 checkpoint, GPU 1 占 24GB |\n| **Watcher (Qwen)** | 966920 | **存活** | — | `watch_and_chain_qwen_s42.sh` |\n| **Watcher (StarCoder)** | 20226 | **存活** | — | `watch_and_chain_starcoder_s42.sh` |\n\n### Qwen 链完成记录\n\n| # | Subrun | 开始时间 | 完成时间 | 耗时 |\n|---|--------|---------|---------|------|\n| 1 | random_s43 | May 14 19:24 | May 15 01:58 | ~6.5h |\n| 2 | random_s44 | May 15 01:58 | May 15 08:32 | ~6.5h |\n| 3 | embedding_distance_s43 | May 15 08:32 | May 15 14:50 | ~6.3h |\n| 4 | embedding_distance_s44 | May 15 14:50 | May 15 23:53 | ~9h |\n| 5 | dataflow_aware_s43 | May 15 23:53 | May 16 10:54 | ~11h |\n| **6** | **dataflow_aware_s44** | **May 16 10:54** | **进行中** | ~5.3h in, step 800/2816 |\n\n### UniXcoder 最终指标\n\n| Subrun | Best val_loss | R@1 | R@5 | 结果 |\n|--------|-------------|-----|-----|------|\n| random_s42 | — | — | — | 完成 (有 final checkpoint) |\n| embedding_distance_s42 | 0.4466 (step 600) | 0.5440 | 0.9758 | Early stopped @ step 1200 |\n\n### 关键观察\n\n1. **UniXcoder 原 PID 149858 已不存在**，PID 161238/161239 刚启动（16:07），但 train.log 已显示 early stopping。UniXcoder 链可能缺少后续 subrun 的自动调度脚本——需确认 dataflow_aware 等后续 strategy 是否会自动启动。\n2. **Qwen** 还剩 3 个 subrun（7-9/9），当前 subrun 按趋势估计再需 ~14h，整体 ETA 约 **May 18 中午**。\n3. **StarCoder** 还剩 4 个 subrun（embedding_distance_s44 + dataflow_aware×3），整体 ETA 约 **May 19**。\n4. **RepoBench eval** 正在 eval 第一个 checkpoint（random_s42），队列后续会依次 eval 其他完成的 checkpoints。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-training-status-all.md"
+}

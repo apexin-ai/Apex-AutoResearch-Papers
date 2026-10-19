@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6cbed56c08e2b88ab124",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "experiment p2b steps3 5 fix and retrain",
+  "task_key": "worker_experiment_p2b_steps3-5_fix_and_retrain_20260512T194430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_p2b_steps3-5_fix_and_retrain_20260512T194430_result.json",
+    "occurrence": 1,
+    "bytes": 2129,
+    "sha256": "073e52d807dd11029af1d5a0b709c4b959f6a5559fe66efec00697a0b910bb04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结果清晰了。报告如下：\n\n---\n\n## Step 3 结果：数据验证失败 — 停止\n\n**`train_dataflow.jsonl` 和 `train_embedding.jsonl` 的 md5 完全相同。**\n\n### 根因分析\n\n代码层面的修复（`non_pos` 只排除 `connected_files` 而非 `connected_all`）已正确应用，但**不产生任何效果**，原因是底层数据本身的限制：\n\n| repo | pos | dataflow图中文件数 | 非gold的dataflow文件数 |\n|------|-----|--------------------|----------------------|\n| flask | 14 | 7 | **0** |\n| requests | 8 | 6 | **0** |\n| pytest | 40 | 14 | **0** |\n| pylint | 35 | 6 | **0** |\n| xarray | **0** (无训练数据) | 90 | 89 |\n| astropy | 19 | 0 | **0** |\n| sphinx | 130 | 61 | **0** |\n| matplotlib | 163 | 120 | **0** |\n\n对于所有**产出训练数据的 repo**，`bounded_dataflow.csv` 中的 dataflow 连接**完全是 gold `connected_files` 的子集**。没有任何额外的 dataflow 连接可供 `build_candidate_pools` 区分两种策略。\n\n### 因果链\n\n1. `connected_all = connected_files ∪ df_connections[buggy_file]`\n2. 但 `df_connections[buggy_file] ⊆ connected_files`（所有 productive repos）\n3. 所以 `connected_all == connected_files`\n4. `build_candidate_pools` 的 `disconnected` 过滤器 `[f for f in non_pos if f not in connected_set]` 不会移除任何文件\n5. `embedding` 和 `dataflow` 池完全相同（都是 BM25 top-50 from identical set）\n\n### 修复方向\n\n仅修改 `build_p2b_data.py` 的过滤逻辑**无法解决**此问题。需要以下之一：\n\n**方案 A**：扩展 dataflow 连接定义——用 2-hop 传递闭包或 repo 级全图连通分量，让 dataflow 连接超出 gold 范围\n\n**方案 B**：改变 dataflow 策略的含义——不再\"排除 dataflow 连接的文件\"，而是按 dataflow 距离重新加权 BM25 排序（距离远的文件优先作为 negative）\n\n**方案 C**：重新运行 CodeQL dataflow 分析，放宽 bound 限制以发现更多跨文件连接\n\n---\n\n**按指令要求，已停止后续步骤（训练和评估）。** 请指示如何处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-p2b-steps3-5-fix-and-retrain.md"
+}

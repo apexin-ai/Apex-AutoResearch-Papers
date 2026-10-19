@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5287841d8b59d3f6287b",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code fix strategy names restart p2b",
+  "task_key": "worker_code_fix_strategy_names_restart_p2b_20260512T153310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_strategy_names_restart_p2b_20260512T153310_result.json",
+    "occurrence": 1,
+    "bytes": 102,
+    "sha256": "67c5415e0824e717d81054da43e269008566020c9937451bf5e76bb3da3b00dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台等待已完成，训练已在上一步确认正常启动。无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-strategy-names-restart-p2b.md"
+}

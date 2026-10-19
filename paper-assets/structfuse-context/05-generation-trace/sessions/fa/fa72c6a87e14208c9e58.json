@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "fa72c6a87e14208c9e58",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "ops query models and prep e2e",
+  "task_key": "worker_ops_query-models-and-prep-e2e_20260515T190340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_query-models-and-prep-e2e_20260515T190340.log",
+    "occurrence": 1,
+    "bytes": 1038184,
+    "sha256": "6e2ff8fdd1fd5763e3322fa006cd67da92b287d9137c3d1cedd58030fe8771af"
+  },
+  "statistics": {
+    "messages": 795,
+    "user_turns": 0,
+    "tool_calls": 355,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 355,
+      "tool_result": 355,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 795,
+      "chunks": [
+        {
+          "path": "fa72c6a87e14208c9e58-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa72c6a87e14208c9e58-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa72c6a87e14208c9e58-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa72c6a87e14208c9e58-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "fa72c6a87e14208c9e58-part-0005.json",
+          "message_count": 75
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-query-models-and-prep-e2e.md"
+}

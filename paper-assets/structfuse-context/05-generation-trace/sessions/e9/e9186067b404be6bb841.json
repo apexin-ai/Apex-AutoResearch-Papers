@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9186067b404be6bb841",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "writing discussion draft",
+  "task_key": "worker_writing_discussion_draft_20260514T101811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_discussion_draft_20260514T101811_result.json",
+    "occurrence": 1,
+    "bytes": 1071,
+    "sha256": "2f53c4a5df46fe141715b250fde082ff76d292b20f056ab129edd2a45634f9ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Discussion 草稿已写入 `/root/structfuse-context/artifacts/paper_drafts/discussion_draft.md`。\n\n核心论点：\n\n1. **Training-time vs Inference-time**：StructFuse 将结构计算一次性摊销到训练阶段（~110h, 0 timeout），推理零开销；CodexGraph/LocAgent/RANGER 每次查询需图遍历+LLM调用。两种范式互补——StructFuse encoder 可作 first-stage retriever 缩小搜索空间。直接数值对比因任务接口和评测基准不同而不恰当。\n\n2. **Inter- vs Intra-procedural**：GraphCoder/ARISE 仅 intra-procedural data-flow，CodexGraph/LocAgent 无 data-flow。StructFuse 的 2-hop bounded inter-procedural 在覆盖率（Z=40.8%，XL repos 96%）和可扩展性（0% timeout）间取得平衡。\n\n3. **Limitations**（4点）：2-hop 截断深调用链；CodeQL 语言限制；36% structural data rate（re-extraction 可改善）；n=3 seeds 统计功效不足，待 M2 full 补齐。所有定量 claim 已标注来源，强度词与 evidence 匹配（未用 \"significantly\"/\"consistently\"）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-discussion-draft.md"
+}

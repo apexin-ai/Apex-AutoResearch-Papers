@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a28255a1a37e260dd0d",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops plan013 dataflow submit v2",
+  "task_key": "worker_ops_plan013-dataflow-submit-v2_20260513T090254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan013-dataflow-submit-v2_20260513T090254_result.json",
+    "occurrence": 1,
+    "bytes": 103,
+    "sha256": "d8a5a5369cf5b45a6452e30699947dac3a4a111e5d14a954478df3de2ef22310"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Embedding 训练在 step 1500/1640，预计几分钟内完成。60 秒后再查状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan013-dataflow-submit-v2.md"
+}

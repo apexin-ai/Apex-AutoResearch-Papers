@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fed81a9e53c67d3b85c8",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ssh swebench preclone repos",
+  "task_key": "worker_ssh_swebench_preclone_repos_20260513T224443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_swebench_preclone_repos_20260513T224443_result.json",
+    "occurrence": 1,
+    "bytes": 601,
+    "sha256": "6255ccb9f4e29024ab8295268b7e63ceec1881d727c0c4988579a42cdb61de28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "12/12 repos 全部 bare clone 成功，0 失败。\n\n| Repo | 状态 |\n|------|------|\n| astropy/astropy | 已存在（之前已 clone） |\n| django/django | SUCCESS |\n| matplotlib/matplotlib | SUCCESS |\n| mwaskom/seaborn | SUCCESS |\n| pallets/flask | SUCCESS |\n| psf/requests | SUCCESS |\n| pydata/xarray | SUCCESS |\n| pylint-dev/pylint | SUCCESS |\n| pytest-dev/pytest | SUCCESS |\n| scikit-learn/scikit-learn | SUCCESS |\n| sphinx-doc/sphinx | SUCCESS |\n| sympy/sympy | SUCCESS |\n\n总占用空间：**1.7GB**（bare clone），路径 `/root/autodl-tmp/swebench/repos/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-swebench-preclone-repos.md"
+}

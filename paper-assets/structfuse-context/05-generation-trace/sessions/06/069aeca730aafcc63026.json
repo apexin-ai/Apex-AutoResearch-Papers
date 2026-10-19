@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "069aeca730aafcc63026",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "diagnose mvp p2b contrastive training",
+  "task_key": "worker_diagnose_mvp_p2b_contrastive_training_20260512T131712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_mvp_p2b_contrastive_training_20260512T131712_result.json",
+    "occurrence": 1,
+    "bytes": 666,
+    "sha256": "bc058789875f09bcdc1991527c4549814123d39d5c8e2050def6cec0c3b1d173"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**：并发 ModelScope 下载将模型 safetensors 分片文件移至 `._____temp/` 临时目录且未 finalize 回主目录。Run 1 已加载模型到显存不受影响，Run 2 启动时文件已不在预期路径，触发 `FileNotFoundError`，`set -e` 导致脚本立即退出，Run 3-9 未执行。\n\n**已完成**：\n- Registry `failure_reason` 字段已更新\n- 诊断报告已注册为 artifact (`art_20260512_6211d5`)\n\n**修复要点**：将 `._____temp/*.safetensors` 移回主目录后，从 Run 2 开始重跑即可。建议将模型目录迁至 `/root/autodl-tmp/` 避免与 ModelScope cache 路径冲突。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-mvp-p2b-contrastive-training.md"
+}

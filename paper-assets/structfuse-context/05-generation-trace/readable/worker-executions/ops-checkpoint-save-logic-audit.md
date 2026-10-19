@@ -1,0 +1,4758 @@
+# ops checkpoint save logic audit
+
+**StructFuse: Structure-Grounded Hard Negative Mining for Contrastive Code Context Retrieval** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 101
+- **Recorded user turns:** 0
+- **Tool calls:** 36
+- **Original source:** `logs/workers/worker_ops_checkpoint_save_logic_audit_20260516T030841.log`
+- **Structured JSON:** [`5de359d48a39519af54f.json`](../../sessions/5d/5de359d48a39519af54f.json)
+
+## Before a recorded user message
+
+101 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "8a7dddad-8ca4-49d2-86b6-dfef1b59fa8d",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-structfuse-context/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778907000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "0e55e2a5-191a-4368-8d66-6e001ee767fa",
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to investigate the checkpoint saving logic in their training code on a remote server. Let me start by examining the training code on the server to understand the checkpoint saving mechanism, final eval logic, and eval determinism.
+
+Let me first load the necessary tools and then examine the code on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "72bee1c6-b282-4276-9cc3-e8626d8d06e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Myah2QHQCWBUW6UBTjHcN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11809,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11809
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始检查服务器上的训练代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "3e36e789-4eb8-489a-9c74-f974ff8478ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Myah2QHQCWBUW6UBTjHcN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11809,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11809
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01875ye4tKV3kX2dnFKjiCpp`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "d588acd3-9d44-400e-aa32-d0aa2ace778e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Myah2QHQCWBUW6UBTjHcN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11809,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11809
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T03:08:55.090Z_
+
+<details><summary>↩ Tool result · `toolu_01875ye4tKV3kX2dnFKjiCpp`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "fd630f7e-4f2b-4b6b-8e87-50527fd51853",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WPf9u93VTrexF3XrbP17oH`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/structfuse -maxdepth 3 -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "fb097101-d46d-4415-844d-b43cde076246",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011DE9aWj316eREzrYgwcT9p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 764,
+      "cache_read_input_tokens": 23650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 764
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T03:09:00.155Z_
+
+<details><summary>↩ Tool result · `toolu_01WPf9u93VTrexF3XrbP17oH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "38ff6617-3382-48ea-b3b2-8802356550d7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No .py files found. Let me check the directory structure more broadly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "16f1f98c-7f98-47f9-ad3c-daee035c835e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XoPf8WmZ6arjUwHvPJrdx8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 202,
+      "cache_read_input_tokens": 24414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 202
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+目录下没有 .py 文件，检查整体结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "01608116-4227-430a-b6f7-626f25b136d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XoPf8WmZ6arjUwHvPJrdx8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 202,
+      "cache_read_input_tokens": 24414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 202
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EqjQKNeKnBqVyX77YDJXiH`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "ls -la /root/structfuse/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "14a60291-9ffb-4a4d-a617-719869aa1f4b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XoPf8WmZ6arjUwHvPJrdx8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 202,
+      "cache_read_input_tokens": 24414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 202
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T03:09:03.662Z_
+
+<details><summary>↩ Tool result · `toolu_01EqjQKNeKnBqVyX77YDJXiH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 212\\ndrwxr-xr-x 11 root root  4096 May 16 01:54 .\\ndrwx------  1 root root  4096 May 16 03:05 ..\\ndrwxr-xr-x  2 root root   192 May 14 23:09 analysis\\ndrwxr-xr-x  5 root root   112 May 14 18:33 artifacts\\n-rwxr-xr-x  1 root root  1246 May 14 07:58 auto_start_dataflow.sh\\ndrwxr-xr-x  2 root root    48 May 14 08:56 configs\\n-rw-r--r--  1 root root  7963 May 15 03:38 eval_checkpoint.py\\ndrwxr-xr-x  3 root root  4096 May 16 02:45 evaluation\\ndrwxr-xr-x  4 root root   182 May 14 07:58 extraction\\n-rwxr-xr-x  1 root root 20089 May 14 07:58 mvp_phase1.py\\n-rwxr-xr-x  1 root root 17489 May 12 19:39 mvp_phase1.py.bak\\n-rw-r--r--  1 root root   611 May 12 18:23 requirements.txt\\ndrwxr-xr-x  3 root root  4096 May 16 00:11 results\\n-rwxr-xr-x  1 root root  1730 May 15 02:05 run_m2_bm25_qwen_s42.sh\\n-rwxr-xr-x  1 root root  2524 May 14 07:58 run_m2_early_pilot.sh\\n-rwxr-xr-x  1 root root  2484 May 14 07:58 run_m2_embed_verify.sh\\n-rwxr-xr-x  1 root root  3309 May 14 07:58 run_m2_embed_verify_continuation.sh\\n-rw-r--r--  1 root root  5679 May 15 21:06 run_m2_full_qwen.sh\\n-rw-r--r--  1 root root  5624 May 15 21:06 run_m2_full_qwen.sh.bak\\n-rwxr-xr-x  1 root root  7504 May 14 19:17 run_m2_full_starcoder.sh\\n-rwxr-xr-x  1 root root  4055 May 15 22:23 run_m2_full_starcoder_resume.sh\\n-rwxr-xr-x  1 root root  4016 May 15 21:06 run_m2_full_starcoder_resume.sh.bak\\n-rwxr-xr-x  1 root root  4016 May 15 22:23 run_m2_full_starcoder_resume.sh.bak.d050\\n-rwxr-xr-x  1 root root  3093 May 14 19:20 run_m2_full_starcoder_s43plus.sh\\n-rwxr-xr-x  1 root root 10646 May 16 01:54 run_m2_s42_supplement.sh\\n-rwxr-xr-x  1 root root  7151 May 15 22:23 run_m2_s42_supplement.sh.bak.d050\\n-rwxr-xr-x  1 root root  7169 May 15 22:24 run_m2_s42_supplement.sh.bak.pre_bm25\\n-rwxr-xr-x  1 root root 10964 May 16 01:54 run_m2_s42_supplement.sh.bak.pre_trim\\n-rwxr-xr-x  1 root root  1438 May 13 17:09 run_plan013_dataflow_retry.sh\\n-rw-r--r--  1 root root  2463 May 14 07:58 run_plan013_starcoder.sh\\n-rwxr-xr-x  1 root root  3826 May 14 09:04 run_plan014_temp_ablation.sh\\n-rwxr-xr-x  1 root root  3661 May 14 09:03 run_plan014_temp_ablation.sh.bak\\n-rwxr-xr-x  1 root root  3079 May 14 09:04 run_plan014_temp_cuda0.sh\\n-rwxr-xr-x  1 root root  3101 May 14 09:04 run_plan014_temp_cuda1.sh\\n-rwxr-xr-x  1 root root  2686 May 14 00:41 run_starcoder_data_build.sh\\ndrwxr-xr-x  3 root root  4096 May 16 07:18 scripts\\n-rw-r--r--  1 root root     0 May 13 13:07 tea_debug.log\\ndrwxr-xr-x  3 root root   144 May 15 01:55 training\\ndrwxr-xr-x 10 root root  4096 May 16 10:06 wandb\\n-rwxr-xr-x  1 root root   714 May 14 23:33 watch_and_chain_qwen_s42.sh\\n-rwxr-xr-x  1 root root   697 May 15 23:59 watch_and_chain_starcoder_s42.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "c5cd0504-4cb9-4879-a39c-4e3c6d041c73",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 212\\\\ndrwxr-xr-x 11 root root  4096 May 16 01:54 .\\\\ndrwx------  1 root root  4096 May 16 03:05 ..\\\\ndrwxr-xr-x  2 root root   192 May 14 23:09 analysis\\\\ndrwxr-xr-x  5 root root   112 May 14 18:33 artifacts\\\\n-rwxr-xr-x  1 root root  1246 May 14 07:58 auto_start_dataflow.sh\\\\ndrwxr-xr-x  2 root root    48 May 14 08:56 configs\\\\n-rw-r--r--  1 root root  7963 May 15 03:38 eval_checkpoint.py\\\\ndrwxr-xr-x  3 root root  4096 May 16 02:45 evaluation\\\\ndrwxr-xr-x  4 root root   182 May 14 07:58 extraction\\\\n-rwxr-xr-x  1 root root 20089 May 14 07:58 mvp_phase1.py\\\\n-rwxr-xr-x  1 root root 17489 May 12 19:39 mvp_phase1.py.bak\\\\n-rw-r--r--  1 root root   611 May 12 18:23 requirements.txt\\\\ndrwxr-xr-x  3 root root  4096 May 16 00:11 results\\\\n-rwxr-xr-x  1 root root  1730 May 15 02:05 run_m2_bm25_qwen_s42.sh\\\\n-rwxr-xr-x  1 root root  2524 May 14 07:58 run_m2_early_pilot.sh\\\\n-rwxr-xr-x  1 root root  2484 May 14 07:58 run_m2_embed_verify.sh\\\\n-rwxr-xr-x  1 root root  3309 May 14 07:58 run_m2_embed_verify_continuation.sh\\\\n-rw-r--r--  1 root root  5679 May 15 21:06 run_m2_full_qwen.sh\\\\n-rw-r--r--  1 root root  5624 May 15 21:06 run_m2_full_qwen.sh.bak\\\\n-rwxr-xr-x  1 root root  7504 May 14 19:17 run_m2_full_starcoder.sh\\\\n-rwxr-xr-x  1 root root  4055 May 15 22:23 run_m2_full_starcoder_resume.sh\\\\n-rwxr-xr-x  1 root root  4016 May 15 21:06 run_m2_full_starcoder_resume.sh.bak\\\\n-rwxr-xr-x  1 root root  4016 May 15 22:23 run_m2_full_starcoder_resume.sh.bak.d050\\\\n-rwxr-xr-x  1 root root  3093 May 14 19:20 run_m2_full_starcoder_s43plus.sh\\\\n-rwxr-xr-x  1 root root 10646 May 16 01:54 run_m2_s42_supplement.sh\\\\n-rwxr-xr-x  1 root root  7151 May 15 22:23 run_m2_s42_supplement.sh.bak.d050\\\\n-rwxr-xr-x  1 root root  7169 May 15 22:24 run_m2_s42_supplement.sh.bak.pre_bm25\\\\n-rwxr-xr-x  1 root root 10964 May 16 01:54 run_m2_s42_supplement.sh.bak.pre_trim\\\\n-rwxr-xr-x  1 root root  1438 May 13 17:09 run_plan013_dataflow_retry.sh\\\\n-rw-r--r--  1 root root  2463 May 14 07:58 run_plan013_starcoder.sh\\\\n-rwxr-xr-x  1 root root  3826 May 14 09:04 run_plan014_temp_ablation.sh\\\\n-rwxr-xr-x  1 root root  3661 May 14 09:03 run_plan014_temp_ablation.sh.bak\\\\n-rwxr-xr-x  1 root root  3079 May 14 09:04 run_plan014_temp_cuda0.sh\\\\n-rwxr-xr-x  1 root root  3101 May 14 09:04 run_plan014_temp_cuda1.sh\\\\n-rwxr-xr-x  1 root root  2686 May 14 00:41 run_starcoder_data_build.sh\\\\ndrwxr-xr-x  3 root root  4096 May 16 07:18 scripts\\\\n-rw-r--r--  1 root root     0 May 13 13:07 tea_debug.log\\\\ndrwxr-xr-x  3 root root   144 May 15 01:55 training\\\\ndrwxr-xr-x 10 root root  4096 May 16 10:06 wandb\\\\n-rwxr-xr-x  1 root root   714 May 14 23:33 watch_and_chain_qwen_s42.sh\\\\n-rwxr-xr-x  1 root root   697 May 15 23:59 watch_and_chain_starcoder_s42.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 212\\ndrwxr-xr-x 11 root root  4096 May 16 01:54 .\\ndrwx------  1 root root  4096 May 16 03:05 ..\\ndrwxr-xr-x  2 root root   192 May 14 23:09 analysis\\ndrwxr-xr-x  5 root root   112 May 14 18:33 artifacts\\n-rwxr-xr-x  1 root root  1246 May 14 07:58 auto_start_dataflow.sh\\ndrwxr-xr-x  2 root root    48 May 14 08:56 configs\\n-rw-r--r--  1 root root  7963 May 15 03:38 eval_checkpoint.py\\ndrwxr-xr-x  3 root root  4096 May 16 02:45 evaluation\\ndrwxr-xr-x  4 root root   182 May 14 07:58 extraction\\n-rwxr-xr-x  1 root root 20089 May 14 07:58 mvp_phase1.py\\n-rwxr-xr-x  1 root root 17489 May 12 19:39 mvp_phase1.py.bak\\n-rw-r--r--  1 root root   611 May 12 18:23 requirements.txt\\ndrwxr-xr-x  3 root root  4096 May 16 00:11 results\\n-rwxr-xr-x  1 root root  1730 May 15 02:05 run_m2_bm25_qwen_s42.sh\\n-rwxr-xr-x  1 root root  2524 May 14 07:58 run_m2_early_pilot.sh\\n-rwxr-xr-x  1 root root  2484 May 14 07:58 run_m2_embed_verify.sh\\n-rwxr-xr-x  1 root root  3309 May 14 07:58 run_m2_embed_verify_continuation.sh\\n-rw-r--r--  1 root root  5679 May 15 21:06 run_m2_full_qwen.sh\\n-rw-r--r--  1 root root  5624 May 15 21:06 run_m2_full_qwen.sh.bak\\n-rwxr-xr-x  1 root root  7504 May 14 19:17 run_m2_full_starcoder.sh\\n-rwxr-xr-x  1 root root  4055 May 15 22:23 run_m2_full_starcoder_resume.sh\\n-rwxr-xr-x  1 root root  4016 May 15 21:06 run_m2_full_starcoder_resume.sh.bak\\n-rwxr-xr-x  1 root root  4016 May 15 22:23 run_m2_full_starcoder_resume.sh.bak.d050\\n-rwxr-xr-x  1 root root  3093 May 14 19:20 run_m2_full_starcoder_s43plus.sh\\n-rwxr-xr-x  1 root root 10646 May 16 01:54 run_m2_s42_supplement.sh\\n-rwxr-xr-x  1 root root  7151 May 15 22:23 run_m2_s42_supplement.sh.bak.d050\\n-rwxr-xr-x  1 root root  7169 May 15 22:24 run_m2_s42_supplement.sh.bak.pre_bm25\\n-rwxr-xr-x  1 root root 10964 May 16 01:54 run_m2_s42_supplement.sh.bak.pre_trim\\n-rwxr-xr-x  1 root root  1438 May 13 17:09 run_plan013_dataflow_retry.sh\\n-rw-r--r--  1 root root  2463 May 14 07:58 run_plan013_starcoder.sh\\n-rwxr-xr-x  1 root root  3826 May 14 09:04 run_plan014_temp_ablation.sh\\n-rwxr-xr-x  1 root root  3661 May 14 09:03 run_plan014_temp_ablation.sh.bak\\n-rwxr-xr-x  1 root root  3079 May 14 09:04 run_plan014_temp_cuda0.sh\\n-rwxr-xr-x  1 root root  3101 May 14 09:04 run_plan014_temp_cuda1.sh\\n-rwxr-xr-x  1 root root  2686 May 14 00:41 run_starcoder_data_build.sh\\ndrwxr-xr-x  3 root root  4096 May 16 07:18 scripts\\n-rw-r--r--  1 root root     0 May 13 13:07 tea_debug.log\\ndrwxr-xr-x  3 root root   144 May 15 01:55 training\\ndrwxr-xr-x 10 root root  4096 May 16 10:06 wandb\\n-rwxr-xr-x  1 root root   714 May 14 23:33 watch_and_chain_qwen_s42.sh\\n-rwxr-xr-x  1 root root   697 May 15 23:59 watch_and_chain_starcoder_s42.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key files: `mvp_phase1.py` is likely the main training script. There's also a `training/` directory and `scripts/` directory. Let me read the main training file and check the training directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "f2b1f622-06e4-4491-bd48-8db810d9abcb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WkJHm6r9gUak8RzwLBWMKm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1742,
+      "cache_read_input_tokens": 24616,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1742
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+找到主训练脚本 `mvp_phase1.py`。并行读取关键文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "60033fe9-f4ee-4d98-8d74-00ef156ae51f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WkJHm6r9gUak8RzwLBWMKm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1742,
+      "cache_read_input_tokens": 24616,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1742
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017g1pj5wE4Qv79C2Vihg9n5`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "cat /root/structfuse/mvp_phase1.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "40d47448-af4f-472d-8656-b0f5c54e7cff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WkJHm6r9gUak8RzwLBWMKm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1742,
+      "cache_read_input_tokens": 24616,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1742
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T03:09:08.872Z_
+
+<details><summary>↩ Tool result · `toolu_017g1pj5wE4Qv79C2Vihg9n5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"MVP Phase 1: CodeQL pilot on 10 repos + H2 sanity check.\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"4\\\"\\n\\n\\nimport json\\nimport os\\nimport re\\nimport subprocess\\nimport sys\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nBASE_DIR = Path(\\\"/root/autodl-tmp/mvp_data\\\")\\nRESULTS_DIR = Path(\\\"/root/autodl-tmp/mvp_results\\\")\\nCODEQL_QUERIES = Path(\\\"/root/structfuse-context/extraction/codeql_queries\\\")\\nCALL_GRAPH_QL = CODEQL_QUERIES / \\\"call_graph.ql\\\"\\nDATAFLOW_QL = CODEQL_QUERIES / \\\"bounded_dataflow.ql\\\"\\nTIMEOUT = 300\\nRAM = 8192\\n\\n\\ndef _common_suffix_length(a, b):\\n    a_parts = a.split(\\\"/\\\")\\n    b_parts = b.split(\\\"/\\\")\\n    count = 0\\n    for ap, bp in zip(reversed(a_parts), reversed(b_parts)):\\n        if ap == bp:\\n            count += 1\\n        else:\\n            break\\n    return count\\n\\n\\ndef normalize_path(path, all_py_files):\\n    \\\"\\\"\\\"Map a path to its canonical form in all_py_files via suffix matching.\\\"\\\"\\\"\\n    all_set = set(all_py_files) if not isinstance(all_py_files, set) else all_py_files\\n    if path in all_set:\\n        return path\\n    for f in all_py_files:\\n        if f.endswith(\\\"/\\\" + path) or path.endswith(\\\"/\\\" + f):\\n            return f\\n    basename = os.path.basename(path)\\n    candidates = [f for f in all_py_files if os.path.basename(f) == basename]\\n    if len(candidates) == 1:\\n        return candidates[0]\\n    best, best_score = path, 0\\n    for f in candidates:\\n        score = _common_suffix_length(f, path)\\n        if score > best_score:\\n            best_score = score\\n            best = f\\n    return best if best_score > 0 else path\\n\\n\\n\\ndef clone_repo(repo, dest, commit=\\\"main\\\"):\\n    if os.path.exists(dest):\\n        print(f\\\"  [skip] {dest} exists\\\")\\n        if commit not in (\\\"main\\\", \\\"master\\\"):\\n            # Try checkout; if fail, fetch the commit first\\n            r = subprocess.run([\\\"git\\\", \\\"checkout\\\", commit], cwd=dest,\\n                               capture_output=True, text=True, timeout=30)\\n            if r.returncode != 0:\\n                subprocess.run([\\\"git\\\", \\\"fetch\\\", \\\"--unshallow\\\"], cwd=dest,\\n                               capture_output=True, text=True, timeout=600)\\n                subprocess.run([\\\"git\\\", \\\"fetch\\\", \\\"origin\\\", commit], cwd=dest,\\n                               capture_output=True, text=True, timeout=120)\\n                r2 = subprocess.run([\\\"git\\\", \\\"checkout\\\", commit], cwd=dest,\\n                                    capture_output=True, text=True, timeout=30)\\n                if r2.returncode != 0:\\n                    print(f\\\"  [warn] checkout {commit[:10]} failed, using HEAD\\\")\\n        return True\\n    url = f\\\"https://github.com/{repo}.git\\\"\\n    try:\\n        subprocess.run([\\\"git\\\", \\\"clone\\\", url, dest],\\n                       capture_output=True, text=True, timeout=600, check=True)\\n        if commit not in (\\\"main\\\", \\\"master\\\"):\\n            r = subprocess.run([\\\"git\\\", \\\"checkout\\\", commit], cwd=dest,\\n                               capture_output=True, text=True, timeout=30)\\n            if r.returncode != 0:\\n                print(f\\\"  [warn] checkout {commit[:10]} failed\\\")\\n        return True\\n    except Exception as e:\\n        print(f\\\"  [error] clone: {e}\\\")\\n        return False\\n\\n\\ndef find_buggy_function(repo_dir, buggy_file, buggy_function):\\n    import ast\\n    target = os.path.join(repo_dir, buggy_file)\\n    if not os.path.exists(target):\\n        for root, dirs, files in os.walk(repo_dir):\\n            for f in files:\\n                if f == os.path.basename(buggy_file):\\n                    target = os.path.join(root, f)\\n                    buggy_file = os.path.relpath(target, repo_dir)\\n                    break\\n        if not os.path.exists(target):\\n            return None, None\\n    try:\\n        with open(target, encoding=\\\"utf-8\\\", errors=\\\"replace\\\") as f:\\n            source = f.read()\\n        tree = ast.parse(source)\\n    except SyntaxError:\\n        return buggy_file, buggy_function\\n\\n    all_funcs = []\\n    for node in ast.walk(tree):\\n        if isinstance(node, (ast.FunctionDef, ast.AsyncFun\\n\\n... [截断: 输出过长，省略 12089 字符] ...\\n\\nlow.ql...\\\")\\n        df_ok, df_time, df_to = run_query(db_path, str(DATAFLOW_QL), df_csv, bfunc, bf)\\n        print(f\\\"  DF: {'OK' if df_ok else ('TIMEOUT' if df_to else 'FAIL')} ({df_time:.1f}s)\\\")\\n        result.update({\\\"df_ok\\\": df_ok, \\\"df_time\\\": round(df_time, 1), \\\"df_timeout\\\": df_to})\\n\\n        cg = parse_call_graph_csv(cg_csv) if cg_ok else []\\n        df = parse_dataflow_csv(df_csv) if df_ok else []\\n        connected = get_connected_files(cg, df, bf)\\n        all_py = get_all_py_files(repo_dir)\\n        result.update({\\n            \\\"cg_functions\\\": len(cg), \\\"df_paths\\\": len(df),\\n            \\\"connected_files\\\": connected,\\n            \\\"reachable_file_count\\\": len(connected),\\n            \\\"total_py_files\\\": len(all_py), \\\"all_py_files\\\": all_py,\\n        })\\n        results.append(result)\\n        print(f\\\"  Connected: {len(connected)}/{len(all_py)} files\\\")\\n\\n    # Summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"RESULTS SUMMARY\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    total = len(results)\\n    any_to = sum(1 for r in results if r.get(\\\"cg_timeout\\\") or r.get(\\\"df_timeout\\\"))\\n    to_rate = any_to / max(total, 1)\\n\\n    cg_times = [r[\\\"cg_time\\\"] for r in results if r.get(\\\"cg_ok\\\")]\\n    df_times = [r[\\\"df_time\\\"] for r in results if r.get(\\\"df_ok\\\")]\\n    reachable = [r.get(\\\"reachable_file_count\\\", 0) for r in results if r.get(\\\"cg_ok\\\") or r.get(\\\"df_ok\\\")]\\n\\n    print(f\\\"\\\\nTotal: {total}\\\")\\n    print(f\\\"Timeout rate: {to_rate:.1%}\\\")\\n    print(f\\\"Phase 1a: {'PASS' if to_rate < 0.3 else 'FAIL'}\\\")\\n    if cg_times:\\n        print(f\\\"CG time: mean={sum(cg_times)/len(cg_times):.1f}s, max={max(cg_times):.1f}s\\\")\\n    if df_times:\\n        print(f\\\"DF time: mean={sum(df_times)/len(df_times):.1f}s, max={max(df_times):.1f}s\\\")\\n    if reachable:\\n        print(f\\\"Reachable files: mean={sum(reachable)/len(reachable):.1f}\\\")\\n\\n    print(f\\\"\\\\n{'Instance':<40} {'DB':<6} {'CG':<8} {'DF':<8} {'Reach':<6} {'Status'}\\\")\\n    print(\\\"-\\\" * 80)\\n    for r in results:\\n        st = \\\"OK\\\" if r[\\\"db_ok\\\"] and not r.get(\\\"cg_timeout\\\") and not r.get(\\\"df_timeout\\\") else (\\n            \\\"DB_FAIL\\\" if not r[\\\"db_ok\\\"] else \\\"TIMEOUT\\\")\\n        print(f\\\"{r['instance_id']:<40} {r['db_creation_time']:<6.0f} {r.get('cg_time',0):<8.1f} \\\"\\n              f\\\"{r.get('df_time',0):<8.1f} {r.get('reachable_file_count',0):<6} {st}\\\")\\n\\n    # H2\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"H2 SANITY CHECK\\\")\\n    print(\\\"=\\\" * 60)\\n    h2 = h2_analysis(results)\\n    print(f\\\"Coverage connected:    {h2['coverage_connected']:.6f}\\\")\\n    print(f\\\"Coverage disconnected: {h2['coverage_disconnected']:.6f}\\\")\\n    print(f\\\"Fisher OR: {h2['fisher_odds_ratio']:.2f}, p={h2['fisher_p_value']:.4f}\\\")\\n    print(f\\\"H2: {'PASS' if h2['h2_pass'] else 'FAIL'}\\\")\\n\\n    for pi in h2.get(\\\"per_instance\\\", []):\\n        print(f\\\"  {pi['instance_id']}: gold_in_conn={pi['gold_in_connected']}/{len(pi['gold_files'])}, \\\"\\n              f\\\"conn={pi['connected_count']}, disc={pi['disconnected_count']}\\\")\\n\\n    # Save\\n    report = {\\n        \\\"summary\\\": {\\n            \\\"total\\\": total, \\\"timeout_rate\\\": round(to_rate, 3),\\n            \\\"phase1a_pass\\\": to_rate < 0.3,\\n            \\\"mean_cg_time\\\": round(sum(cg_times)/max(len(cg_times),1), 1) if cg_times else 0,\\n            \\\"mean_df_time\\\": round(sum(df_times)/max(len(df_times),1), 1) if df_times else 0,\\n            \\\"mean_reachable\\\": round(sum(reachable)/max(len(reachable),1), 1) if reachable else 0,\\n        },\\n        \\\"h2\\\": {k: v for k, v in h2.items() if k != \\\"per_instance\\\"},\\n        \\\"h2_per_instance\\\": h2.get(\\\"per_instance\\\", []),\\n        \\\"per_repo\\\": [{k: (list(v) if isinstance(v, set) else v)\\n                      for k, v in r.items() if k != \\\"all_py_files\\\"}\\n                     for r in results],\\n    }\\n    rp = RESULTS_DIR / \\\"mvp_phase1_report.json\\\"\\n    with open(rp, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2, default=str)\\n    print(f\\\"\\\\nReport: {rp}\\\")\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(f\\\"Phase 1a (timeout <30%): {'PASS' if to_rate < 0.3 else 'FAIL'}\\\")\\n    print(f\\\"H2 (connected > disconnected): {'PASS' if h2['h2_pass'] else 'FAIL'}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "d7c80db5-1cd5-414a-ad20-fb262778e07e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"MVP Phase 1: CodeQL pilot on 10 repos + H2 sanity check.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nos.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = \\\\\\\"4\\\\\\\"\\\\n\\\\n\\\\nimport json\\\\nimport os\\\\nimport re\\\\nimport subprocess\\\\nimport sys\\\\nimport time\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\n\\\\nBASE_DIR = Path(\\\\\\\"/root/autodl-tmp/mvp_data\\\\\\\")\\\\nRESULTS_DIR = Path(\\\\\\\"/root/autodl-tmp/mvp_results\\\\\\\")\\\\nCODEQL_QUERIES = Path(\\\\\\\"/root/structfuse-context/extraction/codeql_queries\\\\\\\")\\\\nCALL_GRAPH_QL = CODEQL_QUERIES / \\\\\\\"call_graph.ql\\\\\\\"\\\\nDATAFLOW_QL = CODEQL_QUERIES / \\\\\\\"bounded_dataflow.ql\\\\\\\"\\\\nTIMEOUT = 300\\\\nRAM = 8192\\\\n\\\\n\\\\ndef _common_suffix_length(a, b):\\\\n    a_parts = a.split(\\\\\\\"/\\\\\\\")\\\\n    b_parts = b.split(\\\\\\\"/\\\\\\\")\\\\n    count = 0\\\\n    for ap, bp in zip(reversed(a_parts), reversed(b_parts)):\\\\n        if ap == bp:\\\\n            count += 1\\\\n        else:\\\\n            break\\\\n    return count\\\\n\\\\n\\\\ndef normalize_path(path, all_py_files):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Map a path to its canonical form in all_py_files via suffix matching.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_set = set(all_py_files) if not isinstance(all_py_files, set) else all_py_files\\\\n    if path in all_set:\\\\n        return path\\\\n    for f in all_py_files:\\\\n        if f.endswith(\\\\\\\"/\\\\\\\" + path) or path.endswith(\\\\\\\"/\\\\\\\" + f):\\\\n            return f\\\\n    basename = os.path.basename(path)\\\\n    candidates = [f for f in all_py_files if os.path.basename(f) == basename]\\\\n    if len(candidates) == 1:\\\\n        return candidates[0]\\\\n    best, best_score = path, 0\\\\n    for f in candidates:\\\\n        score = _common_suffix_length(f, path)\\\\n        if score > best_score:\\\\n            best_score = score\\\\n            best = f\\\\n    return best if best_score > 0 else path\\\\n\\\\n\\\\n\\\\ndef clone_repo(repo, dest, commit=\\\\\\\"main\\\\\\\"):\\\\n    if os.path.exists(dest):\\\\n        print(f\\\\\\\"  [skip] {dest} exists\\\\\\\")\\\\n        if commit not in (\\\\\\\"main\\\\\\\", \\\\\\\"master\\\\\\\"):\\\\n            # Try checkout; if fail, fetch the commit first\\\\n            r = subprocess.run([\\\\\\\"git\\\\\\\", \\\\\\\"checkout\\\\\\\", commit], cwd=dest,\\\\n                               capture_output=True, text=True, timeout=30)\\\\n            if r.returncode != 0:\\\\n                subprocess.run([\\\\\\\"git\\\\\\\", \\\\\\\"fetch\\\\\\\", \\\\\\\"--unshallow\\\\\\\"], cwd=dest,\\\\n                               capture_output=True, text=True, timeout=600)\\\\n                subprocess.run([\\\\\\\"git\\\\\\\", \\\\\\\"fetch\\\\\\\", \\\\\\\"origin\\\\\\\", commit], cwd=dest,\\\\n                               capture_output=True, text=True, timeout=120)\\\\n                r2 = subprocess.run([\\\\\\\"git\\\\\\\", \\\\\\\"checkout\\\\\\\", commit], cwd=dest,\\\\n                                    capture_output=True, text=True, timeout=30)\\\\n                if r2.returncode != 0:\\\\n                    print(f\\\\\\\"  [warn] checkout {commit[:10]} failed, using HEAD\\\\\\\")\\\\n        return True\\\\n    url = f\\\\\\\"https://github.com/{repo}.git\\\\\\\"\\\\n    try:\\\\n        subprocess.run([\\\\\\\"git\\\\\\\", \\\\\\\"clone\\\\\\\", url, dest],\\\\n                       capture_output=True, text=True, timeout=600, check=True)\\\\n        if commit not in (\\\\\\\"main\\\\\\\", \\\\\\\"master\\\\\\\"):\\\\n            r = subprocess.run([\\\\\\\"git\\\\\\\", \\\\\\\"checkout\\\\\\\", commit], cwd=dest,\\\\n                               capture_output=True, text=True, timeout=30)\\\\n            if r.returncode != 0:\\\\n                print(f\\\\\\\"  [warn] checkout {commit[:10]} failed\\\\\\\")\\\\n        return True\\\\n    except Exception as e:\\\\n        print(f\\\\\\\"  [error] clone: {e}\\\\\\\")\\\\n        return False\\\\n\\\\n\\\\ndef find_buggy_function(repo_dir, buggy_file, buggy_function):\\\\n    import ast\\\\n    target = os.path.join(repo_dir, buggy_file)\\\\n    if not os.path.exists(target):\\\\n        for root, dirs, files in os.walk(repo_dir):\\\\n            for f in files:\\\\n                if f == os.path.basename(buggy_file):\\\\n                    target = os.path.join(root, f)\\\\n                    buggy_file = os.path.relpath(target, repo_dir)\\\\n                    break\\\\n        if not os.path.exists(target):\\\\n            return None, None\\\\n    try:\\\\n        with open(target, encoding=\\\\\\\"utf-8\\\\\\\", errors=\\\\\\\"replace\\\\\\\") as f:\\\\n            source = f.read()\\\\n        tree = ast.parse(source)\\\\n    except SyntaxError:\\\\n        return buggy_file, buggy_function\\\\n\\\\n    all_funcs = []\\\\n    for node in ast.walk(tree):\\\\n        if isinstance(node, (ast.FunctionDef, ast.AsyncFun\\\\n\\\\n... [截断: 输出过长，省略 12089 字符] ...\\\\n\\\\nlow.ql...\\\\\\\")\\\\n        df_ok, df_time, df_to = run_query(db_path, str(DATAFLOW_QL), df_csv, bfunc, bf)\\\\n        print(f\\\\\\\"  DF: {'OK' if df_ok else ('TIMEOUT' if df_to else 'FAIL')} ({df_time:.1f}s)\\\\\\\")\\\\n        result.update({\\\\\\\"df_ok\\\\\\\": df_ok, \\\\\\\"df_time\\\\\\\": round(df_time, 1), \\\\\\\"df_timeout\\\\\\\": df_to})\\\\n\\\\n        cg = parse_call_graph_csv(cg_csv) if cg_ok else []\\\\n        df = parse_dataflow_csv(df_csv) if df_ok else []\\\\n        connected = get_connected_files(cg, df, bf)\\\\n        all_py = get_all_py_files(repo_dir)\\\\n        result.update({\\\\n            \\\\\\\"cg_functions\\\\\\\": len(cg), \\\\\\\"df_paths\\\\\\\": len(df),\\\\n            \\\\\\\"connected_files\\\\\\\": connected,\\\\n            \\\\\\\"reachable_file_count\\\\\\\": len(connected),\\\\n            \\\\\\\"total_py_files\\\\\\\": len(all_py), \\\\\\\"all_py_files\\\\\\\": all_py,\\\\n        })\\\\n        results.append(result)\\\\n        print(f\\\\\\\"  Connected: {len(connected)}/{len(all_py)} files\\\\\\\")\\\\n\\\\n    # Summary\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"RESULTS SUMMARY\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    total = len(results)\\\\n    any_to = sum(1 for r in results if r.get(\\\\\\\"cg_timeout\\\\\\\") or r.get(\\\\\\\"df_timeout\\\\\\\"))\\\\n    to_rate = any_to / max(total, 1)\\\\n\\\\n    cg_times = [r[\\\\\\\"cg_time\\\\\\\"] for r in results if r.get(\\\\\\\"cg_ok\\\\\\\")]\\\\n    df_times = [r[\\\\\\\"df_time\\\\\\\"] for r in results if r.get(\\\\\\\"df_ok\\\\\\\")]\\\\n    reachable = [r.get(\\\\\\\"reachable_file_count\\\\\\\", 0) for r in results if r.get(\\\\\\\"cg_ok\\\\\\\") or r.get(\\\\\\\"df_ok\\\\\\\")]\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nTotal: {total}\\\\\\\")\\\\n    print(f\\\\\\\"Timeout rate: {to_rate:.1%}\\\\\\\")\\\\n    print(f\\\\\\\"Phase 1a: {'PASS' if to_rate < 0.3 else 'FAIL'}\\\\\\\")\\\\n    if cg_times:\\\\n        print(f\\\\\\\"CG time: mean={sum(cg_times)/len(cg_times):.1f}s, max={max(cg_times):.1f}s\\\\\\\")\\\\n    if df_times:\\\\n        print(f\\\\\\\"DF time: mean={sum(df_times)/len(df_times):.1f}s, max={max(df_times):.1f}s\\\\\\\")\\\\n    if reachable:\\\\n        print(f\\\\\\\"Reachable files: mean={sum(reachable)/len(reachable):.1f}\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'Instance':<40} {'DB':<6} {'CG':<8} {'DF':<8} {'Reach':<6} {'Status'}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 80)\\\\n    for r in results:\\\\n        st = \\\\\\\"OK\\\\\\\" if r[\\\\\\\"db_ok\\\\\\\"] and not r.get(\\\\\\\"cg_timeout\\\\\\\") and not r.get(\\\\\\\"df_timeout\\\\\\\") else (\\\\n            \\\\\\\"DB_FAIL\\\\\\\" if not r[\\\\\\\"db_ok\\\\\\\"] else \\\\\\\"TIMEOUT\\\\\\\")\\\\n        print(f\\\\\\\"{r['instance_id']:<40} {r['db_creation_time']:<6.0f} {r.get('cg_time',0):<8.1f} \\\\\\\"\\\\n              f\\\\\\\"{r.get('df_time',0):<8.1f} {r.get('reachable_file_count',0):<6} {st}\\\\\\\")\\\\n\\\\n    # H2\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"H2 SANITY CHECK\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    h2 = h2_analysis(results)\\\\n    print(f\\\\\\\"Coverage connected:    {h2['coverage_connected']:.6f}\\\\\\\")\\\\n    print(f\\\\\\\"Coverage disconnected: {h2['coverage_disconnected']:.6f}\\\\\\\")\\\\n    print(f\\\\\\\"Fisher OR: {h2['fisher_odds_ratio']:.2f}, p={h2['fisher_p_value']:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"H2: {'PASS' if h2['h2_pass'] else 'FAIL'}\\\\\\\")\\\\n\\\\n    for pi in h2.get(\\\\\\\"per_instance\\\\\\\", []):\\\\n        print(f\\\\\\\"  {pi['instance_id']}: gold_in_conn={pi['gold_in_connected']}/{len(pi['gold_files'])}, \\\\\\\"\\\\n              f\\\\\\\"conn={pi['connected_count']}, disc={pi['disconnected_count']}\\\\\\\")\\\\n\\\\n    # Save\\\\n    report = {\\\\n        \\\\\\\"summary\\\\\\\": {\\\\n            \\\\\\\"total\\\\\\\": total, \\\\\\\"timeout_rate\\\\\\\": round(to_rate, 3),\\\\n            \\\\\\\"phase1a_pass\\\\\\\": to_rate < 0.3,\\\\n            \\\\\\\"mean_cg_time\\\\\\\": round(sum(cg_times)/max(len(cg_times),1), 1) if cg_times else 0,\\\\n            \\\\\\\"mean_df_time\\\\\\\": round(sum(df_times)/max(len(df_times),1), 1) if df_times else 0,\\\\n            \\\\\\\"mean_reachable\\\\\\\": round(sum(reachable)/max(len(reachable),1), 1) if reachable else 0,\\\\n        },\\\\n        \\\\\\\"h2\\\\\\\": {k: v for k, v in h2.items() if k != \\\\\\\"per_instance\\\\\\\"},\\\\n        \\\\\\\"h2_per_instance\\\\\\\": h2.get(\\\\\\\"per_instance\\\\\\\", []),\\\\n        \\\\\\\"per_repo\\\\\\\": [{k: (list(v) if isinstance(v, set) else v)\\\\n                      for k, v in r.items() if k != \\\\\\\"all_py_files\\\\\\\"}\\\\n                     for r in results],\\\\n    }\\\\n    rp = RESULTS_DIR / \\\\\\\"mvp_phase1_report.json\\\\\\\"\\\\n    with open(rp, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(report, f, indent=2, default=str)\\\\n    print(f\\\\\\\"\\\\\\\\nReport: {rp}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(f\\\\\\\"Phase 1a (timeout <30%): {'PASS' if to_rate < 0.3 else 'FAIL'}\\\\\\\")\\\\n    print(f\\\\\\\"H2 (connected > disconnected): {'PASS' if h2['h2_pass'] else 'FAIL'}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"MVP Phase 1: CodeQL pilot on 10 repos + H2 sanity check.\\\"\\\"\\\"\\nimport os\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"4\\\"\\n\\n\\nimport json\\nimport os\\nimport re\\nimport subprocess\\nimport sys\\nimport time\\nfrom collections import defaultdict\\nfrom pathlib import Path\\n\\nBASE_DIR = Path(\\\"/root/autodl-tmp/mvp_data\\\")\\nRESULTS_DIR = Path(\\\"/root/autodl-tmp/mvp_results\\\")\\nCODEQL_QUERIES = Path(\\\"/root/structfuse-context/extraction/codeql_queries\\\")\\nCALL_GRAPH_QL = CODEQL_QUERIES / \\\"call_graph.ql\\\"\\nDATAFLOW_QL = CODEQL_QUERIES / \\\"bounded_dataflow.ql\\\"\\nTIMEOUT = 300\\nRAM = 8192\\n\\n\\ndef _common_suffix_length(a, b):\\n    a_parts = a.split(\\\"/\\\")\\n    b_parts = b.split(\\\"/\\\")\\n    count = 0\\n    for ap, bp in zip(reversed(a_parts), reversed(b_parts)):\\n        if ap == bp:\\n            count += 1\\n        else:\\n            break\\n    return count\\n\\n\\ndef normalize_path(path, all_py_files):\\n    \\\"\\\"\\\"Map a path to its canonical form in all_py_files via suffix matching.\\\"\\\"\\\"\\n    all_set = set(all_py_files) if not isinstance(all_py_files, set) else all_py_files\\n    if path in all_set:\\n        return path\\n    for f in all_py_files:\\n        if f.endswith(\\\"/\\\" + path) or path.endswith(\\\"/\\\" + f):\\n            return f\\n    basename = os.path.basename(path)\\n    candidates = [f for f in all_py_files if os.path.basename(f) == basename]\\n    if len(candidates) == 1:\\n        return candidates[0]\\n    best, best_score = path, 0\\n    for f in candidates:\\n        score = _common_suffix_length(f, path)\\n        if score > best_score:\\n            best_score = score\\n            best = f\\n    return best if best_score > 0 else path\\n\\n\\n\\ndef clone_repo(repo, dest, commit=\\\"main\\\"):\\n    if os.path.exists(dest):\\n        print(f\\\"  [skip] {dest} exists\\\")\\n        if commit not in (\\\"main\\\", \\\"master\\\"):\\n            # Try checkout; if fail, fetch the commit first\\n            r = subprocess.run([\\\"git\\\", \\\"checkout\\\", commit], cwd=dest,\\n                               capture_output=True, text=True, timeout=30)\\n            if r.returncode != 0:\\n                subprocess.run([\\\"git\\\", \\\"fetch\\\", \\\"--unshallow\\\"], cwd=dest,\\n                               capture_output=True, text=True, timeout=600)\\n                subprocess.run([\\\"git\\\", \\\"fetch\\\", \\\"origin\\\", commit], cwd=dest,\\n                               capture_output=True, text=True, timeout=120)\\n                r2 = subprocess.run([\\\"git\\\", \\\"checkout\\\", commit], cwd=dest,\\n                                    capture_output=True, text=True, timeout=30)\\n                if r2.returncode != 0:\\n                    print(f\\\"  [warn] checkout {commit[:10]} failed, using HEAD\\\")\\n        return True\\n    url = f\\\"https://github.com/{repo}.git\\\"\\n    try:\\n        subprocess.run([\\\"git\\\", \\\"clone\\\", url, dest],\\n                       capture_output=True, text=True, timeout=600, check=True)\\n        if commit not in (\\\"main\\\", \\\"master\\\"):\\n            r = subprocess.run([\\\"git\\\", \\\"checkout\\\", commit], cwd=dest,\\n                               capture_output=True, text=True, timeout=30)\\n            if r.returncode != 0:\\n                print(f\\\"  [warn] checkout {commit[:10]} failed\\\")\\n        return True\\n    except Exception as e:\\n        print(f\\\"  [error] clone: {e}\\\")\\n        return False\\n\\n\\ndef find_buggy_function(repo_dir, buggy_file, buggy_function):\\n    import ast\\n    target = os.path.join(repo_dir, buggy_file)\\n    if not os.path.exists(target):\\n        for root, dirs, files in os.walk(repo_dir):\\n            for f in files:\\n                if f == os.path.basename(buggy_file):\\n                    target = os.path.join(root, f)\\n                    buggy_file = os.path.relpath(target, repo_dir)\\n                    break\\n        if not os.path.exists(target):\\n            return None, None\\n    try:\\n        with open(target, encoding=\\\"utf-8\\\", errors=\\\"replace\\\") as f:\\n            source = f.read()\\n        tree = ast.parse(source)\\n    except SyntaxError:\\n        return buggy_file, buggy_function\\n\\n    all_funcs = []\\n    for node in ast.walk(tree):\\n        if isinstance(node, (ast.FunctionDef, ast.AsyncFun\\n\\n... [截断: 输出过长，省略 12089 字符] ...\\n\\nlow.ql...\\\")\\n        df_ok, df_time, df_to = run_query(db_path, str(DATAFLOW_QL), df_csv, bfunc, bf)\\n        print(f\\\"  DF: {'OK' if df_ok else ('TIMEOUT' if df_to else 'FAIL')} ({df_time:.1f}s)\\\")\\n        result.update({\\\"df_ok\\\": df_ok, \\\"df_time\\\": round(df_time, 1), \\\"df_timeout\\\": df_to})\\n\\n        cg = parse_call_graph_csv(cg_csv) if cg_ok else []\\n        df = parse_dataflow_csv(df_csv) if df_ok else []\\n        connected = get_connected_files(cg, df, bf)\\n        all_py = get_all_py_files(repo_dir)\\n        result.update({\\n            \\\"cg_functions\\\": len(cg), \\\"df_paths\\\": len(df),\\n            \\\"connected_files\\\": connected,\\n            \\\"reachable_file_count\\\": len(connected),\\n            \\\"total_py_files\\\": len(all_py), \\\"all_py_files\\\": all_py,\\n        })\\n        results.append(result)\\n        print(f\\\"  Connected: {len(connected)}/{len(all_py)} files\\\")\\n\\n    # Summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"RESULTS SUMMARY\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    total = len(results)\\n    any_to = sum(1 for r in results if r.get(\\\"cg_timeout\\\") or r.get(\\\"df_timeout\\\"))\\n    to_rate = any_to / max(total, 1)\\n\\n    cg_times = [r[\\\"cg_time\\\"] for r in results if r.get(\\\"cg_ok\\\")]\\n    df_times = [r[\\\"df_time\\\"] for r in results if r.get(\\\"df_ok\\\")]\\n    reachable = [r.get(\\\"reachable_file_count\\\", 0) for r in results if r.get(\\\"cg_ok\\\") or r.get(\\\"df_ok\\\")]\\n\\n    print(f\\\"\\\\nTotal: {total}\\\")\\n    print(f\\\"Timeout rate: {to_rate:.1%}\\\")\\n    print(f\\\"Phase 1a: {'PASS' if to_rate < 0.3 else 'FAIL'}\\\")\\n    if cg_times:\\n        print(f\\\"CG time: mean={sum(cg_times)/len(cg_times):.1f}s, max={max(cg_times):.1f}s\\\")\\n    if df_times:\\n        print(f\\\"DF time: mean={sum(df_times)/len(df_times):.1f}s, max={max(df_times):.1f}s\\\")\\n    if reachable:\\n        print(f\\\"Reachable files: mean={sum(reachable)/len(reachable):.1f}\\\")\\n\\n    print(f\\\"\\\\n{'Instance':<40} {'DB':<6} {'CG':<8} {'DF':<8} {'Reach':<6} {'Status'}\\\")\\n    print(\\\"-\\\" * 80)\\n    for r in results:\\n        st = \\\"OK\\\" if r[\\\"db_ok\\\"] and not r.get(\\\"cg_timeout\\\") and not r.get(\\\"df_timeout\\\") else (\\n            \\\"DB_FAIL\\\" if not r[\\\"db_ok\\\"] else \\\"TIMEOUT\\\")\\n        print(f\\\"{r['instance_id']:<40} {r['db_creation_time']:<6.0f} {r.get('cg_time',0):<8.1f} \\\"\\n              f\\\"{r.get('df_time',0):<8.1f} {r.get('reachable_file_count',0):<6} {st}\\\")\\n\\n    # H2\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"H2 SANITY CHECK\\\")\\n    print(\\\"=\\\" * 60)\\n    h2 = h2_analysis(results)\\n    print(f\\\"Coverage connected:    {h2['coverage_connected']:.6f}\\\")\\n    print(f\\\"Coverage disconnected: {h2['coverage_disconnected']:.6f}\\\")\\n    print(f\\\"Fisher OR: {h2['fisher_odds_ratio']:.2f}, p={h2['fisher_p_value']:.4f}\\\")\\n    print(f\\\"H2: {'PASS' if h2['h2_pass'] else 'FAIL'}\\\")\\n\\n    for pi in h2.get(\\\"per_instance\\\", []):\\n        print(f\\\"  {pi['instance_id']}: gold_in_conn={pi['gold_in_connected']}/{len(pi['gold_files'])}, \\\"\\n              f\\\"conn={pi['connected_count']}, disc={pi['disconnected_count']}\\\")\\n\\n    # Save\\n    report = {\\n        \\\"summary\\\": {\\n            \\\"total\\\": total, \\\"timeout_rate\\\": round(to_rate, 3),\\n            \\\"phase1a_pass\\\": to_rate < 0.3,\\n            \\\"mean_cg_time\\\": round(sum(cg_times)/max(len(cg_times),1), 1) if cg_times else 0,\\n            \\\"mean_df_time\\\": round(sum(df_times)/max(len(df_times),1), 1) if df_times else 0,\\n            \\\"mean_reachable\\\": round(sum(reachable)/max(len(reachable),1), 1) if reachable else 0,\\n        },\\n        \\\"h2\\\": {k: v for k, v in h2.items() if k != \\\"per_instance\\\"},\\n        \\\"h2_per_instance\\\": h2.get(\\\"per_instance\\\", []),\\n        \\\"per_repo\\\": [{k: (list(v) if isinstance(v, set) else v)\\n                      for k, v in r.items() if k != \\\"all_py_files\\\"}\\n                     for r in results],\\n    }\\n    rp = RESULTS_DIR / \\\"mvp_phase1_report.json\\\"\\n    with open(rp, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2, default=str)\\n    print(f\\\"\\\\nReport: {rp}\\\")\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(f\\\"Phase 1a (timeout <30%): {'PASS' if to_rate < 0.3 else 'FAIL'}\\\")\\n    print(f\\\"H2 (connected > disconnected): {'PASS' if h2['h2_pass'] else 'FAIL'}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+That's `mvp_phase1.py` but it's about CodeQL analysis, not training. The training code must be in the `training/` directory or `scripts/` directory. Let me check those.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "2fa2682f-b365-4e53-986b-900956571176",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J55gTSmLSzzrSme4asFJcz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3816,
+      "cache_read_input_tokens": 26358,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3816
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+`mvp_phase1.py` 是 CodeQL 分析脚本，不是训练代码。检查 `training/` 和 `scripts/` 目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "83c6b224-296f-42a5-92c1-e55a515eaf05",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J55gTSmLSzzrSme4asFJcz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3816,
+      "cache_read_input_tokens": 26358,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3816
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FLK9V2jjVG813dbMMT5FJX`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/structfuse/training /root/structfuse/scripts -type f -name \"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "ab2affc3-88a7-48b8-8168-93860c668f64",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J55gTSmLSzzrSme4asFJcz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3816,
+      "cache_read_input_tokens": 26358,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3816
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T03:09:14.174Z_
+
+<details><summary>↩ Tool result · `toolu_01FLK9V2jjVG813dbMMT5FJX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/structfuse/training/train.py\\n/root/structfuse/training/contrastive_model.py\\n/root/structfuse/training/hard_negative_mining.py\\n/root/structfuse/scripts/build_p2b_data.py\\n/root/structfuse/scripts/eval_p2b.py\\n/root/structfuse/scripts/collect_p2b_results.py\\n/root/structfuse/scripts/eval_p2b_pooled.py\\n/root/structfuse/scripts/download_metadata.py\\n/root/structfuse/scripts/fix_metadata.py\\n/root/structfuse/scripts/fix_metadata_arrow.py\\n/root/structfuse/scripts/run_50repo_overlap.py\\n/root/structfuse/scripts/build_m1_training_data.py\\n/root/structfuse/scripts/compute_full_z_percent.py\\n/root/structfuse/scripts/prepare_m1_rerun.py\\n/root/structfuse/scripts/eval_swebench_e2e.py\\n/root/structfuse/scripts/mine_bm25_negatives.py\\n/root/structfuse/scripts/plot_neg_difficulty.py\\n/root/structfuse/scripts/analyze_bm25_overlap_stratified.py\\n/root/structfuse/scripts/analyze_confound.py\\n/root/structfuse/scripts/m2_statistical_analysis.py\\n/root/structfuse/scripts/plot_per_seed_delta.py\\n/root/structfuse/scripts/prepare_stratification_index.py\\n/root/structfuse/scripts/evaluate_stratified.py\\n/root/structfuse/scripts/analyze_stratified.py\\n/root/structfuse/scripts/analyze_m2_stats.py\\n/root/structfuse/scripts/bootstrap_paired_test.py\\n/root/structfuse/scripts/combine_m1_reextract.py\\n/root/structfuse/scripts/extract_eval_trajectories.py\\n/root/structfuse/scripts/plot_overfitting_mechanism.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "e2d5fc2b-587a-4933-852f-87750bf606da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/structfuse/training/train.py\\\\n/root/structfuse/training/contrastive_model.py\\\\n/root/structfuse/training/hard_negative_mining.py\\\\n/root/structfuse/scripts/build_p2b_data.py\\\\n/root/structfuse/scripts/eval_p2b.py\\\\n/root/structfuse/scripts/collect_p2b_results.py\\\\n/root/structfuse/scripts/eval_p2b_pooled.py\\\\n/root/structfuse/scripts/download_metadata.py\\\\n/root/structfuse/scripts/fix_metadata.py\\\\n/root/structfuse/scripts/fix_metadata_arrow.py\\\\n/root/structfuse/scripts/run_50repo_overlap.py\\\\n/root/structfuse/scripts/build_m1_training_data.py\\\\n/root/structfuse/scripts/compute_full_z_percent.py\\\\n/root/structfuse/scripts/prepare_m1_rerun.py\\\\n/root/structfuse/scripts/eval_swebench_e2e.py\\\\n/root/structfuse/scripts/mine_bm25_negatives.py\\\\n/root/structfuse/scripts/plot_neg_difficulty.py\\\\n/root/structfuse/scripts/analyze_bm25_overlap_stratified.py\\\\n/root/structfuse/scripts/analyze_confound.py\\\\n/root/structfuse/scripts/m2_statistical_analysis.py\\\\n/root/structfuse/scripts/plot_per_seed_delta.py\\\\n/root/structfuse/scripts/prepare_stratification_index.py\\\\n/root/structfuse/scripts/evaluate_stratified.py\\\\n/root/structfuse/scripts/analyze_stratified.py\\\\n/root/structfuse/scripts/analyze_m2_stats.py\\\\n/root/structfuse/scripts/bootstrap_paired_test.py\\\\n/root/structfuse/scripts/combine_m1_reextract.py\\\\n/root/structfuse/scripts/extract_eval_trajectories.py\\\\n/root/structfuse/scripts/plot_overfitting_mechanism.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/structfuse/training/train.py\\n/root/structfuse/training/contrastive_model.py\\n/root/structfuse/training/hard_negative_mining.py\\n/root/structfuse/scripts/build_p2b_data.py\\n/root/structfuse/scripts/eval_p2b.py\\n/root/structfuse/scripts/collect_p2b_results.py\\n/root/structfuse/scripts/eval_p2b_pooled.py\\n/root/structfuse/scripts/download_metadata.py\\n/root/structfuse/scripts/fix_metadata.py\\n/root/structfuse/scripts/fix_metadata_arrow.py\\n/root/structfuse/scripts/run_50repo_overlap.py\\n/root/structfuse/scripts/build_m1_training_data.py\\n/root/structfuse/scripts/compute_full_z_percent.py\\n/root/structfuse/scripts/prepare_m1_rerun.py\\n/root/structfuse/scripts/eval_swebench_e2e.py\\n/root/structfuse/scripts/mine_bm25_negatives.py\\n/root/structfuse/scripts/plot_neg_difficulty.py\\n/root/structfuse/scripts/analyze_bm25_overlap_stratified.py\\n/root/structfuse/scripts/analyze_confound.py\\n/root/structfuse/scripts/m2_statistical_analysis.py\\n/root/structfuse/scripts/plot_per_seed_delta.py\\n/root/structfuse/scripts/prepare_stratification_index.py\\n/root/structfuse/scripts/evaluate_stratified.py\\n/root/structfuse/scripts/analyze_stratified.py\\n/root/structfuse/scripts/analyze_m2_stats.py\\n/root/structfuse/scripts/bootstrap_paired_test.py\\n/root/structfuse/scripts/combine_m1_reextract.py\\n/root/structfuse/scripts/extract_eval_trajectories.py\\n/root/structfuse/scripts/plot_overfitting_mechanism.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MPjne9YxL7kRABtrxSdL33`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/structfuse/training /root/structfuse/scripts -type f -name \"*.sh\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "6264524d-938d-4038-83ed-1cc49af0235d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J55gTSmLSzzrSme4asFJcz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3816,
+      "cache_read_input_tokens": 26358,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3816
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T03:09:14.802Z_
+
+<details><summary>↩ Tool result · `toolu_01MPjne9YxL7kRABtrxSdL33`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/structfuse/scripts/run_p2b_all.sh\\n/root/structfuse/scripts/run_eval_all.sh\\n/root/structfuse/scripts/run_m1_extraction.sh\\n/root/structfuse/scripts/run_eval_p50.sh\\n/root/structfuse/scripts/run_eval_5missing.sh\\n/root/structfuse/scripts/run_m2_pilot.sh\\n/root/structfuse/scripts/migrate_m1_data.sh\\n/root/structfuse/scripts/clone_repos.sh\\n/root/structfuse/scripts/build_full_m2_data.sh\\n/root/structfuse/scripts/run_full_m2_training.sh\\n/root/structfuse/scripts/schedule_m2_runs.sh\\n/root/structfuse/scripts/rerun_m1_failed.sh\\n/root/structfuse/scripts/run_m2_full_bm25_qwen.sh\\n/root/structfuse/scripts/run_m2_full_bm25_starcoder.sh\\n/root/structfuse/scripts/run_plan005_s43.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "7c5e7fbe-25bb-4f2c-91ca-edfd1b071fe6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/structfuse/scripts/run_p2b_all.sh\\\\n/root/structfuse/scripts/run_eval_all.sh\\\\n/root/structfuse/scripts/run_m1_extraction.sh\\\\n/root/structfuse/scripts/run_eval_p50.sh\\\\n/root/structfuse/scripts/run_eval_5missing.sh\\\\n/root/structfuse/scripts/run_m2_pilot.sh\\\\n/root/structfuse/scripts/migrate_m1_data.sh\\\\n/root/structfuse/scripts/clone_repos.sh\\\\n/root/structfuse/scripts/build_full_m2_data.sh\\\\n/root/structfuse/scripts/run_full_m2_training.sh\\\\n/root/structfuse/scripts/schedule_m2_runs.sh\\\\n/root/structfuse/scripts/rerun_m1_failed.sh\\\\n/root/structfuse/scripts/run_m2_full_bm25_qwen.sh\\\\n/root/structfuse/scripts/run_m2_full_bm25_starcoder.sh\\\\n/root/structfuse/scripts/run_plan005_s43.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/structfuse/scripts/run_p2b_all.sh\\n/root/structfuse/scripts/run_eval_all.sh\\n/root/structfuse/scripts/run_m1_extraction.sh\\n/root/structfuse/scripts/run_eval_p50.sh\\n/root/structfuse/scripts/run_eval_5missing.sh\\n/root/structfuse/scripts/run_m2_pilot.sh\\n/root/structfuse/scripts/migrate_m1_data.sh\\n/root/structfuse/scripts/clone_repos.sh\\n/root/structfuse/scripts/build_full_m2_data.sh\\n/root/structfuse/scripts/run_full_m2_training.sh\\n/root/structfuse/scripts/schedule_m2_runs.sh\\n/root/structfuse/scripts/rerun_m1_failed.sh\\n/root/structfuse/scripts/run_m2_full_bm25_qwen.sh\\n/root/structfuse/scripts/run_m2_full_bm25_starcoder.sh\\n/root/structfuse/scripts/run_plan005_s43.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+找到 `training/train.py` 和 `training/contrastive_model.py`。并行读取这两个文件以及 eval 脚本和相关的 shell 脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "3b71ee92-7f36-4c87-887b-1d177a979dce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QrdeU74ky2hKtPHLC5jY8w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1509,
+      "cache_read_input_tokens": 30174,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1509
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018h9kAXu8bvnsdkuR4Je78Z`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "cat /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "8c639206-a30d-4f6f-967f-a00dfe66530b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QrdeU74ky2hKtPHLC5jY8w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1509,
+      "cache_read_input_tokens": 30174,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1509
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T03:09:19.060Z_
+
+<details><summary>↩ Tool result · `toolu_018h9kAXu8bvnsdkuR4Je78Z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"from __future__ import annotations\\n\\nimport os\\n\\n\\\"\\\"\\\"StructFuse contrastive training entry point.\\n\\nTrains a bi-encoder (Qwen2.5-Coder-3B) with InfoNCE loss, data-flow-weighted\\npositives, and configurable hard-negative mining.  Supports single/multi-GPU\\nvia HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\n\\\"\\\"\\\"\\n\\n\\nimport argparse\\nimport sys\\nimport json\\nimport math\\nimport os\\nimport random\\nimport shutil\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List\\n\\nimport numpy as np\\nimport torch\\nfrom torch.utils.data import DataLoader, Dataset\\nfrom transformers import AutoTokenizer, get_cosine_schedule_with_warmup\\n\\nfrom accelerate import Accelerator\\nfrom accelerate.utils import set_seed\\n\\nfrom contrastive_model import StructFuseEncoder\\nfrom hard_negative_mining import build_miner, mine_batch\\n\\n\\n\\ndef _print_flush(*args, **kwargs):\\n    \\\"\\\"\\\"Print with explicit flush for file-redirect compatibility.\\\"\\\"\\\"\\n    kwargs['flush'] = True\\n    print(*args, **kwargs)\\n\\n# ── Dataset ──���───────────────────────────────────────────────────────\\n\\nclass ContrastiveDataset(Dataset):\\n    \\\"\\\"\\\"\\n    Each sample: {query, positive, negatives[], pos_weight, features[]}.\\n\\n    The raw data file is JSONL with fields:\\n        query_id, query_tokens, pos_id, pos_tokens, pos_dataflow_distance,\\n        neg_candidates (list of file ids), features (dict per candidate).\\n\\n    Negatives are mined dynamically per epoch via `refresh_negatives()`.\\n    \\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        data_path: str,\\n        tokenizer: AutoTokenizer,\\n        max_seq_length: int,\\n        num_negatives: int,\\n        pos_weight_alpha: float,\\n        use_fusion_head: bool,\\n    ):\\n        self.tokenizer = tokenizer\\n        self.max_seq_length = max_seq_length\\n        self.num_negatives = num_negatives\\n        self.alpha = pos_weight_alpha\\n        self.use_fusion_head = use_fusion_head\\n\\n        self.samples: List[Dict[str, Any]] = []\\n        with open(data_path) as f:\\n            for line in f:\\n                if line.strip():\\n                    self.samples.append(json.loads(line))\\n\\n        # mined negatives, refreshed each epoch\\n        self._negatives: Dict[int, List[Dict[str, Any]]] = {}\\n\\n    def refresh_negatives(self, mined: Dict[str, List[tuple]]):\\n        \\\"\\\"\\\"Update negatives after an epoch-level mining pass.\\\"\\\"\\\"\\n        self._negatives = {}\\n        for idx, sample in enumerate(self.samples):\\n            qid = sample[\\\"query_id\\\"]\\n            negs = mined.get(qid, [])\\n            self._negatives[idx] = negs\\n\\n    def __len__(self):\\n        return len(self.samples)\\n\\n    def __getitem__(self, idx):\\n        s = self.samples[idx]\\n\\n        query_enc = self.tokenizer(\\n            s[\\\"query_tokens\\\"], truncation=True, max_length=self.max_seq_length,\\n            padding=False, return_tensors=None,\\n        )\\n        pos_enc = self.tokenizer(\\n            s[\\\"pos_tokens\\\"], truncation=True, max_length=self.max_seq_length,\\n            padding=False, return_tensors=None,\\n        )\\n\\n        # positive weight from data-flow distance\\n        dist = s.get(\\\"pos_dataflow_distance\\\", 1.0)\\n        pos_weight = math.exp(-self.alpha * dist)\\n\\n        # negatives\\n        neg_pool = self._negatives.get(idx, [])\\n        if len(neg_pool) < self.num_negatives:\\n            # fallback: use candidates from the sample itself\\n            fallback = list(s.get(\\\"neg_candidates\\\", []))\\n            random.shuffle(fallback)\\n            while len(neg_pool) < self.num_negatives and fallback:\\n                cid = fallback.pop()\\n                neg_pool.append({\\\"id\\\": cid, \\\"tokens\\\": s.get(\\\"candidate_tokens\\\", {}).get(cid, \\\"\\\")})\\n\\n        # Resolve tokens, filter empties\\n        resolved_negs = []\\n        for neg_item in neg_pool:\\n            if isinstance(neg_item, tuple):\\n                cid = neg_item[0]\\n                tokens = s.get('candidate_tokens', {}).get(cid, cid)\\n            else:\\n                tokens = neg_item.get('tokens', neg_item.get('id', ''))\\n            if tokens:\\n                resolved_negs.append\\n\\n... [截断: 输出过长，省略 16709 字符] ...\\n\\nruncation=True, max_length=max_seq_length,\\n                              padding=True, return_tensors=\\\"pt\\\")\\n            q_enc = {k: v.to(device) for k, v in q_enc.items()}\\n            q_emb = model.encode(q_enc[\\\"input_ids\\\"], q_enc[\\\"attention_mask\\\"])\\n\\n            sims = (q_emb @ cand_embs.T).squeeze(0)\\n            sorted_idx = sims.argsort(descending=True).cpu().tolist()\\n\\n            exclude = gold_set | {query_file, pos_file}\\n            selected = []\\n            for ci in sorted_idx:\\n                if len(selected) >= num_negatives:\\n                    break\\n                f = cand_files[ci]\\n                if f not in exclude:\\n                    selected.append((iid + \\\"::\\\" + f, float(sims[ci])))\\n\\n            mined[query_id] = selected\\n\\n    model.train()\\n    return mined\\n\\n\\ndef _save_checkpoint(model, tokenizer, path, args):\\n    path = Path(path)\\n    path.mkdir(parents=True, exist_ok=True)\\n    if getattr(args, 'use_lora', False):\\n        sd = {k: v for k, v in model.state_dict().items()\\n              if not k.startswith('backbone.') or 'lora_' in k}\\n    else:\\n        sd = model.state_dict()\\n    torch.save(sd, path / \\\"model.pt\\\")\\n    tokenizer.save_pretrained(path)\\n    with open(path / \\\"training_config.json\\\", \\\"w\\\") as f:\\n        json.dump(vars(args), f, indent=2)\\n\\n\\ndef _load_json_as_sets(path: str) -> Dict[str, set]:\\n    with open(path) as f:\\n        raw = json.load(f)\\n    return {k: set(v) for k, v in raw.items()}\\n\\n\\ndef _load_embeddings(path: str) -> Dict[str, np.ndarray]:\\n    data = np.load(path, allow_pickle=True)\\n    return {str(k): data[k] for k in data.files}\\n\\n\\n# ── CLI ────────���─────────────────────────────────────────────────────\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"StructFuse contrastive training\\\")\\n    p.add_argument(\\\"--model-name\\\", default=\\\"Qwen/Qwen2.5-Coder-3B\\\")\\n    p.add_argument(\\\"--train-file\\\", required=True)\\n    p.add_argument(\\\"--val-file\\\", required=True)\\n    p.add_argument(\\\"--output-dir\\\", required=True)\\n    p.add_argument(\\\"--batch-size\\\", type=int, default=8)\\n    p.add_argument(\\\"--learning-rate\\\", type=float, default=2e-5)\\n    p.add_argument(\\\"--num-epochs\\\", type=int, default=3)\\n    p.add_argument(\\\"--warmup-ratio\\\", type=float, default=0.1)\\n    p.add_argument(\\\"--num-negatives\\\", type=int, default=7)\\n    p.add_argument(\\\"--hard-negative-strategy\\\", choices=[\\\"random\\\", \\\"embedding_distance\\\", \\\"dataflow_aware\\\", \\\"bm25\\\"], default=\\\"dataflow_aware\\\")\\n    p.add_argument(\\\"--hard-negative-ratio\\\", type=float, default=0.5)\\n    p.add_argument(\\\"--temperature\\\", type=float, default=0.07)\\n    p.add_argument(\\\"--pos-weight-alpha\\\", type=float, default=1.0)\\n    p.add_argument(\\\"--use-fusion-head\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--use-lora\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--lora-r\\\", type=int, default=16)\\n    p.add_argument(\\\"--proj-dim\\\", type=int, default=256)\\n    p.add_argument(\\\"--gradient-checkpointing\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--eval-steps\\\", type=int, default=500)\\n    p.add_argument(\\\"--save-steps\\\", type=int, default=1000)\\n    p.add_argument(\\\"--max-seq-length\\\", type=int, default=2048)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--wandb-project\\\", default=\\\"structfuse\\\")\\n    p.add_argument(\\\"--wandb-run-name\\\", default=None)\\n    p.add_argument(\\\"--dataflow-graph-file\\\", default=None, help=\\\"JSON file: {file_id: [reachable_ids]}\\\")\\n    p.add_argument(\\\"--embeddings-file\\\", default=None, help=\\\".npz file with pre-computed embeddings\\\")\\n    p.add_argument(\\\"--dynamic-mining\\\", action=\\\"store_true\\\",\\n                   help=\\\"Re-mine negatives each epoch using current encoder\\\")\\n    p.add_argument(\\\"--candidate-pool-file\\\", default=None,\\n                   help=\\\"candidate_pools.jsonl from build_m1_training_data.py --embedding-mining-mode dynamic\\\")\\n    p.add_argument(\\\"--early-stopping-patience\\\", type=int, default=0,\\n                   help=\\\"Stop if val_loss does not improve for N evals (0=disabled)\\\")\\n    return p.parse_args()\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    train(parse_args())\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "4ea91643-317f-4f72-b634-9fef0a3fecfe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"from __future__ import annotations\\\\n\\\\nimport os\\\\n\\\\n\\\\\\\"\\\\\\\"\\\\\\\"StructFuse contrastive training entry point.\\\\n\\\\nTrains a bi-encoder (Qwen2.5-Coder-3B) with InfoNCE loss, data-flow-weighted\\\\npositives, and configurable hard-negative mining.  Supports single/multi-GPU\\\\nvia HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n\\\\nimport argparse\\\\nimport sys\\\\nimport json\\\\nimport math\\\\nimport os\\\\nimport random\\\\nimport shutil\\\\nfrom pathlib import Path\\\\nfrom typing import Any, Dict, List\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom torch.utils.data import DataLoader, Dataset\\\\nfrom transformers import AutoTokenizer, get_cosine_schedule_with_warmup\\\\n\\\\nfrom accelerate import Accelerator\\\\nfrom accelerate.utils import set_seed\\\\n\\\\nfrom contrastive_model import StructFuseEncoder\\\\nfrom hard_negative_mining import build_miner, mine_batch\\\\n\\\\n\\\\n\\\\ndef _print_flush(*args, **kwargs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Print with explicit flush for file-redirect compatibility.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    kwargs['flush'] = True\\\\n    print(*args, **kwargs)\\\\n\\\\n# ── Dataset ──���───────────────────────────────────────────────────────\\\\n\\\\nclass ContrastiveDataset(Dataset):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Each sample: {query, positive, negatives[], pos_weight, features[]}.\\\\n\\\\n    The raw data file is JSONL with fields:\\\\n        query_id, query_tokens, pos_id, pos_tokens, pos_dataflow_distance,\\\\n        neg_candidates (list of file ids), features (dict per candidate).\\\\n\\\\n    Negatives are mined dynamically per epoch via `refresh_negatives()`.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(\\\\n        self,\\\\n        data_path: str,\\\\n        tokenizer: AutoTokenizer,\\\\n        max_seq_length: int,\\\\n        num_negatives: int,\\\\n        pos_weight_alpha: float,\\\\n        use_fusion_head: bool,\\\\n    ):\\\\n        self.tokenizer = tokenizer\\\\n        self.max_seq_length = max_seq_length\\\\n        self.num_negatives = num_negatives\\\\n        self.alpha = pos_weight_alpha\\\\n        self.use_fusion_head = use_fusion_head\\\\n\\\\n        self.samples: List[Dict[str, Any]] = []\\\\n        with open(data_path) as f:\\\\n            for line in f:\\\\n                if line.strip():\\\\n                    self.samples.append(json.loads(line))\\\\n\\\\n        # mined negatives, refreshed each epoch\\\\n        self._negatives: Dict[int, List[Dict[str, Any]]] = {}\\\\n\\\\n    def refresh_negatives(self, mined: Dict[str, List[tuple]]):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Update negatives after an epoch-level mining pass.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        self._negatives = {}\\\\n        for idx, sample in enumerate(self.samples):\\\\n            qid = sample[\\\\\\\"query_id\\\\\\\"]\\\\n            negs = mined.get(qid, [])\\\\n            self._negatives[idx] = negs\\\\n\\\\n    def __len__(self):\\\\n        return len(self.samples)\\\\n\\\\n    def __getitem__(self, idx):\\\\n        s = self.samples[idx]\\\\n\\\\n        query_enc = self.tokenizer(\\\\n            s[\\\\\\\"query_tokens\\\\\\\"], truncation=True, max_length=self.max_seq_length,\\\\n            padding=False, return_tensors=None,\\\\n        )\\\\n        pos_enc = self.tokenizer(\\\\n            s[\\\\\\\"pos_tokens\\\\\\\"], truncation=True, max_length=self.max_seq_length,\\\\n            padding=False, return_tensors=None,\\\\n        )\\\\n\\\\n        # positive weight from data-flow distance\\\\n        dist = s.get(\\\\\\\"pos_dataflow_distance\\\\\\\", 1.0)\\\\n        pos_weight = math.exp(-self.alpha * dist)\\\\n\\\\n        # negatives\\\\n        neg_pool = self._negatives.get(idx, [])\\\\n        if len(neg_pool) < self.num_negatives:\\\\n            # fallback: use candidates from the sample itself\\\\n            fallback = list(s.get(\\\\\\\"neg_candidates\\\\\\\", []))\\\\n            random.shuffle(fallback)\\\\n            while len(neg_pool) < self.num_negatives and fallback:\\\\n                cid = fallback.pop()\\\\n                neg_pool.append({\\\\\\\"id\\\\\\\": cid, \\\\\\\"tokens\\\\\\\": s.get(\\\\\\\"candidate_tokens\\\\\\\", {}).get(cid, \\\\\\\"\\\\\\\")})\\\\n\\\\n        # Resolve tokens, filter empties\\\\n        resolved_negs = []\\\\n        for neg_item in neg_pool:\\\\n            if isinstance(neg_item, tuple):\\\\n                cid = neg_item[0]\\\\n                tokens = s.get('candidate_tokens', {}).get(cid, cid)\\\\n            else:\\\\n                tokens = neg_item.get('tokens', neg_item.get('id', ''))\\\\n            if tokens:\\\\n                resolved_negs.append\\\\n\\\\n... [截断: 输出过长，省略 16709 字符] ...\\\\n\\\\nruncation=True, max_length=max_seq_length,\\\\n                              padding=True, return_tensors=\\\\\\\"pt\\\\\\\")\\\\n            q_enc = {k: v.to(device) for k, v in q_enc.items()}\\\\n            q_emb = model.encode(q_enc[\\\\\\\"input_ids\\\\\\\"], q_enc[\\\\\\\"attention_mask\\\\\\\"])\\\\n\\\\n            sims = (q_emb @ cand_embs.T).squeeze(0)\\\\n            sorted_idx = sims.argsort(descending=True).cpu().tolist()\\\\n\\\\n            exclude = gold_set | {query_file, pos_file}\\\\n            selected = []\\\\n            for ci in sorted_idx:\\\\n                if len(selected) >= num_negatives:\\\\n                    break\\\\n                f = cand_files[ci]\\\\n                if f not in exclude:\\\\n                    selected.append((iid + \\\\\\\"::\\\\\\\" + f, float(sims[ci])))\\\\n\\\\n            mined[query_id] = selected\\\\n\\\\n    model.train()\\\\n    return mined\\\\n\\\\n\\\\ndef _save_checkpoint(model, tokenizer, path, args):\\\\n    path = Path(path)\\\\n    path.mkdir(parents=True, exist_ok=True)\\\\n    if getattr(args, 'use_lora', False):\\\\n        sd = {k: v for k, v in model.state_dict().items()\\\\n              if not k.startswith('backbone.') or 'lora_' in k}\\\\n    else:\\\\n        sd = model.state_dict()\\\\n    torch.save(sd, path / \\\\\\\"model.pt\\\\\\\")\\\\n    tokenizer.save_pretrained(path)\\\\n    with open(path / \\\\\\\"training_config.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(vars(args), f, indent=2)\\\\n\\\\n\\\\ndef _load_json_as_sets(path: str) -> Dict[str, set]:\\\\n    with open(path) as f:\\\\n        raw = json.load(f)\\\\n    return {k: set(v) for k, v in raw.items()}\\\\n\\\\n\\\\ndef _load_embeddings(path: str) -> Dict[str, np.ndarray]:\\\\n    data = np.load(path, allow_pickle=True)\\\\n    return {str(k): data[k] for k in data.files}\\\\n\\\\n\\\\n# ── CLI ────────���─────────────────────────────────────────────────────\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"StructFuse contrastive training\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model-name\\\\\\\", default=\\\\\\\"Qwen/Qwen2.5-Coder-3B\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--train-file\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--val-file\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--output-dir\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--batch-size\\\\\\\", type=int, default=8)\\\\n    p.add_argument(\\\\\\\"--learning-rate\\\\\\\", type=float, default=2e-5)\\\\n    p.add_argument(\\\\\\\"--num-epochs\\\\\\\", type=int, default=3)\\\\n    p.add_argument(\\\\\\\"--warmup-ratio\\\\\\\", type=float, default=0.1)\\\\n    p.add_argument(\\\\\\\"--num-negatives\\\\\\\", type=int, default=7)\\\\n    p.add_argument(\\\\\\\"--hard-negative-strategy\\\\\\\", choices=[\\\\\\\"random\\\\\\\", \\\\\\\"embedding_distance\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\", \\\\\\\"bm25\\\\\\\"], default=\\\\\\\"dataflow_aware\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--hard-negative-ratio\\\\\\\", type=float, default=0.5)\\\\n    p.add_argument(\\\\\\\"--temperature\\\\\\\", type=float, default=0.07)\\\\n    p.add_argument(\\\\\\\"--pos-weight-alpha\\\\\\\", type=float, default=1.0)\\\\n    p.add_argument(\\\\\\\"--use-fusion-head\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--use-lora\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--lora-r\\\\\\\", type=int, default=16)\\\\n    p.add_argument(\\\\\\\"--proj-dim\\\\\\\", type=int, default=256)\\\\n    p.add_argument(\\\\\\\"--gradient-checkpointing\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--eval-steps\\\\\\\", type=int, default=500)\\\\n    p.add_argument(\\\\\\\"--save-steps\\\\\\\", type=int, default=1000)\\\\n    p.add_argument(\\\\\\\"--max-seq-length\\\\\\\", type=int, default=2048)\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    p.add_argument(\\\\\\\"--wandb-project\\\\\\\", default=\\\\\\\"structfuse\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--wandb-run-name\\\\\\\", default=None)\\\\n    p.add_argument(\\\\\\\"--dataflow-graph-file\\\\\\\", default=None, help=\\\\\\\"JSON file: {file_id: [reachable_ids]}\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--embeddings-file\\\\\\\", default=None, help=\\\\\\\".npz file with pre-computed embeddings\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dynamic-mining\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                   help=\\\\\\\"Re-mine negatives each epoch using current encoder\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--candidate-pool-file\\\\\\\", default=None,\\\\n                   help=\\\\\\\"candidate_pools.jsonl from build_m1_training_data.py --embedding-mining-mode dynamic\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--early-stopping-patience\\\\\\\", type=int, default=0,\\\\n                   help=\\\\\\\"Stop if val_loss does not improve for N evals (0=disabled)\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    train(parse_args())\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"from __future__ import annotations\\n\\nimport os\\n\\n\\\"\\\"\\\"StructFuse contrastive training entry point.\\n\\nTrains a bi-encoder (Qwen2.5-Coder-3B) with InfoNCE loss, data-flow-weighted\\npositives, and configurable hard-negative mining.  Supports single/multi-GPU\\nvia HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\n\\\"\\\"\\\"\\n\\n\\nimport argparse\\nimport sys\\nimport json\\nimport math\\nimport os\\nimport random\\nimport shutil\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List\\n\\nimport numpy as np\\nimport torch\\nfrom torch.utils.data import DataLoader, Dataset\\nfrom transformers import AutoTokenizer, get_cosine_schedule_with_warmup\\n\\nfrom accelerate import Accelerator\\nfrom accelerate.utils import set_seed\\n\\nfrom contrastive_model import StructFuseEncoder\\nfrom hard_negative_mining import build_miner, mine_batch\\n\\n\\n\\ndef _print_flush(*args, **kwargs):\\n    \\\"\\\"\\\"Print with explicit flush for file-redirect compatibility.\\\"\\\"\\\"\\n    kwargs['flush'] = True\\n    print(*args, **kwargs)\\n\\n# ── Dataset ──���───────────────────────────────────────────────────────\\n\\nclass ContrastiveDataset(Dataset):\\n    \\\"\\\"\\\"\\n    Each sample: {query, positive, negatives[], pos_weight, features[]}.\\n\\n    The raw data file is JSONL with fields:\\n        query_id, query_tokens, pos_id, pos_tokens, pos_dataflow_distance,\\n        neg_candidates (list of file ids), features (dict per candidate).\\n\\n    Negatives are mined dynamically per epoch via `refresh_negatives()`.\\n    \\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        data_path: str,\\n        tokenizer: AutoTokenizer,\\n        max_seq_length: int,\\n        num_negatives: int,\\n        pos_weight_alpha: float,\\n        use_fusion_head: bool,\\n    ):\\n        self.tokenizer = tokenizer\\n        self.max_seq_length = max_seq_length\\n        self.num_negatives = num_negatives\\n        self.alpha = pos_weight_alpha\\n        self.use_fusion_head = use_fusion_head\\n\\n        self.samples: List[Dict[str, Any]] = []\\n        with open(data_path) as f:\\n            for line in f:\\n                if line.strip():\\n                    self.samples.append(json.loads(line))\\n\\n        # mined negatives, refreshed each epoch\\n        self._negatives: Dict[int, List[Dict[str, Any]]] = {}\\n\\n    def refresh_negatives(self, mined: Dict[str, List[tuple]]):\\n        \\\"\\\"\\\"Update negatives after an epoch-level mining pass.\\\"\\\"\\\"\\n        self._negatives = {}\\n        for idx, sample in enumerate(self.samples):\\n            qid = sample[\\\"query_id\\\"]\\n            negs = mined.get(qid, [])\\n            self._negatives[idx] = negs\\n\\n    def __len__(self):\\n        return len(self.samples)\\n\\n    def __getitem__(self, idx):\\n        s = self.samples[idx]\\n\\n        query_enc = self.tokenizer(\\n            s[\\\"query_tokens\\\"], truncation=True, max_length=self.max_seq_length,\\n            padding=False, return_tensors=None,\\n        )\\n        pos_enc = self.tokenizer(\\n            s[\\\"pos_tokens\\\"], truncation=True, max_length=self.max_seq_length,\\n            padding=False, return_tensors=None,\\n        )\\n\\n        # positive weight from data-flow distance\\n        dist = s.get(\\\"pos_dataflow_distance\\\", 1.0)\\n        pos_weight = math.exp(-self.alpha * dist)\\n\\n        # negatives\\n        neg_pool = self._negatives.get(idx, [])\\n        if len(neg_pool) < self.num_negatives:\\n            # fallback: use candidates from the sample itself\\n            fallback = list(s.get(\\\"neg_candidates\\\", []))\\n            random.shuffle(fallback)\\n            while len(neg_pool) < self.num_negatives and fallback:\\n                cid = fallback.pop()\\n                neg_pool.append({\\\"id\\\": cid, \\\"tokens\\\": s.get(\\\"candidate_tokens\\\", {}).get(cid, \\\"\\\")})\\n\\n        # Resolve tokens, filter empties\\n        resolved_negs = []\\n        for neg_item in neg_pool:\\n            if isinstance(neg_item, tuple):\\n                cid = neg_item[0]\\n                tokens = s.get('candidate_tokens', {}).get(cid, cid)\\n            else:\\n                tokens = neg_item.get('tokens', neg_item.get('id', ''))\\n            if tokens:\\n                resolved_negs.append\\n\\n... [截断: 输出过长，省略 16709 字符] ...\\n\\nruncation=True, max_length=max_seq_length,\\n                              padding=True, return_tensors=\\\"pt\\\")\\n            q_enc = {k: v.to(device) for k, v in q_enc.items()}\\n            q_emb = model.encode(q_enc[\\\"input_ids\\\"], q_enc[\\\"attention_mask\\\"])\\n\\n            sims = (q_emb @ cand_embs.T).squeeze(0)\\n            sorted_idx = sims.argsort(descending=True).cpu().tolist()\\n\\n            exclude = gold_set | {query_file, pos_file}\\n            selected = []\\n            for ci in sorted_idx:\\n                if len(selected) >= num_negatives:\\n                    break\\n                f = cand_files[ci]\\n                if f not in exclude:\\n                    selected.append((iid + \\\"::\\\" + f, float(sims[ci])))\\n\\n            mined[query_id] = selected\\n\\n    model.train()\\n    return mined\\n\\n\\ndef _save_checkpoint(model, tokenizer, path, args):\\n    path = Path(path)\\n    path.mkdir(parents=True, exist_ok=True)\\n    if getattr(args, 'use_lora', False):\\n        sd = {k: v for k, v in model.state_dict().items()\\n              if not k.startswith('backbone.') or 'lora_' in k}\\n    else:\\n        sd = model.state_dict()\\n    torch.save(sd, path / \\\"model.pt\\\")\\n    tokenizer.save_pretrained(path)\\n    with open(path / \\\"training_config.json\\\", \\\"w\\\") as f:\\n        json.dump(vars(args), f, indent=2)\\n\\n\\ndef _load_json_as_sets(path: str) -> Dict[str, set]:\\n    with open(path) as f:\\n        raw = json.load(f)\\n    return {k: set(v) for k, v in raw.items()}\\n\\n\\ndef _load_embeddings(path: str) -> Dict[str, np.ndarray]:\\n    data = np.load(path, allow_pickle=True)\\n    return {str(k): data[k] for k in data.files}\\n\\n\\n# ── CLI ────────���─────────────────────────────────────────────────────\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"StructFuse contrastive training\\\")\\n    p.add_argument(\\\"--model-name\\\", default=\\\"Qwen/Qwen2.5-Coder-3B\\\")\\n    p.add_argument(\\\"--train-file\\\", required=True)\\n    p.add_argument(\\\"--val-file\\\", required=True)\\n    p.add_argument(\\\"--output-dir\\\", required=True)\\n    p.add_argument(\\\"--batch-size\\\", type=int, default=8)\\n    p.add_argument(\\\"--learning-rate\\\", type=float, default=2e-5)\\n    p.add_argument(\\\"--num-epochs\\\", type=int, default=3)\\n    p.add_argument(\\\"--warmup-ratio\\\", type=float, default=0.1)\\n    p.add_argument(\\\"--num-negatives\\\", type=int, default=7)\\n    p.add_argument(\\\"--hard-negative-strategy\\\", choices=[\\\"random\\\", \\\"embedding_distance\\\", \\\"dataflow_aware\\\", \\\"bm25\\\"], default=\\\"dataflow_aware\\\")\\n    p.add_argument(\\\"--hard-negative-ratio\\\", type=float, default=0.5)\\n    p.add_argument(\\\"--temperature\\\", type=float, default=0.07)\\n    p.add_argument(\\\"--pos-weight-alpha\\\", type=float, default=1.0)\\n    p.add_argument(\\\"--use-fusion-head\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--use-lora\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--lora-r\\\", type=int, default=16)\\n    p.add_argument(\\\"--proj-dim\\\", type=int, default=256)\\n    p.add_argument(\\\"--gradient-checkpointing\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--eval-steps\\\", type=int, default=500)\\n    p.add_argument(\\\"--save-steps\\\", type=int, default=1000)\\n    p.add_argument(\\\"--max-seq-length\\\", type=int, default=2048)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--wandb-project\\\", default=\\\"structfuse\\\")\\n    p.add_argument(\\\"--wandb-run-name\\\", default=None)\\n    p.add_argument(\\\"--dataflow-graph-file\\\", default=None, help=\\\"JSON file: {file_id: [reachable_ids]}\\\")\\n    p.add_argument(\\\"--embeddings-file\\\", default=None, help=\\\".npz file with pre-computed embeddings\\\")\\n    p.add_argument(\\\"--dynamic-mining\\\", action=\\\"store_true\\\",\\n                   help=\\\"Re-mine negatives each epoch using current encoder\\\")\\n    p.add_argument(\\\"--candidate-pool-file\\\", default=None,\\n                   help=\\\"candidate_pools.jsonl from build_m1_training_data.py --embedding-mining-mode dynamic\\\")\\n    p.add_argument(\\\"--early-stopping-patience\\\", type=int, default=0,\\n                   help=\\\"Stop if val_loss does not improve for N evals (0=disabled)\\\")\\n    return p.parse_args()\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    train(parse_args())\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VF7xiKy5QCWwWe8Lx7W5ot`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "cat /root/structfuse/training/contrastive_model.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "5eff4cb2-656e-4580-a927-11dc75fca101",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QrdeU74ky2hKtPHLC5jY8w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1509,
+      "cache_read_input_tokens": 30174,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1509
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T03:09:19.942Z_
+
+<details><summary>↩ Tool result · `toolu_01VF7xiKy5QCWwWe8Lx7W5ot`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"StructFuse contrastive bi-encoder with fusion head.\\n\\nBi-encoder over Qwen2.5-Coder-3B with InfoNCE loss, weighted positives\\n(data-flow path distance), and an optional lightweight fusion head that\\ncombines embedding similarity with explicit structural features.\\n\\\"\\\"\\\"\\n\\nimport math\\nimport torch\\nimport torch.nn as nn\\nimport torch.nn.functional as F\\nfrom transformers import AutoModel, AutoConfig\\n\\n\\nclass FusionHead(nn.Module):\\n    \\\"\\\"\\\"MLP that fuses embedding similarity with explicit features into a relevance score.\\\"\\\"\\\"\\n\\n    FEATURE_NAMES = [\\n        \\\"dataflow_distance\\\",\\n        \\\"bm25_score\\\",\\n        \\\"co_change_freq\\\",\\n        \\\"inter_procedural_flag\\\",\\n        \\\"path_count\\\",\\n    ]\\n    NUM_EXPLICIT = len(FEATURE_NAMES)\\n\\n    def __init__(self, hidden_dim: int = 128):\\n        super().__init__()\\n        input_dim = 1 + self.NUM_EXPLICIT  # embed_similarity + explicit features\\n        self.net = nn.Sequential(\\n            nn.Linear(input_dim, hidden_dim),\\n            nn.GELU(),\\n            nn.Linear(hidden_dim, hidden_dim),\\n            nn.GELU(),\\n            nn.Linear(hidden_dim, 1),\\n        )\\n\\n    def forward(self, embed_similarity: torch.Tensor, features: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"\\n        Args:\\n            embed_similarity: (B,) or (B, K) cosine similarities.\\n            features: same leading dims + NUM_EXPLICIT trailing dim.\\n        Returns:\\n            scores with same shape as embed_similarity.\\n        \\\"\\\"\\\"\\n        orig_shape = embed_similarity.shape\\n        sim = embed_similarity.unsqueeze(-1)  # (..., 1)\\n        x = torch.cat([sim, features], dim=-1)  # (..., 1+NUM_EXPLICIT)\\n        x = x.view(-1, x.size(-1))\\n        out = self.net(x).squeeze(-1)\\n        return out.view(orig_shape)\\n\\n\\nclass StructFuseEncoder(nn.Module):\\n    \\\"\\\"\\\"Bi-encoder with shared Qwen backbone, optional projection & LoRA.\\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        model_name: str = \\\"Qwen/Qwen2.5-Coder-3B\\\",\\n        proj_dim: int = 256,\\n        use_projection: bool = True,\\n        use_lora: bool = False,\\n        lora_r: int = 16,\\n        lora_alpha: int = 32,\\n        use_fusion_head: bool = False,\\n        fusion_hidden: int = 128,\\n        init_temperature: float = 0.07,\\n    ):\\n        super().__init__()\\n        self.backbone = AutoModel.from_pretrained(model_name, trust_remote_code=True, dtype=torch.float16)\\n        hidden_size = self.backbone.config.hidden_size\\n\\n        self.use_projection = use_projection\\n        if use_projection:\\n            self.projection = nn.Sequential(\\n                nn.Linear(hidden_size, hidden_size),\\n                nn.GELU(),\\n                nn.Linear(hidden_size, proj_dim),\\n            )\\n            self.embed_dim = proj_dim\\n        else:\\n            self.projection = None\\n            self.embed_dim = hidden_size\\n\\n        self.use_fusion_head = use_fusion_head\\n        if use_fusion_head:\\n            self.fusion_head = FusionHead(hidden_dim=fusion_hidden)\\n\\n        # learnable temperature for InfoNCE\\n        self.log_temperature = nn.Parameter(torch.tensor(math.log(init_temperature)))\\n\\n        if use_lora:\\n            self._apply_lora(lora_r, lora_alpha)\\n\\n    def _apply_lora(self, r: int, alpha: int):\\n        from peft import LoraConfig, get_peft_model\\n\\n        lora_cfg = LoraConfig(\\n            r=r,\\n            lora_alpha=alpha,\\n            target_modules=[\\\"q_proj\\\", \\\"v_proj\\\"],\\n            lora_dropout=0.05,\\n            bias=\\\"none\\\",\\n            task_type=\\\"FEATURE_EXTRACTION\\\",\\n        )\\n        self.backbone = get_peft_model(self.backbone, lora_cfg)\\n\\n    def enable_gradient_checkpointing(self):\\n        if hasattr(self.backbone, 'enable_input_require_grads'):\\n            self.backbone.enable_input_require_grads()\\n        self.backbone.gradient_checkpointing_enable()\\n\\n    @property\\n    def temperature(self) -> torch.Tensor:\\n        return self.log_temperature.exp()\\n\\n    def encode(self, input_ids: torch.Tensor, attention_mask: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"Mean-pool last hidden states (excluding padding) and optionally project.\\\"\\\"\\\"\\n        outputs = self.backbone(input_ids=input_ids, attention_mask=attention_mask)\\n        hidden = outputs.last_hidden_state  # (B, L, H)\\n\\n        mask_expanded = attention_mask.unsqueeze(-1).float()  # (B, L, 1)\\n        summed = (hidden * mask_expanded).sum(dim=1)  # (B, H)\\n        lengths = mask_expanded.sum(dim=1).clamp(min=1e-9)  # (B, 1)\\n        pooled = summed / lengths  # (B, H)\\n\\n        if self.projection is not None:\\n            pooled = self.projection(pooled)\\n\\n        return F.normalize(pooled, p=2, dim=-1)\\n\\n    def forward(\\n        self,\\n        query_ids: torch.Tensor,\\n        query_mask: torch.Tensor,\\n        pos_ids: torch.Tensor,\\n        pos_mask: torch.Tensor,\\n        neg_ids: torch.Tensor,\\n        neg_mask: torch.Tensor,\\n        pos_weights: torch.Tensor | None = None,\\n        features: torch.Tensor | None = None,\\n        neg_valid_mask: torch.Tensor | None = None,\\n    ) -> tuple[torch.Tensor, torch.Tensor]:\\n        \\\"\\\"\\\"\\n        Compute InfoNCE loss with weighted positives and optional fusion head.\\n\\n        Args:\\n            query_ids/mask: (B, Lq)\\n            pos_ids/mask:   (B, Lp)       — one positive per query\\n            neg_ids/mask:   (B, K, Ln)    — K explicit negatives per query\\n            pos_weights:    (B,)          — exp(-alpha * path_distance) weights\\n            features:       (B, 1+K, NUM_EXPLICIT) — features for pos + negs if fusion head is used\\n\\n        Returns:\\n            loss: scalar\\n            logits: (B, 1+K) similarity scores (for monitoring)\\n        \\\"\\\"\\\"\\n        B = query_ids.size(0)\\n        K = neg_ids.size(1)\\n\\n        q_emb = self.encode(query_ids, query_mask)  # (B, D)\\n        p_emb = self.encode(pos_ids, pos_mask)  # (B, D)\\n\\n        # flatten negatives for encoding, then reshape back\\n        neg_ids_flat = neg_ids.view(B * K, -1)\\n        neg_mask_flat = neg_mask.view(B * K, -1)\\n        n_emb = self.encode(neg_ids_flat, neg_mask_flat).view(B, K, -1)  # (B, K, D)\\n\\n        # cosine similarities\\n        pos_sim = (q_emb * p_emb).sum(dim=-1)  # (B,)\\n        neg_sim = torch.bmm(n_emb, q_emb.unsqueeze(-1)).squeeze(-1)  # (B, K)\\n\\n        if self.use_fusion_head and features is not None:\\n            all_sim = torch.cat([pos_sim.unsqueeze(1), neg_sim], dim=1)  # (B, 1+K)\\n            logits = self.fusion_head(all_sim, features) / self.temperature\\n        else:\\n            logits = torch.cat([pos_sim.unsqueeze(1), neg_sim], dim=1) / self.temperature  # (B, 1+K)\\n\\n        # Mask invalid negatives (padding slots from empty candidates)\\n        if neg_valid_mask is not None:\\n            invalid = ~neg_valid_mask\\n            logits[:, 1:] = logits[:, 1:].masked_fill(invalid, float('-inf'))\\n\\n        # InfoNCE: labels are always index 0 (the positive)\\n        labels = torch.zeros(B, dtype=torch.long, device=logits.device)\\n\\n        if pos_weights is not None:\\n            # Weight per-sample loss, not logits — scaling logits inverts the intended effect\\n            per_sample_loss = F.cross_entropy(logits, labels, reduction='none')\\n            loss = (per_sample_loss * pos_weights).mean()\\n        else:\\n            loss = F.cross_entropy(logits, labels)\\n\\n        return loss, logits\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "26350c2f-5e2b-462f-af9a-603f48e76868",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"StructFuse contrastive bi-encoder with fusion head.\\\\n\\\\nBi-encoder over Qwen2.5-Coder-3B with InfoNCE loss, weighted positives\\\\n(data-flow path distance), and an optional lightweight fusion head that\\\\ncombines embedding similarity with explicit structural features.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport math\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport torch.nn.functional as F\\\\nfrom transformers import AutoModel, AutoConfig\\\\n\\\\n\\\\nclass FusionHead(nn.Module):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"MLP that fuses embedding similarity with explicit features into a relevance score.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    FEATURE_NAMES = [\\\\n        \\\\\\\"dataflow_distance\\\\\\\",\\\\n        \\\\\\\"bm25_score\\\\\\\",\\\\n        \\\\\\\"co_change_freq\\\\\\\",\\\\n        \\\\\\\"inter_procedural_flag\\\\\\\",\\\\n        \\\\\\\"path_count\\\\\\\",\\\\n    ]\\\\n    NUM_EXPLICIT = len(FEATURE_NAMES)\\\\n\\\\n    def __init__(self, hidden_dim: int = 128):\\\\n        super().__init__()\\\\n        input_dim = 1 + self.NUM_EXPLICIT  # embed_similarity + explicit features\\\\n        self.net = nn.Sequential(\\\\n            nn.Linear(input_dim, hidden_dim),\\\\n            nn.GELU(),\\\\n            nn.Linear(hidden_dim, hidden_dim),\\\\n            nn.GELU(),\\\\n            nn.Linear(hidden_dim, 1),\\\\n        )\\\\n\\\\n    def forward(self, embed_similarity: torch.Tensor, features: torch.Tensor) -> torch.Tensor:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        Args:\\\\n            embed_similarity: (B,) or (B, K) cosine similarities.\\\\n            features: same leading dims + NUM_EXPLICIT trailing dim.\\\\n        Returns:\\\\n            scores with same shape as embed_similarity.\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        orig_shape = embed_similarity.shape\\\\n        sim = embed_similarity.unsqueeze(-1)  # (..., 1)\\\\n        x = torch.cat([sim, features], dim=-1)  # (..., 1+NUM_EXPLICIT)\\\\n        x = x.view(-1, x.size(-1))\\\\n        out = self.net(x).squeeze(-1)\\\\n        return out.view(orig_shape)\\\\n\\\\n\\\\nclass StructFuseEncoder(nn.Module):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Bi-encoder with shared Qwen backbone, optional projection & LoRA.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(\\\\n        self,\\\\n        model_name: str = \\\\\\\"Qwen/Qwen2.5-Coder-3B\\\\\\\",\\\\n        proj_dim: int = 256,\\\\n        use_projection: bool = True,\\\\n        use_lora: bool = False,\\\\n        lora_r: int = 16,\\\\n        lora_alpha: int = 32,\\\\n        use_fusion_head: bool = False,\\\\n        fusion_hidden: int = 128,\\\\n        init_temperature: float = 0.07,\\\\n    ):\\\\n        super().__init__()\\\\n        self.backbone = AutoModel.from_pretrained(model_name, trust_remote_code=True, dtype=torch.float16)\\\\n        hidden_size = self.backbone.config.hidden_size\\\\n\\\\n        self.use_projection = use_projection\\\\n        if use_projection:\\\\n            self.projection = nn.Sequential(\\\\n                nn.Linear(hidden_size, hidden_size),\\\\n                nn.GELU(),\\\\n                nn.Linear(hidden_size, proj_dim),\\\\n            )\\\\n            self.embed_dim = proj_dim\\\\n        else:\\\\n            self.projection = None\\\\n            self.embed_dim = hidden_size\\\\n\\\\n        self.use_fusion_head = use_fusion_head\\\\n        if use_fusion_head:\\\\n            self.fusion_head = FusionHead(hidden_dim=fusion_hidden)\\\\n\\\\n        # learnable temperature for InfoNCE\\\\n        self.log_temperature = nn.Parameter(torch.tensor(math.log(init_temperature)))\\\\n\\\\n        if use_lora:\\\\n            self._apply_lora(lora_r, lora_alpha)\\\\n\\\\n    def _apply_lora(self, r: int, alpha: int):\\\\n        from peft import LoraConfig, get_peft_model\\\\n\\\\n        lora_cfg = LoraConfig(\\\\n            r=r,\\\\n            lora_alpha=alpha,\\\\n            target_modules=[\\\\\\\"q_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\"],\\\\n            lora_dropout=0.05,\\\\n            bias=\\\\\\\"none\\\\\\\",\\\\n            task_type=\\\\\\\"FEATURE_EXTRACTION\\\\\\\",\\\\n        )\\\\n        self.backbone = get_peft_model(self.backbone, lora_cfg)\\\\n\\\\n    def enable_gradient_checkpointing(self):\\\\n        if hasattr(self.backbone, 'enable_input_require_grads'):\\\\n            self.backbone.enable_input_require_grads()\\\\n        self.backbone.gradient_checkpointing_enable()\\\\n\\\\n    @property\\\\n    def temperature(self) -> torch.Tensor:\\\\n        return self.log_temperature.exp()\\\\n\\\\n    def encode(self, input_ids: torch.Tensor, attention_mask: torch.Tensor) -> torch.Tensor:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Mean-pool last hidden states (excluding padding) and optionally project.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        outputs = self.backbone(input_ids=input_ids, attention_mask=attention_mask)\\\\n        hidden = outputs.last_hidden_state  # (B, L, H)\\\\n\\\\n        mask_expanded = attention_mask.unsqueeze(-1).float()  # (B, L, 1)\\\\n        summed = (hidden * mask_expanded).sum(dim=1)  # (B, H)\\\\n        lengths = mask_expanded.sum(dim=1).clamp(min=1e-9)  # (B, 1)\\\\n        pooled = summed / lengths  # (B, H)\\\\n\\\\n        if self.projection is not None:\\\\n            pooled = self.projection(pooled)\\\\n\\\\n        return F.normalize(pooled, p=2, dim=-1)\\\\n\\\\n    def forward(\\\\n        self,\\\\n        query_ids: torch.Tensor,\\\\n        query_mask: torch.Tensor,\\\\n        pos_ids: torch.Tensor,\\\\n        pos_mask: torch.Tensor,\\\\n        neg_ids: torch.Tensor,\\\\n        neg_mask: torch.Tensor,\\\\n        pos_weights: torch.Tensor | None = None,\\\\n        features: torch.Tensor | None = None,\\\\n        neg_valid_mask: torch.Tensor | None = None,\\\\n    ) -> tuple[torch.Tensor, torch.Tensor]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        Compute InfoNCE loss with weighted positives and optional fusion head.\\\\n\\\\n        Args:\\\\n            query_ids/mask: (B, Lq)\\\\n            pos_ids/mask:   (B, Lp)       — one positive per query\\\\n            neg_ids/mask:   (B, K, Ln)    — K explicit negatives per query\\\\n            pos_weights:    (B,)          — exp(-alpha * path_distance) weights\\\\n            features:       (B, 1+K, NUM_EXPLICIT) — features for pos + negs if fusion head is used\\\\n\\\\n        Returns:\\\\n            loss: scalar\\\\n            logits: (B, 1+K) similarity scores (for monitoring)\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        B = query_ids.size(0)\\\\n        K = neg_ids.size(1)\\\\n\\\\n        q_emb = self.encode(query_ids, query_mask)  # (B, D)\\\\n        p_emb = self.encode(pos_ids, pos_mask)  # (B, D)\\\\n\\\\n        # flatten negatives for encoding, then reshape back\\\\n        neg_ids_flat = neg_ids.view(B * K, -1)\\\\n        neg_mask_flat = neg_mask.view(B * K, -1)\\\\n        n_emb = self.encode(neg_ids_flat, neg_mask_flat).view(B, K, -1)  # (B, K, D)\\\\n\\\\n        # cosine similarities\\\\n        pos_sim = (q_emb * p_emb).sum(dim=-1)  # (B,)\\\\n        neg_sim = torch.bmm(n_emb, q_emb.unsqueeze(-1)).squeeze(-1)  # (B, K)\\\\n\\\\n        if self.use_fusion_head and features is not None:\\\\n            all_sim = torch.cat([pos_sim.unsqueeze(1), neg_sim], dim=1)  # (B, 1+K)\\\\n            logits = self.fusion_head(all_sim, features) / self.temperature\\\\n        else:\\\\n            logits = torch.cat([pos_sim.unsqueeze(1), neg_sim], dim=1) / self.temperature  # (B, 1+K)\\\\n\\\\n        # Mask invalid negatives (padding slots from empty candidates)\\\\n        if neg_valid_mask is not None:\\\\n            invalid = ~neg_valid_mask\\\\n            logits[:, 1:] = logits[:, 1:].masked_fill(invalid, float('-inf'))\\\\n\\\\n        # InfoNCE: labels are always index 0 (the positive)\\\\n        labels = torch.zeros(B, dtype=torch.long, device=logits.device)\\\\n\\\\n        if pos_weights is not None:\\\\n            # Weight per-sample loss, not logits — scaling logits inverts the intended effect\\\\n            per_sample_loss = F.cross_entropy(logits, labels, reduction='none')\\\\n            loss = (per_sample_loss * pos_weights).mean()\\\\n        else:\\\\n            loss = F.cross_entropy(logits, labels)\\\\n\\\\n        return loss, logits\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"StructFuse contrastive bi-encoder with fusion head.\\n\\nBi-encoder over Qwen2.5-Coder-3B with InfoNCE loss, weighted positives\\n(data-flow path distance), and an optional lightweight fusion head that\\ncombines embedding similarity with explicit structural features.\\n\\\"\\\"\\\"\\n\\nimport math\\nimport torch\\nimport torch.nn as nn\\nimport torch.nn.functional as F\\nfrom transformers import AutoModel, AutoConfig\\n\\n\\nclass FusionHead(nn.Module):\\n    \\\"\\\"\\\"MLP that fuses embedding similarity with explicit features into a relevance score.\\\"\\\"\\\"\\n\\n    FEATURE_NAMES = [\\n        \\\"dataflow_distance\\\",\\n        \\\"bm25_score\\\",\\n        \\\"co_change_freq\\\",\\n        \\\"inter_procedural_flag\\\",\\n        \\\"path_count\\\",\\n    ]\\n    NUM_EXPLICIT = len(FEATURE_NAMES)\\n\\n    def __init__(self, hidden_dim: int = 128):\\n        super().__init__()\\n        input_dim = 1 + self.NUM_EXPLICIT  # embed_similarity + explicit features\\n        self.net = nn.Sequential(\\n            nn.Linear(input_dim, hidden_dim),\\n            nn.GELU(),\\n            nn.Linear(hidden_dim, hidden_dim),\\n            nn.GELU(),\\n            nn.Linear(hidden_dim, 1),\\n        )\\n\\n    def forward(self, embed_similarity: torch.Tensor, features: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"\\n        Args:\\n            embed_similarity: (B,) or (B, K) cosine similarities.\\n            features: same leading dims + NUM_EXPLICIT trailing dim.\\n        Returns:\\n            scores with same shape as embed_similarity.\\n        \\\"\\\"\\\"\\n        orig_shape = embed_similarity.shape\\n        sim = embed_similarity.unsqueeze(-1)  # (..., 1)\\n        x = torch.cat([sim, features], dim=-1)  # (..., 1+NUM_EXPLICIT)\\n        x = x.view(-1, x.size(-1))\\n        out = self.net(x).squeeze(-1)\\n        return out.view(orig_shape)\\n\\n\\nclass StructFuseEncoder(nn.Module):\\n    \\\"\\\"\\\"Bi-encoder with shared Qwen backbone, optional projection & LoRA.\\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        model_name: str = \\\"Qwen/Qwen2.5-Coder-3B\\\",\\n        proj_dim: int = 256,\\n        use_projection: bool = True,\\n        use_lora: bool = False,\\n        lora_r: int = 16,\\n        lora_alpha: int = 32,\\n        use_fusion_head: bool = False,\\n        fusion_hidden: int = 128,\\n        init_temperature: float = 0.07,\\n    ):\\n        super().__init__()\\n        self.backbone = AutoModel.from_pretrained(model_name, trust_remote_code=True, dtype=torch.float16)\\n        hidden_size = self.backbone.config.hidden_size\\n\\n        self.use_projection = use_projection\\n        if use_projection:\\n            self.projection = nn.Sequential(\\n                nn.Linear(hidden_size, hidden_size),\\n                nn.GELU(),\\n                nn.Linear(hidden_size, proj_dim),\\n            )\\n            self.embed_dim = proj_dim\\n        else:\\n            self.projection = None\\n            self.embed_dim = hidden_size\\n\\n        self.use_fusion_head = use_fusion_head\\n        if use_fusion_head:\\n            self.fusion_head = FusionHead(hidden_dim=fusion_hidden)\\n\\n        # learnable temperature for InfoNCE\\n        self.log_temperature = nn.Parameter(torch.tensor(math.log(init_temperature)))\\n\\n        if use_lora:\\n            self._apply_lora(lora_r, lora_alpha)\\n\\n    def _apply_lora(self, r: int, alpha: int):\\n        from peft import LoraConfig, get_peft_model\\n\\n        lora_cfg = LoraConfig(\\n            r=r,\\n            lora_alpha=alpha,\\n            target_modules=[\\\"q_proj\\\", \\\"v_proj\\\"],\\n            lora_dropout=0.05,\\n            bias=\\\"none\\\",\\n            task_type=\\\"FEATURE_EXTRACTION\\\",\\n        )\\n        self.backbone = get_peft_model(self.backbone, lora_cfg)\\n\\n    def enable_gradient_checkpointing(self):\\n        if hasattr(self.backbone, 'enable_input_require_grads'):\\n            self.backbone.enable_input_require_grads()\\n        self.backbone.gradient_checkpointing_enable()\\n\\n    @property\\n    def temperature(self) -> torch.Tensor:\\n        return self.log_temperature.exp()\\n\\n    def encode(self, input_ids: torch.Tensor, attention_mask: torch.Tensor) -> torch.Tensor:\\n        \\\"\\\"\\\"Mean-pool last hidden states (excluding padding) and optionally project.\\\"\\\"\\\"\\n        outputs = self.backbone(input_ids=input_ids, attention_mask=attention_mask)\\n        hidden = outputs.last_hidden_state  # (B, L, H)\\n\\n        mask_expanded = attention_mask.unsqueeze(-1).float()  # (B, L, 1)\\n        summed = (hidden * mask_expanded).sum(dim=1)  # (B, H)\\n        lengths = mask_expanded.sum(dim=1).clamp(min=1e-9)  # (B, 1)\\n        pooled = summed / lengths  # (B, H)\\n\\n        if self.projection is not None:\\n            pooled = self.projection(pooled)\\n\\n        return F.normalize(pooled, p=2, dim=-1)\\n\\n    def forward(\\n        self,\\n        query_ids: torch.Tensor,\\n        query_mask: torch.Tensor,\\n        pos_ids: torch.Tensor,\\n        pos_mask: torch.Tensor,\\n        neg_ids: torch.Tensor,\\n        neg_mask: torch.Tensor,\\n        pos_weights: torch.Tensor | None = None,\\n        features: torch.Tensor | None = None,\\n        neg_valid_mask: torch.Tensor | None = None,\\n    ) -> tuple[torch.Tensor, torch.Tensor]:\\n        \\\"\\\"\\\"\\n        Compute InfoNCE loss with weighted positives and optional fusion head.\\n\\n        Args:\\n            query_ids/mask: (B, Lq)\\n            pos_ids/mask:   (B, Lp)       — one positive per query\\n            neg_ids/mask:   (B, K, Ln)    — K explicit negatives per query\\n            pos_weights:    (B,)          — exp(-alpha * path_distance) weights\\n            features:       (B, 1+K, NUM_EXPLICIT) — features for pos + negs if fusion head is used\\n\\n        Returns:\\n            loss: scalar\\n            logits: (B, 1+K) similarity scores (for monitoring)\\n        \\\"\\\"\\\"\\n        B = query_ids.size(0)\\n        K = neg_ids.size(1)\\n\\n        q_emb = self.encode(query_ids, query_mask)  # (B, D)\\n        p_emb = self.encode(pos_ids, pos_mask)  # (B, D)\\n\\n        # flatten negatives for encoding, then reshape back\\n        neg_ids_flat = neg_ids.view(B * K, -1)\\n        neg_mask_flat = neg_mask.view(B * K, -1)\\n        n_emb = self.encode(neg_ids_flat, neg_mask_flat).view(B, K, -1)  # (B, K, D)\\n\\n        # cosine similarities\\n        pos_sim = (q_emb * p_emb).sum(dim=-1)  # (B,)\\n        neg_sim = torch.bmm(n_emb, q_emb.unsqueeze(-1)).squeeze(-1)  # (B, K)\\n\\n        if self.use_fusion_head and features is not None:\\n            all_sim = torch.cat([pos_sim.unsqueeze(1), neg_sim], dim=1)  # (B, 1+K)\\n            logits = self.fusion_head(all_sim, features) / self.temperature\\n        else:\\n            logits = torch.cat([pos_sim.unsqueeze(1), neg_sim], dim=1) / self.temperature  # (B, 1+K)\\n\\n        # Mask invalid negatives (padding slots from empty candidates)\\n        if neg_valid_mask is not None:\\n            invalid = ~neg_valid_mask\\n            logits[:, 1:] = logits[:, 1:].masked_fill(invalid, float('-inf'))\\n\\n        # InfoNCE: labels are always index 0 (the positive)\\n        labels = torch.zeros(B, dtype=torch.long, device=logits.device)\\n\\n        if pos_weights is not None:\\n            # Weight per-sample loss, not logits — scaling logits inverts the intended effect\\n            per_sample_loss = F.cross_entropy(logits, labels, reduction='none')\\n            loss = (per_sample_loss * pos_weights).mean()\\n        else:\\n            loss = F.cross_entropy(logits, labels)\\n\\n        return loss, logits\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UcJB4RPtZpWxWECXLwnepi`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "cat /root/structfuse/eval_checkpoint.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "2d59c45c-4975-4f76-ba16-fa3c5643e9a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QrdeU74ky2hKtPHLC5jY8w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1509,
+      "cache_read_input_tokens": 30174,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1509
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T03:09:20.528Z_
+
+<details><summary>↩ Tool result · `toolu_01UcJB4RPtZpWxWECXLwnepi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Eval a saved StructFuse checkpoint on the val set (val_loss + recall@1/5/10).\\\"\\\"\\\"\\nimport json, math, random, sys, os\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List\\n\\nimport torch\\nimport torch.nn.functional as F\\nfrom torch.utils.data import DataLoader, Dataset\\nfrom transformers import AutoTokenizer\\n\\nsys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), \\\"training\\\"))\\nfrom contrastive_model import StructFuseEncoder\\n\\n\\nclass ContrastiveDataset(Dataset):\\n    def __init__(self, data_path, tokenizer, max_seq_length, num_negatives, pos_weight_alpha, use_fusion_head):\\n        self.tokenizer = tokenizer\\n        self.max_seq_length = max_seq_length\\n        self.num_negatives = num_negatives\\n        self.alpha = pos_weight_alpha\\n        self.use_fusion_head = use_fusion_head\\n        self.samples = []\\n        with open(data_path) as f:\\n            for line in f:\\n                if line.strip():\\n                    self.samples.append(json.loads(line))\\n        self._negatives = {}\\n\\n    def __len__(self):\\n        return len(self.samples)\\n\\n    def __getitem__(self, idx):\\n        s = self.samples[idx]\\n        query_enc = self.tokenizer(s[\\\"query_tokens\\\"], truncation=True, max_length=self.max_seq_length, padding=False, return_tensors=None)\\n        pos_enc = self.tokenizer(s[\\\"pos_tokens\\\"], truncation=True, max_length=self.max_seq_length, padding=False, return_tensors=None)\\n        dist = s.get(\\\"pos_dataflow_distance\\\", 1.0)\\n        pos_weight = math.exp(-self.alpha * dist)\\n\\n        neg_pool = self._negatives.get(idx, [])\\n        if len(neg_pool) < self.num_negatives:\\n            fallback = list(s.get(\\\"neg_candidates\\\", []))\\n            random.shuffle(fallback)\\n            while len(neg_pool) < self.num_negatives and fallback:\\n                cid = fallback.pop()\\n                neg_pool.append({\\\"id\\\": cid, \\\"tokens\\\": s.get(\\\"candidate_tokens\\\", {}).get(cid, \\\"\\\")})\\n\\n        resolved_negs = []\\n        for neg_item in neg_pool:\\n            if isinstance(neg_item, tuple):\\n                cid = neg_item[0]\\n                tokens = s.get('candidate_tokens', {}).get(cid, cid)\\n            else:\\n                tokens = neg_item.get('tokens', neg_item.get('id', ''))\\n            if tokens:\\n                resolved_negs.append(tokens)\\n\\n        neg_encs = []\\n        neg_valid = []\\n        for ni in range(self.num_negatives):\\n            if ni < len(resolved_negs):\\n                enc = self.tokenizer(resolved_negs[ni], truncation=True, max_length=self.max_seq_length, padding=False, return_tensors=None)\\n                neg_encs.append(enc)\\n                neg_valid.append(True)\\n            else:\\n                neg_encs.append({\\\"input_ids\\\": [0], \\\"attention_mask\\\": [0]})\\n                neg_valid.append(False)\\n\\n        features = None\\n        if self.use_fusion_head:\\n            features = self._extract_features(s, neg_pool)\\n\\n        return {\\n            \\\"query_ids\\\": query_enc[\\\"input_ids\\\"],\\n            \\\"query_mask\\\": query_enc[\\\"attention_mask\\\"],\\n            \\\"pos_ids\\\": pos_enc[\\\"input_ids\\\"],\\n            \\\"pos_mask\\\": pos_enc[\\\"attention_mask\\\"],\\n            \\\"neg_ids\\\": [e[\\\"input_ids\\\"] for e in neg_encs],\\n            \\\"neg_mask\\\": [e[\\\"attention_mask\\\"] for e in neg_encs],\\n            \\\"neg_valid\\\": neg_valid,\\n            \\\"pos_weight\\\": pos_weight,\\n            \\\"features\\\": features,\\n        }\\n\\n\\ndef collate_fn(batch):\\n    def _pad_1d(seqs, pad_value=0):\\n        max_len = max(len(s) for s in seqs)\\n        padded = [s + [pad_value] * (max_len - len(s)) for s in seqs]\\n        return torch.tensor(padded, dtype=torch.long)\\n\\n    def _pad_2d(batch_seqs, pad_value=0):\\n        max_len = max(len(s) for seqs in batch_seqs for s in seqs)\\n        max_len = max(max_len, 1)\\n        result = []\\n        for seqs in batch_seqs:\\n            padded = [s + [pad_value] * (max_len - len(s)) for s in seqs]\\n            result.append(padded)\\n        return torch.tensor(result, dtype=torch.long)\\n\\n    query_ids = _pad_1d([b[\\\"query_ids\\\"] for b in batch])\\n    query_mask = _pad_1d([b[\\\"query_mask\\\"] for b in batch])\\n    pos_ids = _pad_1d([b[\\\"pos_ids\\\"] for b in batch])\\n    pos_mask = _pad_1d([b[\\\"pos_mask\\\"] for b in batch])\\n    neg_ids = _pad_2d([b[\\\"neg_ids\\\"] for b in batch])\\n    neg_mask = _pad_2d([b[\\\"neg_mask\\\"] for b in batch])\\n    pos_weights = torch.tensor([b[\\\"pos_weight\\\"] for b in batch], dtype=torch.float32)\\n    neg_valid_mask = torch.tensor([b[\\\"neg_valid\\\"] for b in batch], dtype=torch.bool)\\n\\n    out = {\\n        \\\"query_ids\\\": query_ids, \\\"query_mask\\\": query_mask,\\n        \\\"pos_ids\\\": pos_ids, \\\"pos_mask\\\": pos_mask,\\n        \\\"neg_ids\\\": neg_ids, \\\"neg_mask\\\": neg_mask,\\n        \\\"neg_valid_mask\\\": neg_valid_mask, \\\"pos_weights\\\": pos_weights,\\n    }\\n    if batch[0][\\\"features\\\"] is not None:\\n        out[\\\"features\\\"] = torch.tensor([b[\\\"features\\\"] for b in batch], dtype=torch.float32)\\n    return out\\n\\n\\n@torch.no_grad()\\ndef evaluate(model, val_loader, device):\\n    model.eval()\\n    total_loss = 0.0\\n    total_correct = {1: 0, 5: 0, 10: 0}\\n    total_samples = 0\\n\\n    for batch in val_loader:\\n        batch = {k: v.to(device) if isinstance(v, torch.Tensor) else v for k, v in batch.items()}\\n        loss, logits = model(\\n            query_ids=batch[\\\"query_ids\\\"], query_mask=batch[\\\"query_mask\\\"],\\n            pos_ids=batch[\\\"pos_ids\\\"], pos_mask=batch[\\\"pos_mask\\\"],\\n            neg_ids=batch[\\\"neg_ids\\\"], neg_mask=batch[\\\"neg_mask\\\"],\\n            neg_valid_mask=batch.get(\\\"neg_valid_mask\\\"),\\n            pos_weights=batch[\\\"pos_weights\\\"],\\n            features=batch.get(\\\"features\\\"),\\n        )\\n        total_loss += loss.item() * logits.size(0)\\n        total_samples += logits.size(0)\\n        for k in [1, 5, 10]:\\n            topk = logits.topk(min(k, logits.size(1)), dim=1).indices\\n            total_correct[k] += (topk == 0).any(dim=1).sum().item()\\n\\n    metrics = {\\\"val_loss\\\": total_loss / max(total_samples, 1)}\\n    for k in [1, 5, 10]:\\n        metrics[f\\\"recall@{k}\\\"] = total_correct[k] / max(total_samples, 1)\\n    return metrics\\n\\n\\ndef main():\\n    ckpt_dir = Path(\\\"/root/autodl-tmp/structfuse/m2_starcoder_output/random_s42/best\\\")\\n    val_file = \\\"/root/autodl-tmp/structfuse/m2_embed_verify_data/val.jsonl\\\"\\n\\n    with open(ckpt_dir / \\\"training_config.json\\\") as f:\\n        cfg = json.load(f)\\n\\n    device = torch.device(\\\"cuda:0\\\")\\n    print(f\\\"Loading tokenizer from {ckpt_dir}...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(str(ckpt_dir), trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    print(f\\\"Building model (model_name={cfg['model_name']})...\\\")\\n    model = StructFuseEncoder(\\n        model_name=cfg[\\\"model_name\\\"],\\n        proj_dim=cfg.get(\\\"proj_dim\\\", 256),\\n        use_projection=True,\\n        use_lora=cfg.get(\\\"use_lora\\\", True),\\n        lora_r=cfg.get(\\\"lora_r\\\", 16),\\n        lora_alpha=cfg.get(\\\"lora_r\\\", 16) * 2,\\n        use_fusion_head=cfg.get(\\\"use_fusion_head\\\", False),\\n    )\\n\\n    print(f\\\"Loading checkpoint from {ckpt_dir / 'model.pt'}...\\\")\\n    state_dict = torch.load(ckpt_dir / \\\"model.pt\\\", map_location=\\\"cpu\\\", weights_only=True)\\n    model.load_state_dict(state_dict, strict=False)\\n    model = model.to(device)\\n    model.eval()\\n\\n    print(f\\\"Loading val data from {val_file}...\\\")\\n    random.seed(cfg.get(\\\"seed\\\", 42))\\n    val_ds = ContrastiveDataset(\\n        val_file, tokenizer,\\n        max_seq_length=cfg.get(\\\"max_seq_length\\\", 2048),\\n        num_negatives=cfg.get(\\\"num_negatives\\\", 5),\\n        pos_weight_alpha=cfg.get(\\\"pos_weight_alpha\\\", 1.0),\\n        use_fusion_head=cfg.get(\\\"use_fusion_head\\\", False),\\n    )\\n    val_loader = DataLoader(val_ds, batch_size=cfg.get(\\\"batch_size\\\", 4), shuffle=False, collate_fn=collate_fn, num_workers=2, pin_memory=True)\\n\\n    print(f\\\"Evaluating on {len(val_ds)} val samples...\\\")\\n    metrics = evaluate(model, val_loader, device)\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\"*50)\\n    print(\\\"EVAL RESULTS (random_s42 best checkpoint)\\\")\\n    print(\\\"=\\\"*50)\\n    for k, v in metrics.items():\\n        print(f\\\"  {k}: {v:.6f}\\\")\\n    print(\\\"=\\\"*50)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "84044256-7236-4139-a1a4-ff0e78e5097f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Eval a saved StructFuse checkpoint on the val set (val_loss + recall@1/5/10).\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, math, random, sys, os\\\\nfrom pathlib import Path\\\\nfrom typing import Any, Dict, List\\\\n\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom torch.utils.data import DataLoader, Dataset\\\\nfrom transformers import AutoTokenizer\\\\n\\\\nsys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), \\\\\\\"training\\\\\\\"))\\\\nfrom contrastive_model import StructFuseEncoder\\\\n\\\\n\\\\nclass ContrastiveDataset(Dataset):\\\\n    def __init__(self, data_path, tokenizer, max_seq_length, num_negatives, pos_weight_alpha, use_fusion_head):\\\\n        self.tokenizer = tokenizer\\\\n        self.max_seq_length = max_seq_length\\\\n        self.num_negatives = num_negatives\\\\n        self.alpha = pos_weight_alpha\\\\n        self.use_fusion_head = use_fusion_head\\\\n        self.samples = []\\\\n        with open(data_path) as f:\\\\n            for line in f:\\\\n                if line.strip():\\\\n                    self.samples.append(json.loads(line))\\\\n        self._negatives = {}\\\\n\\\\n    def __len__(self):\\\\n        return len(self.samples)\\\\n\\\\n    def __getitem__(self, idx):\\\\n        s = self.samples[idx]\\\\n        query_enc = self.tokenizer(s[\\\\\\\"query_tokens\\\\\\\"], truncation=True, max_length=self.max_seq_length, padding=False, return_tensors=None)\\\\n        pos_enc = self.tokenizer(s[\\\\\\\"pos_tokens\\\\\\\"], truncation=True, max_length=self.max_seq_length, padding=False, return_tensors=None)\\\\n        dist = s.get(\\\\\\\"pos_dataflow_distance\\\\\\\", 1.0)\\\\n        pos_weight = math.exp(-self.alpha * dist)\\\\n\\\\n        neg_pool = self._negatives.get(idx, [])\\\\n        if len(neg_pool) < self.num_negatives:\\\\n            fallback = list(s.get(\\\\\\\"neg_candidates\\\\\\\", []))\\\\n            random.shuffle(fallback)\\\\n            while len(neg_pool) < self.num_negatives and fallback:\\\\n                cid = fallback.pop()\\\\n                neg_pool.append({\\\\\\\"id\\\\\\\": cid, \\\\\\\"tokens\\\\\\\": s.get(\\\\\\\"candidate_tokens\\\\\\\", {}).get(cid, \\\\\\\"\\\\\\\")})\\\\n\\\\n        resolved_negs = []\\\\n        for neg_item in neg_pool:\\\\n            if isinstance(neg_item, tuple):\\\\n                cid = neg_item[0]\\\\n                tokens = s.get('candidate_tokens', {}).get(cid, cid)\\\\n            else:\\\\n                tokens = neg_item.get('tokens', neg_item.get('id', ''))\\\\n            if tokens:\\\\n                resolved_negs.append(tokens)\\\\n\\\\n        neg_encs = []\\\\n        neg_valid = []\\\\n        for ni in range(self.num_negatives):\\\\n            if ni < len(resolved_negs):\\\\n                enc = self.tokenizer(resolved_negs[ni], truncation=True, max_length=self.max_seq_length, padding=False, return_tensors=None)\\\\n                neg_encs.append(enc)\\\\n                neg_valid.append(True)\\\\n            else:\\\\n                neg_encs.append({\\\\\\\"input_ids\\\\\\\": [0], \\\\\\\"attention_mask\\\\\\\": [0]})\\\\n                neg_valid.append(False)\\\\n\\\\n        features = None\\\\n        if self.use_fusion_head:\\\\n            features = self._extract_features(s, neg_pool)\\\\n\\\\n        return {\\\\n            \\\\\\\"query_ids\\\\\\\": query_enc[\\\\\\\"input_ids\\\\\\\"],\\\\n            \\\\\\\"query_mask\\\\\\\": query_enc[\\\\\\\"attention_mask\\\\\\\"],\\\\n            \\\\\\\"pos_ids\\\\\\\": pos_enc[\\\\\\\"input_ids\\\\\\\"],\\\\n            \\\\\\\"pos_mask\\\\\\\": pos_enc[\\\\\\\"attention_mask\\\\\\\"],\\\\n            \\\\\\\"neg_ids\\\\\\\": [e[\\\\\\\"input_ids\\\\\\\"] for e in neg_encs],\\\\n            \\\\\\\"neg_mask\\\\\\\": [e[\\\\\\\"attention_mask\\\\\\\"] for e in neg_encs],\\\\n            \\\\\\\"neg_valid\\\\\\\": neg_valid,\\\\n            \\\\\\\"pos_weight\\\\\\\": pos_weight,\\\\n            \\\\\\\"features\\\\\\\": features,\\\\n        }\\\\n\\\\n\\\\ndef collate_fn(batch):\\\\n    def _pad_1d(seqs, pad_value=0):\\\\n        max_len = max(len(s) for s in seqs)\\\\n        padded = [s + [pad_value] * (max_len - len(s)) for s in seqs]\\\\n        return torch.tensor(padded, dtype=torch.long)\\\\n\\\\n    def _pad_2d(batch_seqs, pad_value=0):\\\\n        max_len = max(len(s) for seqs in batch_seqs for s in seqs)\\\\n        max_len = max(max_len, 1)\\\\n        result = []\\\\n        for seqs in batch_seqs:\\\\n            padded = [s + [pad_value] * (max_len - len(s)) for s in seqs]\\\\n            result.append(padded)\\\\n        return torch.tensor(result, dtype=torch.long)\\\\n\\\\n    query_ids = _pad_1d([b[\\\\\\\"query_ids\\\\\\\"] for b in batch])\\\\n    query_mask = _pad_1d([b[\\\\\\\"query_mask\\\\\\\"] for b in batch])\\\\n    pos_ids = _pad_1d([b[\\\\\\\"pos_ids\\\\\\\"] for b in batch])\\\\n    pos_mask = _pad_1d([b[\\\\\\\"pos_mask\\\\\\\"] for b in batch])\\\\n    neg_ids = _pad_2d([b[\\\\\\\"neg_ids\\\\\\\"] for b in batch])\\\\n    neg_mask = _pad_2d([b[\\\\\\\"neg_mask\\\\\\\"] for b in batch])\\\\n    pos_weights = torch.tensor([b[\\\\\\\"pos_weight\\\\\\\"] for b in batch], dtype=torch.float32)\\\\n    neg_valid_mask = torch.tensor([b[\\\\\\\"neg_valid\\\\\\\"] for b in batch], dtype=torch.bool)\\\\n\\\\n    out = {\\\\n        \\\\\\\"query_ids\\\\\\\": query_ids, \\\\\\\"query_mask\\\\\\\": query_mask,\\\\n        \\\\\\\"pos_ids\\\\\\\": pos_ids, \\\\\\\"pos_mask\\\\\\\": pos_mask,\\\\n        \\\\\\\"neg_ids\\\\\\\": neg_ids, \\\\\\\"neg_mask\\\\\\\": neg_mask,\\\\n        \\\\\\\"neg_valid_mask\\\\\\\": neg_valid_mask, \\\\\\\"pos_weights\\\\\\\": pos_weights,\\\\n    }\\\\n    if batch[0][\\\\\\\"features\\\\\\\"] is not None:\\\\n        out[\\\\\\\"features\\\\\\\"] = torch.tensor([b[\\\\\\\"features\\\\\\\"] for b in batch], dtype=torch.float32)\\\\n    return out\\\\n\\\\n\\\\n@torch.no_grad()\\\\ndef evaluate(model, val_loader, device):\\\\n    model.eval()\\\\n    total_loss = 0.0\\\\n    total_correct = {1: 0, 5: 0, 10: 0}\\\\n    total_samples = 0\\\\n\\\\n    for batch in val_loader:\\\\n        batch = {k: v.to(device) if isinstance(v, torch.Tensor) else v for k, v in batch.items()}\\\\n        loss, logits = model(\\\\n            query_ids=batch[\\\\\\\"query_ids\\\\\\\"], query_mask=batch[\\\\\\\"query_mask\\\\\\\"],\\\\n            pos_ids=batch[\\\\\\\"pos_ids\\\\\\\"], pos_mask=batch[\\\\\\\"pos_mask\\\\\\\"],\\\\n            neg_ids=batch[\\\\\\\"neg_ids\\\\\\\"], neg_mask=batch[\\\\\\\"neg_mask\\\\\\\"],\\\\n            neg_valid_mask=batch.get(\\\\\\\"neg_valid_mask\\\\\\\"),\\\\n            pos_weights=batch[\\\\\\\"pos_weights\\\\\\\"],\\\\n            features=batch.get(\\\\\\\"features\\\\\\\"),\\\\n        )\\\\n        total_loss += loss.item() * logits.size(0)\\\\n        total_samples += logits.size(0)\\\\n        for k in [1, 5, 10]:\\\\n            topk = logits.topk(min(k, logits.size(1)), dim=1).indices\\\\n            total_correct[k] += (topk == 0).any(dim=1).sum().item()\\\\n\\\\n    metrics = {\\\\\\\"val_loss\\\\\\\": total_loss / max(total_samples, 1)}\\\\n    for k in [1, 5, 10]:\\\\n        metrics[f\\\\\\\"recall@{k}\\\\\\\"] = total_correct[k] / max(total_samples, 1)\\\\n    return metrics\\\\n\\\\n\\\\ndef main():\\\\n    ckpt_dir = Path(\\\\\\\"/root/autodl-tmp/structfuse/m2_starcoder_output/random_s42/best\\\\\\\")\\\\n    val_file = \\\\\\\"/root/autodl-tmp/structfuse/m2_embed_verify_data/val.jsonl\\\\\\\"\\\\n\\\\n    with open(ckpt_dir / \\\\\\\"training_config.json\\\\\\\") as f:\\\\n        cfg = json.load(f)\\\\n\\\\n    device = torch.device(\\\\\\\"cuda:0\\\\\\\")\\\\n    print(f\\\\\\\"Loading tokenizer from {ckpt_dir}...\\\\\\\")\\\\n    tokenizer = AutoTokenizer.from_pretrained(str(ckpt_dir), trust_remote_code=True)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    print(f\\\\\\\"Building model (model_name={cfg['model_name']})...\\\\\\\")\\\\n    model = StructFuseEncoder(\\\\n        model_name=cfg[\\\\\\\"model_name\\\\\\\"],\\\\n        proj_dim=cfg.get(\\\\\\\"proj_dim\\\\\\\", 256),\\\\n        use_projection=True,\\\\n        use_lora=cfg.get(\\\\\\\"use_lora\\\\\\\", True),\\\\n        lora_r=cfg.get(\\\\\\\"lora_r\\\\\\\", 16),\\\\n        lora_alpha=cfg.get(\\\\\\\"lora_r\\\\\\\", 16) * 2,\\\\n        use_fusion_head=cfg.get(\\\\\\\"use_fusion_head\\\\\\\", False),\\\\n    )\\\\n\\\\n    print(f\\\\\\\"Loading checkpoint from {ckpt_dir / 'model.pt'}...\\\\\\\")\\\\n    state_dict = torch.load(ckpt_dir / \\\\\\\"model.pt\\\\\\\", map_location=\\\\\\\"cpu\\\\\\\", weights_only=True)\\\\n    model.load_state_dict(state_dict, strict=False)\\\\n    model = model.to(device)\\\\n    model.eval()\\\\n\\\\n    print(f\\\\\\\"Loading val data from {val_file}...\\\\\\\")\\\\n    random.seed(cfg.get(\\\\\\\"seed\\\\\\\", 42))\\\\n    val_ds = ContrastiveDataset(\\\\n        val_file, tokenizer,\\\\n        max_seq_length=cfg.get(\\\\\\\"max_seq_length\\\\\\\", 2048),\\\\n        num_negatives=cfg.get(\\\\\\\"num_negatives\\\\\\\", 5),\\\\n        pos_weight_alpha=cfg.get(\\\\\\\"pos_weight_alpha\\\\\\\", 1.0),\\\\n        use_fusion_head=cfg.get(\\\\\\\"use_fusion_head\\\\\\\", False),\\\\n    )\\\\n    val_loader = DataLoader(val_ds, batch_size=cfg.get(\\\\\\\"batch_size\\\\\\\", 4), shuffle=False, collate_fn=collate_fn, num_workers=2, pin_memory=True)\\\\n\\\\n    print(f\\\\\\\"Evaluating on {len(val_ds)} val samples...\\\\\\\")\\\\n    metrics = evaluate(model, val_loader, device)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*50)\\\\n    print(\\\\\\\"EVAL RESULTS (random_s42 best checkpoint)\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\"*50)\\\\n    for k, v in metrics.items():\\\\n        print(f\\\\\\\"  {k}: {v:.6f}\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\"*50)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Eval a saved StructFuse checkpoint on the val set (val_loss + recall@1/5/10).\\\"\\\"\\\"\\nimport json, math, random, sys, os\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List\\n\\nimport torch\\nimport torch.nn.functional as F\\nfrom torch.utils.data import DataLoader, Dataset\\nfrom transformers import AutoTokenizer\\n\\nsys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), \\\"training\\\"))\\nfrom contrastive_model import StructFuseEncoder\\n\\n\\nclass ContrastiveDataset(Dataset):\\n    def __init__(self, data_path, tokenizer, max_seq_length, num_negatives, pos_weight_alpha, use_fusion_head):\\n        self.tokenizer = tokenizer\\n        self.max_seq_length = max_seq_length\\n        self.num_negatives = num_negatives\\n        self.alpha = pos_weight_alpha\\n        self.use_fusion_head = use_fusion_head\\n        self.samples = []\\n        with open(data_path) as f:\\n            for line in f:\\n                if line.strip():\\n                    self.samples.append(json.loads(line))\\n        self._negatives = {}\\n\\n    def __len__(self):\\n        return len(self.samples)\\n\\n    def __getitem__(self, idx):\\n        s = self.samples[idx]\\n        query_enc = self.tokenizer(s[\\\"query_tokens\\\"], truncation=True, max_length=self.max_seq_length, padding=False, return_tensors=None)\\n        pos_enc = self.tokenizer(s[\\\"pos_tokens\\\"], truncation=True, max_length=self.max_seq_length, padding=False, return_tensors=None)\\n        dist = s.get(\\\"pos_dataflow_distance\\\", 1.0)\\n        pos_weight = math.exp(-self.alpha * dist)\\n\\n        neg_pool = self._negatives.get(idx, [])\\n        if len(neg_pool) < self.num_negatives:\\n            fallback = list(s.get(\\\"neg_candidates\\\", []))\\n            random.shuffle(fallback)\\n            while len(neg_pool) < self.num_negatives and fallback:\\n                cid = fallback.pop()\\n                neg_pool.append({\\\"id\\\": cid, \\\"tokens\\\": s.get(\\\"candidate_tokens\\\", {}).get(cid, \\\"\\\")})\\n\\n        resolved_negs = []\\n        for neg_item in neg_pool:\\n            if isinstance(neg_item, tuple):\\n                cid = neg_item[0]\\n                tokens = s.get('candidate_tokens', {}).get(cid, cid)\\n            else:\\n                tokens = neg_item.get('tokens', neg_item.get('id', ''))\\n            if tokens:\\n                resolved_negs.append(tokens)\\n\\n        neg_encs = []\\n        neg_valid = []\\n        for ni in range(self.num_negatives):\\n            if ni < len(resolved_negs):\\n                enc = self.tokenizer(resolved_negs[ni], truncation=True, max_length=self.max_seq_length, padding=False, return_tensors=None)\\n                neg_encs.append(enc)\\n                neg_valid.append(True)\\n            else:\\n                neg_encs.append({\\\"input_ids\\\": [0], \\\"attention_mask\\\": [0]})\\n                neg_valid.append(False)\\n\\n        features = None\\n        if self.use_fusion_head:\\n            features = self._extract_features(s, neg_pool)\\n\\n        return {\\n            \\\"query_ids\\\": query_enc[\\\"input_ids\\\"],\\n            \\\"query_mask\\\": query_enc[\\\"attention_mask\\\"],\\n            \\\"pos_ids\\\": pos_enc[\\\"input_ids\\\"],\\n            \\\"pos_mask\\\": pos_enc[\\\"attention_mask\\\"],\\n            \\\"neg_ids\\\": [e[\\\"input_ids\\\"] for e in neg_encs],\\n            \\\"neg_mask\\\": [e[\\\"attention_mask\\\"] for e in neg_encs],\\n            \\\"neg_valid\\\": neg_valid,\\n            \\\"pos_weight\\\": pos_weight,\\n            \\\"features\\\": features,\\n        }\\n\\n\\ndef collate_fn(batch):\\n    def _pad_1d(seqs, pad_value=0):\\n        max_len = max(len(s) for s in seqs)\\n        padded = [s + [pad_value] * (max_len - len(s)) for s in seqs]\\n        return torch.tensor(padded, dtype=torch.long)\\n\\n    def _pad_2d(batch_seqs, pad_value=0):\\n        max_len = max(len(s) for seqs in batch_seqs for s in seqs)\\n        max_len = max(max_len, 1)\\n        result = []\\n        for seqs in batch_seqs:\\n            padded = [s + [pad_value] * (max_len - len(s)) for s in seqs]\\n            result.append(padded)\\n        return torch.tensor(result, dtype=torch.long)\\n\\n    query_ids = _pad_1d([b[\\\"query_ids\\\"] for b in batch])\\n    query_mask = _pad_1d([b[\\\"query_mask\\\"] for b in batch])\\n    pos_ids = _pad_1d([b[\\\"pos_ids\\\"] for b in batch])\\n    pos_mask = _pad_1d([b[\\\"pos_mask\\\"] for b in batch])\\n    neg_ids = _pad_2d([b[\\\"neg_ids\\\"] for b in batch])\\n    neg_mask = _pad_2d([b[\\\"neg_mask\\\"] for b in batch])\\n    pos_weights = torch.tensor([b[\\\"pos_weight\\\"] for b in batch], dtype=torch.float32)\\n    neg_valid_mask = torch.tensor([b[\\\"neg_valid\\\"] for b in batch], dtype=torch.bool)\\n\\n    out = {\\n        \\\"query_ids\\\": query_ids, \\\"query_mask\\\": query_mask,\\n        \\\"pos_ids\\\": pos_ids, \\\"pos_mask\\\": pos_mask,\\n        \\\"neg_ids\\\": neg_ids, \\\"neg_mask\\\": neg_mask,\\n        \\\"neg_valid_mask\\\": neg_valid_mask, \\\"pos_weights\\\": pos_weights,\\n    }\\n    if batch[0][\\\"features\\\"] is not None:\\n        out[\\\"features\\\"] = torch.tensor([b[\\\"features\\\"] for b in batch], dtype=torch.float32)\\n    return out\\n\\n\\n@torch.no_grad()\\ndef evaluate(model, val_loader, device):\\n    model.eval()\\n    total_loss = 0.0\\n    total_correct = {1: 0, 5: 0, 10: 0}\\n    total_samples = 0\\n\\n    for batch in val_loader:\\n        batch = {k: v.to(device) if isinstance(v, torch.Tensor) else v for k, v in batch.items()}\\n        loss, logits = model(\\n            query_ids=batch[\\\"query_ids\\\"], query_mask=batch[\\\"query_mask\\\"],\\n            pos_ids=batch[\\\"pos_ids\\\"], pos_mask=batch[\\\"pos_mask\\\"],\\n            neg_ids=batch[\\\"neg_ids\\\"], neg_mask=batch[\\\"neg_mask\\\"],\\n            neg_valid_mask=batch.get(\\\"neg_valid_mask\\\"),\\n            pos_weights=batch[\\\"pos_weights\\\"],\\n            features=batch.get(\\\"features\\\"),\\n        )\\n        total_loss += loss.item() * logits.size(0)\\n        total_samples += logits.size(0)\\n        for k in [1, 5, 10]:\\n            topk = logits.topk(min(k, logits.size(1)), dim=1).indices\\n            total_correct[k] += (topk == 0).any(dim=1).sum().item()\\n\\n    metrics = {\\\"val_loss\\\": total_loss / max(total_samples, 1)}\\n    for k in [1, 5, 10]:\\n        metrics[f\\\"recall@{k}\\\"] = total_correct[k] / max(total_samples, 1)\\n    return metrics\\n\\n\\ndef main():\\n    ckpt_dir = Path(\\\"/root/autodl-tmp/structfuse/m2_starcoder_output/random_s42/best\\\")\\n    val_file = \\\"/root/autodl-tmp/structfuse/m2_embed_verify_data/val.jsonl\\\"\\n\\n    with open(ckpt_dir / \\\"training_config.json\\\") as f:\\n        cfg = json.load(f)\\n\\n    device = torch.device(\\\"cuda:0\\\")\\n    print(f\\\"Loading tokenizer from {ckpt_dir}...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(str(ckpt_dir), trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    print(f\\\"Building model (model_name={cfg['model_name']})...\\\")\\n    model = StructFuseEncoder(\\n        model_name=cfg[\\\"model_name\\\"],\\n        proj_dim=cfg.get(\\\"proj_dim\\\", 256),\\n        use_projection=True,\\n        use_lora=cfg.get(\\\"use_lora\\\", True),\\n        lora_r=cfg.get(\\\"lora_r\\\", 16),\\n        lora_alpha=cfg.get(\\\"lora_r\\\", 16) * 2,\\n        use_fusion_head=cfg.get(\\\"use_fusion_head\\\", False),\\n    )\\n\\n    print(f\\\"Loading checkpoint from {ckpt_dir / 'model.pt'}...\\\")\\n    state_dict = torch.load(ckpt_dir / \\\"model.pt\\\", map_location=\\\"cpu\\\", weights_only=True)\\n    model.load_state_dict(state_dict, strict=False)\\n    model = model.to(device)\\n    model.eval()\\n\\n    print(f\\\"Loading val data from {val_file}...\\\")\\n    random.seed(cfg.get(\\\"seed\\\", 42))\\n    val_ds = ContrastiveDataset(\\n        val_file, tokenizer,\\n        max_seq_length=cfg.get(\\\"max_seq_length\\\", 2048),\\n        num_negatives=cfg.get(\\\"num_negatives\\\", 5),\\n        pos_weight_alpha=cfg.get(\\\"pos_weight_alpha\\\", 1.0),\\n        use_fusion_head=cfg.get(\\\"use_fusion_head\\\", False),\\n    )\\n    val_loader = DataLoader(val_ds, batch_size=cfg.get(\\\"batch_size\\\", 4), shuffle=False, collate_fn=collate_fn, num_workers=2, pin_memory=True)\\n\\n    print(f\\\"Evaluating on {len(val_ds)} val samples...\\\")\\n    metrics = evaluate(model, val_loader, device)\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\"*50)\\n    print(\\\"EVAL RESULTS (random_s42 best checkpoint)\\\")\\n    print(\\\"=\\\"*50)\\n    for k, v in metrics.items():\\n        print(f\\\"  {k}: {v:.6f}\\\")\\n    print(\\\"=\\\"*50)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+`train.py` was truncated. I need to see the middle section that contains the training loop, checkpoint saving logic, evaluation during training, and early stopping. Let me read the truncated portion.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "a68007be-f9cc-4800-8746-5a7eb2a6225e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NiYSV7TMnCZ9VBmBfzWZbR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9632,
+      "cache_read_input_tokens": 31683,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9632
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+`train.py` 被截断了，需要看训练循环核心部分。用 grep 定位关键逻辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "207bbc3c-cfe5-4b61-b47d-add9b90592dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NiYSV7TMnCZ9VBmBfzWZbR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9632,
+      "cache_read_input_tokens": 31683,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9632
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J8HrjYAXcgEq99jua5KsAn`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"best\\|checkpoint\\|early_stop\\|patience\\|final\\|evaluate\\|save\\|recall\" /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "8b2ec128-e32f-4484-9377-ef5e8388c9a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NiYSV7TMnCZ9VBmBfzWZbR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9632,
+      "cache_read_input_tokens": 31683,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9632
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T03:09:26.371Z_
+
+<details><summary>↩ Tool result · `toolu_01J8HrjYAXcgEq99jua5KsAn`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "16d9d29a-6dd0-4796-b13d-8dbd1a0a377d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BB5dF4JTn1X58KByBw6PTs`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"best\" /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "ae654388-07c9-44af-a852-b378d1f3888c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017fJe7g91buJMZy92cZVUYV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 330,
+      "cache_read_input_tokens": 41315,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 330
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y1aL5wkCeBgRfSbA5APdG4`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"checkpoint\" /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "d2f6b7db-6741-4130-8f68-c448abc99973",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017fJe7g91buJMZy92cZVUYV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 330,
+      "cache_read_input_tokens": 41315,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 330
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019gLx9brZUdFEofM2jYi8Pn`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"early_stop\" /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "9e6eea8e-7527-41b8-aec8-cea15bcf124d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017fJe7g91buJMZy92cZVUYV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 330,
+      "cache_read_input_tokens": 41315,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 330
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01L1VeraUSe1bdFJDtWZmL3t`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"final\" /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "6c223471-51d3-454d-8411-d68a34cea5a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017fJe7g91buJMZy92cZVUYV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 330,
+      "cache_read_input_tokens": 41315,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 330
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T03:09:32.929Z_
+
+<details><summary>↩ Tool result · `toolu_01BB5dF4JTn1X58KByBw6PTs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"361:    best_val_loss = float(\\\"inf\\\")\\n362:    best_val_loss_step = 0\\n363:    best_recall_at_1 = 0.0\\n432:                    if cur_val_loss < best_val_loss:\\n435:                            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping best checkpoint save\\\")\\n437:                            best_dir = output_dir / \\\"best_by_val_loss\\\"\\n438:                            if best_dir.exists():\\n439:                                shutil.rmtree(best_dir)\\n440:                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_dir, args)\\n441:                            best_val_loss = cur_val_loss\\n442:                            best_val_loss_step = global_step\\n443:                            _print_flush(f\\\"  New best val_loss={cur_val_loss:.4f}, saved to {best_dir}\\\")\\n450:                    if cur_recall_at_1 > best_recall_at_1:\\n453:                            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping best R@1 checkpoint save\\\")\\n455:                            best_r1_dir = output_dir / \\\"best_by_recall_at_1\\\"\\n456:                            if best_r1_dir.exists():\\n457:                                shutil.rmtree(best_r1_dir)\\n458:                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_r1_dir, args)\\n459:                            best_recall_at_1 = cur_recall_at_1\\n460:                            _print_flush(f\\\"  New best R@1={cur_recall_at_1:.4f}, saved to {best_r1_dir}\\\")\\n463:                        _print_flush(f\\\"Early stopping triggered at step {global_step}, best val_loss={best_val_loss:.4f} at step {best_val_loss_step}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "4c20f6e0-01d6-46c4-b78b-0473c09862b9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"361:    best_val_loss = float(\\\\\\\"inf\\\\\\\")\\\\n362:    best_val_loss_step = 0\\\\n363:    best_recall_at_1 = 0.0\\\\n432:                    if cur_val_loss < best_val_loss:\\\\n435:                            _print_flush(f\\\\\\\"WARNING: Only {free_gb:.1f}GB free, skipping best checkpoint save\\\\\\\")\\\\n437:                            best_dir = output_dir / \\\\\\\"best_by_val_loss\\\\\\\"\\\\n438:                            if best_dir.exists():\\\\n439:                                shutil.rmtree(best_dir)\\\\n440:                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_dir, args)\\\\n441:                            best_val_loss = cur_val_loss\\\\n442:                            best_val_loss_step = global_step\\\\n443:                            _print_flush(f\\\\\\\"  New best val_loss={cur_val_loss:.4f}, saved to {best_dir}\\\\\\\")\\\\n450:                    if cur_recall_at_1 > best_recall_at_1:\\\\n453:                            _print_flush(f\\\\\\\"WARNING: Only {free_gb:.1f}GB free, skipping best R@1 checkpoint save\\\\\\\")\\\\n455:                            best_r1_dir = output_dir / \\\\\\\"best_by_recall_at_1\\\\\\\"\\\\n456:                            if best_r1_dir.exists():\\\\n457:                                shutil.rmtree(best_r1_dir)\\\\n458:                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_r1_dir, args)\\\\n459:                            best_recall_at_1 = cur_recall_at_1\\\\n460:                            _print_flush(f\\\\\\\"  New best R@1={cur_recall_at_1:.4f}, saved to {best_r1_dir}\\\\\\\")\\\\n463:                        _print_flush(f\\\\\\\"Early stopping triggered at step {global_step}, best val_loss={best_val_loss:.4f} at step {best_val_loss_step}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"361:    best_val_loss = float(\\\"inf\\\")\\n362:    best_val_loss_step = 0\\n363:    best_recall_at_1 = 0.0\\n432:                    if cur_val_loss < best_val_loss:\\n435:                            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping best checkpoint save\\\")\\n437:                            best_dir = output_dir / \\\"best_by_val_loss\\\"\\n438:                            if best_dir.exists():\\n439:                                shutil.rmtree(best_dir)\\n440:                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_dir, args)\\n441:                            best_val_loss = cur_val_loss\\n442:                            best_val_loss_step = global_step\\n443:                            _print_flush(f\\\"  New best val_loss={cur_val_loss:.4f}, saved to {best_dir}\\\")\\n450:                    if cur_recall_at_1 > best_recall_at_1:\\n453:                            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping best R@1 checkpoint save\\\")\\n455:                            best_r1_dir = output_dir / \\\"best_by_recall_at_1\\\"\\n456:                            if best_r1_dir.exists():\\n457:                                shutil.rmtree(best_r1_dir)\\n458:                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_r1_dir, args)\\n459:                            best_recall_at_1 = cur_recall_at_1\\n460:                            _print_flush(f\\\"  New best R@1={cur_recall_at_1:.4f}, saved to {best_r1_dir}\\\")\\n463:                        _print_flush(f\\\"Early stopping triggered at step {global_step}, best val_loss={best_val_loss:.4f} at step {best_val_loss_step}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T03:09:33.354Z_
+
+<details><summary>↩ Tool result · `toolu_01Y1aL5wkCeBgRfSbA5APdG4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"9:via HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\n301:    if args.gradient_checkpointing:\\n302:        model.enable_gradient_checkpointing()\\n435:                            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping best checkpoint save\\\")\\n440:                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_dir, args)\\n453:                            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping best R@1 checkpoint save\\\")\\n458:                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_r1_dir, args)\\n475:            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping final checkpoint save\\\")\\n477:            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, output_dir / \\\"final\\\", args)\\n553:def _save_checkpoint(model, tokenizer, path, args):\\n599:    p.add_argument(\\\"--gradient-checkpointing\\\", action=\\\"store_true\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "c5beba74-a120-4821-8281-a81a12c2806a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"9:via HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\\\n301:    if args.gradient_checkpointing:\\\\n302:        model.enable_gradient_checkpointing()\\\\n435:                            _print_flush(f\\\\\\\"WARNING: Only {free_gb:.1f}GB free, skipping best checkpoint save\\\\\\\")\\\\n440:                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_dir, args)\\\\n453:                            _print_flush(f\\\\\\\"WARNING: Only {free_gb:.1f}GB free, skipping best R@1 checkpoint save\\\\\\\")\\\\n458:                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_r1_dir, args)\\\\n475:            _print_flush(f\\\\\\\"WARNING: Only {free_gb:.1f}GB free, skipping final checkpoint save\\\\\\\")\\\\n477:            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, output_dir / \\\\\\\"final\\\\\\\", args)\\\\n553:def _save_checkpoint(model, tokenizer, path, args):\\\\n599:    p.add_argument(\\\\\\\"--gradient-checkpointing\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"9:via HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\n301:    if args.gradient_checkpointing:\\n302:        model.enable_gradient_checkpointing()\\n435:                            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping best checkpoint save\\\")\\n440:                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_dir, args)\\n453:                            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping best R@1 checkpoint save\\\")\\n458:                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_r1_dir, args)\\n475:            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping final checkpoint save\\\")\\n477:            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, output_dir / \\\"final\\\", args)\\n553:def _save_checkpoint(model, tokenizer, path, args):\\n599:    p.add_argument(\\\"--gradient-checkpointing\\\", action=\\\"store_true\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T03:09:33.778Z_
+
+<details><summary>↩ Tool result · `toolu_019gLx9brZUdFEofM2jYi8Pn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"365:    early_stopped = False\\n368:        if early_stopped:\\n447:                        _print_flush(f\\\"  val_loss not improved ({no_improve_count}/{args.early_stopping_patience})\\\")\\n462:                    if args.early_stopping_patience > 0 and no_improve_count >= args.early_stopping_patience:\\n464:                        early_stopped = True\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "adf342ef-ccbf-43b0-9fbf-59f957c2e3e3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"365:    early_stopped = False\\\\n368:        if early_stopped:\\\\n447:                        _print_flush(f\\\\\\\"  val_loss not improved ({no_improve_count}/{args.early_stopping_patience})\\\\\\\")\\\\n462:                    if args.early_stopping_patience > 0 and no_improve_count >= args.early_stopping_patience:\\\\n464:                        early_stopped = True\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"365:    early_stopped = False\\n368:        if early_stopped:\\n447:                        _print_flush(f\\\"  val_loss not improved ({no_improve_count}/{args.early_stopping_patience})\\\")\\n462:                    if args.early_stopping_patience > 0 and no_improve_count >= args.early_stopping_patience:\\n464:                        early_stopped = True\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T03:09:34.202Z_
+
+<details><summary>↩ Tool result · `toolu_01L1VeraUSe1bdFJDtWZmL3t`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"467:    # ── final save ───────────────────────────────────────────────\\n469:        final_metrics = evaluate(accelerator.unwrap_model(model), val_loader, accelerator)\\n470:        _print_flush(f\\\"[Final eval] {final_metrics}\\\")\\n472:            accelerator.log(final_metrics, step=global_step)\\n475:            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping final checkpoint save\\\")\\n477:            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, output_dir / \\\"final\\\", args)\\n478:            _print_flush(f\\\"Training complete. Model saved to {output_dir / 'final'}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "7dcc88c4-2a81-4ac3-a236-ccc71dd70c8d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"467:    # ── final save ───────────────────────────────────────────────\\\\n469:        final_metrics = evaluate(accelerator.unwrap_model(model), val_loader, accelerator)\\\\n470:        _print_flush(f\\\\\\\"[Final eval] {final_metrics}\\\\\\\")\\\\n472:            accelerator.log(final_metrics, step=global_step)\\\\n475:            _print_flush(f\\\\\\\"WARNING: Only {free_gb:.1f}GB free, skipping final checkpoint save\\\\\\\")\\\\n477:            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, output_dir / \\\\\\\"final\\\\\\\", args)\\\\n478:            _print_flush(f\\\\\\\"Training complete. Model saved to {output_dir / 'final'}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"467:    # ── final save ───────────────────────────────────────────────\\n469:        final_metrics = evaluate(accelerator.unwrap_model(model), val_loader, accelerator)\\n470:        _print_flush(f\\\"[Final eval] {final_metrics}\\\")\\n472:            accelerator.log(final_metrics, step=global_step)\\n475:            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping final checkpoint save\\\")\\n477:            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, output_dir / \\\"final\\\", args)\\n478:            _print_flush(f\\\"Training complete. Model saved to {output_dir / 'final'}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+关键行号定位到了。现在读取训练循环核心段（约 350-480 行）和 evaluate 函数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "2741ce09-8d94-435b-97c6-eb97259c73c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gdx3qKc6vtFTC2ZkCJKU33",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2096,
+      "cache_read_input_tokens": 41645,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2096
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011Xmw8Eo6bJyABHjfneKjBc`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "head -n 500 /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "096ee77c-e1c2-4b3a-b7e2-6dedae15cf26",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gdx3qKc6vtFTC2ZkCJKU33",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2096,
+      "cache_read_input_tokens": 41645,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2096
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-16T03:09:38.400Z_
+
+<details><summary>↩ Tool result · `toolu_011Xmw8Eo6bJyABHjfneKjBc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"from __future__ import annotations\\n\\nimport os\\n\\n\\\"\\\"\\\"StructFuse contrastive training entry point.\\n\\nTrains a bi-encoder (Qwen2.5-Coder-3B) with InfoNCE loss, data-flow-weighted\\npositives, and configurable hard-negative mining.  Supports single/multi-GPU\\nvia HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\n\\\"\\\"\\\"\\n\\n\\nimport argparse\\nimport sys\\nimport json\\nimport math\\nimport os\\nimport random\\nimport shutil\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List\\n\\nimport numpy as np\\nimport torch\\nfrom torch.utils.data import DataLoader, Dataset\\nfrom transformers import AutoTokenizer, get_cosine_schedule_with_warmup\\n\\nfrom accelerate import Accelerator\\nfrom accelerate.utils import set_seed\\n\\nfrom contrastive_model import StructFuseEncoder\\nfrom hard_negative_mining import build_miner, mine_batch\\n\\n\\n\\ndef _print_flush(*args, **kwargs):\\n    \\\"\\\"\\\"Print with explicit flush for file-redirect compatibility.\\\"\\\"\\\"\\n    kwargs['flush'] = True\\n    print(*args, **kwargs)\\n\\n# ── Dataset ──���───────────────────────────────────────────────────────\\n\\nclass ContrastiveDataset(Dataset):\\n    \\\"\\\"\\\"\\n    Each sample: {query, positive, negatives[], pos_weight, features[]}.\\n\\n    The raw data file is JSONL with fields:\\n        query_id, query_tokens, pos_id, pos_tokens, pos_dataflow_distance,\\n        neg_candidates (list of file ids), features (dict per candidate).\\n\\n    Negatives are mined dynamically per epoch via `refresh_negatives()`.\\n    \\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        data_path: str,\\n        tokenizer: AutoTokenizer,\\n        max_seq_length: int,\\n        num_negatives: int,\\n        pos_weight_alpha: float,\\n        use_fusion_head: bool,\\n    ):\\n        self.tokenizer = tokenizer\\n        self.max_seq_length = max_seq_length\\n        self.num_negatives = num_negatives\\n        self.alpha = pos_weight_alpha\\n        self.use_fusion_head = use_fusion_head\\n\\n        self.samples: List[Dict[str, Any]] = []\\n        with open(data_path) as f:\\n            for line in f:\\n                if line.strip():\\n                    self.samples.append(json.loads(line))\\n\\n        # mined negatives, refreshed each epoch\\n        self._negatives: Dict[int, List[Dict[str, Any]]] = {}\\n\\n    def refresh_negatives(self, mined: Dict[str, List[tuple]]):\\n        \\\"\\\"\\\"Update negatives after an epoch-level mining pass.\\\"\\\"\\\"\\n        self._negatives = {}\\n        for idx, sample in enumerate(self.samples):\\n            qid = sample[\\\"query_id\\\"]\\n            negs = mined.get(qid, [])\\n            self._negatives[idx] = negs\\n\\n    def __len__(self):\\n        return len(self.samples)\\n\\n    def __getitem__(self, idx):\\n        s = self.samples[idx]\\n\\n        query_enc = self.tokenizer(\\n            s[\\\"query_tokens\\\"], truncation=True, max_length=self.max_seq_length,\\n            padding=False, return_tensors=None,\\n        )\\n        pos_enc = self.tokenizer(\\n            s[\\\"pos_tokens\\\"], truncation=True, max_length=self.max_seq_length,\\n            padding=False, return_tensors=None,\\n        )\\n\\n        # positive weight from data-flow distance\\n        dist = s.get(\\\"pos_dataflow_distance\\\", 1.0)\\n        pos_weight = math.exp(-self.alpha * dist)\\n\\n        # negatives\\n        neg_pool = self._negatives.get(idx, [])\\n        if len(neg_pool) < self.num_negatives:\\n            # fallback: use candidates from the sample itself\\n            fallback = list(s.get(\\\"neg_candidates\\\", []))\\n            random.shuffle(fallback)\\n            while len(neg_pool) < self.num_negatives and fallback:\\n                cid = fallback.pop()\\n                neg_pool.append({\\\"id\\\": cid, \\\"tokens\\\": s.get(\\\"candidate_tokens\\\", {}).get(cid, \\\"\\\")})\\n\\n        # Resolve tokens, filter empties\\n        resolved_negs = []\\n        for neg_item in neg_pool:\\n            if isinstance(neg_item, tuple):\\n                cid = neg_item[0]\\n                tokens = s.get('candidate_tokens', {}).get(cid, cid)\\n            else:\\n                tokens = neg_item.get('tokens', neg_item.get('id', ''))\\n            if tokens:\\n                resolved_negs.append\\n\\n... [截断: 输出过长，省略 11513 字符] ...\\n\\nel(model), val_loader, accelerator\\n                )\\n                if accelerator.is_main_process:\\n                    _print_flush(f\\\"  [eval@{global_step}] {metrics}\\\")\\n                    if args.wandb_project:\\n                        accelerator.log(metrics, step=global_step)\\n\\n                    cur_val_loss = metrics[\\\"val_loss\\\"]\\n                    if cur_val_loss < best_val_loss:\\n                        free_gb = shutil.disk_usage(str(output_dir)).free / (1024**3)\\n                        if free_gb < 15:\\n                            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping best checkpoint save\\\")\\n                        else:\\n                            best_dir = output_dir / \\\"best_by_val_loss\\\"\\n                            if best_dir.exists():\\n                                shutil.rmtree(best_dir)\\n                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_dir, args)\\n                            best_val_loss = cur_val_loss\\n                            best_val_loss_step = global_step\\n                            _print_flush(f\\\"  New best val_loss={cur_val_loss:.4f}, saved to {best_dir}\\\")\\n                        no_improve_count = 0\\n                    else:\\n                        no_improve_count += 1\\n                        _print_flush(f\\\"  val_loss not improved ({no_improve_count}/{args.early_stopping_patience})\\\")\\n\\n                    cur_recall_at_1 = metrics[\\\"recall@1\\\"]\\n                    if cur_recall_at_1 > best_recall_at_1:\\n                        free_gb = shutil.disk_usage(str(output_dir)).free / (1024**3)\\n                        if free_gb < 15:\\n                            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping best R@1 checkpoint save\\\")\\n                        else:\\n                            best_r1_dir = output_dir / \\\"best_by_recall_at_1\\\"\\n                            if best_r1_dir.exists():\\n                                shutil.rmtree(best_r1_dir)\\n                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_r1_dir, args)\\n                            best_recall_at_1 = cur_recall_at_1\\n                            _print_flush(f\\\"  New best R@1={cur_recall_at_1:.4f}, saved to {best_r1_dir}\\\")\\n\\n                    if args.early_stopping_patience > 0 and no_improve_count >= args.early_stopping_patience:\\n                        _print_flush(f\\\"Early stopping triggered at step {global_step}, best val_loss={best_val_loss:.4f} at step {best_val_loss_step}\\\")\\n                        early_stopped = True\\n                        break\\n\\n    # ── final save ───────────────────────────────────────────────\\n    if accelerator.is_main_process:\\n        final_metrics = evaluate(accelerator.unwrap_model(model), val_loader, accelerator)\\n        _print_flush(f\\\"[Final eval] {final_metrics}\\\")\\n        if args.wandb_project:\\n            accelerator.log(final_metrics, step=global_step)\\n        free_gb = shutil.disk_usage(str(output_dir)).free / (1024**3)\\n        if free_gb < 15:\\n            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping final checkpoint save\\\")\\n        else:\\n            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, output_dir / \\\"final\\\", args)\\n            _print_flush(f\\\"Training complete. Model saved to {output_dir / 'final'}\\\")\\n\\n    if args.wandb_project:\\n        accelerator.end_training()\\n\\n\\n# ── helpers ──────────────────────────────────────────────────────────\\n\\n\\n@torch.no_grad()\\ndef _mine_dynamic_negatives(model, tokenizer, candidate_pools, train_ds,\\n                            num_negatives, max_seq_length, device):\\n    \\\"\\\"\\\"Re-encode candidates with current model, select top-k hardest negatives per query.\\\"\\\"\\\"\\n    model.eval()\\n\\n    iid_to_samples = {}\\n    for idx, sample in enumerate(train_ds.samples):\\n        qid = sample[\\\"query_id\\\"]\\n        iid = qid.split(\\\"::\\\", 1)[0]\\n        iid_to_samples.setdefault(iid, []).append(sample)\\n\\n    mined = {}\\n    for iid, samples in iid_to_samples.items():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "c94c5a02-df97-4ed0-b544-3920f744a4df",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"from __future__ import annotations\\\\n\\\\nimport os\\\\n\\\\n\\\\\\\"\\\\\\\"\\\\\\\"StructFuse contrastive training entry point.\\\\n\\\\nTrains a bi-encoder (Qwen2.5-Coder-3B) with InfoNCE loss, data-flow-weighted\\\\npositives, and configurable hard-negative mining.  Supports single/multi-GPU\\\\nvia HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n\\\\nimport argparse\\\\nimport sys\\\\nimport json\\\\nimport math\\\\nimport os\\\\nimport random\\\\nimport shutil\\\\nfrom pathlib import Path\\\\nfrom typing import Any, Dict, List\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom torch.utils.data import DataLoader, Dataset\\\\nfrom transformers import AutoTokenizer, get_cosine_schedule_with_warmup\\\\n\\\\nfrom accelerate import Accelerator\\\\nfrom accelerate.utils import set_seed\\\\n\\\\nfrom contrastive_model import StructFuseEncoder\\\\nfrom hard_negative_mining import build_miner, mine_batch\\\\n\\\\n\\\\n\\\\ndef _print_flush(*args, **kwargs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Print with explicit flush for file-redirect compatibility.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    kwargs['flush'] = True\\\\n    print(*args, **kwargs)\\\\n\\\\n# ── Dataset ──���───────────────────────────────────────────────────────\\\\n\\\\nclass ContrastiveDataset(Dataset):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Each sample: {query, positive, negatives[], pos_weight, features[]}.\\\\n\\\\n    The raw data file is JSONL with fields:\\\\n        query_id, query_tokens, pos_id, pos_tokens, pos_dataflow_distance,\\\\n        neg_candidates (list of file ids), features (dict per candidate).\\\\n\\\\n    Negatives are mined dynamically per epoch via `refresh_negatives()`.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(\\\\n        self,\\\\n        data_path: str,\\\\n        tokenizer: AutoTokenizer,\\\\n        max_seq_length: int,\\\\n        num_negatives: int,\\\\n        pos_weight_alpha: float,\\\\n        use_fusion_head: bool,\\\\n    ):\\\\n        self.tokenizer = tokenizer\\\\n        self.max_seq_length = max_seq_length\\\\n        self.num_negatives = num_negatives\\\\n        self.alpha = pos_weight_alpha\\\\n        self.use_fusion_head = use_fusion_head\\\\n\\\\n        self.samples: List[Dict[str, Any]] = []\\\\n        with open(data_path) as f:\\\\n            for line in f:\\\\n                if line.strip():\\\\n                    self.samples.append(json.loads(line))\\\\n\\\\n        # mined negatives, refreshed each epoch\\\\n        self._negatives: Dict[int, List[Dict[str, Any]]] = {}\\\\n\\\\n    def refresh_negatives(self, mined: Dict[str, List[tuple]]):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Update negatives after an epoch-level mining pass.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        self._negatives = {}\\\\n        for idx, sample in enumerate(self.samples):\\\\n            qid = sample[\\\\\\\"query_id\\\\\\\"]\\\\n            negs = mined.get(qid, [])\\\\n            self._negatives[idx] = negs\\\\n\\\\n    def __len__(self):\\\\n        return len(self.samples)\\\\n\\\\n    def __getitem__(self, idx):\\\\n        s = self.samples[idx]\\\\n\\\\n        query_enc = self.tokenizer(\\\\n            s[\\\\\\\"query_tokens\\\\\\\"], truncation=True, max_length=self.max_seq_length,\\\\n            padding=False, return_tensors=None,\\\\n        )\\\\n        pos_enc = self.tokenizer(\\\\n            s[\\\\\\\"pos_tokens\\\\\\\"], truncation=True, max_length=self.max_seq_length,\\\\n            padding=False, return_tensors=None,\\\\n        )\\\\n\\\\n        # positive weight from data-flow distance\\\\n        dist = s.get(\\\\\\\"pos_dataflow_distance\\\\\\\", 1.0)\\\\n        pos_weight = math.exp(-self.alpha * dist)\\\\n\\\\n        # negatives\\\\n        neg_pool = self._negatives.get(idx, [])\\\\n        if len(neg_pool) < self.num_negatives:\\\\n            # fallback: use candidates from the sample itself\\\\n            fallback = list(s.get(\\\\\\\"neg_candidates\\\\\\\", []))\\\\n            random.shuffle(fallback)\\\\n            while len(neg_pool) < self.num_negatives and fallback:\\\\n                cid = fallback.pop()\\\\n                neg_pool.append({\\\\\\\"id\\\\\\\": cid, \\\\\\\"tokens\\\\\\\": s.get(\\\\\\\"candidate_tokens\\\\\\\", {}).get(cid, \\\\\\\"\\\\\\\")})\\\\n\\\\n        # Resolve tokens, filter empties\\\\n        resolved_negs = []\\\\n        for neg_item in neg_pool:\\\\n            if isinstance(neg_item, tuple):\\\\n                cid = neg_item[0]\\\\n                tokens = s.get('candidate_tokens', {}).get(cid, cid)\\\\n            else:\\\\n                tokens = neg_item.get('tokens', neg_item.get('id', ''))\\\\n            if tokens:\\\\n                resolved_negs.append\\\\n\\\\n... [截断: 输出过长，省略 11513 字符] ...\\\\n\\\\nel(model), val_loader, accelerator\\\\n                )\\\\n                if accelerator.is_main_process:\\\\n                    _print_flush(f\\\\\\\"  [eval@{global_step}] {metrics}\\\\\\\")\\\\n                    if args.wandb_project:\\\\n                        accelerator.log(metrics, step=global_step)\\\\n\\\\n                    cur_val_loss = metrics[\\\\\\\"val_loss\\\\\\\"]\\\\n                    if cur_val_loss < best_val_loss:\\\\n                        free_gb = shutil.disk_usage(str(output_dir)).free / (1024**3)\\\\n                        if free_gb < 15:\\\\n                            _print_flush(f\\\\\\\"WARNING: Only {free_gb:.1f}GB free, skipping best checkpoint save\\\\\\\")\\\\n                        else:\\\\n                            best_dir = output_dir / \\\\\\\"best_by_val_loss\\\\\\\"\\\\n                            if best_dir.exists():\\\\n                                shutil.rmtree(best_dir)\\\\n                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_dir, args)\\\\n                            best_val_loss = cur_val_loss\\\\n                            best_val_loss_step = global_step\\\\n                            _print_flush(f\\\\\\\"  New best val_loss={cur_val_loss:.4f}, saved to {best_dir}\\\\\\\")\\\\n                        no_improve_count = 0\\\\n                    else:\\\\n                        no_improve_count += 1\\\\n                        _print_flush(f\\\\\\\"  val_loss not improved ({no_improve_count}/{args.early_stopping_patience})\\\\\\\")\\\\n\\\\n                    cur_recall_at_1 = metrics[\\\\\\\"recall@1\\\\\\\"]\\\\n                    if cur_recall_at_1 > best_recall_at_1:\\\\n                        free_gb = shutil.disk_usage(str(output_dir)).free / (1024**3)\\\\n                        if free_gb < 15:\\\\n                            _print_flush(f\\\\\\\"WARNING: Only {free_gb:.1f}GB free, skipping best R@1 checkpoint save\\\\\\\")\\\\n                        else:\\\\n                            best_r1_dir = output_dir / \\\\\\\"best_by_recall_at_1\\\\\\\"\\\\n                            if best_r1_dir.exists():\\\\n                                shutil.rmtree(best_r1_dir)\\\\n                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_r1_dir, args)\\\\n                            best_recall_at_1 = cur_recall_at_1\\\\n                            _print_flush(f\\\\\\\"  New best R@1={cur_recall_at_1:.4f}, saved to {best_r1_dir}\\\\\\\")\\\\n\\\\n                    if args.early_stopping_patience > 0 and no_improve_count >= args.early_stopping_patience:\\\\n                        _print_flush(f\\\\\\\"Early stopping triggered at step {global_step}, best val_loss={best_val_loss:.4f} at step {best_val_loss_step}\\\\\\\")\\\\n                        early_stopped = True\\\\n                        break\\\\n\\\\n    # ── final save ───────────────────────────────────────────────\\\\n    if accelerator.is_main_process:\\\\n        final_metrics = evaluate(accelerator.unwrap_model(model), val_loader, accelerator)\\\\n        _print_flush(f\\\\\\\"[Final eval] {final_metrics}\\\\\\\")\\\\n        if args.wandb_project:\\\\n            accelerator.log(final_metrics, step=global_step)\\\\n        free_gb = shutil.disk_usage(str(output_dir)).free / (1024**3)\\\\n        if free_gb < 15:\\\\n            _print_flush(f\\\\\\\"WARNING: Only {free_gb:.1f}GB free, skipping final checkpoint save\\\\\\\")\\\\n        else:\\\\n            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, output_dir / \\\\\\\"final\\\\\\\", args)\\\\n            _print_flush(f\\\\\\\"Training complete. Model saved to {output_dir / 'final'}\\\\\\\")\\\\n\\\\n    if args.wandb_project:\\\\n        accelerator.end_training()\\\\n\\\\n\\\\n# ── helpers ──────────────────────────────────────────────────────────\\\\n\\\\n\\\\n@torch.no_grad()\\\\ndef _mine_dynamic_negatives(model, tokenizer, candidate_pools, train_ds,\\\\n                            num_negatives, max_seq_length, device):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Re-encode candidates with current model, select top-k hardest negatives per query.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    model.eval()\\\\n\\\\n    iid_to_samples = {}\\\\n    for idx, sample in enumerate(train_ds.samples):\\\\n        qid = sample[\\\\\\\"query_id\\\\\\\"]\\\\n        iid = qid.split(\\\\\\\"::\\\\\\\", 1)[0]\\\\n        iid_to_samples.setdefault(iid, []).append(sample)\\\\n\\\\n    mined = {}\\\\n    for iid, samples in iid_to_samples.items():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"from __future__ import annotations\\n\\nimport os\\n\\n\\\"\\\"\\\"StructFuse contrastive training entry point.\\n\\nTrains a bi-encoder (Qwen2.5-Coder-3B) with InfoNCE loss, data-flow-weighted\\npositives, and configurable hard-negative mining.  Supports single/multi-GPU\\nvia HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\n\\\"\\\"\\\"\\n\\n\\nimport argparse\\nimport sys\\nimport json\\nimport math\\nimport os\\nimport random\\nimport shutil\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List\\n\\nimport numpy as np\\nimport torch\\nfrom torch.utils.data import DataLoader, Dataset\\nfrom transformers import AutoTokenizer, get_cosine_schedule_with_warmup\\n\\nfrom accelerate import Accelerator\\nfrom accelerate.utils import set_seed\\n\\nfrom contrastive_model import StructFuseEncoder\\nfrom hard_negative_mining import build_miner, mine_batch\\n\\n\\n\\ndef _print_flush(*args, **kwargs):\\n    \\\"\\\"\\\"Print with explicit flush for file-redirect compatibility.\\\"\\\"\\\"\\n    kwargs['flush'] = True\\n    print(*args, **kwargs)\\n\\n# ── Dataset ──���───────────────────────────────────────────────────────\\n\\nclass ContrastiveDataset(Dataset):\\n    \\\"\\\"\\\"\\n    Each sample: {query, positive, negatives[], pos_weight, features[]}.\\n\\n    The raw data file is JSONL with fields:\\n        query_id, query_tokens, pos_id, pos_tokens, pos_dataflow_distance,\\n        neg_candidates (list of file ids), features (dict per candidate).\\n\\n    Negatives are mined dynamically per epoch via `refresh_negatives()`.\\n    \\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        data_path: str,\\n        tokenizer: AutoTokenizer,\\n        max_seq_length: int,\\n        num_negatives: int,\\n        pos_weight_alpha: float,\\n        use_fusion_head: bool,\\n    ):\\n        self.tokenizer = tokenizer\\n        self.max_seq_length = max_seq_length\\n        self.num_negatives = num_negatives\\n        self.alpha = pos_weight_alpha\\n        self.use_fusion_head = use_fusion_head\\n\\n        self.samples: List[Dict[str, Any]] = []\\n        with open(data_path) as f:\\n            for line in f:\\n                if line.strip():\\n                    self.samples.append(json.loads(line))\\n\\n        # mined negatives, refreshed each epoch\\n        self._negatives: Dict[int, List[Dict[str, Any]]] = {}\\n\\n    def refresh_negatives(self, mined: Dict[str, List[tuple]]):\\n        \\\"\\\"\\\"Update negatives after an epoch-level mining pass.\\\"\\\"\\\"\\n        self._negatives = {}\\n        for idx, sample in enumerate(self.samples):\\n            qid = sample[\\\"query_id\\\"]\\n            negs = mined.get(qid, [])\\n            self._negatives[idx] = negs\\n\\n    def __len__(self):\\n        return len(self.samples)\\n\\n    def __getitem__(self, idx):\\n        s = self.samples[idx]\\n\\n        query_enc = self.tokenizer(\\n            s[\\\"query_tokens\\\"], truncation=True, max_length=self.max_seq_length,\\n            padding=False, return_tensors=None,\\n        )\\n        pos_enc = self.tokenizer(\\n            s[\\\"pos_tokens\\\"], truncation=True, max_length=self.max_seq_length,\\n            padding=False, return_tensors=None,\\n        )\\n\\n        # positive weight from data-flow distance\\n        dist = s.get(\\\"pos_dataflow_distance\\\", 1.0)\\n        pos_weight = math.exp(-self.alpha * dist)\\n\\n        # negatives\\n        neg_pool = self._negatives.get(idx, [])\\n        if len(neg_pool) < self.num_negatives:\\n            # fallback: use candidates from the sample itself\\n            fallback = list(s.get(\\\"neg_candidates\\\", []))\\n            random.shuffle(fallback)\\n            while len(neg_pool) < self.num_negatives and fallback:\\n                cid = fallback.pop()\\n                neg_pool.append({\\\"id\\\": cid, \\\"tokens\\\": s.get(\\\"candidate_tokens\\\", {}).get(cid, \\\"\\\")})\\n\\n        # Resolve tokens, filter empties\\n        resolved_negs = []\\n        for neg_item in neg_pool:\\n            if isinstance(neg_item, tuple):\\n                cid = neg_item[0]\\n                tokens = s.get('candidate_tokens', {}).get(cid, cid)\\n            else:\\n                tokens = neg_item.get('tokens', neg_item.get('id', ''))\\n            if tokens:\\n                resolved_negs.append\\n\\n... [截断: 输出过长，省略 11513 字符] ...\\n\\nel(model), val_loader, accelerator\\n                )\\n                if accelerator.is_main_process:\\n                    _print_flush(f\\\"  [eval@{global_step}] {metrics}\\\")\\n                    if args.wandb_project:\\n                        accelerator.log(metrics, step=global_step)\\n\\n                    cur_val_loss = metrics[\\\"val_loss\\\"]\\n                    if cur_val_loss < best_val_loss:\\n                        free_gb = shutil.disk_usage(str(output_dir)).free / (1024**3)\\n                        if free_gb < 15:\\n                            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping best checkpoint save\\\")\\n                        else:\\n                            best_dir = output_dir / \\\"best_by_val_loss\\\"\\n                            if best_dir.exists():\\n                                shutil.rmtree(best_dir)\\n                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_dir, args)\\n                            best_val_loss = cur_val_loss\\n                            best_val_loss_step = global_step\\n                            _print_flush(f\\\"  New best val_loss={cur_val_loss:.4f}, saved to {best_dir}\\\")\\n                        no_improve_count = 0\\n                    else:\\n                        no_improve_count += 1\\n                        _print_flush(f\\\"  val_loss not improved ({no_improve_count}/{args.early_stopping_patience})\\\")\\n\\n                    cur_recall_at_1 = metrics[\\\"recall@1\\\"]\\n                    if cur_recall_at_1 > best_recall_at_1:\\n                        free_gb = shutil.disk_usage(str(output_dir)).free / (1024**3)\\n                        if free_gb < 15:\\n                            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping best R@1 checkpoint save\\\")\\n                        else:\\n                            best_r1_dir = output_dir / \\\"best_by_recall_at_1\\\"\\n                            if best_r1_dir.exists():\\n                                shutil.rmtree(best_r1_dir)\\n                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_r1_dir, args)\\n                            best_recall_at_1 = cur_recall_at_1\\n                            _print_flush(f\\\"  New best R@1={cur_recall_at_1:.4f}, saved to {best_r1_dir}\\\")\\n\\n                    if args.early_stopping_patience > 0 and no_improve_count >= args.early_stopping_patience:\\n                        _print_flush(f\\\"Early stopping triggered at step {global_step}, best val_loss={best_val_loss:.4f} at step {best_val_loss_step}\\\")\\n                        early_stopped = True\\n                        break\\n\\n    # ── final save ───────────────────────────────────────────────\\n    if accelerator.is_main_process:\\n        final_metrics = evaluate(accelerator.unwrap_model(model), val_loader, accelerator)\\n        _print_flush(f\\\"[Final eval] {final_metrics}\\\")\\n        if args.wandb_project:\\n            accelerator.log(final_metrics, step=global_step)\\n        free_gb = shutil.disk_usage(str(output_dir)).free / (1024**3)\\n        if free_gb < 15:\\n            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping final checkpoint save\\\")\\n        else:\\n            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, output_dir / \\\"final\\\", args)\\n            _print_flush(f\\\"Training complete. Model saved to {output_dir / 'final'}\\\")\\n\\n    if args.wandb_project:\\n        accelerator.end_training()\\n\\n\\n# ── helpers ──────────────────────────────────────────────────────────\\n\\n\\n@torch.no_grad()\\ndef _mine_dynamic_negatives(model, tokenizer, candidate_pools, train_ds,\\n                            num_negatives, max_seq_length, device):\\n    \\\"\\\"\\\"Re-encode candidates with current model, select top-k hardest negatives per query.\\\"\\\"\\\"\\n    model.eval()\\n\\n    iid_to_samples = {}\\n    for idx, sample in enumerate(train_ds.samples):\\n        qid = sample[\\\"query_id\\\"]\\n        iid = qid.split(\\\"::\\\", 1)[0]\\n        iid_to_samples.setdefault(iid, []).append(sample)\\n\\n    mined = {}\\n    for iid, samples in iid_to_samples.items():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have most of the key training loop. But the output was still truncated. Let me read the evaluate function and the part around lines 350-470 more carefully. Let me get the evaluate function and the init section of the training loop.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "53e55736-d4a1-4f34-902f-2d1044a28584",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Y4m4Mm2Ubvvv41BZ1pF1V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2947,
+      "cache_read_input_tokens": 43741,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2947
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+需要看 evaluate 函数和训练循环初始化。读取 320-470 行区间。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "ec61caf8-77b1-46c3-b375-f0863a5511b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Y4m4Mm2Ubvvv41BZ1pF1V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2947,
+      "cache_read_input_tokens": 43741,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2947
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BD23AQLhAgSb5bQWPCfemW`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "head -n 400 /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "8628174d-5eff-4635-8baf-0739bed51a95",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Y4m4Mm2Ubvvv41BZ1pF1V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2947,
+      "cache_read_input_tokens": 43741,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2947
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T03:09:43.392Z_
+
+<details><summary>↩ Tool result · `toolu_01BD23AQLhAgSb5bQWPCfemW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"from __future__ import annotations\\n\\nimport os\\n\\n\\\"\\\"\\\"StructFuse contrastive training entry point.\\n\\nTrains a bi-encoder (Qwen2.5-Coder-3B) with InfoNCE loss, data-flow-weighted\\npositives, and configurable hard-negative mining.  Supports single/multi-GPU\\nvia HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\n\\\"\\\"\\\"\\n\\n\\nimport argparse\\nimport sys\\nimport json\\nimport math\\nimport os\\nimport random\\nimport shutil\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List\\n\\nimport numpy as np\\nimport torch\\nfrom torch.utils.data import DataLoader, Dataset\\nfrom transformers import AutoTokenizer, get_cosine_schedule_with_warmup\\n\\nfrom accelerate import Accelerator\\nfrom accelerate.utils import set_seed\\n\\nfrom contrastive_model import StructFuseEncoder\\nfrom hard_negative_mining import build_miner, mine_batch\\n\\n\\n\\ndef _print_flush(*args, **kwargs):\\n    \\\"\\\"\\\"Print with explicit flush for file-redirect compatibility.\\\"\\\"\\\"\\n    kwargs['flush'] = True\\n    print(*args, **kwargs)\\n\\n# ── Dataset ──���───────────────────────────────────────────────────────\\n\\nclass ContrastiveDataset(Dataset):\\n    \\\"\\\"\\\"\\n    Each sample: {query, positive, negatives[], pos_weight, features[]}.\\n\\n    The raw data file is JSONL with fields:\\n        query_id, query_tokens, pos_id, pos_tokens, pos_dataflow_distance,\\n        neg_candidates (list of file ids), features (dict per candidate).\\n\\n    Negatives are mined dynamically per epoch via `refresh_negatives()`.\\n    \\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        data_path: str,\\n        tokenizer: AutoTokenizer,\\n        max_seq_length: int,\\n        num_negatives: int,\\n        pos_weight_alpha: float,\\n        use_fusion_head: bool,\\n    ):\\n        self.tokenizer = tokenizer\\n        self.max_seq_length = max_seq_length\\n        self.num_negatives = num_negatives\\n        self.alpha = pos_weight_alpha\\n        self.use_fusion_head = use_fusion_head\\n\\n        self.samples: List[Dict[str, Any]] = []\\n        with open(data_path) as f:\\n            for line in f:\\n                if line.strip():\\n                    self.samples.append(json.loads(line))\\n\\n        # mined negatives, refreshed each epoch\\n        self._negatives: Dict[int, List[Dict[str, Any]]] = {}\\n\\n    def refresh_negatives(self, mined: Dict[str, List[tuple]]):\\n        \\\"\\\"\\\"Update negatives after an epoch-level mining pass.\\\"\\\"\\\"\\n        self._negatives = {}\\n        for idx, sample in enumerate(self.samples):\\n            qid = sample[\\\"query_id\\\"]\\n            negs = mined.get(qid, [])\\n            self._negatives[idx] = negs\\n\\n    def __len__(self):\\n        return len(self.samples)\\n\\n    def __getitem__(self, idx):\\n        s = self.samples[idx]\\n\\n        query_enc = self.tokenizer(\\n            s[\\\"query_tokens\\\"], truncation=True, max_length=self.max_seq_length,\\n            padding=False, return_tensors=None,\\n        )\\n        pos_enc = self.tokenizer(\\n            s[\\\"pos_tokens\\\"], truncation=True, max_length=self.max_seq_length,\\n            padding=False, return_tensors=None,\\n        )\\n\\n        # positive weight from data-flow distance\\n        dist = s.get(\\\"pos_dataflow_distance\\\", 1.0)\\n        pos_weight = math.exp(-self.alpha * dist)\\n\\n        # negatives\\n        neg_pool = self._negatives.get(idx, [])\\n        if len(neg_pool) < self.num_negatives:\\n            # fallback: use candidates from the sample itself\\n            fallback = list(s.get(\\\"neg_candidates\\\", []))\\n            random.shuffle(fallback)\\n            while len(neg_pool) < self.num_negatives and fallback:\\n                cid = fallback.pop()\\n                neg_pool.append({\\\"id\\\": cid, \\\"tokens\\\": s.get(\\\"candidate_tokens\\\", {}).get(cid, \\\"\\\")})\\n\\n        # Resolve tokens, filter empties\\n        resolved_negs = []\\n        for neg_item in neg_pool:\\n            if isinstance(neg_item, tuple):\\n                cid = neg_item[0]\\n                tokens = s.get('candidate_tokens', {}).get(cid, cid)\\n            else:\\n                tokens = neg_item.get('tokens', neg_item.get('id', ''))\\n            if tokens:\\n                resolved_negs.append\\n\\n... [截断: 输出过长，省略 6520 字符] ...\\n\\n   args.train_file, tokenizer, args.max_seq_length,\\n        args.num_negatives, args.pos_weight_alpha, args.use_fusion_head,\\n    )\\n    val_ds = ContrastiveDataset(\\n        args.val_file, tokenizer, args.max_seq_length,\\n        args.num_negatives, args.pos_weight_alpha, args.use_fusion_head,\\n    )\\n\\n    train_loader = DataLoader(\\n        train_ds, batch_size=args.batch_size, shuffle=True,\\n        collate_fn=collate_fn, num_workers=4, pin_memory=True,\\n    )\\n    val_loader = DataLoader(\\n        val_ds, batch_size=args.batch_size, shuffle=False,\\n        collate_fn=collate_fn, num_workers=2, pin_memory=True,\\n    )\\n\\n    # hard-negative miner\\n    dataflow_graph = _load_json_as_sets(args.dataflow_graph_file) if args.dataflow_graph_file else None\\n    embeddings = _load_embeddings(args.embeddings_file) if args.embeddings_file else None\\n    miner = build_miner(\\n        strategy=args.hard_negative_strategy,\\n        dataflow_graph=dataflow_graph,\\n        embeddings=embeddings,\\n    )\\n\\n\\n    # Load candidate pools for dynamic mining\\n    candidate_pools = None\\n    if getattr(args, \\\"dynamic_mining\\\", False):\\n        if not args.candidate_pool_file:\\n            raise ValueError(\\\"--candidate-pool-file required when --dynamic-mining is set\\\")\\n        candidate_pools = {}\\n        with open(args.candidate_pool_file) as f:\\n            for line in f:\\n                if line.strip():\\n                    entry = json.loads(line)\\n                    candidate_pools[entry[\\\"instance_id\\\"]] = entry\\n        if accelerator.is_main_process:\\n            _print_flush(f\\\"Loaded {len(candidate_pools)} candidate pools for dynamic mining\\\")\\n    # optimizer & scheduler\\n    optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate, weight_decay=0.01)\\n    total_steps = len(train_loader) * args.num_epochs\\n    warmup_steps = int(total_steps * args.warmup_ratio)\\n    scheduler = get_cosine_schedule_with_warmup(optimizer, warmup_steps, total_steps)\\n\\n    # accelerate prepare\\n    model, optimizer, train_loader, val_loader, scheduler = accelerator.prepare(\\n        model, optimizer, train_loader, val_loader, scheduler\\n    )\\n\\n    # ─�� training loop ────────────────────────────────────────────\\n    global_step = 0\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n    best_val_loss = float(\\\"inf\\\")\\n    best_val_loss_step = 0\\n    best_recall_at_1 = 0.0\\n    no_improve_count = 0\\n    early_stopped = False\\n\\n    for epoch in range(args.num_epochs):\\n        if early_stopped:\\n            break\\n        if getattr(args, \\\"dynamic_mining\\\", False) and candidate_pools is not None:\\n            if accelerator.is_main_process:\\n                _print_flush(f\\\"[Epoch {epoch+1}] Dynamic mining: re-encoding candidates...\\\")\\n            mined = _mine_dynamic_negatives(\\n                model=accelerator.unwrap_model(model),\\n                tokenizer=tokenizer,\\n                candidate_pools=candidate_pools,\\n                train_ds=train_ds,\\n                num_negatives=args.num_negatives,\\n                max_seq_length=args.max_seq_length,\\n                device=accelerator.device,\\n            )\\n            train_ds.refresh_negatives(mined)\\n            if accelerator.is_main_process:\\n                _print_flush(f\\\"  Mined negatives for {len(mined)} queries\\\")\\n        else:\\n            if accelerator.is_main_process:\\n                _print_flush(f\\\"[Epoch {epoch+1}] Using pre-mined negatives ({args.hard_negative_strategy})...\\\")\\n\\n        accelerator.wait_for_everyone()\\n        model.train()\\n\\n        if accelerator.is_main_process and epoch == 0:\\n            _print_flush(f\\\"  Training loop start: {len(train_loader)} batches/epoch, total_steps_per_epoch={len(train_loader)}\\\")\\n        for batch in train_loader:\\n            kwargs = {\\n                \\\"query_ids\\\": batch[\\\"query_ids\\\"],\\n                \\\"query_mask\\\": batch[\\\"query_mask\\\"],\\n                \\\"pos_ids\\\": batch[\\\"pos_ids\\\"],\\n                \\\"pos_mask\\\": batch[\\\"pos_mask\\\"],\\n                \\\"neg_ids\\\": batch[\\\"neg_ids\\\"],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "d6b66786-6a44-4505-afb4-d926e2fdfb2c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"from __future__ import annotations\\\\n\\\\nimport os\\\\n\\\\n\\\\\\\"\\\\\\\"\\\\\\\"StructFuse contrastive training entry point.\\\\n\\\\nTrains a bi-encoder (Qwen2.5-Coder-3B) with InfoNCE loss, data-flow-weighted\\\\npositives, and configurable hard-negative mining.  Supports single/multi-GPU\\\\nvia HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n\\\\nimport argparse\\\\nimport sys\\\\nimport json\\\\nimport math\\\\nimport os\\\\nimport random\\\\nimport shutil\\\\nfrom pathlib import Path\\\\nfrom typing import Any, Dict, List\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom torch.utils.data import DataLoader, Dataset\\\\nfrom transformers import AutoTokenizer, get_cosine_schedule_with_warmup\\\\n\\\\nfrom accelerate import Accelerator\\\\nfrom accelerate.utils import set_seed\\\\n\\\\nfrom contrastive_model import StructFuseEncoder\\\\nfrom hard_negative_mining import build_miner, mine_batch\\\\n\\\\n\\\\n\\\\ndef _print_flush(*args, **kwargs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Print with explicit flush for file-redirect compatibility.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    kwargs['flush'] = True\\\\n    print(*args, **kwargs)\\\\n\\\\n# ── Dataset ──���───────────────────────────────────────────────────────\\\\n\\\\nclass ContrastiveDataset(Dataset):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Each sample: {query, positive, negatives[], pos_weight, features[]}.\\\\n\\\\n    The raw data file is JSONL with fields:\\\\n        query_id, query_tokens, pos_id, pos_tokens, pos_dataflow_distance,\\\\n        neg_candidates (list of file ids), features (dict per candidate).\\\\n\\\\n    Negatives are mined dynamically per epoch via `refresh_negatives()`.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(\\\\n        self,\\\\n        data_path: str,\\\\n        tokenizer: AutoTokenizer,\\\\n        max_seq_length: int,\\\\n        num_negatives: int,\\\\n        pos_weight_alpha: float,\\\\n        use_fusion_head: bool,\\\\n    ):\\\\n        self.tokenizer = tokenizer\\\\n        self.max_seq_length = max_seq_length\\\\n        self.num_negatives = num_negatives\\\\n        self.alpha = pos_weight_alpha\\\\n        self.use_fusion_head = use_fusion_head\\\\n\\\\n        self.samples: List[Dict[str, Any]] = []\\\\n        with open(data_path) as f:\\\\n            for line in f:\\\\n                if line.strip():\\\\n                    self.samples.append(json.loads(line))\\\\n\\\\n        # mined negatives, refreshed each epoch\\\\n        self._negatives: Dict[int, List[Dict[str, Any]]] = {}\\\\n\\\\n    def refresh_negatives(self, mined: Dict[str, List[tuple]]):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Update negatives after an epoch-level mining pass.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        self._negatives = {}\\\\n        for idx, sample in enumerate(self.samples):\\\\n            qid = sample[\\\\\\\"query_id\\\\\\\"]\\\\n            negs = mined.get(qid, [])\\\\n            self._negatives[idx] = negs\\\\n\\\\n    def __len__(self):\\\\n        return len(self.samples)\\\\n\\\\n    def __getitem__(self, idx):\\\\n        s = self.samples[idx]\\\\n\\\\n        query_enc = self.tokenizer(\\\\n            s[\\\\\\\"query_tokens\\\\\\\"], truncation=True, max_length=self.max_seq_length,\\\\n            padding=False, return_tensors=None,\\\\n        )\\\\n        pos_enc = self.tokenizer(\\\\n            s[\\\\\\\"pos_tokens\\\\\\\"], truncation=True, max_length=self.max_seq_length,\\\\n            padding=False, return_tensors=None,\\\\n        )\\\\n\\\\n        # positive weight from data-flow distance\\\\n        dist = s.get(\\\\\\\"pos_dataflow_distance\\\\\\\", 1.0)\\\\n        pos_weight = math.exp(-self.alpha * dist)\\\\n\\\\n        # negatives\\\\n        neg_pool = self._negatives.get(idx, [])\\\\n        if len(neg_pool) < self.num_negatives:\\\\n            # fallback: use candidates from the sample itself\\\\n            fallback = list(s.get(\\\\\\\"neg_candidates\\\\\\\", []))\\\\n            random.shuffle(fallback)\\\\n            while len(neg_pool) < self.num_negatives and fallback:\\\\n                cid = fallback.pop()\\\\n                neg_pool.append({\\\\\\\"id\\\\\\\": cid, \\\\\\\"tokens\\\\\\\": s.get(\\\\\\\"candidate_tokens\\\\\\\", {}).get(cid, \\\\\\\"\\\\\\\")})\\\\n\\\\n        # Resolve tokens, filter empties\\\\n        resolved_negs = []\\\\n        for neg_item in neg_pool:\\\\n            if isinstance(neg_item, tuple):\\\\n                cid = neg_item[0]\\\\n                tokens = s.get('candidate_tokens', {}).get(cid, cid)\\\\n            else:\\\\n                tokens = neg_item.get('tokens', neg_item.get('id', ''))\\\\n            if tokens:\\\\n                resolved_negs.append\\\\n\\\\n... [截断: 输出过长，省略 6520 字符] ...\\\\n\\\\n   args.train_file, tokenizer, args.max_seq_length,\\\\n        args.num_negatives, args.pos_weight_alpha, args.use_fusion_head,\\\\n    )\\\\n    val_ds = ContrastiveDataset(\\\\n        args.val_file, tokenizer, args.max_seq_length,\\\\n        args.num_negatives, args.pos_weight_alpha, args.use_fusion_head,\\\\n    )\\\\n\\\\n    train_loader = DataLoader(\\\\n        train_ds, batch_size=args.batch_size, shuffle=True,\\\\n        collate_fn=collate_fn, num_workers=4, pin_memory=True,\\\\n    )\\\\n    val_loader = DataLoader(\\\\n        val_ds, batch_size=args.batch_size, shuffle=False,\\\\n        collate_fn=collate_fn, num_workers=2, pin_memory=True,\\\\n    )\\\\n\\\\n    # hard-negative miner\\\\n    dataflow_graph = _load_json_as_sets(args.dataflow_graph_file) if args.dataflow_graph_file else None\\\\n    embeddings = _load_embeddings(args.embeddings_file) if args.embeddings_file else None\\\\n    miner = build_miner(\\\\n        strategy=args.hard_negative_strategy,\\\\n        dataflow_graph=dataflow_graph,\\\\n        embeddings=embeddings,\\\\n    )\\\\n\\\\n\\\\n    # Load candidate pools for dynamic mining\\\\n    candidate_pools = None\\\\n    if getattr(args, \\\\\\\"dynamic_mining\\\\\\\", False):\\\\n        if not args.candidate_pool_file:\\\\n            raise ValueError(\\\\\\\"--candidate-pool-file required when --dynamic-mining is set\\\\\\\")\\\\n        candidate_pools = {}\\\\n        with open(args.candidate_pool_file) as f:\\\\n            for line in f:\\\\n                if line.strip():\\\\n                    entry = json.loads(line)\\\\n                    candidate_pools[entry[\\\\\\\"instance_id\\\\\\\"]] = entry\\\\n        if accelerator.is_main_process:\\\\n            _print_flush(f\\\\\\\"Loaded {len(candidate_pools)} candidate pools for dynamic mining\\\\\\\")\\\\n    # optimizer & scheduler\\\\n    optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate, weight_decay=0.01)\\\\n    total_steps = len(train_loader) * args.num_epochs\\\\n    warmup_steps = int(total_steps * args.warmup_ratio)\\\\n    scheduler = get_cosine_schedule_with_warmup(optimizer, warmup_steps, total_steps)\\\\n\\\\n    # accelerate prepare\\\\n    model, optimizer, train_loader, val_loader, scheduler = accelerator.prepare(\\\\n        model, optimizer, train_loader, val_loader, scheduler\\\\n    )\\\\n\\\\n    # ─�� training loop ────────────────────────────────────────────\\\\n    global_step = 0\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n    best_val_loss = float(\\\\\\\"inf\\\\\\\")\\\\n    best_val_loss_step = 0\\\\n    best_recall_at_1 = 0.0\\\\n    no_improve_count = 0\\\\n    early_stopped = False\\\\n\\\\n    for epoch in range(args.num_epochs):\\\\n        if early_stopped:\\\\n            break\\\\n        if getattr(args, \\\\\\\"dynamic_mining\\\\\\\", False) and candidate_pools is not None:\\\\n            if accelerator.is_main_process:\\\\n                _print_flush(f\\\\\\\"[Epoch {epoch+1}] Dynamic mining: re-encoding candidates...\\\\\\\")\\\\n            mined = _mine_dynamic_negatives(\\\\n                model=accelerator.unwrap_model(model),\\\\n                tokenizer=tokenizer,\\\\n                candidate_pools=candidate_pools,\\\\n                train_ds=train_ds,\\\\n                num_negatives=args.num_negatives,\\\\n                max_seq_length=args.max_seq_length,\\\\n                device=accelerator.device,\\\\n            )\\\\n            train_ds.refresh_negatives(mined)\\\\n            if accelerator.is_main_process:\\\\n                _print_flush(f\\\\\\\"  Mined negatives for {len(mined)} queries\\\\\\\")\\\\n        else:\\\\n            if accelerator.is_main_process:\\\\n                _print_flush(f\\\\\\\"[Epoch {epoch+1}] Using pre-mined negatives ({args.hard_negative_strategy})...\\\\\\\")\\\\n\\\\n        accelerator.wait_for_everyone()\\\\n        model.train()\\\\n\\\\n        if accelerator.is_main_process and epoch == 0:\\\\n            _print_flush(f\\\\\\\"  Training loop start: {len(train_loader)} batches/epoch, total_steps_per_epoch={len(train_loader)}\\\\\\\")\\\\n        for batch in train_loader:\\\\n            kwargs = {\\\\n                \\\\\\\"query_ids\\\\\\\": batch[\\\\\\\"query_ids\\\\\\\"],\\\\n                \\\\\\\"query_mask\\\\\\\": batch[\\\\\\\"query_mask\\\\\\\"],\\\\n                \\\\\\\"pos_ids\\\\\\\": batch[\\\\\\\"pos_ids\\\\\\\"],\\\\n                \\\\\\\"pos_mask\\\\\\\": batch[\\\\\\\"pos_mask\\\\\\\"],\\\\n                \\\\\\\"neg_ids\\\\\\\": batch[\\\\\\\"neg_ids\\\\\\\"],\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"from __future__ import annotations\\n\\nimport os\\n\\n\\\"\\\"\\\"StructFuse contrastive training entry point.\\n\\nTrains a bi-encoder (Qwen2.5-Coder-3B) with InfoNCE loss, data-flow-weighted\\npositives, and configurable hard-negative mining.  Supports single/multi-GPU\\nvia HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\n\\\"\\\"\\\"\\n\\n\\nimport argparse\\nimport sys\\nimport json\\nimport math\\nimport os\\nimport random\\nimport shutil\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List\\n\\nimport numpy as np\\nimport torch\\nfrom torch.utils.data import DataLoader, Dataset\\nfrom transformers import AutoTokenizer, get_cosine_schedule_with_warmup\\n\\nfrom accelerate import Accelerator\\nfrom accelerate.utils import set_seed\\n\\nfrom contrastive_model import StructFuseEncoder\\nfrom hard_negative_mining import build_miner, mine_batch\\n\\n\\n\\ndef _print_flush(*args, **kwargs):\\n    \\\"\\\"\\\"Print with explicit flush for file-redirect compatibility.\\\"\\\"\\\"\\n    kwargs['flush'] = True\\n    print(*args, **kwargs)\\n\\n# ── Dataset ──���───────────────────────────────────────────────────────\\n\\nclass ContrastiveDataset(Dataset):\\n    \\\"\\\"\\\"\\n    Each sample: {query, positive, negatives[], pos_weight, features[]}.\\n\\n    The raw data file is JSONL with fields:\\n        query_id, query_tokens, pos_id, pos_tokens, pos_dataflow_distance,\\n        neg_candidates (list of file ids), features (dict per candidate).\\n\\n    Negatives are mined dynamically per epoch via `refresh_negatives()`.\\n    \\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        data_path: str,\\n        tokenizer: AutoTokenizer,\\n        max_seq_length: int,\\n        num_negatives: int,\\n        pos_weight_alpha: float,\\n        use_fusion_head: bool,\\n    ):\\n        self.tokenizer = tokenizer\\n        self.max_seq_length = max_seq_length\\n        self.num_negatives = num_negatives\\n        self.alpha = pos_weight_alpha\\n        self.use_fusion_head = use_fusion_head\\n\\n        self.samples: List[Dict[str, Any]] = []\\n        with open(data_path) as f:\\n            for line in f:\\n                if line.strip():\\n                    self.samples.append(json.loads(line))\\n\\n        # mined negatives, refreshed each epoch\\n        self._negatives: Dict[int, List[Dict[str, Any]]] = {}\\n\\n    def refresh_negatives(self, mined: Dict[str, List[tuple]]):\\n        \\\"\\\"\\\"Update negatives after an epoch-level mining pass.\\\"\\\"\\\"\\n        self._negatives = {}\\n        for idx, sample in enumerate(self.samples):\\n            qid = sample[\\\"query_id\\\"]\\n            negs = mined.get(qid, [])\\n            self._negatives[idx] = negs\\n\\n    def __len__(self):\\n        return len(self.samples)\\n\\n    def __getitem__(self, idx):\\n        s = self.samples[idx]\\n\\n        query_enc = self.tokenizer(\\n            s[\\\"query_tokens\\\"], truncation=True, max_length=self.max_seq_length,\\n            padding=False, return_tensors=None,\\n        )\\n        pos_enc = self.tokenizer(\\n            s[\\\"pos_tokens\\\"], truncation=True, max_length=self.max_seq_length,\\n            padding=False, return_tensors=None,\\n        )\\n\\n        # positive weight from data-flow distance\\n        dist = s.get(\\\"pos_dataflow_distance\\\", 1.0)\\n        pos_weight = math.exp(-self.alpha * dist)\\n\\n        # negatives\\n        neg_pool = self._negatives.get(idx, [])\\n        if len(neg_pool) < self.num_negatives:\\n            # fallback: use candidates from the sample itself\\n            fallback = list(s.get(\\\"neg_candidates\\\", []))\\n            random.shuffle(fallback)\\n            while len(neg_pool) < self.num_negatives and fallback:\\n                cid = fallback.pop()\\n                neg_pool.append({\\\"id\\\": cid, \\\"tokens\\\": s.get(\\\"candidate_tokens\\\", {}).get(cid, \\\"\\\")})\\n\\n        # Resolve tokens, filter empties\\n        resolved_negs = []\\n        for neg_item in neg_pool:\\n            if isinstance(neg_item, tuple):\\n                cid = neg_item[0]\\n                tokens = s.get('candidate_tokens', {}).get(cid, cid)\\n            else:\\n                tokens = neg_item.get('tokens', neg_item.get('id', ''))\\n            if tokens:\\n                resolved_negs.append\\n\\n... [截断: 输出过长，省略 6520 字符] ...\\n\\n   args.train_file, tokenizer, args.max_seq_length,\\n        args.num_negatives, args.pos_weight_alpha, args.use_fusion_head,\\n    )\\n    val_ds = ContrastiveDataset(\\n        args.val_file, tokenizer, args.max_seq_length,\\n        args.num_negatives, args.pos_weight_alpha, args.use_fusion_head,\\n    )\\n\\n    train_loader = DataLoader(\\n        train_ds, batch_size=args.batch_size, shuffle=True,\\n        collate_fn=collate_fn, num_workers=4, pin_memory=True,\\n    )\\n    val_loader = DataLoader(\\n        val_ds, batch_size=args.batch_size, shuffle=False,\\n        collate_fn=collate_fn, num_workers=2, pin_memory=True,\\n    )\\n\\n    # hard-negative miner\\n    dataflow_graph = _load_json_as_sets(args.dataflow_graph_file) if args.dataflow_graph_file else None\\n    embeddings = _load_embeddings(args.embeddings_file) if args.embeddings_file else None\\n    miner = build_miner(\\n        strategy=args.hard_negative_strategy,\\n        dataflow_graph=dataflow_graph,\\n        embeddings=embeddings,\\n    )\\n\\n\\n    # Load candidate pools for dynamic mining\\n    candidate_pools = None\\n    if getattr(args, \\\"dynamic_mining\\\", False):\\n        if not args.candidate_pool_file:\\n            raise ValueError(\\\"--candidate-pool-file required when --dynamic-mining is set\\\")\\n        candidate_pools = {}\\n        with open(args.candidate_pool_file) as f:\\n            for line in f:\\n                if line.strip():\\n                    entry = json.loads(line)\\n                    candidate_pools[entry[\\\"instance_id\\\"]] = entry\\n        if accelerator.is_main_process:\\n            _print_flush(f\\\"Loaded {len(candidate_pools)} candidate pools for dynamic mining\\\")\\n    # optimizer & scheduler\\n    optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate, weight_decay=0.01)\\n    total_steps = len(train_loader) * args.num_epochs\\n    warmup_steps = int(total_steps * args.warmup_ratio)\\n    scheduler = get_cosine_schedule_with_warmup(optimizer, warmup_steps, total_steps)\\n\\n    # accelerate prepare\\n    model, optimizer, train_loader, val_loader, scheduler = accelerator.prepare(\\n        model, optimizer, train_loader, val_loader, scheduler\\n    )\\n\\n    # ─�� training loop ────────────────────────────────────────────\\n    global_step = 0\\n    output_dir = Path(args.output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n    best_val_loss = float(\\\"inf\\\")\\n    best_val_loss_step = 0\\n    best_recall_at_1 = 0.0\\n    no_improve_count = 0\\n    early_stopped = False\\n\\n    for epoch in range(args.num_epochs):\\n        if early_stopped:\\n            break\\n        if getattr(args, \\\"dynamic_mining\\\", False) and candidate_pools is not None:\\n            if accelerator.is_main_process:\\n                _print_flush(f\\\"[Epoch {epoch+1}] Dynamic mining: re-encoding candidates...\\\")\\n            mined = _mine_dynamic_negatives(\\n                model=accelerator.unwrap_model(model),\\n                tokenizer=tokenizer,\\n                candidate_pools=candidate_pools,\\n                train_ds=train_ds,\\n                num_negatives=args.num_negatives,\\n                max_seq_length=args.max_seq_length,\\n                device=accelerator.device,\\n            )\\n            train_ds.refresh_negatives(mined)\\n            if accelerator.is_main_process:\\n                _print_flush(f\\\"  Mined negatives for {len(mined)} queries\\\")\\n        else:\\n            if accelerator.is_main_process:\\n                _print_flush(f\\\"[Epoch {epoch+1}] Using pre-mined negatives ({args.hard_negative_strategy})...\\\")\\n\\n        accelerator.wait_for_everyone()\\n        model.train()\\n\\n        if accelerator.is_main_process and epoch == 0:\\n            _print_flush(f\\\"  Training loop start: {len(train_loader)} batches/epoch, total_steps_per_epoch={len(train_loader)}\\\")\\n        for batch in train_loader:\\n            kwargs = {\\n                \\\"query_ids\\\": batch[\\\"query_ids\\\"],\\n                \\\"query_mask\\\": batch[\\\"query_mask\\\"],\\n                \\\"pos_ids\\\": batch[\\\"pos_ids\\\"],\\n                \\\"pos_mask\\\": batch[\\\"pos_mask\\\"],\\n                \\\"neg_ids\\\": batch[\\\"neg_ids\\\"],\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated again. Let me try to get lines 390-480 specifically using tail + head approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "5a0cfd9e-5c44-40a8-8727-176708b38c3e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fo6LCUkaW7tVM15WYx31RR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3077,
+      "cache_read_input_tokens": 46688,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3077
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ANUoeQN74QF1mZFd5bXbGo`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -n +395 /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "55ab2a89-9d01-4b2d-bc02-de1628441b20",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fo6LCUkaW7tVM15WYx31RR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3077,
+      "cache_read_input_tokens": 46688,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3077
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-16T03:09:47.859Z_
+
+<details><summary>↩ Tool result · `toolu_01ANUoeQN74QF1mZFd5bXbGo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            kwargs = {\\n                \\\"query_ids\\\": batch[\\\"query_ids\\\"],\\n                \\\"query_mask\\\": batch[\\\"query_mask\\\"],\\n                \\\"pos_ids\\\": batch[\\\"pos_ids\\\"],\\n                \\\"pos_mask\\\": batch[\\\"pos_mask\\\"],\\n                \\\"neg_ids\\\": batch[\\\"neg_ids\\\"],\\n                \\\"neg_mask\\\": batch[\\\"neg_mask\\\"],\\n                \\\"neg_valid_mask\\\": batch.get(\\\"neg_valid_mask\\\"),\\n                \\\"pos_weights\\\": batch[\\\"pos_weights\\\"],\\n                \\\"features\\\": batch.get(\\\"features\\\"),\\n            }\\n            loss, logits = model(**kwargs)\\n\\n            accelerator.backward(loss)\\n            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)\\n            optimizer.step()\\n            scheduler.step()\\n            optimizer.zero_grad()\\n\\n            global_step += 1\\n\\n            if accelerator.is_main_process and global_step % 50 == 0:\\n                lr = scheduler.get_last_lr()[0]\\n                _print_flush(f\\\"  step {global_step}  loss={loss.item():.4f}  lr={lr:.2e}\\\")\\n                if args.wandb_project:\\n                    accelerator.log({\\\"train_loss\\\": loss.item(), \\\"learning_rate\\\": lr}, step=global_step)\\n\\n            if global_step % args.eval_steps == 0:\\n                metrics = evaluate(\\n                    accelerator.unwrap_model(model), val_loader, accelerator\\n                )\\n                if accelerator.is_main_process:\\n                    _print_flush(f\\\"  [eval@{global_step}] {metrics}\\\")\\n                    if args.wandb_project:\\n                        accelerator.log(metrics, step=global_step)\\n\\n                    cur_val_loss = metrics[\\\"val_loss\\\"]\\n                    if cur_val_loss < best_val_loss:\\n                        free_gb = shutil.disk_usage(str(output_dir)).free / (1024**3)\\n                        if free_gb < 15:\\n                            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping best checkpoint save\\\")\\n                        else:\\n                            best_dir = output_dir / \\\"best_by_val_loss\\\"\\n                            if best_dir.exists():\\n                                shutil.rmtree(best_dir)\\n                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_dir, args)\\n                            best_val_loss = cur_val_loss\\n                            best_val_loss_step = global_step\\n                            _print_flush(f\\\"  New best val_loss={cur_val_loss:.4f}, saved to {best_dir}\\\")\\n                        no_improve_count = 0\\n                    else:\\n                        no_improve_count += 1\\n                        _print_flush(f\\\"  val_loss not improved ({no_improve_count}/{args.early_stopping_patience})\\\")\\n\\n                    cur_recall_at_1 = metrics[\\\"recall@1\\\"]\\n                    if cur_recall_at_1 > best_recall_at_1:\\n                        free_gb = shutil.disk_usage(str(output_dir)).free / (1024**3)\\n                        if free_gb < 15:\\n                            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping best R@1 checkpoint save\\\")\\n                        else:\\n                            best_r1_dir = output_dir / \\\"best_by_recall_at_1\\\"\\n                            if best_r1_dir.exists():\\n                                shutil.rmtree(best_r1_dir)\\n                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_r1_dir, args)\\n                            best_recall_at_1 = cur_recall_at_1\\n                            _print_flush(f\\\"  New best R@1={cur_recall_at_1:.4f}, saved to {best_r1_dir}\\\")\\n\\n                    if args.early_stopping_patience > 0 and no_improve_count >= args.early_stopping_patience:\\n                        _print_flush(f\\\"Early stopping triggered at step {global_step}, best val_loss={best_val_loss:.4f} at step {best_val_loss_step}\\\")\\n                        early_stopped = True\\n                        break\\n\\n    # ── final save ───────────────────────────────────────────��───\\n    if accelerator.is_main_process:\\n        final_metrics = evaluate(accelerator.unwra\\n\\n... [截断: 输出过长，省略 2448 字符] ...\\n\\n truncation=True, max_length=max_seq_length,\\n                              padding=True, return_tensors=\\\"pt\\\")\\n            q_enc = {k: v.to(device) for k, v in q_enc.items()}\\n            q_emb = model.encode(q_enc[\\\"input_ids\\\"], q_enc[\\\"attention_mask\\\"])\\n\\n            sims = (q_emb @ cand_embs.T).squeeze(0)\\n            sorted_idx = sims.argsort(descending=True).cpu().tolist()\\n\\n            exclude = gold_set | {query_file, pos_file}\\n            selected = []\\n            for ci in sorted_idx:\\n                if len(selected) >= num_negatives:\\n                    break\\n                f = cand_files[ci]\\n                if f not in exclude:\\n                    selected.append((iid + \\\"::\\\" + f, float(sims[ci])))\\n\\n            mined[query_id] = selected\\n\\n    model.train()\\n    return mined\\n\\n\\ndef _save_checkpoint(model, tokenizer, path, args):\\n    path = Path(path)\\n    path.mkdir(parents=True, exist_ok=True)\\n    if getattr(args, 'use_lora', False):\\n        sd = {k: v for k, v in model.state_dict().items()\\n              if not k.startswith('backbone.') or 'lora_' in k}\\n    else:\\n        sd = model.state_dict()\\n    torch.save(sd, path / \\\"model.pt\\\")\\n    tokenizer.save_pretrained(path)\\n    with open(path / \\\"training_config.json\\\", \\\"w\\\") as f:\\n        json.dump(vars(args), f, indent=2)\\n\\n\\ndef _load_json_as_sets(path: str) -> Dict[str, set]:\\n    with open(path) as f:\\n        raw = json.load(f)\\n    return {k: set(v) for k, v in raw.items()}\\n\\n\\ndef _load_embeddings(path: str) -> Dict[str, np.ndarray]:\\n    data = np.load(path, allow_pickle=True)\\n    return {str(k): data[k] for k in data.files}\\n\\n\\n# ── CLI ──────────────────────────────────────────────────────────────\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"StructFuse contrastive training\\\")\\n    p.add_argument(\\\"--model-name\\\", default=\\\"Qwen/Qwen2.5-Coder-3B\\\")\\n    p.add_argument(\\\"--train-file\\\", required=True)\\n    p.add_argument(\\\"--val-file\\\", required=True)\\n    p.add_argument(\\\"--output-dir\\\", required=True)\\n    p.add_argument(\\\"--batch-size\\\", type=int, default=8)\\n    p.add_argument(\\\"--learning-rate\\\", type=float, default=2e-5)\\n    p.add_argument(\\\"--num-epochs\\\", type=int, default=3)\\n    p.add_argument(\\\"--warmup-ratio\\\", type=float, default=0.1)\\n    p.add_argument(\\\"--num-negatives\\\", type=int, default=7)\\n    p.add_argument(\\\"--hard-negative-strategy\\\", choices=[\\\"random\\\", \\\"embedding_distance\\\", \\\"dataflow_aware\\\", \\\"bm25\\\"], default=\\\"dataflow_aware\\\")\\n    p.add_argument(\\\"--hard-negative-ratio\\\", type=float, default=0.5)\\n    p.add_argument(\\\"--temperature\\\", type=float, default=0.07)\\n    p.add_argument(\\\"--pos-weight-alpha\\\", type=float, default=1.0)\\n    p.add_argument(\\\"--use-fusion-head\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--use-lora\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--lora-r\\\", type=int, default=16)\\n    p.add_argument(\\\"--proj-dim\\\", type=int, default=256)\\n    p.add_argument(\\\"--gradient-checkpointing\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--eval-steps\\\", type=int, default=500)\\n    p.add_argument(\\\"--save-steps\\\", type=int, default=1000)\\n    p.add_argument(\\\"--max-seq-length\\\", type=int, default=2048)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--wandb-project\\\", default=\\\"structfuse\\\")\\n    p.add_argument(\\\"--wandb-run-name\\\", default=None)\\n    p.add_argument(\\\"--dataflow-graph-file\\\", default=None, help=\\\"JSON file: {file_id: [reachable_ids]}\\\")\\n    p.add_argument(\\\"--embeddings-file\\\", default=None, help=\\\".npz file with pre-computed embeddings\\\")\\n    p.add_argument(\\\"--dynamic-mining\\\", action=\\\"store_true\\\",\\n                   help=\\\"Re-mine negatives each epoch using current encoder\\\")\\n    p.add_argument(\\\"--candidate-pool-file\\\", default=None,\\n                   help=\\\"candidate_pools.jsonl from build_m1_training_data.py --embedding-mining-mode dynamic\\\")\\n    p.add_argument(\\\"--early-stopping-patience\\\", type=int, default=0,\\n                   help=\\\"Stop if val_loss does not improve for N evals (0=disabled)\\\")\\n    return p.parse_args()\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    train(parse_args())\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "e871275d-dfb4-41e9-9723-c473970246e6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            kwargs = {\\\\n                \\\\\\\"query_ids\\\\\\\": batch[\\\\\\\"query_ids\\\\\\\"],\\\\n                \\\\\\\"query_mask\\\\\\\": batch[\\\\\\\"query_mask\\\\\\\"],\\\\n                \\\\\\\"pos_ids\\\\\\\": batch[\\\\\\\"pos_ids\\\\\\\"],\\\\n                \\\\\\\"pos_mask\\\\\\\": batch[\\\\\\\"pos_mask\\\\\\\"],\\\\n                \\\\\\\"neg_ids\\\\\\\": batch[\\\\\\\"neg_ids\\\\\\\"],\\\\n                \\\\\\\"neg_mask\\\\\\\": batch[\\\\\\\"neg_mask\\\\\\\"],\\\\n                \\\\\\\"neg_valid_mask\\\\\\\": batch.get(\\\\\\\"neg_valid_mask\\\\\\\"),\\\\n                \\\\\\\"pos_weights\\\\\\\": batch[\\\\\\\"pos_weights\\\\\\\"],\\\\n                \\\\\\\"features\\\\\\\": batch.get(\\\\\\\"features\\\\\\\"),\\\\n            }\\\\n            loss, logits = model(**kwargs)\\\\n\\\\n            accelerator.backward(loss)\\\\n            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)\\\\n            optimizer.step()\\\\n            scheduler.step()\\\\n            optimizer.zero_grad()\\\\n\\\\n            global_step += 1\\\\n\\\\n            if accelerator.is_main_process and global_step % 50 == 0:\\\\n                lr = scheduler.get_last_lr()[0]\\\\n                _print_flush(f\\\\\\\"  step {global_step}  loss={loss.item():.4f}  lr={lr:.2e}\\\\\\\")\\\\n                if args.wandb_project:\\\\n                    accelerator.log({\\\\\\\"train_loss\\\\\\\": loss.item(), \\\\\\\"learning_rate\\\\\\\": lr}, step=global_step)\\\\n\\\\n            if global_step % args.eval_steps == 0:\\\\n                metrics = evaluate(\\\\n                    accelerator.unwrap_model(model), val_loader, accelerator\\\\n                )\\\\n                if accelerator.is_main_process:\\\\n                    _print_flush(f\\\\\\\"  [eval@{global_step}] {metrics}\\\\\\\")\\\\n                    if args.wandb_project:\\\\n                        accelerator.log(metrics, step=global_step)\\\\n\\\\n                    cur_val_loss = metrics[\\\\\\\"val_loss\\\\\\\"]\\\\n                    if cur_val_loss < best_val_loss:\\\\n                        free_gb = shutil.disk_usage(str(output_dir)).free / (1024**3)\\\\n                        if free_gb < 15:\\\\n                            _print_flush(f\\\\\\\"WARNING: Only {free_gb:.1f}GB free, skipping best checkpoint save\\\\\\\")\\\\n                        else:\\\\n                            best_dir = output_dir / \\\\\\\"best_by_val_loss\\\\\\\"\\\\n                            if best_dir.exists():\\\\n                                shutil.rmtree(best_dir)\\\\n                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_dir, args)\\\\n                            best_val_loss = cur_val_loss\\\\n                            best_val_loss_step = global_step\\\\n                            _print_flush(f\\\\\\\"  New best val_loss={cur_val_loss:.4f}, saved to {best_dir}\\\\\\\")\\\\n                        no_improve_count = 0\\\\n                    else:\\\\n                        no_improve_count += 1\\\\n                        _print_flush(f\\\\\\\"  val_loss not improved ({no_improve_count}/{args.early_stopping_patience})\\\\\\\")\\\\n\\\\n                    cur_recall_at_1 = metrics[\\\\\\\"recall@1\\\\\\\"]\\\\n                    if cur_recall_at_1 > best_recall_at_1:\\\\n                        free_gb = shutil.disk_usage(str(output_dir)).free / (1024**3)\\\\n                        if free_gb < 15:\\\\n                            _print_flush(f\\\\\\\"WARNING: Only {free_gb:.1f}GB free, skipping best R@1 checkpoint save\\\\\\\")\\\\n                        else:\\\\n                            best_r1_dir = output_dir / \\\\\\\"best_by_recall_at_1\\\\\\\"\\\\n                            if best_r1_dir.exists():\\\\n                                shutil.rmtree(best_r1_dir)\\\\n                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_r1_dir, args)\\\\n                            best_recall_at_1 = cur_recall_at_1\\\\n                            _print_flush(f\\\\\\\"  New best R@1={cur_recall_at_1:.4f}, saved to {best_r1_dir}\\\\\\\")\\\\n\\\\n                    if args.early_stopping_patience > 0 and no_improve_count >= args.early_stopping_patience:\\\\n                        _print_flush(f\\\\\\\"Early stopping triggered at step {global_step}, best val_loss={best_val_loss:.4f} at step {best_val_loss_step}\\\\\\\")\\\\n                        early_stopped = True\\\\n                        break\\\\n\\\\n    # ── final save ───────────────────────────────────────────��───\\\\n    if accelerator.is_main_process:\\\\n        final_metrics = evaluate(accelerator.unwra\\\\n\\\\n... [截断: 输出过长，省略 2448 字符] ...\\\\n\\\\n truncation=True, max_length=max_seq_length,\\\\n                              padding=True, return_tensors=\\\\\\\"pt\\\\\\\")\\\\n            q_enc = {k: v.to(device) for k, v in q_enc.items()}\\\\n            q_emb = model.encode(q_enc[\\\\\\\"input_ids\\\\\\\"], q_enc[\\\\\\\"attention_mask\\\\\\\"])\\\\n\\\\n            sims = (q_emb @ cand_embs.T).squeeze(0)\\\\n            sorted_idx = sims.argsort(descending=True).cpu().tolist()\\\\n\\\\n            exclude = gold_set | {query_file, pos_file}\\\\n            selected = []\\\\n            for ci in sorted_idx:\\\\n                if len(selected) >= num_negatives:\\\\n                    break\\\\n                f = cand_files[ci]\\\\n                if f not in exclude:\\\\n                    selected.append((iid + \\\\\\\"::\\\\\\\" + f, float(sims[ci])))\\\\n\\\\n            mined[query_id] = selected\\\\n\\\\n    model.train()\\\\n    return mined\\\\n\\\\n\\\\ndef _save_checkpoint(model, tokenizer, path, args):\\\\n    path = Path(path)\\\\n    path.mkdir(parents=True, exist_ok=True)\\\\n    if getattr(args, 'use_lora', False):\\\\n        sd = {k: v for k, v in model.state_dict().items()\\\\n              if not k.startswith('backbone.') or 'lora_' in k}\\\\n    else:\\\\n        sd = model.state_dict()\\\\n    torch.save(sd, path / \\\\\\\"model.pt\\\\\\\")\\\\n    tokenizer.save_pretrained(path)\\\\n    with open(path / \\\\\\\"training_config.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(vars(args), f, indent=2)\\\\n\\\\n\\\\ndef _load_json_as_sets(path: str) -> Dict[str, set]:\\\\n    with open(path) as f:\\\\n        raw = json.load(f)\\\\n    return {k: set(v) for k, v in raw.items()}\\\\n\\\\n\\\\ndef _load_embeddings(path: str) -> Dict[str, np.ndarray]:\\\\n    data = np.load(path, allow_pickle=True)\\\\n    return {str(k): data[k] for k in data.files}\\\\n\\\\n\\\\n# ── CLI ──────────────────────────────────────────────────────────────\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"StructFuse contrastive training\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model-name\\\\\\\", default=\\\\\\\"Qwen/Qwen2.5-Coder-3B\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--train-file\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--val-file\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--output-dir\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--batch-size\\\\\\\", type=int, default=8)\\\\n    p.add_argument(\\\\\\\"--learning-rate\\\\\\\", type=float, default=2e-5)\\\\n    p.add_argument(\\\\\\\"--num-epochs\\\\\\\", type=int, default=3)\\\\n    p.add_argument(\\\\\\\"--warmup-ratio\\\\\\\", type=float, default=0.1)\\\\n    p.add_argument(\\\\\\\"--num-negatives\\\\\\\", type=int, default=7)\\\\n    p.add_argument(\\\\\\\"--hard-negative-strategy\\\\\\\", choices=[\\\\\\\"random\\\\\\\", \\\\\\\"embedding_distance\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\", \\\\\\\"bm25\\\\\\\"], default=\\\\\\\"dataflow_aware\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--hard-negative-ratio\\\\\\\", type=float, default=0.5)\\\\n    p.add_argument(\\\\\\\"--temperature\\\\\\\", type=float, default=0.07)\\\\n    p.add_argument(\\\\\\\"--pos-weight-alpha\\\\\\\", type=float, default=1.0)\\\\n    p.add_argument(\\\\\\\"--use-fusion-head\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--use-lora\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--lora-r\\\\\\\", type=int, default=16)\\\\n    p.add_argument(\\\\\\\"--proj-dim\\\\\\\", type=int, default=256)\\\\n    p.add_argument(\\\\\\\"--gradient-checkpointing\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--eval-steps\\\\\\\", type=int, default=500)\\\\n    p.add_argument(\\\\\\\"--save-steps\\\\\\\", type=int, default=1000)\\\\n    p.add_argument(\\\\\\\"--max-seq-length\\\\\\\", type=int, default=2048)\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    p.add_argument(\\\\\\\"--wandb-project\\\\\\\", default=\\\\\\\"structfuse\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--wandb-run-name\\\\\\\", default=None)\\\\n    p.add_argument(\\\\\\\"--dataflow-graph-file\\\\\\\", default=None, help=\\\\\\\"JSON file: {file_id: [reachable_ids]}\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--embeddings-file\\\\\\\", default=None, help=\\\\\\\".npz file with pre-computed embeddings\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dynamic-mining\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                   help=\\\\\\\"Re-mine negatives each epoch using current encoder\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--candidate-pool-file\\\\\\\", default=None,\\\\n                   help=\\\\\\\"candidate_pools.jsonl from build_m1_training_data.py --embedding-mining-mode dynamic\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--early-stopping-patience\\\\\\\", type=int, default=0,\\\\n                   help=\\\\\\\"Stop if val_loss does not improve for N evals (0=disabled)\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    train(parse_args())\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"            kwargs = {\\n                \\\"query_ids\\\": batch[\\\"query_ids\\\"],\\n                \\\"query_mask\\\": batch[\\\"query_mask\\\"],\\n                \\\"pos_ids\\\": batch[\\\"pos_ids\\\"],\\n                \\\"pos_mask\\\": batch[\\\"pos_mask\\\"],\\n                \\\"neg_ids\\\": batch[\\\"neg_ids\\\"],\\n                \\\"neg_mask\\\": batch[\\\"neg_mask\\\"],\\n                \\\"neg_valid_mask\\\": batch.get(\\\"neg_valid_mask\\\"),\\n                \\\"pos_weights\\\": batch[\\\"pos_weights\\\"],\\n                \\\"features\\\": batch.get(\\\"features\\\"),\\n            }\\n            loss, logits = model(**kwargs)\\n\\n            accelerator.backward(loss)\\n            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)\\n            optimizer.step()\\n            scheduler.step()\\n            optimizer.zero_grad()\\n\\n            global_step += 1\\n\\n            if accelerator.is_main_process and global_step % 50 == 0:\\n                lr = scheduler.get_last_lr()[0]\\n                _print_flush(f\\\"  step {global_step}  loss={loss.item():.4f}  lr={lr:.2e}\\\")\\n                if args.wandb_project:\\n                    accelerator.log({\\\"train_loss\\\": loss.item(), \\\"learning_rate\\\": lr}, step=global_step)\\n\\n            if global_step % args.eval_steps == 0:\\n                metrics = evaluate(\\n                    accelerator.unwrap_model(model), val_loader, accelerator\\n                )\\n                if accelerator.is_main_process:\\n                    _print_flush(f\\\"  [eval@{global_step}] {metrics}\\\")\\n                    if args.wandb_project:\\n                        accelerator.log(metrics, step=global_step)\\n\\n                    cur_val_loss = metrics[\\\"val_loss\\\"]\\n                    if cur_val_loss < best_val_loss:\\n                        free_gb = shutil.disk_usage(str(output_dir)).free / (1024**3)\\n                        if free_gb < 15:\\n                            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping best checkpoint save\\\")\\n                        else:\\n                            best_dir = output_dir / \\\"best_by_val_loss\\\"\\n                            if best_dir.exists():\\n                                shutil.rmtree(best_dir)\\n                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_dir, args)\\n                            best_val_loss = cur_val_loss\\n                            best_val_loss_step = global_step\\n                            _print_flush(f\\\"  New best val_loss={cur_val_loss:.4f}, saved to {best_dir}\\\")\\n                        no_improve_count = 0\\n                    else:\\n                        no_improve_count += 1\\n                        _print_flush(f\\\"  val_loss not improved ({no_improve_count}/{args.early_stopping_patience})\\\")\\n\\n                    cur_recall_at_1 = metrics[\\\"recall@1\\\"]\\n                    if cur_recall_at_1 > best_recall_at_1:\\n                        free_gb = shutil.disk_usage(str(output_dir)).free / (1024**3)\\n                        if free_gb < 15:\\n                            _print_flush(f\\\"WARNING: Only {free_gb:.1f}GB free, skipping best R@1 checkpoint save\\\")\\n                        else:\\n                            best_r1_dir = output_dir / \\\"best_by_recall_at_1\\\"\\n                            if best_r1_dir.exists():\\n                                shutil.rmtree(best_r1_dir)\\n                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_r1_dir, args)\\n                            best_recall_at_1 = cur_recall_at_1\\n                            _print_flush(f\\\"  New best R@1={cur_recall_at_1:.4f}, saved to {best_r1_dir}\\\")\\n\\n                    if args.early_stopping_patience > 0 and no_improve_count >= args.early_stopping_patience:\\n                        _print_flush(f\\\"Early stopping triggered at step {global_step}, best val_loss={best_val_loss:.4f} at step {best_val_loss_step}\\\")\\n                        early_stopped = True\\n                        break\\n\\n    # ── final save ───────────────────────────────────────────��───\\n    if accelerator.is_main_process:\\n        final_metrics = evaluate(accelerator.unwra\\n\\n... [截断: 输出过长，省略 2448 字符] ...\\n\\n truncation=True, max_length=max_seq_length,\\n                              padding=True, return_tensors=\\\"pt\\\")\\n            q_enc = {k: v.to(device) for k, v in q_enc.items()}\\n            q_emb = model.encode(q_enc[\\\"input_ids\\\"], q_enc[\\\"attention_mask\\\"])\\n\\n            sims = (q_emb @ cand_embs.T).squeeze(0)\\n            sorted_idx = sims.argsort(descending=True).cpu().tolist()\\n\\n            exclude = gold_set | {query_file, pos_file}\\n            selected = []\\n            for ci in sorted_idx:\\n                if len(selected) >= num_negatives:\\n                    break\\n                f = cand_files[ci]\\n                if f not in exclude:\\n                    selected.append((iid + \\\"::\\\" + f, float(sims[ci])))\\n\\n            mined[query_id] = selected\\n\\n    model.train()\\n    return mined\\n\\n\\ndef _save_checkpoint(model, tokenizer, path, args):\\n    path = Path(path)\\n    path.mkdir(parents=True, exist_ok=True)\\n    if getattr(args, 'use_lora', False):\\n        sd = {k: v for k, v in model.state_dict().items()\\n              if not k.startswith('backbone.') or 'lora_' in k}\\n    else:\\n        sd = model.state_dict()\\n    torch.save(sd, path / \\\"model.pt\\\")\\n    tokenizer.save_pretrained(path)\\n    with open(path / \\\"training_config.json\\\", \\\"w\\\") as f:\\n        json.dump(vars(args), f, indent=2)\\n\\n\\ndef _load_json_as_sets(path: str) -> Dict[str, set]:\\n    with open(path) as f:\\n        raw = json.load(f)\\n    return {k: set(v) for k, v in raw.items()}\\n\\n\\ndef _load_embeddings(path: str) -> Dict[str, np.ndarray]:\\n    data = np.load(path, allow_pickle=True)\\n    return {str(k): data[k] for k in data.files}\\n\\n\\n# ── CLI ──────────────────────────────────────────────────────────────\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"StructFuse contrastive training\\\")\\n    p.add_argument(\\\"--model-name\\\", default=\\\"Qwen/Qwen2.5-Coder-3B\\\")\\n    p.add_argument(\\\"--train-file\\\", required=True)\\n    p.add_argument(\\\"--val-file\\\", required=True)\\n    p.add_argument(\\\"--output-dir\\\", required=True)\\n    p.add_argument(\\\"--batch-size\\\", type=int, default=8)\\n    p.add_argument(\\\"--learning-rate\\\", type=float, default=2e-5)\\n    p.add_argument(\\\"--num-epochs\\\", type=int, default=3)\\n    p.add_argument(\\\"--warmup-ratio\\\", type=float, default=0.1)\\n    p.add_argument(\\\"--num-negatives\\\", type=int, default=7)\\n    p.add_argument(\\\"--hard-negative-strategy\\\", choices=[\\\"random\\\", \\\"embedding_distance\\\", \\\"dataflow_aware\\\", \\\"bm25\\\"], default=\\\"dataflow_aware\\\")\\n    p.add_argument(\\\"--hard-negative-ratio\\\", type=float, default=0.5)\\n    p.add_argument(\\\"--temperature\\\", type=float, default=0.07)\\n    p.add_argument(\\\"--pos-weight-alpha\\\", type=float, default=1.0)\\n    p.add_argument(\\\"--use-fusion-head\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--use-lora\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--lora-r\\\", type=int, default=16)\\n    p.add_argument(\\\"--proj-dim\\\", type=int, default=256)\\n    p.add_argument(\\\"--gradient-checkpointing\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--eval-steps\\\", type=int, default=500)\\n    p.add_argument(\\\"--save-steps\\\", type=int, default=1000)\\n    p.add_argument(\\\"--max-seq-length\\\", type=int, default=2048)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--wandb-project\\\", default=\\\"structfuse\\\")\\n    p.add_argument(\\\"--wandb-run-name\\\", default=None)\\n    p.add_argument(\\\"--dataflow-graph-file\\\", default=None, help=\\\"JSON file: {file_id: [reachable_ids]}\\\")\\n    p.add_argument(\\\"--embeddings-file\\\", default=None, help=\\\".npz file with pre-computed embeddings\\\")\\n    p.add_argument(\\\"--dynamic-mining\\\", action=\\\"store_true\\\",\\n                   help=\\\"Re-mine negatives each epoch using current encoder\\\")\\n    p.add_argument(\\\"--candidate-pool-file\\\", default=None,\\n                   help=\\\"candidate_pools.jsonl from build_m1_training_data.py --embedding-mining-mode dynamic\\\")\\n    p.add_argument(\\\"--early-stopping-patience\\\", type=int, default=0,\\n                   help=\\\"Stop if val_loss does not improve for N evals (0=disabled)\\\")\\n    return p.parse_args()\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    train(parse_args())\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I now have the full training code. Let me also look at the evaluate function within train.py (it was truncated earlier). Let me grep for the `def evaluate` in train.py:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "45f06fff-68d8-42aa-867d-0ba5f37c3f10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017R5pPPcZWFFZgiKpCEPJhN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3218,
+      "cache_read_input_tokens": 49765,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3218
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+现在需要看 train.py 内的 evaluate 函数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "a6794709-7268-4b23-a504-9904db8e7386",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017R5pPPcZWFFZgiKpCEPJhN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3218,
+      "cache_read_input_tokens": 49765,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3218
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018FEWa1w77n45LM6JjcNnrh`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"def evaluate\" /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "df88055b-7edc-425a-a175-f10c0e5b3f44",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017R5pPPcZWFFZgiKpCEPJhN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3218,
+      "cache_read_input_tokens": 49765,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3218
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T03:09:52.962Z_
+
+<details><summary>↩ Tool result · `toolu_018FEWa1w77n45LM6JjcNnrh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"226:def evaluate(model: StructFuseEncoder, val_loader: DataLoader, accelerator: Accelerator) -> Dict[str, float]:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "2bbe447d-9cfb-4a13-915b-d28710e5cb5d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"226:def evaluate(model: StructFuseEncoder, val_loader: DataLoader, accelerator: Accelerator) -> Dict[str, float]:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"226:def evaluate(model: StructFuseEncoder, val_loader: DataLoader, accelerator: Accelerator) -> Dict[str, float]:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RxGqu8JozPKCdQ1e3kW976`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -n +226 /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "6410c4d0-3ce0-49a0-884c-1b2d16b443b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eb52awoP45a8uedj3SSfR1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 308,
+      "cache_read_input_tokens": 52983,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 308
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T03:09:56.347Z_
+
+<details><summary>↩ Tool result · `toolu_01RxGqu8JozPKCdQ1e3kW976`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def evaluate(model: StructFuseEncoder, val_loader: DataLoader, accelerator: Accelerator) -> Dict[str, float]:\\n    \\\"\\\"\\\"Compute recall@1/5/10 and average loss on the validation set.\\\"\\\"\\\"\\n    model.eval()\\n    total_loss = 0.0\\n    total_correct = {1: 0, 5: 0, 10: 0}\\n    total_samples = 0\\n\\n    for batch in val_loader:\\n        kwargs = {\\n            \\\"query_ids\\\": batch[\\\"query_ids\\\"],\\n            \\\"query_mask\\\": batch[\\\"query_mask\\\"],\\n            \\\"pos_ids\\\": batch[\\\"pos_ids\\\"],\\n            \\\"pos_mask\\\": batch[\\\"pos_mask\\\"],\\n            \\\"neg_ids\\\": batch[\\\"neg_ids\\\"],\\n            \\\"neg_mask\\\": batch[\\\"neg_mask\\\"],\\n            \\\"neg_valid_mask\\\": batch.get(\\\"neg_valid_mask\\\"),\\n            \\\"pos_weights\\\": batch[\\\"pos_weights\\\"],\\n            \\\"features\\\": batch.get(\\\"features\\\"),\\n        }\\n        loss, logits = model(**kwargs)\\n\\n        total_loss += loss.item() * logits.size(0)\\n        total_samples += logits.size(0)\\n\\n        for k in [1, 5, 10]:\\n            topk = logits.topk(min(k, logits.size(1)), dim=1).indices\\n            total_correct[k] += (topk == 0).any(dim=1).sum().item()\\n\\n    # Aggregate across all processes for multi-GPU correctness\\n    stats = torch.tensor(\\n        [total_loss, total_samples] + [total_correct[k] for k in [1, 5, 10]],\\n        device=accelerator.device, dtype=torch.float64,\\n    )\\n    stats = accelerator.reduce(stats, reduction=\\\"sum\\\")\\n    total_loss = stats[0].item()\\n    total_samples = stats[1].item()\\n    for i, k in enumerate([1, 5, 10]):\\n        total_correct[k] = stats[2 + i].item()\\n\\n    model.train()\\n    metrics = {\\\"val_loss\\\": total_loss / max(total_samples, 1)}\\n    for k in [1, 5, 10]:\\n        metrics[f\\\"recall@{k}\\\"] = total_correct[k] / max(total_samples, 1)\\n    return metrics\\n\\n\\n# ── Training ─────────────────────────────────────────────────────────\\n\\ndef train(args):\\n    set_seed(args.seed)\\n    accelerator = Accelerator(log_with=\\\"wandb\\\" if args.wandb_project else None, mixed_precision=\\\"fp16\\\")\\n\\n    if args.wandb_project and accelerator.is_main_process:\\n        accelerator.init_trackers(\\n            project_name=args.wandb_project,\\n            config=vars(args),\\n            init_kwargs={\\\"wandb\\\": {\\\"name\\\": args.wandb_run_name}},\\n        )\\n\\n    # tokenizer\\n    tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    # model\\n    model = StructFuseEncoder(\\n        model_name=args.model_name,\\n        proj_dim=args.proj_dim,\\n        use_projection=True,\\n        use_lora=args.use_lora,\\n        lora_r=args.lora_r,\\n        lora_alpha=args.lora_r * 2,\\n        use_fusion_head=args.use_fusion_head,\\n        init_temperature=args.temperature,\\n    )\\n    if args.gradient_checkpointing:\\n        model.enable_gradient_checkpointing()\\n\\n    # datasets\\n    train_ds = ContrastiveDataset(\\n        args.train_file, tokenizer, args.max_seq_length,\\n        args.num_negatives, args.pos_weight_alpha, args.use_fusion_head,\\n    )\\n    val_ds = ContrastiveDataset(\\n        args.val_file, tokenizer, args.max_seq_length,\\n        args.num_negatives, args.pos_weight_alpha, args.use_fusion_head,\\n    )\\n\\n    train_loader = DataLoader(\\n        train_ds, batch_size=args.batch_size, shuffle=True,\\n        collate_fn=collate_fn, num_workers=4, pin_memory=True,\\n    )\\n    val_loader = DataLoader(\\n        val_ds, batch_size=args.batch_size, shuffle=False,\\n        collate_fn=collate_fn, num_workers=2, pin_memory=True,\\n    )\\n\\n    # hard-negative miner\\n    dataflow_graph = _load_json_as_sets(args.dataflow_graph_file) if args.dataflow_graph_file else None\\n    embeddings = _load_embeddings(args.embeddings_file) if args.embeddings_file else None\\n    miner = build_miner(\\n        strategy=args.hard_negative_strategy,\\n        dataflow_graph=dataflow_graph,\\n        embeddings=embeddings,\\n    )\\n\\n\\n    # Load candidate pools for dynamic mining\\n    candidate_pools = None\\n    if getattr(args, \\\"dynamic_mining\\\", False):\\n        if not args.candidate_pool_file:\\n            raise ValueError(\\\"-\\n\\n... [截断: 输出过长，省略 9008 字符] ...\\n\\n truncation=True, max_length=max_seq_length,\\n                              padding=True, return_tensors=\\\"pt\\\")\\n            q_enc = {k: v.to(device) for k, v in q_enc.items()}\\n            q_emb = model.encode(q_enc[\\\"input_ids\\\"], q_enc[\\\"attention_mask\\\"])\\n\\n            sims = (q_emb @ cand_embs.T).squeeze(0)\\n            sorted_idx = sims.argsort(descending=True).cpu().tolist()\\n\\n            exclude = gold_set | {query_file, pos_file}\\n            selected = []\\n            for ci in sorted_idx:\\n                if len(selected) >= num_negatives:\\n                    break\\n                f = cand_files[ci]\\n                if f not in exclude:\\n                    selected.append((iid + \\\"::\\\" + f, float(sims[ci])))\\n\\n            mined[query_id] = selected\\n\\n    model.train()\\n    return mined\\n\\n\\ndef _save_checkpoint(model, tokenizer, path, args):\\n    path = Path(path)\\n    path.mkdir(parents=True, exist_ok=True)\\n    if getattr(args, 'use_lora', False):\\n        sd = {k: v for k, v in model.state_dict().items()\\n              if not k.startswith('backbone.') or 'lora_' in k}\\n    else:\\n        sd = model.state_dict()\\n    torch.save(sd, path / \\\"model.pt\\\")\\n    tokenizer.save_pretrained(path)\\n    with open(path / \\\"training_config.json\\\", \\\"w\\\") as f:\\n        json.dump(vars(args), f, indent=2)\\n\\n\\ndef _load_json_as_sets(path: str) -> Dict[str, set]:\\n    with open(path) as f:\\n        raw = json.load(f)\\n    return {k: set(v) for k, v in raw.items()}\\n\\n\\ndef _load_embeddings(path: str) -> Dict[str, np.ndarray]:\\n    data = np.load(path, allow_pickle=True)\\n    return {str(k): data[k] for k in data.files}\\n\\n\\n# ── CLI ──────────────────────────────────────────────────────────────\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"StructFuse contrastive training\\\")\\n    p.add_argument(\\\"--model-name\\\", default=\\\"Qwen/Qwen2.5-Coder-3B\\\")\\n    p.add_argument(\\\"--train-file\\\", required=True)\\n    p.add_argument(\\\"--val-file\\\", required=True)\\n    p.add_argument(\\\"--output-dir\\\", required=True)\\n    p.add_argument(\\\"--batch-size\\\", type=int, default=8)\\n    p.add_argument(\\\"--learning-rate\\\", type=float, default=2e-5)\\n    p.add_argument(\\\"--num-epochs\\\", type=int, default=3)\\n    p.add_argument(\\\"--warmup-ratio\\\", type=float, default=0.1)\\n    p.add_argument(\\\"--num-negatives\\\", type=int, default=7)\\n    p.add_argument(\\\"--hard-negative-strategy\\\", choices=[\\\"random\\\", \\\"embedding_distance\\\", \\\"dataflow_aware\\\", \\\"bm25\\\"], default=\\\"dataflow_aware\\\")\\n    p.add_argument(\\\"--hard-negative-ratio\\\", type=float, default=0.5)\\n    p.add_argument(\\\"--temperature\\\", type=float, default=0.07)\\n    p.add_argument(\\\"--pos-weight-alpha\\\", type=float, default=1.0)\\n    p.add_argument(\\\"--use-fusion-head\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--use-lora\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--lora-r\\\", type=int, default=16)\\n    p.add_argument(\\\"--proj-dim\\\", type=int, default=256)\\n    p.add_argument(\\\"--gradient-checkpointing\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--eval-steps\\\", type=int, default=500)\\n    p.add_argument(\\\"--save-steps\\\", type=int, default=1000)\\n    p.add_argument(\\\"--max-seq-length\\\", type=int, default=2048)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--wandb-project\\\", default=\\\"structfuse\\\")\\n    p.add_argument(\\\"--wandb-run-name\\\", default=None)\\n    p.add_argument(\\\"--dataflow-graph-file\\\", default=None, help=\\\"JSON file: {file_id: [reachable_ids]}\\\")\\n    p.add_argument(\\\"--embeddings-file\\\", default=None, help=\\\".npz file with pre-computed embeddings\\\")\\n    p.add_argument(\\\"--dynamic-mining\\\", action=\\\"store_true\\\",\\n                   help=\\\"Re-mine negatives each epoch using current encoder\\\")\\n    p.add_argument(\\\"--candidate-pool-file\\\", default=None,\\n                   help=\\\"candidate_pools.jsonl from build_m1_training_data.py --embedding-mining-mode dynamic\\\")\\n    p.add_argument(\\\"--early-stopping-patience\\\", type=int, default=0,\\n                   help=\\\"Stop if val_loss does not improve for N evals (0=disabled)\\\")\\n    return p.parse_args()\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    train(parse_args())\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "73db86dd-3c6d-4e03-b583-ac5024c4d7b1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def evaluate(model: StructFuseEncoder, val_loader: DataLoader, accelerator: Accelerator) -> Dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute recall@1/5/10 and average loss on the validation set.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    model.eval()\\\\n    total_loss = 0.0\\\\n    total_correct = {1: 0, 5: 0, 10: 0}\\\\n    total_samples = 0\\\\n\\\\n    for batch in val_loader:\\\\n        kwargs = {\\\\n            \\\\\\\"query_ids\\\\\\\": batch[\\\\\\\"query_ids\\\\\\\"],\\\\n            \\\\\\\"query_mask\\\\\\\": batch[\\\\\\\"query_mask\\\\\\\"],\\\\n            \\\\\\\"pos_ids\\\\\\\": batch[\\\\\\\"pos_ids\\\\\\\"],\\\\n            \\\\\\\"pos_mask\\\\\\\": batch[\\\\\\\"pos_mask\\\\\\\"],\\\\n            \\\\\\\"neg_ids\\\\\\\": batch[\\\\\\\"neg_ids\\\\\\\"],\\\\n            \\\\\\\"neg_mask\\\\\\\": batch[\\\\\\\"neg_mask\\\\\\\"],\\\\n            \\\\\\\"neg_valid_mask\\\\\\\": batch.get(\\\\\\\"neg_valid_mask\\\\\\\"),\\\\n            \\\\\\\"pos_weights\\\\\\\": batch[\\\\\\\"pos_weights\\\\\\\"],\\\\n            \\\\\\\"features\\\\\\\": batch.get(\\\\\\\"features\\\\\\\"),\\\\n        }\\\\n        loss, logits = model(**kwargs)\\\\n\\\\n        total_loss += loss.item() * logits.size(0)\\\\n        total_samples += logits.size(0)\\\\n\\\\n        for k in [1, 5, 10]:\\\\n            topk = logits.topk(min(k, logits.size(1)), dim=1).indices\\\\n            total_correct[k] += (topk == 0).any(dim=1).sum().item()\\\\n\\\\n    # Aggregate across all processes for multi-GPU correctness\\\\n    stats = torch.tensor(\\\\n        [total_loss, total_samples] + [total_correct[k] for k in [1, 5, 10]],\\\\n        device=accelerator.device, dtype=torch.float64,\\\\n    )\\\\n    stats = accelerator.reduce(stats, reduction=\\\\\\\"sum\\\\\\\")\\\\n    total_loss = stats[0].item()\\\\n    total_samples = stats[1].item()\\\\n    for i, k in enumerate([1, 5, 10]):\\\\n        total_correct[k] = stats[2 + i].item()\\\\n\\\\n    model.train()\\\\n    metrics = {\\\\\\\"val_loss\\\\\\\": total_loss / max(total_samples, 1)}\\\\n    for k in [1, 5, 10]:\\\\n        metrics[f\\\\\\\"recall@{k}\\\\\\\"] = total_correct[k] / max(total_samples, 1)\\\\n    return metrics\\\\n\\\\n\\\\n# ── Training ─────────────────────────────────────────────────────────\\\\n\\\\ndef train(args):\\\\n    set_seed(args.seed)\\\\n    accelerator = Accelerator(log_with=\\\\\\\"wandb\\\\\\\" if args.wandb_project else None, mixed_precision=\\\\\\\"fp16\\\\\\\")\\\\n\\\\n    if args.wandb_project and accelerator.is_main_process:\\\\n        accelerator.init_trackers(\\\\n            project_name=args.wandb_project,\\\\n            config=vars(args),\\\\n            init_kwargs={\\\\\\\"wandb\\\\\\\": {\\\\\\\"name\\\\\\\": args.wandb_run_name}},\\\\n        )\\\\n\\\\n    # tokenizer\\\\n    tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    # model\\\\n    model = StructFuseEncoder(\\\\n        model_name=args.model_name,\\\\n        proj_dim=args.proj_dim,\\\\n        use_projection=True,\\\\n        use_lora=args.use_lora,\\\\n        lora_r=args.lora_r,\\\\n        lora_alpha=args.lora_r * 2,\\\\n        use_fusion_head=args.use_fusion_head,\\\\n        init_temperature=args.temperature,\\\\n    )\\\\n    if args.gradient_checkpointing:\\\\n        model.enable_gradient_checkpointing()\\\\n\\\\n    # datasets\\\\n    train_ds = ContrastiveDataset(\\\\n        args.train_file, tokenizer, args.max_seq_length,\\\\n        args.num_negatives, args.pos_weight_alpha, args.use_fusion_head,\\\\n    )\\\\n    val_ds = ContrastiveDataset(\\\\n        args.val_file, tokenizer, args.max_seq_length,\\\\n        args.num_negatives, args.pos_weight_alpha, args.use_fusion_head,\\\\n    )\\\\n\\\\n    train_loader = DataLoader(\\\\n        train_ds, batch_size=args.batch_size, shuffle=True,\\\\n        collate_fn=collate_fn, num_workers=4, pin_memory=True,\\\\n    )\\\\n    val_loader = DataLoader(\\\\n        val_ds, batch_size=args.batch_size, shuffle=False,\\\\n        collate_fn=collate_fn, num_workers=2, pin_memory=True,\\\\n    )\\\\n\\\\n    # hard-negative miner\\\\n    dataflow_graph = _load_json_as_sets(args.dataflow_graph_file) if args.dataflow_graph_file else None\\\\n    embeddings = _load_embeddings(args.embeddings_file) if args.embeddings_file else None\\\\n    miner = build_miner(\\\\n        strategy=args.hard_negative_strategy,\\\\n        dataflow_graph=dataflow_graph,\\\\n        embeddings=embeddings,\\\\n    )\\\\n\\\\n\\\\n    # Load candidate pools for dynamic mining\\\\n    candidate_pools = None\\\\n    if getattr(args, \\\\\\\"dynamic_mining\\\\\\\", False):\\\\n        if not args.candidate_pool_file:\\\\n            raise ValueError(\\\\\\\"-\\\\n\\\\n... [截断: 输出过长，省略 9008 字符] ...\\\\n\\\\n truncation=True, max_length=max_seq_length,\\\\n                              padding=True, return_tensors=\\\\\\\"pt\\\\\\\")\\\\n            q_enc = {k: v.to(device) for k, v in q_enc.items()}\\\\n            q_emb = model.encode(q_enc[\\\\\\\"input_ids\\\\\\\"], q_enc[\\\\\\\"attention_mask\\\\\\\"])\\\\n\\\\n            sims = (q_emb @ cand_embs.T).squeeze(0)\\\\n            sorted_idx = sims.argsort(descending=True).cpu().tolist()\\\\n\\\\n            exclude = gold_set | {query_file, pos_file}\\\\n            selected = []\\\\n            for ci in sorted_idx:\\\\n                if len(selected) >= num_negatives:\\\\n                    break\\\\n                f = cand_files[ci]\\\\n                if f not in exclude:\\\\n                    selected.append((iid + \\\\\\\"::\\\\\\\" + f, float(sims[ci])))\\\\n\\\\n            mined[query_id] = selected\\\\n\\\\n    model.train()\\\\n    return mined\\\\n\\\\n\\\\ndef _save_checkpoint(model, tokenizer, path, args):\\\\n    path = Path(path)\\\\n    path.mkdir(parents=True, exist_ok=True)\\\\n    if getattr(args, 'use_lora', False):\\\\n        sd = {k: v for k, v in model.state_dict().items()\\\\n              if not k.startswith('backbone.') or 'lora_' in k}\\\\n    else:\\\\n        sd = model.state_dict()\\\\n    torch.save(sd, path / \\\\\\\"model.pt\\\\\\\")\\\\n    tokenizer.save_pretrained(path)\\\\n    with open(path / \\\\\\\"training_config.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(vars(args), f, indent=2)\\\\n\\\\n\\\\ndef _load_json_as_sets(path: str) -> Dict[str, set]:\\\\n    with open(path) as f:\\\\n        raw = json.load(f)\\\\n    return {k: set(v) for k, v in raw.items()}\\\\n\\\\n\\\\ndef _load_embeddings(path: str) -> Dict[str, np.ndarray]:\\\\n    data = np.load(path, allow_pickle=True)\\\\n    return {str(k): data[k] for k in data.files}\\\\n\\\\n\\\\n# ── CLI ──────────────────────────────────────────────────────────────\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"StructFuse contrastive training\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model-name\\\\\\\", default=\\\\\\\"Qwen/Qwen2.5-Coder-3B\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--train-file\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--val-file\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--output-dir\\\\\\\", required=True)\\\\n    p.add_argument(\\\\\\\"--batch-size\\\\\\\", type=int, default=8)\\\\n    p.add_argument(\\\\\\\"--learning-rate\\\\\\\", type=float, default=2e-5)\\\\n    p.add_argument(\\\\\\\"--num-epochs\\\\\\\", type=int, default=3)\\\\n    p.add_argument(\\\\\\\"--warmup-ratio\\\\\\\", type=float, default=0.1)\\\\n    p.add_argument(\\\\\\\"--num-negatives\\\\\\\", type=int, default=7)\\\\n    p.add_argument(\\\\\\\"--hard-negative-strategy\\\\\\\", choices=[\\\\\\\"random\\\\\\\", \\\\\\\"embedding_distance\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\", \\\\\\\"bm25\\\\\\\"], default=\\\\\\\"dataflow_aware\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--hard-negative-ratio\\\\\\\", type=float, default=0.5)\\\\n    p.add_argument(\\\\\\\"--temperature\\\\\\\", type=float, default=0.07)\\\\n    p.add_argument(\\\\\\\"--pos-weight-alpha\\\\\\\", type=float, default=1.0)\\\\n    p.add_argument(\\\\\\\"--use-fusion-head\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--use-lora\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--lora-r\\\\\\\", type=int, default=16)\\\\n    p.add_argument(\\\\\\\"--proj-dim\\\\\\\", type=int, default=256)\\\\n    p.add_argument(\\\\\\\"--gradient-checkpointing\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--eval-steps\\\\\\\", type=int, default=500)\\\\n    p.add_argument(\\\\\\\"--save-steps\\\\\\\", type=int, default=1000)\\\\n    p.add_argument(\\\\\\\"--max-seq-length\\\\\\\", type=int, default=2048)\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    p.add_argument(\\\\\\\"--wandb-project\\\\\\\", default=\\\\\\\"structfuse\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--wandb-run-name\\\\\\\", default=None)\\\\n    p.add_argument(\\\\\\\"--dataflow-graph-file\\\\\\\", default=None, help=\\\\\\\"JSON file: {file_id: [reachable_ids]}\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--embeddings-file\\\\\\\", default=None, help=\\\\\\\".npz file with pre-computed embeddings\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--dynamic-mining\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                   help=\\\\\\\"Re-mine negatives each epoch using current encoder\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--candidate-pool-file\\\\\\\", default=None,\\\\n                   help=\\\\\\\"candidate_pools.jsonl from build_m1_training_data.py --embedding-mining-mode dynamic\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--early-stopping-patience\\\\\\\", type=int, default=0,\\\\n                   help=\\\\\\\"Stop if val_loss does not improve for N evals (0=disabled)\\\\\\\")\\\\n    return p.parse_args()\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    train(parse_args())\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def evaluate(model: StructFuseEncoder, val_loader: DataLoader, accelerator: Accelerator) -> Dict[str, float]:\\n    \\\"\\\"\\\"Compute recall@1/5/10 and average loss on the validation set.\\\"\\\"\\\"\\n    model.eval()\\n    total_loss = 0.0\\n    total_correct = {1: 0, 5: 0, 10: 0}\\n    total_samples = 0\\n\\n    for batch in val_loader:\\n        kwargs = {\\n            \\\"query_ids\\\": batch[\\\"query_ids\\\"],\\n            \\\"query_mask\\\": batch[\\\"query_mask\\\"],\\n            \\\"pos_ids\\\": batch[\\\"pos_ids\\\"],\\n            \\\"pos_mask\\\": batch[\\\"pos_mask\\\"],\\n            \\\"neg_ids\\\": batch[\\\"neg_ids\\\"],\\n            \\\"neg_mask\\\": batch[\\\"neg_mask\\\"],\\n            \\\"neg_valid_mask\\\": batch.get(\\\"neg_valid_mask\\\"),\\n            \\\"pos_weights\\\": batch[\\\"pos_weights\\\"],\\n            \\\"features\\\": batch.get(\\\"features\\\"),\\n        }\\n        loss, logits = model(**kwargs)\\n\\n        total_loss += loss.item() * logits.size(0)\\n        total_samples += logits.size(0)\\n\\n        for k in [1, 5, 10]:\\n            topk = logits.topk(min(k, logits.size(1)), dim=1).indices\\n            total_correct[k] += (topk == 0).any(dim=1).sum().item()\\n\\n    # Aggregate across all processes for multi-GPU correctness\\n    stats = torch.tensor(\\n        [total_loss, total_samples] + [total_correct[k] for k in [1, 5, 10]],\\n        device=accelerator.device, dtype=torch.float64,\\n    )\\n    stats = accelerator.reduce(stats, reduction=\\\"sum\\\")\\n    total_loss = stats[0].item()\\n    total_samples = stats[1].item()\\n    for i, k in enumerate([1, 5, 10]):\\n        total_correct[k] = stats[2 + i].item()\\n\\n    model.train()\\n    metrics = {\\\"val_loss\\\": total_loss / max(total_samples, 1)}\\n    for k in [1, 5, 10]:\\n        metrics[f\\\"recall@{k}\\\"] = total_correct[k] / max(total_samples, 1)\\n    return metrics\\n\\n\\n# ── Training ─────────────────────────────────────────────────────────\\n\\ndef train(args):\\n    set_seed(args.seed)\\n    accelerator = Accelerator(log_with=\\\"wandb\\\" if args.wandb_project else None, mixed_precision=\\\"fp16\\\")\\n\\n    if args.wandb_project and accelerator.is_main_process:\\n        accelerator.init_trackers(\\n            project_name=args.wandb_project,\\n            config=vars(args),\\n            init_kwargs={\\\"wandb\\\": {\\\"name\\\": args.wandb_run_name}},\\n        )\\n\\n    # tokenizer\\n    tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    # model\\n    model = StructFuseEncoder(\\n        model_name=args.model_name,\\n        proj_dim=args.proj_dim,\\n        use_projection=True,\\n        use_lora=args.use_lora,\\n        lora_r=args.lora_r,\\n        lora_alpha=args.lora_r * 2,\\n        use_fusion_head=args.use_fusion_head,\\n        init_temperature=args.temperature,\\n    )\\n    if args.gradient_checkpointing:\\n        model.enable_gradient_checkpointing()\\n\\n    # datasets\\n    train_ds = ContrastiveDataset(\\n        args.train_file, tokenizer, args.max_seq_length,\\n        args.num_negatives, args.pos_weight_alpha, args.use_fusion_head,\\n    )\\n    val_ds = ContrastiveDataset(\\n        args.val_file, tokenizer, args.max_seq_length,\\n        args.num_negatives, args.pos_weight_alpha, args.use_fusion_head,\\n    )\\n\\n    train_loader = DataLoader(\\n        train_ds, batch_size=args.batch_size, shuffle=True,\\n        collate_fn=collate_fn, num_workers=4, pin_memory=True,\\n    )\\n    val_loader = DataLoader(\\n        val_ds, batch_size=args.batch_size, shuffle=False,\\n        collate_fn=collate_fn, num_workers=2, pin_memory=True,\\n    )\\n\\n    # hard-negative miner\\n    dataflow_graph = _load_json_as_sets(args.dataflow_graph_file) if args.dataflow_graph_file else None\\n    embeddings = _load_embeddings(args.embeddings_file) if args.embeddings_file else None\\n    miner = build_miner(\\n        strategy=args.hard_negative_strategy,\\n        dataflow_graph=dataflow_graph,\\n        embeddings=embeddings,\\n    )\\n\\n\\n    # Load candidate pools for dynamic mining\\n    candidate_pools = None\\n    if getattr(args, \\\"dynamic_mining\\\", False):\\n        if not args.candidate_pool_file:\\n            raise ValueError(\\\"-\\n\\n... [截断: 输出过长，省略 9008 字符] ...\\n\\n truncation=True, max_length=max_seq_length,\\n                              padding=True, return_tensors=\\\"pt\\\")\\n            q_enc = {k: v.to(device) for k, v in q_enc.items()}\\n            q_emb = model.encode(q_enc[\\\"input_ids\\\"], q_enc[\\\"attention_mask\\\"])\\n\\n            sims = (q_emb @ cand_embs.T).squeeze(0)\\n            sorted_idx = sims.argsort(descending=True).cpu().tolist()\\n\\n            exclude = gold_set | {query_file, pos_file}\\n            selected = []\\n            for ci in sorted_idx:\\n                if len(selected) >= num_negatives:\\n                    break\\n                f = cand_files[ci]\\n                if f not in exclude:\\n                    selected.append((iid + \\\"::\\\" + f, float(sims[ci])))\\n\\n            mined[query_id] = selected\\n\\n    model.train()\\n    return mined\\n\\n\\ndef _save_checkpoint(model, tokenizer, path, args):\\n    path = Path(path)\\n    path.mkdir(parents=True, exist_ok=True)\\n    if getattr(args, 'use_lora', False):\\n        sd = {k: v for k, v in model.state_dict().items()\\n              if not k.startswith('backbone.') or 'lora_' in k}\\n    else:\\n        sd = model.state_dict()\\n    torch.save(sd, path / \\\"model.pt\\\")\\n    tokenizer.save_pretrained(path)\\n    with open(path / \\\"training_config.json\\\", \\\"w\\\") as f:\\n        json.dump(vars(args), f, indent=2)\\n\\n\\ndef _load_json_as_sets(path: str) -> Dict[str, set]:\\n    with open(path) as f:\\n        raw = json.load(f)\\n    return {k: set(v) for k, v in raw.items()}\\n\\n\\ndef _load_embeddings(path: str) -> Dict[str, np.ndarray]:\\n    data = np.load(path, allow_pickle=True)\\n    return {str(k): data[k] for k in data.files}\\n\\n\\n# ── CLI ──────────────────────────────────────────────────────────────\\n\\ndef parse_args():\\n    p = argparse.ArgumentParser(description=\\\"StructFuse contrastive training\\\")\\n    p.add_argument(\\\"--model-name\\\", default=\\\"Qwen/Qwen2.5-Coder-3B\\\")\\n    p.add_argument(\\\"--train-file\\\", required=True)\\n    p.add_argument(\\\"--val-file\\\", required=True)\\n    p.add_argument(\\\"--output-dir\\\", required=True)\\n    p.add_argument(\\\"--batch-size\\\", type=int, default=8)\\n    p.add_argument(\\\"--learning-rate\\\", type=float, default=2e-5)\\n    p.add_argument(\\\"--num-epochs\\\", type=int, default=3)\\n    p.add_argument(\\\"--warmup-ratio\\\", type=float, default=0.1)\\n    p.add_argument(\\\"--num-negatives\\\", type=int, default=7)\\n    p.add_argument(\\\"--hard-negative-strategy\\\", choices=[\\\"random\\\", \\\"embedding_distance\\\", \\\"dataflow_aware\\\", \\\"bm25\\\"], default=\\\"dataflow_aware\\\")\\n    p.add_argument(\\\"--hard-negative-ratio\\\", type=float, default=0.5)\\n    p.add_argument(\\\"--temperature\\\", type=float, default=0.07)\\n    p.add_argument(\\\"--pos-weight-alpha\\\", type=float, default=1.0)\\n    p.add_argument(\\\"--use-fusion-head\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--use-lora\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--lora-r\\\", type=int, default=16)\\n    p.add_argument(\\\"--proj-dim\\\", type=int, default=256)\\n    p.add_argument(\\\"--gradient-checkpointing\\\", action=\\\"store_true\\\")\\n    p.add_argument(\\\"--eval-steps\\\", type=int, default=500)\\n    p.add_argument(\\\"--save-steps\\\", type=int, default=1000)\\n    p.add_argument(\\\"--max-seq-length\\\", type=int, default=2048)\\n    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n    p.add_argument(\\\"--wandb-project\\\", default=\\\"structfuse\\\")\\n    p.add_argument(\\\"--wandb-run-name\\\", default=None)\\n    p.add_argument(\\\"--dataflow-graph-file\\\", default=None, help=\\\"JSON file: {file_id: [reachable_ids]}\\\")\\n    p.add_argument(\\\"--embeddings-file\\\", default=None, help=\\\".npz file with pre-computed embeddings\\\")\\n    p.add_argument(\\\"--dynamic-mining\\\", action=\\\"store_true\\\",\\n                   help=\\\"Re-mine negatives each epoch using current encoder\\\")\\n    p.add_argument(\\\"--candidate-pool-file\\\", default=None,\\n                   help=\\\"candidate_pools.jsonl from build_m1_training_data.py --embedding-mining-mode dynamic\\\")\\n    p.add_argument(\\\"--early-stopping-patience\\\", type=int, default=0,\\n                   help=\\\"Stop if val_loss does not improve for N evals (0=disabled)\\\")\\n    return p.parse_args()\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    train(parse_args())\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the relevant code. Let me also check the dataset to understand if negatives are fixed or dynamic. Let me look at how the val dataset is constructed and whether there's any randomness in its __getitem__.
+
+Key observations from the code:
+
+1. **Checkpoint saving logic** (lines ~430-460):
+   - `best_by_val_loss`: saved when `cur_val_loss < best_val_loss` (line 432)
+   - `best_by_recall_at_1`: saved when `cur_recall_at_1 > best_recall_at_1` (line 450)
+   - Both are independent, dual checkpoint system
+
+2. **Early stopping** (lines 462-464):
+   - Triggered by `no_improve_count >= args.early_stopping_patience`
+   - `no_improve_count` is based on **val_loss**, NOT recall@1
+   - When triggered: `early_stopped = True` → breaks inner loop
+   - Outer loop: `if early_stopped: break` (line 368)
+
+3. **Final eval** (lines 467-478):
+   - Happens AFTER the training loop ends (both normal completion and early stopping)
+   - The final evaluation runs on the validation set regardless of how training concluded
+   - The model state at that point is whatever it was when training stopped — not necessarily the best checkpoint
+
+4. **Key insight for embed_s43**: 
+   - Early stopping triggers based on val_loss degradation, not recall@1 performance
+   - Looking at the evaluation metrics, there's a divergence between when val_loss stops improving and when recall@1 peaks — the model at step 1500 achieves the best recall@1 of 0.5606, but by the final evaluation the recall@1 has dropped to 0.5, suggesting the model continued training past its optimal point for recall before val_loss finally triggered the stop
+
+Now I'm examining the final save logic to understand whether the best_by_recall_at_1 checkpoint gets updated at the final evaluation or only at scheduled eval steps... I see the issue now—the final evaluation doesn't update the best checkpoint tracking, so if the model improves after step 1500, that improvement isn't captured in the best_by_recall_at_1 checkpoint. There's also a non-determinism problem in the validation dataset: when the negative pool is too small, it randomly shuffles fallback negatives, but the validation dataset never gets its negatives refreshed like the training set does, introducing randomness where there shouldn't be any. I need to check the actual configuration for embed_s43 to see what patience value was used and trace through the evaluation step pattern, then look at the shell scripts that initiated these runs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "b75247d6-a722-41e1-8e8d-f60db8194946",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S7JLMCERZMiwoLnPMcBduk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3441,
+      "cache_read_input_tokens": 53291,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3441
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60_
+
+核心逻辑已清楚。现在确认 embed_s43 的运行配置（patience 值和 eval_steps）以及 val 数据的 negative 采样方式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "01391143-07e4-4e29-9db6-69dce81b97d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S7JLMCERZMiwoLnPMcBduk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3441,
+      "cache_read_input_tokens": 53291,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3441
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01S3UrLoEhL7S3rjyVdMB1ce`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -rn \"s43\" /root/structfuse/run_m2_full_qwen.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "c32aa09d-c64d-42f2-aa0a-a5e283369769",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S7JLMCERZMiwoLnPMcBduk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3441,
+      "cache_read_input_tokens": 53291,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3441
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-16T03:10:31.511Z_
+
+<details><summary>↩ Tool result · `toolu_01S3UrLoEhL7S3rjyVdMB1ce`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "bdec560d-c78e-4d3e-b545-7e9645260ab5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VEsxQsyP4koRr1raZxVac4`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "cat /root/structfuse/run_m2_full_qwen.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "b3d3578b-2a14-4ee2-99a9-089257c45980",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S7JLMCERZMiwoLnPMcBduk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3441,
+      "cache_read_input_tokens": 53291,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3441
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-16T03:10:31.931Z_
+
+<details><summary>↩ Tool result · `toolu_01VEsxQsyP4koRr1raZxVac4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -eo pipefail\\n\\nexport CUDA_VISIBLE_DEVICES=0\\nexport PYTHONUNBUFFERED=1\\nexport PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True\\nexport WANDB_MODE=offline\\nexport WANDB_CONSOLE=off\\nexport WANDB_DIR=/root/autodl-tmp/structfuse/wandb_logs/\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport TRANSFORMERS_OFFLINE=1\\nexport HF_HUB_OFFLINE=1\\n\\ntrap 'echo \\\"INTERRUPTED at $(date), cleaning up...\\\"; kill 0; exit 1' INT TERM\\n\\nDATA_DIR=\\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\"\\nOUT_BASE=\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen\\\"\\nLOG_DIR=\\\"/root/runs/m2_full_qwen\\\"\\nMODEL=\\\"/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B\\\"\\nTRAIN_SCRIPT=\\\"/root/structfuse-context/training/train.py\\\"\\n\\nSTRATEGIES=(\\\"random\\\" \\\"embedding_distance\\\" \\\"dataflow_aware\\\")\\nSEEDS=(43 44)\\n\\nmkdir -p \\\"${LOG_DIR}\\\" \\\"${OUT_BASE}\\\"\\n\\nTOTAL_RUNS=9\\nRUN_NUM=0\\n\\nfor STRATEGY in \\\"${STRATEGIES[@]}\\\"; do\\n    for SEED in \\\"${SEEDS[@]}\\\"; do\\n        RUN_NUM=$((RUN_NUM + 1))\\n        TAG=\\\"${STRATEGY}_s${SEED}\\\"\\n        LOG_FILE=\\\"${LOG_DIR}/${TAG}.log\\\"\\n\\n        echo \\\"==========================================\\\"\\n        echo \\\"[${RUN_NUM}/${TOTAL_RUNS}] Starting: ${TAG} at $(date)\\\"\\n        echo \\\"==========================================\\\"\\n\\n        TRAIN_FILE=\\\"${DATA_DIR}/train_${STRATEGY}_s${SEED}.jsonl\\\"\\n        VAL_FILE=\\\"${DATA_DIR}/val_${STRATEGY}_s${SEED}.jsonl\\\"\\n        OUT_DIR=\\\"${OUT_BASE}/${TAG}\\\"\\n\\n        if [ ! -f \\\"${TRAIN_FILE}\\\" ]; then\\n            echo \\\"ERROR: Train file not found: ${TRAIN_FILE}\\\"\\n            exit 1\\n        fi\\n        if [ ! -f \\\"${VAL_FILE}\\\" ]; then\\n            echo \\\"ERROR: Val file not found: ${VAL_FILE}\\\"\\n            exit 1\\n        fi\\n\\n        EXTRA_ARGS=\\\"\\\"\\n        if [ \\\"${STRATEGY}\\\" = \\\"dataflow_aware\\\" ]; then\\n            EXTRA_ARGS=\\\"--dataflow-graph-file ${DATA_DIR}/dataflow_graph.json\\\"\\n        fi\\n\\n        python \\\"${TRAIN_SCRIPT}\\\" \\\\\\n            --model-name \\\"${MODEL}\\\" \\\\\\n            --train-file \\\"${TRAIN_FILE}\\\" \\\\\\n            --val-file \\\"${VAL_FILE}\\\" \\\\\\n            --output-dir \\\"${OUT_DIR}\\\" \\\\\\n            --hard-negative-strategy \\\"${STRATEGY}\\\" \\\\\\n            --learning-rate 2e-5 \\\\\\n            --temperature 0.07 \\\\\\n            --batch-size 8 \\\\\\n            --num-epochs 2 \\\\\\n            --num-negatives 7 \\\\\\n            --hard-negative-ratio 0.5 \\\\\\n            --use-lora \\\\\\n            --gradient-checkpointing \\\\\\n            --max-seq-length 2048 \\\\\\n            --seed \\\"${SEED}\\\" \\\\\\n            --eval-steps 500 \\\\\\n            --save-steps 1000 \\\\\\n            --wandb-project structfuse \\\\\\n            --wandb-run-name \\\"m2_full_${TAG}\\\" \\\\\\n            --early-stopping-patience 2 \\\\\\n            ${EXTRA_ARGS} \\\\\\n            2>&1 | tee \\\"${LOG_FILE}\\\"\\n\\n        TRAIN_EXIT=$?\\n        if [ ${TRAIN_EXIT} -ne 0 ]; then\\n            echo \\\"ERROR: ${TAG} failed with exit code ${TRAIN_EXIT}\\\"\\n            echo \\\"Last 20 lines of log:\\\"\\n            tail -20 \\\"${LOG_FILE}\\\"\\n            exit ${TRAIN_EXIT}\\n        fi\\n\\n        echo \\\"[${RUN_NUM}/${TOTAL_RUNS}] Completed: ${TAG} at $(date)\\\"\\n\\n        # Print final eval metrics from log\\n        grep -E \\\"\\\\[Final eval\\\\]|\\\\[eval@\\\" \\\"${LOG_FILE}\\\" | tail -3\\n\\n        # Print checkpoint summary\\n        if [ -f \\\"${OUT_DIR}/best_by_val_loss/training_config.json\\\" ]; then\\n            echo \\\"  best_by_val_loss checkpoint saved\\\"\\n        fi\\n        if [ -f \\\"${OUT_DIR}/best_by_recall_at_1/training_config.json\\\" ]; then\\n            echo \\\"  best_by_recall_at_1 checkpoint saved\\\"\\n        fi\\n\\n        # Clean intermediate checkpoints to save disk\\n        find \\\"${OUT_DIR}\\\" -maxdepth 1 -name \\\"checkpoint-*\\\" -type d -exec rm -rf {} + 2>/dev/null || true\\n\\n        echo \\\"\\\"\\n    done\\ndone\\n\\n# -- BM25 s42: 2 epochs, D050 unified regime (appended after loop) --\\nRUN_NUM=$((RUN_NUM + 1))\\nTAG=\\\"bm25_s42\\\"\\nLOG_FILE=\\\"${LOG_DIR}/${TAG}.log\\\"\\n\\necho \\\"==========================================\\\"\\necho \\\"[${RUN_NUM}/7] Starting: ${TAG} at $(date)\\\"\\necho \\\"==========================================\\\"\\n\\nTRAIN_FILE=\\\"${DATA_DIR}/train_bm25_s42.jsonl\\\"\\nVAL_FILE=\\\"${DATA_DIR}/val_bm25_s42.jsonl\\\"\\nOUT_DIR=\\\"/root/autodl-tmp/structfuse/full_m2_outputs/bm25_s42\\\"\\n\\nif [ ! -f \\\"${TRAIN_FILE}\\\" ]; then\\n    echo \\\"ERROR: Train file not found: ${TRAIN_FILE}\\\"\\n    exit 1\\nfi\\nif [ ! -f \\\"${VAL_FILE}\\\" ]; then\\n    echo \\\"ERROR: Val file not found: ${VAL_FILE}\\\"\\n    exit 1\\nfi\\n\\nmkdir -p \\\"${OUT_DIR}\\\"\\n\\npython \\\"${TRAIN_SCRIPT}\\\" \\\\\\n    --model-name \\\"${MODEL}\\\" \\\\\\n    --train-file \\\"${TRAIN_FILE}\\\" \\\\\\n    --val-file \\\"${VAL_FILE}\\\" \\\\\\n    --output-dir \\\"${OUT_DIR}\\\" \\\\\\n    --hard-negative-strategy \\\"bm25\\\" \\\\\\n    --learning-rate 2e-5 \\\\\\n    --temperature 0.07 \\\\\\n    --batch-size 8 \\\\\\n    --num-epochs 2 \\\\\\n    --num-negatives 7 \\\\\\n    --hard-negative-ratio 0.5 \\\\\\n    --use-lora \\\\\\n    --gradient-checkpointing \\\\\\n    --max-seq-length 2048 \\\\\\n    --seed 42 \\\\\\n    --eval-steps 500 \\\\\\n    --save-steps 1000 \\\\\\n    --wandb-project structfuse \\\\\\n    --wandb-run-name \\\"m2_full_bm25_s42\\\" \\\\\\n    --early-stopping-patience 2 \\\\\\n    2>&1 | tee \\\"${LOG_FILE}\\\"\\n\\nTRAIN_EXIT=$?\\nif [ ${TRAIN_EXIT} -ne 0 ]; then\\n    echo \\\"ERROR: ${TAG} failed with exit code ${TRAIN_EXIT}\\\"\\n    echo \\\"Last 20 lines of log:\\\"\\n    tail -20 \\\"${LOG_FILE}\\\"\\n    exit ${TRAIN_EXIT}\\nfi\\n\\necho \\\"[${RUN_NUM}/7] Completed: ${TAG} at $(date)\\\"\\n\\ngrep -E \\\"\\\\[Final eval\\\\]|\\\\[eval@\\\" \\\"${LOG_FILE}\\\" | tail -3\\n\\nif [ -f \\\"${OUT_DIR}/best_by_val_loss/training_config.json\\\" ]; then\\n    echo \\\"  best_by_val_loss checkpoint saved\\\"\\nfi\\nif [ -f \\\"${OUT_DIR}/best_by_recall_at_1/training_config.json\\\" ]; then\\n    echo \\\"  best_by_recall_at_1 checkpoint saved\\\"\\nfi\\n\\nfind \\\"${OUT_DIR}\\\" -maxdepth 1 -name \\\"checkpoint-*\\\" -type d -exec rm -rf {} + 2>/dev/null || true\\n\\necho \\\"\\\"\\n\\n\\necho \\\"==========================================\\\"\\necho \\\"ALL 7 RUNS COMPLETED at $(date)\\\"\\necho \\\"==========================================\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "9a7841a7-f2d6-44d0-aea4-fc146b65c78d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -eo pipefail\\\\n\\\\nexport CUDA_VISIBLE_DEVICES=0\\\\nexport PYTHONUNBUFFERED=1\\\\nexport PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True\\\\nexport WANDB_MODE=offline\\\\nexport WANDB_CONSOLE=off\\\\nexport WANDB_DIR=/root/autodl-tmp/structfuse/wandb_logs/\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport TRANSFORMERS_OFFLINE=1\\\\nexport HF_HUB_OFFLINE=1\\\\n\\\\ntrap 'echo \\\\\\\"INTERRUPTED at $(date), cleaning up...\\\\\\\"; kill 0; exit 1' INT TERM\\\\n\\\\nDATA_DIR=\\\\\\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\\\\\"\\\\nOUT_BASE=\\\\\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen\\\\\\\"\\\\nLOG_DIR=\\\\\\\"/root/runs/m2_full_qwen\\\\\\\"\\\\nMODEL=\\\\\\\"/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B\\\\\\\"\\\\nTRAIN_SCRIPT=\\\\\\\"/root/structfuse-context/training/train.py\\\\\\\"\\\\n\\\\nSTRATEGIES=(\\\\\\\"random\\\\\\\" \\\\\\\"embedding_distance\\\\\\\" \\\\\\\"dataflow_aware\\\\\\\")\\\\nSEEDS=(43 44)\\\\n\\\\nmkdir -p \\\\\\\"${LOG_DIR}\\\\\\\" \\\\\\\"${OUT_BASE}\\\\\\\"\\\\n\\\\nTOTAL_RUNS=9\\\\nRUN_NUM=0\\\\n\\\\nfor STRATEGY in \\\\\\\"${STRATEGIES[@]}\\\\\\\"; do\\\\n    for SEED in \\\\\\\"${SEEDS[@]}\\\\\\\"; do\\\\n        RUN_NUM=$((RUN_NUM + 1))\\\\n        TAG=\\\\\\\"${STRATEGY}_s${SEED}\\\\\\\"\\\\n        LOG_FILE=\\\\\\\"${LOG_DIR}/${TAG}.log\\\\\\\"\\\\n\\\\n        echo \\\\\\\"==========================================\\\\\\\"\\\\n        echo \\\\\\\"[${RUN_NUM}/${TOTAL_RUNS}] Starting: ${TAG} at $(date)\\\\\\\"\\\\n        echo \\\\\\\"==========================================\\\\\\\"\\\\n\\\\n        TRAIN_FILE=\\\\\\\"${DATA_DIR}/train_${STRATEGY}_s${SEED}.jsonl\\\\\\\"\\\\n        VAL_FILE=\\\\\\\"${DATA_DIR}/val_${STRATEGY}_s${SEED}.jsonl\\\\\\\"\\\\n        OUT_DIR=\\\\\\\"${OUT_BASE}/${TAG}\\\\\\\"\\\\n\\\\n        if [ ! -f \\\\\\\"${TRAIN_FILE}\\\\\\\" ]; then\\\\n            echo \\\\\\\"ERROR: Train file not found: ${TRAIN_FILE}\\\\\\\"\\\\n            exit 1\\\\n        fi\\\\n        if [ ! -f \\\\\\\"${VAL_FILE}\\\\\\\" ]; then\\\\n            echo \\\\\\\"ERROR: Val file not found: ${VAL_FILE}\\\\\\\"\\\\n            exit 1\\\\n        fi\\\\n\\\\n        EXTRA_ARGS=\\\\\\\"\\\\\\\"\\\\n        if [ \\\\\\\"${STRATEGY}\\\\\\\" = \\\\\\\"dataflow_aware\\\\\\\" ]; then\\\\n            EXTRA_ARGS=\\\\\\\"--dataflow-graph-file ${DATA_DIR}/dataflow_graph.json\\\\\\\"\\\\n        fi\\\\n\\\\n        python \\\\\\\"${TRAIN_SCRIPT}\\\\\\\" \\\\\\\\\\\\n            --model-name \\\\\\\"${MODEL}\\\\\\\" \\\\\\\\\\\\n            --train-file \\\\\\\"${TRAIN_FILE}\\\\\\\" \\\\\\\\\\\\n            --val-file \\\\\\\"${VAL_FILE}\\\\\\\" \\\\\\\\\\\\n            --output-dir \\\\\\\"${OUT_DIR}\\\\\\\" \\\\\\\\\\\\n            --hard-negative-strategy \\\\\\\"${STRATEGY}\\\\\\\" \\\\\\\\\\\\n            --learning-rate 2e-5 \\\\\\\\\\\\n            --temperature 0.07 \\\\\\\\\\\\n            --batch-size 8 \\\\\\\\\\\\n            --num-epochs 2 \\\\\\\\\\\\n            --num-negatives 7 \\\\\\\\\\\\n            --hard-negative-ratio 0.5 \\\\\\\\\\\\n            --use-lora \\\\\\\\\\\\n            --gradient-checkpointing \\\\\\\\\\\\n            --max-seq-length 2048 \\\\\\\\\\\\n            --seed \\\\\\\"${SEED}\\\\\\\" \\\\\\\\\\\\n            --eval-steps 500 \\\\\\\\\\\\n            --save-steps 1000 \\\\\\\\\\\\n            --wandb-project structfuse \\\\\\\\\\\\n            --wandb-run-name \\\\\\\"m2_full_${TAG}\\\\\\\" \\\\\\\\\\\\n            --early-stopping-patience 2 \\\\\\\\\\\\n            ${EXTRA_ARGS} \\\\\\\\\\\\n            2>&1 | tee \\\\\\\"${LOG_FILE}\\\\\\\"\\\\n\\\\n        TRAIN_EXIT=$?\\\\n        if [ ${TRAIN_EXIT} -ne 0 ]; then\\\\n            echo \\\\\\\"ERROR: ${TAG} failed with exit code ${TRAIN_EXIT}\\\\\\\"\\\\n            echo \\\\\\\"Last 20 lines of log:\\\\\\\"\\\\n            tail -20 \\\\\\\"${LOG_FILE}\\\\\\\"\\\\n            exit ${TRAIN_EXIT}\\\\n        fi\\\\n\\\\n        echo \\\\\\\"[${RUN_NUM}/${TOTAL_RUNS}] Completed: ${TAG} at $(date)\\\\\\\"\\\\n\\\\n        # Print final eval metrics from log\\\\n        grep -E \\\\\\\"\\\\\\\\[Final eval\\\\\\\\]|\\\\\\\\[eval@\\\\\\\" \\\\\\\"${LOG_FILE}\\\\\\\" | tail -3\\\\n\\\\n        # Print checkpoint summary\\\\n        if [ -f \\\\\\\"${OUT_DIR}/best_by_val_loss/training_config.json\\\\\\\" ]; then\\\\n            echo \\\\\\\"  best_by_val_loss checkpoint saved\\\\\\\"\\\\n        fi\\\\n        if [ -f \\\\\\\"${OUT_DIR}/best_by_recall_at_1/training_config.json\\\\\\\" ]; then\\\\n            echo \\\\\\\"  best_by_recall_at_1 checkpoint saved\\\\\\\"\\\\n        fi\\\\n\\\\n        # Clean intermediate checkpoints to save disk\\\\n        find \\\\\\\"${OUT_DIR}\\\\\\\" -maxdepth 1 -name \\\\\\\"checkpoint-*\\\\\\\" -type d -exec rm -rf {} + 2>/dev/null || true\\\\n\\\\n        echo \\\\\\\"\\\\\\\"\\\\n    done\\\\ndone\\\\n\\\\n# -- BM25 s42: 2 epochs, D050 unified regime (appended after loop) --\\\\nRUN_NUM=$((RUN_NUM + 1))\\\\nTAG=\\\\\\\"bm25_s42\\\\\\\"\\\\nLOG_FILE=\\\\\\\"${LOG_DIR}/${TAG}.log\\\\\\\"\\\\n\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\necho \\\\\\\"[${RUN_NUM}/7] Starting: ${TAG} at $(date)\\\\\\\"\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\n\\\\nTRAIN_FILE=\\\\\\\"${DATA_DIR}/train_bm25_s42.jsonl\\\\\\\"\\\\nVAL_FILE=\\\\\\\"${DATA_DIR}/val_bm25_s42.jsonl\\\\\\\"\\\\nOUT_DIR=\\\\\\\"/root/autodl-tmp/structfuse/full_m2_outputs/bm25_s42\\\\\\\"\\\\n\\\\nif [ ! -f \\\\\\\"${TRAIN_FILE}\\\\\\\" ]; then\\\\n    echo \\\\\\\"ERROR: Train file not found: ${TRAIN_FILE}\\\\\\\"\\\\n    exit 1\\\\nfi\\\\nif [ ! -f \\\\\\\"${VAL_FILE}\\\\\\\" ]; then\\\\n    echo \\\\\\\"ERROR: Val file not found: ${VAL_FILE}\\\\\\\"\\\\n    exit 1\\\\nfi\\\\n\\\\nmkdir -p \\\\\\\"${OUT_DIR}\\\\\\\"\\\\n\\\\npython \\\\\\\"${TRAIN_SCRIPT}\\\\\\\" \\\\\\\\\\\\n    --model-name \\\\\\\"${MODEL}\\\\\\\" \\\\\\\\\\\\n    --train-file \\\\\\\"${TRAIN_FILE}\\\\\\\" \\\\\\\\\\\\n    --val-file \\\\\\\"${VAL_FILE}\\\\\\\" \\\\\\\\\\\\n    --output-dir \\\\\\\"${OUT_DIR}\\\\\\\" \\\\\\\\\\\\n    --hard-negative-strategy \\\\\\\"bm25\\\\\\\" \\\\\\\\\\\\n    --learning-rate 2e-5 \\\\\\\\\\\\n    --temperature 0.07 \\\\\\\\\\\\n    --batch-size 8 \\\\\\\\\\\\n    --num-epochs 2 \\\\\\\\\\\\n    --num-negatives 7 \\\\\\\\\\\\n    --hard-negative-ratio 0.5 \\\\\\\\\\\\n    --use-lora \\\\\\\\\\\\n    --gradient-checkpointing \\\\\\\\\\\\n    --max-seq-length 2048 \\\\\\\\\\\\n    --seed 42 \\\\\\\\\\\\n    --eval-steps 500 \\\\\\\\\\\\n    --save-steps 1000 \\\\\\\\\\\\n    --wandb-project structfuse \\\\\\\\\\\\n    --wandb-run-name \\\\\\\"m2_full_bm25_s42\\\\\\\" \\\\\\\\\\\\n    --early-stopping-patience 2 \\\\\\\\\\\\n    2>&1 | tee \\\\\\\"${LOG_FILE}\\\\\\\"\\\\n\\\\nTRAIN_EXIT=$?\\\\nif [ ${TRAIN_EXIT} -ne 0 ]; then\\\\n    echo \\\\\\\"ERROR: ${TAG} failed with exit code ${TRAIN_EXIT}\\\\\\\"\\\\n    echo \\\\\\\"Last 20 lines of log:\\\\\\\"\\\\n    tail -20 \\\\\\\"${LOG_FILE}\\\\\\\"\\\\n    exit ${TRAIN_EXIT}\\\\nfi\\\\n\\\\necho \\\\\\\"[${RUN_NUM}/7] Completed: ${TAG} at $(date)\\\\\\\"\\\\n\\\\ngrep -E \\\\\\\"\\\\\\\\[Final eval\\\\\\\\]|\\\\\\\\[eval@\\\\\\\" \\\\\\\"${LOG_FILE}\\\\\\\" | tail -3\\\\n\\\\nif [ -f \\\\\\\"${OUT_DIR}/best_by_val_loss/training_config.json\\\\\\\" ]; then\\\\n    echo \\\\\\\"  best_by_val_loss checkpoint saved\\\\\\\"\\\\nfi\\\\nif [ -f \\\\\\\"${OUT_DIR}/best_by_recall_at_1/training_config.json\\\\\\\" ]; then\\\\n    echo \\\\\\\"  best_by_recall_at_1 checkpoint saved\\\\\\\"\\\\nfi\\\\n\\\\nfind \\\\\\\"${OUT_DIR}\\\\\\\" -maxdepth 1 -name \\\\\\\"checkpoint-*\\\\\\\" -type d -exec rm -rf {} + 2>/dev/null || true\\\\n\\\\necho \\\\\\\"\\\\\\\"\\\\n\\\\n\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\necho \\\\\\\"ALL 7 RUNS COMPLETED at $(date)\\\\\\\"\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -eo pipefail\\n\\nexport CUDA_VISIBLE_DEVICES=0\\nexport PYTHONUNBUFFERED=1\\nexport PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True\\nexport WANDB_MODE=offline\\nexport WANDB_CONSOLE=off\\nexport WANDB_DIR=/root/autodl-tmp/structfuse/wandb_logs/\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport TRANSFORMERS_OFFLINE=1\\nexport HF_HUB_OFFLINE=1\\n\\ntrap 'echo \\\"INTERRUPTED at $(date), cleaning up...\\\"; kill 0; exit 1' INT TERM\\n\\nDATA_DIR=\\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\"\\nOUT_BASE=\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen\\\"\\nLOG_DIR=\\\"/root/runs/m2_full_qwen\\\"\\nMODEL=\\\"/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B\\\"\\nTRAIN_SCRIPT=\\\"/root/structfuse-context/training/train.py\\\"\\n\\nSTRATEGIES=(\\\"random\\\" \\\"embedding_distance\\\" \\\"dataflow_aware\\\")\\nSEEDS=(43 44)\\n\\nmkdir -p \\\"${LOG_DIR}\\\" \\\"${OUT_BASE}\\\"\\n\\nTOTAL_RUNS=9\\nRUN_NUM=0\\n\\nfor STRATEGY in \\\"${STRATEGIES[@]}\\\"; do\\n    for SEED in \\\"${SEEDS[@]}\\\"; do\\n        RUN_NUM=$((RUN_NUM + 1))\\n        TAG=\\\"${STRATEGY}_s${SEED}\\\"\\n        LOG_FILE=\\\"${LOG_DIR}/${TAG}.log\\\"\\n\\n        echo \\\"==========================================\\\"\\n        echo \\\"[${RUN_NUM}/${TOTAL_RUNS}] Starting: ${TAG} at $(date)\\\"\\n        echo \\\"==========================================\\\"\\n\\n        TRAIN_FILE=\\\"${DATA_DIR}/train_${STRATEGY}_s${SEED}.jsonl\\\"\\n        VAL_FILE=\\\"${DATA_DIR}/val_${STRATEGY}_s${SEED}.jsonl\\\"\\n        OUT_DIR=\\\"${OUT_BASE}/${TAG}\\\"\\n\\n        if [ ! -f \\\"${TRAIN_FILE}\\\" ]; then\\n            echo \\\"ERROR: Train file not found: ${TRAIN_FILE}\\\"\\n            exit 1\\n        fi\\n        if [ ! -f \\\"${VAL_FILE}\\\" ]; then\\n            echo \\\"ERROR: Val file not found: ${VAL_FILE}\\\"\\n            exit 1\\n        fi\\n\\n        EXTRA_ARGS=\\\"\\\"\\n        if [ \\\"${STRATEGY}\\\" = \\\"dataflow_aware\\\" ]; then\\n            EXTRA_ARGS=\\\"--dataflow-graph-file ${DATA_DIR}/dataflow_graph.json\\\"\\n        fi\\n\\n        python \\\"${TRAIN_SCRIPT}\\\" \\\\\\n            --model-name \\\"${MODEL}\\\" \\\\\\n            --train-file \\\"${TRAIN_FILE}\\\" \\\\\\n            --val-file \\\"${VAL_FILE}\\\" \\\\\\n            --output-dir \\\"${OUT_DIR}\\\" \\\\\\n            --hard-negative-strategy \\\"${STRATEGY}\\\" \\\\\\n            --learning-rate 2e-5 \\\\\\n            --temperature 0.07 \\\\\\n            --batch-size 8 \\\\\\n            --num-epochs 2 \\\\\\n            --num-negatives 7 \\\\\\n            --hard-negative-ratio 0.5 \\\\\\n            --use-lora \\\\\\n            --gradient-checkpointing \\\\\\n            --max-seq-length 2048 \\\\\\n            --seed \\\"${SEED}\\\" \\\\\\n            --eval-steps 500 \\\\\\n            --save-steps 1000 \\\\\\n            --wandb-project structfuse \\\\\\n            --wandb-run-name \\\"m2_full_${TAG}\\\" \\\\\\n            --early-stopping-patience 2 \\\\\\n            ${EXTRA_ARGS} \\\\\\n            2>&1 | tee \\\"${LOG_FILE}\\\"\\n\\n        TRAIN_EXIT=$?\\n        if [ ${TRAIN_EXIT} -ne 0 ]; then\\n            echo \\\"ERROR: ${TAG} failed with exit code ${TRAIN_EXIT}\\\"\\n            echo \\\"Last 20 lines of log:\\\"\\n            tail -20 \\\"${LOG_FILE}\\\"\\n            exit ${TRAIN_EXIT}\\n        fi\\n\\n        echo \\\"[${RUN_NUM}/${TOTAL_RUNS}] Completed: ${TAG} at $(date)\\\"\\n\\n        # Print final eval metrics from log\\n        grep -E \\\"\\\\[Final eval\\\\]|\\\\[eval@\\\" \\\"${LOG_FILE}\\\" | tail -3\\n\\n        # Print checkpoint summary\\n        if [ -f \\\"${OUT_DIR}/best_by_val_loss/training_config.json\\\" ]; then\\n            echo \\\"  best_by_val_loss checkpoint saved\\\"\\n        fi\\n        if [ -f \\\"${OUT_DIR}/best_by_recall_at_1/training_config.json\\\" ]; then\\n            echo \\\"  best_by_recall_at_1 checkpoint saved\\\"\\n        fi\\n\\n        # Clean intermediate checkpoints to save disk\\n        find \\\"${OUT_DIR}\\\" -maxdepth 1 -name \\\"checkpoint-*\\\" -type d -exec rm -rf {} + 2>/dev/null || true\\n\\n        echo \\\"\\\"\\n    done\\ndone\\n\\n# -- BM25 s42: 2 epochs, D050 unified regime (appended after loop) --\\nRUN_NUM=$((RUN_NUM + 1))\\nTAG=\\\"bm25_s42\\\"\\nLOG_FILE=\\\"${LOG_DIR}/${TAG}.log\\\"\\n\\necho \\\"==========================================\\\"\\necho \\\"[${RUN_NUM}/7] Starting: ${TAG} at $(date)\\\"\\necho \\\"==========================================\\\"\\n\\nTRAIN_FILE=\\\"${DATA_DIR}/train_bm25_s42.jsonl\\\"\\nVAL_FILE=\\\"${DATA_DIR}/val_bm25_s42.jsonl\\\"\\nOUT_DIR=\\\"/root/autodl-tmp/structfuse/full_m2_outputs/bm25_s42\\\"\\n\\nif [ ! -f \\\"${TRAIN_FILE}\\\" ]; then\\n    echo \\\"ERROR: Train file not found: ${TRAIN_FILE}\\\"\\n    exit 1\\nfi\\nif [ ! -f \\\"${VAL_FILE}\\\" ]; then\\n    echo \\\"ERROR: Val file not found: ${VAL_FILE}\\\"\\n    exit 1\\nfi\\n\\nmkdir -p \\\"${OUT_DIR}\\\"\\n\\npython \\\"${TRAIN_SCRIPT}\\\" \\\\\\n    --model-name \\\"${MODEL}\\\" \\\\\\n    --train-file \\\"${TRAIN_FILE}\\\" \\\\\\n    --val-file \\\"${VAL_FILE}\\\" \\\\\\n    --output-dir \\\"${OUT_DIR}\\\" \\\\\\n    --hard-negative-strategy \\\"bm25\\\" \\\\\\n    --learning-rate 2e-5 \\\\\\n    --temperature 0.07 \\\\\\n    --batch-size 8 \\\\\\n    --num-epochs 2 \\\\\\n    --num-negatives 7 \\\\\\n    --hard-negative-ratio 0.5 \\\\\\n    --use-lora \\\\\\n    --gradient-checkpointing \\\\\\n    --max-seq-length 2048 \\\\\\n    --seed 42 \\\\\\n    --eval-steps 500 \\\\\\n    --save-steps 1000 \\\\\\n    --wandb-project structfuse \\\\\\n    --wandb-run-name \\\"m2_full_bm25_s42\\\" \\\\\\n    --early-stopping-patience 2 \\\\\\n    2>&1 | tee \\\"${LOG_FILE}\\\"\\n\\nTRAIN_EXIT=$?\\nif [ ${TRAIN_EXIT} -ne 0 ]; then\\n    echo \\\"ERROR: ${TAG} failed with exit code ${TRAIN_EXIT}\\\"\\n    echo \\\"Last 20 lines of log:\\\"\\n    tail -20 \\\"${LOG_FILE}\\\"\\n    exit ${TRAIN_EXIT}\\nfi\\n\\necho \\\"[${RUN_NUM}/7] Completed: ${TAG} at $(date)\\\"\\n\\ngrep -E \\\"\\\\[Final eval\\\\]|\\\\[eval@\\\" \\\"${LOG_FILE}\\\" | tail -3\\n\\nif [ -f \\\"${OUT_DIR}/best_by_val_loss/training_config.json\\\" ]; then\\n    echo \\\"  best_by_val_loss checkpoint saved\\\"\\nfi\\nif [ -f \\\"${OUT_DIR}/best_by_recall_at_1/training_config.json\\\" ]; then\\n    echo \\\"  best_by_recall_at_1 checkpoint saved\\\"\\nfi\\n\\nfind \\\"${OUT_DIR}\\\" -maxdepth 1 -name \\\"checkpoint-*\\\" -type d -exec rm -rf {} + 2>/dev/null || true\\n\\necho \\\"\\\"\\n\\n\\necho \\\"==========================================\\\"\\necho \\\"ALL 7 RUNS COMPLETED at $(date)\\\"\\necho \\\"==========================================\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DDScbdysTJTPrnHH4b7cfV`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/autodl-tmp -name \"training_config.json\" -path \"*s43*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "00a01569-a805-4eb9-b626-f950426e040b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S7JLMCERZMiwoLnPMcBduk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3441,
+      "cache_read_input_tokens": 53291,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3441
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-16T03:10:33.094Z_
+
+<details><summary>↩ Tool result · `toolu_01DDScbdysTJTPrnHH4b7cfV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/best_by_val_loss/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/best_by_recall_at_1/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s43/best_by_val_loss/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s43/best_by_recall_at_1/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s43/final/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/dataflow_aware_s43/best_by_val_loss/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/dataflow_aware_s43/best_by_recall_at_1/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/dataflow_aware_s43/final/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s43/best_by_val_loss/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s43/best_by_recall_at_1/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s43/final/training_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "2fc8b4fc-ab4f-4c6a-8150-6f077821a9ee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/best_by_val_loss/training_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/best_by_recall_at_1/training_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s43/best_by_val_loss/training_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s43/best_by_recall_at_1/training_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s43/final/training_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/dataflow_aware_s43/best_by_val_loss/training_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/dataflow_aware_s43/best_by_recall_at_1/training_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/dataflow_aware_s43/final/training_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s43/best_by_val_loss/training_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s43/best_by_recall_at_1/training_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s43/final/training_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/best_by_val_loss/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/best_by_recall_at_1/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s43/best_by_val_loss/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s43/best_by_recall_at_1/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s43/final/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/dataflow_aware_s43/best_by_val_loss/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/dataflow_aware_s43/best_by_recall_at_1/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/dataflow_aware_s43/final/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s43/best_by_val_loss/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s43/best_by_recall_at_1/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s43/final/training_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me also check the val dataset to confirm the negative sampling behavior. The key issue is in the `ContrastiveDataset.__getitem__` method — when `_negatives` is empty (which it always is for val_ds since `refresh_negatives` is only called for train_ds), it falls back to shuffling `neg_candidates` randomly. Let me also check the training logs for embed_s43 to confirm the timeline.
+
+Let me check the training logs to understand what happened during embed_s43.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "9a7c9d1d-09f7-4fe9-a50e-ce58b8392de7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015DpjLvgpCADUp9huHKvUeP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5495,
+      "cache_read_input_tokens": 56732,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+确认关键信息：`--early-stopping-patience 2`，`--eval-steps 500`。查看 embed_s43 的训练日志确认实际时间线。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "5439afc1-b352-4fc3-9030-2d4777a04f35",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015DpjLvgpCADUp9huHKvUeP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5495,
+      "cache_read_input_tokens": 56732,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017Jv8sFHG3wnqWyjbYiG1Bh`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/runs -name \"*s43*\" -name \"*.log\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "92520144-9461-438c-810d-7f28d3749ca8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015DpjLvgpCADUp9huHKvUeP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5495,
+      "cache_read_input_tokens": 56732,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-16T03:10:39.829Z_
+
+<details><summary>↩ Tool result · `toolu_017Jv8sFHG3wnqWyjbYiG1Bh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/runs/m2_full_qwen/s43plus_all.log\\n/root/runs/m2_full_qwen/random_s43.log\\n/root/runs/m2_full_qwen/embedding_distance_s43.log\\n/root/runs/m2_full_qwen/dataflow_aware_s43.log\\n/root/runs/m2_full_starcoder/s43plus_all.log\\n/root/runs/m2_full_starcoder/random_s43.log\\n/root/runs/m2_full_starcoder/embedding_distance_s43.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "5d4d2212-68b0-4336-93c7-91263bac4be7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/m2_full_qwen/s43plus_all.log\\\\n/root/runs/m2_full_qwen/random_s43.log\\\\n/root/runs/m2_full_qwen/embedding_distance_s43.log\\\\n/root/runs/m2_full_qwen/dataflow_aware_s43.log\\\\n/root/runs/m2_full_starcoder/s43plus_all.log\\\\n/root/runs/m2_full_starcoder/random_s43.log\\\\n/root/runs/m2_full_starcoder/embedding_distance_s43.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/runs/m2_full_qwen/s43plus_all.log\\n/root/runs/m2_full_qwen/random_s43.log\\n/root/runs/m2_full_qwen/embedding_distance_s43.log\\n/root/runs/m2_full_qwen/dataflow_aware_s43.log\\n/root/runs/m2_full_starcoder/s43plus_all.log\\n/root/runs/m2_full_starcoder/random_s43.log\\n/root/runs/m2_full_starcoder/embedding_distance_s43.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DGo8ePoqgKHXmyAzcM2xnG`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"neg_candidates\" /root/structfuse/training/train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "18b8facb-c788-405e-b0ea-c9846339dc8e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015DpjLvgpCADUp9huHKvUeP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5495,
+      "cache_read_input_tokens": 56732,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-16T03:10:40.557Z_
+
+<details><summary>↩ Tool result · `toolu_01DGo8ePoqgKHXmyAzcM2xnG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"49:        neg_candidates (list of file ids), features (dict per candidate).\\n109:            fallback = list(s.get(\\\"neg_candidates\\\", []))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "42a2de54-fd7c-4489-8bad-72d784a15e3b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"49:        neg_candidates (list of file ids), features (dict per candidate).\\\\n109:            fallback = list(s.get(\\\\\\\"neg_candidates\\\\\\\", []))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"49:        neg_candidates (list of file ids), features (dict per candidate).\\n109:            fallback = list(s.get(\\\"neg_candidates\\\", []))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RHaHeqxSs9Htk2PNFAnXsW`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -E \"eval@|Final eval|Early stop|best|not improved\" /root/runs/m2_full_qwen/embedding_distance_s43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "26301de0-0745-42e9-8b3e-caa807efd53b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018QMhi8iJP4GYoCmpyBBFBr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 62227,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 821
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-16T03:10:43.667Z_
+
+<details><summary>↩ Tool result · `toolu_01RHaHeqxSs9Htk2PNFAnXsW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "7e45b7a9-2cbc-4c33-ac96-a2c60083fb9c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018ojZ1Kt5G8CDNpRK5mtTgz`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep \"eval@\" /root/runs/m2_full_qwen/embedding_distance_s43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "32feabc2-ad4e-40ec-95d9-bc199312c76b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AkebcLSuzExkpPxnchNyWM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 234,
+      "cache_read_input_tokens": 63048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 234
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-16T03:10:47.312Z_
+
+<details><summary>↩ Tool result · `toolu_018ojZ1Kt5G8CDNpRK5mtTgz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  [eval@500] {'val_loss': 0.45413682116671594, 'recall@1': 0.5445609436435125, 'recall@5': 0.9665792922673656, 'recall@10': 1.0}\\n  [eval@1000] {'val_loss': 0.47089352574917154, 'recall@1': 0.5389908256880734, 'recall@5': 0.9655963302752294, 'recall@10': 1.0}\\n  [eval@1500] {'val_loss': 0.49263691808418086, 'recall@1': 0.5606159895150721, 'recall@5': 0.9629750982961992, 'recall@10': 1.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "f7baa67a-a7a1-4fee-acb5-a9e078585036",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  [eval@500] {'val_loss': 0.45413682116671594, 'recall@1': 0.5445609436435125, 'recall@5': 0.9665792922673656, 'recall@10': 1.0}\\\\n  [eval@1000] {'val_loss': 0.47089352574917154, 'recall@1': 0.5389908256880734, 'recall@5': 0.9655963302752294, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.49263691808418086, 'recall@1': 0.5606159895150721, 'recall@5': 0.9629750982961992, 'recall@10': 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  [eval@500] {'val_loss': 0.45413682116671594, 'recall@1': 0.5445609436435125, 'recall@5': 0.9665792922673656, 'recall@10': 1.0}\\n  [eval@1000] {'val_loss': 0.47089352574917154, 'recall@1': 0.5389908256880734, 'recall@5': 0.9655963302752294, 'recall@10': 1.0}\\n  [eval@1500] {'val_loss': 0.49263691808418086, 'recall@1': 0.5606159895150721, 'recall@5': 0.9629750982961992, 'recall@10': 1.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Scn3Eqd2nz55S4max3ZNgL`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep \"Final eval\" /root/runs/m2_full_qwen/embedding_distance_s43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "f41c3f2a-a3c8-4e70-b576-d95d8e80cad3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AkebcLSuzExkpPxnchNyWM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 234,
+      "cache_read_input_tokens": 63048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 234
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-16T03:10:48.250Z_
+
+<details><summary>↩ Tool result · `toolu_01Scn3Eqd2nz55S4max3ZNgL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[Final eval] {'val_loss': 0.4875504152256102, 'recall@1': 0.5655307994757536, 'recall@5': 0.966251638269987, 'recall@10': 1.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "ad3cadf7-afc4-4173-9e02-2054885ee3b9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[Final eval] {'val_loss': 0.4875504152256102, 'recall@1': 0.5655307994757536, 'recall@5': 0.966251638269987, 'recall@10': 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[Final eval] {'val_loss': 0.4875504152256102, 'recall@1': 0.5655307994757536, 'recall@5': 0.966251638269987, 'recall@10': 1.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JckcxAySST9Fh2FVRfDy33`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep \"Early stop\" /root/runs/m2_full_qwen/embedding_distance_s43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "21dedc42-e645-4acb-a6f3-c4a07f2f361d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AkebcLSuzExkpPxnchNyWM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 234,
+      "cache_read_input_tokens": 63048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 234
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-16T03:10:48.748Z_
+
+<details><summary>↩ Tool result · `toolu_01JckcxAySST9Fh2FVRfDy33`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Early stopping triggered at step 1500, best val_loss=0.4541 at step 500\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "af0681a7-0604-4f70-bee0-a4e1f0c62a90",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Early stopping triggered at step 1500, best val_loss=0.4541 at step 500\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Early stopping triggered at step 1500, best val_loss=0.4541 at step 500\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BZGDB8u7sqxVU9M6RER7G1`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep \"not improved\" /root/runs/m2_full_qwen/embedding_distance_s43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "14d9a922-96b9-4153-b230-edbe0a0855e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AkebcLSuzExkpPxnchNyWM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 234,
+      "cache_read_input_tokens": 63048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 234
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-16T03:10:49.654Z_
+
+<details><summary>↩ Tool result · `toolu_01BZGDB8u7sqxVU9M6RER7G1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  val_loss not improved (1/2)\\n  val_loss not improved (2/2)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "1bdc1e95-583f-4eac-97ba-95107283bc79",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  val_loss not improved (1/2)\\\\n  val_loss not improved (2/2)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  val_loss not improved (1/2)\\n  val_loss not improved (2/2)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019qyAjh9iGRu2jMYWvSTvxo`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep \"New best\" /root/runs/m2_full_qwen/embedding_distance_s43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "d26f20e1-da89-48dd-9245-57c1734ed33e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AkebcLSuzExkpPxnchNyWM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 234,
+      "cache_read_input_tokens": 63048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 234
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-16T03:10:50.250Z_
+
+<details><summary>↩ Tool result · `toolu_019qyAjh9iGRu2jMYWvSTvxo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  New best val_loss=0.4541, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s43/best_by_val_loss\\n  New best R@1=0.5446, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s43/best_by_recall_at_1\\n  New best R@1=0.5606, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s43/best_by_recall_at_1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "ec47287c-f660-4c82-8f96-02a375d632de",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  New best val_loss=0.4541, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s43/best_by_val_loss\\\\n  New best R@1=0.5446, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s43/best_by_recall_at_1\\\\n  New best R@1=0.5606, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s43/best_by_recall_at_1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  New best val_loss=0.4541, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s43/best_by_val_loss\\n  New best R@1=0.5446, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s43/best_by_recall_at_1\\n  New best R@1=0.5606, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s43/best_by_recall_at_1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the complete picture. Let me also check embed_s44 for comparison.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "f38ce422-e51d-4af1-8043-58412d991191",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EibU9kLyvGV5GXvYSa5tLu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1547,
+      "cache_read_input_tokens": 63282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1547
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86_
+
+确认了 embed_s43 的完整时间线。现在查 embed_s44 对比。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "5ae13ed0-8c79-44fc-a43f-f859968d0c6a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EibU9kLyvGV5GXvYSa5tLu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1547,
+      "cache_read_input_tokens": 63282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1547
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XGzPkzybPaFCtbyj6KcrCP`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep \"eval@\" /root/runs/m2_full_qwen/embedding_distance_s43.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "75aec3cf-b9cc-43c1-8f38-27ad8f97b518",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EibU9kLyvGV5GXvYSa5tLu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1547,
+      "cache_read_input_tokens": 63282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1547
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-16T03:10:54.550Z_
+
+<details><summary>↩ Tool result · `toolu_01XGzPkzybPaFCtbyj6KcrCP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  [eval@500] {'val_loss': 0.45413682116671594, 'recall@1': 0.5445609436435125, 'recall@5': 0.9665792922673656, 'recall@10': 1.0}\\n  [eval@1000] {'val_loss': 0.47089352574917154, 'recall@1': 0.5389908256880734, 'recall@5': 0.9655963302752294, 'recall@10': 1.0}\\n  [eval@1500] {'val_loss': 0.49263691808418086, 'recall@1': 0.5606159895150721, 'recall@5': 0.9629750982961992, 'recall@10': 1.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "df0e19ed-6446-43d1-a83f-a3e7eb0317b1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  [eval@500] {'val_loss': 0.45413682116671594, 'recall@1': 0.5445609436435125, 'recall@5': 0.9665792922673656, 'recall@10': 1.0}\\\\n  [eval@1000] {'val_loss': 0.47089352574917154, 'recall@1': 0.5389908256880734, 'recall@5': 0.9655963302752294, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.49263691808418086, 'recall@1': 0.5606159895150721, 'recall@5': 0.9629750982961992, 'recall@10': 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  [eval@500] {'val_loss': 0.45413682116671594, 'recall@1': 0.5445609436435125, 'recall@5': 0.9665792922673656, 'recall@10': 1.0}\\n  [eval@1000] {'val_loss': 0.47089352574917154, 'recall@1': 0.5389908256880734, 'recall@5': 0.9655963302752294, 'recall@10': 1.0}\\n  [eval@1500] {'val_loss': 0.49263691808418086, 'recall@1': 0.5606159895150721, 'recall@5': 0.9629750982961992, 'recall@10': 1.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Bg71sY1yfWmWi7sPHtjdaT`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/runs -name \"*embedding_distance*s44*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "a8880e1f-ba34-4592-a9f2-20a4662ebdd4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EibU9kLyvGV5GXvYSa5tLu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1547,
+      "cache_read_input_tokens": 63282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1547
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-16T03:10:55.320Z_
+
+<details><summary>↩ Tool result · `toolu_01Bg71sY1yfWmWi7sPHtjdaT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/runs/m2_full_qwen/embedding_distance_s44.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "2fef5179-51af-41ed-a55d-56b31fd55aaf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/m2_full_qwen/embedding_distance_s44.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/runs/m2_full_qwen/embedding_distance_s44.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GoiUXhWMsQxWZj3TDC6AP3`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep \"eval@\" /root/runs/m2_full_qwen/embedding_distance_s44.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "f026f451-a543-4740-8009-c753c9bed277",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WkP7qWqQSwkoKHnVnoD5yJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 825,
+      "cache_read_input_tokens": 64829,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 825
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-16T03:10:58.886Z_
+
+<details><summary>↩ Tool result · `toolu_01GoiUXhWMsQxWZj3TDC6AP3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  [eval@500] {'val_loss': 0.44032017948726815, 'recall@1': 0.5942460317460317, 'recall@5': 0.9563492063492064, 'recall@10': 1.0}\\n  [eval@1000] {'val_loss': 0.4341431890648824, 'recall@1': 0.5813492063492064, 'recall@5': 0.9642857142857143, 'recall@10': 1.0}\\n  [eval@1500] {'val_loss': 0.5255766192342711, 'recall@1': 0.5472883597883598, 'recall@5': 0.9421296296296297, 'recall@10': 1.0}\\n  [eval@2000] {'val_loss': 0.5182343455691817, 'recall@1': 0.5390211640211641, 'recall@5': 0.9467592592592593, 'recall@10': 1.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "77cade62-c483-4128-9df3-204ff22ad002",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  [eval@500] {'val_loss': 0.44032017948726815, 'recall@1': 0.5942460317460317, 'recall@5': 0.9563492063492064, 'recall@10': 1.0}\\\\n  [eval@1000] {'val_loss': 0.4341431890648824, 'recall@1': 0.5813492063492064, 'recall@5': 0.9642857142857143, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.5255766192342711, 'recall@1': 0.5472883597883598, 'recall@5': 0.9421296296296297, 'recall@10': 1.0}\\\\n  [eval@2000] {'val_loss': 0.5182343455691817, 'recall@1': 0.5390211640211641, 'recall@5': 0.9467592592592593, 'recall@10': 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  [eval@500] {'val_loss': 0.44032017948726815, 'recall@1': 0.5942460317460317, 'recall@5': 0.9563492063492064, 'recall@10': 1.0}\\n  [eval@1000] {'val_loss': 0.4341431890648824, 'recall@1': 0.5813492063492064, 'recall@5': 0.9642857142857143, 'recall@10': 1.0}\\n  [eval@1500] {'val_loss': 0.5255766192342711, 'recall@1': 0.5472883597883598, 'recall@5': 0.9421296296296297, 'recall@10': 1.0}\\n  [eval@2000] {'val_loss': 0.5182343455691817, 'recall@1': 0.5390211640211641, 'recall@5': 0.9467592592592593, 'recall@10': 1.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ELFFuniv1KQMHtr3NWgw7V`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep \"Final eval\" /root/runs/m2_full_qwen/embedding_distance_s44.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "b7a45ec3-2888-4907-8797-c676a9e1add8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WkP7qWqQSwkoKHnVnoD5yJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 825,
+      "cache_read_input_tokens": 64829,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 825
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-16T03:10:59.366Z_
+
+<details><summary>↩ Tool result · `toolu_01ELFFuniv1KQMHtr3NWgw7V`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[Final eval] {'val_loss': 0.5123182460172939, 'recall@1': 0.546957671957672, 'recall@5': 0.9480820105820106, 'recall@10': 1.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "a4fd7643-6268-4de7-9bd1-81da57b29fd9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[Final eval] {'val_loss': 0.5123182460172939, 'recall@1': 0.546957671957672, 'recall@5': 0.9480820105820106, 'recall@10': 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[Final eval] {'val_loss': 0.5123182460172939, 'recall@1': 0.546957671957672, 'recall@5': 0.9480820105820106, 'recall@10': 1.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Pn6j7VpxbUF1EjWFUAxR8d`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep \"Early stop\" /root/runs/m2_full_qwen/embedding_distance_s44.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "87e3f351-d68c-47eb-9599-9d436886bd89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WkP7qWqQSwkoKHnVnoD5yJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 825,
+      "cache_read_input_tokens": 64829,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 825
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-16T03:11:00.302Z_
+
+<details><summary>↩ Tool result · `toolu_01Pn6j7VpxbUF1EjWFUAxR8d`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Early stopping triggered at step 2000, best val_loss=0.4341 at step 1000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "ddf32735-e3dc-4cb2-b88c-5ccb716e20b0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Early stopping triggered at step 2000, best val_loss=0.4341 at step 1000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Early stopping triggered at step 2000, best val_loss=0.4341 at step 1000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KYVHQ6xJJDpqtiL5MZVsqX`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep \"New best\" /root/runs/m2_full_qwen/embedding_distance_s44.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "c138582b-8ad7-4fe6-9bcd-0ce91b25e12b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WkP7qWqQSwkoKHnVnoD5yJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 825,
+      "cache_read_input_tokens": 64829,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 825
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-16T03:11:00.822Z_
+
+<details><summary>↩ Tool result · `toolu_01KYVHQ6xJJDpqtiL5MZVsqX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  New best val_loss=0.4403, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss\\n  New best R@1=0.5942, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1\\n  New best val_loss=0.4341, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "097567cf-ce68-4baf-bc32-aae4e13cf6da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  New best val_loss=0.4403, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss\\\\n  New best R@1=0.5942, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1\\\\n  New best val_loss=0.4341, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  New best val_loss=0.4403, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss\\n  New best R@1=0.5942, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1\\n  New best val_loss=0.4341, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have complete data for both embed_s43 and embed_s44. Let me now compile the full analysis.
+
+## embed_s43 timeline:
+- eval@500: val_loss=0.4541, R@1=0.5446 → New best val_loss, New best R@1=0.5446
+- eval@1000: val_loss=0.4709, R@1=0.5390 → val_loss not improved (1/2), R@1 not improved
+- eval@1500: val_loss=0.4926, R@1=0.5606 → val_loss not improved (2/2), New best R@1=0.5606
+
+
+- Early stopping kicked in at step 1500 after hitting the patience limit, with a final evaluation showing val_loss=0.4876 and R@1=0.5655 that wasn't compared against the best values.
+
+## embed_s44 timeline:
+- eval@500: val_loss=0.4403, R@1=0.5942 → New best val_loss, New best R@1=0.5942
+- eval@1000: val_loss=0.4341, R@1=0.5813 → New best val_loss with continued improvement
+
+, though R@1 dipped below the best
+- eval@1500: val_loss=0.5256, R@1=0.5473 → No improvement on val_loss (1/2 patience)
+- eval@2000: val_loss=0.5182, R@1=0.5390 → Still no improvement (2/2 patience)
+- Early stopping triggered at step 2000
+- Final eval: val_loss=0.5123, R@1=0.5470
+
+## Key findings:
+
+### 1. Checkpoint saving logic (confirmed)
+The model saves checkpoints based on two separate criteria: one tracks the best validation loss and saves whenever it improves, while the other tracks the best recall@1 and saves whenever that metric increases.
+
+### 2. The bug: Final eval doesn't update best checkpoints
+The final evaluation only saves to a "final" directory and logs metrics but never compares against or updates the best checkpoints for either validation loss or recall.
+
+For embed_s43, I need to trace through the early stopping logic more carefully. Early stopping fires at step 1500 after the evaluation check, but I should verify exactly when the model state gets frozen and whether the checkpoint at that step reflects the model before or after the early stopping condition is met.
+
+Looking at the sequence: the evaluation at step 1500 produces val_loss=0.4926 (no improvement, incrementing the counter to 2) and R@1=0.5606 (which does update the best recall checkpoint), then the patience check triggers since the counter reaches the threshold, breaking out of both loops. The final evaluation runs on whatever model state exists at that point, but the recall metric differs between the step 1500 eval and final eval (0.5606 vs 0.5655), which suggests something about the model state or evaluation process is changing between them.
+
+The culprit appears to be non-determinism in the validation dataset's negative sampling. The validation set never gets its negatives refreshed—only the training set does—so it always falls back to shuffling candidates from the data, and that shuffle operation uses Python's random module without a fixed seed, causing different negative samples to be selected across evaluation runs even with the same model weights.
+
+For s44, the situation is different: the model genuinely degraded after early stopping at step 2000 compared to its best checkpoint at step 500, resulting in a ~4.7 percentage point drop in recall that's far too large to be explained by sampling noise alone.
+
+So the real takeaway is that embed_s43's anomaly—where the final evaluation slightly exceeds the best recorded score—stems from the model being in the same state at both checkpoints combined with the inherent randomness in negative sampling during evaluation, producing a difference well within the expected noise margin. The best checkpoint is still the correct one to use.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "cf19f441-cbd8-41dc-9cde-314161aaf1cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019aFcSHjzQKgQqpXxXkZfJQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1379,
+      "cache_read_input_tokens": 65654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1379
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 100_
+
+所有数据齐全。下面是完整分析。
+
+---
+
+## Checkpoint 保存逻辑
+
+- **best_by_val_loss**: 按 `cur_val_loss < best_val_loss` 保存（`train.py:432`）
+- **best_by_recall_at_1**: 按 `cur_recall_at_1 > best_recall_at_1` 保存（`train.py:450`）
+- **双 checkpoint**: yes，两个条件独立判断，各存一份
+- **final**: 训练循环结束后无条件保存到 `output_dir / "final"`（`train.py:477`），**不更新 best checkpoint**
+
+## Final Eval 分析
+
+- **触发位置**: `train.py:469`，在训练循环（包括 early stopping）结束后执行
+- **模型状态**: 与 eval@1500 **完全相同**
+
+证据链：
+1. eval@1500 时 `no_improve_count` 达到 2（patience=2），触发 early stopping（`train.py:462-464`）
+2. early stop 在 eval@1500 的检查逻辑 **末尾** 触发，即：先完成 best_by_recall_at_1 更新 → 再判断 patience → `break`
+3. 外层 epoch 循环也 `break`（`train.py:368`）
+4. Final eval 直接在 step 1500 模型状态上运行，**没有额外训练步**
+
+日志佐证：
+```
+eval@1500: val_loss=0.4926, R@1=0.5606  → New best R@1=0.5606
+Early stopping triggered at step 1500, best val_loss=0.4541 at step 500
+[Final eval] val_loss=0.4876, R@1=0.5655
+```
+
+## Eval 确定性
+
+- **negatives 来源**: **动态随机采样**
+  - `val_ds._negatives` 从未被填充（`refresh_negatives` 仅对 `train_ds` 调用）
+  - 每次 `__getitem__` 走 fallback 路径：`random.shuffle(fallback)`（`train.py:109-110`）
+  - 用的是全局 `random` 模块，状态在训练过程中持续变化
+- **dataloader shuffle**: no（`val_loader` 的 `shuffle=False`，`train.py:322`）
+- **结论**: 同一模型两次 eval **不会**给出相同 R@1，因为每次抽的 negative 不一样
+
+## 结论
+
+**embed_s43 final R@1 > best R@1 的原因**：eval 非确定性（random negative sampling）。
+
+- final eval 和 eval@1500 跑的是**同一组模型权重**（step 1500 early stop 后直接 final eval）
+- R@1 差异仅 0.49pp（0.5655 vs 0.5606），在 negative 随机采样的噪声范围内
+- val_loss 差异也佐证了这一点：0.4876 vs 0.4926，同一模型两次 eval 给出不同 loss
+
+**embed_s44 对比**：final R@1=0.5470 < best R@1=0.5942，差距 4.7pp，远超噪声，因为 s44 的 early stop 发生在 step 2000，模型确实比 step 500 差了很多。
+
+**是否影响模型选择**：**不影响**。best_by_recall_at_1 保存的就是 step 1500 的权重，和 final eval 用的权重完全一致。表面上的 "final > best" 只是 eval 噪声。
+
+**代码层面的隐患**：
+1. `val_ds` 的 negative 采样用了 `random.shuffle` 且无 seed 重置，导致每次 eval 结果不可复现 → 建议 eval 时固定 seed 或预写死 negatives
+2. final eval 不更新 best checkpoint → 如果训练在非 eval step 停止（如达到 max epoch），可能漏掉更优模型。当前 early stopping 恰好在 eval step 触发所以没问题
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "uuid": "8bed9fe6-e881-4f7d-b4f5-eace3829fa28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019aFcSHjzQKgQqpXxXkZfJQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1379,
+      "cache_read_input_tokens": 65654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1379
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 101_
+
+所有数据齐全。下面是完整分析。
+
+---
+
+## Checkpoint 保存逻辑
+
+- **best_by_val_loss**: 按 `cur_val_loss < best_val_loss` 保存（`train.py:432`）
+- **best_by_recall_at_1**: 按 `cur_recall_at_1 > best_recall_at_1` 保存（`train.py:450`）
+- **双 checkpoint**: yes，两个条件独立判断，各存一份
+- **final**: 训练循环结束后无条件保存到 `output_dir / "final"`（`train.py:477`），**不更新 best checkpoint**
+
+## Final Eval 分析
+
+- **触发位置**: `train.py:469`，在训练循环（包括 early stopping）结束后执行
+- **模型状态**: 与 eval@1500 **完全相同**
+
+证据链：
+1. eval@1500 时 `no_improve_count` 达到 2（patience=2），触发 early stopping（`train.py:462-464`）
+2. early stop 在 eval@1500 的检查逻辑 **末尾** 触发，即：先完成 best_by_recall_at_1 更新 → 再判断 patience → `break`
+3. 外层 epoch 循环也 `break`（`train.py:368`）
+4. Final eval 直接在 step 1500 模型状态上运行，**没有额外训练步**
+
+日志佐证：
+```
+eval@1500: val_loss=0.4926, R@1=0.5606  → New best R@1=0.5606
+Early stopping triggered at step 1500, best val_loss=0.4541 at step 500
+[Final eval] val_loss=0.4876, R@1=0.5655
+```
+
+## Eval 确定性
+
+- **negatives 来源**: **动态随机采样**
+  - `val_ds._negatives` 从未被填充（`refresh_negatives` 仅对 `train_ds` 调用）
+  - 每次 `__getitem__` 走 fallback 路径：`random.shuffle(fallback)`（`train.py:109-110`）
+  - 用的是全局 `random` 模块，状态在训练过程中持续变化
+- **dataloader shuffle**: no（`val_loader` 的 `shuffle=False`，`train.py:322`）
+- **结论**: 同一模型两次 eval **不会**给出相同 R@1，因为每次抽的 negative 不一样
+
+## 结论
+
+**embed_s43 final R@1 > best R@1 的原因**：eval 非确定性（random negative sampling）。
+
+- final eval 和 eval@1500 跑的是**同一组模型权重**（step 1500 early stop 后直接 final eval）
+- R@1 差异仅 0.49pp（0.5655 vs 0.5606），在 negative 随机采样的噪声范围内
+- val_loss 差异也佐证了这一点：0.4876 vs 0.4926，同一模型两次 eval 给出不同 loss
+
+**embed_s44 对比**：final R@1=0.5470 < best R@1=0.5942，差距 4.7pp，远超噪声，因为 s44 的 early stop 发生在 step 2000，模型确实比 step 500 差了很多。
+
+**是否影响模型选择**：**不影响**。best_by_recall_at_1 保存的就是 step 1500 的权重，和 final eval 用的权重完全一致。表面上的 "final > best" 只是 eval 噪声。
+
+**代码层面的隐患**：
+1. `val_ds` 的 negative 采样用了 `random.shuffle` 且无 seed 重置，导致每次 eval 结果不可复现 → 建议 eval 时固定 seed 或预写死 negatives
+2. final eval 不更新 best checkpoint → 如果训练在非 eval step 停止（如达到 max epoch），可能漏掉更优模型。当前 early stopping 恰好在 eval step 触发所以没问题
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 183807,
+  "duration_api_ms": 178298,
+  "num_turns": 37,
+  "stop_reason": "end_turn",
+  "session_id": "2c26895c-da7b-4c65-9df5-cc5d8cb00abd",
+  "total_cost_usd": 1.024323,
+  "usage": {
+    "input_tokens": 24,
+    "cache_creation_input_tokens": 55192,
+    "cache_read_input_tokens": 877936,
+    "output_tokens": 9541,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 55192,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2870,
+        "cache_read_input_tokens": 65654,
+        "cache_creation_input_tokens": 1379,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1379
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1675,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00176,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 24,
+      "outputTokens": 9541,
+      "cacheReadInputTokens": 877936,
+      "cacheCreationInputTokens": 55192,
+      "webSearchRequests": 0,
+      "costUSD": 1.022563,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "e57d8ff0-f569-4911-98a8-5fa598b8bb3e"
+}
+```
+
+</details>
+
+---

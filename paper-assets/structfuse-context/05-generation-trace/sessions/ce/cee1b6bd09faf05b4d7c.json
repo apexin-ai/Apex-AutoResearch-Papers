@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cee1b6bd09faf05b4d7c",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "fix framing stale data refresh",
+  "task_key": "worker_fix_framing-stale-data-refresh_20260515T085153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_framing-stale-data-refresh_20260515T085153_result.json",
+    "occurrence": 1,
+    "bytes": 436,
+    "sha256": "82c538f5e4e30cdb2e27c383f1f4f3fef95b51121ae247022c5b6e3d96ec375a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 处修正完成：\n\n1. **s44 状态**: RUNNING → DONE (R@1=0.6009, early stopped step 500)，新增 embedding_distance_s43 DONE (R@1=0.5606, early stopped step 1500)\n2. **完成数**: 2/10 → 4/9\n3. **m1_reextract_v2**: 80.8% (22,842) → 90.5% (25,582)，ETA 15:00 → 19:00\n4. **Headline**: \"consistently improves\" → \"improves in pilot and initial M2 seed ... consistency across remaining seeds pending\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-framing-stale-data-refresh.md"
+}

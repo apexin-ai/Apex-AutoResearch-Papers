@@ -1,0 +1,371 @@
+{
+  "schema_version": "1.0",
+  "id": "d1de8c879f82982edafb",
+  "project": "structfuse-context",
+  "kind": "conversation",
+  "title": "ops local pilot artifacts fix",
+  "task_key": "worker_ops_local-pilot-artifacts-fix_20260513T115113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_local-pilot-artifacts-fix_20260513T115113.jsonl",
+    "occurrence": 1,
+    "bytes": 14946,
+    "sha256": "26ef04980616b66d8cb1ffeb2ef2e89789e121c1921e1a74d0e627cab42ab5c4"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T11:52:11.745164+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_local-pilot-artifacts-fix_20260513T115113",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/ 2>/dev/null && echo \"---\" && ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/_project/ 2>/dev/null && echo \"---\" && find /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/ -name \"*pilot*\" -o -name \"*results*\" 2>/dev/null",
+              "description": "Check artifacts directory structure"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T11:52:11.745485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 92\ndrwxr-xr-x 10 ubuntu ubuntu  4096 May 13 10:45 .\ndrwxr-xr-x  8 ubuntu ubuntu  4096 May 13 11:45 ..\ndrwxr-xr-x  5 ubuntu ubuntu  4096 May 12 11:40 _project\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 13 10:42 analysis\n-rw-r--r--  1 ubuntu ubuntu  2493 May 13 08:31 bjb1_status_check.md\ndrwxr-xr-x  5 ubuntu ubuntu  4096 May 12 10:04 code\n-rw-r--r--  1 ubuntu ubuntu  2103 May 13 01:35 disk_cleanup_report_20260513.md\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 12 21:26 dream_reports\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 13 10:54 full_m2\n-rw-r--r--  1 ubuntu ubuntu  1883 May 13 08:30 m1_progress_0513.md\n-rw-r--r--  1 ubuntu ubuntu 10704 May 13 10:45 manifest.yaml\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 12 11:31 mvp_p1_codeql_feasibility\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 12 13:19 mvp_p2b_contrastive_training\n-rw-r--r--  1 ubuntu ubuntu  9957 May 13 00:40 patch_build_m1.py\n-rw-r--r--  1 ubuntu ubuntu  9080 May 13 00:41 patch_train.py\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 13 06:18 plan_006\n-rw-r--r--  1 ubuntu ubuntu  2971 May 13 04:24 plan_006_scalability_stats_29repos.json\n---\ntotal 20\ndrwxr-xr-x  5 ubuntu ubuntu 4096 May 12 11:40 .\ndrwxr-xr-x 10 ubuntu ubuntu 4096 May 13 10:45 ..\ndrwxr-xr-x  2 ubuntu ubuntu 4096 May 13 10:35 data\ndrwxr-xr-x  2 ubuntu ubuntu 4096 May 13 10:45 intermediate\ndrwxr-xr-x  2 ubuntu ubuntu 4096 May 13 10:34 report\n---\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/_project/data/pilot_results.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/_project/report/pilot_results_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/_project/report/phase2a_linear_proxy_results.txt"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_local-pilot-artifacts-fix_20260513T115113",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T11:52:11.745711+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_local-pilot-artifacts-fix_20260513T115113",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T11:52:11.745869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_local-pilot-artifacts-fix_20260513T115113",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T11:52:11.746013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_local-pilot-artifacts-fix_20260513T115113",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/_project/report/pilot_results_summary.md"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T11:52:11.746165+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# StructFuse Pilot Results (seed=42, 24 repos)\n2\t\n3\tCollected: 2026-05-13\n4\t\n5\t## Qwen2.5-Coder-3B (m2_embed_verify)\n6\t\n7\t| Strategy | Status | Best step | val_loss | R@1 | R@5 | R@10 |\n8\t|----------|--------|-----------|----------|-----|-----|------|\n9\t| random | completed | 500 | 0.4834 | 0.5357 | 0.9808 | 1.0 |\n10\t| embedding | running (step ~1200) | 500 | 0.4603 | 0.5557 | 0.9808 | 1.0 |\n11\t| dataflow | pending | — | — | — | — | — |\n12\t\n13\t### Best checkpoint paths\n14\t- random: `/root/autodl-tmp/structfuse/m2_embed_verify_output/random_s42/best/`\n15\t- embedding: `/root/autodl-tmp/structfuse/m2_embed_verify_output/embedding_s42/best/`\n16\t\n17\t### Notes\n18\t- random: best at eval@500, val_loss degraded through training (final=0.5978)\n19\t- embedding: best at eval@500 (val_loss=0.4603), eval@1000 not improved (0.5237, 1/3 patience)\n20\t- embedding shows +2pp R@1 over random (0.5557 vs 0.5357)\n21\t- dataflow: model loaded but no training steps yet (waiting for embedding to finish)\n22\t\n23\t## StarCoder2-3B (plan_013_starcoder)\n24\t\n25\t| Strategy | Status | Best step | val_loss | R@1 | R@5 | R@10 |\n26\t|----------|--------|-----------|----------|-----|-----|------|\n27\t| random | completed | ~500 | — (not logged) | — | — | — |\n28\t| embedding | completed | 1000 | 0.4816 | 0.5078 | 0.9843 | 1.0 |\n29\t| dataflow | running (step ~500) | ~500 | — (eval done, not logged) | — | — | — |\n30\t\n31\t### Best checkpoint paths\n32\t- random: `/root/autodl-tmp/structfuse/m2_starcoder_output/random_s42/best/`\n33\t- embedding: `/root/autodl-tmp/structfuse/m2_starcoder_output/embedding_s42/best/`\n34\t- dataflow: `/root/autodl-tmp/structfuse/m2_starcoder_output/dataflow_s42/best/`\n35\t\n36\t### Notes\n37\t- random: training ran 1 epoch (~500 steps), eval@500 result not captured in log (stdout buffering), best checkpoint saved\n38\t- embedding: best at eval@1000, final eval R@1=0.5174 (close to best 0.5078)\n39\t- dataflow: eval@500 likely completed (best model saved at 18:13), metrics pending in log\n40\t\n41\t##\n…[truncated 702 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_local-pilot-artifacts-fix_20260513T115113",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T11:52:11.746321+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_local-pilot-artifacts-fix_20260513T115113",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/_project/data/pilot_results.json"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T11:52:11.746445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tSee bjb1-42106:/root/structfuse/results/pilot_results.json for full structured data. Key metrics: Qwen random best R@1=0.5357, Qwen embedding best R@1=0.5557, StarCoder embedding best R@1=0.5078."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_local-pilot-artifacts-fix_20260513T115113",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T11:52:11.746588+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_local-pilot-artifacts-fix_20260513T115113",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/_project/report/pilot_results_summary.md",
+              "content": "# StructFuse Pilot Results (seed=42, 24 repos, 3282 train / 1148 val)\n\n## Qwen2.5-Coder-3B (m2_embed_verify)\n\n| Strategy | Status | Best Step | val_loss | R@1 | R@5 | R@10 |\n|----------|--------|-----------|----------|-----|-----|------|\n| random | completed | 500 | 0.4834 | 0.5357 | 0.9808 | 1.0 |\n| embedding_distance | completed | 500 | 0.4603 | 0.5557 | 0.9808 | 1.0 |\n| dataflow_aware | running | — | — | — | — | — |\n\n## StarCoder2-3B (plan_013_starcoder)\n\n| Strategy | Status | Best Step | val_loss | R@1 | R@5 | R@10 |\n|----------|--------|-----------|----------|-----|-----|------|\n| random | completed | 500 | 0.5113 | 0.4922 | 0.98 | 1.0 |\n| embedding_distance | completed | 1000 | 0.4816 | 0.5078 | 0.9843 | 1.0 |\n| dataflow_aware | running | 500 | 0.5257 | 0.4756 | — | — |\n\n## Cross-Encoder Comparison\n\n| Encoder | Strategy | val_loss | R@1 | R@5 |\n|---------|----------|----------|-----|-----|\n| Qwen2.5-Coder-3B | random | 0.4834 | 0.5357 | 0.9808 |\n| Qwen2.5-Coder-3B | embedding | 0.4603 | **0.5557** | 0.9808 |\n| StarCoder2-3B | random | 0.5113 | 0.4922 | 0.98 |\n| StarCoder2-3B | embedding | 0.4816 | 0.5078 | 0.9843 |\n| StarCoder2-3B | dataflow | 0.5257 | 0.4756 | — |\n\n## Key Findings\n- Embedding > random for both encoders (Qwen +2.0pp, StarCoder +1.6pp R@1)\n- Qwen consistently outperforms StarCoder (~5pp R@1 gap)\n- R@5/R@10 near saturation across all configs\n- Best overall: Qwen embedding (R@1=55.6%)\n- All best checkpoints at step 500 or 1000, subsequent overfitting\n"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T11:52:11.746794+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/_project/report/pilot_results_summary.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_local-pilot-artifacts-fix_20260513T115113",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T11:52:11.746941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_local-pilot-artifacts-fix_20260513T115113",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/_project/data/pilot_results.json",
+              "content": "{\n  \"experiment\": \"structfuse_pilot\",\n  \"seed\": 42,\n  \"data\": {\"train_samples\": 3282, \"val_samples\": 1148, \"repos\": 24},\n  \"encoders\": {\n    \"qwen2.5-coder-3b\": {\n      \"experiment_id\": \"m2_embed_verify\",\n      \"strategies\": {\n        \"random\": {\n          \"status\": \"completed\",\n          \"best_step\": 500,\n          \"best_metrics\": {\"val_loss\": 0.4834, \"recall_at_1\": 0.5357, \"recall_at_5\": 0.9808, \"recall_at_10\": 1.0},\n          \"final_metrics\": {\"val_loss\": 0.5978, \"recall_at_1\": 0.5122}\n        },\n        \"embedding_distance\": {\n          \"status\": \"completed\",\n          \"best_step\": 500,\n          \"best_metrics\": {\"val_loss\": 0.4603, \"recall_at_1\": 0.5557, \"recall_at_5\": 0.9808, \"recall_at_10\": 1.0},\n          \"final_metrics\": {\"val_loss\": 0.5935}\n        },\n        \"dataflow_aware\": {\n          \"status\": \"running\"\n        }\n      }\n    },\n    \"starcoder2-3b\": {\n      \"experiment_id\": \"plan_013_starcoder\",\n      \"strategies\": {\n        \"random\": {\n          \"status\": \"completed\",\n          \"best_step\": 500,\n          \"best_metrics\": {\"val_loss\": 0.5113, \"recall_at_1\": 0.4922, \"recall_at_5\": 0.98, \"recall_at_10\": 1.0}\n        },\n        \"embedding_distance\": {\n          \"status\": \"completed\",\n          \"best_step\": 1000,\n          \"best_metrics\": {\"val_loss\": 0.4816, \"recall_at_1\": 0.5078, \"recall_at_5\": 0.9843, \"recall_at_10\": 1.0},\n          \"final_metrics\": {\"val_loss\": 0.5060}\n        },\n        \"dataflow_aware\": {\n          \"status\": \"running\",\n          \"best_step\": 500,\n          \"best_metrics\": {\"val_loss\": 0.5257, \"recall_at_1\": 0.4756}\n        }\n      }\n    }\n  }\n}\n"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T11:52:11.747107+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/_project/data/pilot_results.json has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_local-pilot-artifacts-fix_20260513T115113",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T11:52:11.747246+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_local-pilot-artifacts-fix_20260513T115113",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "pilot_results_summary",
+              "type": "report",
+              "description": "StructFuse pilot experiment results summary - Qwen2.5-Coder-3B and StarCoder2-3B across random/embedding/dataflow strategies with complete metrics",
+              "project": "faith-evidence-ie",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/_project/report/pilot_results_summary.md",
+              "tags": "['pilot', 'results', 'metrics', 'qwen', 'starcoder']"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T11:52:11.747388+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260513_64aa24\\\", \\\"name\\\": \\\"pilot_results_summary\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"StructFuse pilot experiment results summary - Qwen2.5-Coder-3B and StarCoder2-3B across random/embedding/dataflow strategies with complete metrics\\\", \\\"path\\\": \\\"projects/faith-evidence-ie/artifacts/_project/report/pilot_results_summary_64aa24.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-13T11:52:02.987195+00:00\\\", \\\"tags\\\": [\\\"pilot\\\", \\\"results\\\", \\\"metrics\\\", \\\"qwen\\\", \\\"starcoder\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_local-pilot-artifacts-fix_20260513T115113",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T11:52:11.747518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_local-pilot-artifacts-fix_20260513T115113",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "pilot_results",
+              "type": "data",
+              "description": "StructFuse pilot structured results JSON - complete metrics for all encoder/strategy combinations",
+              "project": "faith-evidence-ie",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/_project/data/pilot_results.json",
+              "tags": "['pilot', 'results', 'structured-data', 'json']"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T11:52:11.747675+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260513_920f68\\\", \\\"name\\\": \\\"pilot_results\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"StructFuse pilot structured results JSON - complete metrics for all encoder/strategy combinations\\\", \\\"path\\\": \\\"projects/faith-evidence-ie/artifacts/_project/data/pilot_results_920f68.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"faith-evidence-ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-13T11:52:04.578072+00:00\\\", \\\"tags\\\": [\\\"pilot\\\", \\\"results\\\", \\\"structured-data\\\", \\\"json\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/faith-evidence-ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_local-pilot-artifacts-fix_20260513T115113",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T11:52:11.747838+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个文件已覆写并注册：\n\n- `pilot_results_summary.md` — StarCoder random 行已补全（val_loss=0.5113, R@1=0.4922, R@5=0.98, R@10=1.0），Cross-Encoder 表包含全部 5 行，Qwen embedding 状态更正为 completed\n- `pilot_results.json` — 替换指针文件为完整结构化数据，包含所有 encoder/strategy 的指标\n- 两个 artifact 已注册（`art_20260513_64aa24`, `art_20260513_920f68`）"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_local-pilot-artifacts-fix_20260513T115113"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/ops-local-pilot-artifacts-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bcc6d12c211d09ba7e36",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "infra p2b gpu check restart",
+  "task_key": "worker_infra_p2b_gpu_check_restart_20260512T144458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_p2b_gpu_check_restart_20260512T144458_result.json",
+    "occurrence": 1,
+    "bytes": 1011,
+    "sha256": "3925976734b6f7db97188101e31986857a106f951ec7e0d82804f4deabe99826"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器状态报告\n\n| 项目 | 状态 |\n|------|------|\n| PID 132149 | **存活** — wrapper 进程正常 |\n| GPU 4 | **在用** — PID 132163 占用 8152 MiB |\n| 模型文件 | **完整** — 2 个 safetensors (4.96GB + 1.21GB) |\n| 根分区 | 12G/30G (39%) |\n| 数据盘 | 110G/169G (65%) |\n\n### 训练进度（9 runs: 3 策略 × 3 seed）\n\n| Run | 状态 | 备注 |\n|-----|------|------|\n| 1/9 `p2b_random_s42` | **完成** | checkpoints 200/400/600/final 齐全 |\n| 2/9 `p2b_random_s123` | **进行中** | checkpoints 200/400/600 已写入，等待 final |\n| 3-9 | 待执行 | |\n\n### 结论\n\n**GPU 4 不空闲，训练正常进行中。** 脚本 skip 逻辑正常工作（跳过了已完成的 run 1）。当前 run 2 已到 step 600，预计很快完成并自动进入 run 3。\n\nRegistry 中 `mvp_p2b_contrastive_training` 显示 DONE/failed 是旧状态，但状态机不允许 DONE→RUNNING 回退，无法更新。实际进程正常运行，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-p2b-gpu-check-restart.md"
+}

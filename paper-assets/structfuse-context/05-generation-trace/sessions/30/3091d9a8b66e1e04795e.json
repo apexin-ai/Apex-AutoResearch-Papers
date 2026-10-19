@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3091d9a8b66e1e04795e",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ssh m1 reextract launch",
+  "task_key": "worker_ssh_m1_reextract_launch_20260513T193609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_m1_reextract_launch_20260513T193609_result.json",
+    "occurrence": 1,
+    "bytes": 788,
+    "sha256": "86828929941f03468ad2fc0530159bca38af1e7f48eb9152a7716f3375f20164"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功，4 个 worker 已在并行处理。汇总：\n\n| 项目 | 结果 |\n|------|------|\n| prepare_m1_rerun.py | 删除 28,276 个 error JSON，生成 metadata |\n| tmux session | `m1_reextract` |\n| 主进程 PID | 97358 (`batch_extract.py`) |\n| 日志路径 | `/root/runs/structfuse-context/m1_rerun.log` |\n| 状态 | 运行中，4 workers，82 个 repo 组，已开始创建 CodeQL DB 并提取 |\n\n注意：有一条 CodeQL query warning（`call_graph.ql` 对 feedparser 返回 non-zero），这是个别 repo 的查询失败，脚本会继续处理其他实例。\n\n额外操作：因服务器上缺少 codeql，安装了 CodeQL CLI 2.25.4 到 `/opt/codeql`（脚本已有对应 PATH 设置）。预估 4 workers 约 60h 完成全部 28,276 个实例。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-m1-reextract-launch.md"
+}

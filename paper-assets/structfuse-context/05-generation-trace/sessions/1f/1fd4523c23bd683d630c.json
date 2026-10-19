@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fd4523c23bd683d630c",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "eval plan005 s43 stratified",
+  "task_key": "worker_eval_plan005-s43-stratified_20260515T075311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan005-s43-stratified_20260515T075311_result.json",
+    "occurrence": 1,
+    "bytes": 1265,
+    "sha256": "cc04d050626d261ea5c5025f37979a8ad2b4239ccad7693a0e4a9a5e761013a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**方案 B 完成。**\n\n### 结果\n\n| 项目 | 状态 |\n|------|------|\n| GPU | 两卡 100% 占用（PID 337267: Qwen M2, PID 519791: StarCoder M2） |\n| 方案选择 | **方案 B**（GPU 满，准备脚本等空闲） |\n| Checkpoint | ✅ 两个都在 `/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/{random,embedding_distance}_s43/best_by_recall_at_1/` |\n| stratification_index.json | ✅ `/root/autodl-tmp/structfuse/stratification_index.json` |\n| evaluate_stratified.py | ✅ `/root/structfuse/scripts/evaluate_stratified.py`，dry-run 通过（3052 samples） |\n| analyze_stratified.py | ✅ `/root/structfuse/scripts/analyze_stratified.py`，dry-run 通过（5 维 + 5 PDF） |\n| Ready-to-run 脚本 | ✅ `/root/structfuse/scripts/run_plan005_s43.sh` |\n\n### 执行命令（GPU 空闲后）\n\n```bash\n# 单卡执行（默认 cuda:0）\nnohup bash /root/structfuse/scripts/run_plan005_s43.sh > /root/structfuse/results/plan005_s43.log 2>&1 &\n\n# 或指定 GPU\nCUDA_DEVICE=cuda:1 nohup bash /root/structfuse/scripts/run_plan005_s43.sh > /root/structfuse/results/plan005_s43.log 2>&1 &\n```\n\n脚本会对 2 个策略 × 4 个 pool_size 跑 evaluate，然后对每个 pool_size 分别跑 analyze 生成 JSON + CSV + PDF。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan005-s43-stratified.md"
+}

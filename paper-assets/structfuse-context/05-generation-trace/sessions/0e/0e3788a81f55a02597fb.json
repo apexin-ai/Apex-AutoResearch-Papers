@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e3788a81f55a02597fb",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "infra p2b disk cleanup and train fix",
+  "task_key": "worker_infra_p2b_disk_cleanup_and_train_fix_20260512T162558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_p2b_disk_cleanup_and_train_fix_20260512T162558_result.json",
+    "occurrence": 1,
+    "bytes": 815,
+    "sha256": "2a12212e5fb99e82e97dc88f6ead2a94d95f95afb6a0432c9b7aee32e25c669f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### Step 1 清磁盘\n- 5 个失败 run 目录已不存在（之前已清理）\n- 4 个成功 run 各只有 `final/`，无中间 checkpoint 需清\n- 无 smoke/dryrun 残留\n- autodl-tmp **76GB 可用**（≥60GB ✓），根分区 19GB 可用\n\n### Step 2 修改 checkpoint 策略（4 处变更）\n1. **L19** — 添加 `import shutil`\n2. **L343** — 初始化 `best_val_loss = float(\"inf\")`\n3. **L390-402** — 每次 eval 后比较 val_loss，新 best 时 rolling 覆盖 `best/` 目录（先 rmtree 旧 best）；删除了原来的 `checkpoint-{step}` 中间保存\n4. **L410-416** — final save 前检查磁盘空间 <15GB 则跳过\n\n每个 run 最多 2 个 checkpoint（best + final）。`--save-steps` CLI 参数保留但不再生效，避免破坏已有启动脚本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-p2b-disk-cleanup-and-train-fix.md"
+}

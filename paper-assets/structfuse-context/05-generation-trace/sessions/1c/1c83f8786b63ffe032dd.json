@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c83f8786b63ffe032dd",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "research swebench eval dependency check",
+  "task_key": "worker_research_swebench-eval-dependency-check_20260515T181546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_swebench-eval-dependency-check_20260515T181546_result.json",
+    "occurrence": 1,
+    "bytes": 2770,
+    "sha256": "aa0a26033d816e18bb6a8db153f8914f65878015206adb772ebc03fc4a47db63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## plan_003 SWE-bench Eval 依赖就绪状态报告\n\n### 1. 脚本就绪状态：✅ 已存在\n\n| 脚本 | 路径 | 功能 |\n|------|------|------|\n| `eval_swebench.py` | `/root/structfuse/evaluation/` | 纯检索评估（Recall@k, MRR），**不需要 API key** |\n| `eval_swebench_e2e.py` | `/root/structfuse/scripts/` | 端到端评估（检索→LLM patch→resolve rate），**需要 API key** |\n\ne2e 脚本通过环境变量配置 LLM：\n- `STRUCTFUSE_LLM_BACKEND=api`\n- `STRUCTFUSE_LLM_API_BASE` / `STRUCTFUSE_LLM_API_KEY` / `STRUCTFUSE_LLM_MODEL`\n- 默认 `mock` 模式（返回空 patch，用于调试流程）\n\n### 2. 数据就绪状态：✅ 已就绪\n\n| 数据 | 状态 | 大小 |\n|------|------|------|\n| SWE-bench Lite (HF cache) | ✅ | `princeton-nlp___swe-bench_lite` (dev+test) |\n| SWE-bench Lite (arrow) | ✅ | `/root/autodl-tmp/swebench/swebench_lite/` (3.4MB) |\n| 预克隆仓库 (12个) | ✅ | `/root/autodl-tmp/swebench/repos/` (1.7GB) |\n\n12个仓库：astropy, django, matplotlib, seaborn, flask, requests, xarray, pylint, pytest, scikit-learn, sphinx, sympy\n\n### 3. Checkpoint 就绪状态：⚠️ 部分就绪\n\n| Checkpoint | 状态 |\n|------------|------|\n| `m2_full_qwen/dataflow_aware_s42` | ❌ 不存在（eval 示例中引用的路径） |\n| `m2_full_qwen/dataflow_aware_s43/best_by_recall_at_1` | ✅ 含 model.pt + training_config.json |\n| `m2_full_qwen/random_s{42,43,44}` | ✅ |\n| `m2_full_qwen/embedding_distance_s{43,44}` | ✅ |\n\n`dataflow_aware_s42` 缺失但可用 `s43` 替代，不是阻塞项。\n\n### 4. Python 包依赖：✅ 全部已安装\n\ntorch, transformers, datasets, openai, numpy, tqdm 均可正常 import。Python 在 `/root/miniconda3/bin/python3`（conda 环境）。\n\n### 5. API Key：❌ 未配置\n\n- 环境变量中**无任何 API key**（无 OPENAI/ANTHROPIC/QWEN/DASHSCOPE 相关变量）\n- **无 .env 文件**\n- 端到端 eval 需要 OpenAI-compatible API endpoint + key（用于 Qwen3.6-27B 或其他 LLM agent）\n\n### 6. 缺失依赖清单\n\n| 缺失项 | 影响范围 | 优先级 |\n|--------|---------|--------|\n| **LLM API Key + Endpoint** | 端到端 eval 阻塞项 | **P0** |\n| `dataflow_aware_s42` checkpoint | eval 示例路径不匹配 | 低（用 s43 替代） |\n| Docker（待确认） | SWE-bench 标准 patch 验证可能需要 | 待查 |\n\n### 7. 预计准备时间\n\n| 场景 | 时间 |\n|------|------|\n| **纯检索 eval**（Recall@k/MRR） | **可立即运行**，0 Worker 小时准备 |\n| **端到端 eval**（resolve rate） | 配置 API ~0.5h + 运行 300 instances ~2-4h = **3-5 Worker 小时** |\n\n**结论**：检索 eval 可以立即跑。端到端 eval 唯一阻塞项是 **LLM API key/endpoint 未配置**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-swebench-eval-dependency-check.md"
+}

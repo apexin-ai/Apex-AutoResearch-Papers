@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e73e49a580a4a965cc9",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops fix starcoder s42 epoch 0515",
+  "task_key": "worker_ops_fix-starcoder-s42-epoch-0515_20260515T140526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-starcoder-s42-epoch-0515_20260515T140526_result.json",
+    "occurrence": 1,
+    "bytes": 700,
+    "sha256": "09fb106ceb6b081df6b65c2512b9d23719426af26b0743909ba5b695b85dcddb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件的 diff 确认修改正确，只改了预期的行：\n\n**`run_m2_full_starcoder_resume.sh`** (3 处变更):\n- 注释: D026 → D050\n- `embedding_distance:42:3` → `embedding_distance:42:2`\n- `dataflow_aware:42:3` → `dataflow_aware:42:2`\n- `--early-stopping-patience 2` 已存在，无需额外添加\n\n**`run_m2_s42_supplement.sh`** (3 处变更):\n- 注释: D026 → D050\n- `NUM_EPOCHS=3` → `NUM_EPOCHS=2`\n- 新增 `--early-stopping-patience 2`\n\n两个备份文件已保存为 `.bak.d050`。当前 StarCoder chain (PID 519791) 在 random_s44，脚本修改已就绪，chain 到达 embedding_distance_s42 时将使用新配置（2 epochs + patience=2）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-starcoder-s42-epoch-0515.md"
+}

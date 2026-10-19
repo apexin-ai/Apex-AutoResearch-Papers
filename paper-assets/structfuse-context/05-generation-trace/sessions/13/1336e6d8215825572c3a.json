@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1336e6d8215825572c3a",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code plan013 starcoder prep",
+  "task_key": "worker_code_plan013-starcoder-prep_20260513T051012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan013-starcoder-prep_20260513T051012_result.json",
+    "occurrence": 1,
+    "bytes": 950,
+    "sha256": "541b1931d9929ebe3b8c44fc713c1e644b7026a03417d53d68002b3a5e1fb127"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常启动。\n\n## 汇总\n\n| 项目 | 结果 |\n|------|------|\n| **StarCoder2 路径** | `/root/autodl-tmp/models/bigcode/starcoder2-3b/bigcode/starcoder2-3b/` |\n| **兼容性** | 完全兼容。AutoModel 加载正常，hidden_size=3072（vs Qwen 2048），projection 自动适配，LoRA targets (q_proj/v_proj) 存在。3030.4M 参数。|\n| **数据生成** | **跳过** — extraction-dir/repos-dir 已从服务器删除，无法重新 mine。直接复用 `m2_embed_verify_data`（3282×3 train + 1148 val），作为更干净的对照实验（唯一变量=encoder 架构）。|\n| **train.py 参数** | `--num-epochs`（设 2）、`--eval-steps 500`。无 early stopping 支持。|\n| **代码修改** | 无。contrastive_model.py 已是 encoder-agnostic 的。|\n| **训练状态** | PID 20005，tmux session `plan_013_starcoder`，cuda:0 占用 38GB/98GB，GPU 利用率 100%。random 策略已开始 Epoch 1。|"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan013-starcoder-prep.md"
+}

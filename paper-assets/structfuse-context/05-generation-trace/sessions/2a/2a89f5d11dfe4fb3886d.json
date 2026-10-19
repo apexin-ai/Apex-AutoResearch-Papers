@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a89f5d11dfe4fb3886d",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code fix m1 extraction script",
+  "task_key": "worker_code_fix_m1_extraction_script_20260512T161643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_m1_extraction_script_20260512T161643_result.json",
+    "occurrence": 1,
+    "bytes": 632,
+    "sha256": "59bcc0c07a8f60ae32c84b024b84d9d8e48fe60e9b7b8d896959d345385b4ebf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个修复全部完成，语法验证通过。\n\n**修改汇总：**\n\n| 修复项 | 文件 | 变更 |\n|--------|------|------|\n| CodeQL PATH | `run_m1_extraction.sh` | 第3行加 `export PATH=\"/opt/codeql:$PATH\"` |\n| set -e → pipefail | `run_m1_extraction.sh` | 原文件已是 `set -o pipefail` 无 `set -e`，无需改动 |\n| workers 4→8 | `run_m1_extraction.sh` | `--workers 8` |\n| CodeQL DB 自动清理 | `batch_extract.py` | `process_repo_group()` 末尾 return 前，`shutil.rmtree(db_dir)` 删除该 group 的 CodeQL database |\n\n未启动 M1 提取，P2b 训练（PID 238645）未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-m1-extraction-script.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4953c184441cd610dd0",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "check embedding s43 eval1500",
+  "task_key": "worker_check_embedding-s43-eval1500_20260515T065712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_embedding-s43-eval1500_20260515T065712_result.json",
+    "occurrence": 1,
+    "bytes": 1330,
+    "sha256": "0debefa2473d8c815069a30acffbb03e9cc9e6d0afed16e1490374ce685b200b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## embedding_distance_s43 结果报告\n\n### eval@1500 结果\n| 指标 | 值 |\n|------|-----|\n| **R@1** | **0.5606** |\n| R@5 | 0.9630 |\n| R@10 | 1.0 |\n| val_loss | 0.4926 |\n\n### Early stopping\n**已触发。** step 1500 时 val_loss 连续 2 次未改善（patience=2），触发 early stop。best val_loss=0.4541 @ step 500。\n\n### Final eval（early stop 后跑的最终评估）\n| 指标 | 值 |\n|------|-----|\n| R@1 | 0.5655 |\n| R@5 | 0.9663 |\n| val_loss | 0.4876 |\n\n### best_by_R@1\n**0.5606**（step 1500 的 checkpoint，保存时间 14:28）\n\n注意 final eval 的 R@1=0.5655 略高于 best checkpoint 的 0.5606，但 final checkpoint 是按 val_loss 判断 early stop 后单独跑的评估，best_by_recall_at_1 保存的是 step 1500 的模型。\n\n### vs random_s43 对比\n\n| 策略 | best R@1 | 胜负 |\n|------|----------|------|\n| random_s43 | 0.5554 | |\n| **embedding_distance_s43** | **0.5606** | **+0.52pp, embedding_distance 胜** |\n\nSeed 43 上 embedding_distance 以 +0.52 个百分点优于 random。如果以 final eval 计算则差距更大（0.5655 vs 0.5554, +1.01pp）。\n\n### 进程状态\nPID 337267 仍在运行（19h33m），两块 GPU 100% 占用——说明 `run_m2_full_qwen.sh` 脚本正在运行后续实验（embedding_distance_s43 已完成）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-embedding-s43-eval1500.md"
+}

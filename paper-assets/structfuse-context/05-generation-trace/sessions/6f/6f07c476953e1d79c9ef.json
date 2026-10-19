@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f07c476953e1d79c9ef",
+  "project": "structfuse-context",
+  "kind": "history",
+  "title": "agent / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4.md",
+    "occurrence": 1,
+    "bytes": 5230,
+    "sha256": "aabb863f4ae7f89dc876570a84dca7ee0508e3a53f97ed54ebdb90bd532544a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_messages\nupdated: '2026-05-14T07:58:42+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：bjb1-42106 的 cuda:0 和 cuda:1，不可用其他设备\n- 训练脚本已改 `--num-epochs 2`（D026），**不要改回 3**——s42 是唯一跑 3 epochs 的 run，用于提供完整 overfitting curve\n- 符号链接 `/root/structfuse → /root/structfuse-context` **不能删除**——训练脚本每轮 loop 重新解析绝对路径，删了 s43+ 全挂\n- m1_reextract_v2 后台运行中，不要 kill 任何 `/root/autodl-tmp/structfuse/` 下的 CodeQL 进程\n- StarCoder 脚本路径不同于 Qwen：epochs 修改在 L174（不是 L67）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-42106，2× RTX PRO 6000 96GB (Blackwell)\n- 工作目录：`/root/structfuse-context`（实际目录），`/root/structfuse`（符号链接）\n- Python：`/root/miniconda3/bin/python`，conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- ML 栈：torch 2.10+cu128, transformers 4.57.6, vllm 0.18.1, peft 0.19\n- 模型路径：`/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B`，StarCoder2-3B 同目录\n- Checkpoint：`/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/` 和 `m2_full_starcoder/`\n- 训练数据：`/root/autodl-tmp/structfuse/full_m2_training_data/`（Qwen），`/root/autodl-tmp/structfuse/full_m2_starcoder_data/`（StarCoder）\n- 日志：`/root/runs/structfuse-context/m2_full_qwen.log`，`/root/runs/m2_full_starcoder/random_s42.log`（注意路径不一致）\n- 活跃进程：PID 73558 (Qwen cuda:0, tmux), PID 76627 (StarCoder cuda:1, tmux)\n- m1_reextract_v2：4 workers 并行，输出 `all.jsonl`（追加模式）\n- WandB：离线模式\n- 磁盘：autodl-tmp ~97GB free，根分区 ~22GB free\n- SWE-bench Lite：已下载 `/root/autodl-tmp/swebench/swebench_lite`（300 instances）\n- 预 clone repos：部分已完成在 `/root/autodl-tmp/swebench/repos/`\n\n### 3. 📊 当前状态\n刚完成 D026（后续 runs 减至 2 epochs）+ 全面训练进度检查 + neg_difficulty 可视化图。\n\n**Registry RUNNING (3)**：\n- `m2_full_qwen`：random_s42 step ~2950/4242 (epoch 3/3)，best=step1000 R@1=55.3%，预计 ~18:30 CST 完成，s43 自动启动\n- `m2_full_starcoder`：random_s42 step ~2000/4242 (epoch 2/3)，best=step1000 R@1=45.4%，预计 ~01:30 明天完成\n- `m1_reextract_v2`：~15/82 repo groups 完成，预计还需 ~10h+\n\n**无等待中的 Worker/Cron 回调**。Director 最新指示：训练自动推进无需干预，下一个行动点是 Qwen s42 完成后确认 s43 自动启动。\n\n**已完成的产出**：\n- neg_difficulty 可视化图：`/root/autodl-tmp/structfuse/artifacts/neg_difficulty_margin_comparison.{png,pdf}`（artifact art_20260514_47c425）\n- experiment_plan.yaml 已更新（plan_002/013 registry 关联 + plan_014 gpu_budget 70h）\n- eval 脚本 bug fixes 完成（lora_alpha、repo-cache-dir、e2e placeholder 实现）\n- 目录重命名路径 sed 替换完成（18 文件）\n\n### 4. 📋 待办（条件触发式）\n- Qwen s42 完成 (~18:30 CST) → ssh_read_only 确认 s43 自动启动（检查 PID 变化、日志出现 random_s43）→ 汇报 Director\n- StarCoder s42 完成 (~01:30 明天) → 同上确认 s43 启动\n- m1_reextract_v2 完成 → 统计新增 instances 数量，更新训练数据 pipeline，汇报 Director\n- M2 全部 18 runs 完成 (~May 17-18) → 执行 plan_003 SWE-bench Lite retrieval 评估（脚本已 dry-run 验证）\n- M2 完成 → 执行 plan_014 temperature ablation（D025 scope: 2 strategies × 3 τ × 2 epochs = 6 runs，脚本已就绪）\n- Director 审批 plan_014 GPU 分配 → submit_on_allocated\n- Qwen3.6-27B 模型下载 (~60GB) → 需 Director 审批磁盘使用 → plan_003 Stage B e2e 评估\n\n### 5. 🎯 战略上下文\n- **核心假设**：结构化 negatives（embedding_distance / dataflow_aware）优于 random negatives。random_s42 是 baseline，后续 8 runs 才是验证。当前 random_s42 的 R@1=55.3% (Qwen) / 45.4% (StarCoder) 是 baseline 参考值。\n- **Go/No-Go 标准 (D018/D019/D020)**：paired R@1 differences across 3 seeds，bootstrap 95% CI，paired t-test p<0.05。需要全部 9 runs/encoder 完成才能判定。\n- **过拟合模式已确认**：两个 encoder 都在 step 1000 (~epoch 0.7) 达到 best，之后 val_loss 反弹。D026 减到 2 epochs 正确且已执行。\n- **Qwen 表征饱和**：pos_sim≈0.9855（cosine similarity 天花板），margin 仅 0.017~0.074。StarCoder 健康（pos_sim≈0.80，margin 0.067~0.194）。这是论文的一个重要 finding——可能影响 Qwen 上 embedding_distance 策略的区分度。\n- **易踩的坑**：\n  - 训练日志路径不统一：Qwen 在 `/root/runs/structfuse-context/`，StarCoder 在 `/root/runs/m2_full_starcoder/`\n  - trainer_state.json 路径：需要 find 确认，不同 encoder 目录结构略有差异\n  - 脚本遍历顺序是 strategy 外层 × seed 内层，所以 random 全部跑完才到 embedding_distance\n  - plan_003 eval 脚本有两个版本：`evaluation/eval_swebench.py`（retrieval-only，已验证）和 `scripts/eval_swebench_e2e.py`（end-to-end，placeholder 已实现但未 production 测试）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-copy-2.md"
+}

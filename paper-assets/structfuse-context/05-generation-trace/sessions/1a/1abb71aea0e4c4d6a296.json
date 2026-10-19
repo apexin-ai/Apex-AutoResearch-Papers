@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1abb71aea0e4c4d6a296",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "analysis training dynamics prep",
+  "task_key": "worker_analysis_training-dynamics-prep_20260515T182816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_training-dynamics-prep_20260515T182816_result.json",
+    "occurrence": 1,
+    "bytes": 912,
+    "sha256": "c8ecf9419431955c84bc1e76a258a2c5978ecdb12532c061af668dbbd32e917f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，产出已注册 (`art_20260515_3df68e`)。\n\n5个核心发现：\n\n1. **快速收敛** — 所有 run 的 peak R@1 出现在第一个 epoch 内 (500–1000 steps)，后续训练主要是 overfitting\n2. **非对称过拟合** — val_loss 劣化 15–21%，但 R@1 仅降 0.2–4.7pp，排序质量比 loss 幅度更鲁棒\n3. **指标分歧普遍** — 60% 的 run 中 val_loss 和 R@1 选出不同最优 checkpoint；建议双指标保存、以 R@1 选模型\n4. **seed 方差主导策略效应** — 跨 seed R@1 std ≈ 2.5pp，同 seed 策略差 < 0.7pp；s44 val split 系统性偏易，paired within-seed 比较才有意义\n5. **Early stopping 有效** — patience=2 在所有 run 中都捕获了最佳 R@1 checkpoint，3-epoch run 浪费了 53% 算力但没提升\n\nTBD 项已标注，需要 dataflow_aware 和 BM25 runs 完成后才能做完整策略对比和 ANOVA。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-training-dynamics-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf15ceecfd3d254c2652",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "research related work refs",
+  "task_key": "worker_research_related_work_refs_20260512T143155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related_work_refs_20260512T143155_result.json",
+    "occurrence": 1,
+    "bytes": 902,
+    "sha256": "c57720ac7f91b1818ab4d090e6a483f224ec10465f4c4d153cd89e0e48ca9183"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文献列表已写入 `literature_map.yaml`，按 4 个类别共整理 **21 篇论文**：\n\n| 类别 | 篇数 | 关键论文 |\n|------|------|---------|\n| **Code Retrieval for Bug Fixing** | 6 | SWE-bench, SWE-agent, AutoCodeRover, Agentless, SWE-smith, RepoBench |\n| **Hard Negative Mining** | 5 | DPR, ANCE, SimCLR, Sentence-BERT, curriculum mining |\n| **Program Analysis for ML** | 5 | CodeQL, code2vec, code2seq, GraphCodeBERT, flow-augmented AST |\n| **Code Embeddings / Search** | 7 | CodeSearchNet, CodeBERT, UniXcoder, StarCoder, Code Llama, Qwen2.5-Coder, BM25 |\n\n每篇标注了与 StructFuse 的关系（competitor/baseline/building-block/background）。有 6 处标注了\"需验证\"（主要是 venue 或作者信息不完全确定的）。\n\n待补充区列了 FAISS、Tree-sitter、Aider/Moatless Tools、CoSQA、DeepSeek-Coder 等候选，确认后可追加。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-refs.md"
+}

@@ -1,0 +1,2019 @@
+{
+  "schema_version": "1.0",
+  "id": "b5f48545e4742b08b24b",
+  "project": "structfuse-context",
+  "kind": "conversation",
+  "title": "data m2 starcoder build and train",
+  "task_key": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_data_m2_starcoder_build_and_train_20260513T162034.jsonl",
+    "occurrence": 1,
+    "bytes": 97691,
+    "sha256": "11e95b7754ddee96907e0116313fe472fa1a0d66ad2040900224c6c3d7f256d8"
+  },
+  "statistics": {
+    "messages": 99,
+    "user_turns": 0,
+    "tool_calls": 49,
+    "roles": {
+      "tool_call": 49,
+      "tool_result": 49,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T16:26:53.078125+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+              "max_results": "7"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T16:26:53.078473+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T16:26:53.078697+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T16:26:53.078846+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "df -h /root/autodl-tmp",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T16:26:53.078982+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 MiB, 97887 MiB, 0 %\\\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 MiB, 97887 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T16:26:53.079108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls /root/structfuse/*.sh /root/structfuse/*.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T16:26:53.079229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  111G  140G  45% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T16:26:53.079345+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls /root/autodl-tmp/structfuse/full_m2_training_data/",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T16:26:53.079465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/structfuse/auto_start_dataflow.sh\\\\n/root/structfuse/eval_checkpoint.py\\\\n/root/structfuse/mvp_phase1.py\\\\n/root/structfuse/run_m2_early_pilot.sh\\\\n/root/structfuse/run_m2_embed_verify.sh\\\\n/root/structfuse/run_m2_embed_verify_continuation.sh\\\\n/root/structfuse/run_plan013_dataflow_retry.sh\\\\n/root/structfuse/run_plan013_starcoder.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T16:26:53.079590+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"dataflow_graph.json\\\\ntrain_dataflow_aware_s42.jsonl\\\\ntrain_dataflow_aware_s43.jsonl\\\\ntrain_dataflow_aware_s44.jsonl\\\\ntrain_embedding_distance_s42.jsonl\\\\ntrain_embedding_distance_s43.jsonl\\\\ntrain_embedding_distance_s44.jsonl\\\\ntrain_random_s42.jsonl\\\\ntrain_random_s43.jsonl\\\\ntrain_random_s44.jsonl\\\\nval_dataflow_aware_s42.jsonl\\\\nval_dataflow_aware_s43.jsonl\\\\nval_dataflow_aware_s44.jsonl\\\\nval_embedding_distance_s42.jsonl\\\\nval_embedding_distance_s43.jsonl\\\\nval_embedding_distance_s44.jsonl\\\\nval_random_s42.jsonl\\\\nval_random_s43.jsonl\\\\nval_random_s44.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T16:26:53.079790+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "find /root/structfuse -name \"*.py\" -not -path \"*/\\.*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T16:26:53.079930+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/structfuse/training/train.py\\\\n/root/structfuse/training/contrastive_model.py\\\\n/root/structfuse/training/hard_negative_mining.py\\\\n/root/structfuse/evaluation/linear_proxy.py\\\\n/root/structfuse/evaluation/eval_swebench.py\\\\n/root/structfuse/evaluation/eval_retrieval.py\\\\n/root/structfuse/scripts/build_p2b_data.py\\\\n/root/structfuse/scripts/eval_p2b.py\\\\n/root/structfuse/scripts/collect_p2b_results.py\\\\n/root/structfuse/scripts/eval_p2b_pooled.py\\\\n/root/structfuse/scripts/download_metadata.py\\\\n/root/structfuse/scripts/fix_metadata.py\\\\n/root/structfuse/scripts/fix_metadata_arrow.py\\\\n/root/structfuse/scripts/run_50repo_overlap.py\\\\n/root/structfuse/scripts/build_m1_training_data.py\\\\n/root/structfuse/scripts/eval_swebench.py\\\\n/root/structfuse/scripts/compute_full_z_percent.py\\\\n/root/structfuse/mvp_phase1.py\\\\n/root/structfuse/extraction/build_training_data.py\\\\n/root/structfuse/extraction/batch_extract.py\\\\n/root/structfuse/extraction/extract_dataflow.py\\\\n/root/structfuse/extraction/precompute_bm25.py\\\\n/root/structfuse/eval_checkpoint.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T16:26:53.080100+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "find /root/structfuse -name \"*.sh\" -not -path \"*/\\.*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T16:26:53.080238+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/structfuse/scripts/run_p2b_all.sh\\\\n/root/structfuse/scripts/run_eval_all.sh\\\\n/root/structfuse/scripts/run_m1_extraction.sh\\\\n/root/structfuse/scripts/run_eval_p50.sh\\\\n/root/structfuse/scripts/run_eval_5missing.sh\\\\n/root/structfuse/scripts/run_m2_pilot.sh\\\\n/root/structfuse/scripts/migrate_m1_data.sh\\\\n/root/structfuse/scripts/clone_repos.sh\\\\n/root/structfuse/scripts/build_full_m2_data.sh\\\\n/root/structfuse/scripts/run_full_m2_training.sh\\\\n/root/structfuse/scripts/schedule_m2_runs.sh\\\\n/root/structfuse/run_m2_early_pilot.sh\\\\n/root/structfuse/run_m2_embed_verify.sh\\\\n/root/structfuse/run_plan013_starcoder.sh\\\\n/root/structfuse/run_plan013_dataflow_retry.sh\\\\n/root/structfuse/run_m2_embed_verify_continuation.sh\\\\n/root/structfuse/auto_start_dataflow.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T16:26:53.080373+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "wc -l /root/autodl-tmp/structfuse/full_m2_training_data/train_embedding_distance_s42.jsonl /root/autodl-tmp/structfuse/full_m2_training_data/val_embedding_distance_s42.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T16:26:53.080500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     11308 /root/autodl-tmp/structfuse/full_m2_training_data/train_embedding_distance_s42.jsonl\\\\n      2980 /root/autodl-tmp/structfuse/full_m2_training_data/val_embedding_distance_s42.jsonl\\\\n     14288 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T16:26:53.080635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "head -1 /root/autodl-tmp/structfuse/full_m2_training_data/train_embedding_distance_s42.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T16:26:53.080924+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"query_id\\\\\\\": \\\\\\\"oauthlib__oauthlib.1fd52536.lm_rewrite__e551pdwl::oauthlib/openid/connect/core/grant_types/dispatchers.py\\\\\\\", \\\\\\\"query_tokens\\\\\\\": \\\\\\\"import logging\\\\\\\\n\\\\\\\\nlog = logging.getLogger(__name__)\\\\\\\\n\\\\\\\\n\\\\\\\\nclass Dispatcher:\\\\\\\\n    default_grant = None\\\\\\\\n    oidc_grant = None\\\\\\\\n\\\\\\\\n\\\\\\\\nclass AuthorizationCodeGrantDispatcher(Dispatcher):\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n    This is an adapter class that will route simple Authorization Code\\\\\\\\n    requests, those that have `response_type=code` and a scope including\\\\\\\\n    `openid` to either the `default_grant` or the `oidc_grant` based on\\\\\\\\n    the scopes requested.\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n    def __init__(self, default_grant=None, oidc_grant=None):\\\\\\\\n        self.default_grant = default_grant\\\\\\\\n        self.oidc_grant = oidc_grant\\\\\\\\n\\\\\\\\n    def _handler_for_request(self, request):\\\\\\\\n        handler = self.default_grant\\\\\\\\n\\\\\\\\n        if request.scopes and \\\\\\\\\\\\\\\"openid\\\\\\\\\\\\\\\" in request.scopes:\\\\\\\\n            handler = self.oidc_grant\\\\\\\\n\\\\\\\\n        log.debug('Selecting handler for request %r.', handler)\\\\\\\\n        return handler\\\\\\\\n\\\\\\\\n    def create_authorization_response(self, request, token_handler):\\\\\\\\n        \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"Read scope and route to the designated handler.\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n        return self._handler_for_request(request).create_authorization_response(request, token_handler)\\\\\\\\n\\\\\\\\n    def validate_authorization_request(self, request):\\\\\\\\n        \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"Read scope and route to the designated handler.\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n        return self._handler_for_request(request).validate_authorization_request(request)\\\\\\\\n\\\\\\\\n\\\\\\\\nclass ImplicitTokenGrantDispatcher(Dispatcher):\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n    This is an adapter class that will route simple Authorization\\\\\\\\n    requests, those that have `id_token` in `resp\n…[truncated 7060 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T16:26:53.081138+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "cat /root/structfuse/scripts/build_full_m2_data.sh",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T16:26:53.081339+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# ============================================================================\\\\n# build_full_m2_data.sh — 从 M1 extraction 构建 M2 训练数据\\\\n#\\\\n# 为 3 strategies × 3 seeds 生成训练/验证 JSONL 和 dataflow_graph.json\\\\n#\\\\n# Usage:\\\\n#   bash build_full_m2_data.sh\\\\n#\\\\n# 输入:\\\\n#   /root/autodl-tmp/structfuse/full_m1_data/  (migrate_m1_data.sh 迁移的 raw extraction)\\\\n#\\\\n# 输出:\\\\n#   /root/autodl-tmp/structfuse/full_m2_training_data/\\\\n#     train_{strategy}_s{seed}.jsonl   (strategy = random | embedding_distance | dataflow_aware)\\\\n#     val_{strategy}_s{seed}.jsonl\\\\n#     dataflow_graph.json\\\\n# ============================================================================\\\\n\\\\nset -euo pipefail\\\\n\\\\nPROJECT_ROOT=\\\\\\\"/root/structfuse\\\\\\\"\\\\nBUILD_SCRIPT=\\\\\\\"${PROJECT_ROOT}/scripts/build_m1_training_data.py\\\\\\\"\\\\nEXTRACTION_DIR=\\\\\\\"/root/autodl-tmp/structfuse/full_m1_data\\\\\\\"\\\\nREPOS_DIR=\\\\\\\"/root/autodl-tmp/structfuse/full_m1_data/repos\\\\\\\"\\\\nMODEL_PATH=\\\\\\\"/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B\\\\\\\"\\\\nOUTPUT_DIR=\\\\\\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\\\\\"\\\\n\\\\nSEEDS=(42 43 44)\\\\n\\\\n# build_m1_training_data.py 输出名 → run_full_m2_training.sh 期望名\\\\ndeclare -A STRATEGY_MAP=(\\\\n    [\\\\\\\"random\\\\\\\"]=\\\\\\\"random\\\\\\\"\\\\n    [\\\\\\\"embedding\\\\\\\"]=\\\\\\\"embedding_distance\\\\\\\"\\\\n    [\\\\\\\"dataflow\\\\\\\"]=\\\\\\\"dataflow_aware\\\\\\\"\\\\n)\\\\n\\\\necho \\\\\\\"============================================\\\\\\\"\\\\necho \\\\\\\" Build Full M2 Training Data\\\\\\\"\\\\necho \\\\\\\" Start: $(date '+%Y-%m-%d %H:%M:%S')\\\\\\\"\\\\necho \\\\\\\" Seeds: ${SEEDS[*]}\\\\\\\"\\\\necho \\\\\\\" Output: ${OUTPUT_DIR}\\\\\\\"\\\\necho \\\\\\\"============================================\\\\\\\"\\\\n\\\\n# 前置检查\\\\nfor f in \\\\\\\"$BUILD_SCRIPT\\\\\\\" \\\\\\\"$EXTRACTION_DIR\\\\\\\" \\\\\\\"$MODEL_PATH/config.json\\\\\\\"; do\\\\n    if [ ! -e \\\\\\\"$f\\\\\\\" ]; then\\\\n        echo \\\\\\\"ERROR: not found: $f\\\\\\\"\\\\n        exit 1\\\\n    fi\\\\ndone\\\\n\\\\nif [ ! -d \\\\\\\"$REPOS_DIR\\\\\\\" ]; then\\\\n    echo \\\\\\\"WARNING: repos di\n…[truncated 1968 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T16:26:53.081495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "cat /root/structfuse/scripts/build_m1_training_data.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-13T16:26:53.081792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Build contrastive training data from M1 full extraction results.\\\\n\\\\nReads individual M1 extraction JSON files, reads source code from repo\\\\ndirectories, and produces per-strategy JSONL files compatible with\\\\ntraining/train.py.\\\\n\\\\nKey design: two levels of connectivity:\\\\n  - positive_files: direct inter-file dataflow connections (training positives)\\\\n  - full_connected: positive_files + call graph neighbors (broader, for\\\\n    dataflow_aware negative filtering)\\\\n\\\\nThis ensures embedding and dataflow_aware strategies produce DIFFERENT\\\\nnegative pools: embedding includes call-graph-connected files as negatives,\\\\nwhile dataflow_aware excludes them.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport random\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\nimport time\\\\n\\\\nrandom.seed(42)\\\\n\\\\nMAX_FILE_CHARS = 4096\\\\nCANDIDATE_POOL_SIZE = 50\\\\nMAX_PER_REPO = 200\\\\n\\\\n\\\\ndef collect_py_files(repo_path: str) -> dict[str, str]:\\\\n    files = {}\\\\n    for root, dirs, filenames in os.walk(repo_path):\\\\n        dirs[:] = [d for d in dirs if not d.startswith(\\\\\\\".\\\\\\\") and d != \\\\\\\"__pycache__\\\\\\\"\\\\n                   and d != \\\\\\\"node_modules\\\\\\\" and d != \\\\\\\".git\\\\\\\"]\\\\n        for fname in filenames:\\\\n            if fname.endswith(\\\\\\\".py\\\\\\\"):\\\\n                full = os.path.join(root, fname)\\\\n                rel = os.path.relpath(full, repo_path)\\\\n                try:\\\\n                    with open(full, encoding=\\\\\\\"utf-8\\\\\\\", errors=\\\\\\\"replace\\\\\\\") as f:\\\\n                        content = f.read()\\\\n                    files[rel] = content[:MAX_FILE_CHARS]\\\\n                except OSError:\\\\n                    pass\\\\n    return files\\\\n\\\\n\\\\ndef resolve_file(target: str, all_files: list[str]) -> str | None:\\\\n    if target in all_files:\\\\n        return target\\\\n    for f in all_files:\\\\n        if f.endswith(\\\\\\\"/\\\\\\\" + tar\n…[truncated 7361 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-13T16:26:53.081971+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "cat /root/structfuse/training/hard_negative_mining.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-13T16:26:53.082190+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Data-flow-aware hard negative mining for StructFuse.\\\\n\\\\nThree strategies:\\\\n  1. random         — baseline, random non-positive from same repo\\\\n  2. embedding_distance — CoCoHaNeRe-style nearest-neighbour non-positives\\\\n  3. dataflow_aware — lexically similar but data-flow disconnected (our contribution)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport random as stdlib_random\\\\nfrom abc import ABC, abstractmethod\\\\nfrom pathlib import Path\\\\nfrom typing import Dict, List, Set, Tuple\\\\n\\\\nimport numpy as np\\\\n\\\\n\\\\nclass HardNegativeMiner(ABC):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Base class for hard-negative mining strategies.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(\\\\n        self,\\\\n        dataflow_graph: Dict[str, Set[str]] | None = None,\\\\n        embeddings: Dict[str, np.ndarray] | None = None,\\\\n        bm25_index: object | None = None,\\\\n    ):\\\\n        self.dataflow_graph = dataflow_graph or {}\\\\n        self.embeddings = embeddings or {}\\\\n        self.bm25_index = bm25_index\\\\n\\\\n    @abstractmethod\\\\n    def mine(\\\\n        self,\\\\n        query: str,\\\\n        positives: List[str],\\\\n        candidates: List[str],\\\\n        num_negatives: int,\\\\n    ) -> List[Tuple[str, float]]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Return list of (candidate_id, hardness_score) tuples.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        ...\\\\n\\\\n    # ── shared helpers ──────────────────────────────────────────────\\\\n\\\\n    @staticmethod\\\\n    def _exclude(candidates: List[str], exclude: Set[str]) -> List[str]:\\\\n        return [c for c in candidates if c not in exclude]\\\\n\\\\n    @staticmethod\\\\n    def load_embeddings(path: str | Path) -> Dict[str, np.ndarray]:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Load pre-computed embeddings from a .npz file (keys=file ids).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        data = np.load(path, allow_pickle=True)\\\\n        return {str(k): data[k] for k in data.files}\\\\n\\\\n    @staticmethod\\\\n    def save_embeddings(embs: Dict[str, np.ndarray], path: str | P\n…[truncated 6454 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-13T16:26:53.082394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -n \"embed\\|model\\|encoder\\|cosine\\|argparse\\|add_argument\" /root/structfuse/scripts/build_m1_training_data.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-13T16:26:53.082529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-13T16:26:53.082672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "head -80 /root/structfuse/training/train.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-13T16:26:53.082840+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"from __future__ import annotations\\\\n\\\\nimport os\\\\n\\\\n\\\\\\\"\\\\\\\"\\\\\\\"StructFuse contrastive training entry point.\\\\n\\\\nTrains a bi-encoder (Qwen2.5-Coder-3B) with InfoNCE loss, data-flow-weighted\\\\npositives, and configurable hard-negative mining.  Supports single/multi-GPU\\\\nvia HuggingFace Accelerate, LoRA, gradient checkpointing, and W&B logging.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport os\\\\nimport random\\\\nimport shutil\\\\nfrom pathlib import Path\\\\nfrom typing import Any, Dict, List\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom torch.utils.data import DataLoader, Dataset\\\\nfrom transformers import AutoTokenizer, get_cosine_schedule_with_warmup\\\\n\\\\nfrom accelerate import Accelerator\\\\nfrom accelerate.utils import set_seed\\\\n\\\\nfrom contrastive_model import StructFuseEncoder\\\\nfrom hard_negative_mining import build_miner, mine_batch\\\\n\\\\n\\\\n# ── Dataset ──────────────────────────────────────────────────────────\\\\n\\\\nclass ContrastiveDataset(Dataset):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Each sample: {query, positive, negatives[], pos_weight, features[]}.\\\\n\\\\n    The raw data file is JSONL with fields:\\\\n        query_id, query_tokens, pos_id, pos_tokens, pos_dataflow_distance,\\\\n        neg_candidates (list of file ids), features (dict per candidate).\\\\n\\\\n    Negatives are mined dynamically per epoch via `refresh_negatives()`.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(\\\\n        self,\\\\n        data_path: str,\\\\n        tokenizer: AutoTokenizer,\\\\n        max_seq_length: int,\\\\n        num_negatives: int,\\\\n        pos_weight_alpha: float,\\\\n        use_fusion_head: bool,\\\\n    ):\\\\n        self.tokenizer = tokenizer\\\\n        self.max_seq_length = max_seq_length\\\\n        self.num_negatives = num_negatives\\\\n        self.alpha = pos_weight_alpha\\\\n        self.use_fusion_head = use_fusion_head\\\\n\\\\n        self.samples: List[Dict[str, Any]] = []\\\\n        with open(data_path) as f:\\\\n \n…[truncated 773 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-13T16:26:53.082994+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "cat /root/structfuse/scripts/run_full_m2_training.sh",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-13T16:26:53.083189+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# ============================================================================\\\\n# run_full_m2_training.sh — 全量 M2 单次训练 wrapper\\\\n#\\\\n# Usage:\\\\n#   bash run_full_m2_training.sh <strategy> <seed> <gpu_id>\\\\n#\\\\n# Args:\\\\n#   strategy  — hard-negative 策略: random | embedding_distance | dataflow_aware\\\\n#   seed      — 随机种子: 42 | 43 | 44\\\\n#   gpu_id    — GPU 编号: 0 | 1\\\\n#\\\\n# Example:\\\\n#   bash run_full_m2_training.sh random 42 0\\\\n#   bash run_full_m2_training.sh embedding_distance 43 1\\\\n#\\\\n# 训练参数 (D013 确认):\\\\n#   batch_size=8, num_negatives=7, max_seq_length=2048, epochs=2\\\\n#   eval_steps=500, lr=2e-5, LoRA (r=16), gradient checkpointing\\\\n#\\\\n# 输出:\\\\n#   /root/autodl-tmp/structfuse/full_m2_outputs/${strategy}_s${seed}/\\\\n#\\\\n# 注意:\\\\n#   - 使用 --early-stopping-patience 3 (D013 配置)\\\\n# ============================================================================\\\\n\\\\nset -euo pipefail\\\\n\\\\n# ── 参数解析 ─────────────────────────────────────────────────────────\\\\nSTRATEGY=\\\\\\\"${1:?Usage: $0 <strategy> <seed> <gpu_id>}\\\\\\\"\\\\nSEED=\\\\\\\"${2:?Usage: $0 <strategy> <seed> <gpu_id>}\\\\\\\"\\\\nGPU_ID=\\\\\\\"${3:?Usage: $0 <strategy> <seed> <gpu_id>}\\\\\\\"\\\\n\\\\nVALID_STRATEGIES=\\\\\\\"random embedding_distance dataflow_aware\\\\\\\"\\\\nif ! echo \\\\\\\"$VALID_STRATEGIES\\\\\\\" | grep -qw \\\\\\\"$STRATEGY\\\\\\\"; then\\\\n    echo \\\\\\\"ERROR: strategy must be one of: $VALID_STRATEGIES\\\\\\\"\\\\n    exit 1\\\\nfi\\\\n\\\\n# ── 路径 ─────────────────────────────────────────────────────────────\\\\nPROJECT_ROOT=\\\\\\\"/root/structfuse\\\\\\\"\\\\nMODEL_PATH=\\\\\\\"/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B\\\\\\\"\\\\nDATA_DIR=\\\\\\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\\\\\"\\\\nOUTPUT_DIR=\\\\\\\"/root/autodl-tmp/structfuse/full_m2_outputs/${STRATEGY}_s${SEED}\\\\\\\"\\\\nTRAIN_FILE=\\\\\\\"${DATA_DIR}/train_${STRATEGY}_s${SEED}.jsonl\\\\\\\"\\\\nVAL_FILE=\\\\\\\"${DATA_DIR}/val_${STRATEGY}_s${SEED}.jsonl\\\\\\\"\\\\nDATAFLOW_GRAPH=\\\\\\\"${DATA_DIR}/dataflow_graph.json\\\\\\\"\\\\nEMBEDDINGS_F\n…[truncated 2777 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-13T16:26:53.083364+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -n \"def \\|embed\\|model\\|argparse\\|add_argument\\|cosine\\|torch\\|AutoModel\\|encoding\\|hidden\" /root/structfuse/scripts/build_m1_training_data.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-13T16:26:53.083499+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-13T16:26:53.083640+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -n \"def \\|argparse\\|add_argument\\|best.*R@1\\|best.*val_loss\\|dual.*checkpoint\\|save.*best\" /root/structfuse/training/train.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-13T16:26:53.083766+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-13T16:26:53.083896+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -n \"add_argument\\|def \" /root/structfuse/scripts/build_m1_training_data.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-13T16:26:53.084035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-13T16:26:53.084177+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -n \"add_argument\\|def \\|best.*R@1\\|best.*val_loss\\|save.*best\\|dual.*check\" /root/structfuse/training/train.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-13T16:26:53.084295+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-13T16:26:53.084420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -nE \"add_argument|def \" /root/structfuse/scripts/build_m1_training_data.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-13T16:26:53.084533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-13T16:26:53.084674+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -nE \"add_argument|def |best.*recall|best.*val_loss|save.*best|dual.*check\" /root/structfuse/training/train.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-13T16:26:53.084794+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-13T16:26:53.084918+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -n \"add_argument\" /root/structfuse/scripts/build_m1_training_data.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-13T16:26:53.085044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"209:    parser.add_argument(\\\\\\\"--extraction-dir\\\\\\\", required=True)\\\\n210:    parser.add_argument(\\\\\\\"--repos-dir\\\\\\\", required=True)\\\\n211:    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", required=True)\\\\n212:    parser.add_argument(\\\\\\\"--pool-size\\\\\\\", type=int, default=CANDIDATE_POOL_SIZE)\\\\n213:    parser.add_argument(\\\\\\\"--max-per-repo\\\\\\\", type=int, default=MAX_PER_REPO)\\\\n214:    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n215:    parser.add_argument(\\\\\\\"--model-path\\\\\\\", type=str, default=None,\\\\n217:    parser.add_argument(\\\\\\\"--embedding-mining-mode\\\\\\\", choices=[\\\\\\\"static\\\\\\\", \\\\\\\"dynamic\\\\\\\"],\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-13T16:26:53.085168+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -n \"add_argument\" /root/structfuse/training/train.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-13T16:26:53.085317+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"550:    p.add_argument(\\\\\\\"--model-name\\\\\\\", default=\\\\\\\"Qwen/Qwen2.5-Coder-3B\\\\\\\")\\\\n551:    p.add_argument(\\\\\\\"--train-file\\\\\\\", required=True)\\\\n552:    p.add_argument(\\\\\\\"--val-file\\\\\\\", required=True)\\\\n553:    p.add_argument(\\\\\\\"--output-dir\\\\\\\", required=True)\\\\n554:    p.add_argument(\\\\\\\"--batch-size\\\\\\\", type=int, default=8)\\\\n555:    p.add_argument(\\\\\\\"--learning-rate\\\\\\\", type=float, default=2e-5)\\\\n556:    p.add_argument(\\\\\\\"--num-epochs\\\\\\\", type=int, default=3)\\\\n557:    p.add_argument(\\\\\\\"--warmup-ratio\\\\\\\", type=float, default=0.1)\\\\n558:    p.add_argument(\\\\\\\"--num-negatives\\\\\\\", type=int, default=7)\\\\n559:    p.add_argument(\\\\\\\"--hard-negative-strategy\\\\\\\", choices=[\\\\\\\"random\\\\\\\", \\\\\\\"embedding_distance\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\"], default=\\\\\\\"dataflow_aware\\\\\\\")\\\\n560:    p.add_argument(\\\\\\\"--hard-negative-ratio\\\\\\\", type=float, default=0.5)\\\\n561:    p.add_argument(\\\\\\\"--temperature\\\\\\\", type=float, default=0.07)\\\\n562:    p.add_argument(\\\\\\\"--pos-weight-alpha\\\\\\\", type=float, default=1.0)\\\\n563:    p.add_argument(\\\\\\\"--use-fusion-head\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n564:    p.add_argument(\\\\\\\"--use-lora\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n565:    p.add_argument(\\\\\\\"--lora-r\\\\\\\", type=int, default=16)\\\\n566:    p.add_argument(\\\\\\\"--proj-dim\\\\\\\", type=int, default=256)\\\\n567:    p.add_argument(\\\\\\\"--gradient-checkpointing\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n568:    p.add_argument(\\\\\\\"--eval-steps\\\\\\\", type=int, default=500)\\\\n569:    p.add_argument(\\\\\\\"--save-steps\\\\\\\", type=int, default=1000)\\\\n570:    p.add_argument(\\\\\\\"--max-seq-length\\\\\\\", type=int, default=2048)\\\\n571:    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n572:    p.add_argument(\\\\\\\"--wandb-project\\\\\\\", default=\\\\\\\"structfuse\\\\\\\")\\\\n573:    p.add_argument(\\\\\\\"--wandb-run-name\\\\\\\", default=None)\\\\n574:    p.add_argument(\\\\\\\"--dataflow-graph-file\\\\\\\", default=None, help=\\\\\\\"JSON file: {file_id: [reachable_ids]}\\\\\\\")\\\\n5\n…[truncated 451 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-13T16:26:53.085464+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -n \"best\" /root/structfuse/training/train.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-13T16:26:53.085616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"353:    best_val_loss = float(\\\\\\\"inf\\\\\\\")\\\\n420:                    if cur_val_loss < best_val_loss:\\\\n423:                            print(f\\\\\\\"WARNING: Only {free_gb:.1f}GB free, skipping best checkpoint save\\\\\\\")\\\\n425:                            best_dir = output_dir / \\\\\\\"best\\\\\\\"\\\\n426:                            if best_dir.exists():\\\\n427:                                shutil.rmtree(best_dir)\\\\n428:                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_dir, args)\\\\n429:                            best_val_loss = cur_val_loss\\\\n430:                            print(f\\\\\\\"  New best val_loss={cur_val_loss:.4f}, saved to {best_dir}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-13T16:26:53.085773+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -n \"R@1\\|recall\\|recall_at\" /root/structfuse/training/train.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-13T16:26:53.085894+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-13T16:26:53.086011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "tail -n 200 /root/structfuse/scripts/build_m1_training_data.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-13T16:26:53.086308+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            else:\\\\n                pools = {}\\\\n\\\\n            if args.embedding_mining_mode == \\\\\\\"static\\\\\\\":\\\\n                if set(pools[\\\\\\\"embedding\\\\\\\"]) != set(pools[\\\\\\\"dataflow\\\\\\\"]):\\\\n                    stats[\\\\\\\"total_pos_diff\\\\\\\"] += 1\\\\n                stats[\\\\\\\"total_instances\\\\\\\"] += 1\\\\n\\\\n            repo_data[iid] = {\\\\n                \\\\\\\"buggy_file\\\\\\\": buggy_file,\\\\n                \\\\\\\"source_files\\\\\\\": source_files,\\\\n                \\\\\\\"valid_pos\\\\\\\": list(positive_files),\\\\n                \\\\\\\"pools\\\\\\\": pools,\\\\n                \\\\\\\"full_connected\\\\\\\": full_connected,\\\\n            }\\\\n\\\\n        print(f\\\\\\\"  {n_with_pos} instances with positives, {len(all_py)} .py files\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nStrategy divergence: {stats['total_pos_diff']}/{stats['total_instances']} \\\\\\\"\\\\n          f\\\\\\\"({100*stats['total_pos_diff']/max(stats['total_instances'],1):.1f}%) instances have different embedding vs dataflow pools\\\\\\\")\\\\n\\\\n    # Build forward + reverse instances\\\\n    base_instances = []\\\\n    for iid, rd in repo_data.items():\\\\n        for pos_file in rd[\\\\\\\"valid_pos\\\\\\\"]:\\\\n            base_instances.append({\\\\\\\"iid\\\\\\\": iid, \\\\\\\"query_file\\\\\\\": rd[\\\\\\\"buggy_file\\\\\\\"], \\\\\\\"pos_file\\\\\\\": pos_file})\\\\n            base_instances.append({\\\\\\\"iid\\\\\\\": iid, \\\\\\\"query_file\\\\\\\": pos_file, \\\\\\\"pos_file\\\\\\\": rd[\\\\\\\"buggy_file\\\\\\\"]})\\\\n\\\\n    print(f\\\\\\\"Total base instances (fwd+rev): {len(base_instances)}\\\\\\\")\\\\n\\\\n    # Balance by repo\\\\n    by_repo_inst = defaultdict(list)\\\\n    for inst in base_instances:\\\\n        repo_part = inst[\\\\\\\"iid\\\\\\\"].rsplit(\\\\\\\".\\\\\\\", 2)[0]\\\\n        by_repo_inst[repo_part].append(inst)\\\\n\\\\n    # Repo-level split to avoid data leakage\\\\n    all_repos = sorted(by_repo_inst.keys())\\\\n    random.shuffle(all_repos)\\\\n    split_idx = int(len(all_repos) * 0.8)\\\\n    train_repos = set(all_repos[:split_idx])\\\\n    val_repos = set(all_repos[split_idx:])\\\\n\\\\n    tr\n…[truncated 7543 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-13T16:26:53.086477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "head -n 230 /root/structfuse/scripts/build_m1_training_data.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-13T16:26:53.086760+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Build contrastive training data from M1 full extraction results.\\\\n\\\\nReads individual M1 extraction JSON files, reads source code from repo\\\\ndirectories, and produces per-strategy JSONL files compatible with\\\\ntraining/train.py.\\\\n\\\\nKey design: two levels of connectivity:\\\\n  - positive_files: direct inter-file dataflow connections (training positives)\\\\n  - full_connected: positive_files + call graph neighbors (broader, for\\\\n    dataflow_aware negative filtering)\\\\n\\\\nThis ensures embedding and dataflow_aware strategies produce DIFFERENT\\\\nnegative pools: embedding includes call-graph-connected files as negatives,\\\\nwhile dataflow_aware excludes them.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport random\\\\nfrom collections import defaultdict\\\\nfrom pathlib import Path\\\\nimport time\\\\n\\\\nrandom.seed(42)\\\\n\\\\nMAX_FILE_CHARS = 4096\\\\nCANDIDATE_POOL_SIZE = 50\\\\nMAX_PER_REPO = 200\\\\n\\\\n\\\\ndef collect_py_files(repo_path: str) -> dict[str, str]:\\\\n    files = {}\\\\n    for root, dirs, filenames in os.walk(repo_path):\\\\n        dirs[:] = [d for d in dirs if not d.startswith(\\\\\\\".\\\\\\\") and d != \\\\\\\"__pycache__\\\\\\\"\\\\n                   and d != \\\\\\\"node_modules\\\\\\\" and d != \\\\\\\".git\\\\\\\"]\\\\n        for fname in filenames:\\\\n            if fname.endswith(\\\\\\\".py\\\\\\\"):\\\\n                full = os.path.join(root, fname)\\\\n                rel = os.path.relpath(full, repo_path)\\\\n                try:\\\\n                    with open(full, encoding=\\\\\\\"utf-8\\\\\\\", errors=\\\\\\\"replace\\\\\\\") as f:\\\\n                        content = f.read()\\\\n                    files[rel] = content[:MAX_FILE_CHARS]\\\\n                except OSError:\\\\n                    pass\\\\n    return files\\\\n\\\\n\\\\ndef resolve_file(target: str, all_files: list[str]) -> str | None:\\\\n    if target in all_files:\\\\n        return target\\\\n    for f in all_files:\\\\n        if f.endswith(\\\\\\\"/\\\\\\\" + tar\n…[truncated 6931 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-13T16:26:53.086965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -n \"recall\" /root/structfuse/training/train.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-13T16:26:53.087106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"220:    \\\\\\\"\\\\\\\"\\\\\\\"Compute recall@1/5/10 and average loss on the validation set.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n261:        metrics[f\\\\\\\"recall@{k}\\\\\\\"] = total_correct[k] / max(total_samples, 1)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-13T16:26:53.087229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "tail -n 250 /root/structfuse/training/train.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-13T16:26:53.087458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            print(f\\\\\\\"Loaded {len(candidate_pools)} candidate pools for dynamic mining\\\\\\\")\\\\n    # optimizer & scheduler\\\\n    optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate, weight_decay=0.01)\\\\n    total_steps = len(train_loader) * args.num_epochs\\\\n    warmup_steps = int(total_steps * args.warmup_ratio)\\\\n    scheduler = get_cosine_schedule_with_warmup(optimizer, warmup_steps, total_steps)\\\\n\\\\n    # accelerate prepare\\\\n    model, optimizer, train_loader, val_loader, scheduler = accelerator.prepare(\\\\n        model, optimizer, train_loader, val_loader, scheduler\\\\n    )\\\\n\\\\n    # ── training loop ────────────────────────────────────────────\\\\n    global_step = 0\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n    best_val_loss = float(\\\\\\\"inf\\\\\\\")\\\\n    no_improve_count = 0\\\\n    early_stopped = False\\\\n\\\\n    for epoch in range(args.num_epochs):\\\\n        if early_stopped:\\\\n            break\\\\n        if getattr(args, \\\\\\\"dynamic_mining\\\\\\\", False) and candidate_pools is not None:\\\\n            if accelerator.is_main_process:\\\\n                print(f\\\\\\\"[Epoch {epoch+1}] Dynamic mining: re-encoding candidates...\\\\\\\")\\\\n            mined = _mine_dynamic_negatives(\\\\n                model=accelerator.unwrap_model(model),\\\\n                tokenizer=tokenizer,\\\\n                candidate_pools=candidate_pools,\\\\n                train_ds=train_ds,\\\\n                num_negatives=args.num_negatives,\\\\n                max_seq_length=args.max_seq_length,\\\\n                device=accelerator.device,\\\\n            )\\\\n            train_ds.refresh_negatives(mined)\\\\n            if accelerator.is_main_process:\\\\n                print(f\\\\\\\"  Mined negatives for {len(mined)} queries\\\\\\\")\\\\n        else:\\\\n            if accelerator.is_main_process:\\\\n                print(f\\\\\\\"[Epoch {epoch+1}] Using pre-mined negatives ({args.hard_negative_st\n…[truncated 7105 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-13T16:26:53.087690+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "tail -n +215 /root/structfuse/training/train.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-13T16:26:53.087830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls /root/autodl-tmp/models/bigcode/starcoder2-3b/bigcode/starcoder2-3b/",
+              "account": "root"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-13T16:26:53.088092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n# ── Evaluation ───────────────────────────────────────────────────────\\\\n\\\\n@torch.no_grad()\\\\ndef evaluate(model: StructFuseEncoder, val_loader: DataLoader, accelerator: Accelerator) -> Dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute recall@1/5/10 and average loss on the validation set.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    model.eval()\\\\n    total_loss = 0.0\\\\n    total_correct = {1: 0, 5: 0, 10: 0}\\\\n    total_samples = 0\\\\n\\\\n    for batch in val_loader:\\\\n        kwargs = {\\\\n            \\\\\\\"query_ids\\\\\\\": batch[\\\\\\\"query_ids\\\\\\\"],\\\\n            \\\\\\\"query_mask\\\\\\\": batch[\\\\\\\"query_mask\\\\\\\"],\\\\n            \\\\\\\"pos_ids\\\\\\\": batch[\\\\\\\"pos_ids\\\\\\\"],\\\\n            \\\\\\\"pos_mask\\\\\\\": batch[\\\\\\\"pos_mask\\\\\\\"],\\\\n            \\\\\\\"neg_ids\\\\\\\": batch[\\\\\\\"neg_ids\\\\\\\"],\\\\n            \\\\\\\"neg_mask\\\\\\\": batch[\\\\\\\"neg_mask\\\\\\\"],\\\\n            \\\\\\\"neg_valid_mask\\\\\\\": batch.get(\\\\\\\"neg_valid_mask\\\\\\\"),\\\\n            \\\\\\\"pos_weights\\\\\\\": batch[\\\\\\\"pos_weights\\\\\\\"],\\\\n            \\\\\\\"features\\\\\\\": batch.get(\\\\\\\"features\\\\\\\"),\\\\n        }\\\\n        loss, logits = model(**kwargs)\\\\n\\\\n        total_loss += loss.item() * logits.size(0)\\\\n        total_samples += logits.size(0)\\\\n\\\\n        for k in [1, 5, 10]:\\\\n            topk = logits.topk(min(k, logits.size(1)), dim=1).indices\\\\n            total_correct[k] += (topk == 0).any(dim=1).sum().item()\\\\n\\\\n    # Aggregate across all processes for multi-GPU correctness\\\\n    stats = torch.tensor(\\\\n        [total_loss, total_samples] + [total_correct[k] for k in [1, 5, 10]],\\\\n        device=accelerator.device, dtype=torch.float64,\\\\n    )\\\\n    stats = accelerator.reduce(stats, reduction=\\\\\\\"sum\\\\\\\")\\\\n    total_loss = stats[0].item()\\\\n    total_samples = stats[1].item()\\\\n    for i, k in enumerate([1, 5, 10]):\\\\n        total_correct[k] = stats[2 + i].item()\\\\n\\\\n    model.train()\\\\n    metrics = {\\\\\\\"val_loss\\\\\\\": total_loss / max(total_samples, 1)}\\\\n    for k in [1, 5, 10]:\\\\n        metrics[f\\\\\\\"\n…[truncated 7137 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-13T16:26:53.088268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nconfig.json\\\\nconfiguration.json\\\\nmerges.txt\\\\nmodel.safetensors\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-13T16:26:53.088447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "tail -n +345 /root/structfuse/training/train.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-13T16:26:53.088706+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    model, optimizer, train_loader, val_loader, scheduler = accelerator.prepare(\\\\n        model, optimizer, train_loader, val_loader, scheduler\\\\n    )\\\\n\\\\n    # ── training loop ────────────────────────────────────────────\\\\n    global_step = 0\\\\n    output_dir = Path(args.output_dir)\\\\n    output_dir.mkdir(parents=True, exist_ok=True)\\\\n    best_val_loss = float(\\\\\\\"inf\\\\\\\")\\\\n    no_improve_count = 0\\\\n    early_stopped = False\\\\n\\\\n    for epoch in range(args.num_epochs):\\\\n        if early_stopped:\\\\n            break\\\\n        if getattr(args, \\\\\\\"dynamic_mining\\\\\\\", False) and candidate_pools is not None:\\\\n            if accelerator.is_main_process:\\\\n                print(f\\\\\\\"[Epoch {epoch+1}] Dynamic mining: re-encoding candidates...\\\\\\\")\\\\n            mined = _mine_dynamic_negatives(\\\\n                model=accelerator.unwrap_model(model),\\\\n                tokenizer=tokenizer,\\\\n                candidate_pools=candidate_pools,\\\\n                train_ds=train_ds,\\\\n                num_negatives=args.num_negatives,\\\\n                max_seq_length=args.max_seq_length,\\\\n                device=accelerator.device,\\\\n            )\\\\n            train_ds.refresh_negatives(mined)\\\\n            if accelerator.is_main_process:\\\\n                print(f\\\\\\\"  Mined negatives for {len(mined)} queries\\\\\\\")\\\\n        else:\\\\n            if accelerator.is_main_process:\\\\n                print(f\\\\\\\"[Epoch {epoch+1}] Using pre-mined negatives ({args.hard_negative_strategy})...\\\\\\\")\\\\n\\\\n        accelerator.wait_for_everyone()\\\\n        model.train()\\\\n\\\\n        for batch in train_loader:\\\\n            kwargs = {\\\\n                \\\\\\\"query_ids\\\\\\\": batch[\\\\\\\"query_ids\\\\\\\"],\\\\n                \\\\\\\"query_mask\\\\\\\": batch[\\\\\\\"query_mask\\\\\\\"],\\\\n                \\\\\\\"pos_ids\\\\\\\": batch[\\\\\\\"pos_ids\\\\\\\"],\\\\n                \\\\\\\"pos_mask\\\\\\\": batch[\\\\\\\"pos_mask\\\\\\\"],\\\\n                \\\\\\\"neg_ids\\\\\\\": batch[\\\\\\\"neg_ids\\\\\\\"\n…[truncated 7104 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-13T16:26:53.088897+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "tail -n +430 /root/structfuse/training/train.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-13T16:26:53.089153+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                            best_val_loss = cur_val_loss\\\\n                            print(f\\\\\\\"  New best val_loss={cur_val_loss:.4f}, saved to {best_dir}\\\\\\\")\\\\n                        no_improve_count = 0\\\\n                    else:\\\\n                        no_improve_count += 1\\\\n                        print(f\\\\\\\"  val_loss not improved ({no_improve_count}/{args.early_stopping_patience})\\\\\\\")\\\\n\\\\n                    cur_recall_at_1 = metrics[\\\\\\\"recall@1\\\\\\\"]\\\\n                    if cur_recall_at_1 > best_recall_at_1:\\\\n                        free_gb = shutil.disk_usage(str(output_dir)).free / (1024**3)\\\\n                        if free_gb < 15:\\\\n                            print(f\\\\\\\"WARNING: Only {free_gb:.1f}GB free, skipping best R@1 checkpoint save\\\\\\\")\\\\n                        else:\\\\n                            best_r1_dir = output_dir / \\\\\\\"best_by_recall_at_1\\\\\\\"\\\\n                            if best_r1_dir.exists():\\\\n                                shutil.rmtree(best_r1_dir)\\\\n                            _save_checkpoint(accelerator.unwrap_model(model), tokenizer, best_r1_dir, args)\\\\n                            best_recall_at_1 = cur_recall_at_1\\\\n                            print(f\\\\\\\"  New best R@1={cur_recall_at_1:.4f}, saved to {best_r1_dir}\\\\\\\")\\\\n\\\\n                    if args.early_stopping_patience > 0 and no_improve_count >= args.early_stopping_patience:\\\\n                        print(f\\\\\\\"Early stopping: val_loss not improved for {no_improve_count} evals\\\\\\\")\\\\n                        early_stopped = True\\\\n                        break\\\\n\\\\n    # ── final save ───────────────────────────────────────────────\\\\n    if accelerator.is_main_process:\\\\n        final_metrics = evaluate(accelerator.unwrap_model(model), val_loader, accelerator)\\\\n        print(f\\\\\\\"[Final eval] {final_metrics}\\\\\\\")\\\\n        if args.wandb_project:\\\\n            accelerator.log(final_metrics, step=glo\n…[truncated 6922 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-13T16:26:53.089367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -n \"best_recall\" /root/structfuse/training/train.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-13T16:26:53.089580+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"354:    best_recall_at_1 = 0.0\\\\n438:                    if cur_recall_at_1 > best_recall_at_1:\\\\n447:                            best_recall_at_1 = cur_recall_at_1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-13T16:26:53.089809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "cat /root/structfuse/run_plan013_starcoder.sh",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-13T16:26:53.089986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -e\\\\ntrap 'kill $(jobs -p) 2>/dev/null' EXIT\\\\n\\\\nexport CUDA_VISIBLE_DEVICES=0\\\\nexport PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True\\\\nexport WANDB_MODE=offline\\\\nexport WANDB_DIR=/root/autodl-tmp/structfuse/m2_starcoder_output/wandb\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport TRANSFORMERS_OFFLINE=1\\\\nexport HF_HUB_OFFLINE=1\\\\n\\\\nMODEL_PATH=\\\\\\\"/root/autodl-tmp/models/bigcode/starcoder2-3b/bigcode/starcoder2-3b\\\\\\\"\\\\nDATA_DIR=\\\\\\\"/root/autodl-tmp/structfuse/m2_embed_verify_data\\\\\\\"\\\\nOUTPUT_BASE=\\\\\\\"/root/autodl-tmp/structfuse/m2_starcoder_output\\\\\\\"\\\\n\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\n\\\\nmkdir -p $OUTPUT_BASE $WANDB_DIR\\\\n\\\\ndeclare -A STRATEGY_MAP\\\\nSTRATEGY_MAP[random]=\\\\\\\"random\\\\\\\"\\\\nSTRATEGY_MAP[embedding]=\\\\\\\"embedding_distance\\\\\\\"\\\\nSTRATEGY_MAP[dataflow]=\\\\\\\"dataflow_aware\\\\\\\"\\\\n\\\\nfor TAG in random embedding dataflow; do\\\\n    STRATEGY=\\\\\\\"${STRATEGY_MAP[$TAG]}\\\\\\\"\\\\n    echo \\\\\\\"==========================================\\\\\\\"\\\\n    echo \\\\\\\"Starting strategy: ${TAG} (${STRATEGY}) at $(date)\\\\\\\"\\\\n    echo \\\\\\\"==========================================\\\\\\\"\\\\n\\\\n    TRAIN_FILE=\\\\\\\"${DATA_DIR}/train_${TAG}.jsonl\\\\\\\"\\\\n    OUT_DIR=\\\\\\\"${OUTPUT_BASE}/${TAG}_s42\\\\\\\"\\\\n\\\\n    EXTRA_ARGS=\\\\\\\"\\\\\\\"\\\\n    if [ \\\\\\\"$TAG\\\\\\\" = \\\\\\\"dataflow\\\\\\\" ]; then\\\\n        EXTRA_ARGS=\\\\\\\"--dataflow-graph-file ${DATA_DIR}/dataflow_graph.json\\\\\\\"\\\\n    fi\\\\n\\\\n    python /root/structfuse/training/train.py \\\\\\\\\\\\n        --model-name ${MODEL_PATH} \\\\\\\\\\\\n        --train-file ${TRAIN_FILE} \\\\\\\\\\\\n        --val-file ${DATA_DIR}/val.jsonl \\\\\\\\\\\\n        --output-dir ${OUT_DIR} \\\\\\\\\\\\n        --hard-negative-strategy ${STRATEGY} \\\\\\\\\\\\n        --learning-rate 2e-5 \\\\\\\\\\\\n        --temperature 0.07 \\\\\\\\\\\\n        --batch-size 4 \\\\\\\\\\\\n        --num-epochs 2 \\\\\\\\\\\\n        --num-negatives 5 \\\\\\\\\\\\n        --hard-negative-ratio 0.5 \\\\\\\\\\\\n        --use-lora \\\\\\\\\\\\\n…[truncated 979 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-13T16:26:53.090139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "cat /root/structfuse/scripts/schedule_m2_runs.sh",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-13T16:26:53.090334+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# ============================================================================\\\\n# schedule_m2_runs.sh — 在双卡上调度 9 runs (3 strategies × 3 seeds)\\\\n#\\\\n# 分配策略 (双卡并行，卡内串行，按预估耗时均衡):\\\\n#   GPU 0 (5 runs): random_42 → embedding_42 → dataflow_42 → random_43 → embedding_43\\\\n#   GPU 1 (4 runs): random_44 → embedding_44 → dataflow_44 → dataflow_43\\\\n#\\\\n# 逻辑: seed=42 和 seed=44 各 3 runs 分别绑卡，seed=43 拆分到两卡平衡负载。\\\\n#        random 最快 (无额外计算)，dataflow 最慢 → GPU1 少一个 run 来平衡。\\\\n#\\\\n# Usage:\\\\n#   nohup bash schedule_m2_runs.sh > /root/autodl-tmp/structfuse/full_m2_schedule.log 2>&1 &\\\\n#\\\\n# 监控:\\\\n#   tail -f /root/autodl-tmp/structfuse/full_m2_schedule.log\\\\n#   ls /root/autodl-tmp/structfuse/full_m2_outputs/*/train.log\\\\n# ============================================================================\\\\n\\\\nset -euo pipefail\\\\n\\\\nSCRIPT_DIR=\\\\\\\"$(cd \\\\\\\"$(dirname \\\\\\\"$0\\\\\\\")\\\\\\\" && pwd)\\\\\\\"\\\\nRUNNER=\\\\\\\"${SCRIPT_DIR}/run_full_m2_training.sh\\\\\\\"\\\\nDATA_BUILDER=\\\\\\\"${SCRIPT_DIR}/build_full_m2_data.sh\\\\\\\"\\\\nSCHEDULE_LOG=\\\\\\\"/root/autodl-tmp/structfuse/full_m2_schedule.log\\\\\\\"\\\\nDATA_DIR=\\\\\\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\\\\\"\\\\n\\\\nif [ ! -f \\\\\\\"$RUNNER\\\\\\\" ]; then\\\\n    echo \\\\\\\"ERROR: runner script not found: $RUNNER\\\\\\\"\\\\n    exit 1\\\\nfi\\\\n\\\\n# ── Phase 0: Data Preparation ───────────────────────────────────────\\\\necho \\\\\\\"============================================\\\\\\\"\\\\necho \\\\\\\" Phase 0: Data Preparation\\\\\\\"\\\\necho \\\\\\\" Start: $(date '+%Y-%m-%d %H:%M:%S')\\\\\\\"\\\\necho \\\\\\\"============================================\\\\\\\"\\\\n\\\\nif [ -f \\\\\\\"${DATA_DIR}/train_random_s42.jsonl\\\\\\\" ] && \\\\\\\\\\\\n   [ -f \\\\\\\"${DATA_DIR}/train_random_s43.jsonl\\\\\\\" ] && \\\\\\\\\\\\n   [ -f \\\\\\\"${DATA_DIR}/train_random_s44.jsonl\\\\\\\" ]; then\\\\n    echo \\\\\\\"Training data already exists in ${DATA_DIR}, skipping build.\\\\\\\"\\\\nelse\\\\n    if [ ! -f \\\\\\\"$DATA_BUILDER\\\\\\\" ]; then\\\\n        echo \\\\\\\"ERROR: data builder not found: $DATA_BUIL\n…[truncated 2647 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-13T16:26:53.090536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls /root/autodl-tmp/structfuse/full_m1_data/ ",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-13T16:26:53.090689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "wc -l /root/autodl-tmp/structfuse/full_m2_training_data/train_*_s42.jsonl /root/autodl-tmp/structfuse/full_m2_training_data/val_*_s42.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-13T16:26:53.090901+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__041av9lh.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__08222ijt.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__087t8zrv.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__09r9m56h.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__0pgv38lu.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__1saqryqs.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__1tzqbvbn.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__1uip6nek.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__2q6emitb.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__37pg0tud.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__4mst4vlk.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__534o1yuq.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__55bivpbr.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__5nmwjxc8.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__5x7jn623.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__6koxthdy.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__6pbit1uf.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__6qknycp1.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__7xapgtwa.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__7yi8dsns.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__81lxzncn.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__9gfdmym0.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__a31dhzob.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__a8m3r6xb.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__b6sq1hn0.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__clkl76q2.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__cu9qfznh.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.combine_file__d97cxah7.json\\\\nCog-Creators__Red-DiscordBot.33e0eac7.co\n…[truncated 6456 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-13T16:26:53.091067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     11308 /root/autodl-tmp/structfuse/full_m2_training_data/train_dataflow_aware_s42.jsonl\\\\n     11308 /root/autodl-tmp/structfuse/full_m2_training_data/train_embedding_distance_s42.jsonl\\\\n     11308 /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl\\\\n      2980 /root/autodl-tmp/structfuse/full_m2_training_data/val_dataflow_aware_s42.jsonl\\\\n      2980 /root/autodl-tmp/structfuse/full_m2_training_data/val_embedding_distance_s42.jsonl\\\\n      2980 /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl\\\\n     42864 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.28}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-13T16:26:53.091235+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "wc -l /root/autodl-tmp/structfuse/full_m2_training_data/train_*_s43.jsonl /root/autodl-tmp/structfuse/full_m2_training_data/train_*_s44.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-13T16:26:53.091367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     11236 /root/autodl-tmp/structfuse/full_m2_training_data/train_dataflow_aware_s43.jsonl\\\\n     11236 /root/autodl-tmp/structfuse/full_m2_training_data/train_embedding_distance_s43.jsonl\\\\n     11236 /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s43.jsonl\\\\n     11264 /root/autodl-tmp/structfuse/full_m2_training_data/train_dataflow_aware_s44.jsonl\\\\n     11264 /root/autodl-tmp/structfuse/full_m2_training_data/train_embedding_distance_s44.jsonl\\\\n     11264 /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s44.jsonl\\\\n     67500 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-13T16:26:53.091490+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -n \"cuda\\|device\\|gpu\\|torch.device\" /root/structfuse/scripts/build_m1_training_data.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-13T16:26:53.091625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-13T16:26:53.091752+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "find /root/autodl-tmp/structfuse/full_m1_data/ -name \"*.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-13T16:26:53.091951+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__g3bpjc2p.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__gx200906.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__ezgotmsf.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__fakgp18f.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__eq2t7cw0.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__087t8zrv.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__09r9m56h.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__0pgv38lu.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__1saqryqs.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__1tzqbvbn.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__1uip6nek.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__2q6emitb.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__37pg0tud.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__4mst4vlk.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__534o1yuq.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__55bivpbr.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__5nmwjxc8.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file\n…[truncated 6344 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-13T16:26:53.092399+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "find /root/autodl-tmp/structfuse/full_m1_data/ -maxdepth 1 -name \"*.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-13T16:26:53.092637+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__g3bpjc2p.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__gx200906.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__ezgotmsf.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__fakgp18f.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__eq2t7cw0.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__087t8zrv.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__09r9m56h.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__0pgv38lu.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__1saqryqs.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__1tzqbvbn.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__1uip6nek.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__2q6emitb.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__37pg0tud.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__4mst4vlk.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__534o1yuq.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__55bivpbr.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file__5nmwjxc8.json\\\\n/root/autodl-tmp/structfuse/full_m1_data/Cog-Creators__Red-DiscordBot.33e0eac7.combine_file\n…[truncated 6354 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-13T16:26:53.092869+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "cat > /root/structfuse/run_m2_full_starcoder.sh << 'SCRIPT_EOF'\n#!/bin/bash\n# ============================================================================\n# run_m2_full_starcoder.sh — StarCoder2-3B M2 全量数据构建 + 9 runs 训练\n#\n# Phase 1: 构建 StarCoder embedding negatives 数据 (3 seeds)\n# Phase 2: 9 training runs (3 strategies × 3 seeds)\n#\n# GPU: cuda:1 only\n# ============================================================================\n\nset -euo pipefail\n\nexport CUDA_VISIBLE_DEVICES=1\nexport PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True\nexport WANDB_MODE=offline\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport TRANSFORMERS_OFFLINE=1\nexport HF_HUB_OFFLINE=1\nexport PYTHONUNBUFFERED=1\n\nPROJECT_ROOT=\"/root/structfuse\"\nMODEL_PATH=\"/root/autodl-tmp/models/bigcode/starcoder2-3b/bigcode/starcoder2-3b\"\nQWEN_DATA_DIR=\"/root/autodl-tmp/structfuse/full_m2_training_data\"\nSTARCODER_DATA_DIR=\"/root/autodl-tmp/structfuse/full_m2_starcoder_data\"\nEXTRACTION_DIR=\"/root/autodl-tmp/structfuse/full_m1_data\"\nREPOS_DIR=\"/root/autodl-tmp/structfuse/full_m1_data/repos\"\nBUILD_SCRIPT=\"${PROJECT_ROOT}/scripts/build_m1_training_data.py\"\nCHECKPOINT_BASE=\"/root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder\"\nLOG_BASE=\"/root/runs/m2_full_starcoder\"\n\nSEEDS=(42 43 44)\nSTRATEGIES=(random embedding_distance dataflow_aware)\n\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\necho \"============================================\"\necho \" StarCoder M2 Full Pipeline\"\necho \" Start: $(date '+%Y-%m-%d %H:%M:%S')\"\necho \" GPU: CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES\"\necho \"============================================\"\n\n# ── Phase 1: Data Build ──────────────────────────────────────────────\necho \"\"\necho \"============================================\"\necho \" Phase 1: StarCoder Embedding Negatives\"\necho \"============================================\"\n\nmkdir -p \"$STARCODER_DATA_DIR\"\nmkdir -p \"$LOG_BASE\"\n\n# Copy dataflow_graph.json from Qwen\ncp \"$QWEN_DATA_DIR/dataflow_graph.json\" \"$STARCODER_DATA_DIR/dataflow_graph.json\"\necho \"Copied dataflow_graph.json\"\n\n# Copy random and dataflow_aware files from Qwen (these are model-independent)\nfor seed in \"${SEEDS[@]}\"; do\n    for strategy in random dataflow_aware; do\n        cp \"$QWEN_DATA_DIR/train_${strategy}_s${seed}.jsonl\" \"$STARCODER_DATA_DIR/train_${strategy}_s${seed}.jsonl\"\n        cp \"$QWEN_DATA_DIR/val_${strategy}_s${seed}.jsonl\" \"$STARCODER_DATA_DIR/val_${strategy}_s${seed}.jsonl\"\n        echo \"Copied ${strategy}_s${seed} from Qwen\"\n    done\n    # Copy val for embedding_distance too (val is model-independent)\n    cp \"$QWEN_DATA_DIR/val_embedding_distance_s${seed}.jsonl\" \"$STARCODER_DATA_DIR/val_embedding_distance_s${seed}.jsonl\"\n    echo \"Copied val_embedding_distance_s${seed} from Qwen\"\ndone\n\n# Build StarCoder embedding negatives for each seed\nfor seed in \"${SEEDS[@]}\"; do\n    echo \"\"\n    echo \"── Building embedding negatives: seed=${seed} ──\"\n    SEED_TMPDIR=\"${STARCODER_DATA_DIR}/.tmp_sc_s${seed}\"\n    mkdir -p \"$SEED_TMPDIR\"\n\n    python -u \"$BUILD_SCRIPT\" \\\n        --extraction-dir \"$EXTRACTION_DIR\" \\\n        --repos-dir \"$REPOS_DIR\" \\\n        --output-dir \"$SEED_TMPDIR\" \\\n        --seed \"$seed\" \\\n        --model-path \"$MODEL_PATH\"\n\n    # Take only embedding output, rename to match convention\n    mv \"${SEED_TMPDIR}/train_embedding.jsonl\" \"${STARCODER_DATA_DIR}/train_embedding_distance_s${seed}.jsonl\"\n    echo \"  Embedding negatives for seed=${seed}: done\"\n\n    # Clean up temp\n    rm -rf \"$SEED_TMPDIR\"\ndone\n\n# ── Validation ────────────────────────────────────────────────────────\necho \"\"\necho \"============================================\"\necho \" Data Validation\"\necho \"============================================\"\n\nEXPECTED_COUNTS=\"42:11308 43:11236 44:11264\"\nALL_OK=true\n\nfor entry in $EXPECTED_COUNTS; do\n    seed=\"${entry%%:*}\"\n    expected=\"${entry##*:}\"\n    for strategy in \"${STRATEGIES[@]}\"; do\n        file=\"${STARCODER_DATA_DIR}/train_${strategy}_s${seed}.jsonl\"\n        if [ ! -f \"$file\" ]; then\n            echo \"MISSING: $file\"\n            ALL_OK=false\n            continue\n        fi\n        actual=$(wc -l < \"$file\")\n        if [ \"$actual\" -ne \"$expected\" ]; then\n            echo \"COUNT MISMATCH: $file expected=$expected actual=$actual\"\n            ALL_OK=false\n        else\n            echo \"OK: train_${strategy}_s${seed}.jsonl = $actual lines\"\n        fi\n    done\ndone\n\n# Check val files\nfor seed in \"${SEEDS[@]}\"; do\n    for strategy in \"${STRATEGIES[@]}\"; do\n        file=\"${STARCODER_DATA_DIR}/val_${strategy}_s${seed}.jsonl\"\n        if [ ! -f \"$file\" ]; then\n            echo \"MISSING VAL: $file\"\n            ALL_OK=false\n        fi\n    done\ndone\n\nif [ \"$ALL_OK\" = false ]; then\n    echo \"DATA VALIDATION FAILED — aborting training\"\n    exit 1\nfi\n\necho \"\"\necho \"Data validation passed: 9 train + 9 val files\"\n\n# ── Phase 2: Training ────────────────────────────────────────────────\necho \"\"\necho \"============================================\"\necho \" Phase 2: StarCoder M2 Training (9 runs)\"\necho \" Start: $(date '+%Y-%m-%d %H:%M:%S')\"\necho \"============================================\"\n\nfor strategy in \"${STRATEGIES[@]}\"; do\n    for seed in \"${SEEDS[@]}\"; do\n        RUN_NAME=\"${strategy}_s${seed}\"\n        OUTPUT_DIR=\"${CHECKPOINT_BASE}/${RUN_NAME}\"\n        TRAIN_FILE=\"${STARCODER_DATA_DIR}/train_${strategy}_s${seed}.jsonl\"\n        VAL_FILE=\"${STARCODER_DATA_DIR}/val_${strategy}_s${seed}.jsonl\"\n        RUN_LOG=\"${LOG_BASE}/${RUN_NAME}.log\"\n\n        echo \"\"\n        echo \"── Training: ${RUN_NAME} ──\"\n        echo \"  Output: $OUTPUT_DIR\"\n        echo \"  Log: $RUN_LOG\"\n\n        mkdir -p \"$OUTPUT_DIR\" \"$(dirname \"$RUN_LOG\")\"\n\n        EXTRA_ARGS=\"\"\n        if [ \"$strategy\" = \"dataflow_aware\" ] && [ -f \"${STARCODER_DATA_DIR}/dataflow_graph.json\" ]; then\n            EXTRA_ARGS=\"--dataflow-graph-file ${STARCODER_DATA_DIR}/dataflow_graph.json\"\n        fi\n\n        python -u \"${PROJECT_ROOT}/training/train.py\" \\\n            --model-name \"$MODEL_PATH\" \\\n            --train-file \"$TRAIN_FILE\" \\\n            --val-file \"$VAL_FILE\" \\\n            --output-dir \"$OUTPUT_DIR\" \\\n            --hard-negative-strategy \"$strategy\" \\\n            --seed \"$seed\" \\\n            --batch-size 4 \\\n            --num-negatives 5 \\\n            --max-seq-length 2048 \\\n            --num-epochs 2 \\\n            --learning-rate 2e-5 \\\n            --eval-steps 500 \\\n            --save-steps 1000 \\\n            --use-lora \\\n            --gradient-checkpointing \\\n            --wandb-project structfuse \\\n            --wandb-run-name \"m2_full_sc2_${RUN_NAME}\" \\\n            --early-stopping-patience 3 \\\n            $EXTRA_ARGS \\\n            2>&1 | tee \"$RUN_LOG\"\n\n        echo \"[$(date '+%Y-%m-%d %H:%M:%S')] DONE: ${RUN_NAME}\"\n\n        # Clean intermediate checkpoints if best exists\n        if [ -d \"${OUTPUT_DIR}/best\" ]; then\n            find \"${OUTPUT_DIR}\" -maxdepth 1 -name \"checkpoint-*\" -type d -exec rm -rf {} + 2>/dev/null || true\n        fi\n    done\ndone\n\necho \"\"\necho \"============================================\"\necho \" ALL 9 RUNS COMPLETED\"\necho \" End: $(date '+%Y-%m-%d %H:%M:%S')\"\necho \"============================================\"\nSCRIPT_EOF\nchmod +x /root/structfuse/run_m2_full_starcoder.sh\necho \"Script created\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-13T16:26:53.093085+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script created\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-13T16:26:53.093386+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "gpu_ids": "['cuda:1']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/structfuse/run_m2_full_starcoder.sh\"",
+              "exp_id": "m2_full_starcoder",
+              "account": "root",
+              "project": "structfuse-context",
+              "timeout_hours": "48"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-13T16:26:53.093536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"61960\\\", \\\"log_file\\\": \\\"~/runs/structfuse-context/m2_full_starcoder.log\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"server\\\": \\\"bjb1-42106\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"m2_full_starcoder\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-13T16:26:53.093713+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "tail -20 /root/runs/structfuse-context/m2_full_starcoder.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-13T16:26:53.093859+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" StarCoder M2 Full Pipeline\\\\n Start: 2026-05-14 00:26:19\\\\n GPU: CUDA_VISIBLE_DEVICES=1\\\\n============================================\\\\n\\\\n============================================\\\\n Phase 1: StarCoder Embedding Negatives\\\\n============================================\\\\nCopied dataflow_graph.json\\\\nCopied random_s42 from Qwen\\\\nCopied dataflow_aware_s42 from Qwen\\\\nCopied val_embedding_distance_s42 from Qwen\\\\nCopied random_s43 from Qwen\\\\nCopied dataflow_aware_s43 from Qwen\\\\nCopied val_embedding_distance_s43 from Qwen\\\\nCopied random_s44 from Qwen\\\\nCopied dataflow_aware_s44 from Qwen\\\\nCopied val_embedding_distance_s44 from Qwen\\\\n\\\\n── Building embedding negatives: seed=42 ──\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-13T16:26:53.094011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "m2_full_starcoder",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "structfuse-context",
+              "spec": "{'command': 'bash /root/structfuse/run_m2_full_starcoder.sh', 'server': 'bjb1-42106', 'data_path': '/root/autodl-tmp/structfuse/full_m2_starcoder_data/', 'data_count': '~11300 train instances per seed × 3 strategies × 3 seeds', 'model_name': 'bigcode/starcoder2-3b', 'seed': '42,43,44', 'checkpoint_path': '/root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/', 'log_path': '/root/runs/m2_full_starcoder/'}"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-13T16:26:53.094154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0664}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-13T16:26:53.094302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "structfuse-context",
+              "filters": "{'exp_id': 'm2_full_starcoder'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-13T16:26:53.094430+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0631}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-13T16:26:53.094549+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "structfuse-context",
+              "filters": "{'status': 'PREPARING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-13T16:26:53.094733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"m2_full_starcoder\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T16:18:15.415Z\\\", \\\"updated_at\\\": \\\"2026-05-13T16:26:19.357Z\\\", \\\"hypothesis\\\": \\\"Full M2 StarCoder: 3 strategies × 3 seeds on full M1 data. Cross-encoder validation — if embedding > random holds for both Qwen and StarCoder, method is encoder-agnostic. Resolves plan_013 pilot negative (dataflow encoder-dependent).\\\", \\\"parent\\\": \\\"plan_013_starcoder\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/structfuse/run_m2_full_starcoder.sh\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"61960\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/m2_full_starcoder.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T16:26:19.300Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"m2_full_qwen\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T16:18:14.870Z\\\", \\\"updated_at\\\": \\\"2026-05-13T16:25:05.608Z\\\", \\\"hypothesis\\\": \\\"Full M2 Qwen: 3 strategies (random/embedding/dataflow) × 3 seeds on full M1 data (~11K train/seed). Statistical validation of pilot signal (embedding > random +2pp). Go/no-go for paper claims per D018.\\\", \\\"parent\\\": \\\"m2_embed_verify\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"61350\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/m2_full_qwen.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T16:24:44.107Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"Full M2 go/no-go: 3 strategies (random, embedding_distance, dataflow_aware) × 3 seeds (42, 43, 44) = 9 runs sequential on cuda:0. Config: lr=2e-5, epochs=3, batch_size=8, eval_st\n…[truncated 363 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-13T16:26:53.094907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "m2_full_starcoder",
+              "field": "notes",
+              "value": "Phase 1: 构建 StarCoder embedding negatives 中。数据输出: /root/autodl-tmp/structfuse/full_m2_starcoder_data/。Random/dataflow 复制 Qwen，仅 embedding 用 StarCoder2-3B 重算。Phase 2: 9 runs 训练，batch_size=4, num_negatives=5, epochs=2, lr=2e-5, eval_steps=500。双 checkpoint: best + best_by_recall_at_1。Checkpoint: /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/。Seeds: 42,43,44.",
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-13T16:26:53.095066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"m2_full_starcoder\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T16:18:15.415Z\\\", \\\"updated_at\\\": \\\"2026-05-13T16:26:43.224Z\\\", \\\"hypothesis\\\": \\\"Full M2 StarCoder: 3 strategies × 3 seeds on full M1 data. Cross-encoder validation — if embedding > random holds for both Qwen and StarCoder, method is encoder-agnostic. Resolves plan_013 pilot negative (dataflow encoder-dependent).\\\", \\\"parent\\\": \\\"plan_013_starcoder\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/structfuse/run_m2_full_starcoder.sh\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"61960\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/m2_full_starcoder.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T16:26:19.300Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"Phase 1: 构建 StarCoder embedding negatives 中。数据输出: /root/autodl-tmp/structfuse/full_m2_starcoder_data/。Random/dataflow 复制 Qwen，仅 embedding 用 StarCoder2-3B 重算。Phase 2: 9 runs 训练，batch_size=4, num_negatives=5, epochs=2, lr=2e-5, eval_steps=500。双 checkpoint: best + best_by_recall_at_1。Checkpoint: /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/。Seeds: 42,43,44.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1995}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-13T16:26:53.095240+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交到 bjb1-42106 cuda:1，tmux session `m2_full_starcoder`。\n\n**执行摘要**：\n\n**Phase 1 (数据构建)** - 正在运行：\n- Random/dataflow 数据直接从 Qwen 复制（不依赖编码器）\n- 仅用 StarCoder2-3B 重算 embedding negatives，seeds 42/43/44\n- 输出: `/root/autodl-tmp/structfuse/full_m2_starcoder_data/`\n- 含自动验证：检查 9 train + 9 val 文件行数是否与 Qwen 一致\n\n**Phase 2 (训练)** - 数据验证通过后自动启动：\n- 9 runs: 3 strategies (random, embedding_distance, dataflow_aware) × 3 seeds (42, 43, 44)\n- StarCoder 参数: batch_size=4, num_negatives=5, epochs=2, lr=2e-5\n- 双 checkpoint: `best/` (val_loss) + `best_by_recall_at_1/` (R@1)\n- Checkpoint: `/root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/{strategy}_s{seed}/`\n- Log: `/root/runs/m2_full_starcoder/{strategy}_s{seed}.log`\n\n**注意**：实际 seeds 是 42/43/44（与 Qwen 数据匹配），非 42/123/456。`train.py` 已内置双 checkpoint 支持，无需修改。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_data_m2_starcoder_build_and_train_20260513T162034"
+          },
+          "id": "event-000099"
+        }
+      ],
+      "message_count": 99
+    }
+  ],
+  "readable_path": "readable/conversations/data-m2-starcoder-build-and-train.md"
+}

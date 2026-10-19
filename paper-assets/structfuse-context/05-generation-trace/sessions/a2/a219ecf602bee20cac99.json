@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a219ecf602bee20cac99",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "check m2 training progress 0515",
+  "task_key": "worker_check_m2-training-progress-0515_20260515T041456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_m2-training-progress-0515_20260515T041456_result.json",
+    "occurrence": 1,
+    "bytes": 1137,
+    "sha256": "dbc4604de56239133d7ccab6e213548bd67a3e9020b165f59c61de4bb29f57a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总：\n\n## Qwen M2 (cuda:0, PID 337267)\n| 指标 | 值 |\n|------|-----|\n| 当前 subrun | **embedding_distance_s43** (4/9) |\n| 进度 | step **1000/2810** (35.6%) |\n| 最新 eval@500 | val_loss=**0.4541**, R@1=**0.5446** |\n| 已完成 | random_s42 (R@1=0.5527), random_s43 (R@1=0.5554), random_s44 (R@1=**0.6009**) |\n| 速度 | ~280 steps/h (~9.9h/subrun) |\n| ETA 当前 subrun | ~18:30 CST 今天 |\n| ETA 全部完成 | ~**May 17 21:00 CST** |\n\n## StarCoder M2 (cuda:1, PID 519791)\n| 指标 | 值 |\n|------|-----|\n| 当前 subrun | **random_s43** (1/8) |\n| 进度 | step **1900/2810** (67.6%) |\n| 最新 eval@1500 | val_loss=**0.5239**, R@1=**0.4912** |\n| 已完成 | 无（首个 subrun 进行中） |\n| 速度 | ~187 steps/h (~15h/subrun) |\n| ETA 当前 subrun | ~17:00 CST 今天 |\n| ETA 全部完成 | ~**May 20 01:00 CST** |\n\n两个进程均正常运行，GPU 利用率 96%/100%。Qwen 比 StarCoder 快约 50%（280 vs 187 steps/h），预计提前 2 天完成全部链。StarCoder random_s43 的 R@1 随训练稳步提升（0.471→0.478→0.491），趋势正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-m2-training-progress-0515.md"
+}

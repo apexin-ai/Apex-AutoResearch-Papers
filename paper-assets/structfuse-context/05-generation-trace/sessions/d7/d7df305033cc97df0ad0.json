@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7df305033cc97df0ad0",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code eval repobench",
+  "task_key": "worker_code_eval_repobench_20260514T082145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_repobench_20260514T082145_result.json",
+    "occurrence": 1,
+    "bytes": 3548,
+    "sha256": "46630d91c5f907aaac72ec4221f1933aa4ea188431cea503be8f50dee0a98152"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本确认正确。下面是完整的交付总结。\n\n---\n\n## 交付结果\n\n### 1. RepoBench-R 数据集格式\n\n| 字段 | 类型 | 说明 |\n|------|------|------|\n| `repo_name` | str | 仓库名 |\n| `file_path` | str | 文件路径 |\n| `context` | list[str] | 候选代码片段池（闭合检索池） |\n| `import_statement` | str | 文件的 import 语句 |\n| `code` | str | 待补全的代码上下文 |\n| `next_line` | str | 下一行（ground truth） |\n| `golden_snippet_index` | int | gold 答案在 context 中的索引 |\n\n**Python 子集统计：**\n\n| Subset | Split | Examples | Pool size |\n|--------|-------|----------|-----------|\n| python_cff | test_easy | 8,000 | 5-9 (mean 6.6) |\n| python_cff | test_hard | 8,000 | 10-60 (mean 17.9) |\n| python_cfr | test_easy | 4,000 | 5-9 (mean 6.7) |\n| python_cfr | test_hard | 4,000 | 10-60 (mean 17.7) |\n\n数据通过 `huggingface_hub.hf_hub_download` 下载 gzip pickle 文件，绕过 datasets 4.8.4 不兼容 legacy scripts 的问题。\n\n### 2. eval_repobench.py\n\n路径：`/root/structfuse/evaluation/eval_repobench.py`（476 行）\n\n核心逻辑：\n- **Query** = `import_statement + \"\\n\" + code`\n- **Candidates** = `context` 列表中的每个 snippet\n- **Scoring** = bi-encoder 余弦相似度（与 eval_swebench.py 共用 `StructFuseRetriever`）\n- **Metrics** = Recall@1/5/10, MRR\n- 支持 resume、dry-run（mock 随机分数）、`--limit`\n\n### 3. Dry-run 结果\n\n**test_easy** (10 instances, pool ~6):\n```\nRecall@1: 0.10, Recall@5: 1.00, Recall@10: 1.00, MRR: 0.36\nChance R@1: 0.17\n```\n\n**test_hard** (200 instances, pool ~16):\n```\nRecall@1: 0.12, Recall@5: 0.42, Recall@10: 0.73, MRR: 0.26\nChance R@1: 0.06\n```\n\n随机分数的指标接近 chance level，验证通过。\n\n### 4. 正式 eval 启动命令\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nsource /etc/network_turbo\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\n\n# python_cff test_easy\npython /root/structfuse/evaluation/eval_repobench.py \\\n    --checkpoint-path /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1 \\\n    --output-dir /root/autodl-tmp/structfuse/eval_results/repobench_qwen_cff_easy \\\n    --subset python_cff --split test_easy\n\n# python_cff test_hard\npython /root/structfuse/evaluation/eval_repobench.py \\\n    --checkpoint-path /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1 \\\n    --output-dir /root/autodl-tmp/structfuse/eval_results/repobench_qwen_cff_hard \\\n    --subset python_cff --split test_hard\n```\n\n### 5. 预估耗时（单 GPU）\n\n每个 instance 需编码 1 query + ~6-18 candidates。Qwen2.5-Coder-3B 在单 A6000 上约 30-50ms/encode：\n- **test_easy** (8000 instances × ~7 candidates): ~30 分钟\n- **test_hard** (8000 instances × ~18 candidates): ~60-90 分钟\n\n### 6. 注意事项\n\n- **网络依赖**：首次运行需下载 ~180MB python_cff.gz，必须开启 `network_turbo` 代理。数据下载后会缓存在 `~/.cache/huggingface/hub/`\n- **datasets 库不兼容**：`tianyang/repobench-r` 使用 legacy dataset script，datasets>=4.0 无法直接 `load_dataset`，脚本改用 `hf_hub_download` + gzip/pickle 手动解析\n- **pool size 差异**：test_easy 的池只有 5-9 个候选，Recall@5 几乎必然为 1.0，主要看 Recall@1 和 MRR；test_hard 池 10-60 个，指标区分度更好"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-repobench.md"
+}

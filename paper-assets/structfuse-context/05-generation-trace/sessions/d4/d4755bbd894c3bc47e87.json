@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d4755bbd894c3bc47e87",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "research dataflow empty rate analysis",
+  "task_key": "worker_research_dataflow_empty_rate_analysis_20260512T153349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_dataflow_empty_rate_analysis_20260512T153349.log",
+    "occurrence": 1,
+    "bytes": 677383,
+    "sha256": "35b241101b4509ed37d754e72d98e16334ba296b56ff3c9bd045012c2e7903c1"
+  },
+  "statistics": {
+    "messages": 247,
+    "user_turns": 0,
+    "tool_calls": 96,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 96,
+      "tool_result": 96,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 247,
+      "chunks": [
+        {
+          "path": "d4755bbd894c3bc47e87-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d4755bbd894c3bc47e87-part-0002.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-dataflow-empty-rate-analysis.md"
+}

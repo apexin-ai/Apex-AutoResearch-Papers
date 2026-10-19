@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2424505cc5113a3d3628",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code m2 early pilot prep",
+  "task_key": "worker_code_m2-early-pilot-prep_20260513T014145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_m2-early-pilot-prep_20260513T014145_result.json",
+    "occurrence": 1,
+    "bytes": 1934,
+    "sha256": "a3991108c3d7facaae4b9548fd7a7146ed47d8a3aea04d5c540cabb50a42f9b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部步骤完成。汇总报告：\n\n---\n\n```\n=== 磁盘状态 ===\n/root/autodl-tmp/: 59G free (34% used)\n\n=== M1 进度 ===\nPID: 577864 存活 (已运行 05:02:37)\n已完成 repos: 24/131（含 skip_log.jsonl 共 5596 文件）\n最近产出: oauthlib__oauthlib, cantools__cantools (09:50)\n\n=== 训练数据生成结果 ===\ntrain_random.jsonl:    2672 行 (278.3MB)\ntrain_embedding.jsonl: 2672 行 (318.6MB)\ntrain_dataflow.jsonl:  2672 行 (277.1MB)\nval.jsonl:              746 行 (47.4MB)\ndataflow_graph.json:   155390 entries (42.5MB)\n基于 24 个 repos 的 5613 个有效 extraction\n（15 train repos / 4 val repos, max_per_repo=200 cap 后 3418→2672+746）\n\n=== 三策略差异统计 ===\nrandom MD5:    65d9de27ab1daf6eac719144021e73d6 (avg_pool=36.4, min=4, max=50)\nembedding MD5: 800adcd21ac1e0dea8b951fece5289e2 (avg_pool=36.4, min=4, max=50)\ndataflow MD5:  7e23fe43575dd4b444502d38af8629a0 (avg_pool=33.9, min=2, max=50)\n三策略是否有差异: YES — 全部不同\n91.8% 的 instance 的 embedding vs dataflow pool 有差异\n\n=== Dataflow fallback 统计 ===\ndataflow_graph.json 结构: dict{instance_id::file → [connected instance_id::file]}\n155390 entries, 100% 有连接（avg=2.0, max=322）\n注: graph 是双向邻接表，不区分 dataflow/callgraph 层级——\n    差异体现在 build 阶段: positive_files 只含直接 dataflow，\n    full_connected 含 call graph。dataflow 策略排除 full_connected\n    作为 negatives，所以 avg_pool 更小（33.9 vs 36.4）\n\n=== train.py CUDA_VISIBLE_DEVICES ===\n未找到硬编码，无需修复\n\n=== Wrapper 脚本 ===\n路径: /root/structfuse/run_m2_early_pilot.sh\n策略参数映射:\n  random    → --hard-negative-strategy random\n  embedding → --hard-negative-strategy embedding_distance\n  dataflow  → --hard-negative-strategy dataflow_aware + --dataflow-graph-file\n就绪状态: YES\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-m2-early-pilot-prep.md"
+}

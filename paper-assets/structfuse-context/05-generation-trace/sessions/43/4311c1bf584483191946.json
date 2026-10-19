@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4311c1bf584483191946",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "writing plan 017 discussion",
+  "task_key": "worker_writing_plan_017_discussion_20260514T170421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_plan_017_discussion_20260514T170421_result.json",
+    "occurrence": 1,
+    "bytes": 1153,
+    "sha256": "cb62f1632971db16f5ed1296f8a5316593e3a0e2a126d0161c78092e55e20434"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Discussion v2 written to `artifacts/paper_drafts/discussion_v2.md` (~1086 words, slightly above target range — trimmable in revision).\n\n**Structure:**\n- **5.1 Relationship to Inference-Time Graph Methods** (~300w): comparison along two axes (when graph enters pipeline; data-flow depth) + complementarity argument. Addresses reviewer best-R2-W5.\n- **5.2 Representation Geometry as Predictor** (~230w): pos_sim as practical predictor of strategy effectiveness; Qwen saturated (0.986) → dataflow helps, StarCoder healthy (0.799) → embedding suffices. Proposes pos_sim > 0.98 threshold with appropriate hedging.\n- **5.3 Limitations** (~250w): 5 items — encoder scope (2 × 3B decoder-only), single task, Python/CodeQL dependency, static mining (plan_015 shelved), 36% structural coverage.\n- **5.4 Future Work** (~180w): 3 bounded directions — hybrid pipelines, representation-guided strategy selection, dynamic + multi-lingual extension.\n\nAll quantitative claims cite confirmed experiments (m2_embed_verify, plan_013_starcoder, neg_difficulty_analysis, plan_006). No `register_artifact` tool was available for registration."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-plan-017-discussion.md"
+}

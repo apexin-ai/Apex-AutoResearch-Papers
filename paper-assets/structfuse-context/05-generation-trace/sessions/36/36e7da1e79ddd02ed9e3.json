@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36e7da1e79ddd02ed9e3",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops registry refresh 20260516",
+  "task_key": "worker_ops_registry_refresh_20260516_20260516T025403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry_refresh_20260516_20260516T025403_result.json",
+    "occurrence": 1,
+    "bytes": 1520,
+    "sha256": "1b238c16e3c319fb01313260c6edfebcef19421b32069fbeca4518e2d19f5af4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。状态摘要：\n\n## 训练链状态 (2026-05-16 10:55 CST)\n\n### Qwen chain (cuda:0) — PID 337267 alive\n| Subrun | Final R@1 | Final val_loss | Status |\n|---|---|---|---|\n| random_s42 | 0.5503 | 0.5456 | done |\n| random_s43 | 0.5501 | 0.5434 | done |\n| random_s44 | 0.5542 | 0.4943 | done |\n| embedding_distance_s43 | **0.5655** | 0.4876 | done |\n| embedding_distance_s44 | 0.5470 | 0.5123 | done |\n| dataflow_aware_s43 | 0.5564 | 0.5137 | done |\n| dataflow_aware_s44 | — | — | **starting** (step 0, loading model) |\n| subruns 7-9/9 | — | — | queued |\n\nBest R@1: **embed_s43 = 0.5655**。GPU 0 当前空闲（刚启动 dataflow_s44，正在加载模型）。ETA 当前 subrun ~17:00 CST。\n\n### StarCoder chain (cuda:1) — PID 519791 alive, 100% util\n| Subrun | Final R@1 | Final val_loss | Status |\n|---|---|---|---|\n| random_s42 | 0.4604 | 0.6134 | done |\n| random_s43 | 0.4859 | 0.5503 | done |\n| random_s44 | 0.4897 | 0.6263 | done |\n| embedding_distance_s42 | 0.4376 | 0.6926 | done (early stop 1500) |\n| embedding_distance_s43 | — | — | **running** (step 150/1405, epoch 1) |\n| embed_s44 → dataflow ×3 | — | — | queued (4 remaining) |\n\n**embed_s42 R@1=0.4376 低于全部 3 个 random baselines** (0.46/0.49/0.49)。ETA 当前 subrun ~18:00 CST。\n\n### SWE-bench — PID 61328 dead\n输出目录存在（bm25_100/300/test、random_s42_100 等子目录），但无完整 .jsonl 结果。与 registry 一致（已标 failed）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-refresh-20260516.md"
+}

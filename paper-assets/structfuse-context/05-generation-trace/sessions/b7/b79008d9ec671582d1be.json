@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b79008d9ec671582d1be",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "experiment gpu dryrun",
+  "task_key": "worker_experiment_gpu_dryrun_20260512T111049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_gpu_dryrun_20260512T111049_result.json",
+    "occurrence": 1,
+    "bytes": 1596,
+    "sha256": "6f8f3a4f90a489103b854c3d10bd1e1f724d59308a51285ed7292faa43b76c0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成。汇总报告：\n\n---\n\n## Dry-Run 验证报告\n\n### 1. 模型下载\n- **路径**: `/root/structfuse/models/Qwen/Qwen2.5-Coder-3B/`\n- **文件**: model-00001 (4.62GB) + model-00002 (1.13GB) + tokenizer + config 齐全\n- **下载方式**: hf-mirror.com via huggingface-cli (AutoDL 网络受限，多进程竞争带宽是主要瓶颈)\n\n### 2. Dry-Run 训练\n- **Final eval loss**: 0.1949\n- **训练步 loss**: 0.6604 (正常正数，非 nan/inf)\n- **Recall@1/5/10**: 1.0 (dummy 数据上符合预期)\n\n### 3. Checkpoint 验证\n- **Projection head**: ✅ 4 keys (`projection.0.weight/bias`, `projection.2.weight/bias`)\n- **LoRA**: ✅ 144 keys (q_proj + v_proj × 36 layers × lora_A/B)\n- **Temperature**: ✅ `log_temperature`\n- **总参数 keys**: 583\n\n### 4. Eval 加载验证\n- **Checkpoint 加载**: ✅ `load_state_dict` 成功\n- **Embedding shape**: `(1, 256)` ✅ (proj_dim=256)\n- **Embedding norm**: 1.0 ✅ (L2 归一化)\n\n### 5. GPU 显存\n- **推理峰值**: 11.54 GB / 24 GB\n- **训练峰值**: 11.59 GB / 24 GB (batch_size=2, num_negatives=2, max_seq_length=512)\n- **剩余**: ~12.4 GB — 24GB 充裕，可增大 batch_size 或 max_seq_length\n\n### 6. 修复的问题\n- **train.py bug**: `__getitem__` 中 miner 返回的 tuple 被当作 dict 调用 `.get()` → 添加 `isinstance(neg_item, tuple)` 分支处理\n- **gradient checkpointing warning**: `None of the inputs have requires_grad=True` — LoRA 配合 gradient checkpointing 的已知 warning，不影响训练正确性（LoRA 参数的梯度正常计算）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-gpu-dryrun.md"
+}

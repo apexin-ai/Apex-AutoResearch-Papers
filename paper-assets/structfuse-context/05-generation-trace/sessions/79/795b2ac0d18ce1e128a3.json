@@ -1,0 +1,1172 @@
+{
+  "schema_version": "1.0",
+  "id": "795b2ac0d18ce1e128a3",
+  "project": "structfuse-context",
+  "kind": "conversation",
+  "title": "ssh m1 reextract v2 diagnosis",
+  "task_key": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_m1_reextract_v2_diagnosis_20260513T230543.jsonl",
+    "occurrence": 1,
+    "bytes": 33807,
+    "sha256": "593816e5ab2ec55d6412b63622ce5925a3045858187311a1ce547eedd687f63e"
+  },
+  "statistics": {
+    "messages": 57,
+    "user_turns": 0,
+    "tool_calls": 28,
+    "roles": {
+      "tool_call": 28,
+      "tool_result": 28,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T23:08:42.733218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T23:08:42.733579+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T23:08:42.733803+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ps aux | grep -i \"reextract\\|codeql\\|extract\" | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T23:08:42.733954+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T23:08:42.734082+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "tmux list-sessions 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T23:08:42.734207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T23:08:42.734327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls -lt /root/runs/structfuse-context/ 2>/dev/null | head -20",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T23:08:42.734446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T23:08:42.734590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "find /root/runs/structfuse-context/ -name \"*reextract*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T23:08:42.734791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls -lt /root/runs/structfuse-context/",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T23:08:42.734924+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/structfuse-context/m1_reextract_v2.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T23:08:42.735054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "find /root/ -maxdepth 3 -name \"*reextract*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T23:08:42.735181+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1580\\\\n-rw-r--r-- 1 root root 429288 May 14 07:06 m1_reextract_v2.log\\\\n-rw-r--r-- 1 root root 765082 May 14 07:06 m1_rerun.log\\\\n-rw-r--r-- 1 root root  51035 May 14 06:54 m2_full_starcoder.log\\\\n-rw-r--r-- 1 root root    145 May 14 01:39 m2_full_qwen.log\\\\n-rw-r--r-- 1 root root  50951 May 14 01:31 sc_data_build.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T23:08:42.735301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/structfuse-context/m1_reextract_v2.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T23:08:42.735426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "tail -200 /root/runs/structfuse-context/m1_reextract_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T23:08:42.735632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 06:57:56,476 [INFO] batch_extract: [arrow-py__arrow.1d70d009.func_basic__1uafl0ut] CodeQL call_graph: 20 entries, 2 reachable files (threshold=1)\\\\n2026-05-14 06:57:58,375 [INFO] batch_extract: [seperman__deepdiff.ed252022.func_pm_remove_assign__p8adkbf6] CodeQL call_graph: 5 entries, 2 reachable files (threshold=1)\\\\n2026-05-14 06:58:01,715 [INFO] batch_extract: [tweepy__tweepy.91a41c6e.func_pm_ctrl_shuffle__h9zp3mnp] CodeQL call_graph: 98 entries, 21 reachable files (threshold=1)\\\\n2026-05-14 06:58:04,149 [INFO] batch_extract: [life4__textdistance.c3aca916.combine_file__yq3udb09] CodeQL call_graph: 99 entries, 8 reachable files (threshold=1)\\\\n2026-05-14 06:58:05,940 [INFO] batch_extract: [arrow-py__arrow.1d70d009.func_basic__2gjnzcor] CodeQL call_graph: 86 entries, 6 reachable files (threshold=1)\\\\n2026-05-14 06:58:08,305 [INFO] batch_extract: [seperman__deepdiff.ed252022.func_pm_remove_assign__pg4j9jdi] CodeQL call_graph: 146 entries, 14 reachable files (threshold=1)\\\\n2026-05-14 06:58:11,149 [INFO] batch_extract: [tweepy__tweepy.91a41c6e.func_pm_ctrl_shuffle__hxkgu8eb] CodeQL call_graph: 169 entries, 7 reachable files (threshold=1)\\\\n2026-05-14 06:58:13,703 [INFO] batch_extract: [life4__textdistance.c3aca916.combine_module__0cdc95jj] CodeQL call_graph: 151 entries, 10 reachable files (threshold=1)\\\\n2026-05-14 06:58:15,726 [INFO] batch_extract: [arrow-py__arrow.1d70d009.func_basic__2lx6jltx] CodeQL call_graph: 54 entries, 4 reachable files (threshold=1)\\\\n2026-05-14 06:58:20,417 [INFO] batch_extract: [seperman__deepdiff.ed252022.func_pm_remove_assign__pzg13wk9] CodeQL call_graph: 153 entries, 13 reachable files (threshold=1)\\\\n2026-05-14 06:58:21,066 [INFO] batch_extract: [tweepy__tweepy.91a41c6e.func_pm_ctrl_shuffle__jphonofx] CodeQL call_graph: 415 entries, 21 reachable files (threshold=1)\\\\n2026-05-14 06:58:23,489 [INFO] batch_extract: [life4__textdistance.c3aca916.combine_module__1028ojvo] C\n…[truncated 6301 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T23:08:42.735801+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -c \"codeql\" /root/runs/structfuse-context/m1_reextract_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T23:08:42.735931+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"29\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T23:08:42.736075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -i \"error\\|fail\\|success\\|complete\\|exit\" /root/runs/structfuse-context/m1_reextract_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T23:08:42.736215+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T23:08:42.736365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "head -50 /root/runs/structfuse-context/m1_reextract_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-13T23:08:42.736543+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n=== M1 Rerun ===\\\\nInstances: 28276\\\\nWorkers: 4\\\\nOutput: /root/autodl-tmp/structfuse/full_m1_data\\\\nStarted: Thu May 14 03:59:08 CST 2026\\\\nDisk available: 114GB (threshold: 10GB)\\\\n2026-05-14 03:59:09,080 [INFO] batch_extract: Filtered to 28276 Python-only instances\\\\n2026-05-14 03:59:09,080 [INFO] batch_extract: Loaded 28276 instances\\\\n2026-05-14 03:59:09,086 [INFO] batch_extract: 82 unique (repo, commit) groups — CodeQL DB created once per group\\\\n2026-05-14 03:59:09,086 [INFO] batch_extract: Time estimate: ~238h serial, ~60h with 4 workers\\\\n2026-05-14 03:59:09,101 [INFO] batch_extract: [gruns/furl] 10 pending, 145 done\\\\n2026-05-14 03:59:09,106 [INFO] batch_extract: [kurtmckee/feedparser] 305 pending, 146 done\\\\n2026-05-14 03:59:09,107 [INFO] batch_extract: [gruns/furl] reusing existing CodeQL database\\\\n2026-05-14 03:59:09,108 [INFO] batch_extract: [pyasn1/pyasn1] 181 pending, 145 done\\\\n2026-05-14 03:59:09,173 [INFO] batch_extract: [python-openxml/python-docx] 889 pending, 146 done\\\\n2026-05-14 03:59:09,179 [INFO] batch_extract: [pyasn1/pyasn1] reusing existing CodeQL database\\\\n2026-05-14 03:59:09,180 [INFO] batch_extract: [kurtmckee/feedparser] reusing existing CodeQL database\\\\n2026-05-14 03:59:09,184 [INFO] batch_extract: [python-openxml/python-docx] reusing existing CodeQL database\\\\n2026-05-14 03:59:28,382 [INFO] batch_extract: [gruns__furl.da386f68.lm_rewrite__m03pgfpb] CodeQL call_graph: 82 entries, 2 reachable files (threshold=1)\\\\n2026-05-14 03:59:28,980 [INFO] batch_extract: [kurtmckee__feedparser.cad965a3.func_basic__m8tq7tdx] CodeQL call_graph: 51 entries, 15 reachable files (threshold=1)\\\\n2026-05-14 03:59:30,076 [INFO] batch_extract: [python-openxml__python-docx.0cf6d71f.func_basic__ebofrbh9] CodeQL call_graph: 43 entries, 16 reachable files (threshold=1)\\\\n2026-05-14 03:59:33,500 [INFO] batch_extract: [pyasn1__pyasn1.0f07d724.func_pm_\n…[truncated 5202 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-13T23:08:42.736724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -c \"CodeQL call_graph\" /root/runs/structfuse-context/m1_reextract_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-13T23:08:42.736855+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2469\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-13T23:08:42.736973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -c \"CodeQL DB created\" /root/runs/structfuse-context/m1_reextract_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-13T23:08:42.737093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"15\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-13T23:08:42.737206+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep \"pending\" /root/runs/structfuse-context/m1_reextract_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-13T23:08:42.737337+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 03:59:09,101 [INFO] batch_extract: [gruns/furl] 10 pending, 145 done\\\\n2026-05-14 03:59:09,106 [INFO] batch_extract: [kurtmckee/feedparser] 305 pending, 146 done\\\\n2026-05-14 03:59:09,108 [INFO] batch_extract: [pyasn1/pyasn1] 181 pending, 145 done\\\\n2026-05-14 03:59:09,173 [INFO] batch_extract: [python-openxml/python-docx] 889 pending, 146 done\\\\n2026-05-14 04:02:09,182 [INFO] batch_extract: [cantools/cantools] 29 pending, 0 done\\\\n2026-05-14 04:02:09,202 [INFO] batch_extract: [seperman/deepdiff] 822 pending, 0 done\\\\n2026-05-14 04:02:16,780 [INFO] batch_extract: [paramiko/paramiko] 112 pending, 0 done\\\\n2026-05-14 04:02:25,069 [INFO] batch_extract: [pygments/pygments] 175 pending, 0 done\\\\n2026-05-14 04:23:37,606 [INFO] batch_extract: [Instagram/MonkeyType] 95 pending, 0 done\\\\n2026-05-14 05:21:03,271 [INFO] batch_extract: [adrienverge/yamllint] 344 pending, 0 done\\\\n2026-05-14 05:26:01,680 [INFO] batch_extract: [graphql-python/graphene] 451 pending, 0 done\\\\n2026-05-14 05:58:25,341 [INFO] batch_extract: [buriy/python-readability] 2 pending, 0 done\\\\n2026-05-14 05:58:44,932 [INFO] batch_extract: [jawah/charset_normalizer] 151 pending, 0 done\\\\n2026-05-14 06:22:06,515 [INFO] batch_extract: [tweepy/tweepy] 268 pending, 0 done\\\\n2026-05-14 06:31:29,102 [INFO] batch_extract: [rubik/radon] 165 pending, 0 done\\\\n2026-05-14 06:55:59,130 [INFO] batch_extract: [life4/textdistance] 233 pending, 0 done\\\\n2026-05-14 06:56:24,901 [INFO] batch_extract: [arrow-py/arrow] 304 pending, 0 done\\\\n2026-05-14 07:05:53,420 [INFO] batch_extract: [pyparsing/pyparsing] 361 pending, 0 done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-13T23:08:42.737469+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -i \"error\\|fail\\|exception\\|traceback\" /root/runs/structfuse-context/m1_reextract_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-13T23:08:42.737589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-13T23:08:42.737741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -c \"query failed\" /root/runs/structfuse-context/m1_reextract_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-13T23:08:42.737871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"18\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-13T23:08:42.737986+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -c \"WARNING\" /root/runs/structfuse-context/m1_reextract_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-13T23:08:42.738104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"18\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-13T23:08:42.738216+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep \"query failed\" /root/runs/structfuse-context/m1_reextract_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-13T23:08:42.738395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 04:02:08,774 [WARNING] batch_extract: CodeQL query failed (/root/structfuse/extraction/codeql_queries/bounded_dataflow.ql): Command '['codeql', 'query', 'run', '--database', '/root/autodl-tmp/structfuse/full_m1_data/repos/gruns__furl_codeql_db', '--output', '/tmp/tmpui3j1hnx/dataflow.csv.bqrs', '--ram=8192', '--timeout=300', '--external=buggyFunctionName=/tmp/tmpui3j1hnx/ext_func.csv', '--external=buggyFileName=/tmp/tmpui3j1hnx/ext_file.csv', '--threads=0', '/root/structfuse/extraction/codeql_queries/bounded_dataflow.ql']' returned non-zero exit status 2.\\\\n2026-05-14 04:02:08,984 [WARNING] batch_extract: CodeQL query failed (/root/structfuse/extraction/codeql_queries/bounded_dataflow.ql): Command '['codeql', 'query', 'run', '--database', '/root/autodl-tmp/structfuse/full_m1_data/repos/pyasn1__pyasn1_codeql_db', '--output', '/tmp/tmps4xs5q1y/dataflow.csv.bqrs', '--ram=8192', '--timeout=300', '--external=buggyFunctionName=/tmp/tmps4xs5q1y/ext_func.csv', '--external=buggyFileName=/tmp/tmps4xs5q1y/ext_file.csv', '--threads=0', '/root/structfuse/extraction/codeql_queries/bounded_dataflow.ql']' returned non-zero exit status 2.\\\\n2026-05-14 04:02:08,992 [WARNING] batch_extract: CodeQL query failed (/root/structfuse/extraction/codeql_queries/bounded_dataflow.ql): Command '['codeql', 'query', 'run', '--database', '/root/autodl-tmp/structfuse/full_m1_data/repos/kurtmckee__feedparser_codeql_db', '--output', '/tmp/tmpif4ima1g/dataflow.csv.bqrs', '--ram=8192', '--timeout=300', '--external=buggyFunctionName=/tmp/tmpif4ima1g/ext_func.csv', '--external=buggyFileName=/tmp/tmpif4ima1g/ext_file.csv', '--threads=0', '/root/structfuse/extraction/codeql_queries/bounded_dataflow.ql']' returned non-zero exit status 2.\\\\n2026-05-14 04:02:09,783 [WARNING] batch_extract: CodeQL query failed (/root/structfuse/extraction/codeql_queries/bounded_dataflow.ql): Command '['codeql', 'query', 'run', '--database', '/root/autodl-tmp/str\n…[truncated 6227 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-13T23:08:42.738547+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -c \"cleaned up CodeQL database\" /root/runs/structfuse-context/m1_reextract_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-13T23:08:42.738695+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"11\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-13T23:08:42.738854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "stat /root/runs/structfuse-context/m1_reextract_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-13T23:08:42.739062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/runs/structfuse-context/m1_reextract_v2.log\\\\n  Size: 431407    \\\\tBlocks: 848        IO Block: 4096   regular file\\\\nDevice: 2eh/46d\\\\tInode: 11819244367  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-14 07:06:43.642936798 +0800\\\\nModify: 2026-05-14 07:06:42.262933029 +0800\\\\nChange: 2026-05-14 07:06:42.262933029 +0800\\\\n Birth: 2026-05-14 03:59:08.386887791 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-13T23:08:42.739252+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "find /root/structfuse/extraction/codeql_queries/ -name \"*.lock*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-13T23:08:42.739388+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/structfuse/extraction/codeql_queries/codeql-pack.lock.yml\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-13T23:08:42.739518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls -la /root/structfuse/extraction/codeql_queries/.codeql/",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-13T23:08:42.739678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/structfuse/extraction/codeql_queries/.codeql/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-13T23:08:42.739826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "find /root/autodl-tmp/structfuse/full_m1_data/ -maxdepth 1 -type f -name \"*.jsonl\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-13T23:08:42.739954+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/structfuse/full_m1_data/all.jsonl\\\\n/root/autodl-tmp/structfuse/full_m1_data/skip_log.jsonl\\\\n/root/autodl-tmp/structfuse/full_m1_data/skip_log_rerun.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-13T23:08:42.740178+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep \"cleaned up\" /root/runs/structfuse-context/m1_reextract_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-13T23:08:42.740303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "wc -l /root/runs/structfuse-context/m1_reextract_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-13T23:08:42.740441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 04:02:16,775 [INFO] batch_extract: [gruns/furl] cleaned up CodeQL database: /root/autodl-tmp/structfuse/full_m1_data/repos/gruns__furl_codeql_db\\\\n2026-05-14 04:23:37,577 [INFO] batch_extract: [cantools/cantools] cleaned up CodeQL database: /root/autodl-tmp/structfuse/full_m1_data/repos/cantools__cantools_codeql_db\\\\n2026-05-14 05:21:03,181 [INFO] batch_extract: [Instagram/MonkeyType] cleaned up CodeQL database: /root/autodl-tmp/structfuse/full_m1_data/repos/Instagram__MonkeyType_codeql_db\\\\n2026-05-14 05:25:56,988 [INFO] batch_extract: [paramiko/paramiko] cleaned up CodeQL database: /root/autodl-tmp/structfuse/full_m1_data/repos/paramiko__paramiko_codeql_db\\\\n2026-05-14 05:58:24,533 [INFO] batch_extract: [pygments/pygments] cleaned up CodeQL database: /root/autodl-tmp/structfuse/full_m1_data/repos/pygments__pygments_codeql_db\\\\n2026-05-14 05:58:44,931 [INFO] batch_extract: [buriy/python-readability] cleaned up CodeQL database: /root/autodl-tmp/structfuse/full_m1_data/repos/buriy__python-readability_codeql_db\\\\n2026-05-14 06:22:06,475 [INFO] batch_extract: [jawah/charset_normalizer] cleaned up CodeQL database: /root/autodl-tmp/structfuse/full_m1_data/repos/jawah__charset_normalizer_codeql_db\\\\n2026-05-14 06:31:29,024 [INFO] batch_extract: [adrienverge/yamllint] cleaned up CodeQL database: /root/autodl-tmp/structfuse/full_m1_data/repos/adrienverge__yamllint_codeql_db\\\\n2026-05-14 06:55:59,094 [INFO] batch_extract: [rubik/radon] cleaned up CodeQL database: /root/autodl-tmp/structfuse/full_m1_data/repos/rubik__radon_codeql_db\\\\n2026-05-14 06:56:24,677 [INFO] batch_extract: [graphql-python/graphene] cleaned up CodeQL database: /root/autodl-tmp/structfuse/full_m1_data/repos/graphql-python__graphene_codeql_db\\\\n2026-05-14 07:05:50,452 [INFO] batch_extract: [tweepy/tweepy] cleaned up CodeQL database: /root/autodl-tmp/structfuse/full_m1_data/repos/tweepy__tweepy_codeql_db\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_cod\n…[truncated 70 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-13T23:08:42.740588+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2645 /root/runs/structfuse-context/m1_reextract_v2.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-13T23:08:42.740771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "wc -l /root/autodl-tmp/structfuse/full_m1_data/all.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-13T23:08:42.740898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "wc -l /root/autodl-tmp/structfuse/full_m1_data/skip_log_rerun.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-13T23:08:42.741016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "df -h /root/autodl-tmp/",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-13T23:08:42.741135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"44173 /root/autodl-tmp/structfuse/full_m1_data/all.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.85}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-13T23:08:42.741276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"582 /root/autodl-tmp/structfuse/full_m1_data/skip_log_rerun.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-13T23:08:42.741431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  154G   97G  62% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-13T23:08:42.741675+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已充分，汇总诊断结果。\n\n---\n\n## m1_reextract_v2 诊断报告\n\n### 1. 当前状态：**活跃运行中** ✓\n\n- 启动: 2026-05-14 03:59:08（已运行 ~3h）\n- 日志最后写入: 07:06:42，持续输出中\n- 配置: 28,276 实例 / 82 repo groups / 4 workers\n- 预估总耗时 60h，当前进度 ~15/82 groups\n\n### 2. CodeQL pack 修复：**有效** ✓\n\n- `codeql-pack.lock.yml` 已存在\n- **2,469 次** `call_graph` 查询成功\n- 新创建的 **15 个 CodeQL DB** 全部正常工作\n- 后续所有 repo（cantools → pyparsing）**零失败**\n\n### 3. 残留失败：18 次 WARNING，仅限前 4 个旧 repo\n\n| 失败 query | 涉及 repo | 原因 |\n|---|---|---|\n| `bounded_dataflow.ql` ×4 | furl, pyasn1, feedparser, python-docx | 复用 v1 旧 DB |\n| `call_graph.ql` ×14 | furl, python-docx | 复用 v1 旧 DB |\n\n这 4 个 repo 启动时标记为 `reusing existing CodeQL database`——它们的 DB 是 v1（pack 缺失时期）创建的，格式可能不兼容。代码将失败降级为 WARNING 并继续处理。**04:02 之后零失败**。\n\n### 4. 产出和资源\n\n- `all.jsonl`: 44,173 行（含 v1 数据 + v2 新增）\n- `skip_log_rerun.jsonl`: 582 行\n- 磁盘: 97GB 可用，充足\n\n### 5. 结论\n\n| 问题 | 状态 |\n|---|---|\n| v2 运行中？ | ✓ 活跃运行，预计还需 ~13-16h |\n| CodeQL pack 修复？ | ✓ 已修复，新建 DB 全部成功 |\n| 是否有失败？ | 仅前 4 个旧 DB repo 有 18 次降级 WARNING，不影响整体 |\n| 需要干预？ | **不需要**。可选：运行结束后对前 4 个 repo 删除旧 DB 重跑 |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_m1_reextract_v2_diagnosis_20260513T230543"
+          },
+          "id": "event-000057"
+        }
+      ],
+      "message_count": 57
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-m1-reextract-v2-diagnosis.md"
+}

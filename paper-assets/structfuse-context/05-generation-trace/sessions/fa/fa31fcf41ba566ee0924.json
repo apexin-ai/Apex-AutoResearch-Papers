@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa31fcf41ba566ee0924",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops disk emergency assessment",
+  "task_key": "worker_ops_disk_emergency_assessment_20260513T013022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk_emergency_assessment_20260513T013022_result.json",
+    "occurrence": 1,
+    "bytes": 3404,
+    "sha256": "f429767c85dccfa32d0a62f849a512ce1506c10d4e62e1b0ecf8f69b6844e924"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕，以下是报告。\n\n---\n\n## 磁盘评估报告\n\n### 1. 磁盘总况\n```\n/dev/md0  169G  154G  16G  91%  /root/autodl-tmp\n```\n\n### 2. Top-10 目录分布\n\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| `models/` | **57G** | 离线模型（Mistral-7B, Qwen系列等） |\n| `structfuse/` | **43G** | 项目主目录 |\n| `.hf_cache/` | **35G** | HuggingFace 缓存 |\n| `alfworld_data/` | 2.2G | 无关项目 |\n| `mvp_results/` | 1.7G | 旧 MVP 结果 |\n| `gpt2-small/` | 526M | 旧模型 |\n| `mvp_data/` | 295M | 旧 MVP 数据 |\n| `repos/` | 170M | 旧 repo |\n| `rl-active-probe-fl/` | 160M | 无关项目 |\n| `/tmp/` | 52M | 临时文件 |\n\n#### structfuse/ 内部分布\n\n| 子目录 | 大小 |\n|--------|------|\n| `checkpoints/` (4个p2b_*) | **24G** |\n| `m1_repos/` | **11G** |\n| `models/` | **5.8G** |\n| `m1_extraction/` | 2.2G |\n| `dryrun_repos/` | 554M |\n| `mvp_data/` | 427M |\n| `m1_training_data/` | 311M |\n\n#### models/ 详情\n\n| 模型 | 大小 |\n|------|------|\n| Qwen/ | 15G |\n| Qwen2.5-7B-DPO003-merged | 15G |\n| Qwen2.5-7B-Instruct-DPO-merged | 15G |\n| Mistral-7B-Instruct-v0.3 | 14G |\n| Qwen2.5-7B-Instruct | 552M |\n\n#### .hf_cache/ 详情\n\n| 目录 | 大小 |\n|------|------|\n| starcoder2-3b/ | 12G |\n| Qwen3-14B-AWQ/ | 9.4G |\n| datasets/ | 4.9G |\n| Qwen/ | 984M |\n| hub/ | 265M |\n\n### 3. M1 空间需求预估\n\n- **当前**: 2.2G extraction + 11G repos = 13.2G，已完成 23/131 repos (5413 JSON files)\n- **extraction 增长率**: 2.2G / 23 ≈ **96MB/repo**\n- **repos 增长率**: 11G / 23 ≈ **478MB/repo**（含 codeql_db）\n- **剩余 108 repos 预估**:\n  - extraction: 108 × 96MB ≈ **10.3G**\n  - repos (若不清理): 108 × 478MB ≈ **51.6G**\n- **总需求**: 最少 10.3G（仅 extraction），最多 62G（含 repo 累积）\n- **可用空间**: 16G\n\n### 4. 结论：**空间严重不足**\n\n即使 pipeline 每次处理完自动删除 repo 和 codeql_db，仅 extraction JSON 增长 (10.3G) 就会占掉可用空间的 64%，缓冲极小。若 pipeline 不清理 repos，16G 根本不够。\n\n### 5. 可安全清理项（由 Director 决定）\n\n| 优先级 | 清理项 | 可释放 | 风险 |\n|--------|--------|--------|------|\n| **P0** | `checkpoints/p2b_*` (4个) | **~24G** | 低 — MVP 旧 checkpoint，训练结果已提取 |\n| **P1** | `models/Mistral-7B-Instruct-v0.3` | **14G** | 低 — M1 不需要 Mistral |\n| **P1** | `models/Qwen2.5-7B-DPO003-merged` | **15G** | 中 — 确认 M1 是否使用 |\n| **P1** | `models/Qwen2.5-7B-Instruct-DPO-merged` | **15G** | 中 — 同上 |\n| **P2** | `.hf_cache/starcoder2-3b/` | **12G** | 低 — M1 用的是 Qwen，非 StarCoder |\n| **P2** | `.hf_cache/Qwen3-14B-AWQ/` | **9.4G** | 中 — 确认是否 M1 当前推理模型 |\n| **P3** | `alfworld_data/` | **2.2G** | 无 — 无关项目 |\n| **P3** | `mvp_results/` + `gpt2-small/` + `mvp_data/` | **2.5G** | 无 — 旧数据 |\n\n**总可释放空间**: 最高 ~94G\n\n### 6. 建议优先级\n\n**紧急（保 M1 不崩）**: 清 P0 checkpoints 即释放 24G，加上当前 16G = 40G，足以覆盖 extraction 增长（10.3G）且有余量。\n\n**如 repos 会累积**: 还需清 P1 的 1-2 个模型（+14~29G），确保 m1_repos 增长不爆盘。\n\n**最安全的最小操作**: 仅删 `checkpoints/p2b_*`（24G），立刻解除危机。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-emergency-assessment.md"
+}

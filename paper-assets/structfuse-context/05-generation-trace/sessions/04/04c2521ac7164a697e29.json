@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04c2521ac7164a697e29",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ssh m2 training progress latest",
+  "task_key": "worker_ssh_m2_training_progress_latest_20260514T014638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_m2_training_progress_latest_20260514T014638_result.json",
+    "occurrence": 1,
+    "bytes": 1651,
+    "sha256": "279a87aedcc9d3ebd1fe3bc585653fff5b1899aa4bf8e2fd649230edafdd6a77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## M2 训练状态 (2026-05-14 ~09:47 CST)\n\n### 1. Qwen (cuda:0, random_s42)\n\n| Checkpoint | val_loss | R@1 | R@5 |\n|-----------|----------|------|------|\n| eval@500 | 0.4869 | 0.5332 | 0.9540 |\n| eval@1000 | **0.4651** | **0.5527** | 0.9594 |\n| eval@1500 | 0.5365 | 0.5228 | 0.9550 |\n| eval@2000 | **未出** | — | — |\n\n- **Current step**: 2000，刚打完 step log，eval@2000 正在跑（日志末尾停在 `step 2000 loss=0.0429`，尚无 eval 输出）\n- eval@1500 出现回退（R@1 从 0.5527→0.5228, val_loss 从 0.4651→0.5365），但仍 **高于 0.50 阈值**\n- Best checkpoint: eval@1000 (R@1=0.5527, val_loss=0.4651)\n- 仍在 random_s42（1/9 strategies）\n\n### 2. StarCoder (cuda:1, random_s42)\n\n| Checkpoint | val_loss | R@1 | R@5 |\n|-----------|----------|------|------|\n| eval@500 | 0.6194 | 0.4352 | 0.9054 |\n| eval@1000 | **0.6134** | **0.4537** | 0.9201 |\n\n- **Current step**: ~1350，尚未到 eval@1500\n- Best checkpoint: eval@1000 (R@1=0.4537)\n- 仍在 random_s42（1/9 strategies）\n\n### 3. m1_reextract_v2\n- 活跃运行中，当前并行处理 sunpy/sunpy (400/722), pylint-dev/astroid, encode/starlette, tkrajina/gpxpy\n\n### 4. GPU\n\n| GPU | Util | VRAM | Temp |\n|-----|------|------|------|\n| 0 (Qwen) | 100% | 51.6/97.9 GB | 74°C |\n| 1 (StarCoder) | 100% | 55.2/97.9 GB | 73°C |\n\n### 关键决策点\n\n- **eval@2000 尚未出**，预计几分钟内出结果。eval@1500 已有回退趋势（train loss 持续降到 0.04 而 val_loss 反弹），eval@2000 的 R@1 是否跌破 0.50 需要等结果。\n- 如果需要我稍后再查 eval@2000 结果，告诉我。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-m2-training-progress-latest.md"
+}

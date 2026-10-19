@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e38814ba65480679d10",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "infra p2b final status check",
+  "task_key": "worker_infra_p2b_final_status_check_20260512T161937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_p2b_final_status_check_20260512T161937_result.json",
+    "occurrence": 1,
+    "bytes": 2000,
+    "sha256": "2b75766ac87893b2a15fca85c1158226283e707c6a96202d51581c0a93c5e7e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**情况 B：5/9 runs 失败，不自行重启。**\n\n## 状态汇总\n\n### 成功完成（4 runs）\n\n| Run | val_loss | recall@1 | Checkpoints |\n|-----|----------|----------|-------------|\n| random_s42 | 0.0347 | 0.984 | 200/400/600/final ✓ |\n| random_s123 | 0.0446 | 0.984 | 200/400/600/final ✓ |\n| random_s456 | 0.0189 | 0.992 | 200/400/600/final ✓ |\n| embedding_distance_s42 | 0.1876 | 0.874 | 200/400/600/final ✓ |\n\n### 失败（5 runs）\n\n| Run | 失败点 | 已有 checkpoint |\n|-----|--------|----------------|\n| embedding_distance_s123 | torch.save @ step 400 | checkpoint-200 (6.2GB, 可能有效) + checkpoint-400 (1.3GB, **截断**) |\n| embedding_distance_s456 | torch.save @ step 200 | checkpoint-200 (**197KB, 损坏**) |\n| dataflow_aware_s42 | torch.save @ step 200 | checkpoint-200 (197KB, 损坏) |\n| dataflow_aware_s123 | torch.save @ step 200 | checkpoint-200 (197KB, 损坏) |\n| dataflow_aware_s456 | torch.save @ step 200 | checkpoint-200 (197KB, 损坏) |\n\n### 错误原因\n\n统一报错 `RuntimeError: [enforce fail at inline_container.cc:668] . unexpected pos` — PyTorch `torch.save()` 写入 zip 文件时位置校验失败。正常 model.pt 应为 ~5.8GB，但失败 run 的 checkpoint 只有 197KB（损坏）或 1.3GB（截断）。\n\n从 embedding_distance_s123 开始级联失败。首个失败 run 还能完整保存 checkpoint-200（6.2GB），之后的 run 连 checkpoint-200 都无法正常保存。\n\n### 环境状态\n\n- **磁盘**: `/root/autodl-tmp` 93% (156G/169G, 剩余 14G) — 单个完整 checkpoint 5.8GB，空间不足以支持多 run 同时保存\n- **GPU**: 0/1/2/4 空闲，3 和 5 被其他进程占用（各 23GB 和 9GB）\n- **无训练进程运行中**\n\n### 等待 Director 指令\n\n需要决定：\n1. 是否清理磁盘空间后重跑 5 个失败 run\n2. embedding_distance_s123 的 checkpoint-200 是否可作为 fallback 评估\n3. 4 个成功 run 是否先启动评估，不等失败 run"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-p2b-final-status-check.md"
+}

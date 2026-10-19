@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5199626294fca2623f04",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "paper research verify citations v2 related work",
+  "task_key": "worker_paper_research_verify_citations_v2_related_work_20260516T124847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_verify_citations_v2_related_work_20260516T124847_result.json",
+    "occurrence": 1,
+    "bytes": 848,
+    "sha256": "242846090a70f716726edbc0dfc298efac5cd684716ce4938b4d294ff64eea7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。结果写入 `artifacts/paper_drafts/v2/citation_verification.md`。\n\n核心发现：\n\n| 引用 | 存在 | 语境匹配 | 需要操作 |\n|------|------|----------|----------|\n| dodge2020finetuning | YES | PARTIAL | 重新措辞：论文讲的是 seed 导致的性能方差和训练 divergence，不是 val loss 与 task metric 的 misalignment |\n| thakur2021beir | YES | **NO** | BEIR 本身不讨论 checkpoint sensitivity。该claim 应引用 **MultiContrievers (Clavié et al., BlackboxNLP 2024)**，该文直接证明 BEIR ranking 对 checkpoint 高度敏感 |\n| muennighoff2023mteb | YES | YES | 无需修改 |\n| craswell2020overview | YES | PARTIAL | 建议改引 Craswell et al. SIGIR 2021 (\"Reusable Test Collections in the Large Data Regime\")，该文显式分析 pooling depth 对评估的影响 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-verify-citations-v2-related-work.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2f5ec9428f6ba9367de",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "write introduction v2",
+  "task_key": "worker_write_introduction-v2_20260515T015804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_introduction-v2_20260515T015804_result.json",
+    "occurrence": 1,
+    "bytes": 935,
+    "sha256": "bce12dc3a264968f12db33c250f10f33e604cb9ce0f01380a2ef630280fd52e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/paper_drafts/introduction_v2.md`。\n\nv1 → v2 主要变化：\n- **结构重组**：从 3 段 + 贡献列表改为标准 5 段（Problem → Gap → Approach → Findings → Contributions），每段 4-6 句\n- **Claim 2 严格降级**：标注 `\\textbf{exploratory observation}` + \"pending multi-seed confirmation\"，符合 D035\n- **引用扩充**：新增 SimCLR、ContraCode、CodeRetriever、GraphCodeBERT、FAISS、RepoBench 等引用，key 均从 literature_map.yaml 取\n- **数字占位**：所有依赖 M2 最终结果的数字用 `[TBD]` 标记（R@1 增量、seed 数、repo 数、connected rate）\n- **叙事更清晰**：Para 2 明确点出 \"embedding-close 但 structurally connected 的文件不应做 negatives\" 这个 gap；Para 3 加入实验控制说明（identical pipeline, multiple seeds, two encoders）\n\nM2 完成后（~May 17）填入最终数字即可定稿。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-introduction-v2.md"
+}

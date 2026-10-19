@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4f97f4b97d1507a3f97",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops starcoder chain restart",
+  "task_key": "worker_ops_starcoder_chain_restart_20260516T162141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_starcoder_chain_restart_20260516T162141_result.json",
+    "occurrence": 1,
+    "bytes": 539,
+    "sha256": "67ad387f98d4182139050b65aa954d2587c63b86b78280ba2c44e88129e35c0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动。\n\n**总结：**\n- Killed watcher (PID 20226) 和误启动的 supplement 进程\n- 创建了 `/root/structfuse/scripts/run_starcoder_resume_from_embed_s44.sh`，按原始配置串行跑 4 个 run\n- 已通过 `submit_training_job` 提交，tmux session: `m2_full_starcoder_resumed`\n- GPU 1 已占用 45.4GB/97.9GB，utilization 100%，embedding_distance_s44 正在训练\n- 日志: `/root/runs/structfuse-context/m2_full_starcoder_resumed.log`\n- 超时设置 72h，预计 ~36h 完成全部 4 runs"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-starcoder-chain-restart.md"
+}

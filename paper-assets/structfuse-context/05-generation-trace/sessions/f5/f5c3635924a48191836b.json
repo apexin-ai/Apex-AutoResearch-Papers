@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5c3635924a48191836b",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops repos naming fix",
+  "task_key": "worker_ops_repos-naming-fix_20260513T114200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_repos-naming-fix_20260513T114200_result.json",
+    "occurrence": 1,
+    "bytes": 395,
+    "sha256": "d0a451d79b730433269c8e499ed5753228aa6139c49de0a1c2e02e99cbbd63be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`clone_repos.sh` 已修复为 `sed 's/\\//__/'`。\n\n## 结果\n\n| 项目 | 数量 |\n|------|------|\n| repos 总数 | 123 |\n| 已 rename 为双下划线 | 123（全部） |\n| 单下划线残留 | 0 |\n| missing | 0 |\n| clone_repos.sh | 已修复，`tr '/' '_'` → `sed 's/\\//__/'` |\n\n目录命名已全部对齐为 `org__repo` 格式，M2 pipeline 可以继续跑了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-repos-naming-fix.md"
+}

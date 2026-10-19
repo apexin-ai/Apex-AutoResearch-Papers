@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0",
+  "id": "2517ac3b4dad563914ea",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops session init verify 0515b",
+  "task_key": "worker_ops_session-init-verify-0515b_20260515T125650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_session-init-verify-0515b_20260515T125650_result.json",
+    "occurrence": 1,
+    "bytes": 6768,
+    "sha256": "d4789e09719950714ef4bb8dbdaac2fb3c42e81dcf6155ca5fc1742d2938728e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the summary:\n\n```json\n{\n  \"gpu_status\": {\n    \"cuda0\": {\"name\": \"RTX PRO 6000 Blackwell\", \"util\": \"100%\", \"mem_used_MiB\": 50601, \"mem_total_MiB\": 97887},\n    \"cuda1\": {\"name\": \"RTX PRO 6000 Blackwell\", \"util\": \"100%\", \"mem_used_MiB\": 53887, \"mem_total_MiB\": 97887}\n  },\n  \"qwen_chain\": {\n    \"pid_alive\": true,\n    \"pid\": 337267,\n    \"uptime\": \"1d 01h33m\",\n    \"current_subrun\": \"embedding_distance_s44\",\n    \"completed_subruns\": [\"random_s42\", \"random_s43\", \"random_s44\", \"embedding_distance_s43\"],\n    \"remaining_subruns\": [\"dataflow_aware_s43\", \"dataflow_aware_s44\", \"bm25_s42(3ep inline)\"],\n    \"current_step\": 1550,\n    \"total_steps\": 2816,\n    \"epoch\": \"2/2\",\n    \"latest_eval\": {\n      \"eval@1500\": {\"val_loss\": 0.5256, \"R@1\": 0.5473, \"R@5\": 0.9421, \"R@10\": 1.0, \"note\": \"val_loss not improved (1/2 patience)\"},\n      \"best_val_loss\": {\"step\": 1000, \"val_loss\": 0.4341, \"R@1\": 0.5813},\n      \"best_R@1\": {\"step\": 500, \"R@1\": 0.5942}\n    }\n  },\n  \"starcoder_chain\": {\n    \"pid_alive\": true,\n    \"pid\": 519791,\n    \"uptime\": \"18h54m\",\n    \"current_subrun\": \"random_s44\",\n    \"completed_subruns\": [\"random_s42\", \"random_s43\"],\n    \"current_step\": 850,\n    \"total_steps\": 2816,\n    \"epoch\": \"1/2\",\n    \"latest_eval\": {\n      \"eval@500\": {\"val_loss\": 0.5913, \"R@1\": 0.4848, \"R@5\": 0.8952, \"R@10\": 1.0}\n    }\n  },\n  \"bm25_watcher\": {\n    \"scripts_found\": true,\n    \"scripts\": [\"run_m2_full_bm25_qwen.sh\", \"run_m2_full_bm25_starcoder.sh\"],\n    \"regime_correct\": true,\n    \"epochs\": 2,\n    \"patience\": 2,\n    \"all_seeds_unified\": true,\n    \"tmux_alive\": \"check blocked (tmux not in read-only whitelist), but watcher PIDs alive\",\n    \"watcher_pids_alive\": [true, true],\n    \"watcher_details\": {\n      \"pid_560714\": \"watching Qwen chain PID 337267, will launch run_m2_full_bm25_qwen.sh on cuda:0\",\n      \"pid_560676\": \"watching StarCoder chain PID 519791, will launch run_m2_full_bm25_starcoder.sh on cuda:1\"\n    }\n  },\n  \"m1_reextract\": {\n    \"total_lines\": 44173,\n    \"processes_alive\": 5,\n    \"details\": \"batch_extract.py (4 workers) + CodeQL running on MONAI and moto repos\",\n    \"repos_count\": \"~120 repos in repos dir\"\n  },\n  \"issues\": [\n    \"Qwen chain inline BM25 s42 uses 3 epochs (run_m2_full_qwen.sh line ~100) — contradicts D050 unified 2-epoch regime. Watcher standalone script is correct (2ep), but chain will execute the 3-epoch version first before watcher triggers.\",\n    \"CodeQL call_graph queries on getmoto__moto repeatedly failing with exit status 33 (4 failures in last 20 min of log) — wasting cycles, MONAI queries succeeding normally.\",\n    \"BM25 watcher script header comments still say 's42 uses 3 epochs; s43/s44 use 2 epochs' but code correctly sets all to 2 — stale comments only, no functional issue.\"\n  ]\n}\n```\n\n**Key concerns:**\n1. **BM25 s42 3-epoch conflict**: The Qwen chain will train BM25 s42 with 3 epochs (hardcoded in `run_m2_full_qwen.sh`), then the watcher would re-train it with 2 epochs via the standalone script. Either the chain's inline BM25 s42 should be patched to 2 epochs, or the watcher script should skip s42 to avoid duplicate training.\n2. **CodeQL moto failures**: `getmoto__moto` CodeQL queries consistently fail (exit 33). May need investigation or exclusion to avoid blocking other extractions."
+            }
+          ],
+          "metadata": {
+            "data": {
+              "gpu_status": {
+                "cuda0": {
+                  "name": "RTX PRO 6000 Blackwell",
+                  "util": "100%",
+                  "mem_used_MiB": 50601,
+                  "mem_total_MiB": 97887
+                },
+                "cuda1": {
+                  "name": "RTX PRO 6000 Blackwell",
+                  "util": "100%",
+                  "mem_used_MiB": 53887,
+                  "mem_total_MiB": 97887
+                }
+              },
+              "qwen_chain": {
+                "pid_alive": true,
+                "pid": 337267,
+                "uptime": "1d 01h33m",
+                "current_subrun": "embedding_distance_s44",
+                "completed_subruns": [
+                  "random_s42",
+                  "random_s43",
+                  "random_s44",
+                  "embedding_distance_s43"
+                ],
+                "remaining_subruns": [
+                  "dataflow_aware_s43",
+                  "dataflow_aware_s44",
+                  "bm25_s42(3ep inline)"
+                ],
+                "current_step": 1550,
+                "total_steps": 2816,
+                "epoch": "2/2",
+                "latest_eval": {
+                  "eval@1500": {
+                    "val_loss": 0.5256,
+                    "R@1": 0.5473,
+                    "R@5": 0.9421,
+                    "R@10": 1.0,
+                    "note": "val_loss not improved (1/2 patience)"
+                  },
+                  "best_val_loss": {
+                    "step": 1000,
+                    "val_loss": 0.4341,
+                    "R@1": 0.5813
+                  },
+                  "best_R@1": {
+                    "step": 500,
+                    "R@1": 0.5942
+                  }
+                }
+              },
+              "starcoder_chain": {
+                "pid_alive": true,
+                "pid": 519791,
+                "uptime": "18h54m",
+                "current_subrun": "random_s44",
+                "completed_subruns": [
+                  "random_s42",
+                  "random_s43"
+                ],
+                "current_step": 850,
+                "total_steps": 2816,
+                "epoch": "1/2",
+                "latest_eval": {
+                  "eval@500": {
+                    "val_loss": 0.5913,
+                    "R@1": 0.4848,
+                    "R@5": 0.8952,
+                    "R@10": 1.0
+                  }
+                }
+              },
+              "bm25_watcher": {
+                "scripts_found": true,
+                "scripts": [
+                  "run_m2_full_bm25_qwen.sh",
+                  "run_m2_full_bm25_starcoder.sh"
+                ],
+                "regime_correct": true,
+                "epochs": 2,
+                "patience": 2,
+                "all_seeds_unified": true,
+                "tmux_alive": "check blocked (tmux not in read-only whitelist), but watcher PIDs alive",
+                "watcher_pids_alive": [
+                  true,
+                  true
+                ],
+                "watcher_details": {
+                  "pid_560714": "watching Qwen chain PID 337267, will launch run_m2_full_bm25_qwen.sh on cuda:0",
+                  "pid_560676": "watching StarCoder chain PID 519791, will launch run_m2_full_bm25_starcoder.sh on cuda:1"
+                }
+              },
+              "m1_reextract": {
+                "total_lines": 44173,
+                "processes_alive": 5,
+                "details": "batch_extract.py (4 workers) + CodeQL running on MONAI and moto repos",
+                "repos_count": "~120 repos in repos dir"
+              },
+              "issues": [
+                "Qwen chain inline BM25 s42 uses 3 epochs (run_m2_full_qwen.sh line ~100) — contradicts D050 unified 2-epoch regime. Watcher standalone script is correct (2ep), but chain will execute the 3-epoch version first before watcher triggers.",
+                "CodeQL call_graph queries on getmoto__moto repeatedly failing with exit status 33 (4 failures in last 20 min of log) — wasting cycles, MONAI queries succeeding normally.",
+                "BM25 watcher script header comments still say 's42 uses 3 epochs; s43/s44 use 2 epochs' but code correctly sets all to 2 — stale comments only, no functional issue."
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-session-init-verify-0515b.md"
+}

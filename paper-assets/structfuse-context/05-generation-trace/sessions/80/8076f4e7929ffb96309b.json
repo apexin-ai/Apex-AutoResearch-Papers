@@ -1,0 +1,772 @@
+{
+  "schema_version": "1.0",
+  "id": "8076f4e7929ffb96309b",
+  "project": "structfuse-context",
+  "kind": "conversation",
+  "title": "analysis bm25 overlap stratified",
+  "task_key": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_bm25_overlap_stratified_20260514T170408.jsonl",
+    "occurrence": 1,
+    "bytes": 60432,
+    "sha256": "d06ee282f78b8213e2e3eaaea89319ef09a0f1fdb3b52dabca0dbd937b7b111c"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 0,
+    "tool_calls": 18,
+    "roles": {
+      "tool_call": 18,
+      "tool_result": 18,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T17:11:28.621656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T17:11:28.621985+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T17:11:28.622153+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "head -5 /root/autodl-tmp/structfuse/full_m2_training_data/train_bm25_s42.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T17:11:28.622286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls -lh /root/autodl-tmp/structfuse/full_m2_training_data/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T17:11:28.622629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"query_id\\\\\\\": \\\\\\\"burnash__gspread.a8be3b96.func_pm_ctrl_shuffle__snw3aix9::gspread/spreadsheet.py\\\\\\\", \\\\\\\"query_tokens\\\\\\\": \\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\ngspread.spreadsheet\\\\\\\\n~~~~~~~~~~~~~~\\\\\\\\n\\\\\\\\nThis module contains common spreadsheets' models.\\\\\\\\n\\\\\\\\n\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\nimport warnings\\\\\\\\nfrom typing import Any, Dict, Generator, Iterable, List, Mapping, Optional, Union\\\\\\\\n\\\\\\\\nfrom requests import Response\\\\\\\\n\\\\\\\\nfrom .cell import Cell\\\\\\\\nfrom .exceptions import WorksheetNotFound\\\\\\\\nfrom .http_client import HTTPClient, ParamsType\\\\\\\\nfrom .urls import DRIVE_FILES_API_V3_URL, SPREADSHEET_DRIVE_URL\\\\\\\\nfrom .utils import ExportFormat, finditem\\\\\\\\nfrom .worksheet import Worksheet\\\\\\\\n\\\\\\\\n\\\\\\\\nclass Spreadsheet:\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"The class that represents a spreadsheet.\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\\n    def __init__(self, http_client: HTTPClient, properties: Dict[str, Union[str, Any]]):\\\\\\\\n        self.client = http_client\\\\\\\\n        self._properties = properties\\\\\\\\n\\\\\\\\n        metadata = self.fetch_sheet_metadata()\\\\\\\\n        self._properties.update(metadata[\\\\\\\\\\\\\\\"properties\\\\\\\\\\\\\\\"])\\\\\\\\n\\\\\\\\n    @property\\\\\\\\n    def id(self) -> str:\\\\\\\\n        \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"Spreadsheet ID.\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n        return self._properties[\\\\\\\\\\\\\\\"id\\\\\\\\\\\\\\\"]\\\\\\\\n\\\\\\\\n    @property\\\\\\\\n    def title(self) -> str:\\\\\\\\n        \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"Spreadsheet title.\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n        return self._properties[\\\\\\\\\\\\\\\"title\\\\\\\\\\\\\\\"]\\\\\\\\n\\\\\\\\n    @property\\\\\\\\n    def url(self) -> str:\\\\\\\\n        \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"Spreadsheet URL.\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n        return SPREADSHEET_DRIVE_URL % self.id\\\\\\\\n\\\\\\\\n    @property\\\\\\\\n    def creationTime(self) -> str:\\\\\\\\n        \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"Spreadsheet Creation time.\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n        if \\\\\\\\\\\\\\\"createdTime\\\\\\\\\\\\\\\" not in self._properties:\\\\\\\\n\n…[truncated 8464 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T17:11:28.622829+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 21G\\\\n-rw-r--r-- 1 root root  94M May 13 23:35 dataflow_graph.json\\\\n-rw-r--r-- 1 root root 1.8G May 15 01:04 train_bm25_s42.jsonl\\\\n-rw-r--r-- 1 root root 1.7G May 15 01:04 train_bm25_s43.jsonl\\\\n-rw-r--r-- 1 root root 1.4G May 15 00:55 train_bm25_s44.jsonl\\\\n-rw-r--r-- 1 root root 1.1G May 13 23:35 train_dataflow_aware_s42.jsonl\\\\n-rw-r--r-- 1 root root 1.1G May 13 23:48 train_dataflow_aware_s43.jsonl\\\\n-rw-r--r-- 1 root root 1.2G May 14 00:01 train_dataflow_aware_s44.jsonl\\\\n-rw-r--r-- 1 root root 1.3G May 13 23:34 train_embedding_distance_s42.jsonl\\\\n-rw-r--r-- 1 root root 1.2G May 13 23:47 train_embedding_distance_s43.jsonl\\\\n-rw-r--r-- 1 root root 1.3G May 14 00:01 train_embedding_distance_s44.jsonl\\\\n-rw-r--r-- 1 root root 1.1G May 13 23:34 train_random_s42.jsonl\\\\n-rw-r--r-- 1 root root 1.1G May 13 23:47 train_random_s43.jsonl\\\\n-rw-r--r-- 1 root root 1.2G May 14 00:01 train_random_s44.jsonl\\\\n-rw-r--r-- 1 root root 345M May 13 23:35 val_bm25_s42.jsonl\\\\n-rw-r--r-- 1 root root 317M May 13 23:48 val_bm25_s43.jsonl\\\\n-rw-r--r-- 1 root root 296M May 14 00:01 val_bm25_s44.jsonl\\\\n-rw-r--r-- 1 root root 345M May 13 23:35 val_dataflow_aware_s42.jsonl\\\\n-rw-r--r-- 1 root root 317M May 13 23:48 val_dataflow_aware_s43.jsonl\\\\n-rw-r--r-- 1 root root 296M May 14 00:01 val_dataflow_aware_s44.jsonl\\\\n-rw-r--r-- 1 root root 345M May 13 23:35 val_embedding_distance_s42.jsonl\\\\n-rw-r--r-- 1 root root 317M May 13 23:48 val_embedding_distance_s43.jsonl\\\\n-rw-r--r-- 1 root root 296M May 14 00:01 val_embedding_distance_s44.jsonl\\\\n-rw-r--r-- 1 root root 345M May 13 23:35 val_random_s42.jsonl\\\\n-rw-r--r-- 1 root root 317M May 13 23:48 val_random_s43.jsonl\\\\n-rw-r--r-- 1 root root 296M May 14 00:01 val_random_s44.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T17:11:28.623012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "python3 -c \"import json; d=json.loads(open('/root/autodl-tmp/structfuse/full_m2_training_data/train_bm25_s42.jsonl').readline()); print('keys:', list(d.keys())); print('query_id:', d['query_id'][:80]); print('neg keys:', list(d['negatives'][0].keys()) if 'negatives' in d else 'NO negatives'); print('num neg:', len(d.get('negatives',[]))); print('neg0 id:', d['negatives'][0].get('doc_id','N/A')[:80] if d.get('negatives') else 'N/A')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T17:11:28.623147+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T17:11:28.623271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "python3 -c \"\nimport json\nd=json.loads(open('/root/autodl-tmp/structfuse/full_m2_training_data/train_bm25_s42.jsonl').readline())\nprint('keys:', list(d.keys()))\nprint('query_id:', d['query_id'][:100])\nif 'negatives' in d:\n    print('num neg:', len(d['negatives']))\n    n0 = d['negatives'][0]\n    if isinstance(n0, dict):\n        print('neg keys:', list(n0.keys()))\n        for k,v in n0.items():\n            print(f'  neg.{k}:', str(v)[:120])\n    else:\n        print('neg type:', type(n0), str(n0)[:120])\nif 'positive' in d:\n    p = d['positive']\n    if isinstance(p, dict):\n        print('pos keys:', list(p.keys()))\n        for k,v in p.items():\n            print(f'  pos.{k}:', str(v)[:120])\nif 'metadata' in d:\n    print('metadata:', {k: str(v)[:80] for k,v in d['metadata'].items()})\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T17:11:28.623425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\nd=json.loads(open(\\\\\\\\'/root/autodl-tmp/structfuse/full_m2_training_data/train_bm25_s42.jsonl\\\\\\\\').readline())\\\\\\\\nprint(\\\\\\\\'keys:\\\\\\\\', list(d.keys()))\\\\\\\\nprint(\\\\\\\\'query_id:\\\\\\\\', d[\\\\\\\\'query_id\\\\\\\\'][:100])\\\\\\\\nif \\\\\\\\'negatives\\\\\\\\' in d:\\\\\\\\n    print(\\\\\\\\'num neg:\\\\\\\\', len(d[\\\\\\\\'negatives\\\\\\\\']))\\\\\\\\n    n0 = d[\\\\\\\\'negatives\\\\\\\\'][0]\\\\\\\\n    if isinstance(n0, dict):\\\\\\\\n        print(\\\\\\\\'neg keys:\\\\\\\\', list(n0.keys()))\\\\\\\\n        for k,v in n0.items():\\\\\\\\n            print(f\\\\\\\\'  neg.{k}:\\\\\\\\', str(v)[:120])\\\\\\\\n    else:\\\\\\\\n        print(\\\\\\\\'neg type:\\\\\\\\', type(n0), str(n0)[:120])\\\\\\\\nif \\\\\\\\'positive\\\\\\\\' in d:\\\\\\\\n    p = d[\\\\\\\\'positive\\\\\\\\']\\\\\\\\n    if isinstance(p, dict):\\\\\\\\n        print(\\\\\\\\'pos keys:\\\\\\\\', list(p.keys()))\\\\\\\\n        for k,v in p.items():\\\\\\\\n            print(f\\\\\\\\'  pos.{k}:\\\\\\\\', str(v)[:120])\\\\\\\\nif \\\\\\\\'metadata\\\\\\\\' in d:\\\\\\\\n    print(\\\\\\\\'metadata:\\\\\\\\', {k: str(v)[:80] for k,v in d[\\\\\\\\'metadata\\\\\\\\'].items()})\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T17:11:28.623585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd=json.loads(open('/root/autodl-tmp/structfuse/full_m2_training_data/train_bm25_s42.jsonl').readline())\nprint('keys:', list(d.keys()))\nprint('query_id:', d['query_id'][:100])\nif 'negatives' in d:\n    print('num neg:', len(d['negatives']))\n    n0 = d['negatives'][0]\n    if isinstance(n0, dict):\n        print('neg keys:', list(n0.keys()))\n        for k,v in n0.items():\n            print(f'  neg.{k}:', str(v)[:120])\n    else:\n        print('neg type:', type(n0), str(n0)[:120])\nif 'positive' in d:\n    p = d['positive']\n    if isinstance(p, dict):\n        print('pos keys:', list(p.keys()))\n        for k,v in p.items():\n            print(f'  pos.{k}:', str(v)[:120])\nif 'metadata' in d:\n    print('metadata:', {k: str(v)[:80] for k,v in d['metadata'].items()})\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T17:11:28.623742+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"keys: ['query_id', 'query_tokens', 'pos_id', 'pos_tokens', 'pos_dataflow_distance', 'neg_candidates', 'candidate_tokens']\\\\nquery_id: burnash__gspread.a8be3b96.func_pm_ctrl_shuffle__snw3aix9::gspread/spreadsheet.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T17:11:28.623893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nd=json.loads(open('/root/autodl-tmp/structfuse/full_m2_training_data/train_bm25_s42.jsonl').readline())\nprint('neg_candidates type:', type(d.get('neg_candidates')))\nnc = d.get('neg_candidates', [])\nprint('num neg_candidates:', len(nc))\nif nc:\n    n0 = nc[0]\n    if isinstance(n0, dict):\n        print('nc[0] keys:', list(n0.keys()))\n        for k,v in n0.items():\n            print(f'  {k}:', str(v)[:150])\n    else:\n        print('nc[0] type:', type(n0), str(n0)[:150])\nct = d.get('candidate_tokens', [])\nprint('candidate_tokens type:', type(ct))\nprint('num candidate_tokens:', len(ct) if isinstance(ct, list) else 'N/A')\nif isinstance(ct, list) and ct:\n    print('ct[0] type:', type(ct[0]), str(ct[0])[:100])\n# Also check query_id structure - repo name is before the dot\nqid = d['query_id']\nrepo = qid.split('.')[0]\nprint('repo from query_id:', repo)\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T17:11:28.624055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"neg_candidates type: <class 'list'>\\\\nnum neg_candidates: 13\\\\nnc[0] type: <class 'str'> burnash__gspread.a8be3b96.func_pm_ctrl_shuffle__snw3aix9::gspread/client.py\\\\ncandidate_tokens type: <class 'dict'>\\\\nnum candidate_tokens: N/A\\\\nrepo from query_id: burnash__gspread\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T17:11:28.624215+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n\n# Check other strategy files have same schema\nfor f in ['train_random_s42.jsonl', 'train_embedding_distance_s42.jsonl', 'train_dataflow_aware_s42.jsonl']:\n    d = json.loads(open(f'/root/autodl-tmp/structfuse/full_m2_training_data/{f}').readline())\n    print(f'{f}: keys={list(d.keys())}, num_neg={len(d.get(\\\"neg_candidates\\\",[]))}')\n\n# Check candidate_tokens keys\nd = json.loads(open('/root/autodl-tmp/structfuse/full_m2_training_data/train_bm25_s42.jsonl').readline())\nct_keys = list(d['candidate_tokens'].keys())\nprint(f'candidate_tokens keys (first 5): {ct_keys[:5]}')\nprint(f'neg_candidates: {d[\\\"neg_candidates\"][:3]}')\n\n# Check how repo name maps - look at a few query_ids\nimport itertools\nrepos = set()\nwith open('/root/autodl-tmp/structfuse/full_m2_training_data/train_bm25_s42.jsonl') as fh:\n    for i, line in enumerate(fh):\n        if i >= 100: break\n        qid = json.loads(line)['query_id']\n        # repo is owner__name before the first period and commit hash\n        repo = qid.split('.')[0]\n        repos.add(repo)\nprint(f'sample repos ({len(repos)}):', list(repos)[:10])\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T17:11:28.624368+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\\\\\"\\\\\\\\nimport json\\\\\\\\n\\\\\\\\n# Check other strategy files have same schema\\\\\\\\nfor f in [\\\\\\\\'train_random_s42.jsonl\\\\\\\\', \\\\\\\\'train_embedding_distance_s42.jsonl\\\\\\\\', \\\\\\\\'train_dataflow_aware_s42.jsonl\\\\\\\\']:\\\\\\\\n    d = json.loads(open(f\\\\\\\\'/root/autodl-tmp/structfuse/full_m2_training_data/{f}\\\\\\\\').readline())\\\\\\\\n    print(f\\\\\\\\'{f}: keys={list(d.keys())}, num_neg={len(d.get(\\\\\\\\\\\\\\\\\\\\\\\"neg_candidates\\\\\\\\\\\\\\\\\\\\\\\",[]))}\\\\\\\\')\\\\\\\\n\\\\\\\\n# Check candidate_tokens keys\\\\\\\\nd = json.loads(open(\\\\\\\\'/root/autodl-tmp/structfuse/full_m2_training_data/train_bm25_s42.jsonl\\\\\\\\').readline())\\\\\\\\nct_keys = list(d[\\\\\\\\'candidate_tokens\\\\\\\\'].keys())\\\\\\\\nprint(f\\\\\\\\'candidate_tokens keys (first 5): {ct_keys[:5]}\\\\\\\\')\\\\\\\\nprint(f\\\\\\\\'neg_candidates: {d[\\\\\\\\\\\\\\\\\\\\\\\"neg_candidates\\\\\\\"][:3]}\\\\\\\\')\\\\\\\\n\\\\\\\\n# Check how repo name maps - look at a few query_ids\\\\\\\\nimport itertools\\\\\\\\nrepos = set()\\\\\\\\nwith open(\\\\\\\\'/root/autodl-tmp/structfuse/full_m2_training_data/train_bm25_s42.jsonl\\\\\\\\') as fh:\\\\\\\\n    for i, line in enumerate(fh):\\\\\\\\n        if i >= 100: break\\\\\\\\n        qid = json.loads(line)[\\\\\\\\'query_id\\\\\\\\']\\\\\\\\n        # repo is owner__name before the first period and commit hash\\\\\\\\n        repo = qid.split(\\\\\\\\'.\\\\\\\\')[0]\\\\\\\\n        repos.add(repo)\\\\\\\\nprint(f\\\\\\\\'sample repos ({len(repos)}):\\\\\\\\', list(repos)[:10])\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 2\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: -c: line 25: syntax error near unexpected token `('\\\\nbash: -c: line 25: `print(f'sample repos ({len(repos)}):', list(repos)[:10])'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T17:11:28.624540+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "cat > /tmp/explore_schema.py << 'PYEOF'\nimport json\n\ndata_dir = '/root/autodl-tmp/structfuse/full_m2_training_data'\n\n# Check all strategy files have same schema\nfor f in ['train_random_s42.jsonl', 'train_embedding_distance_s42.jsonl', 'train_dataflow_aware_s42.jsonl']:\n    d = json.loads(open(f'{data_dir}/{f}').readline())\n    print(f'{f}: keys={list(d.keys())}, num_neg={len(d.get(\"neg_candidates\",[]))}')\n\n# Check BM25 details\nd = json.loads(open(f'{data_dir}/train_bm25_s42.jsonl').readline())\nct_keys = list(d['candidate_tokens'].keys())\nprint(f'\\nBM25 candidate_tokens keys (first 5): {ct_keys[:5]}')\nprint(f'BM25 neg_candidates (first 3): {d[\"neg_candidates\"][:3]}')\nprint(f'pos_id: {d[\"pos_id\"]}')\n\n# Count unique repos and files per repo\nrepos_files = {}\nwith open(f'{data_dir}/train_bm25_s42.jsonl') as fh:\n    for i, line in enumerate(fh):\n        if i >= 200:\n            break\n        row = json.loads(line)\n        qid = row['query_id']\n        repo = qid.split('.')[0]\n        # Extract file path from query_id (after ::)\n        fpath = qid.split('::')[1] if '::' in qid else 'unknown'\n        if repo not in repos_files:\n            repos_files[repo] = set()\n        repos_files[repo].add(fpath)\n        # Also add files from neg_candidates\n        for nc in row['neg_candidates']:\n            nc_fpath = nc.split('::')[1] if '::' in nc else 'unknown'\n            repos_files[repo].add(nc_fpath)\n\nfor repo, files in sorted(repos_files.items()):\n    print(f'repo={repo}, unique_files={len(files)}')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/explore_schema.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T17:11:28.624739+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"train_random_s42.jsonl: keys=['query_id', 'query_tokens', 'pos_id', 'pos_tokens', 'pos_dataflow_distance', 'neg_candidates', 'candidate_tokens'], num_neg=50\\\\ntrain_embedding_distance_s42.jsonl: keys=['query_id', 'query_tokens', 'pos_id', 'pos_tokens', 'pos_dataflow_distance', 'neg_candidates', 'candidate_tokens'], num_neg=50\\\\ntrain_dataflow_aware_s42.jsonl: keys=['query_id', 'query_tokens', 'pos_id', 'pos_tokens', 'pos_dataflow_distance', 'neg_candidates', 'candidate_tokens'], num_neg=50\\\\n\\\\nBM25 candidate_tokens keys (first 5): ['burnash__gspread.a8be3b96.func_pm_ctrl_shuffle__snw3aix9::gspread/client.py', 'burnash__gspread.a8be3b96.func_pm_ctrl_shuffle__snw3aix9::tests/conftest.py', 'burnash__gspread.a8be3b96.func_pm_ctrl_shuffle__snw3aix9::gspread/auth.py', 'burnash__gspread.a8be3b96.func_pm_ctrl_shuffle__snw3aix9::gspread/exceptions.py', 'burnash__gspread.a8be3b96.func_pm_ctrl_shuffle__snw3aix9::docs/conf.py']\\\\nBM25 neg_candidates (first 3): ['burnash__gspread.a8be3b96.func_pm_ctrl_shuffle__snw3aix9::gspread/client.py', 'burnash__gspread.a8be3b96.func_pm_ctrl_shuffle__snw3aix9::tests/conftest.py', 'burnash__gspread.a8be3b96.func_pm_ctrl_shuffle__snw3aix9::gspread/auth.py']\\\\npos_id: burnash__gspread.a8be3b96.func_pm_ctrl_shuffle__snw3aix9::gspread/worksheet.py\\\\nrepo=Cog-Creators__Red-DiscordBot, unique_files=80\\\\nrepo=HIPS__autograd, unique_files=79\\\\nrepo=Instagram__MonkeyType, unique_files=34\\\\nrepo=Project-MONAI__MONAI, unique_files=130\\\\nrepo=PyCQA__flake8, unique_files=59\\\\nrepo=adrienverge__yamllint, unique_files=64\\\\nrepo=agronholm__typeguard, unique_files=31\\\\nrepo=alecthomas__voluptuous, unique_files=9\\\\nrepo=benoitc__gunicorn, unique_files=51\\\\nrepo=burnash__gspread, unique_files=15\\\\nrepo=cantools__cantools, unique_files=49\\\\nrepo=chardet__chardet, unique_files=53\\\\nrepo=cknd__stackprinter, unique_files=25\\\\nrepo=conan-io__conan, unique_files=119\\\\nrepo=dask__dask, unique_files=100\\\\nrepo=da\n…[truncated 2358 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T17:11:28.624944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "cat > /tmp/bm25_overlap_stratified.py << 'PYEOF'\nimport json\nfrom collections import defaultdict\nimport os\n\ndata_dir = '/root/autodl-tmp/structfuse/full_m2_training_data'\nout_dir = '/root/autodl-tmp/structfuse/artifacts'\nos.makedirs(out_dir, exist_ok=True)\n\n# Step 1: Load BM25 data - build index by query_id\nprint(\"Loading BM25 data...\")\nbm25_data = {}  # query_id -> {neg_candidates: set, pool_size: int}\nwith open(f'{data_dir}/train_bm25_s42.jsonl') as f:\n    for i, line in enumerate(f):\n        row = json.loads(line)\n        qid = row['query_id']\n        bm25_data[qid] = {\n            'neg_candidates': set(row['neg_candidates']),\n            'pool_size': len(row['candidate_tokens']),\n            'repo': qid.split('.')[0],\n        }\n        if (i + 1) % 10000 == 0:\n            print(f\"  BM25: {i+1} instances loaded\")\nprint(f\"  BM25 total: {len(bm25_data)} instances\")\n\n# Step 2: Load other strategies, compute per-instance overlap\nstrategies = {\n    'embedding': 'train_embedding_distance_s42.jsonl',\n    'random': 'train_random_s42.jsonl',\n    'dataflow': 'train_dataflow_aware_s42.jsonl',\n}\n\n# For each query_id, store overlap info\noverlap_data = {}  # query_id -> {repo, pool_size, bm25_neg_count, overlap_embedding, overlap_random, overlap_dataflow}\n\n# Initialize from bm25_data\nfor qid, info in bm25_data.items():\n    overlap_data[qid] = {\n        'repo': info['repo'],\n        'pool_size': info['pool_size'],\n        'bm25_neg_count': len(info['neg_candidates']),\n    }\n\nfor strat_name, strat_file in strategies.items():\n    print(f\"Loading {strat_name}...\")\n    matched = 0\n    with open(f'{data_dir}/{strat_file}') as f:\n        for i, line in enumerate(f):\n            row = json.loads(line)\n            qid = row['query_id']\n            if qid in bm25_data:\n                bm25_negs = bm25_data[qid]['neg_candidates']\n                other_negs = set(row['neg_candidates'])\n                intersection = bm25_negs & other_negs\n                # Overlap = |intersection| / |bm25_negs|\n                if len(bm25_negs) > 0:\n                    overlap = len(intersection) / len(bm25_negs)\n                else:\n                    overlap = 1.0\n                overlap_data[qid][f'overlap_{strat_name}'] = overlap\n                matched += 1\n            if (i + 1) % 10000 == 0:\n                print(f\"  {strat_name}: {i+1} processed, {matched} matched\")\n    print(f\"  {strat_name}: {matched} matched out of {len(bm25_data)} BM25 instances\")\n\n# Step 3: Stratify by pool_size (repo candidate pool)\ntiers = {\n    'small': lambda s: s < 50,\n    'medium': lambda s: 50 <= s <= 200,\n    'large': lambda s: s > 200,\n}\n\nresults = {}\nfor tier_name, tier_fn in tiers.items():\n    tier_instances = [v for v in overlap_data.values() if tier_fn(v['pool_size'])]\n    if not tier_instances:\n        results[tier_name] = {\n            'repo_count': 0, 'instance_count': 0,\n            'avg_overlap_bm25_embedding': None,\n            'avg_overlap_bm25_random': None,\n            'avg_overlap_bm25_dataflow': None,\n            'avg_bm25_neg_count': None,\n            'avg_pool_size': None,\n        }\n        continue\n\n    repos = set(v['repo'] for v in tier_instances)\n    n = len(tier_instances)\n\n    def safe_avg(key):\n        vals = [v[key] for v in tier_instances if key in v]\n        return sum(vals) / len(vals) if vals else None\n\n    results[tier_name] = {\n        'repo_count': len(repos),\n        'instance_count': n,\n        'avg_overlap_bm25_embedding': round(safe_avg('overlap_embedding'), 4) if safe_avg('overlap_embedding') is not None else None,\n        'avg_overlap_bm25_random': round(safe_avg('overlap_random'), 4) if safe_avg('overlap_random') is not None else None,\n        'avg_overlap_bm25_dataflow': round(safe_avg('overlap_dataflow'), 4) if safe_avg('overlap_dataflow') is not None else None,\n        'avg_bm25_neg_count': round(safe_avg('bm25_neg_count'), 1),\n        'avg_pool_size': round(safe_avg('pool_size'), 1),\n    }\n\n# Also compute per-tier BM25 score distribution (avg neg count as proxy)\n# And add overall stats\nall_instances = list(overlap_data.values())\nrepos_all = set(v['repo'] for v in all_instances)\n\ndef safe_avg_all(key):\n    vals = [v[key] for v in all_instances if key in v]\n    return sum(vals) / len(vals) if vals else None\n\nresults['overall'] = {\n    'repo_count': len(repos_all),\n    'instance_count': len(all_instances),\n    'avg_overlap_bm25_embedding': round(safe_avg_all('overlap_embedding'), 4) if safe_avg_all('overlap_embedding') is not None else None,\n    'avg_overlap_bm25_random': round(safe_avg_all('overlap_random'), 4) if safe_avg_all('overlap_random') is not None else None,\n    'avg_overlap_bm25_dataflow': round(safe_avg_all('overlap_dataflow'), 4) if safe_avg_all('overlap_dataflow') is not None else None,\n    'avg_bm25_neg_count': round(safe_avg_all('bm25_neg_count'), 1),\n    'avg_pool_size': round(safe_avg_all('pool_size'), 1),\n}\n\nout_path = f'{out_dir}/bm25_overlap_stratified.json'\nwith open(out_path, 'w') as f:\n    json.dump(results, f, indent=2)\n\nprint(f\"\\nResults saved to {out_path}\")\nprint(json.dumps(results, indent=2))\nPYEOF\necho \"Script written.\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T17:11:28.625120+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T17:11:28.625242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/bm25_overlap_stratified.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T17:11:28.625393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading BM25 data...\\\\n  BM25: 10000 instances loaded\\\\n  BM25 total: 12290 instances\\\\nLoading embedding...\\\\n  embedding: 10000 processed, 4131 matched\\\\n  embedding: 4654 matched out of 12290 BM25 instances\\\\nLoading random...\\\\n  random: 10000 processed, 4131 matched\\\\n  random: 4654 matched out of 12290 BM25 instances\\\\nLoading dataflow...\\\\n  dataflow: 10000 processed, 4131 matched\\\\n  dataflow: 4654 matched out of 12290 BM25 instances\\\\n\\\\nResults saved to /root/autodl-tmp/structfuse/artifacts/bm25_overlap_stratified.json\\\\n{\\\\n  \\\\\\\"small\\\\\\\": {\\\\n    \\\\\\\"repo_count\\\\\\\": 50,\\\\n    \\\\\\\"instance_count\\\\\\\": 6151,\\\\n    \\\\\\\"avg_overlap_bm25_embedding\\\\\\\": 1.0,\\\\n    \\\\\\\"avg_overlap_bm25_random\\\\\\\": 1.0,\\\\n    \\\\\\\"avg_overlap_bm25_dataflow\\\\\\\": 0.8828,\\\\n    \\\\\\\"avg_bm25_neg_count\\\\\\\": 25.1,\\\\n    \\\\\\\"avg_pool_size\\\\\\\": 25.1\\\\n  },\\\\n  \\\\\\\"medium\\\\\\\": {\\\\n    \\\\\\\"repo_count\\\\\\\": 44,\\\\n    \\\\\\\"instance_count\\\\\\\": 6139,\\\\n    \\\\\\\"avg_overlap_bm25_embedding\\\\\\\": 0.7006,\\\\n    \\\\\\\"avg_overlap_bm25_random\\\\\\\": 0.3984,\\\\n    \\\\\\\"avg_overlap_bm25_dataflow\\\\\\\": 0.704,\\\\n    \\\\\\\"avg_bm25_neg_count\\\\\\\": 50.0,\\\\n    \\\\\\\"avg_pool_size\\\\\\\": 50.0\\\\n  },\\\\n  \\\\\\\"large\\\\\\\": {\\\\n    \\\\\\\"repo_count\\\\\\\": 0,\\\\n    \\\\\\\"instance_count\\\\\\\": 0,\\\\n    \\\\\\\"avg_overlap_bm25_embedding\\\\\\\": null,\\\\n    \\\\\\\"avg_overlap_bm25_random\\\\\\\": null,\\\\n    \\\\\\\"avg_overlap_bm25_dataflow\\\\\\\": null,\\\\n    \\\\\\\"avg_bm25_neg_count\\\\\\\": null,\\\\n    \\\\\\\"avg_pool_size\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"overall\\\\\\\": {\\\\n    \\\\\\\"repo_count\\\\\\\": 83,\\\\n    \\\\\\\"instance_count\\\\\\\": 12290,\\\\n    \\\\\\\"avg_overlap_bm25_embedding\\\\\\\": 0.9173,\\\\n    \\\\\\\"avg_overlap_bm25_random\\\\\\\": 0.8337,\\\\n    \\\\\\\"avg_overlap_bm25_dataflow\\\\\\\": 0.8334,\\\\n    \\\\\\\"avg_bm25_neg_count\\\\\\\": 37.5,\\\\n    \\\\\\\"avg_pool_size\\\\\\\": 37.5\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 18.67}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T17:11:28.625578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "cat > /tmp/debug_match.py << 'PYEOF'\nimport json\n\ndata_dir = '/root/autodl-tmp/structfuse/full_m2_training_data'\n\n# Check instance counts per file\nfor f in ['train_bm25_s42.jsonl', 'train_random_s42.jsonl', 'train_embedding_distance_s42.jsonl', 'train_dataflow_aware_s42.jsonl']:\n    count = 0\n    with open(f'{data_dir}/{f}') as fh:\n        for line in fh:\n            count += 1\n    print(f'{f}: {count} instances')\n\n# Check query_id overlap\nbm25_qids = set()\nwith open(f'{data_dir}/train_bm25_s42.jsonl') as f:\n    for line in f:\n        bm25_qids.add(json.loads(line)['query_id'])\n\nrandom_qids = set()\nwith open(f'{data_dir}/train_random_s42.jsonl') as f:\n    for line in f:\n        random_qids.add(json.loads(line)['query_id'])\n\nprint(f'\\nBM25 unique qids: {len(bm25_qids)}')\nprint(f'Random unique qids: {len(random_qids)}')\nprint(f'Intersection: {len(bm25_qids & random_qids)}')\nprint(f'BM25 only: {len(bm25_qids - random_qids)}')\nprint(f'Random only: {len(random_qids - bm25_qids)}')\n\n# Check BM25 neg_candidates count distribution\nneg_counts = []\nwith open(f'{data_dir}/train_bm25_s42.jsonl') as f:\n    for line in f:\n        row = json.loads(line)\n        neg_counts.append(len(row['neg_candidates']))\nprint(f'\\nBM25 neg_counts: min={min(neg_counts)}, max={max(neg_counts)}, mean={sum(neg_counts)/len(neg_counts):.1f}')\nfrom collections import Counter\nnc_dist = Counter(neg_counts)\nfor k in sorted(nc_dist.keys()):\n    print(f'  neg_count={k}: {nc_dist[k]} instances')\n\n# Count unique files per repo across ALL bm25 instances\nrepo_files = {}\nwith open(f'{data_dir}/train_bm25_s42.jsonl') as f:\n    for line in f:\n        row = json.loads(line)\n        qid = row['query_id']\n        repo = qid.split('.')[0]\n        if repo not in repo_files:\n            repo_files[repo] = set()\n        # Add query file\n        repo_files[repo].add(qid.split('::')[1])\n        # Add positive file\n        repo_files[repo].add(row['pos_id'].split('::')[1])\n        # Add all negative files\n        for nc in row['neg_candidates']:\n            repo_files[repo].add(nc.split('::')[1])\n\nprint(f'\\nRepo file counts (from aggregating across all instances):')\nfor repo in sorted(repo_files.keys()):\n    print(f'  {repo}: {len(repo_files[repo])} files')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/debug_match.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T17:11:28.625794+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"train_bm25_s42.jsonl: 14404 instances\\\\ntrain_random_s42.jsonl: 11308 instances\\\\ntrain_embedding_distance_s42.jsonl: 11308 instances\\\\ntrain_dataflow_aware_s42.jsonl: 11308 instances\\\\n\\\\nBM25 unique qids: 12290\\\\nRandom unique qids: 8368\\\\nIntersection: 2920\\\\nBM25 only: 9370\\\\nRandom only: 5448\\\\n\\\\nBM25 neg_counts: min=2, max=50, mean=37.5\\\\n  neg_count=2: 80 instances\\\\n  neg_count=3: 268 instances\\\\n  neg_count=4: 12 instances\\\\n  neg_count=5: 259 instances\\\\n  neg_count=6: 118 instances\\\\n  neg_count=7: 132 instances\\\\n  neg_count=8: 107 instances\\\\n  neg_count=9: 84 instances\\\\n  neg_count=11: 50 instances\\\\n  neg_count=12: 29 instances\\\\n  neg_count=13: 523 instances\\\\n  neg_count=14: 302 instances\\\\n  neg_count=15: 145 instances\\\\n  neg_count=16: 301 instances\\\\n  neg_count=17: 151 instances\\\\n  neg_count=18: 45 instances\\\\n  neg_count=19: 59 instances\\\\n  neg_count=20: 52 instances\\\\n  neg_count=22: 305 instances\\\\n  neg_count=23: 121 instances\\\\n  neg_count=24: 156 instances\\\\n  neg_count=25: 115 instances\\\\n  neg_count=26: 303 instances\\\\n  neg_count=27: 124 instances\\\\n  neg_count=28: 298 instances\\\\n  neg_count=29: 332 instances\\\\n  neg_count=30: 172 instances\\\\n  neg_count=31: 285 instances\\\\n  neg_count=32: 88 instances\\\\n  neg_count=33: 608 instances\\\\n  neg_count=34: 186 instances\\\\n  neg_count=35: 78 instances\\\\n  neg_count=36: 24 instances\\\\n  neg_count=38: 44 instances\\\\n  neg_count=39: 1 instances\\\\n  neg_count=40: 52 instances\\\\n  neg_count=41: 67 instances\\\\n  neg_count=42: 79 instances\\\\n  neg_count=43: 74 instances\\\\n  neg_count=44: 308 instances\\\\n  neg_count=45: 137 instances\\\\n  neg_count=46: 173 instances\\\\n  neg_count=47: 129 instances\\\\n  neg_count=48: 117 instances\\\\n  neg_count=49: 78 instances\\\\n  neg_count=50: 7233 instances\\\\n\\\\nRepo file counts (from aggregating across all instances):\\\\n  Cog-Creators__Red-DiscordBot: 161 files\\\\n  HIPS__autograd: 83 files\\\\n  Instagram__M\n…[truncated 2829 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T17:11:28.625985+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "cat > /tmp/debug_qid.py << 'PYEOF'\nimport json\n\ndata_dir = '/root/autodl-tmp/structfuse/full_m2_training_data'\n\n# Sample query_ids from the same repo in BM25 vs random\nbm25_qids_by_repo = {}\nwith open(f'{data_dir}/train_bm25_s42.jsonl') as f:\n    for line in f:\n        qid = json.loads(line)['query_id']\n        repo = qid.split('.')[0]\n        if repo not in bm25_qids_by_repo:\n            bm25_qids_by_repo[repo] = []\n        if len(bm25_qids_by_repo[repo]) < 3:\n            bm25_qids_by_repo[repo].append(qid)\n\nrandom_qids_by_repo = {}\nwith open(f'{data_dir}/train_random_s42.jsonl') as f:\n    for line in f:\n        qid = json.loads(line)['query_id']\n        repo = qid.split('.')[0]\n        if repo not in random_qids_by_repo:\n            random_qids_by_repo[repo] = []\n        if len(random_qids_by_repo[repo]) < 3:\n            random_qids_by_repo[repo].append(qid)\n\n# Show repos in both\ncommon_repos = set(bm25_qids_by_repo.keys()) & set(random_qids_by_repo.keys())\nprint(f'BM25 repos: {len(bm25_qids_by_repo)}, Random repos: {len(random_qids_by_repo)}, Common: {len(common_repos)}')\n\n# Show sample qids from 3 common repos\nfor repo in sorted(common_repos)[:3]:\n    print(f'\\n{repo}:')\n    print(f'  BM25: {bm25_qids_by_repo[repo]}')\n    print(f'  Random: {random_qids_by_repo[repo]}')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/debug_qid.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T17:11:28.626141+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"BM25 repos: 83, Random repos: 83, Common: 68\\\\n\\\\nHIPS__autograd:\\\\n  BM25: ['HIPS__autograd.ac044f0d.func_pm_ctrl_shuffle__ui267w5k::autograd/numpy/numpy_wrapper.py', 'HIPS__autograd.ac044f0d.func_pm_op_swap__a3cqmlu2::autograd/tracer.py', 'HIPS__autograd.ac044f0d.lm_rewrite__kx535eel::autograd/core.py']\\\\n  Random: ['HIPS__autograd.ac044f0d.func_pm_ctrl_invert_if__3246n9rt::autograd/core.py', 'HIPS__autograd.ac044f0d.pr_672::autograd/numpy/numpy_vspaces.py', 'HIPS__autograd.ac044f0d.func_pm_ctrl_shuffle__fnyh98jt::autograd/numpy/numpy_vjps.py']\\\\n\\\\nInstagram__MonkeyType:\\\\n  BM25: ['Instagram__MonkeyType.70c3acf6.func_pm_class_shuffle_funcs__w0i9eouq::monkeytype/stubs.py', 'Instagram__MonkeyType.70c3acf6.func_pm_class_shuffle_funcs__gv8ol5k7::demo/inbox.py', 'Instagram__MonkeyType.70c3acf6.func_pm_remove_wrapper__6q0oxicc::monkeytype/db/sqlite.py']\\\\n  Random: ['Instagram__MonkeyType.70c3acf6.func_pm_op_break_chains__qv23js2n::monkeytype/stubs.py', 'Instagram__MonkeyType.70c3acf6.func_pm_op_break_chains__qv23js2n::monkeytype/stubs.py', 'Instagram__MonkeyType.70c3acf6.func_pm_class_rm_funcs__56lpizuo::monkeytype/stubs.py']\\\\n\\\\nProject-MONAI__MONAI:\\\\n  BM25: ['Project-MONAI__MONAI.a09c1f08.combine_module__00qmv6oq::monai/transforms/regularization/array.py', 'Project-MONAI__MONAI.a09c1f08.combine_module__hlvxddjs::monai/losses/barlow_twins.py', 'Project-MONAI__MONAI.a09c1f08.combine_module__6yfg3whh::monai/transforms/utility/array.py']\\\\n  Random: ['Project-MONAI__MONAI.a09c1f08.combine_file__3qqgx17h::monai/networks/nets/spade_diffusion_model_unet.py', 'Project-MONAI__MONAI.a09c1f08.combine_file__3qqgx17h::monai/networks/blocks/spade_norm.py', 'Project-MONAI__MONAI.a09c1f08.combine_file__3qqgx17h::monai/networks/blocks/upsample.py']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.06}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T17:11:28.626338+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "cat > /tmp/bm25_overlap_v2.py << 'PYEOF'\nimport json\nfrom collections import defaultdict\nimport os\n\ndata_dir = '/root/autodl-tmp/structfuse/full_m2_training_data'\nout_dir = '/root/autodl-tmp/structfuse/artifacts'\nos.makedirs(out_dir, exist_ok=True)\n\n# Step 1: Compute actual repo file counts by aggregating across ALL strategies\nprint(\"Computing repo file counts...\")\nrepo_files = defaultdict(set)\nfor fname in ['train_bm25_s42.jsonl', 'train_random_s42.jsonl',\n              'train_embedding_distance_s42.jsonl', 'train_dataflow_aware_s42.jsonl']:\n    with open(f'{data_dir}/{fname}') as f:\n        for line in f:\n            row = json.loads(line)\n            qid = row['query_id']\n            repo = qid.split('.')[0]\n            repo_files[repo].add(qid.split('::')[1])\n            repo_files[repo].add(row['pos_id'].split('::')[1])\n            for nc in row['neg_candidates']:\n                repo_files[repo].add(nc.split('::')[1])\n    print(f\"  Done: {fname}\")\n\nrepo_size = {repo: len(files) for repo, files in repo_files.items()}\nprint(f\"  Total repos: {len(repo_size)}\")\nfor tier, lo, hi in [('small', 0, 50), ('medium', 50, 200), ('large', 200, 99999)]:\n    repos_in = [r for r, s in repo_size.items() if lo <= s < hi]\n    print(f\"  {tier} ({lo}-{hi}): {len(repos_in)} repos, files range: \", end='')\n    if repos_in:\n        sizes = [repo_size[r] for r in repos_in]\n        print(f\"{min(sizes)}-{max(sizes)}\")\n    else:\n        print(\"N/A\")\n\n# Step 2: Load BM25 data (first occurrence per query_id)\nprint(\"\\nLoading BM25...\")\nbm25_negs = {}\nwith open(f'{data_dir}/train_bm25_s42.jsonl') as f:\n    for line in f:\n        row = json.loads(line)\n        qid = row['query_id']\n        if qid not in bm25_negs:\n            bm25_negs[qid] = set(row['neg_candidates'])\nprint(f\"  {len(bm25_negs)} unique query_ids\")\n\n# Step 3: For each other strategy, compute per-instance overlap with BM25\nstrategies = {\n    'embedding': 'train_embedding_distance_s42.jsonl',\n    'random': 'train_random_s42.jsonl',\n    'dataflow': 'train_dataflow_aware_s42.jsonl',\n}\n\n# Store per-instance results: {qid: {repo, repo_size, bm25_neg_count, overlap_X}}\ninstance_data = {}\n\nfor strat_name, strat_file in strategies.items():\n    print(f\"Processing {strat_name}...\")\n    matched = 0\n    with open(f'{data_dir}/{strat_file}') as f:\n        for line in f:\n            row = json.loads(line)\n            qid = row['query_id']\n            if qid in bm25_negs and qid not in instance_data:\n                repo = qid.split('.')[0]\n                instance_data[qid] = {\n                    'repo': repo,\n                    'repo_file_count': repo_size.get(repo, 0),\n                    'bm25_neg_count': len(bm25_negs[qid]),\n                }\n            if qid in bm25_negs:\n                bm25_set = bm25_negs[qid]\n                other_set = set(row['neg_candidates'])\n                intersection = bm25_set & other_set\n                overlap = len(intersection) / len(bm25_set) if bm25_set else 1.0\n                instance_data.setdefault(qid, {})\n                instance_data[qid][f'overlap_{strat_name}'] = overlap\n                matched += 1\n    print(f\"  {matched} matched\")\n\n# Step 4: Stratify by repo file count\ntiers_def = {\n    'small': (0, 50),\n    'medium': (50, 200),\n    'large': (200, 99999),\n}\n\nresults = {}\nfor tier_name, (lo, hi) in tiers_def.items():\n    tier_instances = [v for v in instance_data.values()\n                      if lo <= v.get('repo_file_count', 0) < hi]\n    if not tier_instances:\n        results[tier_name] = {\n            'repo_count': 0, 'instance_count': 0,\n            'avg_overlap_bm25_embedding': None,\n            'avg_overlap_bm25_random': None,\n            'avg_overlap_bm25_dataflow': None,\n            'avg_bm25_neg_count': None,\n            'avg_repo_file_count': None,\n        }\n        continue\n\n    repos = set(v['repo'] for v in tier_instances)\n    n = len(tier_instances)\n\n    def safe_avg(key, items):\n        vals = [v[key] for v in items if key in v]\n        return round(sum(vals) / len(vals), 4) if vals else None\n\n    results[tier_name] = {\n        'repo_count': len(repos),\n        'instance_count': n,\n        'avg_overlap_bm25_embedding': safe_avg('overlap_embedding', tier_instances),\n        'avg_overlap_bm25_random': safe_avg('overlap_random', tier_instances),\n        'avg_overlap_bm25_dataflow': safe_avg('overlap_dataflow', tier_instances),\n        'avg_bm25_neg_count': safe_avg('bm25_neg_count', tier_instances),\n        'avg_repo_file_count': safe_avg('repo_file_count', tier_instances),\n    }\n\n# Overall\nall_items = list(instance_data.values())\ndef safe_avg_all(key):\n    vals = [v[key] for v in all_items if key in v]\n    return round(sum(vals) / len(vals), 4) if vals else None\n\nresults['overall'] = {\n    'repo_count': len(set(v['repo'] for v in all_items)),\n    'instance_count': len(all_items),\n    'avg_overlap_bm25_embedding': safe_avg_all('overlap_embedding'),\n    'avg_overlap_bm25_random': safe_avg_all('overlap_random'),\n    'avg_overlap_bm25_dataflow': safe_avg_all('overlap_dataflow'),\n    'avg_bm25_neg_count': safe_avg_all('bm25_neg_count'),\n    'avg_repo_file_count': safe_avg_all('repo_file_count'),\n}\n\nout_path = f'{out_dir}/bm25_overlap_stratified.json'\nwith open(out_path, 'w') as f:\n    json.dump(results, f, indent=2)\n\nprint(f\"\\nResults saved to {out_path}\")\nprint(json.dumps(results, indent=2))\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/bm25_overlap_v2.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T17:11:28.626620+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cat > /tmp/bm25_overlap_v2.py << \\\\\\\\'PYEOF\\\\\\\\'\\\\\\\\nimport json\\\\\\\\nfrom collections import defaultdict\\\\\\\\nimport os\\\\\\\\n\\\\\\\\ndata_dir = \\\\\\\\'/root/autodl-tmp/structfuse/full_m2_training_data\\\\\\\\'\\\\\\\\nout_dir = \\\\\\\\'/root/autodl-tmp/structfuse/artifacts\\\\\\\\'\\\\\\\\nos.makedirs(out_dir, exist_ok=True)\\\\\\\\n\\\\\\\\n# Step 1: Compute actual repo file counts by aggregating across ALL strategies\\\\\\\\nprint(\\\\\\\"Computing repo file counts...\\\\\\\")\\\\\\\\nrepo_files = defaultdict(set)\\\\\\\\nfor fname in [\\\\\\\\'train_bm25_s42.jsonl\\\\\\\\', \\\\\\\\'train_random_s42.jsonl\\\\\\\\',\\\\\\\\n              \\\\\\\\'train_embedding_distance_s42.jsonl\\\\\\\\', \\\\\\\\'train_dataflow_aware_s42.jsonl\\\\\\\\']:\\\\\\\\n    with open(f\\\\\\\\'{data_dir}/{fname}\\\\\\\\') as f:\\\\\\\\n        for line in f:\\\\\\\\n            row = json.loads(line)\\\\\\\\n            qid = row[\\\\\\\\'query_id\\\\\\\\']\\\\\\\\n            repo = qid.split(\\\\\\\\'.\\\\\\\\')[0]\\\\\\\\n            repo_files[repo].add(qid.split(\\\\\\\\'::\\\\\\\\')[1])\\\\\\\\n            repo_files[repo].add(row[\\\\\\\\'pos_id\\\\\\\\'].split(\\\\\\\\'::\\\\\\\\')[1])\\\\\\\\n            for nc in row[\\\\\\\\'neg_candidates\\\\\\\\']:\\\\\\\\n                repo_files[repo].add(nc.split(\\\\\\\\'::\\\\\\\\')[1])\\\\\\\\n    print(f\\\\\\\"  Done: {fname}\\\\\\\")\\\\\\\\n\\\\\\\\nrepo_size = {repo: len(files) for repo, files in repo_files.items()}\\\\\\\\nprint(f\\\\\\\"  Total repos: {len(repo_size)}\\\\\\\")\\\\\\\\nfor tier, lo, hi in [(\\\\\\\\'small\\\\\\\\', 0, 50), (\\\\\\\\'medium\\\\\\\\', 50, 200), (\\\\\\\\'large\\\\\\\\', 200, 99999)]:\\\\\\\\n    repos_in = [r for r, s in repo_size.items() if lo <= s < hi]\\\\\\\\n    print(f\\\\\\\"  {tier} ({lo}-{hi}): {len(repos_in)} repos, files range: \\\\\\\", end=\\\\\\\\'\\\\\\\\')\\\\\\\\n    if repos_in:\\\\\\\\n        sizes = [repo_size[r] for r in repos_in]\\\\\\\\n        print(f\\\\\\\"{min(sizes)}-{max(sizes)}\\\\\\\")\\\\\\\\n    else:\\\\\\\\n        print(\\\\\\\"N/A\\\\\\\")\\\\\\\\n\\\\\\\\n# Step 2: Load BM25 data (first occurrence per query_id)\\\\\\\\nprint(\\\\\\\"\\\\\\\\\\\\\\\\nLoading BM25...\\\\\\\n…[truncated 4961 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T17:11:28.626825+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "cat > /tmp/bm25_overlap_v2.py << 'PYEOF'\nimport json\nfrom collections import defaultdict\nimport os\n\ndata_dir = '/root/autodl-tmp/structfuse/full_m2_training_data'\nout_dir = '/root/autodl-tmp/structfuse/artifacts'\nos.makedirs(out_dir, exist_ok=True)\n\n# Step 1: Compute repo file counts from BM25 only (fastest, covers all repos)\nprint(\"Computing repo file counts from BM25...\", flush=True)\nrepo_files = defaultdict(set)\nbm25_negs = {}\nwith open(f'{data_dir}/train_bm25_s42.jsonl') as f:\n    for line in f:\n        row = json.loads(line)\n        qid = row['query_id']\n        repo = qid.split('.')[0]\n        repo_files[repo].add(qid.split('::')[1])\n        repo_files[repo].add(row['pos_id'].split('::')[1])\n        for nc in row['neg_candidates']:\n            repo_files[repo].add(nc.split('::')[1])\n        if qid not in bm25_negs:\n            bm25_negs[qid] = set(row['neg_candidates'])\n\nrepo_size = {repo: len(files) for repo, files in repo_files.items()}\nprint(f\"  BM25: {len(bm25_negs)} unique qids, {len(repo_size)} repos\", flush=True)\n\n# Step 2: Process other strategies\nstrategies = {\n    'embedding': 'train_embedding_distance_s42.jsonl',\n    'random': 'train_random_s42.jsonl',\n    'dataflow': 'train_dataflow_aware_s42.jsonl',\n}\n\ninstance_data = {}\nfor strat_name, strat_file in strategies.items():\n    print(f\"Processing {strat_name}...\", flush=True)\n    matched = 0\n    with open(f'{data_dir}/{strat_file}') as f:\n        for line in f:\n            row = json.loads(line)\n            qid = row['query_id']\n            if qid not in bm25_negs:\n                continue\n            if qid not in instance_data:\n                repo = qid.split('.')[0]\n                instance_data[qid] = {\n                    'repo': repo,\n                    'repo_file_count': repo_size.get(repo, 0),\n                    'bm25_neg_count': len(bm25_negs[qid]),\n                }\n            bm25_set = bm25_negs[qid]\n            other_set = set(row['neg_candidates'])\n            intersection = bm25_set & other_set\n            overlap = len(intersection) / len(bm25_set) if bm25_set else 1.0\n            instance_data[qid][f'overlap_{strat_name}'] = overlap\n            matched += 1\n    print(f\"  {strat_name}: {matched} matched\", flush=True)\n\n# Step 3: Stratify\ntiers_def = {'small': (0, 50), 'medium': (50, 200), 'large': (200, 99999)}\n\ndef avg(key, items):\n    vals = [v[key] for v in items if key in v]\n    return round(sum(vals) / len(vals), 4) if vals else None\n\nresults = {}\nfor tier_name, (lo, hi) in tiers_def.items():\n    ti = [v for v in instance_data.values() if lo <= v.get('repo_file_count', 0) < hi]\n    results[tier_name] = {\n        'repo_count': len(set(v['repo'] for v in ti)) if ti else 0,\n        'instance_count': len(ti),\n        'avg_overlap_bm25_embedding': avg('overlap_embedding', ti),\n        'avg_overlap_bm25_random': avg('overlap_random', ti),\n        'avg_overlap_bm25_dataflow': avg('overlap_dataflow', ti),\n        'avg_bm25_neg_count': avg('bm25_neg_count', ti),\n        'avg_repo_file_count': avg('repo_file_count', ti),\n    }\n\nall_items = list(instance_data.values())\nresults['overall'] = {\n    'repo_count': len(set(v['repo'] for v in all_items)),\n    'instance_count': len(all_items),\n    'avg_overlap_bm25_embedding': avg('overlap_embedding', all_items),\n    'avg_overlap_bm25_random': avg('overlap_random', all_items),\n    'avg_overlap_bm25_dataflow': avg('overlap_dataflow', all_items),\n    'avg_bm25_neg_count': avg('bm25_neg_count', all_items),\n    'avg_repo_file_count': avg('repo_file_count', all_items),\n}\n\nout_path = f'{out_dir}/bm25_overlap_stratified.json'\nwith open(out_path, 'w') as f:\n    json.dump(results, f, indent=2)\n\nprint(f\"\\nDONE. Results saved to {out_path}\", flush=True)\nprint(json.dumps(results, indent=2))\nPYEOF\necho \"Script written OK\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T17:11:28.627093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T17:11:28.627251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python3 /tmp/bm25_overlap_v2.py > /tmp/bm25_overlap_v2.log 2>&1 & echo \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T17:11:28.627386+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=332064\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 17.56}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T17:11:28.627505+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "cat /tmp/bm25_overlap_v2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T17:11:28.627696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Computing repo file counts from BM25...\\\\n  BM25: 8368 unique qids, 83 repos\\\\nProcessing embedding...\\\\n  embedding: 11308 matched\\\\nProcessing random...\\\\n  random: 11308 matched\\\\nProcessing dataflow...\\\\n  dataflow: 11308 matched\\\\n\\\\nDONE. Results saved to /root/autodl-tmp/structfuse/artifacts/bm25_overlap_stratified.json\\\\n{\\\\n  \\\\\\\"small\\\\\\\": {\\\\n    \\\\\\\"repo_count\\\\\\\": 46,\\\\n    \\\\\\\"instance_count\\\\\\\": 4467,\\\\n    \\\\\\\"avg_overlap_bm25_embedding\\\\\\\": 0.8818,\\\\n    \\\\\\\"avg_overlap_bm25_random\\\\\\\": 0.8818,\\\\n    \\\\\\\"avg_overlap_bm25_dataflow\\\\\\\": 0.7433,\\\\n    \\\\\\\"avg_bm25_neg_count\\\\\\\": 23.3051,\\\\n    \\\\\\\"avg_repo_file_count\\\\\\\": 25.3051\\\\n  },\\\\n  \\\\\\\"medium\\\\\\\": {\\\\n    \\\\\\\"repo_count\\\\\\\": 29,\\\\n    \\\\\\\"instance_count\\\\\\\": 3300,\\\\n    \\\\\\\"avg_overlap_bm25_embedding\\\\\\\": 0.6801,\\\\n    \\\\\\\"avg_overlap_bm25_random\\\\\\\": 0.5349,\\\\n    \\\\\\\"avg_overlap_bm25_dataflow\\\\\\\": 0.5377,\\\\n    \\\\\\\"avg_bm25_neg_count\\\\\\\": 50.0,\\\\n    \\\\\\\"avg_repo_file_count\\\\\\\": 83.2433\\\\n  },\\\\n  \\\\\\\"large\\\\\\\": {\\\\n    \\\\\\\"repo_count\\\\\\\": 8,\\\\n    \\\\\\\"instance_count\\\\\\\": 601,\\\\n    \\\\\\\"avg_overlap_bm25_embedding\\\\\\\": 0.28,\\\\n    \\\\\\\"avg_overlap_bm25_random\\\\\\\": 0.0706,\\\\n    \\\\\\\"avg_overlap_bm25_dataflow\\\\\\\": 0.1761,\\\\n    \\\\\\\"avg_bm25_neg_count\\\\\\\": 50.0,\\\\n    \\\\\\\"avg_repo_file_count\\\\\\\": 315.02\\\\n  },\\\\n  \\\\\\\"overall\\\\\\\": {\\\\n    \\\\\\\"repo_count\\\\\\\": 83,\\\\n    \\\\\\\"instance_count\\\\\\\": 8368,\\\\n    \\\\\\\"avg_overlap_bm25_embedding\\\\\\\": 0.759,\\\\n    \\\\\\\"avg_overlap_bm25_random\\\\\\\": 0.6867,\\\\n    \\\\\\\"avg_overlap_bm25_dataflow\\\\\\\": 0.6215,\\\\n    \\\\\\\"avg_bm25_neg_count\\\\\\\": 35.7498,\\\\n    \\\\\\\"avg_repo_file_count\\\\\\\": 68.9613\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T17:11:28.627926+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "cat /root/autodl-tmp/structfuse/artifacts/bm25_overlap_stratified.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T17:11:28.628115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"small\\\\\\\": {\\\\n    \\\\\\\"repo_count\\\\\\\": 46,\\\\n    \\\\\\\"instance_count\\\\\\\": 4467,\\\\n    \\\\\\\"avg_overlap_bm25_embedding\\\\\\\": 0.8818,\\\\n    \\\\\\\"avg_overlap_bm25_random\\\\\\\": 0.8818,\\\\n    \\\\\\\"avg_overlap_bm25_dataflow\\\\\\\": 0.7433,\\\\n    \\\\\\\"avg_bm25_neg_count\\\\\\\": 23.3051,\\\\n    \\\\\\\"avg_repo_file_count\\\\\\\": 25.3051\\\\n  },\\\\n  \\\\\\\"medium\\\\\\\": {\\\\n    \\\\\\\"repo_count\\\\\\\": 29,\\\\n    \\\\\\\"instance_count\\\\\\\": 3300,\\\\n    \\\\\\\"avg_overlap_bm25_embedding\\\\\\\": 0.6801,\\\\n    \\\\\\\"avg_overlap_bm25_random\\\\\\\": 0.5349,\\\\n    \\\\\\\"avg_overlap_bm25_dataflow\\\\\\\": 0.5377,\\\\n    \\\\\\\"avg_bm25_neg_count\\\\\\\": 50.0,\\\\n    \\\\\\\"avg_repo_file_count\\\\\\\": 83.2433\\\\n  },\\\\n  \\\\\\\"large\\\\\\\": {\\\\n    \\\\\\\"repo_count\\\\\\\": 8,\\\\n    \\\\\\\"instance_count\\\\\\\": 601,\\\\n    \\\\\\\"avg_overlap_bm25_embedding\\\\\\\": 0.28,\\\\n    \\\\\\\"avg_overlap_bm25_random\\\\\\\": 0.0706,\\\\n    \\\\\\\"avg_overlap_bm25_dataflow\\\\\\\": 0.1761,\\\\n    \\\\\\\"avg_bm25_neg_count\\\\\\\": 50.0,\\\\n    \\\\\\\"avg_repo_file_count\\\\\\\": 315.02\\\\n  },\\\\n  \\\\\\\"overall\\\\\\\": {\\\\n    \\\\\\\"repo_count\\\\\\\": 83,\\\\n    \\\\\\\"instance_count\\\\\\\": 8368,\\\\n    \\\\\\\"avg_overlap_bm25_embedding\\\\\\\": 0.759,\\\\n    \\\\\\\"avg_overlap_bm25_random\\\\\\\": 0.6867,\\\\n    \\\\\\\"avg_overlap_bm25_dataflow\\\\\\\": 0.6215,\\\\n    \\\\\\\"avg_bm25_neg_count\\\\\\\": 35.7498,\\\\n    \\\\\\\"avg_repo_file_count\\\\\\\": 68.9613\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T17:11:28.628297+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分层结果清晰，验证了 Director 的假设：\n\n| Tier | Repos | Instances | BM25 vs Embedding | BM25 vs Random | BM25 vs Dataflow |\n|------|-------|-----------|-------------------|----------------|------------------|\n| **small** (<50 files) | 46 | 4,467 | **88.2%** | **88.2%** | 74.3% |\n| **medium** (50-200) | 29 | 3,300 | **68.0%** | **53.5%** | 53.8% |\n| **large** (200+) | 8 | 601 | **28.0%** | **7.1%** | 17.6% |\n| overall | 83 | 8,368 | 75.9% | 68.7% | 62.2% |\n\n关键发现：\n- **小 repo** 候选池平均仅 25 个文件，所有策略被迫选相同 negatives（embedding 和 random 与 BM25 重合度完全相同，88.2%）\n- **中 repo** 开始分化，BM25 vs random 降到 53.5%\n- **大 repo**（平均 315 文件）差异巨大，BM25 vs random 仅 7.1%，vs embedding 仅 28.0%——BM25 在大 repo 上选出的 negatives 与其他策略截然不同\n\noverlap 指标：`|BM25_negs ∩ other_negs| / |BM25_negs|`。小 repo 的 neg 数量平均只有 23（远低于 50 上限），候选池太小无选择余地。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bm25_overlap_stratified_20260514T170408"
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-bm25-overlap-stratified.md"
+}

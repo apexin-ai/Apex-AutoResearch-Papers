@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12549e2082ecbb29f79f",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "fix checkpoint table values",
+  "task_key": "worker_fix_checkpoint-table-values_20260515T062148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_checkpoint-table-values_20260515T062148_result.json",
+    "occurrence": 1,
+    "bytes": 290,
+    "sha256": "62179f80cac10e3b815d64ec2f0e1475637d6504bef86738ee3f82bfc21cba15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 项全部修正完毕：\n\n1. **L26**: StarCoder s42 val_loss R@1 `0.4540 → 0.4537`\n2. **L26**: Δ `+0.64 → +0.67`\n3. **L38**: mean Δ `+1.31 → +1.32`\n4. **L9**: caption 中 \"Decision D036\" → 自然语言描述\n5. **L48**: 表注新增 training regime 说明"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-checkpoint-table-values.md"
+}

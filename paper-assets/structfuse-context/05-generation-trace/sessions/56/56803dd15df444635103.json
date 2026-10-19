@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56803dd15df444635103",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops m1 migration prep",
+  "task_key": "worker_ops_m1-migration-prep_20260513T104343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_m1-migration-prep_20260513T104343_result.json",
+    "occurrence": 1,
+    "bytes": 1128,
+    "sha256": "3f6863a1505c21ffdb05d5bb69e9d69708301e51fe756972e438ca7152cd9a34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### SSH 连通性\n**bjb1 → cqa1 直连成功**，无需本地中转。命令：`ssh -p 21977 root@connect.cqa1.seetacloud.com`\n\n### bjb1 磁盘空间\n| 分区 | 总量 | 已用 | 可用 |\n|------|------|------|------|\n| /root/autodl-tmp | 250GB | 60GB | **191GB** |\n\n空间充足，即使最终数据 20GB 也完全无压力。\n\n### cqa1 源数据\n- 路径: `/root/autodl-tmp/structfuse/m1_extraction/`\n- 当前: **43,636 个 JSON 文件，6.3GB**\n\n### 迁移脚本\n已创建 `/root/structfuse/scripts/migrate_m1_data.sh`，功能：\n- rsync 增量同步 + gzip 压缩（`--compress-level=9`，JSON 压缩率高）\n- 支持 `--dry-run` 预检\n- 自动验证目标文件数\n- 可重复运行（断点续传）\n\n### 带宽估算\n- 原始带宽: ~2.7 MB/s\n- JSON 压缩后等效: ~15-20 MB/s\n- 当前 6.3GB 预计: **5-8 分钟**\n- 最终 15-20GB 预计: **15-25 分钟**\n\n### 运行方式\nM1 提取完成后在 bjb1 上执行：\n```bash\nnohup bash /root/structfuse/scripts/migrate_m1_data.sh > /tmp/migrate_m1.log 2>&1 &\n# 查看进度\ntail -f /tmp/migrate_m1.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-m1-migration-prep.md"
+}

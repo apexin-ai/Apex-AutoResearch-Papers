@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1cc39fd20690b8e12aab",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "research codebert feasibility",
+  "task_key": "worker_research_codebert_feasibility_20260516T044826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_codebert_feasibility_20260516T044826_result.json",
+    "occurrence": 1,
+    "bytes": 2332,
+    "sha256": "2fdea80453574179c153f99db282c80508cfe7948b41459b17733980cf190979"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 复用评估\n\n- **train.py 可直接复用**: 基本可以，CLI 参数已支持 `--model-name` 和 `--max-seq-length`\n- **需要修改的地方**:\n\n| 文件 | 位置 | 问题 | 改动 |\n|------|------|------|------|\n| `contrastive_model.py` L93 | `target_modules=[\"q_proj\", \"v_proj\"]` | Qwen 专用名称，CodeBERT (RoBERTa) 的 attention 层叫 `query`/`value` | 改为可配置参数，或按 model_type 自动选择 |\n| `contrastive_model.py` L63 | `dtype=torch.float16` | 非标准 HF 参数（标准是 `torch_dtype`），Qwen 自定义代码接受但 RoBERTa 会忽略 → 模型以 fp32 加载 | 改为 `torch_dtype=torch.float16` |\n| `contrastive_model.py` L61 | `_apply_lora` 签名 | LoRA target_modules 硬编码在方法内 | 增加 `lora_target_modules` 参数透传 |\n\n- **改动量估计**: **小**（~15 行改动，集中在 `contrastive_model.py`）\n\n## CodeBERT 配置\n\n| 属性 | 值 |\n|------|-----|\n| Model | `microsoft/codebert-base` |\n| Architecture | RobertaModel |\n| Hidden size | 768 |\n| Num layers | 12 |\n| Max position | 514 |\n| Vocab size | 50265 |\n| LoRA target_modules | `[\"query\", \"value\"]` |\n\n## 训练时间估算\n\n- 当前 GPU: 2× RTX PRO 6000 Blackwell (98GB)，当前已用 ~71GB/卡\n- 剩余 VRAM: ~27GB/卡，**CodeBERT 绰绰有余**\n- **VRAM 需求**: ~2-3GB（125M fp16 模型 + batch_size=8 × seq_len=512 的 activations）\n- **单 run GPU 时间**: ~15-30 min（参数量 24x 少 + seq_length 4x 短，可大幅提高 batch_size 进一步加速）\n- **3 strategies × 1 seed 总计**: ~1-1.5h\n- 可与现有 Qwen 训练**并行**跑在同一张卡上（VRAM 充足）\n\n## 关键风险\n\n1. **LoRA target_modules 不匹配**（致命）— 当前硬编码 `q_proj`/`v_proj`，CodeBERT 用 `query`/`value`，不改会直接报错\n2. **HuggingFace 不可达** — 服务器无法直接访问 huggingface.co，需要 `source /etc/network_turbo` 开代理或用 ModelScope 下载\n3. **序列截断 512 vs 2048** — 训练数据按 2048 token 设计，CodeBERT 只支持 514，长上下文会被大幅截断，可能影响效果（这是架构级限制，不是 bug）\n4. **`dtype` 参数兼容性**（非致命）— 模型会以 fp32 加载而非 fp16，Accelerator 的 mixed_precision 会处理但初始内存占用更大"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-codebert-feasibility.md"
+}

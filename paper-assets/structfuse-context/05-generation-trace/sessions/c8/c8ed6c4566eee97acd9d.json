@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8ed6c4566eee97acd9d",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "check m2 status 20260514 v2",
+  "task_key": "worker_check_m2_status_20260514_v2_20260514T190621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_m2_status_20260514_v2_20260514T190621_result.json",
+    "occurrence": 1,
+    "bytes": 3937,
+    "sha256": "2d0eff81c3d00504865e15f53e0e9753dc360e9af48518bab2d12f0802f3954a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果\n\n### 检查 1: M2 训练进程存活\n```\n337267    07:42:43 bash run_m2_full_qwen.sh\n519791    01:03:46 bash -c rm -f /tmp/agent-ml-exit/m2_full_starcoder.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \"EXIT_CODE=$_EC\" >> ~/runs/structfuse-context/m2_full_starcoder.log; printf \"%s|%s\\n\" \"$_EC\" \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\" > /tmp/agent-ml-exit/m2_full_starcoder.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/structfuse && export CUDA_VISIBLE_DEVICES=1 && timeout 518400 env bash -c 'bash -c \"cd /root/structfuse && bash run_m2_full_starcoder_resume.sh\"'; } > ~/runs/structfuse-context/m2_full_starcoder.log 2>&1\n```\n\n### 检查 2: 各 chain 产出 runs 数\n\n**/root/autodl-tmp/structfuse/full_m2_outputs/**:\n```\ntotal 4\ndrwxr-xr-x  3 root root   32 May 14 00:59 .\ndrwxr-xr-x 17 root root 4096 May 14 18:26 ..\ndrwxr-xr-x  2 root root   31 May 14 00:59 random_s42\n```\n\n**/root/structfuse/outputs/m2_full_runs/qwen/**:\n```\nls: cannot access '/root/structfuse/outputs/m2_full_runs/qwen/': No such file or directory\n```\n\n**/root/structfuse/outputs/m2_full_runs/starcoder/**:\n```\nls: cannot access '/root/structfuse/outputs/m2_full_runs/starcoder/': No such file or directory\n```\n\n### 检查 3: 当前正在训练哪个 run\n\n**/root/autodl-tmp/structfuse/full_m2_outputs/*/wandb/**:\n```\ntotal 0\ndrwxr-xr-x 2 root root 31 May 14 00:59 random_s42\n```\n\n**日志文件列表** (`/root/runs/structfuse-context/`):\n```\ntotal 8768\n-rw-r--r-- 1 root root 3534927 May 15 03:06 m1_reextract_v2.log\n-rw-r--r-- 1 root root 3880321 May 15 03:06 m1_rerun.log\n-rw-r--r-- 1 root root     994 May 15 02:57 m2_full_starcoder.log\n-rw-r--r-- 1 root root     157 May 14 19:17 m2_full_qwen.log\n-rw-r--r-- 1 root root   50951 May 14 01:31 sc_data_build.log\n```\n\n**m2_full_qwen.log 尾部**:\n```\n==========================================\n[1/9] Starting: random_s42 at Thu May 14 01:39:30 CST 2026\n==========================================\nEXIT_CODE=0\n```\n\n**m2_full_starcoder.log 尾部**:\n```\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\n  step 50  loss=0.6781  lr=3.42e-06\n  step 100  loss=1.1000  lr=6.98e-06\n  step 150  loss=0.3684  lr=1.05e-05\n  step 200  loss=0.4080  lr=1.41e-05\n```\n\n### 检查 4: m1_reextract_v2 进度\n\n两个预期路径均无 jsonl 文件：\n```\n/root/autodl-tmp/structfuse/extraction_v2/all.jsonl — No such file or directory\n/root/structfuse/outputs/m1_reextract_v2/recovered.jsonl — No such file or directory\nfind /root/autodl-tmp/structfuse/ -name \"*.jsonl\" -path \"*reextract*\" — (无结果)\nfind /root/structfuse/outputs/ — No such file or directory\n```\n\n**m1_reextract_v2.log 尾部**（进程仍在运行）:\n```\n2026-05-15 03:06:28,487 [INFO] batch_extract: [facebookresearch/hydra] processed 200/402 instances\n2026-05-15 03:06:33,281 [INFO] batch_extract: [facebookresearch__hydra.0f03eb60.func_pm_remove_assign__cprdx2mm] CodeQL call_graph: 120 entries, 36 reachable files (threshold=1)\n2026-05-15 03:06:44,288 [INFO] batch_extract: [facebookresearch__hydra.0f03eb60.func_pm_remove_assign__eis10fmy] CodeQL call_graph: 336 entries, 44 reachable files (threshold=1)\n2026-05-15 03:06:55,432 [INFO] batch_extract: [facebookresearch__hydra.0f03eb60.func_pm_remove_assign__em226h0t] CodeQL call_graph: 1 entries, 1 reachable files (threshold=1)\n2026-05-15 03:07:05,157 [INFO] batch_extract: [facebookresearch__hydra.0f03eb60.func_pm_remove_assign__g9z2lch9] CodeQL call_graph: 142 entries, 19 reachable files (threshold=1)\n```\n\n### 检查 5: BM25 watcher tmux 状态\n```\nCommand blocked: 'tmux' is not allowed in read-only mode.\n```\n（`tmux` 不在 ssh_read_only 白名单中，无法执行）\n\n### 检查 6: GPU 使用\n```\n0, 100 %, 50641 MiB, 97887 MiB\n1, 100 %, 53927 MiB, 97887 MiB\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-m2-status-20260514-v2.md"
+}

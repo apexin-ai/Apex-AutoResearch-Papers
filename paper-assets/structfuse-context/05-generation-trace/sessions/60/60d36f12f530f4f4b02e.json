@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60d36f12f530f4f4b02e",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ssh eval2000 check v2",
+  "task_key": "worker_ssh_eval2000_check_v2_20260514T014910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval2000_check_v2_20260514T014910_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "fe7cb74cedd47276641a2891fd1211e42a2b7cffa4a1cb751f4c6f4f08058cdf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志最后一行是 `step 2000 loss=0.0429`，但 **eval@2000 还没出**——训练刚到 step 2000，eval 还没开始跑。\n\n已有的 eval checkpoint 汇总：\n\n| Eval | val_loss | R@1 | R@5 | R@10 |\n|------|----------|-----|-----|------|\n| @500 | 0.4869 | 0.5332 | 0.9540 | 1.0 |\n| @1000 | **0.4651** | **0.5527** | 0.9594 | 1.0 |\n| @1500 | 0.5365 | 0.5228 | 0.9550 | 1.0 |\n\neval@1000 是目前的 best（val_loss 和 R@1 均最优）。eval@1500 出现了明显退化（val_loss 升高、R@1 下降），进入 epoch 2 后有 overfitting 迹象。\n\n训练正在继续（step 2000 刚打印），eval@2000 应该很快会出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval2000-check-v2.md"
+}

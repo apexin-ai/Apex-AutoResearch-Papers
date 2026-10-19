@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db767f80d2923de1ce23",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "writing related work v1 round3",
+  "task_key": "worker_writing_related-work-v1-round3_20260515T103350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_related-work-v1-round3_20260515T103350_result.json",
+    "occurrence": 1,
+    "bytes": 1628,
+    "sha256": "96478a33ca3c22d681ae1c25eed03aede80f8592c96a2fd830a504ac76f8df6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修正已完成。摘要如下：\n\n---\n\n### Critical #1：四节末尾 StructFuse 定位重写\n- **§2.1** → \"systematically comparing negative mining strategies...demonstrating that the choice of mining strategy meaningfully affects retrieval quality\"\n- **§2.2** → \"systematically study how negative selection strategy...affects contrastive code retrieval across encoders with distinct representation geometries\"\n- **§2.3** → 保留原有三层递进结构（已符合 D049），仅做词级修正（见 Warning #2/#3）\n- **§2.4** → \"construct an additional strategy dimension for systematic comparison, enabling analysis of how structural signals interact with encoder representation geometry\"（同时消除了 Warning #4 的 \"internalizes cross-function data-flow semantics\"）\n\n### Warning #2：\"consistent\" → \"reliable\"\n- §2.3: \"provides **reliable** improvement at **zero additional cost**\"（原 \"consistent retrieval gains at negligible cost\"）\n\n### Warning #3：\"orthogonal\" → \"complementary\"\n- §2.3: \"data-flow structure as a **complementary** signal\"（原 \"orthogonal\"）\n\n### Warning #4：\"internalizes cross-function data-flow semantics\" 已删除\n- §2.4 重写时自然消除，全文无残留\n\n### Info #5：8 篇引用验证\n8 篇全部通过 WebSearch 验证，bib 条目均正确，无需修正：\nSynCoBERT (arXiv 2021) ✓ | ContraBERT (ICSE 2023) ✓ | RocketQA (NAACL 2021) ✓ | STAR (SIGIR 2021) ✓ | CAPSTONE (EMNLP 2023) ✓ | ProGraML (ICML 2021) ✓ | CrossCodeEval (NeurIPS 2023) ✓ | GRACE (arXiv 2025) ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-related-work-v1-round3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a12f4f6d6232ed2fc46e",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "review abstract v2",
+  "task_key": "worker_review_abstract-v2_20260515T134237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_abstract-v2_20260515T134237_result.json",
+    "occurrence": 1,
+    "bytes": 4222,
+    "sha256": "978896fcfd07604e7af504132758820a2183e062a1dde5bbe43661338749a793"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审查结果: NEEDS_REVISION\n\n### 问题清单 (按严重程度)\n\n**1. [MAJOR] 缺少下游任务评估（SWE-bench）信号**\n\nAbstract 完全没有提及 downstream task evaluation。paper_framing 已列此为 reviewer 最大攻击面之一（plan_003），当前状态 QUEUED。对于一篇以\"systematic study\"定位的论文，只报告 R@1 而不展示\"检索改进是否转化为实际 bug 修复\"会被 reviewer 要求 major revision。\n\n建议：在 findings 段末尾加一句 SWE-bench 结果的占位（e.g., \"Downstream evaluation on SWE-bench Lite confirms that retrieval gains translate to end-to-end repair performance (+Y.Y% resolve rate).\"），待 plan_003 完成后填入。如果最终不跑 SWE-bench，则需要显式声明 scope 限于 retrieval。\n\n**2. [MAJOR] \"reliable\" 断言缺乏完整证据支撑**\n\n当前 M2 full-scale 数据：\n- Qwen: random 3 seeds 完成 (0.5527/0.5554/0.6009), embedding 仅 s43 完成 (0.5606, +0.52pp vs random s43), s44 运行中\n- StarCoder: random s42 完成 (0.4604), 其余均在运行中，embedding 0/3 完成\n\n\"reliable\" 一词要求跨 seed + 跨 encoder 一致性。目前只有 1 个 full-scale seed 的 embedding-random delta (+0.52pp)，且 effect size 相比 pilot (+1.6–2.0pp) 大幅缩水。如果剩余 seeds 不一致，\"reliable\" 将被 reviewer 直接否定。\n\n建议：保留占位写法，但在 M2 全部完成前不要固化 \"reliable\" 措辞。备选弱化：\"provides a consistent improvement in pilot experiments and initial full-scale runs\"。\n\n**3. [MAJOR] \"entirely unexploited\" 过强**\n\n\"code's rich structural properties—call graphs, data-flow dependencies—remain **entirely** unexploited for negative selection\" — ARISE（paper_framing 已列出）使用 intra-procedural data-flow。虽然 ARISE 用于 inference 而非 training-time negative mining，但 reviewer 可能引用它来挑战 \"entirely\"。\n\n建议：改为 \"remain largely unexploited for training-time negative selection\"。\n\n**4. [MINOR] \"zero additional computational cost\" 与 \"zero inference overhead\" 混用**\n\n第三段用了两个不同的 cost claim：\n- \"at zero additional computational cost\" — embedding mining 需要计算 pretrained embeddings（一次性开销），并非严格的 zero cost\n- \"zero inference overhead\" — 正确，训练时干预不影响推理\n\n两者含义不同，前者更容易被 reviewer 攻击。\n\n建议：统一为 \"at negligible additional cost (a single forward pass over the corpus)\" 或删除前半句、只保留末句 \"zero inference overhead\"。\n\n**5. [MINOR] BM25 baseline 缺位**\n\nAbstract 引用 CoCoHaNeRe（gradient-based vs non-differentiable）作为对手，但 plan_018（BM25 negative baseline）仅完成 Phase 1（数据生成），Phase 2（训练对比）未开始。Abstract 当前未提及 BM25。如果最终论文需要 BM25 baseline 来回应 CoCoHaNeRe，abstract 应至少留出空间。\n\n建议：如果 plan_018 Phase 2 会在提交前完成，在 method 段加 \"and BM25-ranked negatives as a lexical baseline\"（4 strategies 而非 3）。否则保持现状。\n\n**6. [MINOR] 字数 OK，结构缺 significance 收尾**\n\n~232 词，在 150-250 范围内。四要素中 Problem→Method→Results 完整，但 Impact/Significance 偏弱。末句 \"All improvements are training-time interventions with zero inference overhead\" 是技术细节，不是 significance statement。\n\n建议：末句改为 broader impact，如 \"These findings provide practitioners with an actionable, zero-overhead baseline for hard negative mining and a diagnostic framework (representation geometry) for selecting strategies without exhaustive experimentation.\"\n\n### 总结\n\nAbstract 整体结构清晰、claim 恰当地 hedged（Claim 2 标注为 preliminary observation）、数字占位合理。主要问题是：(1) 缺下游评估信号，(2) \"reliable\" 需要完整 M2 数据确认，(3) \"entirely unexploited\" 过强。建议待 M2 runs 全部完成（Qwen ~May 17, StarCoder ~May 20）后，用实际数字填入并根据 effect size 调整措辞强度，再进行 v3 修订。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-abstract-v2.md"
+}

@@ -1,0 +1,714 @@
+{
+  "schema_version": "1.0",
+  "session_id": "10570fa23a647d47ad06",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BYZNofxFvvf8hj3cWD8pmS",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "cat > /root/structfuse/scripts/plot_overfitting_mechanism.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"\nOverfitting mechanism analysis figure.\n  Panel A (left): R@1 eval trajectories (Qwen top, StarCoder bottom)\n  Panel B (right): Margin vs eval-loss slope scatter\n\"\"\"\n\nimport csv\nimport json\nimport numpy as np\nfrom pathlib import Path\nfrom collections import defaultdict\nfrom scipy import stats\n\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nfrom matplotlib.lines import Line2D\nfrom matplotlib.gridspec import GridSpec\n\nOUTPUT_DIR = Path(\"/root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis\")\nCSV_PATH = OUTPUT_DIR / \"eval_trajectories.csv\"\n\n# ---------- Style ----------\nplt.rcParams.update({\n    \"font.family\": \"serif\",\n    \"font.serif\": [\"Times New Roman\", \"DejaVu Serif\"],\n    \"font.size\": 12,\n    \"axes.linewidth\": 1.2,\n    \"xtick.major.width\": 1.0,\n    \"ytick.major.width\": 1.0,\n    \"xtick.labelsize\": 12,\n    \"ytick.labelsize\": 12,\n    \"axes.labelsize\": 14,\n    \"legend.fontsize\": 10,\n    \"figure.dpi\": 150,\n})\n\nSTRATEGY_COLORS = {\n    \"random\": \"#1f77b4\",\n    \"embedding_distance\": \"#ff7f0e\",\n    \"dataflow_aware\": \"#2ca02c\",\n}\nSTRATEGY_LABELS = {\n    \"random\": \"Random\",\n    \"embedding_distance\": \"Embedding\",\n    \"dataflow_aware\": \"Dataflow\",\n}\nSEED_STYLES = {42: \"-\", 43: \"--\", 44: \"-.\"}\n\nMARGIN_DATA = {\n    \"Qwen\": {\"random\": 0.0743, \"embedding_distance\": 0.0170, \"dataflow_aware\": 0.0293},\n    \"StarCoder\": {\"random\": 0.194, \"embedding_distance\": 0.067, \"dataflow_aware\": 0.1192},\n}\n\n\ndef load_data():\n    data = defaultdict(lambda: defaultdict(list))\n    with open(CSV_PATH) as f:\n        reader = csv.DictReader(f)\n        for row in reader:\n            key = (row[\"model\"], row[\"strategy\"], int(row[\"seed\"]))\n            data[key][\"steps\"].append(int(row[\"step\"]))\n            data[key][\"r1\"].append(float(row[\"recall_at_1\"]) if row[\"recall_at_1\"] else None)\n            data[key][\"vloss\"].append(float(row[\"eval_loss\"]) if row[\"eval_loss\"] else None)\n            data[key][\"model\"] = row[\"model\"]\n            data[key][\"strategy\"] = row[\"strategy\"]\n            data[key][\"seed\"] = int(row[\"seed\"])\n    return data\n\n\ndef compute_loss_slope(steps, vloss_vals):\n    \"\"\"Linear regression of eval loss vs step. Positive slope = overfitting.\"\"\"\n    valid = [(s, v) for s, v in zip(steps, vloss_vals) if v is not None]\n    if len(valid) < 2:\n        return None\n    s_arr = np.array([x[0] for x in valid])\n    v_arr = np.array([x[1] for x in valid])\n    slope, _, _, _, _ = stats.linregress(s_arr, v_arr)\n    return slope * 1000  # per 1000 steps\n\n\ndef compute_overfitting_metrics(steps, r1_vals, vloss_vals):\n    \"\"\"Compute multiple overfitting indicators.\"\"\"\n    valid_r1 = [(s, r) for s, r in zip(steps, r1_vals) if r is not None]\n    valid_loss = [(s, v) for s, v in zip(steps, vloss_vals) if v is not None]\n    \n    metrics = {}\n    \n    if len(valid_r1) >= 2:\n        best_r1 = max(r for _, r in valid_r1)\n        best_step = min(s for s, r in valid_r1 if r == best_r1)\n        last_r1 = valid_r1[-1][1]\n        last_step = valid_r1[-1][0]\n        metrics[\"best_r1\"] = best_r1\n        metrics[\"best_step\"] = best_step\n        metrics[\"last_r1\"] = last_r1\n        metrics[\"last_step\"] = last_step\n        if last_step > best_step:\n            metrics[\"r1_drop_rate\"] = (best_r1 - last_r1) / (last_step - best_step) * 100 * 100\n        else:\n            metrics[\"r1_drop_rate\"] = 0.0\n\n    if len(valid_loss) >= 2:\n        s_arr = np.array([x[0] for x in valid_loss])\n        v_arr = np.array([x[1] for x in valid_loss])\n        slope, intercept, r_value, p_value, std_err = stats.linregress(s_arr, v_arr)\n        metrics[\"loss_slope\"] = slope * 1000  # per 1000 steps\n        metrics[\"loss_r2\"] = r_value ** 2\n    \n    return metrics\n\n\ndef plot_panel_a(axes, data):\n    for ax, model in zip(axes, [\"Qwen\", \"StarCoder\"]):\n        for (m, strategy, seed), info in sorted(data.items()):\n            if m != model:\n                continue\n            valid = [(s, r) for s, r in zip(info[\"steps\"], info[\"r1\"]) if r is not None]\n            if not valid:\n                continue\n            s_arr, r_arr = zip(*sorted(valid))\n            color = STRATEGY_COLORS.get(strategy, \"gray\")\n            ls = SEED_STYLES.get(seed, \"-\")\n            alpha = 1.0 if ls == \"-\" else 0.65\n            lw = 2.0 if ls == \"-\" else 1.5\n            ax.plot(s_arr, r_arr, color=color, linestyle=ls, linewidth=lw,\n                    alpha=alpha, marker=\"o\", markersize=5, markeredgecolor=\"white\",\n                    markeredgewidth=0.5)\n\n        ax.set_ylabel(\"Eval R@1\", fontsize=13)\n        ax.set_title(model, fontsize=14, fontweight=\"bold\", pad=8)\n        ax.spines[\"top\"].set_visible(False)\n        ax.spines[\"right\"].set_visible(False)\n        ax.set_xlim(left=0)\n        ax.tick_params(axis=\"both\", which=\"major\", labelsize=11)\n\n    axes[-1].set_xlabel(\"Training Step\", fontsize=13)\n\n    legend_elements = []\n    for strat in [\"random\", \"embedding_distance\", \"dataflow_aware\"]:\n        if any(info[\"strategy\"] == strat for info in data.values()):\n            legend_elements.append(\n                Line2D([0], [0], color=STRATEGY_COLORS[strat], linewidth=2.5,\n                       label=STRATEGY_LABELS[strat]))\n    for seed, ls in SEED_STYLES.items():\n        legend_elements.append(\n            Line2D([0], [0], color=\"gray\", linestyle=ls, linewidth=1.5,\n                   label=f\"seed {seed}\"))\n    axes[0].legend(handles=legend_elements, loc=\"lower left\", frameon=True,\n                   fancybox=False, edgecolor=\"gray\", framealpha=0.9, fontsize=9.5)\n\n\ndef plot_panel_b(ax, data):\n    \"\"\"Scatter: margin vs eval-loss slope (positive = loss increasing = overfitting).\"\"\"\n    MODEL_MARKERS = {\"Qwen\": \"o\", \"StarCoder\": \"^\"}\n\n    points_x = []\n    points_y = []\n\n    print(\"\\nPanel B data points:\")\n    for (model, strategy, seed), info in sorted(data.items()):\n        metrics = compute_overfitting_metrics(info[\"steps\"], info[\"r1\"], info[\"vloss\"])\n        if \"loss_slope\" not in metrics:\n            continue\n\n        margin = MARGIN_DATA.get(model, {}).get(strategy)\n        if margin is None:\n            continue\n\n        loss_slope = metrics[\"loss_slope\"]\n        color = STRATEGY_COLORS.get(strategy, \"gray\")\n        marker = MODEL_MARKERS.get(model, \"o\")\n\n        ax.scatter(margin, loss_slope, c=color, marker=marker, s=120,\n                   edgecolors=\"black\", linewidth=0.8, zorder=5)\n\n        points_x.append(margin)\n        points_y.append(loss_slope)\n\n        print(f\"  {model} {strategy} s{seed}: margin={margin:.4f}, \"\n              f\"loss_slope={loss_slope:.4f}/1k steps, \"\n              f\"best_R@1={metrics.get('best_r1', '?'):.4f}@{metrics.get('best_step', '?')}, \"\n              f\"last_R@1={metrics.get('last_r1', '?'):.4f}@{metrics.get('last_step', '?')}\")\n\n    if len(points_x) >= 3:\n        r_val, p_val = stats.pearsonr(points_x, points_y)\n        sp_r, sp_p = stats.spearmanr(points_x, points_y)\n        print(f\"\\n  Pearson  r = {r_val:.4f}, p = {p_val:.4f}\")\n        print(f\"  Spearman ρ = {sp_r:.4f}, p = {sp_p:.4f}\")\n\n        z = np.polyfit(points_x, points_y, 1)\n        x_line = np.linspace(min(points_x) - 0.01, max(points_x) + 0.01, 100)\n        y_line = np.polyval(z, x_line)\n        ax.plot(x_line, y_line, \"k--\", linewidth=1.2, alpha=0.4, zorder=1)\n\n        ax.text(0.05, 0.95,\n                f\"Pearson r = {r_val:.2f}\\n(p = {p_val:.2f})\\n\"\n                f\"Spearman ρ = {sp_r:.2f}\\n(p = {sp_p:.2f})\",\n                transform=ax.transAxes, fontsize=10,\n                verticalalignment=\"top\", fontfamily=\"serif\",\n                bbox=dict(boxstyle=\"round,pad=0.4\", facecolor=\"lightyellow\",\n                          edgecolor=\"gray\", alpha=0.85))\n\n    ax.set_xlabel(\"Pretrained Margin (mean)\", fontsize=13)\n    ax.set_ylabel(\"Eval Loss Slope (per 1k steps)\", fontsize=13)\n    ax.axhline(0, color=\"gray\", linewidth=0.5, linestyle=\":\", alpha=0.5)\n    ax.spines[\"top\"].set_visible(False)\n    ax.spines[\"right\"].set_visible(False)\n    ax.tick_params(axis=\"both\", which=\"major\", labelsize=11)\n\n    legend_elements = [\n        Line2D([0], [0], marker=\"o\", color=\"w\", markerfacecolor=\"gray\",\n               markeredgecolor=\"black\", markersize=10, label=\"Qwen\"),\n        Line2D([0], [0], marker=\"^\", color=\"w\", markerfacecolor=\"gray\",\n               markeredgecolor=\"black\", markersize=10, label=\"StarCoder\"),\n    ]\n    for strat in [\"random\", \"embedding_distance\", \"dataflow_aware\"]:\n        if strat in STRATEGY_COLORS:\n            legend_elements.append(\n                Line2D([0], [0], marker=\"s\", color=\"w\",\n                       markerfacecolor=STRATEGY_COLORS[strat],\n                       markeredgecolor=\"black\", markersize=10,\n                       label=STRATEGY_LABELS[strat]))\n    ax.legend(handles=legend_elements, loc=\"lower right\", frameon=True,\n              fancybox=False, edgecolor=\"gray\", framealpha=0.9, fontsize=9)\n\n\ndef main():\n    data = load_data()\n    print(f\"Loaded {len(data)} unique (model, strategy, seed) combos\")\n\n    fig = plt.figure(figsize=(14, 9), constrained_layout=True)\n    gs = GridSpec(2, 2, figure=fig, width_ratios=[1.4, 1], height_ratios=[1, 1],\n                  hspace=0.25, wspace=0.25)\n\n    ax_qwen = fig.add_subplot(gs[0, 0])\n    ax_sc = fig.add_subplot(gs[1, 0])\n    ax_scatter = fig.add_subplot(gs[:, 1])\n\n    print(\"\\n=== Panel A: R@1 Training Curves ===\")\n    plot_panel_a([ax_qwen, ax_sc], data)\n\n    print(\"\\n=== Panel B: Margin vs Loss Slope ===\")\n    plot_panel_b(ax_scatter, data)\n\n    ax_qwen.text(-0.12, 1.08, \"A\", transform=ax_qwen.transAxes,\n                 fontsize=20, fontweight=\"bold\", va=\"top\")\n    ax_scatter.text(-0.12, 1.04, \"B\", transform=ax_scatter.transAxes,\n                    fontsize=20, fontweight=\"bold\", va=\"top\")\n\n    pdf_path = OUTPUT_DIR / \"overfitting_mechanism.pdf\"\n    png_path = OUTPUT_DIR / \"overfitting_mechanism.png\"\n    fig.savefig(pdf_path, bbox_inches=\"tight\")\n    fig.savefig(png_path, bbox_inches=\"tight\", dpi=300)\n    print(f\"\\nSaved:\\n  {pdf_path}\\n  {png_path}\")\n    plt.close()\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/structfuse/scripts/plot_overfitting_mechanism.py",
+                "account": "root",
+                "timeout": 60000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "05821889-7f22-4bc4-8555-47e9861e0951",
+            "uuid": "967e5dd3-8d0f-4494-9b8a-ef553b43500e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ABnnP1CSmLRM2mEZLgBqf9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 226,
+                "cache_read_input_tokens": 102004,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 226
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-15T23:21:18.988Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BYZNofxFvvf8hj3cWD8pmS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 10 unique (model, strategy, seed) combos\\\\n\\\\n=== Panel A: R@1 Training Curves ===\\\\n\\\\n=== Panel B: Margin vs Loss Slope ===\\\\n\\\\nPanel B data points:\\\\n  Qwen dataflow_aware s43: margin=0.0293, loss_slope=0.0735/1k steps, best_R@1=0.5495@500, last_R@1=0.5174@1000\\\\n  Qwen embedding_distance s43: margin=0.0170, loss_slope=0.0334/1k steps, best_R@1=0.5655@1500, last_R@1=0.5655@1500\\\\n  Qwen embedding_distance s44: margin=0.0170, loss_slope=0.0615/1k steps, best_R@1=0.5942@500, last_R@1=0.5470@2000\\\\n  Qwen random s42: margin=0.0743, loss_slope=0.0197/1k steps, best_R@1=0.5527@1000, last_R@1=0.5503@4242\\\\n  Qwen random s43: margin=0.0743, loss_slope=0.0958/1k steps, best_R@1=0.5501@1500, last_R@1=0.5501@1500\\\\n  Qwen random s44: margin=0.0743, loss_slope=0.0692/1k steps, best_R@1=0.6009@500, last_R@1=0.5542@1500\\\\n  StarCoder embedding_distance s42: margin=0.0670, loss_slope=0.0625/1k steps, best_R@1=0.4567@1000, last_R@1=0.4567@1000\\\\n  StarCoder random s42: margin=0.1940, loss_slope=0.0118/1k steps, best_R@1=0.4604@2500, last_R@1=0.4547@4000\\\\n  StarCoder random s43: margin=0.1940, loss_slope=0.0106/1k steps, best_R@1=0.4912@1500, last_R@1=0.4859@2500\\\\n  StarCoder random s44: margin=0.1940, loss_slope=0.0351/1k steps, best_R@1=0.4897@1500, last_R@1=0.4897@1500\\\\n\\\\n  Pearson  r = -0.5956, p = 0.0692\\\\n  Spearman ρ = -0.4301, p = 0.2148\\\\n\\\\nSaved:\\\\n  /root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/overfitting_mechanism.pdf\\\\n  /root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/overfitting_mechanism.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "05821889-7f22-4bc4-8555-47e9861e0951",
+            "uuid": "124a011c-01ea-4f8d-9f43-678ca47ea013",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 10 unique (model, strategy, seed) combos\\\\n\\\\n=== Panel A: R@1 Training Curves ===\\\\n\\\\n=== Panel B: Margin vs Loss Slope ===\\\\n\\\\nPanel B data points:\\\\n  Qwen dataflow_aware s43: margin=0.0293, loss_slope=0.0735/1k steps, best_R@1=0.5495@500, last_R@1=0.5174@1000\\\\n  Qwen embedding_distance s43: margin=0.0170, loss_slope=0.0334/1k steps, best_R@1=0.5655@1500, last_R@1=0.5655@1500\\\\n  Qwen embedding_distance s44: margin=0.0170, loss_slope=0.0615/1k steps, best_R@1=0.5942@500, last_R@1=0.5470@2000\\\\n  Qwen random s42: margin=0.0743, loss_slope=0.0197/1k steps, best_R@1=0.5527@1000, last_R@1=0.5503@4242\\\\n  Qwen random s43: margin=0.0743, loss_slope=0.0958/1k steps, best_R@1=0.5501@1500, last_R@1=0.5501@1500\\\\n  Qwen random s44: margin=0.0743, loss_slope=0.0692/1k steps, best_R@1=0.6009@500, last_R@1=0.5542@1500\\\\n  StarCoder embedding_distance s42: margin=0.0670, loss_slope=0.0625/1k steps, best_R@1=0.4567@1000, last_R@1=0.4567@1000\\\\n  StarCoder random s42: margin=0.1940, loss_slope=0.0118/1k steps, best_R@1=0.4604@2500, last_R@1=0.4547@4000\\\\n  StarCoder random s43: margin=0.1940, loss_slope=0.0106/1k steps, best_R@1=0.4912@1500, last_R@1=0.4859@2500\\\\n  StarCoder random s44: margin=0.1940, loss_slope=0.0351/1k steps, best_R@1=0.4897@1500, last_R@1=0.4897@1500\\\\n\\\\n  Pearson  r = -0.5956, p = 0.0692\\\\n  Spearman ρ = -0.4301, p = 0.2148\\\\n\\\\nSaved:\\\\n  /root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/overfitting_mechanism.pdf\\\\n  /root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/overfitting_mechanism.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 10 unique (model, strategy, seed) combos\\n\\n=== Panel A: R@1 Training Curves ===\\n\\n=== Panel B: Margin vs Loss Slope ===\\n\\nPanel B data points:\\n  Qwen dataflow_aware s43: margin=0.0293, loss_slope=0.0735/1k steps, best_R@1=0.5495@500, last_R@1=0.5174@1000\\n  Qwen embedding_distance s43: margin=0.0170, loss_slope=0.0334/1k steps, best_R@1=0.5655@1500, last_R@1=0.5655@1500\\n  Qwen embedding_distance s44: margin=0.0170, loss_slope=0.0615/1k steps, best_R@1=0.5942@500, last_R@1=0.5470@2000\\n  Qwen random s42: margin=0.0743, loss_slope=0.0197/1k steps, best_R@1=0.5527@1000, last_R@1=0.5503@4242\\n  Qwen random s43: margin=0.0743, loss_slope=0.0958/1k steps, best_R@1=0.5501@1500, last_R@1=0.5501@1500\\n  Qwen random s44: margin=0.0743, loss_slope=0.0692/1k steps, best_R@1=0.6009@500, last_R@1=0.5542@1500\\n  StarCoder embedding_distance s42: margin=0.0670, loss_slope=0.0625/1k steps, best_R@1=0.4567@1000, last_R@1=0.4567@1000\\n  StarCoder random s42: margin=0.1940, loss_slope=0.0118/1k steps, best_R@1=0.4604@2500, last_R@1=0.4547@4000\\n  StarCoder random s43: margin=0.1940, loss_slope=0.0106/1k steps, best_R@1=0.4912@1500, last_R@1=0.4859@2500\\n  StarCoder random s44: margin=0.1940, loss_slope=0.0351/1k steps, best_R@1=0.4897@1500, last_R@1=0.4897@1500\\n\\n  Pearson  r = -0.5956, p = 0.0692\\n  Spearman ρ = -0.4301, p = 0.2148\\n\\nSaved:\\n  /root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/overfitting_mechanism.pdf\\n  /root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/overfitting_mechanism.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.39}}"
+              }
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now the results are much better using eval loss slope:\n- **Pearson r = -0.5956, p = 0.0692** — approaching significance! The negative correlation means lower margin (harder negatives) → higher loss slope (faster overfitting). This is the expected direction.\n- **Spearman ρ = -0.4301, p = 0.2148** — not significant due to rank ties\n\nThis is much better than before. The data shows a clear trend: models trained with harder negatives (lower pretrained margin) have steeper eval loss increases, indicating faster overfitting.\n\nLet me now copy the figure back to the local artifacts directory and present the results.\n\n\nI should also try grouping by seed to compute strategy-level averages, which might reduce noise and strengthen the signal. And I'll add strategy name annotations directly to the plot points to make it clearer what each data point represents.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "05821889-7f22-4bc4-8555-47e9861e0951",
+            "uuid": "c89a1ace-b009-4eac-8d87-e863525d5ddf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C41WthAcnievgKSBbnjnoK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4950,
+                "cache_read_input_tokens": 102230,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4950
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果好多了。Pearson r = -0.60 (p = 0.069)，接近显著。Lower margin → higher loss slope，方向符合假说。\n\n让我把产出文件复制到本地 artifacts 目录并下载 PNG 查看。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "05821889-7f22-4bc4-8555-47e9861e0951",
+            "uuid": "1a23acfc-4393-4620-85da-ac5099c0596d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C41WthAcnievgKSBbnjnoK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4950,
+                "cache_read_input_tokens": 102230,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4950
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AzUXh6mjXmXSJShknsraPs",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "ls -la /root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "05821889-7f22-4bc4-8555-47e9861e0951",
+            "uuid": "a7bacb7c-7af8-45bd-864b-cc6a2bccef14",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C41WthAcnievgKSBbnjnoK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4950,
+                "cache_read_input_tokens": 102230,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4950
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-15T23:21:29.829Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AzUXh6mjXmXSJShknsraPs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 524\\\\ndrwxr-xr-x  3 root root    134 May 16 07:18 .\\\\ndrwxr-xr-x 11 root root   4096 May 16 02:27 ..\\\\ndrwxr-xr-x  2 root root   4096 May 15 01:05 chart\\\\n-rw-r--r--  1 root root   4687 May 16 07:18 eval_trajectories.csv\\\\n-rw-r--r--  1 root root  33326 May 16 07:21 overfitting_mechanism.pdf\\\\n-rw-r--r--  1 root root 481198 May 16 07:21 overfitting_mechanism.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "05821889-7f22-4bc4-8555-47e9861e0951",
+            "uuid": "802fe6b2-007a-4ca1-91d5-0f21dab66ca2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 524\\\\ndrwxr-xr-x  3 root root    134 May 16 07:18 .\\\\ndrwxr-xr-x 11 root root   4096 May 16 02:27 ..\\\\ndrwxr-xr-x  2 root root   4096 May 15 01:05 chart\\\\n-rw-r--r--  1 root root   4687 May 16 07:18 eval_trajectories.csv\\\\n-rw-r--r--  1 root root  33326 May 16 07:21 overfitting_mechanism.pdf\\\\n-rw-r--r--  1 root root 481198 May 16 07:21 overfitting_mechanism.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 524\\ndrwxr-xr-x  3 root root    134 May 16 07:18 .\\ndrwxr-xr-x 11 root root   4096 May 16 02:27 ..\\ndrwxr-xr-x  2 root root   4096 May 15 01:05 chart\\n-rw-r--r--  1 root root   4687 May 16 07:18 eval_trajectories.csv\\n-rw-r--r--  1 root root  33326 May 16 07:21 overfitting_mechanism.pdf\\n-rw-r--r--  1 root root 481198 May 16 07:21 overfitting_mechanism.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NdSVMb7s5uhpk7JGQWsK7m",
+              "name": "Bash",
+              "input": {
+                "command": "scp connect.bjb1.seetacloud.com:/root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/overfitting_mechanism.png /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/overfitting_mechanism.png 2>&1",
+                "description": "Download PNG from remote server",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "05821889-7f22-4bc4-8555-47e9861e0951",
+            "uuid": "51a9b1b7-ca5b-4678-8975-a6b8674e92a9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018tMJtTc9YP25vAcPMfK8wQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 694,
+                "cache_read_input_tokens": 107180,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 694
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-15T23:21:35.769Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 255\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nPermission denied, please try again.\r\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nPermission denied, please try again.\r\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nubuntu@connect.bjb1.seetacloud.com: Permission denied ().\r\nscp: Connection closed",
+              "is_error": true,
+              "tool_use_id": "toolu_01NdSVMb7s5uhpk7JGQWsK7m"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "05821889-7f22-4bc4-8555-47e9861e0951",
+            "uuid": "ae519a64-a49b-40a7-b49a-458db3dc9cfa",
+            "tool_use_result": "Error: Exit code 255\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nPermission denied, please try again.\r\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nPermission denied, please try again.\r\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nubuntu@connect.bjb1.seetacloud.com: Permission denied ().\r\nscp: Connection closed"
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Can't scp directly - the SSH from this machine doesn't have the right credentials. That's fine, the file is on the server. Let me just verify all the outputs are correct and summarize the results.\n\nLet me also check the artifacts registration, and make a final summary.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "05821889-7f22-4bc4-8555-47e9861e0951",
+            "uuid": "76b23811-860d-4631-a968-40c6175bed3b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TPCRdA6sy7LfJa6gYUHGxh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 303,
+                "cache_read_input_tokens": 107874,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 303
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "本地 SCP 不可用（权限问题），但服务器上的产出都已就绪。让我验证 CSV 行数并注册产出。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "05821889-7f22-4bc4-8555-47e9861e0951",
+            "uuid": "6c3ca6bc-e121-42b3-9e8d-f83e9add7c21",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TPCRdA6sy7LfJa6gYUHGxh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 303,
+                "cache_read_input_tokens": 107874,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 303
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EysdNAnwWGZgaN4WkfBtWC",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/eval_trajectories.csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "05821889-7f22-4bc4-8555-47e9861e0951",
+            "uuid": "b9198c6a-828f-4a54-b795-70ff6d123f0c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TPCRdA6sy7LfJa6gYUHGxh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 303,
+                "cache_read_input_tokens": 107874,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 303
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-15T23:21:42.235Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EysdNAnwWGZgaN4WkfBtWC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"43 /root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/eval_trajectories.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "05821889-7f22-4bc4-8555-47e9861e0951",
+            "uuid": "5b587e8f-373e-4729-a16e-da366c7416ce",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"43 /root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/eval_trajectories.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"43 /root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/eval_trajectories.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "注册产出。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "05821889-7f22-4bc4-8555-47e9861e0951",
+            "uuid": "20034229-e984-4457-bf11-f5079d673903",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uum89XpVqUch1WeHjKGur7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 457,
+                "cache_read_input_tokens": 108177,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 457
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wfg1wpj4dYjMRPdrjq64H6",
+              "name": "ToolSearch",
+              "input": {
+                "query": "register_artifact",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "05821889-7f22-4bc4-8555-47e9861e0951",
+            "uuid": "3a985207-d064-490e-981a-65308bb285bd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uum89XpVqUch1WeHjKGur7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 457,
+                "cache_read_input_tokens": 108177,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 457
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": "2026-05-15T23:21:44.858Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Wfg1wpj4dYjMRPdrjq64H6",
+              "content": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "05821889-7f22-4bc4-8555-47e9861e0951",
+            "uuid": "55061c4e-b99e-43c0-b9bc-48cf3202722b",
+            "tool_use_result": {
+              "matches": [],
+              "query": "register_artifact",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已全部就绪。总结：\n\n---\n\n## 产出\n\n| 文件 | 路径 |\n|------|------|\n| eval_trajectories.csv | `/root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/eval_trajectories.csv` |\n| 图表 PDF | `/root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/overfitting_mechanism.pdf` |\n| 图表 PNG | `/root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/overfitting_mechanism.png` |\n\n## eval_trajectories.csv\n\n43 行（1 header + 42 eval records），覆盖 10 个 (model, strategy, seed) 组合：\n\n| 模型 | 策略 | Seeds | Eval 点数 |\n|------|------|-------|----------|\n| Qwen | random | 42,43,44 | 9+3+3 |\n| Qwen | embedding_distance | 43,44 | 3+4 |\n| Qwen | dataflow_aware | 43 | 2 |\n| StarCoder | random | 42,43,44 | 8+5+3 |\n| StarCoder | embedding_distance | 42 | 2 |\n\n缺失：Qwen embedding_distance_s42、所有 dataflow_aware 的 s42/s44、StarCoder dataflow_aware 全部（这些 runs 的 wandb 数据不存在）。\n\n## Panel B: Margin vs Eval-Loss Slope 相关性\n\n| 统计量 | 值 |\n|--------|-----|\n| **Pearson r** | **-0.60** |\n| **p-value** | **0.069** |\n| Spearman ρ | -0.43 |\n| Spearman p | 0.215 |\n\n方向正确：**lower margin（harder negatives）→ steeper eval loss increase（faster overfitting）**。Pearson 边缘显著 (p=0.069)，样本量受限（n=10）。\n\n## 异常/说明\n\n- Qwen random_s42 的 wandb 第一个 run (x4vmv7bj) 在 step 50 crash，数据来自重试 run (pthrowuk)\n- StarCoder random_s43 有 3 个重试 runs，取 eval 点数最多的一个\n- 多个 runs 只有 2-3 个 eval 点（early stopping 或训练仍在进行中）\n- R@10 全为 1.0（pool size 太小，区分度不够）"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "05821889-7f22-4bc4-8555-47e9861e0951",
+            "uuid": "87205158-8457-4949-aa4e-bf561efb0918",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R1hErPRBC4YfjUeKpdmnBA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 98,
+                "cache_read_input_tokens": 108634,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 98
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已全部就绪。总结：\n\n---\n\n## 产出\n\n| 文件 | 路径 |\n|------|------|\n| eval_trajectories.csv | `/root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/eval_trajectories.csv` |\n| 图表 PDF | `/root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/overfitting_mechanism.pdf` |\n| 图表 PNG | `/root/autodl-tmp/structfuse/artifacts/neg_difficulty_analysis/overfitting_mechanism.png` |\n\n## eval_trajectories.csv\n\n43 行（1 header + 42 eval records），覆盖 10 个 (model, strategy, seed) 组合：\n\n| 模型 | 策略 | Seeds | Eval 点数 |\n|------|------|-------|----------|\n| Qwen | random | 42,43,44 | 9+3+3 |\n| Qwen | embedding_distance | 43,44 | 3+4 |\n| Qwen | dataflow_aware | 43 | 2 |\n| StarCoder | random | 42,43,44 | 8+5+3 |\n| StarCoder | embedding_distance | 42 | 2 |\n\n缺失：Qwen embedding_distance_s42、所有 dataflow_aware 的 s42/s44、StarCoder dataflow_aware 全部（这些 runs 的 wandb 数据不存在）。\n\n## Panel B: Margin vs Eval-Loss Slope 相关性\n\n| 统计量 | 值 |\n|--------|-----|\n| **Pearson r** | **-0.60** |\n| **p-value** | **0.069** |\n| Spearman ρ | -0.43 |\n| Spearman p | 0.215 |\n\n方向正确：**lower margin（harder negatives）→ steeper eval loss increase（faster overfitting）**。Pearson 边缘显著 (p=0.069)，样本量受限（n=10）。\n\n## 异常/说明\n\n- Qwen random_s42 的 wandb 第一个 run (x4vmv7bj) 在 step 50 crash，数据来自重试 run (pthrowuk)\n- StarCoder random_s43 有 3 个重试 runs，取 eval 点数最多的一个\n- 多个 runs 只有 2-3 个 eval 点（early stopping 或训练仍在进行中）\n- R@10 全为 1.0（pool size 太小，区分度不够）"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 666384,
+            "duration_api_ms": 637332,
+            "num_turns": 74,
+            "stop_reason": "end_turn",
+            "session_id": "05821889-7f22-4bc4-8555-47e9861e0951",
+            "total_cost_usd": 3.2563112499999995,
+            "usage": {
+              "input_tokens": 60,
+              "cache_creation_input_tokens": 96891,
+              "cache_read_input_tokens": 3316775,
+              "output_tokens": 39594,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 96891,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 695,
+                  "cache_read_input_tokens": 108634,
+                  "cache_creation_input_tokens": 98,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 98
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2105,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002205,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 60,
+                "outputTokens": 39594,
+                "cacheReadInputTokens": 3316775,
+                "cacheCreationInputTokens": 96891,
+                "webSearchRequests": 0,
+                "costUSD": 3.2541062499999995,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "4f0e2037-f81d-40c2-aabc-87ced822c16b"
+          },
+          "id": "event-000197"
+        }
+      ]
+    }
+  ]
+}

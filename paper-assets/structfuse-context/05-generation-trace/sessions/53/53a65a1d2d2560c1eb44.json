@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53a65a1d2d2560c1eb44",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "analysis save finding4 paper data",
+  "task_key": "worker_analysis_save-finding4-paper-data_20260515T183721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_save-finding4-paper-data_20260515T183721_result.json",
+    "occurrence": 1,
+    "bytes": 842,
+    "sha256": "0b11cf1d77dac4bd3b74a5a67aedef35ae5ce33ba6922a406c0a177ccee6ff84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已生成并注册。摘要：\n\n| 模型 | 策略 | Seeds | R@1 mean | R@1 std (cross-seed) |\n|------|------|-------|----------|---------------------|\n| Qwen | random | s42/s43/s44 | 0.5696 | **2.71pp** |\n| Qwen | embedding_distance | s43/s44 | 0.5774 | **2.38pp** |\n| StarCoder | random | s42/s43/s44 | 0.4796 | **1.67pp** |\n\n| Seed | embed − random delta |\n|------|---------------------|\n| s43 | +0.52pp |\n| s44 | −0.66pp |\n| mean \\|delta\\| | **0.59pp** |\n\n**Ratio**: cross-seed std / within-seed strategy delta = **4.0–4.6×**\n\n数据支持 Finding #4：seed noise（2.4–2.7pp）远大于策略效应（<0.7pp），且策略 delta 符号不一致，确认 paired comparison + cluster bootstrap 是方法论必需。\n\n文件路径：`artifacts/analysis/seed_variance_vs_strategy_effect.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-save-finding4-paper-data.md"
+}

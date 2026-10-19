@@ -1,0 +1,2217 @@
+{
+  "schema_version": "1.0",
+  "id": "4268606bddfa8ba27abb",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "ssh all experiments progress check",
+  "task_key": "worker_ssh_all_experiments_progress_check_20260514T000504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_all_experiments_progress_check_20260514T000504.log",
+    "occurrence": 1,
+    "bytes": 128530,
+    "sha256": "5686a9b5c435901b7d0688cb816b4133d604bdc2b3ad6d7c556e727362aff498"
+  },
+  "statistics": {
+    "messages": 55,
+    "user_turns": 0,
+    "tool_calls": 24,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 24,
+      "tool_result": 24,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+                "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "e25f6041-96e4-44c6-9429-9d85e77547e5",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-structfuse-context/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778722800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "c0229662-7604-421d-b20e-9c7d4d3a73d8",
+                "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to check experiment progress on a remote server using ssh_read_only. Let me load the MCP tool schemas first.",
+              "signature": "EroCClkIDRgCKkA5QVe0m24F33jooaSyyXJjKiHtKv6GnAmslb8ikdvUU5E/fbcj6nx8B1+dao8FP6y8tQHFwQOmq9p7660vzKiJMg9jbGF1ZGUtb3B1cy00LTY4ABIMxYzd6LmhSArgdWG9Ggw5AIG1JvxdCPNWCDUiMOKXwoKrqefNW3ihzB2z93DG8RKjeHLTvI8tQ0Pm3YasFHVPCalSItv73HE97l/1+SqOAUznXmjFpWXFdKBzrOYAXZoAzdGZpfr4V5CQSVYLrFXyQfWWVc52d1i9+UcD2NPzMlnrhoou4y09xTd90fWU3QyPHCkYa3P6Ppvpmk1DSAFlR52ZNMC9q0/IkQDPxgfgH2HKBY+E0bFKOM4aGmpJmKbPR6aD/GKn6iv89DkORDlr0EebA5Jbk9PIrtyTe0AYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "b4a1714e-c78f-41bb-9025-1d58447c1cb7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N2vNtEu3Sy2K1drr3T8ZsS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12572,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12572
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019RWmk4mZJXnGW4jxdxiXEs",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "904d20d7-7920-48da-ba61-756ac3f1063d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N2vNtEu3Sy2K1drr3T8ZsS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12572,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12572
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T00:05:17.547Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_019RWmk4mZJXnGW4jxdxiXEs",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "9a12f968-4eb8-4c4f-850a-ceefc3e4960d",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MSbx6SyEQqtHnEfwNUdafG",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total,temperature.gpu --format=csv,noheader",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "e27857a0-573e-4cd4-b912-7bd30e705033",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JcobnmfXRoYzcZ72b3BcUJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 470,
+                "cache_read_input_tokens": 24019,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 470
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T00:05:21.754Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MSbx6SyEQqtHnEfwNUdafG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 100 %, 51621 MiB, 97887 MiB, 72\\\\n1, 100 %, 55187 MiB, 97887 MiB, 76\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "f5eea50f-7f78-4135-8af5-06a17323e710",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 100 %, 51621 MiB, 97887 MiB, 72\\\\n1, 100 %, 55187 MiB, 97887 MiB, 76\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 100 %, 51621 MiB, 97887 MiB, 72\\n1, 100 %, 55187 MiB, 97887 MiB, 76\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UwJ9hA8zo76RqjupWZWsxU",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "ps -p 73558 -o pid=,etime= 2>/dev/null",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "9358eaba-59e2-4fe6-ba90-ae78b2f705af",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RLcHVivKTKUA53MVFmqiHa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 267,
+                "cache_read_input_tokens": 24489,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 267
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T00:05:24.914Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UwJ9hA8zo76RqjupWZWsxU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "07e970a8-b016-458b-995f-fc32aa02a52d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EXueUgZd7DNHTJZAq3Q2p2",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "ps -p 73544 -o pid=,etime= 2>/dev/null",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "9d4cad3b-f069-47c9-a677-13afcb933edf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RLcHVivKTKUA53MVFmqiHa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 267,
+                "cache_read_input_tokens": 24489,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 267
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T00:05:25.617Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EXueUgZd7DNHTJZAq3Q2p2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "a6a37d9d-c142-4d5e-9dc4-70f172c8553e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The `2>/dev/null` redirect is blocked. Let me retry without it."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "4541c055-6aa3-4670-ad92-30a2b41a782a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CYWkL2nBDpk3GJrCkBodmN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 474,
+                "cache_read_input_tokens": 24756,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 474
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W74Ti8ASPjzdi2YBPAQTSr",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "ps -p 73558 -o pid=,etime=",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "fd1013e8-f99d-4b43-8bb7-5481ad69316a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CYWkL2nBDpk3GJrCkBodmN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 474,
+                "cache_read_input_tokens": 24756,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 474
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T00:05:30.077Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W74Ti8ASPjzdi2YBPAQTSr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 73558    06:26:00\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "8998cecd-677e-4274-90f6-6b57e6605dbe",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 73558    06:26:00\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \" 73558    06:26:00\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012rRS4AWZsBttEKghKkeZbW",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "ps -p 73544 -o pid=,etime=",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "f33074cd-d4e5-4345-9252-13a78563b819",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CYWkL2nBDpk3GJrCkBodmN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 474,
+                "cache_read_input_tokens": 24756,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 474
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T00:05:30.560Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012rRS4AWZsBttEKghKkeZbW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 73544    06:26:00\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "3cda67b2-e069-490f-8d8e-3a0689070e76",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 73544    06:26:00\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \" 73544    06:26:00\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MabzxxM1PYHUkRCAva9egD",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "ps -p 76627 -o pid=,etime=",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "93110ed4-2af6-45ff-9366-e2bd146a8e89",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CYWkL2nBDpk3GJrCkBodmN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 474,
+                "cache_read_input_tokens": 24756,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 474
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T00:05:31.549Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MabzxxM1PYHUkRCAva9egD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 76627    05:35:21\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "2ea7b29b-163b-4989-b041-53c488071116",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 76627    05:35:21\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \" 76627    05:35:21\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TB6GABJP3scz1HRMgueJXN",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "ps -p 74122 -o pid=,etime=",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "50205dae-fd1c-4482-86a9-c2b4f4c0b2e6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CYWkL2nBDpk3GJrCkBodmN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 474,
+                "cache_read_input_tokens": 24756,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 474
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T00:05:32.149Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TB6GABJP3scz1HRMgueJXN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 74122    06:25:09\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "d0a70639-5f77-4a1c-989a-3efcabc8aa46",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 74122    06:25:09\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \" 74122    06:25:09\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018FRYPrc8rTAp4WYFKoefrV",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "find /root/autodl-tmp/structfuse/ -path \"*qwen*\" -name \"checkpoint-*\" -type d",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "55e387c4-08f5-4f7b-bb8b-f2bba048a348",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RJ1bnEArFApQH15FNrNe1m",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 885,
+                "cache_read_input_tokens": 25230,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 885
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T00:05:36.570Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018FRYPrc8rTAp4WYFKoefrV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "8679ed2d-eef7-46f6-aaa7-aaa004b825f3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RHJNMAnTeXdW6N6JDucJU3",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "tail -50 /root/runs/m2_full_qwen/random_s42.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "e748fb42-fe4a-4080-a693-a7415ad7ca83",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RJ1bnEArFApQH15FNrNe1m",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 885,
+                "cache_read_input_tokens": 25230,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 885
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T00:05:37.909Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RHJNMAnTeXdW6N6JDucJU3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"wandb: Tracking run with wandb version 0.26.0\\\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\\\nwandb: Run data is saved locally in /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260514_013934-pthrowuk\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.12it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.12it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.87it/s]\\\\n[Epoch 1] Using pre-mined negatives (random)...\\\\n  Training loop start: 1414 batches/epoch, total_steps_per_epoch=1414\\\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n  step 50  loss=0.6716  lr=2.36e-06\\\\n  step 100  loss=0.6195  lr=4.67e-06\\\\n  step 150  loss=0.7127  lr=7.03e-06\\\\n  step 200  loss=0.6318  lr=9.34e-06\\\\n  step 250  loss=0.3339  lr=1.17e-05\\\\n  step 300  loss=0.5918  lr=1.40e-05\\\\n  step 350  loss=0.5738  lr=1.64e-05\\\\n  step 400  loss=0.2005  lr=1.87e-05\\\\n  step 450  loss=0.4374  lr=2.00e-05\\\\n  step 500  loss=0.6168  lr=2.00e-05\\\\n  [eval@500] {'val_loss': 0.486931758338973, 'recall@1': 0.5332214765100671, 'recall@5': 0.9540268456375839, 'recall@10': 1.0}\\\\n  New best val_loss=0.4869, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_val_loss\\\\n  New best R@1=0.5332, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1\\\\n  step 550  loss=0.2608  lr=1.99e-05\\\\n  step 600  loss=0.1666  lr=1.99e-05\\\\n  step 650  loss=0.2760  lr=1.98e-05\\\\n  step 700  loss=0.1415  lr=1.97e-05\\\\n  step 750  loss=0.0966  lr=1.96e-05\\\\n  step 800  loss=0.3779  lr=1.95e-05\\\\n  step 850  loss=0.1694  lr=1.94e-05\\\\n  step 900  loss=0.1534  lr=1.93e-05\\\\n  step 950  loss=0.1034  lr=1.91e-05\\\\n  step 1000  loss=0.2367  lr=1.89e-05\\\\n  [eval@1000] {'val_loss': 0.4650662785708504, 'recall@1': 0.5526845637583893, 'recall@5': 0.9593959731543624, 'recall@10': 1.0}\\\\n  New best val_loss=0.4651, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_val_loss\\\\n  New best R@1=0.5527, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1\\\\n  step 1050  loss=0.1787  lr=1.87e-05\\\\n  step 1100  loss=0.1914  lr=1.85e-05\\\\n  step 1150  loss=0.4897  lr=1.83e-05\\\\n  step 1200  loss=0.3260  lr=1.80e-05\\\\n  step 1250  loss=0.2007  lr=1.78e-05\\\\n  step 1300  loss=0.0690  lr=1.75e-05\\\\n  step 1350  loss=0.1074  lr=1.73e-05\\\\n  step 1400  loss=0.2393  lr=1.70e-05\\\\n[Epoch 2] Using pre-mined negatives (random)...\\\\n  step 1450  loss=0.0597  lr=1.67e-05\\\\n  step 1500  loss=0.1601  lr=1.63e-05\\\\n  [eval@1500] {'val_loss': 0.5364526285221113, 'recall@1': 0.5228187919463088, 'recall@5': 0.9550335570469799, 'recall@10': 1.0}\\\\n  val_loss not improved (1/0)\\\\n  step 1550  loss=0.1807  lr=1.60e-05\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "de197cc1-da39-4dd0-af90-5f89ea8fbe3c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"wandb: Tracking run with wandb version 0.26.0\\\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\\\nwandb: Run data is saved locally in /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260514_013934-pthrowuk\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.12it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.12it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.87it/s]\\\\n[Epoch 1] Using pre-mined negatives (random)...\\\\n  Training loop start: 1414 batches/epoch, total_steps_per_epoch=1414\\\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n  step 50  loss=0.6716  lr=2.36e-06\\\\n  step 100  loss=0.6195  lr=4.67e-06\\\\n  step 150  loss=0.7127  lr=7.03e-06\\\\n  step 200  loss=0.6318  lr=9.34e-06\\\\n  step 250  loss=0.3339  lr=1.17e-05\\\\n  step 300  loss=0.5918  lr=1.40e-05\\\\n  step 350  loss=0.5738  lr=1.64e-05\\\\n  step 400  loss=0.2005  lr=1.87e-05\\\\n  step 450  loss=0.4374  lr=2.00e-05\\\\n  step 500  loss=0.6168  lr=2.00e-05\\\\n  [eval@500] {'val_loss': 0.486931758338973, 'recall@1': 0.5332214765100671, 'recall@5': 0.9540268456375839, 'recall@10': 1.0}\\\\n  New best val_loss=0.4869, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_val_loss\\\\n  New best R@1=0.5332, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1\\\\n  step 550  loss=0.2608  lr=1.99e-05\\\\n  step 600  loss=0.1666  lr=1.99e-05\\\\n  step 650  loss=0.2760  lr=1.98e-05\\\\n  step 700  loss=0.1415  lr=1.97e-05\\\\n  step 750  loss=0.0966  lr=1.96e-05\\\\n  step 800  loss=0.3779  lr=1.95e-05\\\\n  step 850  loss=0.1694  lr=1.94e-05\\\\n  step 900  loss=0.1534  lr=1.93e-05\\\\n  step 950  loss=0.1034  lr=1.91e-05\\\\n  step 1000  loss=0.2367  lr=1.89e-05\\\\n  [eval@1000] {'val_loss': 0.4650662785708504, 'recall@1': 0.5526845637583893, 'recall@5': 0.9593959731543624, 'recall@10': 1.0}\\\\n  New best val_loss=0.4651, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_val_loss\\\\n  New best R@1=0.5527, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1\\\\n  step 1050  loss=0.1787  lr=1.87e-05\\\\n  step 1100  loss=0.1914  lr=1.85e-05\\\\n  step 1150  loss=0.4897  lr=1.83e-05\\\\n  step 1200  loss=0.3260  lr=1.80e-05\\\\n  step 1250  loss=0.2007  lr=1.78e-05\\\\n  step 1300  loss=0.0690  lr=1.75e-05\\\\n  step 1350  loss=0.1074  lr=1.73e-05\\\\n  step 1400  loss=0.2393  lr=1.70e-05\\\\n[Epoch 2] Using pre-mined negatives (random)...\\\\n  step 1450  loss=0.0597  lr=1.67e-05\\\\n  step 1500  loss=0.1601  lr=1.63e-05\\\\n  [eval@1500] {'val_loss': 0.5364526285221113, 'recall@1': 0.5228187919463088, 'recall@5': 0.9550335570469799, 'recall@10': 1.0}\\\\n  val_loss not improved (1/0)\\\\n  step 1550  loss=0.1807  lr=1.60e-05\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"wandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260514_013934-pthrowuk\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.12it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.12it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.87it/s]\\n[Epoch 1] Using pre-mined negatives (random)...\\n  Training loop start: 1414 batches/epoch, total_steps_per_epoch=1414\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\n  step 50  loss=0.6716  lr=2.36e-06\\n  step 100  loss=0.6195  lr=4.67e-06\\n  step 150  loss=0.7127  lr=7.03e-06\\n  step 200  loss=0.6318  lr=9.34e-06\\n  step 250  loss=0.3339  lr=1.17e-05\\n  step 300  loss=0.5918  lr=1.40e-05\\n  step 350  loss=0.5738  lr=1.64e-05\\n  step 400  loss=0.2005  lr=1.87e-05\\n  step 450  loss=0.4374  lr=2.00e-05\\n  step 500  loss=0.6168  lr=2.00e-05\\n  [eval@500] {'val_loss': 0.486931758338973, 'recall@1': 0.5332214765100671, 'recall@5': 0.9540268456375839, 'recall@10': 1.0}\\n  New best val_loss=0.4869, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_val_loss\\n  New best R@1=0.5332, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1\\n  step 550  loss=0.2608  lr=1.99e-05\\n  step 600  loss=0.1666  lr=1.99e-05\\n  step 650  loss=0.2760  lr=1.98e-05\\n  step 700  loss=0.1415  lr=1.97e-05\\n  step 750  loss=0.0966  lr=1.96e-05\\n  step 800  loss=0.3779  lr=1.95e-05\\n  step 850  loss=0.1694  lr=1.94e-05\\n  step 900  loss=0.1534  lr=1.93e-05\\n  step 950  loss=0.1034  lr=1.91e-05\\n  step 1000  loss=0.2367  lr=1.89e-05\\n  [eval@1000] {'val_loss': 0.4650662785708504, 'recall@1': 0.5526845637583893, 'recall@5': 0.9593959731543624, 'recall@10': 1.0}\\n  New best val_loss=0.4651, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_val_loss\\n  New best R@1=0.5527, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1\\n  step 1050  loss=0.1787  lr=1.87e-05\\n  step 1100  loss=0.1914  lr=1.85e-05\\n  step 1150  loss=0.4897  lr=1.83e-05\\n  step 1200  loss=0.3260  lr=1.80e-05\\n  step 1250  loss=0.2007  lr=1.78e-05\\n  step 1300  loss=0.0690  lr=1.75e-05\\n  step 1350  loss=0.1074  lr=1.73e-05\\n  step 1400  loss=0.2393  lr=1.70e-05\\n[Epoch 2] Using pre-mined negatives (random)...\\n  step 1450  loss=0.0597  lr=1.67e-05\\n  step 1500  loss=0.1601  lr=1.63e-05\\n  [eval@1500] {'val_loss': 0.5364526285221113, 'recall@1': 0.5228187919463088, 'recall@5': 0.9550335570469799, 'recall@10': 1.0}\\n  val_loss not improved (1/0)\\n  step 1550  loss=0.1807  lr=1.60e-05\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014d8geM3q9Le6zE2fHVNy8H",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "tail -50 /root/runs/m2_full_starcoder/random_s42.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "6068d23b-d229-4c47-b3b0-77bc7174b737",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RJ1bnEArFApQH15FNrNe1m",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 885,
+                "cache_read_input_tokens": 25230,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 885
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T00:05:38.332Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014d8geM3q9Le6zE2fHVNy8H",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"wandb: Tracking run with wandb version 0.26.0\\\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\\\nwandb: Run data is saved locally in /root/structfuse/wandb/offline-run-20260514_023015-ov878za5\\\\n[Epoch 1] Using pre-mined negatives (random)...\\\\n  Training loop start: 1414 batches/epoch, total_steps_per_epoch=1414\\\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n  step 50  loss=0.8462  lr=2.26e-06\\\\n  step 100  loss=0.6929  lr=4.62e-06\\\\n  step 150  loss=0.5942  lr=6.93e-06\\\\n  step 200  loss=0.4387  lr=9.25e-06\\\\n  step 250  loss=0.5274  lr=1.16e-05\\\\n  step 300  loss=0.5294  lr=1.40e-05\\\\n  step 350  loss=0.3092  lr=1.63e-05\\\\n  step 400  loss=0.2138  lr=1.87e-05\\\\n  step 450  loss=0.5400  lr=2.00e-05\\\\n  step 500  loss=0.3269  lr=2.00e-05\\\\n  [eval@500] {'val_loss': 0.6194413630354324, 'recall@1': 0.43523489932885906, 'recall@5': 0.9053691275167786, 'recall@10': 1.0}\\\\n  New best val_loss=0.6194, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s42/best_by_val_loss\\\\n  New best R@1=0.4352, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s42/best_by_recall_at_1\\\\n  step 550  loss=0.2826  lr=2.00e-05\\\\n  step 600  loss=0.3563  lr=1.99e-05\\\\n  step 650  loss=0.6108  lr=1.98e-05\\\\n  step 700  loss=0.4037  lr=1.98e-05\\\\n  step 750  loss=0.5464  lr=1.97e-05\\\\n  step 800  loss=0.2657  lr=1.95e-05\\\\n  step 850  loss=0.3973  lr=1.94e-05\\\\n  step 900  loss=0.4681  lr=1.93e-05\\\\n  step 950  loss=0.1187  lr=1.91e-05\\\\n  step 1000  loss=0.2258  lr=1.89e-05\\\\n  [eval@1000] {'val_loss': 0.6134329466611746, 'recall@1': 0.45369127516778524, 'recall@5': 0.9201342281879195, 'recall@10': 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "4c63f2fe-2380-48ce-86a2-a6a13d7a9e55",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"wandb: Tracking run with wandb version 0.26.0\\\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\\\nwandb: Run data is saved locally in /root/structfuse/wandb/offline-run-20260514_023015-ov878za5\\\\n[Epoch 1] Using pre-mined negatives (random)...\\\\n  Training loop start: 1414 batches/epoch, total_steps_per_epoch=1414\\\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n  step 50  loss=0.8462  lr=2.26e-06\\\\n  step 100  loss=0.6929  lr=4.62e-06\\\\n  step 150  loss=0.5942  lr=6.93e-06\\\\n  step 200  loss=0.4387  lr=9.25e-06\\\\n  step 250  loss=0.5274  lr=1.16e-05\\\\n  step 300  loss=0.5294  lr=1.40e-05\\\\n  step 350  loss=0.3092  lr=1.63e-05\\\\n  step 400  loss=0.2138  lr=1.87e-05\\\\n  step 450  loss=0.5400  lr=2.00e-05\\\\n  step 500  loss=0.3269  lr=2.00e-05\\\\n  [eval@500] {'val_loss': 0.6194413630354324, 'recall@1': 0.43523489932885906, 'recall@5': 0.9053691275167786, 'recall@10': 1.0}\\\\n  New best val_loss=0.6194, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s42/best_by_val_loss\\\\n  New best R@1=0.4352, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s42/best_by_recall_at_1\\\\n  step 550  loss=0.2826  lr=2.00e-05\\\\n  step 600  loss=0.3563  lr=1.99e-05\\\\n  step 650  loss=0.6108  lr=1.98e-05\\\\n  step 700  loss=0.4037  lr=1.98e-05\\\\n  step 750  loss=0.5464  lr=1.97e-05\\\\n  step 800  loss=0.2657  lr=1.95e-05\\\\n  step 850  loss=0.3973  lr=1.94e-05\\\\n  step 900  loss=0.4681  lr=1.93e-05\\\\n  step 950  loss=0.1187  lr=1.91e-05\\\\n  step 1000  loss=0.2258  lr=1.89e-05\\\\n  [eval@1000] {'val_loss': 0.6134329466611746, 'recall@1': 0.45369127516778524, 'recall@5': 0.9201342281879195, 'recall@10': 1.0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"wandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/structfuse/wandb/offline-run-20260514_023015-ov878za5\\n[Epoch 1] Using pre-mined negatives (random)...\\n  Training loop start: 1414 batches/epoch, total_steps_per_epoch=1414\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\n  step 50  loss=0.8462  lr=2.26e-06\\n  step 100  loss=0.6929  lr=4.62e-06\\n  step 150  loss=0.5942  lr=6.93e-06\\n  step 200  loss=0.4387  lr=9.25e-06\\n  step 250  loss=0.5274  lr=1.16e-05\\n  step 300  loss=0.5294  lr=1.40e-05\\n  step 350  loss=0.3092  lr=1.63e-05\\n  step 400  loss=0.2138  lr=1.87e-05\\n  step 450  loss=0.5400  lr=2.00e-05\\n  step 500  loss=0.3269  lr=2.00e-05\\n  [eval@500] {'val_loss': 0.6194413630354324, 'recall@1': 0.43523489932885906, 'recall@5': 0.9053691275167786, 'recall@10': 1.0}\\n  New best val_loss=0.6194, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s42/best_by_val_loss\\n  New best R@1=0.4352, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s42/best_by_recall_at_1\\n  step 550  loss=0.2826  lr=2.00e-05\\n  step 600  loss=0.3563  lr=1.99e-05\\n  step 650  loss=0.6108  lr=1.98e-05\\n  step 700  loss=0.4037  lr=1.98e-05\\n  step 750  loss=0.5464  lr=1.97e-05\\n  step 800  loss=0.2657  lr=1.95e-05\\n  step 850  loss=0.3973  lr=1.94e-05\\n  step 900  loss=0.4681  lr=1.93e-05\\n  step 950  loss=0.1187  lr=1.91e-05\\n  step 1000  loss=0.2258  lr=1.89e-05\\n  [eval@1000] {'val_loss': 0.6134329466611746, 'recall@1': 0.45369127516778524, 'recall@5': 0.9201342281879195, 'recall@10': 1.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PRXdTobq5gjtVcR7vVCjyd",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "find /root/runs/ -name \"*qwen*\" -type f -mmin -60",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "7ed9a5d8-9709-4d66-ae2f-de3b8b9e3487",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MPb62dCDEzE7nLDNaaj9fP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3064,
+                "cache_read_input_tokens": 26115,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3064
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T00:05:43.254Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PRXdTobq5gjtVcR7vVCjyd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "73d3c4d6-3b72-487a-93b7-fbddbebd6e04",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VZkBKo7AyiHbEdbLzwDKKf",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "find /root/runs/ -name \"*starcoder*\" -type f -mmin -60",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "46fb1d9c-0f76-4ea8-86d0-580d1bf8361c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MPb62dCDEzE7nLDNaaj9fP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3064,
+                "cache_read_input_tokens": 26115,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3064
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T00:05:44.273Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VZkBKo7AyiHbEdbLzwDKKf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/structfuse-context/m2_full_starcoder.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "fcff66a6-dbaf-4ebc-90ff-382c300f3755",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/structfuse-context/m2_full_starcoder.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/runs/structfuse-context/m2_full_starcoder.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A9ozcu2fipGxzpMRPASvaR",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "ps aux",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "0c54ebbe-18e4-4419-849d-aaee545ba718",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MPb62dCDEzE7nLDNaaj9fP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3064,
+                "cache_read_input_tokens": 26115,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3064
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T00:05:44.801Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A9ozcu2fipGxzpMRPASvaR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot          1  0.0  0.0   4476  3328 ?        Ss   May13   0:00 bash /init/boot/boot.sh\\\\nroot        893  2.0  0.0 725152 23048 ?        Sl   May13  25:46 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        912  0.0  0.0 3328668 81028 ?       Sl   May13   0:49 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        913  0.0  0.0 191556 105724 ?       S    May13   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        914  0.0  0.0  15444  9272 ?        S    May13   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        915  0.0  0.0 2869508 19136 ?       Sl   May13   0:46 proxy -c /init/proxy/proxy.ini\\\\nroot        916  0.1  0.0 6673352 104088 ?      Sl   May13   2:21 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        917  0.0  0.0 2720764 19396 ?       Sl   May13   0:51 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot       1001  0.0  0.0 28341192 12152 ?      Sl   May13   1:03 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_3z78wpgi/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_3z78wpgi/startup_error\\\\nroot      57574  0.0  0.0  16692 10984 ?        Ss   May13   0:02 sshd: root@notty\\\\nroot      73543  0.0  0.0   6868  4564 ?        Ss   01:39   0:01 tmux new-session -d -s m2_full_qwen rm -f /tmp/agent-ml-exit/m2_full_qwen.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/structfuse-context/m2_full_qwen.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/m2_full_qwen.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/structfuse && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh 2>&1 | tee /root/runs/structfuse-context/m2_full_qwen.log\\\\\\\"'; } > ~/runs/structfuse-context/m2_full_qwen.log 2>&1\\\\nroot      73544  0.0  0.0   4496  3648 pts/0    Ss+  01:39   0:00 bash -c rm -f /tmp/agent-ml-exit/m2_full_qwen.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/structfuse-context/m2_full_qwen.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/m2_full_qwen.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/structfuse && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh 2>&1 | tee /root/runs/structfuse-context/m2_full_qwen.log\\\\\\\"'; } > ~/runs/structfuse-context/m2_full_qwen.log 2>&1\\\\nroot      73548  0.0  0.0   2800  1024 pts/0    S    01:39   0:00 timeout 86400 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh 2>&1 | tee /root/runs/structfuse-context/m2_full_qwen.log\\\\\\\"\\\\nroot      73549  0.0  0.0   4364  3220 pts/0    S    01:39   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh 2>&1 | tee /root/runs/structfuse-context/m2_full_qwen.log\\\\nroot      73554  0.0  0.0   4364  3180 pts/0    S    01:39   0:00 bash run_m2_full_qwen.sh\\\\nroot      73555  0.0  0.0   2796  1064 pts/0    S    01:39   0:00 tee /root/runs/structfuse-context/m2_full_qwen.log\\\\nroot      73558 74.5  0.4 260366388 4262072 pts/0 Rl 01:39 287:46 python /root/structfuse/training/train.py --model-name /root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B --train-file /root/autodl-tmp/structfuse/full_m2_training_data/\\\\n\\\\n... [截断: 输出过长，省略 12073 字符] ...\\\\n\\\\nth 2048 --seed 42 --eval-steps 500 --save-steps 1000 --wandb-project structfuse --wandb-run-name m2_full_random_s42\\\\nroot     874424  0.0  0.0  16692 10780 ?        Ss   08:04   0:00 sshd: root@notty\\\\nroot     874512  0.0  0.0   2792  1096 pts/2    S+   08:04   0:00 sleep 300\\\\nroot     885054  0.2  0.0  16692 10868 ?        Ss   08:05   0:00 sshd: root@notty\\\\nroot     887349  0.0  0.0   2892  1924 pts/2    S+   08:05   0:00 /bin/sh /opt/codeql/codeql query run --database /root/autodl-tmp/structfuse/full_m1_data/repos/pyparsing__pyparsing_codeql_db --output /tmp/tmpawk_cj1h/dataflow.csv.bqrs --ram=8192 --timeout=300 --external=buggyFunctionName=/tmp/tmpawk_cj1h/ext_func.csv --external=buggyFileName=/tmp/tmpawk_cj1h/ext_file.csv --threads=0 /root/structfuse/extraction/codeql_queries/bounded_dataflow.ql\\\\nroot     887538  839  0.0 16532276 747980 pts/2 Sl+  08:05   0:50 /opt/codeql/tools/linux64/java/bin/java -Xmx3442M -Dcodeql.chainer.v2=/tmp/codeql.tS3MdeVb --add-modules jdk.unsupported -cp /opt/codeql/tools/codeql.jar com.semmle.cli2.CodeQL env_argv execute queries -J-Xmx3442M _ _ _ _ _ _ _ _ _ _ _ _ -- /root/autodl-tmp/structfuse/full_m1_data/repos/pyparsing__pyparsing_codeql_db/db-python _\\\\nroot     887739  0.0  0.0   2892  1976 pts/2    S+   08:05   0:00 /bin/sh /opt/codeql/codeql query run --database /root/autodl-tmp/structfuse/full_m1_data/repos/sunpy__sunpy_codeql_db --output /tmp/tmp45h1ht2a/call_graph.csv.bqrs --ram=8192 --timeout=300 --external=buggyFunctionName=/tmp/tmp45h1ht2a/ext_func.csv --external=buggyFileName=/tmp/tmp45h1ht2a/ext_file.csv --threads=0 /root/structfuse/extraction/codeql_queries/call_graph.ql\\\\nroot     887869 1259  0.1 16521376 1165784 pts/2 Sl+ 08:05   1:02 /opt/codeql/tools/linux64/java/bin/java -Xmx3438M -Dcodeql.chainer.v2=/tmp/codeql.vbuOtezU --add-modules jdk.unsupported -cp /opt/codeql/tools/codeql.jar com.semmle.cli2.CodeQL env_argv execute queries -J-Xmx3438M _ _ _ _ _ _ _ _ _ _ _ _ -- /root/autodl-tmp/structfuse/full_m1_data/repos/sunpy__sunpy_codeql_db/db-python _\\\\nroot     888101  0.0  0.0   2892  1880 pts/2    S+   08:05   0:00 /bin/sh /opt/codeql/codeql query run --database /root/autodl-tmp/structfuse/full_m1_data/repos/marshmallow-code__marshmallow_codeql_db --output /tmp/tmpkl_wkaon/dataflow.csv.bqrs --ram=8192 --timeout=300 --external=buggyFunctionName=/tmp/tmpkl_wkaon/ext_func.csv --external=buggyFileName=/tmp/tmpkl_wkaon/ext_file.csv --threads=0 /root/structfuse/extraction/codeql_queries/bounded_dataflow.ql\\\\nroot     888212  0.0  0.0   2892  1884 pts/2    S+   08:05   0:00 /bin/sh /opt/codeql/codeql query run --database /root/autodl-tmp/structfuse/full_m1_data/repos/pylint-dev__astroid_codeql_db --output /tmp/tmpmerlwmc3/call_graph.csv.bqrs --ram=8192 --timeout=300 --external=buggyFunctionName=/tmp/tmpmerlwmc3/ext_func.csv --external=buggyFileName=/tmp/tmpmerlwmc3/ext_file.csv --threads=0 /root/structfuse/extraction/codeql_queries/call_graph.ql\\\\nroot     888218  0.0  0.0 37115228 131528 pts/2 Sl+  08:05   0:01 /opt/codeql/tools/linux64/java/bin/java -Dcodeql.chainer.v2=/tmp/codeql.rcXQOlIQ --add-modules jdk.unsupported -cp /opt/codeql/tools/codeql.jar com.semmle.cli2.CodeQL query run --database /root/autodl-tmp/structfuse/full_m1_data/repos/pylint-dev__astroid_codeql_db --output /tmp/tmpmerlwmc3/call_graph.csv.bqrs --ram=8192 --timeout=300 --external=buggyFunctionName=/tmp/tmpmerlwmc3/ext_func.csv --external=buggyFileName=/tmp/tmpmerlwmc3/ext_file.csv --threads=0 /root/structfuse/extraction/codeql_queries/call_graph.ql\\\\nroot     888238  0.0  0.0 9118016 127872 pts/2  Sl+  08:05   0:01 /opt/codeql/tools/linux64/java/bin/java -Xmx3455M -Dcodeql.chainer.v2=/tmp/codeql.biXydrNh --add-modules jdk.unsupported -cp /opt/codeql/tools/codeql.jar com.semmle.cli2.CodeQL env_argv execute queries -J-Xmx3455M _ _ _ _ _ _ _ _ _ _ _ _ -- /root/autodl-tmp/structfuse/full_m1_data/repos/marshmallow-code__marshmallow_codeql_db/db-python _\\\\nroot     888345  0.0  0.0   7064  1572 ?        Rs   08:05   0:00 ps aux\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "82484a05-3214-44e2-afd2-93dc4e540f16",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot          1  0.0  0.0   4476  3328 ?        Ss   May13   0:00 bash /init/boot/boot.sh\\\\nroot        893  2.0  0.0 725152 23048 ?        Sl   May13  25:46 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        912  0.0  0.0 3328668 81028 ?       Sl   May13   0:49 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        913  0.0  0.0 191556 105724 ?       S    May13   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        914  0.0  0.0  15444  9272 ?        S    May13   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        915  0.0  0.0 2869508 19136 ?       Sl   May13   0:46 proxy -c /init/proxy/proxy.ini\\\\nroot        916  0.1  0.0 6673352 104088 ?      Sl   May13   2:21 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        917  0.0  0.0 2720764 19396 ?       Sl   May13   0:51 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot       1001  0.0  0.0 28341192 12152 ?      Sl   May13   1:03 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_3z78wpgi/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_3z78wpgi/startup_error\\\\nroot      57574  0.0  0.0  16692 10984 ?        Ss   May13   0:02 sshd: root@notty\\\\nroot      73543  0.0  0.0   6868  4564 ?        Ss   01:39   0:01 tmux new-session -d -s m2_full_qwen rm -f /tmp/agent-ml-exit/m2_full_qwen.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/structfuse-context/m2_full_qwen.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/m2_full_qwen.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/structfuse && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh 2>&1 | tee /root/runs/structfuse-context/m2_full_qwen.log\\\\\\\"'; } > ~/runs/structfuse-context/m2_full_qwen.log 2>&1\\\\nroot      73544  0.0  0.0   4496  3648 pts/0    Ss+  01:39   0:00 bash -c rm -f /tmp/agent-ml-exit/m2_full_qwen.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/structfuse-context/m2_full_qwen.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/m2_full_qwen.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/structfuse && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh 2>&1 | tee /root/runs/structfuse-context/m2_full_qwen.log\\\\\\\"'; } > ~/runs/structfuse-context/m2_full_qwen.log 2>&1\\\\nroot      73548  0.0  0.0   2800  1024 pts/0    S    01:39   0:00 timeout 86400 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh 2>&1 | tee /root/runs/structfuse-context/m2_full_qwen.log\\\\\\\"\\\\nroot      73549  0.0  0.0   4364  3220 pts/0    S    01:39   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh 2>&1 | tee /root/runs/structfuse-context/m2_full_qwen.log\\\\nroot      73554  0.0  0.0   4364  3180 pts/0    S    01:39   0:00 bash run_m2_full_qwen.sh\\\\nroot      73555  0.0  0.0   2796  1064 pts/0    S    01:39   0:00 tee /root/runs/structfuse-context/m2_full_qwen.log\\\\nroot      73558 74.5  0.4 260366388 4262072 pts/0 Rl 01:39 287:46 python /root/structfuse/training/train.py --model-name /root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B --train-file /root/autodl-tmp/structfuse/full_m2_training_data/\\\\n\\\\n... [截断: 输出过长，省略 12073 字符] ...\\\\n\\\\nth 2048 --seed 42 --eval-steps 500 --save-steps 1000 --wandb-project structfuse --wandb-run-name m2_full_random_s42\\\\nroot     874424  0.0  0.0  16692 10780 ?        Ss   08:04   0:00 sshd: root@notty\\\\nroot     874512  0.0  0.0   2792  1096 pts/2    S+   08:04   0:00 sleep 300\\\\nroot     885054  0.2  0.0  16692 10868 ?        Ss   08:05   0:00 sshd: root@notty\\\\nroot     887349  0.0  0.0   2892  1924 pts/2    S+   08:05   0:00 /bin/sh /opt/codeql/codeql query run --database /root/autodl-tmp/structfuse/full_m1_data/repos/pyparsing__pyparsing_codeql_db --output /tmp/tmpawk_cj1h/dataflow.csv.bqrs --ram=8192 --timeout=300 --external=buggyFunctionName=/tmp/tmpawk_cj1h/ext_func.csv --external=buggyFileName=/tmp/tmpawk_cj1h/ext_file.csv --threads=0 /root/structfuse/extraction/codeql_queries/bounded_dataflow.ql\\\\nroot     887538  839  0.0 16532276 747980 pts/2 Sl+  08:05   0:50 /opt/codeql/tools/linux64/java/bin/java -Xmx3442M -Dcodeql.chainer.v2=/tmp/codeql.tS3MdeVb --add-modules jdk.unsupported -cp /opt/codeql/tools/codeql.jar com.semmle.cli2.CodeQL env_argv execute queries -J-Xmx3442M _ _ _ _ _ _ _ _ _ _ _ _ -- /root/autodl-tmp/structfuse/full_m1_data/repos/pyparsing__pyparsing_codeql_db/db-python _\\\\nroot     887739  0.0  0.0   2892  1976 pts/2    S+   08:05   0:00 /bin/sh /opt/codeql/codeql query run --database /root/autodl-tmp/structfuse/full_m1_data/repos/sunpy__sunpy_codeql_db --output /tmp/tmp45h1ht2a/call_graph.csv.bqrs --ram=8192 --timeout=300 --external=buggyFunctionName=/tmp/tmp45h1ht2a/ext_func.csv --external=buggyFileName=/tmp/tmp45h1ht2a/ext_file.csv --threads=0 /root/structfuse/extraction/codeql_queries/call_graph.ql\\\\nroot     887869 1259  0.1 16521376 1165784 pts/2 Sl+ 08:05   1:02 /opt/codeql/tools/linux64/java/bin/java -Xmx3438M -Dcodeql.chainer.v2=/tmp/codeql.vbuOtezU --add-modules jdk.unsupported -cp /opt/codeql/tools/codeql.jar com.semmle.cli2.CodeQL env_argv execute queries -J-Xmx3438M _ _ _ _ _ _ _ _ _ _ _ _ -- /root/autodl-tmp/structfuse/full_m1_data/repos/sunpy__sunpy_codeql_db/db-python _\\\\nroot     888101  0.0  0.0   2892  1880 pts/2    S+   08:05   0:00 /bin/sh /opt/codeql/codeql query run --database /root/autodl-tmp/structfuse/full_m1_data/repos/marshmallow-code__marshmallow_codeql_db --output /tmp/tmpkl_wkaon/dataflow.csv.bqrs --ram=8192 --timeout=300 --external=buggyFunctionName=/tmp/tmpkl_wkaon/ext_func.csv --external=buggyFileName=/tmp/tmpkl_wkaon/ext_file.csv --threads=0 /root/structfuse/extraction/codeql_queries/bounded_dataflow.ql\\\\nroot     888212  0.0  0.0   2892  1884 pts/2    S+   08:05   0:00 /bin/sh /opt/codeql/codeql query run --database /root/autodl-tmp/structfuse/full_m1_data/repos/pylint-dev__astroid_codeql_db --output /tmp/tmpmerlwmc3/call_graph.csv.bqrs --ram=8192 --timeout=300 --external=buggyFunctionName=/tmp/tmpmerlwmc3/ext_func.csv --external=buggyFileName=/tmp/tmpmerlwmc3/ext_file.csv --threads=0 /root/structfuse/extraction/codeql_queries/call_graph.ql\\\\nroot     888218  0.0  0.0 37115228 131528 pts/2 Sl+  08:05   0:01 /opt/codeql/tools/linux64/java/bin/java -Dcodeql.chainer.v2=/tmp/codeql.rcXQOlIQ --add-modules jdk.unsupported -cp /opt/codeql/tools/codeql.jar com.semmle.cli2.CodeQL query run --database /root/autodl-tmp/structfuse/full_m1_data/repos/pylint-dev__astroid_codeql_db --output /tmp/tmpmerlwmc3/call_graph.csv.bqrs --ram=8192 --timeout=300 --external=buggyFunctionName=/tmp/tmpmerlwmc3/ext_func.csv --external=buggyFileName=/tmp/tmpmerlwmc3/ext_file.csv --threads=0 /root/structfuse/extraction/codeql_queries/call_graph.ql\\\\nroot     888238  0.0  0.0 9118016 127872 pts/2  Sl+  08:05   0:01 /opt/codeql/tools/linux64/java/bin/java -Xmx3455M -Dcodeql.chainer.v2=/tmp/codeql.biXydrNh --add-modules jdk.unsupported -cp /opt/codeql/tools/codeql.jar com.semmle.cli2.CodeQL env_argv execute queries -J-Xmx3455M _ _ _ _ _ _ _ _ _ _ _ _ -- /root/autodl-tmp/structfuse/full_m1_data/repos/marshmallow-code__marshmallow_codeql_db/db-python _\\\\nroot     888345  0.0  0.0   7064  1572 ?        Rs   08:05   0:00 ps aux\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot          1  0.0  0.0   4476  3328 ?        Ss   May13   0:00 bash /init/boot/boot.sh\\nroot        893  2.0  0.0 725152 23048 ?        Sl   May13  25:46 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        912  0.0  0.0 3328668 81028 ?       Sl   May13   0:49 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        913  0.0  0.0 191556 105724 ?       S    May13   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        914  0.0  0.0  15444  9272 ?        S    May13   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        915  0.0  0.0 2869508 19136 ?       Sl   May13   0:46 proxy -c /init/proxy/proxy.ini\\nroot        916  0.1  0.0 6673352 104088 ?      Sl   May13   2:21 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        917  0.0  0.0 2720764 19396 ?       Sl   May13   0:51 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1001  0.0  0.0 28341192 12152 ?      Sl   May13   1:03 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_3z78wpgi/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_3z78wpgi/startup_error\\nroot      57574  0.0  0.0  16692 10984 ?        Ss   May13   0:02 sshd: root@notty\\nroot      73543  0.0  0.0   6868  4564 ?        Ss   01:39   0:01 tmux new-session -d -s m2_full_qwen rm -f /tmp/agent-ml-exit/m2_full_qwen.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/structfuse-context/m2_full_qwen.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/m2_full_qwen.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/structfuse && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh 2>&1 | tee /root/runs/structfuse-context/m2_full_qwen.log\\\"'; } > ~/runs/structfuse-context/m2_full_qwen.log 2>&1\\nroot      73544  0.0  0.0   4496  3648 pts/0    Ss+  01:39   0:00 bash -c rm -f /tmp/agent-ml-exit/m2_full_qwen.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/structfuse-context/m2_full_qwen.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/m2_full_qwen.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/structfuse && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh 2>&1 | tee /root/runs/structfuse-context/m2_full_qwen.log\\\"'; } > ~/runs/structfuse-context/m2_full_qwen.log 2>&1\\nroot      73548  0.0  0.0   2800  1024 pts/0    S    01:39   0:00 timeout 86400 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh 2>&1 | tee /root/runs/structfuse-context/m2_full_qwen.log\\\"\\nroot      73549  0.0  0.0   4364  3220 pts/0    S    01:39   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh 2>&1 | tee /root/runs/structfuse-context/m2_full_qwen.log\\nroot      73554  0.0  0.0   4364  3180 pts/0    S    01:39   0:00 bash run_m2_full_qwen.sh\\nroot      73555  0.0  0.0   2796  1064 pts/0    S    01:39   0:00 tee /root/runs/structfuse-context/m2_full_qwen.log\\nroot      73558 74.5  0.4 260366388 4262072 pts/0 Rl 01:39 287:46 python /root/structfuse/training/train.py --model-name /root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B --train-file /root/autodl-tmp/structfuse/full_m2_training_data/\\n\\n... [截断: 输出过长，省略 12073 字符] ...\\n\\nth 2048 --seed 42 --eval-steps 500 --save-steps 1000 --wandb-project structfuse --wandb-run-name m2_full_random_s42\\nroot     874424  0.0  0.0  16692 10780 ?        Ss   08:04   0:00 sshd: root@notty\\nroot     874512  0.0  0.0   2792  1096 pts/2    S+   08:04   0:00 sleep 300\\nroot     885054  0.2  0.0  16692 10868 ?        Ss   08:05   0:00 sshd: root@notty\\nroot     887349  0.0  0.0   2892  1924 pts/2    S+   08:05   0:00 /bin/sh /opt/codeql/codeql query run --database /root/autodl-tmp/structfuse/full_m1_data/repos/pyparsing__pyparsing_codeql_db --output /tmp/tmpawk_cj1h/dataflow.csv.bqrs --ram=8192 --timeout=300 --external=buggyFunctionName=/tmp/tmpawk_cj1h/ext_func.csv --external=buggyFileName=/tmp/tmpawk_cj1h/ext_file.csv --threads=0 /root/structfuse/extraction/codeql_queries/bounded_dataflow.ql\\nroot     887538  839  0.0 16532276 747980 pts/2 Sl+  08:05   0:50 /opt/codeql/tools/linux64/java/bin/java -Xmx3442M -Dcodeql.chainer.v2=/tmp/codeql.tS3MdeVb --add-modules jdk.unsupported -cp /opt/codeql/tools/codeql.jar com.semmle.cli2.CodeQL env_argv execute queries -J-Xmx3442M _ _ _ _ _ _ _ _ _ _ _ _ -- /root/autodl-tmp/structfuse/full_m1_data/repos/pyparsing__pyparsing_codeql_db/db-python _\\nroot     887739  0.0  0.0   2892  1976 pts/2    S+   08:05   0:00 /bin/sh /opt/codeql/codeql query run --database /root/autodl-tmp/structfuse/full_m1_data/repos/sunpy__sunpy_codeql_db --output /tmp/tmp45h1ht2a/call_graph.csv.bqrs --ram=8192 --timeout=300 --external=buggyFunctionName=/tmp/tmp45h1ht2a/ext_func.csv --external=buggyFileName=/tmp/tmp45h1ht2a/ext_file.csv --threads=0 /root/structfuse/extraction/codeql_queries/call_graph.ql\\nroot     887869 1259  0.1 16521376 1165784 pts/2 Sl+ 08:05   1:02 /opt/codeql/tools/linux64/java/bin/java -Xmx3438M -Dcodeql.chainer.v2=/tmp/codeql.vbuOtezU --add-modules jdk.unsupported -cp /opt/codeql/tools/codeql.jar com.semmle.cli2.CodeQL env_argv execute queries -J-Xmx3438M _ _ _ _ _ _ _ _ _ _ _ _ -- /root/autodl-tmp/structfuse/full_m1_data/repos/sunpy__sunpy_codeql_db/db-python _\\nroot     888101  0.0  0.0   2892  1880 pts/2    S+   08:05   0:00 /bin/sh /opt/codeql/codeql query run --database /root/autodl-tmp/structfuse/full_m1_data/repos/marshmallow-code__marshmallow_codeql_db --output /tmp/tmpkl_wkaon/dataflow.csv.bqrs --ram=8192 --timeout=300 --external=buggyFunctionName=/tmp/tmpkl_wkaon/ext_func.csv --external=buggyFileName=/tmp/tmpkl_wkaon/ext_file.csv --threads=0 /root/structfuse/extraction/codeql_queries/bounded_dataflow.ql\\nroot     888212  0.0  0.0   2892  1884 pts/2    S+   08:05   0:00 /bin/sh /opt/codeql/codeql query run --database /root/autodl-tmp/structfuse/full_m1_data/repos/pylint-dev__astroid_codeql_db --output /tmp/tmpmerlwmc3/call_graph.csv.bqrs --ram=8192 --timeout=300 --external=buggyFunctionName=/tmp/tmpmerlwmc3/ext_func.csv --external=buggyFileName=/tmp/tmpmerlwmc3/ext_file.csv --threads=0 /root/structfuse/extraction/codeql_queries/call_graph.ql\\nroot     888218  0.0  0.0 37115228 131528 pts/2 Sl+  08:05   0:01 /opt/codeql/tools/linux64/java/bin/java -Dcodeql.chainer.v2=/tmp/codeql.rcXQOlIQ --add-modules jdk.unsupported -cp /opt/codeql/tools/codeql.jar com.semmle.cli2.CodeQL query run --database /root/autodl-tmp/structfuse/full_m1_data/repos/pylint-dev__astroid_codeql_db --output /tmp/tmpmerlwmc3/call_graph.csv.bqrs --ram=8192 --timeout=300 --external=buggyFunctionName=/tmp/tmpmerlwmc3/ext_func.csv --external=buggyFileName=/tmp/tmpmerlwmc3/ext_file.csv --threads=0 /root/structfuse/extraction/codeql_queries/call_graph.ql\\nroot     888238  0.0  0.0 9118016 127872 pts/2  Sl+  08:05   0:01 /opt/codeql/tools/linux64/java/bin/java -Xmx3455M -Dcodeql.chainer.v2=/tmp/codeql.biXydrNh --add-modules jdk.unsupported -cp /opt/codeql/tools/codeql.jar com.semmle.cli2.CodeQL env_argv execute queries -J-Xmx3455M _ _ _ _ _ _ _ _ _ _ _ _ -- /root/autodl-tmp/structfuse/full_m1_data/repos/marshmallow-code__marshmallow_codeql_db/db-python _\\nroot     888345  0.0  0.0   7064  1572 ?        Rs   08:05   0:00 ps aux\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Roh5uKhwUJFShRaMsvvsst",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "tail -30 /root/runs/structfuse-context/m1_reextract_v2.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "491867d5-80f5-42fb-b848-7dcb94c903cc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MPb62dCDEzE7nLDNaaj9fP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3064,
+                "cache_read_input_tokens": 26115,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3064
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T00:05:46.221Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Roh5uKhwUJFShRaMsvvsst",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 08:04:22,483 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_390] CodeQL call_graph: 34 entries, 9 reachable files (threshold=1)\\\\n2026-05-14 08:04:25,554 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__dgwjbf1g] CodeQL call_graph: 17 entries, 7 reachable files (threshold=1)\\\\n2026-05-14 08:04:29,220 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__s7sacnas] CodeQL call_graph: 47 entries, 4 reachable files (threshold=1)\\\\n2026-05-14 08:04:31,406 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__od9uqzzl] CodeQL call_graph: 11 entries, 2 reachable files (threshold=1)\\\\n2026-05-14 08:04:33,538 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_403] CodeQL call_graph: 192 entries, 12 reachable files (threshold=1)\\\\n2026-05-14 08:04:38,556 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__dju7odgi] CodeQL call_graph: 72 entries, 25 reachable files (threshold=1)\\\\n2026-05-14 08:04:41,225 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__sdd4sbt6] CodeQL call_graph: 345 entries, 9 reachable files (threshold=1)\\\\n2026-05-14 08:04:41,631 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__ohgxt4f0] CodeQL call_graph: 169 entries, 9 reachable files (threshold=1)\\\\n2026-05-14 08:04:47,561 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_419] CodeQL call_graph: 0 entries, 0 reachable files (threshold=1)\\\\n2026-05-14 08:04:51,542 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_422] CodeQL call_graph: 0 entries, 0 reachable files (threshold=1)\\\\n2026-05-14 08:04:52,298 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__du37dhzc] CodeQL call_graph: 10 entries, 2 reachable files (threshold=1)\\\\n2026-05-14 08:04:53,389 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__on4io8dl] CodeQL call_graph: 176 entries, 9 reachable files (threshold=1)\\\\n2026-05-14 08:04:55,011 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__sk57zi2q] CodeQL call_graph: 68 entries, 7 reachable files (threshold=1)\\\\n2026-05-14 08:04:55,562 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_467] CodeQL call_graph: 192 entries, 12 reachable files (threshold=1)\\\\n2026-05-14 08:05:05,601 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__e00s4dcn] CodeQL call_graph: 25 entries, 3 reachable files (threshold=1)\\\\n2026-05-14 08:05:05,906 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__oou5e48o] CodeQL call_graph: 177 entries, 9 reachable files (threshold=1)\\\\n2026-05-14 08:05:08,071 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__ssrx9y5a] CodeQL call_graph: 256 entries, 9 reachable files (threshold=1)\\\\n2026-05-14 08:05:08,861 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_492] CodeQL call_graph: 153 entries, 13 reachable files (threshold=1)\\\\n2026-05-14 08:05:18,348 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__ecw8m286] CodeQL call_graph: 168 entries, 29 reachable files (threshold=1)\\\\n2026-05-14 08:05:18,541 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__orde97hx] CodeQL call_graph: 80 entries, 8 reachable files (threshold=1)\\\\n2026-05-14 08:05:21,889 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_496] CodeQL call_graph: 0 entries, 0 reachable files (threshold=1)\\\\n2026-05-14 08:05:23,075 [INFO] batch_extract: [seperman/deepdiff] cleaned up CodeQL database: /root/autodl-tmp/structfuse/full_m1_data/repos/seperman__deepdiff_codeql_db\\\\n2026-05-14 08:05:23,678 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__sulg4rmc] CodeQL call_graph: 84 entries, 8 reachable files (threshold=1)\\\\n2026-05-14 08:05:30,058 [INFO] batch_extract: [sunpy/sunpy] 722 pending, 0 done\\\\n2026-05-14 08:05:30,125 [INFO] batch_extract: [sunpy/sunpy] creating CodeQL database...\\\\n2026-05-14 08:05:30,130 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__p1u6iqc6] CodeQL call_graph: 59 entries, 8 reachable files (threshold=1)\\\\n2026-05-14 08:05:35,465 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__eeo3zas1] CodeQL call_graph: 1 entries, 1 reachable files (threshold=1)\\\\n2026-05-14 08:05:37,203 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__svzuu39s] CodeQL call_graph: 427 entries, 10 reachable files (threshold=1)\\\\n2026-05-14 08:05:38,954 [INFO] batch_extract: [sunpy/sunpy] CodeQL DB created\\\\n2026-05-14 08:05:42,982 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__prul2ma5] CodeQL call_graph: 161 entries, 9 reachable files (threshold=1)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "96cf748d-6b1a-4ba2-b5c1-437d8fa3dacc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-14 08:04:22,483 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_390] CodeQL call_graph: 34 entries, 9 reachable files (threshold=1)\\\\n2026-05-14 08:04:25,554 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__dgwjbf1g] CodeQL call_graph: 17 entries, 7 reachable files (threshold=1)\\\\n2026-05-14 08:04:29,220 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__s7sacnas] CodeQL call_graph: 47 entries, 4 reachable files (threshold=1)\\\\n2026-05-14 08:04:31,406 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__od9uqzzl] CodeQL call_graph: 11 entries, 2 reachable files (threshold=1)\\\\n2026-05-14 08:04:33,538 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_403] CodeQL call_graph: 192 entries, 12 reachable files (threshold=1)\\\\n2026-05-14 08:04:38,556 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__dju7odgi] CodeQL call_graph: 72 entries, 25 reachable files (threshold=1)\\\\n2026-05-14 08:04:41,225 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__sdd4sbt6] CodeQL call_graph: 345 entries, 9 reachable files (threshold=1)\\\\n2026-05-14 08:04:41,631 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__ohgxt4f0] CodeQL call_graph: 169 entries, 9 reachable files (threshold=1)\\\\n2026-05-14 08:04:47,561 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_419] CodeQL call_graph: 0 entries, 0 reachable files (threshold=1)\\\\n2026-05-14 08:04:51,542 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_422] CodeQL call_graph: 0 entries, 0 reachable files (threshold=1)\\\\n2026-05-14 08:04:52,298 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__du37dhzc] CodeQL call_graph: 10 entries, 2 reachable files (threshold=1)\\\\n2026-05-14 08:04:53,389 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__on4io8dl] CodeQL call_graph: 176 entries, 9 reachable files (threshold=1)\\\\n2026-05-14 08:04:55,011 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__sk57zi2q] CodeQL call_graph: 68 entries, 7 reachable files (threshold=1)\\\\n2026-05-14 08:04:55,562 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_467] CodeQL call_graph: 192 entries, 12 reachable files (threshold=1)\\\\n2026-05-14 08:05:05,601 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__e00s4dcn] CodeQL call_graph: 25 entries, 3 reachable files (threshold=1)\\\\n2026-05-14 08:05:05,906 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__oou5e48o] CodeQL call_graph: 177 entries, 9 reachable files (threshold=1)\\\\n2026-05-14 08:05:08,071 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__ssrx9y5a] CodeQL call_graph: 256 entries, 9 reachable files (threshold=1)\\\\n2026-05-14 08:05:08,861 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_492] CodeQL call_graph: 153 entries, 13 reachable files (threshold=1)\\\\n2026-05-14 08:05:18,348 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__ecw8m286] CodeQL call_graph: 168 entries, 29 reachable files (threshold=1)\\\\n2026-05-14 08:05:18,541 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__orde97hx] CodeQL call_graph: 80 entries, 8 reachable files (threshold=1)\\\\n2026-05-14 08:05:21,889 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_496] CodeQL call_graph: 0 entries, 0 reachable files (threshold=1)\\\\n2026-05-14 08:05:23,075 [INFO] batch_extract: [seperman/deepdiff] cleaned up CodeQL database: /root/autodl-tmp/structfuse/full_m1_data/repos/seperman__deepdiff_codeql_db\\\\n2026-05-14 08:05:23,678 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__sulg4rmc] CodeQL call_graph: 84 entries, 8 reachable files (threshold=1)\\\\n2026-05-14 08:05:30,058 [INFO] batch_extract: [sunpy/sunpy] 722 pending, 0 done\\\\n2026-05-14 08:05:30,125 [INFO] batch_extract: [sunpy/sunpy] creating CodeQL database...\\\\n2026-05-14 08:05:30,130 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__p1u6iqc6] CodeQL call_graph: 59 entries, 8 reachable files (threshold=1)\\\\n2026-05-14 08:05:35,465 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__eeo3zas1] CodeQL call_graph: 1 entries, 1 reachable files (threshold=1)\\\\n2026-05-14 08:05:37,203 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__svzuu39s] CodeQL call_graph: 427 entries, 10 reachable files (threshold=1)\\\\n2026-05-14 08:05:38,954 [INFO] batch_extract: [sunpy/sunpy] CodeQL DB created\\\\n2026-05-14 08:05:42,982 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__prul2ma5] CodeQL call_graph: 161 entries, 9 reachable files (threshold=1)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 08:04:22,483 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_390] CodeQL call_graph: 34 entries, 9 reachable files (threshold=1)\\n2026-05-14 08:04:25,554 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__dgwjbf1g] CodeQL call_graph: 17 entries, 7 reachable files (threshold=1)\\n2026-05-14 08:04:29,220 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__s7sacnas] CodeQL call_graph: 47 entries, 4 reachable files (threshold=1)\\n2026-05-14 08:04:31,406 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__od9uqzzl] CodeQL call_graph: 11 entries, 2 reachable files (threshold=1)\\n2026-05-14 08:04:33,538 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_403] CodeQL call_graph: 192 entries, 12 reachable files (threshold=1)\\n2026-05-14 08:04:38,556 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__dju7odgi] CodeQL call_graph: 72 entries, 25 reachable files (threshold=1)\\n2026-05-14 08:04:41,225 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__sdd4sbt6] CodeQL call_graph: 345 entries, 9 reachable files (threshold=1)\\n2026-05-14 08:04:41,631 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__ohgxt4f0] CodeQL call_graph: 169 entries, 9 reachable files (threshold=1)\\n2026-05-14 08:04:47,561 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_419] CodeQL call_graph: 0 entries, 0 reachable files (threshold=1)\\n2026-05-14 08:04:51,542 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_422] CodeQL call_graph: 0 entries, 0 reachable files (threshold=1)\\n2026-05-14 08:04:52,298 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__du37dhzc] CodeQL call_graph: 10 entries, 2 reachable files (threshold=1)\\n2026-05-14 08:04:53,389 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__on4io8dl] CodeQL call_graph: 176 entries, 9 reachable files (threshold=1)\\n2026-05-14 08:04:55,011 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__sk57zi2q] CodeQL call_graph: 68 entries, 7 reachable files (threshold=1)\\n2026-05-14 08:04:55,562 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_467] CodeQL call_graph: 192 entries, 12 reachable files (threshold=1)\\n2026-05-14 08:05:05,601 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__e00s4dcn] CodeQL call_graph: 25 entries, 3 reachable files (threshold=1)\\n2026-05-14 08:05:05,906 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__oou5e48o] CodeQL call_graph: 177 entries, 9 reachable files (threshold=1)\\n2026-05-14 08:05:08,071 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__ssrx9y5a] CodeQL call_graph: 256 entries, 9 reachable files (threshold=1)\\n2026-05-14 08:05:08,861 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_492] CodeQL call_graph: 153 entries, 13 reachable files (threshold=1)\\n2026-05-14 08:05:18,348 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__ecw8m286] CodeQL call_graph: 168 entries, 29 reachable files (threshold=1)\\n2026-05-14 08:05:18,541 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__orde97hx] CodeQL call_graph: 80 entries, 8 reachable files (threshold=1)\\n2026-05-14 08:05:21,889 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_496] CodeQL call_graph: 0 entries, 0 reachable files (threshold=1)\\n2026-05-14 08:05:23,075 [INFO] batch_extract: [seperman/deepdiff] cleaned up CodeQL database: /root/autodl-tmp/structfuse/full_m1_data/repos/seperman__deepdiff_codeql_db\\n2026-05-14 08:05:23,678 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__sulg4rmc] CodeQL call_graph: 84 entries, 8 reachable files (threshold=1)\\n2026-05-14 08:05:30,058 [INFO] batch_extract: [sunpy/sunpy] 722 pending, 0 done\\n2026-05-14 08:05:30,125 [INFO] batch_extract: [sunpy/sunpy] creating CodeQL database...\\n2026-05-14 08:05:30,130 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__p1u6iqc6] CodeQL call_graph: 59 entries, 8 reachable files (threshold=1)\\n2026-05-14 08:05:35,465 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__eeo3zas1] CodeQL call_graph: 1 entries, 1 reachable files (threshold=1)\\n2026-05-14 08:05:37,203 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__svzuu39s] CodeQL call_graph: 427 entries, 10 reachable files (threshold=1)\\n2026-05-14 08:05:38,954 [INFO] batch_extract: [sunpy/sunpy] CodeQL DB created\\n2026-05-14 08:05:42,982 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__prul2ma5] CodeQL call_graph: 161 entries, 9 reachable files (threshold=1)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RVQDRbXkdE25JNee3Wf9Lv",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/full_m1_data/all.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "e8a09061-b1c1-4d5d-9ac5-1012b06e9cc4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MPb62dCDEzE7nLDNaaj9fP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3064,
+                "cache_read_input_tokens": 26115,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3064
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T00:05:48.135Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RVQDRbXkdE25JNee3Wf9Lv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"44173 /root/autodl-tmp/structfuse/full_m1_data/all.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "105349b5-ad47-4b08-822a-429bff8adb79",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"44173 /root/autodl-tmp/structfuse/full_m1_data/all.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"44173 /root/autodl-tmp/structfuse/full_m1_data/all.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.51}}"
+              }
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PrYUE8YJzoG2nSo6AhwTXE",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "find /root/autodl-tmp/structfuse/ -name \"eval_*\" -type f -mmin -180",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "e4c9d695-66d7-4d55-b025-e25842d5ffe4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JCZwZswYshcgxzSHsrBBgY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6744,
+                "cache_read_input_tokens": 29179,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6744
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T00:05:52.664Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PrYUE8YJzoG2nSo6AhwTXE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "12efa9fb-ef38-4988-9912-384fa6351af1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y5uR6FjQ6qP5GBeo9QQjBN",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "find /root/runs/ -name \"*eval*\" -type f -mmin -180",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "87a2fa8b-471a-4092-8ffb-b9651dfa75bf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JCZwZswYshcgxzSHsrBBgY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6744,
+                "cache_read_input_tokens": 29179,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6744
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T00:05:53.529Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y5uR6FjQ6qP5GBeo9QQjBN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "6d4b0b85-c521-4e2c-a31e-a21ef30d6363",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HuwH1REqmMRkqcvnQdUauj",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "ls -lt /root/structfuse-context/wandb/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "4de6f4da-687d-4bea-bbd0-47c7bda0e967",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JCZwZswYshcgxzSHsrBBgY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6744,
+                "cache_read_input_tokens": 29179,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6744
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T00:05:54.949Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HuwH1REqmMRkqcvnQdUauj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 0\\\\ndrwxr-xr-x 5 root root 88 May 14 02:30 offline-run-20260514_023015-ov878za5\\\\nlrwxrwxrwx 1 root root 60 May 14 02:30 debug-internal.log -> offline-run-20260514_023015-ov878za5/logs/debug-internal.log\\\\nlrwxrwxrwx 1 root root 51 May 14 02:30 debug.log -> offline-run-20260514_023015-ov878za5/logs/debug.log\\\\nlrwxrwxrwx 1 root root 36 May 14 02:30 latest-run -> offline-run-20260514_023015-ov878za5\\\\ndrwxr-xr-x 5 root root 88 May 14 01:00 offline-run-20260514_010017-x4vmv7bj\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "593fca05-9aea-45e7-bc0b-b96f933aa3f5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 0\\\\ndrwxr-xr-x 5 root root 88 May 14 02:30 offline-run-20260514_023015-ov878za5\\\\nlrwxrwxrwx 1 root root 60 May 14 02:30 debug-internal.log -> offline-run-20260514_023015-ov878za5/logs/debug-internal.log\\\\nlrwxrwxrwx 1 root root 51 May 14 02:30 debug.log -> offline-run-20260514_023015-ov878za5/logs/debug.log\\\\nlrwxrwxrwx 1 root root 36 May 14 02:30 latest-run -> offline-run-20260514_023015-ov878za5\\\\ndrwxr-xr-x 5 root root 88 May 14 01:00 offline-run-20260514_010017-x4vmv7bj\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 0\\ndrwxr-xr-x 5 root root 88 May 14 02:30 offline-run-20260514_023015-ov878za5\\nlrwxrwxrwx 1 root root 60 May 14 02:30 debug-internal.log -> offline-run-20260514_023015-ov878za5/logs/debug-internal.log\\nlrwxrwxrwx 1 root root 51 May 14 02:30 debug.log -> offline-run-20260514_023015-ov878za5/logs/debug.log\\nlrwxrwxrwx 1 root root 36 May 14 02:30 latest-run -> offline-run-20260514_023015-ov878za5\\ndrwxr-xr-x 5 root root 88 May 14 01:00 offline-run-20260514_010017-x4vmv7bj\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NdSYSywXxakx18nuCyRAVT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "grep -r \"Starting training\" /root/runs/m2_full_qwen/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "0054b59f-000e-40ff-b99f-5085d643fe47",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JCZwZswYshcgxzSHsrBBgY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6744,
+                "cache_read_input_tokens": 29179,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6744
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LgkD8w26LxCCqxJRqhD41U",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "ls -lt /root/runs/m2_full_qwen/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "212be9de-ebd6-4a8f-b293-6f0138a6f69e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JCZwZswYshcgxzSHsrBBgY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6744,
+                "cache_read_input_tokens": 29179,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6744
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-14T00:05:56.340Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NdSYSywXxakx18nuCyRAVT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "8a5017bf-ebdc-432d-926c-ba474aafc36d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-14T00:05:56.764Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LgkD8w26LxCCqxJRqhD41U",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\n-rw-r--r-- 1 root root 2922 May 14 08:04 random_s42.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "45574a5e-9320-4f9a-9cd6-850d889821d3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\n-rw-r--r-- 1 root root 2922 May 14 08:04 random_s42.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\n-rw-r--r-- 1 root root 2922 May 14 08:04 random_s42.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PTGUaFTutmXnSWpvzNVScc",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "find /root/structfuse-context/wandb/ -name \"wandb-summary.json\" -mmin -180",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "476b087d-7b64-49a1-800a-4e5da4590777",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UU2Ez8cakhKWMRuGpLpsya",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1435,
+                "cache_read_input_tokens": 35923,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1435
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-14T00:06:01.390Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PTGUaFTutmXnSWpvzNVScc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "b8f60056-bb22-4eab-97dd-6261c31aa491",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015Zw79dcZvT9iyp8GPNUJks",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "find /root/autodl-tmp/structfuse/wandb_logs/wandb/ -name \"wandb-summary.json\" -mmin -180",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "98eb74db-0ec6-4450-a540-0782be034d0c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UU2Ez8cakhKWMRuGpLpsya",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1435,
+                "cache_read_input_tokens": 35923,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1435
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-14T00:06:02.539Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015Zw79dcZvT9iyp8GPNUJks",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "38501d70-2ec2-4a5a-b666-138950639520",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EmJC8TNc3rToFSM2fgiukB",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "ls -lt /root/runs/m2_full_starcoder/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "f6849b4d-a8c1-4381-a562-62d1d8e741ba",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UU2Ez8cakhKWMRuGpLpsya",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1435,
+                "cache_read_input_tokens": 35923,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1435
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-14T00:06:03.061Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EmJC8TNc3rToFSM2fgiukB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\n-rw-r--r-- 1 root root 1963 May 14 08:05 random_s42.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "0920e9d0-2b3a-47e3-958c-8aa1a3425f30",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\n-rw-r--r-- 1 root root 1963 May 14 08:05 random_s42.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\n-rw-r--r-- 1 root root 1963 May 14 08:05 random_s42.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部命令执行完毕，以下是原始输出：\n\n---\n\n```\n=== nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total,temperature.gpu --format=csv,noheader ===\n0, 100 %, 51621 MiB, 97887 MiB, 72\n1, 100 %, 55187 MiB, 97887 MiB, 76\n```\n\n```\n=== ps -p 73558 -o pid=,etime= (Qwen train process) ===\n 73558    06:26:00\nQWEN_ALIVE\n```\n\n```\n=== ps -p 73544 -o pid=,etime= (Qwen parent) ===\n 73544    06:26:00\nQWEN_PARENT_ALIVE\n```\n\n```\n=== find /root/autodl-tmp/structfuse/ -path \"*qwen*\" -name \"checkpoint-*\" -type d ===\n（无输出，无 checkpoint 目录）\n```\n\n```\n=== tail -50 /root/runs/m2_full_qwen/random_s42.log ===\nwandb: Tracking run with wandb version 0.26.0\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\nwandb: Run data is saved locally in /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260514_013934-pthrowuk\n\nLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.87it/s]\n[Epoch 1] Using pre-mined negatives (random)...\n  Training loop start: 1414 batches/epoch, total_steps_per_epoch=1414\n  step 50  loss=0.6716  lr=2.36e-06\n  step 100  loss=0.6195  lr=4.67e-06\n  step 150  loss=0.7127  lr=7.03e-06\n  step 200  loss=0.6318  lr=9.34e-06\n  step 250  loss=0.3339  lr=1.17e-05\n  step 300  loss=0.5918  lr=1.40e-05\n  step 350  loss=0.5738  lr=1.64e-05\n  step 400  loss=0.2005  lr=1.87e-05\n  step 450  loss=0.4374  lr=2.00e-05\n  step 500  loss=0.6168  lr=2.00e-05\n  [eval@500] {'val_loss': 0.486931758338973, 'recall@1': 0.5332214765100671, 'recall@5': 0.9540268456375839, 'recall@10': 1.0}\n  New best val_loss=0.4869, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_val_loss\n  New best R@1=0.5332, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1\n  step 550  loss=0.2608  lr=1.99e-05\n  step 600  loss=0.1666  lr=1.99e-05\n  step 650  loss=0.2760  lr=1.98e-05\n  step 700  loss=0.1415  lr=1.97e-05\n  step 750  loss=0.0966  lr=1.96e-05\n  step 800  loss=0.3779  lr=1.95e-05\n  step 850  loss=0.1694  lr=1.94e-05\n  step 900  loss=0.1534  lr=1.93e-05\n  step 950  loss=0.1034  lr=1.91e-05\n  step 1000  loss=0.2367  lr=1.89e-05\n  [eval@1000] {'val_loss': 0.4650662785708504, 'recall@1': 0.5526845637583893, 'recall@5': 0.9593959731543624, 'recall@10': 1.0}\n  New best val_loss=0.4651, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_val_loss\n  New best R@1=0.5527, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1\n  step 1050  loss=0.1787  lr=1.87e-05\n  step 1100  loss=0.1914  lr=1.85e-05\n  step 1150  loss=0.4897  lr=1.83e-05\n  step 1200  loss=0.3260  lr=1.80e-05\n  step 1250  loss=0.2007  lr=1.78e-05\n  step 1300  loss=0.0690  lr=1.75e-05\n  step 1350  loss=0.1074  lr=1.73e-05\n  step 1400  loss=0.2393  lr=1.70e-05\n[Epoch 2] Using pre-mined negatives (random)...\n  step 1450  loss=0.0597  lr=1.67e-05\n  step 1500  loss=0.1601  lr=1.63e-05\n  [eval@1500] {'val_loss': 0.5364526285221113, 'recall@1': 0.5228187919463088, 'recall@5': 0.9550335570469799, 'recall@10': 1.0}\n  val_loss not improved (1/0)\n  step 1550  loss=0.1807  lr=1.60e-05\n```\n\n```\n=== find /root/runs/ -name \"*qwen*\" -type f -mmin -60 ===\n（无输出）\n```\n\n```\n=== ps -p 76627 -o pid=,etime= (StarCoder train process) ===\n 76627    05:35:21\nSTARCODER_ALIVE\n```\n\n```\n=== ps -p 74122 -o pid=,etime= (StarCoder parent) ===\n 74122    06:25:09\nSTARCODER_PARENT_ALIVE\n```\n\n```\n=== tail -50 /root/runs/m2_full_starcoder/random_s42.log ===\nwandb: Tracking run with wandb version 0.26.0\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\nwandb: Run data is saved locally in /root/structfuse/wandb/offline-run-20260514_023015-ov878za5\n[Epoch 1] Using pre-mined negatives (random)...\n  Training loop start: 1414 batches/epoch, total_steps_per_epoch=1414\n  step 50  loss=0.8462  lr=2.26e-06\n  step 100  loss=0.6929  lr=4.62e-06\n  step 150  loss=0.5942  lr=6.93e-06\n  step 200  loss=0.4387  lr=9.25e-06\n  step 250  loss=0.5274  lr=1.16e-05\n  step 300  loss=0.5294  lr=1.40e-05\n  step 350  loss=0.3092  lr=1.63e-05\n  step 400  loss=0.2138  lr=1.87e-05\n  step 450  loss=0.5400  lr=2.00e-05\n  step 500  loss=0.3269  lr=2.00e-05\n  [eval@500] {'val_loss': 0.6194413630354324, 'recall@1': 0.43523489932885906, 'recall@5': 0.9053691275167786, 'recall@10': 1.0}\n  New best val_loss=0.6194, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s42/best_by_val_loss\n  New best R@1=0.4352, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s42/best_by_recall_at_1\n  step 550  loss=0.2826  lr=2.00e-05\n  step 600  loss=0.3563  lr=1.99e-05\n  step 650  loss=0.6108  lr=1.98e-05\n  step 700  loss=0.4037  lr=1.98e-05\n  step 750  loss=0.5464  lr=1.97e-05\n  step 800  loss=0.2657  lr=1.95e-05\n  step 850  loss=0.3973  lr=1.94e-05\n  step 900  loss=0.4681  lr=1.93e-05\n  step 950  loss=0.1187  lr=1.91e-05\n  step 1000  loss=0.2258  lr=1.89e-05\n  [eval@1000] {'val_loss': 0.6134329466611746, 'recall@1': 0.45369127516778524, 'recall@5': 0.9201342281879195, 'recall@10': 1.0}\n```\n\n```\n=== find /root/runs/ -name \"*starcoder*\" -type f -mmin -60 ===\n/root/runs/structfuse-context/m2_full_starcoder.log\n```\n\n```\n=== ps aux | grep reextract (m1_reextract_v2) ===\n（多个 CodeQL 进程正在运行，正在处理 repos: pyparsing, sunpy, marshmallow, pylint-dev/astroid, deepdiff）\n```\n\n```\n=== tail -30 /root/runs/structfuse-context/m1_reextract_v2.log ===\n2026-05-14 08:04:22,483 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_390] CodeQL call_graph: 34 entries, 9 reachable files (threshold=1)\n2026-05-14 08:04:25,554 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__dgwjbf1g] CodeQL call_graph: 17 entries, 7 reachable files (threshold=1)\n2026-05-14 08:04:29,220 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__s7sacnas] CodeQL call_graph: 47 entries, 4 reachable files (threshold=1)\n2026-05-14 08:04:31,406 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__od9uqzzl] CodeQL call_graph: 11 entries, 2 reachable files (threshold=1)\n2026-05-14 08:04:33,538 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_403] CodeQL call_graph: 192 entries, 12 reachable files (threshold=1)\n2026-05-14 08:04:38,556 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__dju7odgi] CodeQL call_graph: 72 entries, 25 reachable files (threshold=1)\n2026-05-14 08:04:41,225 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__sdd4sbt6] CodeQL call_graph: 345 entries, 9 reachable files (threshold=1)\n2026-05-14 08:04:41,631 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__ohgxt4f0] CodeQL call_graph: 169 entries, 9 reachable files (threshold=1)\n2026-05-14 08:04:47,561 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_419] CodeQL call_graph: 0 entries, 0 reachable files (threshold=1)\n2026-05-14 08:04:51,542 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_422] CodeQL call_graph: 0 entries, 0 reachable files (threshold=1)\n2026-05-14 08:04:52,298 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__du37dhzc] CodeQL call_graph: 10 entries, 2 reachable files (threshold=1)\n2026-05-14 08:04:53,389 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__on4io8dl] CodeQL call_graph: 176 entries, 9 reachable files (threshold=1)\n2026-05-14 08:04:55,011 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__sk57zi2q] CodeQL call_graph: 68 entries, 7 reachable files (threshold=1)\n2026-05-14 08:04:55,562 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_467] CodeQL call_graph: 192 entries, 12 reachable files (threshold=1)\n2026-05-14 08:05:05,601 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__e00s4dcn] CodeQL call_graph: 25 entries, 3 reachable files (threshold=1)\n2026-05-14 08:05:05,906 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__oou5e48o] CodeQL call_graph: 177 entries, 9 reachable files (threshold=1)\n2026-05-14 08:05:08,071 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__ssrx9y5a] CodeQL call_graph: 256 entries, 9 reachable files (threshold=1)\n2026-05-14 08:05:08,861 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_492] CodeQL call_graph: 153 entries, 13 reachable files (threshold=1)\n2026-05-14 08:05:18,348 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__ecw8m286] CodeQL call_graph: 168 entries, 29 reachable files (threshold=1)\n2026-05-14 08:05:18,541 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__orde97hx] CodeQL call_graph: 80 entries, 8 reachable files (threshold=1)\n2026-05-14 08:05:21,889 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_496] CodeQL call_graph: 0 entries, 0 reachable files (threshold=1)\n2026-05-14 08:05:23,075 [INFO] batch_extract: [seperman/deepdiff] cleaned up CodeQL database\n2026-05-14 08:05:23,678 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__sulg4rmc] CodeQL call_graph: 84 entries, 8 reachable files (threshold=1)\n2026-05-14 08:05:30,058 [INFO] batch_extract: [sunpy/sunpy] 722 pending, 0 done\n2026-05-14 08:05:30,125 [INFO] batch_extract: [sunpy/sunpy] creating CodeQL database...\n2026-05-14 08:05:30,130 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__p1u6iqc6] CodeQL call_graph: 59 entries, 8 reachable files (threshold=1)\n2026-05-14 08:05:35,465 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__eeo3zas1] CodeQL call_graph: 1 entries, 1 reachable files (threshold=1)\n2026-05-14 08:05:37,203 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__svzuu39s] CodeQL call_graph: 427 entries, 10 reachable files (threshold=1)\n2026-05-14 08:05:38,954 [INFO] batch_extract: [sunpy/sunpy] CodeQL DB created\n2026-05-14 08:05:42,982 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__prul2ma5] CodeQL call_graph: 161 entries, 9 reachable files (threshold=1)\n```\n\n```\n=== wc -l /root/autodl-tmp/structfuse/full_m1_data/all.jsonl ===\n44173 /root/autodl-tmp/structfuse/full_m1_data/all.jsonl\n```\n\n```\n=== find /root/autodl-tmp/structfuse/ -name \"eval_*\" -type f -mmin -180 ===\n（无输出）\n```\n\n```\n=== find /root/runs/ -name \"*eval*\" -type f -mmin -180 ===\n（无输出）\n```\n\n```\n=== ls -lt /root/structfuse-context/wandb/ ===\ntotal 0\ndrwxr-xr-x 5 root root 88 May 14 02:30 offline-run-20260514_023015-ov878za5\nlrwxrwxrwx 1 root root 60 May 14 02:30 debug-internal.log -> ...\nlrwxrwxrwx 1 root root 51 May 14 02:30 debug.log -> ...\nlrwxrwxrwx 1 root root 36 May 14 02:30 latest-run -> offline-run-20260514_023015-ov878za5\ndrwxr-xr-x 5 root root 88 May 14 01:00 offline-run-20260514_010017-x4vmv7bj\n```\n\n```\n=== find wandb -name \"wandb-summary.json\" -mmin -180 ===\n（无输出）\n```\n\n```\n=== grep -r \"Starting training\" /root/runs/m2_full_qwen/ ===\n（无匹配）\n```\n\n```\n=== ls -lt /root/runs/m2_full_qwen/ ===\ntotal 4\n-rw-r--r-- 1 root root 2922 May 14 08:04 random_s42.log\n```\n\n```\n=== ls -lt /root/runs/m2_full_starcoder/ ===\ntotal 4\n-rw-r--r-- 1 root root 1963 May 14 08:05 random_s42.log\n```"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "uuid": "d56ff653-6056-4526-b877-207df7f813ec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017eubz9UkVGsJBZgptLHGVM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 695,
+                "cache_read_input_tokens": 37358,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 695
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部命令执行完毕，以下是原始输出：\n\n---\n\n```\n=== nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total,temperature.gpu --format=csv,noheader ===\n0, 100 %, 51621 MiB, 97887 MiB, 72\n1, 100 %, 55187 MiB, 97887 MiB, 76\n```\n\n```\n=== ps -p 73558 -o pid=,etime= (Qwen train process) ===\n 73558    06:26:00\nQWEN_ALIVE\n```\n\n```\n=== ps -p 73544 -o pid=,etime= (Qwen parent) ===\n 73544    06:26:00\nQWEN_PARENT_ALIVE\n```\n\n```\n=== find /root/autodl-tmp/structfuse/ -path \"*qwen*\" -name \"checkpoint-*\" -type d ===\n（无输出，无 checkpoint 目录）\n```\n\n```\n=== tail -50 /root/runs/m2_full_qwen/random_s42.log ===\nwandb: Tracking run with wandb version 0.26.0\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\nwandb: Run data is saved locally in /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260514_013934-pthrowuk\n\nLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.87it/s]\n[Epoch 1] Using pre-mined negatives (random)...\n  Training loop start: 1414 batches/epoch, total_steps_per_epoch=1414\n  step 50  loss=0.6716  lr=2.36e-06\n  step 100  loss=0.6195  lr=4.67e-06\n  step 150  loss=0.7127  lr=7.03e-06\n  step 200  loss=0.6318  lr=9.34e-06\n  step 250  loss=0.3339  lr=1.17e-05\n  step 300  loss=0.5918  lr=1.40e-05\n  step 350  loss=0.5738  lr=1.64e-05\n  step 400  loss=0.2005  lr=1.87e-05\n  step 450  loss=0.4374  lr=2.00e-05\n  step 500  loss=0.6168  lr=2.00e-05\n  [eval@500] {'val_loss': 0.486931758338973, 'recall@1': 0.5332214765100671, 'recall@5': 0.9540268456375839, 'recall@10': 1.0}\n  New best val_loss=0.4869, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_val_loss\n  New best R@1=0.5332, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1\n  step 550  loss=0.2608  lr=1.99e-05\n  step 600  loss=0.1666  lr=1.99e-05\n  step 650  loss=0.2760  lr=1.98e-05\n  step 700  loss=0.1415  lr=1.97e-05\n  step 750  loss=0.0966  lr=1.96e-05\n  step 800  loss=0.3779  lr=1.95e-05\n  step 850  loss=0.1694  lr=1.94e-05\n  step 900  loss=0.1534  lr=1.93e-05\n  step 950  loss=0.1034  lr=1.91e-05\n  step 1000  loss=0.2367  lr=1.89e-05\n  [eval@1000] {'val_loss': 0.4650662785708504, 'recall@1': 0.5526845637583893, 'recall@5': 0.9593959731543624, 'recall@10': 1.0}\n  New best val_loss=0.4651, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_val_loss\n  New best R@1=0.5527, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1\n  step 1050  loss=0.1787  lr=1.87e-05\n  step 1100  loss=0.1914  lr=1.85e-05\n  step 1150  loss=0.4897  lr=1.83e-05\n  step 1200  loss=0.3260  lr=1.80e-05\n  step 1250  loss=0.2007  lr=1.78e-05\n  step 1300  loss=0.0690  lr=1.75e-05\n  step 1350  loss=0.1074  lr=1.73e-05\n  step 1400  loss=0.2393  lr=1.70e-05\n[Epoch 2] Using pre-mined negatives (random)...\n  step 1450  loss=0.0597  lr=1.67e-05\n  step 1500  loss=0.1601  lr=1.63e-05\n  [eval@1500] {'val_loss': 0.5364526285221113, 'recall@1': 0.5228187919463088, 'recall@5': 0.9550335570469799, 'recall@10': 1.0}\n  val_loss not improved (1/0)\n  step 1550  loss=0.1807  lr=1.60e-05\n```\n\n```\n=== find /root/runs/ -name \"*qwen*\" -type f -mmin -60 ===\n（无输出）\n```\n\n```\n=== ps -p 76627 -o pid=,etime= (StarCoder train process) ===\n 76627    05:35:21\nSTARCODER_ALIVE\n```\n\n```\n=== ps -p 74122 -o pid=,etime= (StarCoder parent) ===\n 74122    06:25:09\nSTARCODER_PARENT_ALIVE\n```\n\n```\n=== tail -50 /root/runs/m2_full_starcoder/random_s42.log ===\nwandb: Tracking run with wandb version 0.26.0\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\nwandb: Run data is saved locally in /root/structfuse/wandb/offline-run-20260514_023015-ov878za5\n[Epoch 1] Using pre-mined negatives (random)...\n  Training loop start: 1414 batches/epoch, total_steps_per_epoch=1414\n  step 50  loss=0.8462  lr=2.26e-06\n  step 100  loss=0.6929  lr=4.62e-06\n  step 150  loss=0.5942  lr=6.93e-06\n  step 200  loss=0.4387  lr=9.25e-06\n  step 250  loss=0.5274  lr=1.16e-05\n  step 300  loss=0.5294  lr=1.40e-05\n  step 350  loss=0.3092  lr=1.63e-05\n  step 400  loss=0.2138  lr=1.87e-05\n  step 450  loss=0.5400  lr=2.00e-05\n  step 500  loss=0.3269  lr=2.00e-05\n  [eval@500] {'val_loss': 0.6194413630354324, 'recall@1': 0.43523489932885906, 'recall@5': 0.9053691275167786, 'recall@10': 1.0}\n  New best val_loss=0.6194, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s42/best_by_val_loss\n  New best R@1=0.4352, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s42/best_by_recall_at_1\n  step 550  loss=0.2826  lr=2.00e-05\n  step 600  loss=0.3563  lr=1.99e-05\n  step 650  loss=0.6108  lr=1.98e-05\n  step 700  loss=0.4037  lr=1.98e-05\n  step 750  loss=0.5464  lr=1.97e-05\n  step 800  loss=0.2657  lr=1.95e-05\n  step 850  loss=0.3973  lr=1.94e-05\n  step 900  loss=0.4681  lr=1.93e-05\n  step 950  loss=0.1187  lr=1.91e-05\n  step 1000  loss=0.2258  lr=1.89e-05\n  [eval@1000] {'val_loss': 0.6134329466611746, 'recall@1': 0.45369127516778524, 'recall@5': 0.9201342281879195, 'recall@10': 1.0}\n```\n\n```\n=== find /root/runs/ -name \"*starcoder*\" -type f -mmin -60 ===\n/root/runs/structfuse-context/m2_full_starcoder.log\n```\n\n```\n=== ps aux | grep reextract (m1_reextract_v2) ===\n（多个 CodeQL 进程正在运行，正在处理 repos: pyparsing, sunpy, marshmallow, pylint-dev/astroid, deepdiff）\n```\n\n```\n=== tail -30 /root/runs/structfuse-context/m1_reextract_v2.log ===\n2026-05-14 08:04:22,483 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_390] CodeQL call_graph: 34 entries, 9 reachable files (threshold=1)\n2026-05-14 08:04:25,554 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__dgwjbf1g] CodeQL call_graph: 17 entries, 7 reachable files (threshold=1)\n2026-05-14 08:04:29,220 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__s7sacnas] CodeQL call_graph: 47 entries, 4 reachable files (threshold=1)\n2026-05-14 08:04:31,406 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__od9uqzzl] CodeQL call_graph: 11 entries, 2 reachable files (threshold=1)\n2026-05-14 08:04:33,538 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_403] CodeQL call_graph: 192 entries, 12 reachable files (threshold=1)\n2026-05-14 08:04:38,556 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__dju7odgi] CodeQL call_graph: 72 entries, 25 reachable files (threshold=1)\n2026-05-14 08:04:41,225 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__sdd4sbt6] CodeQL call_graph: 345 entries, 9 reachable files (threshold=1)\n2026-05-14 08:04:41,631 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__ohgxt4f0] CodeQL call_graph: 169 entries, 9 reachable files (threshold=1)\n2026-05-14 08:04:47,561 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_419] CodeQL call_graph: 0 entries, 0 reachable files (threshold=1)\n2026-05-14 08:04:51,542 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_422] CodeQL call_graph: 0 entries, 0 reachable files (threshold=1)\n2026-05-14 08:04:52,298 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__du37dhzc] CodeQL call_graph: 10 entries, 2 reachable files (threshold=1)\n2026-05-14 08:04:53,389 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__on4io8dl] CodeQL call_graph: 176 entries, 9 reachable files (threshold=1)\n2026-05-14 08:04:55,011 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__sk57zi2q] CodeQL call_graph: 68 entries, 7 reachable files (threshold=1)\n2026-05-14 08:04:55,562 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_467] CodeQL call_graph: 192 entries, 12 reachable files (threshold=1)\n2026-05-14 08:05:05,601 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__e00s4dcn] CodeQL call_graph: 25 entries, 3 reachable files (threshold=1)\n2026-05-14 08:05:05,906 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__oou5e48o] CodeQL call_graph: 177 entries, 9 reachable files (threshold=1)\n2026-05-14 08:05:08,071 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__ssrx9y5a] CodeQL call_graph: 256 entries, 9 reachable files (threshold=1)\n2026-05-14 08:05:08,861 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_492] CodeQL call_graph: 153 entries, 13 reachable files (threshold=1)\n2026-05-14 08:05:18,348 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__ecw8m286] CodeQL call_graph: 168 entries, 29 reachable files (threshold=1)\n2026-05-14 08:05:18,541 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__orde97hx] CodeQL call_graph: 80 entries, 8 reachable files (threshold=1)\n2026-05-14 08:05:21,889 [INFO] batch_extract: [seperman__deepdiff.ed252022.pr_496] CodeQL call_graph: 0 entries, 0 reachable files (threshold=1)\n2026-05-14 08:05:23,075 [INFO] batch_extract: [seperman/deepdiff] cleaned up CodeQL database\n2026-05-14 08:05:23,678 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__sulg4rmc] CodeQL call_graph: 84 entries, 8 reachable files (threshold=1)\n2026-05-14 08:05:30,058 [INFO] batch_extract: [sunpy/sunpy] 722 pending, 0 done\n2026-05-14 08:05:30,125 [INFO] batch_extract: [sunpy/sunpy] creating CodeQL database...\n2026-05-14 08:05:30,130 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__p1u6iqc6] CodeQL call_graph: 59 entries, 8 reachable files (threshold=1)\n2026-05-14 08:05:35,465 [INFO] batch_extract: [pylint-dev__astroid.b114f6b5.combine_file__eeo3zas1] CodeQL call_graph: 1 entries, 1 reachable files (threshold=1)\n2026-05-14 08:05:37,203 [INFO] batch_extract: [pyparsing__pyparsing.533adf47.func_basic__svzuu39s] CodeQL call_graph: 427 entries, 10 reachable files (threshold=1)\n2026-05-14 08:05:38,954 [INFO] batch_extract: [sunpy/sunpy] CodeQL DB created\n2026-05-14 08:05:42,982 [INFO] batch_extract: [marshmallow-code__marshmallow.9716fc62.func_basic__prul2ma5] CodeQL call_graph: 161 entries, 9 reachable files (threshold=1)\n```\n\n```\n=== wc -l /root/autodl-tmp/structfuse/full_m1_data/all.jsonl ===\n44173 /root/autodl-tmp/structfuse/full_m1_data/all.jsonl\n```\n\n```\n=== find /root/autodl-tmp/structfuse/ -name \"eval_*\" -type f -mmin -180 ===\n（无输出）\n```\n\n```\n=== find /root/runs/ -name \"*eval*\" -type f -mmin -180 ===\n（无输出）\n```\n\n```\n=== ls -lt /root/structfuse-context/wandb/ ===\ntotal 0\ndrwxr-xr-x 5 root root 88 May 14 02:30 offline-run-20260514_023015-ov878za5\nlrwxrwxrwx 1 root root 60 May 14 02:30 debug-internal.log -> ...\nlrwxrwxrwx 1 root root 51 May 14 02:30 debug.log -> ...\nlrwxrwxrwx 1 root root 36 May 14 02:30 latest-run -> offline-run-20260514_023015-ov878za5\ndrwxr-xr-x 5 root root 88 May 14 01:00 offline-run-20260514_010017-x4vmv7bj\n```\n\n```\n=== find wandb -name \"wandb-summary.json\" -mmin -180 ===\n（无输出）\n```\n\n```\n=== grep -r \"Starting training\" /root/runs/m2_full_qwen/ ===\n（无匹配）\n```\n\n```\n=== ls -lt /root/runs/m2_full_qwen/ ===\ntotal 4\n-rw-r--r-- 1 root root 2922 May 14 08:04 random_s42.log\n```\n\n```\n=== ls -lt /root/runs/m2_full_starcoder/ ===\ntotal 4\n-rw-r--r-- 1 root root 1963 May 14 08:05 random_s42.log\n```"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 126432,
+            "duration_api_ms": 123578,
+            "num_turns": 25,
+            "stop_reason": "end_turn",
+            "session_id": "08040574-1b09-4862-81b4-65c43e1fdf70",
+            "total_cost_usd": 0.4858365,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 26606,
+              "cache_read_input_tokens": 238516,
+              "output_tokens": 7925,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 26606,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 5207,
+                  "cache_read_input_tokens": 37358,
+                  "cache_creation_input_tokens": 695,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 695
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2031,
+                "outputTokens": 14,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002101,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 13,
+                "outputTokens": 7925,
+                "cacheReadInputTokens": 238516,
+                "cacheCreationInputTokens": 26606,
+                "webSearchRequests": 0,
+                "costUSD": 0.4837355,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "a8dc2a53-8e67-4bc7-912e-a1b7f2df765a"
+          },
+          "id": "event-000055"
+        }
+      ],
+      "message_count": 55
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-all-experiments-progress-check.md"
+}

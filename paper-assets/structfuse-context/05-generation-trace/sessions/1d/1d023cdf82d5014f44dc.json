@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "1d023cdf82d5014f44dc",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "experiment mvp p1 codeql",
+  "task_key": "worker_experiment_mvp_p1_codeql_20260512T103754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_mvp_p1_codeql_20260512T103754.log",
+    "occurrence": 1,
+    "bytes": 1220585,
+    "sha256": "b6dbb96be97ce459b4b06d5bcde3faee07f344b863e99c51d95fbc4c80042258"
+  },
+  "statistics": {
+    "messages": 575,
+    "user_turns": 1,
+    "tool_calls": 216,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 135,
+      "tool_call": 216,
+      "tool_result": 216,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 345,
+      "chunks": [
+        {
+          "path": "1d023cdf82d5014f44dc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1d023cdf82d5014f44dc-part-0002.json",
+          "message_count": 165
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 230,
+      "chunks": [
+        {
+          "path": "1d023cdf82d5014f44dc-part-0002.json",
+          "message_count": 15
+        },
+        {
+          "path": "1d023cdf82d5014f44dc-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "1d023cdf82d5014f44dc-part-0004.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-mvp-p1-codeql.md"
+}

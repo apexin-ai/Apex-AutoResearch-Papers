@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84bb8b876a9dbd14dee7",
+  "project": "structfuse-context",
+  "kind": "history",
+  "title": "reviewer / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_2.md",
+    "occurrence": 1,
+    "bytes": 3781,
+    "sha256": "9d6c880927a058c2b170c976013858ce88cd5be0268ee85e3b4047f7f6820432"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-12T19:19:51+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **cuda:4**（`execution.gpu_ids=[4]`），train.py L4 硬编码 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = \"4\"`\n- 服务器 **cqa1-21977**，账号 **root**\n- 大文件必须放 `/root/autodl-tmp/`，根分区只有 ~30GB\n- Registry 中的训练时 recall@1 是 **4-candidate 膨胀值**，不可直接引用——必须用独立 eval 脚本（`/root/structfuse/scripts/eval_p2b.py`）的 JSON 结果\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977，工作目录 `/root/structfuse`\n- Python：`/root/miniconda3/bin/python`（conda base，不用 venv）\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/structfuse/models/Qwen/Qwen2.5-Coder-3B`\n- 训练数据：`/root/structfuse/mvp_data/training_data/`（505 samples × 3 策略文件 + val.jsonl 127 samples）\n- Checkpoints：`/root/autodl-tmp/structfuse/checkpoints/p2b_*`（9 dirs，4 老 run 各 5.8G，5 新 run 各 12G = best+final）\n- Eval 结果：`/root/autodl-tmp/structfuse/eval_results/`\n- 磁盘：/root/autodl-tmp 81%（33G 剩余）\n- WANDB_MODE=disabled\n- 活跃进程：GPU 4 空闲（3 MiB / 0%）。无活跃训练进程。\n\n### 3. 📊 当前状态\n**刚完成**：P2b 9/9 contrastive training runs 全部完成（3 strategies × 3 seeds）。已向 Director 发送 3 份审查报告：\n1. 5/9 磁盘满失败 → 清理后重跑 → 全部成功\n2. Registry recall@1 膨胀问题（训练时 4-candidate vs 独立 eval 差距 4-20pp）\n3. **[最重要] train_embedding.jsonl 和 train_dataflow.jsonl 文件大小 byte-exact 相同（53,649,714 bytes），导致 embedding_distance 和 dataflow_aware 策略训练结果完全一致——H3 策略对比实际只比了 2 种策略而非 3 种**\n\n**Registry**：`mvp_p2b_contrastive_training` 状态 ANALYZING（retry_count=2）。其余全 DONE/killed。\n\n**等待**：Director 对数据准备 bug 的决策（是否重新生成 negative mining 数据并重跑）。独立 eval 脚本尚未对 5 个新 run 执行。\n\n### 4. 📋 待办\n- Director 确认数据 bug → 检查 negative mining 代码（`hard_negative_mining.py` 的 `build_miner`），验证 embedding_distance 和 dataflow_aware 策略是否真的产生不同 negatives\n- 5 个新 run 的独立 eval 结果出来 → 交叉验证，发布完整 9-run eval 审查报告\n- 若 Director 决定重新生成数据并重跑 → 验证新数据文件大小/内容确实不同后再放行\n- M1 全量 extraction 启动 → 检查 GPU 合规 + 初始输出质量（extraction 脚本已就绪但未执行）\n- 磁盘回升到 >85% → 提醒清理 best/ checkpoint 目录（可释放 ~29G）\n\n### 5. 🎯 战略上下文\n- **核心假设 H3**（data-flow hard negatives 优于 random）目前 **无法验证**，因为 embedding/dataflow 训练数据相同。Random 策略在独立 eval 上 recall@1≈0.94，远超另两种（≈0.67）。这可能是\"hard negatives 过于接近 positive 反而伤害学习\"，但也可能只是数据准备 bug 的结果。\n- **最易判断错的事**：不要信 registry 中的 recall@1 数字（0.984/0.874 等），那是 4-candidate 膨胀值。真实数据在 eval_results/ 的 JSON 文件中（random≈0.94，embedding/dataflow≈0.67）。\n- **容易踩的坑**：train.py 的 evaluate() 只有 4 candidates（1 pos + 3 neg），recall@1=recall@5=recall@10，看起来\"很好\"但不可与文献对比。论文必须用独立 eval 结果。\n- **决策链**：H1(CodeQL feasibility)✓ → H2(linear proxy AUC=0.78)✓ → H3(strategy comparison) ← 卡在这里\n- **前序实验**：mvp_p1_codeql_feasibility(DONE, success)、mvp_p2a_linear_proxy(DONE, success, AUC=0.78)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-copy-3.md"
+}

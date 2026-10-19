@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ddd4ff755591d8315115",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops collect qwen trajectories",
+  "task_key": "worker_ops_collect-qwen-trajectories_20260515T163243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-qwen-trajectories_20260515T163243_result.json",
+    "occurrence": 1,
+    "bytes": 3817,
+    "sha256": "568b8e7f69247908127db9afde2cc1e4d793f0b138dfaac758008f324c95763a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here are the complete eval trajectories:\n\n## random_s42 (3 epochs, no early stop, patience=0)\n\n| Step | val_loss | R@1 | R@5 | R@10 |\n|------|----------|------|------|------|\n| 500 | 0.4869 | 0.5332 | 0.9540 | 1.0 |\n| 1000 | 0.4651 | 0.5527 | 0.9594 | 1.0 |\n| 1500 | 0.5365 | 0.5228 | 0.9550 | 1.0 |\n| 2000 | 0.5162 | 0.5228 | 0.9544 | 1.0 |\n| 2500 | 0.5264 | 0.5268 | 0.9564 | 1.0 |\n| 3000 | 0.5406 | 0.5356 | 0.9493 | 1.0 |\n| 3500 | 0.5601 | 0.5336 | 0.9493 | 1.0 |\n| 4000 | 0.5510 | 0.5346 | 0.9440 | 1.0 |\n| **Final** | **0.5456** | **0.5503** | **0.9463** | **1.0** |\n\n- Best val_loss: **0.4651** @ step 1000\n- Best R@1: **0.5527** @ step 1000\n- Note: patience=0 (disabled), ran all 3 epochs (4242 steps). val_loss kept degrading after step 1000 but R@1 bounced around.\n\n## random_s43 (early stop @ 1500, patience=2)\n\n| Step | val_loss | R@1 | R@5 | R@10 |\n|------|----------|------|------|------|\n| 500 | 0.4476 | 0.5357 | 0.9699 | 1.0 |\n| 1000 | 0.4638 | 0.5285 | 0.9672 | 1.0 |\n| 1500 | 0.5477 | 0.5554 | 0.9545 | 1.0 |\n| **Final** | **0.5434** | **0.5501** | **0.9584** | **1.0** |\n\n- Best val_loss: **0.4476** @ step 500\n- Best R@1: **0.5554** @ step 1500\n- Early stop triggered at step 1500 (2 consecutive non-improvements in val_loss)\n\n## random_s44 (early stop @ 1500, patience=2)\n\n| Step | val_loss | R@1 | R@5 | R@10 |\n|------|----------|------|------|------|\n| 500 | 0.4252 | 0.6009 | 0.9583 | 1.0 |\n| 1000 | 0.4695 | 0.5638 | 0.9524 | 1.0 |\n| 1500 | 0.4918 | 0.5592 | 0.9504 | 1.0 |\n| **Final** | **0.4943** | **0.5542** | **0.9514** | **1.0** |\n\n- Best val_loss: **0.4252** @ step 500\n- Best R@1: **0.6009** @ step 500\n- Early stop triggered at step 1500\n\n## embedding_distance_s43 (early stop @ 1500, patience=2)\n\n| Step | val_loss | R@1 | R@5 | R@10 |\n|------|----------|------|------|------|\n| 500 | 0.4541 | 0.5446 | 0.9666 | 1.0 |\n| 1000 | 0.4709 | 0.5390 | 0.9656 | 1.0 |\n| 1500 | 0.4926 | 0.5606 | 0.9630 | 1.0 |\n| **Final** | **0.4876** | **0.5655** | **0.9663** | **1.0** |\n\n- Best val_loss: **0.4541** @ step 500\n- Best R@1: **0.5606** @ step 1500\n- Early stop triggered at step 1500\n\n## embedding_distance_s44 (early stop @ 2000, patience=2)\n\n| Step | val_loss | R@1 | R@5 | R@10 |\n|------|----------|------|------|------|\n| 500 | 0.4403 | 0.5942 | 0.9563 | 1.0 |\n| 1000 | 0.4341 | 0.5813 | 0.9643 | 1.0 |\n| 1500 | 0.5256 | 0.5473 | 0.9421 | 1.0 |\n| 2000 | 0.5182 | 0.5390 | 0.9468 | 1.0 |\n| **Final** | **0.5123** | **0.5470** | **0.9481** | **1.0** |\n\n- Best val_loss: **0.4341** @ step 1000\n- Best R@1: **0.5942** @ step 500\n- Early stop triggered at step 2000 (unique among subruns: val_loss improved at step 1000, then 2 non-improvements)\n\n## dataflow_aware_s43 (in progress)\n\nCurrently at step 200, no eval yet (first eval at step 500). No eval data available.\n\n---\n\n**Key Training Dynamics observations:**\n- **Consistent overfitting pattern**: all subruns show best val_loss at step 500 or 1000, then monotonic degradation — classic early overfitting on contrastive loss\n- **R@1 vs val_loss divergence**: R@1 sometimes improves even as val_loss degrades (random_s43 at step 1500, embedding_distance_s43 at step 1500), suggesting the loss landscape and retrieval quality partially decouple\n- **random_s42 is the cautionary tale**: ran all 3 epochs without early stopping, val_loss peaked at 0.5601 (step 3500) — 20% worse than best — while R@1 stayed within ~2pp band, confirming early stopping at patience=2 is appropriate\n- **embedding_distance_s44 is the outlier**: only subrun where val_loss improved between step 500→1000 before deteriorating, suggesting the harder negatives from embedding distance create a slightly different optimization trajectory"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-qwen-trajectories.md"
+}

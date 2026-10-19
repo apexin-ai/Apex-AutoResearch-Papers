@@ -1,0 +1,3615 @@
+# analysis plan 005 stratified v2
+
+**StructFuse: Structure-Grounded Hard Negative Mining for Contrastive Code Context Retrieval** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 76
+- **Recorded user turns:** 0
+- **Tool calls:** 26
+- **Original source:** `logs/workers/worker_analysis_plan_005_stratified_v2_20260514T202757.log`
+- **Structured JSON:** [`4145a163ef1fcc005f75.json`](../../sessions/41/4145a163ef1fcc005f75.json)
+
+## Before a recorded user message
+
+76 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "a55f68ee-8119-42a4-897e-497241e19c6a",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-structfuse-context/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778807400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "4a6e76dc-d74e-47c0-a8a2-6366024d6f70",
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the analyze_stratified.py script on the server to understand its parameters and requirements.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "75cc5ba9-07da-402d-b22f-8e6b8e3727e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TM5CusRMHG5RKSpHfaNgPg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11876,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11876
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先读脚本内容，再判断能否运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "8da4ee01-a340-428a-ac62-cd24eab3ceef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TM5CusRMHG5RKSpHfaNgPg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11876,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11876
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01PzoYhnNBGQgerAHdT5P7BS`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "a0c00f62-62b9-4a5a-8546-6be816c8ca18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TM5CusRMHG5RKSpHfaNgPg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11876,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11876
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T20:28:09.391Z_
+
+<details><summary>↩ Tool result · `toolu_01PzoYhnNBGQgerAHdT5P7BS`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "bd0b2e1b-1c5a-4b88-a3ca-fb518566f19f",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PLrCGrKaCFjtDF5cdHxEgc`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "cat /root/structfuse/evaluation/analyze_stratified.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "93dcd439-5596-48fa-8d7f-525024c4af25",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A1uK1DvMU6GnAV7tFNnced",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 480,
+      "cache_read_input_tokens": 23323,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 480
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T20:28:13.430Z_
+
+<details><summary>↩ Tool result · `toolu_01PLrCGrKaCFjtDF5cdHxEgc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Stratified analysis of embedding vs random negative strategies by data strata.\\n\\nAnalyses M2 per-instance predictions across:\\n  - Repo size (instance count per repo from M1)\\n  - Candidate pool size (neg_candidates per query)\\n  - Query-positive similarity (cosine sim from model, or text overlap for dry-run)\\n\\nInputs:\\n  - M2 per-instance predictions (from --predictions-dir or re-eval from checkpoints)\\n  - M1 all.jsonl (repo metadata)\\n  - Val JSONL files (query/candidate structure)\\n\\nOutputs:\\n  - stratified_results.json: full per-stratum metrics with bootstrap CI\\n  - stratified_summary.csv: compact table\\n  - stratified_plots.pdf: grouped bar charts, heatmaps, delta trends\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport math\\nimport os\\nimport sys\\nfrom collections import Counter, defaultdict\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List, Optional, Tuple\\n\\nimport numpy as np\\n\\nSTRATEGIES = [\\\"random\\\", \\\"embedding_distance\\\", \\\"dataflow_aware\\\"]\\nSTRATEGY_LABELS = {\\\"random\\\": \\\"Random\\\", \\\"embedding_distance\\\": \\\"Embedding\\\", \\\"dataflow_aware\\\": \\\"Dataflow\\\"}\\nSTRATEGY_COLORS = {\\\"random\\\": \\\"#4C72B0\\\", \\\"embedding_distance\\\": \\\"#DD8452\\\", \\\"dataflow_aware\\\": \\\"#55A868\\\"}\\n\\nREPO_SIZE_BINS = {\\n    \\\"small\\\": (0, 50),\\n    \\\"medium\\\": (50, 200),\\n    \\\"large\\\": (200, 500),\\n    \\\"xlarge\\\": (500, float(\\\"inf\\\")),\\n}\\n\\nPOOL_SIZE_BINS = {\\n    \\\"small\\\": (0, 20),\\n    \\\"medium\\\": (20, 40),\\n    \\\"large\\\": (40, 51),\\n}\\n\\nSIMILARITY_BINS = {\\n    \\\"low\\\": (0.0, 0.3),\\n    \\\"medium\\\": (0.3, 0.6),\\n    \\\"high\\\": (0.6, 1.01),\\n}\\n\\nDATAFLOW_BINS = {\\n    \\\"sparse\\\": (0, 2),\\n    \\\"moderate\\\": (2, 10),\\n    \\\"rich\\\": (10, float(\\\"inf\\\")),\\n}\\n\\nNEG_DIFFICULTY_QUARTILE_LABELS = [\\\"Q1_easy\\\", \\\"Q2\\\", \\\"Q3\\\", \\\"Q4_hard\\\"]\\n\\n\\ndef _bin_value(value, bins):\\n    for name, (lo, hi) in bins.items():\\n        if lo <= value < hi:\\n            return name\\n    return \\\"unknown\\\"\\n\\n\\n# ── M1 metadata ───────────────────────────────────────────────────��─\\n\\ndef load_m1_metadata(m1_path: str) -> Tuple[Dict[str, str], Dict[str, int]]:\\n    import re\\n    inst_to_repo = {}\\n    repo_counts: Counter = Counter()\\n    pat_iid = re.compile(r'\\\"instance_id\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    pat_repo = re.compile(r'\\\"repo\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    with open(m1_path) as f:\\n        for line in f:\\n            m_iid = pat_iid.search(line)\\n            m_repo = pat_repo.search(line)\\n            if m_iid and m_repo:\\n                iid = m_iid.group(1)\\n                repo = m_repo.group(1)\\n                inst_to_repo[iid] = repo\\n                repo_counts[repo] += 1\\n    return inst_to_repo, dict(repo_counts)\\n\\n\\n# ── Dataflow graph loading ────────────────────────────────────────────\\n\\ndef load_dataflow_edges(graph_path: str) -> Dict[str, int]:\\n    \\\"\\\"\\\"Load dataflow graph and return {file_key: edge_count}.\\\"\\\"\\\"\\n    with open(graph_path) as f:\\n        graph = json.load(f)\\n    return {k: len(v) for k, v in graph.items()}\\n\\n\\n# ── Val data loading ─────────────────────────────────────────────────\\n\\ndef load_val_samples(val_path: str, lite: bool = False) -> List[Dict[str, Any]]:\\n    \\\"\\\"\\\"Load val JSONL. lite=True skips candidate_tokens (faster for dry-run).\\\"\\\"\\\"\\n    import re\\n    samples = []\\n    pat_qid = re.compile(r'\\\"query_id\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    with open(val_path) as f:\\n        for line in f:\\n            if not line.strip():\\n                continue\\n            if lite:\\n                m = pat_qid.search(line)\\n                if not m:\\n                    continue\\n                qid = m.group(1)\\n                instance_id = qid.split(\\\"::\\\")[0] if \\\"::\\\" in qid else qid\\n                d = json.loads(line)\\n                samples.append({\\n                    \\\"query_id\\\": qid,\\n                    \\\"instance_id\\\": instance_id,\\n                    \\\"pool_size\\\": len(d.get(\\\"neg_candidates\\\", [])),\\n                    \\\"query_tokens\\\": d.get(\\\"query_tokens\\\", \\\"\\\")[:1000],\\n                    \\\"pos_tokens\\\": d.get(\\\"pos_tokens\\\", \\\"\\\")[:1000],\\n                    \\\"neg_candidates\\\": [],\\n                    \\\"candidate_tokens\\\": {},\\n                })\\n            else:\\n                d = jso\\n\\n... [截断: 输出过长，省略 27452 字符] ...\\n\\nt\\\")):\\n                        ckpt_dir = candidate\\n                        break\\n                if ckpt_dir is None and os.path.exists(os.path.join(base, \\\"model.pt\\\")):\\n                    ckpt_dir = base\\n                if os.path.exists(ckpt_dir):\\n                    print(f\\\"  Re-evaluating checkpoint: {ckpt_dir}\\\", flush=True)\\n                    results = reeval_checkpoint(\\n                        ckpt_dir, val_samples, args.device, args.max_seq_length\\n                    )\\n                else:\\n                    print(f\\\"  [WARN] Checkpoint not found: {ckpt_dir}\\\", flush=True)\\n                    continue\\n            else:\\n                print(\\\"  [ERROR] No --dry-run, --predictions-dir, or --checkpoints-dir\\\", flush=True)\\n                continue\\n\\n            # Assign strata\\n            results = assign_strata(results, inst_to_repo, repo_counts, dataflow_edges)\\n\\n            # For dry-run or model-based: compute text similarity for sim_bin\\n            if args.dry_run:\\n                for r, s in zip(results, val_samples):\\n                    tsim = text_similarity(s[\\\"query_tokens\\\"][:500], s[\\\"pos_tokens\\\"][:500])\\n                    r[\\\"sim_bin\\\"] = _bin_value(tsim, SIMILARITY_BINS)\\n\\n            all_results[strategy][seed] = results\\n            val_samples_cache[f\\\"{strategy}_s{seed}\\\"] = val_samples\\n            print(f\\\"  -> {len(results)} instances\\\", flush=True)\\n\\n    # Compute neg_difficulty quartiles (text-overlap proxy, CPU-safe)\\n    print(\\\"Computing neg difficulty quartiles...\\\", flush=True)\\n    assign_neg_difficulty_quartiles(all_results, val_samples_cache)\\n\\n    # Run stratified analysis\\n    print(\\\"\\\\nRunning stratified analysis...\\\", flush=True)\\n    repo_analysis = run_stratified_analysis(\\n        all_results, \\\"repo_size_bin\\\", list(REPO_SIZE_BINS.keys()), args.n_bootstrap\\n    )\\n    pool_analysis = run_stratified_analysis(\\n        all_results, \\\"pool_size_bin\\\", list(POOL_SIZE_BINS.keys()), args.n_bootstrap\\n    )\\n    sim_analysis = run_stratified_analysis(\\n        all_results, \\\"sim_bin\\\", list(SIMILARITY_BINS.keys()), args.n_bootstrap\\n    )\\n\\n    dataflow_analysis = {}\\n    if dataflow_edges is not None:\\n        dataflow_analysis = run_stratified_analysis(\\n            all_results, \\\"dataflow_bin\\\", list(DATAFLOW_BINS.keys()), args.n_bootstrap\\n        )\\n\\n    neg_diff_analysis = run_stratified_analysis(\\n        all_results, \\\"neg_difficulty_bin\\\", NEG_DIFFICULTY_QUARTILE_LABELS, args.n_bootstrap\\n    )\\n\\n    # Save JSON\\n    full_results = {\\n        \\\"config\\\": {\\n            \\\"strategies\\\": STRATEGIES,\\n            \\\"seeds\\\": seeds,\\n            \\\"repo_size_bins\\\": {k: list(v) for k, v in REPO_SIZE_BINS.items()},\\n            \\\"pool_size_bins\\\": {k: list(v) for k, v in POOL_SIZE_BINS.items()},\\n            \\\"similarity_bins\\\": {k: list(v) for k, v in SIMILARITY_BINS.items()},\\n            \\\"dataflow_bins\\\": {k: list(v) for k, v in DATAFLOW_BINS.items()},\\n            \\\"neg_difficulty_quartiles\\\": NEG_DIFFICULTY_QUARTILE_LABELS,\\n            \\\"n_bootstrap\\\": args.n_bootstrap,\\n            \\\"dry_run\\\": args.dry_run,\\n        },\\n        \\\"by_repo_size\\\": repo_analysis,\\n        \\\"by_pool_size\\\": pool_analysis,\\n        \\\"by_similarity\\\": sim_analysis,\\n        \\\"by_dataflow\\\": dataflow_analysis,\\n        \\\"by_neg_difficulty\\\": neg_diff_analysis,\\n    }\\n\\n    json_path = os.path.join(args.output_dir, \\\"stratified_results.json\\\")\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(full_results, f, indent=2, ensure_ascii=False)\\n    print(f\\\"  Results JSON saved to {json_path}\\\", flush=True)\\n\\n    # CSV summary\\n    csv_path = os.path.join(args.output_dir, \\\"stratified_summary.csv\\\")\\n    write_summary_csv(repo_analysis, pool_analysis, sim_analysis, csv_path, dataflow_analysis, neg_diff_analysis)\\n\\n    # Plots\\n    try:\\n        make_plots(repo_analysis, pool_analysis, sim_analysis, args.output_dir, dataflow_analysis, neg_diff_analysis)\\n    except Exception as e:\\n        print(f\\\"  [WARN] Plot generation failed: {e}\\\", flush=True)\\n\\n    print(\\\"\\\\nDone.\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "a334115d-f0c4-4592-9438-5f5577153e36",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Stratified analysis of embedding vs random negative strategies by data strata.\\\\n\\\\nAnalyses M2 per-instance predictions across:\\\\n  - Repo size (instance count per repo from M1)\\\\n  - Candidate pool size (neg_candidates per query)\\\\n  - Query-positive similarity (cosine sim from model, or text overlap for dry-run)\\\\n\\\\nInputs:\\\\n  - M2 per-instance predictions (from --predictions-dir or re-eval from checkpoints)\\\\n  - M1 all.jsonl (repo metadata)\\\\n  - Val JSONL files (query/candidate structure)\\\\n\\\\nOutputs:\\\\n  - stratified_results.json: full per-stratum metrics with bootstrap CI\\\\n  - stratified_summary.csv: compact table\\\\n  - stratified_plots.pdf: grouped bar charts, heatmaps, delta trends\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport math\\\\nimport os\\\\nimport sys\\\\nfrom collections import Counter, defaultdict\\\\nfrom pathlib import Path\\\\nfrom typing import Any, Dict, List, Optional, Tuple\\\\n\\\\nimport numpy as np\\\\n\\\\nSTRATEGIES = [\\\\\\\"random\\\\\\\", \\\\\\\"embedding_distance\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\"]\\\\nSTRATEGY_LABELS = {\\\\\\\"random\\\\\\\": \\\\\\\"Random\\\\\\\", \\\\\\\"embedding_distance\\\\\\\": \\\\\\\"Embedding\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\": \\\\\\\"Dataflow\\\\\\\"}\\\\nSTRATEGY_COLORS = {\\\\\\\"random\\\\\\\": \\\\\\\"#4C72B0\\\\\\\", \\\\\\\"embedding_distance\\\\\\\": \\\\\\\"#DD8452\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\": \\\\\\\"#55A868\\\\\\\"}\\\\n\\\\nREPO_SIZE_BINS = {\\\\n    \\\\\\\"small\\\\\\\": (0, 50),\\\\n    \\\\\\\"medium\\\\\\\": (50, 200),\\\\n    \\\\\\\"large\\\\\\\": (200, 500),\\\\n    \\\\\\\"xlarge\\\\\\\": (500, float(\\\\\\\"inf\\\\\\\")),\\\\n}\\\\n\\\\nPOOL_SIZE_BINS = {\\\\n    \\\\\\\"small\\\\\\\": (0, 20),\\\\n    \\\\\\\"medium\\\\\\\": (20, 40),\\\\n    \\\\\\\"large\\\\\\\": (40, 51),\\\\n}\\\\n\\\\nSIMILARITY_BINS = {\\\\n    \\\\\\\"low\\\\\\\": (0.0, 0.3),\\\\n    \\\\\\\"medium\\\\\\\": (0.3, 0.6),\\\\n    \\\\\\\"high\\\\\\\": (0.6, 1.01),\\\\n}\\\\n\\\\nDATAFLOW_BINS = {\\\\n    \\\\\\\"sparse\\\\\\\": (0, 2),\\\\n    \\\\\\\"moderate\\\\\\\": (2, 10),\\\\n    \\\\\\\"rich\\\\\\\": (10, float(\\\\\\\"inf\\\\\\\")),\\\\n}\\\\n\\\\nNEG_DIFFICULTY_QUARTILE_LABELS = [\\\\\\\"Q1_easy\\\\\\\", \\\\\\\"Q2\\\\\\\", \\\\\\\"Q3\\\\\\\", \\\\\\\"Q4_hard\\\\\\\"]\\\\n\\\\n\\\\ndef _bin_value(value, bins):\\\\n    for name, (lo, hi) in bins.items():\\\\n        if lo <= value < hi:\\\\n            return name\\\\n    return \\\\\\\"unknown\\\\\\\"\\\\n\\\\n\\\\n# ── M1 metadata ───────────────────────────────────────────────────��─\\\\n\\\\ndef load_m1_metadata(m1_path: str) -> Tuple[Dict[str, str], Dict[str, int]]:\\\\n    import re\\\\n    inst_to_repo = {}\\\\n    repo_counts: Counter = Counter()\\\\n    pat_iid = re.compile(r'\\\\\\\"instance_id\\\\\\\"\\\\\\\\s*:\\\\\\\\s*\\\\\\\"([^\\\\\\\"]+)\\\\\\\"')\\\\n    pat_repo = re.compile(r'\\\\\\\"repo\\\\\\\"\\\\\\\\s*:\\\\\\\\s*\\\\\\\"([^\\\\\\\"]+)\\\\\\\"')\\\\n    with open(m1_path) as f:\\\\n        for line in f:\\\\n            m_iid = pat_iid.search(line)\\\\n            m_repo = pat_repo.search(line)\\\\n            if m_iid and m_repo:\\\\n                iid = m_iid.group(1)\\\\n                repo = m_repo.group(1)\\\\n                inst_to_repo[iid] = repo\\\\n                repo_counts[repo] += 1\\\\n    return inst_to_repo, dict(repo_counts)\\\\n\\\\n\\\\n# ── Dataflow graph loading ────────────────────────────────────────────\\\\n\\\\ndef load_dataflow_edges(graph_path: str) -> Dict[str, int]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load dataflow graph and return {file_key: edge_count}.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(graph_path) as f:\\\\n        graph = json.load(f)\\\\n    return {k: len(v) for k, v in graph.items()}\\\\n\\\\n\\\\n# ── Val data loading ─────────────────────────────────────────────────\\\\n\\\\ndef load_val_samples(val_path: str, lite: bool = False) -> List[Dict[str, Any]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load val JSONL. lite=True skips candidate_tokens (faster for dry-run).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import re\\\\n    samples = []\\\\n    pat_qid = re.compile(r'\\\\\\\"query_id\\\\\\\"\\\\\\\\s*:\\\\\\\\s*\\\\\\\"([^\\\\\\\"]+)\\\\\\\"')\\\\n    with open(val_path) as f:\\\\n        for line in f:\\\\n            if not line.strip():\\\\n                continue\\\\n            if lite:\\\\n                m = pat_qid.search(line)\\\\n                if not m:\\\\n                    continue\\\\n                qid = m.group(1)\\\\n                instance_id = qid.split(\\\\\\\"::\\\\\\\")[0] if \\\\\\\"::\\\\\\\" in qid else qid\\\\n                d = json.loads(line)\\\\n                samples.append({\\\\n                    \\\\\\\"query_id\\\\\\\": qid,\\\\n                    \\\\\\\"instance_id\\\\\\\": instance_id,\\\\n                    \\\\\\\"pool_size\\\\\\\": len(d.get(\\\\\\\"neg_candidates\\\\\\\", [])),\\\\n                    \\\\\\\"query_tokens\\\\\\\": d.get(\\\\\\\"query_tokens\\\\\\\", \\\\\\\"\\\\\\\")[:1000],\\\\n                    \\\\\\\"pos_tokens\\\\\\\": d.get(\\\\\\\"pos_tokens\\\\\\\", \\\\\\\"\\\\\\\")[:1000],\\\\n                    \\\\\\\"neg_candidates\\\\\\\": [],\\\\n                    \\\\\\\"candidate_tokens\\\\\\\": {},\\\\n                })\\\\n            else:\\\\n                d = jso\\\\n\\\\n... [截断: 输出过长，省略 27452 字符] ...\\\\n\\\\nt\\\\\\\")):\\\\n                        ckpt_dir = candidate\\\\n                        break\\\\n                if ckpt_dir is None and os.path.exists(os.path.join(base, \\\\\\\"model.pt\\\\\\\")):\\\\n                    ckpt_dir = base\\\\n                if os.path.exists(ckpt_dir):\\\\n                    print(f\\\\\\\"  Re-evaluating checkpoint: {ckpt_dir}\\\\\\\", flush=True)\\\\n                    results = reeval_checkpoint(\\\\n                        ckpt_dir, val_samples, args.device, args.max_seq_length\\\\n                    )\\\\n                else:\\\\n                    print(f\\\\\\\"  [WARN] Checkpoint not found: {ckpt_dir}\\\\\\\", flush=True)\\\\n                    continue\\\\n            else:\\\\n                print(\\\\\\\"  [ERROR] No --dry-run, --predictions-dir, or --checkpoints-dir\\\\\\\", flush=True)\\\\n                continue\\\\n\\\\n            # Assign strata\\\\n            results = assign_strata(results, inst_to_repo, repo_counts, dataflow_edges)\\\\n\\\\n            # For dry-run or model-based: compute text similarity for sim_bin\\\\n            if args.dry_run:\\\\n                for r, s in zip(results, val_samples):\\\\n                    tsim = text_similarity(s[\\\\\\\"query_tokens\\\\\\\"][:500], s[\\\\\\\"pos_tokens\\\\\\\"][:500])\\\\n                    r[\\\\\\\"sim_bin\\\\\\\"] = _bin_value(tsim, SIMILARITY_BINS)\\\\n\\\\n            all_results[strategy][seed] = results\\\\n            val_samples_cache[f\\\\\\\"{strategy}_s{seed}\\\\\\\"] = val_samples\\\\n            print(f\\\\\\\"  -> {len(results)} instances\\\\\\\", flush=True)\\\\n\\\\n    # Compute neg_difficulty quartiles (text-overlap proxy, CPU-safe)\\\\n    print(\\\\\\\"Computing neg difficulty quartiles...\\\\\\\", flush=True)\\\\n    assign_neg_difficulty_quartiles(all_results, val_samples_cache)\\\\n\\\\n    # Run stratified analysis\\\\n    print(\\\\\\\"\\\\\\\\nRunning stratified analysis...\\\\\\\", flush=True)\\\\n    repo_analysis = run_stratified_analysis(\\\\n        all_results, \\\\\\\"repo_size_bin\\\\\\\", list(REPO_SIZE_BINS.keys()), args.n_bootstrap\\\\n    )\\\\n    pool_analysis = run_stratified_analysis(\\\\n        all_results, \\\\\\\"pool_size_bin\\\\\\\", list(POOL_SIZE_BINS.keys()), args.n_bootstrap\\\\n    )\\\\n    sim_analysis = run_stratified_analysis(\\\\n        all_results, \\\\\\\"sim_bin\\\\\\\", list(SIMILARITY_BINS.keys()), args.n_bootstrap\\\\n    )\\\\n\\\\n    dataflow_analysis = {}\\\\n    if dataflow_edges is not None:\\\\n        dataflow_analysis = run_stratified_analysis(\\\\n            all_results, \\\\\\\"dataflow_bin\\\\\\\", list(DATAFLOW_BINS.keys()), args.n_bootstrap\\\\n        )\\\\n\\\\n    neg_diff_analysis = run_stratified_analysis(\\\\n        all_results, \\\\\\\"neg_difficulty_bin\\\\\\\", NEG_DIFFICULTY_QUARTILE_LABELS, args.n_bootstrap\\\\n    )\\\\n\\\\n    # Save JSON\\\\n    full_results = {\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"strategies\\\\\\\": STRATEGIES,\\\\n            \\\\\\\"seeds\\\\\\\": seeds,\\\\n            \\\\\\\"repo_size_bins\\\\\\\": {k: list(v) for k, v in REPO_SIZE_BINS.items()},\\\\n            \\\\\\\"pool_size_bins\\\\\\\": {k: list(v) for k, v in POOL_SIZE_BINS.items()},\\\\n            \\\\\\\"similarity_bins\\\\\\\": {k: list(v) for k, v in SIMILARITY_BINS.items()},\\\\n            \\\\\\\"dataflow_bins\\\\\\\": {k: list(v) for k, v in DATAFLOW_BINS.items()},\\\\n            \\\\\\\"neg_difficulty_quartiles\\\\\\\": NEG_DIFFICULTY_QUARTILE_LABELS,\\\\n            \\\\\\\"n_bootstrap\\\\\\\": args.n_bootstrap,\\\\n            \\\\\\\"dry_run\\\\\\\": args.dry_run,\\\\n        },\\\\n        \\\\\\\"by_repo_size\\\\\\\": repo_analysis,\\\\n        \\\\\\\"by_pool_size\\\\\\\": pool_analysis,\\\\n        \\\\\\\"by_similarity\\\\\\\": sim_analysis,\\\\n        \\\\\\\"by_dataflow\\\\\\\": dataflow_analysis,\\\\n        \\\\\\\"by_neg_difficulty\\\\\\\": neg_diff_analysis,\\\\n    }\\\\n\\\\n    json_path = os.path.join(args.output_dir, \\\\\\\"stratified_results.json\\\\\\\")\\\\n    with open(json_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(full_results, f, indent=2, ensure_ascii=False)\\\\n    print(f\\\\\\\"  Results JSON saved to {json_path}\\\\\\\", flush=True)\\\\n\\\\n    # CSV summary\\\\n    csv_path = os.path.join(args.output_dir, \\\\\\\"stratified_summary.csv\\\\\\\")\\\\n    write_summary_csv(repo_analysis, pool_analysis, sim_analysis, csv_path, dataflow_analysis, neg_diff_analysis)\\\\n\\\\n    # Plots\\\\n    try:\\\\n        make_plots(repo_analysis, pool_analysis, sim_analysis, args.output_dir, dataflow_analysis, neg_diff_analysis)\\\\n    except Exception as e:\\\\n        print(f\\\\\\\"  [WARN] Plot generation failed: {e}\\\\\\\", flush=True)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\nDone.\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Stratified analysis of embedding vs random negative strategies by data strata.\\n\\nAnalyses M2 per-instance predictions across:\\n  - Repo size (instance count per repo from M1)\\n  - Candidate pool size (neg_candidates per query)\\n  - Query-positive similarity (cosine sim from model, or text overlap for dry-run)\\n\\nInputs:\\n  - M2 per-instance predictions (from --predictions-dir or re-eval from checkpoints)\\n  - M1 all.jsonl (repo metadata)\\n  - Val JSONL files (query/candidate structure)\\n\\nOutputs:\\n  - stratified_results.json: full per-stratum metrics with bootstrap CI\\n  - stratified_summary.csv: compact table\\n  - stratified_plots.pdf: grouped bar charts, heatmaps, delta trends\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport math\\nimport os\\nimport sys\\nfrom collections import Counter, defaultdict\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List, Optional, Tuple\\n\\nimport numpy as np\\n\\nSTRATEGIES = [\\\"random\\\", \\\"embedding_distance\\\", \\\"dataflow_aware\\\"]\\nSTRATEGY_LABELS = {\\\"random\\\": \\\"Random\\\", \\\"embedding_distance\\\": \\\"Embedding\\\", \\\"dataflow_aware\\\": \\\"Dataflow\\\"}\\nSTRATEGY_COLORS = {\\\"random\\\": \\\"#4C72B0\\\", \\\"embedding_distance\\\": \\\"#DD8452\\\", \\\"dataflow_aware\\\": \\\"#55A868\\\"}\\n\\nREPO_SIZE_BINS = {\\n    \\\"small\\\": (0, 50),\\n    \\\"medium\\\": (50, 200),\\n    \\\"large\\\": (200, 500),\\n    \\\"xlarge\\\": (500, float(\\\"inf\\\")),\\n}\\n\\nPOOL_SIZE_BINS = {\\n    \\\"small\\\": (0, 20),\\n    \\\"medium\\\": (20, 40),\\n    \\\"large\\\": (40, 51),\\n}\\n\\nSIMILARITY_BINS = {\\n    \\\"low\\\": (0.0, 0.3),\\n    \\\"medium\\\": (0.3, 0.6),\\n    \\\"high\\\": (0.6, 1.01),\\n}\\n\\nDATAFLOW_BINS = {\\n    \\\"sparse\\\": (0, 2),\\n    \\\"moderate\\\": (2, 10),\\n    \\\"rich\\\": (10, float(\\\"inf\\\")),\\n}\\n\\nNEG_DIFFICULTY_QUARTILE_LABELS = [\\\"Q1_easy\\\", \\\"Q2\\\", \\\"Q3\\\", \\\"Q4_hard\\\"]\\n\\n\\ndef _bin_value(value, bins):\\n    for name, (lo, hi) in bins.items():\\n        if lo <= value < hi:\\n            return name\\n    return \\\"unknown\\\"\\n\\n\\n# ── M1 metadata ───────────────────────────────────────────────────��─\\n\\ndef load_m1_metadata(m1_path: str) -> Tuple[Dict[str, str], Dict[str, int]]:\\n    import re\\n    inst_to_repo = {}\\n    repo_counts: Counter = Counter()\\n    pat_iid = re.compile(r'\\\"instance_id\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    pat_repo = re.compile(r'\\\"repo\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    with open(m1_path) as f:\\n        for line in f:\\n            m_iid = pat_iid.search(line)\\n            m_repo = pat_repo.search(line)\\n            if m_iid and m_repo:\\n                iid = m_iid.group(1)\\n                repo = m_repo.group(1)\\n                inst_to_repo[iid] = repo\\n                repo_counts[repo] += 1\\n    return inst_to_repo, dict(repo_counts)\\n\\n\\n# ── Dataflow graph loading ────────────────────────────────────────────\\n\\ndef load_dataflow_edges(graph_path: str) -> Dict[str, int]:\\n    \\\"\\\"\\\"Load dataflow graph and return {file_key: edge_count}.\\\"\\\"\\\"\\n    with open(graph_path) as f:\\n        graph = json.load(f)\\n    return {k: len(v) for k, v in graph.items()}\\n\\n\\n# ── Val data loading ─────────────────────────────────────────────────\\n\\ndef load_val_samples(val_path: str, lite: bool = False) -> List[Dict[str, Any]]:\\n    \\\"\\\"\\\"Load val JSONL. lite=True skips candidate_tokens (faster for dry-run).\\\"\\\"\\\"\\n    import re\\n    samples = []\\n    pat_qid = re.compile(r'\\\"query_id\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    with open(val_path) as f:\\n        for line in f:\\n            if not line.strip():\\n                continue\\n            if lite:\\n                m = pat_qid.search(line)\\n                if not m:\\n                    continue\\n                qid = m.group(1)\\n                instance_id = qid.split(\\\"::\\\")[0] if \\\"::\\\" in qid else qid\\n                d = json.loads(line)\\n                samples.append({\\n                    \\\"query_id\\\": qid,\\n                    \\\"instance_id\\\": instance_id,\\n                    \\\"pool_size\\\": len(d.get(\\\"neg_candidates\\\", [])),\\n                    \\\"query_tokens\\\": d.get(\\\"query_tokens\\\", \\\"\\\")[:1000],\\n                    \\\"pos_tokens\\\": d.get(\\\"pos_tokens\\\", \\\"\\\")[:1000],\\n                    \\\"neg_candidates\\\": [],\\n                    \\\"candidate_tokens\\\": {},\\n                })\\n            else:\\n                d = jso\\n\\n... [截断: 输出过长，省略 27452 字符] ...\\n\\nt\\\")):\\n                        ckpt_dir = candidate\\n                        break\\n                if ckpt_dir is None and os.path.exists(os.path.join(base, \\\"model.pt\\\")):\\n                    ckpt_dir = base\\n                if os.path.exists(ckpt_dir):\\n                    print(f\\\"  Re-evaluating checkpoint: {ckpt_dir}\\\", flush=True)\\n                    results = reeval_checkpoint(\\n                        ckpt_dir, val_samples, args.device, args.max_seq_length\\n                    )\\n                else:\\n                    print(f\\\"  [WARN] Checkpoint not found: {ckpt_dir}\\\", flush=True)\\n                    continue\\n            else:\\n                print(\\\"  [ERROR] No --dry-run, --predictions-dir, or --checkpoints-dir\\\", flush=True)\\n                continue\\n\\n            # Assign strata\\n            results = assign_strata(results, inst_to_repo, repo_counts, dataflow_edges)\\n\\n            # For dry-run or model-based: compute text similarity for sim_bin\\n            if args.dry_run:\\n                for r, s in zip(results, val_samples):\\n                    tsim = text_similarity(s[\\\"query_tokens\\\"][:500], s[\\\"pos_tokens\\\"][:500])\\n                    r[\\\"sim_bin\\\"] = _bin_value(tsim, SIMILARITY_BINS)\\n\\n            all_results[strategy][seed] = results\\n            val_samples_cache[f\\\"{strategy}_s{seed}\\\"] = val_samples\\n            print(f\\\"  -> {len(results)} instances\\\", flush=True)\\n\\n    # Compute neg_difficulty quartiles (text-overlap proxy, CPU-safe)\\n    print(\\\"Computing neg difficulty quartiles...\\\", flush=True)\\n    assign_neg_difficulty_quartiles(all_results, val_samples_cache)\\n\\n    # Run stratified analysis\\n    print(\\\"\\\\nRunning stratified analysis...\\\", flush=True)\\n    repo_analysis = run_stratified_analysis(\\n        all_results, \\\"repo_size_bin\\\", list(REPO_SIZE_BINS.keys()), args.n_bootstrap\\n    )\\n    pool_analysis = run_stratified_analysis(\\n        all_results, \\\"pool_size_bin\\\", list(POOL_SIZE_BINS.keys()), args.n_bootstrap\\n    )\\n    sim_analysis = run_stratified_analysis(\\n        all_results, \\\"sim_bin\\\", list(SIMILARITY_BINS.keys()), args.n_bootstrap\\n    )\\n\\n    dataflow_analysis = {}\\n    if dataflow_edges is not None:\\n        dataflow_analysis = run_stratified_analysis(\\n            all_results, \\\"dataflow_bin\\\", list(DATAFLOW_BINS.keys()), args.n_bootstrap\\n        )\\n\\n    neg_diff_analysis = run_stratified_analysis(\\n        all_results, \\\"neg_difficulty_bin\\\", NEG_DIFFICULTY_QUARTILE_LABELS, args.n_bootstrap\\n    )\\n\\n    # Save JSON\\n    full_results = {\\n        \\\"config\\\": {\\n            \\\"strategies\\\": STRATEGIES,\\n            \\\"seeds\\\": seeds,\\n            \\\"repo_size_bins\\\": {k: list(v) for k, v in REPO_SIZE_BINS.items()},\\n            \\\"pool_size_bins\\\": {k: list(v) for k, v in POOL_SIZE_BINS.items()},\\n            \\\"similarity_bins\\\": {k: list(v) for k, v in SIMILARITY_BINS.items()},\\n            \\\"dataflow_bins\\\": {k: list(v) for k, v in DATAFLOW_BINS.items()},\\n            \\\"neg_difficulty_quartiles\\\": NEG_DIFFICULTY_QUARTILE_LABELS,\\n            \\\"n_bootstrap\\\": args.n_bootstrap,\\n            \\\"dry_run\\\": args.dry_run,\\n        },\\n        \\\"by_repo_size\\\": repo_analysis,\\n        \\\"by_pool_size\\\": pool_analysis,\\n        \\\"by_similarity\\\": sim_analysis,\\n        \\\"by_dataflow\\\": dataflow_analysis,\\n        \\\"by_neg_difficulty\\\": neg_diff_analysis,\\n    }\\n\\n    json_path = os.path.join(args.output_dir, \\\"stratified_results.json\\\")\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(full_results, f, indent=2, ensure_ascii=False)\\n    print(f\\\"  Results JSON saved to {json_path}\\\", flush=True)\\n\\n    # CSV summary\\n    csv_path = os.path.join(args.output_dir, \\\"stratified_summary.csv\\\")\\n    write_summary_csv(repo_analysis, pool_analysis, sim_analysis, csv_path, dataflow_analysis, neg_diff_analysis)\\n\\n    # Plots\\n    try:\\n        make_plots(repo_analysis, pool_analysis, sim_analysis, args.output_dir, dataflow_analysis, neg_diff_analysis)\\n    except Exception as e:\\n        print(f\\\"  [WARN] Plot generation failed: {e}\\\", flush=True)\\n\\n    print(\\\"\\\\nDone.\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. Let me get the --help output and also check the middle section of the script that was cut off.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "7e4e801c-e371-40db-a62c-dcd6e5ecc629",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DtiuHWh7RUJvm3rvP31gvU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3471,
+      "cache_read_input_tokens": 23803,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3471
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+脚本被截断了，让我获取 --help 和中间缺失部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "35a4b67c-89ad-4d39-9451-102c2c042d37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DtiuHWh7RUJvm3rvP31gvU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3471,
+      "cache_read_input_tokens": 23803,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3471
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_018ff551rdynJreZ94RC1Xou`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "0ef7b46e-4be1-4f4e-a24a-8fc9448e4e65",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DtiuHWh7RUJvm3rvP31gvU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3471,
+      "cache_read_input_tokens": 23803,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3471
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T20:28:18.482Z_
+
+<details><summary>↩ Tool result · `toolu_018ff551rdynJreZ94RC1Xou`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "381eead5-4119-424f-b61c-a57b6b3fb3b0",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Nf1R8X299kAr3SSAQenUSC`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "head -300 /root/structfuse/evaluation/analyze_stratified.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "7235ea4c-5e54-4a5d-9425-f03b66bdd9d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VQZVQSpY7tZYmVdyWNjpoF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 412,
+      "cache_read_input_tokens": 27274,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 412
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T20:28:22.399Z_
+
+<details><summary>↩ Tool result · `toolu_01Nf1R8X299kAr3SSAQenUSC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Stratified analysis of embedding vs random negative strategies by data strata.\\n\\nAnalyses M2 per-instance predictions across:\\n  - Repo size (instance count per repo from M1)\\n  - Candidate pool size (neg_candidates per query)\\n  - Query-positive similarity (cosine sim from model, or text overlap for dry-run)\\n\\nInputs:\\n  - M2 per-instance predictions (from --predictions-dir or re-eval from checkpoints)\\n  - M1 all.jsonl (repo metadata)\\n  - Val JSONL files (query/candidate structure)\\n\\nOutputs:\\n  - stratified_results.json: full per-stratum metrics with bootstrap CI\\n  - stratified_summary.csv: compact table\\n  - stratified_plots.pdf: grouped bar charts, heatmaps, delta trends\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport math\\nimport os\\nimport sys\\nfrom collections import Counter, defaultdict\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List, Optional, Tuple\\n\\nimport numpy as np\\n\\nSTRATEGIES = [\\\"random\\\", \\\"embedding_distance\\\", \\\"dataflow_aware\\\"]\\nSTRATEGY_LABELS = {\\\"random\\\": \\\"Random\\\", \\\"embedding_distance\\\": \\\"Embedding\\\", \\\"dataflow_aware\\\": \\\"Dataflow\\\"}\\nSTRATEGY_COLORS = {\\\"random\\\": \\\"#4C72B0\\\", \\\"embedding_distance\\\": \\\"#DD8452\\\", \\\"dataflow_aware\\\": \\\"#55A868\\\"}\\n\\nREPO_SIZE_BINS = {\\n    \\\"small\\\": (0, 50),\\n    \\\"medium\\\": (50, 200),\\n    \\\"large\\\": (200, 500),\\n    \\\"xlarge\\\": (500, float(\\\"inf\\\")),\\n}\\n\\nPOOL_SIZE_BINS = {\\n    \\\"small\\\": (0, 20),\\n    \\\"medium\\\": (20, 40),\\n    \\\"large\\\": (40, 51),\\n}\\n\\nSIMILARITY_BINS = {\\n    \\\"low\\\": (0.0, 0.3),\\n    \\\"medium\\\": (0.3, 0.6),\\n    \\\"high\\\": (0.6, 1.01),\\n}\\n\\nDATAFLOW_BINS = {\\n    \\\"sparse\\\": (0, 2),\\n    \\\"moderate\\\": (2, 10),\\n    \\\"rich\\\": (10, float(\\\"inf\\\")),\\n}\\n\\nNEG_DIFFICULTY_QUARTILE_LABELS = [\\\"Q1_easy\\\", \\\"Q2\\\", \\\"Q3\\\", \\\"Q4_hard\\\"]\\n\\n\\ndef _bin_value(value, bins):\\n    for name, (lo, hi) in bins.items():\\n        if lo <= value < hi:\\n            return name\\n    return \\\"unknown\\\"\\n\\n\\n# ── M1 metadata ───────────────────────────────────────────────────��─\\n\\ndef load_m1_metadata(m1_path: str) -> Tuple[Dict[str, str], Dict[str, int]]:\\n    import re\\n    inst_to_repo = {}\\n    repo_counts: Counter = Counter()\\n    pat_iid = re.compile(r'\\\"instance_id\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    pat_repo = re.compile(r'\\\"repo\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    with open(m1_path) as f:\\n        for line in f:\\n            m_iid = pat_iid.search(line)\\n            m_repo = pat_repo.search(line)\\n            if m_iid and m_repo:\\n                iid = m_iid.group(1)\\n                repo = m_repo.group(1)\\n                inst_to_repo[iid] = repo\\n                repo_counts[repo] += 1\\n    return inst_to_repo, dict(repo_counts)\\n\\n\\n# ── Dataflow graph loading ────────────────────────────────────────────\\n\\ndef load_dataflow_edges(graph_path: str) -> Dict[str, int]:\\n    \\\"\\\"\\\"Load dataflow graph and return {file_key: edge_count}.\\\"\\\"\\\"\\n    with open(graph_path) as f:\\n        graph = json.load(f)\\n    return {k: len(v) for k, v in graph.items()}\\n\\n\\n# ── Val data loading ─────────────────────────────────────────────────\\n\\ndef load_val_samples(val_path: str, lite: bool = False) -> List[Dict[str, Any]]:\\n    \\\"\\\"\\\"Load val JSONL. lite=True skips candidate_tokens (faster for dry-run).\\\"\\\"\\\"\\n    import re\\n    samples = []\\n    pat_qid = re.compile(r'\\\"query_id\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    with open(val_path) as f:\\n        for line in f:\\n            if not line.strip():\\n                continue\\n            if lite:\\n                m = pat_qid.search(line)\\n                if not m:\\n                    continue\\n                qid = m.group(1)\\n                instance_id = qid.split(\\\"::\\\")[0] if \\\"::\\\" in qid else qid\\n                d = json.loads(line)\\n                samples.append({\\n                    \\\"query_id\\\": qid,\\n                    \\\"instance_id\\\": instance_id,\\n                    \\\"pool_size\\\": len(d.get(\\\"neg_candidates\\\", [])),\\n                    \\\"query_tokens\\\": d.get(\\\"query_tokens\\\", \\\"\\\")[:1000],\\n                    \\\"pos_tokens\\\": d.get(\\\"pos_tokens\\\", \\\"\\\")[:1000],\\n                    \\\"neg_candidates\\\": [],\\n                    \\\"candidate_tokens\\\": {},\\n                })\\n            else:\\n                d = jso\\n\\n... [截断: 输出过长，省略 2199 字符] ...\\n\\ne(val_samples):\\n            if (i + 1) % 200 == 0:\\n                print(f\\\"  re-eval {i+1}/{len(val_samples)}\\\", flush=True)\\n\\n            def _encode(text):\\n                enc = tokenizer(text, truncation=True, max_length=max_seq_length,\\n                                padding=True, return_tensors=\\\"pt\\\")\\n                enc = {k: v.to(device) for k, v in enc.items()}\\n                return model.encode(enc[\\\"input_ids\\\"], enc[\\\"attention_mask\\\"])\\n\\n            q_emb = _encode(sample[\\\"query_tokens\\\"])\\n            p_emb = _encode(sample[\\\"pos_tokens\\\"])\\n            pos_sim = (q_emb * p_emb).sum().item()\\n\\n            neg_sims = []\\n            for neg_id in sample[\\\"neg_candidates\\\"]:\\n                neg_text = sample[\\\"candidate_tokens\\\"].get(neg_id, \\\"\\\")\\n                if not neg_text:\\n                    continue\\n                n_emb = _encode(neg_text)\\n                neg_sims.append((q_emb * n_emb).sum().item())\\n\\n            rank = 1 + sum(1 for s in neg_sims if s >= pos_sim)\\n\\n            results.append({\\n                \\\"query_id\\\": sample[\\\"query_id\\\"],\\n                \\\"instance_id\\\": sample[\\\"instance_id\\\"],\\n                \\\"pool_size\\\": sample[\\\"pool_size\\\"],\\n                \\\"rank\\\": rank,\\n                \\\"pos_sim\\\": pos_sim,\\n                \\\"total_candidates\\\": 1 + len(neg_sims),\\n            })\\n\\n    del model\\n    if torch.cuda.is_available():\\n        torch.cuda.empty_cache()\\n    return results\\n\\n\\n# ── Predictions loading ──────────────────────────────────────────────\\n\\ndef load_predictions(pred_file: str, val_samples: List[Dict]) -> List[Dict]:\\n    \\\"\\\"\\\"Load predictions from eval_retrieval.py output format.\\\"\\\"\\\"\\n    with open(pred_file) as f:\\n        data = json.load(f)\\n\\n    per_inst = {}\\n    results_list = data.get(\\\"results\\\", [data]) if \\\"results\\\" in data else [data]\\n    for r in results_list:\\n        for pi in r.get(\\\"per_instance\\\", []):\\n            per_inst[pi[\\\"instance_id\\\"]] = pi\\n\\n    val_lookup = {s[\\\"query_id\\\"]: s for s in val_samples}\\n    results = []\\n    for sample in val_samples:\\n        iid = sample[\\\"instance_id\\\"]\\n        pred = per_inst.get(iid)\\n        if pred is None:\\n            continue\\n        gold = set(pred.get(\\\"gold_files\\\", []))\\n        predicted = pred.get(\\\"predicted_top10\\\", [])\\n        rank = len(predicted) + 1\\n        for j, pf in enumerate(predicted):\\n            if pf in gold:\\n                rank = j + 1\\n                break\\n        results.append({\\n            \\\"query_id\\\": sample[\\\"query_id\\\"],\\n            \\\"instance_id\\\": iid,\\n            \\\"pool_size\\\": sample[\\\"pool_size\\\"],\\n            \\\"rank\\\": rank,\\n            \\\"pos_sim\\\": pred.get(\\\"scores_top10\\\", [0.0])[0] if pred.get(\\\"scores_top10\\\") else 0.0,\\n            \\\"total_candidates\\\": max(len(predicted), sample[\\\"pool_size\\\"] + 1),\\n        })\\n    return results\\n\\n\\n# ── Mock predictions (dry-run) ───────────────────────────────────────\\n\\ndef mock_predictions(\\n    val_samples: List[Dict], strategy: str, seed: int\\n) -> List[Dict]:\\n    rng = np.random.RandomState(seed + abs(hash(strategy)) % 10000)\\n    results = []\\n    for sample in val_samples:\\n        pool = 1 + sample[\\\"pool_size\\\"]\\n        if strategy == \\\"random\\\":\\n            rank = rng.randint(1, pool + 1)\\n        elif strategy == \\\"embedding_distance\\\":\\n            rank = max(1, min(pool, int(rng.exponential(pool * 0.35)) + 1))\\n        else:\\n            rank = max(1, min(pool, int(rng.exponential(pool * 0.20)) + 1))\\n\\n        pos_sim = max(0.0, min(1.0, 1.0 - rank / pool + rng.normal(0, 0.08)))\\n        tsim = text_similarity(\\n            sample[\\\"query_tokens\\\"][:500], sample[\\\"pos_tokens\\\"][:500]\\n        )\\n\\n        results.append({\\n            \\\"query_id\\\": sample[\\\"query_id\\\"],\\n            \\\"instance_id\\\": sample[\\\"instance_id\\\"],\\n            \\\"pool_size\\\": sample[\\\"pool_size\\\"],\\n            \\\"rank\\\": rank,\\n            \\\"pos_sim\\\": pos_sim if pos_sim > 0 else tsim,\\n            \\\"total_candidates\\\": pool,\\n        })\\n    return results\\n\\n\\n# ── Metrics computation ──────────────────────────────────────────────\\n\\ndef compute_metrics(results: List[Dict]) -> Dict[str, float]:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "241314e1-b444-432c-a548-6e219e50b93a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Stratified analysis of embedding vs random negative strategies by data strata.\\\\n\\\\nAnalyses M2 per-instance predictions across:\\\\n  - Repo size (instance count per repo from M1)\\\\n  - Candidate pool size (neg_candidates per query)\\\\n  - Query-positive similarity (cosine sim from model, or text overlap for dry-run)\\\\n\\\\nInputs:\\\\n  - M2 per-instance predictions (from --predictions-dir or re-eval from checkpoints)\\\\n  - M1 all.jsonl (repo metadata)\\\\n  - Val JSONL files (query/candidate structure)\\\\n\\\\nOutputs:\\\\n  - stratified_results.json: full per-stratum metrics with bootstrap CI\\\\n  - stratified_summary.csv: compact table\\\\n  - stratified_plots.pdf: grouped bar charts, heatmaps, delta trends\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport math\\\\nimport os\\\\nimport sys\\\\nfrom collections import Counter, defaultdict\\\\nfrom pathlib import Path\\\\nfrom typing import Any, Dict, List, Optional, Tuple\\\\n\\\\nimport numpy as np\\\\n\\\\nSTRATEGIES = [\\\\\\\"random\\\\\\\", \\\\\\\"embedding_distance\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\"]\\\\nSTRATEGY_LABELS = {\\\\\\\"random\\\\\\\": \\\\\\\"Random\\\\\\\", \\\\\\\"embedding_distance\\\\\\\": \\\\\\\"Embedding\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\": \\\\\\\"Dataflow\\\\\\\"}\\\\nSTRATEGY_COLORS = {\\\\\\\"random\\\\\\\": \\\\\\\"#4C72B0\\\\\\\", \\\\\\\"embedding_distance\\\\\\\": \\\\\\\"#DD8452\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\": \\\\\\\"#55A868\\\\\\\"}\\\\n\\\\nREPO_SIZE_BINS = {\\\\n    \\\\\\\"small\\\\\\\": (0, 50),\\\\n    \\\\\\\"medium\\\\\\\": (50, 200),\\\\n    \\\\\\\"large\\\\\\\": (200, 500),\\\\n    \\\\\\\"xlarge\\\\\\\": (500, float(\\\\\\\"inf\\\\\\\")),\\\\n}\\\\n\\\\nPOOL_SIZE_BINS = {\\\\n    \\\\\\\"small\\\\\\\": (0, 20),\\\\n    \\\\\\\"medium\\\\\\\": (20, 40),\\\\n    \\\\\\\"large\\\\\\\": (40, 51),\\\\n}\\\\n\\\\nSIMILARITY_BINS = {\\\\n    \\\\\\\"low\\\\\\\": (0.0, 0.3),\\\\n    \\\\\\\"medium\\\\\\\": (0.3, 0.6),\\\\n    \\\\\\\"high\\\\\\\": (0.6, 1.01),\\\\n}\\\\n\\\\nDATAFLOW_BINS = {\\\\n    \\\\\\\"sparse\\\\\\\": (0, 2),\\\\n    \\\\\\\"moderate\\\\\\\": (2, 10),\\\\n    \\\\\\\"rich\\\\\\\": (10, float(\\\\\\\"inf\\\\\\\")),\\\\n}\\\\n\\\\nNEG_DIFFICULTY_QUARTILE_LABELS = [\\\\\\\"Q1_easy\\\\\\\", \\\\\\\"Q2\\\\\\\", \\\\\\\"Q3\\\\\\\", \\\\\\\"Q4_hard\\\\\\\"]\\\\n\\\\n\\\\ndef _bin_value(value, bins):\\\\n    for name, (lo, hi) in bins.items():\\\\n        if lo <= value < hi:\\\\n            return name\\\\n    return \\\\\\\"unknown\\\\\\\"\\\\n\\\\n\\\\n# ── M1 metadata ───────────────────────────────────────────────────��─\\\\n\\\\ndef load_m1_metadata(m1_path: str) -> Tuple[Dict[str, str], Dict[str, int]]:\\\\n    import re\\\\n    inst_to_repo = {}\\\\n    repo_counts: Counter = Counter()\\\\n    pat_iid = re.compile(r'\\\\\\\"instance_id\\\\\\\"\\\\\\\\s*:\\\\\\\\s*\\\\\\\"([^\\\\\\\"]+)\\\\\\\"')\\\\n    pat_repo = re.compile(r'\\\\\\\"repo\\\\\\\"\\\\\\\\s*:\\\\\\\\s*\\\\\\\"([^\\\\\\\"]+)\\\\\\\"')\\\\n    with open(m1_path) as f:\\\\n        for line in f:\\\\n            m_iid = pat_iid.search(line)\\\\n            m_repo = pat_repo.search(line)\\\\n            if m_iid and m_repo:\\\\n                iid = m_iid.group(1)\\\\n                repo = m_repo.group(1)\\\\n                inst_to_repo[iid] = repo\\\\n                repo_counts[repo] += 1\\\\n    return inst_to_repo, dict(repo_counts)\\\\n\\\\n\\\\n# ── Dataflow graph loading ────────────────────────────────────────────\\\\n\\\\ndef load_dataflow_edges(graph_path: str) -> Dict[str, int]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load dataflow graph and return {file_key: edge_count}.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(graph_path) as f:\\\\n        graph = json.load(f)\\\\n    return {k: len(v) for k, v in graph.items()}\\\\n\\\\n\\\\n# ── Val data loading ─────────────────────────────────────────────────\\\\n\\\\ndef load_val_samples(val_path: str, lite: bool = False) -> List[Dict[str, Any]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load val JSONL. lite=True skips candidate_tokens (faster for dry-run).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import re\\\\n    samples = []\\\\n    pat_qid = re.compile(r'\\\\\\\"query_id\\\\\\\"\\\\\\\\s*:\\\\\\\\s*\\\\\\\"([^\\\\\\\"]+)\\\\\\\"')\\\\n    with open(val_path) as f:\\\\n        for line in f:\\\\n            if not line.strip():\\\\n                continue\\\\n            if lite:\\\\n                m = pat_qid.search(line)\\\\n                if not m:\\\\n                    continue\\\\n                qid = m.group(1)\\\\n                instance_id = qid.split(\\\\\\\"::\\\\\\\")[0] if \\\\\\\"::\\\\\\\" in qid else qid\\\\n                d = json.loads(line)\\\\n                samples.append({\\\\n                    \\\\\\\"query_id\\\\\\\": qid,\\\\n                    \\\\\\\"instance_id\\\\\\\": instance_id,\\\\n                    \\\\\\\"pool_size\\\\\\\": len(d.get(\\\\\\\"neg_candidates\\\\\\\", [])),\\\\n                    \\\\\\\"query_tokens\\\\\\\": d.get(\\\\\\\"query_tokens\\\\\\\", \\\\\\\"\\\\\\\")[:1000],\\\\n                    \\\\\\\"pos_tokens\\\\\\\": d.get(\\\\\\\"pos_tokens\\\\\\\", \\\\\\\"\\\\\\\")[:1000],\\\\n                    \\\\\\\"neg_candidates\\\\\\\": [],\\\\n                    \\\\\\\"candidate_tokens\\\\\\\": {},\\\\n                })\\\\n            else:\\\\n                d = jso\\\\n\\\\n... [截断: 输出过长，省略 2199 字符] ...\\\\n\\\\ne(val_samples):\\\\n            if (i + 1) % 200 == 0:\\\\n                print(f\\\\\\\"  re-eval {i+1}/{len(val_samples)}\\\\\\\", flush=True)\\\\n\\\\n            def _encode(text):\\\\n                enc = tokenizer(text, truncation=True, max_length=max_seq_length,\\\\n                                padding=True, return_tensors=\\\\\\\"pt\\\\\\\")\\\\n                enc = {k: v.to(device) for k, v in enc.items()}\\\\n                return model.encode(enc[\\\\\\\"input_ids\\\\\\\"], enc[\\\\\\\"attention_mask\\\\\\\"])\\\\n\\\\n            q_emb = _encode(sample[\\\\\\\"query_tokens\\\\\\\"])\\\\n            p_emb = _encode(sample[\\\\\\\"pos_tokens\\\\\\\"])\\\\n            pos_sim = (q_emb * p_emb).sum().item()\\\\n\\\\n            neg_sims = []\\\\n            for neg_id in sample[\\\\\\\"neg_candidates\\\\\\\"]:\\\\n                neg_text = sample[\\\\\\\"candidate_tokens\\\\\\\"].get(neg_id, \\\\\\\"\\\\\\\")\\\\n                if not neg_text:\\\\n                    continue\\\\n                n_emb = _encode(neg_text)\\\\n                neg_sims.append((q_emb * n_emb).sum().item())\\\\n\\\\n            rank = 1 + sum(1 for s in neg_sims if s >= pos_sim)\\\\n\\\\n            results.append({\\\\n                \\\\\\\"query_id\\\\\\\": sample[\\\\\\\"query_id\\\\\\\"],\\\\n                \\\\\\\"instance_id\\\\\\\": sample[\\\\\\\"instance_id\\\\\\\"],\\\\n                \\\\\\\"pool_size\\\\\\\": sample[\\\\\\\"pool_size\\\\\\\"],\\\\n                \\\\\\\"rank\\\\\\\": rank,\\\\n                \\\\\\\"pos_sim\\\\\\\": pos_sim,\\\\n                \\\\\\\"total_candidates\\\\\\\": 1 + len(neg_sims),\\\\n            })\\\\n\\\\n    del model\\\\n    if torch.cuda.is_available():\\\\n        torch.cuda.empty_cache()\\\\n    return results\\\\n\\\\n\\\\n# ── Predictions loading ──────────────────────────────────────────────\\\\n\\\\ndef load_predictions(pred_file: str, val_samples: List[Dict]) -> List[Dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load predictions from eval_retrieval.py output format.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(pred_file) as f:\\\\n        data = json.load(f)\\\\n\\\\n    per_inst = {}\\\\n    results_list = data.get(\\\\\\\"results\\\\\\\", [data]) if \\\\\\\"results\\\\\\\" in data else [data]\\\\n    for r in results_list:\\\\n        for pi in r.get(\\\\\\\"per_instance\\\\\\\", []):\\\\n            per_inst[pi[\\\\\\\"instance_id\\\\\\\"]] = pi\\\\n\\\\n    val_lookup = {s[\\\\\\\"query_id\\\\\\\"]: s for s in val_samples}\\\\n    results = []\\\\n    for sample in val_samples:\\\\n        iid = sample[\\\\\\\"instance_id\\\\\\\"]\\\\n        pred = per_inst.get(iid)\\\\n        if pred is None:\\\\n            continue\\\\n        gold = set(pred.get(\\\\\\\"gold_files\\\\\\\", []))\\\\n        predicted = pred.get(\\\\\\\"predicted_top10\\\\\\\", [])\\\\n        rank = len(predicted) + 1\\\\n        for j, pf in enumerate(predicted):\\\\n            if pf in gold:\\\\n                rank = j + 1\\\\n                break\\\\n        results.append({\\\\n            \\\\\\\"query_id\\\\\\\": sample[\\\\\\\"query_id\\\\\\\"],\\\\n            \\\\\\\"instance_id\\\\\\\": iid,\\\\n            \\\\\\\"pool_size\\\\\\\": sample[\\\\\\\"pool_size\\\\\\\"],\\\\n            \\\\\\\"rank\\\\\\\": rank,\\\\n            \\\\\\\"pos_sim\\\\\\\": pred.get(\\\\\\\"scores_top10\\\\\\\", [0.0])[0] if pred.get(\\\\\\\"scores_top10\\\\\\\") else 0.0,\\\\n            \\\\\\\"total_candidates\\\\\\\": max(len(predicted), sample[\\\\\\\"pool_size\\\\\\\"] + 1),\\\\n        })\\\\n    return results\\\\n\\\\n\\\\n# ── Mock predictions (dry-run) ───────────────────────────────────────\\\\n\\\\ndef mock_predictions(\\\\n    val_samples: List[Dict], strategy: str, seed: int\\\\n) -> List[Dict]:\\\\n    rng = np.random.RandomState(seed + abs(hash(strategy)) % 10000)\\\\n    results = []\\\\n    for sample in val_samples:\\\\n        pool = 1 + sample[\\\\\\\"pool_size\\\\\\\"]\\\\n        if strategy == \\\\\\\"random\\\\\\\":\\\\n            rank = rng.randint(1, pool + 1)\\\\n        elif strategy == \\\\\\\"embedding_distance\\\\\\\":\\\\n            rank = max(1, min(pool, int(rng.exponential(pool * 0.35)) + 1))\\\\n        else:\\\\n            rank = max(1, min(pool, int(rng.exponential(pool * 0.20)) + 1))\\\\n\\\\n        pos_sim = max(0.0, min(1.0, 1.0 - rank / pool + rng.normal(0, 0.08)))\\\\n        tsim = text_similarity(\\\\n            sample[\\\\\\\"query_tokens\\\\\\\"][:500], sample[\\\\\\\"pos_tokens\\\\\\\"][:500]\\\\n        )\\\\n\\\\n        results.append({\\\\n            \\\\\\\"query_id\\\\\\\": sample[\\\\\\\"query_id\\\\\\\"],\\\\n            \\\\\\\"instance_id\\\\\\\": sample[\\\\\\\"instance_id\\\\\\\"],\\\\n            \\\\\\\"pool_size\\\\\\\": sample[\\\\\\\"pool_size\\\\\\\"],\\\\n            \\\\\\\"rank\\\\\\\": rank,\\\\n            \\\\\\\"pos_sim\\\\\\\": pos_sim if pos_sim > 0 else tsim,\\\\n            \\\\\\\"total_candidates\\\\\\\": pool,\\\\n        })\\\\n    return results\\\\n\\\\n\\\\n# ── Metrics computation ──────────────────────────────────────────────\\\\n\\\\ndef compute_metrics(results: List[Dict]) -> Dict[str, float]:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Stratified analysis of embedding vs random negative strategies by data strata.\\n\\nAnalyses M2 per-instance predictions across:\\n  - Repo size (instance count per repo from M1)\\n  - Candidate pool size (neg_candidates per query)\\n  - Query-positive similarity (cosine sim from model, or text overlap for dry-run)\\n\\nInputs:\\n  - M2 per-instance predictions (from --predictions-dir or re-eval from checkpoints)\\n  - M1 all.jsonl (repo metadata)\\n  - Val JSONL files (query/candidate structure)\\n\\nOutputs:\\n  - stratified_results.json: full per-stratum metrics with bootstrap CI\\n  - stratified_summary.csv: compact table\\n  - stratified_plots.pdf: grouped bar charts, heatmaps, delta trends\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport math\\nimport os\\nimport sys\\nfrom collections import Counter, defaultdict\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List, Optional, Tuple\\n\\nimport numpy as np\\n\\nSTRATEGIES = [\\\"random\\\", \\\"embedding_distance\\\", \\\"dataflow_aware\\\"]\\nSTRATEGY_LABELS = {\\\"random\\\": \\\"Random\\\", \\\"embedding_distance\\\": \\\"Embedding\\\", \\\"dataflow_aware\\\": \\\"Dataflow\\\"}\\nSTRATEGY_COLORS = {\\\"random\\\": \\\"#4C72B0\\\", \\\"embedding_distance\\\": \\\"#DD8452\\\", \\\"dataflow_aware\\\": \\\"#55A868\\\"}\\n\\nREPO_SIZE_BINS = {\\n    \\\"small\\\": (0, 50),\\n    \\\"medium\\\": (50, 200),\\n    \\\"large\\\": (200, 500),\\n    \\\"xlarge\\\": (500, float(\\\"inf\\\")),\\n}\\n\\nPOOL_SIZE_BINS = {\\n    \\\"small\\\": (0, 20),\\n    \\\"medium\\\": (20, 40),\\n    \\\"large\\\": (40, 51),\\n}\\n\\nSIMILARITY_BINS = {\\n    \\\"low\\\": (0.0, 0.3),\\n    \\\"medium\\\": (0.3, 0.6),\\n    \\\"high\\\": (0.6, 1.01),\\n}\\n\\nDATAFLOW_BINS = {\\n    \\\"sparse\\\": (0, 2),\\n    \\\"moderate\\\": (2, 10),\\n    \\\"rich\\\": (10, float(\\\"inf\\\")),\\n}\\n\\nNEG_DIFFICULTY_QUARTILE_LABELS = [\\\"Q1_easy\\\", \\\"Q2\\\", \\\"Q3\\\", \\\"Q4_hard\\\"]\\n\\n\\ndef _bin_value(value, bins):\\n    for name, (lo, hi) in bins.items():\\n        if lo <= value < hi:\\n            return name\\n    return \\\"unknown\\\"\\n\\n\\n# ── M1 metadata ───────────────────────────────────────────────────��─\\n\\ndef load_m1_metadata(m1_path: str) -> Tuple[Dict[str, str], Dict[str, int]]:\\n    import re\\n    inst_to_repo = {}\\n    repo_counts: Counter = Counter()\\n    pat_iid = re.compile(r'\\\"instance_id\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    pat_repo = re.compile(r'\\\"repo\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    with open(m1_path) as f:\\n        for line in f:\\n            m_iid = pat_iid.search(line)\\n            m_repo = pat_repo.search(line)\\n            if m_iid and m_repo:\\n                iid = m_iid.group(1)\\n                repo = m_repo.group(1)\\n                inst_to_repo[iid] = repo\\n                repo_counts[repo] += 1\\n    return inst_to_repo, dict(repo_counts)\\n\\n\\n# ── Dataflow graph loading ────────────────────────────────────────────\\n\\ndef load_dataflow_edges(graph_path: str) -> Dict[str, int]:\\n    \\\"\\\"\\\"Load dataflow graph and return {file_key: edge_count}.\\\"\\\"\\\"\\n    with open(graph_path) as f:\\n        graph = json.load(f)\\n    return {k: len(v) for k, v in graph.items()}\\n\\n\\n# ── Val data loading ─────────────────────────────────────────────────\\n\\ndef load_val_samples(val_path: str, lite: bool = False) -> List[Dict[str, Any]]:\\n    \\\"\\\"\\\"Load val JSONL. lite=True skips candidate_tokens (faster for dry-run).\\\"\\\"\\\"\\n    import re\\n    samples = []\\n    pat_qid = re.compile(r'\\\"query_id\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    with open(val_path) as f:\\n        for line in f:\\n            if not line.strip():\\n                continue\\n            if lite:\\n                m = pat_qid.search(line)\\n                if not m:\\n                    continue\\n                qid = m.group(1)\\n                instance_id = qid.split(\\\"::\\\")[0] if \\\"::\\\" in qid else qid\\n                d = json.loads(line)\\n                samples.append({\\n                    \\\"query_id\\\": qid,\\n                    \\\"instance_id\\\": instance_id,\\n                    \\\"pool_size\\\": len(d.get(\\\"neg_candidates\\\", [])),\\n                    \\\"query_tokens\\\": d.get(\\\"query_tokens\\\", \\\"\\\")[:1000],\\n                    \\\"pos_tokens\\\": d.get(\\\"pos_tokens\\\", \\\"\\\")[:1000],\\n                    \\\"neg_candidates\\\": [],\\n                    \\\"candidate_tokens\\\": {},\\n                })\\n            else:\\n                d = jso\\n\\n... [截断: 输出过长，省略 2199 字符] ...\\n\\ne(val_samples):\\n            if (i + 1) % 200 == 0:\\n                print(f\\\"  re-eval {i+1}/{len(val_samples)}\\\", flush=True)\\n\\n            def _encode(text):\\n                enc = tokenizer(text, truncation=True, max_length=max_seq_length,\\n                                padding=True, return_tensors=\\\"pt\\\")\\n                enc = {k: v.to(device) for k, v in enc.items()}\\n                return model.encode(enc[\\\"input_ids\\\"], enc[\\\"attention_mask\\\"])\\n\\n            q_emb = _encode(sample[\\\"query_tokens\\\"])\\n            p_emb = _encode(sample[\\\"pos_tokens\\\"])\\n            pos_sim = (q_emb * p_emb).sum().item()\\n\\n            neg_sims = []\\n            for neg_id in sample[\\\"neg_candidates\\\"]:\\n                neg_text = sample[\\\"candidate_tokens\\\"].get(neg_id, \\\"\\\")\\n                if not neg_text:\\n                    continue\\n                n_emb = _encode(neg_text)\\n                neg_sims.append((q_emb * n_emb).sum().item())\\n\\n            rank = 1 + sum(1 for s in neg_sims if s >= pos_sim)\\n\\n            results.append({\\n                \\\"query_id\\\": sample[\\\"query_id\\\"],\\n                \\\"instance_id\\\": sample[\\\"instance_id\\\"],\\n                \\\"pool_size\\\": sample[\\\"pool_size\\\"],\\n                \\\"rank\\\": rank,\\n                \\\"pos_sim\\\": pos_sim,\\n                \\\"total_candidates\\\": 1 + len(neg_sims),\\n            })\\n\\n    del model\\n    if torch.cuda.is_available():\\n        torch.cuda.empty_cache()\\n    return results\\n\\n\\n# ── Predictions loading ──────────────────────────────────────────────\\n\\ndef load_predictions(pred_file: str, val_samples: List[Dict]) -> List[Dict]:\\n    \\\"\\\"\\\"Load predictions from eval_retrieval.py output format.\\\"\\\"\\\"\\n    with open(pred_file) as f:\\n        data = json.load(f)\\n\\n    per_inst = {}\\n    results_list = data.get(\\\"results\\\", [data]) if \\\"results\\\" in data else [data]\\n    for r in results_list:\\n        for pi in r.get(\\\"per_instance\\\", []):\\n            per_inst[pi[\\\"instance_id\\\"]] = pi\\n\\n    val_lookup = {s[\\\"query_id\\\"]: s for s in val_samples}\\n    results = []\\n    for sample in val_samples:\\n        iid = sample[\\\"instance_id\\\"]\\n        pred = per_inst.get(iid)\\n        if pred is None:\\n            continue\\n        gold = set(pred.get(\\\"gold_files\\\", []))\\n        predicted = pred.get(\\\"predicted_top10\\\", [])\\n        rank = len(predicted) + 1\\n        for j, pf in enumerate(predicted):\\n            if pf in gold:\\n                rank = j + 1\\n                break\\n        results.append({\\n            \\\"query_id\\\": sample[\\\"query_id\\\"],\\n            \\\"instance_id\\\": iid,\\n            \\\"pool_size\\\": sample[\\\"pool_size\\\"],\\n            \\\"rank\\\": rank,\\n            \\\"pos_sim\\\": pred.get(\\\"scores_top10\\\", [0.0])[0] if pred.get(\\\"scores_top10\\\") else 0.0,\\n            \\\"total_candidates\\\": max(len(predicted), sample[\\\"pool_size\\\"] + 1),\\n        })\\n    return results\\n\\n\\n# ── Mock predictions (dry-run) ───────────────────────────────────────\\n\\ndef mock_predictions(\\n    val_samples: List[Dict], strategy: str, seed: int\\n) -> List[Dict]:\\n    rng = np.random.RandomState(seed + abs(hash(strategy)) % 10000)\\n    results = []\\n    for sample in val_samples:\\n        pool = 1 + sample[\\\"pool_size\\\"]\\n        if strategy == \\\"random\\\":\\n            rank = rng.randint(1, pool + 1)\\n        elif strategy == \\\"embedding_distance\\\":\\n            rank = max(1, min(pool, int(rng.exponential(pool * 0.35)) + 1))\\n        else:\\n            rank = max(1, min(pool, int(rng.exponential(pool * 0.20)) + 1))\\n\\n        pos_sim = max(0.0, min(1.0, 1.0 - rank / pool + rng.normal(0, 0.08)))\\n        tsim = text_similarity(\\n            sample[\\\"query_tokens\\\"][:500], sample[\\\"pos_tokens\\\"][:500]\\n        )\\n\\n        results.append({\\n            \\\"query_id\\\": sample[\\\"query_id\\\"],\\n            \\\"instance_id\\\": sample[\\\"instance_id\\\"],\\n            \\\"pool_size\\\": sample[\\\"pool_size\\\"],\\n            \\\"rank\\\": rank,\\n            \\\"pos_sim\\\": pos_sim if pos_sim > 0 else tsim,\\n            \\\"total_candidates\\\": pool,\\n        })\\n    return results\\n\\n\\n# ── Metrics computation ──────────────────────────────────────────────\\n\\ndef compute_metrics(results: List[Dict]) -> Dict[str, float]:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UAXTodeXgNmhcrqWsCEz3H`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -300 /root/structfuse/evaluation/analyze_stratified.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "43160834-a8b3-49bf-9bd1-73ee949b98e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VQZVQSpY7tZYmVdyWNjpoF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 412,
+      "cache_read_input_tokens": 27274,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 412
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T20:28:22.825Z_
+
+<details><summary>↩ Tool result · `toolu_01UAXTodeXgNmhcrqWsCEz3H`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            bins_present = [b for b in bin_order if b in analysis]\\n            if not bins_present:\\n                continue\\n\\n            fig, ax = plt.subplots(figsize=(8, 5))\\n            x = np.arange(len(bins_present))\\n\\n            for other, color, marker in [\\n                (\\\"embedding_distance\\\", \\\"#DD8452\\\", \\\"o\\\"),\\n                (\\\"dataflow_aware\\\", \\\"#55A868\\\", \\\"s\\\"),\\n            ]:\\n                delta_key = f\\\"{other}_vs_random\\\"\\n                deltas = []\\n                for b in bins_present:\\n                    d = analysis[b].get(delta_key, {}).get(\\\"R@1_delta\\\", 0)\\n                    deltas.append(d)\\n\\n                ax.plot(x, deltas, marker=marker, linewidth=2, markersize=8,\\n                        color=color, label=f\\\"{STRATEGY_LABELS[other]} - Random\\\")\\n\\n            ax.axhline(y=0, color=\\\"gray\\\", linestyle=\\\"--\\\", linewidth=0.8)\\n            ax.set_xlabel(title)\\n            ax.set_ylabel(\\\"R@1 Delta (vs Random)\\\")\\n            ax.set_title(f\\\"R@1 Delta Trend — {title}\\\", fontweight=\\\"bold\\\")\\n            ax.set_xticks(x)\\n            ax.set_xticklabels(bins_present)\\n            ax.legend(loc=\\\"best\\\")\\n            plt.tight_layout()\\n            pdf.savefig(fig, bbox_inches=\\\"tight\\\")\\n            plt.close(fig)\\n\\n    # Also save individual PNGs\\n    print(f\\\"  Plots saved to {pdf_path}\\\", flush=True)\\n    return pdf_path\\n\\n\\n# ── CSV output ───────────────────────────────────────────────────────\\n\\ndef write_summary_csv(\\n    repo_analysis: Dict,\\n    pool_analysis: Dict,\\n    sim_analysis: Dict,\\n    output_path: str,\\n    dataflow_analysis: Optional[Dict] = None,\\n    neg_diff_analysis: Optional[Dict] = None,\\n):\\n    rows = []\\n    dimensions = [\\n        (\\\"repo_size\\\", repo_analysis, list(REPO_SIZE_BINS.keys())),\\n        (\\\"pool_size\\\", pool_analysis, list(POOL_SIZE_BINS.keys())),\\n        (\\\"similarity\\\", sim_analysis, list(SIMILARITY_BINS.keys())),\\n    ]\\n    if dataflow_analysis:\\n        dimensions.append((\\\"dataflow\\\", dataflow_analysis, list(DATAFLOW_BINS.keys())))\\n    if neg_diff_analysis:\\n        dimensions.append((\\\"neg_difficulty\\\", neg_diff_analysis, NEG_DIFFICULTY_QUARTILE_LABELS))\\n    for dim_name, analysis, bin_order in dimensions:\\n        for b in bin_order:\\n            if b not in analysis:\\n                continue\\n            for strategy in STRATEGIES:\\n                m = analysis[b].get(strategy, {})\\n                ci_r1 = m.get(\\\"R@1_ci\\\", [0, 0])\\n                row = {\\n                    \\\"dimension\\\": dim_name,\\n                    \\\"stratum\\\": b,\\n                    \\\"strategy\\\": strategy,\\n                    \\\"R@1\\\": f\\\"{m.get('R@1', 0):.4f}\\\",\\n                    \\\"R@1_ci95\\\": f\\\"[{ci_r1[0]:.4f}, {ci_r1[1]:.4f}]\\\",\\n                    \\\"R@5\\\": f\\\"{m.get('R@5', 0):.4f}\\\",\\n                    \\\"MRR\\\": f\\\"{m.get('MRR', 0):.4f}\\\",\\n                    \\\"count\\\": m.get(\\\"count\\\", 0),\\n                }\\n                rows.append(row)\\n\\n            # Deltas\\n            for other in [\\\"embedding_distance\\\", \\\"dataflow_aware\\\"]:\\n                dk = f\\\"{other}_vs_random\\\"\\n                d = analysis[b].get(dk, {})\\n                if d:\\n                    row = {\\n                        \\\"dimension\\\": dim_name,\\n                        \\\"stratum\\\": b,\\n                        \\\"strategy\\\": f\\\"DELTA({STRATEGY_LABELS[other]}-Random)\\\",\\n                        \\\"R@1\\\": f\\\"{d.get('R@1_delta', 0):+.4f}\\\",\\n                        \\\"R@1_ci95\\\": f\\\"({d.get('R@1_rel_pct', 0):+.1f}%)\\\",\\n                        \\\"R@5\\\": f\\\"{d.get('R@5_delta', 0):+.4f}\\\",\\n                        \\\"MRR\\\": f\\\"{d.get('MRR_delta', 0):+.4f}\\\",\\n                        \\\"count\\\": \\\"\\\",\\n                    }\\n                    rows.append(row)\\n\\n    fieldnames = [\\\"dimension\\\", \\\"stratum\\\", \\\"strategy\\\", \\\"R@1\\\", \\\"R@1_ci95\\\", \\\"R@5\\\", \\\"MRR\\\", \\\"count\\\"]\\n    with open(output_path, \\\"w\\\", newline=\\\"\\\") as f:\\n        writer = csv.DictWriter(f, fieldnames=fieldnames)\\n        writer.writeheader()\\n        writer.writerows(rows)\\n    print(f\\\"  Summary CSV saved to {output_path}\\\", flush=True)\\n\\n\\n# ── Main ─────────────────────────────────────────────────────────────\\n\\nde\\n\\n... [截断: 输出过长，省略 5161 字符] ...\\n\\nt\\\")):\\n                        ckpt_dir = candidate\\n                        break\\n                if ckpt_dir is None and os.path.exists(os.path.join(base, \\\"model.pt\\\")):\\n                    ckpt_dir = base\\n                if os.path.exists(ckpt_dir):\\n                    print(f\\\"  Re-evaluating checkpoint: {ckpt_dir}\\\", flush=True)\\n                    results = reeval_checkpoint(\\n                        ckpt_dir, val_samples, args.device, args.max_seq_length\\n                    )\\n                else:\\n                    print(f\\\"  [WARN] Checkpoint not found: {ckpt_dir}\\\", flush=True)\\n                    continue\\n            else:\\n                print(\\\"  [ERROR] No --dry-run, --predictions-dir, or --checkpoints-dir\\\", flush=True)\\n                continue\\n\\n            # Assign strata\\n            results = assign_strata(results, inst_to_repo, repo_counts, dataflow_edges)\\n\\n            # For dry-run or model-based: compute text similarity for sim_bin\\n            if args.dry_run:\\n                for r, s in zip(results, val_samples):\\n                    tsim = text_similarity(s[\\\"query_tokens\\\"][:500], s[\\\"pos_tokens\\\"][:500])\\n                    r[\\\"sim_bin\\\"] = _bin_value(tsim, SIMILARITY_BINS)\\n\\n            all_results[strategy][seed] = results\\n            val_samples_cache[f\\\"{strategy}_s{seed}\\\"] = val_samples\\n            print(f\\\"  -> {len(results)} instances\\\", flush=True)\\n\\n    # Compute neg_difficulty quartiles (text-overlap proxy, CPU-safe)\\n    print(\\\"Computing neg difficulty quartiles...\\\", flush=True)\\n    assign_neg_difficulty_quartiles(all_results, val_samples_cache)\\n\\n    # Run stratified analysis\\n    print(\\\"\\\\nRunning stratified analysis...\\\", flush=True)\\n    repo_analysis = run_stratified_analysis(\\n        all_results, \\\"repo_size_bin\\\", list(REPO_SIZE_BINS.keys()), args.n_bootstrap\\n    )\\n    pool_analysis = run_stratified_analysis(\\n        all_results, \\\"pool_size_bin\\\", list(POOL_SIZE_BINS.keys()), args.n_bootstrap\\n    )\\n    sim_analysis = run_stratified_analysis(\\n        all_results, \\\"sim_bin\\\", list(SIMILARITY_BINS.keys()), args.n_bootstrap\\n    )\\n\\n    dataflow_analysis = {}\\n    if dataflow_edges is not None:\\n        dataflow_analysis = run_stratified_analysis(\\n            all_results, \\\"dataflow_bin\\\", list(DATAFLOW_BINS.keys()), args.n_bootstrap\\n        )\\n\\n    neg_diff_analysis = run_stratified_analysis(\\n        all_results, \\\"neg_difficulty_bin\\\", NEG_DIFFICULTY_QUARTILE_LABELS, args.n_bootstrap\\n    )\\n\\n    # Save JSON\\n    full_results = {\\n        \\\"config\\\": {\\n            \\\"strategies\\\": STRATEGIES,\\n            \\\"seeds\\\": seeds,\\n            \\\"repo_size_bins\\\": {k: list(v) for k, v in REPO_SIZE_BINS.items()},\\n            \\\"pool_size_bins\\\": {k: list(v) for k, v in POOL_SIZE_BINS.items()},\\n            \\\"similarity_bins\\\": {k: list(v) for k, v in SIMILARITY_BINS.items()},\\n            \\\"dataflow_bins\\\": {k: list(v) for k, v in DATAFLOW_BINS.items()},\\n            \\\"neg_difficulty_quartiles\\\": NEG_DIFFICULTY_QUARTILE_LABELS,\\n            \\\"n_bootstrap\\\": args.n_bootstrap,\\n            \\\"dry_run\\\": args.dry_run,\\n        },\\n        \\\"by_repo_size\\\": repo_analysis,\\n        \\\"by_pool_size\\\": pool_analysis,\\n        \\\"by_similarity\\\": sim_analysis,\\n        \\\"by_dataflow\\\": dataflow_analysis,\\n        \\\"by_neg_difficulty\\\": neg_diff_analysis,\\n    }\\n\\n    json_path = os.path.join(args.output_dir, \\\"stratified_results.json\\\")\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(full_results, f, indent=2, ensure_ascii=False)\\n    print(f\\\"  Results JSON saved to {json_path}\\\", flush=True)\\n\\n    # CSV summary\\n    csv_path = os.path.join(args.output_dir, \\\"stratified_summary.csv\\\")\\n    write_summary_csv(repo_analysis, pool_analysis, sim_analysis, csv_path, dataflow_analysis, neg_diff_analysis)\\n\\n    # Plots\\n    try:\\n        make_plots(repo_analysis, pool_analysis, sim_analysis, args.output_dir, dataflow_analysis, neg_diff_analysis)\\n    except Exception as e:\\n        print(f\\\"  [WARN] Plot generation failed: {e}\\\", flush=True)\\n\\n    print(\\\"\\\\nDone.\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "d42db192-120d-4d3b-8093-25c02a48da47",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            bins_present = [b for b in bin_order if b in analysis]\\\\n            if not bins_present:\\\\n                continue\\\\n\\\\n            fig, ax = plt.subplots(figsize=(8, 5))\\\\n            x = np.arange(len(bins_present))\\\\n\\\\n            for other, color, marker in [\\\\n                (\\\\\\\"embedding_distance\\\\\\\", \\\\\\\"#DD8452\\\\\\\", \\\\\\\"o\\\\\\\"),\\\\n                (\\\\\\\"dataflow_aware\\\\\\\", \\\\\\\"#55A868\\\\\\\", \\\\\\\"s\\\\\\\"),\\\\n            ]:\\\\n                delta_key = f\\\\\\\"{other}_vs_random\\\\\\\"\\\\n                deltas = []\\\\n                for b in bins_present:\\\\n                    d = analysis[b].get(delta_key, {}).get(\\\\\\\"R@1_delta\\\\\\\", 0)\\\\n                    deltas.append(d)\\\\n\\\\n                ax.plot(x, deltas, marker=marker, linewidth=2, markersize=8,\\\\n                        color=color, label=f\\\\\\\"{STRATEGY_LABELS[other]} - Random\\\\\\\")\\\\n\\\\n            ax.axhline(y=0, color=\\\\\\\"gray\\\\\\\", linestyle=\\\\\\\"--\\\\\\\", linewidth=0.8)\\\\n            ax.set_xlabel(title)\\\\n            ax.set_ylabel(\\\\\\\"R@1 Delta (vs Random)\\\\\\\")\\\\n            ax.set_title(f\\\\\\\"R@1 Delta Trend — {title}\\\\\\\", fontweight=\\\\\\\"bold\\\\\\\")\\\\n            ax.set_xticks(x)\\\\n            ax.set_xticklabels(bins_present)\\\\n            ax.legend(loc=\\\\\\\"best\\\\\\\")\\\\n            plt.tight_layout()\\\\n            pdf.savefig(fig, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n            plt.close(fig)\\\\n\\\\n    # Also save individual PNGs\\\\n    print(f\\\\\\\"  Plots saved to {pdf_path}\\\\\\\", flush=True)\\\\n    return pdf_path\\\\n\\\\n\\\\n# ── CSV output ───────────────────────────────────────────────────────\\\\n\\\\ndef write_summary_csv(\\\\n    repo_analysis: Dict,\\\\n    pool_analysis: Dict,\\\\n    sim_analysis: Dict,\\\\n    output_path: str,\\\\n    dataflow_analysis: Optional[Dict] = None,\\\\n    neg_diff_analysis: Optional[Dict] = None,\\\\n):\\\\n    rows = []\\\\n    dimensions = [\\\\n        (\\\\\\\"repo_size\\\\\\\", repo_analysis, list(REPO_SIZE_BINS.keys())),\\\\n        (\\\\\\\"pool_size\\\\\\\", pool_analysis, list(POOL_SIZE_BINS.keys())),\\\\n        (\\\\\\\"similarity\\\\\\\", sim_analysis, list(SIMILARITY_BINS.keys())),\\\\n    ]\\\\n    if dataflow_analysis:\\\\n        dimensions.append((\\\\\\\"dataflow\\\\\\\", dataflow_analysis, list(DATAFLOW_BINS.keys())))\\\\n    if neg_diff_analysis:\\\\n        dimensions.append((\\\\\\\"neg_difficulty\\\\\\\", neg_diff_analysis, NEG_DIFFICULTY_QUARTILE_LABELS))\\\\n    for dim_name, analysis, bin_order in dimensions:\\\\n        for b in bin_order:\\\\n            if b not in analysis:\\\\n                continue\\\\n            for strategy in STRATEGIES:\\\\n                m = analysis[b].get(strategy, {})\\\\n                ci_r1 = m.get(\\\\\\\"R@1_ci\\\\\\\", [0, 0])\\\\n                row = {\\\\n                    \\\\\\\"dimension\\\\\\\": dim_name,\\\\n                    \\\\\\\"stratum\\\\\\\": b,\\\\n                    \\\\\\\"strategy\\\\\\\": strategy,\\\\n                    \\\\\\\"R@1\\\\\\\": f\\\\\\\"{m.get('R@1', 0):.4f}\\\\\\\",\\\\n                    \\\\\\\"R@1_ci95\\\\\\\": f\\\\\\\"[{ci_r1[0]:.4f}, {ci_r1[1]:.4f}]\\\\\\\",\\\\n                    \\\\\\\"R@5\\\\\\\": f\\\\\\\"{m.get('R@5', 0):.4f}\\\\\\\",\\\\n                    \\\\\\\"MRR\\\\\\\": f\\\\\\\"{m.get('MRR', 0):.4f}\\\\\\\",\\\\n                    \\\\\\\"count\\\\\\\": m.get(\\\\\\\"count\\\\\\\", 0),\\\\n                }\\\\n                rows.append(row)\\\\n\\\\n            # Deltas\\\\n            for other in [\\\\\\\"embedding_distance\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\"]:\\\\n                dk = f\\\\\\\"{other}_vs_random\\\\\\\"\\\\n                d = analysis[b].get(dk, {})\\\\n                if d:\\\\n                    row = {\\\\n                        \\\\\\\"dimension\\\\\\\": dim_name,\\\\n                        \\\\\\\"stratum\\\\\\\": b,\\\\n                        \\\\\\\"strategy\\\\\\\": f\\\\\\\"DELTA({STRATEGY_LABELS[other]}-Random)\\\\\\\",\\\\n                        \\\\\\\"R@1\\\\\\\": f\\\\\\\"{d.get('R@1_delta', 0):+.4f}\\\\\\\",\\\\n                        \\\\\\\"R@1_ci95\\\\\\\": f\\\\\\\"({d.get('R@1_rel_pct', 0):+.1f}%)\\\\\\\",\\\\n                        \\\\\\\"R@5\\\\\\\": f\\\\\\\"{d.get('R@5_delta', 0):+.4f}\\\\\\\",\\\\n                        \\\\\\\"MRR\\\\\\\": f\\\\\\\"{d.get('MRR_delta', 0):+.4f}\\\\\\\",\\\\n                        \\\\\\\"count\\\\\\\": \\\\\\\"\\\\\\\",\\\\n                    }\\\\n                    rows.append(row)\\\\n\\\\n    fieldnames = [\\\\\\\"dimension\\\\\\\", \\\\\\\"stratum\\\\\\\", \\\\\\\"strategy\\\\\\\", \\\\\\\"R@1\\\\\\\", \\\\\\\"R@1_ci95\\\\\\\", \\\\\\\"R@5\\\\\\\", \\\\\\\"MRR\\\\\\\", \\\\\\\"count\\\\\\\"]\\\\n    with open(output_path, \\\\\\\"w\\\\\\\", newline=\\\\\\\"\\\\\\\") as f:\\\\n        writer = csv.DictWriter(f, fieldnames=fieldnames)\\\\n        writer.writeheader()\\\\n        writer.writerows(rows)\\\\n    print(f\\\\\\\"  Summary CSV saved to {output_path}\\\\\\\", flush=True)\\\\n\\\\n\\\\n# ── Main ─────────────────────────────────────────────────────────────\\\\n\\\\nde\\\\n\\\\n... [截断: 输出过长，省略 5161 字符] ...\\\\n\\\\nt\\\\\\\")):\\\\n                        ckpt_dir = candidate\\\\n                        break\\\\n                if ckpt_dir is None and os.path.exists(os.path.join(base, \\\\\\\"model.pt\\\\\\\")):\\\\n                    ckpt_dir = base\\\\n                if os.path.exists(ckpt_dir):\\\\n                    print(f\\\\\\\"  Re-evaluating checkpoint: {ckpt_dir}\\\\\\\", flush=True)\\\\n                    results = reeval_checkpoint(\\\\n                        ckpt_dir, val_samples, args.device, args.max_seq_length\\\\n                    )\\\\n                else:\\\\n                    print(f\\\\\\\"  [WARN] Checkpoint not found: {ckpt_dir}\\\\\\\", flush=True)\\\\n                    continue\\\\n            else:\\\\n                print(\\\\\\\"  [ERROR] No --dry-run, --predictions-dir, or --checkpoints-dir\\\\\\\", flush=True)\\\\n                continue\\\\n\\\\n            # Assign strata\\\\n            results = assign_strata(results, inst_to_repo, repo_counts, dataflow_edges)\\\\n\\\\n            # For dry-run or model-based: compute text similarity for sim_bin\\\\n            if args.dry_run:\\\\n                for r, s in zip(results, val_samples):\\\\n                    tsim = text_similarity(s[\\\\\\\"query_tokens\\\\\\\"][:500], s[\\\\\\\"pos_tokens\\\\\\\"][:500])\\\\n                    r[\\\\\\\"sim_bin\\\\\\\"] = _bin_value(tsim, SIMILARITY_BINS)\\\\n\\\\n            all_results[strategy][seed] = results\\\\n            val_samples_cache[f\\\\\\\"{strategy}_s{seed}\\\\\\\"] = val_samples\\\\n            print(f\\\\\\\"  -> {len(results)} instances\\\\\\\", flush=True)\\\\n\\\\n    # Compute neg_difficulty quartiles (text-overlap proxy, CPU-safe)\\\\n    print(\\\\\\\"Computing neg difficulty quartiles...\\\\\\\", flush=True)\\\\n    assign_neg_difficulty_quartiles(all_results, val_samples_cache)\\\\n\\\\n    # Run stratified analysis\\\\n    print(\\\\\\\"\\\\\\\\nRunning stratified analysis...\\\\\\\", flush=True)\\\\n    repo_analysis = run_stratified_analysis(\\\\n        all_results, \\\\\\\"repo_size_bin\\\\\\\", list(REPO_SIZE_BINS.keys()), args.n_bootstrap\\\\n    )\\\\n    pool_analysis = run_stratified_analysis(\\\\n        all_results, \\\\\\\"pool_size_bin\\\\\\\", list(POOL_SIZE_BINS.keys()), args.n_bootstrap\\\\n    )\\\\n    sim_analysis = run_stratified_analysis(\\\\n        all_results, \\\\\\\"sim_bin\\\\\\\", list(SIMILARITY_BINS.keys()), args.n_bootstrap\\\\n    )\\\\n\\\\n    dataflow_analysis = {}\\\\n    if dataflow_edges is not None:\\\\n        dataflow_analysis = run_stratified_analysis(\\\\n            all_results, \\\\\\\"dataflow_bin\\\\\\\", list(DATAFLOW_BINS.keys()), args.n_bootstrap\\\\n        )\\\\n\\\\n    neg_diff_analysis = run_stratified_analysis(\\\\n        all_results, \\\\\\\"neg_difficulty_bin\\\\\\\", NEG_DIFFICULTY_QUARTILE_LABELS, args.n_bootstrap\\\\n    )\\\\n\\\\n    # Save JSON\\\\n    full_results = {\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"strategies\\\\\\\": STRATEGIES,\\\\n            \\\\\\\"seeds\\\\\\\": seeds,\\\\n            \\\\\\\"repo_size_bins\\\\\\\": {k: list(v) for k, v in REPO_SIZE_BINS.items()},\\\\n            \\\\\\\"pool_size_bins\\\\\\\": {k: list(v) for k, v in POOL_SIZE_BINS.items()},\\\\n            \\\\\\\"similarity_bins\\\\\\\": {k: list(v) for k, v in SIMILARITY_BINS.items()},\\\\n            \\\\\\\"dataflow_bins\\\\\\\": {k: list(v) for k, v in DATAFLOW_BINS.items()},\\\\n            \\\\\\\"neg_difficulty_quartiles\\\\\\\": NEG_DIFFICULTY_QUARTILE_LABELS,\\\\n            \\\\\\\"n_bootstrap\\\\\\\": args.n_bootstrap,\\\\n            \\\\\\\"dry_run\\\\\\\": args.dry_run,\\\\n        },\\\\n        \\\\\\\"by_repo_size\\\\\\\": repo_analysis,\\\\n        \\\\\\\"by_pool_size\\\\\\\": pool_analysis,\\\\n        \\\\\\\"by_similarity\\\\\\\": sim_analysis,\\\\n        \\\\\\\"by_dataflow\\\\\\\": dataflow_analysis,\\\\n        \\\\\\\"by_neg_difficulty\\\\\\\": neg_diff_analysis,\\\\n    }\\\\n\\\\n    json_path = os.path.join(args.output_dir, \\\\\\\"stratified_results.json\\\\\\\")\\\\n    with open(json_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(full_results, f, indent=2, ensure_ascii=False)\\\\n    print(f\\\\\\\"  Results JSON saved to {json_path}\\\\\\\", flush=True)\\\\n\\\\n    # CSV summary\\\\n    csv_path = os.path.join(args.output_dir, \\\\\\\"stratified_summary.csv\\\\\\\")\\\\n    write_summary_csv(repo_analysis, pool_analysis, sim_analysis, csv_path, dataflow_analysis, neg_diff_analysis)\\\\n\\\\n    # Plots\\\\n    try:\\\\n        make_plots(repo_analysis, pool_analysis, sim_analysis, args.output_dir, dataflow_analysis, neg_diff_analysis)\\\\n    except Exception as e:\\\\n        print(f\\\\\\\"  [WARN] Plot generation failed: {e}\\\\\\\", flush=True)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\nDone.\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"            bins_present = [b for b in bin_order if b in analysis]\\n            if not bins_present:\\n                continue\\n\\n            fig, ax = plt.subplots(figsize=(8, 5))\\n            x = np.arange(len(bins_present))\\n\\n            for other, color, marker in [\\n                (\\\"embedding_distance\\\", \\\"#DD8452\\\", \\\"o\\\"),\\n                (\\\"dataflow_aware\\\", \\\"#55A868\\\", \\\"s\\\"),\\n            ]:\\n                delta_key = f\\\"{other}_vs_random\\\"\\n                deltas = []\\n                for b in bins_present:\\n                    d = analysis[b].get(delta_key, {}).get(\\\"R@1_delta\\\", 0)\\n                    deltas.append(d)\\n\\n                ax.plot(x, deltas, marker=marker, linewidth=2, markersize=8,\\n                        color=color, label=f\\\"{STRATEGY_LABELS[other]} - Random\\\")\\n\\n            ax.axhline(y=0, color=\\\"gray\\\", linestyle=\\\"--\\\", linewidth=0.8)\\n            ax.set_xlabel(title)\\n            ax.set_ylabel(\\\"R@1 Delta (vs Random)\\\")\\n            ax.set_title(f\\\"R@1 Delta Trend — {title}\\\", fontweight=\\\"bold\\\")\\n            ax.set_xticks(x)\\n            ax.set_xticklabels(bins_present)\\n            ax.legend(loc=\\\"best\\\")\\n            plt.tight_layout()\\n            pdf.savefig(fig, bbox_inches=\\\"tight\\\")\\n            plt.close(fig)\\n\\n    # Also save individual PNGs\\n    print(f\\\"  Plots saved to {pdf_path}\\\", flush=True)\\n    return pdf_path\\n\\n\\n# ── CSV output ───────────────────────────────────────────────────────\\n\\ndef write_summary_csv(\\n    repo_analysis: Dict,\\n    pool_analysis: Dict,\\n    sim_analysis: Dict,\\n    output_path: str,\\n    dataflow_analysis: Optional[Dict] = None,\\n    neg_diff_analysis: Optional[Dict] = None,\\n):\\n    rows = []\\n    dimensions = [\\n        (\\\"repo_size\\\", repo_analysis, list(REPO_SIZE_BINS.keys())),\\n        (\\\"pool_size\\\", pool_analysis, list(POOL_SIZE_BINS.keys())),\\n        (\\\"similarity\\\", sim_analysis, list(SIMILARITY_BINS.keys())),\\n    ]\\n    if dataflow_analysis:\\n        dimensions.append((\\\"dataflow\\\", dataflow_analysis, list(DATAFLOW_BINS.keys())))\\n    if neg_diff_analysis:\\n        dimensions.append((\\\"neg_difficulty\\\", neg_diff_analysis, NEG_DIFFICULTY_QUARTILE_LABELS))\\n    for dim_name, analysis, bin_order in dimensions:\\n        for b in bin_order:\\n            if b not in analysis:\\n                continue\\n            for strategy in STRATEGIES:\\n                m = analysis[b].get(strategy, {})\\n                ci_r1 = m.get(\\\"R@1_ci\\\", [0, 0])\\n                row = {\\n                    \\\"dimension\\\": dim_name,\\n                    \\\"stratum\\\": b,\\n                    \\\"strategy\\\": strategy,\\n                    \\\"R@1\\\": f\\\"{m.get('R@1', 0):.4f}\\\",\\n                    \\\"R@1_ci95\\\": f\\\"[{ci_r1[0]:.4f}, {ci_r1[1]:.4f}]\\\",\\n                    \\\"R@5\\\": f\\\"{m.get('R@5', 0):.4f}\\\",\\n                    \\\"MRR\\\": f\\\"{m.get('MRR', 0):.4f}\\\",\\n                    \\\"count\\\": m.get(\\\"count\\\", 0),\\n                }\\n                rows.append(row)\\n\\n            # Deltas\\n            for other in [\\\"embedding_distance\\\", \\\"dataflow_aware\\\"]:\\n                dk = f\\\"{other}_vs_random\\\"\\n                d = analysis[b].get(dk, {})\\n                if d:\\n                    row = {\\n                        \\\"dimension\\\": dim_name,\\n                        \\\"stratum\\\": b,\\n                        \\\"strategy\\\": f\\\"DELTA({STRATEGY_LABELS[other]}-Random)\\\",\\n                        \\\"R@1\\\": f\\\"{d.get('R@1_delta', 0):+.4f}\\\",\\n                        \\\"R@1_ci95\\\": f\\\"({d.get('R@1_rel_pct', 0):+.1f}%)\\\",\\n                        \\\"R@5\\\": f\\\"{d.get('R@5_delta', 0):+.4f}\\\",\\n                        \\\"MRR\\\": f\\\"{d.get('MRR_delta', 0):+.4f}\\\",\\n                        \\\"count\\\": \\\"\\\",\\n                    }\\n                    rows.append(row)\\n\\n    fieldnames = [\\\"dimension\\\", \\\"stratum\\\", \\\"strategy\\\", \\\"R@1\\\", \\\"R@1_ci95\\\", \\\"R@5\\\", \\\"MRR\\\", \\\"count\\\"]\\n    with open(output_path, \\\"w\\\", newline=\\\"\\\") as f:\\n        writer = csv.DictWriter(f, fieldnames=fieldnames)\\n        writer.writeheader()\\n        writer.writerows(rows)\\n    print(f\\\"  Summary CSV saved to {output_path}\\\", flush=True)\\n\\n\\n# ── Main ─────────────────────────────────────────────────────────────\\n\\nde\\n\\n... [截断: 输出过长，省略 5161 字符] ...\\n\\nt\\\")):\\n                        ckpt_dir = candidate\\n                        break\\n                if ckpt_dir is None and os.path.exists(os.path.join(base, \\\"model.pt\\\")):\\n                    ckpt_dir = base\\n                if os.path.exists(ckpt_dir):\\n                    print(f\\\"  Re-evaluating checkpoint: {ckpt_dir}\\\", flush=True)\\n                    results = reeval_checkpoint(\\n                        ckpt_dir, val_samples, args.device, args.max_seq_length\\n                    )\\n                else:\\n                    print(f\\\"  [WARN] Checkpoint not found: {ckpt_dir}\\\", flush=True)\\n                    continue\\n            else:\\n                print(\\\"  [ERROR] No --dry-run, --predictions-dir, or --checkpoints-dir\\\", flush=True)\\n                continue\\n\\n            # Assign strata\\n            results = assign_strata(results, inst_to_repo, repo_counts, dataflow_edges)\\n\\n            # For dry-run or model-based: compute text similarity for sim_bin\\n            if args.dry_run:\\n                for r, s in zip(results, val_samples):\\n                    tsim = text_similarity(s[\\\"query_tokens\\\"][:500], s[\\\"pos_tokens\\\"][:500])\\n                    r[\\\"sim_bin\\\"] = _bin_value(tsim, SIMILARITY_BINS)\\n\\n            all_results[strategy][seed] = results\\n            val_samples_cache[f\\\"{strategy}_s{seed}\\\"] = val_samples\\n            print(f\\\"  -> {len(results)} instances\\\", flush=True)\\n\\n    # Compute neg_difficulty quartiles (text-overlap proxy, CPU-safe)\\n    print(\\\"Computing neg difficulty quartiles...\\\", flush=True)\\n    assign_neg_difficulty_quartiles(all_results, val_samples_cache)\\n\\n    # Run stratified analysis\\n    print(\\\"\\\\nRunning stratified analysis...\\\", flush=True)\\n    repo_analysis = run_stratified_analysis(\\n        all_results, \\\"repo_size_bin\\\", list(REPO_SIZE_BINS.keys()), args.n_bootstrap\\n    )\\n    pool_analysis = run_stratified_analysis(\\n        all_results, \\\"pool_size_bin\\\", list(POOL_SIZE_BINS.keys()), args.n_bootstrap\\n    )\\n    sim_analysis = run_stratified_analysis(\\n        all_results, \\\"sim_bin\\\", list(SIMILARITY_BINS.keys()), args.n_bootstrap\\n    )\\n\\n    dataflow_analysis = {}\\n    if dataflow_edges is not None:\\n        dataflow_analysis = run_stratified_analysis(\\n            all_results, \\\"dataflow_bin\\\", list(DATAFLOW_BINS.keys()), args.n_bootstrap\\n        )\\n\\n    neg_diff_analysis = run_stratified_analysis(\\n        all_results, \\\"neg_difficulty_bin\\\", NEG_DIFFICULTY_QUARTILE_LABELS, args.n_bootstrap\\n    )\\n\\n    # Save JSON\\n    full_results = {\\n        \\\"config\\\": {\\n            \\\"strategies\\\": STRATEGIES,\\n            \\\"seeds\\\": seeds,\\n            \\\"repo_size_bins\\\": {k: list(v) for k, v in REPO_SIZE_BINS.items()},\\n            \\\"pool_size_bins\\\": {k: list(v) for k, v in POOL_SIZE_BINS.items()},\\n            \\\"similarity_bins\\\": {k: list(v) for k, v in SIMILARITY_BINS.items()},\\n            \\\"dataflow_bins\\\": {k: list(v) for k, v in DATAFLOW_BINS.items()},\\n            \\\"neg_difficulty_quartiles\\\": NEG_DIFFICULTY_QUARTILE_LABELS,\\n            \\\"n_bootstrap\\\": args.n_bootstrap,\\n            \\\"dry_run\\\": args.dry_run,\\n        },\\n        \\\"by_repo_size\\\": repo_analysis,\\n        \\\"by_pool_size\\\": pool_analysis,\\n        \\\"by_similarity\\\": sim_analysis,\\n        \\\"by_dataflow\\\": dataflow_analysis,\\n        \\\"by_neg_difficulty\\\": neg_diff_analysis,\\n    }\\n\\n    json_path = os.path.join(args.output_dir, \\\"stratified_results.json\\\")\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(full_results, f, indent=2, ensure_ascii=False)\\n    print(f\\\"  Results JSON saved to {json_path}\\\", flush=True)\\n\\n    # CSV summary\\n    csv_path = os.path.join(args.output_dir, \\\"stratified_summary.csv\\\")\\n    write_summary_csv(repo_analysis, pool_analysis, sim_analysis, csv_path, dataflow_analysis, neg_diff_analysis)\\n\\n    # Plots\\n    try:\\n        make_plots(repo_analysis, pool_analysis, sim_analysis, args.output_dir, dataflow_analysis, neg_diff_analysis)\\n    except Exception as e:\\n        print(f\\\"  [WARN] Plot generation failed: {e}\\\", flush=True)\\n\\n    print(\\\"\\\\nDone.\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to see the argparse section to understand the full CLI args. Let me also get the --help output. Let me also read the middle part of the script that was truncated. The script has functions like `assign_strata`, `text_similarity`, `assign_neg_difficulty_quartiles`, `run_stratified_analysis`, `compute_metrics`, etc. And the main function with argparse.
+
+Let me get the argparse section and also check the val data paths.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "a98c475f-ff1f-47d8-8163-7ca8b273a710",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QCB8Mm1f51EsBcwttuVpbQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6954,
+      "cache_read_input_tokens": 27686,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6954
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+需要看 argparse 部分和中间截断的函数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "59951d97-ff02-4f9a-af64-04d4ea5fe0a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QCB8Mm1f51EsBcwttuVpbQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6954,
+      "cache_read_input_tokens": 27686,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6954
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019QZUaNqioQXXmrp9rodgoj`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"add_argument\\|def main\\|def assign_strata\\|def text_sim\\|def assign_neg_diff\\|def run_stratified\\|def compute_metrics\" /root/structfuse/evaluation/analyze_stratified.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "3080e8b3-0d57-47fd-991f-642152278b1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QCB8Mm1f51EsBcwttuVpbQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6954,
+      "cache_read_input_tokens": 27686,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6954
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T20:28:33.118Z_
+
+<details><summary>↩ Tool result · `toolu_019QZUaNqioQXXmrp9rodgoj`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "7bb3f6dc-33d9-44b1-b5a7-344b4fe4074c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017YjkAEDMc4FJM6zNNnn3tt`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "wc -l /root/structfuse/evaluation/analyze_stratified.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "59257e01-d15c-4f60-819e-33389b862b3b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QCB8Mm1f51EsBcwttuVpbQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6954,
+      "cache_read_input_tokens": 27686,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6954
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T20:28:33.843Z_
+
+<details><summary>↩ Tool result · `toolu_017YjkAEDMc4FJM6zNNnn3tt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"910 /root/structfuse/evaluation/analyze_stratified.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "62ae3360-0282-4214-9a9d-3c27d0fabc69",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"910 /root/structfuse/evaluation/analyze_stratified.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"910 /root/structfuse/evaluation/analyze_stratified.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SET8eaTvXjgxPqGEwyyodc`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"add_argument\\|def main\\|def assign_strata\\|def text_sim\\|def assign_neg_diff\\|def run_stratified\\|def compute_metrics\" /root/structfuse/evaluation/analyze_stratified.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "4eeb3f69-fc1b-4ed4-8259-0d62808e6775",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JvEqkAMLZW7QMdxcdn1KVV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 754,
+      "cache_read_input_tokens": 34640,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 754
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T20:28:36.793Z_
+
+<details><summary>↩ Tool result · `toolu_01SET8eaTvXjgxPqGEwyyodc`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "5b974fc1-e6e0-49da-94da-0019e0bf4bc7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y6eZyqUWoZpJxzdggff8fA`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"add_argument\\|def main\\|def assign_strata\\|def text_sim\\|def assign_neg_diff\\|def run_stratified\\|def compute_metrics\" /root/structfuse/evaluation/analyze_stratified.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "ec08ddc3-360f-4518-a7c2-863c31b014f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016dX1JnfwA1ZknkhtiF7Lkn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 256,
+      "cache_read_input_tokens": 35394,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 256
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T20:28:40.376Z_
+
+<details><summary>↩ Tool result · `toolu_01Y6eZyqUWoZpJxzdggff8fA`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "f6c4e2e2-d6b6-4987-8c3f-9bd628b5511b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `|` in the grep pattern is being blocked. Let me use `-E` flag with grep, or better yet, just read specific line ranges of the file. The file is 910 lines. I saw lines 1-300 and the last 300 lines. Let me read the middle section (lines 300-610).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "834a10fa-a914-4e3b-8919-827644ec31ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QUDdUSo5KoroLtRwezt5VX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 256,
+      "cache_read_input_tokens": 35650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 256
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KE6tQe1PGCNVN9ocLcyj5n`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"add_argument\" /root/structfuse/evaluation/analyze_stratified.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "d71f584a-ab1a-4eea-81db-9393473fb20d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QUDdUSo5KoroLtRwezt5VX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 256,
+      "cache_read_input_tokens": 35650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 256
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T20:28:45.712Z_
+
+<details><summary>↩ Tool result · `toolu_01KE6tQe1PGCNVN9ocLcyj5n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"717:    parser.add_argument(\\\"--predictions-dir\\\", default=None,\\n719:    parser.add_argument(\\\"--checkpoints-dir\\\", default=None,\\n721:    parser.add_argument(\\\"--val-data-dir\\\", default=None,\\n723:    parser.add_argument(\\\"--m1-data\\\", required=True,\\n725:    parser.add_argument(\\\"--output-dir\\\", required=True)\\n726:    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\",\\n728:    parser.add_argument(\\\"--seeds\\\", default=\\\"42,43,44\\\",\\n730:    parser.add_argument(\\\"--device\\\", default=\\\"cuda\\\")\\n731:    parser.add_argument(\\\"--max-seq-length\\\", type=int, default=2048)\\n732:    parser.add_argument(\\\"--n-bootstrap\\\", type=int, default=1000)\\n733:    parser.add_argument(\\\"--repo-size-bins\\\", default=None,\\n735:    parser.add_argument(\\\"--pool-size-bins\\\", default=None,\\n737:    parser.add_argument(\\\"--sim-bins\\\", default=None,\\n739:    parser.add_argument(\\\"--dataflow-graph\\\", default=None,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "f558fa5c-be4e-4e7d-926f-501a440faaa1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"717:    parser.add_argument(\\\\\\\"--predictions-dir\\\\\\\", default=None,\\\\n719:    parser.add_argument(\\\\\\\"--checkpoints-dir\\\\\\\", default=None,\\\\n721:    parser.add_argument(\\\\\\\"--val-data-dir\\\\\\\", default=None,\\\\n723:    parser.add_argument(\\\\\\\"--m1-data\\\\\\\", required=True,\\\\n725:    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", required=True)\\\\n726:    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n728:    parser.add_argument(\\\\\\\"--seeds\\\\\\\", default=\\\\\\\"42,43,44\\\\\\\",\\\\n730:    parser.add_argument(\\\\\\\"--device\\\\\\\", default=\\\\\\\"cuda\\\\\\\")\\\\n731:    parser.add_argument(\\\\\\\"--max-seq-length\\\\\\\", type=int, default=2048)\\\\n732:    parser.add_argument(\\\\\\\"--n-bootstrap\\\\\\\", type=int, default=1000)\\\\n733:    parser.add_argument(\\\\\\\"--repo-size-bins\\\\\\\", default=None,\\\\n735:    parser.add_argument(\\\\\\\"--pool-size-bins\\\\\\\", default=None,\\\\n737:    parser.add_argument(\\\\\\\"--sim-bins\\\\\\\", default=None,\\\\n739:    parser.add_argument(\\\\\\\"--dataflow-graph\\\\\\\", default=None,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"717:    parser.add_argument(\\\"--predictions-dir\\\", default=None,\\n719:    parser.add_argument(\\\"--checkpoints-dir\\\", default=None,\\n721:    parser.add_argument(\\\"--val-data-dir\\\", default=None,\\n723:    parser.add_argument(\\\"--m1-data\\\", required=True,\\n725:    parser.add_argument(\\\"--output-dir\\\", required=True)\\n726:    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\",\\n728:    parser.add_argument(\\\"--seeds\\\", default=\\\"42,43,44\\\",\\n730:    parser.add_argument(\\\"--device\\\", default=\\\"cuda\\\")\\n731:    parser.add_argument(\\\"--max-seq-length\\\", type=int, default=2048)\\n732:    parser.add_argument(\\\"--n-bootstrap\\\", type=int, default=1000)\\n733:    parser.add_argument(\\\"--repo-size-bins\\\", default=None,\\n735:    parser.add_argument(\\\"--pool-size-bins\\\", default=None,\\n737:    parser.add_argument(\\\"--sim-bins\\\", default=None,\\n739:    parser.add_argument(\\\"--dataflow-graph\\\", default=None,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TTFkneFTsekjRMjihvXc8D`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -n \"def \" /root/structfuse/evaluation/analyze_stratified.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "5de221d6-3b25-4d50-9939-e34916523ba4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QUDdUSo5KoroLtRwezt5VX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 256,
+      "cache_read_input_tokens": 35650,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 256
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T20:28:46.388Z_
+
+<details><summary>↩ Tool result · `toolu_01TTFkneFTsekjRMjihvXc8D`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"64:def _bin_value(value, bins):\\n73:def load_m1_metadata(m1_path: str) -> Tuple[Dict[str, str], Dict[str, int]]:\\n93:def load_dataflow_edges(graph_path: str) -> Dict[str, int]:\\n102:def load_val_samples(val_path: str, lite: bool = False) -> List[Dict[str, Any]]:\\n143:def text_similarity(a: str, b: str) -> float:\\n154:def reeval_checkpoint(\\n193:            def _encode(text):\\n230:def load_predictions(pred_file: str, val_samples: List[Dict]) -> List[Dict]:\\n268:def mock_predictions(\\n300:def compute_metrics(results: List[Dict]) -> Dict[str, float]:\\n313:def _metric_fn(results, metric_name):\\n318:def bootstrap_ci(\\n345:def assign_strata(\\n368:def assign_neg_difficulty_quartiles(\\n416:def group_by(results: List[Dict], key: str) -> Dict[str, List[Dict]]:\\n425:def run_stratified_analysis(\\n474:def make_plots(\\n649:def write_summary_csv(\\n713:def main():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "ceae4913-708d-4f63-a6f7-7cc127c21f96",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64:def _bin_value(value, bins):\\\\n73:def load_m1_metadata(m1_path: str) -> Tuple[Dict[str, str], Dict[str, int]]:\\\\n93:def load_dataflow_edges(graph_path: str) -> Dict[str, int]:\\\\n102:def load_val_samples(val_path: str, lite: bool = False) -> List[Dict[str, Any]]:\\\\n143:def text_similarity(a: str, b: str) -> float:\\\\n154:def reeval_checkpoint(\\\\n193:            def _encode(text):\\\\n230:def load_predictions(pred_file: str, val_samples: List[Dict]) -> List[Dict]:\\\\n268:def mock_predictions(\\\\n300:def compute_metrics(results: List[Dict]) -> Dict[str, float]:\\\\n313:def _metric_fn(results, metric_name):\\\\n318:def bootstrap_ci(\\\\n345:def assign_strata(\\\\n368:def assign_neg_difficulty_quartiles(\\\\n416:def group_by(results: List[Dict], key: str) -> Dict[str, List[Dict]]:\\\\n425:def run_stratified_analysis(\\\\n474:def make_plots(\\\\n649:def write_summary_csv(\\\\n713:def main():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"64:def _bin_value(value, bins):\\n73:def load_m1_metadata(m1_path: str) -> Tuple[Dict[str, str], Dict[str, int]]:\\n93:def load_dataflow_edges(graph_path: str) -> Dict[str, int]:\\n102:def load_val_samples(val_path: str, lite: bool = False) -> List[Dict[str, Any]]:\\n143:def text_similarity(a: str, b: str) -> float:\\n154:def reeval_checkpoint(\\n193:            def _encode(text):\\n230:def load_predictions(pred_file: str, val_samples: List[Dict]) -> List[Dict]:\\n268:def mock_predictions(\\n300:def compute_metrics(results: List[Dict]) -> Dict[str, float]:\\n313:def _metric_fn(results, metric_name):\\n318:def bootstrap_ci(\\n345:def assign_strata(\\n368:def assign_neg_difficulty_quartiles(\\n416:def group_by(results: List[Dict], key: str) -> Dict[str, List[Dict]]:\\n425:def run_stratified_analysis(\\n474:def make_plots(\\n649:def write_summary_csv(\\n713:def main():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read the argparse section (around lines 713-745) and the key middle functions. Let me also check what data files exist.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "1456956a-0ba0-4cbd-8f09-476f6c22b86b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014eWBjg7A6u6C3po9fLAPTT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1217,
+      "cache_read_input_tokens": 35906,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1217
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+Now let me read the main() argparse section and check available data files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "393ce06b-5fc7-4218-b3ee-ba85cf25003d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014eWBjg7A6u6C3po9fLAPTT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1217,
+      "cache_read_input_tokens": 35906,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1217
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018iMkg311h3esEhqVQwqxgZ`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "head -760 /root/structfuse/evaluation/analyze_stratified.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "731b00e0-3d57-44a2-a1da-3bfb32077c0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014eWBjg7A6u6C3po9fLAPTT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1217,
+      "cache_read_input_tokens": 35906,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1217
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T20:28:51.314Z_
+
+<details><summary>↩ Tool result · `toolu_018iMkg311h3esEhqVQwqxgZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Stratified analysis of embedding vs random negative strategies by data strata.\\n\\nAnalyses M2 per-instance predictions across:\\n  - Repo size (instance count per repo from M1)\\n  - Candidate pool size (neg_candidates per query)\\n  - Query-positive similarity (cosine sim from model, or text overlap for dry-run)\\n\\nInputs:\\n  - M2 per-instance predictions (from --predictions-dir or re-eval from checkpoints)\\n  - M1 all.jsonl (repo metadata)\\n  - Val JSONL files (query/candidate structure)\\n\\nOutputs:\\n  - stratified_results.json: full per-stratum metrics with bootstrap CI\\n  - stratified_summary.csv: compact table\\n  - stratified_plots.pdf: grouped bar charts, heatmaps, delta trends\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport math\\nimport os\\nimport sys\\nfrom collections import Counter, defaultdict\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List, Optional, Tuple\\n\\nimport numpy as np\\n\\nSTRATEGIES = [\\\"random\\\", \\\"embedding_distance\\\", \\\"dataflow_aware\\\"]\\nSTRATEGY_LABELS = {\\\"random\\\": \\\"Random\\\", \\\"embedding_distance\\\": \\\"Embedding\\\", \\\"dataflow_aware\\\": \\\"Dataflow\\\"}\\nSTRATEGY_COLORS = {\\\"random\\\": \\\"#4C72B0\\\", \\\"embedding_distance\\\": \\\"#DD8452\\\", \\\"dataflow_aware\\\": \\\"#55A868\\\"}\\n\\nREPO_SIZE_BINS = {\\n    \\\"small\\\": (0, 50),\\n    \\\"medium\\\": (50, 200),\\n    \\\"large\\\": (200, 500),\\n    \\\"xlarge\\\": (500, float(\\\"inf\\\")),\\n}\\n\\nPOOL_SIZE_BINS = {\\n    \\\"small\\\": (0, 20),\\n    \\\"medium\\\": (20, 40),\\n    \\\"large\\\": (40, 51),\\n}\\n\\nSIMILARITY_BINS = {\\n    \\\"low\\\": (0.0, 0.3),\\n    \\\"medium\\\": (0.3, 0.6),\\n    \\\"high\\\": (0.6, 1.01),\\n}\\n\\nDATAFLOW_BINS = {\\n    \\\"sparse\\\": (0, 2),\\n    \\\"moderate\\\": (2, 10),\\n    \\\"rich\\\": (10, float(\\\"inf\\\")),\\n}\\n\\nNEG_DIFFICULTY_QUARTILE_LABELS = [\\\"Q1_easy\\\", \\\"Q2\\\", \\\"Q3\\\", \\\"Q4_hard\\\"]\\n\\n\\ndef _bin_value(value, bins):\\n    for name, (lo, hi) in bins.items():\\n        if lo <= value < hi:\\n            return name\\n    return \\\"unknown\\\"\\n\\n\\n# ── M1 metadata ───────────────────────────────────────────────────��─\\n\\ndef load_m1_metadata(m1_path: str) -> Tuple[Dict[str, str], Dict[str, int]]:\\n    import re\\n    inst_to_repo = {}\\n    repo_counts: Counter = Counter()\\n    pat_iid = re.compile(r'\\\"instance_id\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    pat_repo = re.compile(r'\\\"repo\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    with open(m1_path) as f:\\n        for line in f:\\n            m_iid = pat_iid.search(line)\\n            m_repo = pat_repo.search(line)\\n            if m_iid and m_repo:\\n                iid = m_iid.group(1)\\n                repo = m_repo.group(1)\\n                inst_to_repo[iid] = repo\\n                repo_counts[repo] += 1\\n    return inst_to_repo, dict(repo_counts)\\n\\n\\n# ── Dataflow graph loading ────────────────────────────────────────────\\n\\ndef load_dataflow_edges(graph_path: str) -> Dict[str, int]:\\n    \\\"\\\"\\\"Load dataflow graph and return {file_key: edge_count}.\\\"\\\"\\\"\\n    with open(graph_path) as f:\\n        graph = json.load(f)\\n    return {k: len(v) for k, v in graph.items()}\\n\\n\\n# ── Val data loading ─────────────────────────────────────────────────\\n\\ndef load_val_samples(val_path: str, lite: bool = False) -> List[Dict[str, Any]]:\\n    \\\"\\\"\\\"Load val JSONL. lite=True skips candidate_tokens (faster for dry-run).\\\"\\\"\\\"\\n    import re\\n    samples = []\\n    pat_qid = re.compile(r'\\\"query_id\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    with open(val_path) as f:\\n        for line in f:\\n            if not line.strip():\\n                continue\\n            if lite:\\n                m = pat_qid.search(line)\\n                if not m:\\n                    continue\\n                qid = m.group(1)\\n                instance_id = qid.split(\\\"::\\\")[0] if \\\"::\\\" in qid else qid\\n                d = json.loads(line)\\n                samples.append({\\n                    \\\"query_id\\\": qid,\\n                    \\\"instance_id\\\": instance_id,\\n                    \\\"pool_size\\\": len(d.get(\\\"neg_candidates\\\", [])),\\n                    \\\"query_tokens\\\": d.get(\\\"query_tokens\\\", \\\"\\\")[:1000],\\n                    \\\"pos_tokens\\\": d.get(\\\"pos_tokens\\\", \\\"\\\")[:1000],\\n                    \\\"neg_candidates\\\": [],\\n                    \\\"candidate_tokens\\\": {},\\n                })\\n            else:\\n                d = jso\\n\\n... [截断: 输出过长，省略 20680 字符] ...\\n\\n row = {\\n                    \\\"dimension\\\": dim_name,\\n                    \\\"stratum\\\": b,\\n                    \\\"strategy\\\": strategy,\\n                    \\\"R@1\\\": f\\\"{m.get('R@1', 0):.4f}\\\",\\n                    \\\"R@1_ci95\\\": f\\\"[{ci_r1[0]:.4f}, {ci_r1[1]:.4f}]\\\",\\n                    \\\"R@5\\\": f\\\"{m.get('R@5', 0):.4f}\\\",\\n                    \\\"MRR\\\": f\\\"{m.get('MRR', 0):.4f}\\\",\\n                    \\\"count\\\": m.get(\\\"count\\\", 0),\\n                }\\n                rows.append(row)\\n\\n            # Deltas\\n            for other in [\\\"embedding_distance\\\", \\\"dataflow_aware\\\"]:\\n                dk = f\\\"{other}_vs_random\\\"\\n                d = analysis[b].get(dk, {})\\n                if d:\\n                    row = {\\n                        \\\"dimension\\\": dim_name,\\n                        \\\"stratum\\\": b,\\n                        \\\"strategy\\\": f\\\"DELTA({STRATEGY_LABELS[other]}-Random)\\\",\\n                        \\\"R@1\\\": f\\\"{d.get('R@1_delta', 0):+.4f}\\\",\\n                        \\\"R@1_ci95\\\": f\\\"({d.get('R@1_rel_pct', 0):+.1f}%)\\\",\\n                        \\\"R@5\\\": f\\\"{d.get('R@5_delta', 0):+.4f}\\\",\\n                        \\\"MRR\\\": f\\\"{d.get('MRR_delta', 0):+.4f}\\\",\\n                        \\\"count\\\": \\\"\\\",\\n                    }\\n                    rows.append(row)\\n\\n    fieldnames = [\\\"dimension\\\", \\\"stratum\\\", \\\"strategy\\\", \\\"R@1\\\", \\\"R@1_ci95\\\", \\\"R@5\\\", \\\"MRR\\\", \\\"count\\\"]\\n    with open(output_path, \\\"w\\\", newline=\\\"\\\") as f:\\n        writer = csv.DictWriter(f, fieldnames=fieldnames)\\n        writer.writeheader()\\n        writer.writerows(rows)\\n    print(f\\\"  Summary CSV saved to {output_path}\\\", flush=True)\\n\\n\\n# ── Main ───────────���─────────────────────────────────────────────────\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Stratified analysis of M2 strategies by data strata\\\"\\n    )\\n    parser.add_argument(\\\"--predictions-dir\\\", default=None,\\n                        help=\\\"Dir with per-strategy prediction JSONs (from eval_retrieval.py)\\\")\\n    parser.add_argument(\\\"--checkpoints-dir\\\", default=None,\\n                        help=\\\"Dir containing strategy/seed checkpoint subdirs\\\")\\n    parser.add_argument(\\\"--val-data-dir\\\", default=None,\\n                        help=\\\"Dir with val_&lt;strategy>_s&lt;seed>.jsonl files\\\")\\n    parser.add_argument(\\\"--m1-data\\\", required=True,\\n                        help=\\\"Path to M1 all.jsonl\\\")\\n    parser.add_argument(\\\"--output-dir\\\", required=True)\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\",\\n                        help=\\\"Use mock predictions to validate pipeline\\\")\\n    parser.add_argument(\\\"--seeds\\\", default=\\\"42,43,44\\\",\\n                        help=\\\"Comma-separated seed list\\\")\\n    parser.add_argument(\\\"--device\\\", default=\\\"cuda\\\")\\n    parser.add_argument(\\\"--max-seq-length\\\", type=int, default=2048)\\n    parser.add_argument(\\\"--n-bootstrap\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--repo-size-bins\\\", default=None,\\n                        help='JSON dict: {\\\"small\\\": [0,50], \\\"medium\\\": [50,200], ...}')\\n    parser.add_argument(\\\"--pool-size-bins\\\", default=None,\\n                        help='JSON dict for pool size bins')\\n    parser.add_argument(\\\"--sim-bins\\\", default=None,\\n                        help='JSON dict for similarity bins')\\n    parser.add_argument(\\\"--dataflow-graph\\\", default=None,\\n                        help=\\\"Path to dataflow_graph.json for structural data availability dimension\\\")\\n    args = parser.parse_args()\\n\\n    seeds = [int(s) for s in args.seeds.split(\\\",\\\")]\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    # Custom bins\\n    if args.repo_size_bins:\\n        custom = json.loads(args.repo_size_bins)\\n        REPO_SIZE_BINS.clear()\\n        REPO_SIZE_BINS.update({k: tuple(v) for k, v in custom.items()})\\n    if args.pool_size_bins:\\n        custom = json.loads(args.pool_size_bins)\\n        POOL_SIZE_BINS.clear()\\n        POOL_SIZE_BINS.update({k: tuple(v) for k, v in custom.items()})\\n    if args.sim_bins:\\n        custom = json.loads(args.sim_bins)\\n        SIMILARITY_BINS.clear()\\n        SIMILARITY_BINS.update({k: tuple(v) for k, v in custom.items()})\\n\\n    # Load M1 metadata\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "2ea17896-ef25-4892-bdab-411ee976a1ff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Stratified analysis of embedding vs random negative strategies by data strata.\\\\n\\\\nAnalyses M2 per-instance predictions across:\\\\n  - Repo size (instance count per repo from M1)\\\\n  - Candidate pool size (neg_candidates per query)\\\\n  - Query-positive similarity (cosine sim from model, or text overlap for dry-run)\\\\n\\\\nInputs:\\\\n  - M2 per-instance predictions (from --predictions-dir or re-eval from checkpoints)\\\\n  - M1 all.jsonl (repo metadata)\\\\n  - Val JSONL files (query/candidate structure)\\\\n\\\\nOutputs:\\\\n  - stratified_results.json: full per-stratum metrics with bootstrap CI\\\\n  - stratified_summary.csv: compact table\\\\n  - stratified_plots.pdf: grouped bar charts, heatmaps, delta trends\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport csv\\\\nimport json\\\\nimport math\\\\nimport os\\\\nimport sys\\\\nfrom collections import Counter, defaultdict\\\\nfrom pathlib import Path\\\\nfrom typing import Any, Dict, List, Optional, Tuple\\\\n\\\\nimport numpy as np\\\\n\\\\nSTRATEGIES = [\\\\\\\"random\\\\\\\", \\\\\\\"embedding_distance\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\"]\\\\nSTRATEGY_LABELS = {\\\\\\\"random\\\\\\\": \\\\\\\"Random\\\\\\\", \\\\\\\"embedding_distance\\\\\\\": \\\\\\\"Embedding\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\": \\\\\\\"Dataflow\\\\\\\"}\\\\nSTRATEGY_COLORS = {\\\\\\\"random\\\\\\\": \\\\\\\"#4C72B0\\\\\\\", \\\\\\\"embedding_distance\\\\\\\": \\\\\\\"#DD8452\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\": \\\\\\\"#55A868\\\\\\\"}\\\\n\\\\nREPO_SIZE_BINS = {\\\\n    \\\\\\\"small\\\\\\\": (0, 50),\\\\n    \\\\\\\"medium\\\\\\\": (50, 200),\\\\n    \\\\\\\"large\\\\\\\": (200, 500),\\\\n    \\\\\\\"xlarge\\\\\\\": (500, float(\\\\\\\"inf\\\\\\\")),\\\\n}\\\\n\\\\nPOOL_SIZE_BINS = {\\\\n    \\\\\\\"small\\\\\\\": (0, 20),\\\\n    \\\\\\\"medium\\\\\\\": (20, 40),\\\\n    \\\\\\\"large\\\\\\\": (40, 51),\\\\n}\\\\n\\\\nSIMILARITY_BINS = {\\\\n    \\\\\\\"low\\\\\\\": (0.0, 0.3),\\\\n    \\\\\\\"medium\\\\\\\": (0.3, 0.6),\\\\n    \\\\\\\"high\\\\\\\": (0.6, 1.01),\\\\n}\\\\n\\\\nDATAFLOW_BINS = {\\\\n    \\\\\\\"sparse\\\\\\\": (0, 2),\\\\n    \\\\\\\"moderate\\\\\\\": (2, 10),\\\\n    \\\\\\\"rich\\\\\\\": (10, float(\\\\\\\"inf\\\\\\\")),\\\\n}\\\\n\\\\nNEG_DIFFICULTY_QUARTILE_LABELS = [\\\\\\\"Q1_easy\\\\\\\", \\\\\\\"Q2\\\\\\\", \\\\\\\"Q3\\\\\\\", \\\\\\\"Q4_hard\\\\\\\"]\\\\n\\\\n\\\\ndef _bin_value(value, bins):\\\\n    for name, (lo, hi) in bins.items():\\\\n        if lo <= value < hi:\\\\n            return name\\\\n    return \\\\\\\"unknown\\\\\\\"\\\\n\\\\n\\\\n# ── M1 metadata ───────────────────────────────────────────────────��─\\\\n\\\\ndef load_m1_metadata(m1_path: str) -> Tuple[Dict[str, str], Dict[str, int]]:\\\\n    import re\\\\n    inst_to_repo = {}\\\\n    repo_counts: Counter = Counter()\\\\n    pat_iid = re.compile(r'\\\\\\\"instance_id\\\\\\\"\\\\\\\\s*:\\\\\\\\s*\\\\\\\"([^\\\\\\\"]+)\\\\\\\"')\\\\n    pat_repo = re.compile(r'\\\\\\\"repo\\\\\\\"\\\\\\\\s*:\\\\\\\\s*\\\\\\\"([^\\\\\\\"]+)\\\\\\\"')\\\\n    with open(m1_path) as f:\\\\n        for line in f:\\\\n            m_iid = pat_iid.search(line)\\\\n            m_repo = pat_repo.search(line)\\\\n            if m_iid and m_repo:\\\\n                iid = m_iid.group(1)\\\\n                repo = m_repo.group(1)\\\\n                inst_to_repo[iid] = repo\\\\n                repo_counts[repo] += 1\\\\n    return inst_to_repo, dict(repo_counts)\\\\n\\\\n\\\\n# ── Dataflow graph loading ────────────────────────────────────────────\\\\n\\\\ndef load_dataflow_edges(graph_path: str) -> Dict[str, int]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load dataflow graph and return {file_key: edge_count}.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(graph_path) as f:\\\\n        graph = json.load(f)\\\\n    return {k: len(v) for k, v in graph.items()}\\\\n\\\\n\\\\n# ── Val data loading ─────────────────────────────────────────────────\\\\n\\\\ndef load_val_samples(val_path: str, lite: bool = False) -> List[Dict[str, Any]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load val JSONL. lite=True skips candidate_tokens (faster for dry-run).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import re\\\\n    samples = []\\\\n    pat_qid = re.compile(r'\\\\\\\"query_id\\\\\\\"\\\\\\\\s*:\\\\\\\\s*\\\\\\\"([^\\\\\\\"]+)\\\\\\\"')\\\\n    with open(val_path) as f:\\\\n        for line in f:\\\\n            if not line.strip():\\\\n                continue\\\\n            if lite:\\\\n                m = pat_qid.search(line)\\\\n                if not m:\\\\n                    continue\\\\n                qid = m.group(1)\\\\n                instance_id = qid.split(\\\\\\\"::\\\\\\\")[0] if \\\\\\\"::\\\\\\\" in qid else qid\\\\n                d = json.loads(line)\\\\n                samples.append({\\\\n                    \\\\\\\"query_id\\\\\\\": qid,\\\\n                    \\\\\\\"instance_id\\\\\\\": instance_id,\\\\n                    \\\\\\\"pool_size\\\\\\\": len(d.get(\\\\\\\"neg_candidates\\\\\\\", [])),\\\\n                    \\\\\\\"query_tokens\\\\\\\": d.get(\\\\\\\"query_tokens\\\\\\\", \\\\\\\"\\\\\\\")[:1000],\\\\n                    \\\\\\\"pos_tokens\\\\\\\": d.get(\\\\\\\"pos_tokens\\\\\\\", \\\\\\\"\\\\\\\")[:1000],\\\\n                    \\\\\\\"neg_candidates\\\\\\\": [],\\\\n                    \\\\\\\"candidate_tokens\\\\\\\": {},\\\\n                })\\\\n            else:\\\\n                d = jso\\\\n\\\\n... [截断: 输出过长，省略 20680 字符] ...\\\\n\\\\n row = {\\\\n                    \\\\\\\"dimension\\\\\\\": dim_name,\\\\n                    \\\\\\\"stratum\\\\\\\": b,\\\\n                    \\\\\\\"strategy\\\\\\\": strategy,\\\\n                    \\\\\\\"R@1\\\\\\\": f\\\\\\\"{m.get('R@1', 0):.4f}\\\\\\\",\\\\n                    \\\\\\\"R@1_ci95\\\\\\\": f\\\\\\\"[{ci_r1[0]:.4f}, {ci_r1[1]:.4f}]\\\\\\\",\\\\n                    \\\\\\\"R@5\\\\\\\": f\\\\\\\"{m.get('R@5', 0):.4f}\\\\\\\",\\\\n                    \\\\\\\"MRR\\\\\\\": f\\\\\\\"{m.get('MRR', 0):.4f}\\\\\\\",\\\\n                    \\\\\\\"count\\\\\\\": m.get(\\\\\\\"count\\\\\\\", 0),\\\\n                }\\\\n                rows.append(row)\\\\n\\\\n            # Deltas\\\\n            for other in [\\\\\\\"embedding_distance\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\"]:\\\\n                dk = f\\\\\\\"{other}_vs_random\\\\\\\"\\\\n                d = analysis[b].get(dk, {})\\\\n                if d:\\\\n                    row = {\\\\n                        \\\\\\\"dimension\\\\\\\": dim_name,\\\\n                        \\\\\\\"stratum\\\\\\\": b,\\\\n                        \\\\\\\"strategy\\\\\\\": f\\\\\\\"DELTA({STRATEGY_LABELS[other]}-Random)\\\\\\\",\\\\n                        \\\\\\\"R@1\\\\\\\": f\\\\\\\"{d.get('R@1_delta', 0):+.4f}\\\\\\\",\\\\n                        \\\\\\\"R@1_ci95\\\\\\\": f\\\\\\\"({d.get('R@1_rel_pct', 0):+.1f}%)\\\\\\\",\\\\n                        \\\\\\\"R@5\\\\\\\": f\\\\\\\"{d.get('R@5_delta', 0):+.4f}\\\\\\\",\\\\n                        \\\\\\\"MRR\\\\\\\": f\\\\\\\"{d.get('MRR_delta', 0):+.4f}\\\\\\\",\\\\n                        \\\\\\\"count\\\\\\\": \\\\\\\"\\\\\\\",\\\\n                    }\\\\n                    rows.append(row)\\\\n\\\\n    fieldnames = [\\\\\\\"dimension\\\\\\\", \\\\\\\"stratum\\\\\\\", \\\\\\\"strategy\\\\\\\", \\\\\\\"R@1\\\\\\\", \\\\\\\"R@1_ci95\\\\\\\", \\\\\\\"R@5\\\\\\\", \\\\\\\"MRR\\\\\\\", \\\\\\\"count\\\\\\\"]\\\\n    with open(output_path, \\\\\\\"w\\\\\\\", newline=\\\\\\\"\\\\\\\") as f:\\\\n        writer = csv.DictWriter(f, fieldnames=fieldnames)\\\\n        writer.writeheader()\\\\n        writer.writerows(rows)\\\\n    print(f\\\\\\\"  Summary CSV saved to {output_path}\\\\\\\", flush=True)\\\\n\\\\n\\\\n# ── Main ───────────���─────────────────────────────────────────────────\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Stratified analysis of M2 strategies by data strata\\\\\\\"\\\\n    )\\\\n    parser.add_argument(\\\\\\\"--predictions-dir\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Dir with per-strategy prediction JSONs (from eval_retrieval.py)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--checkpoints-dir\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Dir containing strategy/seed checkpoint subdirs\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--val-data-dir\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Dir with val_&lt;strategy>_s&lt;seed>.jsonl files\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--m1-data\\\\\\\", required=True,\\\\n                        help=\\\\\\\"Path to M1 all.jsonl\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", required=True)\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                        help=\\\\\\\"Use mock predictions to validate pipeline\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seeds\\\\\\\", default=\\\\\\\"42,43,44\\\\\\\",\\\\n                        help=\\\\\\\"Comma-separated seed list\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--device\\\\\\\", default=\\\\\\\"cuda\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max-seq-length\\\\\\\", type=int, default=2048)\\\\n    parser.add_argument(\\\\\\\"--n-bootstrap\\\\\\\", type=int, default=1000)\\\\n    parser.add_argument(\\\\\\\"--repo-size-bins\\\\\\\", default=None,\\\\n                        help='JSON dict: {\\\\\\\"small\\\\\\\": [0,50], \\\\\\\"medium\\\\\\\": [50,200], ...}')\\\\n    parser.add_argument(\\\\\\\"--pool-size-bins\\\\\\\", default=None,\\\\n                        help='JSON dict for pool size bins')\\\\n    parser.add_argument(\\\\\\\"--sim-bins\\\\\\\", default=None,\\\\n                        help='JSON dict for similarity bins')\\\\n    parser.add_argument(\\\\\\\"--dataflow-graph\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Path to dataflow_graph.json for structural data availability dimension\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    seeds = [int(s) for s in args.seeds.split(\\\\\\\",\\\\\\\")]\\\\n    os.makedirs(args.output_dir, exist_ok=True)\\\\n\\\\n    # Custom bins\\\\n    if args.repo_size_bins:\\\\n        custom = json.loads(args.repo_size_bins)\\\\n        REPO_SIZE_BINS.clear()\\\\n        REPO_SIZE_BINS.update({k: tuple(v) for k, v in custom.items()})\\\\n    if args.pool_size_bins:\\\\n        custom = json.loads(args.pool_size_bins)\\\\n        POOL_SIZE_BINS.clear()\\\\n        POOL_SIZE_BINS.update({k: tuple(v) for k, v in custom.items()})\\\\n    if args.sim_bins:\\\\n        custom = json.loads(args.sim_bins)\\\\n        SIMILARITY_BINS.clear()\\\\n        SIMILARITY_BINS.update({k: tuple(v) for k, v in custom.items()})\\\\n\\\\n    # Load M1 metadata\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Stratified analysis of embedding vs random negative strategies by data strata.\\n\\nAnalyses M2 per-instance predictions across:\\n  - Repo size (instance count per repo from M1)\\n  - Candidate pool size (neg_candidates per query)\\n  - Query-positive similarity (cosine sim from model, or text overlap for dry-run)\\n\\nInputs:\\n  - M2 per-instance predictions (from --predictions-dir or re-eval from checkpoints)\\n  - M1 all.jsonl (repo metadata)\\n  - Val JSONL files (query/candidate structure)\\n\\nOutputs:\\n  - stratified_results.json: full per-stratum metrics with bootstrap CI\\n  - stratified_summary.csv: compact table\\n  - stratified_plots.pdf: grouped bar charts, heatmaps, delta trends\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport math\\nimport os\\nimport sys\\nfrom collections import Counter, defaultdict\\nfrom pathlib import Path\\nfrom typing import Any, Dict, List, Optional, Tuple\\n\\nimport numpy as np\\n\\nSTRATEGIES = [\\\"random\\\", \\\"embedding_distance\\\", \\\"dataflow_aware\\\"]\\nSTRATEGY_LABELS = {\\\"random\\\": \\\"Random\\\", \\\"embedding_distance\\\": \\\"Embedding\\\", \\\"dataflow_aware\\\": \\\"Dataflow\\\"}\\nSTRATEGY_COLORS = {\\\"random\\\": \\\"#4C72B0\\\", \\\"embedding_distance\\\": \\\"#DD8452\\\", \\\"dataflow_aware\\\": \\\"#55A868\\\"}\\n\\nREPO_SIZE_BINS = {\\n    \\\"small\\\": (0, 50),\\n    \\\"medium\\\": (50, 200),\\n    \\\"large\\\": (200, 500),\\n    \\\"xlarge\\\": (500, float(\\\"inf\\\")),\\n}\\n\\nPOOL_SIZE_BINS = {\\n    \\\"small\\\": (0, 20),\\n    \\\"medium\\\": (20, 40),\\n    \\\"large\\\": (40, 51),\\n}\\n\\nSIMILARITY_BINS = {\\n    \\\"low\\\": (0.0, 0.3),\\n    \\\"medium\\\": (0.3, 0.6),\\n    \\\"high\\\": (0.6, 1.01),\\n}\\n\\nDATAFLOW_BINS = {\\n    \\\"sparse\\\": (0, 2),\\n    \\\"moderate\\\": (2, 10),\\n    \\\"rich\\\": (10, float(\\\"inf\\\")),\\n}\\n\\nNEG_DIFFICULTY_QUARTILE_LABELS = [\\\"Q1_easy\\\", \\\"Q2\\\", \\\"Q3\\\", \\\"Q4_hard\\\"]\\n\\n\\ndef _bin_value(value, bins):\\n    for name, (lo, hi) in bins.items():\\n        if lo <= value < hi:\\n            return name\\n    return \\\"unknown\\\"\\n\\n\\n# ── M1 metadata ───────────────────────────────────────────────────��─\\n\\ndef load_m1_metadata(m1_path: str) -> Tuple[Dict[str, str], Dict[str, int]]:\\n    import re\\n    inst_to_repo = {}\\n    repo_counts: Counter = Counter()\\n    pat_iid = re.compile(r'\\\"instance_id\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    pat_repo = re.compile(r'\\\"repo\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    with open(m1_path) as f:\\n        for line in f:\\n            m_iid = pat_iid.search(line)\\n            m_repo = pat_repo.search(line)\\n            if m_iid and m_repo:\\n                iid = m_iid.group(1)\\n                repo = m_repo.group(1)\\n                inst_to_repo[iid] = repo\\n                repo_counts[repo] += 1\\n    return inst_to_repo, dict(repo_counts)\\n\\n\\n# ── Dataflow graph loading ────────────────────────────────────────────\\n\\ndef load_dataflow_edges(graph_path: str) -> Dict[str, int]:\\n    \\\"\\\"\\\"Load dataflow graph and return {file_key: edge_count}.\\\"\\\"\\\"\\n    with open(graph_path) as f:\\n        graph = json.load(f)\\n    return {k: len(v) for k, v in graph.items()}\\n\\n\\n# ── Val data loading ─────────────────────────────────────────────────\\n\\ndef load_val_samples(val_path: str, lite: bool = False) -> List[Dict[str, Any]]:\\n    \\\"\\\"\\\"Load val JSONL. lite=True skips candidate_tokens (faster for dry-run).\\\"\\\"\\\"\\n    import re\\n    samples = []\\n    pat_qid = re.compile(r'\\\"query_id\\\"\\\\s*:\\\\s*\\\"([^\\\"]+)\\\"')\\n    with open(val_path) as f:\\n        for line in f:\\n            if not line.strip():\\n                continue\\n            if lite:\\n                m = pat_qid.search(line)\\n                if not m:\\n                    continue\\n                qid = m.group(1)\\n                instance_id = qid.split(\\\"::\\\")[0] if \\\"::\\\" in qid else qid\\n                d = json.loads(line)\\n                samples.append({\\n                    \\\"query_id\\\": qid,\\n                    \\\"instance_id\\\": instance_id,\\n                    \\\"pool_size\\\": len(d.get(\\\"neg_candidates\\\", [])),\\n                    \\\"query_tokens\\\": d.get(\\\"query_tokens\\\", \\\"\\\")[:1000],\\n                    \\\"pos_tokens\\\": d.get(\\\"pos_tokens\\\", \\\"\\\")[:1000],\\n                    \\\"neg_candidates\\\": [],\\n                    \\\"candidate_tokens\\\": {},\\n                })\\n            else:\\n                d = jso\\n\\n... [截断: 输出过长，省略 20680 字符] ...\\n\\n row = {\\n                    \\\"dimension\\\": dim_name,\\n                    \\\"stratum\\\": b,\\n                    \\\"strategy\\\": strategy,\\n                    \\\"R@1\\\": f\\\"{m.get('R@1', 0):.4f}\\\",\\n                    \\\"R@1_ci95\\\": f\\\"[{ci_r1[0]:.4f}, {ci_r1[1]:.4f}]\\\",\\n                    \\\"R@5\\\": f\\\"{m.get('R@5', 0):.4f}\\\",\\n                    \\\"MRR\\\": f\\\"{m.get('MRR', 0):.4f}\\\",\\n                    \\\"count\\\": m.get(\\\"count\\\", 0),\\n                }\\n                rows.append(row)\\n\\n            # Deltas\\n            for other in [\\\"embedding_distance\\\", \\\"dataflow_aware\\\"]:\\n                dk = f\\\"{other}_vs_random\\\"\\n                d = analysis[b].get(dk, {})\\n                if d:\\n                    row = {\\n                        \\\"dimension\\\": dim_name,\\n                        \\\"stratum\\\": b,\\n                        \\\"strategy\\\": f\\\"DELTA({STRATEGY_LABELS[other]}-Random)\\\",\\n                        \\\"R@1\\\": f\\\"{d.get('R@1_delta', 0):+.4f}\\\",\\n                        \\\"R@1_ci95\\\": f\\\"({d.get('R@1_rel_pct', 0):+.1f}%)\\\",\\n                        \\\"R@5\\\": f\\\"{d.get('R@5_delta', 0):+.4f}\\\",\\n                        \\\"MRR\\\": f\\\"{d.get('MRR_delta', 0):+.4f}\\\",\\n                        \\\"count\\\": \\\"\\\",\\n                    }\\n                    rows.append(row)\\n\\n    fieldnames = [\\\"dimension\\\", \\\"stratum\\\", \\\"strategy\\\", \\\"R@1\\\", \\\"R@1_ci95\\\", \\\"R@5\\\", \\\"MRR\\\", \\\"count\\\"]\\n    with open(output_path, \\\"w\\\", newline=\\\"\\\") as f:\\n        writer = csv.DictWriter(f, fieldnames=fieldnames)\\n        writer.writeheader()\\n        writer.writerows(rows)\\n    print(f\\\"  Summary CSV saved to {output_path}\\\", flush=True)\\n\\n\\n# ── Main ───────────���─────────────────────────────────────────────────\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Stratified analysis of M2 strategies by data strata\\\"\\n    )\\n    parser.add_argument(\\\"--predictions-dir\\\", default=None,\\n                        help=\\\"Dir with per-strategy prediction JSONs (from eval_retrieval.py)\\\")\\n    parser.add_argument(\\\"--checkpoints-dir\\\", default=None,\\n                        help=\\\"Dir containing strategy/seed checkpoint subdirs\\\")\\n    parser.add_argument(\\\"--val-data-dir\\\", default=None,\\n                        help=\\\"Dir with val_&lt;strategy>_s&lt;seed>.jsonl files\\\")\\n    parser.add_argument(\\\"--m1-data\\\", required=True,\\n                        help=\\\"Path to M1 all.jsonl\\\")\\n    parser.add_argument(\\\"--output-dir\\\", required=True)\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\",\\n                        help=\\\"Use mock predictions to validate pipeline\\\")\\n    parser.add_argument(\\\"--seeds\\\", default=\\\"42,43,44\\\",\\n                        help=\\\"Comma-separated seed list\\\")\\n    parser.add_argument(\\\"--device\\\", default=\\\"cuda\\\")\\n    parser.add_argument(\\\"--max-seq-length\\\", type=int, default=2048)\\n    parser.add_argument(\\\"--n-bootstrap\\\", type=int, default=1000)\\n    parser.add_argument(\\\"--repo-size-bins\\\", default=None,\\n                        help='JSON dict: {\\\"small\\\": [0,50], \\\"medium\\\": [50,200], ...}')\\n    parser.add_argument(\\\"--pool-size-bins\\\", default=None,\\n                        help='JSON dict for pool size bins')\\n    parser.add_argument(\\\"--sim-bins\\\", default=None,\\n                        help='JSON dict for similarity bins')\\n    parser.add_argument(\\\"--dataflow-graph\\\", default=None,\\n                        help=\\\"Path to dataflow_graph.json for structural data availability dimension\\\")\\n    args = parser.parse_args()\\n\\n    seeds = [int(s) for s in args.seeds.split(\\\",\\\")]\\n    os.makedirs(args.output_dir, exist_ok=True)\\n\\n    # Custom bins\\n    if args.repo_size_bins:\\n        custom = json.loads(args.repo_size_bins)\\n        REPO_SIZE_BINS.clear()\\n        REPO_SIZE_BINS.update({k: tuple(v) for k, v in custom.items()})\\n    if args.pool_size_bins:\\n        custom = json.loads(args.pool_size_bins)\\n        POOL_SIZE_BINS.clear()\\n        POOL_SIZE_BINS.update({k: tuple(v) for k, v in custom.items()})\\n    if args.sim_bins:\\n        custom = json.loads(args.sim_bins)\\n        SIMILARITY_BINS.clear()\\n        SIMILARITY_BINS.update({k: tuple(v) for k, v in custom.items()})\\n\\n    # Load M1 metadata\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0161YQmKeUXdrbo8VdC8FTU2`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/structfuse/data -name \"all.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "e8512066-1d97-49b3-b321-c40781af9bd8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014eWBjg7A6u6C3po9fLAPTT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1217,
+      "cache_read_input_tokens": 35906,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1217
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T20:28:52.187Z_
+
+<details><summary>↩ Tool result · `toolu_0161YQmKeUXdrbo8VdC8FTU2`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/structfuse/data': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "83193afd-5319-47fa-8432-ae151583e1a7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/structfuse/data': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/structfuse/data': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FtcS4VjsvfW5PsqcdK966b`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/autodl-tmp/structfuse -name \"val*.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "6171475b-2a98-4d5c-b152-54aabc3b53d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014eWBjg7A6u6C3po9fLAPTT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1217,
+      "cache_read_input_tokens": 35906,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1217
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T20:28:53.113Z_
+
+<details><summary>↩ Tool result · `toolu_01FtcS4VjsvfW5PsqcdK966b`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/structfuse/full_m2_training_data/val_embedding_distance_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_dataflow_aware_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_embedding_distance_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_random_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_dataflow_aware_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_embedding_distance_s44.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_random_s44.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_dataflow_aware_s44.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_bm25_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_bm25_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_bm25_s44.jsonl\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_random_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_dataflow_aware_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_embedding_distance_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_random_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_dataflow_aware_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_embedding_distance_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_random_s44.jsonl\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_dataflow_aware_s44.jsonl\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_embedding_distance_s44.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "6de53796-7119-43b5-947c-069d377a24d7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/structfuse/full_m2_training_data/val_embedding_distance_s42.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_dataflow_aware_s42.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_embedding_distance_s43.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_random_s43.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_dataflow_aware_s43.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_embedding_distance_s44.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_random_s44.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_dataflow_aware_s44.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_bm25_s42.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_bm25_s43.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_bm25_s44.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_random_s42.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_dataflow_aware_s42.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_embedding_distance_s42.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_random_s43.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_dataflow_aware_s43.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_embedding_distance_s43.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_random_s44.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_dataflow_aware_s44.jsonl\\\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_embedding_distance_s44.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/structfuse/full_m2_training_data/val_embedding_distance_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_dataflow_aware_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_embedding_distance_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_random_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_dataflow_aware_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_embedding_distance_s44.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_random_s44.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_dataflow_aware_s44.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_bm25_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_bm25_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_training_data/val_bm25_s44.jsonl\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_random_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_dataflow_aware_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_embedding_distance_s42.jsonl\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_random_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_dataflow_aware_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_embedding_distance_s43.jsonl\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_random_s44.jsonl\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_dataflow_aware_s44.jsonl\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/val_embedding_distance_s44.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to find:
+1. M1 all.jsonl path
+2. Predictions dir or checkpoints dir structure
+3. Dataflow graph path (optional)
+
+Let me also check what the main() function does to understand the data loading flow — specifically how it finds val files and predictions. Let me read the middle part of the main function.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "8edf26be-956d-43d0-9f17-9981803a9f86",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V8aN3zVFNF3hK9ETj2XRdh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4856,
+      "cache_read_input_tokens": 37123,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4856
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+找到了 val 数据。现在找 M1 all.jsonl 和 predictions/checkpoints 目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "5fe4f766-76d3-47c2-a8b4-9d237ee35914",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V8aN3zVFNF3hK9ETj2XRdh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4856,
+      "cache_read_input_tokens": 37123,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4856
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016npXNk7B6MXmoMjP8pE9R1`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/autodl-tmp/structfuse -name \"all.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "9228b251-f09a-4c9c-9614-a2bcf7c5cf5c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V8aN3zVFNF3hK9ETj2XRdh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4856,
+      "cache_read_input_tokens": 37123,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4856
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T20:28:59.556Z_
+
+<details><summary>↩ Tool result · `toolu_016npXNk7B6MXmoMjP8pE9R1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/structfuse/full_m1_data/all.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "5ed20f67-6890-414d-81d8-2a4440c8981a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/structfuse/full_m1_data/all.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/structfuse/full_m1_data/all.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WdvVew2y4FkxekS11ioQDG`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/structfuse -name \"all.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "a31cdb3a-2912-4da3-8d43-65229cf3abbc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V8aN3zVFNF3hK9ETj2XRdh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4856,
+      "cache_read_input_tokens": 37123,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4856
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T20:29:00.369Z_
+
+<details><summary>↩ Tool result · `toolu_01WdvVew2y4FkxekS11ioQDG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "21e7ed49-5350-42db-b8f3-a227b6de433b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016R5v5y12uBm2wuQXKpLi7s`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "ls /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "7bf2a10d-469c-49f1-b02b-3a6a196d323a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V8aN3zVFNF3hK9ETj2XRdh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4856,
+      "cache_read_input_tokens": 37123,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4856
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T20:29:01.549Z_
+
+<details><summary>↩ Tool result · `toolu_016R5v5y12uBm2wuQXKpLi7s`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"added_tokens.json\\nchat_template.jinja\\nmerges.txt\\nmodel.pt\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\ntraining_config.json\\nvocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "69c0771a-a774-492f-a014-281e8f523662",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"added_tokens.json\\\\nchat_template.jinja\\\\nmerges.txt\\\\nmodel.pt\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_config.json\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"added_tokens.json\\nchat_template.jinja\\nmerges.txt\\nmodel.pt\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\ntraining_config.json\\nvocab.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read the middle section of main() to understand the data loading flow. I need lines ~760-870 (the part between what I've already seen). Let me also check if there are predictions already computed, and check what checkpoints exist for the different strategies.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "5039f9ec-e1bf-4c79-b146-90939c33cd1a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YFQphvU4ejPs8zs8dUApEb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 972,
+      "cache_read_input_tokens": 41979,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 972
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+需要读 main() 的数据加载逻辑（line 760-870），并检查已有 checkpoints 结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "5c982b61-4c1d-4f2a-8818-7be3d8ca4919",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YFQphvU4ejPs8zs8dUApEb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 972,
+      "cache_read_input_tokens": 41979,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 972
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015CxsjAcpK2huazScdb46U3`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -150 /root/structfuse/evaluation/analyze_stratified.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "8c8a6a1a-eb0c-4a64-9b5a-f25d66a820e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YFQphvU4ejPs8zs8dUApEb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 972,
+      "cache_read_input_tokens": 41979,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 972
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018D3XfhNZFTwgBV1YBZFwgP`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "ls /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "64114d78-a009-42bf-b8fb-77fc3bb118ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YFQphvU4ejPs8zs8dUApEb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 972,
+      "cache_read_input_tokens": 41979,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 972
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-14T20:29:12.191Z_
+
+<details><summary>↩ Tool result · `toolu_015CxsjAcpK2huazScdb46U3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    print(f\\\"Loading M1 metadata from {args.m1_data}...\\\", flush=True)\\n    inst_to_repo, repo_counts = load_m1_metadata(args.m1_data)\\n    print(f\\\"  {len(inst_to_repo)} instances, {len(repo_counts)} repos\\\", flush=True)\\n\\n    # Load dataflow graph if provided\\n    dataflow_edges = None\\n    if args.dataflow_graph and os.path.exists(args.dataflow_graph):\\n        print(f\\\"Loading dataflow graph from {args.dataflow_graph}...\\\", flush=True)\\n        dataflow_edges = load_dataflow_edges(args.dataflow_graph)\\n        print(f\\\"  {len(dataflow_edges)} file entries\\\", flush=True)\\n\\n    # Determine val data directory\\n    val_dir = args.val_data_dir\\n    if val_dir is None and args.predictions_dir is None and not args.dry_run:\\n        val_dir = \\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\"\\n    if val_dir is None and args.dry_run:\\n        val_dir = \\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\"\\n\\n    # Collect per-instance results: {strategy: {seed: [results]}}\\n    all_results: Dict[str, Dict[int, List[Dict]]] = defaultdict(dict)\\n    val_samples_cache: Dict[str, List[Dict]] = {}\\n\\n    for strategy in STRATEGIES:\\n        for seed in seeds:\\n            val_file = os.path.join(val_dir, f\\\"val_{strategy}_s{seed}.jsonl\\\") if val_dir else None\\n\\n            if val_file and os.path.exists(val_file):\\n                print(f\\\"Loading val data: {strategy} seed={seed}...\\\", flush=True)\\n                lite = args.predictions_dir is not None\\n                val_samples = load_val_samples(val_file, lite=lite)\\n            else:\\n                print(f\\\"  [WARN] Val file not found: {val_file}, skipping\\\", flush=True)\\n                continue\\n\\n            if args.dry_run:\\n                print(f\\\"  Generating mock predictions: {strategy} seed={seed}\\\", flush=True)\\n                results = mock_predictions(val_samples, strategy, seed)\\n            elif args.predictions_dir:\\n                pred_pattern = os.path.join(\\n                    args.predictions_dir, f\\\"*{strategy}*s{seed}*.json\\\"\\n                )\\n                import glob\\n                pred_files = glob.glob(pred_pattern)\\n                if pred_files:\\n                    print(f\\\"  Loading predictions: {pred_files[0]}\\\", flush=True)\\n                    results = load_predictions(pred_files[0], val_samples)\\n                else:\\n                    print(f\\\"  [WARN] No prediction file matching {pred_pattern}\\\", flush=True)\\n                    continue\\n            elif args.checkpoints_dir:\\n                base = os.path.join(args.checkpoints_dir, f\\\"{strategy}_s{seed}\\\")\\n                ckpt_dir = None\\n                for subdir in [\\\"best\\\", \\\"best_by_recall_at_1\\\", \\\"best_by_val_loss\\\"]:\\n                    candidate = os.path.join(base, subdir)\\n                    if os.path.exists(os.path.join(candidate, \\\"model.pt\\\")):\\n                        ckpt_dir = candidate\\n                        break\\n                if ckpt_dir is None and os.path.exists(os.path.join(base, \\\"model.pt\\\")):\\n                    ckpt_dir = base\\n                if os.path.exists(ckpt_dir):\\n                    print(f\\\"  Re-evaluating checkpoint: {ckpt_dir}\\\", flush=True)\\n                    results = reeval_checkpoint(\\n                        ckpt_dir, val_samples, args.device, args.max_seq_length\\n                    )\\n                else:\\n                    print(f\\\"  [WARN] Checkpoint not found: {ckpt_dir}\\\", flush=True)\\n                    continue\\n            else:\\n                print(\\\"  [ERROR] No --dry-run, --predictions-dir, or --checkpoints-dir\\\", flush=True)\\n                continue\\n\\n            # Assign strata\\n            results = assign_strata(results, inst_to_repo, repo_counts, dataflow_edges)\\n\\n            # For dry-run or model-based: compute text similarity for sim_bin\\n            if args.dry_run:\\n                for r, s in zip(results, val_samples):\\n                    tsim = text_similarity(s[\\\"query_tokens\\\"][:500], s[\\\"pos_tokens\\\"][:500])\\n                    r[\\\"sim_bin\\\"] = _bin_value(tsim, SIMILARITY_BINS)\\n\\n            all_results[strategy][seed] = results\\n            val_samples_cache[f\\\"{strategy}_s{seed}\\\"] = val_samples\\n            print(f\\\"  -> {len(results)} instances\\\", flush=True)\\n\\n    # Compute neg_difficulty quartiles (text-overlap proxy, CPU-safe)\\n    print(\\\"Computing neg difficulty quartiles...\\\", flush=True)\\n    assign_neg_difficulty_quartiles(all_results, val_samples_cache)\\n\\n    # Run stratified analysis\\n    print(\\\"\\\\nRunning stratified analysis...\\\", flush=True)\\n    repo_analysis = run_stratified_analysis(\\n        all_results, \\\"repo_size_bin\\\", list(REPO_SIZE_BINS.keys()), args.n_bootstrap\\n    )\\n    pool_analysis = run_stratified_analysis(\\n        all_results, \\\"pool_size_bin\\\", list(POOL_SIZE_BINS.keys()), args.n_bootstrap\\n    )\\n    sim_analysis = run_stratified_analysis(\\n        all_results, \\\"sim_bin\\\", list(SIMILARITY_BINS.keys()), args.n_bootstrap\\n    )\\n\\n    dataflow_analysis = {}\\n    if dataflow_edges is not None:\\n        dataflow_analysis = run_stratified_analysis(\\n            all_results, \\\"dataflow_bin\\\", list(DATAFLOW_BINS.keys()), args.n_bootstrap\\n        )\\n\\n    neg_diff_analysis = run_stratified_analysis(\\n        all_results, \\\"neg_difficulty_bin\\\", NEG_DIFFICULTY_QUARTILE_LABELS, args.n_bootstrap\\n    )\\n\\n    # Save JSON\\n    full_results = {\\n        \\\"config\\\": {\\n            \\\"strategies\\\": STRATEGIES,\\n            \\\"seeds\\\": seeds,\\n            \\\"repo_size_bins\\\": {k: list(v) for k, v in REPO_SIZE_BINS.items()},\\n            \\\"pool_size_bins\\\": {k: list(v) for k, v in POOL_SIZE_BINS.items()},\\n            \\\"similarity_bins\\\": {k: list(v) for k, v in SIMILARITY_BINS.items()},\\n            \\\"dataflow_bins\\\": {k: list(v) for k, v in DATAFLOW_BINS.items()},\\n            \\\"neg_difficulty_quartiles\\\": NEG_DIFFICULTY_QUARTILE_LABELS,\\n            \\\"n_bootstrap\\\": args.n_bootstrap,\\n            \\\"dry_run\\\": args.dry_run,\\n        },\\n        \\\"by_repo_size\\\": repo_analysis,\\n        \\\"by_pool_size\\\": pool_analysis,\\n        \\\"by_similarity\\\": sim_analysis,\\n        \\\"by_dataflow\\\": dataflow_analysis,\\n        \\\"by_neg_difficulty\\\": neg_diff_analysis,\\n    }\\n\\n    json_path = os.path.join(args.output_dir, \\\"stratified_results.json\\\")\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(full_results, f, indent=2, ensure_ascii=False)\\n    print(f\\\"  Results JSON saved to {json_path}\\\", flush=True)\\n\\n    # CSV summary\\n    csv_path = os.path.join(args.output_dir, \\\"stratified_summary.csv\\\")\\n    write_summary_csv(repo_analysis, pool_analysis, sim_analysis, csv_path, dataflow_analysis, neg_diff_analysis)\\n\\n    # Plots\\n    try:\\n        make_plots(repo_analysis, pool_analysis, sim_analysis, args.output_dir, dataflow_analysis, neg_diff_analysis)\\n    except Exception as e:\\n        print(f\\\"  [WARN] Plot generation failed: {e}\\\", flush=True)\\n\\n    print(\\\"\\\\nDone.\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "a882f74e-4cee-48cb-81d1-aa1e07016317",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    print(f\\\\\\\"Loading M1 metadata from {args.m1_data}...\\\\\\\", flush=True)\\\\n    inst_to_repo, repo_counts = load_m1_metadata(args.m1_data)\\\\n    print(f\\\\\\\"  {len(inst_to_repo)} instances, {len(repo_counts)} repos\\\\\\\", flush=True)\\\\n\\\\n    # Load dataflow graph if provided\\\\n    dataflow_edges = None\\\\n    if args.dataflow_graph and os.path.exists(args.dataflow_graph):\\\\n        print(f\\\\\\\"Loading dataflow graph from {args.dataflow_graph}...\\\\\\\", flush=True)\\\\n        dataflow_edges = load_dataflow_edges(args.dataflow_graph)\\\\n        print(f\\\\\\\"  {len(dataflow_edges)} file entries\\\\\\\", flush=True)\\\\n\\\\n    # Determine val data directory\\\\n    val_dir = args.val_data_dir\\\\n    if val_dir is None and args.predictions_dir is None and not args.dry_run:\\\\n        val_dir = \\\\\\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\\\\\"\\\\n    if val_dir is None and args.dry_run:\\\\n        val_dir = \\\\\\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\\\\\"\\\\n\\\\n    # Collect per-instance results: {strategy: {seed: [results]}}\\\\n    all_results: Dict[str, Dict[int, List[Dict]]] = defaultdict(dict)\\\\n    val_samples_cache: Dict[str, List[Dict]] = {}\\\\n\\\\n    for strategy in STRATEGIES:\\\\n        for seed in seeds:\\\\n            val_file = os.path.join(val_dir, f\\\\\\\"val_{strategy}_s{seed}.jsonl\\\\\\\") if val_dir else None\\\\n\\\\n            if val_file and os.path.exists(val_file):\\\\n                print(f\\\\\\\"Loading val data: {strategy} seed={seed}...\\\\\\\", flush=True)\\\\n                lite = args.predictions_dir is not None\\\\n                val_samples = load_val_samples(val_file, lite=lite)\\\\n            else:\\\\n                print(f\\\\\\\"  [WARN] Val file not found: {val_file}, skipping\\\\\\\", flush=True)\\\\n                continue\\\\n\\\\n            if args.dry_run:\\\\n                print(f\\\\\\\"  Generating mock predictions: {strategy} seed={seed}\\\\\\\", flush=True)\\\\n                results = mock_predictions(val_samples, strategy, seed)\\\\n            elif args.predictions_dir:\\\\n                pred_pattern = os.path.join(\\\\n                    args.predictions_dir, f\\\\\\\"*{strategy}*s{seed}*.json\\\\\\\"\\\\n                )\\\\n                import glob\\\\n                pred_files = glob.glob(pred_pattern)\\\\n                if pred_files:\\\\n                    print(f\\\\\\\"  Loading predictions: {pred_files[0]}\\\\\\\", flush=True)\\\\n                    results = load_predictions(pred_files[0], val_samples)\\\\n                else:\\\\n                    print(f\\\\\\\"  [WARN] No prediction file matching {pred_pattern}\\\\\\\", flush=True)\\\\n                    continue\\\\n            elif args.checkpoints_dir:\\\\n                base = os.path.join(args.checkpoints_dir, f\\\\\\\"{strategy}_s{seed}\\\\\\\")\\\\n                ckpt_dir = None\\\\n                for subdir in [\\\\\\\"best\\\\\\\", \\\\\\\"best_by_recall_at_1\\\\\\\", \\\\\\\"best_by_val_loss\\\\\\\"]:\\\\n                    candidate = os.path.join(base, subdir)\\\\n                    if os.path.exists(os.path.join(candidate, \\\\\\\"model.pt\\\\\\\")):\\\\n                        ckpt_dir = candidate\\\\n                        break\\\\n                if ckpt_dir is None and os.path.exists(os.path.join(base, \\\\\\\"model.pt\\\\\\\")):\\\\n                    ckpt_dir = base\\\\n                if os.path.exists(ckpt_dir):\\\\n                    print(f\\\\\\\"  Re-evaluating checkpoint: {ckpt_dir}\\\\\\\", flush=True)\\\\n                    results = reeval_checkpoint(\\\\n                        ckpt_dir, val_samples, args.device, args.max_seq_length\\\\n                    )\\\\n                else:\\\\n                    print(f\\\\\\\"  [WARN] Checkpoint not found: {ckpt_dir}\\\\\\\", flush=True)\\\\n                    continue\\\\n            else:\\\\n                print(\\\\\\\"  [ERROR] No --dry-run, --predictions-dir, or --checkpoints-dir\\\\\\\", flush=True)\\\\n                continue\\\\n\\\\n            # Assign strata\\\\n            results = assign_strata(results, inst_to_repo, repo_counts, dataflow_edges)\\\\n\\\\n            # For dry-run or model-based: compute text similarity for sim_bin\\\\n            if args.dry_run:\\\\n                for r, s in zip(results, val_samples):\\\\n                    tsim = text_similarity(s[\\\\\\\"query_tokens\\\\\\\"][:500], s[\\\\\\\"pos_tokens\\\\\\\"][:500])\\\\n                    r[\\\\\\\"sim_bin\\\\\\\"] = _bin_value(tsim, SIMILARITY_BINS)\\\\n\\\\n            all_results[strategy][seed] = results\\\\n            val_samples_cache[f\\\\\\\"{strategy}_s{seed}\\\\\\\"] = val_samples\\\\n            print(f\\\\\\\"  -> {len(results)} instances\\\\\\\", flush=True)\\\\n\\\\n    # Compute neg_difficulty quartiles (text-overlap proxy, CPU-safe)\\\\n    print(\\\\\\\"Computing neg difficulty quartiles...\\\\\\\", flush=True)\\\\n    assign_neg_difficulty_quartiles(all_results, val_samples_cache)\\\\n\\\\n    # Run stratified analysis\\\\n    print(\\\\\\\"\\\\\\\\nRunning stratified analysis...\\\\\\\", flush=True)\\\\n    repo_analysis = run_stratified_analysis(\\\\n        all_results, \\\\\\\"repo_size_bin\\\\\\\", list(REPO_SIZE_BINS.keys()), args.n_bootstrap\\\\n    )\\\\n    pool_analysis = run_stratified_analysis(\\\\n        all_results, \\\\\\\"pool_size_bin\\\\\\\", list(POOL_SIZE_BINS.keys()), args.n_bootstrap\\\\n    )\\\\n    sim_analysis = run_stratified_analysis(\\\\n        all_results, \\\\\\\"sim_bin\\\\\\\", list(SIMILARITY_BINS.keys()), args.n_bootstrap\\\\n    )\\\\n\\\\n    dataflow_analysis = {}\\\\n    if dataflow_edges is not None:\\\\n        dataflow_analysis = run_stratified_analysis(\\\\n            all_results, \\\\\\\"dataflow_bin\\\\\\\", list(DATAFLOW_BINS.keys()), args.n_bootstrap\\\\n        )\\\\n\\\\n    neg_diff_analysis = run_stratified_analysis(\\\\n        all_results, \\\\\\\"neg_difficulty_bin\\\\\\\", NEG_DIFFICULTY_QUARTILE_LABELS, args.n_bootstrap\\\\n    )\\\\n\\\\n    # Save JSON\\\\n    full_results = {\\\\n        \\\\\\\"config\\\\\\\": {\\\\n            \\\\\\\"strategies\\\\\\\": STRATEGIES,\\\\n            \\\\\\\"seeds\\\\\\\": seeds,\\\\n            \\\\\\\"repo_size_bins\\\\\\\": {k: list(v) for k, v in REPO_SIZE_BINS.items()},\\\\n            \\\\\\\"pool_size_bins\\\\\\\": {k: list(v) for k, v in POOL_SIZE_BINS.items()},\\\\n            \\\\\\\"similarity_bins\\\\\\\": {k: list(v) for k, v in SIMILARITY_BINS.items()},\\\\n            \\\\\\\"dataflow_bins\\\\\\\": {k: list(v) for k, v in DATAFLOW_BINS.items()},\\\\n            \\\\\\\"neg_difficulty_quartiles\\\\\\\": NEG_DIFFICULTY_QUARTILE_LABELS,\\\\n            \\\\\\\"n_bootstrap\\\\\\\": args.n_bootstrap,\\\\n            \\\\\\\"dry_run\\\\\\\": args.dry_run,\\\\n        },\\\\n        \\\\\\\"by_repo_size\\\\\\\": repo_analysis,\\\\n        \\\\\\\"by_pool_size\\\\\\\": pool_analysis,\\\\n        \\\\\\\"by_similarity\\\\\\\": sim_analysis,\\\\n        \\\\\\\"by_dataflow\\\\\\\": dataflow_analysis,\\\\n        \\\\\\\"by_neg_difficulty\\\\\\\": neg_diff_analysis,\\\\n    }\\\\n\\\\n    json_path = os.path.join(args.output_dir, \\\\\\\"stratified_results.json\\\\\\\")\\\\n    with open(json_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(full_results, f, indent=2, ensure_ascii=False)\\\\n    print(f\\\\\\\"  Results JSON saved to {json_path}\\\\\\\", flush=True)\\\\n\\\\n    # CSV summary\\\\n    csv_path = os.path.join(args.output_dir, \\\\\\\"stratified_summary.csv\\\\\\\")\\\\n    write_summary_csv(repo_analysis, pool_analysis, sim_analysis, csv_path, dataflow_analysis, neg_diff_analysis)\\\\n\\\\n    # Plots\\\\n    try:\\\\n        make_plots(repo_analysis, pool_analysis, sim_analysis, args.output_dir, dataflow_analysis, neg_diff_analysis)\\\\n    except Exception as e:\\\\n        print(f\\\\\\\"  [WARN] Plot generation failed: {e}\\\\\\\", flush=True)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\nDone.\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    print(f\\\"Loading M1 metadata from {args.m1_data}...\\\", flush=True)\\n    inst_to_repo, repo_counts = load_m1_metadata(args.m1_data)\\n    print(f\\\"  {len(inst_to_repo)} instances, {len(repo_counts)} repos\\\", flush=True)\\n\\n    # Load dataflow graph if provided\\n    dataflow_edges = None\\n    if args.dataflow_graph and os.path.exists(args.dataflow_graph):\\n        print(f\\\"Loading dataflow graph from {args.dataflow_graph}...\\\", flush=True)\\n        dataflow_edges = load_dataflow_edges(args.dataflow_graph)\\n        print(f\\\"  {len(dataflow_edges)} file entries\\\", flush=True)\\n\\n    # Determine val data directory\\n    val_dir = args.val_data_dir\\n    if val_dir is None and args.predictions_dir is None and not args.dry_run:\\n        val_dir = \\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\"\\n    if val_dir is None and args.dry_run:\\n        val_dir = \\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\"\\n\\n    # Collect per-instance results: {strategy: {seed: [results]}}\\n    all_results: Dict[str, Dict[int, List[Dict]]] = defaultdict(dict)\\n    val_samples_cache: Dict[str, List[Dict]] = {}\\n\\n    for strategy in STRATEGIES:\\n        for seed in seeds:\\n            val_file = os.path.join(val_dir, f\\\"val_{strategy}_s{seed}.jsonl\\\") if val_dir else None\\n\\n            if val_file and os.path.exists(val_file):\\n                print(f\\\"Loading val data: {strategy} seed={seed}...\\\", flush=True)\\n                lite = args.predictions_dir is not None\\n                val_samples = load_val_samples(val_file, lite=lite)\\n            else:\\n                print(f\\\"  [WARN] Val file not found: {val_file}, skipping\\\", flush=True)\\n                continue\\n\\n            if args.dry_run:\\n                print(f\\\"  Generating mock predictions: {strategy} seed={seed}\\\", flush=True)\\n                results = mock_predictions(val_samples, strategy, seed)\\n            elif args.predictions_dir:\\n                pred_pattern = os.path.join(\\n                    args.predictions_dir, f\\\"*{strategy}*s{seed}*.json\\\"\\n                )\\n                import glob\\n                pred_files = glob.glob(pred_pattern)\\n                if pred_files:\\n                    print(f\\\"  Loading predictions: {pred_files[0]}\\\", flush=True)\\n                    results = load_predictions(pred_files[0], val_samples)\\n                else:\\n                    print(f\\\"  [WARN] No prediction file matching {pred_pattern}\\\", flush=True)\\n                    continue\\n            elif args.checkpoints_dir:\\n                base = os.path.join(args.checkpoints_dir, f\\\"{strategy}_s{seed}\\\")\\n                ckpt_dir = None\\n                for subdir in [\\\"best\\\", \\\"best_by_recall_at_1\\\", \\\"best_by_val_loss\\\"]:\\n                    candidate = os.path.join(base, subdir)\\n                    if os.path.exists(os.path.join(candidate, \\\"model.pt\\\")):\\n                        ckpt_dir = candidate\\n                        break\\n                if ckpt_dir is None and os.path.exists(os.path.join(base, \\\"model.pt\\\")):\\n                    ckpt_dir = base\\n                if os.path.exists(ckpt_dir):\\n                    print(f\\\"  Re-evaluating checkpoint: {ckpt_dir}\\\", flush=True)\\n                    results = reeval_checkpoint(\\n                        ckpt_dir, val_samples, args.device, args.max_seq_length\\n                    )\\n                else:\\n                    print(f\\\"  [WARN] Checkpoint not found: {ckpt_dir}\\\", flush=True)\\n                    continue\\n            else:\\n                print(\\\"  [ERROR] No --dry-run, --predictions-dir, or --checkpoints-dir\\\", flush=True)\\n                continue\\n\\n            # Assign strata\\n            results = assign_strata(results, inst_to_repo, repo_counts, dataflow_edges)\\n\\n            # For dry-run or model-based: compute text similarity for sim_bin\\n            if args.dry_run:\\n                for r, s in zip(results, val_samples):\\n                    tsim = text_similarity(s[\\\"query_tokens\\\"][:500], s[\\\"pos_tokens\\\"][:500])\\n                    r[\\\"sim_bin\\\"] = _bin_value(tsim, SIMILARITY_BINS)\\n\\n            all_results[strategy][seed] = results\\n            val_samples_cache[f\\\"{strategy}_s{seed}\\\"] = val_samples\\n            print(f\\\"  -> {len(results)} instances\\\", flush=True)\\n\\n    # Compute neg_difficulty quartiles (text-overlap proxy, CPU-safe)\\n    print(\\\"Computing neg difficulty quartiles...\\\", flush=True)\\n    assign_neg_difficulty_quartiles(all_results, val_samples_cache)\\n\\n    # Run stratified analysis\\n    print(\\\"\\\\nRunning stratified analysis...\\\", flush=True)\\n    repo_analysis = run_stratified_analysis(\\n        all_results, \\\"repo_size_bin\\\", list(REPO_SIZE_BINS.keys()), args.n_bootstrap\\n    )\\n    pool_analysis = run_stratified_analysis(\\n        all_results, \\\"pool_size_bin\\\", list(POOL_SIZE_BINS.keys()), args.n_bootstrap\\n    )\\n    sim_analysis = run_stratified_analysis(\\n        all_results, \\\"sim_bin\\\", list(SIMILARITY_BINS.keys()), args.n_bootstrap\\n    )\\n\\n    dataflow_analysis = {}\\n    if dataflow_edges is not None:\\n        dataflow_analysis = run_stratified_analysis(\\n            all_results, \\\"dataflow_bin\\\", list(DATAFLOW_BINS.keys()), args.n_bootstrap\\n        )\\n\\n    neg_diff_analysis = run_stratified_analysis(\\n        all_results, \\\"neg_difficulty_bin\\\", NEG_DIFFICULTY_QUARTILE_LABELS, args.n_bootstrap\\n    )\\n\\n    # Save JSON\\n    full_results = {\\n        \\\"config\\\": {\\n            \\\"strategies\\\": STRATEGIES,\\n            \\\"seeds\\\": seeds,\\n            \\\"repo_size_bins\\\": {k: list(v) for k, v in REPO_SIZE_BINS.items()},\\n            \\\"pool_size_bins\\\": {k: list(v) for k, v in POOL_SIZE_BINS.items()},\\n            \\\"similarity_bins\\\": {k: list(v) for k, v in SIMILARITY_BINS.items()},\\n            \\\"dataflow_bins\\\": {k: list(v) for k, v in DATAFLOW_BINS.items()},\\n            \\\"neg_difficulty_quartiles\\\": NEG_DIFFICULTY_QUARTILE_LABELS,\\n            \\\"n_bootstrap\\\": args.n_bootstrap,\\n            \\\"dry_run\\\": args.dry_run,\\n        },\\n        \\\"by_repo_size\\\": repo_analysis,\\n        \\\"by_pool_size\\\": pool_analysis,\\n        \\\"by_similarity\\\": sim_analysis,\\n        \\\"by_dataflow\\\": dataflow_analysis,\\n        \\\"by_neg_difficulty\\\": neg_diff_analysis,\\n    }\\n\\n    json_path = os.path.join(args.output_dir, \\\"stratified_results.json\\\")\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(full_results, f, indent=2, ensure_ascii=False)\\n    print(f\\\"  Results JSON saved to {json_path}\\\", flush=True)\\n\\n    # CSV summary\\n    csv_path = os.path.join(args.output_dir, \\\"stratified_summary.csv\\\")\\n    write_summary_csv(repo_analysis, pool_analysis, sim_analysis, csv_path, dataflow_analysis, neg_diff_analysis)\\n\\n    # Plots\\n    try:\\n        make_plots(repo_analysis, pool_analysis, sim_analysis, args.output_dir, dataflow_analysis, neg_diff_analysis)\\n    except Exception as e:\\n        print(f\\\"  [WARN] Plot generation failed: {e}\\\", flush=True)\\n\\n    print(\\\"\\\\nDone.\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-14T20:29:12.612Z_
+
+<details><summary>↩ Tool result · `toolu_018D3XfhNZFTwgBV1YBZFwgP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"random_s42\\nrandom_s43\\nrandom_s44\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "55635872-a65d-4872-b60c-e94fffbb5641",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"random_s42\\\\nrandom_s43\\\\nrandom_s44\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"random_s42\\nrandom_s43\\nrandom_s44\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MjeL1PxYQMHpaCrvgKeZaD`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen -name \"eval_results*.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "100e3be5-a681-4122-989d-503576f12a05",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YFQphvU4ejPs8zs8dUApEb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 972,
+      "cache_read_input_tokens": 41979,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 972
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-14T20:29:13.104Z_
+
+<details><summary>↩ Tool result · `toolu_01MjeL1PxYQMHpaCrvgKeZaD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "1a7f6527-111d-4287-a816-00e68e9f528e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings:
+
+1. **Checkpoints**: Only `random_s42`, `random_s43`, `random_s44` exist in `/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/`. There are NO `embedding_distance_s*` or `dataflow_aware_s*` checkpoints.
+
+2. **Val data**: Val JSONL files exist for all 3 strategies and seeds 42,43,44 in `/root/autodl-tmp/structfuse/full_m2_training_data/`.
+   
+3. **M1 data**: The M1 dataset is available at `/root/autodl-tmp/structfuse/full_m1_data/all.jsonl`.
+
+4. **Script modes**: I can run in dry-run mode with mock predictions on CPU for pipeline validation, load pre-computed predictions without GPU, or re-evaluate checkpoints which requires GPU to load the model and run forward passes.
+
+5. **5 dimensions**: I've implemented repo_size and pool_size tracking, with more dimensions to follow.
+
+All 5 dimensions are now implemented, covering repo size, pool size, query-position similarity, structural data availability through dataflow graphs, and negative difficulty quartiles.
+
+6. **GPU requirement**: The dry-run mode works on CPU only, while checkpoint re-evaluation needs GPU. Since only random strategy checkpoints exist, I can't do a comprehensive checkpoint analysis across all strategies anyway.
+
+My plan is to start with a dry-run to validate the pipeline works on CPU and verify all 5 dimensions are functioning correctly, even though it won't produce real results.
+
+For actual results, I'd need either checkpoints for all strategies or pre-computed predictions. Let me check if there's a dataflow graph file available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "7a37026e-61e9-45e6-8073-9a8ee877587b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bw1xwRzgHg4xZwp5FDK2bA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3213,
+      "cache_read_input_tokens": 42951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3213
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+只有 random 策略的 checkpoints。让我检查是否有预计算的 predictions 和 dataflow graph。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "48ede792-05f0-4bd3-b0a9-e2a3049bcd31",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bw1xwRzgHg4xZwp5FDK2bA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3213,
+      "cache_read_input_tokens": 42951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3213
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019yVXR74MzfRyyJKnVoANg3`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/autodl-tmp/structfuse -name \"dataflow*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "b5e7c628-569c-458d-83b3-0384893a5510",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bw1xwRzgHg4xZwp5FDK2bA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3213,
+      "cache_read_input_tokens": 42951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3213
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-14T20:29:28.422Z_
+
+<details><summary>↩ Tool result · `toolu_019yVXR74MzfRyyJKnVoANg3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/structfuse/full_m1_data/repos/python__mypy/mypyc/analysis/dataflow.py\\n/root/autodl-tmp/structfuse/full_m2_training_data/dataflow_graph.json\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/dataflow_graph.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "8cc4452c-039a-4697-9a43-eb187a230603",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/structfuse/full_m1_data/repos/python__mypy/mypyc/analysis/dataflow.py\\\\n/root/autodl-tmp/structfuse/full_m2_training_data/dataflow_graph.json\\\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/dataflow_graph.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/structfuse/full_m1_data/repos/python__mypy/mypyc/analysis/dataflow.py\\n/root/autodl-tmp/structfuse/full_m2_training_data/dataflow_graph.json\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data/dataflow_graph.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0135FwbTmxQRhi2BExGk8bJx`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/autodl-tmp/structfuse -name \"predictions*\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "3dee1d31-2ae3-47ac-bee2-fcce66216e75",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bw1xwRzgHg4xZwp5FDK2bA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3213,
+      "cache_read_input_tokens": 42951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3213
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-14T20:29:29.215Z_
+
+<details><summary>↩ Tool result · `toolu_0135FwbTmxQRhi2BExGk8bJx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "6a3be5ca-760c-4172-a43f-ed61d189e02b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016qb8u7YTi1ygZ7jkaCCPF5`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "find /root/autodl-tmp/structfuse -name \"eval_results*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "ed1fb9d1-3acf-4ac8-8c9f-b158381bb91c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bw1xwRzgHg4xZwp5FDK2bA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3213,
+      "cache_read_input_tokens": 42951,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3213
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-14T20:29:29.870Z_
+
+<details><summary>↩ Tool result · `toolu_016qb8u7YTi1ygZ7jkaCCPF5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "c605325f-50f8-4556-80d6-24733d02a68d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good findings:
+- Dataflow graph exists: `/root/autodl-tmp/structfuse/full_m2_training_data/dataflow_graph.json`
+- No pre-computed predictions or eval results found
+- Only random strategy checkpoints exist
+
+So the options are:
+1. **--dry-run** mode: CPU only, mock predictions, validates pipeline → can run now
+2. **--checkpoints-dir**: Only random_s42/43/44 exist, would need GPU → blocked (GPUs busy with training)
+3. **--predictions-dir**: No predictions available
+   
+I should run dry-run first to validate the pipeline. But actually, looking at how the script constructs checkpoint paths, it expects `{strategy}_s{seed}` directories directly under the checkpoints-dir argument. The existing checkpoints are nested deeper at `/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1/`, so I'd need to point to `/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/` as the checkpoints-dir and the script would look for `random_s42/best_by_recall_at_1/model` within it.
+
+The issue is that `embedding_distance_s42/` and `dataflow_aware_s42/` don't exist yet, so those strategies won't work. Let me start with the dry-run since it only needs validation and m1 data, both of which are available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "90e5e50b-f768-44e9-860b-f46ef48cfd4d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F48fwNu2GuX4N4ndZaojPA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 46164,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+数据齐全。先用 `--dry-run` 在 CPU 上验证 pipeline。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "41527e52-b855-42f8-a86f-306ac81abdc4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F48fwNu2GuX4N4ndZaojPA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 46164,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Ci3vqcPRrGpFXFagu3SgV7`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=\"\" python3 /root/structfuse/evaluation/analyze_stratified.py --dry-run --m1-data /root/autodl-tmp/structfuse/full_m1_data/all.jsonl --val-data-dir /root/autodl-tmp/structfuse/full_m2_training_data --dataflow-graph /root/autodl-tmp/structfuse/full_m2_training_data/dataflow_graph.json --output-dir /root/autodl-tmp/structfuse/stratified_analysis_dryrun --seeds 42,43 --n-bootstrap 200 2>&1",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "0a7c0ab7-ebd5-4140-bc6f-cfe44923ddea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F48fwNu2GuX4N4ndZaojPA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1346,
+      "cache_read_input_tokens": 46164,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-14T20:30:08.807Z_
+
+<details><summary>↩ Tool result · `toolu_01Ci3vqcPRrGpFXFagu3SgV7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading M1 metadata from /root/autodl-tmp/structfuse/full_m1_data/all.jsonl...\\n  44173 instances, 123 repos\\nLoading dataflow graph from /root/autodl-tmp/structfuse/full_m2_training_data/dataflow_graph.json...\\n  376069 file entries\\nLoading val data: random seed=42...\\n  Generating mock predictions: random seed=42\\n  -> 2980 instances\\nLoading val data: random seed=43...\\n  Generating mock predictions: random seed=43\\n  -> 3052 instances\\nLoading val data: embedding_distance seed=42...\\n  Generating mock predictions: embedding_distance seed=42\\n  -> 2980 instances\\nLoading val data: embedding_distance seed=43...\\n  Generating mock predictions: embedding_distance seed=43\\n  -> 3052 instances\\nLoading val data: dataflow_aware seed=42...\\n  Generating mock predictions: dataflow_aware seed=42\\n  -> 2980 instances\\nLoading val data: dataflow_aware seed=43...\\n  Generating mock predictions: dataflow_aware seed=43\\n  -> 3052 instances\\nComputing neg difficulty quartiles...\\n\\nRunning stratified analysis...\\n  Results JSON saved to /root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_results.json\\n  Summary CSV saved to /root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_summary.csv\\n  Plots saved to /root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_plots.pdf\\n\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 26.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "e5341055-6192-4691-abca-e82b206a3aaa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading M1 metadata from /root/autodl-tmp/structfuse/full_m1_data/all.jsonl...\\\\n  44173 instances, 123 repos\\\\nLoading dataflow graph from /root/autodl-tmp/structfuse/full_m2_training_data/dataflow_graph.json...\\\\n  376069 file entries\\\\nLoading val data: random seed=42...\\\\n  Generating mock predictions: random seed=42\\\\n  -> 2980 instances\\\\nLoading val data: random seed=43...\\\\n  Generating mock predictions: random seed=43\\\\n  -> 3052 instances\\\\nLoading val data: embedding_distance seed=42...\\\\n  Generating mock predictions: embedding_distance seed=42\\\\n  -> 2980 instances\\\\nLoading val data: embedding_distance seed=43...\\\\n  Generating mock predictions: embedding_distance seed=43\\\\n  -> 3052 instances\\\\nLoading val data: dataflow_aware seed=42...\\\\n  Generating mock predictions: dataflow_aware seed=42\\\\n  -> 2980 instances\\\\nLoading val data: dataflow_aware seed=43...\\\\n  Generating mock predictions: dataflow_aware seed=43\\\\n  -> 3052 instances\\\\nComputing neg difficulty quartiles...\\\\n\\\\nRunning stratified analysis...\\\\n  Results JSON saved to /root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_results.json\\\\n  Summary CSV saved to /root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_summary.csv\\\\n  Plots saved to /root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_plots.pdf\\\\n\\\\nDone.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 26.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading M1 metadata from /root/autodl-tmp/structfuse/full_m1_data/all.jsonl...\\n  44173 instances, 123 repos\\nLoading dataflow graph from /root/autodl-tmp/structfuse/full_m2_training_data/dataflow_graph.json...\\n  376069 file entries\\nLoading val data: random seed=42...\\n  Generating mock predictions: random seed=42\\n  -> 2980 instances\\nLoading val data: random seed=43...\\n  Generating mock predictions: random seed=43\\n  -> 3052 instances\\nLoading val data: embedding_distance seed=42...\\n  Generating mock predictions: embedding_distance seed=42\\n  -> 2980 instances\\nLoading val data: embedding_distance seed=43...\\n  Generating mock predictions: embedding_distance seed=43\\n  -> 3052 instances\\nLoading val data: dataflow_aware seed=42...\\n  Generating mock predictions: dataflow_aware seed=42\\n  -> 2980 instances\\nLoading val data: dataflow_aware seed=43...\\n  Generating mock predictions: dataflow_aware seed=43\\n  -> 3052 instances\\nComputing neg difficulty quartiles...\\n\\nRunning stratified analysis...\\n  Results JSON saved to /root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_results.json\\n  Summary CSV saved to /root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_summary.csv\\n  Plots saved to /root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_plots.pdf\\n\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 26.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Pipeline validation passed! Let me look at the dry-run results to verify all 5 dimensions are present, and also check the CSV summary.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "7a5dfbca-1104-4ae5-8624-193ff7b5a44e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CJ5s8uRHp9eCndJGjzcDa7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1309,
+      "cache_read_input_tokens": 47510,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1309
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+dry-run 成功。查看输出验证 5 个维度。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "2532d23a-ce06-4551-be93-ee1e59cdf90e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CJ5s8uRHp9eCndJGjzcDa7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1309,
+      "cache_read_input_tokens": 47510,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1309
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014tASiuYoyRDmGcZELcpdoq`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "cat /root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_summary.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "e402fb79-c009-419c-8ff7-2d15a376a116",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CJ5s8uRHp9eCndJGjzcDa7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1309,
+      "cache_read_input_tokens": 47510,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1309
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-14T20:30:13.379Z_
+
+<details><summary>↩ Tool result · `toolu_014tASiuYoyRDmGcZELcpdoq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"dimension,stratum,strategy,R@1,R@1_ci95,R@5,MRR,count\\r\\nrepo_size,small,random,0.0730,\\\"[0.0393, 0.1180]\\\",0.4944,0.2765,178\\r\\nrepo_size,small,embedding_distance,0.2640,\\\"[0.1966, 0.3260]\\\",0.8034,0.4877,178\\r\\nrepo_size,small,dataflow_aware,0.3483,\\\"[0.2808, 0.4045]\\\",0.8764,0.5628,178\\r\\nrepo_size,small,DELTA(Embedding-Random),+0.1910,(+261.5%),+0.3090,+0.2112,\\r\\nrepo_size,small,DELTA(Dataflow-Random),+0.2753,(+376.9%),+0.3820,+0.2863,\\r\\nrepo_size,medium,random,0.0783,\\\"[0.0620, 0.0976]\\\",0.3689,0.2271,984\\r\\nrepo_size,medium,embedding_distance,0.2033,\\\"[0.1767, 0.2277]\\\",0.5803,0.3724,984\\r\\nrepo_size,medium,dataflow_aware,0.2886,\\\"[0.2611, 0.3171]\\\",0.7124,0.4717,984\\r\\nrepo_size,medium,DELTA(Embedding-Random),+0.1250,(+159.7%),+0.2114,+0.1452,\\r\\nrepo_size,medium,DELTA(Dataflow-Random),+0.2104,(+268.8%),+0.3435,+0.2446,\\r\\nrepo_size,large,random,0.0191,\\\"[0.0134, 0.0245]\\\",0.1155,0.0976,2978\\r\\nrepo_size,large,embedding_distance,0.0638,\\\"[0.0551, 0.0742]\\\",0.2787,0.1869,2978\\r\\nrepo_size,large,dataflow_aware,0.1048,\\\"[0.0940, 0.1159]\\\",0.4365,0.2694,2978\\r\\nrepo_size,large,DELTA(Embedding-Random),+0.0447,(+233.3%),+0.1632,+0.0893,\\r\\nrepo_size,large,DELTA(Dataflow-Random),+0.0856,(+447.4%),+0.3210,+0.1718,\\r\\nrepo_size,xlarge,random,0.0185,\\\"[0.0122, 0.0254]\\\",0.1025,0.0902,1892\\r\\nrepo_size,xlarge,embedding_distance,0.0529,\\\"[0.0433, 0.0629]\\\",0.2595,0.1742,1892\\r\\nrepo_size,xlarge,dataflow_aware,0.0909,\\\"[0.0782, 0.1010]\\\",0.3953,0.2431,1892\\r\\nrepo_size,xlarge,DELTA(Embedding-Random),+0.0344,(+185.7%),+0.1570,+0.0840,\\r\\nrepo_size,xlarge,DELTA(Dataflow-Random),+0.0724,(+391.4%),+0.2928,+0.1529,\\r\\npool_size,small,random,0.1191,\\\"[0.0956, 0.1456]\\\",0.5515,0.3194,680\\r\\npool_size,small,embedding_distance,0.3029,\\\"[0.2691, 0.3339]\\\",0.7765,0.5023,680\\r\\npool_size,small,dataflow_aware,0.4074,\\\"[0.3764, 0.4413]\\\",0.8912,0.6053,680\\r\\npool_size,small,DELTA(Embedding-Random),+0.1838,(+154.3%),+0.2250,+0.1829,\\r\\npool_size,small,DELTA(Dataflow-Random),+0.2882,(+242.0%),+0.3397,+0.2859,\\r\\npool_size,medium,random,0.0244,\\\"[0.0176, 0.0321]\\\",0.1681,0.1274,1309\\r\\npool_size,medium,embedding_distance,0.0909,\\\"[0.0756, 0.1047]\\\",0.3858,0.2436,1309\\r\\npool_size,medium,dataflow_aware,0.1444,\\\"[0.1244, 0.1628]\\\",0.5546,0.3305,1309\\r\\npool_size,medium,DELTA(Embedding-Random),+0.0665,(+271.9%),+0.2177,+0.1162,\\r\\npool_size,medium,DELTA(Dataflow-Random),+0.1199,(+490.6%),+0.3866,+0.2031,\\r\\npool_size,large,random,0.0171,\\\"[0.0136, 0.0213]\\\",0.0975,0.0865,4043\\r\\npool_size,large,embedding_distance,0.0524,\\\"[0.0450, 0.0594]\\\",0.2478,0.1679,4043\\r\\npool_size,large,dataflow_aware,0.0900,\\\"[0.0809, 0.1004]\\\",0.3891,0.2429,4043\\r\\npool_size,large,DELTA(Embedding-Random),+0.0354,(+207.2%),+0.1504,+0.0813,\\r\\npool_size,large,DELTA(Dataflow-Random),+0.0730,(+427.5%),+0.2916,+0.1564,\\r\\nsimilarity,low,random,0.0342,\\\"[0.0298, 0.0388]\\\",0.1784,0.1296,4798\\r\\nsimilarity,low,embedding_distance,0.0973,\\\"[0.0894, 0.1065]\\\",0.3479,0.2307,4798\\r\\nsimilarity,low,dataflow_aware,0.1442,\\\"[0.1342, 0.1559]\\\",0.4927,0.3113,4798\\r\\nsimilarity,low,DELTA(Embedding-Random),+0.0632,(+184.8%),+0.1694,+0.1010,\\r\\nsimilarity,low,DELTA(Dataflow-Random),+0.1100,(+322.0%),+0.3143,+0.1817,\\r\\nsimilarity,medium,random,0.0151,\\\"[0.0050, 0.0251]\\\",0.1089,0.0923,597\\r\\nsimilarity,medium,embedding_distance,0.0704,\\\"[0.0535, 0.0905]\\\",0.3049,0.2004,597\\r\\nsimilarity,medium,dataflow_aware,0.1290,\\\"[0.1022, 0.1575]\\\",0.4288,0.2800,597\\r\\nsimilarity,medium,DELTA(Embedding-Random),+0.0553,(+366.7%),+0.1960,+0.1081,\\r\\nsimilarity,medium,DELTA(Dataflow-Random),+0.1139,(+755.6%),+0.3199,+0.1877,\\r\\nsimilarity,high,random,0.0141,\\\"[0.0063, 0.0235]\\\",0.1068,0.0893,637\\r\\nsimilarity,high,embedding_distance,0.0440,\\\"[0.0298, 0.0582]\\\",0.2889,0.1772,637\\r\\nsimilarity,high,dataflow_aware,0.0958,\\\"[0.0691, 0.1162]\\\",0.4474,0.2598,637\\r\\nsimilarity,high,DELTA(Embedding-Random),+0.0298,(+211.1%),+0.1821,+0.0879,\\r\\nsimilarity,high,DELTA(Dataflow-Random),+0.0816,(+577.8%),+0.3407,+0.1705,\\r\\ndataflow,sparse,random,0.0334,\\\"[0.0280, 0.0400]\\\",0.1773,0.1285,3147\\r\\ndataflow,sparse,embedding_distance,0.1010,\\\"[0.0921, 0.1122]\\\",0.3603,0.2364,3147\\r\\ndataflow,sparse,dataflow_aware,0.1446,\\\"[0.1341, 0.1579]\\\",0.4967,0.3122,3147\\r\\ndataflow,sparse,DELTA(Embedding-Random),+0.0677,(+202.9%),+0.1830,+0.1079,\\r\\ndataflow,sparse,DELTA(Dataflow-Random),+0.1112,(+333.3%),+0.3194,+0.1837,\\r\\ndataflow,moderate,random,0.0462,\\\"[0.0323, 0.0589]\\\",0.2390,0.1629,866\\r\\ndataflow,moderate,embedding_distance,0.1409,\\\"[0.1178, 0.1628]\\\",0.4480,0.2923,866\\r\\ndataflow,moderate,dataflow_aware,0.2055,\\\"[0.1766, 0.2333]\\\",0.5924,0.3825,866\\r\\ndataflow,moderate,DELTA(Embedding-Random),+0.0947,(+205.0%),+0.2090,+0.1294,\\r\\ndataflow,moderate,DELTA(Dataflow-Random),+0.1594,(+345.0%),+0.3533,+0.2196,\\r\\ndataflow,rich,random,0.0183,\\\"[0.0129, 0.0243]\\\",0.1109,0.0933,2019\\r\\ndataflow,rich,embedding_distance,0.0480,\\\"[0.0396, 0.0575]\\\",0.2541,0.1694,2019\\r\\ndataflow,rich,dataflow_aware,0.0976,\\\"[0.0852, 0.1129]\\\",0.4106,0.2540,2019\\r\\ndataflow,rich,DELTA(Embedding-Random),+0.0297,(+162.2%),+0.1431,+0.0761,\\r\\ndataflow,rich,DELTA(Dataflow-Random),+0.0792,(+432.4%),+0.2997,+0.1606,\\r\\nneg_difficulty,Q1_easy,random,0.0379,\\\"[0.0286, 0.0485]\\\",0.1821,0.1308,1505\\r\\nneg_difficulty,Q1_easy,embedding_distance,0.1056,\\\"[0.0904, 0.1190]\\\",0.3309,0.2333,1505\\r\\nneg_difficulty,Q1_easy,dataflow_aware,0.1575,\\\"[0.1395, 0.1775]\\\",0.4837,0.3134,1505\\r\\nneg_difficulty,Q1_easy,DELTA(Embedding-Random),+0.0678,(+178.9%),+0.1488,+0.1026,\\r\\nneg_difficulty,Q1_easy,DELTA(Dataflow-Random),+0.1196,(+315.8%),+0.3017,+0.1826,\\r\\nneg_difficulty,Q2,random,0.0338,\\\"[0.0252, 0.0438]\\\",0.1844,0.1312,1508\\r\\nneg_difficulty,Q2,embedding_distance,0.0981,\\\"[0.0836, 0.1141]\\\",0.3654,0.2349,1508\\r\\nneg_difficulty,Q2,dataflow_aware,0.1512,\\\"[0.1353, 0.1658]\\\",0.4920,0.3159,1508\\r\\nneg_difficulty,Q2,DELTA(Embedding-Random),+0.0643,(+190.2%),+0.1810,+0.1038,\\r\\nneg_difficulty,Q2,DELTA(Dataflow-Random),+0.1174,(+347.1%),+0.3077,+0.1847,\\r\\nneg_difficulty,Q3,random,0.0291,\\\"[0.0219, 0.0384]\\\",0.1636,0.1194,1510\\r\\nneg_difficulty,Q3,embedding_distance,0.0868,\\\"[0.0735, 0.0994]\\\",0.3430,0.2224,1510\\r\\nneg_difficulty,Q3,dataflow_aware,0.1371,\\\"[0.1212, 0.1530]\\\",0.4954,0.3090,1510\\r\\nneg_difficulty,Q3,DELTA(Embedding-Random),+0.0576,(+197.7%),+0.1795,+0.1029,\\r\\nneg_difficulty,Q3,DELTA(Dataflow-Random),+0.1079,(+370.5%),+0.3318,+0.1896,\\r\\nneg_difficulty,Q4_hard,random,0.0199,\\\"[0.0126, 0.0259]\\\",0.1259,0.1053,1509\\r\\nneg_difficulty,Q4_hard,embedding_distance,0.0656,\\\"[0.0530, 0.0815]\\\",0.3101,0.1974,1509\\r\\nneg_difficulty,Q4_hard,dataflow_aware,0.1047,\\\"[0.0908, 0.1186]\\\",0.4553,0.2729,1509\\r\\nneg_difficulty,Q4_hard,DELTA(Embedding-Random),+0.0457,(+230.0%),+0.1842,+0.0921,\\r\\nneg_difficulty,Q4_hard,DELTA(Dataflow-Random),+0.0848,(+426.7%),+0.3294,+0.1676,\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "e2895e23-7358-489f-9815-3bc2192f89e5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"dimension,stratum,strategy,R@1,R@1_ci95,R@5,MRR,count\\\\r\\\\nrepo_size,small,random,0.0730,\\\\\\\"[0.0393, 0.1180]\\\\\\\",0.4944,0.2765,178\\\\r\\\\nrepo_size,small,embedding_distance,0.2640,\\\\\\\"[0.1966, 0.3260]\\\\\\\",0.8034,0.4877,178\\\\r\\\\nrepo_size,small,dataflow_aware,0.3483,\\\\\\\"[0.2808, 0.4045]\\\\\\\",0.8764,0.5628,178\\\\r\\\\nrepo_size,small,DELTA(Embedding-Random),+0.1910,(+261.5%),+0.3090,+0.2112,\\\\r\\\\nrepo_size,small,DELTA(Dataflow-Random),+0.2753,(+376.9%),+0.3820,+0.2863,\\\\r\\\\nrepo_size,medium,random,0.0783,\\\\\\\"[0.0620, 0.0976]\\\\\\\",0.3689,0.2271,984\\\\r\\\\nrepo_size,medium,embedding_distance,0.2033,\\\\\\\"[0.1767, 0.2277]\\\\\\\",0.5803,0.3724,984\\\\r\\\\nrepo_size,medium,dataflow_aware,0.2886,\\\\\\\"[0.2611, 0.3171]\\\\\\\",0.7124,0.4717,984\\\\r\\\\nrepo_size,medium,DELTA(Embedding-Random),+0.1250,(+159.7%),+0.2114,+0.1452,\\\\r\\\\nrepo_size,medium,DELTA(Dataflow-Random),+0.2104,(+268.8%),+0.3435,+0.2446,\\\\r\\\\nrepo_size,large,random,0.0191,\\\\\\\"[0.0134, 0.0245]\\\\\\\",0.1155,0.0976,2978\\\\r\\\\nrepo_size,large,embedding_distance,0.0638,\\\\\\\"[0.0551, 0.0742]\\\\\\\",0.2787,0.1869,2978\\\\r\\\\nrepo_size,large,dataflow_aware,0.1048,\\\\\\\"[0.0940, 0.1159]\\\\\\\",0.4365,0.2694,2978\\\\r\\\\nrepo_size,large,DELTA(Embedding-Random),+0.0447,(+233.3%),+0.1632,+0.0893,\\\\r\\\\nrepo_size,large,DELTA(Dataflow-Random),+0.0856,(+447.4%),+0.3210,+0.1718,\\\\r\\\\nrepo_size,xlarge,random,0.0185,\\\\\\\"[0.0122, 0.0254]\\\\\\\",0.1025,0.0902,1892\\\\r\\\\nrepo_size,xlarge,embedding_distance,0.0529,\\\\\\\"[0.0433, 0.0629]\\\\\\\",0.2595,0.1742,1892\\\\r\\\\nrepo_size,xlarge,dataflow_aware,0.0909,\\\\\\\"[0.0782, 0.1010]\\\\\\\",0.3953,0.2431,1892\\\\r\\\\nrepo_size,xlarge,DELTA(Embedding-Random),+0.0344,(+185.7%),+0.1570,+0.0840,\\\\r\\\\nrepo_size,xlarge,DELTA(Dataflow-Random),+0.0724,(+391.4%),+0.2928,+0.1529,\\\\r\\\\npool_size,small,random,0.1191,\\\\\\\"[0.0956, 0.1456]\\\\\\\",0.5515,0.3194,680\\\\r\\\\npool_size,small,embedding_distance,0.3029,\\\\\\\"[0.2691, 0.3339]\\\\\\\",0.7765,0.5023,680\\\\r\\\\npool_size,small,dataflow_aware,0.4074,\\\\\\\"[0.3764, 0.4413]\\\\\\\",0.8912,0.6053,680\\\\r\\\\npool_size,small,DELTA(Embedding-Random),+0.1838,(+154.3%),+0.2250,+0.1829,\\\\r\\\\npool_size,small,DELTA(Dataflow-Random),+0.2882,(+242.0%),+0.3397,+0.2859,\\\\r\\\\npool_size,medium,random,0.0244,\\\\\\\"[0.0176, 0.0321]\\\\\\\",0.1681,0.1274,1309\\\\r\\\\npool_size,medium,embedding_distance,0.0909,\\\\\\\"[0.0756, 0.1047]\\\\\\\",0.3858,0.2436,1309\\\\r\\\\npool_size,medium,dataflow_aware,0.1444,\\\\\\\"[0.1244, 0.1628]\\\\\\\",0.5546,0.3305,1309\\\\r\\\\npool_size,medium,DELTA(Embedding-Random),+0.0665,(+271.9%),+0.2177,+0.1162,\\\\r\\\\npool_size,medium,DELTA(Dataflow-Random),+0.1199,(+490.6%),+0.3866,+0.2031,\\\\r\\\\npool_size,large,random,0.0171,\\\\\\\"[0.0136, 0.0213]\\\\\\\",0.0975,0.0865,4043\\\\r\\\\npool_size,large,embedding_distance,0.0524,\\\\\\\"[0.0450, 0.0594]\\\\\\\",0.2478,0.1679,4043\\\\r\\\\npool_size,large,dataflow_aware,0.0900,\\\\\\\"[0.0809, 0.1004]\\\\\\\",0.3891,0.2429,4043\\\\r\\\\npool_size,large,DELTA(Embedding-Random),+0.0354,(+207.2%),+0.1504,+0.0813,\\\\r\\\\npool_size,large,DELTA(Dataflow-Random),+0.0730,(+427.5%),+0.2916,+0.1564,\\\\r\\\\nsimilarity,low,random,0.0342,\\\\\\\"[0.0298, 0.0388]\\\\\\\",0.1784,0.1296,4798\\\\r\\\\nsimilarity,low,embedding_distance,0.0973,\\\\\\\"[0.0894, 0.1065]\\\\\\\",0.3479,0.2307,4798\\\\r\\\\nsimilarity,low,dataflow_aware,0.1442,\\\\\\\"[0.1342, 0.1559]\\\\\\\",0.4927,0.3113,4798\\\\r\\\\nsimilarity,low,DELTA(Embedding-Random),+0.0632,(+184.8%),+0.1694,+0.1010,\\\\r\\\\nsimilarity,low,DELTA(Dataflow-Random),+0.1100,(+322.0%),+0.3143,+0.1817,\\\\r\\\\nsimilarity,medium,random,0.0151,\\\\\\\"[0.0050, 0.0251]\\\\\\\",0.1089,0.0923,597\\\\r\\\\nsimilarity,medium,embedding_distance,0.0704,\\\\\\\"[0.0535, 0.0905]\\\\\\\",0.3049,0.2004,597\\\\r\\\\nsimilarity,medium,dataflow_aware,0.1290,\\\\\\\"[0.1022, 0.1575]\\\\\\\",0.4288,0.2800,597\\\\r\\\\nsimilarity,medium,DELTA(Embedding-Random),+0.0553,(+366.7%),+0.1960,+0.1081,\\\\r\\\\nsimilarity,medium,DELTA(Dataflow-Random),+0.1139,(+755.6%),+0.3199,+0.1877,\\\\r\\\\nsimilarity,high,random,0.0141,\\\\\\\"[0.0063, 0.0235]\\\\\\\",0.1068,0.0893,637\\\\r\\\\nsimilarity,high,embedding_distance,0.0440,\\\\\\\"[0.0298, 0.0582]\\\\\\\",0.2889,0.1772,637\\\\r\\\\nsimilarity,high,dataflow_aware,0.0958,\\\\\\\"[0.0691, 0.1162]\\\\\\\",0.4474,0.2598,637\\\\r\\\\nsimilarity,high,DELTA(Embedding-Random),+0.0298,(+211.1%),+0.1821,+0.0879,\\\\r\\\\nsimilarity,high,DELTA(Dataflow-Random),+0.0816,(+577.8%),+0.3407,+0.1705,\\\\r\\\\ndataflow,sparse,random,0.0334,\\\\\\\"[0.0280, 0.0400]\\\\\\\",0.1773,0.1285,3147\\\\r\\\\ndataflow,sparse,embedding_distance,0.1010,\\\\\\\"[0.0921, 0.1122]\\\\\\\",0.3603,0.2364,3147\\\\r\\\\ndataflow,sparse,dataflow_aware,0.1446,\\\\\\\"[0.1341, 0.1579]\\\\\\\",0.4967,0.3122,3147\\\\r\\\\ndataflow,sparse,DELTA(Embedding-Random),+0.0677,(+202.9%),+0.1830,+0.1079,\\\\r\\\\ndataflow,sparse,DELTA(Dataflow-Random),+0.1112,(+333.3%),+0.3194,+0.1837,\\\\r\\\\ndataflow,moderate,random,0.0462,\\\\\\\"[0.0323, 0.0589]\\\\\\\",0.2390,0.1629,866\\\\r\\\\ndataflow,moderate,embedding_distance,0.1409,\\\\\\\"[0.1178, 0.1628]\\\\\\\",0.4480,0.2923,866\\\\r\\\\ndataflow,moderate,dataflow_aware,0.2055,\\\\\\\"[0.1766, 0.2333]\\\\\\\",0.5924,0.3825,866\\\\r\\\\ndataflow,moderate,DELTA(Embedding-Random),+0.0947,(+205.0%),+0.2090,+0.1294,\\\\r\\\\ndataflow,moderate,DELTA(Dataflow-Random),+0.1594,(+345.0%),+0.3533,+0.2196,\\\\r\\\\ndataflow,rich,random,0.0183,\\\\\\\"[0.0129, 0.0243]\\\\\\\",0.1109,0.0933,2019\\\\r\\\\ndataflow,rich,embedding_distance,0.0480,\\\\\\\"[0.0396, 0.0575]\\\\\\\",0.2541,0.1694,2019\\\\r\\\\ndataflow,rich,dataflow_aware,0.0976,\\\\\\\"[0.0852, 0.1129]\\\\\\\",0.4106,0.2540,2019\\\\r\\\\ndataflow,rich,DELTA(Embedding-Random),+0.0297,(+162.2%),+0.1431,+0.0761,\\\\r\\\\ndataflow,rich,DELTA(Dataflow-Random),+0.0792,(+432.4%),+0.2997,+0.1606,\\\\r\\\\nneg_difficulty,Q1_easy,random,0.0379,\\\\\\\"[0.0286, 0.0485]\\\\\\\",0.1821,0.1308,1505\\\\r\\\\nneg_difficulty,Q1_easy,embedding_distance,0.1056,\\\\\\\"[0.0904, 0.1190]\\\\\\\",0.3309,0.2333,1505\\\\r\\\\nneg_difficulty,Q1_easy,dataflow_aware,0.1575,\\\\\\\"[0.1395, 0.1775]\\\\\\\",0.4837,0.3134,1505\\\\r\\\\nneg_difficulty,Q1_easy,DELTA(Embedding-Random),+0.0678,(+178.9%),+0.1488,+0.1026,\\\\r\\\\nneg_difficulty,Q1_easy,DELTA(Dataflow-Random),+0.1196,(+315.8%),+0.3017,+0.1826,\\\\r\\\\nneg_difficulty,Q2,random,0.0338,\\\\\\\"[0.0252, 0.0438]\\\\\\\",0.1844,0.1312,1508\\\\r\\\\nneg_difficulty,Q2,embedding_distance,0.0981,\\\\\\\"[0.0836, 0.1141]\\\\\\\",0.3654,0.2349,1508\\\\r\\\\nneg_difficulty,Q2,dataflow_aware,0.1512,\\\\\\\"[0.1353, 0.1658]\\\\\\\",0.4920,0.3159,1508\\\\r\\\\nneg_difficulty,Q2,DELTA(Embedding-Random),+0.0643,(+190.2%),+0.1810,+0.1038,\\\\r\\\\nneg_difficulty,Q2,DELTA(Dataflow-Random),+0.1174,(+347.1%),+0.3077,+0.1847,\\\\r\\\\nneg_difficulty,Q3,random,0.0291,\\\\\\\"[0.0219, 0.0384]\\\\\\\",0.1636,0.1194,1510\\\\r\\\\nneg_difficulty,Q3,embedding_distance,0.0868,\\\\\\\"[0.0735, 0.0994]\\\\\\\",0.3430,0.2224,1510\\\\r\\\\nneg_difficulty,Q3,dataflow_aware,0.1371,\\\\\\\"[0.1212, 0.1530]\\\\\\\",0.4954,0.3090,1510\\\\r\\\\nneg_difficulty,Q3,DELTA(Embedding-Random),+0.0576,(+197.7%),+0.1795,+0.1029,\\\\r\\\\nneg_difficulty,Q3,DELTA(Dataflow-Random),+0.1079,(+370.5%),+0.3318,+0.1896,\\\\r\\\\nneg_difficulty,Q4_hard,random,0.0199,\\\\\\\"[0.0126, 0.0259]\\\\\\\",0.1259,0.1053,1509\\\\r\\\\nneg_difficulty,Q4_hard,embedding_distance,0.0656,\\\\\\\"[0.0530, 0.0815]\\\\\\\",0.3101,0.1974,1509\\\\r\\\\nneg_difficulty,Q4_hard,dataflow_aware,0.1047,\\\\\\\"[0.0908, 0.1186]\\\\\\\",0.4553,0.2729,1509\\\\r\\\\nneg_difficulty,Q4_hard,DELTA(Embedding-Random),+0.0457,(+230.0%),+0.1842,+0.0921,\\\\r\\\\nneg_difficulty,Q4_hard,DELTA(Dataflow-Random),+0.0848,(+426.7%),+0.3294,+0.1676,\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"dimension,stratum,strategy,R@1,R@1_ci95,R@5,MRR,count\\r\\nrepo_size,small,random,0.0730,\\\"[0.0393, 0.1180]\\\",0.4944,0.2765,178\\r\\nrepo_size,small,embedding_distance,0.2640,\\\"[0.1966, 0.3260]\\\",0.8034,0.4877,178\\r\\nrepo_size,small,dataflow_aware,0.3483,\\\"[0.2808, 0.4045]\\\",0.8764,0.5628,178\\r\\nrepo_size,small,DELTA(Embedding-Random),+0.1910,(+261.5%),+0.3090,+0.2112,\\r\\nrepo_size,small,DELTA(Dataflow-Random),+0.2753,(+376.9%),+0.3820,+0.2863,\\r\\nrepo_size,medium,random,0.0783,\\\"[0.0620, 0.0976]\\\",0.3689,0.2271,984\\r\\nrepo_size,medium,embedding_distance,0.2033,\\\"[0.1767, 0.2277]\\\",0.5803,0.3724,984\\r\\nrepo_size,medium,dataflow_aware,0.2886,\\\"[0.2611, 0.3171]\\\",0.7124,0.4717,984\\r\\nrepo_size,medium,DELTA(Embedding-Random),+0.1250,(+159.7%),+0.2114,+0.1452,\\r\\nrepo_size,medium,DELTA(Dataflow-Random),+0.2104,(+268.8%),+0.3435,+0.2446,\\r\\nrepo_size,large,random,0.0191,\\\"[0.0134, 0.0245]\\\",0.1155,0.0976,2978\\r\\nrepo_size,large,embedding_distance,0.0638,\\\"[0.0551, 0.0742]\\\",0.2787,0.1869,2978\\r\\nrepo_size,large,dataflow_aware,0.1048,\\\"[0.0940, 0.1159]\\\",0.4365,0.2694,2978\\r\\nrepo_size,large,DELTA(Embedding-Random),+0.0447,(+233.3%),+0.1632,+0.0893,\\r\\nrepo_size,large,DELTA(Dataflow-Random),+0.0856,(+447.4%),+0.3210,+0.1718,\\r\\nrepo_size,xlarge,random,0.0185,\\\"[0.0122, 0.0254]\\\",0.1025,0.0902,1892\\r\\nrepo_size,xlarge,embedding_distance,0.0529,\\\"[0.0433, 0.0629]\\\",0.2595,0.1742,1892\\r\\nrepo_size,xlarge,dataflow_aware,0.0909,\\\"[0.0782, 0.1010]\\\",0.3953,0.2431,1892\\r\\nrepo_size,xlarge,DELTA(Embedding-Random),+0.0344,(+185.7%),+0.1570,+0.0840,\\r\\nrepo_size,xlarge,DELTA(Dataflow-Random),+0.0724,(+391.4%),+0.2928,+0.1529,\\r\\npool_size,small,random,0.1191,\\\"[0.0956, 0.1456]\\\",0.5515,0.3194,680\\r\\npool_size,small,embedding_distance,0.3029,\\\"[0.2691, 0.3339]\\\",0.7765,0.5023,680\\r\\npool_size,small,dataflow_aware,0.4074,\\\"[0.3764, 0.4413]\\\",0.8912,0.6053,680\\r\\npool_size,small,DELTA(Embedding-Random),+0.1838,(+154.3%),+0.2250,+0.1829,\\r\\npool_size,small,DELTA(Dataflow-Random),+0.2882,(+242.0%),+0.3397,+0.2859,\\r\\npool_size,medium,random,0.0244,\\\"[0.0176, 0.0321]\\\",0.1681,0.1274,1309\\r\\npool_size,medium,embedding_distance,0.0909,\\\"[0.0756, 0.1047]\\\",0.3858,0.2436,1309\\r\\npool_size,medium,dataflow_aware,0.1444,\\\"[0.1244, 0.1628]\\\",0.5546,0.3305,1309\\r\\npool_size,medium,DELTA(Embedding-Random),+0.0665,(+271.9%),+0.2177,+0.1162,\\r\\npool_size,medium,DELTA(Dataflow-Random),+0.1199,(+490.6%),+0.3866,+0.2031,\\r\\npool_size,large,random,0.0171,\\\"[0.0136, 0.0213]\\\",0.0975,0.0865,4043\\r\\npool_size,large,embedding_distance,0.0524,\\\"[0.0450, 0.0594]\\\",0.2478,0.1679,4043\\r\\npool_size,large,dataflow_aware,0.0900,\\\"[0.0809, 0.1004]\\\",0.3891,0.2429,4043\\r\\npool_size,large,DELTA(Embedding-Random),+0.0354,(+207.2%),+0.1504,+0.0813,\\r\\npool_size,large,DELTA(Dataflow-Random),+0.0730,(+427.5%),+0.2916,+0.1564,\\r\\nsimilarity,low,random,0.0342,\\\"[0.0298, 0.0388]\\\",0.1784,0.1296,4798\\r\\nsimilarity,low,embedding_distance,0.0973,\\\"[0.0894, 0.1065]\\\",0.3479,0.2307,4798\\r\\nsimilarity,low,dataflow_aware,0.1442,\\\"[0.1342, 0.1559]\\\",0.4927,0.3113,4798\\r\\nsimilarity,low,DELTA(Embedding-Random),+0.0632,(+184.8%),+0.1694,+0.1010,\\r\\nsimilarity,low,DELTA(Dataflow-Random),+0.1100,(+322.0%),+0.3143,+0.1817,\\r\\nsimilarity,medium,random,0.0151,\\\"[0.0050, 0.0251]\\\",0.1089,0.0923,597\\r\\nsimilarity,medium,embedding_distance,0.0704,\\\"[0.0535, 0.0905]\\\",0.3049,0.2004,597\\r\\nsimilarity,medium,dataflow_aware,0.1290,\\\"[0.1022, 0.1575]\\\",0.4288,0.2800,597\\r\\nsimilarity,medium,DELTA(Embedding-Random),+0.0553,(+366.7%),+0.1960,+0.1081,\\r\\nsimilarity,medium,DELTA(Dataflow-Random),+0.1139,(+755.6%),+0.3199,+0.1877,\\r\\nsimilarity,high,random,0.0141,\\\"[0.0063, 0.0235]\\\",0.1068,0.0893,637\\r\\nsimilarity,high,embedding_distance,0.0440,\\\"[0.0298, 0.0582]\\\",0.2889,0.1772,637\\r\\nsimilarity,high,dataflow_aware,0.0958,\\\"[0.0691, 0.1162]\\\",0.4474,0.2598,637\\r\\nsimilarity,high,DELTA(Embedding-Random),+0.0298,(+211.1%),+0.1821,+0.0879,\\r\\nsimilarity,high,DELTA(Dataflow-Random),+0.0816,(+577.8%),+0.3407,+0.1705,\\r\\ndataflow,sparse,random,0.0334,\\\"[0.0280, 0.0400]\\\",0.1773,0.1285,3147\\r\\ndataflow,sparse,embedding_distance,0.1010,\\\"[0.0921, 0.1122]\\\",0.3603,0.2364,3147\\r\\ndataflow,sparse,dataflow_aware,0.1446,\\\"[0.1341, 0.1579]\\\",0.4967,0.3122,3147\\r\\ndataflow,sparse,DELTA(Embedding-Random),+0.0677,(+202.9%),+0.1830,+0.1079,\\r\\ndataflow,sparse,DELTA(Dataflow-Random),+0.1112,(+333.3%),+0.3194,+0.1837,\\r\\ndataflow,moderate,random,0.0462,\\\"[0.0323, 0.0589]\\\",0.2390,0.1629,866\\r\\ndataflow,moderate,embedding_distance,0.1409,\\\"[0.1178, 0.1628]\\\",0.4480,0.2923,866\\r\\ndataflow,moderate,dataflow_aware,0.2055,\\\"[0.1766, 0.2333]\\\",0.5924,0.3825,866\\r\\ndataflow,moderate,DELTA(Embedding-Random),+0.0947,(+205.0%),+0.2090,+0.1294,\\r\\ndataflow,moderate,DELTA(Dataflow-Random),+0.1594,(+345.0%),+0.3533,+0.2196,\\r\\ndataflow,rich,random,0.0183,\\\"[0.0129, 0.0243]\\\",0.1109,0.0933,2019\\r\\ndataflow,rich,embedding_distance,0.0480,\\\"[0.0396, 0.0575]\\\",0.2541,0.1694,2019\\r\\ndataflow,rich,dataflow_aware,0.0976,\\\"[0.0852, 0.1129]\\\",0.4106,0.2540,2019\\r\\ndataflow,rich,DELTA(Embedding-Random),+0.0297,(+162.2%),+0.1431,+0.0761,\\r\\ndataflow,rich,DELTA(Dataflow-Random),+0.0792,(+432.4%),+0.2997,+0.1606,\\r\\nneg_difficulty,Q1_easy,random,0.0379,\\\"[0.0286, 0.0485]\\\",0.1821,0.1308,1505\\r\\nneg_difficulty,Q1_easy,embedding_distance,0.1056,\\\"[0.0904, 0.1190]\\\",0.3309,0.2333,1505\\r\\nneg_difficulty,Q1_easy,dataflow_aware,0.1575,\\\"[0.1395, 0.1775]\\\",0.4837,0.3134,1505\\r\\nneg_difficulty,Q1_easy,DELTA(Embedding-Random),+0.0678,(+178.9%),+0.1488,+0.1026,\\r\\nneg_difficulty,Q1_easy,DELTA(Dataflow-Random),+0.1196,(+315.8%),+0.3017,+0.1826,\\r\\nneg_difficulty,Q2,random,0.0338,\\\"[0.0252, 0.0438]\\\",0.1844,0.1312,1508\\r\\nneg_difficulty,Q2,embedding_distance,0.0981,\\\"[0.0836, 0.1141]\\\",0.3654,0.2349,1508\\r\\nneg_difficulty,Q2,dataflow_aware,0.1512,\\\"[0.1353, 0.1658]\\\",0.4920,0.3159,1508\\r\\nneg_difficulty,Q2,DELTA(Embedding-Random),+0.0643,(+190.2%),+0.1810,+0.1038,\\r\\nneg_difficulty,Q2,DELTA(Dataflow-Random),+0.1174,(+347.1%),+0.3077,+0.1847,\\r\\nneg_difficulty,Q3,random,0.0291,\\\"[0.0219, 0.0384]\\\",0.1636,0.1194,1510\\r\\nneg_difficulty,Q3,embedding_distance,0.0868,\\\"[0.0735, 0.0994]\\\",0.3430,0.2224,1510\\r\\nneg_difficulty,Q3,dataflow_aware,0.1371,\\\"[0.1212, 0.1530]\\\",0.4954,0.3090,1510\\r\\nneg_difficulty,Q3,DELTA(Embedding-Random),+0.0576,(+197.7%),+0.1795,+0.1029,\\r\\nneg_difficulty,Q3,DELTA(Dataflow-Random),+0.1079,(+370.5%),+0.3318,+0.1896,\\r\\nneg_difficulty,Q4_hard,random,0.0199,\\\"[0.0126, 0.0259]\\\",0.1259,0.1053,1509\\r\\nneg_difficulty,Q4_hard,embedding_distance,0.0656,\\\"[0.0530, 0.0815]\\\",0.3101,0.1974,1509\\r\\nneg_difficulty,Q4_hard,dataflow_aware,0.1047,\\\"[0.0908, 0.1186]\\\",0.4553,0.2729,1509\\r\\nneg_difficulty,Q4_hard,DELTA(Embedding-Random),+0.0457,(+230.0%),+0.1842,+0.0921,\\r\\nneg_difficulty,Q4_hard,DELTA(Dataflow-Random),+0.0848,(+426.7%),+0.3294,+0.1676,\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ufmm5Rw986K3FuZtDc8TP1`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "head -50 /root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "32e05b85-2d35-4767-8155-5e0ef3fec2d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CJ5s8uRHp9eCndJGjzcDa7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1309,
+      "cache_read_input_tokens": 47510,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1309
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-14T20:30:13.880Z_
+
+<details><summary>↩ Tool result · `toolu_01Ufmm5Rw986K3FuZtDc8TP1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"strategies\\\": [\\n      \\\"random\\\",\\n      \\\"embedding_distance\\\",\\n      \\\"dataflow_aware\\\"\\n    ],\\n    \\\"seeds\\\": [\\n      42,\\n      43\\n    ],\\n    \\\"repo_size_bins\\\": {\\n      \\\"small\\\": [\\n        0,\\n        50\\n      ],\\n      \\\"medium\\\": [\\n        50,\\n        200\\n      ],\\n      \\\"large\\\": [\\n        200,\\n        500\\n      ],\\n      \\\"xlarge\\\": [\\n        500,\\n        Infinity\\n      ]\\n    },\\n    \\\"pool_size_bins\\\": {\\n      \\\"small\\\": [\\n        0,\\n        20\\n      ],\\n      \\\"medium\\\": [\\n        20,\\n        40\\n      ],\\n      \\\"large\\\": [\\n        40,\\n        51\\n      ]\\n    },\\n    \\\"similarity_bins\\\": {\\n      \\\"low\\\": [\\n        0.0,\\n        0.3\\n      ],\\n      \\\"medium\\\": [\\n        0.3,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "13598dfa-c8c8-424e-8e1b-0a1a96e122eb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"strategies\\\\\\\": [\\\\n      \\\\\\\"random\\\\\\\",\\\\n      \\\\\\\"embedding_distance\\\\\\\",\\\\n      \\\\\\\"dataflow_aware\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"seeds\\\\\\\": [\\\\n      42,\\\\n      43\\\\n    ],\\\\n    \\\\\\\"repo_size_bins\\\\\\\": {\\\\n      \\\\\\\"small\\\\\\\": [\\\\n        0,\\\\n        50\\\\n      ],\\\\n      \\\\\\\"medium\\\\\\\": [\\\\n        50,\\\\n        200\\\\n      ],\\\\n      \\\\\\\"large\\\\\\\": [\\\\n        200,\\\\n        500\\\\n      ],\\\\n      \\\\\\\"xlarge\\\\\\\": [\\\\n        500,\\\\n        Infinity\\\\n      ]\\\\n    },\\\\n    \\\\\\\"pool_size_bins\\\\\\\": {\\\\n      \\\\\\\"small\\\\\\\": [\\\\n        0,\\\\n        20\\\\n      ],\\\\n      \\\\\\\"medium\\\\\\\": [\\\\n        20,\\\\n        40\\\\n      ],\\\\n      \\\\\\\"large\\\\\\\": [\\\\n        40,\\\\n        51\\\\n      ]\\\\n    },\\\\n    \\\\\\\"similarity_bins\\\\\\\": {\\\\n      \\\\\\\"low\\\\\\\": [\\\\n        0.0,\\\\n        0.3\\\\n      ],\\\\n      \\\\\\\"medium\\\\\\\": [\\\\n        0.3,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"strategies\\\": [\\n      \\\"random\\\",\\n      \\\"embedding_distance\\\",\\n      \\\"dataflow_aware\\\"\\n    ],\\n    \\\"seeds\\\": [\\n      42,\\n      43\\n    ],\\n    \\\"repo_size_bins\\\": {\\n      \\\"small\\\": [\\n        0,\\n        50\\n      ],\\n      \\\"medium\\\": [\\n        50,\\n        200\\n      ],\\n      \\\"large\\\": [\\n        200,\\n        500\\n      ],\\n      \\\"xlarge\\\": [\\n        500,\\n        Infinity\\n      ]\\n    },\\n    \\\"pool_size_bins\\\": {\\n      \\\"small\\\": [\\n        0,\\n        20\\n      ],\\n      \\\"medium\\\": [\\n        20,\\n        40\\n      ],\\n      \\\"large\\\": [\\n        40,\\n        51\\n      ]\\n    },\\n    \\\"similarity_bins\\\": {\\n      \\\"low\\\": [\\n        0.0,\\n        0.3\\n      ],\\n      \\\"medium\\\": [\\n        0.3,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+Pipeline 验证通过，所有输出完整。汇报如下：
+
+---
+
+## 汇报
+
+### 1. 脚本信息
+
+- **路径**: `/root/structfuse/evaluation/analyze_stratified.py` (910 行)
+- **关键参数**:
+  - `--m1-data` (required): M1 all.jsonl 路径
+  - `--output-dir` (required): 输出目录
+  - `--predictions-dir` / `--checkpoints-dir` / `--dry-run`: 三选一数据来源
+  - `--val-data-dir`: val JSONL 目录（默认 `/root/autodl-tmp/structfuse/full_m2_training_data`）
+  - `--dataflow-graph`: dataflow_graph.json 路径（启用 structural data 维度）
+  - `--seeds`: 默认 `42,43,44`
+  - `--n-bootstrap`: bootstrap CI 次数，默认 1000
+  - `--device`: 默认 `cuda`
+
+### 2. 5 个分层维度 — 全部已实现
+
+| 维度 | 状态 | bins |
+|------|------|------|
+| repo_size | ✅ | small(<50), medium(50-200), large(200-500), xlarge(500+) |
+| pool_size | ✅ | small(<20), medium(20-40), large(40-51) |
+| query-pos similarity | ✅ | low(<0.3), medium(0.3-0.6), high(0.6+) |
+| structural data availability (dataflow) | ✅ | sparse(<2 edges), moderate(2-10), rich(10+) |
+| neg_difficulty quartile | ✅ | Q1_easy, Q2, Q3, Q4_hard |
+
+### 3. GPU 需求
+
+- `--dry-run` 模式: **CPU 即可**（mock predictions + text-overlap similarity）
+- `--checkpoints-dir` 模式: **需要 GPU**（加载模型做 forward pass） → 当前 GPU 被训练占用，**阻塞**
+- `--predictions-dir` 模式: **CPU 即可**，但目前无预计算 predictions 文件
+
+### 4. dry-run 执行结果
+
+已成功运行（seeds=42,43, n_bootstrap=200, CPU, 27秒完成），产出:
+- `/root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_results.json`
+- `/root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_summary.csv`
+- `/root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_plots.pdf`
+
+CSV 覆盖全部 5 维度 × 3 策略，含 bootstrap 95% CI 和 delta 对比。Pipeline 端到端验证通过。
+
+### 5. 真实数据运行阻塞
+
+**阻塞原因**: 只有 `random_s42/43/44` 的 checkpoints 存在（`/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/`），缺少 `embedding_distance_s*` 和 `dataflow_aware_s*` checkpoints。且 checkpoint 模式需要 GPU。
+
+**解决方案**（优先级排序）:
+1. 等当前训练完成后，用 `eval_retrieval.py` 对已有 checkpoints 生成 per-instance predictions JSON，然后用 `--predictions-dir` 在 CPU 上跑
+2. 如果 embedding_distance / dataflow_aware 策略有训练计划，等 checkpoints 产出后用 `--checkpoints-dir` 跑完整对比
+3. 只分析 random 策略的分层特征（不做策略间对比），可用现有 checkpoints + GPU 空闲时段执行
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "uuid": "0880db0c-b258-4679-b525-abf2d4180761",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EHdKak7McCbTXEp97uZwZw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4766,
+      "cache_read_input_tokens": 48819,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4766
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 76_
+
+Pipeline 验证通过，所有输出完整。汇报如下：
+
+---
+
+## 汇报
+
+### 1. 脚本信息
+
+- **路径**: `/root/structfuse/evaluation/analyze_stratified.py` (910 行)
+- **关键参数**:
+  - `--m1-data` (required): M1 all.jsonl 路径
+  - `--output-dir` (required): 输出目录
+  - `--predictions-dir` / `--checkpoints-dir` / `--dry-run`: 三选一数据来源
+  - `--val-data-dir`: val JSONL 目录（默认 `/root/autodl-tmp/structfuse/full_m2_training_data`）
+  - `--dataflow-graph`: dataflow_graph.json 路径（启用 structural data 维度）
+  - `--seeds`: 默认 `42,43,44`
+  - `--n-bootstrap`: bootstrap CI 次数，默认 1000
+  - `--device`: 默认 `cuda`
+
+### 2. 5 个分层维度 — 全部已实现
+
+| 维度 | 状态 | bins |
+|------|------|------|
+| repo_size | ✅ | small(<50), medium(50-200), large(200-500), xlarge(500+) |
+| pool_size | ✅ | small(<20), medium(20-40), large(40-51) |
+| query-pos similarity | ✅ | low(<0.3), medium(0.3-0.6), high(0.6+) |
+| structural data availability (dataflow) | ✅ | sparse(<2 edges), moderate(2-10), rich(10+) |
+| neg_difficulty quartile | ✅ | Q1_easy, Q2, Q3, Q4_hard |
+
+### 3. GPU 需求
+
+- `--dry-run` 模式: **CPU 即可**（mock predictions + text-overlap similarity）
+- `--checkpoints-dir` 模式: **需要 GPU**（加载模型做 forward pass） → 当前 GPU 被训练占用，**阻塞**
+- `--predictions-dir` 模式: **CPU 即可**，但目前无预计算 predictions 文件
+
+### 4. dry-run 执行结果
+
+已成功运行（seeds=42,43, n_bootstrap=200, CPU, 27秒完成），产出:
+- `/root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_results.json`
+- `/root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_summary.csv`
+- `/root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_plots.pdf`
+
+CSV 覆盖全部 5 维度 × 3 策略，含 bootstrap 95% CI 和 delta 对比。Pipeline 端到端验证通过。
+
+### 5. 真实数据运行阻塞
+
+**阻塞原因**: 只有 `random_s42/43/44` 的 checkpoints 存在（`/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/`），缺少 `embedding_distance_s*` 和 `dataflow_aware_s*` checkpoints。且 checkpoint 模式需要 GPU。
+
+**解决方案**（优先级排序）:
+1. 等当前训练完成后，用 `eval_retrieval.py` 对已有 checkpoints 生成 per-instance predictions JSON，然后用 `--predictions-dir` 在 CPU 上跑
+2. 如果 embedding_distance / dataflow_aware 策略有训练计划，等 checkpoints 产出后用 `--checkpoints-dir` 跑完整对比
+3. 只分析 random 策略的分层特征（不做策略间对比），可用现有 checkpoints + GPU 空闲时段执行
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 150353,
+  "duration_api_ms": 120829,
+  "num_turns": 27,
+  "stop_reason": "end_turn",
+  "session_id": "2055c9a1-801e-4453-94e4-f28b2ce5159d",
+  "total_cost_usd": 0.6754359999999999,
+  "usage": {
+    "input_tokens": 20,
+    "cache_creation_input_tokens": 42138,
+    "cache_read_input_tokens": 519669,
+    "output_tokens": 6029,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 42138,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1050,
+        "cache_read_input_tokens": 48819,
+        "cache_creation_input_tokens": 4766,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4766
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1334,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001414,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 20,
+      "outputTokens": 6029,
+      "cacheReadInputTokens": 519669,
+      "cacheCreationInputTokens": 42138,
+      "webSearchRequests": 0,
+      "costUSD": 0.6740219999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "f31e3769-9029-4be4-81e9-13ee871c0fa8"
+}
+```
+
+</details>
+
+---

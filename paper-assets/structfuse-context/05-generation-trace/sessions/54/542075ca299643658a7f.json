@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "542075ca299643658a7f",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops kill e2e and verify",
+  "task_key": "worker_ops_kill-e2e-and-verify_20260515T204812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-e2e-and-verify_20260515T204812_result.json",
+    "occurrence": 1,
+    "bytes": 930,
+    "sha256": "e02b78718d8d69a43cdddcb613a2a1773475f57b26154d38103a5038de555556"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n**Kill 确认**：\n- PID 94874（E2E eval）已 kill，PID 94869 同时清理\n- GPU 0 显存从 ~74 GB → ~62.6 GB，**释放 ~11.5 GB**\n\n**训练进程存活**：\n- PID 18427（Qwen dataflow_s43）：存活，CPU 99.6%，运行 4h55m\n- PID 61328（SWE-bench retrieval eval）：存活，CPU 105%，运行 2h03m\n\n**GPU 利用率（kill 后）**：\n| GPU | 利用率 | 显存使用 / 总量 |\n|-----|--------|----------------|\n| 0 | 100% | 62,620 / 97,887 MiB |\n| 1 | 100% | 54,767 / 97,887 MiB |\n\n**训练进度**（日志最新）：\n- 当前在 **step 900**，epoch 1（共 1405 steps/epoch）\n- loss 持续下降：0.67→0.07→0.02（step 50→400→900）\n- eval@500：val_loss=0.4617, **R@1=0.5495**, R@5=0.9728, R@10=1.0\n\n**eval@1000 尚未到达**，训练正在 step 900，预计很快会触发。trainer_state.json 尚未生成（只有 best checkpoint 目录）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-e2e-and-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64cee57de5d3d34aba69",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "experiment tau pilot ablation",
+  "task_key": "worker_experiment_tau_pilot_ablation_20260512T235301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_tau_pilot_ablation_20260512T235301_result.json",
+    "occurrence": 1,
+    "bytes": 174,
+    "sha256": "80abade3832c122a897bf302f1b81d50d9bbcf2a387f2f4731c9b8a8e976152a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动（PID 269302，cuda:4）。3 个 runs 串行执行（τ=0.05→0.1→0.2），每个约 10-15 分钟。4.5 分钟后自动回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-tau-pilot-ablation.md"
+}

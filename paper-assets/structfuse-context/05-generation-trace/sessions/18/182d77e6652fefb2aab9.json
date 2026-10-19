@@ -1,0 +1,1645 @@
+{
+  "schema_version": "1.0",
+  "id": "182d77e6652fefb2aab9",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "code d062 analysis script",
+  "task_key": "worker_code_d062_analysis_script_20260516T110856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d062_analysis_script_20260516T110856.log",
+    "occurrence": 1,
+    "bytes": 68730,
+    "sha256": "e6a7bf48777085ff6425b77ea2039eb69688bfb80838f44bf0fc48c50b0d2d81"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+                "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "19685adc-ae19-4b6e-a435-186dcfd715d9",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-structfuse-context/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778947200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "91f40737-ca78-4653-91e5-748850bbc327",
+                "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me break this task down:\n\n1. First, I need to check what files exist on the server in the results directory\n2. Write the analysis script\n3. Deploy it to the server\n4. Run a dry-run validation\n\nLet me start by checking the server state and understanding the data format.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "a2207776-5173-40f2-97b9-3ae7d9302ecc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pxs6kcqRSUcszGFzKNQ5Ec",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12047,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12047
+                },
+                "output_tokens": 31,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先看一下服务器上现有的结果文件和数据格式。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "16b47e54-e471-4766-bc9a-295fc75f65a2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pxs6kcqRSUcszGFzKNQ5Ec",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12047,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12047
+                },
+                "output_tokens": 31,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011A5dPJSZNh35iowE5K8Jsh",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "908d0ce3-677d-48ec-8452-e02fcff0035f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Pxs6kcqRSUcszGFzKNQ5Ec",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12047,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12047
+                },
+                "output_tokens": 31,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T11:09:10.119Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_011A5dPJSZNh35iowE5K8Jsh",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "535cb836-5e21-4d40-b279-d58ba94a3e42",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__detect_image"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013SGWLpSbomXzkF7vpKECbD",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "ls -la /root/autodl-tmp/structfuse/d062_results/selection_*.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "02242888-a892-4b9d-9f74-709766d08bd1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016GRbs43ztFe8SjaifSKkAo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 974,
+                "cache_read_input_tokens": 23888,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 974
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T11:09:14.271Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013SGWLpSbomXzkF7vpKECbD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 281 May 16 17:13 /root/autodl-tmp/structfuse/d062_results/selection_random_s42_best_by_recall_at_1.json\\\\n-rw-r--r-- 1 root root 278 May 16 16:36 /root/autodl-tmp/structfuse/d062_results/selection_random_s42_best_by_val_loss.json\\\\n-rw-r--r-- 1 root root 291 May 16 18:34 /root/autodl-tmp/structfuse/d062_results/selection_random_s43_best_by_recall_at_1.json\\\\n-rw-r--r-- 1 root root 276 May 16 17:50 /root/autodl-tmp/structfuse/d062_results/selection_random_s43_best_by_val_loss.json\\\\n-rw-r--r-- 1 root root 276 May 16 19:03 /root/autodl-tmp/structfuse/d062_results/selection_random_s44_best_by_val_loss.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "1a651633-49f8-4eff-9a6e-8bc770bba2de",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 281 May 16 17:13 /root/autodl-tmp/structfuse/d062_results/selection_random_s42_best_by_recall_at_1.json\\\\n-rw-r--r-- 1 root root 278 May 16 16:36 /root/autodl-tmp/structfuse/d062_results/selection_random_s42_best_by_val_loss.json\\\\n-rw-r--r-- 1 root root 291 May 16 18:34 /root/autodl-tmp/structfuse/d062_results/selection_random_s43_best_by_recall_at_1.json\\\\n-rw-r--r-- 1 root root 276 May 16 17:50 /root/autodl-tmp/structfuse/d062_results/selection_random_s43_best_by_val_loss.json\\\\n-rw-r--r-- 1 root root 276 May 16 19:03 /root/autodl-tmp/structfuse/d062_results/selection_random_s44_best_by_val_loss.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 281 May 16 17:13 /root/autodl-tmp/structfuse/d062_results/selection_random_s42_best_by_recall_at_1.json\\n-rw-r--r-- 1 root root 278 May 16 16:36 /root/autodl-tmp/structfuse/d062_results/selection_random_s42_best_by_val_loss.json\\n-rw-r--r-- 1 root root 291 May 16 18:34 /root/autodl-tmp/structfuse/d062_results/selection_random_s43_best_by_recall_at_1.json\\n-rw-r--r-- 1 root root 276 May 16 17:50 /root/autodl-tmp/structfuse/d062_results/selection_random_s43_best_by_val_loss.json\\n-rw-r--r-- 1 root root 276 May 16 19:03 /root/autodl-tmp/structfuse/d062_results/selection_random_s44_best_by_val_loss.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个文件（random s44 的 best_by_recall_at_1 还没出来）。看一下数据格式。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "67772618-256b-40a8-a3a1-1447fa72ded8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VGaTkgnwfow6YVUCvdgDpY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 501,
+                "cache_read_input_tokens": 24862,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 501
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016euUqnAXYvzcTjH3CK63tC",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "cat /root/autodl-tmp/structfuse/d062_results/selection_random_s42_best_by_recall_at_1.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "17394baa-4e95-4008-9f54-d217ae7ce21b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VGaTkgnwfow6YVUCvdgDpY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 501,
+                "cache_read_input_tokens": 24862,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 501
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T11:09:18.746Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016euUqnAXYvzcTjH3CK63tC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"recall@1\\\\\\\": 0.23015873015873015,\\\\n  \\\\\\\"recall@5\\\\\\\": 0.625,\\\\n  \\\\\\\"recall@10\\\\\\\": 0.8015873015873016,\\\\n  \\\\\\\"total\\\\\\\": 504,\\\\n  \\\\\\\"pool_size\\\\\\\": 50,\\\\n  \\\\\\\"avg_actual_pool\\\\\\\": 50.0,\\\\n  \\\\\\\"subset\\\\\\\": \\\\\\\"selection\\\\\\\",\\\\n  \\\\\\\"ckpt_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "77a35738-be7e-42bf-8dc7-34f44378ad80",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"recall@1\\\\\\\": 0.23015873015873015,\\\\n  \\\\\\\"recall@5\\\\\\\": 0.625,\\\\n  \\\\\\\"recall@10\\\\\\\": 0.8015873015873016,\\\\n  \\\\\\\"total\\\\\\\": 504,\\\\n  \\\\\\\"pool_size\\\\\\\": 50,\\\\n  \\\\\\\"avg_actual_pool\\\\\\\": 50.0,\\\\n  \\\\\\\"subset\\\\\\\": \\\\\\\"selection\\\\\\\",\\\\n  \\\\\\\"ckpt_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"recall@1\\\": 0.23015873015873015,\\n  \\\"recall@5\\\": 0.625,\\n  \\\"recall@10\\\": 0.8015873015873016,\\n  \\\"total\\\": 504,\\n  \\\"pool_size\\\": 50,\\n  \\\"avg_actual_pool\\\": 50.0,\\n  \\\"subset\\\": \\\"selection\\\",\\n  \\\"ckpt_dir\\\": \\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014r2AK2pHenB1A7h9EZyECd",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "cat /root/autodl-tmp/structfuse/d062_results/selection_random_s42_best_by_val_loss.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "640ebe6b-8dce-4379-a887-b27ff17e6746",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VGaTkgnwfow6YVUCvdgDpY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 501,
+                "cache_read_input_tokens": 24862,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 501
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T11:09:19.315Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014r2AK2pHenB1A7h9EZyECd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"recall@1\\\\\\\": 0.23015873015873015,\\\\n  \\\\\\\"recall@5\\\\\\\": 0.625,\\\\n  \\\\\\\"recall@10\\\\\\\": 0.8015873015873016,\\\\n  \\\\\\\"total\\\\\\\": 504,\\\\n  \\\\\\\"pool_size\\\\\\\": 50,\\\\n  \\\\\\\"avg_actual_pool\\\\\\\": 50.0,\\\\n  \\\\\\\"subset\\\\\\\": \\\\\\\"selection\\\\\\\",\\\\n  \\\\\\\"ckpt_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_val_loss\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "f7e9960a-97b5-4069-b9d7-75ec6b2a7c6e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"recall@1\\\\\\\": 0.23015873015873015,\\\\n  \\\\\\\"recall@5\\\\\\\": 0.625,\\\\n  \\\\\\\"recall@10\\\\\\\": 0.8015873015873016,\\\\n  \\\\\\\"total\\\\\\\": 504,\\\\n  \\\\\\\"pool_size\\\\\\\": 50,\\\\n  \\\\\\\"avg_actual_pool\\\\\\\": 50.0,\\\\n  \\\\\\\"subset\\\\\\\": \\\\\\\"selection\\\\\\\",\\\\n  \\\\\\\"ckpt_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_val_loss\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"recall@1\\\": 0.23015873015873015,\\n  \\\"recall@5\\\": 0.625,\\n  \\\"recall@10\\\": 0.8015873015873016,\\n  \\\"total\\\": 504,\\n  \\\"pool_size\\\": 50,\\n  \\\"avg_actual_pool\\\": 50.0,\\n  \\\"subset\\\": \\\"selection\\\",\\n  \\\"ckpt_dir\\\": \\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_val_loss\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "So the JSON format is flat - no nested `metrics` or `per_query` data. Keys are `recall@1`, `recall@5`, `recall@10`, `total`, `pool_size`, `avg_actual_pool`, `subset`, `ckpt_dir`. No per-query instance-level data, so I'll use the binomial bootstrap approach.\n\nLet me also check the other files quickly.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "111bf960-4957-4797-a7b6-02b122a1647a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VRkJ3srpKnt1WYu25Ywikg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 865,
+                "cache_read_input_tokens": 25363,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 865
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据格式清楚了：flat JSON，没有 `metrics` 嵌套，没有 per-query 数据。key 是 `recall@1`, `recall@5`, `recall@10`, `total` 等。需要用 binomial bootstrap。\n\n再看其余文件确认格式一致。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "f0e19b5b-62d5-4236-821a-a1041b41c962",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VRkJ3srpKnt1WYu25Ywikg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 865,
+                "cache_read_input_tokens": 25363,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 865
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014QukGRUrTPAThsDnEzi6aP",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "cat /root/autodl-tmp/structfuse/d062_results/selection_random_s43_best_by_recall_at_1.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "8130e6f1-852a-4266-a228-5e714a5b48cf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VRkJ3srpKnt1WYu25Ywikg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 865,
+                "cache_read_input_tokens": 25363,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 865
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T11:09:25.683Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014QukGRUrTPAThsDnEzi6aP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"recall@1\\\\\\\": 0.503968253968254,\\\\n  \\\\\\\"recall@5\\\\\\\": 0.878968253968254,\\\\n  \\\\\\\"recall@10\\\\\\\": 0.9623015873015873,\\\\n  \\\\\\\"total\\\\\\\": 504,\\\\n  \\\\\\\"pool_size\\\\\\\": 50,\\\\n  \\\\\\\"avg_actual_pool\\\\\\\": 50.0,\\\\n  \\\\\\\"subset\\\\\\\": \\\\\\\"selection\\\\\\\",\\\\n  \\\\\\\"ckpt_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/best_by_recall_at_1\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "33506205-fada-4726-b34b-99a805d985c7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"recall@1\\\\\\\": 0.503968253968254,\\\\n  \\\\\\\"recall@5\\\\\\\": 0.878968253968254,\\\\n  \\\\\\\"recall@10\\\\\\\": 0.9623015873015873,\\\\n  \\\\\\\"total\\\\\\\": 504,\\\\n  \\\\\\\"pool_size\\\\\\\": 50,\\\\n  \\\\\\\"avg_actual_pool\\\\\\\": 50.0,\\\\n  \\\\\\\"subset\\\\\\\": \\\\\\\"selection\\\\\\\",\\\\n  \\\\\\\"ckpt_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/best_by_recall_at_1\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"recall@1\\\": 0.503968253968254,\\n  \\\"recall@5\\\": 0.878968253968254,\\n  \\\"recall@10\\\": 0.9623015873015873,\\n  \\\"total\\\": 504,\\n  \\\"pool_size\\\": 50,\\n  \\\"avg_actual_pool\\\": 50.0,\\n  \\\"subset\\\": \\\"selection\\\",\\n  \\\"ckpt_dir\\\": \\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/best_by_recall_at_1\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Dmue6QY3sbov23DSdCDMAc",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "cat /root/autodl-tmp/structfuse/d062_results/selection_random_s43_best_by_val_loss.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "1123a3ab-8ab1-4d15-8719-9c75e78facb6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VRkJ3srpKnt1WYu25Ywikg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 865,
+                "cache_read_input_tokens": 25363,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 865
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T11:09:26.664Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Dmue6QY3sbov23DSdCDMAc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"recall@1\\\\\\\": 0.3412698412698413,\\\\n  \\\\\\\"recall@5\\\\\\\": 0.75,\\\\n  \\\\\\\"recall@10\\\\\\\": 0.8849206349206349,\\\\n  \\\\\\\"total\\\\\\\": 504,\\\\n  \\\\\\\"pool_size\\\\\\\": 50,\\\\n  \\\\\\\"avg_actual_pool\\\\\\\": 50.0,\\\\n  \\\\\\\"subset\\\\\\\": \\\\\\\"selection\\\\\\\",\\\\n  \\\\\\\"ckpt_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/best_by_val_loss\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "ba5cd858-5e28-48aa-bbc0-80e780586f61",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"recall@1\\\\\\\": 0.3412698412698413,\\\\n  \\\\\\\"recall@5\\\\\\\": 0.75,\\\\n  \\\\\\\"recall@10\\\\\\\": 0.8849206349206349,\\\\n  \\\\\\\"total\\\\\\\": 504,\\\\n  \\\\\\\"pool_size\\\\\\\": 50,\\\\n  \\\\\\\"avg_actual_pool\\\\\\\": 50.0,\\\\n  \\\\\\\"subset\\\\\\\": \\\\\\\"selection\\\\\\\",\\\\n  \\\\\\\"ckpt_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/best_by_val_loss\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"recall@1\\\": 0.3412698412698413,\\n  \\\"recall@5\\\": 0.75,\\n  \\\"recall@10\\\": 0.8849206349206349,\\n  \\\"total\\\": 504,\\n  \\\"pool_size\\\": 50,\\n  \\\"avg_actual_pool\\\": 50.0,\\n  \\\"subset\\\": \\\"selection\\\",\\n  \\\"ckpt_dir\\\": \\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/best_by_val_loss\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012yFBvT7NTbjoAfkGTv93hs",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "cat /root/autodl-tmp/structfuse/d062_results/selection_random_s44_best_by_val_loss.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "68dcbb37-9bfa-4d4a-a457-7d5133e7a08a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VRkJ3srpKnt1WYu25Ywikg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 865,
+                "cache_read_input_tokens": 25363,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 865
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T11:09:27.144Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012yFBvT7NTbjoAfkGTv93hs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"recall@1\\\\\\\": 0.3531746031746032,\\\\n  \\\\\\\"recall@5\\\\\\\": 0.75,\\\\n  \\\\\\\"recall@10\\\\\\\": 0.8928571428571429,\\\\n  \\\\\\\"total\\\\\\\": 504,\\\\n  \\\\\\\"pool_size\\\\\\\": 50,\\\\n  \\\\\\\"avg_actual_pool\\\\\\\": 50.0,\\\\n  \\\\\\\"subset\\\\\\\": \\\\\\\"selection\\\\\\\",\\\\n  \\\\\\\"ckpt_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s44/best_by_val_loss\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "9a3cd7d9-11dc-449b-b657-5656c435bd2a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"recall@1\\\\\\\": 0.3531746031746032,\\\\n  \\\\\\\"recall@5\\\\\\\": 0.75,\\\\n  \\\\\\\"recall@10\\\\\\\": 0.8928571428571429,\\\\n  \\\\\\\"total\\\\\\\": 504,\\\\n  \\\\\\\"pool_size\\\\\\\": 50,\\\\n  \\\\\\\"avg_actual_pool\\\\\\\": 50.0,\\\\n  \\\\\\\"subset\\\\\\\": \\\\\\\"selection\\\\\\\",\\\\n  \\\\\\\"ckpt_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s44/best_by_val_loss\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"recall@1\\\": 0.3531746031746032,\\n  \\\"recall@5\\\": 0.75,\\n  \\\"recall@10\\\": 0.8928571428571429,\\n  \\\"total\\\": 504,\\n  \\\"pool_size\\\": 50,\\n  \\\"avg_actual_pool\\\": 50.0,\\n  \\\"subset\\\": \\\"selection\\\",\\n  \\\"ckpt_dir\\\": \\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s44/best_by_val_loss\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture of the data:\n\n- `selection_random_s42_best_by_recall_at_1.json`: R@1=0.2302\n- `selection_random_s42_best_by_val_loss.json`: R@1=0.2302\n- `selection_random_s43_best_by_recall_at_1.json`: R@1=0.5040\n- `selection_random_s43_best_by_val_loss.json`: R@1=0.3413\n- `selection_random_s44_best_by_val_loss.json`: R@1=0.3532\n\n\n- `selection_random_s44_best_by_recall_at_1.json`: R@1=0.3532\n\nThe JSON files have a flat structure with recall metrics at different cutoffs, total counts, and pool information. Since there's no per-query breakdown, I'll use binomial bootstrap for significance testing. Let me write the script and verify the scripts directory exists on the server.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "e89b78b4-50e2-458d-87f5-7d93f7fae86e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VC692CztAB3r8SCjRgs3Wu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1519,
+                "cache_read_input_tokens": 26228,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1519
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据格式一致。现在写脚本，然后部署到服务器。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "fe807dfa-8501-481d-b4e6-dab5defee749",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VC692CztAB3r8SCjRgs3Wu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1519,
+                "cache_read_input_tokens": 26228,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1519
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L3ZzSgMkpC1GpZFAtXK9M1",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "ls -d /root/structfuse/scripts/ 2>/dev/null",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "0b4754fa-a325-43de-adaa-f1001939291b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VC692CztAB3r8SCjRgs3Wu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1519,
+                "cache_read_input_tokens": 26228,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1519
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T11:09:33.419Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L3ZzSgMkpC1GpZFAtXK9M1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "b638c33f-3c20-4920-94cf-56d849c756d4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019A4qypFqBqyWMaLiiY993g",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "ls -d /root/structfuse/scripts/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "21347492-bc6a-4319-99bc-d00ec0d0e807",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VuoRvwjEUY2AjQRLG5Apc6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 490,
+                "cache_read_input_tokens": 27747,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 490
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T11:09:36.642Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019A4qypFqBqyWMaLiiY993g",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/structfuse/scripts/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "8668f6e8-6d7e-42f1-861c-03a8156999d7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/structfuse/scripts/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/structfuse/scripts/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "目录存在。开始写脚本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "9ac8855c-bbef-4aa0-ac3f-a70167578b43",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N2DHyeUMop4h9BHFT7ZqPP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 198,
+                "cache_read_input_tokens": 28237,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 198
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VL6hfnHy5ZHd3MssZmrd1M",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb1-42106",
+                "account": "root",
+                "command": "cat > /root/structfuse/scripts/d062_analysis.py << 'PYTHON_EOF'\n\"\"\"D062 selection-set analysis: summary table, stratified effects, bootstrap CIs.\n\nReads /root/autodl-tmp/structfuse/d062_results/selection_*.json files produced\nby D062 pool=50 eval across 3 strategies × 3 seeds × 2 criteria (14 configs).\n\nInputs:\n  - selection_{strategy}_{seed}_{criterion}.json  (flat JSON with recall@1/5/10, total, ckpt_dir)\n\nOutputs:\n  - d062_summary.csv   — cross-table of R@1 by strategy × criterion × seed\n  - d062_stratified.json — criterion / strategy / interaction main effects\n  - d062_bootstrap.json  — 95% bootstrap CIs and pairwise P(A > B)\n\nDependencies: numpy, json, glob, argparse (stdlib + numpy only)\n\"\"\"\n\nimport argparse\nimport glob\nimport json\nimport os\nimport re\nimport sys\n\nimport numpy as np\n\n\nSTRATEGIES = [\"random\", \"embedding_distance\", \"dataflow_aware\"]\nSEEDS = [\"s42\", \"s43\", \"s44\"]\nCRITERIA = [\"best_by_val_loss\", \"best_by_recall_at_1\"]\nMETRICS = [\"recall@1\", \"recall@5\", \"recall@10\"]\n\n\ndef parse_filename(path):\n    \"\"\"Extract (strategy, seed, criterion) from selection_{strategy}_{seed}_{criterion}.json.\"\"\"\n    basename = os.path.basename(path)\n    m = re.match(r\"selection_(.+?)_(s\\d+)_(best_by_.+)\\.json$\", basename)\n    if not m:\n        return None\n    return m.group(1), m.group(2), m.group(3)\n\n\ndef load_results(results_dir):\n    \"\"\"Load all selection_*.json files into a nested dict keyed by (strategy, seed, criterion).\"\"\"\n    files = glob.glob(os.path.join(results_dir, \"selection_*.json\"))\n    data = {}\n    for f in sorted(files):\n        parsed = parse_filename(f)\n        if parsed is None:\n            print(f\"  [WARN] Skipping unrecognized file: {f}\", file=sys.stderr)\n            continue\n        strategy, seed, criterion = parsed\n        with open(f) as fh:\n            data[(strategy, seed, criterion)] = json.load(fh)\n    return data\n\n\ndef build_summary_table(data, metric=\"recall@1\"):\n    \"\"\"Build a summary dict: {strategy: {criterion: {seed: value, 'mean': value}}}.\"\"\"\n    table = {}\n    for strategy in STRATEGIES:\n        table[strategy] = {}\n        for criterion in CRITERIA:\n            row = {}\n            vals = []\n            for seed in SEEDS:\n                key = (strategy, seed, criterion)\n                if key in data:\n                    v = data[key].get(metric)\n                    row[seed] = v\n                    if v is not None:\n                        vals.append(v)\n                else:\n                    row[seed] = None\n            row[\"mean\"] = float(np.mean(vals)) if vals else None\n            table[strategy][criterion] = row\n    return table\n\n\ndef print_summary_table(table, metric=\"recall@1\"):\n    \"\"\"Pretty-print the summary table to terminal.\"\"\"\n    print(f\"\\n{'='*90}\")\n    print(f\"  D062 Summary Table — {metric}\")\n    print(f\"{'='*90}\")\n\n    # Header\n    header = f\"{'Strategy':<22}\"\n    for criterion in CRITERIA:\n        short = \"val_loss\" if \"val_loss\" in criterion else \"recall@1\"\n        for seed in SEEDS:\n            header += f\" {short}/{seed:>3}\"\n        header += f\" {short}/mean\"\n    print(header)\n    print(\"-\" * 90)\n\n    # Rows\n    for strategy in STRATEGIES:\n        row_str = f\"{strategy:<22}\"\n        for criterion in CRITERIA:\n            entry = table[strategy][criterion]\n            for seed in SEEDS:\n                v = entry.get(seed)\n                row_str += f\"  {v*100:>8.2f}\" if v is not None else f\"  {'—':>8}\"\n            m = entry.get(\"mean\")\n            row_str += f\"  {m*100:>8.2f}\" if m is not None else f\"  {'—':>8}\"\n        print(row_str)\n\n    # Criterion main effect row\n    print(\"-\" * 90)\n    row_str = f\"{'Δ(recall@1-val_loss)':<22}\"\n    # For each strategy, compute the difference of means\n    all_diffs = []\n    for strategy in STRATEGIES:\n        vl_mean = table[strategy][CRITERIA[0]].get(\"mean\")\n        r1_mean = table[strategy][CRITERIA[1]].get(\"mean\")\n        if vl_mean is not None and r1_mean is not None:\n            diff = r1_mean - vl_mean\n            all_diffs.append(diff)\n    # Print aggregate\n    for criterion in CRITERIA:\n        for seed in SEEDS:\n            row_str += f\"  {'':>8}\"\n        row_str += f\"  {'':>8}\"\n    print(row_str)\n\n    # Print per-strategy criterion effect\n    for strategy in STRATEGIES:\n        vl_mean = table[strategy][CRITERIA[0]].get(\"mean\")\n        r1_mean = table[strategy][CRITERIA[1]].get(\"mean\")\n        if vl_mean is not None and r1_mean is not None:\n            diff = (r1_mean - vl_mean) * 100\n            print(f\"  {strategy}: Δ = {diff:+.2f} pp\")\n        else:\n            print(f\"  {strategy}: Δ = — (incomplete data)\")\n\n    if all_diffs:\n        print(f\"  Overall criterion main effect: Δ = {np.mean(all_diffs)*100:+.2f} pp\")\n    print(f\"{'='*90}\\n\")\n\n\ndef write_summary_csv(table, output_path, metric=\"recall@1\"):\n    \"\"\"Write summary table to CSV.\"\"\"\n    lines = []\n    # Header\n    cols = [\"strategy\"]\n    for criterion in CRITERIA:\n        short = \"val_loss\" if \"val_loss\" in criterion else \"recall_at_1\"\n        for seed in SEEDS:\n            cols.append(f\"{short}_{seed}\")\n        cols.append(f\"{short}_mean\")\n    lines.append(\",\".join(cols))\n\n    # Data rows\n    for strategy in STRATEGIES:\n        row = [strategy]\n        for criterion in CRITERIA:\n            entry = table[strategy][criterion]\n            for seed in SEEDS:\n                v = entry.get(seed)\n                row.append(f\"{v:.6f}\" if v is not None else \"\")\n            m = entry.get(\"mean\")\n            row.append(f\"{m:.6f}\" if m is not None else \"\")\n        lines.append(\",\".join(row))\n\n    with open(output_path, \"w\") as f:\n        f.write(\"\\n\".join(lines) + \"\\n\")\n    print(f\"  Written: {output_path}\")\n\n\ndef stratified_analysis(data, metric=\"recall@1\"):\n    \"\"\"Compute criterion, strategy, and interaction effects.\"\"\"\n    result = {\n        \"metric\": metric,\n        \"criterion_effect\": {},\n        \"strategy_effect\": {},\n        \"interaction\": {},\n    }\n\n    # Criterion main effect: per strategy, by_recall_at_1 - by_val_loss\n    for strategy in STRATEGIES:\n        vl_vals, r1_vals = [], []\n        for seed in SEEDS:\n            vl_key = (strategy, seed, \"best_by_val_loss\")\n            r1_key = (strategy, seed, \"best_by_recall_at_1\")\n            if vl_key in data and data[vl_key].get(metric) is not None:\n                vl_vals.append(data[vl_key][metric])\n            if r1_key in data and data[r1_key].get(metric) is not None:\n                r1_vals.append(data[r1_key][metric])\n        entry = {\"by_val_loss_mean\": None, \"by_recall_at_1_mean\": None, \"delta\": None}\n        if vl_vals:\n            entry[\"by_val_loss_mean\"] = float(np.mean(vl_vals))\n        if r1_vals:\n            entry[\"by_recall_at_1_mean\"] = float(np.mean(r1_vals))\n        if entry[\"by_val_loss_mean\"] is not None and entry[\"by_recall_at_1_mean\"] is not None:\n            entry[\"delta\"] = entry[\"by_recall_at_1_mean\"] - entry[\"by_val_loss_mean\"]\n        result[\"criterion_effect\"][strategy] = entry\n\n    # Strategy main effect: fixed criterion, embed vs random, dataflow vs random\n    for criterion in CRITERIA:\n        crit_short = \"val_loss\" if \"val_loss\" in criterion else \"recall_at_1\"\n        strat_means = {}\n        for strategy in STRATEGIES:\n            vals = []\n            for seed in SEEDS:\n                key = (strategy, seed, criterion)\n                if key in data and data[key].get(metric) is not None:\n                    vals.append(data[key][metric])\n            strat_means[strategy] = float(np.mean(vals)) if vals else None\n\n        comparisons = {}\n        for alt in [\"embedding_distance\", \"dataflow_aware\"]:\n            if strat_means.get(alt) is not None and strat_means.get(\"random\") is not None:\n                comparisons[f\"{alt}_vs_random\"] = strat_means[alt] - strat_means[\"random\"]\n            else:\n                comparisons[f\"{alt}_vs_random\"] = None\n        result[\"strategy_effect\"][crit_short] = {\n            \"means\": {k: v for k, v in strat_means.items()},\n            \"comparisons\": comparisons,\n        }\n\n    # Interaction: which strategy benefits more from better criterion\n    for strategy in STRATEGIES:\n        ce = result[\"criterion_effect\"].get(strategy, {})\n        result[\"interaction\"][strategy] = ce.get(\"delta\")\n\n    # Interaction contrast vs random\n    random_delta = result[\"interaction\"].get(\"random\")\n    for alt in [\"embedding_distance\", \"dataflow_aware\"]:\n        alt_delta = result[\"interaction\"].get(alt)\n        key = f\"{alt}_interaction_vs_random\"\n        if alt_delta is not None and random_delta is not None:\n            result[\"interaction\"][key] = alt_delta - random_delta\n        else:\n            result[\"interaction\"][key] = None\n\n    return result\n\n\ndef bootstrap_ci(data, metric=\"recall@1\", n_bootstrap=1000, seed=42):\n    \"\"\"Binomial bootstrap CIs for each config and pairwise strategy comparisons.\"\"\"\n    rng = np.random.default_rng(seed)\n    result = {\"metric\": metric, \"n_bootstrap\": n_bootstrap, \"seed\": seed, \"configs\": {}, \"pairwise\": {}}\n\n    # Per-config CIs\n    config_samples = {}  # (strategy, seed, criterion) -> bootstrap distribution\n    for (strategy, sd, criterion), rec in data.items():\n        p = rec.get(metric)\n        n = rec.get(\"total\", 504)\n        if p is None:\n            continue\n\n        # Binomial bootstrap: sample n Bernoulli(p) trials, compute mean, repeat\n        samples = rng.binomial(n, p, size=n_bootstrap) / n\n        lo, hi = float(np.percentile(samples, 2.5)), float(np.percentile(samples, 97.5))\n        config_key = f\"{strategy}_{sd}_{criterion}\"\n        result[\"configs\"][config_key] = {\n            \"point\": float(p),\n            \"ci_95\": [lo, hi],\n            \"n_queries\": int(n),\n        }\n        config_samples[(strategy, sd, criterion)] = samples\n\n    # Pairwise strategy comparisons: P(embed > random), P(dataflow > random)\n    for criterion in CRITERIA:\n        crit_short = \"val_loss\" if \"val_loss\" in criterion else \"recall_at_1\"\n        for alt in [\"embedding_distance\", \"dataflow_aware\"]:\n            # Aggregate across seeds: average the bootstrap distributions\n            random_dists, alt_dists = [], []\n            for sd in SEEDS:\n                r_key = (\"random\", sd, criterion)\n                a_key = (alt, sd, criterion)\n                if r_key in config_samples:\n                    random_dists.append(config_samples[r_key])\n                if a_key in config_samples:\n                    alt_dists.append(config_samples[a_key])\n\n            pair_key = f\"{alt}_vs_random_{crit_short}\"\n            if random_dists and alt_dists:\n                # Mean across available seeds\n                r_agg = np.mean(random_dists, axis=0)\n                a_agg = np.mean(alt_dists, axis=0)\n                diff = a_agg - r_agg\n                p_greater = float(np.mean(diff > 0))\n                result[\"pairwise\"][pair_key] = {\n                    \"mean_diff\": float(np.mean(diff)),\n                    \"ci_95\": [float(np.percentile(diff, 2.5)), float(np.percentile(diff, 97.5))],\n                    \"p_alt_greater\": p_greater,\n                    \"n_seeds_random\": len(random_dists),\n                    \"n_seeds_alt\": len(alt_dists),\n                }\n            else:\n                result[\"pairwise\"][pair_key] = {\n                    \"mean_diff\": None,\n                    \"ci_95\": None,\n                    \"p_alt_greater\": None,\n                    \"note\": \"insufficient data\",\n                }\n\n    return result\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"D062 selection-set analysis\")\n    parser.add_argument(\"--results-dir\", required=True, help=\"Directory containing selection_*.json files\")\n    parser.add_argument(\"--n-bootstrap\", type=int, default=1000, help=\"Number of bootstrap resamples\")\n    parser.add_argument(\"--seed\", type=int, default=42, help=\"Bootstrap RNG seed\")\n    parser.add_argument(\"--output-dir\", default=None, help=\"Output directory (default: results-dir/analysis/)\")\n    parser.add_argument(\"--partial\", action=\"store_true\", help=\"Allow partial results (< 14 files)\")\n    args = parser.parse_args()\n\n    # Load\n    data = load_results(args.results_dir)\n    n_files = len(data)\n    print(f\"Loaded {n_files} result files from {args.results_dir}\")\n\n    if n_files == 0:\n        print(\"ERROR: No result files found.\", file=sys.stderr)\n        sys.exit(1)\n\n    if n_files < 14 and not args.partial:\n        print(f\"ERROR: Only {n_files}/14 files found. Use --partial to proceed anyway.\", file=sys.stderr)\n        sys.exit(1)\n\n    # Output dir\n    output_dir = args.output_dir or os.path.join(args.results_dir, \"analysis\")\n    os.makedirs(output_dir, exist_ok=True)\n\n    # 1. Summary table\n    table = build_summary_table(data, metric=\"recall@1\")\n    print_summary_table(table, metric=\"recall@1\")\n    csv_path = os.path.join(output_dir, \"d062_summary.csv\")\n    write_summary_csv(table, csv_path, metric=\"recall@1\")\n\n    # 2. Stratified analysis\n    stratified = stratified_analysis(data, metric=\"recall@1\")\n    strat_path = os.path.join(output_dir, \"d062_stratified.json\")\n    with open(strat_path, \"w\") as f:\n        json.dump(stratified, f, indent=2)\n    print(f\"  Written: {strat_path}\")\n\n    # 3. Bootstrap CIs\n    bootstrap = bootstrap_ci(data, metric=\"recall@1\", n_bootstrap=args.n_bootstrap, seed=args.seed)\n    boot_path = os.path.join(output_dir, \"d062_bootstrap.json\")\n    with open(boot_path, \"w\") as f:\n        json.dump(bootstrap, f, indent=2)\n    print(f\"  Written: {boot_path}\")\n\n    # Print bootstrap summary\n    print(f\"\\n{'='*60}\")\n    print(f\"  Bootstrap CIs (n={args.n_bootstrap}, seed={args.seed})\")\n    print(f\"{'='*60}\")\n    for config_key, ci_data in sorted(bootstrap[\"configs\"].items()):\n        lo, hi = ci_data[\"ci_95\"]\n        print(f\"  {config_key:<50} R@1={ci_data['point']*100:.2f}%  95%CI=[{lo*100:.2f}, {hi*100:.2f}]\")\n\n    if bootstrap[\"pairwise\"]:\n        print(f\"\\n  Pairwise comparisons:\")\n        for pair_key, pair_data in sorted(bootstrap[\"pairwise\"].items()):\n            if pair_data.get(\"mean_diff\") is not None:\n                lo, hi = pair_data[\"ci_95\"]\n                print(f\"    {pair_key:<45} Δ={pair_data['mean_diff']*100:+.2f}pp  95%CI=[{lo*100:.2f}, {hi*100:.2f}]  P(alt>rand)={pair_data['p_alt_greater']:.3f}\")\n            else:\n                print(f\"    {pair_key:<45} — insufficient data\")\n\n    print(f\"\\nDone. Outputs in {output_dir}/\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYTHON_EOF"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "472759b7-27d3-48f0-91da-56cfca9b25eb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N2DHyeUMop4h9BHFT7ZqPP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 198,
+                "cache_read_input_tokens": 28237,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 198
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T11:10:38.432Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VL6hfnHy5ZHd3MssZmrd1M",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "3685986f-2a1f-4c48-a138-b54d40e777ae",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已部署。运行 dry-run 验证。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "ce04dda7-11a3-46c9-b670-6525651cac01",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011DX95i6jEoeDCdLbFz8MeN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4727,
+                "cache_read_input_tokens": 28435,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4727
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HZk8urVGS4tfijLhUyxsBb",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb1-42106",
+                "account": "root",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/structfuse/scripts/d062_analysis.py --results-dir /root/autodl-tmp/structfuse/d062_results/ --partial --output-dir /tmp/d062_test_analysis/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "29b44e43-5967-4095-9755-4b5839cf9763",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011DX95i6jEoeDCdLbFz8MeN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4727,
+                "cache_read_input_tokens": 28435,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4727
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T11:10:44.325Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HZk8urVGS4tfijLhUyxsBb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 5 result files from /root/autodl-tmp/structfuse/d062_results/\\\\n\\\\n==========================================================================================\\\\n  D062 Summary Table — recall@1\\\\n==========================================================================================\\\\nStrategy               val_loss/s42 val_loss/s43 val_loss/s44 val_loss/mean recall@1/s42 recall@1/s43 recall@1/s44 recall@1/mean\\\\n------------------------------------------------------------------------------------------\\\\nrandom                     23.02     34.13     35.32     30.82     23.02     50.40         —     36.71\\\\nembedding_distance             —         —         —         —         —         —         —         —\\\\ndataflow_aware                 —         —         —         —         —         —         —         —\\\\n------------------------------------------------------------------------------------------\\\\nΔ(recall@1-val_loss)                                                                                  \\\\n  random: Δ = +5.89 pp\\\\n  embedding_distance: Δ = — (incomplete data)\\\\n  dataflow_aware: Δ = — (incomplete data)\\\\n  Overall criterion main effect: Δ = +5.89 pp\\\\n==========================================================================================\\\\n\\\\n  Written: /tmp/d062_test_analysis/d062_summary.csv\\\\n  Written: /tmp/d062_test_analysis/d062_stratified.json\\\\n  Written: /tmp/d062_test_analysis/d062_bootstrap.json\\\\n\\\\n============================================================\\\\n  Bootstrap CIs (n=1000, seed=42)\\\\n============================================================\\\\n  random_s42_best_by_recall_at_1                     R@1=23.02%  95%CI=[19.25, 26.59]\\\\n  random_s42_best_by_val_loss                        R@1=23.02%  95%CI=[19.25, 26.39]\\\\n  random_s43_best_by_recall_at_1                     R@1=50.40%  95%CI=[46.42, 54.56]\\\\n  random_s43_best_by_val_loss                        R@1=34.13%  95%CI=[30.15, 38.49]\\\\n  random_s44_best_by_val_loss                        R@1=35.32%  95%CI=[31.15, 39.09]\\\\n\\\\n  Pairwise comparisons:\\\\n    dataflow_aware_vs_random_recall_at_1          — insufficient data\\\\n    dataflow_aware_vs_random_val_loss             — insufficient data\\\\n    embedding_distance_vs_random_recall_at_1      — insufficient data\\\\n    embedding_distance_vs_random_val_loss         — insufficient data\\\\n\\\\nDone. Outputs in /tmp/d062_test_analysis//\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "dd1cd8eb-f8ef-4ead-a139-6964ee8eb5bf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 5 result files from /root/autodl-tmp/structfuse/d062_results/\\\\n\\\\n==========================================================================================\\\\n  D062 Summary Table — recall@1\\\\n==========================================================================================\\\\nStrategy               val_loss/s42 val_loss/s43 val_loss/s44 val_loss/mean recall@1/s42 recall@1/s43 recall@1/s44 recall@1/mean\\\\n------------------------------------------------------------------------------------------\\\\nrandom                     23.02     34.13     35.32     30.82     23.02     50.40         —     36.71\\\\nembedding_distance             —         —         —         —         —         —         —         —\\\\ndataflow_aware                 —         —         —         —         —         —         —         —\\\\n------------------------------------------------------------------------------------------\\\\nΔ(recall@1-val_loss)                                                                                  \\\\n  random: Δ = +5.89 pp\\\\n  embedding_distance: Δ = — (incomplete data)\\\\n  dataflow_aware: Δ = — (incomplete data)\\\\n  Overall criterion main effect: Δ = +5.89 pp\\\\n==========================================================================================\\\\n\\\\n  Written: /tmp/d062_test_analysis/d062_summary.csv\\\\n  Written: /tmp/d062_test_analysis/d062_stratified.json\\\\n  Written: /tmp/d062_test_analysis/d062_bootstrap.json\\\\n\\\\n============================================================\\\\n  Bootstrap CIs (n=1000, seed=42)\\\\n============================================================\\\\n  random_s42_best_by_recall_at_1                     R@1=23.02%  95%CI=[19.25, 26.59]\\\\n  random_s42_best_by_val_loss                        R@1=23.02%  95%CI=[19.25, 26.39]\\\\n  random_s43_best_by_recall_at_1                     R@1=50.40%  95%CI=[46.42, 54.56]\\\\n  random_s43_best_by_val_loss                        R@1=34.13%  95%CI=[30.15, 38.49]\\\\n  random_s44_best_by_val_loss                        R@1=35.32%  95%CI=[31.15, 39.09]\\\\n\\\\n  Pairwise comparisons:\\\\n    dataflow_aware_vs_random_recall_at_1          — insufficient data\\\\n    dataflow_aware_vs_random_val_loss             — insufficient data\\\\n    embedding_distance_vs_random_recall_at_1      — insufficient data\\\\n    embedding_distance_vs_random_val_loss         — insufficient data\\\\n\\\\nDone. Outputs in /tmp/d062_test_analysis//\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 5 result files from /root/autodl-tmp/structfuse/d062_results/\\n\\n==========================================================================================\\n  D062 Summary Table — recall@1\\n==========================================================================================\\nStrategy               val_loss/s42 val_loss/s43 val_loss/s44 val_loss/mean recall@1/s42 recall@1/s43 recall@1/s44 recall@1/mean\\n------------------------------------------------------------------------------------------\\nrandom                     23.02     34.13     35.32     30.82     23.02     50.40         —     36.71\\nembedding_distance             —         —         —         —         —         —         —         —\\ndataflow_aware                 —         —         —         —         —         —         —         —\\n------------------------------------------------------------------------------------------\\nΔ(recall@1-val_loss)                                                                                  \\n  random: Δ = +5.89 pp\\n  embedding_distance: Δ = — (incomplete data)\\n  dataflow_aware: Δ = — (incomplete data)\\n  Overall criterion main effect: Δ = +5.89 pp\\n==========================================================================================\\n\\n  Written: /tmp/d062_test_analysis/d062_summary.csv\\n  Written: /tmp/d062_test_analysis/d062_stratified.json\\n  Written: /tmp/d062_test_analysis/d062_bootstrap.json\\n\\n============================================================\\n  Bootstrap CIs (n=1000, seed=42)\\n============================================================\\n  random_s42_best_by_recall_at_1                     R@1=23.02%  95%CI=[19.25, 26.59]\\n  random_s42_best_by_val_loss                        R@1=23.02%  95%CI=[19.25, 26.39]\\n  random_s43_best_by_recall_at_1                     R@1=50.40%  95%CI=[46.42, 54.56]\\n  random_s43_best_by_val_loss                        R@1=34.13%  95%CI=[30.15, 38.49]\\n  random_s44_best_by_val_loss                        R@1=35.32%  95%CI=[31.15, 39.09]\\n\\n  Pairwise comparisons:\\n    dataflow_aware_vs_random_recall_at_1          — insufficient data\\n    dataflow_aware_vs_random_val_loss             — insufficient data\\n    embedding_distance_vs_random_recall_at_1      — insufficient data\\n    embedding_distance_vs_random_val_loss         — insufficient data\\n\\nDone. Outputs in /tmp/d062_test_analysis//\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证输出文件可被正常读取。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "52e0de97-9cf2-410e-a46c-8d0b81a49d4a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0173nrAnrh2q3PVLwxAxQbCK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 957,
+                "cache_read_input_tokens": 33162,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 957
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0124knakoHLbLsbdaFE8GKLz",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb1-42106",
+                "account": "root",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json\nfor f in ['d062_summary.csv', 'd062_stratified.json', 'd062_bootstrap.json']:\n    path = f'/tmp/d062_test_analysis/{f}'\n    if f.endswith('.json'):\n        d = json.load(open(path))\n        print(f'{f}: OK ({len(d)} top-level keys)')\n    else:\n        lines = open(path).readlines()\n        print(f'{f}: OK ({len(lines)} lines)')\n\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "66debdf5-1d6e-4dc8-9f46-9ca2721fd6b0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0173nrAnrh2q3PVLwxAxQbCK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 957,
+                "cache_read_input_tokens": 33162,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 957
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T11:10:49.232Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0124knakoHLbLsbdaFE8GKLz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"d062_summary.csv: OK (4 lines)\\\\nd062_stratified.json: OK (4 top-level keys)\\\\nd062_bootstrap.json: OK (5 top-level keys)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "9ee053c5-e001-4d8b-bd8b-adf5323da902",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"d062_summary.csv: OK (4 lines)\\\\nd062_stratified.json: OK (4 top-level keys)\\\\nd062_bootstrap.json: OK (5 top-level keys)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"d062_summary.csv: OK (4 lines)\\nd062_stratified.json: OK (4 top-level keys)\\nd062_bootstrap.json: OK (5 top-level keys)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n### 产出\n\n**脚本**：`/root/structfuse/scripts/d062_analysis.py`\n\n功能：\n1. **Summary Table** — 读取所有 `selection_*.json`，按 strategy × criterion × seed 生成交叉表（终端打印 + CSV）\n2. **Stratified Analysis** — criterion main effect / strategy main effect / interaction 分析 → JSON\n3. **Bootstrap CI** — binomial bootstrap（n_queries 次 Bernoulli），95% CI + pairwise P(alt > random) → JSON\n\n**dry-run 结果**（5 个文件，`--partial` 模式）：\n\n| Config | R@1 | 95% CI |\n|--------|-----|--------|\n| random_s42_best_by_val_loss | 23.02% | [19.25, 26.39] |\n| random_s42_best_by_recall_at_1 | 23.02% | [19.25, 26.59] |\n| random_s43_best_by_val_loss | 34.13% | [30.15, 38.49] |\n| random_s43_best_by_recall_at_1 | 50.40% | [46.42, 54.56] |\n| random_s44_best_by_val_loss | 35.32% | [31.15, 39.09] |\n\nCriterion main effect (random only): **+5.89 pp**（by_recall_at_1 优于 by_val_loss）\n\n**3 个输出文件**均生成成功并可正常 `json.load()` 读取。Pairwise comparisons 待 embedding_distance / dataflow_aware 结果就绪后自动填充。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "uuid": "5e66d42a-9976-40b1-b0a8-33012e9a6940",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WJP8nk448ak9vaTyUX2t8u",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 387,
+                "cache_read_input_tokens": 34119,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 387
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n### 产出\n\n**脚本**：`/root/structfuse/scripts/d062_analysis.py`\n\n功能：\n1. **Summary Table** — 读取所有 `selection_*.json`，按 strategy × criterion × seed 生成交叉表（终端打印 + CSV）\n2. **Stratified Analysis** — criterion main effect / strategy main effect / interaction 分析 → JSON\n3. **Bootstrap CI** — binomial bootstrap（n_queries 次 Bernoulli），95% CI + pairwise P(alt > random) → JSON\n\n**dry-run 结果**（5 个文件，`--partial` 模式）：\n\n| Config | R@1 | 95% CI |\n|--------|-----|--------|\n| random_s42_best_by_val_loss | 23.02% | [19.25, 26.39] |\n| random_s42_best_by_recall_at_1 | 23.02% | [19.25, 26.59] |\n| random_s43_best_by_val_loss | 34.13% | [30.15, 38.49] |\n| random_s43_best_by_recall_at_1 | 50.40% | [46.42, 54.56] |\n| random_s44_best_by_val_loss | 35.32% | [31.15, 39.09] |\n\nCriterion main effect (random only): **+5.89 pp**（by_recall_at_1 优于 by_val_loss）\n\n**3 个输出文件**均生成成功并可正常 `json.load()` 读取。Pairwise comparisons 待 embedding_distance / dataflow_aware 结果就绪后自动填充。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 113877,
+            "duration_api_ms": 111485,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "5bf44613-0a65-49d4-9b3d-3bda75c98b44",
+            "total_cost_usd": 0.45773025,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 22665,
+              "cache_read_input_tokens": 263882,
+              "output_tokens": 7282,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 22665,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 457,
+                  "cache_read_input_tokens": 34119,
+                  "cache_creation_input_tokens": 387,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 387
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1913,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002013,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 7282,
+                "cacheReadInputTokens": 263882,
+                "cacheCreationInputTokens": 22665,
+                "webSearchRequests": 0,
+                "costUSD": 0.45571724999999996,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "16dc58b3-1cf6-4666-9d97-adb096eda8ef"
+          },
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 39
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-d062-analysis-script.md"
+}

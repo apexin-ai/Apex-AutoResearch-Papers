@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f1056a9645b177a3571",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops starcoder random data fix",
+  "task_key": "worker_ops_starcoder-random-data-fix_20260513T112208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_starcoder-random-data-fix_20260513T112208_result.json",
+    "occurrence": 1,
+    "bytes": 538,
+    "sha256": "b4d195ad71540b0aa0579b274ae26bd4c19436e923b25c0d85bab0699b61f729"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件中 StarCoder random 行的数据已经是完整的，不需要修复：\n\n- **pilot_results_summary.md**: StarCoder random 行已显示 `| random | completed | 500 | 0.5113 | 0.4922 | 0.98 | 1.0 |`，cross-model comparison 表也已填入。\n- **pilot_results.json**: `starcoder2-3b.strategies.random.best_metrics` 已包含 `val_loss: 0.5113, recall_at_1: 0.4922, recall_at_5: 0.98, recall_at_10: 1.0`。\n\n两个文件中没有任何 \"—\" 标记在 StarCoder random 行上。数据此前已被修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-starcoder-random-data-fix.md"
+}

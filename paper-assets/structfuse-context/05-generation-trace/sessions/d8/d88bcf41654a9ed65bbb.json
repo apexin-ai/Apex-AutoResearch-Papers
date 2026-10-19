@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d88bcf41654a9ed65bbb",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "fix d041 rollback constraint",
+  "task_key": "worker_fix_d041-rollback-constraint_20260515T022107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d041-rollback-constraint_20260515T022107_result.json",
+    "occurrence": 1,
+    "bytes": 638,
+    "sha256": "81f1fcf03d67ad031cc2dbf966a7c5354b4500a134cd375524c3fc00ea84345d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，验证结果：\n\n| 检查项 | 状态 |\n|--------|------|\n| `f ∈ R_G` 作为 negative 选择约束 | 已消除（改为 `f \\notin R_G(q)`） |\n| \"structurally connected\" 作为 negative 描述 | 已改为 \"structurally disconnected\"（3个文件共5处） |\n| BM25 排序 | 保留不变（无 `sim(E_θ0)` 回退） |\n| D041 标记追加 | 3个文件均已追加 `回滚约束方向 2026-05-15` |\n\n注：`introduction_v2.md:23` 中 \"structurally connected non-gold rate\" 是 Z% 统计指标（描述 connected 文件中 non-gold 的比例），不是 negative 选择方向，无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d041-rollback-constraint.md"
+}

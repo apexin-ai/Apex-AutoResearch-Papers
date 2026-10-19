@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74407553ee800c2d813b",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "fix method fallback rate",
+  "task_key": "worker_fix_method-fallback-rate_20260514T231101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_method-fallback-rate_20260514T231101_result.json",
+    "occurrence": 1,
+    "bytes": 781,
+    "sha256": "292eef98466537643af6a846c0ece9782b0df10dab7ebb787a5b9190ce078890"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改报告：\n\n**Fix 1（method_v1.md line 63）— 已修正**\n- 原文：`approximately 34% of training instances`\n- 改为：`approximately 66% of training instances, which lack structural connectivity data and therefore cannot supply structurally disconnected candidates`\n- 原因：34.3% 是 structural coverage rate（有 CodeQL 数据的比例），~66% 才是缺乏结构数据需要 fallback 的比例。与 experiments_v1.md §4.1 的 \"65.7%\" 一致。\n\n**Fix 2（experiments_v1.md §4.2）— 已被其他 Worker 修正，跳过**\n- 当前文本已是 \"mean pooling over non-padding positions of the last hidden layer, followed by L2 normalization. A two-layer MLP projection head (Linear→GELU→Linear)\"，与 method_v1.md §3.3 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-method-fallback-rate.md"
+}

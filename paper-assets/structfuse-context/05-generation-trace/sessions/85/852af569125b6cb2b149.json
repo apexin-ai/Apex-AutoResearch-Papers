@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "852af569125b6cb2b149",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code fix swebench e2e bugs",
+  "task_key": "worker_code_fix-swebench-e2e-bugs_20260515T192043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-swebench-e2e-bugs_20260515T192043_result.json",
+    "occurrence": 1,
+    "bytes": 1176,
+    "sha256": "7b3fc37273a5ec4dcd6cb7cd4c1588e3944ed6a2649f71653424605c90fa7630"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 代码修复（已完成）\n\n**Bug 1 — results.jsonl 落盘**：在 line 539 添加 `os.fsync(fout.fileno())`，确保每条记录立即写入磁盘。\n\n**Bug 2 — thinking mode 干扰**：在 line 334 添加 `extra_body={\"enable_thinking\": False}`，关闭 qwen3 的 thinking mode。\n\n### 5-instance dry-run 验证结果\n\n| 验证项 | 结果 |\n|--------|------|\n| results.jsonl 行数 | **5 条** ✅（之前只有 1 条，Bug 1 已修复） |\n| 脚本完整运行 | ✅ 5/5 instance 全部完成 |\n| resolve rate | 0.0000 |\n| patch 状态 | 5/5 全空 |\n\n### Patch 全空的根因\n\n**API 返回 401 Invalid API key**。日志明确显示：\n```\n[generate_patch] API call failed: Error code: 401 - {'detail': 'Invalid API key'}\n```\n\n环境变量 `STRUCTFUSE_LLM_API_KEY=[REDACTED] 不是有效 key。API endpoint `http://47.94.22.126/v1` 需要真实的 API key。服务器上和代码中都没有找到已配置的 key。\n\n### 下一步\n\n需要提供 `http://47.94.22.126/v1` 的有效 API key，设置环境变量 `STRUCTFUSE_LLM_API_KEY=[REDACTED] 后重跑即可验证 Bug 2 修复和 patch 生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-swebench-e2e-bugs.md"
+}

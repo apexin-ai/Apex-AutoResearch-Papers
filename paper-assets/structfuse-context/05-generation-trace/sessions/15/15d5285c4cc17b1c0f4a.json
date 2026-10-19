@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15d5285c4cc17b1c0f4a",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops plan013 random eval recovery",
+  "task_key": "worker_ops_plan013-random-eval-recovery_20260513T080148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan013-random-eval-recovery_20260513T080148_result.json",
+    "occurrence": 1,
+    "bytes": 240,
+    "sha256": "34ba29aa3f5f0e320010c57b4d1cb0b9a64e088d932e7222c660a2d653391850"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成。\n\n## plan_013_starcoder random_s42 Best Checkpoint 评估结果\n\n| 指标 | 值 |\n|------|------|\n| **val_loss** | 0.5113 |\n| **recall@1** | 0.4922 |\n| **recall@5** | 0.9800 |\n| **recall@10** | 1.0000 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan013-random-eval-recovery.md"
+}

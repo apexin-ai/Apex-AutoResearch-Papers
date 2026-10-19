@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8c48c30f04b1a396f81",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops cqa1 disk emergency cleanup",
+  "task_key": "worker_ops_cqa1-disk-emergency-cleanup_20260513T090139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-disk-emergency-cleanup_20260513T090139_result.json",
+    "occurrence": 1,
+    "bytes": 627,
+    "sha256": "3fb1accb4c01ad109c54aa1b97482e5cef6bfae4242a0910bf7b804727046928"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 步骤 | 操作 | 释放空间 |\n|------|------|---------|\n| Step 1 | 删除 checkpoints/models/m2_*_data/ | **~14.6 GB** |\n| Step 2 | 清理 9 个已完成 repo 克隆 + codeql_db | **~19.7 GB** |\n| **合计** | | **~34.3 GB** |\n\n**最终磁盘状态**: 127GB used / 43GB free（75%），从 95% → 75%\n\n| 项目 | 状态 |\n|------|------|\n| m1_repos/ | 314MB（新 repo 正在被克隆） |\n| m1_extraction/ | 5.6GB 产出数据 |\n| M1 提取进程 577864 | 存活，已运行 12h15m |\n| 自动清理守护进程 580662 | 存活，每 10 分钟清理已完成 repo |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-disk-emergency-cleanup.md"
+}

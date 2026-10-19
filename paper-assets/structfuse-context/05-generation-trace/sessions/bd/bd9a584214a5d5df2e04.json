@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "bd9a584214a5d5df2e04",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "fix plan 003 repo clone",
+  "task_key": "worker_fix_plan_003_repo_clone_20260514T190217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_plan_003_repo_clone_20260514T190217.log",
+    "occurrence": 1,
+    "bytes": 910717,
+    "sha256": "eecb1e4b4bdbb02c49252f99eedc29004dd54b841aaefee68852d861f55005f0"
+  },
+  "statistics": {
+    "messages": 390,
+    "user_turns": 1,
+    "tool_calls": 134,
+    "roles": {
+      "log": 1,
+      "system": 25,
+      "assistant": 93,
+      "record": 1,
+      "tool_call": 134,
+      "user": 1,
+      "tool_result": 134,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "bd9a584214a5d5df2e04-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 383,
+      "chunks": [
+        {
+          "path": "bd9a584214a5d5df2e04-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "bd9a584214a5d5df2e04-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bd9a584214a5d5df2e04-part-0003.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-plan-003-repo-clone.md"
+}

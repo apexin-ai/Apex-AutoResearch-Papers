@@ -1,0 +1,697 @@
+{
+  "schema_version": "1.0",
+  "id": "6ad21c8ef7a4f2b7ee72",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "research framing analysis",
+  "task_key": "worker_research_framing_analysis_20260513T184429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_framing_analysis_20260513T184429.log",
+    "occurrence": 1,
+    "bytes": 111304,
+    "sha256": "1716d53fff839d44c2d926948a040cac71371a3fdcc7555e9f6e61953e746625"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 4,
+      "tool_result": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+                "session_id": "067b6c33-6ebf-4fa8-b1fd-d67ddd709cfd",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "4c6e4398-4007-4847-956d-92d30372b73b",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-structfuse-context/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778707200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "25296829-e089-4302-bedf-0ac49d797b7c",
+                "session_id": "067b6c33-6ebf-4fa8-b1fd-d67ddd709cfd"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the paper_framing.md file and any other relevant project files to understand the full context before writing the analysis.",
+              "signature": "EsICClkIDRgCKkAtpgSAzy3Q2tkZVWbEoJAwkX1HzISR9vC8/pSF0gkPnPRXnu/RphgA3lVKmjNB2plKpjSYC2jGuam0aX48G+iqMg9jbGF1ZGUtb3B1cy00LTY4ABIMOm+VQ1ZDDxdmLX/fGgzICyrWTiDavvVxUH0iMO3JmTdSkLNaKHTM6FlJ+jBFe/+Kc15vI8x+iGtaJHgRmjEWcUnKhekFKLraGpJF0SqWAUMAvYBJ4DrC8RpIB0Q+ValgucsCHR8SIBLQnHelNazmJyaG8xqp9WuJuqNwcLrU9/k1PCyUDJQvn3SI2PQweSI3ICbYMbOsTJGiUdGnmbPGhJoQNRVCoQyBPt9PFHxDKFdyjc6KpHxsAsT8MsGtGju0mEdf4eri94qzXceAUnUWkeDTcN8XUq29ZRCyahgjiLrahtDxhBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "067b6c33-6ebf-4fa8-b1fd-d67ddd709cfd",
+            "uuid": "c8790bd7-98a1-4ac8-992c-e9bd8c192d60",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LUt5MdkM1gB3XteooR7Ld1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11504,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11504
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E8WeKffX5Y7DrWFjuby6rP",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "067b6c33-6ebf-4fa8-b1fd-d67ddd709cfd",
+            "uuid": "a124ff2d-4ae4-4ceb-87da-41a1456783e2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LUt5MdkM1gB3XteooR7Ld1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11504,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11504
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T18:44:39.446Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01E8WeKffX5Y7DrWFjuby6rP",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "067b6c33-6ebf-4fa8-b1fd-d67ddd709cfd",
+            "uuid": "0197cd0e-4246-4b63-91c8-d09528ef426d",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__read_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014qpX2sUZEnA5vJApgRs7gS",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "structfuse-context",
+                "file": "paper_framing.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "067b6c33-6ebf-4fa8-b1fd-d67ddd709cfd",
+            "uuid": "7f20366e-92ff-4433-9b45-c716bcb4610e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HvvRaYWm8h9EETbQRU683G",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 476,
+                "cache_read_input_tokens": 23345,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 476
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T18:44:42.674Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014qpX2sUZEnA5vJApgRs7gS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — StructFuse\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Claims (3)\\\\n\\\\n1. **Structure-grounded hard negatives outperform embedding-distance and random negatives for contrastive code retrieval training.** Inter-procedural data-flow connectivity provides a complementary training signal that enhances text-based retrieval — files that are lexically similar but structurally disconnected force the model to internalize structural relevance beyond surface features. (Note: structural signal is complementary but subordinate to text similarity; abstract must reflect this asymmetry per Dream review.)\\\\n\\\\n2. **Embedding-distance hard negatives actively harm code retrieval compared to random negatives.** The gradient signal from embedding-distance negatives is partially redundant with the encoder's learned similarity, leading to degraded retrieval quality. (MVP evidence: -27pp recall@1 at pool=26, 3 seeds consistent.)\\\\n\\\\n3. **Scope-bounded inter-procedural data-flow analysis via CodeQL is a scalable, model-independent method for computing structural connectivity.** With 2-hop call-graph bounding, timeout <5%, and >40% of instances have connected-but-not-gold structural signals at scale.\\\\n\\\\n## Story Spine\\\\n\\\\n- **Problem**: Repo-level code repair requires selecting relevant files from large codebases. Current retrievers conflate lexical similarity with structural relevance — a file sharing function names with the buggy code may be structurally unrelated, while a data-flow-connected file may contain the actual fix dependency.\\\\n\\\\n- **Existing approaches & gaps**:\\\\n  - Text-based (SweRank, SWE-Fixer): blind to structural dependencies\\\\n  - Graph-guided (LocAgent, RANGER, CodexGraph): structural graphs at inference only, no data-flow edges, no training signal\\\\n  - ARISE: data-flow but intra-procedural only (no call boundary crossing), runtime tool calls only\\\\n  - CoCoHaNeRe: hard negatives improve code search, but embedding-distance negatives are redundant with encoder similarity\\\\n\\\\n- **Our framing**: The key gap is using structural connectivity for **training signal**, not just inference-time navigation. Structure-grounded hard negatives — lexically similar but data-flow disconnected files — provide a complementary learning signal. This is a general paradigm: any domain with external structural knowledge (molecular networks, circuit topology, KG retrieval) can use drift-immune structure-grounded negative mining. Code is the ideal testbed due to formal semantic guarantees.\\\\n\\\\n- **Headline result template**: \\\\\\\"On SWE-bench Lite, StructFuse with data-flow-aware hard negatives achieves X% recall@5 while embedding-distance negatives achieve Y% and random negatives Z%, demonstrating that structure-grounded negative mining provides complementary training signal not captured by text-based methods alone.\\\\\\\"\\\\n\\\\n## Dual-Pillar Motivation (per Human Review)\\\\n\\\\n1. **Primary — Complementary signal dimension**: Structural connectivity encodes a relevance dimension entirely absent from textual signals. No amount of text-based training can recover inter-procedural data-flow relationships from token sequences alone.\\\\n2. **Secondary — Selection drift immunity**: Structural graph is externally fixed; negative set does not drift with encoder updates (unlike embedding-distance negatives which shift every epoch).\\\\n\\\\n## Formal Definition\\\\n\\\\nGiven retrieval domain D, structural graph G, similarity function s, query q:\\\\n**structure-grounded hard negative** = argmax_{x ∈ D : s(x,q) > τ ∧ ¬reachable_G(x,q)} s(x,q)\\\\n\\\\nThe structural graph is externally fixed and does not update with the encoder.\\\\n\\\\n## Title\\\\n\\\\n\\\\\\\"StructFuse: Structure-Grounded Hard Negative Mining for Contrastive Code Context Retrieval\\\\\\\"\\\\n(Per Human Review: emphasize methodology, de-emphasize SE-specific framing)\\\\n\\\\n## Venue Fit Risks\\\\n\\\\n1. **EMNLP vs SE**: Frame as contrastive learning methodology with code as instantiation\\\\n2. **Domain-specific concern**: Cross-domain generalization in Discussion (molecular networks, circuit topology, KG retrieval)\\\\n3. **Incremental contribution**: Novelty is in WHAT generates negatives (program analysis), not the objective itself\\\\n4. **CodeQL dependency**: CodeQL is one instantiation; any structural analysis producing a connectivity graph works\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n| Concern | Response | Evidence |\\\\n|---------|----------|----------|\\\\n| Too domain-specific | Cross-domain generalization + formal definition is domain-agnostic | Discussion section |\\\\n| Why not ARISE? | Intra-procedural only + inference-time only; we cross call boundaries + train | Direct comparison in ablation |\\\\n| CodeQL scalability | 0% timeout at pilot, 4% at 50-repo scale; scope-bounded 2-hop | P1 + scale check |\\\\n| Small improvement | Training methodology contribution, not benchmark chasing; improvement ceiling analysis | Failure analysis |\\\\n| connected⊆gold? | Scale effect: 40.8% instances have connected≠gold at 50-repo scale | M1 full statistics |\\\\n| Single encoder (Dream) | Add StarCoder-3B or CodeBERT validation; even 1K-instance experiment suffices | plan_013 |\\\\n| Static vs dynamic mining (Dream) | Clarify mining is static; add dynamic mining baseline row | plan_015 |\\\\n| Temperature regime (Dream) | Ablate τ ∈ {0.05, 0.1, 0.2} to confirm finding is not regime-specific | plan_014 |\\\\n| Missing related work (Dream) | RepoFusion, GRACE, GraphCodeBERT, ANCE, curriculum HN mining | Writing task |\\\\n| No inference-time graph comparison (Dream) | Discuss relationship to CodexGraph/LocAgent — complementary vs alternative | plan_017 |\\\\n| SWE-bench stat significance (Dream) | Bootstrap 95% CI for resolve rate | plan_016 |\\\\n| \\\\\\\"Complementary\\\\\\\" overstatement (Dream) | Temper abstract: \\\\\\\"enhances text-based retrieval\\\\\\\" not \\\\\\\"cannot recover\\\\\\\" | Writing task |\\\\n\\\\n## Contingency Framing (from Dream, three-tier thresholds per D009)\\\\n\\\\n### Z% ≥ 35%: Best framing holds\\\\n- Claim 1 as headline, full story intact\\\\n- Target: EMNLP Main\\\\n\\\\n### 20% ≤ Z% < 35%: Median pivot\\\\n- **Headline shifts to Claim 2** (\\\\\\\"embedding-distance negatives harm\\\\\\\") which is robust across all tiers\\\\n- Claim 1 downgrades to \\\\\\\"dataflow negatives are a viable, non-harmful alternative\\\\\\\"\\\\n- Title pivot: \\\\\\\"When Hard Negatives Hurt: Embedding-Distance Negative Mining Degrades Contrastive Code Retrieval\\\\\\\"\\\\n- Target shifts from EMNLP Main to Findings\\\\n\\\\n### Z% < 20%: Major adjustment required\\\\n- Claim 1 removed from paper or reframed as \\\\\\\"when Z% is sufficient, structural negatives help\\\\\\\" (conditional claim with narrow scope)\\\\n- Paper becomes empirical analysis: \\\\\\\"Why Structure-Grounded Hard Negatives Don't Help Code Retrieval (Yet)\\\\\\\"\\\\n- Claim 2 (embedding harm) + Claim 3 (scalability analysis) + failure taxonomy carry the paper\\\\n- Target: EMNLP Findings or workshop (NLP4SE, ML4Code)\\\\n- **Decision point**: if Z% < 15%, discuss with user whether to continue or pivot project\\\\n\\\\n## MVP Evidence Summary\\\\n\\\\n- P1: CodeQL feasible (timeout 0%, Fisher p=1.54e-7, instance recall 75%)\\\\n- P2a: DataFlow feature AUC=0.78, BM25 coefficient negative (-1.80)\\\\n- P2b: random >> embedding_distance (-27pp R@1 at pool=26, 3 seeds consistent); dataflow untestable at MVP scale but viable at full scale (Z=40.8%). Note: pool=50 eval exists but confounded by val.jsonl distribution shift; use pool=26 data only until M2 clean eval.\\\\n\\\", \\\"total_chars\\\": 7310, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "067b6c33-6ebf-4fa8-b1fd-d67ddd709cfd",
+            "uuid": "fcadb36e-ca0b-4c58-bd74-ecc7f1f91b2f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — StructFuse\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Claims (3)\\\\n\\\\n1. **Structure-grounded hard negatives outperform embedding-distance and random negatives for contrastive code retrieval training.** Inter-procedural data-flow connectivity provides a complementary training signal that enhances text-based retrieval — files that are lexically similar but structurally disconnected force the model to internalize structural relevance beyond surface features. (Note: structural signal is complementary but subordinate to text similarity; abstract must reflect this asymmetry per Dream review.)\\\\n\\\\n2. **Embedding-distance hard negatives actively harm code retrieval compared to random negatives.** The gradient signal from embedding-distance negatives is partially redundant with the encoder's learned similarity, leading to degraded retrieval quality. (MVP evidence: -27pp recall@1 at pool=26, 3 seeds consistent.)\\\\n\\\\n3. **Scope-bounded inter-procedural data-flow analysis via CodeQL is a scalable, model-independent method for computing structural connectivity.** With 2-hop call-graph bounding, timeout <5%, and >40% of instances have connected-but-not-gold structural signals at scale.\\\\n\\\\n## Story Spine\\\\n\\\\n- **Problem**: Repo-level code repair requires selecting relevant files from large codebases. Current retrievers conflate lexical similarity with structural relevance — a file sharing function names with the buggy code may be structurally unrelated, while a data-flow-connected file may contain the actual fix dependency.\\\\n\\\\n- **Existing approaches & gaps**:\\\\n  - Text-based (SweRank, SWE-Fixer): blind to structural dependencies\\\\n  - Graph-guided (LocAgent, RANGER, CodexGraph): structural graphs at inference only, no data-flow edges, no training signal\\\\n  - ARISE: data-flow but intra-procedural only (no call boundary crossing), runtime tool calls only\\\\n  - CoCoHaNeRe: hard negatives improve code search, but embedding-distance negatives are redundant with encoder similarity\\\\n\\\\n- **Our framing**: The key gap is using structural connectivity for **training signal**, not just inference-time navigation. Structure-grounded hard negatives — lexically similar but data-flow disconnected files — provide a complementary learning signal. This is a general paradigm: any domain with external structural knowledge (molecular networks, circuit topology, KG retrieval) can use drift-immune structure-grounded negative mining. Code is the ideal testbed due to formal semantic guarantees.\\\\n\\\\n- **Headline result template**: \\\\\\\"On SWE-bench Lite, StructFuse with data-flow-aware hard negatives achieves X% recall@5 while embedding-distance negatives achieve Y% and random negatives Z%, demonstrating that structure-grounded negative mining provides complementary training signal not captured by text-based methods alone.\\\\\\\"\\\\n\\\\n## Dual-Pillar Motivation (per Human Review)\\\\n\\\\n1. **Primary — Complementary signal dimension**: Structural connectivity encodes a relevance dimension entirely absent from textual signals. No amount of text-based training can recover inter-procedural data-flow relationships from token sequences alone.\\\\n2. **Secondary — Selection drift immunity**: Structural graph is externally fixed; negative set does not drift with encoder updates (unlike embedding-distance negatives which shift every epoch).\\\\n\\\\n## Formal Definition\\\\n\\\\nGiven retrieval domain D, structural graph G, similarity function s, query q:\\\\n**structure-grounded hard negative** = argmax_{x ∈ D : s(x,q) > τ ∧ ¬reachable_G(x,q)} s(x,q)\\\\n\\\\nThe structural graph is externally fixed and does not update with the encoder.\\\\n\\\\n## Title\\\\n\\\\n\\\\\\\"StructFuse: Structure-Grounded Hard Negative Mining for Contrastive Code Context Retrieval\\\\\\\"\\\\n(Per Human Review: emphasize methodology, de-emphasize SE-specific framing)\\\\n\\\\n## Venue Fit Risks\\\\n\\\\n1. **EMNLP vs SE**: Frame as contrastive learning methodology with code as instantiation\\\\n2. **Domain-specific concern**: Cross-domain generalization in Discussion (molecular networks, circuit topology, KG retrieval)\\\\n3. **Incremental contribution**: Novelty is in WHAT generates negatives (program analysis), not the objective itself\\\\n4. **CodeQL dependency**: CodeQL is one instantiation; any structural analysis producing a connectivity graph works\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n| Concern | Response | Evidence |\\\\n|---------|----------|----------|\\\\n| Too domain-specific | Cross-domain generalization + formal definition is domain-agnostic | Discussion section |\\\\n| Why not ARISE? | Intra-procedural only + inference-time only; we cross call boundaries + train | Direct comparison in ablation |\\\\n| CodeQL scalability | 0% timeout at pilot, 4% at 50-repo scale; scope-bounded 2-hop | P1 + scale check |\\\\n| Small improvement | Training methodology contribution, not benchmark chasing; improvement ceiling analysis | Failure analysis |\\\\n| connected⊆gold? | Scale effect: 40.8% instances have connected≠gold at 50-repo scale | M1 full statistics |\\\\n| Single encoder (Dream) | Add StarCoder-3B or CodeBERT validation; even 1K-instance experiment suffices | plan_013 |\\\\n| Static vs dynamic mining (Dream) | Clarify mining is static; add dynamic mining baseline row | plan_015 |\\\\n| Temperature regime (Dream) | Ablate τ ∈ {0.05, 0.1, 0.2} to confirm finding is not regime-specific | plan_014 |\\\\n| Missing related work (Dream) | RepoFusion, GRACE, GraphCodeBERT, ANCE, curriculum HN mining | Writing task |\\\\n| No inference-time graph comparison (Dream) | Discuss relationship to CodexGraph/LocAgent — complementary vs alternative | plan_017 |\\\\n| SWE-bench stat significance (Dream) | Bootstrap 95% CI for resolve rate | plan_016 |\\\\n| \\\\\\\"Complementary\\\\\\\" overstatement (Dream) | Temper abstract: \\\\\\\"enhances text-based retrieval\\\\\\\" not \\\\\\\"cannot recover\\\\\\\" | Writing task |\\\\n\\\\n## Contingency Framing (from Dream, three-tier thresholds per D009)\\\\n\\\\n### Z% ≥ 35%: Best framing holds\\\\n- Claim 1 as headline, full story intact\\\\n- Target: EMNLP Main\\\\n\\\\n### 20% ≤ Z% < 35%: Median pivot\\\\n- **Headline shifts to Claim 2** (\\\\\\\"embedding-distance negatives harm\\\\\\\") which is robust across all tiers\\\\n- Claim 1 downgrades to \\\\\\\"dataflow negatives are a viable, non-harmful alternative\\\\\\\"\\\\n- Title pivot: \\\\\\\"When Hard Negatives Hurt: Embedding-Distance Negative Mining Degrades Contrastive Code Retrieval\\\\\\\"\\\\n- Target shifts from EMNLP Main to Findings\\\\n\\\\n### Z% < 20%: Major adjustment required\\\\n- Claim 1 removed from paper or reframed as \\\\\\\"when Z% is sufficient, structural negatives help\\\\\\\" (conditional claim with narrow scope)\\\\n- Paper becomes empirical analysis: \\\\\\\"Why Structure-Grounded Hard Negatives Don't Help Code Retrieval (Yet)\\\\\\\"\\\\n- Claim 2 (embedding harm) + Claim 3 (scalability analysis) + failure taxonomy carry the paper\\\\n- Target: EMNLP Findings or workshop (NLP4SE, ML4Code)\\\\n- **Decision point**: if Z% < 15%, discuss with user whether to continue or pivot project\\\\n\\\\n## MVP Evidence Summary\\\\n\\\\n- P1: CodeQL feasible (timeout 0%, Fisher p=1.54e-7, instance recall 75%)\\\\n- P2a: DataFlow feature AUC=0.78, BM25 coefficient negative (-1.80)\\\\n- P2b: random >> embedding_distance (-27pp R@1 at pool=26, 3 seeds consistent); dataflow untestable at MVP scale but viable at full scale (Z=40.8%). Note: pool=50 eval exists but confounded by val.jsonl distribution shift; use pool=26 data only until M2 clean eval.\\\\n\\\", \\\"total_chars\\\": 7310, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/paper_framing.md\", \"content\": \"# Paper Framing — StructFuse\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main\\n- Fallback: EMNLP 2026 Findings\\n- Deadline: ARR May 25, 2026\\n\\n## Core Claims (3)\\n\\n1. **Structure-grounded hard negatives outperform embedding-distance and random negatives for contrastive code retrieval training.** Inter-procedural data-flow connectivity provides a complementary training signal that enhances text-based retrieval — files that are lexically similar but structurally disconnected force the model to internalize structural relevance beyond surface features. (Note: structural signal is complementary but subordinate to text similarity; abstract must reflect this asymmetry per Dream review.)\\n\\n2. **Embedding-distance hard negatives actively harm code retrieval compared to random negatives.** The gradient signal from embedding-distance negatives is partially redundant with the encoder's learned similarity, leading to degraded retrieval quality. (MVP evidence: -27pp recall@1 at pool=26, 3 seeds consistent.)\\n\\n3. **Scope-bounded inter-procedural data-flow analysis via CodeQL is a scalable, model-independent method for computing structural connectivity.** With 2-hop call-graph bounding, timeout <5%, and >40% of instances have connected-but-not-gold structural signals at scale.\\n\\n## Story Spine\\n\\n- **Problem**: Repo-level code repair requires selecting relevant files from large codebases. Current retrievers conflate lexical similarity with structural relevance — a file sharing function names with the buggy code may be structurally unrelated, while a data-flow-connected file may contain the actual fix dependency.\\n\\n- **Existing approaches & gaps**:\\n  - Text-based (SweRank, SWE-Fixer): blind to structural dependencies\\n  - Graph-guided (LocAgent, RANGER, CodexGraph): structural graphs at inference only, no data-flow edges, no training signal\\n  - ARISE: data-flow but intra-procedural only (no call boundary crossing), runtime tool calls only\\n  - CoCoHaNeRe: hard negatives improve code search, but embedding-distance negatives are redundant with encoder similarity\\n\\n- **Our framing**: The key gap is using structural connectivity for **training signal**, not just inference-time navigation. Structure-grounded hard negatives — lexically similar but data-flow disconnected files — provide a complementary learning signal. This is a general paradigm: any domain with external structural knowledge (molecular networks, circuit topology, KG retrieval) can use drift-immune structure-grounded negative mining. Code is the ideal testbed due to formal semantic guarantees.\\n\\n- **Headline result template**: \\\"On SWE-bench Lite, StructFuse with data-flow-aware hard negatives achieves X% recall@5 while embedding-distance negatives achieve Y% and random negatives Z%, demonstrating that structure-grounded negative mining provides complementary training signal not captured by text-based methods alone.\\\"\\n\\n## Dual-Pillar Motivation (per Human Review)\\n\\n1. **Primary — Complementary signal dimension**: Structural connectivity encodes a relevance dimension entirely absent from textual signals. No amount of text-based training can recover inter-procedural data-flow relationships from token sequences alone.\\n2. **Secondary — Selection drift immunity**: Structural graph is externally fixed; negative set does not drift with encoder updates (unlike embedding-distance negatives which shift every epoch).\\n\\n## Formal Definition\\n\\nGiven retrieval domain D, structural graph G, similarity function s, query q:\\n**structure-grounded hard negative** = argmax_{x ∈ D : s(x,q) > τ ∧ ¬reachable_G(x,q)} s(x,q)\\n\\nThe structural graph is externally fixed and does not update with the encoder.\\n\\n## Title\\n\\n\\\"StructFuse: Structure-Grounded Hard Negative Mining for Contrastive Code Context Retrieval\\\"\\n(Per Human Review: emphasize methodology, de-emphasize SE-specific framing)\\n\\n## Venue Fit Risks\\n\\n1. **EMNLP vs SE**: Frame as contrastive learning methodology with code as instantiation\\n2. **Domain-specific concern**: Cross-domain generalization in Discussion (molecular networks, circuit topology, KG retrieval)\\n3. **Incremental contribution**: Novelty is in WHAT generates negatives (program analysis), not the objective itself\\n4. **CodeQL dependency**: CodeQL is one instantiation; any structural analysis producing a connectivity graph works\\n\\n## Anticipated Reviewer Concerns\\n\\n| Concern | Response | Evidence |\\n|---------|----------|----------|\\n| Too domain-specific | Cross-domain generalization + formal definition is domain-agnostic | Discussion section |\\n| Why not ARISE? | Intra-procedural only + inference-time only; we cross call boundaries + train | Direct comparison in ablation |\\n| CodeQL scalability | 0% timeout at pilot, 4% at 50-repo scale; scope-bounded 2-hop | P1 + scale check |\\n| Small improvement | Training methodology contribution, not benchmark chasing; improvement ceiling analysis | Failure analysis |\\n| connected⊆gold? | Scale effect: 40.8% instances have connected≠gold at 50-repo scale | M1 full statistics |\\n| Single encoder (Dream) | Add StarCoder-3B or CodeBERT validation; even 1K-instance experiment suffices | plan_013 |\\n| Static vs dynamic mining (Dream) | Clarify mining is static; add dynamic mining baseline row | plan_015 |\\n| Temperature regime (Dream) | Ablate τ ∈ {0.05, 0.1, 0.2} to confirm finding is not regime-specific | plan_014 |\\n| Missing related work (Dream) | RepoFusion, GRACE, GraphCodeBERT, ANCE, curriculum HN mining | Writing task |\\n| No inference-time graph comparison (Dream) | Discuss relationship to CodexGraph/LocAgent — complementary vs alternative | plan_017 |\\n| SWE-bench stat significance (Dream) | Bootstrap 95% CI for resolve rate | plan_016 |\\n| \\\"Complementary\\\" overstatement (Dream) | Temper abstract: \\\"enhances text-based retrieval\\\" not \\\"cannot recover\\\" | Writing task |\\n\\n## Contingency Framing (from Dream, three-tier thresholds per D009)\\n\\n### Z% ≥ 35%: Best framing holds\\n- Claim 1 as headline, full story intact\\n- Target: EMNLP Main\\n\\n### 20% ≤ Z% < 35%: Median pivot\\n- **Headline shifts to Claim 2** (\\\"embedding-distance negatives harm\\\") which is robust across all tiers\\n- Claim 1 downgrades to \\\"dataflow negatives are a viable, non-harmful alternative\\\"\\n- Title pivot: \\\"When Hard Negatives Hurt: Embedding-Distance Negative Mining Degrades Contrastive Code Retrieval\\\"\\n- Target shifts from EMNLP Main to Findings\\n\\n### Z% < 20%: Major adjustment required\\n- Claim 1 removed from paper or reframed as \\\"when Z% is sufficient, structural negatives help\\\" (conditional claim with narrow scope)\\n- Paper becomes empirical analysis: \\\"Why Structure-Grounded Hard Negatives Don't Help Code Retrieval (Yet)\\\"\\n- Claim 2 (embedding harm) + Claim 3 (scalability analysis) + failure taxonomy carry the paper\\n- Target: EMNLP Findings or workshop (NLP4SE, ML4Code)\\n- **Decision point**: if Z% < 15%, discuss with user whether to continue or pivot project\\n\\n## MVP Evidence Summary\\n\\n- P1: CodeQL feasible (timeout 0%, Fisher p=1.54e-7, instance recall 75%)\\n- P2a: DataFlow feature AUC=0.78, BM25 coefficient negative (-1.80)\\n- P2b: random >> embedding_distance (-27pp R@1 at pool=26, 3 seeds consistent); dataflow untestable at MVP scale but viable at full scale (Z=40.8%). Note: pool=50 eval exists but confounded by val.jsonl distribution shift; use pool=26 data only until M2 clean eval.\\n\", \"total_chars\": 7310, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J2aPjUejG9bApjpw8P3U2b",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "structfuse-context",
+                "file": "report.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "067b6c33-6ebf-4fa8-b1fd-d67ddd709cfd",
+            "uuid": "a227a012-0f1a-4f08-8d77-ace7966a9293",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HvvRaYWm8h9EETbQRU683G",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 476,
+                "cache_read_input_tokens": 23345,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 476
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T18:44:43.665Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J2aPjUejG9bApjpw8P3U2b",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-13\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| m2_full_starcoder | Full M2 StarCoder: 3 strategies × 3 seeds on full M1 data. Cross-encoder validation — if embedding > random holds for both Qwen and StarCoder, method is encoder-agnostic. Resolves plan_013 pilot negative (dataflow encoder-dependent). | — | — | — |\\\\n| m2_full_qwen | Full M2 Qwen: 3 strategies (random/embedding/dataflow) × 3 seeds on full M1 data (~11K train/seed). Statistical validation of pilot signal (embedding > random +2pp). Go/no-go for paper claims per D018. | — | — | — |\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **plan_013_starcoder** (negative): Architecture generalization: validate StructFuse with StarCoder2-3B encoder (vs Qwen2.5-Coder-3B in m2_embed_verify). If both encoders show same strategy ranking → method is encoder-agnostic, strengthening the core claim. Key differentiator for best→accept at Dream.\\\\n- **m2_embed_verify** (success): True embedding mining verification: compare Qwen2.5-Coder-3B cosine similarity negatives vs BM25 negatives on pilot data (24 repos). If true embedding negatives are harder → Claim 2 (structure-aware negatives improve retrieval) gets stronger evidence. ← 基于 m2_early_pilot\\\\n- **m1_extraction** (success): —\\\\n\\\\n## 趋势\\\\n成功 9 / 负向 2 / 失败 1 / 共 26\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nbjb1-42106: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- p2b-smoke-test: 已被终止 — unknown\\\\n- p2b-smoke2: 已被终止 — unknown\\\\n- p2b-smoke3: 已被终止 — unknown\\\\n- p2b-smoke4: 已被终止 — unknown\\\\n- p2b-smoke5: 已被终止 — unknown\\\\n- p2b-smoke6: 已被终止 — unknown\\\\n- p2b-smoke7: 已被终止 — unknown\\\\n- p2b-smoke8: 已被终止 — unknown\\\\n- p2b-all-9runs: 已被终止 — unknown\\\\n- mvp_p2b_contrastive_training: 已被终止 — unknown\\\\n- mvp_p2b_contrastive_v2: 已被终止 — unknown\\\\n- p2b_eval_all: 已被终止 — unknown\\\\n- m2_early_pilot: 已被终止 — unknown\\\\n- m2_early_pilot_v2: 训练失败 — unknown\\\\n- m2_early_pilot_v3: 已被终止 — unknown\\\\n\\\", \\\"total_chars\\\": 1906, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "067b6c33-6ebf-4fa8-b1fd-d67ddd709cfd",
+            "uuid": "48ea1d42-9eab-4162-8789-9ea7e38d70c4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-13\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| m2_full_starcoder | Full M2 StarCoder: 3 strategies × 3 seeds on full M1 data. Cross-encoder validation — if embedding > random holds for both Qwen and StarCoder, method is encoder-agnostic. Resolves plan_013 pilot negative (dataflow encoder-dependent). | — | — | — |\\\\n| m2_full_qwen | Full M2 Qwen: 3 strategies (random/embedding/dataflow) × 3 seeds on full M1 data (~11K train/seed). Statistical validation of pilot signal (embedding > random +2pp). Go/no-go for paper claims per D018. | — | — | — |\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **plan_013_starcoder** (negative): Architecture generalization: validate StructFuse with StarCoder2-3B encoder (vs Qwen2.5-Coder-3B in m2_embed_verify). If both encoders show same strategy ranking → method is encoder-agnostic, strengthening the core claim. Key differentiator for best→accept at Dream.\\\\n- **m2_embed_verify** (success): True embedding mining verification: compare Qwen2.5-Coder-3B cosine similarity negatives vs BM25 negatives on pilot data (24 repos). If true embedding negatives are harder → Claim 2 (structure-aware negatives improve retrieval) gets stronger evidence. ← 基于 m2_early_pilot\\\\n- **m1_extraction** (success): —\\\\n\\\\n## 趋势\\\\n成功 9 / 负向 2 / 失败 1 / 共 26\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nbjb1-42106: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- p2b-smoke-test: 已被终止 — unknown\\\\n- p2b-smoke2: 已被终止 — unknown\\\\n- p2b-smoke3: 已被终止 — unknown\\\\n- p2b-smoke4: 已被终止 — unknown\\\\n- p2b-smoke5: 已被终止 — unknown\\\\n- p2b-smoke6: 已被终止 — unknown\\\\n- p2b-smoke7: 已被终止 — unknown\\\\n- p2b-smoke8: 已被终止 — unknown\\\\n- p2b-all-9runs: 已被终止 — unknown\\\\n- mvp_p2b_contrastive_training: 已被终止 — unknown\\\\n- mvp_p2b_contrastive_v2: 已被终止 — unknown\\\\n- p2b_eval_all: 已被终止 — unknown\\\\n- m2_early_pilot: 已被终止 — unknown\\\\n- m2_early_pilot_v2: 训练失败 — unknown\\\\n- m2_early_pilot_v3: 已被终止 — unknown\\\\n\\\", \\\"total_chars\\\": 1906, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/report.md\", \"content\": \"# Handover — 2026-05-13\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| m2_full_starcoder | Full M2 StarCoder: 3 strategies × 3 seeds on full M1 data. Cross-encoder validation — if embedding > random holds for both Qwen and StarCoder, method is encoder-agnostic. Resolves plan_013 pilot negative (dataflow encoder-dependent). | — | — | — |\\n| m2_full_qwen | Full M2 Qwen: 3 strategies (random/embedding/dataflow) × 3 seeds on full M1 data (~11K train/seed). Statistical validation of pilot signal (embedding > random +2pp). Go/no-go for paper claims per D018. | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **plan_013_starcoder** (negative): Architecture generalization: validate StructFuse with StarCoder2-3B encoder (vs Qwen2.5-Coder-3B in m2_embed_verify). If both encoders show same strategy ranking → method is encoder-agnostic, strengthening the core claim. Key differentiator for best→accept at Dream.\\n- **m2_embed_verify** (success): True embedding mining verification: compare Qwen2.5-Coder-3B cosine similarity negatives vs BM25 negatives on pilot data (24 repos). If true embedding negatives are harder → Claim 2 (structure-aware negatives improve retrieval) gets stronger evidence. ← 基于 m2_early_pilot\\n- **m1_extraction** (success): —\\n\\n## 趋势\\n成功 9 / 负向 2 / 失败 1 / 共 26\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nbjb1-42106: 无 GPU 信息\\n\\n## 告警\\n- p2b-smoke-test: 已被终止 — unknown\\n- p2b-smoke2: 已被终止 — unknown\\n- p2b-smoke3: 已被终止 — unknown\\n- p2b-smoke4: 已被终止 — unknown\\n- p2b-smoke5: 已被终止 — unknown\\n- p2b-smoke6: 已被终止 — unknown\\n- p2b-smoke7: 已被终止 — unknown\\n- p2b-smoke8: 已被终止 — unknown\\n- p2b-all-9runs: 已被终止 — unknown\\n- mvp_p2b_contrastive_training: 已被终止 — unknown\\n- mvp_p2b_contrastive_v2: 已被终止 — unknown\\n- p2b_eval_all: 已被终止 — unknown\\n- m2_early_pilot: 已被终止 — unknown\\n- m2_early_pilot_v2: 训练失败 — unknown\\n- m2_early_pilot_v3: 已被终止 — unknown\\n\", \"total_chars\": 1906, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LBBr6fn9n5UVy1N6xRJYRM",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "structfuse-context",
+                "file": "decisions.yaml",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "067b6c33-6ebf-4fa8-b1fd-d67ddd709cfd",
+            "uuid": "67bf425f-d6ab-4281-a30e-a2f78b029135",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HvvRaYWm8h9EETbQRU683G",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 476,
+                "cache_read_input_tokens": 23345,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 476
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T18:44:43.998Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LBBr6fn9n5UVy1N6xRJYRM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 21\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-12 09:57 UTC\\\\n  summary: 'MVP 设计: CodeQL 试点(10 repos) + 迷你对比训练(500 instances) 验证核心假设'\\\\n  rationale: 13 天 DDL，需要最快速验证核心假设链：(1) CodeQL inter-procedural data-flow 在 Python\\\\n    repos 上可行（timeout < 30%），(2) data-flow hard negatives 比 random negatives 提升检索\\\\n    recall。两个 phase 串行，总计约 1 天。通过后立即进入全量数据提取和训练。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-12 10:01 UTC\\\\n  summary: '采纳 Reviewer 反馈: MVP Phase 2 增加线性分类器 proxy 验证 + 3-seed 训练 + 显式 kill criteria'\\\\n  rationale: 'Reviewer 指出 Phase 2 原方案（500 instances, ~100 held-out, 2pp gate）统计效力不足，2pp\\\\n    差异在随机噪声范围内。增加: (1) Phase 2a 线性分类器 proxy 验证解耦特征质量与训练策略；(2) 3-seed 训练要求 ≥2/3 seed\\\\n    提升；(3) 每个 phase 的 fail→kill/fallback 路径。防止 13 天 DDL 下的沉没成本陷阱。'\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-12 10:02 UTC\\\\n  summary: 'H2 验证并入 Phase 1: 提取后立即统计 data-flow 连通文件 vs 不连通文件的 gold patch 覆盖率差异'\\\\n  rationale: Reviewer 指出 H2（特征区分度）在原 MVP 中无独立验证，Phase 2 失败时无法区分是 H2 还是 H3 问题。零成本 sanity\\\\n    check（统计连通/不连通文件的 gold patch 覆盖率）可在 Phase 1 提取完后立即执行，不需要训练。这比 Phase 2a 的线性分类器更早给出诊断信号。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-12 11:21 UTC\\\\n  summary: 'Phase 1 gate PASS: timeout 0%, H2 Fisher p=1.54e-7, 75% instance recall.\\\\n    进入 Phase 2。'\\\\n  rationale: 10 repos 中 8 个成功提取（2 个 skip 因 buggy file 路径不存在，非 CodeQL 限制）。timeout rate\\\\n    0% 远低于 30% 阈值。H2 sanity check：连通文件 gold 覆盖 1.44% vs 不连通 0.00%，Fisher p=1.54e-7。75%\\\\n    instance recall（6/8 gold file 在连通集）。数据质量问题（路径匹配、skip rate、registry 注册）并行修复，不阻塞\\\\n    Phase 2。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D005\\\\n  date: 2026-05-12 11:35 UTC\\\\n  summary: 'CRITICAL: GPU 越界 PID 59170 跑在 GPU 5 而非分配的 cuda:4，立即 kill + 全脚本修复 CUDA_VISIBLE_DEVICES'\\\\n  rationale: Reviewer 核实 nvidia-smi 发现 run_mvp.py 在 GPU 5 上运行 9.3GB，而项目分配的 cuda:4\\\\n    完全空闲。违反 L1 红线（GPU 资源边界）。要求 Agent 立即 kill 进程、修复所有脚本强制 CUDA_VISIBLE_DEVICES=4、排查\\\\n    dry-run 是否也越界。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D006\\\\n  date: 2026-05-12 17:24 UTC\\\\n  summary: P2b pass criteria 调整：recall@5→recall@1，pool_size 26→50+，阈值 ≥2pp 不变\\\\n  rationale: Eval v2 (pool_size=26) 显示 random recall@5 已达 98.4-99.2%，原标准\\\\\\\"dataflow\\\\n    recall@5 > random ≥2pp\\\\\\\"数学上几乎不可能达标（天花板仅 0.8-1.6pp 空间）。recall@1 有更大区分度（random mean\\\\n    93.97%），且是更严格的排序指标。同时扩大 pool_size 至 50+ 使 recall@5/10 也获得有效梯度。新标准：dataflow_aware\\\\n    recall@1 > random recall@1 ≥2pp in ≥2/3 seeds，pool_size=50。\\\\n  related_experiments:\\\\n  - exp_id: mvp_p2b_contrastive_training\\\\n    role: trigger\\\\n    result: random recall@1 mean=0.940, emb_dist recall@1=0.669 at pool=26; recall@5\\\\n      ceiling\\\\n  depends_on:\\\\n  - D002\\\\n- id: D007\\\\n  date: 2026-05-12 19:52 UTC\\\\n  summary: MVP P2b dataflow 策略不可验证：connected⊆gold 导致数据相同。决定：50-repo 规模验证 + Scheme\\\\n    B 备份\\\\n  rationale: 修复 build_p2b_data.py 后重新生成数据，train_dataflow.jsonl 仍与 train_embedding.jsonl\\\\n    完全相同。根因：8 个 MVP repos 中 dataflow 连接文件全部是 gold 文件的子集（connected-but-not-gold = 0），non_pos\\\\n    过滤无差异。这不是方法缺陷而是规模问题——小 repo 紧耦合，2-hop 连接集≈gold 集。P1（Fisher p=1.54e-7）和 P2a（AUC=0.78）仍有效，说明\\\\n    dataflow connectivity 有信号，只是 MVP 规模不足以分离 connected-but-not-gold 子集。决策：(1) 立即跑\\\\n    50-repo 样本的 overlap 统计（CPU, ~2-4h），确认大规模下 connected⊃gold；(2) 并行准备 Scheme B（distance-weighted\\\\n    negatives）作为 pivot 备选；(3) overlap>20% 实例有 connected≠gold → 进入全量 M1 提取；overlap≈100%\\\\n    → pivot to Scheme B。\\\\n  related_experiments:\\\\n  - exp_id: mvp_p2b_contrastive_training\\\\n    role: trigger\\\\n    result: dataflow≡embedding 因 connected⊆gold\\\\n  depends_on:\\\\n  - D006\\\\n  - D004\\\\n- id: D008\\\\n  date: 2026-05-12 20:38 UTC\\\\n  summary: MVP 条件性通过：P1+P2a PASS，P2b dataflow 在 MVP 规模不可测但 50-repo 规模验证确认方法可行（Z=40.8%）。进入\\\\n    research 阶段。\\\\n  rationale: MVP 三阶段结果：P1 PASS（timeout 0%, Fisher p=1.54e-7, 75% instance recall）；P2a\\\\n    PASS（AUC 0.78, BM25 系数为负）；P2b 部分有效——random>>embedding（-27pp recall@1 at pool=26,\\\\n    -3.7pp at pool=50）确认 naive hard negatives 有害，但 dataflow vs random 因 connected⊆gold\\\\n    无法在 8 repos 上区分。50-repo 规模验证 Z=40.8%（中型 repo 55.7%），timeout 4%，确认方法在全量数据上可行。Kill\\\\n    criteria 均未触发。P2b dataflow 对比将在 M2 全量训练中完成。\\\\n  related_experiments:\\\\n  - exp_id: mvp_p1_codeql_feasibility\\\\n    role: evidence\\\\n    result: PASS\\\\n  - exp_id: mvp_p2a_linear_proxy\\\\n    role: evidence\\\\n    result: PASS\\\\n  - exp_id: mvp_p2b_contrastive_training\\\\n    role: evidence\\\\n    result: partial - random>>emb confirmed, dataflow untestable at MVP scale\\\\n  depends_on:\\\\n  - D007\\\\n  - D006\\\\n  - D004\\\\n- id: D009\\\\n  date: 2026-05-12 22:04 UTC\\\\n  summary: Dream 审稿完成：best=Weak Accept, median=Weak Reject, worst=Reject。批准 P0 启动，但\\\\n    plan 需增补 5 个 dream-derived 实验\\\\n  rationale: 三档共识问题：(1) 单编码器无法支撑 generality claim，需加 StarCoder/CodeBERT；(2) static\\\\n    vs dynamic embedding mining 是潜在 confound；(3) τ=0.05 可能 regime-specific；(4) SWE-bench\\\\n    +2pp 需 bootstrap CI；(5) abstract \\\\\\\"complementary\\\\\\\" 需降调。关键风险变量是 M1 的 Z%：≥35% best\\\\n    framing 成立，20-35% pivot 到 Claim 2 headline，<20% 需重大调整。已在 experiment_plan.yaml\\\\n    增加 plan_013-017（+35h GPU），paper_framing.md 增加 contingency framing。P0 实验（M1 已在跑）可继续，不需\\\\n    re-dream。\\\\n  related_experiments:\\\\n  - exp_id: dream_20260512T204322\\\\n    role: dream_simulate\\\\n    result: best=WA, median=WR, worst=R\\\\n  depends_on:\\\\n  - D008\\\\n- id: D010\\\\n  date: 2026-05-12 22:09 UTC\\\\n  summary: plan_013 (second encoder) 从 P1 升级至 P0，headline template 降调修复\\\\n  rationale: Reviewer 指出 single encoder 是 best→accept 的关键区分因素，在 best-R1-W1 和 median-R2-W5\\\\n    两档都出现。P1 排期可能导致论文缺少 generality 证据而被 WR。升级后 M2 完成即可并行启动 plan_013。同时修复 headline\\\\n    template \\\\\\\"cannot recover\\\\\\\" → \\\\\\\"complementary signal not captured by\\\\\\\"。\\\\n  related_experiments:\\\\n  - exp_id: plan_013\\\\n    role: priority_upgrade\\\\n    result: P1→P0\\\\n  depends_on:\\\\n  - D009\\\\n- id: D011\\\\n  date: 2026-05-13 01:38 UTC\\\\n  summary: Z%=74.0% 确认 Best Framing — Claim 1 为 headline，批准 M2 早期训练\\\\n  rationale: M1 部分数据（24/222 repos, 5128 instances）Z%=74.0%，远超 ≥35% 阈值。对比 D007 的 40.8%（50\\\\n    SWE-bench repos），SWE-Smith 数据集跨文件依赖密度更高。Best framing 成立：Claim 1 (\\\\\\\"structure-grounded\\\\n    negatives outperform\\\\\\\") 为 headline。批准在当前 5K instances 上做 M2 早期训练 pilot（3 strategies\\\\n    × 1 seed），利用 cuda:4 空闲期获取早期信号，不等全量 M1（还需 ~46h）。磁盘已清理至 61GB free (64%)，足够训练。\\\\n  related_experiments:\\\\n  - exp_id: m1_extraction\\\\n    role: data_source\\\\n    result: Z%=74.0% at 24/222 repos\\\\n  - exp_id: d007_50repo_overlap\\\\n    role: baseline\\\\n    result: Z%=40.8% on SWE-bench 50 repos\\\\n  depends_on:\\\\n  - D009\\\\n  - D010\\\\n- id: D012\\\\n  date: 2026-05-13 02:11 UTC\\\\n  summary: Kill m2_early_pilot_v3 (PID 897752) — 第二次 GPU 越界 (cuda:0)\\\\n  rationale: Reviewer 发现 m2_early_pilot_v3 在 cuda:0 运行（PID 897752, 17100 MiB），项目仅分配\\\\n    cuda:4。这是第二次 GPU 越界（第一次 D005 在 GPU 5）。立即 kill 并标记 killed。同时 m2_early_pilot_v2\\\\n    因 wandb API key error 已崩溃标记 FAILED。当前唯一合法训练为 PID 795791 (m2_early_pilot, cuda:4)。要求\\\\n    Agent 排查越界原因并确保后续脚本强制 CUDA_VISIBLE_DEVICES=4。\\\\n  related_experiments:\\\\n  - exp_id: m2_early_pilot_v3\\\\n    role: violated\\\\n    result: killed - GPU 越界 cuda:0\\\\n  - exp_id: m2_early_pilot_v2\\\\n    role: failed\\\\n    result: wandb API key error\\\\n  - exp_id: m2_early_pilot\\\\n    role: active\\\\n    result: PID 795791 on cuda:4, running\\\\n  depends_on:\\\\n  - D011\\\\n- id: D013\\\\n  date: 2026-05-13 02:50 UTC\\\\n  summary: 服务器迁移：cqa1-21977 cuda:4 → bjb1-42106 cuda:0/1 (RTX PRO 6000 96GB×2)\\\\n  rationale: Manager 分配独立服务器 bjb1-42106（2x RTX PRO 6000 96GB）。迁移策略：(1) M1 提取继续在 cqa1-21977\\\\n    CPU 上完成（不中断），(2) 新服务器立即搭建环境+同步代码+下载模型，(3) M2 early pilot 在 cqa1-21977 cuda:4 跑完后所有\\\\n    GPU 工作转到新服务器，(4) 通知 Manager 释放 cuda:4。RTX PRO 6000 96GB 彻底解决 M3a VRAM 问题（Qwen3.6-27B\\\\n    不再需要 fallback），2 卡可并行 M2 全量 + plan_013。\\\\n  related_experiments:\\\\n  - exp_id: m2_early_pilot\\\\n    role: in_progress\\\\n    result: finishing on cqa1-21977 cuda:4\\\\n  - exp_id: m1_extraction\\\\n    role: in_progress\\\\n    result: CPU only, stays on cqa1-21977\\\\n  depends_on:\\\\n  - D011\\\\n- id: D014\\\\n  date: 2026-05-13 04:44 UTC\\\\n  summary: Kill m2_early_pilot (PID 795791) — 过拟合+卡死，bjb1 m2_embed_verify 取代\\\\n  rationale: m2_early_pilot 在 cqa1 cuda:4 上仅完成 random 策略（best val_loss=0.5879 at step\\\\n    1500，之后持续过拟合到 0.728）。进程在 step 4000 卡死 45+ min。OOM 干扰（另一进程在同 GPU 启动）。embedding_distance\\\\n    和 dataflow_aware 策略未启动。bjb1 上的 m2_embed_verify 使用 true embedding mining + 更大参数（negatives=7,\\\\n    seq_len=2048, batch=8）+ eval bug fix，将完全取代此 pilot。通知 Manager 释放 cqa1 cuda:4。\\\\n  related_experiments:\\\\n  - exp_id: m2_early_pilot\\\\n    role: killed\\\\n    result: random best val_loss=0.5879, overfitting after step 1500\\\\n  - exp_id: m2_embed_verify\\\\n    role: replacement\\\\n    result: preparing on bjb1 cuda:1\\\\n  depends_on:\\\\n  - D011\\\\n  - D013\\\\n- id: D015\\\\n  date: 2026-05-13 11:43 UTC\\\\n  summary: 全量 Z%=78.0%（条件）确认 Best Framing；Coverage 34.3% 需论文讨论\\\\n  rationale: 全量 M1（123/131 repos, 44,173 instances）统计：15,153 instances 有结构数据（34.3%），其中\\\\n    11,825 有 connected-but-not-gold 文件（条件 Z%=78.0%，高于 pilot 72.5%）。条件 Z% 远超 35% 阈值，Best\\\\n    Framing（Claim 1 as headline）完全成立。但 Coverage 仅 34.3%——65.7% instances CodeQL/Beniget\\\\n    未产出结构连接，论文需讨论此局限性并限定 claim 范围为\\\\\\\"有结构数据的 instances\\\\\\\"。\\\\n  related_experiments:\\\\n  - exp_id: m1_extraction\\\\n    role: data_source\\\\n    result: 123/131 repos, 44173 instances, 15897 structural\\\\n  - exp_id: plan_006_scalability\\\\n    role: prior_pilot\\\\n    result: pilot Z%=72.5% on 29 repos\\\\n  depends_on:\\\\n  - D011\\\\n- id: D016\\\\n  date: 2026-05-13 15:24 UTC\\\\n  summary: 'Reviewer Critical: m2_embed_verify 和 plan_013_starcoder 实际已完成全部 3 策略，registry\\\\n    错误标记为 failed'\\\\n  rationale: Reviewer 直接从服务器日志验证：两个实验的 dataflow 策略均已完成（\\\\\\\"All 3 strategies completed\\\\\\\"），EXIT_CODE\\\\n    异常发生在训练完成之后（wrapper 脚本问题）。关键数据：(1) Qwen dataflow peak R@1=0.5584 (+2.27pp vs random)，支撑\\\\n    Claim 1；(2) StarCoder dataflow R@1=0.4869 < random 0.4922，encoder-agnostic claim\\\\n    受挑战；(3) 两个编码器的 dataflow 策略均严重过拟合（train loss→0）。已派 Agent 紧急修正 registry + 收集完整 metrics\\\\n    + 验证 StarCoder random 数据来源。方向决策待 Agent 汇报验证数据后确定。\\\\n  related_experiments:\\\\n  - exp_id: m2_embed_verify\\\\n    role: primary\\\\n    result: 实际完成（3 strategies all done），Qwen dataflow peak R@1=0.5584\\\\n  - exp_id: plan_013_starcoder\\\\n    role: primary\\\\n    result: 实际完成（3 strategies all done），StarCoder dataflow R@1=0.4869 < random 0.4922\\\\n  depends_on: []\\\\n- id: D017\\\\n  date: 2026-05-13 16:03 UTC\\\\n  summary: Pilot 结果验证完成：embedding > random 跨编码器一致；dataflow 需按两种 checkpoint 标准报告；Claim\\\\n    2 需修订\\\\n  rationale: 'Reviewer 验证 18 个指标全部精确匹配。核心发现：(1) embedding > random 在 Qwen (+2.0pp)\\\\n    和 StarCoder (+1.6pp) 上一致，是最稳健结论；(2) dataflow 排名取决于 checkpoint 选择——按 val_loss:\\\\n    embedding > dataflow > random (Qwen)，按 peak R@1: dataflow > embedding > random\\\\n    (Qwen)；(3) StarCoder dataflow final eval 追平 embedding (0.5078=0.5078)，\\\\\\\"embedding\\\\n    consistently beats dataflow\\\\\\\" 不成立；(4) Claim 2 (\\\\\\\"embedding harms\\\\\\\") 在 true embedding\\\\n    mining 下不复现，仅在 MVP BM25 proxy 下成立。全量 M2 训练需报告两种 checkpoint 标准下的结果，避免 cherry-picking\\\\n    质疑。Paper framing 修订延后至全量 M2 结果出来后。'\\\\n  related_experiments:\\\\n  - exp_id: m2_embed_verify\\\\n    role: primary\\\\n    result: 'Qwen: embedding(0.5557) > dataflow(0.5436) > random(0.5357) by val_loss;\\\\n      dataflow peak(0.5584) > embedding(0.5557) by R@1'\\\\n  - exp_id: plan_013_starcoder\\\\n    role: primary\\\\n    result: 'StarCoder: embedding(0.5078) > random(0.4922) > dataflow(0.4869) by val_loss;\\\\n      dataflow final(0.5078) = embedding'\\\\n  depends_on:\\\\n  - D016\\\\n- id: D018\\\\n  date: 2026-05-13 16:04 UTC\\\\n  summary: 不做预判性 framing pivot，full M2 (18 runs) 是 go/no-go 唯一判据；双 checkpoint 标准；准备\\\\n    B/C 两条后备路线\\\\n  rationale: Pilot 仅 24 repos / 1 seed，<2pp delta 统计功效不足以支持强 claim 或否决原假设。Full M2\\\\n    (131 repos × 3 strategies × 3 seeds × 2 encoders = 18 runs) 提供 3-seed 统计功效，是唯一可信判据。不选\\\\n    Agent 提议的 A/B/C 任何一个——过早锁定叙事会限制后续解读空间。数据构建已在进行，不浪费时间在 framing 讨论上。Full M2 结果出来后根据实际数据\\\\n    pattern 决定：(a) dataflow 跨编码器一致 > random → 原 framing 修正后可用；(b) dataflow 不一致但 embedding\\\\n    一致 → 方案 B 或 C；(c) 所有差异不显著 → 需要更大规模实验或 pivot。同时要求 dual checkpoint (best-val-loss\\\\n    + best-R@1) 和 3-seed CI 确保结果可信。\\\\n  related_experiments:\\\\n  - exp_id: m2_embed_verify\\\\n    role: evidence\\\\n    result: pilot underpowered (1 seed, 24 repos)\\\\n  - exp_id: plan_013_starcoder\\\\n    role: evidence\\\\n    result: pilot underpowered (1 seed, 24 repos)\\\\n  depends_on:\\\\n  - D017\\\\n- id: D019\\\\n  date: 2026-05-13 18:08 UTC\\\\n  summary: D018 补充：Full M2 go/no-go 量化阈值 + 统计检验方案\\\\n  rationale: 'Reviewer 指出 D018 缺量化阈值，go/no-go 判据需在结果出来前明确，避免事后 rationalization。\\\\n\\\\n\\\\n    **统计方法**：每个 encoder 3 seeds 的 R@1 (best-by-val-loss checkpoint) 做 paired difference，bootstrap\\\\n    95% CI + paired t-test (p<0.05)。同时报告 best-by-R@1 checkpoint 结果作为透明度补充。\\\\n\\\\n\\\\n    **Go/No-Go 阈值**：\\\\n\\\\n    (A) Go — 原 framing 可用：dataflow > random 的 95% CI 在两个 encoder 上均 > 0\\\\n\\\\n    (B) Conditional Go — 修正 framing：dataflow > random 在至少一个 encoder 上 CI > 0，另一个 CI\\\\n    含 0（差异不显著）\\\\n\\\\n    (C) No-Go for Claim 1：dataflow ≤ random 在两个 encoder 上 CI 均含 0 或为负 → Claim 1 失效，pivot\\\\n    到 \\\\\\\"mining strategy × architecture\\\\\\\" 分析论文\\\\n\\\\n\\\\n    **Claim 2 判据**：若 full M2 显示 embedding > random 且 CI > 0 → 原 Claim 2 (\\\\\\\"embedding\\\\n    harms\\\\\\\") 被否定。新 Claim 2 候选：\\\\\\\"true embedding mining helps, but BM25 proxy harms\\\\\\\" 或\\\\n    \\\\\\\"hard negative mining method matters more than hard negative source\\\\\\\"\\\\n\\\\n\\\\n    **跨 encoder 一致性规则**：\\\\n\\\\n    - 同方向同显著 → 强泛化 claim\\\\n\\\\n    - 同方向不同显著 → 条件 claim + architecture discussion\\\\n\\\\n    - 反方向 → Claim 1 原形式被拒，需 conditional reframe\\\\n\\\\n\\\\n    阈值在 full M2 结果出来前锁定，不允许事后修改。'\\\\n  related_experiments:\\\\n  - exp_id: m2_full_qwen\\\\n    role: primary\\\\n    result: RUNNING - random_s42 in progress\\\\n  - exp_id: m2_full_starcoder\\\\n    role: primary\\\\n    result: RUNNING - data build phase\\\\n  depends_on:\\\\n  - D018\\\\n- id: D020\\\\n  date: 2026-05-13 18:10 UTC\\\\n  summary: D019 补充：Claim 2 完整判定矩阵 + n=3 功效限制声明\\\\n  rationale: 'Reviewer 指出 D019 的 Claim 2 阈值不完整 + n=3 统计功效天然受限。补充如下：\\\\n\\\\n\\\\n    **Claim 2 完整判定矩阵**（3 seeds, paired bootstrap 95% CI）：\\\\n\\\\n    (i) random > embedding CI>0 → Claim 2 confirmed（embedding harms，与 MVP 一致）\\\\n\\\\n    (ii) embedding > random CI>0 → Claim 2 falsified（true embedding mining helps，需\\\\n    reframe）\\\\n\\\\n    (iii) CI 含 0 → inconclusive（效应存在但检测不到或确实无差异，论文报告为 \\\\\\\"no significant difference\\\\\\\"\\\\n    + 报告 effect size）\\\\n\\\\n\\\\n    **n=3 功效限制**（显式承认，不修改阈值）：\\\\n\\\\n    - df=2 时 t 临界值 4.303，pilot 级别差异（<2pp）极难达到 p<0.05\\\\n\\\\n    - Bootstrap n=3 仅 27 种重采样，CI 估计粗糙\\\\n\\\\n    - 阈值框架偏向 No-Go（Type II error 高）\\\\n\\\\n    - 若结果落入 (C) No-Go，论文 Discussion 必须讨论功效限制，不能简单声明 \\\\\\\"dataflow 无效\\\\\\\"\\\\n\\\\n    - 这是算力约束下的合理选择，不改阈值，但明确风险\\\\n\\\\n\\\\n    **plan_014 排期**：Full M2 完成后优先启动 plan_014（temperature ablation, ~10h）——无论 Claim\\\\n    2 reframe 成哪个方向，temperature regime-specificity 都需要回答。'\\\\n  related_experiments:\\\\n  - exp_id: m2_full_qwen\\\\n    role: primary\\\\n    result: RUNNING\\\\n  - exp_id: m2_full_starcoder\\\\n    role: primary\\\\n    result: RUNNING\\\\n  depends_on:\\\\n  - D019\\\\n\\\", \\\"total_chars\\\": 14229, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "067b6c33-6ebf-4fa8-b1fd-d67ddd709cfd",
+            "uuid": "4afd3fda-38e4-4054-8631-ae00b5b6a1e6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 21\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-12 09:57 UTC\\\\n  summary: 'MVP 设计: CodeQL 试点(10 repos) + 迷你对比训练(500 instances) 验证核心假设'\\\\n  rationale: 13 天 DDL，需要最快速验证核心假设链：(1) CodeQL inter-procedural data-flow 在 Python\\\\n    repos 上可行（timeout < 30%），(2) data-flow hard negatives 比 random negatives 提升检索\\\\n    recall。两个 phase 串行，总计约 1 天。通过后立即进入全量数据提取和训练。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-12 10:01 UTC\\\\n  summary: '采纳 Reviewer 反馈: MVP Phase 2 增加线性分类器 proxy 验证 + 3-seed 训练 + 显式 kill criteria'\\\\n  rationale: 'Reviewer 指出 Phase 2 原方案（500 instances, ~100 held-out, 2pp gate）统计效力不足，2pp\\\\n    差异在随机噪声范围内。增加: (1) Phase 2a 线性分类器 proxy 验证解耦特征质量与训练策略；(2) 3-seed 训练要求 ≥2/3 seed\\\\n    提升；(3) 每个 phase 的 fail→kill/fallback 路径。防止 13 天 DDL 下的沉没成本陷阱。'\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-12 10:02 UTC\\\\n  summary: 'H2 验证并入 Phase 1: 提取后立即统计 data-flow 连通文件 vs 不连通文件的 gold patch 覆盖率差异'\\\\n  rationale: Reviewer 指出 H2（特征区分度）在原 MVP 中无独立验证，Phase 2 失败时无法区分是 H2 还是 H3 问题。零成本 sanity\\\\n    check（统计连通/不连通文件的 gold patch 覆盖率）可在 Phase 1 提取完后立即执行，不需要训练。这比 Phase 2a 的线性分类器更早给出诊断信号。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-12 11:21 UTC\\\\n  summary: 'Phase 1 gate PASS: timeout 0%, H2 Fisher p=1.54e-7, 75% instance recall.\\\\n    进入 Phase 2。'\\\\n  rationale: 10 repos 中 8 个成功提取（2 个 skip 因 buggy file 路径不存在，非 CodeQL 限制）。timeout rate\\\\n    0% 远低于 30% 阈值。H2 sanity check：连通文件 gold 覆盖 1.44% vs 不连通 0.00%，Fisher p=1.54e-7。75%\\\\n    instance recall（6/8 gold file 在连通集）。数据质量问题（路径匹配、skip rate、registry 注册）并行修复，不阻塞\\\\n    Phase 2。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D005\\\\n  date: 2026-05-12 11:35 UTC\\\\n  summary: 'CRITICAL: GPU 越界 PID 59170 跑在 GPU 5 而非分配的 cuda:4，立即 kill + 全脚本修复 CUDA_VISIBLE_DEVICES'\\\\n  rationale: Reviewer 核实 nvidia-smi 发现 run_mvp.py 在 GPU 5 上运行 9.3GB，而项目分配的 cuda:4\\\\n    完全空闲。违反 L1 红线（GPU 资源边界）。要求 Agent 立即 kill 进程、修复所有脚本强制 CUDA_VISIBLE_DEVICES=4、排查\\\\n    dry-run 是否也越界。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D006\\\\n  date: 2026-05-12 17:24 UTC\\\\n  summary: P2b pass criteria 调整：recall@5→recall@1，pool_size 26→50+，阈值 ≥2pp 不变\\\\n  rationale: Eval v2 (pool_size=26) 显示 random recall@5 已达 98.4-99.2%，原标准\\\\\\\"dataflow\\\\n    recall@5 > random ≥2pp\\\\\\\"数学上几乎不可能达标（天花板仅 0.8-1.6pp 空间）。recall@1 有更大区分度（random mean\\\\n    93.97%），且是更严格的排序指标。同时扩大 pool_size 至 50+ 使 recall@5/10 也获得有效梯度。新标准：dataflow_aware\\\\n    recall@1 > random recall@1 ≥2pp in ≥2/3 seeds，pool_size=50。\\\\n  related_experiments:\\\\n  - exp_id: mvp_p2b_contrastive_training\\\\n    role: trigger\\\\n    result: random recall@1 mean=0.940, emb_dist recall@1=0.669 at pool=26; recall@5\\\\n      ceiling\\\\n  depends_on:\\\\n  - D002\\\\n- id: D007\\\\n  date: 2026-05-12 19:52 UTC\\\\n  summary: MVP P2b dataflow 策略不可验证：connected⊆gold 导致数据相同。决定：50-repo 规模验证 + Scheme\\\\n    B 备份\\\\n  rationale: 修复 build_p2b_data.py 后重新生成数据，train_dataflow.jsonl 仍与 train_embedding.jsonl\\\\n    完全相同。根因：8 个 MVP repos 中 dataflow 连接文件全部是 gold 文件的子集（connected-but-not-gold = 0），non_pos\\\\n    过滤无差异。这不是方法缺陷而是规模问题——小 repo 紧耦合，2-hop 连接集≈gold 集。P1（Fisher p=1.54e-7）和 P2a（AUC=0.78）仍有效，说明\\\\n    dataflow connectivity 有信号，只是 MVP 规模不足以分离 connected-but-not-gold 子集。决策：(1) 立即跑\\\\n    50-repo 样本的 overlap 统计（CPU, ~2-4h），确认大规模下 connected⊃gold；(2) 并行准备 Scheme B（distance-weighted\\\\n    negatives）作为 pivot 备选；(3) overlap>20% 实例有 connected≠gold → 进入全量 M1 提取；overlap≈100%\\\\n    → pivot to Scheme B。\\\\n  related_experiments:\\\\n  - exp_id: mvp_p2b_contrastive_training\\\\n    role: trigger\\\\n    result: dataflow≡embedding 因 connected⊆gold\\\\n  depends_on:\\\\n  - D006\\\\n  - D004\\\\n- id: D008\\\\n  date: 2026-05-12 20:38 UTC\\\\n  summary: MVP 条件性通过：P1+P2a PASS，P2b dataflow 在 MVP 规模不可测但 50-repo 规模验证确认方法可行（Z=40.8%）。进入\\\\n    research 阶段。\\\\n  rationale: MVP 三阶段结果：P1 PASS（timeout 0%, Fisher p=1.54e-7, 75% instance recall）；P2a\\\\n    PASS（AUC 0.78, BM25 系数为负）；P2b 部分有效——random>>embedding（-27pp recall@1 at pool=26,\\\\n    -3.7pp at pool=50）确认 naive hard negatives 有害，但 dataflow vs random 因 connected⊆gold\\\\n    无法在 8 repos 上区分。50-repo 规模验证 Z=40.8%（中型 repo 55.7%），timeout 4%，确认方法在全量数据上可行。Kill\\\\n    criteria 均未触发。P2b dataflow 对比将在 M2 全量训练中完成。\\\\n  related_experiments:\\\\n  - exp_id: mvp_p1_codeql_feasibility\\\\n    role: evidence\\\\n    result: PASS\\\\n  - exp_id: mvp_p2a_linear_proxy\\\\n    role: evidence\\\\n    result: PASS\\\\n  - exp_id: mvp_p2b_contrastive_training\\\\n    role: evidence\\\\n    result: partial - random>>emb confirmed, dataflow untestable at MVP scale\\\\n  depends_on:\\\\n  - D007\\\\n  - D006\\\\n  - D004\\\\n- id: D009\\\\n  date: 2026-05-12 22:04 UTC\\\\n  summary: Dream 审稿完成：best=Weak Accept, median=Weak Reject, worst=Reject。批准 P0 启动，但\\\\n    plan 需增补 5 个 dream-derived 实验\\\\n  rationale: 三档共识问题：(1) 单编码器无法支撑 generality claim，需加 StarCoder/CodeBERT；(2) static\\\\n    vs dynamic embedding mining 是潜在 confound；(3) τ=0.05 可能 regime-specific；(4) SWE-bench\\\\n    +2pp 需 bootstrap CI；(5) abstract \\\\\\\"complementary\\\\\\\" 需降调。关键风险变量是 M1 的 Z%：≥35% best\\\\n    framing 成立，20-35% pivot 到 Claim 2 headline，<20% 需重大调整。已在 experiment_plan.yaml\\\\n    增加 plan_013-017（+35h GPU），paper_framing.md 增加 contingency framing。P0 实验（M1 已在跑）可继续，不需\\\\n    re-dream。\\\\n  related_experiments:\\\\n  - exp_id: dream_20260512T204322\\\\n    role: dream_simulate\\\\n    result: best=WA, median=WR, worst=R\\\\n  depends_on:\\\\n  - D008\\\\n- id: D010\\\\n  date: 2026-05-12 22:09 UTC\\\\n  summary: plan_013 (second encoder) 从 P1 升级至 P0，headline template 降调修复\\\\n  rationale: Reviewer 指出 single encoder 是 best→accept 的关键区分因素，在 best-R1-W1 和 median-R2-W5\\\\n    两档都出现。P1 排期可能导致论文缺少 generality 证据而被 WR。升级后 M2 完成即可并行启动 plan_013。同时修复 headline\\\\n    template \\\\\\\"cannot recover\\\\\\\" → \\\\\\\"complementary signal not captured by\\\\\\\"。\\\\n  related_experiments:\\\\n  - exp_id: plan_013\\\\n    role: priority_upgrade\\\\n    result: P1→P0\\\\n  depends_on:\\\\n  - D009\\\\n- id: D011\\\\n  date: 2026-05-13 01:38 UTC\\\\n  summary: Z%=74.0% 确认 Best Framing — Claim 1 为 headline，批准 M2 早期训练\\\\n  rationale: M1 部分数据（24/222 repos, 5128 instances）Z%=74.0%，远超 ≥35% 阈值。对比 D007 的 40.8%（50\\\\n    SWE-bench repos），SWE-Smith 数据集跨文件依赖密度更高。Best framing 成立：Claim 1 (\\\\\\\"structure-grounded\\\\n    negatives outperform\\\\\\\") 为 headline。批准在当前 5K instances 上做 M2 早期训练 pilot（3 strategies\\\\n    × 1 seed），利用 cuda:4 空闲期获取早期信号，不等全量 M1（还需 ~46h）。磁盘已清理至 61GB free (64%)，足够训练。\\\\n  related_experiments:\\\\n  - exp_id: m1_extraction\\\\n    role: data_source\\\\n    result: Z%=74.0% at 24/222 repos\\\\n  - exp_id: d007_50repo_overlap\\\\n    role: baseline\\\\n    result: Z%=40.8% on SWE-bench 50 repos\\\\n  depends_on:\\\\n  - D009\\\\n  - D010\\\\n- id: D012\\\\n  date: 2026-05-13 02:11 UTC\\\\n  summary: Kill m2_early_pilot_v3 (PID 897752) — 第二次 GPU 越界 (cuda:0)\\\\n  rationale: Reviewer 发现 m2_early_pilot_v3 在 cuda:0 运行（PID 897752, 17100 MiB），项目仅分配\\\\n    cuda:4。这是第二次 GPU 越界（第一次 D005 在 GPU 5）。立即 kill 并标记 killed。同时 m2_early_pilot_v2\\\\n    因 wandb API key error 已崩溃标记 FAILED。当前唯一合法训练为 PID 795791 (m2_early_pilot, cuda:4)。要求\\\\n    Agent 排查越界原因并确保后续脚本强制 CUDA_VISIBLE_DEVICES=4。\\\\n  related_experiments:\\\\n  - exp_id: m2_early_pilot_v3\\\\n    role: violated\\\\n    result: killed - GPU 越界 cuda:0\\\\n  - exp_id: m2_early_pilot_v2\\\\n    role: failed\\\\n    result: wandb API key error\\\\n  - exp_id: m2_early_pilot\\\\n    role: active\\\\n    result: PID 795791 on cuda:4, running\\\\n  depends_on:\\\\n  - D011\\\\n- id: D013\\\\n  date: 2026-05-13 02:50 UTC\\\\n  summary: 服务器迁移：cqa1-21977 cuda:4 → bjb1-42106 cuda:0/1 (RTX PRO 6000 96GB×2)\\\\n  rationale: Manager 分配独立服务器 bjb1-42106（2x RTX PRO 6000 96GB）。迁移策略：(1) M1 提取继续在 cqa1-21977\\\\n    CPU 上完成（不中断），(2) 新服务器立即搭建环境+同步代码+下载模型，(3) M2 early pilot 在 cqa1-21977 cuda:4 跑完后所有\\\\n    GPU 工作转到新服务器，(4) 通知 Manager 释放 cuda:4。RTX PRO 6000 96GB 彻底解决 M3a VRAM 问题（Qwen3.6-27B\\\\n    不再需要 fallback），2 卡可并行 M2 全量 + plan_013。\\\\n  related_experiments:\\\\n  - exp_id: m2_early_pilot\\\\n    role: in_progress\\\\n    result: finishing on cqa1-21977 cuda:4\\\\n  - exp_id: m1_extraction\\\\n    role: in_progress\\\\n    result: CPU only, stays on cqa1-21977\\\\n  depends_on:\\\\n  - D011\\\\n- id: D014\\\\n  date: 2026-05-13 04:44 UTC\\\\n  summary: Kill m2_early_pilot (PID 795791) — 过拟合+卡死，bjb1 m2_embed_verify 取代\\\\n  rationale: m2_early_pilot 在 cqa1 cuda:4 上仅完成 random 策略（best val_loss=0.5879 at step\\\\n    1500，之后持续过拟合到 0.728）。进程在 step 4000 卡死 45+ min。OOM 干扰（另一进程在同 GPU 启动）。embedding_distance\\\\n    和 dataflow_aware 策略未启动。bjb1 上的 m2_embed_verify 使用 true embedding mining + 更大参数（negatives=7,\\\\n    seq_len=2048, batch=8）+ eval bug fix，将完全取代此 pilot。通知 Manager 释放 cqa1 cuda:4。\\\\n  related_experiments:\\\\n  - exp_id: m2_early_pilot\\\\n    role: killed\\\\n    result: random best val_loss=0.5879, overfitting after step 1500\\\\n  - exp_id: m2_embed_verify\\\\n    role: replacement\\\\n    result: preparing on bjb1 cuda:1\\\\n  depends_on:\\\\n  - D011\\\\n  - D013\\\\n- id: D015\\\\n  date: 2026-05-13 11:43 UTC\\\\n  summary: 全量 Z%=78.0%（条件）确认 Best Framing；Coverage 34.3% 需论文讨论\\\\n  rationale: 全量 M1（123/131 repos, 44,173 instances）统计：15,153 instances 有结构数据（34.3%），其中\\\\n    11,825 有 connected-but-not-gold 文件（条件 Z%=78.0%，高于 pilot 72.5%）。条件 Z% 远超 35% 阈值，Best\\\\n    Framing（Claim 1 as headline）完全成立。但 Coverage 仅 34.3%——65.7% instances CodeQL/Beniget\\\\n    未产出结构连接，论文需讨论此局限性并限定 claim 范围为\\\\\\\"有结构数据的 instances\\\\\\\"。\\\\n  related_experiments:\\\\n  - exp_id: m1_extraction\\\\n    role: data_source\\\\n    result: 123/131 repos, 44173 instances, 15897 structural\\\\n  - exp_id: plan_006_scalability\\\\n    role: prior_pilot\\\\n    result: pilot Z%=72.5% on 29 repos\\\\n  depends_on:\\\\n  - D011\\\\n- id: D016\\\\n  date: 2026-05-13 15:24 UTC\\\\n  summary: 'Reviewer Critical: m2_embed_verify 和 plan_013_starcoder 实际已完成全部 3 策略，registry\\\\n    错误标记为 failed'\\\\n  rationale: Reviewer 直接从服务器日志验证：两个实验的 dataflow 策略均已完成（\\\\\\\"All 3 strategies completed\\\\\\\"），EXIT_CODE\\\\n    异常发生在训练完成之后（wrapper 脚本问题）。关键数据：(1) Qwen dataflow peak R@1=0.5584 (+2.27pp vs random)，支撑\\\\n    Claim 1；(2) StarCoder dataflow R@1=0.4869 < random 0.4922，encoder-agnostic claim\\\\n    受挑战；(3) 两个编码器的 dataflow 策略均严重过拟合（train loss→0）。已派 Agent 紧急修正 registry + 收集完整 metrics\\\\n    + 验证 StarCoder random 数据来源。方向决策待 Agent 汇报验证数据后确定。\\\\n  related_experiments:\\\\n  - exp_id: m2_embed_verify\\\\n    role: primary\\\\n    result: 实际完成（3 strategies all done），Qwen dataflow peak R@1=0.5584\\\\n  - exp_id: plan_013_starcoder\\\\n    role: primary\\\\n    result: 实际完成（3 strategies all done），StarCoder dataflow R@1=0.4869 < random 0.4922\\\\n  depends_on: []\\\\n- id: D017\\\\n  date: 2026-05-13 16:03 UTC\\\\n  summary: Pilot 结果验证完成：embedding > random 跨编码器一致；dataflow 需按两种 checkpoint 标准报告；Claim\\\\n    2 需修订\\\\n  rationale: 'Reviewer 验证 18 个指标全部精确匹配。核心发现：(1) embedding > random 在 Qwen (+2.0pp)\\\\n    和 StarCoder (+1.6pp) 上一致，是最稳健结论；(2) dataflow 排名取决于 checkpoint 选择——按 val_loss:\\\\n    embedding > dataflow > random (Qwen)，按 peak R@1: dataflow > embedding > random\\\\n    (Qwen)；(3) StarCoder dataflow final eval 追平 embedding (0.5078=0.5078)，\\\\\\\"embedding\\\\n    consistently beats dataflow\\\\\\\" 不成立；(4) Claim 2 (\\\\\\\"embedding harms\\\\\\\") 在 true embedding\\\\n    mining 下不复现，仅在 MVP BM25 proxy 下成立。全量 M2 训练需报告两种 checkpoint 标准下的结果，避免 cherry-picking\\\\n    质疑。Paper framing 修订延后至全量 M2 结果出来后。'\\\\n  related_experiments:\\\\n  - exp_id: m2_embed_verify\\\\n    role: primary\\\\n    result: 'Qwen: embedding(0.5557) > dataflow(0.5436) > random(0.5357) by val_loss;\\\\n      dataflow peak(0.5584) > embedding(0.5557) by R@1'\\\\n  - exp_id: plan_013_starcoder\\\\n    role: primary\\\\n    result: 'StarCoder: embedding(0.5078) > random(0.4922) > dataflow(0.4869) by val_loss;\\\\n      dataflow final(0.5078) = embedding'\\\\n  depends_on:\\\\n  - D016\\\\n- id: D018\\\\n  date: 2026-05-13 16:04 UTC\\\\n  summary: 不做预判性 framing pivot，full M2 (18 runs) 是 go/no-go 唯一判据；双 checkpoint 标准；准备\\\\n    B/C 两条后备路线\\\\n  rationale: Pilot 仅 24 repos / 1 seed，<2pp delta 统计功效不足以支持强 claim 或否决原假设。Full M2\\\\n    (131 repos × 3 strategies × 3 seeds × 2 encoders = 18 runs) 提供 3-seed 统计功效，是唯一可信判据。不选\\\\n    Agent 提议的 A/B/C 任何一个——过早锁定叙事会限制后续解读空间。数据构建已在进行，不浪费时间在 framing 讨论上。Full M2 结果出来后根据实际数据\\\\n    pattern 决定：(a) dataflow 跨编码器一致 > random → 原 framing 修正后可用；(b) dataflow 不一致但 embedding\\\\n    一致 → 方案 B 或 C；(c) 所有差异不显著 → 需要更大规模实验或 pivot。同时要求 dual checkpoint (best-val-loss\\\\n    + best-R@1) 和 3-seed CI 确保结果可信。\\\\n  related_experiments:\\\\n  - exp_id: m2_embed_verify\\\\n    role: evidence\\\\n    result: pilot underpowered (1 seed, 24 repos)\\\\n  - exp_id: plan_013_starcoder\\\\n    role: evidence\\\\n    result: pilot underpowered (1 seed, 24 repos)\\\\n  depends_on:\\\\n  - D017\\\\n- id: D019\\\\n  date: 2026-05-13 18:08 UTC\\\\n  summary: D018 补充：Full M2 go/no-go 量化阈值 + 统计检验方案\\\\n  rationale: 'Reviewer 指出 D018 缺量化阈值，go/no-go 判据需在结果出来前明确，避免事后 rationalization。\\\\n\\\\n\\\\n    **统计方法**：每个 encoder 3 seeds 的 R@1 (best-by-val-loss checkpoint) 做 paired difference，bootstrap\\\\n    95% CI + paired t-test (p<0.05)。同时报告 best-by-R@1 checkpoint 结果作为透明度补充。\\\\n\\\\n\\\\n    **Go/No-Go 阈值**：\\\\n\\\\n    (A) Go — 原 framing 可用：dataflow > random 的 95% CI 在两个 encoder 上均 > 0\\\\n\\\\n    (B) Conditional Go — 修正 framing：dataflow > random 在至少一个 encoder 上 CI > 0，另一个 CI\\\\n    含 0（差异不显著）\\\\n\\\\n    (C) No-Go for Claim 1：dataflow ≤ random 在两个 encoder 上 CI 均含 0 或为负 → Claim 1 失效，pivot\\\\n    到 \\\\\\\"mining strategy × architecture\\\\\\\" 分析论文\\\\n\\\\n\\\\n    **Claim 2 判据**：若 full M2 显示 embedding > random 且 CI > 0 → 原 Claim 2 (\\\\\\\"embedding\\\\n    harms\\\\\\\") 被否定。新 Claim 2 候选：\\\\\\\"true embedding mining helps, but BM25 proxy harms\\\\\\\" 或\\\\n    \\\\\\\"hard negative mining method matters more than hard negative source\\\\\\\"\\\\n\\\\n\\\\n    **跨 encoder 一致性规则**：\\\\n\\\\n    - 同方向同显著 → 强泛化 claim\\\\n\\\\n    - 同方向不同显著 → 条件 claim + architecture discussion\\\\n\\\\n    - 反方向 → Claim 1 原形式被拒，需 conditional reframe\\\\n\\\\n\\\\n    阈值在 full M2 结果出来前锁定，不允许事后修改。'\\\\n  related_experiments:\\\\n  - exp_id: m2_full_qwen\\\\n    role: primary\\\\n    result: RUNNING - random_s42 in progress\\\\n  - exp_id: m2_full_starcoder\\\\n    role: primary\\\\n    result: RUNNING - data build phase\\\\n  depends_on:\\\\n  - D018\\\\n- id: D020\\\\n  date: 2026-05-13 18:10 UTC\\\\n  summary: D019 补充：Claim 2 完整判定矩阵 + n=3 功效限制声明\\\\n  rationale: 'Reviewer 指出 D019 的 Claim 2 阈值不完整 + n=3 统计功效天然受限。补充如下：\\\\n\\\\n\\\\n    **Claim 2 完整判定矩阵**（3 seeds, paired bootstrap 95% CI）：\\\\n\\\\n    (i) random > embedding CI>0 → Claim 2 confirmed（embedding harms，与 MVP 一致）\\\\n\\\\n    (ii) embedding > random CI>0 → Claim 2 falsified（true embedding mining helps，需\\\\n    reframe）\\\\n\\\\n    (iii) CI 含 0 → inconclusive（效应存在但检测不到或确实无差异，论文报告为 \\\\\\\"no significant difference\\\\\\\"\\\\n    + 报告 effect size）\\\\n\\\\n\\\\n    **n=3 功效限制**（显式承认，不修改阈值）：\\\\n\\\\n    - df=2 时 t 临界值 4.303，pilot 级别差异（<2pp）极难达到 p<0.05\\\\n\\\\n    - Bootstrap n=3 仅 27 种重采样，CI 估计粗糙\\\\n\\\\n    - 阈值框架偏向 No-Go（Type II error 高）\\\\n\\\\n    - 若结果落入 (C) No-Go，论文 Discussion 必须讨论功效限制，不能简单声明 \\\\\\\"dataflow 无效\\\\\\\"\\\\n\\\\n    - 这是算力约束下的合理选择，不改阈值，但明确风险\\\\n\\\\n\\\\n    **plan_014 排期**：Full M2 完成后优先启动 plan_014（temperature ablation, ~10h）——无论 Claim\\\\n    2 reframe 成哪个方向，temperature regime-specificity 都需要回答。'\\\\n  related_experiments:\\\\n  - exp_id: m2_full_qwen\\\\n    role: primary\\\\n    result: RUNNING\\\\n  - exp_id: m2_full_starcoder\\\\n    role: primary\\\\n    result: RUNNING\\\\n  depends_on:\\\\n  - D019\\\\n\\\", \\\"total_chars\\\": 14229, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/decisions.yaml\", \"content\": \"_next_id: 21\\ndecisions:\\n- id: D001\\n  date: 2026-05-12 09:57 UTC\\n  summary: 'MVP 设计: CodeQL 试点(10 repos) + 迷你对比训练(500 instances) 验证核心假设'\\n  rationale: 13 天 DDL，需要最快速验证核心假设链：(1) CodeQL inter-procedural data-flow 在 Python\\n    repos 上可行（timeout < 30%），(2) data-flow hard negatives 比 random negatives 提升检索\\n    recall。两个 phase 串行，总计约 1 天。通过后立即进入全量数据提取和训练。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-12 10:01 UTC\\n  summary: '采纳 Reviewer 反馈: MVP Phase 2 增加线性分类器 proxy 验证 + 3-seed 训练 + 显式 kill criteria'\\n  rationale: 'Reviewer 指出 Phase 2 原方案（500 instances, ~100 held-out, 2pp gate）统计效力不足，2pp\\n    差异在随机噪声范围内。增加: (1) Phase 2a 线性分类器 proxy 验证解耦特征质量与训练策略；(2) 3-seed 训练要求 ≥2/3 seed\\n    提升；(3) 每个 phase 的 fail→kill/fallback 路径。防止 13 天 DDL 下的沉没成本陷阱。'\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-12 10:02 UTC\\n  summary: 'H2 验证并入 Phase 1: 提取后立即统计 data-flow 连通文件 vs 不连通文件的 gold patch 覆盖率差异'\\n  rationale: Reviewer 指出 H2（特征区分度）在原 MVP 中无独立验证，Phase 2 失败时无法区分是 H2 还是 H3 问题。零成本 sanity\\n    check（统计连通/不连通文件的 gold patch 覆盖率）可在 Phase 1 提取完后立即执行，不需要训练。这比 Phase 2a 的线性分类器更早给出诊断信号。\\n  related_experiments: []\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-12 11:21 UTC\\n  summary: 'Phase 1 gate PASS: timeout 0%, H2 Fisher p=1.54e-7, 75% instance recall.\\n    进入 Phase 2。'\\n  rationale: 10 repos 中 8 个成功提取（2 个 skip 因 buggy file 路径不存在，非 CodeQL 限制）。timeout rate\\n    0% 远低于 30% 阈值。H2 sanity check：连通文件 gold 覆盖 1.44% vs 不连通 0.00%，Fisher p=1.54e-7。75%\\n    instance recall（6/8 gold file 在连通集）。数据质量问题（路径匹配、skip rate、registry 注册）并行修复，不阻塞\\n    Phase 2。\\n  related_experiments: []\\n  depends_on: []\\n- id: D005\\n  date: 2026-05-12 11:35 UTC\\n  summary: 'CRITICAL: GPU 越界 PID 59170 跑在 GPU 5 而非分配的 cuda:4，立即 kill + 全脚本修复 CUDA_VISIBLE_DEVICES'\\n  rationale: Reviewer 核实 nvidia-smi 发现 run_mvp.py 在 GPU 5 上运行 9.3GB，而项目分配的 cuda:4\\n    完全空闲。违反 L1 红线（GPU 资源边界）。要求 Agent 立即 kill 进程、修复所有脚本强制 CUDA_VISIBLE_DEVICES=4、排查\\n    dry-run 是否也越界。\\n  related_experiments: []\\n  depends_on: []\\n- id: D006\\n  date: 2026-05-12 17:24 UTC\\n  summary: P2b pass criteria 调整：recall@5→recall@1，pool_size 26→50+，阈值 ≥2pp 不变\\n  rationale: Eval v2 (pool_size=26) 显示 random recall@5 已达 98.4-99.2%，原标准\\\"dataflow\\n    recall@5 > random ≥2pp\\\"数学上几乎不可能达标（天花板仅 0.8-1.6pp 空间）。recall@1 有更大区分度（random mean\\n    93.97%），且是更严格的排序指标。同时扩大 pool_size 至 50+ 使 recall@5/10 也获得有效梯度。新标准：dataflow_aware\\n    recall@1 > random recall@1 ≥2pp in ≥2/3 seeds，pool_size=50。\\n  related_experiments:\\n  - exp_id: mvp_p2b_contrastive_training\\n    role: trigger\\n    result: random recall@1 mean=0.940, emb_dist recall@1=0.669 at pool=26; recall@5\\n      ceiling\\n  depends_on:\\n  - D002\\n- id: D007\\n  date: 2026-05-12 19:52 UTC\\n  summary: MVP P2b dataflow 策略不可验证：connected⊆gold 导致数据相同。决定：50-repo 规模验证 + Scheme\\n    B 备份\\n  rationale: 修复 build_p2b_data.py 后重新生成数据，train_dataflow.jsonl 仍与 train_embedding.jsonl\\n    完全相同。根因：8 个 MVP repos 中 dataflow 连接文件全部是 gold 文件的子集（connected-but-not-gold = 0），non_pos\\n    过滤无差异。这不是方法缺陷而是规模问题——小 repo 紧耦合，2-hop 连接集≈gold 集。P1（Fisher p=1.54e-7）和 P2a（AUC=0.78）仍有效，说明\\n    dataflow connectivity 有信号，只是 MVP 规模不足以分离 connected-but-not-gold 子集。决策：(1) 立即跑\\n    50-repo 样本的 overlap 统计（CPU, ~2-4h），确认大规模下 connected⊃gold；(2) 并行准备 Scheme B（distance-weighted\\n    negatives）作为 pivot 备选；(3) overlap>20% 实例有 connected≠gold → 进入全量 M1 提取；overlap≈100%\\n    → pivot to Scheme B。\\n  related_experiments:\\n  - exp_id: mvp_p2b_contrastive_training\\n    role: trigger\\n    result: dataflow≡embedding 因 connected⊆gold\\n  depends_on:\\n  - D006\\n  - D004\\n- id: D008\\n  date: 2026-05-12 20:38 UTC\\n  summary: MVP 条件性通过：P1+P2a PASS，P2b dataflow 在 MVP 规模不可测但 50-repo 规模验证确认方法可行（Z=40.8%）。进入\\n    research 阶段。\\n  rationale: MVP 三阶段结果：P1 PASS（timeout 0%, Fisher p=1.54e-7, 75% instance recall）；P2a\\n    PASS（AUC 0.78, BM25 系数为负）；P2b 部分有效——random>>embedding（-27pp recall@1 at pool=26,\\n    -3.7pp at pool=50）确认 naive hard negatives 有害，但 dataflow vs random 因 connected⊆gold\\n    无法在 8 repos 上区分。50-repo 规模验证 Z=40.8%（中型 repo 55.7%），timeout 4%，确认方法在全量数据上可行。Kill\\n    criteria 均未触发。P2b dataflow 对比将在 M2 全量训练中完成。\\n  related_experiments:\\n  - exp_id: mvp_p1_codeql_feasibility\\n    role: evidence\\n    result: PASS\\n  - exp_id: mvp_p2a_linear_proxy\\n    role: evidence\\n    result: PASS\\n  - exp_id: mvp_p2b_contrastive_training\\n    role: evidence\\n    result: partial - random>>emb confirmed, dataflow untestable at MVP scale\\n  depends_on:\\n  - D007\\n  - D006\\n  - D004\\n- id: D009\\n  date: 2026-05-12 22:04 UTC\\n  summary: Dream 审稿完成：best=Weak Accept, median=Weak Reject, worst=Reject。批准 P0 启动，但\\n    plan 需增补 5 个 dream-derived 实验\\n  rationale: 三档共识问题：(1) 单编码器无法支撑 generality claim，需加 StarCoder/CodeBERT；(2) static\\n    vs dynamic embedding mining 是潜在 confound；(3) τ=0.05 可能 regime-specific；(4) SWE-bench\\n    +2pp 需 bootstrap CI；(5) abstract \\\"complementary\\\" 需降调。关键风险变量是 M1 的 Z%：≥35% best\\n    framing 成立，20-35% pivot 到 Claim 2 headline，<20% 需重大调整。已在 experiment_plan.yaml\\n    增加 plan_013-017（+35h GPU），paper_framing.md 增加 contingency framing。P0 实验（M1 已在跑）可继续，不需\\n    re-dream。\\n  related_experiments:\\n  - exp_id: dream_20260512T204322\\n    role: dream_simulate\\n    result: best=WA, median=WR, worst=R\\n  depends_on:\\n  - D008\\n- id: D010\\n  date: 2026-05-12 22:09 UTC\\n  summary: plan_013 (second encoder) 从 P1 升级至 P0，headline template 降调修复\\n  rationale: Reviewer 指出 single encoder 是 best→accept 的关键区分因素，在 best-R1-W1 和 median-R2-W5\\n    两档都出现。P1 排期可能导致论文缺少 generality 证据而被 WR。升级后 M2 完成即可并行启动 plan_013。同时修复 headline\\n    template \\\"cannot recover\\\" → \\\"complementary signal not captured by\\\"。\\n  related_experiments:\\n  - exp_id: plan_013\\n    role: priority_upgrade\\n    result: P1→P0\\n  depends_on:\\n  - D009\\n- id: D011\\n  date: 2026-05-13 01:38 UTC\\n  summary: Z%=74.0% 确认 Best Framing — Claim 1 为 headline，批准 M2 早期训练\\n  rationale: M1 部分数据（24/222 repos, 5128 instances）Z%=74.0%，远超 ≥35% 阈值。对比 D007 的 40.8%（50\\n    SWE-bench repos），SWE-Smith 数据集跨文件依赖密度更高。Best framing 成立：Claim 1 (\\\"structure-grounded\\n    negatives outperform\\\") 为 headline。批准在当前 5K instances 上做 M2 早期训练 pilot（3 strategies\\n    × 1 seed），利用 cuda:4 空闲期获取早期信号，不等全量 M1（还需 ~46h）。磁盘已清理至 61GB free (64%)，足够训练。\\n  related_experiments:\\n  - exp_id: m1_extraction\\n    role: data_source\\n    result: Z%=74.0% at 24/222 repos\\n  - exp_id: d007_50repo_overlap\\n    role: baseline\\n    result: Z%=40.8% on SWE-bench 50 repos\\n  depends_on:\\n  - D009\\n  - D010\\n- id: D012\\n  date: 2026-05-13 02:11 UTC\\n  summary: Kill m2_early_pilot_v3 (PID 897752) — 第二次 GPU 越界 (cuda:0)\\n  rationale: Reviewer 发现 m2_early_pilot_v3 在 cuda:0 运行（PID 897752, 17100 MiB），项目仅分配\\n    cuda:4。这是第二次 GPU 越界（第一次 D005 在 GPU 5）。立即 kill 并标记 killed。同时 m2_early_pilot_v2\\n    因 wandb API key error 已崩溃标记 FAILED。当前唯一合法训练为 PID 795791 (m2_early_pilot, cuda:4)。要求\\n    Agent 排查越界原因并确保后续脚本强制 CUDA_VISIBLE_DEVICES=4。\\n  related_experiments:\\n  - exp_id: m2_early_pilot_v3\\n    role: violated\\n    result: killed - GPU 越界 cuda:0\\n  - exp_id: m2_early_pilot_v2\\n    role: failed\\n    result: wandb API key error\\n  - exp_id: m2_early_pilot\\n    role: active\\n    result: PID 795791 on cuda:4, running\\n  depends_on:\\n  - D011\\n- id: D013\\n  date: 2026-05-13 02:50 UTC\\n  summary: 服务器迁移：cqa1-21977 cuda:4 → bjb1-42106 cuda:0/1 (RTX PRO 6000 96GB×2)\\n  rationale: Manager 分配独立服务器 bjb1-42106（2x RTX PRO 6000 96GB）。迁移策略：(1) M1 提取继续在 cqa1-21977\\n    CPU 上完成（不中断），(2) 新服务器立即搭建环境+同步代码+下载模型，(3) M2 early pilot 在 cqa1-21977 cuda:4 跑完后所有\\n    GPU 工作转到新服务器，(4) 通知 Manager 释放 cuda:4。RTX PRO 6000 96GB 彻底解决 M3a VRAM 问题（Qwen3.6-27B\\n    不再需要 fallback），2 卡可并行 M2 全量 + plan_013。\\n  related_experiments:\\n  - exp_id: m2_early_pilot\\n    role: in_progress\\n    result: finishing on cqa1-21977 cuda:4\\n  - exp_id: m1_extraction\\n    role: in_progress\\n    result: CPU only, stays on cqa1-21977\\n  depends_on:\\n  - D011\\n- id: D014\\n  date: 2026-05-13 04:44 UTC\\n  summary: Kill m2_early_pilot (PID 795791) — 过拟合+卡死，bjb1 m2_embed_verify 取代\\n  rationale: m2_early_pilot 在 cqa1 cuda:4 上仅完成 random 策略（best val_loss=0.5879 at step\\n    1500，之后持续过拟合到 0.728）。进程在 step 4000 卡死 45+ min。OOM 干扰（另一进程在同 GPU 启动）。embedding_distance\\n    和 dataflow_aware 策略未启动。bjb1 上的 m2_embed_verify 使用 true embedding mining + 更大参数（negatives=7,\\n    seq_len=2048, batch=8）+ eval bug fix，将完全取代此 pilot。通知 Manager 释放 cqa1 cuda:4。\\n  related_experiments:\\n  - exp_id: m2_early_pilot\\n    role: killed\\n    result: random best val_loss=0.5879, overfitting after step 1500\\n  - exp_id: m2_embed_verify\\n    role: replacement\\n    result: preparing on bjb1 cuda:1\\n  depends_on:\\n  - D011\\n  - D013\\n- id: D015\\n  date: 2026-05-13 11:43 UTC\\n  summary: 全量 Z%=78.0%（条件）确认 Best Framing；Coverage 34.3% 需论文讨论\\n  rationale: 全量 M1（123/131 repos, 44,173 instances）统计：15,153 instances 有结构数据（34.3%），其中\\n    11,825 有 connected-but-not-gold 文件（条件 Z%=78.0%，高于 pilot 72.5%）。条件 Z% 远超 35% 阈值，Best\\n    Framing（Claim 1 as headline）完全成立。但 Coverage 仅 34.3%——65.7% instances CodeQL/Beniget\\n    未产出结构连接，论文需讨论此局限性并限定 claim 范围为\\\"有结构数据的 instances\\\"。\\n  related_experiments:\\n  - exp_id: m1_extraction\\n    role: data_source\\n    result: 123/131 repos, 44173 instances, 15897 structural\\n  - exp_id: plan_006_scalability\\n    role: prior_pilot\\n    result: pilot Z%=72.5% on 29 repos\\n  depends_on:\\n  - D011\\n- id: D016\\n  date: 2026-05-13 15:24 UTC\\n  summary: 'Reviewer Critical: m2_embed_verify 和 plan_013_starcoder 实际已完成全部 3 策略，registry\\n    错误标记为 failed'\\n  rationale: Reviewer 直接从服务器日志验证：两个实验的 dataflow 策略均已完成（\\\"All 3 strategies completed\\\"），EXIT_CODE\\n    异常发生在训练完成之后（wrapper 脚本问题）。关键数据：(1) Qwen dataflow peak R@1=0.5584 (+2.27pp vs random)，支撑\\n    Claim 1；(2) StarCoder dataflow R@1=0.4869 < random 0.4922，encoder-agnostic claim\\n    受挑战；(3) 两个编码器的 dataflow 策略均严重过拟合（train loss→0）。已派 Agent 紧急修正 registry + 收集完整 metrics\\n    + 验证 StarCoder random 数据来源。方向决策待 Agent 汇报验证数据后确定。\\n  related_experiments:\\n  - exp_id: m2_embed_verify\\n    role: primary\\n    result: 实际完成（3 strategies all done），Qwen dataflow peak R@1=0.5584\\n  - exp_id: plan_013_starcoder\\n    role: primary\\n    result: 实际完成（3 strategies all done），StarCoder dataflow R@1=0.4869 < random 0.4922\\n  depends_on: []\\n- id: D017\\n  date: 2026-05-13 16:03 UTC\\n  summary: Pilot 结果验证完成：embedding > random 跨编码器一致；dataflow 需按两种 checkpoint 标准报告；Claim\\n    2 需修订\\n  rationale: 'Reviewer 验证 18 个指标全部精确匹配。核心发现：(1) embedding > random 在 Qwen (+2.0pp)\\n    和 StarCoder (+1.6pp) 上一致，是最稳健结论；(2) dataflow 排名取决于 checkpoint 选择——按 val_loss:\\n    embedding > dataflow > random (Qwen)，按 peak R@1: dataflow > embedding > random\\n    (Qwen)；(3) StarCoder dataflow final eval 追平 embedding (0.5078=0.5078)，\\\"embedding\\n    consistently beats dataflow\\\" 不成立；(4) Claim 2 (\\\"embedding harms\\\") 在 true embedding\\n    mining 下不复现，仅在 MVP BM25 proxy 下成立。全量 M2 训练需报告两种 checkpoint 标准下的结果，避免 cherry-picking\\n    质疑。Paper framing 修订延后至全量 M2 结果出来后。'\\n  related_experiments:\\n  - exp_id: m2_embed_verify\\n    role: primary\\n    result: 'Qwen: embedding(0.5557) > dataflow(0.5436) > random(0.5357) by val_loss;\\n      dataflow peak(0.5584) > embedding(0.5557) by R@1'\\n  - exp_id: plan_013_starcoder\\n    role: primary\\n    result: 'StarCoder: embedding(0.5078) > random(0.4922) > dataflow(0.4869) by val_loss;\\n      dataflow final(0.5078) = embedding'\\n  depends_on:\\n  - D016\\n- id: D018\\n  date: 2026-05-13 16:04 UTC\\n  summary: 不做预判性 framing pivot，full M2 (18 runs) 是 go/no-go 唯一判据；双 checkpoint 标准；准备\\n    B/C 两条后备路线\\n  rationale: Pilot 仅 24 repos / 1 seed，<2pp delta 统计功效不足以支持强 claim 或否决原假设。Full M2\\n    (131 repos × 3 strategies × 3 seeds × 2 encoders = 18 runs) 提供 3-seed 统计功效，是唯一可信判据。不选\\n    Agent 提议的 A/B/C 任何一个——过早锁定叙事会限制后续解读空间。数据构建已在进行，不浪费时间在 framing 讨论上。Full M2 结果出来后根据实际数据\\n    pattern 决定：(a) dataflow 跨编码器一致 > random → 原 framing 修正后可用；(b) dataflow 不一致但 embedding\\n    一致 → 方案 B 或 C；(c) 所有差异不显著 → 需要更大规模实验或 pivot。同时要求 dual checkpoint (best-val-loss\\n    + best-R@1) 和 3-seed CI 确保结果可信。\\n  related_experiments:\\n  - exp_id: m2_embed_verify\\n    role: evidence\\n    result: pilot underpowered (1 seed, 24 repos)\\n  - exp_id: plan_013_starcoder\\n    role: evidence\\n    result: pilot underpowered (1 seed, 24 repos)\\n  depends_on:\\n  - D017\\n- id: D019\\n  date: 2026-05-13 18:08 UTC\\n  summary: D018 补充：Full M2 go/no-go 量化阈值 + 统计检验方案\\n  rationale: 'Reviewer 指出 D018 缺量化阈值，go/no-go 判据需在结果出来前明确，避免事后 rationalization。\\n\\n\\n    **统计方法**：每个 encoder 3 seeds 的 R@1 (best-by-val-loss checkpoint) 做 paired difference，bootstrap\\n    95% CI + paired t-test (p<0.05)。同时报告 best-by-R@1 checkpoint 结果作为透明度补充。\\n\\n\\n    **Go/No-Go 阈值**：\\n\\n    (A) Go — 原 framing 可用：dataflow > random 的 95% CI 在两个 encoder 上均 > 0\\n\\n    (B) Conditional Go — 修正 framing：dataflow > random 在至少一个 encoder 上 CI > 0，另一个 CI\\n    含 0（差异不显著）\\n\\n    (C) No-Go for Claim 1：dataflow ≤ random 在两个 encoder 上 CI 均含 0 或为负 → Claim 1 失效，pivot\\n    到 \\\"mining strategy × architecture\\\" 分析论文\\n\\n\\n    **Claim 2 判据**：若 full M2 显示 embedding > random 且 CI > 0 → 原 Claim 2 (\\\"embedding\\n    harms\\\") 被否定。新 Claim 2 候选：\\\"true embedding mining helps, but BM25 proxy harms\\\" 或\\n    \\\"hard negative mining method matters more than hard negative source\\\"\\n\\n\\n    **跨 encoder 一致性规则**：\\n\\n    - 同方向同显著 → 强泛化 claim\\n\\n    - 同方向不同显著 → 条件 claim + architecture discussion\\n\\n    - 反方向 → Claim 1 原形式被拒，需 conditional reframe\\n\\n\\n    阈值在 full M2 结果出来前锁定，不允许事后修改。'\\n  related_experiments:\\n  - exp_id: m2_full_qwen\\n    role: primary\\n    result: RUNNING - random_s42 in progress\\n  - exp_id: m2_full_starcoder\\n    role: primary\\n    result: RUNNING - data build phase\\n  depends_on:\\n  - D018\\n- id: D020\\n  date: 2026-05-13 18:10 UTC\\n  summary: D019 补充：Claim 2 完整判定矩阵 + n=3 功效限制声明\\n  rationale: 'Reviewer 指出 D019 的 Claim 2 阈值不完整 + n=3 统计功效天然受限。补充如下：\\n\\n\\n    **Claim 2 完整判定矩阵**（3 seeds, paired bootstrap 95% CI）：\\n\\n    (i) random > embedding CI>0 → Claim 2 confirmed（embedding harms，与 MVP 一致）\\n\\n    (ii) embedding > random CI>0 → Claim 2 falsified（true embedding mining helps，需\\n    reframe）\\n\\n    (iii) CI 含 0 → inconclusive（效应存在但检测不到或确实无差异，论文报告为 \\\"no significant difference\\\"\\n    + 报告 effect size）\\n\\n\\n    **n=3 功效限制**（显式承认，不修改阈值）：\\n\\n    - df=2 时 t 临界值 4.303，pilot 级别差异（<2pp）极难达到 p<0.05\\n\\n    - Bootstrap n=3 仅 27 种重采样，CI 估计粗糙\\n\\n    - 阈值框架偏向 No-Go（Type II error 高）\\n\\n    - 若结果落入 (C) No-Go，论文 Discussion 必须讨论功效限制，不能简单声明 \\\"dataflow 无效\\\"\\n\\n    - 这是算力约束下的合理选择，不改阈值，但明确风险\\n\\n\\n    **plan_014 排期**：Full M2 完成后优先启动 plan_014（temperature ablation, ~10h）——无论 Claim\\n    2 reframe 成哪个方向，temperature regime-specificity 都需要回答。'\\n  related_experiments:\\n  - exp_id: m2_full_qwen\\n    role: primary\\n    result: RUNNING\\n  - exp_id: m2_full_starcoder\\n    role: primary\\n    result: RUNNING\\n  depends_on:\\n  - D019\\n\", \"total_chars\": 14229, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the context I need. Let me synthesize the analysis based on:\n\n1. Paper framing from paper_framing.md\n2. Current experiment status from report.md\n3. Decision history from decisions.yaml\n\nKey facts:\n- Pilot results (single seed=42, ~3.3K train):\n  - Qwen: embedding(0.5557) > dataflow(0.5436) > random(0.5357)\n  - StarCoder: embedding(0.5078) > random(0.4922) > dataflow(0.4869)\n- M1 full: Z%=78.0% (conditional), coverage=34.3%\n\n\n- The MVP P2b comparison showed random vastly outperforming embedding distance by 27 percentage points, but that was using BM25 as a proxy rather than actual embedding-based mining\n- D017 revealed that the claim about embedding harm doesn't hold up when using true embedding mining instead\n- D018 established that full M2 results are the only valid basis for the go/no-go decision\n- Full M2 is currently running across 18 total runs\n\nNow I'm ready to write the analysis addressing the three questions.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "067b6c33-6ebf-4fa8-b1fd-d67ddd709cfd",
+            "uuid": "4ff1702d-a889-4b3b-a66d-c67e0cca9a9f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XfcLbiycp1SsmmwA5ZmVaL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11507,
+                "cache_read_input_tokens": 23821,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11507
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Paper Framing 分析\n\n### 1. 论文价值排序\n\n按重要性：\n\n1. **embedding > random 跨编码器一致**（Qwen +2.0pp, StarCoder +1.6pp）— 最稳健信号，两个编码器方向一致，是任何 framing 下都可用的核心结果。\n2. **M1 全量 Z%=78.0%**（条件）— 证明 CodeQL 结构信号在大规模下有效分离 connected-but-not-gold，支撑 Claim 3（scalability）且是 Claim 1 的前提。\n3. **MVP P2b embedding harm（-27pp）**— 戏剧性强但有 confound：BM25 proxy ≠ true embedding mining（D017）。价值在于引出\"mining method matters\"的叙事，但不能直接作为 Claim 2。\n4. **P1 CodeQL feasibility**（timeout 0→4%）+ **P2a AUC=0.78** — 基础设施贡献，支撑 Claim 3。\n5. **dataflow pilot 结果** — 方向不一致（Qwen +0.8pp, StarCoder -0.5pp），checkpoint 依赖高，当前价值最低，需 full M2 定论。\n\n两个 negative（plan_013_starcoder dataflow 负向、MVP embedding harm 在 true mining 下不复现）反而有高叙事价值——前者引出 architecture interaction discussion，后者揭示 proxy vs true mining 的差异。\n\n### 2. Conditional Go 叙事方向\n\n如果 full M2 确认 embedding > random 跨编码器一致，但 dataflow 不稳定：\n\n**Title**: \"Hard Negative Mining for Code Retrieval: When Embedding Distance Helps and Structure Falls Short\"\n\n**Headline Claim**: \"True embedding-distance hard negatives consistently improve contrastive code retrieval across encoder architectures, while structure-grounded negatives show architecture-dependent effects.\"\n\n**Story spine 调整**:\n- Problem 不变：repo-level retrieval 需要更好的 negative mining\n- Gap 重构：从 \"structure > embedding > random\" 变为 \"negative mining strategy 的选择对检索质量影响显著，但最优策略取决于信号来源\"\n- 核心贡献变为：(1) 首次系统比较三种 negative mining 策略在 code retrieval 的效果；(2) 发现 true embedding mining 稳健有效（对比 MVP 的 BM25 proxy 有害）；(3) 结构信号有潜力但受 encoder architecture 调制，需进一步研究\n- Discussion 收尾：structure-grounded negatives 不是银弹，但 CodeQL pipeline 作为可复用基础设施的贡献独立成立\n\n实质上从 \"structure wins\" 论文变为 \"mining strategy comparison\" 论文，venue 目标降为 Findings。\n\n### 3. Cross-encoder Consistency 作为独立贡献\n\nembedding > random 跨编码器一致（+2pp / +1.6pp）**不足以作为 EMNLP Main 的独立贡献**。原因：\n\n- **效应量小**：<2pp 在 n=3 seeds 下统计显著性存疑（D020 明确指出 df=2 时 t 临界值 4.303）\n- **不够新颖**：hard negative mining 改善对比学习是已知结论（CoCoHaNeRe 等），cross-encoder consistency 是 robustness check 而非 novelty\n- **竞争力**：EMNLP Main 期望方法级创新或大规模 empirical insight，单纯 \"+2pp cross-encoder\" 更适合 workshop/short paper\n\n但作为论文中的 **supporting evidence** 价值很高——它将 \"mining method matters\" 从单编码器观察升级为方法论层面的结论，是 Conditional Go framing 的骨架。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "067b6c33-6ebf-4fa8-b1fd-d67ddd709cfd",
+            "uuid": "faf354af-a76e-4f71-9e88-c0211701f8ff",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XfcLbiycp1SsmmwA5ZmVaL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11507,
+                "cache_read_input_tokens": 23821,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11507
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Paper Framing 分析\n\n### 1. 论文价值排序\n\n按重要性：\n\n1. **embedding > random 跨编码器一致**（Qwen +2.0pp, StarCoder +1.6pp）— 最稳健信号，两个编码器方向一致，是任何 framing 下都可用的核心结果。\n2. **M1 全量 Z%=78.0%**（条件）— 证明 CodeQL 结构信号在大规模下有效分离 connected-but-not-gold，支撑 Claim 3（scalability）且是 Claim 1 的前提。\n3. **MVP P2b embedding harm（-27pp）**— 戏剧性强但有 confound：BM25 proxy ≠ true embedding mining（D017）。价值在于引出\"mining method matters\"的叙事，但不能直接作为 Claim 2。\n4. **P1 CodeQL feasibility**（timeout 0→4%）+ **P2a AUC=0.78** — 基础设施贡献，支撑 Claim 3。\n5. **dataflow pilot 结果** — 方向不一致（Qwen +0.8pp, StarCoder -0.5pp），checkpoint 依赖高，当前价值最低，需 full M2 定论。\n\n两个 negative（plan_013_starcoder dataflow 负向、MVP embedding harm 在 true mining 下不复现）反而有高叙事价值——前者引出 architecture interaction discussion，后者揭示 proxy vs true mining 的差异。\n\n### 2. Conditional Go 叙事方向\n\n如果 full M2 确认 embedding > random 跨编码器一致，但 dataflow 不稳定：\n\n**Title**: \"Hard Negative Mining for Code Retrieval: When Embedding Distance Helps and Structure Falls Short\"\n\n**Headline Claim**: \"True embedding-distance hard negatives consistently improve contrastive code retrieval across encoder architectures, while structure-grounded negatives show architecture-dependent effects.\"\n\n**Story spine 调整**:\n- Problem 不变：repo-level retrieval 需要更好的 negative mining\n- Gap 重构：从 \"structure > embedding > random\" 变为 \"negative mining strategy 的选择对检索质量影响显著，但最优策略取决于信号来源\"\n- 核心贡献变为：(1) 首次系统比较三种 negative mining 策略在 code retrieval 的效果；(2) 发现 true embedding mining 稳健有效（对比 MVP 的 BM25 proxy 有害）；(3) 结构信号有潜力但受 encoder architecture 调制，需进一步研究\n- Discussion 收尾：structure-grounded negatives 不是银弹，但 CodeQL pipeline 作为可复用基础设施的贡献独立成立\n\n实质上从 \"structure wins\" 论文变为 \"mining strategy comparison\" 论文，venue 目标降为 Findings。\n\n### 3. Cross-encoder Consistency 作为独立贡献\n\nembedding > random 跨编码器一致（+2pp / +1.6pp）**不足以作为 EMNLP Main 的独立贡献**。原因：\n\n- **效应量小**：<2pp 在 n=3 seeds 下统计显著性存疑（D020 明确指出 df=2 时 t 临界值 4.303）\n- **不够新颖**：hard negative mining 改善对比学习是已知结论（CoCoHaNeRe 等），cross-encoder consistency 是 robustness check 而非 novelty\n- **竞争力**：EMNLP Main 期望方法级创新或大规模 empirical insight，单纯 \"+2pp cross-encoder\" 更适合 workshop/short paper\n\n但作为论文中的 **supporting evidence** 价值很高——它将 \"mining method matters\" 从单编码器观察升级为方法论层面的结论，是 Conditional Go framing 的骨架。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 43645,
+            "duration_api_ms": 44731,
+            "num_turns": 5,
+            "stop_reason": "end_turn",
+            "session_id": "067b6c33-6ebf-4fa8-b1fd-d67ddd709cfd",
+            "total_cost_usd": 0.22238224999999998,
+            "usage": {
+              "input_tokens": 6,
+              "cache_creation_input_tokens": 23487,
+              "cache_read_input_tokens": 59007,
+              "output_tokens": 1783,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 23487,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1365,
+                  "cache_read_input_tokens": 23821,
+                  "cache_creation_input_tokens": 11507,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 11507
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1380,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00148,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 6,
+                "outputTokens": 1783,
+                "cacheReadInputTokens": 59007,
+                "cacheCreationInputTokens": 23487,
+                "webSearchRequests": 0,
+                "costUSD": 0.22090225,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "c163abe2-d885-4108-80cb-57030688c2df"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-framing-analysis.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd2c7d22d2c866c40784",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "fix related work info",
+  "task_key": "worker_fix_related-work-info_20260514T224433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_related-work-info_20260514T224433_result.json",
+    "occurrence": 1,
+    "bytes": 520,
+    "sha256": "22917128419a5b308068e9ea5f951ba22a93c120a653621e12e81c385ad4fdd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三处修改完成：\n\n1. **§2.1**: \"all graph-guided methods\" → \"these graph-guided methods\"\n2. **§2.2**: 开头插入 Sentence-BERT 引用（`\\cite{reimers2019sentencebert}`），自然衔接到对比学习在代码表示上的应用\n3. **§2.3**: \"consistently improves\" 后加 \"(pilot evidence; pending M2 full confirmation)\"\n\n注：Sentence-BERT 已在 literature_map.yaml 的 `hard_negative_mining` 类目下（category/role/year/venue/authors 均匹配），无需重复录入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-related-work-info.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "000f4598f93b3816cf11",
+  "project": "structfuse-context",
+  "kind": "history",
+  "title": "reviewer / loop_7.md",
+  "task_key": "loop_7",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_7.md",
+    "occurrence": 1,
+    "bytes": 4608,
+    "sha256": "a9ba419787d4828be9a57a70c9b030e2f5992dabf64d7de4cca6384cc42afcd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_messages\nupdated: '2026-05-14T14:57:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- Qwen 训练只能用 cuda:0，StarCoder 只能用 cuda:1。项目 gpu_ids=[0,1]，越界即 CRITICAL\n- m2_full 训练脚本已被修复重启过一次（bash 参数缓存事件）：旧 bash PID 73554/74132 已 kill，新脚本从 s43 开始。**不要再次 kill 或重启当前训练进程链**\n- TRAIN_SCRIPT 路径有两个版本：Qwen 用 `/root/structfuse-context/training/train.py`，StarCoder 用 `/root/structfuse/training/train.py`。不要混淆\n- Discussion draft 有两个已知错误待修：(1) \"9 seeds\" 应为 \"3 seeds\"，(2) m1_reextract_v2 被写为 \"planned\" 实际是 RUNNING\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-42106(root)，2× RTX PRO 6000 Blackwell 96GB\n- 工作目录：远程 `/root/structfuse`（代码）、`/root/autodl-tmp/structfuse`（数据/checkpoints）\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型：Qwen `/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B`；StarCoder `/root/autodl-tmp/models/bigcode/starcoder2-3b/bigcode/starcoder2-3b`\n- wandb：offline 模式，日志 `/root/autodl-tmp/structfuse/wandb_logs/`\n- 磁盘：/root/autodl-tmp 163G/250G (66%)\n- 活跃进程：\n  - Qwen s43 训练：PID 337271 (cuda:0)，bash 驱动 PID 337267，轮询父进程 PID 300284\n  - StarCoder s42 训练：PID 76627 (cuda:1)，轮询等待进程 PID 309679 → 完成后启动 `run_m2_full_starcoder_s43plus.sh`\n  - m1_reextract_v2：CodeQL 重提取（CPU），4 workers 并行，~15/82 groups done（截至 07:06 CST）\n- Qwen s43 日志有双层 tee pipe buffering（`python | tee log` 内层 + `bash script | tee all.log` 外层），短期内日志文件看不到输出是正常的，不是 crash\n\n### 3. 📊 当前状态\n刚完成：\n- 发现并报告 bash 脚本参数缓存问题（D026/D027 修改不生效）→ Worker 修复后我做了完整独立验证，4 项全部 PASS\n- 审查 Qwen random_s42 最终结果：best R@1=0.553 @ step 1000，3 epochs 过拟合确认\n- 纠正 worker_analysis_m2_full_qwen 对 s43 的误诊（\"OOM/crash\"实际是 pipe buffering）\n\nRegistry RUNNING：\n- m2_full_qwen (ANALYZING)：s42 done，s43 刚启动（~19:24 CST），剩余 8 runs（3 strategies × 2 seeds + random_s44）\n- m2_full_starcoder (RUNNING)：s42 at step 3000/4242 (~71%)，s43+ 脚本已就绪等待\n- m1_reextract_v2 (RUNNING)：CodeQL 重提取，预计还需 ~10h+\n\n### 4. 📋 待办（条件触发式）\n- Qwen s43 eval@500 出现 → 验证 early stopping 逻辑是否激活（日志应显示 patience 计数器），确认 R@1 与 s42 同量级\n- StarCoder s42 完成（~4242 steps）→ 验证 final eval metrics，确认 s43 以正确参数自动启动（PID 309679 轮询 → run_m2_full_starcoder_s43plus.sh）\n- StarCoder eval@3500/4000 出现 → 关注 R@1/val_loss 分离趋势是否加剧（eval@2500 已出现 R@1 新高但 val_loss 恶化）\n- m1_reextract_v2 完成 → 验证新增数据量（目标从 15,897→~44,173），检查数据质量\n- 新 worker 完成通知 → 常规审查\n- Discussion draft 修订版提交 → 核查 \"9 seeds\" 和 m1_reextract_v2 状态描述是否已修正\n\n### 5. 🎯 战略上下文\n- **3 Core Claims**：(1) embedding mining > random（最强，pilot+s42 一致），(2) dataflow conditional benefit mediated by encoder saturation（最弱，n=2 encoder \"interaction effect\"，建议降级为 observation），(3) CodeQL bounded data-flow scalable（有数据支撑）\n- **关键决策链**：D017→D018→D019（go/no-go 框架）→ D024（framing 重写）→ D026（2 epochs）→ D027（early stopping）\n- **Deadline**：EMNLP 2026 ARR May 25（11 天），timeline 紧但可行：M2 ~May 18-19 完成，plan_003(SWE-bench)+plan_004+plan_014 并行，写作 May 22-25\n- **易错点**：\n  - Worker 分析 s43 日志为空就判 crash——双层 tee pipe 会 buffer，进程活着+GPU 满载就是正常的\n  - plan_017 文献对比中 StructFuse 用的是 \"bounded inter-procedural data-flow analysis (2-hop call-graph scope)\"，**不是** \"taint tracking\"——已修正过一次，别退回去\n  - on_complete:m2_full_qwen 是旧 tmux exit 触发的假完成信号，全 9 runs 完成还早\n  - StarCoder 的 R@1 和 val_loss 在 eval@2500 开始分离（R@1 新高但 val_loss 恶化），需要关注 dual checkpoint 策略是否正确捕获了最优模型\n  - GPU budget 已严重超支（plan_002 预算 30h，实际 ~260h），但 deadline 可行性取决于 M2 何时完成，不要用 GPU-hours 超支来判 deadline 风险\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-copy-3.md"
+}

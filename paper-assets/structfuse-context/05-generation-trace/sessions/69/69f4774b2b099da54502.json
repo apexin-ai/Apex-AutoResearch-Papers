@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69f4774b2b099da54502",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "fix paper framing d049",
+  "task_key": "worker_fix_paper-framing-d049_20260515T075459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_paper-framing-d049_20260515T075459_result.json",
+    "occurrence": 1,
+    "bytes": 839,
+    "sha256": "317e99af1ea81826318679140a23a5528ae524d264b3394c79621e7c9b360538"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成，4 项修正全部生效：\n\n| 修正 | 状态 | 涉及位置 |\n|------|------|----------|\n| **数字更新** | ✓ | Core Claims #1、Headline、Evidence Status D017 — 所有裸 `+1.6–2.0pp` 已替换为含 pilot/M2 seed 43/pending 的完整注释 |\n| **叙事软化** | ✓ | Core Claims #1 标题、Story Spine contribution、Headline、Dual-Pillar #1、Title Alternative/Backup、Venue Fit #3、Evidence Status D017、Contingency 3 处 — 零残留 \"challeng\" 表述 |\n| **证据呈现策略** | ✓ | Evidence Status 下新增 `Evidence presentation strategy` 子节（best_by_R@1 主表 + fixed-checkpoint robustness check + 方向一致性声明） |\n| **Limitations 段** | ✓ | 新增于 Evidence Status 与 Contingency 之间 |\n\nClaim 2、Claim 3 未动，文件结构保持不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-paper-framing-d049.md"
+}

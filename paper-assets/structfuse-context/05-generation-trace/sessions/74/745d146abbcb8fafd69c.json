@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "745d146abbcb8fafd69c",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "fix d041 paper framing",
+  "task_key": "worker_fix_d041-paper-framing_20260515T020943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d041-paper-framing_20260515T020943_result.json",
+    "occurrence": 1,
+    "bytes": 853,
+    "sha256": "18c9cafd0cbd578b41ec44563b29bcff2180f1e0b28f382faeccc1375788e690"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成三处修改：\n\n1. **Formal Definition 公式**：`argmax_{x ∈ D : s(x,q) > τ ∧ ¬reachable_G(x,q)} s(x,q)` → `argmax_{x ∈ D : reachable_G(x,q) ∧ x ∉ gold(q)} BM25(q, x)`，并补充说明\"Negatives are selected from CodeQL-connected files (structural filtering), ranked by BM25 (lexical similarity)\"\n\n2. **Core Insight 三策略难度维度**：插入 `(1) random — no signal baseline; (2) embedding-distance — semantic similarity via pretrained encoder cosine similarity; (3) dataflow-aware — structural filtering (CodeQL-connected files) + lexical similarity (BM25 top-K ranking)`，同步将\"orthogonal signal dimension (structure)\"改为\"(structure + lexical)\"\n\n3. **文件末尾**：添加 `<!-- D041 dataflow-aware BM25 fix: 2026-05-15 -->`\n\nembedding-distance 策略的描述未改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d041-paper-framing.md"
+}

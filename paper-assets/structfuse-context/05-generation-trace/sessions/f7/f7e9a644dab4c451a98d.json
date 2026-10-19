@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "f7e9a644dab4c451a98d",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "analysis bootstrap validation s43",
+  "task_key": "worker_analysis_bootstrap-validation-s43_20260515T140357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-validation-s43_20260515T140357_result.json",
+    "occurrence": 1,
+    "bytes": 2449372,
+    "sha256": "db6f59a0209007c03dc9c7d86363e29745c182b70add504627c582c729c5ccf0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "f7e9a644dab4c451a98d-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-validation-s43.md"
+}

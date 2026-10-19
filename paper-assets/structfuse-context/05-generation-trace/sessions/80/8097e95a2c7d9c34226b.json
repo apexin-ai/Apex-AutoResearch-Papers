@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8097e95a2c7d9c34226b",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ssh swebench implement placeholders",
+  "task_key": "worker_ssh_swebench_implement_placeholders_20260513T230518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_swebench_implement_placeholders_20260513T230518_result.json",
+    "occurrence": 1,
+    "bytes": 1227,
+    "sha256": "012a2cebd3499a5278349e0a725e10217ad7d1d1468dc927a2e9bc4819878056"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法验证通过，所有函数均可导入，`--help` 正常。\n\n---\n\n**修改总结：**\n\n| 函数 | 实现逻辑 |\n|---|---|\n| `load_retriever` | 加载 `training_config.json` → 构建 `StructFuseEncoder`（从 `training/contrastive_model.py`）→ 加载 `model.pt` 权重 → 返回 `_Retriever` 对象（封装 model/tokenizer/device/encode 方法） |\n| `retrieve_top_k_files` | 收集 repo 中 `.py` 文件（跳过隐藏目录和 `__pycache__`）→ retriever.encode 编码 query 和文件内容（截断 12k 字符）→ cosine similarity 排序 → 返回 top-k 路径 |\n| `generate_patch` | 通过 `STRUCTFUSE_LLM_BACKEND` 环境变量切换后端：`mock`（默认，返回空）/ `api`（OpenAI 兼容 API）。构建 Agentless 风格 prompt（issue + 文件内容），解析 LLM 输出中的 unified diff |\n| `verify_patch` | `git apply --check` 验证 patch 可应用 → 实际 apply → 对修改的 .py 文件做 `compile()` 语法检查 → 可选执行 `test_cmd` → `git checkout -- .` 恢复 |\n\n新增辅助：`_Retriever` 类（封装编码逻辑）、`_extract_diff`（从 LLM 输出提取 diff）、`_AGENTLESS_PROMPT` 模板。新增 `import subprocess, tempfile`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-swebench-implement-placeholders.md"
+}

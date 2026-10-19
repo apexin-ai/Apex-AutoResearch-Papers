@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26dfa2af912b85cd921a",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "prep per seed delta viz",
+  "task_key": "worker_prep_per-seed-delta-viz_20260515T020115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_per-seed-delta-viz_20260515T020115_result.json",
+    "occurrence": 1,
+    "bytes": 414,
+    "sha256": "8b72567c80e329d0407ac98f672fe06bfc0b12157ceb5dfeea56e1a24d3c73bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 个文件全部生成（3 figure × PDF + PNG）：\n\n| 图表 | PDF | PNG |\n|------|-----|-----|\n| Fig A: Per-Seed Strategy Comparison | 21 KB | 120 KB |\n| Fig B: Pairwise Delta Plot | 21 KB | 266 KB |\n| Fig C: Training Dynamics | 25 KB | 454 KB |\n\n脚本位于 `/root/structfuse/scripts/plot_per_seed_delta.py`。M2 完成后用 `--results-dir` 替换 `--mock` 即可生成真实图表。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-per-seed-delta-viz.md"
+}

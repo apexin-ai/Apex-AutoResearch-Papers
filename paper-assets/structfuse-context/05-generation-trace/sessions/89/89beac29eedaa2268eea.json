@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89beac29eedaa2268eea",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code fix eval determinism",
+  "task_key": "worker_code_fix_eval_determinism_20260516T031724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_eval_determinism_20260516T031724_result.json",
+    "occurrence": 1,
+    "bytes": 1596,
+    "sha256": "e537ea479cc31ef351fca75f42fc042179bd2fdd0d3a1aae10afb6992c40734c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 修改摘要\n\n- **文件**: `/root/structfuse/training/train.py`\n- **改动 1** (line 86-97): 在 `ContrastiveDataset` 类中添加 `freeze_fallback_negatives(seed)` 方法 — 用独立 `random.Random(seed)` 实例为每个 sample 预计算 fallback negatives 并写入 `self._negatives`\n- **改动 2** (line 326): 在 `val_ds` 创建后立即调用 `val_ds.freeze_fallback_negatives(seed=args.seed)`\n\n```diff\n+    def freeze_fallback_negatives(self, seed: int = 42):\n+        \"\"\"Pre-compute fallback negatives with a fixed seed for deterministic eval.\"\"\"\n+        rng = random.Random(seed)\n+        self._negatives = {}\n+        for idx, s in enumerate(self.samples):\n+            fallback = list(s.get(\"neg_candidates\", []))\n+            rng.shuffle(fallback)\n+            neg_pool = []\n+            while len(neg_pool) < self.num_negatives and fallback:\n+                cid = fallback.pop()\n+                neg_pool.append({\"id\": cid, \"tokens\": s.get(\"candidate_tokens\", {}).get(cid, \"\")})\n+            self._negatives[idx] = neg_pool\n\n     # after val_ds creation:\n+    val_ds.freeze_fallback_negatives(seed=args.seed)\n```\n\n## 验证\n\n- `freeze_fallback_negatives` 调用位置: line 326，`val_ds` 创建后、`DataLoader` 创建前\n- `__getitem__` 走预计算路径确认: **yes** — `self._negatives[idx]` 已被填充，`len(neg_pool) >= self.num_negatives` 条件满足，不会进入 `random.shuffle` fallback\n- 影响范围: **仅 val eval** — `train_ds` 不受影响，仍由 `refresh_negatives(mined)` 动态更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-eval-determinism.md"
+}

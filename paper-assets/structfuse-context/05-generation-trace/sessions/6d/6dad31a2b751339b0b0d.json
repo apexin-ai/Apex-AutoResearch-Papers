@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6dad31a2b751339b0b0d",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "fix disk cleanup immediate",
+  "task_key": "worker_fix_disk_cleanup_immediate_20260514T191433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_disk_cleanup_immediate_20260514T191433_result.json",
+    "occurrence": 1,
+    "bytes": 1041,
+    "sha256": "ed1ee6fd26f101b9073339ab063b4558d298a531796b60e0d89313969cf8b1b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n### 磁盘清理\n| 目录 | 大小 | 状态 |\n|------|------|------|\n| m2_embed_verify_output/ | — | 不存在（已清） |\n| m2_starcoder_output/ | — | 不存在（已清） |\n| m2_pilot_data/ | — | 不存在（已清） |\n| m2_embed_verify_data/ | — | 不存在（已清） |\n| random_s42/final/ | 5.8GB | **已删除** |\n| random_s43/final/ | 5.8GB | **已删除** |\n| full_m2_outputs/random_s42/ | 4KB | 忽略 |\n\n**释放 ~12GB，可用 108GB → 120GB / 250GB (53%)**\n\n### BM25 early_stopping 修复\n- `run_m2_full_qwen.sh`：bm25_s42 的 `--early-stopping-patience 2` **已删除**，s42 将跑完整 3 epoch\n- `scripts/run_m2_full_bm25_starcoder.sh`：s42 patience 已经是 0，**无需修改**\n- 主循环里 s43/s44 的 `--early-stopping-patience 2` 保持不变\n\n### 训练状态\n- 当前跑到 **[2/9] random_s44**，epoch 1，step 350/1408，loss=0.2364\n- 双 GPU 100% 利用率，62GB + 54GB 显存\n- bm25_s42 是第 7 个 run，脚本修改已在磁盘生效"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-disk-cleanup-immediate.md"
+}

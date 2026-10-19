@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a78002c19b6c9786919",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "analysis m2 full qwen",
+  "task_key": "worker_analysis_m2_full_qwen_20260514T112525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_m2_full_qwen_20260514T112525_result.json",
+    "occurrence": 1,
+    "bytes": 824,
+    "sha256": "0a6b33b4c65f203431efa26c7d097bb6ab76696c8a60ca02843d5568a124295b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入并注册。核心发现：\n\n**实验未完成 — 9 runs 中只有 random_s42 跑完了。**\n\n### random_s42 结果\n- Best R@1 = **0.5527** (step 1000, epoch 1 中期)，best val_loss 也在同一步\n- 之后持续 overfit，val_loss 从 0.465 升到 0.560\n- 比 pilot random (0.5357) 高 **+1.7pp**，full data 有帮助\n\n### 未完成原因\n- random_s43 在 19:24:14 启动，模型加载完成后无任何训练步输出（疑似 OOM/crash）\n- 其余 7 个 run（embedding_distance × 3, dataflow_aware × 3, random_s44）均未启动\n- **核心假设（embedding > random）无法验证**\n\n### 需要行动\n1. 诊断 random_s43 停止原因（查 dmesg / GPU 内存）\n2. 修复后重启剩余 8 runs\n3. 3 epochs 过多，建议保持 2 epochs + early_stopping_patience=2"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-m2-full-qwen.md"
+}

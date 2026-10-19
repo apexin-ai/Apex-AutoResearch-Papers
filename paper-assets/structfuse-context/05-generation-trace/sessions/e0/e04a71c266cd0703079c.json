@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e04a71c266cd0703079c",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code d062 analysis script",
+  "task_key": "worker_code_d062_analysis_script_20260516T110856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d062_analysis_script_20260516T110856_result.json",
+    "occurrence": 1,
+    "bytes": 1161,
+    "sha256": "a97815a14bfd768e39a519cba7f5dd113cbc503a1bf9425dc3ad5700ba72ead5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n### 产出\n\n**脚本**：`/root/structfuse/scripts/d062_analysis.py`\n\n功能：\n1. **Summary Table** — 读取所有 `selection_*.json`，按 strategy × criterion × seed 生成交叉表（终端打印 + CSV）\n2. **Stratified Analysis** — criterion main effect / strategy main effect / interaction 分析 → JSON\n3. **Bootstrap CI** — binomial bootstrap（n_queries 次 Bernoulli），95% CI + pairwise P(alt > random) → JSON\n\n**dry-run 结果**（5 个文件，`--partial` 模式）：\n\n| Config | R@1 | 95% CI |\n|--------|-----|--------|\n| random_s42_best_by_val_loss | 23.02% | [19.25, 26.39] |\n| random_s42_best_by_recall_at_1 | 23.02% | [19.25, 26.59] |\n| random_s43_best_by_val_loss | 34.13% | [30.15, 38.49] |\n| random_s43_best_by_recall_at_1 | 50.40% | [46.42, 54.56] |\n| random_s44_best_by_val_loss | 35.32% | [31.15, 39.09] |\n\nCriterion main effect (random only): **+5.89 pp**（by_recall_at_1 优于 by_val_loss）\n\n**3 个输出文件**均生成成功并可正常 `json.load()` 读取。Pairwise comparisons 待 embedding_distance / dataflow_aware 结果就绪后自动填充。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d062-analysis-script.md"
+}

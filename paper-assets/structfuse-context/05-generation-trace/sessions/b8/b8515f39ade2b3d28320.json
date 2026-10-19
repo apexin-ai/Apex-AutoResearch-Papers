@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8515f39ade2b3d28320",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops report md refresh",
+  "task_key": "worker_ops_report-md-refresh_20260513T090849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_report-md-refresh_20260513T090849_result.json",
+    "occurrence": 1,
+    "bytes": 593,
+    "sha256": "384e8316543de6ad8a15ad30ac3385581db368ad8537792987f3b7e093f3006d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "report.md 已更新。主要变更：\n\n- **运行中**：3 个实验填充了详细状态和指标（m2_embed_verify random 完成 R@1=53.6%、plan_013_starcoder embedding 91%、m1_extraction 27%）\n- **待处理**：列出 3 项需跟进事项（两个实验的下一策略启动、磁盘监控）\n- **近期结论**：5 个关键实验结果含具体数值\n- **趋势**：成功 7 / 负向 1 / 失败 1 / 终止 14 / 共 26\n- **资源状态**：两台服务器 GPU 分配和磁盘状态\n- **告警**：清理了 15 条旧 smoke test 告警，替换为 2 条实质告警"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-report-md-refresh.md"
+}

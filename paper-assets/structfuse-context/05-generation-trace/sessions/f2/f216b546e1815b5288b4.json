@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f216b546e1815b5288b4",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "check full status may15",
+  "task_key": "worker_check_full-status-may15_20260514T235634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_full-status-may15_20260514T235634_result.json",
+    "occurrence": 1,
+    "bytes": 3248,
+    "sha256": "20dd91e9e52dbfd24dd2a51d4bb1a55cb9eb28cb3ad52a0a326b67fe0050ce6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕，汇总如下。\n\n---\n\n## 1. m1_reextract_v2\n\n**状态**：运行中，4 workers 并行处理，已持续 ~28 小时\n\n**关键数据**：\n- 总计 28,276 instances / 82 repos\n- 预估总耗时 ~60h（4 workers），目前约 28h\n- 当前活跃的 4 个 repo（最新进度）：\n  - `sqlfluff/sqlfluff`: 850/1,272\n  - `conan-io/conan`: 650/972\n  - `pydicom/pydicom`: 300/1,315\n  - `Project-MONAI/MONAI`: 刚开始处理\n- 已出现 ~70 个 unique repo 有 \"processed\" 记录，82 个 repo 全部已启动\n- `all.jsonl` 当前 44,173 行（已有数据）\n- `m1_reextract_v2_output/` 下无 JSON 文件（产出写入 `full_m1_data/`）\n\n**问题/风险**：当前处理的几个 repo 都是大 repo（1000+ instances），剩余时间可能还需 10-15h。\n\n---\n\n## 2. M2 Qwen 训练链 (cuda:0, PID 337267)\n\n**状态**：运行中，已运行 12h33m，当前在链中 **第 2/9 个 run: `random_s44`**\n\n**关键数据**：\n| Run | 状态 | Best R@1 | Best val_loss |\n|-----|------|----------|---------------|\n| [1/9] random_s43 | ✅ 完成 | 0.5501 | 0.5434 |\n| [2/9] random_s44 | 🔄 Epoch 2, step 1500/2810 (~53%) | 0.6009 | 0.4252 |\n\n- random_s44 当前 metrics（eval@1000）: val_loss=0.4695, R@1=0.5638（未超 @500 的 best）\n- 之前独立跑的 random_s42 也已完成: R@1=0.5503, val_loss=0.5456\n- GPU 0: 99% utilization, 51.5GB/95.6GB VRAM\n\n**问题/风险**：random_s44 的 eval@1000 出现 val_loss regression（0.4695 vs best 0.4252），patience 1/2。如果 eval@1500 继续不 improve，会 early stop。链中还剩 7 个 run。\n\n---\n\n## 3. M2 StarCoder 训练链 (cuda:1, PID 519791)\n\n**状态**：运行中，已运行 5h54m，当前在 **`random_s43`（resume 后重跑）**\n\n**关键数据**：\n| Run | 状态 | Best R@1 | Best val_loss |\n|-----|------|----------|---------------|\n| random_s42 | ✅ 完成 | ~0.455 | ~0.664（过拟合） |\n| random_s43 | 🔄 Epoch 1, step 1050/2810 (~37%) | 0.4780 | 0.5279 |\n\n- eval@500: val_loss=0.5279, R@1=0.4708\n- eval@1000: val_loss=0.5430（not improved 1/2）, R@1=0.4780（improved, saved best）\n- GPU 1: 100% utilization, 52.7GB/95.6GB VRAM\n\n**问题/风险**：\n1. 之前的 s43 训练进程被 OOM Killed（日志中有明确 `Killed` 信号），之后通过 `run_m2_full_starcoder_resume.sh` 重启\n2. random_s42 严重过拟合（val_loss 0.664），StarCoder 整体 R@1 (~0.47) 明显低于 Qwen (~0.55-0.60)\n3. val_loss 已 not improved 1/2，如果下次 eval 继续 degrade 会触发 early stopping\n\n---\n\n## 4. BM25 Phase 2 Watcher\n\n**状态**：两个 watcher 均在运行\n\n| tmux session | 监控目标 | 状态 |\n|-------------|---------|------|\n| `bm25_qwen_watcher` | Qwen PID 337267 | 等待中 |\n| `bm25_starcoder_watcher` | StarCoder PID 519791 | 等待中 |\n\n- 还有 `qwen_s42_watcher` 和 `m2_qwen_s43`（历史 session）\n- 两个 watcher pane 内容仅显示 \"Watching XXX chain PID ...\" 后空白，正在 sleep 轮询\n\n**问题/风险**：watcher 逻辑只从 tmux capture-pane 看不到具体脚本内容，无法确认触发条件是否正确。建议后续确认 watcher 脚本检测的是整个链完成还是单个 run 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-full-status-may15.md"
+}

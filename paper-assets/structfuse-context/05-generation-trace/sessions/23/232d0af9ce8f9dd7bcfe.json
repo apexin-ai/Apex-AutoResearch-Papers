@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "232d0af9ce8f9dd7bcfe",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "analysis qwen metric verification",
+  "task_key": "worker_analysis_qwen_metric_verification_20260516T025821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen_metric_verification_20260516T025821_result.json",
+    "occurrence": 1,
+    "bytes": 2195,
+    "sha256": "b11e30beb523964a925003aee7cd649a1ad22264dddcf90d22ba432e98432bbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在所有数据都齐了。\n\n## 结论\n\n### Pool Size 分析\n\n**所有 Qwen M2 subrun 的 eval R@1 都来自同一种评估：in-training eval，pool size = 8**（1 positive + 7 negatives）。\n\n训练代码 `train.py:evaluate()` 使用 ContrastiveDataset 的 DataLoader，每个样本包含 1 个正例 + `num_negatives=7` 个负例，logits 形状为 `[batch_size, 8]`。**没有使用 eval_p2b.py (pool≈25) 或 eval_p2b_pooled.py (pool=50) 对 Qwen M2 checkpoint 做过独立 eval。**\n\n### 0.6009 vs 0.5542 的差异来源\n\n**不是 pool size 不同，而是训练阶段不同：**\n- **Registry 记录的 0.6009** = `best_by_recall_at_1` checkpoint 的 R@1，来自 **eval@500**（训练早期的峰值）\n- **训练日志解析的 0.5542** = `[Final eval]` 的 R@1，来自 **early stopping 时刻的模型状态**\n\n模型在 step 500 时 R@1 达到峰值，之后随训练继续而下降（过拟合）。两组数字的 pool size 完全相同（都是 8）。\n\n### 各 subrun 汇总\n\n| Subrun | Best R@1 (step) | Final R@1 | Best Checkpoint |\n|--------|-----------------|-----------|-----------------|\n| random_s42 | 0.5527 (@1000) | 0.5503 | best_by_recall_at_1 |\n| random_s43 | 0.5554 (@1500) | 0.5501 | best_by_recall_at_1 |\n| **random_s44** | **0.6009 (@500)** | **0.5542** | best_by_recall_at_1 |\n| embed_s43 | 0.5606 (@1500) | 0.5655 | best_by_recall_at_1 |\n| **embed_s44** | **0.5942 (@500)** | **0.5470** | best_by_recall_at_1 |\n| dataflow_s43 | 0.5541 (@1500) | 0.5564 | best_by_recall_at_1 |\n| dataflow_s44 | 仍在训练 | — | — |\n\n**所有 eval 的 pool size = 8（in-training eval）。没有做过 pool=20 或 pool=50 的独立评估。**\n\n### Best Checkpoint 路径\n\n```\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/{subrun}/best_by_recall_at_1/\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/{subrun}/best_by_val_loss/\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/{subrun}/final/\n```\n\nrandom_s44 和 embed_s44 的 best_by_recall_at_1 都是 step 500 的 checkpoint。如果需要做更严格的评估（pool=50），需要用 `eval_p2b_pooled.py` 对这些 checkpoint 单独跑一次。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen-metric-verification.md"
+}

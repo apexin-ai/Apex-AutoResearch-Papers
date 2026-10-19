@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "6a4b06e7e750d388665f",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "infra batch extract dryrun",
+  "task_key": "worker_infra_batch_extract_dryrun_20260512T143141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_batch_extract_dryrun_20260512T143141.log",
+    "occurrence": 1,
+    "bytes": 591611,
+    "sha256": "7d6c82352793fb7711063c8597a747617e9f758eab457e2b069eeac82c540ac8"
+  },
+  "statistics": {
+    "messages": 252,
+    "user_turns": 1,
+    "tool_calls": 81,
+    "roles": {
+      "log": 1,
+      "system": 24,
+      "record": 1,
+      "assistant": 62,
+      "tool_call": 81,
+      "tool_result": 81,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 35,
+      "chunks": [
+        {
+          "path": "6a4b06e7e750d388665f-part-0001.json",
+          "message_count": 35
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 217,
+      "chunks": [
+        {
+          "path": "6a4b06e7e750d388665f-part-0001.json",
+          "message_count": 145
+        },
+        {
+          "path": "6a4b06e7e750d388665f-part-0002.json",
+          "message_count": 72
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-batch-extract-dryrun.md"
+}

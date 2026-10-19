@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fdd7e399df8dac485ddc",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code d062 query split v3",
+  "task_key": "worker_code_d062_query_split_v3_20260516T064508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d062_query_split_v3_20260516T064508_result.json",
+    "occurrence": 1,
+    "bytes": 1256,
+    "sha256": "596eac9a5fde9c5815a2192c77e459458919172c7f28d24f8c5f1f262bdac61f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D062 Query Split 实现完成。\n\n## 汇总\n\n### 修改的文件\n- **evaluate_pool50.py** — 新增 `--selection-set` 和 `--test-set` 两个互斥参数，在加载 val data 后按 JSON 文件中的 indices 过滤 query 列表\n\n### 新建的文件\n| 文件 | 说明 |\n|------|------|\n| `generate_query_split.py` | 按 repo 分层抽样，生成 selection/test split |\n| `run_d062_eval.py` | 三阶段批量评估脚本（selection eval → best 选择 → test eval） |\n| `selection_queries.json` | 504 queries（用于 checkpoint 选择） |\n| `test_queries.json` | 2476 queries（用于最终报告） |\n\n### Split 统计\n- **Total**: 2980 queries, 21 repos\n- **Selection set**: 504 queries (各 repo 占比 15.0%-17.3%，分布一致)\n- **Test set**: 2476 queries\n- seed=42，两组无交集\n\n### 验证结果\n- `--selection-set` 参数正常工作：2980 total → 504 filtered\n- 单 checkpoint (random_s42 best_by_recall_at_1) 测试通过：R@1=0.2669, R@5=0.7867\n- 结果 JSON 正确输出\n\n### Checkpoint 可用性\n- random: s42, s43, s44 ✓\n- dataflow_aware: s43, s44 ✓（无 s42）\n- embedding_distance: s43, s44 ✓（无 s42）\n- 共 7 个 checkpoint，`run_d062_eval.py` 已配置自动发现"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d062-query-split-v3-copy-2.md"
+}

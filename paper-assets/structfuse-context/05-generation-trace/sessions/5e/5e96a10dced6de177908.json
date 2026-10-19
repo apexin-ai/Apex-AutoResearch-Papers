@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e96a10dced6de177908",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "draw fig4 rep geometry",
+  "task_key": "worker_draw_fig4-rep-geometry_20260514T225843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_draw_fig4-rep-geometry_20260514T225843_result.json",
+    "occurrence": 1,
+    "bytes": 557,
+    "sha256": "6dcb0c2e3421028ad813de4c552ebf2b8dec10c48d4c49a04947d237e8369669"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出完成：\n\n- **PDF**: `artifacts/paper_figures/fig4_rep_geometry.pdf`\n- **PNG**: `artifacts/paper_figures/fig4_rep_geometry.png`\n- **脚本**: `artifacts/paper_figures/fig4_rep_geometry.py`\n\nPanel (a) 展示 margin 对比，Qwen margin 比 StarCoder 小 2.6–4.1×，ratio 标注在柱顶。Panel (b) 用 box-whisker 展示 neg similarity 分布，Qwen 的 ceiling effect（集中在 0.91–0.97 饱和区）与 StarCoder 的宽分布（0.60–0.74）对比清晰，diamond 标记 pos_sim 参考值。三个 artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/draw-fig4-rep-geometry.md"
+}

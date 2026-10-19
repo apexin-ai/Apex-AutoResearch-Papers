@@ -1,0 +1,2909 @@
+{
+  "schema_version": "1.0",
+  "session_id": "fa72c6a87e14208c9e58",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XK7p6oYuZGiU9mDQSLXpLT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "c8da5651-bf11-41f5-a0fc-8c8bb5a89e45",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QACx26NZzXX1YVJjf8mgmd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 139830,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": "2026-05-15T19:26:46.812Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XK7p6oYuZGiU9mDQSLXpLT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "e061f28d-fc3e-488d-b1e5-e9e855295861",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QpXMg1ECZeJAjoGjPKi4TK",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "2adc1f27-970a-4c8c-9921-1be71b21782c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CTMmQhQ7cvhL96ExYGjWWk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 245,
+                "cache_read_input_tokens": 140065,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 245
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-15T19:26:50.762Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QpXMg1ECZeJAjoGjPKi4TK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "d968da66-01f7-4202-b157-7be03656478a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HRAtLL9i5FbA2iCFmeB1t3",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "2d5559a9-a175-4913-b0d0-d1709fa9e55d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EQkEMw8oRLnu7ac2KmKpzD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 338,
+                "cache_read_input_tokens": 140310,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 338
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": "2026-05-15T19:26:54.279Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HRAtLL9i5FbA2iCFmeB1t3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "2c1e4a5a-8470-4da6-8249-f0e902423203",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013M6FbvWUiX2VmA9Bt7UAQh",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "2ea385fa-6534-4ada-8176-e31f1d9d6856",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QxUQ4jV6EsQb9NqfHdg1QF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 140648,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000727"
+        },
+        {
+          "source_line": 728,
+          "timestamp": "2026-05-15T19:26:57.649Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013M6FbvWUiX2VmA9Bt7UAQh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "130a1487-8ed8-43c6-bf39-c8fbb3a94e5a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000728"
+        },
+        {
+          "source_line": 729,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019HD2dkiGjBEGbYyEUaqNvq",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "d0e33817-6f4e-490d-ba12-490b88879fae",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UgfbT7R1eu1rbHAqidD99o",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 140883,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": "2026-05-15T19:27:01.215Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019HD2dkiGjBEGbYyEUaqNvq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "daf13224-740c-43e9-a881-c3db127af488",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q6dLEjUhnhmp1QWFN9VE5r",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "2f73af4d-363c-4489-9dee-d584485c1940",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016v4GiPjTdxX4ohbzNPoCmg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 141118,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": "2026-05-15T19:27:04.871Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q6dLEjUhnhmp1QWFN9VE5r",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "e17f8da0-f999-42fa-89e6-716f5f05ad53",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RZaDtuVf4eR4wYacG5VGbs",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "6d0a4e59-a9c2-4aa1-b227-b76fd0bede54",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0117UR3HkBmW59DfNgCyFRsn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 141353,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": "2026-05-15T19:27:10.923Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RZaDtuVf4eR4wYacG5VGbs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "4af2b4ab-5e46-43ff-9e0b-c034207449fd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017meXa9e6jDkFBsjNAnQCXL",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "597d8877-37c5-4097-90fe-c4ce3e8525a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XCiydby9zExEGKUkHZmato",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 141588,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": "2026-05-15T19:27:15.342Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017meXa9e6jDkFBsjNAnQCXL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "2104f8b4-50c2-4bc2-9375-0be9f40b476f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000736"
+        },
+        {
+          "source_line": 737,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CuTEVkGMj9ZuGVseMC2Mnx",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "513909f2-a52c-4aa9-afad-c438000b444b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014F88jxEMLWfTbNNLoXwkfp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 141823,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": "2026-05-15T19:27:19.491Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CuTEVkGMj9ZuGVseMC2Mnx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "d7714bc0-6d0e-4717-8bcc-16f2d1abb1b4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000738"
+        },
+        {
+          "source_line": 739,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016ix7crRiSUonvHtUfJpFds",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "e5adecfa-1dac-4822-87ae-7869ec65150c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019m9btPJLpfHKPR8JwRjbbb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 142058,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000739"
+        },
+        {
+          "source_line": 740,
+          "timestamp": "2026-05-15T19:27:26.741Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016ix7crRiSUonvHtUfJpFds",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "1091ffc9-c578-47e2-99da-8a187c1f185b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000740"
+        },
+        {
+          "source_line": 741,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019cKXNEMjAPNtMsXgFSzAfM",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "62acd46f-f6a4-4d2d-8066-8af8963d7b5b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DcoBbbEUd7AnboruFvGZ58",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 142293,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000741"
+        },
+        {
+          "source_line": 742,
+          "timestamp": "2026-05-15T19:27:30.523Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019cKXNEMjAPNtMsXgFSzAfM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "d6060231-ced2-44f3-9593-c0246e37c5b3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000742"
+        },
+        {
+          "source_line": 743,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SfdKQ4WHWcpvTBRgmH7V3S",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "a112b98b-1b7e-4fa5-bf66-9945b2b80d33",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015NKhp6DyVr6fkwziE6AEbH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 142528,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000743"
+        },
+        {
+          "source_line": 744,
+          "timestamp": "2026-05-15T19:27:35.514Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SfdKQ4WHWcpvTBRgmH7V3S",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "92affa5b-fab0-4155-9ce5-65cb3a6f28fc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000744"
+        },
+        {
+          "source_line": 745,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GqDV1RuPjWQJVHpj1bm1eM",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "dd730f29-ba31-4af6-a500-2de94557a9ab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017Ms91rJNiwDfY2atmibSdz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 338,
+                "cache_read_input_tokens": 142763,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 338
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000745"
+        },
+        {
+          "source_line": 746,
+          "timestamp": "2026-05-15T19:27:38.776Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GqDV1RuPjWQJVHpj1bm1eM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "d81b114a-4a07-4803-949f-318fce80d128",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000746"
+        },
+        {
+          "source_line": 747,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UD5y8ro6rrm78NLSL3eTRP",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "688004f0-48ce-4db1-a8b6-e5eec3b70080",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MLkCvBJpdpSWNBTepnUmxG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 143101,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000747"
+        },
+        {
+          "source_line": 748,
+          "timestamp": "2026-05-15T19:27:42.223Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UD5y8ro6rrm78NLSL3eTRP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "9ca8ab22-664e-4238-bdf1-b64e38e8357b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000748"
+        },
+        {
+          "source_line": 749,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KBFBhR1paMvqSkgpXkFCdK",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "752ef5b5-28b0-4542-886b-43455ec43e9a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N4g6TCiFzJdKrUhQ7ejmcp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 143336,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000749"
+        },
+        {
+          "source_line": 750,
+          "timestamp": "2026-05-15T19:27:45.706Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KBFBhR1paMvqSkgpXkFCdK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "fb38a4d9-3b2a-472b-b15b-1d8d2fb90b28",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000750"
+        },
+        {
+          "source_line": 751,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019x6ghwShcapoLsZTtDjcjv",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "fb06b900-5c2e-4d3c-bc17-8c8671512833",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HxANnhBZLarQDQ6e1xgP84",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 143571,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000751"
+        },
+        {
+          "source_line": 752,
+          "timestamp": "2026-05-15T19:27:49.945Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019x6ghwShcapoLsZTtDjcjv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "c5a390a3-0c88-4356-9e55-9b28efa13a60",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000752"
+        },
+        {
+          "source_line": 753,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VqGZ6TC4GEXLceJrsqxfuZ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "19430aad-09a5-4848-aced-50e2404b3952",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NLaKuAJ8E2SUtWeMKP2Msp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 143806,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000753"
+        },
+        {
+          "source_line": 754,
+          "timestamp": "2026-05-15T19:27:53.527Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VqGZ6TC4GEXLceJrsqxfuZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "709fd257-602a-4222-a9bd-e1db40965752",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000754"
+        },
+        {
+          "source_line": 755,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T1dawXhgVm82NQpSUfaEgm",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "fd565712-ab94-4275-a1f7-c56993e24d07",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PkXrk8ygVSJHnrguxcDbPZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 144041,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000755"
+        },
+        {
+          "source_line": 756,
+          "timestamp": "2026-05-15T19:27:57.435Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T1dawXhgVm82NQpSUfaEgm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "5b4f772c-fe9b-4fb6-a25a-a03ee4acc9ae",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000756"
+        },
+        {
+          "source_line": 757,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KjEHdJgDksBc1GkFHQvhyB",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "854b611c-1d7f-4f6f-8c57-d35be69d6887",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CrcBFfpxyy2pb6ZnKC6TWU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 144276,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000757"
+        },
+        {
+          "source_line": 758,
+          "timestamp": "2026-05-15T19:28:02.011Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KjEHdJgDksBc1GkFHQvhyB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "58af84ad-d705-44f1-80ae-6c348c01fbcc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000758"
+        },
+        {
+          "source_line": 759,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TTjJicqCc2gQNvphmsBdZE",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "0cbb970d-b529-41f0-b640-e14b528d0801",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018PLrmp9wCNtrXtUHKYmVfg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 144511,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000759"
+        },
+        {
+          "source_line": 760,
+          "timestamp": "2026-05-15T19:28:06.498Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TTjJicqCc2gQNvphmsBdZE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "d7c30bdf-3ec5-4c26-826b-88d5ab88dc2d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000760"
+        },
+        {
+          "source_line": 761,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BLQ8ydcRmkycgsjcqKQJtZ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "15f84b5e-5fc3-4244-ba81-e0cfd9080e59",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Kz9jxZnbUhtV9nrFeZarYi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 144746,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000761"
+        },
+        {
+          "source_line": 762,
+          "timestamp": "2026-05-15T19:28:11.795Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BLQ8ydcRmkycgsjcqKQJtZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "54d9f3fa-7231-41e4-833c-abbe68fdad37",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000762"
+        },
+        {
+          "source_line": 763,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UAQz4Ef4s7FeDBYGuAt4Qt",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "27925c48-2b41-4f51-bedc-dd60372d68ca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AfJCdxkryd5Qkj7G8mFDUX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 144981,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000763"
+        },
+        {
+          "source_line": 764,
+          "timestamp": "2026-05-15T19:28:15.277Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UAQz4Ef4s7FeDBYGuAt4Qt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "be3815f9-8e96-4926-a7b6-b682ac989453",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000764"
+        },
+        {
+          "source_line": 765,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CgPB8WWxkPVQG9GEta3ooz",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "ca02e4fc-1e39-4318-a676-1bc70cfad0cf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NspBHwwHv7Wgj9iewGU9Xk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 338,
+                "cache_read_input_tokens": 145216,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 338
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000765"
+        },
+        {
+          "source_line": 766,
+          "timestamp": "2026-05-15T19:28:18.928Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CgPB8WWxkPVQG9GEta3ooz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "e17cd4dc-69fe-4942-9232-231f05e68ff2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000766"
+        },
+        {
+          "source_line": 767,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HzLycAZt2B8UrZz3hHNAHD",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "c8475321-d00b-4ee8-9f2d-1caaa213e5a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CfyMn8RQi46KYyJxD2Vt77",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 145554,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000767"
+        },
+        {
+          "source_line": 768,
+          "timestamp": "2026-05-15T19:28:23.308Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HzLycAZt2B8UrZz3hHNAHD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "ce2499ac-c4b2-4317-9e43-5bbebfb12dff",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000768"
+        },
+        {
+          "source_line": 769,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0131t12QnyWQ7Gqp7taESJfh",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "d3d00c00-50a8-40a5-83d4-74c3e52db380",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LpWR12QJtskrcvW5xTzXx5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 145789,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000769"
+        },
+        {
+          "source_line": 770,
+          "timestamp": "2026-05-15T19:28:26.797Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0131t12QnyWQ7Gqp7taESJfh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "556ee88f-f358-42e4-bd99-2b0ccb5e4c43",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000770"
+        },
+        {
+          "source_line": 771,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A3AKXhYJpcUrSacHFeRSyf",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "39d400c4-c521-4b16-9300-ad79f624cd37",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016BAXZUurRLbAxQ9Vh1L9Wg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 146024,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000771"
+        },
+        {
+          "source_line": 772,
+          "timestamp": "2026-05-15T19:28:30.504Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A3AKXhYJpcUrSacHFeRSyf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "1f07b811-bbe9-4826-91dc-1be36744459b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000772"
+        },
+        {
+          "source_line": 773,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015WDNDpHitWbfyB6L5gGDpp",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "206ebd3b-88ba-4d7f-880a-c7e5c2b84165",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01REAY9twoZi95oJnjxXiMiy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 146259,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000773"
+        },
+        {
+          "source_line": 774,
+          "timestamp": "2026-05-15T19:28:34.334Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015WDNDpHitWbfyB6L5gGDpp",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "0f5149ac-5580-48ca-b36b-de0defb99e24",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000774"
+        },
+        {
+          "source_line": 775,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ME1HAvi9L4DCuPxWsqwxSm",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "b080a5ee-b8b3-4712-aeb7-0dc300b916ea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J28FuwdoddFCNLdB4CVjFz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 146494,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000775"
+        },
+        {
+          "source_line": 776,
+          "timestamp": "2026-05-15T19:28:37.970Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ME1HAvi9L4DCuPxWsqwxSm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "a6768db3-d8c0-46c2-873d-90294e9d2d1f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000776"
+        },
+        {
+          "source_line": 777,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GWoe4AkqQwzFuwu6nGdSTn",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "9eecf46c-8902-4e2b-81e2-e64d6e26d0a6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014LPd5qg4uTeJ7GLtQaaFDU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 146729,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000777"
+        },
+        {
+          "source_line": 778,
+          "timestamp": "2026-05-15T19:28:41.782Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GWoe4AkqQwzFuwu6nGdSTn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "053ab723-b9ba-4bd8-9ced-6ba115f824d4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000778"
+        },
+        {
+          "source_line": 779,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R99x3stjYxijsPsvXEYeZB",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "1589a643-06d0-41af-a43e-1d63c730c65f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015jCJPQfC3LUpZY6zAd2aJW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 146964,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000779"
+        },
+        {
+          "source_line": 780,
+          "timestamp": "2026-05-15T19:28:45.794Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R99x3stjYxijsPsvXEYeZB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "22efbc3f-4eb1-4518-a5f8-4e50b41fdb7b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000780"
+        },
+        {
+          "source_line": 781,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013Hjmi6Rput4vmbhrw3ZZkD",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "3707d6c9-338c-4d1c-a13a-65855bb816e2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D52WqCnPHZ58CLNXgjbsED",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 147199,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000781"
+        },
+        {
+          "source_line": 782,
+          "timestamp": "2026-05-15T19:28:50.904Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013Hjmi6Rput4vmbhrw3ZZkD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "2a3c8136-baa3-4363-8e37-fb5330238b64",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000782"
+        },
+        {
+          "source_line": 783,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011KL7HjdtbTF7LnHdvSstE3",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "ls -la /root/autodl-tmp/structfuse/eval_results/e2e_test/summary.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "dbf20444-3db0-4849-978f-8f69303e98f0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TY1NsnR6zs5KUgmMPu1pJB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 147434,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000783"
+        },
+        {
+          "source_line": 784,
+          "timestamp": "2026-05-15T19:28:54.610Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011KL7HjdtbTF7LnHdvSstE3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/structfuse/eval_results/e2e_test/summary.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "93a860e0-2d5a-40f1-b706-685c132836f8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/structfuse/eval_results/e2e_test/summary.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/structfuse/eval_results/e2e_test/summary.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000784"
+        },
+        {
+          "source_line": 785,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hvy8PRoZKceVxoxhLZ7Hpw",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "0d5c1e92-ff96-49a0-826e-6e82f0235c8d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011zTUt5aJHr1n7fvSXL8f55",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 348,
+                "cache_read_input_tokens": 147669,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 348
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000785"
+        },
+        {
+          "source_line": 786,
+          "timestamp": "2026-05-15T19:28:58.434Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Hvy8PRoZKceVxoxhLZ7Hpw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "328c7df8-6b5a-4bf5-afce-70748ab71af3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"4 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000786"
+        },
+        {
+          "source_line": 787,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AY5N6S9ArpSFX5wJE7VSop",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "3f8768c7-7635-4f2a-aa1c-cb122899fcd0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0155tRYKjrjk1UEBukNqPfQL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 148017,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000787"
+        },
+        {
+          "source_line": 788,
+          "timestamp": "2026-05-15T19:29:02.134Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AY5N6S9ArpSFX5wJE7VSop",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "d90b9040-ea97-48f0-bd1a-7d63c8d432d4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"5 /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000788"
+        },
+        {
+          "source_line": 789,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "5/5 完成! 读取完整结果和 summary。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "9a401868-8f69-466e-93e3-5dfad4e75de9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D48gwuDAg8wcUSP7Gau8Ep",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 148252,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000789"
+        },
+        {
+          "source_line": 790,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018FV7xoRhL3PrBX7M4e4Lfg",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "cat /root/autodl-tmp/structfuse/eval_results/e2e_test/summary.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "cb6e7ea0-aff9-40e1-a964-4097410f1634",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D48gwuDAg8wcUSP7Gau8Ep",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 148252,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000790"
+        },
+        {
+          "source_line": 791,
+          "timestamp": "2026-05-15T19:29:10.430Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018FV7xoRhL3PrBX7M4e4Lfg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"resolve_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.0,\\\\n    \\\\\\\"n_instances\\\\\\\": 5,\\\\n    \\\\\\\"n_resamples\\\\\\\": 10000\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"retriever_checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1\\\\\\\",\\\\n    \\\\\\\"strategy\\\\\\\": \\\\\\\"random\\\\\\\",\\\\n    \\\\\\\"top_k\\\\\\\": 10,\\\\n    \\\\\\\"agent_model\\\\\\\": \\\\\\\"qwen/qwen3-coder-next\\\\\\\",\\\\n    \\\\\\\"swebench_dataset\\\\\\\": \\\\\\\"princeton-nlp/SWE-bench_Lite\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"bootstrap_n\\\\\\\": 10000,\\\\n    \\\\\\\"max_instances\\\\\\\": 5,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 5\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-16T03:28:59\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "d975ab14-4c9c-4bd7-8ee8-12eaaf787278",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"resolve_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"ci_lower\\\\\\\": 0.0,\\\\n    \\\\\\\"ci_upper\\\\\\\": 0.0,\\\\n    \\\\\\\"n_instances\\\\\\\": 5,\\\\n    \\\\\\\"n_resamples\\\\\\\": 10000\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"retriever_checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1\\\\\\\",\\\\n    \\\\\\\"strategy\\\\\\\": \\\\\\\"random\\\\\\\",\\\\n    \\\\\\\"top_k\\\\\\\": 10,\\\\n    \\\\\\\"agent_model\\\\\\\": \\\\\\\"qwen/qwen3-coder-next\\\\\\\",\\\\n    \\\\\\\"swebench_dataset\\\\\\\": \\\\\\\"princeton-nlp/SWE-bench_Lite\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"bootstrap_n\\\\\\\": 10000,\\\\n    \\\\\\\"max_instances\\\\\\\": 5,\\\\n    \\\\\\\"n_evaluated\\\\\\\": 5\\\\n  },\\\\n  \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-16T03:28:59\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metrics\\\": {\\n    \\\"resolve_rate\\\": 0.0,\\n    \\\"ci_lower\\\": 0.0,\\n    \\\"ci_upper\\\": 0.0,\\n    \\\"n_instances\\\": 5,\\n    \\\"n_resamples\\\": 10000\\n  },\\n  \\\"config\\\": {\\n    \\\"retriever_checkpoint\\\": \\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1\\\",\\n    \\\"strategy\\\": \\\"random\\\",\\n    \\\"top_k\\\": 10,\\n    \\\"agent_model\\\": \\\"qwen/qwen3-coder-next\\\",\\n    \\\"swebench_dataset\\\": \\\"princeton-nlp/SWE-bench_Lite\\\",\\n    \\\"seed\\\": 42,\\n    \\\"bootstrap_n\\\": 10000,\\n    \\\"max_instances\\\": 5,\\n    \\\"n_evaluated\\\": 5\\n  },\\n  \\\"timestamp\\\": \\\"2026-05-16T03:28:59\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000791"
+        },
+        {
+          "source_line": 792,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LG4JRryoGmTgAdq95f9iRB",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "cat /root/autodl-tmp/structfuse/eval_results/e2e_test/results.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "cdd96e75-1f5e-4d53-aaff-ed01e99688fe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D48gwuDAg8wcUSP7Gau8Ep",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 148252,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000792"
+        },
+        {
+          "source_line": 793,
+          "timestamp": "2026-05-15T19:29:11.571Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LG4JRryoGmTgAdq95f9iRB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"instance_id\\\\\\\": \\\\\\\"astropy__astropy-12907\\\\\\\", \\\\\\\"repo\\\\\\\": \\\\\\\"astropy/astropy\\\\\\\", \\\\\\\"resolved\\\\\\\": false, \\\\\\\"top_k_files\\\\\\\": [\\\\\\\"astropy/modeling/separable.py\\\\\\\", \\\\\\\"astropy/modeling/tests/test_separable.py\\\\\\\", \\\\\\\"astropy/modeling/tests/test_compound.py\\\\\\\", \\\\\\\"astropy/table/tests/test_pickle.py\\\\\\\", \\\\\\\"astropy/timeseries/periodograms/lombscargle/implementations/fast_impl.py\\\\\\\", \\\\\\\"astropy/timeseries/periodograms/lombscargle/implementations/mle.py\\\\\\\", \\\\\\\"astropy/stats/tests/test_spatial.py\\\\\\\", \\\\\\\"astropy/coordinates/tests/test_velocity_corrs.py\\\\\\\", \\\\\\\"astropy/timeseries/periodograms/lombscargle/implementations/fastchi2_impl.py\\\\\\\", \\\\\\\"astropy/timeseries/periodograms/lombscargle/implementations/slow_impl.py\\\\\\\"], \\\\\\\"patch_preview\\\\\\\": \\\\\\\"--- a/astropy/modeling/separable.py\\\\\\\\n+++ b/astropy/modeling/separable.py\\\\\\\\n@@ -150,13 +150,19 @@ def _coord_matrix(model, pos, noutp):\\\\\\\\n         return mat\\\\\\\\n     if not model.separable:\\\\\\\\n         # this does not work for more than 2 coordinates\\\\\\\\n+        if isinstance(model, CompoundModel):\\\\\\\\n+            # For CompoundModels, use the separability matrix of the compound model\\\\\\\\n+            coord_mat = _separable(model)\\\\\\\\n+            mat = np.zeros((noutp, coord_mat.shape[1]))\\\\\\\\n+            if pos == 'left':\\\\\\\"}\\\\n{\\\\\\\"instance_id\\\\\\\": \\\\\\\"astropy__astropy-14182\\\\\\\", \\\\\\\"repo\\\\\\\": \\\\\\\"astropy/astropy\\\\\\\", \\\\\\\"resolved\\\\\\\": false, \\\\\\\"top_k_files\\\\\\\": [\\\\\\\"astropy/table/scripts/showtable.py\\\\\\\", \\\\\\\"astropy/io/ascii/connect.py\\\\\\\", \\\\\\\"astropy/io/misc/connect.py\\\\\\\", \\\\\\\"astropy/io/ascii/tests/test_rst.py\\\\\\\", \\\\\\\"astropy/table/connect.py\\\\\\\", \\\\\\\"astropy/io/ascii/tests/test_cds.py\\\\\\\", \\\\\\\"astropy/table/jsviewer.py\\\\\\\", \\\\\\\"astropy/samp/__init__.py\\\\\\\", \\\\\\\"astropy/io/ascii/docs.py\\\\\\\", \\\\\\\"astropy/io/fits/scripts/fitsinfo.py\\\\\\\"], \\\\\\\"patch_preview\\\\\\\": \\\\\\\"\\\\\\\"}\\\\n{\\\\\\\"instance_id\\\\\\\": \\\\\\\"astropy__astropy-14365\\\\\\\", \\\\\\\"repo\\\\\\\": \\\\\\\"astropy/astropy\\\\\\\", \\\\\\\"resolved\\\\\\\": false, \\\\\\\"top_k_files\\\\\\\": [\\\\\\\"astropy/coordinates/tests/test_name_resolve.py\\\\\\\", \\\\\\\"astropy/io/ascii/tests/test_write.py\\\\\\\", \\\\\\\"astropy/io/ascii/tests/test_fixedwidth.py\\\\\\\", \\\\\\\"astropy/utils/tests/test_diff.py\\\\\\\", \\\\\\\"astropy/io/ascii/tests/test_rst.py\\\\\\\", \\\\\\\"astropy/io/misc/connect.py\\\\\\\", \\\\\\\"astropy/io/ascii/tests/test_cds.py\\\\\\\", \\\\\\\"astropy/samp/__init__.py\\\\\\\", \\\\\\\"astropy/io/misc/asdf/deprecation.py\\\\\\\", \\\\\\\"astropy/io/ascii/tests/test_qdp.py\\\\\\\"], \\\\\\\"patch_preview\\\\\\\": \\\\\\\"--- a/astropy/io/ascii/qdp.py\\\\\\\\n+++ b/astropy/io/ascii/qdp.py\\\\\\\\n@@ -[line_number], line +[line_number], line @@\\\\\\\\n def _parse_qdp_command(line):\\\\\\\\n     \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"Parse a QDP command line.\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n-    parts = line.split()\\\\\\\\n+    parts = line.strip().split()\\\\\\\\n+    if parts:\\\\\\\\n+        parts[0] = parts[0].upper()\\\\\\\\n     return parts\\\\\\\"}\\\\n{\\\\\\\"instance_id\\\\\\\": \\\\\\\"astropy__astropy-14995\\\\\\\", \\\\\\\"repo\\\\\\\": \\\\\\\"astropy/astropy\\\\\\\", \\\\\\\"resolved\\\\\\\": false, \\\\\\\"top_k_files\\\\\\\": [\\\\\\\"astropy/utils/masked/function_helpers.py\\\\\\\", \\\\\\\"astropy/nddata/compat.py\\\\\\\", \\\\\\\"astropy/cosmology/utils.py\\\\\\\", \\\\\\\"astropy/nddata/mixins/ndarithmetic.py\\\\\\\", \\\\\\\"astropy/nddata/nddata_withmixins.py\\\\\\\", \\\\\\\"astropy/modeling/separable.py\\\\\\\", \\\\\\\"astropy/table/ndarray_mixin.py\\\\\\\", \\\\\\\"astropy/nddata/__init__.py\\\\\\\", \\\\\\\"astropy/convolution/tests/test_convolve_nddata.py\\\\\\\", \\\\\\\"astropy/utils/masked/tests/test_table.py\\\\\\\"], \\\\\\\"patch_preview\\\\\\\": \\\\\\\"--- a/astropy/nddata/mixins/ndarithmetic.py\\\\\\\\n+++ b/astropy/nddata/mixins/ndarithmetic.py\\\\\\\\n@@ -280,6 +280,11 @@ class NDArithmeticMixin:\\\\\\\\n         # Extract masks from operands\\\\\\\\n         def get_mask(obj):\\\\\\\\n+            # Handle the case where mask is None - convert to all False mask\\\\\\\\n+            if obj.mask is None:\\\\\\\\n+                return np.zeros(obj.data.shape, dtype=bool)\\\\\\\\n+            return obj.mask\\\\\\\\n+        \\\\\\\\n         mask1 = get_mask(self) if hasattr(self, 'mask') and self.mask is not None else\\\\\\\"}\\\\n{\\\\\\\"instance_id\\\\\\\": \\\\\\\"astropy__astropy-6938\\\\\\\", \\\\\\\"repo\\\\\\\": \\\\\\\"astropy/astropy\\\\\\\", \\\\\\\"resolved\\\\\\\": false, \\\\\\\"top_k_files\\\\\\\": [\\\\\\\"astropy/modeling/tests/irafutil.py\\\\\\\", \\\\\\\"astropy/utils/compat/numpy/core/multiarray.py\\\\\\\", \\\\\\\"astropy/io/ascii/latex.py\\\\\\\", \\\\\\\"astropy/io/ascii/daophot.py\\\\\\\", \\\\\\\"astropy/io/votable/converters.py\\\\\\\", \\\\\\\"astropy/io/fits/scripts/fitscheck.py\\\\\\\", \\\\\\\"astropy/wcs/docstrings.py\\\\\\\", \\\\\\\"astropy/io/ascii/ipac.py\\\\\\\", \\\\\\\"astropy/io/fits/__init__.py\\\\\\\", \\\\\\\"astropy/io/fits/diff.py\\\\\\\"], \\\\\\\"patch_preview\\\\\\\": \\\\\\\"--- a/astropy/io/fits/fitsrec.py\\\\\\\\n+++ b/astropy/io/fits/fitsrec.py\\\\\\\\n@@ -XXX,7 +XXX,7 @@\\\\\\\\n         # Replace exponent separator in floating point numbers\\\\\\\\n         if 'D' in format:\\\\\\\\n-            output_field.replace(encode_ascii('E'), encode_ascii('D'))\\\\\\\\n+            output_field = output_field.replace(encode_ascii('E'), encode_ascii('D'))\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "b6f53061-9cea-4049-975c-6d1a7bf34df7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"instance_id\\\\\\\": \\\\\\\"astropy__astropy-12907\\\\\\\", \\\\\\\"repo\\\\\\\": \\\\\\\"astropy/astropy\\\\\\\", \\\\\\\"resolved\\\\\\\": false, \\\\\\\"top_k_files\\\\\\\": [\\\\\\\"astropy/modeling/separable.py\\\\\\\", \\\\\\\"astropy/modeling/tests/test_separable.py\\\\\\\", \\\\\\\"astropy/modeling/tests/test_compound.py\\\\\\\", \\\\\\\"astropy/table/tests/test_pickle.py\\\\\\\", \\\\\\\"astropy/timeseries/periodograms/lombscargle/implementations/fast_impl.py\\\\\\\", \\\\\\\"astropy/timeseries/periodograms/lombscargle/implementations/mle.py\\\\\\\", \\\\\\\"astropy/stats/tests/test_spatial.py\\\\\\\", \\\\\\\"astropy/coordinates/tests/test_velocity_corrs.py\\\\\\\", \\\\\\\"astropy/timeseries/periodograms/lombscargle/implementations/fastchi2_impl.py\\\\\\\", \\\\\\\"astropy/timeseries/periodograms/lombscargle/implementations/slow_impl.py\\\\\\\"], \\\\\\\"patch_preview\\\\\\\": \\\\\\\"--- a/astropy/modeling/separable.py\\\\\\\\n+++ b/astropy/modeling/separable.py\\\\\\\\n@@ -150,13 +150,19 @@ def _coord_matrix(model, pos, noutp):\\\\\\\\n         return mat\\\\\\\\n     if not model.separable:\\\\\\\\n         # this does not work for more than 2 coordinates\\\\\\\\n+        if isinstance(model, CompoundModel):\\\\\\\\n+            # For CompoundModels, use the separability matrix of the compound model\\\\\\\\n+            coord_mat = _separable(model)\\\\\\\\n+            mat = np.zeros((noutp, coord_mat.shape[1]))\\\\\\\\n+            if pos == 'left':\\\\\\\"}\\\\n{\\\\\\\"instance_id\\\\\\\": \\\\\\\"astropy__astropy-14182\\\\\\\", \\\\\\\"repo\\\\\\\": \\\\\\\"astropy/astropy\\\\\\\", \\\\\\\"resolved\\\\\\\": false, \\\\\\\"top_k_files\\\\\\\": [\\\\\\\"astropy/table/scripts/showtable.py\\\\\\\", \\\\\\\"astropy/io/ascii/connect.py\\\\\\\", \\\\\\\"astropy/io/misc/connect.py\\\\\\\", \\\\\\\"astropy/io/ascii/tests/test_rst.py\\\\\\\", \\\\\\\"astropy/table/connect.py\\\\\\\", \\\\\\\"astropy/io/ascii/tests/test_cds.py\\\\\\\", \\\\\\\"astropy/table/jsviewer.py\\\\\\\", \\\\\\\"astropy/samp/__init__.py\\\\\\\", \\\\\\\"astropy/io/ascii/docs.py\\\\\\\", \\\\\\\"astropy/io/fits/scripts/fitsinfo.py\\\\\\\"], \\\\\\\"patch_preview\\\\\\\": \\\\\\\"\\\\\\\"}\\\\n{\\\\\\\"instance_id\\\\\\\": \\\\\\\"astropy__astropy-14365\\\\\\\", \\\\\\\"repo\\\\\\\": \\\\\\\"astropy/astropy\\\\\\\", \\\\\\\"resolved\\\\\\\": false, \\\\\\\"top_k_files\\\\\\\": [\\\\\\\"astropy/coordinates/tests/test_name_resolve.py\\\\\\\", \\\\\\\"astropy/io/ascii/tests/test_write.py\\\\\\\", \\\\\\\"astropy/io/ascii/tests/test_fixedwidth.py\\\\\\\", \\\\\\\"astropy/utils/tests/test_diff.py\\\\\\\", \\\\\\\"astropy/io/ascii/tests/test_rst.py\\\\\\\", \\\\\\\"astropy/io/misc/connect.py\\\\\\\", \\\\\\\"astropy/io/ascii/tests/test_cds.py\\\\\\\", \\\\\\\"astropy/samp/__init__.py\\\\\\\", \\\\\\\"astropy/io/misc/asdf/deprecation.py\\\\\\\", \\\\\\\"astropy/io/ascii/tests/test_qdp.py\\\\\\\"], \\\\\\\"patch_preview\\\\\\\": \\\\\\\"--- a/astropy/io/ascii/qdp.py\\\\\\\\n+++ b/astropy/io/ascii/qdp.py\\\\\\\\n@@ -[line_number], line +[line_number], line @@\\\\\\\\n def _parse_qdp_command(line):\\\\\\\\n     \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"Parse a QDP command line.\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n-    parts = line.split()\\\\\\\\n+    parts = line.strip().split()\\\\\\\\n+    if parts:\\\\\\\\n+        parts[0] = parts[0].upper()\\\\\\\\n     return parts\\\\\\\"}\\\\n{\\\\\\\"instance_id\\\\\\\": \\\\\\\"astropy__astropy-14995\\\\\\\", \\\\\\\"repo\\\\\\\": \\\\\\\"astropy/astropy\\\\\\\", \\\\\\\"resolved\\\\\\\": false, \\\\\\\"top_k_files\\\\\\\": [\\\\\\\"astropy/utils/masked/function_helpers.py\\\\\\\", \\\\\\\"astropy/nddata/compat.py\\\\\\\", \\\\\\\"astropy/cosmology/utils.py\\\\\\\", \\\\\\\"astropy/nddata/mixins/ndarithmetic.py\\\\\\\", \\\\\\\"astropy/nddata/nddata_withmixins.py\\\\\\\", \\\\\\\"astropy/modeling/separable.py\\\\\\\", \\\\\\\"astropy/table/ndarray_mixin.py\\\\\\\", \\\\\\\"astropy/nddata/__init__.py\\\\\\\", \\\\\\\"astropy/convolution/tests/test_convolve_nddata.py\\\\\\\", \\\\\\\"astropy/utils/masked/tests/test_table.py\\\\\\\"], \\\\\\\"patch_preview\\\\\\\": \\\\\\\"--- a/astropy/nddata/mixins/ndarithmetic.py\\\\\\\\n+++ b/astropy/nddata/mixins/ndarithmetic.py\\\\\\\\n@@ -280,6 +280,11 @@ class NDArithmeticMixin:\\\\\\\\n         # Extract masks from operands\\\\\\\\n         def get_mask(obj):\\\\\\\\n+            # Handle the case where mask is None - convert to all False mask\\\\\\\\n+            if obj.mask is None:\\\\\\\\n+                return np.zeros(obj.data.shape, dtype=bool)\\\\\\\\n+            return obj.mask\\\\\\\\n+        \\\\\\\\n         mask1 = get_mask(self) if hasattr(self, 'mask') and self.mask is not None else\\\\\\\"}\\\\n{\\\\\\\"instance_id\\\\\\\": \\\\\\\"astropy__astropy-6938\\\\\\\", \\\\\\\"repo\\\\\\\": \\\\\\\"astropy/astropy\\\\\\\", \\\\\\\"resolved\\\\\\\": false, \\\\\\\"top_k_files\\\\\\\": [\\\\\\\"astropy/modeling/tests/irafutil.py\\\\\\\", \\\\\\\"astropy/utils/compat/numpy/core/multiarray.py\\\\\\\", \\\\\\\"astropy/io/ascii/latex.py\\\\\\\", \\\\\\\"astropy/io/ascii/daophot.py\\\\\\\", \\\\\\\"astropy/io/votable/converters.py\\\\\\\", \\\\\\\"astropy/io/fits/scripts/fitscheck.py\\\\\\\", \\\\\\\"astropy/wcs/docstrings.py\\\\\\\", \\\\\\\"astropy/io/ascii/ipac.py\\\\\\\", \\\\\\\"astropy/io/fits/__init__.py\\\\\\\", \\\\\\\"astropy/io/fits/diff.py\\\\\\\"], \\\\\\\"patch_preview\\\\\\\": \\\\\\\"--- a/astropy/io/fits/fitsrec.py\\\\\\\\n+++ b/astropy/io/fits/fitsrec.py\\\\\\\\n@@ -XXX,7 +XXX,7 @@\\\\\\\\n         # Replace exponent separator in floating point numbers\\\\\\\\n         if 'D' in format:\\\\\\\\n-            output_field.replace(encode_ascii('E'), encode_ascii('D'))\\\\\\\\n+            output_field = output_field.replace(encode_ascii('E'), encode_ascii('D'))\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"instance_id\\\": \\\"astropy__astropy-12907\\\", \\\"repo\\\": \\\"astropy/astropy\\\", \\\"resolved\\\": false, \\\"top_k_files\\\": [\\\"astropy/modeling/separable.py\\\", \\\"astropy/modeling/tests/test_separable.py\\\", \\\"astropy/modeling/tests/test_compound.py\\\", \\\"astropy/table/tests/test_pickle.py\\\", \\\"astropy/timeseries/periodograms/lombscargle/implementations/fast_impl.py\\\", \\\"astropy/timeseries/periodograms/lombscargle/implementations/mle.py\\\", \\\"astropy/stats/tests/test_spatial.py\\\", \\\"astropy/coordinates/tests/test_velocity_corrs.py\\\", \\\"astropy/timeseries/periodograms/lombscargle/implementations/fastchi2_impl.py\\\", \\\"astropy/timeseries/periodograms/lombscargle/implementations/slow_impl.py\\\"], \\\"patch_preview\\\": \\\"--- a/astropy/modeling/separable.py\\\\n+++ b/astropy/modeling/separable.py\\\\n@@ -150,13 +150,19 @@ def _coord_matrix(model, pos, noutp):\\\\n         return mat\\\\n     if not model.separable:\\\\n         # this does not work for more than 2 coordinates\\\\n+        if isinstance(model, CompoundModel):\\\\n+            # For CompoundModels, use the separability matrix of the compound model\\\\n+            coord_mat = _separable(model)\\\\n+            mat = np.zeros((noutp, coord_mat.shape[1]))\\\\n+            if pos == 'left':\\\"}\\n{\\\"instance_id\\\": \\\"astropy__astropy-14182\\\", \\\"repo\\\": \\\"astropy/astropy\\\", \\\"resolved\\\": false, \\\"top_k_files\\\": [\\\"astropy/table/scripts/showtable.py\\\", \\\"astropy/io/ascii/connect.py\\\", \\\"astropy/io/misc/connect.py\\\", \\\"astropy/io/ascii/tests/test_rst.py\\\", \\\"astropy/table/connect.py\\\", \\\"astropy/io/ascii/tests/test_cds.py\\\", \\\"astropy/table/jsviewer.py\\\", \\\"astropy/samp/__init__.py\\\", \\\"astropy/io/ascii/docs.py\\\", \\\"astropy/io/fits/scripts/fitsinfo.py\\\"], \\\"patch_preview\\\": \\\"\\\"}\\n{\\\"instance_id\\\": \\\"astropy__astropy-14365\\\", \\\"repo\\\": \\\"astropy/astropy\\\", \\\"resolved\\\": false, \\\"top_k_files\\\": [\\\"astropy/coordinates/tests/test_name_resolve.py\\\", \\\"astropy/io/ascii/tests/test_write.py\\\", \\\"astropy/io/ascii/tests/test_fixedwidth.py\\\", \\\"astropy/utils/tests/test_diff.py\\\", \\\"astropy/io/ascii/tests/test_rst.py\\\", \\\"astropy/io/misc/connect.py\\\", \\\"astropy/io/ascii/tests/test_cds.py\\\", \\\"astropy/samp/__init__.py\\\", \\\"astropy/io/misc/asdf/deprecation.py\\\", \\\"astropy/io/ascii/tests/test_qdp.py\\\"], \\\"patch_preview\\\": \\\"--- a/astropy/io/ascii/qdp.py\\\\n+++ b/astropy/io/ascii/qdp.py\\\\n@@ -[line_number], line +[line_number], line @@\\\\n def _parse_qdp_command(line):\\\\n     \\\\\\\"\\\\\\\"\\\\\\\"Parse a QDP command line.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n-    parts = line.split()\\\\n+    parts = line.strip().split()\\\\n+    if parts:\\\\n+        parts[0] = parts[0].upper()\\\\n     return parts\\\"}\\n{\\\"instance_id\\\": \\\"astropy__astropy-14995\\\", \\\"repo\\\": \\\"astropy/astropy\\\", \\\"resolved\\\": false, \\\"top_k_files\\\": [\\\"astropy/utils/masked/function_helpers.py\\\", \\\"astropy/nddata/compat.py\\\", \\\"astropy/cosmology/utils.py\\\", \\\"astropy/nddata/mixins/ndarithmetic.py\\\", \\\"astropy/nddata/nddata_withmixins.py\\\", \\\"astropy/modeling/separable.py\\\", \\\"astropy/table/ndarray_mixin.py\\\", \\\"astropy/nddata/__init__.py\\\", \\\"astropy/convolution/tests/test_convolve_nddata.py\\\", \\\"astropy/utils/masked/tests/test_table.py\\\"], \\\"patch_preview\\\": \\\"--- a/astropy/nddata/mixins/ndarithmetic.py\\\\n+++ b/astropy/nddata/mixins/ndarithmetic.py\\\\n@@ -280,6 +280,11 @@ class NDArithmeticMixin:\\\\n         # Extract masks from operands\\\\n         def get_mask(obj):\\\\n+            # Handle the case where mask is None - convert to all False mask\\\\n+            if obj.mask is None:\\\\n+                return np.zeros(obj.data.shape, dtype=bool)\\\\n+            return obj.mask\\\\n+        \\\\n         mask1 = get_mask(self) if hasattr(self, 'mask') and self.mask is not None else\\\"}\\n{\\\"instance_id\\\": \\\"astropy__astropy-6938\\\", \\\"repo\\\": \\\"astropy/astropy\\\", \\\"resolved\\\": false, \\\"top_k_files\\\": [\\\"astropy/modeling/tests/irafutil.py\\\", \\\"astropy/utils/compat/numpy/core/multiarray.py\\\", \\\"astropy/io/ascii/latex.py\\\", \\\"astropy/io/ascii/daophot.py\\\", \\\"astropy/io/votable/converters.py\\\", \\\"astropy/io/fits/scripts/fitscheck.py\\\", \\\"astropy/wcs/docstrings.py\\\", \\\"astropy/io/ascii/ipac.py\\\", \\\"astropy/io/fits/__init__.py\\\", \\\"astropy/io/fits/diff.py\\\"], \\\"patch_preview\\\": \\\"--- a/astropy/io/fits/fitsrec.py\\\\n+++ b/astropy/io/fits/fitsrec.py\\\\n@@ -XXX,7 +XXX,7 @@\\\\n         # Replace exponent separator in floating point numbers\\\\n         if 'D' in format:\\\\n-            output_field.replace(encode_ascii('E'), encode_ascii('D'))\\\\n+            output_field = output_field.replace(encode_ascii('E'), encode_ascii('D'))\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000793"
+        },
+        {
+          "source_line": 794,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 5 个 instance 完成。总运行时间 ~23 分钟（03:05 - 03:28）。\n\n## 报告\n\n### 1. 可用模型列表（Qwen 系列）\n\n| 模型 ID | 类型 |\n|---------|------|\n| `qwen/qwen3.5-9b` | Text |\n| `qwen/qwen3.5-35b-a3b` | MoE, 3B active |\n| `qwen/qwen3.5-122b-a10b` | MoE, 10B active |\n| `qwen/qwen3.5-397b-a17b` | MoE, 17B active |\n| `qwen/qwen3.5-plus-02-15` | Text |\n| `qwen/qwen3.5-flash` | Text |\n| **`qwen/qwen3-coder-next`** | **代码专用** |\n| `qwen/qwen3.6-plus` | 最新一代 |\n\n其他厂商候选：`deepseek/deepseek-v4-pro`, `moonshotai/kimi-k2.5`\n\n### 2. 推荐模型\n\n**首选：`qwen/qwen3-coder-next`**（代码专用，SWE-bench 场景最匹配）\n\n备选：`qwen/qwen3.6-plus`（最新通用模型，综合能力强）\n\n### 3. Dry-run 结果 (5 instances)\n\n| Instance | Resolved | Patch 生成 | 备注 |\n|----------|----------|-----------|------|\n| astropy-12907 | false | 有 patch（修改 separable.py） | CompoundModel 处理逻辑 |\n| astropy-14182 | false | 空 patch | retrieval 未命中关键文件 |\n| astropy-14365 | false | 有 patch（修改 qdp.py） | strip+upper 修复 |\n| astropy-14995 | false | 有 patch（修改 ndarithmetic.py） | mask=None 处理 |\n| astropy-6938 | false | 有 patch（修改 fitsrec.py） | str.replace 返回值修复 |\n\n- **Resolve rate: 0/5 (0%)**，但 4/5 instance 成功生成了非空 patch\n- API 调用全部成功，无超时\n- 每 instance 耗时 ~3-5 分钟（主要是 astropy 大仓 encoding 耗时）\n- 总耗时约 23 分钟（含模型加载）\n\n### 4. 全量 E2E eval 命令模板\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nsource /etc/network_turbo\n\nexport CUDA_VISIBLE_DEVICES=1\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_DATASETS_OFFLINE=1\nexport HF_HUB_DISABLE_XET=1\nexport STRUCTFUSE_LLM_BACKEND=api\nexport STRUCTFUSE_LLM_API_BASE=\"http://47.94.22.126/v1\"\nexport STRUCTFUSE_LLM_API_KEY=\"[REDACTED]\"\nexport STRUCTFUSE_LLM_MODEL=\"qwen/qwen3-coder-next\"\n\nnohup python -u /root/structfuse/scripts/eval_swebench_e2e.py \\\n    --retriever-checkpoint /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1 \\\n    --strategy random \\\n    --top-k 10 \\\n    --agent-model \"qwen/qwen3-coder-next\" \\\n    --max-instances 0 \\\n    --repo-cache-dir /root/autodl-tmp/swebench/repos \\\n    --output-dir /root/autodl-tmp/structfuse/eval_results/e2e_full \\\n    > /tmp/e2e_full.log 2>&1 &\n```\n\n**注意事项**：\n- 必须用 `CUDA_VISIBLE_DEVICES=1`，GPU 0 已被其他进程占满\n- 全量 300 instance 预计耗时 ~15-20 小时（按 3-5 min/instance 估算）\n- `--max-instances 0` 表示跑全部"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "uuid": "885ad212-5ab8-4b6d-9ce8-853be5ce831a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gn3G9sC8geFFpMsKAA2Wri",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2803,
+                "cache_read_input_tokens": 148487,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2803
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000794"
+        },
+        {
+          "source_line": 795,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 5 个 instance 完成。总运行时间 ~23 分钟（03:05 - 03:28）。\n\n## 报告\n\n### 1. 可用模型列表（Qwen 系列）\n\n| 模型 ID | 类型 |\n|---------|------|\n| `qwen/qwen3.5-9b` | Text |\n| `qwen/qwen3.5-35b-a3b` | MoE, 3B active |\n| `qwen/qwen3.5-122b-a10b` | MoE, 10B active |\n| `qwen/qwen3.5-397b-a17b` | MoE, 17B active |\n| `qwen/qwen3.5-plus-02-15` | Text |\n| `qwen/qwen3.5-flash` | Text |\n| **`qwen/qwen3-coder-next`** | **代码专用** |\n| `qwen/qwen3.6-plus` | 最新一代 |\n\n其他厂商候选：`deepseek/deepseek-v4-pro`, `moonshotai/kimi-k2.5`\n\n### 2. 推荐模型\n\n**首选：`qwen/qwen3-coder-next`**（代码专用，SWE-bench 场景最匹配）\n\n备选：`qwen/qwen3.6-plus`（最新通用模型，综合能力强）\n\n### 3. Dry-run 结果 (5 instances)\n\n| Instance | Resolved | Patch 生成 | 备注 |\n|----------|----------|-----------|------|\n| astropy-12907 | false | 有 patch（修改 separable.py） | CompoundModel 处理逻辑 |\n| astropy-14182 | false | 空 patch | retrieval 未命中关键文件 |\n| astropy-14365 | false | 有 patch（修改 qdp.py） | strip+upper 修复 |\n| astropy-14995 | false | 有 patch（修改 ndarithmetic.py） | mask=None 处理 |\n| astropy-6938 | false | 有 patch（修改 fitsrec.py） | str.replace 返回值修复 |\n\n- **Resolve rate: 0/5 (0%)**，但 4/5 instance 成功生成了非空 patch\n- API 调用全部成功，无超时\n- 每 instance 耗时 ~3-5 分钟（主要是 astropy 大仓 encoding 耗时）\n- 总耗时约 23 分钟（含模型加载）\n\n### 4. 全量 E2E eval 命令模板\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nsource /etc/network_turbo\n\nexport CUDA_VISIBLE_DEVICES=1\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_DATASETS_OFFLINE=1\nexport HF_HUB_DISABLE_XET=1\nexport STRUCTFUSE_LLM_BACKEND=api\nexport STRUCTFUSE_LLM_API_BASE=\"http://47.94.22.126/v1\"\nexport STRUCTFUSE_LLM_API_KEY=\"[REDACTED]\"\nexport STRUCTFUSE_LLM_MODEL=\"qwen/qwen3-coder-next\"\n\nnohup python -u /root/structfuse/scripts/eval_swebench_e2e.py \\\n    --retriever-checkpoint /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1 \\\n    --strategy random \\\n    --top-k 10 \\\n    --agent-model \"qwen/qwen3-coder-next\" \\\n    --max-instances 0 \\\n    --repo-cache-dir /root/autodl-tmp/swebench/repos \\\n    --output-dir /root/autodl-tmp/structfuse/eval_results/e2e_full \\\n    > /tmp/e2e_full.log 2>&1 &\n```\n\n**注意事项**：\n- 必须用 `CUDA_VISIBLE_DEVICES=1`，GPU 0 已被其他进程占满\n- 全量 300 instance 预计耗时 ~15-20 小时（按 3-5 min/instance 估算）\n- `--max-instances 0` 表示跑全部"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1545077,
+            "duration_api_ms": 1353917,
+            "num_turns": 356,
+            "stop_reason": "end_turn",
+            "session_id": "37b7d94f-4271-4ad6-85fc-e8d8f7c985f1",
+            "total_cost_usd": 17.996004749999994,
+            "usage": {
+              "input_tokens": 304,
+              "cache_creation_input_tokens": 139449,
+              "cache_read_input_tokens": 31431511,
+              "output_tokens": 56222,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 139449,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1196,
+                  "cache_read_input_tokens": 148487,
+                  "cache_creation_input_tokens": 2803,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2803
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1533,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001623,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 304,
+                "outputTokens": 56222,
+                "cacheReadInputTokens": 31431511,
+                "cacheCreationInputTokens": 139449,
+                "webSearchRequests": 0,
+                "costUSD": 17.99438174999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "04e16955-e60e-433c-9b38-2f9912647004"
+          },
+          "id": "event-000795"
+        }
+      ]
+    }
+  ]
+}

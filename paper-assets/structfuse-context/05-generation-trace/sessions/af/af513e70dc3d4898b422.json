@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af513e70dc3d4898b422",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "research 50repo overlap stats",
+  "task_key": "worker_research_50repo_overlap_stats_20260512T195352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_50repo_overlap_stats_20260512T195352_result.json",
+    "occurrence": 1,
+    "bytes": 949,
+    "sha256": "ca0016e1c11dfbea6e17e045ca929539195b6ff8a9eb137884a355005df6ee6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 50-Repo Overlap 实验完成\n\n**结论：原方法可行。**\n\n```\n总 instances: 240\n有 connected-but-not-gold 的 instances: 98/240 (Z = 40.8%)\n平均 |connected - gold| per instance: 6.0\nCodeQL timeout/fail 率: 2/50 repos (4.0%)\n```\n\n**按 repo 大小分组：**\n- 小 (<50 files): 38.6%, avg_extra=2.5\n- 中 (50-200): 55.7%, avg_extra=11.8\n- 大 (>200): 16.7%, avg_extra=8.8\n\n**决策门判定：**\n- Z = 40.8% ≥ 20% → **原方法可行** ✓\n- Timeout 率 4.0% < 30% → **2-hop 无需降级** ✓\n\nMVP 中观察到的 \"connected ⊆ gold\" 确实是 8 repo 小样本的规模伪迹。在 50 repo 尺度上，超过 40% 的 instance 存在 connected-but-not-gold 文件（即 call graph 能触及 gold 之外的文件），Phase 2b 的 positive/negative 分离训练有充足数据支撑。中型 repo（50-200 py files）效果最突出，平均每个 instance 有 11.8 个 extra connected files。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-50repo-overlap-stats.md"
+}

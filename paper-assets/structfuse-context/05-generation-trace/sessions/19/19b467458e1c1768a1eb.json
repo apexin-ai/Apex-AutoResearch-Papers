@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19b467458e1c1768a1eb",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "write related work contrastive expand",
+  "task_key": "worker_write_related-work-contrastive-expand_20260515T051038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_related-work-contrastive-expand_20260515T051038_result.json",
+    "occurrence": 1,
+    "bytes": 1368,
+    "sha256": "cfe421f0d11dacb6c3475d94746a6a56d5fc7b42ef32bb3bd9b7cf24971a9d84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出总结：\n\n**新增 6 篇引用**（全部经 WebSearch 验证）：\n\n| 论文 | Venue | 插入位置 |\n|------|-------|---------|\n| SynCoBERT | arXiv 2021 | §2.2 Contrastive Learning for Code |\n| ContraBERT | ICSE 2023 | §2.2 Contrastive Learning for Code |\n| CAPSTONE | EMNLP 2023 | §2.3 Hard Negative Mining |\n| CrossCodeEval | NeurIPS 2023 | §2.4 Code Structure / Evaluation |\n| ProGraML | ICML 2021 | §2.4 Code Structure / Evaluation |\n| CoSQA | ACL 2021 | §2.4 Code Structure / Evaluation |\n\n**注意**：任务中推荐的 RocketQA 已在 v1 草稿中引用，无需重复添加。\n\n**产出文件**：\n- 段落草稿：`artifacts/paper_drafts/related_work_supplement.md` — 3 个补充段落，含插入位置标注和 StructFuse 定位说明\n- BibTeX entries：追加到 `artifacts/paper_drafts/references.bib`（6 条新 entry）\n\n**段落逻辑**：\n- **Supplement A**：SynCoBERT（语法引导）+ ContraBERT（鲁棒性增强）→ 这些方法改进正样本构造，StructFuse 改进负样本选择\n- **Supplement B**：CAPSTONE 课程学习式采样 → StructFuse 的结构化负样本提供正交的难度来源\n- **Supplement C**：CrossCodeEval 验证跨文件上下文重要性 + ProGraML 全程序图表示 + CoSQA 真实查询分布 → 支撑 StructFuse 的跨文件结构训练目标"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-related-work-contrastive-expand.md"
+}

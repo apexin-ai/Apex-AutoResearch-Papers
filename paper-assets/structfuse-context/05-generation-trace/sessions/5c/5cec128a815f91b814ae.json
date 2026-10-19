@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cec128a815f91b814ae",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops unixcoder training launch",
+  "task_key": "worker_ops_unixcoder_training_launch_20260516T055854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_unixcoder_training_launch_20260516T055854_result.json",
+    "occurrence": 1,
+    "bytes": 633,
+    "sha256": "ca24cc5a5dfc966225f663f420563991ee89468bb33565d440f798f155776d30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行！step 50, loss=0.6284。Loss 在正常范围内（InfoNCE with 8 candidates, random chance log(8)≈2.08，0.63 说明模型已在学习）。\n\n训练已成功启动：\n- **Job**: `unixcoder-3strat-s42`（tmux session）\n- **GPU 0**: 13.5 GiB VRAM\n- **配置**: batch_size=16, max_seq_length=1024, gradient-checkpointing, LoRA\n- **进度**: 707 steps/epoch × 2 epochs = 1414 总步数，3 个 strategy 串行\n- **首个 loss**: step 50, loss=0.6284\n- **输出**: `/root/autodl-tmp/structfuse/full_m2_unixcoder_outputs/{strategy}_s42/`\n- **预计总时长**: ~2-3 小时（3 runs 串行）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-unixcoder-training-launch.md"
+}

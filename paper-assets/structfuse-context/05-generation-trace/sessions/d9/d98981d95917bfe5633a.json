@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d98981d95917bfe5633a",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code pool sensitivity script",
+  "task_key": "worker_code_pool_sensitivity_script_20260516T114426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pool_sensitivity_script_20260516T114426_result.json",
+    "occurrence": 1,
+    "bytes": 1266,
+    "sha256": "632183ec09e1f7837ee4b5010f48871fbf2000644c51c18bd7e180f62535461e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 成功完成。\n\n---\n\n## 产出总结\n\n| 项目 | 结果 |\n|------|------|\n| `evaluate_pool50.py` 是否支持 `--pool-size` | **是**，已支持 |\n| 新脚本路径 | `/root/structfuse/scripts/pool_sensitivity_eval.py` |\n| test indices | `/root/autodl-tmp/structfuse/d062_splits/test_indices.txt`，**2476 行** ✓ |\n\n**脚本功能**：接受 `--pool-sizes 10,20,50,100`，对每个 pool size 评估 R@1/R@5/R@10/MRR，输出汇总表 + JSON。支持 `--test-indices`（D062 test set）、`--max-queries`（dry-run）、`--seed`（可复现采样）、`--output-dir`。\n\n**可用 Checkpoints**：\n\nQwen (`m2_full_qwen/`):\n- `random_s42/s43/s44` — best_by_val_loss, best_by_recall_at_1\n- `embedding_distance_s43/s44` — best_by_val_loss, best_by_recall_at_1\n- `dataflow_aware_s43/s44` — best_by_val_loss, best_by_recall_at_1\n\nStarCoder (`m2_full_starcoder/`):\n- `random_s42/s43/s44` — best_by_val_loss, best_by_recall_at_1\n- `embedding_distance_s42/s43` — best_by_val_loss, best_by_recall_at_1\n\n**Dry-run 结果**（random_s43/best_by_val_loss, 5 queries）：\n\n| Pool | R@1 | R@5 | R@10 | MRR |\n|------|-----|-----|------|-----|\n| 10 | 0.40 | 1.00 | 1.00 | 0.633 |\n| 20 | 0.40 | 1.00 | 1.00 | 0.640 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-pool-sensitivity-script.md"
+}

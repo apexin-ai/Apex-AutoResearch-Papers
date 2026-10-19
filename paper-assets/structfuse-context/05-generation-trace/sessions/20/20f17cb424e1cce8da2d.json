@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20f17cb424e1cce8da2d",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "fix train py adapter only checkpoint",
+  "task_key": "worker_fix_train_py_adapter_only_checkpoint_20260514T193437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_train_py_adapter_only_checkpoint_20260514T193437_result.json",
+    "occurrence": 1,
+    "bytes": 1535,
+    "sha256": "1dd42c505cc3be25ec7d187aa1316a4889e4fe727af7f5b0d6d527d6551aa578"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两块 GPU 100% 利用率，训练正常运行。修改磁盘文件不影响当前进程。\n\n---\n\n**修改总结：**\n\n### 1. `_save_checkpoint` (train.py L553-563)\n\n**修改前：**\n```python\ntorch.save(model.state_dict(), path / \"model.pt\")  # 完整 state_dict → 5.8GB\n```\n\n**修改后：**\n```python\nif getattr(args, 'use_lora', False):\n    sd = {k: v for k, v in model.state_dict().items()\n          if not k.startswith('backbone.') or 'lora_' in k}\nelse:\n    sd = model.state_dict()\ntorch.save(sd, path / \"model.pt\")\n```\n\nLoRA 模式下只保存：\n- `backbone.*.lora_A/B.*` — LoRA adapter weights (~9MB)\n- `projection.*` — 投影头 (~9MB)\n- `log_temperature` — 可学习温度 (4B)\n\n预估 checkpoint 大小：**5.8GB → ~18MB**\n\n### 2. Eval 脚本 `strict=False` (5 个文件)\n\n| 文件 | 行号 |\n|------|------|\n| eval_checkpoint.py | 175 |\n| evaluation/eval_swebench.py | 264 |\n| evaluation/eval_retrieval.py | 188 |\n| evaluation/eval_repobench.py | 216 |\n| scripts/eval_swebench_e2e.py | 166 |\n\n`strict=False` 兼容两种格式：旧的完整 checkpoint 和新的 adapter-only checkpoint。\n\n### 3. 已有 checkpoint 格式\n- s42, s43 的 `best_by_recall_at_1/` 内有 `model.pt` (5.8GB) — 完整 merged state_dict\n- eval 脚本加了 `strict=False` 后加载旧格式无影响\n\n### 4. 生效时机\n当前 run (random_s44) 已加载旧 train.py 到内存 → 不受影响。chain 启动下一个 run 时读取新 train.py → 新逻辑生效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-train-py-adapter-only-checkpoint.md"
+}

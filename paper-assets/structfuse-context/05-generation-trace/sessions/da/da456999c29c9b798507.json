@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da456999c29c9b798507",
+  "project": "structfuse-context",
+  "kind": "history",
+  "title": "agent / loop_7_1778818340.md",
+  "task_key": "loop_7_1778818340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778818340.md",
+    "occurrence": 1,
+    "bytes": 5658,
+    "sha256": "a146f6aceba99ac12afd488c980b82e39d8ec8b03172e24f2e23a3a55f4e6ece"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-15T01:07:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **仅 bjb1-42106:cuda:0 和 cuda:1**，两卡均满载 M2 训练链，**不可中断**\n- M2 训练是 bash 串行链（random→embedding→dataflow），已预读到内存，**不要修改运行中的 .sh 脚本指望影响执行**\n- m1_reextract_v2 产出数据**不用于重跑 M2**（Director Session 8 决策，ARR May 25 DDL 不允许），仅作为 scalability 讨论点和 camera-ready 储备\n- BM25 Phase 2 由 tmux watcher（`bm25_qwen_watcher`, `bm25_starcoder_watcher`）自动触发，不经过 `submit_training_job`——链完成回调时**必须补注册 cron 监控 BM25 进程**\n- plan_005_stratified 分析中的 v1 R@1 数据为 **dry-run mock predictions，严禁引用**，仅分布结构（cross_tabulation.csv）有效\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: bjb1-42106（2× RTX PRO 6000 96GB）\n- **工作目录**: `/root/structfuse`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，**无 .venv**）\n- **模型**: Qwen2.5-Coder-3B, StarCoder2-3B（HuggingFace cache 在默认路径）\n- **训练数据**: `/root/autodl-tmp/structfuse/full_m2_training_data/`（11,308 train/seed）\n- **M1 重提取产出**: `/root/autodl-tmp/structfuse/full_m1_data/`（追加中，目标 ~44K）\n- **BM25 数据**: `/root/autodl-tmp/structfuse/full_m2_training_data/{train,val}_bm25_s{42,43,44}.jsonl`（Phase 1 已完成）\n- **活跃进程**:\n  - cuda:0: PID 337267 — Qwen M2 链 (random_s44 running, tmux=m2_full_qwen)\n  - cuda:1: PID 519791 — StarCoder M2 链 (random_s43 running, tmux=m2_full_starcoder)\n  - CPU: m1_reextract_v2（4 workers，PID 组）\n- **Cron**: 3 active — m1_reextract_v2, m2_full_starcoder_resumed, m2_full_qwen_continued\n- **tmux watchers**: `bm25_qwen_watcher`, `bm25_starcoder_watcher`（每 5 分钟检查链 PID，退出后自动启动 BM25 训练）\n- **论文草稿**: `artifacts/paper_drafts/` 下有 introduction_v1.md, method_v1.md, experiments_v1.md, related_work_v1.md, discussion_v2.md, figure_design.md\n\n### 3. 📊 当前状态\n上一 session 完成了论文初稿骨架（intro/method/experiments/related work/discussion 各 v1）和 3 张概念图（fig1 pipeline, fig2 mining strategies, fig4 rep geometry），并做了 Qwen s44 中间状态检查。\n\n**RUNNING**:\n- `m2_full_qwen_continued` — cuda:0, Qwen random_s44 running (step 1500/2810, ~53%), 2/10 runs done. s42 R@1=0.5527, s43 R@1=0.5554. ETA 全链 ~May 17\n- `m2_full_starcoder_resumed` — cuda:1, StarCoder random_s43 running (step 1050/2810, ~37%), 1/9 runs done (s42 因 OOM 重跑过). s42 R@1=0.4604. ETA 全链 ~May 17\n- `m1_reextract_v2` — CPU, 80.8% done (22,842/28,276), ETA May 15 18:00-23:00 CST\n\n**QUEUED** (等 M2 完成 + GPU 释放):\n- `plan_018_bm25` — BM25 Phase 2 训练（Qwen+StarCoder 各 1 seed, ~15h）\n- `plan_015_dynamic` — Dynamic negative mining（1 seed Qwen, ~11h）\n\n**PREPARING**:\n- `plan_005_stratified` — 分层分析脚本就绪，等 M2 全部 checkpoint\n\n**等待中**: 无 pending Worker 回调。3 个 cron 活跃监控。无 pending Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- M2 Qwen 链完成（PID 337267 退出）→ bm25_qwen_watcher 自动触发 BM25 Qwen 训练 → **补注册 cron 监控** → 更新 registry\n- M2 StarCoder 链完成（PID 519791 退出）→ bm25_starcoder_watcher 自动触发 BM25 StarCoder 训练 → **补注册 cron 监控** → 更新 registry\n- M2 全部 9+9 runs 完成 → spawn Worker 跑统计检验（paired t-test / bootstrap CI across 3 seeds × 3 strategies × 2 encoders）→ 更新 report.md\n- M2 best checkpoints 确定 → 启动 plan_005_stratified 真实评估（已有脚本 analyze_stratified.py）\n- M2 best checkpoints 确定 → 启动 plan_003 SWE-bench eval（dry-run 已验证，可能需 LLM API key）\n- m1_reextract_v2 完成 → 合并 all.jsonl → 记录最终数据量 → 更新 registry → 若 GPU 有空档，跑 1-seed pilot (Qwen, embedding, 新数据) 对比 M2 baseline\n- BM25 Phase 2 结果出 → harm→correction narrative vs neutral→systematic comparison（决定论文叙事）\n- 全部 post-M2 实验完成（~May 19）→ 论文定稿冲刺（May 20-24）→ ARR May 25 提交\n\n### 5. 🎯 战略上下文\n- **核心结论**: Embedding-distance negatives consistently improve R@1 over random (+1.6–2.0pp across Qwen & StarCoder pilot). Dataflow benefit is encoder-dependent (Qwen +0.8pp, StarCoder -0.5pp) → Claim 2 降级为 \"exploratory observation\"（D035）\n- **D035 post-M2 优先级**: P0 = plan_003 SWE-bench + plan_018 BM25 Phase 2; P1 = plan_004 RepoBench + plan_019 pool sensitivity + plan_005 stratified\n- **时间线**: M2 ~May 17 → post-M2 ~May 19 → 写作 May 20-24 → ARR May 25\n- **易错点**:\n  - Qwen random_s44 的 eval@500 R@1=0.6009 是异常高值（s42=0.533, s43=0.536），eval@1000 回落到 0.5638。**不要用 s44 的 step 500 作为 best 来汇报，等 run 结束后看 best_by_recall_at_1**\n  - StarCoder s42 跑了 3 epochs（D026 决策），后续改 2 epochs。s42 的 R@1=0.4604 存在 overfitting（3 epochs），与 s43/s44（2 epochs）不直接可比\n  - Registry 中 m2_full_qwen 状态为 ANALYZING（cron 自动设置），但实际训练仍在 m2_full_qwen_continued 下继续。两个 entry 是同一条链，前者保留 s42 历史 metrics\n  - 论文 experiments_v1.md 中 Table 6 已标记 pending（M2 未完成的 runs），**定稿时必须替换为真实数据**\n  - plan_003 SWE-bench 可能需要 LLM API key（Qwen3.6-27B for agentic patching），dry-run 在确认中\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778818340.md"
+}

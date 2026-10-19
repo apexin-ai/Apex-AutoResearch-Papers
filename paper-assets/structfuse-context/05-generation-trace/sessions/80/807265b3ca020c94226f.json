@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "807265b3ca020c94226f",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops check m1 reextract v2 status",
+  "task_key": "worker_ops_check-m1-reextract-v2-status_20260515T164919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-m1-reextract-v2-status_20260515T164919_result.json",
+    "occurrence": 1,
+    "bytes": 551,
+    "sha256": "dc39710550b3488fcf986570ea2eaae387cd93cbd8d39ff2f10b9dd60b64272d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## m1_reextract_v2 状态\n\n**仍在运行**，未完成。\n\n| 指标 | 值 |\n|------|------|\n| all.jsonl | 44,173 行（未变，需 combine） |\n| JSON 文件总数 | 43,749 |\n| repos 完成 | 80/82 |\n| 剩余实例 | 416 |\n\n**未完成 repos:**\n- **getmoto/moto**: 180/536 (33.6%) — call_graph.ql 每个实例超时 ~5min\n- **Project-MONAI/MONAI**: 464/524 (88.5%) — 接近完成\n\n**提取速率**: ~28 files/hour → **新 ETA: 2026-05-16 15:00 CST**（比原 ETA 晚，主因 moto 的 CodeQL 超时拖慢速度）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-m1-reextract-v2-status.md"
+}

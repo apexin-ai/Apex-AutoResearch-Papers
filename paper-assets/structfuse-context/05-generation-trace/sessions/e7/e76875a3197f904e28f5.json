@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e76875a3197f904e28f5",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "research plan017 literature",
+  "task_key": "worker_research_plan017_literature_20260514T092026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_plan017_literature_20260514T092026_result.json",
+    "occurrence": 1,
+    "bytes": 1098,
+    "sha256": "9745f5493c84217e703d1cd460575611938176826f5167efc8ccae4337052f44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文档已写入 `artifacts/analysis/plan017_literature_comparison.md`。\n\n核心结论：\n\n1. **方法论差异**：StructFuse 将图信息\"蒸馏\"到模型参数中（training-time negative mining），inference-time 方法（CodexGraph/LocAgent/RANGER 等）在每次查询时显式遍历图。StructFuse 是唯一使用 **inter-procedural** data-flow 的方法——其他方法最多到 intra-procedural（GraphCoder、ARISE）。\n\n2. **计算开销**：StructFuse 的 CodeQL 提取成本是一次性的（~110h for 44K instances），推理零额外开销。Inference-time 方法的成本随查询量线性增长（每次查询需图遍历 + LLM 调用），RANGER 的 MCTS 最重。\n\n3. **互补性**：两种范式正交可组合——StructFuse 训练的 encoder 可作为高效 first-stage retriever，缩小 inference-time graph agent 的搜索空间。这是一个自然的 future work 方向。\n\n4. **Reviewer 应对**：核心策略是\"不同范式 + 不同任务接口 → 直接对比不恰当\"，同时将组合使用框架为建设性的 future work。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-plan017-literature.md"
+}

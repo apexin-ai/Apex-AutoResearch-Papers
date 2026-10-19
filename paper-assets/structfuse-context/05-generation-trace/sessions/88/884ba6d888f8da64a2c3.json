@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "884ba6d888f8da64a2c3",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops unixcoder status check",
+  "task_key": "worker_ops_unixcoder_status_check_20260516T072740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_unixcoder_status_check_20260516T072740_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "9853122f5fd7910b54d66d22c32cf17d927f469e62d55b59b17c99905d681343"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 修复完成。汇报：\n\n## 状态总结\n\n| 项目 | 状态 |\n|------|------|\n| **PID 149872** | 已死（中间子进程） |\n| **父脚本 PID 149863** | 存活，运行 1h24m，`run_unixcoder_3strategies_s42.sh` |\n| **当前训练 PID 154017** | 存活，`embedding_distance_s42`，34min |\n| **GPU** | cuda:0，13550 MiB |\n\n## 3-strategy 进度\n\n| Strategy | 状态 | 最佳 R@1 | val_loss |\n|----------|------|----------|----------|\n| random_s42 | ✅ 完成 | 0.5534 | 0.4592 |\n| embedding_distance_s42 | 🔄 运行中 step 600/1414 | 0.5497 | 0.4466 |\n| dataflow_aware_s42 | ⏳ 排队 | - | - |\n\n## Registry 修复\n\n- `unixcoder-3strat-s42`: PREPARING → **RUNNING** ✅\n- `unixcoder_3strat_s42`: 保留 DONE/failed（可能是早期失败尝试，不动）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-unixcoder-status-check.md"
+}

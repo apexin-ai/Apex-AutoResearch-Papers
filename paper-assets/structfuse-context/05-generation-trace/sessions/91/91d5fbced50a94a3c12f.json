@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91d5fbced50a94a3c12f",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops check unixcoder s42 results",
+  "task_key": "worker_ops_check_unixcoder_s42_results_20260516T093038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_unixcoder_s42_results_20260516T093038_result.json",
+    "occurrence": 1,
+    "bytes": 1478,
+    "sha256": "b7071ec9e3d907936e11e976ca5a50d5211ce31d2fd7d8a9a7e1d926bb8d4082"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. UniXcoder s42 Checkpoints — 全部就绪 ✓\n\n每个策略目录 30MB，结构完整：\n\n| 策略 | best_by_val_loss | best_by_recall_at_1 | final | train.log |\n|------|:---:|:---:|:---:|:---:|\n| random_s42 | ✓ | ✓ | ✓ | ✓ |\n| embedding_distance_s42 | ✓ | ✓ | ✓ | ✓ |\n| dataflow_aware_s42 | ✓ | ✓ | ✓ | ✓ |\n\n每个 checkpoint 包含：`model.pt` (5.5MB) + tokenizer 文件 + `training_config.json`\n\n### 2. UniXcoder s42 进程 — 已结束 ✓\n\n无 UniXcoder 相关进程在运行。\n\n### 3. GPU 占用状态\n\n| GPU | 显存占用 | 总量 | 进程 |\n|-----|---------|------|------|\n| cuda:0 | 66,850 MiB | 97,887 MiB | PID 134514 (Qwen dataflow_aware_s44 训练) + PID 164287/165674 (evaluate_pool50 评估) |\n| cuda:1 | 69,936 MiB | 97,887 MiB | PID 129747 (StarCoder2 embedding_distance_s43 训练) |\n\n**cuda:0 当前被占用**，运行的是：\n- Qwen2.5-Coder-3B `dataflow_aware_s44` 训练\n- 两个 `evaluate_pool50.py` 评估任务（random_s43 best_by_val_loss）\n\n### 4. s43/s44 脚本 — 就绪 ✓\n\n两个脚本均存在且可执行：\n- `/root/structfuse/scripts/run_unixcoder_3strategies_s43.sh` (2734B, 2026-05-16 15:59)\n- `/root/structfuse/scripts/run_unixcoder_3strategies_s44.sh` (2734B, 2026-05-16 15:59)\n\n**注意**：cuda:0 目前被 Qwen s44 训练 + 评估任务占满（~67GB），启动 UniXcoder s43/s44 需等当前任务完成或使用其他 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-unixcoder-s42-results.md"
+}

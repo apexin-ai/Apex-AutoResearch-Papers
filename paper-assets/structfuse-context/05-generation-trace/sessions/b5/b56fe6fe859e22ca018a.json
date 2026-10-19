@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b56fe6fe859e22ca018a",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "write method and setup draft",
+  "task_key": "worker_write_method-and-setup-draft_20260515T015255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_method-and-setup-draft_20260515T015255_result.json",
+    "occurrence": 1,
+    "bytes": 1472,
+    "sha256": "f32218f91c93fd69215eb06688b13e7d3edc6a0eeb4ac263e42468b3e98ca553"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已写入并注册：\n\n**`method_v1.md`** (`art_20260515_ae4280`)\n- §3.1 Problem Formulation — contrastive code retrieval 形式化\n- §3.2 Structural Information Extraction — CodeQL 2-hop taint tracking、call graph + data-flow graph、reachability 判定、beniget fallback、覆盖率统计（0% timeout, 34% structural rate, 78% Z%, 123/131 repos）\n- §3.3 Structure-Aware Negative Mining — 三种策略的数学定义（random/embedding/dataflow）、difficulty gradient、与 BM25 baseline 的关系（top-7 Jaccard 0.30–0.38）\n- §3.4 Contrastive Fine-tuning — InfoNCE loss (K=7, τ=0.07)、LoRA setup (r=16)、dual checkpoint (θ\\*\\_loss + θ\\*\\_R@1)、early stopping (D026)\n\n**`experiment_setup_v1.md`** (`art_20260515_bba58d`)\n- §4.1 Dataset — SWE-smith, 131 repos, 44,173 expanded instances, ~14.3K usable/seed (exact per-seed counts from plan_018)\n- §4.2 Models — Qwen (pos_sim=0.986, saturated) vs StarCoder (pos_sim=0.799, healthy), from neg_difficulty_analysis 2048t\n- §4.3 Training Configuration — 完整超参表（全部标注 registry 来源），epoch schedule (D026), checkpoint criterion (D036), 18 core runs + 6 BM25 runs, 2×RTX PRO 6000 96GB\n- §4.4 Evaluation Metrics — R@{1,5,10} pool_size=50, bootstrap 95% CI, Cohen's d, per-seed consistency\n\n注意：数据源用 SWE-smith（与 registry 和已有 drafts 一致），非 CodeSearchNet。M2 最终结果标记为 `[TBD]`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-method-and-setup-draft.md"
+}

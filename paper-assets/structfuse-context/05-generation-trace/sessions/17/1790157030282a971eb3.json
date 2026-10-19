@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1790157030282a971eb3",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code repobench eval script",
+  "task_key": "worker_code_repobench_eval_script_20260516T051646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_repobench_eval_script_20260516T051646_result.json",
+    "occurrence": 1,
+    "bytes": 428,
+    "sha256": "aace16a573f4d1a11bcd8c313f73b9c4db2ba5c32a642e000553906aa19b9650"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据加载正常。Python 有 5 个候选，Java 有 6-9 个候选。脚本完成：\n\n- 文件：`/root/structfuse/evaluation/eval_repobench.py`\n- `--help` 正常打印\n- dry-run 验证数据加载成功（python_cff 16k, python_cfr 8k, java_cff 16k, java_cfr 8k 测试样本）\n- RepoBench-R 每例候选数较少（5~9），与 pool50 评估不同，这里直接在原始候选池上做 retrieval ranking"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-repobench-eval-script.md"
+}

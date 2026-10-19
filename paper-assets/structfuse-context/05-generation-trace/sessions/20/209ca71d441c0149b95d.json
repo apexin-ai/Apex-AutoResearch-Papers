@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "209ca71d441c0149b95d",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "experiment p2b eval 9runs pool26",
+  "task_key": "worker_experiment_p2b_eval_9runs_pool26_20260512T192122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_p2b_eval_9runs_pool26_20260512T192122_result.json",
+    "occurrence": 1,
+    "bytes": 1753,
+    "sha256": "82a55793b04cf8f99062d3229c0ce67bdb3fc1e23bdb17b3d7a0bb8a41a9db0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部结果已收集。random_s42 的 JSON 文件在之前清理中丢失了，但我在本 session 最开始从 eval log 中读到了其结果。现在汇总所有 9 个 runs 的结果。\n\n## Phase 2b 全部 9 个 Checkpoints 评估结果 (pool_size=26)\n\n### 各 Run 明细\n\n| 策略 | Seed | recall@1 | recall@5 | recall@10 | pool_size | total |\n|------|------|----------|----------|-----------|-----------|-------|\n| random | 42 | **0.9449** | **0.9843** | 0.9843 | 26 | 127 |\n| random | 123 | **0.9449** | **0.9921** | 0.9921 | 26 | 127 |\n| random | 456 | **0.9291** | **0.9921** | 0.9921 | 26 | 127 |\n| embedding_distance | 42 | 0.6693 | 0.8898 | 0.9291 | 26 | 127 |\n| embedding_distance | 123 | 0.6772 | 0.9055 | 0.9528 | 26 | 127 |\n| embedding_distance | 456 | 0.6378 | 0.9213 | 0.9528 | 26 | 127 |\n| dataflow_aware | 42 | 0.6693 | 0.8898 | 0.9213 | 26 | 127 |\n| dataflow_aware | 123 | 0.6772 | 0.9055 | 0.9528 | 26 | 127 |\n| dataflow_aware | 456 | 0.6378 | 0.9213 | 0.9528 | 26 | 127 |\n\n### 按策略均值对比\n\n| 策略 | mean_recall@1 | mean_recall@5 | mean_recall@10 | std_recall@1 |\n|------|---------------|---------------|----------------|--------------|\n| **random** | **0.9396** | **0.9895** | **0.9895** | 0.0091 |\n| embedding_distance | 0.6614 | 0.9055 | 0.9449 | 0.0203 |\n| dataflow_aware | 0.6614 | 0.9055 | 0.9423 | 0.0203 |\n\n### 关键发现\n\n- **random 策略大幅领先**：recall@1 比另外两种策略高 27.8 个百分点 (0.94 vs 0.66)\n- **embedding_distance 与 dataflow_aware 几乎完全相同**：mean_recall@1/5/10 基本一致\n- 三种策略的 recall@10 差距收窄到约 4.5 个百分点\n- random 策略 seed 间方差极小 (std=0.009)，另两种略高 (std=0.020)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-p2b-eval-9runs-pool26.md"
+}

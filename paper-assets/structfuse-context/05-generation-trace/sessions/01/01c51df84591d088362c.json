@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01c51df84591d088362c",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "fix method v1 warnings",
+  "task_key": "worker_fix_method-v1-warnings_20260514T230021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_method-v1-warnings_20260514T230021_result.json",
+    "occurrence": 1,
+    "bytes": 942,
+    "sha256": "19594b1749dd6e9b1e38f293309fe7bfc737e172f614590f531d0013ac793ef6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 处修改完成：\n\n| # | 修改 | 内容 |\n|---|------|------|\n| W1 | Projection head | \"linear projection head\" → \"two-layer MLP projection head (Linear→GELU→Linear)\" |\n| W2 | Pooling 策略 | 补充 \"mean pooling over non-padding positions of the last hidden layer\"，位于 encoder architecture 段 |\n| W3 | pos-weight | **查证结果**：`pos_weight_alpha=1.0`，但所有策略的 `pos_dataflow_distance` 均为 1（含 dataflow_aware 和 embedding_distance）。weight = exp(-1) ≈ 0.368 为常数，等效于 unweighted InfoNCE。已在公式后说明此机制存在但实际未生效 |\n| W4 | Epoch | \"3 epochs\" → \"2 epochs with early stopping (patience=2)；s42 用 3 epochs 提供完整 overfitting curve，后续 seeds 用 2 epochs\" |\n| I1 | L2 norm | 在 pooling 描述后补充 \"followed by L2 normalization\" |\n| I2 | FusionHead | 确认 method_v1.md 中无提及，无需改动 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-method-v1-warnings.md"
+}

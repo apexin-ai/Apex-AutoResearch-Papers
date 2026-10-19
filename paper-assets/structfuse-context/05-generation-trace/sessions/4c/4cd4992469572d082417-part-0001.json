@@ -1,0 +1,3525 @@
+{
+  "schema_version": "1.0",
+  "session_id": "4cd4992469572d082417",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T19:04:37.465276+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Research Reviewer，这是 Loop #9。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 和 cuda:1（bjb1-42106 上仅此两张分配给本项目）。之前发生过重复进程占满 GPU 1 的事故。\n- StarCoder 模型路径：`/root/autodl-tmp/models/bigcode/starcoder2-3b/bigcode/starcoder2-3b`（不是 `/root/autodl-tmp/structfuse/models/bigcode/starcoder2-3b`，后者不存在，BM25 脚本已修正）\n- 两个代码目录共存：训练代码在 `/root/structfuse/`，评估代码在 `/root/structfuse-context/`。import 路径要注意一致性。\n- D026：s42 = 3 epochs 无 early stopping；s43/s44 = 2 epochs + patience=2。resume 脚本给所有 run 加了 patience=2（含 s42），与原设计略有偏差但影响不大。\n- Claim 2 framing 过强：pilot 数据中两个编码器都是 dataflow < embedding，\"beyond embedding mining\" 不成立。D028 已提议降级。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-42106(root)，2× RTX PRO 6000 96GB\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- Qwen 模型：`/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B`\n- StarCoder 模型：`/root/autodl-tmp/models/bigcode/starcoder2-3b/bigcode/starcoder2-3b`\n- 训练数据：`/root/autodl-tmp/structfuse/full_m2_training_data/`（Qwen）、`/root/autodl-tmp/structfuse/full_m2_starcoder_data/`（StarCoder）\n- BM25 数据：`/root/autodl-tmp/structfuse/full_m2_training_data/train_bm25_s{42,43,44}.jsonl`\n- Checkpoints：`/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/` 和 `m2_full_starcoder/`\n- wandb：offline 模式\n- 活跃进程（截至 handoff）：\n  - cuda:0：Qwen random_s44 训练（Qwen 链 3/9，PID ~504138）\n  - cuda:1：StarCoder random_s43 训练（resume 脚本 1/9，PID ~519805，wrapper PID 519791 timeout=518400）\n  - CPU：m1_reextract_v2（CodeQL 提取，PID via batch_extract.py）\n  - Qwen watcher：PID 966920（`watch_and_chain_qwen_s42.sh`，等 s43+ 完成后跑 s42 supplement）\n  - StarCoder 旧 watcher 已 kill\n\n### 3. 📊 当前状态\n**刚完成的审查**：\n- 覆盖率全面审查已提交（15.8% overall，Claim 2 = 0% 最薄弱）\n- GPU 1 重复进程 CRITICAL 已修复验证（95GB → 48GB）\n- BM25 Phase 2 脚本审查（StarCoder 路径已修正）\n- K + checkpoint 文档审查（\"Qwen always same\" 被 random_s43 打破）\n- SWE-bench 就绪度审查（pipeline ready，random_s42 可先跑）\n- D034 ROADMAP 审查（override 逻辑合理）\n\n**Registry 状态**：\n- m2_full_qwen：ANALYZING（实际 RUNNING，random s42/s43 done，s44 running）\n- m2_full_starcoder：DONE/failed（registry 状态过时，实际 resume 在跑 random_s43）\n- m1_reextract_v2：RUNNING\n- plan_018_bm25：QUEUED（Phase 1 done，Phase 2 已集成到 StarCoder resume run 3/9）\n- plan_015_dynamic：QUEUED\n\n**等待中**：无 pending worker 回调。监控模式。\n\n### 4. 📋 待办（条件触发式）\n- Qwen random_s44 完成（~6h）→ 检查 early stopping pattern，更新 checkpoint 文档\n- StarCoder random_s43 首次 eval@500 → 核实 R@1 与 pilot (0.454) 一致性\n- resume 脚本跑到 bm25_s42（run 3/9，约 ~May 16-17）→ 这是 plan_018 Phase 2 首个结果，关键审查：BM25 R@1 vs random R@1 决定叙事方向\n- Qwen 链完成全部 9 runs（~May 17）→ 检查 embedding vs random 多 seed 统计差异，这是 Claim 1 的硬证据\n- SWE-bench eval 启动通知 → 核实用的是 best_by_recall_at_1 checkpoint，验证 eval 脚本 import 路径\n- Director 转发 Claim 2 framing 调整提案 → 按 negative-framing-review skill 四维度审查\n- 任何新实验启动 → 核对 CUDA_VISIBLE_DEVICES 在 {0,1} 内\n\n### 5. 🎯 战略上下文\n- **论文核心**：systematic study of hard negative mining for code retrieval。3 claims，Claim 1（embedding helps）最强，Claim 2（dataflow conditional）最弱，Claim 3（CodeQL scalability）是 supporting。\n- **关键决策链**：D017 falsified \"embedding harms\" → D024 pivot framing → D026/D027 epoch/early-stop 调整 → D028 Claim 2 降级待定 → D030 Dream 共识 BM25 是最大缺口 → D033 BM25 overlap 在大 repo 仅 30% → D034 re-dream gate override\n- **最容易判断错的事**：\n  1. plan_002 在 tracker 标 DONE（是 pilot m2_embed_verify），但 full M2 (m2_full_qwen/starcoder) 还在跑。别看到 DONE 就以为 M2 训练结束了。\n  2. plan_013 conclusion=\"negative\" 不是说 method 失败——是说 dataflow 对 StarCoder 不 work。embedding 对两个编码器都 work。\n  3. Claim 2 的 framing 写的是 \"beyond embedding mining\"，但 pilot 数据两个编码器都是 dataflow < embedding。这是当前最大的 claim-evidence mismatch。\n  4. BM25 Phase 2 结果（~May 17）决定 paper 叙事走 \"correcting misconception\" 还是 \"systematic comparison\"——不要在结果出来前 commit 叙事。\n  5. 覆盖率 15.8% 是 misleading——plan_017 实际已完成但 tracker 标 planned，m2_full 在跑但不在 plan tracker 反映。\n\n## 可查的历史\n前 7 轮 handoff 在 `task_context/history/reviewer/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T19:04:49.400136+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__reviewer_post_to_director,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__compute_coverage_matrix,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__read_project_file",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T19:04:49.450891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T19:04:53.265282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "structfuse-context",
+              "limit": "0"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T19:04:53.768251+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan_017_literature\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T18:49:00.477Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:49:39.557Z\\\", \\\"hypothesis\\\": \\\"Inference-time graph method comparison: 8 papers surveyed (CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph, CodeGRAG, CodeRAG). Discussion v2 drafted, all citations verified. Conclusion: training-time vs inference-time complementary.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"papers_surveyed\\\": 8, \\\"citations_verified\\\": 8, \\\"discussion_draft\\\": \\\"artifacts/paper_drafts/discussion_v2.md\\\", \\\"artifact_id\\\": \\\"art_20260514_a2e1cd\\\"}}, \\\"m2_full_qwen_continued\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-14T18:44:20.646Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:44:53.128Z\\\", \\\"hypothesis\\\": \\\"M2 Qwen continued: 继续 m2_full_qwen 的剩余 runs (random_s44 + embedding×3 + dataflow×3)。原实验 cron 在 s42 退出时自动设为 ANALYZING，但链仍在运行。\\\", \\\"parent\\\": \\\"m2_full_qwen\\\"}, \\\"m2_full_starcoder_resumed\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-14T18:44:19.253Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:44:52.329Z\\\", \\\"hypothesis\\\": \\\"M2 StarCoder resumed: 继续 m2_full_starcoder 的 8 sequential runs (random×2 + embedding×3 + dataflow×3)。原实验因 cron timeout 标记为 failed，实际 PID 519791 正常运行。\\\", \\\"parent\\\": \\\"m2_full_starcoder\\\"}, \\\"m2_full_starcoder\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-13T16:18:15.415Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:04:29.245Z\\\", \\\"hypothesis\\\": \\\"Full M2 StarCoder: 3 strategies × 3 seeds on full M1 data. Cross-encoder validation — if embedding > random holds for both Qwen and StarCoder, method is encoder-agnostic. Resolves plan_013 pilot negative (dataflow encoder-dependent).\\\", \\\"parent\\\": \\\"plan_013_starcoder\\\", \\\"notes\\\": \\\"Phase 1: 构建 StarCoder embedding negatives 完成。Phase 2: 9 runs 训练中。batch_size=8, num_negatives=7, epochs=3(s42)/2(s43+), lr=2e-5, eval_steps=500, no early_stopping。双 checkpoint: best + best_by_recall_at_1。Seeds\n…[truncated 26471 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 502
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T19:04:54.270416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T19:04:54.822431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ps aux --sort=-rss --no-headers -w -w"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T19:04:55.374963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 50641 MiB, 97887 MiB, 100 %\\\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 53927 MiB, 97887 MiB, 100 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1104
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T19:04:55.827232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     209821  0.1  4.6 49328788 48689556 pts/2 Sl+ May14   1:23 python extraction/batch_extract.py --metadata /tmp/m1_failed_metadata.jsonl --output-dir /root/autodl-tmp/structfuse/full_m1_data --repos-dir /root/autodl-tmp/structfuse/full_m1_data/repos --workers 4 --timeout 300 --python-only --skip-log /root/autodl-tmp/structfuse/full_m1_data/skip_log_rerun.jsonl\\\\nroot     209827  0.3  0.6 7094644 6976064 pts/2 S+   May14   4:50 python extraction/batch_extract.py --metadata /tmp/m1_failed_metadata.jsonl --output-dir /root/autodl-tmp/structfuse/full_m1_data --repos-dir /root/autodl-tmp/structfuse/full_m1_data/repos --workers 4 --timeout 300 --python-only --skip-log /root/autodl-tmp/structfuse/full_m1_data/skip_log_rerun.jsonl\\\\nroot     209824  0.4  0.4 4840728 4763316 pts/2 S+   May14   5:33 python extraction/batch_extract.py --metadata /tmp/m1_failed_metadata.jsonl --output-dir /root/autodl-tmp/structfuse/full_m1_data --repos-dir /root/autodl-tmp/structfuse/full_m1_data/repos --workers 4 --timeout 300 --python-only --skip-log /root/autodl-tmp/structfuse/full_m1_data/skip_log_rerun.jsonl\\\\nroot     519805 97.6  0.3 259846136 4174008 pts/1 Sl 02:03  60:18 python -u /root/structfuse/training/train.py --model-name /root/autodl-tmp/models/bigcode/starcoder2-3b/bigcode/starcoder2-3b --train-file /root/autodl-tmp/structfuse/full_m2_starcoder_data/train_random_s43.jsonl --val-file /root/autodl-tmp/structfuse/full_m2_starcoder_data/val_random_s43.jsonl --output-dir /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s43 --hard-negative-strategy random --seed 43 --batch-size 8 --num-negatives 7 --max-seq-length 2048 --num-epochs 2 --learning-rate 2e-5 --temperature 0.07 --hard-negative-ratio 0.5 --eval-steps 500 --save-steps 1000 --use-lora --gradient-checkpointing --wandb-project structfuse --wandb-run-name m2_full_sc2_random_s43 --early-stopping-patience 2\\\\nroot     504138  102  0.3 259968532 4157016\n…[truncated 6264 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1004
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T19:05:28.312934+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "log_path": "/root/runs/m2_full_qwen/random_s44.log",
+              "n": "40"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T19:05:28.781008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"wandb: Tracking run with wandb version 0.26.0\\\", \\\"wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\\", \\\"wandb: Run data is saved locally in /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_015842-hfo1edho\\\", \\\"\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.58s/it]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.14s/it]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.50s/it]\\\", \\\"[Epoch 1] Using pre-mined negatives (random)...\\\", \\\"  Training loop start: 1408 batches/epoch, total_steps_per_epoch=1408\\\", \\\"`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\", \\\"  step 50  loss=0.6693  lr=3.56e-06\\\", \\\"  step 100  loss=0.6215  lr=7.12e-06\\\", \\\"  step 150  loss=0.6199  lr=1.05e-05\\\", \\\"  step 200  loss=0.5004  lr=1.41e-05\\\", \\\"  step 250  loss=0.3052  lr=1.77e-05\\\", \\\"  step 300  loss=0.4615  lr=2.00e-05\\\"], \\\"line_count\\\": 13, \\\"log_path\\\": \\\"/root/runs/m2_full_qwen/random_s44.log\\\", \\\"anomalies\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 468
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T19:05:29.132762+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "log_path": "/root/runs/m2_full_starcoder/random_s43.log",
+              "n": "40"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T19:05:29.645825+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"wandb: Tracking run with wandb version 0.26.0\\\", \\\"wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\\", \\\"wandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260515_020316-qj1v54rj\\\", \\\"[Epoch 1] Using pre-mined negatives (random)...\\\", \\\"  Training loop start: 1405 batches/epoch, total_steps_per_epoch=1405\\\", \\\"`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\", \\\"  step 50  loss=0.6781  lr=3.42e-06\\\", \\\"  step 100  loss=1.1000  lr=6.98e-06\\\", \\\"  step 150  loss=0.3684  lr=1.05e-05\\\", \\\"  step 200  loss=0.4080  lr=1.41e-05\\\"], \\\"line_count\\\": 10, \\\"log_path\\\": \\\"/root/runs/m2_full_starcoder/random_s43.log\\\", \\\"anomalies\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 513
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T19:05:30.207821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "md5sum /root/structfuse/training/train.py /root/structfuse-context/training/train.py"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T19:05:30.559583+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'md5sum' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T19:05:30.610339+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "wc -l /root/autodl-tmp/structfuse/full_m1_data/all.jsonl"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T19:05:33.622518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"44173 /root/autodl-tmp/structfuse/full_m1_data/all.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3012
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T19:06:09.957753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "wc -l /root/structfuse/training/train.py /root/structfuse-context/training/train.py"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T19:06:10.409735+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  613 /root/structfuse/training/train.py\\\\n  613 /root/structfuse-context/training/train.py\\\\n 1226 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T19:06:10.460322+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "head -5 /root/structfuse/training/train.py"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T19:06:10.812158+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"from __future__ import annotations\\\\n\\\\nimport os\\\\n\\\\n\\\\\\\"\\\\\\\"\\\\\\\"StructFuse contrastive training entry point.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T19:06:10.812526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "head -5 /root/structfuse-context/training/train.py"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T19:06:11.314469+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"from __future__ import annotations\\\\n\\\\nimport os\\\\n\\\\n\\\\\\\"\\\\\\\"\\\\\\\"StructFuse contrastive training entry point.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 501
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T19:06:11.716460+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls -lt /root/autodl-tmp/structfuse/full_m1_data/all.jsonl"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T19:06:12.218490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 6560500909 May 13 18:46 /root/autodl-tmp/structfuse/full_m1_data/all.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T19:06:12.519885+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "find /root/autodl-tmp/structfuse/full_m1_data -name \"*.jsonl\" -newer /root/autodl-tmp/structfuse/full_m1_data/all.jsonl"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T19:06:12.971779+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/structfuse/full_m1_data/skip_log_rerun.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T19:06:25.223865+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls -lt /root/autodl-tmp/structfuse/full_m1_data/ --time=mtime"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T19:06:25.777200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: invalid argument 'mtime' for '--time'\\\\nValid arguments are:\\\\n  - 'atime', 'access', 'use'\\\\n  - 'ctime', 'status'\\\\n  - 'birth', 'creation'\\\\nTry 'ls --help' for more information.\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T19:06:26.229293+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "log_path": "/root/runs/structfuse-context/m1_reextract_v2.log",
+              "n": "30"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T19:06:26.731800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-15 03:02:46,754 [INFO] batch_extract: [conan-io__conan.86f29e13.pr_10656] CodeQL call_graph: 496 entries, 137 reachable files (threshold=1)\\\", \\\"2026-05-15 03:02:53,060 [INFO] batch_extract: [facebookresearch__hydra.0f03eb60.func_pm_op_swap__5vbt4cle] CodeQL call_graph: 200 entries, 40 reachable files (threshold=1)\\\", \\\"2026-05-15 03:03:04,295 [INFO] batch_extract: [facebookresearch__hydra.0f03eb60.func_pm_op_swap__acw5b48o] CodeQL call_graph: 184 entries, 41 reachable files (threshold=1)\\\", \\\"2026-05-15 03:03:15,462 [INFO] batch_extract: [facebookresearch__hydra.0f03eb60.func_pm_op_swap__gj13oyaq] CodeQL call_graph: 85 entries, 32 reachable files (threshold=1)\\\", \\\"2026-05-15 03:03:21,689 [INFO] batch_extract: [dask__dask.5f61e423.pr_10706] CodeQL call_graph: 583 entries, 135 reachable files (threshold=1)\\\", \\\"2026-05-15 03:03:28,173 [INFO] batch_extract: [facebookresearch__hydra.0f03eb60.func_pm_op_swap__ofktut2l] CodeQL call_graph: 189 entries, 34 reachable files (threshold=1)\\\", \\\"2026-05-15 03:03:39,018 [INFO] batch_extract: [facebookresearch__hydra.0f03eb60.func_pm_op_swap__r9vp24ld] CodeQL call_graph: 43 entries, 21 reachable files (threshold=1)\\\", \\\"2026-05-15 03:03:39,193 [INFO] batch_extract: [conan-io__conan.86f29e13.pr_10681] CodeQL call_graph: 780 entries, 155 reachable files (threshold=1)\\\", \\\"2026-05-15 03:03:50,534 [INFO] batch_extract: [facebookresearch__hydra.0f03eb60.func_pm_op_swap__uokun364] CodeQL call_graph: 4 entries, 1 reachable files (threshold=1)\\\", \\\"2026-05-15 03:04:00,431 [INFO] batch_extract: [facebookresearch__hydra.0f03eb60.func_pm_remove_assign__0hi877sh] CodeQL call_graph: 184 entries, 41 reachable files (threshold=1)\\\", \\\"2026-05-15 03:04:11,486 [INFO] batch_extract: [facebookresearch__hydra.0f03eb60.func_pm_remove_assign__0ysiv1fu] CodeQL call_graph: 336 entries, 44 reachable files (threshold=1)\\\", \\\"2026-05-15 03:04:16,438 [INFO] batch_extract: [dask__dask.5f61e423.\n…[truncated 3330 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 502
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T19:06:27.485001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -c \"COMPLETED\\|completed\\|SUCCESS\\|DONE\" /root/runs/structfuse-context/m1_rerun.log"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T19:06:27.535669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T19:06:34.547761+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -c \"Group.*completed\" /root/runs/structfuse-context/m1_reextract_v2.log"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T19:06:35.100421+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T19:06:35.552751+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls -lt /root/autodl-tmp/structfuse/full_m1_data/"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T19:06:36.054837+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "df -h /root/autodl-tmp"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T19:06:36.556969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -c \"Group\" /root/runs/structfuse-context/m1_reextract_v2.log"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T19:06:38.866681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 33042140\\\\n-rw-r--r--   1 root root      17994 May 15 03:06 facebookresearch__hydra.0f03eb60.func_pm_remove_assign__cllgqdb7.json\\\\n-rw-r--r--   1 root root     589968 May 15 03:06 facebookresearch__hydra.0f03eb60.func_pm_remove_assign__cc96yrxj.json\\\\n-rw-r--r--   1 root root    2460841 May 15 03:06 dask__dask.5f61e423.pr_10789.json\\\\n-rw-r--r--   1 root root       2544 May 15 03:06 facebookresearch__hydra.0f03eb60.func_pm_remove_assign__byzif6sn.json\\\\n-rw-r--r--   1 root root     697287 May 15 03:05 conan-io__conan.86f29e13.pr_10717.json\\\\n-rw-r--r--   1 root root     137986 May 15 03:05 facebookresearch__hydra.0f03eb60.func_pm_remove_assign__bjgdxw7c.json\\\\n-rw-r--r--   1 root root     552844 May 15 03:05 facebookresearch__hydra.0f03eb60.func_pm_remove_assign__avvqwbtm.json\\\\n-rw-r--r--   1 root root    1702354 May 15 03:05 dask__dask.5f61e423.pr_10751.json\\\\n-rw-r--r--   1 root root     379784 May 15 03:05 facebookresearch__hydra.0f03eb60.func_pm_remove_assign__a5y5q8t9.json\\\\n-rw-r--r--   1 root root     145996 May 15 03:05 facebookresearch__hydra.0f03eb60.func_pm_remove_assign__9bxvbxc7.json\\\\n-rw-r--r--   1 root root     421251 May 15 03:05 facebookresearch__hydra.0f03eb60.func_pm_remove_assign__8ppxurjr.json\\\\n-rw-r--r--   1 root root    2615970 May 15 03:05 conan-io__conan.86f29e13.pr_10707.json\\\\n-rw-r--r--   1 root root     140031 May 15 03:04 facebookresearch__hydra.0f03eb60.func_pm_remove_assign__7t489cli.json\\\\n-rw-r--r--   1 root root     213472 May 15 03:04 dask__dask.5f61e423.pr_10746.json\\\\n-rw-r--r--   1 root root     660771 May 15 03:04 facebookresearch__hydra.0f03eb60.func_pm_remove_assign__5rj4nz71.json\\\\n-rw-r--r--   1 root root      86226 May 15 03:04 facebookresearch__hydra.0f03eb60.func_pm_remove_assign__2yp82ls3.json\\\\n-rw-r--r--   1 root root     712277 May 15 03:04 facebookresearch__hydra.0f03eb60.func_pm_remove_assign__0ysiv1fu.json\\\\n-rw-r--r--   1 root root    1709998 May \n…[truncated 6358 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3313
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T19:06:39.268644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  208G   43G  83% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3213
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T19:06:39.670542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 3113
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T19:07:36.422077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "find /root/structfuse/scripts -name \"*watcher*\" -o -name \"*chain*\" -o -name \"*bm25*\""
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T19:07:36.422470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "cat /root/structfuse/scripts/watch_and_chain_qwen_s42.sh"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T19:07:36.623491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "cat /root/structfuse/scripts/run_m2_full_bm25_starcoder.sh"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T19:07:36.774525+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/structfuse/scripts/mine_bm25_negatives.py\\\\n/root/structfuse/scripts/analyze_bm25_overlap_stratified.py\\\\n/root/structfuse/scripts/run_m2_full_bm25_qwen.sh\\\\n/root/structfuse/scripts/run_m2_full_bm25_starcoder.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 352
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-14T19:07:37.226928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/structfuse/scripts/watch_and_chain_qwen_s42.sh: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 804
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-14T19:07:37.628828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# ============================================================================\\\\n# run_m2_full_bm25_starcoder.sh — BM25 negative strategy Phase 2 training (StarCoder2-3B)\\\\n#\\\\n# Runs 3 seeds sequentially. Config matches other M2 strategies exactly,\\\\n# except: s42 uses 3 epochs; s43/s44 use 2 epochs + early_stopping_patience=2.\\\\n#\\\\n# NOTE: StarCoder2-3B model must be downloaded to MODEL_PATH before running.\\\\n#\\\\n# Usage:\\\\n#   nohup bash run_m2_full_bm25_starcoder.sh > /root/autodl-tmp/structfuse/full_m2_outputs/bm25_starcoder_schedule.log 2>&1 &\\\\n# ============================================================================\\\\n\\\\nset -euo pipefail\\\\n\\\\nPROJECT_ROOT=\\\\\\\"/root/structfuse\\\\\\\"\\\\nMODEL_PATH=\\\\\\\"/root/autodl-tmp/models/bigcode/starcoder2-3b/bigcode/starcoder2-3b\\\\\\\"\\\\nDATA_DIR=\\\\\\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\\\\\"\\\\nOUTPUT_BASE=\\\\\\\"/root/autodl-tmp/structfuse/full_m2_outputs\\\\\\\"\\\\nGPU_ID=\\\\\\\"${1:-0}\\\\\\\"\\\\n\\\\nexport CUDA_VISIBLE_DEVICES=\\\\\\\"$GPU_ID\\\\\\\"\\\\nexport WANDB_MODE=offline\\\\nexport TRANSFORMERS_OFFLINE=1\\\\nexport HF_HUB_OFFLINE=1\\\\nexport PYTHONUNBUFFERED=1\\\\n\\\\n# Activate conda\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\n\\\\n# ── Seed configs: (seed, epochs, early_stopping_patience) ──\\\\ndeclare -a SEEDS=(42 43 44)\\\\ndeclare -A EPOCHS=([42]=3 [43]=2 [44]=2)\\\\ndeclare -A PATIENCE=([42]=0 [43]=2 [44]=2)\\\\n\\\\necho \\\\\\\"============================================\\\\\\\"\\\\necho \\\\\\\" BM25 StarCoder2-3B M2 Full Training\\\\\\\"\\\\necho \\\\\\\" Seeds: ${SEEDS[*]}\\\\\\\"\\\\necho \\\\\\\" GPU: $GPU_ID\\\\\\\"\\\\necho \\\\\\\" Start: $(date '+%Y-%m-%d %H:%M:%S')\\\\\\\"\\\\necho \\\\\\\"============================================\\\\\\\"\\\\n\\\\n# Check model exists\\\\nif [ ! -e \\\\\\\"$MODEL_PATH/config.json\\\\\\\" ]; then\\\\n    echo \\\\\\\"ERROR: StarCoder2-3B model not found at $MODEL_PATH\\\\\\\"\\\\n    echo \\\\\\\"Download it first: python -c \\\\\\\\\\\\\\\"from modelscope import snapshot_download; s\n…[truncated 2312 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1005
+          },
+          "id": "event-000047"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-14T19:07:45.699018+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_check_m2_status_20260514_v2_20260514T190621]:\nWorker worker_check_m2_status_20260514_v2_20260514T190621 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "source": "system"
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-14T19:07:56.528857+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__reviewer_post_to_director,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__read_project_file",
+              "max_results": "7"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-14T19:07:56.579467+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-14T19:08:00.142937+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "structfuse-context",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-14T19:08:00.599649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan_017_literature\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:49:00.477Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:49:39.557Z\\\", \\\"hypothesis\\\": \\\"Inference-time graph method comparison: 8 papers surveyed (CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph, CodeGRAG, CodeRAG). Discussion v2 drafted, all citations verified. Conclusion: training-time vs inference-time complementary.\\\", \\\"spec\\\": {\\\"command\\\": \\\"analysis only (no training)\\\", \\\"server\\\": \\\"local\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"N/A\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"papers_surveyed\\\": 8, \\\"citations_verified\\\": 8, \\\"discussion_draft\\\": \\\"artifacts/paper_drafts/discussion_v2.md\\\", \\\"artifact_id\\\": \\\"art_20260514_a2e1cd\\\"}, \\\"completed_at\\\": \\\"2026-05-14T18:49:39.557Z\\\"}, \\\"m2_full_qwen_continued\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:44:20.646Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:44:53.128Z\\\", \\\"hypothesis\\\": \\\"M2 Qwen continued: 继续 m2_full_qwen 的剩余 runs (random_s44 + embedding×3 + dataflow×3)。原实验 cron 在 s42 退出时自动设为 ANALYZING，但链仍在运行。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash run_m2_full_qwen.sh (chain: random_s44 running → embedding×3 → dataflow×3)\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"337267\\\", \\\"log_path\\\": \\\"/root/runs/structfuse-context/m2_full_qwen.log\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/full_m2_training_data/\\\", \\\"data_count\\\": 11308, \\\"model_name\\\": \\\"Qwen2.5-Coder-3B\\\", \\\"seed\\\": \\\"42,43,44\\\"}, \\\"parent\\\": \\\"m2_full_qwen\\\"}, \\\"m2_full_starcoder_resumed\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:44:19.253Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:44:52.329Z\\\", \\\"hypothesis\\\": \\\"M2 StarCoder resumed: 继续 m2_full_starcoder 的 8 sequential runs (random×2 + embedding×3 + dataflow×3)。原实验因 \n…[truncated 47207 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 456
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-14T19:08:00.600112+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-14T19:08:01.102854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/ROADMAP.md\\\", \\\"content\\\": \\\"# StructFuse — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 18:50 UTC | 更新原因: D035 post-M2 优先级确定，Claim 2 降级，plan_017 DONE，registry 状态同步\\\\n\\\\n## 核心方向\\\\nTrue embedding-distance mining consistently improves contrastive code retrieval (+1.6–2.0pp R@1). BM25 baseline empirically closes CoCoHaNeRe correction argument. Structure-grounded negatives conditional on representation saturation (n=2, exploratory observation per D035). 详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research（post-MVP）+ 审稿进行中\\\\n- **M2 全量训练**: Qwen random_s44 running (cuda:0, PID 337267), StarCoder random_s43 running (cuda:1, PID 519791)。ETA: 两卡 **~May 17**\\\\n- **Registry 同步**: m2_full_qwen_continued + m2_full_starcoder_resumed 均 RUNNING，cron 已注册\\\\n- **BM25 Phase 2 watcher**: 两个 tmux watcher 监控链 PID，完成后自动触发 BM25 训练\\\\n- **plan_017 ✅**: Discussion draft + literature comparison (8 papers, citations verified) → DONE\\\\n- **plan_018 Phase 1 ✅**: BM25 data ready, 3 seeds aligned, stratified overlap 分析完成\\\\n- **neg_difficulty 可视化 ✅**: 3 张图表 (margin/similarity/heatmap)\\\\n- **K/checkpoint 文档 ✅**: 已更新 Qwen 4/5 same, StarCoder 0/3 same\\\\n- **m1_reextract_v2**: 后台 (~80% done, ETA today)\\\\n\\\\n## Post-M2 优先级 (D035)\\\\n| Priority | Plan | Description | GPU hours | 状态 |\\\\n|----------|------|-------------|-----------|------|\\\\n| **P0** | plan_003 | SWE-bench Lite (300) e2e eval | 40h | dry-run 验证中 |\\\\n| **P0** | plan_018 Phase 2 | BM25 训练 Qwen+StarCoder | 15h | watcher 自动触发 |\\\\n| **P1** | plan_004 | RepoBench-R (多seed+CIs) | 15h | planned |\\\\n| **P1** | plan_019 | Pool size sensitivity | 5h | planned |\\\\n| **P1** | plan_005 | 分层分析 (Claim 2 支撑) | 5h | planned |\\\\n| ~~砍掉~~ | plan_007-012,014 | 推迟到 camera-ready | — | deferred |\\\\n\\\\n## 近期任务\\\\n- [ ] plan_003 SWE-bench dry-run（worker 进行中）\\\\n- [ ] M2 full runs 完成 (~May 17) → BM25 watcher 自动启动\\\\n- [ ] 统计检验 — M2 完成后立即执行\\\\n- \n…[truncated 2531 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 502
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-14T19:08:01.103201+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "structfuse-context",
+              "file": "report.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-14T19:08:01.203939+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| m2_full_qwen_continued | M2 Qwen continued: 继续 m2_full_qwen 的剩余 runs (random_s44 + embedding×3 + dataflow×3)。原实验 cron 在 s42 退出时自动设为 ANALYZING，但链仍在运行。 | — | — | — |\\\\n| m2_full_starcoder_resumed | M2 StarCoder resumed: 继续 m2_full_starcoder 的 8 sequential runs (random×2 + embedding×3 + dataflow×3)。原实验因 cron timeout 标记为 failed，实际 PID 519791 正常运行。 | — | — | — |\\\\n| m1_reextract_v2 | M1 重提取 v2：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。CodeQL pack 已修复，端到端测试通过。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。 | — | — | — |\\\\n\\\\n## 待处理\\\\n- plan_018_bm25: BM25 negative baseline: Dream 审稿三档一致认定缺 BM25 baseline 是论文最大结构性缺陷。Phase 1 (CPU): 对 M2 训练语料建 BM25 索引，挖掘 BM25 hard negatives，生成训练数据。Phase 2 (GPU): 用 BM25 negatives 训练 Qwen + StarCoder 各 1 seed，对比 R@1。（排队等待 GPU）\\\\n- plan_015_dynamic: Dynamic negative mining (epoch-level re-mining): 每 epoch 重新用当前 encoder embedding 挖掘 negatives，验证 static mining 是否足够。缩减版：只跑 dynamic_ep × 1 seed (Qwen, s42)，~11h 单卡。若 dynamic ≈ static（预期 <1pp 差异），在 Limitation 段排除 confound。（排队等待 GPU）\\\\n\\\\n## 近期结论\\\\n- **plan_017_literature** (success): Inference-time graph method comparison: 8 papers surveyed (CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph, CodeGRAG, CodeRAG). Discussion v2 drafted, all citations verified. Conclusion: training-time vs inference-time complementary.\\\\n- **m2_full_starcoder** (failed): Full M2 StarCoder: 3 strategies × 3 seeds on full M1 data. Cross-encoder validation — if embedding > random holds for both Qwen and StarCoder, method is encoder-agnostic. Resolves plan_013 pilot negative (dataflow encoder-dependent). ← 基于 plan_013_starcoder\\\\n  [m2_starcoder_status_check](/api/workspace-files/projects/structfuse-context/artif\n…[truncated 1819 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 100
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-14T19:08:14.911932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "nvidia-smi --query-gpu=index,name,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-14T19:08:16.369527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 100 %, 50641 MiB, 97887 MiB\\\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 100 %, 53927 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1457
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-14T19:08:16.420207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ps -p 337267,519791 -o pid,etime,pcpu,rss,args --no-headers"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-14T19:08:16.721575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "tail -50 /root/runs/structfuse-context/m2_full_qwen.log"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-14T19:08:17.273933+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"337267    07:44:02  0.0  3268 bash run_m2_full_qwen.sh\\\\n519791    01:05:05  0.0  3604 bash -c rm -f /tmp/agent-ml-exit/m2_full_starcoder.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/structfuse-context/m2_full_starcoder.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/m2_full_starcoder.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/structfuse && export CUDA_VISIBLE_DEVICES=1 && timeout 518400 env bash -c 'bash -c \\\\\\\"cd /root/structfuse && bash run_m2_full_starcoder_resume.sh\\\\\\\"'; } > ~/runs/structfuse-context/m2_full_starcoder.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 853
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-14T19:08:17.274298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"==========================================\\\\n[1/9] Starting: random_s42 at Thu May 14 01:39:30 CST 2026\\\\n==========================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-14T19:08:17.425021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "tail -50 /root/runs/structfuse-context/m2_full_starcoder.log"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-14T19:08:17.777479+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================\\\\n StarCoder M2 Resume: 8 remaining runs\\\\n Start: 2026-05-15 02:03:11\\\\n GPU: CUDA_VISIBLE_DEVICES=1\\\\n============================================\\\\n\\\\n── Training: random_s43 (2 epochs) ──\\\\n  Output: /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s43\\\\n  Log: /root/runs/m2_full_starcoder/random_s43.log\\\\nwandb: Tracking run with wandb version 0.26.0\\\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260515_020316-qj1v54rj\\\\n[Epoch 1] Using pre-mined negatives (random)...\\\\n  Training loop start: 1405 batches/epoch, total_steps_per_epoch=1405\\\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n  step 50  loss=0.6781  lr=3.42e-06\\\\n  step 100  loss=1.1000  lr=6.98e-06\\\\n  step 150  loss=0.3684  lr=1.05e-05\\\\n  step 200  loss=0.4080  lr=1.41e-05\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 352
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-14T19:08:30.875143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls -lt /root/runs/m2_full_qwen/"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-14T19:08:31.508183+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 24\\\\n-rw-r--r-- 1 root root 1054 May 15 03:01 random_s44.log\\\\n-rw-r--r-- 1 root root 5807 May 15 03:01 s43plus_all.log\\\\n-rw-r--r-- 1 root root 3941 May 15 01:58 random_s43.log\\\\n-rw-r--r-- 1 root root 6979 May 14 19:24 random_s42.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 633
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-14T19:08:31.508595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "find /root/runs/ -name \"*.log\" -newer /root/runs/structfuse-context/m2_full_qwen.log -type f"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-14T19:08:31.898870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/structfuse-context/m2_full_starcoder.log\\\\n/root/runs/structfuse-context/m1_rerun.log\\\\n/root/runs/structfuse-context/m1_reextract_v2.log\\\\n/root/runs/m2_full_qwen/random_s42.log\\\\n/root/runs/m2_full_qwen/s43plus_all.log\\\\n/root/runs/m2_full_qwen/random_s43.log\\\\n/root/runs/m2_full_qwen/random_s44.log\\\\n/root/runs/m2_full_starcoder/random_s42.log\\\\n/root/runs/m2_full_starcoder/s43plus_all.log\\\\n/root/runs/m2_full_starcoder/random_s43.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 390
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-14T19:08:32.049911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-14T19:08:32.451760+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"504138, GPU-41b18ac6-b1f4-95fe-7325-10cc1dc27d04, 50632 MiB\\\\n519805, GPU-d831e380-a5f7-73d0-a09e-516d34481181, 53918 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-14T19:08:37.289749+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls -la /root/autodl-tmp/structfuse/full_m2_training_data/train_bm25_s42.jsonl /root/autodl-tmp/structfuse/full_m2_training_data/val_bm25_s42.jsonl"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-14T19:08:37.571649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "tail -40 /root/runs/m2_full_qwen/random_s44.log"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-14T19:08:38.074519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"wandb: Tracking run with wandb version 0.26.0\\\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\\\nwandb: Run data is saved locally in /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_015842-hfo1edho\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.58s/it]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.14s/it]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.50s/it]\\\\n[Epoch 1] Using pre-mined negatives (random)...\\\\n  Training loop start: 1408 batches/epoch, total_steps_per_epoch=1408\\\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n  step 50  loss=0.6693  lr=3.56e-06\\\\n  step 100  loss=0.6215  lr=7.12e-06\\\\n  step 150  loss=0.6199  lr=1.05e-05\\\\n  step 200  loss=0.5004  lr=1.41e-05\\\\n  step 250  loss=0.3052  lr=1.77e-05\\\\n  step 300  loss=0.4615  lr=2.00e-05\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-14T19:08:38.074920+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "tail -40 /root/runs/m2_full_qwen/s43plus_all.log"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-14T19:08:38.528885+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"wandb:      recall@1 ▃▁█\\\\nwandb:     recall@10 ▁▁▁\\\\nwandb:      recall@5 █▆▁\\\\nwandb:    train_loss ██▅▆▆▃▆▃▄▄▃▃▁▅▃▃▁▂▃▄▄▂▃▁▃▂▃▃▃▁\\\\nwandb:      val_loss ▁▂█\\\\nwandb: \\\\nwandb: Run summary:\\\\nwandb: learning_rate 1e-05\\\\nwandb:      recall@1 0.55013\\\\nwandb:     recall@10 1\\\\nwandb:      recall@5 0.95839\\\\nwandb:    train_loss 0.03632\\\\nwandb:      val_loss 0.54341\\\\nwandb: \\\\nwandb: You can sync this run to the cloud by running:\\\\nwandb: wandb sync /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260514_192418-ejygo7zh\\\\nwandb: Find logs at: /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260514_192418-ejygo7zh/logs\\\\n[1/9] Completed: random_s43 at Fri May 15 01:58:37 CST 2026\\\\n  [eval@1000] {'val_loss': 0.4637672980834741, 'recall@1': 0.5285058977719528, 'recall@5': 0.9672346002621232, 'recall@10': 1.0}\\\\n  [eval@1500] {'val_loss': 0.5476617613712114, 'recall@1': 0.5553735255570118, 'recall@5': 0.9544560943643512, 'recall@10': 1.0}\\\\n[Final eval] {'val_loss': 0.5434050835463979, 'recall@1': 0.5501310615989515, 'recall@5': 0.9583879423328965, 'recall@10': 1.0}\\\\n  best_by_val_loss checkpoint saved\\\\n  best_by_recall_at_1 checkpoint saved\\\\n\\\\n==========================================\\\\n[2/9] Starting: random_s44 at Fri May 15 01:58:37 CST 2026\\\\n==========================================\\\\nwandb: Tracking run with wandb version 0.26.0\\\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\\\nwandb: Run data is saved locally in /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_015842-hfo1edho\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.58s/it]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.14s/it]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.50s/it]\\\\n[Epoch 1] Using\n…[truncated 535 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-14T19:08:38.580712+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "tail -40 /root/runs/m2_full_starcoder/random_s43.log"
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-14T19:08:38.650980+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 1476809555 May 15 01:09 /root/autodl-tmp/structfuse/full_m2_training_data/train_bm25_s42.jsonl\\\\n-rw-r--r-- 1 root root  361367290 May 13 23:35 /root/autodl-tmp/structfuse/full_m2_training_data/val_bm25_s42.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1361
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-14T19:08:38.651405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "wc -l /root/autodl-tmp/structfuse/full_m2_training_data/val_bm25_s42.jsonl /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl /root/autodl-tmp/structfuse/full_m2_starcoder_data/val_random_s42.jsonl"
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-14T19:08:38.985771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"wandb: Tracking run with wandb version 0.26.0\\\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260515_020316-qj1v54rj\\\\n[Epoch 1] Using pre-mined negatives (random)...\\\\n  Training loop start: 1405 batches/epoch, total_steps_per_epoch=1405\\\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n  step 50  loss=0.6781  lr=3.42e-06\\\\n  step 100  loss=1.1000  lr=6.98e-06\\\\n  step 150  loss=0.3684  lr=1.05e-05\\\\n  step 200  loss=0.4080  lr=1.41e-05\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 405
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-14T19:08:40.057398+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      2980 /root/autodl-tmp/structfuse/full_m2_training_data/val_bm25_s42.jsonl\\\\n      2980 /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl\\\\n      2980 /root/autodl-tmp/structfuse/full_m2_starcoder_data/val_random_s42.jsonl\\\\n      8940 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1405
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-14T19:08:40.057854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "wc -l /root/autodl-tmp/structfuse/full_m2_training_data/train_bm25_s42.jsonl /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl /root/autodl-tmp/structfuse/full_m2_starcoder_data/train_random_s42.jsonl"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-14T19:08:40.360234+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "cat /root/structfuse/run_m2_full_qwen.sh"
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-14T19:08:41.413865+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     11308 /root/autodl-tmp/structfuse/full_m2_training_data/train_bm25_s42.jsonl\\\\n     11308 /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s42.jsonl\\\\n     11308 /root/autodl-tmp/structfuse/full_m2_starcoder_data/train_random_s42.jsonl\\\\n     33924 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1356
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-14T19:08:41.815755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -eo pipefail\\\\n\\\\nexport CUDA_VISIBLE_DEVICES=0\\\\nexport PYTHONUNBUFFERED=1\\\\nexport PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True\\\\nexport WANDB_MODE=offline\\\\nexport WANDB_CONSOLE=off\\\\nexport WANDB_DIR=/root/autodl-tmp/structfuse/wandb_logs/\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport TRANSFORMERS_OFFLINE=1\\\\nexport HF_HUB_OFFLINE=1\\\\n\\\\ntrap 'echo \\\\\\\"INTERRUPTED at $(date), cleaning up...\\\\\\\"; kill 0; exit 1' INT TERM\\\\n\\\\nDATA_DIR=\\\\\\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\\\\\"\\\\nOUT_BASE=\\\\\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen\\\\\\\"\\\\nLOG_DIR=\\\\\\\"/root/runs/m2_full_qwen\\\\\\\"\\\\nMODEL=\\\\\\\"/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B\\\\\\\"\\\\nTRAIN_SCRIPT=\\\\\\\"/root/structfuse-context/training/train.py\\\\\\\"\\\\n\\\\nSTRATEGIES=(\\\\\\\"random\\\\\\\" \\\\\\\"embedding_distance\\\\\\\" \\\\\\\"dataflow_aware\\\\\\\")\\\\nSEEDS=(43 44)\\\\n\\\\nmkdir -p \\\\\\\"${LOG_DIR}\\\\\\\" \\\\\\\"${OUT_BASE}\\\\\\\"\\\\n\\\\nTOTAL_RUNS=9\\\\nRUN_NUM=0\\\\n\\\\nfor STRATEGY in \\\\\\\"${STRATEGIES[@]}\\\\\\\"; do\\\\n    for SEED in \\\\\\\"${SEEDS[@]}\\\\\\\"; do\\\\n        RUN_NUM=$((RUN_NUM + 1))\\\\n        TAG=\\\\\\\"${STRATEGY}_s${SEED}\\\\\\\"\\\\n        LOG_FILE=\\\\\\\"${LOG_DIR}/${TAG}.log\\\\\\\"\\\\n\\\\n        echo \\\\\\\"==========================================\\\\\\\"\\\\n        echo \\\\\\\"[${RUN_NUM}/${TOTAL_RUNS}] Starting: ${TAG} at $(date)\\\\\\\"\\\\n        echo \\\\\\\"==========================================\\\\\\\"\\\\n\\\\n        TRAIN_FILE=\\\\\\\"${DATA_DIR}/train_${STRATEGY}_s${SEED}.jsonl\\\\\\\"\\\\n        VAL_FILE=\\\\\\\"${DATA_DIR}/val_${STRATEGY}_s${SEED}.jsonl\\\\\\\"\\\\n        OUT_DIR=\\\\\\\"${OUT_BASE}/${TAG}\\\\\\\"\\\\n\\\\n        if [ ! -f \\\\\\\"${TRAIN_FILE}\\\\\\\" ]; then\\\\n            echo \\\\\\\"ERROR: Train file not found: ${TRAIN_FILE}\\\\\\\"\\\\n            exit 1\\\\n        fi\\\\n        if [ ! -f \\\\\\\"${VAL_FILE}\\\\\\\" ]; then\\\\n            echo \\\\\\\"ERROR: Val file not found: ${VAL_FILE}\\\\\\\"\\\\n            exit 1\\\\n        fi\\\\n\\\\n        EXTRA_ARGS=\\\\\\\"\\\\\\\"\\\\n        if [ \\\\\\\n…[truncated 4859 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1455
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-14T19:09:01.219418+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_constraints",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-14T19:09:01.219945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-14T19:09:03.782264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_constraints"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__list_constraints",
+            "tool_args": {
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-14T19:09:03.883096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"constraints\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__list_constraints",
+            "elapsed_ms": 100
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-14T19:09:07.997523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "structfuse-context",
+              "file": "decisions.yaml",
+              "max_chars": "5000"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-14T19:09:08.449662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 36\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-12 09:57 UTC\\\\n  summary: 'MVP 设计: CodeQL 试点(10 repos) + 迷你对比训练(500 instances) 验证核心假设'\\\\n  rationale: 13 天 DDL，需要最快速验证核心假设链：(1) CodeQL inter-procedural data-flow 在 Python\\\\n    repos 上可行（timeout < 30%），(2) data-flow hard negatives 比 random negatives 提升检索\\\\n    recall。两个 phase 串行，总计约 1 天。通过后立即进入全量数据提取和训练。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-12 10:01 UTC\\\\n  summary: '采纳 Reviewer 反馈: MVP Phase 2 增加线性分类器 proxy 验证 + 3-seed 训练 + 显式 kill criteria'\\\\n  rationale: 'Reviewer 指出 Phase 2 原方案（500 instances, ~100 held-out, 2pp gate）统计效力不足，2pp\\\\n    差异在随机噪声范围内。增加: (1) Phase 2a 线性分类器 proxy 验证解耦特征质量与训练策略；(2) 3-seed 训练要求 ≥2/3 seed\\\\n    提升；(3) 每个 phase 的 fail→kill/fallback 路径。防止 13 天 DDL 下的沉没成本陷阱。'\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-12 10:02 UTC\\\\n  summary: 'H2 验证并入 Phase 1: 提取后立即统计 data-flow 连通文件 vs 不连通文件的 gold patch 覆盖率差异'\\\\n  rationale: Reviewer 指出 H2（特征区分度）在原 MVP 中无独立验证，Phase 2 失败时无法区分是 H2 还是 H3 问题。零成本 sanity\\\\n    check（统计连通/不连通文件的 gold patch 覆盖率）可在 Phase 1 提取完后立即执行，不需要训练。这比 Phase 2a 的线性分类器更早给出诊断信号。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-12 11:21 UTC\\\\n  summary: 'Phase 1 gate PASS: timeout 0%, H2 Fisher p=1.54e-7, 75% instance recall.\\\\n    进入 Phase 2。'\\\\n  rationale: 10 repos 中 8 个成功提取（2 个 skip 因 buggy file 路径不存在，非 CodeQL 限制）。timeout rate\\\\n    0% 远低于 30% 阈值。H2 sanity check：连通文件 gold 覆盖 1.44% vs 不连通 0.00%，Fisher p=1.54e-7。75%\\\\n    instance recall（6/8 gold file 在连通集）。数据质量问题（路径匹配、skip rate、registry 注册）并行修复，不阻塞\\\\n    Phase 2。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D005\\\\n  date: 2026-05-12 11:35 UTC\\\\n  summary: 'CRITICAL: GPU 越界 PID 59170 跑在 GPU 5 而非分配的 cuda:4，立即 kill + 全脚本修复 CUDA_VISIBLE_DEVICES'\\\\n  ratio\n…[truncated 3531 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 452
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-14T19:09:08.701005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_bus_id,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-14T19:09:09.203373+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"504138, 00000000:16:00.0, 50632 MiB\\\\n519805, 00000000:C8:00.0, 53918 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-14T19:09:38.067251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "du -sh /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_val_loss /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1 /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-14T19:09:38.519632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5.8G\\\\t/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_val_loss\\\\n5.8G\\\\t/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1\\\\n18G\\\\t/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-14T19:09:39.474957+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "du -sh /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s42/best_by_val_loss /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s42/best_by_recall_at_1"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-14T19:09:40.127623+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5.8G\\\\t/root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s42/best_by_val_loss\\\\n5.8G\\\\t/root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s42/best_by_recall_at_1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 652
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-14T19:09:40.178424+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "du -sh /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/ /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-14T19:09:40.580220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"35G\\\\t/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/\\\\n12G\\\\t/root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-14T19:10:02.486971+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: info] M2 训练状态独立核实 — 2026-05-15 ~03:00 CST\n\n## 核实结果：PASS，训练正常\n\n### Qwen (m2_full_qwen_continued, cuda:0)\n- random_s42 ✅ DONE, R@1=0.5527 (step 1000)\n- random_s43 ✅ DONE, R@1=0.5554 (step 1500), early stopped. 跨 seed 一致 (+0.3pp vs s42)\n- random_s44 🔄 RUNNING, epoch 1/2, step 300/1408, loss=0.4615 (正常下降)\n- 剩余 6 runs (embedding×3 + dataflow×3)\n- GPU: 100% util, 50.6/97.9GB VRAM\n\n### StarCoder (m2_full_starcoder_resumed, cuda:1)\n- random_s42 ✅ DONE, R@1=0.4604 (step 2500)\n- random_s43 🔄 RUNNING, epoch 1/2, step 200/1405, loss=0.4080 (正常下降)\n- 剩余 7 runs\n- GPU: 100% util, 53.9/97.9GB VRAM\n\n### 一致性检查\n- ✅ Registry s43 metrics 与日志完全吻合 (eval@1000 R@1=0.5285, eval@1500 R@1=0.5554)\n- ✅ GPU 边界合规：PID 504138 → GPU bus 16:00.0 (cuda:0), PID 519805 → GPU bus C8:00.0 (cuda:1)\n- ✅ 两卡满载，无空转\n\n### 注意事项\n1. **val_loss vs R@1 checkpoint 分歧**：s43 的 val_loss 最优在 step 500，但 R@1 最优在 step 1500。两个 checkpoint criterion 给出不同最优点。Registry 已记录此现象，后续实验报告时需明确用哪个 criterion。\n2. **ETA 估算**：每个 Qwen run ~6.5h（s43: 19:24→01:58 CST），s44 + 6 runs ≈ 45h → ~May 17 完成。StarCoder 类似但多 1 run，~May 17-18。与 ROADMAP \"~May 17\" 基本一致。",
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-14T19:10:06.910720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_651ef5630fe7a61a1decb410adb7641b:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4423
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-14T19:10:10.573891+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查完成。M2 训练双卡满载正常推进，registry 数据与日志一致，无 GPU 越界，ETA ~May 17 与 ROADMAP 对齐。val_loss 与 R@1 checkpoint criterion 分歧已标注，供后续统计分析时注意。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer"
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-14T19:10:12.245759+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "du -sh /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/best_by_val_loss /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/best_by_recall_at_1"
+            }
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-14T19:10:13.149304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5.8G\\\\t/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/best_by_val_loss\\\\n5.8G\\\\t/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/best_by_recall_at_1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 903
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-14T19:10:13.149715+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/"
+            }
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-14T19:10:14.554490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"best_by_recall_at_1\\\\nbest_by_val_loss\\\\nfinal\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1404
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-14T19:10:14.554845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "du -sh /root/autodl-tmp/structfuse/checkpoints/ /root/autodl-tmp/structfuse/full_m1_data/ /root/autodl-tmp/structfuse/full_m2_training_data/ /root/autodl-tmp/structfuse/full_m2_starcoder_data/ /root/autodl-tmp/structfuse/models/ /root/autodl-tmp/structfuse/wandb_logs/"
+            }
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-14T19:10:15.309769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"47G\\\\t/root/autodl-tmp/structfuse/checkpoints/\\\\n46G\\\\t/root/autodl-tmp/structfuse/full_m1_data/\\\\n19G\\\\t/root/autodl-tmp/structfuse/full_m2_training_data/\\\\n13G\\\\t/root/autodl-tmp/structfuse/full_m2_starcoder_data/\\\\n0\\\\t/root/autodl-tmp/structfuse/models/\\\\n16M\\\\t/root/autodl-tmp/structfuse/wandb_logs/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 754
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-14T19:10:15.310188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "du -sh /root/autodl-tmp/structfuse/full_m2_outputs/ /root/autodl-tmp/.hf_cache/ /root/autodl-tmp/models/"
+            }
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-14T19:10:15.711778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4.0K\\\\t/root/autodl-tmp/structfuse/full_m2_outputs/\\\\n4.8M\\\\t/root/autodl-tmp/.hf_cache/\\\\n18G\\\\t/root/autodl-tmp/models/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-14T19:10:31.371004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "du -sh /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/final"
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-14T19:10:32.124172+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5.8G\\\\t/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/final\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 753
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-14T19:10:32.224822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "du -sh /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/"
+            }
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-14T19:10:32.776731+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"18G\\\\t/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 551
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-14T19:10:32.777124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/"
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-14T19:10:33.745052+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"best_by_recall_at_1\\\\nbest_by_val_loss\\\\nfinal\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 967
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-14T19:10:33.745444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "du -sh /root/autodl-tmp/structfuse/full_m1_data/repos/"
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-14T19:10:34.560740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"14G\\\\t/root/autodl-tmp/structfuse/full_m1_data/repos/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 815
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-14T19:10:34.561156+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "du -sh /root/autodl-tmp/structfuse/ /root/autodl-tmp/models/ /root/autodl-tmp/.hf_cache/ /root/structfuse/ /root/structfuse-context/"
+            }
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-14T19:10:35.264181+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"189G\\\\t/root/autodl-tmp/structfuse/\\\\n18G\\\\t/root/autodl-tmp/models/\\\\n4.8M\\\\t/root/autodl-tmp/.hf_cache/\\\\n16M\\\\t/root/structfuse/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 702
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-14T19:10:55.450079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "du -sh /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s42/"
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-14T19:10:55.550942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s42/"
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-14T19:10:56.556862+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"12G\\\\t/root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s42/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1106
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-14T19:10:56.557200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"best_by_recall_at_1\\\\nbest_by_val_loss\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1006
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-14T19:10:56.557355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls -d /root/autodl-tmp/structfuse/checkpoints/*/"
+            }
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-14T19:10:56.908772+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "find /root/autodl-tmp/structfuse -maxdepth 1 -mindepth 1 -type d"
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-14T19:10:56.959414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-14T19:10:57.361316+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/structfuse/models\\\\n/root/autodl-tmp/structfuse/m2_pilot_data\\\\n/root/autodl-tmp/structfuse/m2_embed_verify_data\\\\n/root/autodl-tmp/structfuse/m2_embed_verify_output\\\\n/root/autodl-tmp/structfuse/m2_starcoder_output\\\\n/root/autodl-tmp/structfuse/full_m1_data\\\\n/root/autodl-tmp/structfuse/full_m2_training_data\\\\n/root/autodl-tmp/structfuse/checkpoints\\\\n/root/autodl-tmp/structfuse/wandb_logs\\\\n/root/autodl-tmp/structfuse/full_m2_starcoder_data\\\\n/root/autodl-tmp/structfuse/full_m2_outputs\\\\n/root/autodl-tmp/structfuse/artifacts\\\\n/root/autodl-tmp/structfuse/eval_results\\\\n/root/autodl-tmp/structfuse/swebench_repos\\\\n/root/autodl-tmp/structfuse/evaluation\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-14T19:11:02.882935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "du -sh /root/autodl-tmp/structfuse/m2_pilot_data/ /root/autodl-tmp/structfuse/m2_embed_verify_data/ /root/autodl-tmp/structfuse/m2_embed_verify_output/ /root/autodl-tmp/structfuse/m2_starcoder_output/ /root/autodl-tmp/structfuse/swebench_repos/ /root/autodl-tmp/structfuse/evaluation/ /root/autodl-tmp/structfuse/artifacts/ /root/autodl-tmp/structfuse/models/"
+            }
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-14T19:11:03.284798+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"879M\\\\t/root/autodl-tmp/structfuse/m2_pilot_data/\\\\n1.2G\\\\t/root/autodl-tmp/structfuse/m2_embed_verify_data/\\\\n35G\\\\t/root/autodl-tmp/structfuse/m2_embed_verify_output/\\\\n29G\\\\t/root/autodl-tmp/structfuse/m2_starcoder_output/\\\\n667M\\\\t/root/autodl-tmp/structfuse/swebench_repos/\\\\n8.0K\\\\t/root/autodl-tmp/structfuse/evaluation/\\\\n2.2M\\\\t/root/autodl-tmp/structfuse/artifacts/\\\\n0\\\\t/root/autodl-tmp/structfuse/models/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": "2026-05-14T19:12:37.362464+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: critical] 磁盘空间即将耗尽——与 mvp_p2b_contrastive_training 完全相同的失败模式\n\n**现状**：/root/autodl-tmp 剩余 43GB（250GB 总量，208GB 已用）\n\n**空间分析**：\n- 当前 M2 checkpoints：47GB（3 个已完成 run，每 run 含 best_val_loss + best_recall_at_1 + final 三个 5.8GB 目录）\n- 旧 pilot 输出（可删除）：m2_embed_verify_output=35GB + m2_starcoder_output=29GB = **64GB**\n- 旧 pilot 数据（可删除）：m2_pilot_data=879MB + m2_embed_verify_data=1.2GB ≈ **2GB**\n- full_m1_data：46GB（含 repos 14GB + 原始 all.jsonl 6.6GB + per-instance JSONs）\n\n**预算缺口**：\n- 后续 Qwen 7 runs × 17.4GB（含 final）= 121.8GB\n- 后续 StarCoder 11 runs × 11.6GB = 127.6GB\n- **总需 ~249GB 新增 checkpoint 空间**\n- 即使删除全部旧 pilot 数据（+66GB），cleanup finals（+11.6GB），只腾出 ~121GB，仍差 ~128GB\n\n**根因**：每个 checkpoint 保存完整 float16 模型（5.8GB），而非仅 LoRA 适配器（~50-100MB）。LoRA rank=16 的 3B 模型适配器 < 1% 参数量。\n\n**建议修复（按优先级）**：\n1. **立即**：删除旧 pilot 输出 m2_embed_verify_output/ 和 m2_starcoder_output/（+64GB），争取时间窗口\n2. **紧急**：修改 train.py 的 checkpoint 保存逻辑，只保存 LoRA adapter weights（PeftModel.save_pretrained），不保存 merged 完整模型。每 checkpoint 从 5.8GB → ~100MB。18 runs × 2 checkpoints × 100MB ≈ 3.6GB，完全解决问题\n3. **同步**：删除已完成 run 的 `final` 目录（Qwen s42/s43 各 5.8GB = 11.6GB），final 在有 best_by_* 时冗余\n4. 可选：m2_pilot_data/ 和 m2_embed_verify_data/ 也可删除（+2GB）\n\n**证据**：\n- `du -sh checkpoints/m2_full_qwen/random_s43/final` → 5.8GB\n- `du -sh m2_embed_verify_output/` → 35GB\n- mvp_p2b_contrastive_training 因同一原因丢失 5/9 runs\n\n**风险**：不处理则 Qwen 链在完成 ~2 个 run 后（embedding_s43 前后）磁盘满，torch.save RuntimeError 级联崩溃。\n\n---\n\n[severity: warning] Qwen BM25 s42 的 early_stopping_patience 配置与 D026 设计不一致\n\nrun_m2_full_qwen.sh 中 bm25_s42 设置了 `--early-stopping-patience 2`（3 epochs）。D026 原设计：s42 = 3 epochs 无 early stopping，提供完整 overfitting curve。而 run_m2_full_bm25_starcoder.sh 中 s42 正确设为 patience=0。\n\n这会导致：\n- Qwen BM25 s42 可能在 epoch 1-2 early stop，无法提供完整 overfitting curve\n- 跨编码器 BM25 对比有配置差异 confound\n\n修复：Qwen 脚本 bm25_s42 部分去掉 `--early-stopping-patience 2`。目前 Qwen 链还在 random_s44（第 2/7 run），bm25_s42 是第 7 run，修复时间充裕。\n\n---\n\n[severity: info] 状态确认\n\n- Qwen random_s43 完成：R@1=0.5554，与 s42（0.5527）一致，+0.3pp 差异在噪声范围，random 策略可复现性 ✓\n- Qwen random_s44：step 300/2816（~10.6%），loss 正常下降\n- StarCoder random_s43：step 200/2810（~7.1%），step 100 有瞬态 loss spike（1.1000）但已恢复，正常\n- m1_reextract_v2：活跃运行中，正在处理 hydra/conan/dask/MONAI 等大 repo 的 call_graph 查询\n- GPU：cuda:0=51GB/98GB 100%, cuda:1=54GB/98GB 100%，均在白名单内 ✓\n- val_loss 与 R@1 指标在 Qwen s43 出现分离（best val_loss@step500, best R@1@step1500），dual checkpoint 策略正确处理了此问题\n- train.py 两份文件（structfuse vs structfuse-context）均 613 行、头部一致，大概率同步",
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-14T19:12:40.926676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_651ef5630fe7a61a1decb410adb7641b:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3564
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-14T19:13:00.915655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "cat /root/structfuse/run_m2_full_starcoder_resume.sh"
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": "2026-05-14T19:13:01.269216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# ============================================================================\\\\n# run_m2_full_starcoder_resume.sh — Resume 9 remaining runs (incl. BM25)\\\\n#\\\\n# random_s42 已完成 (step 4200/4242, checkpoints saved)\\\\n#   best_by_val_loss:    /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s42/best_by_val_loss/\\\\n#   best_by_recall_at_1: /root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder/random_s42/best_by_recall_at_1/\\\\n#\\\\n# D026: s42 = 3 epochs, s43/s44 = 2 epochs\\\\n# ============================================================================\\\\n\\\\nset -euo pipefail\\\\n\\\\nexport CUDA_VISIBLE_DEVICES=1\\\\nexport PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True\\\\nexport WANDB_MODE=offline\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport TRANSFORMERS_OFFLINE=1\\\\nexport HF_HUB_OFFLINE=1\\\\nexport PYTHONUNBUFFERED=1\\\\n\\\\nPROJECT_ROOT=\\\\\\\"/root/structfuse\\\\\\\"\\\\nMODEL_PATH=\\\\\\\"/root/autodl-tmp/models/bigcode/starcoder2-3b/bigcode/starcoder2-3b\\\\\\\"\\\\nSTARCODER_DATA_DIR=\\\\\\\"/root/autodl-tmp/structfuse/full_m2_starcoder_data\\\\\\\"\\\\nCHECKPOINT_BASE=\\\\\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_starcoder\\\\\\\"\\\\nLOG_BASE=\\\\\\\"/root/runs/m2_full_starcoder\\\\\\\"\\\\nBM25_DATA_DIR=\\\\\\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\\\\\"\\\\nBM25_OUTPUT_BASE=\\\\\\\"/root/autodl-tmp/structfuse/full_m2_outputs\\\\\\\"\\\\n\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\n\\\\necho \\\\\\\"============================================\\\\\\\"\\\\necho \\\\\\\" StarCoder M2 Resume: 9 remaining runs\\\\\\\"\\\\necho \\\\\\\" Start: $(date '+%Y-%m-%d %H:%M:%S')\\\\\\\"\\\\necho \\\\\\\" GPU: CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES\\\\\\\"\\\\necho \\\\\\\"============================================\\\\\\\"\\\\n\\\\n# (strategy, seed, epochs)\\\\nRUNS=(\\\\n    \\\\\\\"random:43:2\\\\\\\"\\\\n    \\\\\\\"random:44:2\\\\\\\"\\\\n    \\\\\\\"bm25:42:3\\\\\\\"\\\\n    \\\\\\\"embedding_distance:42:3\\\\\\\"\\\\n    \\\\\\\"embedding_distance:43:2\\\\\\\"\\\\n    \\\\\\\"embedding_distance:44:\n…[truncated 2896 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 353
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-14T19:13:36.962200+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: critical] StarCoder resume 脚本 checkpoint 清理逻辑失效——磁盘问题比预估更严重\n\n**Bug 位置**：`/root/structfuse/run_m2_full_starcoder_resume.sh` 第 ~100 行\n\n```bash\nif [ -d \"${OUTPUT_DIR}/best\" ]; then\n    find \"${OUTPUT_DIR}\" -maxdepth 1 -name \"checkpoint-*\" -type d -exec rm -rf {} + 2>/dev/null || true\nfi\n```\n\n**问题**：清理条件检查 `best/` 目录是否存在，但 train.py 实际创建的是 `best_by_val_loss/` 和 `best_by_recall_at_1/`。条件永远为 false → **中间 checkpoint 不会被清理**。\n\n对比 Qwen 脚本（run_m2_full_qwen.sh）的清理逻辑：\n```bash\nfind \"${OUT_DIR}\" -maxdepth 1 -name \"checkpoint-*\" -type d -exec rm -rf {} + 2>/dev/null || true\n```\nQwen 脚本无条件删除中间 checkpoint ✓\n\n**影响**：每个 StarCoder run 会多留 2 个中间 checkpoint（checkpoint-1000, checkpoint-2000），额外 +11.6GB/run。9 个 StarCoder run 多占 ~104GB，加上正常的 best checkpoints，StarCoder 链总计需 ~209GB——超过整个磁盘。\n\n**修复**：把 `if` 条件删掉，改为无条件清理：\n```bash\nfind \"${OUTPUT_DIR}\" -maxdepth 1 -name \"checkpoint-*\" -type d -exec rm -rf {} + 2>/dev/null || true\n```\n\n**时间窗**：StarCoder random_s43 是链中第 1/9 run，当前 step ~200/2810。修复需要在 random_s43 完成前进行（预计 ~8-10h 后），否则第一批中间 checkpoint 就开始堆积。\n\n结合上条磁盘 CRITICAL 报告，建议同步操作：\n1. 删除旧 pilot outputs（+64GB）\n2. 修复此清理 bug\n3. 修改 checkpoint 保存为仅 LoRA adapters",
+              "project": "structfuse-context"
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-14T19:13:38.066624+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_651ef5630fe7a61a1decb410adb7641b:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 1104
+          },
+          "id": "event-000135"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "messages": [
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-14T19:13:46.419355+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_check_urgent_3issues_20260514_20260514T190956]:\nWorker worker_check_urgent_3issues_20260514_20260514T190956 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "source": "system"
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-14T19:13:57.109868+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "structfuse-context",
+              "limit": "10",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-14T19:13:57.663709+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan_017_literature\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:49:00.477Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:49:39.557Z\\\", \\\"hypothesis\\\": \\\"Inference-time graph method comparison: 8 papers surveyed (CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph, CodeGRAG, CodeRAG). Discussion v2 drafted, all citations verified. Conclusion: training-time vs inference-time complementary.\\\", \\\"spec\\\": {\\\"command\\\": \\\"analysis only (no training)\\\", \\\"server\\\": \\\"local\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"N/A\\\", \\\"seed\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"N/A\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"papers_surveyed\\\": 8, \\\"citations_verified\\\": 8, \\\"discussion_draft\\\": \\\"artifacts/paper_drafts/discussion_v2.md\\\", \\\"artifact_id\\\": \\\"art_20260514_a2e1cd\\\"}, \\\"completed_at\\\": \\\"2026-05-14T18:49:39.557Z\\\"}, \\\"m2_full_qwen_continued\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:44:20.646Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:44:53.128Z\\\", \\\"hypothesis\\\": \\\"M2 Qwen continued: 继续 m2_full_qwen 的剩余 runs (random_s44 + embedding×3 + dataflow×3)。原实验 cron 在 s42 退出时自动设为 ANALYZING，但链仍在运行。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash run_m2_full_qwen.sh (chain: random_s44 running → embedding×3 → dataflow×3)\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"337267\\\", \\\"log_path\\\": \\\"/root/runs/structfuse-context/m2_full_qwen.log\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/full_m2_training_data/\\\", \\\"data_count\\\": 11308, \\\"model_name\\\": \\\"Qwen2.5-Coder-3B\\\", \\\"seed\\\": \\\"42,43,44\\\"}, \\\"parent\\\": \\\"m2_full_qwen\\\"}, \\\"m2_full_starcoder_resumed\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T18:44:19.253Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:44:52.329Z\\\", \\\"hypothesis\\\": \\\"M2 StarCoder resumed: 继续 m2_full_starcoder 的 8 sequential runs (random×2 + embedding×3 + dataflow×3)。原实验因 \n…[truncated 15236 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 553
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": "2026-05-14T19:13:57.814655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "structfuse-context",
+              "file": "report.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-14T19:13:57.865469+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| m2_full_qwen_continued | M2 Qwen continued: 继续 m2_full_qwen 的剩余 runs (random_s44 + embedding×3 + dataflow×3)。原实验 cron 在 s42 退出时自动设为 ANALYZING，但链仍在运行。 | — | — | — |\\\\n| m2_full_starcoder_resumed | M2 StarCoder resumed: 继续 m2_full_starcoder 的 8 sequential runs (random×2 + embedding×3 + dataflow×3)。原实验因 cron timeout 标记为 failed，实际 PID 519791 正常运行。 | — | — | — |\\\\n| m1_reextract_v2 | M1 重提取 v2：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。CodeQL pack 已修复，端到端测试通过。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。 | — | — | — |\\\\n\\\\n## 待处理\\\\n- plan_018_bm25: BM25 negative baseline: Dream 审稿三档一致认定缺 BM25 baseline 是论文最大结构性缺陷。Phase 1 (CPU): 对 M2 训练语料建 BM25 索引，挖掘 BM25 hard negatives，生成训练数据。Phase 2 (GPU): 用 BM25 negatives 训练 Qwen + StarCoder 各 1 seed，对比 R@1。（排队等待 GPU）\\\\n- plan_015_dynamic: Dynamic negative mining (epoch-level re-mining): 每 epoch 重新用当前 encoder embedding 挖掘 negatives，验证 static mining 是否足够。缩减版：只跑 dynamic_ep × 1 seed (Qwen, s42)，~11h 单卡。若 dynamic ≈ static（预期 <1pp 差异），在 Limitation 段排除 confound。（排队等待 GPU）\\\\n\\\\n## 近期结论\\\\n- **plan_017_literature** (success): Inference-time graph method comparison: 8 papers surveyed (CodexGraph, LocAgent, RANGER, GraphCoder, ARISE, RepoGraph, CodeGRAG, CodeRAG). Discussion v2 drafted, all citations verified. Conclusion: training-time vs inference-time complementary.\\\\n- **m2_full_starcoder** (failed): Full M2 StarCoder: 3 strategies × 3 seeds on full M1 data. Cross-encoder validation — if embedding > random holds for both Qwen and StarCoder, method is encoder-agnostic. Resolves plan_013 pilot negative (dataflow encoder-dependent). ← 基于 plan_013_starcoder\\\\n  [m2_starcoder_status_check](/api/workspace-files/projects/structfuse-context/artif\n…[truncated 1819 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-14T19:14:10.812042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "tail -30 /root/runs/structfuse-context/m1_reextract_v2.log"
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-14T19:14:12.016769+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls -lt /root/runs/m2_full_qwen/"
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-14T19:14:12.117568+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 03:10:41,423 [INFO] batch_extract: [facebookresearch__hydra.0f03eb60.func_pm_remove_assign__vb0nb9r6] CodeQL call_graph: 200 entries, 40 reachable files (threshold=1)\\\\n2026-05-15 03:10:46,825 [INFO] batch_extract: [dask__dask.5f61e423.pr_11244] CodeQL call_graph: 796 entries, 172 reachable files (threshold=1)\\\\n2026-05-15 03:10:53,942 [INFO] batch_extract: [facebookresearch__hydra.0f03eb60.func_pm_remove_assign__vfwhftsj] CodeQL call_graph: 295 entries, 46 reachable files (threshold=1)\\\\n2026-05-15 03:11:01,963 [INFO] batch_extract: [conan-io__conan.86f29e13.pr_10868] CodeQL call_graph: 0 entries, 0 reachable files (threshold=1)\\\\n2026-05-15 03:11:04,898 [INFO] batch_extract: [facebookresearch__hydra.0f03eb60.func_pm_remove_assign__wr7a75uw] CodeQL call_graph: 354 entries, 42 reachable files (threshold=1)\\\\n2026-05-15 03:11:16,141 [INFO] batch_extract: [facebookresearch__hydra.0f03eb60.func_pm_remove_assign__wrxy6qk2] CodeQL call_graph: 285 entries, 44 reachable files (threshold=1)\\\\n2026-05-15 03:11:21,747 [INFO] batch_extract: [conan-io__conan.86f29e13.pr_10874] CodeQL call_graph: 0 entries, 0 reachable files (threshold=1)\\\\n2026-05-15 03:11:27,311 [INFO] batch_extract: [facebookresearch__hydra.0f03eb60.func_pm_remove_assign__x4miem88] CodeQL call_graph: 120 entries, 36 reachable files (threshold=1)\\\\n2026-05-15 03:11:39,914 [INFO] batch_extract: [facebookresearch__hydra.0f03eb60.func_pm_remove_assign__x6k6kmxu] CodeQL call_graph: 32 entries, 18 reachable files (threshold=1)\\\\n2026-05-15 03:11:43,116 [INFO] batch_extract: [conan-io__conan.86f29e13.pr_10875] CodeQL call_graph: 446 entries, 123 reachable files (threshold=1)\\\\n2026-05-15 03:11:45,075 [INFO] batch_extract: [dask__dask.5f61e423.pr_11263] CodeQL call_graph: 0 entries, 0 reachable files (threshold=1)\\\\n2026-05-15 03:11:51,759 [INFO] batch_extract: [facebookresearch__hydra.0f03eb60.func_pm_remove_assign__y8e5pqbv] CodeQL call_graph: 254 e\n…[truncated 3155 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1305
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": "2026-05-14T19:14:12.168256+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls -lt /root/runs/m2_full_starcoder/"
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-14T19:14:12.471319+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 24\\\\n-rw-r--r-- 1 root root 1091 May 15 03:11 random_s44.log\\\\n-rw-r--r-- 1 root root 5844 May 15 03:11 s43plus_all.log\\\\n-rw-r--r-- 1 root root 3941 May 15 01:58 random_s43.log\\\\n-rw-r--r-- 1 root root 6979 May 14 19:24 random_s42.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 454
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": "2026-05-14T19:14:12.873229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16\\\\n-rw-r--r-- 1 root root  668 May 15 03:10 random_s43.log\\\\n-rw-r--r-- 1 root root 1521 May 15 02:01 s43plus_all.log\\\\n-rw-r--r-- 1 root root 5563 May 15 01:37 random_s42.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 704
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-14T19:14:16.840148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "tail -10 /root/runs/m2_full_qwen/random_s44.log"
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": "2026-05-14T19:14:17.242207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[Epoch 1] Using pre-mined negatives (random)...\\\\n  Training loop start: 1408 batches/epoch, total_steps_per_epoch=1408\\\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n  step 50  loss=0.6693  lr=3.56e-06\\\\n  step 100  loss=0.6215  lr=7.12e-06\\\\n  step 150  loss=0.6199  lr=1.05e-05\\\\n  step 200  loss=0.5004  lr=1.41e-05\\\\n  step 250  loss=0.3052  lr=1.77e-05\\\\n  step 300  loss=0.4615  lr=2.00e-05\\\\n  step 350  loss=0.2364  lr=2.00e-05\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 402
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-14T19:14:17.744184+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "tail -10 /root/runs/m2_full_starcoder/random_s43.log"
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": "2026-05-14T19:14:18.397038+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"wandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\\\nwandb: Run data is saved locally in /root/structfuse-context/wandb/offline-run-20260515_020316-qj1v54rj\\\\n[Epoch 1] Using pre-mined negatives (random)...\\\\n  Training loop start: 1405 batches/epoch, total_steps_per_epoch=1405\\\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n  step 50  loss=0.6781  lr=3.42e-06\\\\n  step 100  loss=1.1000  lr=6.98e-06\\\\n  step 150  loss=0.3684  lr=1.05e-05\\\\n  step 200  loss=0.4080  lr=1.41e-05\\\\n  step 250  loss=0.3830  lr=1.77e-05\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 652
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-14T19:14:18.397430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "wc -l /root/autodl-tmp/structfuse/full_m1_data/all.jsonl"
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-14T19:14:19.852213+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"44173 /root/autodl-tmp/structfuse/full_m1_data/all.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1454
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-14T19:15:01.651054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "1200",
+              "reason": "等待 Director 响应磁盘 CRITICAL 修复；Qwen s44 eval@500 预计 ~40min 后",
+              "prompt": "[HANDOFF] 你是 Research Reviewer，这是 Loop #9。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 和 cuda:1（bjb1-42106 上仅此两张分配给本项目）。之前发生过重复进程占满 GPU 1 的事故。\n- StarCoder 模型路径：`/root/autodl-tmp/models/bigcode/starcoder2-3b/bigcode/starcoder2-3b`（不是 `/root/autodl-tmp/structfuse/models/bigcode/starcoder2-3b`，后者不存在，BM25 脚本已修正）\n- 两个代码目录共存：训练代码在 `/root/structfuse/`，评估代码在 `/root/structfuse-context/`。import 路径要注意一致性。\n- D026：s42 = 3 epochs 无 early stopping；s43/s44 = 2 epochs + patience=2。resume 脚本给所有 run 加了 patience=2（含 s42），与原设计略有偏差但影响不大。\n- Claim 2 framing 过强：pilot 数据中两个编码器都是 dataflow < embedding，\"beyond embedding mining\" 不成立。D028 已提议降级。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-42106(root)，2× RTX PRO 6000 96GB\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- Qwen 模型：`/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B`\n- StarCoder 模型：`/root/autodl-tmp/models/bigcode/starcoder2-3b/bigcode/starcoder2-3b`\n- 训练数据：`/root/autodl-tmp/structfuse/full_m2_training_data/`（Qwen）、`/root/autodl-tmp/structfuse/full_m2_starcoder_data/`（StarCoder）\n- BM25 数据：`/root/autodl-tmp/structfuse/full_m2_training_data/train_bm25_s{42,43,44}.jsonl`\n- Checkpoints：`/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/` 和 `m2_full_starcoder/`\n- wandb：offline 模式\n- 活跃进程（截至 handoff）：\n  - cuda:0：Qwen random_s44 训练（Qwen 链 3/9，PID ~504138）\n  - cuda:1：StarCoder random_s43 训练（resume 脚本 1/9，PID ~519805，wrapper PID 519791 timeout=518400）\n  - CPU：m1_reextract_v2（CodeQL 提取，PID via batch_extract.py）\n  - Qwen watcher：PID 966920（`watch_and_chain_qwen_s42.sh`，等 s43+ 完成后跑 s42 supplement）\n  - StarCoder 旧 watcher 已 kill\n\n### 3. 📊 当前状态\n**刚完成的审查**：\n- 覆盖率全面审查已提交（15.8% overall，Claim 2 = 0% 最薄弱）\n- GPU 1 重复进程 CRITICAL 已修复验证（95GB → 48GB）\n- BM25 Phase 2 脚本审查（StarCoder 路径已修正）\n- K + checkpoint 文档审查（\"Qwen always same\" 被 random_s43 打破）\n- SWE-bench 就绪度审查（pipeline ready，random_s42 可先跑）\n- D034 ROADMAP 审查（override 逻辑合理）\n\n**Registry 状态**：\n- m2_full_qwen：ANALYZING（实际 RUNNING，random s42/s43 done，s44 running）\n- m2_full_starcoder：DONE/failed（registry 状态过时，实际 resume 在跑 random_s43）\n- m1_reextract_v2：RUNNING\n- plan_018_bm25：QUEUED（Phase 1 done，Phase 2 已集成到 StarCoder resume run 3/9）\n- plan_015_dynamic：QUEUED\n\n**等待中**：无 pending worker 回调。监控模式。\n\n### 4. 📋 待办（条件触发式）\n- Qwen random_s44 完成（~6h）→ 检查 early stopping pattern，更新 checkpoint 文档\n- StarCoder random_s43 首次 eval@500 → 核实 R@1 与 pilot (0.454) 一致性\n- resume 脚本跑到 bm25_s42（run 3/9，约 ~May 16-17）→ 这是 plan_018 Phase 2 首个结果，关键审查：BM25 R@1 vs random R@1 决定叙事方向\n- Qwen 链完成全部 9 runs（~May 17）→ 检查 embedding vs random 多 seed 统计差异，这是 Claim 1 的硬证据\n- SWE-bench eval 启动通知 → 核实用的是 best_by_recall_at_1 checkpoint，验证 eval 脚本 import 路径\n- Director 转发 Claim 2 framing 调整提案 → 按 negative-framing-review skill 四维度审查\n- 任何新实验启动 → 核对 CUDA_VISIBLE_DEVICES 在 {0,1} 内\n\n### 5. 🎯 战略上下文\n- **论文核心**：systematic study of hard negative mining for code retrieval。3 claims，Claim 1（embedding helps）最强，Claim 2（dataflow conditional）最弱，Claim 3（CodeQL scalability）是 supporting。\n- **关键决策链**：D017 falsified \"embedding harms\" → D024 pivot framing → D026/D027 epoch/early-stop 调整 → D028 Claim 2 降级待定 → D030 Dream 共识 BM25 是最大缺口 → D033 BM25 overlap 在大 repo 仅 30% → D034 re-dream gate override\n- **最容易判断错的事**：\n  1. plan_002 在 tracker 标 DONE（是 pilot m2_embed_verify），但 full M2 (m2_full_qwen/starcoder) 还在跑。别看到 DONE 就以为 M2 训练结束了。\n  2. plan_013 conclusion=\"negative\" 不是说 method 失败——是说 dataflow 对 StarCoder 不 work。embedding 对两个编码器都 work。\n  3. Claim 2 的 framing 写的是 \"beyond embedding mining\"，但 pilot 数据两个编码器都是 dataflow < embedding。这是当前最大的 claim-evidence mismatch。\n  4. BM25 Phase 2 结果（~May 17）决定 paper 叙事走 \"correcting misconception\" 还是 \"systematic comparison\"——不要在结果出来前 commit 叙事。\n  5. 覆盖率 15.8% 是 misleading——plan_017 实际已完成但 tracker 标 planned，m2_full 在跑但不在 plan tracker 反映。\n\n## 可查的历史\n前 7 轮 handoff 在 `task_context/history/reviewer/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-14T19:15:01.651675+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 19:36:00 (in 1258s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 0
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": "2026-05-14T19:15:02.103724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "du -sh /root/autodl-tmp/structfuse/full_m1_data/all.jsonl"
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-14T19:15:02.456077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"6.2G\\\\t/root/autodl-tmp/structfuse/full_m1_data/all.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 352
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-14T19:15:02.456525+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -c \"call_graph\" /root/runs/structfuse-context/m1_reextract_v2.log"
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-14T19:15:02.908224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"21144\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-14T19:15:06.280737+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "关键发现：m1_reextract_v2 的 all.jsonl 已达 44,173 行（目标值）。所有 3 个实验链正常推进。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer"
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": "2026-05-14T19:15:06.318051+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "下一轮 20 分钟后检查 Director 响应和训练进度。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer"
+          },
+          "id": "event-000160"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "messages": [
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-14T19:15:06.318468+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_fix_disk_cleanup_step1_20260514T191344]:\nWorker worker_fix_disk_cleanup_step1_20260514T191344 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "source": "worker_done:worker_fix_disk_cleanup_step1_20260514t191344"
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-14T19:15:14.843142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "structfuse-context",
+              "filters": "{'status': 'RUNNING'}"
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-14T19:15:15.363704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"m2_full_qwen_continued\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-14T18:44:20.646Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:44:53.128Z\\\", \\\"hypothesis\\\": \\\"M2 Qwen continued: 继续 m2_full_qwen 的剩余 runs (random_s44 + embedding×3 + dataflow×3)。原实验 cron 在 s42 退出时自动设为 ANALYZING，但链仍在运行。\\\", \\\"parent\\\": \\\"m2_full_qwen\\\"}, \\\"m2_full_starcoder_resumed\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-14T18:44:19.253Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:44:52.329Z\\\", \\\"hypothesis\\\": \\\"M2 StarCoder resumed: 继续 m2_full_starcoder 的 8 sequential runs (random×2 + embedding×3 + dataflow×3)。原实验因 cron timeout 标记为 failed，实际 PID 519791 正常运行。\\\", \\\"parent\\\": \\\"m2_full_starcoder\\\"}, \\\"m1_reextract_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-13T20:00:20.578Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:01:27.736Z\\\", \\\"hypothesis\\\": \\\"M1 重提取 v2：恢复 28,276 个因运行时瞬态文件系统故障失败的 instances（82 repos）。CodeQL pack 已修复，端到端测试通过。预期将训练数据从 15,897 提升至 ~44,173。D022 批准。\\\", \\\"parent\\\": \\\"m1_extraction\\\", \\\"notes\\\": \\\"M1 重提取 v2：CodeQL pack 已修复（codeql-pack.lock.yml 存在），新建 DB 全部成功。28,276 instances / 82 repo groups / 4 workers 并行。启动 2026-05-14 03:59 CST。[诊断 07:06 CST] 活跃运行中，~15/82 groups 完成，2,469 次 call_graph 查询成功，预计还需 ~13-16h。仅前 4 个旧 repo（furl/pyasn1/feedparser/python-docx）复用 v1 旧 DB 有 18 次降级 WARNING，04:02 之后零失败。产出写入 all.jsonl（追加模式）。磁盘 97GB 可用。\\\"}}, \\\"count\\\": 3, \\\"total\\\": 3, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.093}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 520
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-14T19:15:15.364243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "df -h /root/autodl-tmp"
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-14T19:15:17.274800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  143G  108G  57% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1910
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-14T19:15:17.275250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls -d /root/autodl-tmp/structfuse/m2_embed_verify_output /root/autodl-tmp/structfuse/m2_starcoder_output /root/autodl-tmp/structfuse/m2_pilot_data /root/autodl-tmp/structfuse/m2_embed_verify_data 2>&1"
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-14T19:15:17.979771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 704
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-14T19:15:17.980262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/ /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/"
+            }
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-14T19:15:18.332179+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/:\\\\nbest_by_recall_at_1\\\\nbest_by_val_loss\\\\nfinal\\\\n\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43/:\\\\nbest_by_recall_at_1\\\\nbest_by_val_loss\\\\nfinal\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-14T19:15:26.846155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls -d /root/autodl-tmp/structfuse/m2_embed_verify_output"
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-14T19:15:27.147705+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "ls -d /root/autodl-tmp/structfuse/m2_starcoder_output"
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-14T19:15:27.549725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/structfuse/m2_embed_verify_output': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 703
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-14T19:15:28.051983+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/structfuse/m2_starcoder_output': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 904
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": "2026-05-14T19:15:28.052495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "grep -c \"best\" /root/structfuse/run_m2_full_starcoder_resume.sh"
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-14T19:15:28.504543+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-14T19:15:29.006914+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "tail -20 /root/structfuse/run_m2_full_starcoder_resume.sh"
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-14T19:15:29.609330+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        --use-lora \\\\\\\\\\\\n        --gradient-checkpointing \\\\\\\\\\\\n        --wandb-project structfuse \\\\\\\\\\\\n        --wandb-run-name \\\\\\\"m2_full_sc2_${RUN_NAME}\\\\\\\" \\\\\\\\\\\\n        --early-stopping-patience 2 \\\\\\\\\\\\n        $EXTRA_ARGS \\\\\\\\\\\\n        2>&1 | tee \\\\\\\"$RUN_LOG\\\\\\\"\\\\n\\\\n    echo \\\\\\\"[$(date '+%Y-%m-%d %H:%M:%S')] DONE: ${RUN_NAME}\\\\\\\"\\\\n\\\\n    if [ -d \\\\\\\"${OUTPUT_DIR}/best\\\\\\\" ]; then\\\\n        find \\\\\\\"${OUTPUT_DIR}\\\\\\\" -maxdepth 1 -name \\\\\\\"checkpoint-*\\\\\\\" -type d -exec rm -rf {} + 2>/dev/null || true\\\\n    fi\\\\ndone\\\\n\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\"============================================\\\\\\\"\\\\necho \\\\\\\" ALL 9 RESUME RUNS COMPLETED\\\\\\\"\\\\necho \\\\\\\" End: $(date '+%Y-%m-%d %H:%M:%S')\\\\\\\"\\\\necho \\\\\\\"============================================\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 602
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-14T19:15:29.910790+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader"
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-14T19:15:30.362885+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 62196 MiB, 97887 MiB, 100 %\\\\n1, 53927 MiB, 97887 MiB, 100 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-14T19:15:51.311770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_a824c537c71f24fe2c80800ab4d82d39:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "bjb1-42106",
+              "log_path": "/root/runs/m2_full_qwen/random_s44.log",
+              "n": "15"
+            }
+          },
+          "id": "event-000180"
+        }
+      ]
+    }
+  ]
+}

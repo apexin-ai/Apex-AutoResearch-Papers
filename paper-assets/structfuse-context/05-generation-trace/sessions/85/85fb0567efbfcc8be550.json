@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85fb0567efbfcc8be550",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "write introduction draft",
+  "task_key": "worker_write_introduction-draft_20260514T224556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_introduction-draft_20260514T224556_result.json",
+    "occurrence": 1,
+    "bytes": 1088,
+    "sha256": "282fb4fa45b1c63c1c07510500c8f64c5aca12eb4027ca03d02b6331de64378c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction v1 已写入并注册。结构概要：\n\n- **P1** — Code retrieval 重要性 + lexical ≠ structural relevance 问题（引用 SWE-bench, SweRank, SWE-Fixer, SWE-agent, Agentless）\n- **P2** — 两个 gap：(a) graph-guided 方法仅 inference-time 用结构信号，encoder 训练无结构；(b) code domain 缺乏 negative mining 系统研究，CoCoHaNeRe 主张 gradient-based 优于 non-differentiable embedding negatives 但未测试 static embedding-distance mining\n- **P3** — 我们的 systematic study：static embedding mining +1.6–2.0pp R@1（标注 pilot evidence），counter CoCoHaNeRe 前提但限定在 structural code retrieval 场景；dataflow negatives 与 encoder geometry 交互的 mechanistic 分析\n- **P4** — 3 contributions：Claim 1（embedding mining suffices），Claim 2（exploratory observation，dataflow × geometry 交互），Claim 3（CodeQL pipeline scalability）\n\n全文 ~730 words，所有引用均来自 literature_map.yaml，强度词已加 \"(pilot evidence; pending M2 full confirmation)\" 标注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-introduction-draft.md"
+}

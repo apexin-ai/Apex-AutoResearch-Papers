@@ -1,0 +1,592 @@
+# ops eval summary table
+
+**StructFuse: Structure-Grounded Hard Negative Mining for Contrastive Code Context Retrieval** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 10
+- **Recorded user turns:** 0
+- **Tool calls:** 2
+- **Original source:** `logs/workers/worker_ops_eval-summary-table_20260515T230410.log`
+- **Structured JSON:** [`997dd287c275540d3ccd.json`](../../sessions/99/997dd287c275540d3ccd.json)
+
+## Before a recorded user message
+
+10 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "session_id": "93574b16-4b05-4db8-9d7b-e7b6dd05a35e",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "def3adce-b6c5-4bdf-9007-aecdd8b6346f",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-structfuse-context/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778903400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "a77e849a-97ab-436a-ab44-dea70caa7ad7",
+  "session_id": "93574b16-4b05-4db8-9d7b-e7b6dd05a35e"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to create a structured summary table of all M2 training eval data as a Markdown file. Let me organize all the data provided and generate the tables.
+
+Let me compile all the data carefully.
+
+**Qwen Full M2 Results:**
+- random_s42: R@1=0.5527, val_loss=0.4651
+- random_s43: R@1=0.5554, val_loss=0.4476
+- random_s44: R@1=0.6009, val_loss=0.4252
+
+
+- embed_s43: R@1=0.5606, val_loss=0.4541
+- embed_s44: R@1=0.5942, val_loss=0.4341
+- dataflow_s43: R@1=0.5495 with eval@1000 showing R@1=0.5174, still running
+- dataflow_s42 and dataflow_s44 are pending
+
+**StarCoder Full M2 Results:**
+- random_s42: R@1=0.4604, val_loss=0.6134
+- random_s43: R@1=0.4912, val_loss=0.5
+- random_s44: R@1=0.4871, val_loss=0.5913
+- embed_s42 is running with R@1=0.4372 and val_loss=0.6154
+- embed_s43 and embed_s44 are pending
+- dataflow_s42 through s44 are all pending
+
+Now I'm calculating the mean and standard deviation for the Qwen random baseline across all three seeds to get a sense of the variance in performance. For the embed approach with just two data points, I'm getting a mean of 0.5774 and a sample standard deviation of 0.0238. The dataflow method only has one result so far at 0.5495, with the other seeds still pending. Now I'm moving on to the StarCoder R@1 metrics, calculating the mean and deviations across the three random seeds.
+
+For the embed condition, I'm still waiting on one seed to finish. Then I'm comparing the differences between embed and random approaches across the Qwen results, looking at how each seed's performance shifted.
+
+Now I'm examining the pilot versus full dataset results to see how scaling affected the metrics. For the training dynamics analysis, I need to extract the best step, early stopping point, and how the final performance compares to peak performance for each run—though I'm realizing I need to clarify what "final R@1" means when runs either completed all 4000 steps or stopped early. I'm working with the available data to compile the results, and since the user wants the complete markdown content as an artifact, I'll write it directly to the artifacts directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93574b16-4b05-4db8-9d7b-e7b6dd05a35e",
+  "uuid": "4800bfbb-4bcf-4996-8fb2-2adbacf09d45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J4vv9i9y54MM8fBvZE5xke",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12124,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12124
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01ArNzHbvjhc6tuKtSBUbE3a`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/",
+  "description": "List existing artifacts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93574b16-4b05-4db8-9d7b-e7b6dd05a35e",
+  "uuid": "ca3955c2-e602-4b7c-a33d-7dec2ef5c798",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J4vv9i9y54MM8fBvZE5xke",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12124,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12124
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T23:04:49.937Z_
+
+<details><summary>↩ Tool result · `toolu_01ArNzHbvjhc6tuKtSBUbE3a`</summary>
+
+```text
+_project
+analysis
+bjb1_status_check.md
+bm25_overlap_stratified.json
+checkpoint_criterion_analysis.md
+code
+disk_cleanup_report_20260513.md
+dream_reports
+figures
+full_m2
+literature
+m1_progress_0513.md
+m1_reextract_v2_status.md
+m2_full_qwen
+m2_full_qwen_analysis.md
+m2_full_starcoder
+m2_qwen_status_check.md
+m2_starcoder_status_check.md
+manifest.yaml
+mine_bm25_negatives.py
+mvp_p1_codeql_feasibility
+mvp_p2b_contrastive_training
+neg_difficulty_analysis
+paper_drafts
+paper_figures
+patch_build_m1.py
+patch_train.py
+plan003_eval_readiness.md
+plan003_swebench_dryrun_report.md
+plan003_swebench_eval_plan.md
+plan005_stratification_spec.md
+plan005_stratified_analysis_report.md
+plan006_error_patterns.json
+plan_003
+plan_003_swebench_eval
+plan_005
+plan_005_stratified
+plan_006
+plan_006_scalability
+plan_006_scalability_stats_29repos.json
+plan_018_bm25
+rename_safety_report.md
+status_check_20260514.md
+status_check_loop6.md
+swebench_eval_readiness.md
+training_status_snapshot.md
+v1_v2_changelog.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "93574b16-4b05-4db8-9d7b-e7b6dd05a35e",
+  "uuid": "28cd735f-e17d-4574-bf9f-0dffd766278b",
+  "tool_use_result": {
+    "stdout": "_project\nanalysis\nbjb1_status_check.md\nbm25_overlap_stratified.json\ncheckpoint_criterion_analysis.md\ncode\ndisk_cleanup_report_20260513.md\ndream_reports\nfigures\nfull_m2\nliterature\nm1_progress_0513.md\nm1_reextract_v2_status.md\nm2_full_qwen\nm2_full_qwen_analysis.md\nm2_full_starcoder\nm2_qwen_status_check.md\nm2_starcoder_status_check.md\nmanifest.yaml\nmine_bm25_negatives.py\nmvp_p1_codeql_feasibility\nmvp_p2b_contrastive_training\nneg_difficulty_analysis\npaper_drafts\npaper_figures\npatch_build_m1.py\npatch_train.py\nplan003_eval_readiness.md\nplan003_swebench_dryrun_report.md\nplan003_swebench_eval_plan.md\nplan005_stratification_spec.md\nplan005_stratified_analysis_report.md\nplan006_error_patterns.json\nplan_003\nplan_003_swebench_eval\nplan_005\nplan_005_stratified\nplan_006\nplan_006_scalability\nplan_006_scalability_stats_29repos.json\nplan_018_bm25\nrename_safety_report.md\nstatus_check_20260514.md\nstatus_check_loop6.md\nswebench_eval_readiness.md\ntraining_status_snapshot.md\nv1_v2_changelog.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01D8w5yccb7b3JcRX1XhUXMV`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/m2_eval_summary.md",
+  "content": "# M2 Full Eval Summary — All Strategies\n\n> Generated: 2026-05-15\n> Purpose: 论文写作 + plan_005 分层分析统一数据源\n\n---\n\n## Table 1: Qwen Full M2 — Strategy × Seed Best R@1\n\n| Strategy | s42 | s43 | s44 | Mean | Std |\n|----------|-----|-----|-----|------|-----|\n| random | 0.5527 | 0.5554 | 0.6009 | **0.5697** | 0.0271 |\n| embedding | *missing* | 0.5606 | 0.5942 | 0.5774† | 0.0238† |\n| dataflow | *pending* | 0.5495‡ | *pending* | — | — |\n\n- † mean/std computed from 2 seeds only (s42 missing)\n- ‡ dataflow_s43 still running; 0.5495 is best R@1 at step 500, eval@1000 showed R@1=0.5174 (early_stop patience 1/2)\n\n---\n\n## Table 2: StarCoder Full M2 — Strategy × Seed Best R@1\n\n| Strategy | s42 | s43 | s44 | Mean | Std |\n|----------|-----|-----|-----|------|-----|\n| random | 0.4604 | 0.4912 | 0.4871 | **0.4796** | 0.0167 |\n| embedding | 0.4372‡ | *pending* | *pending* | — | — |\n| dataflow | *pending* | *pending* | *pending* | — | — |\n\n- ‡ embed_s42 still running\n\n---\n\n## Table 3: Strategy Δ vs Random Baseline\n\n### Qwen\n\n| Seed | embed R@1 | random R@1 | Δ (embed−random) |\n|------|-----------|------------|-------------------|\n| s42 | *missing* | 0.5527 | — |\n| s43 | 0.5606 | 0.5554 | **+0.0052** |\n| s44 | 0.5942 | 0.6009 | **−0.0067** |\n| **Mean Δ** | | | **−0.0008** (n=2) |\n\n| Seed | dataflow R@1 | random R@1 | Δ (dataflow−random) |\n|------|--------------|------------|----------------------|\n| s43 | 0.5495‡ | 0.5554 | **−0.0059** |\n\n### StarCoder\n\n| Seed | embed R@1 | random R@1 | Δ (embed−random) |\n|------|-----------|------------|-------------------|\n| s42 | 0.4372‡ | 0.4604 | **−0.0232** |\n\n**Preliminary observation:** On full data, embedding/dataflow do NOT show consistent improvement over random. This contrasts with pilot results (Table 5).\n\n---\n\n## Table 4: SWE-bench BM25 Baseline (300 instances)\n\n| Metric | Value |\n|--------|-------|\n| R@1 | 0.2733 |\n| R@5 | 0.4667 |\n| R@10 | 0.5500 |\n| R@20 | 0.6467 |\n\n100-instance subset: R@1=0.2800, R@5=0.5100, R@10=0.5800, R@20=0.6300, MRR=0.3768\n\n---\n\n## Table 5: Pilot (24 repos) vs Full — Qwen R@1\n\n| Strategy | Pilot R@1 | Full Mean R@1 | Δ (full−pilot) |\n|----------|-----------|---------------|-----------------|\n| random | 0.5357 | 0.5697 (n=3) | +0.0340 |\n| embedding | 0.5557 | 0.5774 (n=2) | +0.0217 |\n| dataflow | 0.5436 | 0.5495 (n=1)‡ | +0.0059 |\n\n### StarCoder Pilot vs Full\n\n| Strategy | Pilot R@1 | Full Mean R@1 | Δ (full−pilot) |\n|----------|-----------|---------------|-----------------|\n| random | 0.4922 | 0.4796 (n=3) | −0.0126 |\n| embedding | 0.5078 | 0.4372 (n=1)‡ | −0.0706 |\n| dataflow | 0.4869 | — | — |\n\n**Pilot embed advantage disappeared at full scale** — key finding worth investigating.\n\n---\n\n## Table 6: Training Dynamics\n\n### Qwen\n\n| Subrun | Best R@1 | Best Step | Early Stop Step | Total Steps | Overfitting? |\n|--------|----------|-----------|-----------------|-------------|-------------|\n| random_s42 | 0.5527 | 1000 | — (ran full) | 4000 | Yes — peaked at 1000, ran 3000 more steps |\n| random_s43 | 0.5554 | 1500 | 1500 | 1500 | No — stopped at peak |\n| random_s44 | 0.6009 | 500 | 1500 | 1500 | Mild — best at 500, stopped at 1500 |\n| embed_s43 | 0.5606 | 1500 | 1500 | 1500 | No — stopped at peak |\n| embed_s44 | 0.5942 | 500 | 2000 | 2000 | Mild — best at 500, continued to 2000 |\n| dataflow_s43 | 0.5495 | 500 | *running* | ≥1000 | TBD — R@1 dropped to 0.5174 at step 1000 |\n\n### StarCoder\n\n| Subrun | Best R@1 | Best Step | Early Stop Step | Total Steps | Overfitting? |\n|--------|----------|-----------|-----------------|-------------|-------------|\n| random_s42 | 0.4604 | 2500 | — (ran full) | 4000 | Mild — peaked at 2500 |\n| random_s43 | 0.4912 | 1500 | 2500 | 2500 | Mild — best at 1500, stopped at 2500 |\n| random_s44 | 0.4871 | 1500 | 1500 | 1500 | No — stopped at peak |\n| embed_s42 | 0.4372 | 500 | *running* | ≥500 | TBD |\n\n### Best val_loss Reference\n\n| Subrun | Model | Best val_loss | Step |\n|--------|-------|---------------|------|\n| random_s42 | Qwen | 0.4651 | 1000 |\n| random_s43 | Qwen | 0.4476 | 500 |\n| random_s44 | Qwen | 0.4252 | 500 |\n| embed_s43 | Qwen | 0.4541 | 500 |\n| embed_s44 | Qwen | 0.4341 | 1000 |\n| dataflow_s43 | Qwen | 0.4617 | 500 |\n| random_s42 | StarCoder | 0.6134 | 1000 |\n| random_s43 | StarCoder | 0.5239 | 1500 |\n| random_s44 | StarCoder | 0.5913 | 500 |\n| embed_s42 | StarCoder | 0.6154 | 500 |\n\n---\n\n## Coverage Summary\n\n| Model | Strategy | Seeds Done | Seeds Running | Seeds Pending |\n|-------|----------|------------|---------------|---------------|\n| Qwen | random | 3/3 ✓ | 0 | 0 |\n| Qwen | embedding | 2/3 | 0 | 1 (s42) |\n| Qwen | dataflow | 0/3 | 1 (s43) | 2 (s42, s44) |\n| StarCoder | random | 3/3 ✓ | 0 | 0 |\n| StarCoder | embedding | 0/3 | 1 (s42) | 2 (s43, s44) |\n| StarCoder | dataflow | 0/3 | 0 | 3 |\n\n**Completion: 8/18 done, 2/18 running, 8/18 pending**\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93574b16-4b05-4db8-9d7b-e7b6dd05a35e",
+  "uuid": "03271312-105b-4436-95dd-0f61d55f935e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TCV8ofLfUED9YRngnQrVi9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2203,
+      "cache_read_input_tokens": 23965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2203
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T23:05:25.588Z_
+
+<details><summary>↩ Tool result · `toolu_01D8w5yccb7b3JcRX1XhUXMV`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/m2_eval_summary.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "93574b16-4b05-4db8-9d7b-e7b6dd05a35e",
+  "uuid": "7b6bde6c-f959-4d52-9f0a-d3d2fc0782c5",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/m2_eval_summary.md",
+    "content": "# M2 Full Eval Summary — All Strategies\n\n> Generated: 2026-05-15\n> Purpose: 论文写作 + plan_005 分层分析统一数据源\n\n---\n\n## Table 1: Qwen Full M2 — Strategy × Seed Best R@1\n\n| Strategy | s42 | s43 | s44 | Mean | Std |\n|----------|-----|-----|-----|------|-----|\n| random | 0.5527 | 0.5554 | 0.6009 | **0.5697** | 0.0271 |\n| embedding | *missing* | 0.5606 | 0.5942 | 0.5774† | 0.0238† |\n| dataflow | *pending* | 0.5495‡ | *pending* | — | — |\n\n- † mean/std computed from 2 seeds only (s42 missing)\n- ‡ dataflow_s43 still running; 0.5495 is best R@1 at step 500, eval@1000 showed R@1=0.5174 (early_stop patience 1/2)\n\n---\n\n## Table 2: StarCoder Full M2 — Strategy × Seed Best R@1\n\n| Strategy | s42 | s43 | s44 | Mean | Std |\n|----------|-----|-----|-----|------|-----|\n| random | 0.4604 | 0.4912 | 0.4871 | **0.4796** | 0.0167 |\n| embedding | 0.4372‡ | *pending* | *pending* | — | — |\n| dataflow | *pending* | *pending* | *pending* | — | — |\n\n- ‡ embed_s42 still running\n\n---\n\n## Table 3: Strategy Δ vs Random Baseline\n\n### Qwen\n\n| Seed | embed R@1 | random R@1 | Δ (embed−random) |\n|------|-----------|------------|-------------------|\n| s42 | *missing* | 0.5527 | — |\n| s43 | 0.5606 | 0.5554 | **+0.0052** |\n| s44 | 0.5942 | 0.6009 | **−0.0067** |\n| **Mean Δ** | | | **−0.0008** (n=2) |\n\n| Seed | dataflow R@1 | random R@1 | Δ (dataflow−random) |\n|------|--------------|------------|----------------------|\n| s43 | 0.5495‡ | 0.5554 | **−0.0059** |\n\n### StarCoder\n\n| Seed | embed R@1 | random R@1 | Δ (embed−random) |\n|------|-----------|------------|-------------------|\n| s42 | 0.4372‡ | 0.4604 | **−0.0232** |\n\n**Preliminary observation:** On full data, embedding/dataflow do NOT show consistent improvement over random. This contrasts with pilot results (Table 5).\n\n---\n\n## Table 4: SWE-bench BM25 Baseline (300 instances)\n\n| Metric | Value |\n|--------|-------|\n| R@1 | 0.2733 |\n| R@5 | 0.4667 |\n| R@10 | 0.5500 |\n| R@20 | 0.6467 |\n\n100-instance subset: R@1=0.2800, R@5=0.5100, R@10=0.5800, R@20=0.6300, MRR=0.3768\n\n---\n\n## Table 5: Pilot (24 repos) vs Full — Qwen R@1\n\n| Strategy | Pilot R@1 | Full Mean R@1 | Δ (full−pilot) |\n|----------|-----------|---------------|-----------------|\n| random | 0.5357 | 0.5697 (n=3) | +0.0340 |\n| embedding | 0.5557 | 0.5774 (n=2) | +0.0217 |\n| dataflow | 0.5436 | 0.5495 (n=1)‡ | +0.0059 |\n\n### StarCoder Pilot vs Full\n\n| Strategy | Pilot R@1 | Full Mean R@1 | Δ (full−pilot) |\n|----------|-----------|---------------|-----------------|\n| random | 0.4922 | 0.4796 (n=3) | −0.0126 |\n| embedding | 0.5078 | 0.4372 (n=1)‡ | −0.0706 |\n| dataflow | 0.4869 | — | — |\n\n**Pilot embed advantage disappeared at full scale** — key finding worth investigating.\n\n---\n\n## Table 6: Training Dynamics\n\n### Qwen\n\n| Subrun | Best R@1 | Best Step | Early Stop Step | Total Steps | Overfitting? |\n|--------|----------|-----------|-----------------|-------------|-------------|\n| random_s42 | 0.5527 | 1000 | — (ran full) | 4000 | Yes — peaked at 1000, ran 3000 more steps |\n| random_s43 | 0.5554 | 1500 | 1500 | 1500 | No — stopped at peak |\n| random_s44 | 0.6009 | 500 | 1500 | 1500 | Mild — best at 500, stopped at 1500 |\n| embed_s43 | 0.5606 | 1500 | 1500 | 1500 | No — stopped at peak |\n| embed_s44 | 0.5942 | 500 | 2000 | 2000 | Mild — best at 500, continued to 2000 |\n| dataflow_s43 | 0.5495 | 500 | *running* | ≥1000 | TBD — R@1 dropped to 0.5174 at step 1000 |\n\n### StarCoder\n\n| Subrun | Best R@1 | Best Step | Early Stop Step | Total Steps | Overfitting? |\n|--------|----------|-----------|-----------------|-------------|-------------|\n| random_s42 | 0.4604 | 2500 | — (ran full) | 4000 | Mild — peaked at 2500 |\n| random_s43 | 0.4912 | 1500 | 2500 | 2500 | Mild — best at 1500, stopped at 2500 |\n| random_s44 | 0.4871 | 1500 | 1500 | 1500 | No — stopped at peak |\n| embed_s42 | 0.4372 | 500 | *running* | ≥500 | TBD |\n\n### Best val_loss Reference\n\n| Subrun | Model | Best val_loss | Step |\n|--------|-------|---------------|------|\n| random_s42 | Qwen | 0.4651 | 1000 |\n| random_s43 | Qwen | 0.4476 | 500 |\n| random_s44 | Qwen | 0.4252 | 500 |\n| embed_s43 | Qwen | 0.4541 | 500 |\n| embed_s44 | Qwen | 0.4341 | 1000 |\n| dataflow_s43 | Qwen | 0.4617 | 500 |\n| random_s42 | StarCoder | 0.6134 | 1000 |\n| random_s43 | StarCoder | 0.5239 | 1500 |\n| random_s44 | StarCoder | 0.5913 | 500 |\n| embed_s42 | StarCoder | 0.6154 | 500 |\n\n---\n\n## Coverage Summary\n\n| Model | Strategy | Seeds Done | Seeds Running | Seeds Pending |\n|-------|----------|------------|---------------|---------------|\n| Qwen | random | 3/3 ✓ | 0 | 0 |\n| Qwen | embedding | 2/3 | 0 | 1 (s42) |\n| Qwen | dataflow | 0/3 | 1 (s43) | 2 (s42, s44) |\n| StarCoder | random | 3/3 ✓ | 0 | 0 |\n| StarCoder | embedding | 0/3 | 1 (s42) | 2 (s43, s44) |\n| StarCoder | dataflow | 0/3 | 0 | 3 |\n\n**Completion: 8/18 done, 2/18 running, 8/18 pending**\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+文件已写入 `artifacts/m2_eval_summary.md`。
+
+核心发现：
+- **Qwen random mean R@1 = 0.5697**，是目前最强 baseline；embedding mean = 0.5774 但仅 2 seeds，Δ 几乎为零（−0.0008）
+- **Pilot 阶段的 embed 优势在 full scale 消失**，StarCoder 尤其明显（pilot +0.0156 → full −0.0232）
+- 18 个 subrun 完成 8 个，运行中 2 个，待跑 8 个
+- 总体覆盖率 44%，random 两个模型均已完成，embedding/dataflow 缺口较大
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "93574b16-4b05-4db8-9d7b-e7b6dd05a35e",
+  "uuid": "aa19ff32-2012-48bc-a86d-b1284ee1432f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015HjD2exXWc3STcaJT81peU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2387,
+      "cache_read_input_tokens": 26168,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2387
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 10_
+
+文件已写入 `artifacts/m2_eval_summary.md`。
+
+核心发现：
+- **Qwen random mean R@1 = 0.5697**，是目前最强 baseline；embedding mean = 0.5774 但仅 2 seeds，Δ 几乎为零（−0.0008）
+- **Pilot 阶段的 embed 优势在 full scale 消失**，StarCoder 尤其明显（pilot +0.0156 → full −0.0232）
+- 18 个 subrun 完成 8 个，运行中 2 个，待跑 8 个
+- 总体覆盖率 44%，random 两个模型均已完成，embedding/dataflow 缺口较大
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 73915,
+  "duration_api_ms": 74746,
+  "num_turns": 3,
+  "stop_reason": "end_turn",
+  "session_id": "93574b16-4b05-4db8-9d7b-e7b6dd05a35e",
+  "total_cost_usd": 0.24596450000000003,
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 16714,
+    "cache_read_input_tokens": 61974,
+    "output_tokens": 4336,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 16714,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 205,
+        "cache_read_input_tokens": 26168,
+        "cache_creation_input_tokens": 2387,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2387
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2005,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00209,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 5,
+      "outputTokens": 4336,
+      "cacheReadInputTokens": 61974,
+      "cacheCreationInputTokens": 16714,
+      "webSearchRequests": 0,
+      "costUSD": 0.2438745,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "39ce84c5-3a59-44c8-a185-4dc3a679a1b5"
+}
+```
+
+</details>
+
+---

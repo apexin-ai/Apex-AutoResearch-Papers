@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7f0beb55912687fdb9d",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code starcoder2 support",
+  "task_key": "worker_code_starcoder2_support_20260513T000505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_starcoder2_support_20260513T000505_result.json",
+    "occurrence": 1,
+    "bytes": 1258,
+    "sha256": "9decee8c3dc976f3c9219d1f3cc812b8108c634514fbf70552ea6b266367f563"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "原始路径也能正常加载。\n\n## 结果汇总\n\n### 1. 模型对比\n\n| | Qwen2.5-Coder-3B | StarCoder2-3B |\n|---|---|---|\n| model_type | qwen2 | starcoder2 |\n| hidden_size | 2048 | 3072 |\n| params | ~3B | 3,030,371,328 |\n| attention modules | q_proj, v_proj | **q_proj, v_proj** (相同) |\n| pad_token | `<\\|endoftext\\|>` | None → 设为 eos |\n| vocab_size | 151,643 | 49,152 |\n\n### 2. 代码修改\n\n**无需修改。** 现有代码已完全兼容 StarCoder2-3B：\n- `AutoModel` / `AutoTokenizer` 自动适配架构\n- `hidden_size` 从 config 动态读取\n- LoRA target `[\"q_proj\", \"v_proj\"]` 两个模型都有\n- `train.py` 已有 `if tokenizer.pad_token is None: tokenizer.pad_token = tokenizer.eos_token`\n\n### 3. Dry-run 结果\n\n- **模型加载**: OK\n- **LoRA**: Trainable 14,773,505 / 3,045,144,833 (0.49%)\n- **Encode**: shape `[2, 256]` — 正确\n- **Forward pass**: `loss=2.7674, logits=[2,4]` — 正确\n\n### 4. StarCoder2-3B 可用路径\n\n- `/root/autodl-tmp/.hf_cache/starcoder2-3b/`（原始路径，已补全权重）\n- `/root/autodl-tmp/.ms_cache/AI-ModelScope/starcoder2-3b`（ModelScope 下载）\n\n训练时直接 `--model-name /root/autodl-tmp/.hf_cache/starcoder2-3b/` 即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-starcoder2-support.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "cacae794176b02f848f1",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "analysis plan 005 stratified",
+  "task_key": "worker_analysis_plan_005_stratified_20260514T201443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_005_stratified_20260514T201443.log",
+    "occurrence": 1,
+    "bytes": 16033918,
+    "sha256": "092b24862554ce55e48e865021982ed318b219039d1ed2fc1bc887b71c0f9bd4"
+  },
+  "statistics": {
+    "messages": 202,
+    "user_turns": 0,
+    "tool_calls": 80,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 80,
+      "tool_result": 80,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 202,
+      "chunks": [
+        {
+          "path": "cacae794176b02f848f1-part-0001.json",
+          "message_count": 92
+        },
+        {
+          "path": "cacae794176b02f848f1-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "cacae794176b02f848f1-part-0003.json",
+          "message_count": 109
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-plan-005-stratified.md"
+}

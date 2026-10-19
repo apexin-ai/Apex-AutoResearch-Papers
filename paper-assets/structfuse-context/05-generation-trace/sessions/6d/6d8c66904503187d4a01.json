@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d8c66904503187d4a01",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ssh codeql fix and rerun",
+  "task_key": "worker_ssh_codeql_fix_and_rerun_20260513T194805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_codeql_fix_and_rerun_20260513T194805_result.json",
+    "occurrence": 1,
+    "bytes": 1032,
+    "sha256": "1729b4dc12c37e6ab019f5dc51406e4442987ba8f46dd8b19b233e02511db09e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### Step 1: CodeQL pack install\n- **成功**。`codeql/python-all@7.1.0` 等 13 个依赖已安装\n- 过程中修复了 AutoDL 代理 SSL 证书问题（导入了代理证书到 CodeQL Java truststore）\n\n### Step 2: 端到端测试（seatgeek/thefuzz）\n- **DB create**: 成功（22 modules，1.2s）\n- **call_graph.ql**: 成功，13 条结果（与 all.jsonl 记录一致）\n- **bounded_dataflow.ql**: 成功，有 dataflow 路径输出\n- 测试文件已清理\n\n### Step 3: M1 重提取已启动\n- **tmux session**: `m1_reextract_v2`\n- **日志路径**: `/root/runs/structfuse-context/m1_reextract_v2.log`\n- **实例数**: 28,276 个待重跑，82 个 unique repo groups\n- **Workers**: 4\n- **磁盘**: 114GB 可用\n- **预估耗时**: ~60h（4 workers）\n- **状态确认**: CodeQL 查询正在工作——已开始产出 call_graph 结果（gruns/furl 82 entries, feedparser 51 entries, python-docx 43 entries）\n- GPU 未受影响（M2 训练 sessions 仍在运行）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-codeql-fix-and-rerun.md"
+}

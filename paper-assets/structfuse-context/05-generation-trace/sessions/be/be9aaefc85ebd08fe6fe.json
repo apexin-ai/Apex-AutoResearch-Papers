@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be9aaefc85ebd08fe6fe",
+  "project": "structfuse-context",
+  "kind": "history",
+  "title": "agent / loop_6_1778807209.md",
+  "task_key": "loop_6_1778807209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778807209.md",
+    "occurrence": 1,
+    "bytes": 5355,
+    "sha256": "d9abb83c17f405c68e8619cd026c082d772ad1bc75571bbd47addf25d6be79cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-14T21:12:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: bjb1-42106 上只能用 `cuda:0` 和 `cuda:1`（项目配置 `gpu_ids=[\"cuda:0\",\"cuda:1\"]`），历史上有 2 次越界违规被 CRITICAL\n- **m1_reextract_v2 数据不重跑 M2**：Director Session 8 明确决策，ARR May 25 DDL 不允许再加 4-5 天重训。只做 post-M2 1-seed pilot 对比\n- **BM25 Phase 2 由 tmux watcher 自动触发**，不经过 `submit_training_job`——watcher 启动的训练需在链完成回调中**补注册 cron**，否则无监控无回调\n- **Bash 预读陷阱**: 运行中的 bash 链脚本已预读到内存，磁盘上修改不影响执行，需要链外独立 tmux watcher\n- **plan_005 的 R@1 数据当前为 dry-run mock predictions，绝对禁止引用**（D039）。真实评估需等 M2 checkpoint\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: bjb1-42106（从 cqa1-21977 迁移，cqa1 已废弃）\n- **工作目录**: `/root/structfuse`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **激活命令**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: Qwen2.5-Coder-3B + StarCoder2-3B（HF 缓存位置未确认，应在 `/root/autodl-tmp/` 下）\n- **训练数据**: `/root/autodl-tmp/structfuse/full_m2_training_data/`（11,308 train/seed）\n- **M1 原始数据**: `/root/autodl-tmp/structfuse/full_m1_data/all.jsonl`（6.6GB, 15,897 instances）\n- **BM25 数据**: `/root/autodl-tmp/structfuse/full_m2_training_data/{train,val}_bm25_s{42,43,44}.jsonl`\n- **Checkpoint 目录**: 训练脚本输出到 `/root/autodl-tmp/structfuse/` 下（具体路径由脚本决定）\n- **活跃进程**:\n  - Qwen M2 链: PID 337267, tmux=`m2_full_qwen_continued`, cuda:0, cron 已注册\n  - StarCoder M2 链: PID 519791, tmux=`m2_full_starcoder_resumed`, cuda:1, cron 已注册\n  - m1_reextract_v2: CPU 后台, cron 已注册\n  - BM25 watchers: tmux `bm25_qwen_watcher`（监控 PID 337267）+ `bm25_starcoder_watcher`（监控 PID 519791），每 5min 轮询\n- **GPU**: 2× RTX PRO 6000 96GB，两卡满载\n\n### 3. 📊 当前状态\n**刚完成的**: session-start 初始化（registry 同步 + cron reconcile）。上一个 session 完成了 BM25 Phase 1 数据生成、neg_difficulty 可视化、plan_017 文献对比、plan_005 脚本准备、M2 链重新注册。\n\n**RUNNING**:\n| exp_id | 进度 | GPU | ETA |\n|--------|------|-----|-----|\n| m2_full_qwen_continued | random_s44 running (650/2816), 2/10 runs done | cuda:0 | ~May 17 |\n| m2_full_starcoder_resumed | random_s43 (500/2810), 1/9 runs done | cuda:1 | ~May 17-18 |\n| m1_reextract_v2 | 80.8% (22,842/28,276), CPU only | — | ~May 15 15:00 CST |\n\n**PREPARING**: plan_005_stratified（脚本就绪，等 M2 checkpoint）\n\n**QUEUED**: plan_018_bm25（Phase 1 done, Phase 2 auto-trigger by watcher）、plan_015_dynamic\n\n**等待中**: 0 running workers。3 个 cron 监控活跃。无待处理的 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- **m1_reextract_v2 cron 回调（~May 15 15:00 CST）** → spawn worker 合并新数据到 all.jsonl → update registry → 汇报 Director（数据量提升幅度）\n- **M2 Qwen 链完成（~May 17）** → bm25_qwen_watcher 自动启动 BM25 Qwen 训练 → **必须补注册 cron** → plan_005 stratified 真实评估可启动（0 GPU）\n- **M2 StarCoder 链完成（~May 17-18）** → bm25_starcoder_watcher 自动启动 BM25 StarCoder 训练 → 补注册 cron\n- **两条 M2 链全部完成** → 立即并行启动: (1) 统计检验（paired bootstrap, CI）(2) plan_003 SWE-bench eval (3) plan_005 stratified (4) plan_019 pool size sensitivity\n- **plan_003 需要 LLM API key**（Qwen3.6-27B for SWE-bench agent）→ dry-run 已验证但未确认 key 来源，可能需 `request_secret`\n- **BM25 Phase 2 结果出** → 若 BM25 harm > embedding → 叙事方向 \"BM25 proxy caused harm, true embedding fixes it\"；若 BM25 ≈ embedding → 叙事调整为 \"systematic comparison\"\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D035: Claim 2（dataflow conditional benefit）降级为 \"exploratory observation with testable prediction\"，因为 pilot 负向（StarCoder dataflow < random）\n- Claim 1（embedding > random）是论文基石：Qwen +2.0pp (pilot), +1.7pp (M2 s42), s43 +2.0pp 一致。StarCoder pilot 也 +1.6pp。需 M2 全量 3-seed 统计检验确认\n- BM25 baseline 是 dream 审稿三档一致认定的 #1 结构性缺陷。Phase 2 结果决定叙事方向\n- Dream gate: median=WR（novelty/effect-size/n=2 不可修复），目标最大化 Best case（当前 Best=5/6）\n\n**时间线**: M2(~May 17) → post-M2 实验(~May 19) → 写作(~May 20-24) → **ARR May 25**\n\n**易错点**:\n- 不要把 plan_005 dry-run mock R@1 当真实数据引用（D039 明确标记无效）\n- BM25 top-7 Jaccard 与 k=50 全候选重叠率差异巨大（30-38% vs 87%）——不要用 87% 预测 Phase 2 结果\n- registry 状态机不可回退——长链中途误标需创建 `_resumed`/`_continued` 新 entry\n- Checkpoint 选择标准: R@1 为主 criterion（D036），但同时保存 best_by_val_loss。s42(3 epochs) 和 s43/s44(2 epochs + early stopping) 超参不同（D026）\n- StarCoder 训练速度 ~195 steps/h，只有 Qwen 的 ~45%，ETA 比 Qwen 晚约 1 天\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778807209.md"
+}

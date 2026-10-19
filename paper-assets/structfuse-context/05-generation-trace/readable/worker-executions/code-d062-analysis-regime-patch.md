@@ -1,0 +1,2461 @@
+# code d062 analysis regime patch
+
+**StructFuse: Structure-Grounded Hard Negative Mining for Contrastive Code Context Retrieval** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 51
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/workers/worker_code_d062_analysis_regime_patch_20260516T114733.log`
+- **Structured JSON:** [`6f2cbff11a4421bff5ad.json`](../../sessions/6f/6f2cbff11a4421bff5ad.json)
+
+## Before a recorded user message
+
+51 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "98e28c3d-b8a1-4cea-b060-a2818a49dc5f",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-structfuse-context/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778938800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "ba4c2d60-f875-4228-a1a6-6e73379ff41f",
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the current script from the server to understand its structure before making modifications.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "e54e0121-df78-4d08-b02c-b5ee176140e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VTk6NJkX6QNLFa2Dati7iw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12009,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12009
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先读取当前脚本内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "c38fa548-9c6e-4a6d-903c-e6ee450ddae5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VTk6NJkX6QNLFa2Dati7iw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12009,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12009
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Kx3vEemRULfdEApPiitxCW`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "34f42ff5-3c7d-4120-84e3-64843c0f5b14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VTk6NJkX6QNLFa2Dati7iw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12009,
+      "cache_read_input_tokens": 11447,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12009
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T11:47:46.326Z_
+
+<details><summary>↩ Tool result · `toolu_01Kx3vEemRULfdEApPiitxCW`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "e71021f0-c564-42b1-8d3c-359a282e95bb",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FTmB3dV6izq9KjHZzuaGZG`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "cat /root/structfuse/scripts/d062_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "0be16fee-8722-423d-82e8-2869983d1706",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012k4kbF5MRWZgjtuPBotH7p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 717,
+      "cache_read_input_tokens": 23456,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 717
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T11:47:50.286Z_
+
+<details><summary>↩ Tool result · `toolu_01FTmB3dV6izq9KjHZzuaGZG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"D062 selection-set analysis: summary table, stratified effects, bootstrap CIs.\\n\\nReads /root/autodl-tmp/structfuse/d062_results/selection_*.json files produced\\nby D062 pool=50 eval across 3 strategies × 3 seeds × 2 criteria (14 configs).\\n\\nInputs:\\n  - selection_{strategy}_{seed}_{criterion}.json  (flat JSON with recall@1/5/10, total, ckpt_dir)\\n\\nOutputs:\\n  - d062_summary.csv   — cross-table of R@1 by strategy × criterion × seed\\n  - d062_stratified.json — criterion / strategy / interaction main effects\\n  - d062_bootstrap.json  — 95% bootstrap CIs and pairwise P(A > B)\\n\\nDependencies: numpy, json, glob, argparse (stdlib + numpy only)\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport glob\\nimport json\\nimport os\\nimport re\\nimport sys\\n\\nimport numpy as np\\n\\n\\nSTRATEGIES = [\\\"random\\\", \\\"embedding_distance\\\", \\\"dataflow_aware\\\"]\\nSEEDS = [\\\"s42\\\", \\\"s43\\\", \\\"s44\\\"]\\nCRITERIA = [\\\"best_by_val_loss\\\", \\\"best_by_recall_at_1\\\"]\\nMETRICS = [\\\"recall@1\\\", \\\"recall@5\\\", \\\"recall@10\\\"]\\n\\n\\ndef parse_filename(path):\\n    \\\"\\\"\\\"Extract (strategy, seed, criterion) from selection_{strategy}_{seed}_{criterion}.json.\\\"\\\"\\\"\\n    basename = os.path.basename(path)\\n    m = re.match(r\\\"selection_(.+?)_(s\\\\d+)_(best_by_.+)\\\\.json$\\\", basename)\\n    if not m:\\n        return None\\n    return m.group(1), m.group(2), m.group(3)\\n\\n\\ndef load_results(results_dir):\\n    \\\"\\\"\\\"Load all selection_*.json files into a nested dict keyed by (strategy, seed, criterion).\\\"\\\"\\\"\\n    files = glob.glob(os.path.join(results_dir, \\\"selection_*.json\\\"))\\n    data = {}\\n    for f in sorted(files):\\n        parsed = parse_filename(f)\\n        if parsed is None:\\n            print(f\\\"  [WARN] Skipping unrecognized file: {f}\\\", file=sys.stderr)\\n            continue\\n        strategy, seed, criterion = parsed\\n        with open(f) as fh:\\n            data[(strategy, seed, criterion)] = json.load(fh)\\n    return data\\n\\n\\ndef build_summary_table(data, metric=\\\"recall@1\\\"):\\n    \\\"\\\"\\\"Build a summary dict: {strategy: {criterion: {seed: value, 'mean': value}}}.\\\"\\\"\\\"\\n    table = {}\\n    for strategy in STRATEGIES:\\n        table[strategy] = {}\\n        for criterion in CRITERIA:\\n            row = {}\\n            vals = []\\n            for seed in SEEDS:\\n                key = (strategy, seed, criterion)\\n                if key in data:\\n                    v = data[key].get(metric)\\n                    row[seed] = v\\n                    if v is not None:\\n                        vals.append(v)\\n                else:\\n                    row[seed] = None\\n            row[\\\"mean\\\"] = float(np.mean(vals)) if vals else None\\n            table[strategy][criterion] = row\\n    return table\\n\\n\\ndef print_summary_table(table, metric=\\\"recall@1\\\"):\\n    \\\"\\\"\\\"Pretty-print the summary table to terminal.\\\"\\\"\\\"\\n    print(f\\\"\\\\n{'='*90}\\\")\\n    print(f\\\"  D062 Summary Table — {metric}\\\")\\n    print(f\\\"{'='*90}\\\")\\n\\n    # Header\\n    header = f\\\"{'Strategy':<22}\\\"\\n    for criterion in CRITERIA:\\n        short = \\\"val_loss\\\" if \\\"val_loss\\\" in criterion else \\\"recall@1\\\"\\n        for seed in SEEDS:\\n            header += f\\\" {short}/{seed:>3}\\\"\\n        header += f\\\" {short}/mean\\\"\\n    print(header)\\n    print(\\\"-\\\" * 90)\\n\\n    # Rows\\n    for strategy in STRATEGIES:\\n        row_str = f\\\"{strategy:<22}\\\"\\n        for criterion in CRITERIA:\\n            entry = table[strategy][criterion]\\n            for seed in SEEDS:\\n                v = entry.get(seed)\\n                row_str += f\\\"  {v*100:>8.2f}\\\" if v is not None else f\\\"  {'—':>8}\\\"\\n            m = entry.get(\\\"mean\\\")\\n            row_str += f\\\"  {m*100:>8.2f}\\\" if m is not None else f\\\"  {'—':>8}\\\"\\n        print(row_str)\\n\\n    # Criterion main effect row\\n    print(\\\"-\\\" * 90)\\n    row_str = f\\\"{'Δ(recall@1-val_loss)':<22}\\\"\\n    # For each strategy, compute the difference of means\\n    all_diffs = []\\n    for strategy in STRATEGIES:\\n        vl_mean = table[strategy][CRITERIA[0]].get(\\\"mean\\\")\\n        r1_mean = table[strategy][CRITERIA[1]].get(\\\"mean\\\")\\n        if vl_mean is not None and r1_mean is not None:\\n            diff = r1_mean - vl_mean\\n            all_diffs.append(diff)\\n    # Print aggregate\\n    for criterion in CRITERIA:\\n\\n\\n... [截断: 输出过长，省略 6313 字符] ...\\n\\n           alt_dists.append(config_samples[a_key])\\n\\n            pair_key = f\\\"{alt}_vs_random_{crit_short}\\\"\\n            if random_dists and alt_dists:\\n                # Mean across available seeds\\n                r_agg = np.mean(random_dists, axis=0)\\n                a_agg = np.mean(alt_dists, axis=0)\\n                diff = a_agg - r_agg\\n                p_greater = float(np.mean(diff > 0))\\n                result[\\\"pairwise\\\"][pair_key] = {\\n                    \\\"mean_diff\\\": float(np.mean(diff)),\\n                    \\\"ci_95\\\": [float(np.percentile(diff, 2.5)), float(np.percentile(diff, 97.5))],\\n                    \\\"p_alt_greater\\\": p_greater,\\n                    \\\"n_seeds_random\\\": len(random_dists),\\n                    \\\"n_seeds_alt\\\": len(alt_dists),\\n                }\\n            else:\\n                result[\\\"pairwise\\\"][pair_key] = {\\n                    \\\"mean_diff\\\": None,\\n                    \\\"ci_95\\\": None,\\n                    \\\"p_alt_greater\\\": None,\\n                    \\\"note\\\": \\\"insufficient data\\\",\\n                }\\n\\n    return result\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"D062 selection-set analysis\\\")\\n    parser.add_argument(\\\"--results-dir\\\", required=True, help=\\\"Directory containing selection_*.json files\\\")\\n    parser.add_argument(\\\"--n-bootstrap\\\", type=int, default=1000, help=\\\"Number of bootstrap resamples\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42, help=\\\"Bootstrap RNG seed\\\")\\n    parser.add_argument(\\\"--output-dir\\\", default=None, help=\\\"Output directory (default: results-dir/analysis/)\\\")\\n    parser.add_argument(\\\"--partial\\\", action=\\\"store_true\\\", help=\\\"Allow partial results (< 14 files)\\\")\\n    args = parser.parse_args()\\n\\n    # Load\\n    data = load_results(args.results_dir)\\n    n_files = len(data)\\n    print(f\\\"Loaded {n_files} result files from {args.results_dir}\\\")\\n\\n    if n_files == 0:\\n        print(\\\"ERROR: No result files found.\\\", file=sys.stderr)\\n        sys.exit(1)\\n\\n    if n_files < 14 and not args.partial:\\n        print(f\\\"ERROR: Only {n_files}/14 files found. Use --partial to proceed anyway.\\\", file=sys.stderr)\\n        sys.exit(1)\\n\\n    # Output dir\\n    output_dir = args.output_dir or os.path.join(args.results_dir, \\\"analysis\\\")\\n    os.makedirs(output_dir, exist_ok=True)\\n\\n    # 1. Summary table\\n    table = build_summary_table(data, metric=\\\"recall@1\\\")\\n    print_summary_table(table, metric=\\\"recall@1\\\")\\n    csv_path = os.path.join(output_dir, \\\"d062_summary.csv\\\")\\n    write_summary_csv(table, csv_path, metric=\\\"recall@1\\\")\\n\\n    # 2. Stratified analysis\\n    stratified = stratified_analysis(data, metric=\\\"recall@1\\\")\\n    strat_path = os.path.join(output_dir, \\\"d062_stratified.json\\\")\\n    with open(strat_path, \\\"w\\\") as f:\\n        json.dump(stratified, f, indent=2)\\n    print(f\\\"  Written: {strat_path}\\\")\\n\\n    # 3. Bootstrap CIs\\n    bootstrap = bootstrap_ci(data, metric=\\\"recall@1\\\", n_bootstrap=args.n_bootstrap, seed=args.seed)\\n    boot_path = os.path.join(output_dir, \\\"d062_bootstrap.json\\\")\\n    with open(boot_path, \\\"w\\\") as f:\\n        json.dump(bootstrap, f, indent=2)\\n    print(f\\\"  Written: {boot_path}\\\")\\n\\n    # Print bootstrap summary\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"  Bootstrap CIs (n={args.n_bootstrap}, seed={args.seed})\\\")\\n    print(f\\\"{'='*60}\\\")\\n    for config_key, ci_data in sorted(bootstrap[\\\"configs\\\"].items()):\\n        lo, hi = ci_data[\\\"ci_95\\\"]\\n        print(f\\\"  {config_key:<50} R@1={ci_data['point']*100:.2f}%  95%CI=[{lo*100:.2f}, {hi*100:.2f}]\\\")\\n\\n    if bootstrap[\\\"pairwise\\\"]:\\n        print(f\\\"\\\\n  Pairwise comparisons:\\\")\\n        for pair_key, pair_data in sorted(bootstrap[\\\"pairwise\\\"].items()):\\n            if pair_data.get(\\\"mean_diff\\\") is not None:\\n                lo, hi = pair_data[\\\"ci_95\\\"]\\n                print(f\\\"    {pair_key:<45} Δ={pair_data['mean_diff']*100:+.2f}pp  95%CI=[{lo*100:.2f}, {hi*100:.2f}]  P(alt>rand)={pair_data['p_alt_greater']:.3f}\\\")\\n            else:\\n                print(f\\\"    {pair_key:<45} — insufficient data\\\")\\n\\n    print(f\\\"\\\\nDone. Outputs in {output_dir}/\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "7b76c256-d192-4060-a9bd-1830230ce352",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"D062 selection-set analysis: summary table, stratified effects, bootstrap CIs.\\\\n\\\\nReads /root/autodl-tmp/structfuse/d062_results/selection_*.json files produced\\\\nby D062 pool=50 eval across 3 strategies × 3 seeds × 2 criteria (14 configs).\\\\n\\\\nInputs:\\\\n  - selection_{strategy}_{seed}_{criterion}.json  (flat JSON with recall@1/5/10, total, ckpt_dir)\\\\n\\\\nOutputs:\\\\n  - d062_summary.csv   — cross-table of R@1 by strategy × criterion × seed\\\\n  - d062_stratified.json — criterion / strategy / interaction main effects\\\\n  - d062_bootstrap.json  — 95% bootstrap CIs and pairwise P(A > B)\\\\n\\\\nDependencies: numpy, json, glob, argparse (stdlib + numpy only)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport glob\\\\nimport json\\\\nimport os\\\\nimport re\\\\nimport sys\\\\n\\\\nimport numpy as np\\\\n\\\\n\\\\nSTRATEGIES = [\\\\\\\"random\\\\\\\", \\\\\\\"embedding_distance\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\"]\\\\nSEEDS = [\\\\\\\"s42\\\\\\\", \\\\\\\"s43\\\\\\\", \\\\\\\"s44\\\\\\\"]\\\\nCRITERIA = [\\\\\\\"best_by_val_loss\\\\\\\", \\\\\\\"best_by_recall_at_1\\\\\\\"]\\\\nMETRICS = [\\\\\\\"recall@1\\\\\\\", \\\\\\\"recall@5\\\\\\\", \\\\\\\"recall@10\\\\\\\"]\\\\n\\\\n\\\\ndef parse_filename(path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract (strategy, seed, criterion) from selection_{strategy}_{seed}_{criterion}.json.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    basename = os.path.basename(path)\\\\n    m = re.match(r\\\\\\\"selection_(.+?)_(s\\\\\\\\d+)_(best_by_.+)\\\\\\\\.json$\\\\\\\", basename)\\\\n    if not m:\\\\n        return None\\\\n    return m.group(1), m.group(2), m.group(3)\\\\n\\\\n\\\\ndef load_results(results_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load all selection_*.json files into a nested dict keyed by (strategy, seed, criterion).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    files = glob.glob(os.path.join(results_dir, \\\\\\\"selection_*.json\\\\\\\"))\\\\n    data = {}\\\\n    for f in sorted(files):\\\\n        parsed = parse_filename(f)\\\\n        if parsed is None:\\\\n            print(f\\\\\\\"  [WARN] Skipping unrecognized file: {f}\\\\\\\", file=sys.stderr)\\\\n            continue\\\\n        strategy, seed, criterion = parsed\\\\n        with open(f) as fh:\\\\n            data[(strategy, seed, criterion)] = json.load(fh)\\\\n    return data\\\\n\\\\n\\\\ndef build_summary_table(data, metric=\\\\\\\"recall@1\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build a summary dict: {strategy: {criterion: {seed: value, 'mean': value}}}.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    table = {}\\\\n    for strategy in STRATEGIES:\\\\n        table[strategy] = {}\\\\n        for criterion in CRITERIA:\\\\n            row = {}\\\\n            vals = []\\\\n            for seed in SEEDS:\\\\n                key = (strategy, seed, criterion)\\\\n                if key in data:\\\\n                    v = data[key].get(metric)\\\\n                    row[seed] = v\\\\n                    if v is not None:\\\\n                        vals.append(v)\\\\n                else:\\\\n                    row[seed] = None\\\\n            row[\\\\\\\"mean\\\\\\\"] = float(np.mean(vals)) if vals else None\\\\n            table[strategy][criterion] = row\\\\n    return table\\\\n\\\\n\\\\ndef print_summary_table(table, metric=\\\\\\\"recall@1\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Pretty-print the summary table to terminal.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*90}\\\\\\\")\\\\n    print(f\\\\\\\"  D062 Summary Table — {metric}\\\\\\\")\\\\n    print(f\\\\\\\"{'='*90}\\\\\\\")\\\\n\\\\n    # Header\\\\n    header = f\\\\\\\"{'Strategy':<22}\\\\\\\"\\\\n    for criterion in CRITERIA:\\\\n        short = \\\\\\\"val_loss\\\\\\\" if \\\\\\\"val_loss\\\\\\\" in criterion else \\\\\\\"recall@1\\\\\\\"\\\\n        for seed in SEEDS:\\\\n            header += f\\\\\\\" {short}/{seed:>3}\\\\\\\"\\\\n        header += f\\\\\\\" {short}/mean\\\\\\\"\\\\n    print(header)\\\\n    print(\\\\\\\"-\\\\\\\" * 90)\\\\n\\\\n    # Rows\\\\n    for strategy in STRATEGIES:\\\\n        row_str = f\\\\\\\"{strategy:<22}\\\\\\\"\\\\n        for criterion in CRITERIA:\\\\n            entry = table[strategy][criterion]\\\\n            for seed in SEEDS:\\\\n                v = entry.get(seed)\\\\n                row_str += f\\\\\\\"  {v*100:>8.2f}\\\\\\\" if v is not None else f\\\\\\\"  {'—':>8}\\\\\\\"\\\\n            m = entry.get(\\\\\\\"mean\\\\\\\")\\\\n            row_str += f\\\\\\\"  {m*100:>8.2f}\\\\\\\" if m is not None else f\\\\\\\"  {'—':>8}\\\\\\\"\\\\n        print(row_str)\\\\n\\\\n    # Criterion main effect row\\\\n    print(\\\\\\\"-\\\\\\\" * 90)\\\\n    row_str = f\\\\\\\"{'Δ(recall@1-val_loss)':<22}\\\\\\\"\\\\n    # For each strategy, compute the difference of means\\\\n    all_diffs = []\\\\n    for strategy in STRATEGIES:\\\\n        vl_mean = table[strategy][CRITERIA[0]].get(\\\\\\\"mean\\\\\\\")\\\\n        r1_mean = table[strategy][CRITERIA[1]].get(\\\\\\\"mean\\\\\\\")\\\\n        if vl_mean is not None and r1_mean is not None:\\\\n            diff = r1_mean - vl_mean\\\\n            all_diffs.append(diff)\\\\n    # Print aggregate\\\\n    for criterion in CRITERIA:\\\\n\\\\n\\\\n... [截断: 输出过长，省略 6313 字符] ...\\\\n\\\\n           alt_dists.append(config_samples[a_key])\\\\n\\\\n            pair_key = f\\\\\\\"{alt}_vs_random_{crit_short}\\\\\\\"\\\\n            if random_dists and alt_dists:\\\\n                # Mean across available seeds\\\\n                r_agg = np.mean(random_dists, axis=0)\\\\n                a_agg = np.mean(alt_dists, axis=0)\\\\n                diff = a_agg - r_agg\\\\n                p_greater = float(np.mean(diff > 0))\\\\n                result[\\\\\\\"pairwise\\\\\\\"][pair_key] = {\\\\n                    \\\\\\\"mean_diff\\\\\\\": float(np.mean(diff)),\\\\n                    \\\\\\\"ci_95\\\\\\\": [float(np.percentile(diff, 2.5)), float(np.percentile(diff, 97.5))],\\\\n                    \\\\\\\"p_alt_greater\\\\\\\": p_greater,\\\\n                    \\\\\\\"n_seeds_random\\\\\\\": len(random_dists),\\\\n                    \\\\\\\"n_seeds_alt\\\\\\\": len(alt_dists),\\\\n                }\\\\n            else:\\\\n                result[\\\\\\\"pairwise\\\\\\\"][pair_key] = {\\\\n                    \\\\\\\"mean_diff\\\\\\\": None,\\\\n                    \\\\\\\"ci_95\\\\\\\": None,\\\\n                    \\\\\\\"p_alt_greater\\\\\\\": None,\\\\n                    \\\\\\\"note\\\\\\\": \\\\\\\"insufficient data\\\\\\\",\\\\n                }\\\\n\\\\n    return result\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"D062 selection-set analysis\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--results-dir\\\\\\\", required=True, help=\\\\\\\"Directory containing selection_*.json files\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--n-bootstrap\\\\\\\", type=int, default=1000, help=\\\\\\\"Number of bootstrap resamples\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42, help=\\\\\\\"Bootstrap RNG seed\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", default=None, help=\\\\\\\"Output directory (default: results-dir/analysis/)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--partial\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Allow partial results (< 14 files)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    # Load\\\\n    data = load_results(args.results_dir)\\\\n    n_files = len(data)\\\\n    print(f\\\\\\\"Loaded {n_files} result files from {args.results_dir}\\\\\\\")\\\\n\\\\n    if n_files == 0:\\\\n        print(\\\\\\\"ERROR: No result files found.\\\\\\\", file=sys.stderr)\\\\n        sys.exit(1)\\\\n\\\\n    if n_files < 14 and not args.partial:\\\\n        print(f\\\\\\\"ERROR: Only {n_files}/14 files found. Use --partial to proceed anyway.\\\\\\\", file=sys.stderr)\\\\n        sys.exit(1)\\\\n\\\\n    # Output dir\\\\n    output_dir = args.output_dir or os.path.join(args.results_dir, \\\\\\\"analysis\\\\\\\")\\\\n    os.makedirs(output_dir, exist_ok=True)\\\\n\\\\n    # 1. Summary table\\\\n    table = build_summary_table(data, metric=\\\\\\\"recall@1\\\\\\\")\\\\n    print_summary_table(table, metric=\\\\\\\"recall@1\\\\\\\")\\\\n    csv_path = os.path.join(output_dir, \\\\\\\"d062_summary.csv\\\\\\\")\\\\n    write_summary_csv(table, csv_path, metric=\\\\\\\"recall@1\\\\\\\")\\\\n\\\\n    # 2. Stratified analysis\\\\n    stratified = stratified_analysis(data, metric=\\\\\\\"recall@1\\\\\\\")\\\\n    strat_path = os.path.join(output_dir, \\\\\\\"d062_stratified.json\\\\\\\")\\\\n    with open(strat_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(stratified, f, indent=2)\\\\n    print(f\\\\\\\"  Written: {strat_path}\\\\\\\")\\\\n\\\\n    # 3. Bootstrap CIs\\\\n    bootstrap = bootstrap_ci(data, metric=\\\\\\\"recall@1\\\\\\\", n_bootstrap=args.n_bootstrap, seed=args.seed)\\\\n    boot_path = os.path.join(output_dir, \\\\\\\"d062_bootstrap.json\\\\\\\")\\\\n    with open(boot_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(bootstrap, f, indent=2)\\\\n    print(f\\\\\\\"  Written: {boot_path}\\\\\\\")\\\\n\\\\n    # Print bootstrap summary\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"  Bootstrap CIs (n={args.n_bootstrap}, seed={args.seed})\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    for config_key, ci_data in sorted(bootstrap[\\\\\\\"configs\\\\\\\"].items()):\\\\n        lo, hi = ci_data[\\\\\\\"ci_95\\\\\\\"]\\\\n        print(f\\\\\\\"  {config_key:<50} R@1={ci_data['point']*100:.2f}%  95%CI=[{lo*100:.2f}, {hi*100:.2f}]\\\\\\\")\\\\n\\\\n    if bootstrap[\\\\\\\"pairwise\\\\\\\"]:\\\\n        print(f\\\\\\\"\\\\\\\\n  Pairwise comparisons:\\\\\\\")\\\\n        for pair_key, pair_data in sorted(bootstrap[\\\\\\\"pairwise\\\\\\\"].items()):\\\\n            if pair_data.get(\\\\\\\"mean_diff\\\\\\\") is not None:\\\\n                lo, hi = pair_data[\\\\\\\"ci_95\\\\\\\"]\\\\n                print(f\\\\\\\"    {pair_key:<45} Δ={pair_data['mean_diff']*100:+.2f}pp  95%CI=[{lo*100:.2f}, {hi*100:.2f}]  P(alt>rand)={pair_data['p_alt_greater']:.3f}\\\\\\\")\\\\n            else:\\\\n                print(f\\\\\\\"    {pair_key:<45} — insufficient data\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nDone. Outputs in {output_dir}/\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"D062 selection-set analysis: summary table, stratified effects, bootstrap CIs.\\n\\nReads /root/autodl-tmp/structfuse/d062_results/selection_*.json files produced\\nby D062 pool=50 eval across 3 strategies × 3 seeds × 2 criteria (14 configs).\\n\\nInputs:\\n  - selection_{strategy}_{seed}_{criterion}.json  (flat JSON with recall@1/5/10, total, ckpt_dir)\\n\\nOutputs:\\n  - d062_summary.csv   — cross-table of R@1 by strategy × criterion × seed\\n  - d062_stratified.json — criterion / strategy / interaction main effects\\n  - d062_bootstrap.json  — 95% bootstrap CIs and pairwise P(A > B)\\n\\nDependencies: numpy, json, glob, argparse (stdlib + numpy only)\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport glob\\nimport json\\nimport os\\nimport re\\nimport sys\\n\\nimport numpy as np\\n\\n\\nSTRATEGIES = [\\\"random\\\", \\\"embedding_distance\\\", \\\"dataflow_aware\\\"]\\nSEEDS = [\\\"s42\\\", \\\"s43\\\", \\\"s44\\\"]\\nCRITERIA = [\\\"best_by_val_loss\\\", \\\"best_by_recall_at_1\\\"]\\nMETRICS = [\\\"recall@1\\\", \\\"recall@5\\\", \\\"recall@10\\\"]\\n\\n\\ndef parse_filename(path):\\n    \\\"\\\"\\\"Extract (strategy, seed, criterion) from selection_{strategy}_{seed}_{criterion}.json.\\\"\\\"\\\"\\n    basename = os.path.basename(path)\\n    m = re.match(r\\\"selection_(.+?)_(s\\\\d+)_(best_by_.+)\\\\.json$\\\", basename)\\n    if not m:\\n        return None\\n    return m.group(1), m.group(2), m.group(3)\\n\\n\\ndef load_results(results_dir):\\n    \\\"\\\"\\\"Load all selection_*.json files into a nested dict keyed by (strategy, seed, criterion).\\\"\\\"\\\"\\n    files = glob.glob(os.path.join(results_dir, \\\"selection_*.json\\\"))\\n    data = {}\\n    for f in sorted(files):\\n        parsed = parse_filename(f)\\n        if parsed is None:\\n            print(f\\\"  [WARN] Skipping unrecognized file: {f}\\\", file=sys.stderr)\\n            continue\\n        strategy, seed, criterion = parsed\\n        with open(f) as fh:\\n            data[(strategy, seed, criterion)] = json.load(fh)\\n    return data\\n\\n\\ndef build_summary_table(data, metric=\\\"recall@1\\\"):\\n    \\\"\\\"\\\"Build a summary dict: {strategy: {criterion: {seed: value, 'mean': value}}}.\\\"\\\"\\\"\\n    table = {}\\n    for strategy in STRATEGIES:\\n        table[strategy] = {}\\n        for criterion in CRITERIA:\\n            row = {}\\n            vals = []\\n            for seed in SEEDS:\\n                key = (strategy, seed, criterion)\\n                if key in data:\\n                    v = data[key].get(metric)\\n                    row[seed] = v\\n                    if v is not None:\\n                        vals.append(v)\\n                else:\\n                    row[seed] = None\\n            row[\\\"mean\\\"] = float(np.mean(vals)) if vals else None\\n            table[strategy][criterion] = row\\n    return table\\n\\n\\ndef print_summary_table(table, metric=\\\"recall@1\\\"):\\n    \\\"\\\"\\\"Pretty-print the summary table to terminal.\\\"\\\"\\\"\\n    print(f\\\"\\\\n{'='*90}\\\")\\n    print(f\\\"  D062 Summary Table — {metric}\\\")\\n    print(f\\\"{'='*90}\\\")\\n\\n    # Header\\n    header = f\\\"{'Strategy':<22}\\\"\\n    for criterion in CRITERIA:\\n        short = \\\"val_loss\\\" if \\\"val_loss\\\" in criterion else \\\"recall@1\\\"\\n        for seed in SEEDS:\\n            header += f\\\" {short}/{seed:>3}\\\"\\n        header += f\\\" {short}/mean\\\"\\n    print(header)\\n    print(\\\"-\\\" * 90)\\n\\n    # Rows\\n    for strategy in STRATEGIES:\\n        row_str = f\\\"{strategy:<22}\\\"\\n        for criterion in CRITERIA:\\n            entry = table[strategy][criterion]\\n            for seed in SEEDS:\\n                v = entry.get(seed)\\n                row_str += f\\\"  {v*100:>8.2f}\\\" if v is not None else f\\\"  {'—':>8}\\\"\\n            m = entry.get(\\\"mean\\\")\\n            row_str += f\\\"  {m*100:>8.2f}\\\" if m is not None else f\\\"  {'—':>8}\\\"\\n        print(row_str)\\n\\n    # Criterion main effect row\\n    print(\\\"-\\\" * 90)\\n    row_str = f\\\"{'Δ(recall@1-val_loss)':<22}\\\"\\n    # For each strategy, compute the difference of means\\n    all_diffs = []\\n    for strategy in STRATEGIES:\\n        vl_mean = table[strategy][CRITERIA[0]].get(\\\"mean\\\")\\n        r1_mean = table[strategy][CRITERIA[1]].get(\\\"mean\\\")\\n        if vl_mean is not None and r1_mean is not None:\\n            diff = r1_mean - vl_mean\\n            all_diffs.append(diff)\\n    # Print aggregate\\n    for criterion in CRITERIA:\\n\\n\\n... [截断: 输出过长，省略 6313 字符] ...\\n\\n           alt_dists.append(config_samples[a_key])\\n\\n            pair_key = f\\\"{alt}_vs_random_{crit_short}\\\"\\n            if random_dists and alt_dists:\\n                # Mean across available seeds\\n                r_agg = np.mean(random_dists, axis=0)\\n                a_agg = np.mean(alt_dists, axis=0)\\n                diff = a_agg - r_agg\\n                p_greater = float(np.mean(diff > 0))\\n                result[\\\"pairwise\\\"][pair_key] = {\\n                    \\\"mean_diff\\\": float(np.mean(diff)),\\n                    \\\"ci_95\\\": [float(np.percentile(diff, 2.5)), float(np.percentile(diff, 97.5))],\\n                    \\\"p_alt_greater\\\": p_greater,\\n                    \\\"n_seeds_random\\\": len(random_dists),\\n                    \\\"n_seeds_alt\\\": len(alt_dists),\\n                }\\n            else:\\n                result[\\\"pairwise\\\"][pair_key] = {\\n                    \\\"mean_diff\\\": None,\\n                    \\\"ci_95\\\": None,\\n                    \\\"p_alt_greater\\\": None,\\n                    \\\"note\\\": \\\"insufficient data\\\",\\n                }\\n\\n    return result\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"D062 selection-set analysis\\\")\\n    parser.add_argument(\\\"--results-dir\\\", required=True, help=\\\"Directory containing selection_*.json files\\\")\\n    parser.add_argument(\\\"--n-bootstrap\\\", type=int, default=1000, help=\\\"Number of bootstrap resamples\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42, help=\\\"Bootstrap RNG seed\\\")\\n    parser.add_argument(\\\"--output-dir\\\", default=None, help=\\\"Output directory (default: results-dir/analysis/)\\\")\\n    parser.add_argument(\\\"--partial\\\", action=\\\"store_true\\\", help=\\\"Allow partial results (< 14 files)\\\")\\n    args = parser.parse_args()\\n\\n    # Load\\n    data = load_results(args.results_dir)\\n    n_files = len(data)\\n    print(f\\\"Loaded {n_files} result files from {args.results_dir}\\\")\\n\\n    if n_files == 0:\\n        print(\\\"ERROR: No result files found.\\\", file=sys.stderr)\\n        sys.exit(1)\\n\\n    if n_files < 14 and not args.partial:\\n        print(f\\\"ERROR: Only {n_files}/14 files found. Use --partial to proceed anyway.\\\", file=sys.stderr)\\n        sys.exit(1)\\n\\n    # Output dir\\n    output_dir = args.output_dir or os.path.join(args.results_dir, \\\"analysis\\\")\\n    os.makedirs(output_dir, exist_ok=True)\\n\\n    # 1. Summary table\\n    table = build_summary_table(data, metric=\\\"recall@1\\\")\\n    print_summary_table(table, metric=\\\"recall@1\\\")\\n    csv_path = os.path.join(output_dir, \\\"d062_summary.csv\\\")\\n    write_summary_csv(table, csv_path, metric=\\\"recall@1\\\")\\n\\n    # 2. Stratified analysis\\n    stratified = stratified_analysis(data, metric=\\\"recall@1\\\")\\n    strat_path = os.path.join(output_dir, \\\"d062_stratified.json\\\")\\n    with open(strat_path, \\\"w\\\") as f:\\n        json.dump(stratified, f, indent=2)\\n    print(f\\\"  Written: {strat_path}\\\")\\n\\n    # 3. Bootstrap CIs\\n    bootstrap = bootstrap_ci(data, metric=\\\"recall@1\\\", n_bootstrap=args.n_bootstrap, seed=args.seed)\\n    boot_path = os.path.join(output_dir, \\\"d062_bootstrap.json\\\")\\n    with open(boot_path, \\\"w\\\") as f:\\n        json.dump(bootstrap, f, indent=2)\\n    print(f\\\"  Written: {boot_path}\\\")\\n\\n    # Print bootstrap summary\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"  Bootstrap CIs (n={args.n_bootstrap}, seed={args.seed})\\\")\\n    print(f\\\"{'='*60}\\\")\\n    for config_key, ci_data in sorted(bootstrap[\\\"configs\\\"].items()):\\n        lo, hi = ci_data[\\\"ci_95\\\"]\\n        print(f\\\"  {config_key:<50} R@1={ci_data['point']*100:.2f}%  95%CI=[{lo*100:.2f}, {hi*100:.2f}]\\\")\\n\\n    if bootstrap[\\\"pairwise\\\"]:\\n        print(f\\\"\\\\n  Pairwise comparisons:\\\")\\n        for pair_key, pair_data in sorted(bootstrap[\\\"pairwise\\\"].items()):\\n            if pair_data.get(\\\"mean_diff\\\") is not None:\\n                lo, hi = pair_data[\\\"ci_95\\\"]\\n                print(f\\\"    {pair_key:<45} Δ={pair_data['mean_diff']*100:+.2f}pp  95%CI=[{lo*100:.2f}, {hi*100:.2f}]  P(alt>rand)={pair_data['p_alt_greater']:.3f}\\\")\\n            else:\\n                print(f\\\"    {pair_key:<45} — insufficient data\\\")\\n\\n    print(f\\\"\\\\nDone. Outputs in {output_dir}/\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.96}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. Let me get the full file by reading it in parts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "aa433b81-e27a-49b9-b3df-19513ae89f93",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CLgd2CHx2CRzHj1iv34SkR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3449,
+      "cache_read_input_tokens": 24173,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3449
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+输出被截断了，需要看中间部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "d67cdea7-8d1d-45cc-a666-e325c1f85ae3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CLgd2CHx2CRzHj1iv34SkR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3449,
+      "cache_read_input_tokens": 24173,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3449
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UqWPUGv3ze77NkR6VHRsME`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "wc -l /root/structfuse/scripts/d062_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "39c50eca-ccee-4a91-9ae6-6741bb3c3865",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CLgd2CHx2CRzHj1iv34SkR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3449,
+      "cache_read_input_tokens": 24173,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3449
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MqFMSWngkhdYqSXg268xTu`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "head -150 /root/structfuse/scripts/d062_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "07cd5d5d-0d88-4f7c-8f53-5fc487f6d563",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CLgd2CHx2CRzHj1iv34SkR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3449,
+      "cache_read_input_tokens": 24173,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3449
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T11:47:55.738Z_
+
+<details><summary>↩ Tool result · `toolu_01UqWPUGv3ze77NkR6VHRsME`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"368 /root/structfuse/scripts/d062_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "8eafd1cf-646e-40e1-a1a3-ea0953b1b60f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"368 /root/structfuse/scripts/d062_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"368 /root/structfuse/scripts/d062_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T11:47:56.159Z_
+
+<details><summary>↩ Tool result · `toolu_01MqFMSWngkhdYqSXg268xTu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"D062 selection-set analysis: summary table, stratified effects, bootstrap CIs.\\n\\nReads /root/autodl-tmp/structfuse/d062_results/selection_*.json files produced\\nby D062 pool=50 eval across 3 strategies × 3 seeds × 2 criteria (14 configs).\\n\\nInputs:\\n  - selection_{strategy}_{seed}_{criterion}.json  (flat JSON with recall@1/5/10, total, ckpt_dir)\\n\\nOutputs:\\n  - d062_summary.csv   — cross-table of R@1 by strategy × criterion × seed\\n  - d062_stratified.json — criterion / strategy / interaction main effects\\n  - d062_bootstrap.json  — 95% bootstrap CIs and pairwise P(A > B)\\n\\nDependencies: numpy, json, glob, argparse (stdlib + numpy only)\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport glob\\nimport json\\nimport os\\nimport re\\nimport sys\\n\\nimport numpy as np\\n\\n\\nSTRATEGIES = [\\\"random\\\", \\\"embedding_distance\\\", \\\"dataflow_aware\\\"]\\nSEEDS = [\\\"s42\\\", \\\"s43\\\", \\\"s44\\\"]\\nCRITERIA = [\\\"best_by_val_loss\\\", \\\"best_by_recall_at_1\\\"]\\nMETRICS = [\\\"recall@1\\\", \\\"recall@5\\\", \\\"recall@10\\\"]\\n\\n\\ndef parse_filename(path):\\n    \\\"\\\"\\\"Extract (strategy, seed, criterion) from selection_{strategy}_{seed}_{criterion}.json.\\\"\\\"\\\"\\n    basename = os.path.basename(path)\\n    m = re.match(r\\\"selection_(.+?)_(s\\\\d+)_(best_by_.+)\\\\.json$\\\", basename)\\n    if not m:\\n        return None\\n    return m.group(1), m.group(2), m.group(3)\\n\\n\\ndef load_results(results_dir):\\n    \\\"\\\"\\\"Load all selection_*.json files into a nested dict keyed by (strategy, seed, criterion).\\\"\\\"\\\"\\n    files = glob.glob(os.path.join(results_dir, \\\"selection_*.json\\\"))\\n    data = {}\\n    for f in sorted(files):\\n        parsed = parse_filename(f)\\n        if parsed is None:\\n            print(f\\\"  [WARN] Skipping unrecognized file: {f}\\\", file=sys.stderr)\\n            continue\\n        strategy, seed, criterion = parsed\\n        with open(f) as fh:\\n            data[(strategy, seed, criterion)] = json.load(fh)\\n    return data\\n\\n\\ndef build_summary_table(data, metric=\\\"recall@1\\\"):\\n    \\\"\\\"\\\"Build a summary dict: {strategy: {criterion: {seed: value, 'mean': value}}}.\\\"\\\"\\\"\\n    table = {}\\n    for strategy in STRATEGIES:\\n        table[strategy] = {}\\n        for criterion in CRITERIA:\\n            row = {}\\n            vals = []\\n            for seed in SEEDS:\\n                key = (strategy, seed, criterion)\\n                if key in data:\\n                    v = data[key].get(metric)\\n                    row[seed] = v\\n                    if v is not None:\\n                        vals.append(v)\\n                else:\\n                    row[seed] = None\\n            row[\\\"mean\\\"] = float(np.mean(vals)) if vals else None\\n            table[strategy][criterion] = row\\n    return table\\n\\n\\ndef print_summary_table(table, metric=\\\"recall@1\\\"):\\n    \\\"\\\"\\\"Pretty-print the summary table to terminal.\\\"\\\"\\\"\\n    print(f\\\"\\\\n{'='*90}\\\")\\n    print(f\\\"  D062 Summary Table — {metric}\\\")\\n    print(f\\\"{'='*90}\\\")\\n\\n    # Header\\n    header = f\\\"{'Strategy':<22}\\\"\\n    for criterion in CRITERIA:\\n        short = \\\"val_loss\\\" if \\\"val_loss\\\" in criterion else \\\"recall@1\\\"\\n        for seed in SEEDS:\\n            header += f\\\" {short}/{seed:>3}\\\"\\n        header += f\\\" {short}/mean\\\"\\n    print(header)\\n    print(\\\"-\\\" * 90)\\n\\n    # Rows\\n    for strategy in STRATEGIES:\\n        row_str = f\\\"{strategy:<22}\\\"\\n        for criterion in CRITERIA:\\n            entry = table[strategy][criterion]\\n            for seed in SEEDS:\\n                v = entry.get(seed)\\n                row_str += f\\\"  {v*100:>8.2f}\\\" if v is not None else f\\\"  {'—':>8}\\\"\\n            m = entry.get(\\\"mean\\\")\\n            row_str += f\\\"  {m*100:>8.2f}\\\" if m is not None else f\\\"  {'—':>8}\\\"\\n        print(row_str)\\n\\n    # Criterion main effect row\\n    print(\\\"-\\\" * 90)\\n    row_str = f\\\"{'Δ(recall@1-val_loss)':<22}\\\"\\n    # For each strategy, compute the difference of means\\n    all_diffs = []\\n    for strategy in STRATEGIES:\\n        vl_mean = table[strategy][CRITERIA[0]].get(\\\"mean\\\")\\n        r1_mean = table[strategy][CRITERIA[1]].get(\\\"mean\\\")\\n        if vl_mean is not None and r1_mean is not None:\\n            diff = r1_mean - vl_mean\\n            all_diffs.append(diff)\\n    # Print aggregate\\n    for criterion in CRITERIA:\\n        for seed in SEEDS:\\n            row_str += f\\\"  {'':>8}\\\"\\n        row_str += f\\\"  {'':>8}\\\"\\n    print(row_str)\\n\\n    # Print per-strategy criterion effect\\n    for strategy in STRATEGIES:\\n        vl_mean = table[strategy][CRITERIA[0]].get(\\\"mean\\\")\\n        r1_mean = table[strategy][CRITERIA[1]].get(\\\"mean\\\")\\n        if vl_mean is not None and r1_mean is not None:\\n            diff = (r1_mean - vl_mean) * 100\\n            print(f\\\"  {strategy}: Δ = {diff:+.2f} pp\\\")\\n        else:\\n            print(f\\\"  {strategy}: Δ = — (incomplete data)\\\")\\n\\n    if all_diffs:\\n        print(f\\\"  Overall criterion main effect: Δ = {np.mean(all_diffs)*100:+.2f} pp\\\")\\n    print(f\\\"{'='*90}\\\\n\\\")\\n\\n\\ndef write_summary_csv(table, output_path, metric=\\\"recall@1\\\"):\\n    \\\"\\\"\\\"Write summary table to CSV.\\\"\\\"\\\"\\n    lines = []\\n    # Header\\n    cols = [\\\"strategy\\\"]\\n    for criterion in CRITERIA:\\n        short = \\\"val_loss\\\" if \\\"val_loss\\\" in criterion else \\\"recall_at_1\\\"\\n        for seed in SEEDS:\\n            cols.append(f\\\"{short}_{seed}\\\")\\n        cols.append(f\\\"{short}_mean\\\")\\n    lines.append(\\\",\\\".join(cols))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "d4da80f7-4fe6-42ae-9fe6-ecda83962d9d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"D062 selection-set analysis: summary table, stratified effects, bootstrap CIs.\\\\n\\\\nReads /root/autodl-tmp/structfuse/d062_results/selection_*.json files produced\\\\nby D062 pool=50 eval across 3 strategies × 3 seeds × 2 criteria (14 configs).\\\\n\\\\nInputs:\\\\n  - selection_{strategy}_{seed}_{criterion}.json  (flat JSON with recall@1/5/10, total, ckpt_dir)\\\\n\\\\nOutputs:\\\\n  - d062_summary.csv   — cross-table of R@1 by strategy × criterion × seed\\\\n  - d062_stratified.json — criterion / strategy / interaction main effects\\\\n  - d062_bootstrap.json  — 95% bootstrap CIs and pairwise P(A > B)\\\\n\\\\nDependencies: numpy, json, glob, argparse (stdlib + numpy only)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport glob\\\\nimport json\\\\nimport os\\\\nimport re\\\\nimport sys\\\\n\\\\nimport numpy as np\\\\n\\\\n\\\\nSTRATEGIES = [\\\\\\\"random\\\\\\\", \\\\\\\"embedding_distance\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\"]\\\\nSEEDS = [\\\\\\\"s42\\\\\\\", \\\\\\\"s43\\\\\\\", \\\\\\\"s44\\\\\\\"]\\\\nCRITERIA = [\\\\\\\"best_by_val_loss\\\\\\\", \\\\\\\"best_by_recall_at_1\\\\\\\"]\\\\nMETRICS = [\\\\\\\"recall@1\\\\\\\", \\\\\\\"recall@5\\\\\\\", \\\\\\\"recall@10\\\\\\\"]\\\\n\\\\n\\\\ndef parse_filename(path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract (strategy, seed, criterion) from selection_{strategy}_{seed}_{criterion}.json.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    basename = os.path.basename(path)\\\\n    m = re.match(r\\\\\\\"selection_(.+?)_(s\\\\\\\\d+)_(best_by_.+)\\\\\\\\.json$\\\\\\\", basename)\\\\n    if not m:\\\\n        return None\\\\n    return m.group(1), m.group(2), m.group(3)\\\\n\\\\n\\\\ndef load_results(results_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load all selection_*.json files into a nested dict keyed by (strategy, seed, criterion).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    files = glob.glob(os.path.join(results_dir, \\\\\\\"selection_*.json\\\\\\\"))\\\\n    data = {}\\\\n    for f in sorted(files):\\\\n        parsed = parse_filename(f)\\\\n        if parsed is None:\\\\n            print(f\\\\\\\"  [WARN] Skipping unrecognized file: {f}\\\\\\\", file=sys.stderr)\\\\n            continue\\\\n        strategy, seed, criterion = parsed\\\\n        with open(f) as fh:\\\\n            data[(strategy, seed, criterion)] = json.load(fh)\\\\n    return data\\\\n\\\\n\\\\ndef build_summary_table(data, metric=\\\\\\\"recall@1\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build a summary dict: {strategy: {criterion: {seed: value, 'mean': value}}}.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    table = {}\\\\n    for strategy in STRATEGIES:\\\\n        table[strategy] = {}\\\\n        for criterion in CRITERIA:\\\\n            row = {}\\\\n            vals = []\\\\n            for seed in SEEDS:\\\\n                key = (strategy, seed, criterion)\\\\n                if key in data:\\\\n                    v = data[key].get(metric)\\\\n                    row[seed] = v\\\\n                    if v is not None:\\\\n                        vals.append(v)\\\\n                else:\\\\n                    row[seed] = None\\\\n            row[\\\\\\\"mean\\\\\\\"] = float(np.mean(vals)) if vals else None\\\\n            table[strategy][criterion] = row\\\\n    return table\\\\n\\\\n\\\\ndef print_summary_table(table, metric=\\\\\\\"recall@1\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Pretty-print the summary table to terminal.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*90}\\\\\\\")\\\\n    print(f\\\\\\\"  D062 Summary Table — {metric}\\\\\\\")\\\\n    print(f\\\\\\\"{'='*90}\\\\\\\")\\\\n\\\\n    # Header\\\\n    header = f\\\\\\\"{'Strategy':<22}\\\\\\\"\\\\n    for criterion in CRITERIA:\\\\n        short = \\\\\\\"val_loss\\\\\\\" if \\\\\\\"val_loss\\\\\\\" in criterion else \\\\\\\"recall@1\\\\\\\"\\\\n        for seed in SEEDS:\\\\n            header += f\\\\\\\" {short}/{seed:>3}\\\\\\\"\\\\n        header += f\\\\\\\" {short}/mean\\\\\\\"\\\\n    print(header)\\\\n    print(\\\\\\\"-\\\\\\\" * 90)\\\\n\\\\n    # Rows\\\\n    for strategy in STRATEGIES:\\\\n        row_str = f\\\\\\\"{strategy:<22}\\\\\\\"\\\\n        for criterion in CRITERIA:\\\\n            entry = table[strategy][criterion]\\\\n            for seed in SEEDS:\\\\n                v = entry.get(seed)\\\\n                row_str += f\\\\\\\"  {v*100:>8.2f}\\\\\\\" if v is not None else f\\\\\\\"  {'—':>8}\\\\\\\"\\\\n            m = entry.get(\\\\\\\"mean\\\\\\\")\\\\n            row_str += f\\\\\\\"  {m*100:>8.2f}\\\\\\\" if m is not None else f\\\\\\\"  {'—':>8}\\\\\\\"\\\\n        print(row_str)\\\\n\\\\n    # Criterion main effect row\\\\n    print(\\\\\\\"-\\\\\\\" * 90)\\\\n    row_str = f\\\\\\\"{'Δ(recall@1-val_loss)':<22}\\\\\\\"\\\\n    # For each strategy, compute the difference of means\\\\n    all_diffs = []\\\\n    for strategy in STRATEGIES:\\\\n        vl_mean = table[strategy][CRITERIA[0]].get(\\\\\\\"mean\\\\\\\")\\\\n        r1_mean = table[strategy][CRITERIA[1]].get(\\\\\\\"mean\\\\\\\")\\\\n        if vl_mean is not None and r1_mean is not None:\\\\n            diff = r1_mean - vl_mean\\\\n            all_diffs.append(diff)\\\\n    # Print aggregate\\\\n    for criterion in CRITERIA:\\\\n        for seed in SEEDS:\\\\n            row_str += f\\\\\\\"  {'':>8}\\\\\\\"\\\\n        row_str += f\\\\\\\"  {'':>8}\\\\\\\"\\\\n    print(row_str)\\\\n\\\\n    # Print per-strategy criterion effect\\\\n    for strategy in STRATEGIES:\\\\n        vl_mean = table[strategy][CRITERIA[0]].get(\\\\\\\"mean\\\\\\\")\\\\n        r1_mean = table[strategy][CRITERIA[1]].get(\\\\\\\"mean\\\\\\\")\\\\n        if vl_mean is not None and r1_mean is not None:\\\\n            diff = (r1_mean - vl_mean) * 100\\\\n            print(f\\\\\\\"  {strategy}: Δ = {diff:+.2f} pp\\\\\\\")\\\\n        else:\\\\n            print(f\\\\\\\"  {strategy}: Δ = — (incomplete data)\\\\\\\")\\\\n\\\\n    if all_diffs:\\\\n        print(f\\\\\\\"  Overall criterion main effect: Δ = {np.mean(all_diffs)*100:+.2f} pp\\\\\\\")\\\\n    print(f\\\\\\\"{'='*90}\\\\\\\\n\\\\\\\")\\\\n\\\\n\\\\ndef write_summary_csv(table, output_path, metric=\\\\\\\"recall@1\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Write summary table to CSV.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    lines = []\\\\n    # Header\\\\n    cols = [\\\\\\\"strategy\\\\\\\"]\\\\n    for criterion in CRITERIA:\\\\n        short = \\\\\\\"val_loss\\\\\\\" if \\\\\\\"val_loss\\\\\\\" in criterion else \\\\\\\"recall_at_1\\\\\\\"\\\\n        for seed in SEEDS:\\\\n            cols.append(f\\\\\\\"{short}_{seed}\\\\\\\")\\\\n        cols.append(f\\\\\\\"{short}_mean\\\\\\\")\\\\n    lines.append(\\\\\\\",\\\\\\\".join(cols))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"D062 selection-set analysis: summary table, stratified effects, bootstrap CIs.\\n\\nReads /root/autodl-tmp/structfuse/d062_results/selection_*.json files produced\\nby D062 pool=50 eval across 3 strategies × 3 seeds × 2 criteria (14 configs).\\n\\nInputs:\\n  - selection_{strategy}_{seed}_{criterion}.json  (flat JSON with recall@1/5/10, total, ckpt_dir)\\n\\nOutputs:\\n  - d062_summary.csv   — cross-table of R@1 by strategy × criterion × seed\\n  - d062_stratified.json — criterion / strategy / interaction main effects\\n  - d062_bootstrap.json  — 95% bootstrap CIs and pairwise P(A > B)\\n\\nDependencies: numpy, json, glob, argparse (stdlib + numpy only)\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport glob\\nimport json\\nimport os\\nimport re\\nimport sys\\n\\nimport numpy as np\\n\\n\\nSTRATEGIES = [\\\"random\\\", \\\"embedding_distance\\\", \\\"dataflow_aware\\\"]\\nSEEDS = [\\\"s42\\\", \\\"s43\\\", \\\"s44\\\"]\\nCRITERIA = [\\\"best_by_val_loss\\\", \\\"best_by_recall_at_1\\\"]\\nMETRICS = [\\\"recall@1\\\", \\\"recall@5\\\", \\\"recall@10\\\"]\\n\\n\\ndef parse_filename(path):\\n    \\\"\\\"\\\"Extract (strategy, seed, criterion) from selection_{strategy}_{seed}_{criterion}.json.\\\"\\\"\\\"\\n    basename = os.path.basename(path)\\n    m = re.match(r\\\"selection_(.+?)_(s\\\\d+)_(best_by_.+)\\\\.json$\\\", basename)\\n    if not m:\\n        return None\\n    return m.group(1), m.group(2), m.group(3)\\n\\n\\ndef load_results(results_dir):\\n    \\\"\\\"\\\"Load all selection_*.json files into a nested dict keyed by (strategy, seed, criterion).\\\"\\\"\\\"\\n    files = glob.glob(os.path.join(results_dir, \\\"selection_*.json\\\"))\\n    data = {}\\n    for f in sorted(files):\\n        parsed = parse_filename(f)\\n        if parsed is None:\\n            print(f\\\"  [WARN] Skipping unrecognized file: {f}\\\", file=sys.stderr)\\n            continue\\n        strategy, seed, criterion = parsed\\n        with open(f) as fh:\\n            data[(strategy, seed, criterion)] = json.load(fh)\\n    return data\\n\\n\\ndef build_summary_table(data, metric=\\\"recall@1\\\"):\\n    \\\"\\\"\\\"Build a summary dict: {strategy: {criterion: {seed: value, 'mean': value}}}.\\\"\\\"\\\"\\n    table = {}\\n    for strategy in STRATEGIES:\\n        table[strategy] = {}\\n        for criterion in CRITERIA:\\n            row = {}\\n            vals = []\\n            for seed in SEEDS:\\n                key = (strategy, seed, criterion)\\n                if key in data:\\n                    v = data[key].get(metric)\\n                    row[seed] = v\\n                    if v is not None:\\n                        vals.append(v)\\n                else:\\n                    row[seed] = None\\n            row[\\\"mean\\\"] = float(np.mean(vals)) if vals else None\\n            table[strategy][criterion] = row\\n    return table\\n\\n\\ndef print_summary_table(table, metric=\\\"recall@1\\\"):\\n    \\\"\\\"\\\"Pretty-print the summary table to terminal.\\\"\\\"\\\"\\n    print(f\\\"\\\\n{'='*90}\\\")\\n    print(f\\\"  D062 Summary Table — {metric}\\\")\\n    print(f\\\"{'='*90}\\\")\\n\\n    # Header\\n    header = f\\\"{'Strategy':<22}\\\"\\n    for criterion in CRITERIA:\\n        short = \\\"val_loss\\\" if \\\"val_loss\\\" in criterion else \\\"recall@1\\\"\\n        for seed in SEEDS:\\n            header += f\\\" {short}/{seed:>3}\\\"\\n        header += f\\\" {short}/mean\\\"\\n    print(header)\\n    print(\\\"-\\\" * 90)\\n\\n    # Rows\\n    for strategy in STRATEGIES:\\n        row_str = f\\\"{strategy:<22}\\\"\\n        for criterion in CRITERIA:\\n            entry = table[strategy][criterion]\\n            for seed in SEEDS:\\n                v = entry.get(seed)\\n                row_str += f\\\"  {v*100:>8.2f}\\\" if v is not None else f\\\"  {'—':>8}\\\"\\n            m = entry.get(\\\"mean\\\")\\n            row_str += f\\\"  {m*100:>8.2f}\\\" if m is not None else f\\\"  {'—':>8}\\\"\\n        print(row_str)\\n\\n    # Criterion main effect row\\n    print(\\\"-\\\" * 90)\\n    row_str = f\\\"{'Δ(recall@1-val_loss)':<22}\\\"\\n    # For each strategy, compute the difference of means\\n    all_diffs = []\\n    for strategy in STRATEGIES:\\n        vl_mean = table[strategy][CRITERIA[0]].get(\\\"mean\\\")\\n        r1_mean = table[strategy][CRITERIA[1]].get(\\\"mean\\\")\\n        if vl_mean is not None and r1_mean is not None:\\n            diff = r1_mean - vl_mean\\n            all_diffs.append(diff)\\n    # Print aggregate\\n    for criterion in CRITERIA:\\n        for seed in SEEDS:\\n            row_str += f\\\"  {'':>8}\\\"\\n        row_str += f\\\"  {'':>8}\\\"\\n    print(row_str)\\n\\n    # Print per-strategy criterion effect\\n    for strategy in STRATEGIES:\\n        vl_mean = table[strategy][CRITERIA[0]].get(\\\"mean\\\")\\n        r1_mean = table[strategy][CRITERIA[1]].get(\\\"mean\\\")\\n        if vl_mean is not None and r1_mean is not None:\\n            diff = (r1_mean - vl_mean) * 100\\n            print(f\\\"  {strategy}: Δ = {diff:+.2f} pp\\\")\\n        else:\\n            print(f\\\"  {strategy}: Δ = — (incomplete data)\\\")\\n\\n    if all_diffs:\\n        print(f\\\"  Overall criterion main effect: Δ = {np.mean(all_diffs)*100:+.2f} pp\\\")\\n    print(f\\\"{'='*90}\\\\n\\\")\\n\\n\\ndef write_summary_csv(table, output_path, metric=\\\"recall@1\\\"):\\n    \\\"\\\"\\\"Write summary table to CSV.\\\"\\\"\\\"\\n    lines = []\\n    # Header\\n    cols = [\\\"strategy\\\"]\\n    for criterion in CRITERIA:\\n        short = \\\"val_loss\\\" if \\\"val_loss\\\" in criterion else \\\"recall_at_1\\\"\\n        for seed in SEEDS:\\n            cols.append(f\\\"{short}_{seed}\\\")\\n        cols.append(f\\\"{short}_mean\\\")\\n    lines.append(\\\",\\\".join(cols))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the rest of the file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "db5ac7b0-7896-4cb0-9861-4110e81c11c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0116usvTYSnBNEwyJuSU7ckD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2541,
+      "cache_read_input_tokens": 27622,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2541
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018EBHfgT8McgqSf1hDi5rxV`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "tail -n +151 /root/structfuse/scripts/d062_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "7b82c6ac-3188-43e6-9832-ea85f1f720b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0116usvTYSnBNEwyJuSU7ckD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2541,
+      "cache_read_input_tokens": 27622,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2541
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T11:48:04.125Z_
+
+<details><summary>↩ Tool result · `toolu_018EBHfgT8McgqSf1hDi5rxV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n    # Data rows\\n    for strategy in STRATEGIES:\\n        row = [strategy]\\n        for criterion in CRITERIA:\\n            entry = table[strategy][criterion]\\n            for seed in SEEDS:\\n                v = entry.get(seed)\\n                row.append(f\\\"{v:.6f}\\\" if v is not None else \\\"\\\")\\n            m = entry.get(\\\"mean\\\")\\n            row.append(f\\\"{m:.6f}\\\" if m is not None else \\\"\\\")\\n        lines.append(\\\",\\\".join(row))\\n\\n    with open(output_path, \\\"w\\\") as f:\\n        f.write(\\\"\\\\n\\\".join(lines) + \\\"\\\\n\\\")\\n    print(f\\\"  Written: {output_path}\\\")\\n\\n\\ndef stratified_analysis(data, metric=\\\"recall@1\\\"):\\n    \\\"\\\"\\\"Compute criterion, strategy, and interaction effects.\\\"\\\"\\\"\\n    result = {\\n        \\\"metric\\\": metric,\\n        \\\"criterion_effect\\\": {},\\n        \\\"strategy_effect\\\": {},\\n        \\\"interaction\\\": {},\\n    }\\n\\n    # Criterion main effect: per strategy, by_recall_at_1 - by_val_loss\\n    for strategy in STRATEGIES:\\n        vl_vals, r1_vals = [], []\\n        for seed in SEEDS:\\n            vl_key = (strategy, seed, \\\"best_by_val_loss\\\")\\n            r1_key = (strategy, seed, \\\"best_by_recall_at_1\\\")\\n            if vl_key in data and data[vl_key].get(metric) is not None:\\n                vl_vals.append(data[vl_key][metric])\\n            if r1_key in data and data[r1_key].get(metric) is not None:\\n                r1_vals.append(data[r1_key][metric])\\n        entry = {\\\"by_val_loss_mean\\\": None, \\\"by_recall_at_1_mean\\\": None, \\\"delta\\\": None}\\n        if vl_vals:\\n            entry[\\\"by_val_loss_mean\\\"] = float(np.mean(vl_vals))\\n        if r1_vals:\\n            entry[\\\"by_recall_at_1_mean\\\"] = float(np.mean(r1_vals))\\n        if entry[\\\"by_val_loss_mean\\\"] is not None and entry[\\\"by_recall_at_1_mean\\\"] is not None:\\n            entry[\\\"delta\\\"] = entry[\\\"by_recall_at_1_mean\\\"] - entry[\\\"by_val_loss_mean\\\"]\\n        result[\\\"criterion_effect\\\"][strategy] = entry\\n\\n    # Strategy main effect: fixed criterion, embed vs random, dataflow vs random\\n    for criterion in CRITERIA:\\n        crit_short = \\\"val_loss\\\" if \\\"val_loss\\\" in criterion else \\\"recall_at_1\\\"\\n        strat_means = {}\\n        for strategy in STRATEGIES:\\n            vals = []\\n            for seed in SEEDS:\\n                key = (strategy, seed, criterion)\\n                if key in data and data[key].get(metric) is not None:\\n                    vals.append(data[key][metric])\\n            strat_means[strategy] = float(np.mean(vals)) if vals else None\\n\\n        comparisons = {}\\n        for alt in [\\\"embedding_distance\\\", \\\"dataflow_aware\\\"]:\\n            if strat_means.get(alt) is not None and strat_means.get(\\\"random\\\") is not None:\\n                comparisons[f\\\"{alt}_vs_random\\\"] = strat_means[alt] - strat_means[\\\"random\\\"]\\n            else:\\n                comparisons[f\\\"{alt}_vs_random\\\"] = None\\n        result[\\\"strategy_effect\\\"][crit_short] = {\\n            \\\"means\\\": {k: v for k, v in strat_means.items()},\\n            \\\"comparisons\\\": comparisons,\\n        }\\n\\n    # Interaction: which strategy benefits more from better criterion\\n    for strategy in STRATEGIES:\\n        ce = result[\\\"criterion_effect\\\"].get(strategy, {})\\n        result[\\\"interaction\\\"][strategy] = ce.get(\\\"delta\\\")\\n\\n    # Interaction contrast vs random\\n    random_delta = result[\\\"interaction\\\"].get(\\\"random\\\")\\n    for alt in [\\\"embedding_distance\\\", \\\"dataflow_aware\\\"]:\\n        alt_delta = result[\\\"interaction\\\"].get(alt)\\n        key = f\\\"{alt}_interaction_vs_random\\\"\\n        if alt_delta is not None and random_delta is not None:\\n            result[\\\"interaction\\\"][key] = alt_delta - random_delta\\n        else:\\n            result[\\\"interaction\\\"][key] = None\\n\\n    return result\\n\\n\\ndef bootstrap_ci(data, metric=\\\"recall@1\\\", n_bootstrap=1000, seed=42):\\n    \\\"\\\"\\\"Binomial bootstrap CIs for each config and pairwise strategy comparisons.\\\"\\\"\\\"\\n    rng = np.random.default_rng(seed)\\n    result = {\\\"metric\\\": metric, \\\"n_bootstrap\\\": n_bootstrap, \\\"seed\\\": seed, \\\"configs\\\": {}, \\\"pairwise\\\": {}}\\n\\n    # Per-config CIs\\n    config_samples = {}  # (strategy, seed, criterion) -> bootstrap distribution\\n    for (strategy, sd, criterion), rec in data.items():\\n\\n... [截断: 输出过长，省略 1246 字符] ...\\n\\n           alt_dists.append(config_samples[a_key])\\n\\n            pair_key = f\\\"{alt}_vs_random_{crit_short}\\\"\\n            if random_dists and alt_dists:\\n                # Mean across available seeds\\n                r_agg = np.mean(random_dists, axis=0)\\n                a_agg = np.mean(alt_dists, axis=0)\\n                diff = a_agg - r_agg\\n                p_greater = float(np.mean(diff > 0))\\n                result[\\\"pairwise\\\"][pair_key] = {\\n                    \\\"mean_diff\\\": float(np.mean(diff)),\\n                    \\\"ci_95\\\": [float(np.percentile(diff, 2.5)), float(np.percentile(diff, 97.5))],\\n                    \\\"p_alt_greater\\\": p_greater,\\n                    \\\"n_seeds_random\\\": len(random_dists),\\n                    \\\"n_seeds_alt\\\": len(alt_dists),\\n                }\\n            else:\\n                result[\\\"pairwise\\\"][pair_key] = {\\n                    \\\"mean_diff\\\": None,\\n                    \\\"ci_95\\\": None,\\n                    \\\"p_alt_greater\\\": None,\\n                    \\\"note\\\": \\\"insufficient data\\\",\\n                }\\n\\n    return result\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"D062 selection-set analysis\\\")\\n    parser.add_argument(\\\"--results-dir\\\", required=True, help=\\\"Directory containing selection_*.json files\\\")\\n    parser.add_argument(\\\"--n-bootstrap\\\", type=int, default=1000, help=\\\"Number of bootstrap resamples\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42, help=\\\"Bootstrap RNG seed\\\")\\n    parser.add_argument(\\\"--output-dir\\\", default=None, help=\\\"Output directory (default: results-dir/analysis/)\\\")\\n    parser.add_argument(\\\"--partial\\\", action=\\\"store_true\\\", help=\\\"Allow partial results (< 14 files)\\\")\\n    args = parser.parse_args()\\n\\n    # Load\\n    data = load_results(args.results_dir)\\n    n_files = len(data)\\n    print(f\\\"Loaded {n_files} result files from {args.results_dir}\\\")\\n\\n    if n_files == 0:\\n        print(\\\"ERROR: No result files found.\\\", file=sys.stderr)\\n        sys.exit(1)\\n\\n    if n_files < 14 and not args.partial:\\n        print(f\\\"ERROR: Only {n_files}/14 files found. Use --partial to proceed anyway.\\\", file=sys.stderr)\\n        sys.exit(1)\\n\\n    # Output dir\\n    output_dir = args.output_dir or os.path.join(args.results_dir, \\\"analysis\\\")\\n    os.makedirs(output_dir, exist_ok=True)\\n\\n    # 1. Summary table\\n    table = build_summary_table(data, metric=\\\"recall@1\\\")\\n    print_summary_table(table, metric=\\\"recall@1\\\")\\n    csv_path = os.path.join(output_dir, \\\"d062_summary.csv\\\")\\n    write_summary_csv(table, csv_path, metric=\\\"recall@1\\\")\\n\\n    # 2. Stratified analysis\\n    stratified = stratified_analysis(data, metric=\\\"recall@1\\\")\\n    strat_path = os.path.join(output_dir, \\\"d062_stratified.json\\\")\\n    with open(strat_path, \\\"w\\\") as f:\\n        json.dump(stratified, f, indent=2)\\n    print(f\\\"  Written: {strat_path}\\\")\\n\\n    # 3. Bootstrap CIs\\n    bootstrap = bootstrap_ci(data, metric=\\\"recall@1\\\", n_bootstrap=args.n_bootstrap, seed=args.seed)\\n    boot_path = os.path.join(output_dir, \\\"d062_bootstrap.json\\\")\\n    with open(boot_path, \\\"w\\\") as f:\\n        json.dump(bootstrap, f, indent=2)\\n    print(f\\\"  Written: {boot_path}\\\")\\n\\n    # Print bootstrap summary\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"  Bootstrap CIs (n={args.n_bootstrap}, seed={args.seed})\\\")\\n    print(f\\\"{'='*60}\\\")\\n    for config_key, ci_data in sorted(bootstrap[\\\"configs\\\"].items()):\\n        lo, hi = ci_data[\\\"ci_95\\\"]\\n        print(f\\\"  {config_key:<50} R@1={ci_data['point']*100:.2f}%  95%CI=[{lo*100:.2f}, {hi*100:.2f}]\\\")\\n\\n    if bootstrap[\\\"pairwise\\\"]:\\n        print(f\\\"\\\\n  Pairwise comparisons:\\\")\\n        for pair_key, pair_data in sorted(bootstrap[\\\"pairwise\\\"].items()):\\n            if pair_data.get(\\\"mean_diff\\\") is not None:\\n                lo, hi = pair_data[\\\"ci_95\\\"]\\n                print(f\\\"    {pair_key:<45} Δ={pair_data['mean_diff']*100:+.2f}pp  95%CI=[{lo*100:.2f}, {hi*100:.2f}]  P(alt>rand)={pair_data['p_alt_greater']:.3f}\\\")\\n            else:\\n                print(f\\\"    {pair_key:<45} — insufficient data\\\")\\n\\n    print(f\\\"\\\\nDone. Outputs in {output_dir}/\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "c5f26559-af9b-4c44-90a9-ef15fb958f93",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n    # Data rows\\\\n    for strategy in STRATEGIES:\\\\n        row = [strategy]\\\\n        for criterion in CRITERIA:\\\\n            entry = table[strategy][criterion]\\\\n            for seed in SEEDS:\\\\n                v = entry.get(seed)\\\\n                row.append(f\\\\\\\"{v:.6f}\\\\\\\" if v is not None else \\\\\\\"\\\\\\\")\\\\n            m = entry.get(\\\\\\\"mean\\\\\\\")\\\\n            row.append(f\\\\\\\"{m:.6f}\\\\\\\" if m is not None else \\\\\\\"\\\\\\\")\\\\n        lines.append(\\\\\\\",\\\\\\\".join(row))\\\\n\\\\n    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        f.write(\\\\\\\"\\\\\\\\n\\\\\\\".join(lines) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    print(f\\\\\\\"  Written: {output_path}\\\\\\\")\\\\n\\\\n\\\\ndef stratified_analysis(data, metric=\\\\\\\"recall@1\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute criterion, strategy, and interaction effects.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    result = {\\\\n        \\\\\\\"metric\\\\\\\": metric,\\\\n        \\\\\\\"criterion_effect\\\\\\\": {},\\\\n        \\\\\\\"strategy_effect\\\\\\\": {},\\\\n        \\\\\\\"interaction\\\\\\\": {},\\\\n    }\\\\n\\\\n    # Criterion main effect: per strategy, by_recall_at_1 - by_val_loss\\\\n    for strategy in STRATEGIES:\\\\n        vl_vals, r1_vals = [], []\\\\n        for seed in SEEDS:\\\\n            vl_key = (strategy, seed, \\\\\\\"best_by_val_loss\\\\\\\")\\\\n            r1_key = (strategy, seed, \\\\\\\"best_by_recall_at_1\\\\\\\")\\\\n            if vl_key in data and data[vl_key].get(metric) is not None:\\\\n                vl_vals.append(data[vl_key][metric])\\\\n            if r1_key in data and data[r1_key].get(metric) is not None:\\\\n                r1_vals.append(data[r1_key][metric])\\\\n        entry = {\\\\\\\"by_val_loss_mean\\\\\\\": None, \\\\\\\"by_recall_at_1_mean\\\\\\\": None, \\\\\\\"delta\\\\\\\": None}\\\\n        if vl_vals:\\\\n            entry[\\\\\\\"by_val_loss_mean\\\\\\\"] = float(np.mean(vl_vals))\\\\n        if r1_vals:\\\\n            entry[\\\\\\\"by_recall_at_1_mean\\\\\\\"] = float(np.mean(r1_vals))\\\\n        if entry[\\\\\\\"by_val_loss_mean\\\\\\\"] is not None and entry[\\\\\\\"by_recall_at_1_mean\\\\\\\"] is not None:\\\\n            entry[\\\\\\\"delta\\\\\\\"] = entry[\\\\\\\"by_recall_at_1_mean\\\\\\\"] - entry[\\\\\\\"by_val_loss_mean\\\\\\\"]\\\\n        result[\\\\\\\"criterion_effect\\\\\\\"][strategy] = entry\\\\n\\\\n    # Strategy main effect: fixed criterion, embed vs random, dataflow vs random\\\\n    for criterion in CRITERIA:\\\\n        crit_short = \\\\\\\"val_loss\\\\\\\" if \\\\\\\"val_loss\\\\\\\" in criterion else \\\\\\\"recall_at_1\\\\\\\"\\\\n        strat_means = {}\\\\n        for strategy in STRATEGIES:\\\\n            vals = []\\\\n            for seed in SEEDS:\\\\n                key = (strategy, seed, criterion)\\\\n                if key in data and data[key].get(metric) is not None:\\\\n                    vals.append(data[key][metric])\\\\n            strat_means[strategy] = float(np.mean(vals)) if vals else None\\\\n\\\\n        comparisons = {}\\\\n        for alt in [\\\\\\\"embedding_distance\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\"]:\\\\n            if strat_means.get(alt) is not None and strat_means.get(\\\\\\\"random\\\\\\\") is not None:\\\\n                comparisons[f\\\\\\\"{alt}_vs_random\\\\\\\"] = strat_means[alt] - strat_means[\\\\\\\"random\\\\\\\"]\\\\n            else:\\\\n                comparisons[f\\\\\\\"{alt}_vs_random\\\\\\\"] = None\\\\n        result[\\\\\\\"strategy_effect\\\\\\\"][crit_short] = {\\\\n            \\\\\\\"means\\\\\\\": {k: v for k, v in strat_means.items()},\\\\n            \\\\\\\"comparisons\\\\\\\": comparisons,\\\\n        }\\\\n\\\\n    # Interaction: which strategy benefits more from better criterion\\\\n    for strategy in STRATEGIES:\\\\n        ce = result[\\\\\\\"criterion_effect\\\\\\\"].get(strategy, {})\\\\n        result[\\\\\\\"interaction\\\\\\\"][strategy] = ce.get(\\\\\\\"delta\\\\\\\")\\\\n\\\\n    # Interaction contrast vs random\\\\n    random_delta = result[\\\\\\\"interaction\\\\\\\"].get(\\\\\\\"random\\\\\\\")\\\\n    for alt in [\\\\\\\"embedding_distance\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\"]:\\\\n        alt_delta = result[\\\\\\\"interaction\\\\\\\"].get(alt)\\\\n        key = f\\\\\\\"{alt}_interaction_vs_random\\\\\\\"\\\\n        if alt_delta is not None and random_delta is not None:\\\\n            result[\\\\\\\"interaction\\\\\\\"][key] = alt_delta - random_delta\\\\n        else:\\\\n            result[\\\\\\\"interaction\\\\\\\"][key] = None\\\\n\\\\n    return result\\\\n\\\\n\\\\ndef bootstrap_ci(data, metric=\\\\\\\"recall@1\\\\\\\", n_bootstrap=1000, seed=42):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Binomial bootstrap CIs for each config and pairwise strategy comparisons.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    rng = np.random.default_rng(seed)\\\\n    result = {\\\\\\\"metric\\\\\\\": metric, \\\\\\\"n_bootstrap\\\\\\\": n_bootstrap, \\\\\\\"seed\\\\\\\": seed, \\\\\\\"configs\\\\\\\": {}, \\\\\\\"pairwise\\\\\\\": {}}\\\\n\\\\n    # Per-config CIs\\\\n    config_samples = {}  # (strategy, seed, criterion) -> bootstrap distribution\\\\n    for (strategy, sd, criterion), rec in data.items():\\\\n\\\\n... [截断: 输出过长，省略 1246 字符] ...\\\\n\\\\n           alt_dists.append(config_samples[a_key])\\\\n\\\\n            pair_key = f\\\\\\\"{alt}_vs_random_{crit_short}\\\\\\\"\\\\n            if random_dists and alt_dists:\\\\n                # Mean across available seeds\\\\n                r_agg = np.mean(random_dists, axis=0)\\\\n                a_agg = np.mean(alt_dists, axis=0)\\\\n                diff = a_agg - r_agg\\\\n                p_greater = float(np.mean(diff > 0))\\\\n                result[\\\\\\\"pairwise\\\\\\\"][pair_key] = {\\\\n                    \\\\\\\"mean_diff\\\\\\\": float(np.mean(diff)),\\\\n                    \\\\\\\"ci_95\\\\\\\": [float(np.percentile(diff, 2.5)), float(np.percentile(diff, 97.5))],\\\\n                    \\\\\\\"p_alt_greater\\\\\\\": p_greater,\\\\n                    \\\\\\\"n_seeds_random\\\\\\\": len(random_dists),\\\\n                    \\\\\\\"n_seeds_alt\\\\\\\": len(alt_dists),\\\\n                }\\\\n            else:\\\\n                result[\\\\\\\"pairwise\\\\\\\"][pair_key] = {\\\\n                    \\\\\\\"mean_diff\\\\\\\": None,\\\\n                    \\\\\\\"ci_95\\\\\\\": None,\\\\n                    \\\\\\\"p_alt_greater\\\\\\\": None,\\\\n                    \\\\\\\"note\\\\\\\": \\\\\\\"insufficient data\\\\\\\",\\\\n                }\\\\n\\\\n    return result\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"D062 selection-set analysis\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--results-dir\\\\\\\", required=True, help=\\\\\\\"Directory containing selection_*.json files\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--n-bootstrap\\\\\\\", type=int, default=1000, help=\\\\\\\"Number of bootstrap resamples\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42, help=\\\\\\\"Bootstrap RNG seed\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", default=None, help=\\\\\\\"Output directory (default: results-dir/analysis/)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--partial\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Allow partial results (< 14 files)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    # Load\\\\n    data = load_results(args.results_dir)\\\\n    n_files = len(data)\\\\n    print(f\\\\\\\"Loaded {n_files} result files from {args.results_dir}\\\\\\\")\\\\n\\\\n    if n_files == 0:\\\\n        print(\\\\\\\"ERROR: No result files found.\\\\\\\", file=sys.stderr)\\\\n        sys.exit(1)\\\\n\\\\n    if n_files < 14 and not args.partial:\\\\n        print(f\\\\\\\"ERROR: Only {n_files}/14 files found. Use --partial to proceed anyway.\\\\\\\", file=sys.stderr)\\\\n        sys.exit(1)\\\\n\\\\n    # Output dir\\\\n    output_dir = args.output_dir or os.path.join(args.results_dir, \\\\\\\"analysis\\\\\\\")\\\\n    os.makedirs(output_dir, exist_ok=True)\\\\n\\\\n    # 1. Summary table\\\\n    table = build_summary_table(data, metric=\\\\\\\"recall@1\\\\\\\")\\\\n    print_summary_table(table, metric=\\\\\\\"recall@1\\\\\\\")\\\\n    csv_path = os.path.join(output_dir, \\\\\\\"d062_summary.csv\\\\\\\")\\\\n    write_summary_csv(table, csv_path, metric=\\\\\\\"recall@1\\\\\\\")\\\\n\\\\n    # 2. Stratified analysis\\\\n    stratified = stratified_analysis(data, metric=\\\\\\\"recall@1\\\\\\\")\\\\n    strat_path = os.path.join(output_dir, \\\\\\\"d062_stratified.json\\\\\\\")\\\\n    with open(strat_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(stratified, f, indent=2)\\\\n    print(f\\\\\\\"  Written: {strat_path}\\\\\\\")\\\\n\\\\n    # 3. Bootstrap CIs\\\\n    bootstrap = bootstrap_ci(data, metric=\\\\\\\"recall@1\\\\\\\", n_bootstrap=args.n_bootstrap, seed=args.seed)\\\\n    boot_path = os.path.join(output_dir, \\\\\\\"d062_bootstrap.json\\\\\\\")\\\\n    with open(boot_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(bootstrap, f, indent=2)\\\\n    print(f\\\\\\\"  Written: {boot_path}\\\\\\\")\\\\n\\\\n    # Print bootstrap summary\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"  Bootstrap CIs (n={args.n_bootstrap}, seed={args.seed})\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n    for config_key, ci_data in sorted(bootstrap[\\\\\\\"configs\\\\\\\"].items()):\\\\n        lo, hi = ci_data[\\\\\\\"ci_95\\\\\\\"]\\\\n        print(f\\\\\\\"  {config_key:<50} R@1={ci_data['point']*100:.2f}%  95%CI=[{lo*100:.2f}, {hi*100:.2f}]\\\\\\\")\\\\n\\\\n    if bootstrap[\\\\\\\"pairwise\\\\\\\"]:\\\\n        print(f\\\\\\\"\\\\\\\\n  Pairwise comparisons:\\\\\\\")\\\\n        for pair_key, pair_data in sorted(bootstrap[\\\\\\\"pairwise\\\\\\\"].items()):\\\\n            if pair_data.get(\\\\\\\"mean_diff\\\\\\\") is not None:\\\\n                lo, hi = pair_data[\\\\\\\"ci_95\\\\\\\"]\\\\n                print(f\\\\\\\"    {pair_key:<45} Δ={pair_data['mean_diff']*100:+.2f}pp  95%CI=[{lo*100:.2f}, {hi*100:.2f}]  P(alt>rand)={pair_data['p_alt_greater']:.3f}\\\\\\\")\\\\n            else:\\\\n                print(f\\\\\\\"    {pair_key:<45} — insufficient data\\\\\\\")\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\nDone. Outputs in {output_dir}/\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n    # Data rows\\n    for strategy in STRATEGIES:\\n        row = [strategy]\\n        for criterion in CRITERIA:\\n            entry = table[strategy][criterion]\\n            for seed in SEEDS:\\n                v = entry.get(seed)\\n                row.append(f\\\"{v:.6f}\\\" if v is not None else \\\"\\\")\\n            m = entry.get(\\\"mean\\\")\\n            row.append(f\\\"{m:.6f}\\\" if m is not None else \\\"\\\")\\n        lines.append(\\\",\\\".join(row))\\n\\n    with open(output_path, \\\"w\\\") as f:\\n        f.write(\\\"\\\\n\\\".join(lines) + \\\"\\\\n\\\")\\n    print(f\\\"  Written: {output_path}\\\")\\n\\n\\ndef stratified_analysis(data, metric=\\\"recall@1\\\"):\\n    \\\"\\\"\\\"Compute criterion, strategy, and interaction effects.\\\"\\\"\\\"\\n    result = {\\n        \\\"metric\\\": metric,\\n        \\\"criterion_effect\\\": {},\\n        \\\"strategy_effect\\\": {},\\n        \\\"interaction\\\": {},\\n    }\\n\\n    # Criterion main effect: per strategy, by_recall_at_1 - by_val_loss\\n    for strategy in STRATEGIES:\\n        vl_vals, r1_vals = [], []\\n        for seed in SEEDS:\\n            vl_key = (strategy, seed, \\\"best_by_val_loss\\\")\\n            r1_key = (strategy, seed, \\\"best_by_recall_at_1\\\")\\n            if vl_key in data and data[vl_key].get(metric) is not None:\\n                vl_vals.append(data[vl_key][metric])\\n            if r1_key in data and data[r1_key].get(metric) is not None:\\n                r1_vals.append(data[r1_key][metric])\\n        entry = {\\\"by_val_loss_mean\\\": None, \\\"by_recall_at_1_mean\\\": None, \\\"delta\\\": None}\\n        if vl_vals:\\n            entry[\\\"by_val_loss_mean\\\"] = float(np.mean(vl_vals))\\n        if r1_vals:\\n            entry[\\\"by_recall_at_1_mean\\\"] = float(np.mean(r1_vals))\\n        if entry[\\\"by_val_loss_mean\\\"] is not None and entry[\\\"by_recall_at_1_mean\\\"] is not None:\\n            entry[\\\"delta\\\"] = entry[\\\"by_recall_at_1_mean\\\"] - entry[\\\"by_val_loss_mean\\\"]\\n        result[\\\"criterion_effect\\\"][strategy] = entry\\n\\n    # Strategy main effect: fixed criterion, embed vs random, dataflow vs random\\n    for criterion in CRITERIA:\\n        crit_short = \\\"val_loss\\\" if \\\"val_loss\\\" in criterion else \\\"recall_at_1\\\"\\n        strat_means = {}\\n        for strategy in STRATEGIES:\\n            vals = []\\n            for seed in SEEDS:\\n                key = (strategy, seed, criterion)\\n                if key in data and data[key].get(metric) is not None:\\n                    vals.append(data[key][metric])\\n            strat_means[strategy] = float(np.mean(vals)) if vals else None\\n\\n        comparisons = {}\\n        for alt in [\\\"embedding_distance\\\", \\\"dataflow_aware\\\"]:\\n            if strat_means.get(alt) is not None and strat_means.get(\\\"random\\\") is not None:\\n                comparisons[f\\\"{alt}_vs_random\\\"] = strat_means[alt] - strat_means[\\\"random\\\"]\\n            else:\\n                comparisons[f\\\"{alt}_vs_random\\\"] = None\\n        result[\\\"strategy_effect\\\"][crit_short] = {\\n            \\\"means\\\": {k: v for k, v in strat_means.items()},\\n            \\\"comparisons\\\": comparisons,\\n        }\\n\\n    # Interaction: which strategy benefits more from better criterion\\n    for strategy in STRATEGIES:\\n        ce = result[\\\"criterion_effect\\\"].get(strategy, {})\\n        result[\\\"interaction\\\"][strategy] = ce.get(\\\"delta\\\")\\n\\n    # Interaction contrast vs random\\n    random_delta = result[\\\"interaction\\\"].get(\\\"random\\\")\\n    for alt in [\\\"embedding_distance\\\", \\\"dataflow_aware\\\"]:\\n        alt_delta = result[\\\"interaction\\\"].get(alt)\\n        key = f\\\"{alt}_interaction_vs_random\\\"\\n        if alt_delta is not None and random_delta is not None:\\n            result[\\\"interaction\\\"][key] = alt_delta - random_delta\\n        else:\\n            result[\\\"interaction\\\"][key] = None\\n\\n    return result\\n\\n\\ndef bootstrap_ci(data, metric=\\\"recall@1\\\", n_bootstrap=1000, seed=42):\\n    \\\"\\\"\\\"Binomial bootstrap CIs for each config and pairwise strategy comparisons.\\\"\\\"\\\"\\n    rng = np.random.default_rng(seed)\\n    result = {\\\"metric\\\": metric, \\\"n_bootstrap\\\": n_bootstrap, \\\"seed\\\": seed, \\\"configs\\\": {}, \\\"pairwise\\\": {}}\\n\\n    # Per-config CIs\\n    config_samples = {}  # (strategy, seed, criterion) -> bootstrap distribution\\n    for (strategy, sd, criterion), rec in data.items():\\n\\n... [截断: 输出过长，省略 1246 字符] ...\\n\\n           alt_dists.append(config_samples[a_key])\\n\\n            pair_key = f\\\"{alt}_vs_random_{crit_short}\\\"\\n            if random_dists and alt_dists:\\n                # Mean across available seeds\\n                r_agg = np.mean(random_dists, axis=0)\\n                a_agg = np.mean(alt_dists, axis=0)\\n                diff = a_agg - r_agg\\n                p_greater = float(np.mean(diff > 0))\\n                result[\\\"pairwise\\\"][pair_key] = {\\n                    \\\"mean_diff\\\": float(np.mean(diff)),\\n                    \\\"ci_95\\\": [float(np.percentile(diff, 2.5)), float(np.percentile(diff, 97.5))],\\n                    \\\"p_alt_greater\\\": p_greater,\\n                    \\\"n_seeds_random\\\": len(random_dists),\\n                    \\\"n_seeds_alt\\\": len(alt_dists),\\n                }\\n            else:\\n                result[\\\"pairwise\\\"][pair_key] = {\\n                    \\\"mean_diff\\\": None,\\n                    \\\"ci_95\\\": None,\\n                    \\\"p_alt_greater\\\": None,\\n                    \\\"note\\\": \\\"insufficient data\\\",\\n                }\\n\\n    return result\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"D062 selection-set analysis\\\")\\n    parser.add_argument(\\\"--results-dir\\\", required=True, help=\\\"Directory containing selection_*.json files\\\")\\n    parser.add_argument(\\\"--n-bootstrap\\\", type=int, default=1000, help=\\\"Number of bootstrap resamples\\\")\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42, help=\\\"Bootstrap RNG seed\\\")\\n    parser.add_argument(\\\"--output-dir\\\", default=None, help=\\\"Output directory (default: results-dir/analysis/)\\\")\\n    parser.add_argument(\\\"--partial\\\", action=\\\"store_true\\\", help=\\\"Allow partial results (< 14 files)\\\")\\n    args = parser.parse_args()\\n\\n    # Load\\n    data = load_results(args.results_dir)\\n    n_files = len(data)\\n    print(f\\\"Loaded {n_files} result files from {args.results_dir}\\\")\\n\\n    if n_files == 0:\\n        print(\\\"ERROR: No result files found.\\\", file=sys.stderr)\\n        sys.exit(1)\\n\\n    if n_files < 14 and not args.partial:\\n        print(f\\\"ERROR: Only {n_files}/14 files found. Use --partial to proceed anyway.\\\", file=sys.stderr)\\n        sys.exit(1)\\n\\n    # Output dir\\n    output_dir = args.output_dir or os.path.join(args.results_dir, \\\"analysis\\\")\\n    os.makedirs(output_dir, exist_ok=True)\\n\\n    # 1. Summary table\\n    table = build_summary_table(data, metric=\\\"recall@1\\\")\\n    print_summary_table(table, metric=\\\"recall@1\\\")\\n    csv_path = os.path.join(output_dir, \\\"d062_summary.csv\\\")\\n    write_summary_csv(table, csv_path, metric=\\\"recall@1\\\")\\n\\n    # 2. Stratified analysis\\n    stratified = stratified_analysis(data, metric=\\\"recall@1\\\")\\n    strat_path = os.path.join(output_dir, \\\"d062_stratified.json\\\")\\n    with open(strat_path, \\\"w\\\") as f:\\n        json.dump(stratified, f, indent=2)\\n    print(f\\\"  Written: {strat_path}\\\")\\n\\n    # 3. Bootstrap CIs\\n    bootstrap = bootstrap_ci(data, metric=\\\"recall@1\\\", n_bootstrap=args.n_bootstrap, seed=args.seed)\\n    boot_path = os.path.join(output_dir, \\\"d062_bootstrap.json\\\")\\n    with open(boot_path, \\\"w\\\") as f:\\n        json.dump(bootstrap, f, indent=2)\\n    print(f\\\"  Written: {boot_path}\\\")\\n\\n    # Print bootstrap summary\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"  Bootstrap CIs (n={args.n_bootstrap}, seed={args.seed})\\\")\\n    print(f\\\"{'='*60}\\\")\\n    for config_key, ci_data in sorted(bootstrap[\\\"configs\\\"].items()):\\n        lo, hi = ci_data[\\\"ci_95\\\"]\\n        print(f\\\"  {config_key:<50} R@1={ci_data['point']*100:.2f}%  95%CI=[{lo*100:.2f}, {hi*100:.2f}]\\\")\\n\\n    if bootstrap[\\\"pairwise\\\"]:\\n        print(f\\\"\\\\n  Pairwise comparisons:\\\")\\n        for pair_key, pair_data in sorted(bootstrap[\\\"pairwise\\\"].items()):\\n            if pair_data.get(\\\"mean_diff\\\") is not None:\\n                lo, hi = pair_data[\\\"ci_95\\\"]\\n                print(f\\\"    {pair_key:<45} Δ={pair_data['mean_diff']*100:+.2f}pp  95%CI=[{lo*100:.2f}, {hi*100:.2f}]  P(alt>rand)={pair_data['p_alt_greater']:.3f}\\\")\\n            else:\\n                print(f\\\"    {pair_key:<45} — insufficient data\\\")\\n\\n    print(f\\\"\\\\nDone. Outputs in {output_dir}/\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I still missed the bootstrap_ci function's middle part. Let me read lines 240-280 approximately.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "64d2a3f7-23e4-4f64-95e4-3a5363a1dd1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019rHnZ3b3PJ1bwxn6rvN7DF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3423,
+      "cache_read_input_tokens": 30163,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3423
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+还有一段 bootstrap_ci 被截断，读取中间部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "4607a1fb-f36b-4134-81a4-16abf3ca6d30",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019rHnZ3b3PJ1bwxn6rvN7DF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3423,
+      "cache_read_input_tokens": 30163,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3423
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C2j1o52mH4u1g9oUMcHaMH`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "head -280 /root/structfuse/scripts/d062_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "f7782d3c-ae1e-4ef4-9370-736651e74574",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019rHnZ3b3PJ1bwxn6rvN7DF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3423,
+      "cache_read_input_tokens": 30163,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3423
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T11:48:09.584Z_
+
+<details><summary>↩ Tool result · `toolu_01C2j1o52mH4u1g9oUMcHaMH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"D062 selection-set analysis: summary table, stratified effects, bootstrap CIs.\\n\\nReads /root/autodl-tmp/structfuse/d062_results/selection_*.json files produced\\nby D062 pool=50 eval across 3 strategies × 3 seeds × 2 criteria (14 configs).\\n\\nInputs:\\n  - selection_{strategy}_{seed}_{criterion}.json  (flat JSON with recall@1/5/10, total, ckpt_dir)\\n\\nOutputs:\\n  - d062_summary.csv   — cross-table of R@1 by strategy × criterion × seed\\n  - d062_stratified.json — criterion / strategy / interaction main effects\\n  - d062_bootstrap.json  — 95% bootstrap CIs and pairwise P(A > B)\\n\\nDependencies: numpy, json, glob, argparse (stdlib + numpy only)\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport glob\\nimport json\\nimport os\\nimport re\\nimport sys\\n\\nimport numpy as np\\n\\n\\nSTRATEGIES = [\\\"random\\\", \\\"embedding_distance\\\", \\\"dataflow_aware\\\"]\\nSEEDS = [\\\"s42\\\", \\\"s43\\\", \\\"s44\\\"]\\nCRITERIA = [\\\"best_by_val_loss\\\", \\\"best_by_recall_at_1\\\"]\\nMETRICS = [\\\"recall@1\\\", \\\"recall@5\\\", \\\"recall@10\\\"]\\n\\n\\ndef parse_filename(path):\\n    \\\"\\\"\\\"Extract (strategy, seed, criterion) from selection_{strategy}_{seed}_{criterion}.json.\\\"\\\"\\\"\\n    basename = os.path.basename(path)\\n    m = re.match(r\\\"selection_(.+?)_(s\\\\d+)_(best_by_.+)\\\\.json$\\\", basename)\\n    if not m:\\n        return None\\n    return m.group(1), m.group(2), m.group(3)\\n\\n\\ndef load_results(results_dir):\\n    \\\"\\\"\\\"Load all selection_*.json files into a nested dict keyed by (strategy, seed, criterion).\\\"\\\"\\\"\\n    files = glob.glob(os.path.join(results_dir, \\\"selection_*.json\\\"))\\n    data = {}\\n    for f in sorted(files):\\n        parsed = parse_filename(f)\\n        if parsed is None:\\n            print(f\\\"  [WARN] Skipping unrecognized file: {f}\\\", file=sys.stderr)\\n            continue\\n        strategy, seed, criterion = parsed\\n        with open(f) as fh:\\n            data[(strategy, seed, criterion)] = json.load(fh)\\n    return data\\n\\n\\ndef build_summary_table(data, metric=\\\"recall@1\\\"):\\n    \\\"\\\"\\\"Build a summary dict: {strategy: {criterion: {seed: value, 'mean': value}}}.\\\"\\\"\\\"\\n    table = {}\\n    for strategy in STRATEGIES:\\n        table[strategy] = {}\\n        for criterion in CRITERIA:\\n            row = {}\\n            vals = []\\n            for seed in SEEDS:\\n                key = (strategy, seed, criterion)\\n                if key in data:\\n                    v = data[key].get(metric)\\n                    row[seed] = v\\n                    if v is not None:\\n                        vals.append(v)\\n                else:\\n                    row[seed] = None\\n            row[\\\"mean\\\"] = float(np.mean(vals)) if vals else None\\n            table[strategy][criterion] = row\\n    return table\\n\\n\\ndef print_summary_table(table, metric=\\\"recall@1\\\"):\\n    \\\"\\\"\\\"Pretty-print the summary table to terminal.\\\"\\\"\\\"\\n    print(f\\\"\\\\n{'='*90}\\\")\\n    print(f\\\"  D062 Summary Table — {metric}\\\")\\n    print(f\\\"{'='*90}\\\")\\n\\n    # Header\\n    header = f\\\"{'Strategy':<22}\\\"\\n    for criterion in CRITERIA:\\n        short = \\\"val_loss\\\" if \\\"val_loss\\\" in criterion else \\\"recall@1\\\"\\n        for seed in SEEDS:\\n            header += f\\\" {short}/{seed:>3}\\\"\\n        header += f\\\" {short}/mean\\\"\\n    print(header)\\n    print(\\\"-\\\" * 90)\\n\\n    # Rows\\n    for strategy in STRATEGIES:\\n        row_str = f\\\"{strategy:<22}\\\"\\n        for criterion in CRITERIA:\\n            entry = table[strategy][criterion]\\n            for seed in SEEDS:\\n                v = entry.get(seed)\\n                row_str += f\\\"  {v*100:>8.2f}\\\" if v is not None else f\\\"  {'—':>8}\\\"\\n            m = entry.get(\\\"mean\\\")\\n            row_str += f\\\"  {m*100:>8.2f}\\\" if m is not None else f\\\"  {'—':>8}\\\"\\n        print(row_str)\\n\\n    # Criterion main effect row\\n    print(\\\"-\\\" * 90)\\n    row_str = f\\\"{'Δ(recall@1-val_loss)':<22}\\\"\\n    # For each strategy, compute the difference of means\\n    all_diffs = []\\n    for strategy in STRATEGIES:\\n        vl_mean = table[strategy][CRITERIA[0]].get(\\\"mean\\\")\\n        r1_mean = table[strategy][CRITERIA[1]].get(\\\"mean\\\")\\n        if vl_mean is not None and r1_mean is not None:\\n            diff = r1_mean - vl_mean\\n            all_diffs.append(diff)\\n    # Print aggregate\\n    for criterion in CRITERIA:\\n\\n\\n... [截断: 输出过长，省略 2614 字符] ...\\n\\n1_mean\\\"] = float(np.mean(r1_vals))\\n        if entry[\\\"by_val_loss_mean\\\"] is not None and entry[\\\"by_recall_at_1_mean\\\"] is not None:\\n            entry[\\\"delta\\\"] = entry[\\\"by_recall_at_1_mean\\\"] - entry[\\\"by_val_loss_mean\\\"]\\n        result[\\\"criterion_effect\\\"][strategy] = entry\\n\\n    # Strategy main effect: fixed criterion, embed vs random, dataflow vs random\\n    for criterion in CRITERIA:\\n        crit_short = \\\"val_loss\\\" if \\\"val_loss\\\" in criterion else \\\"recall_at_1\\\"\\n        strat_means = {}\\n        for strategy in STRATEGIES:\\n            vals = []\\n            for seed in SEEDS:\\n                key = (strategy, seed, criterion)\\n                if key in data and data[key].get(metric) is not None:\\n                    vals.append(data[key][metric])\\n            strat_means[strategy] = float(np.mean(vals)) if vals else None\\n\\n        comparisons = {}\\n        for alt in [\\\"embedding_distance\\\", \\\"dataflow_aware\\\"]:\\n            if strat_means.get(alt) is not None and strat_means.get(\\\"random\\\") is not None:\\n                comparisons[f\\\"{alt}_vs_random\\\"] = strat_means[alt] - strat_means[\\\"random\\\"]\\n            else:\\n                comparisons[f\\\"{alt}_vs_random\\\"] = None\\n        result[\\\"strategy_effect\\\"][crit_short] = {\\n            \\\"means\\\": {k: v for k, v in strat_means.items()},\\n            \\\"comparisons\\\": comparisons,\\n        }\\n\\n    # Interaction: which strategy benefits more from better criterion\\n    for strategy in STRATEGIES:\\n        ce = result[\\\"criterion_effect\\\"].get(strategy, {})\\n        result[\\\"interaction\\\"][strategy] = ce.get(\\\"delta\\\")\\n\\n    # Interaction contrast vs random\\n    random_delta = result[\\\"interaction\\\"].get(\\\"random\\\")\\n    for alt in [\\\"embedding_distance\\\", \\\"dataflow_aware\\\"]:\\n        alt_delta = result[\\\"interaction\\\"].get(alt)\\n        key = f\\\"{alt}_interaction_vs_random\\\"\\n        if alt_delta is not None and random_delta is not None:\\n            result[\\\"interaction\\\"][key] = alt_delta - random_delta\\n        else:\\n            result[\\\"interaction\\\"][key] = None\\n\\n    return result\\n\\n\\ndef bootstrap_ci(data, metric=\\\"recall@1\\\", n_bootstrap=1000, seed=42):\\n    \\\"\\\"\\\"Binomial bootstrap CIs for each config and pairwise strategy comparisons.\\\"\\\"\\\"\\n    rng = np.random.default_rng(seed)\\n    result = {\\\"metric\\\": metric, \\\"n_bootstrap\\\": n_bootstrap, \\\"seed\\\": seed, \\\"configs\\\": {}, \\\"pairwise\\\": {}}\\n\\n    # Per-config CIs\\n    config_samples = {}  # (strategy, seed, criterion) -> bootstrap distribution\\n    for (strategy, sd, criterion), rec in data.items():\\n        p = rec.get(metric)\\n        n = rec.get(\\\"total\\\", 504)\\n        if p is None:\\n            continue\\n\\n        # Binomial bootstrap: sample n Bernoulli(p) trials, compute mean, repeat\\n        samples = rng.binomial(n, p, size=n_bootstrap) / n\\n        lo, hi = float(np.percentile(samples, 2.5)), float(np.percentile(samples, 97.5))\\n        config_key = f\\\"{strategy}_{sd}_{criterion}\\\"\\n        result[\\\"configs\\\"][config_key] = {\\n            \\\"point\\\": float(p),\\n            \\\"ci_95\\\": [lo, hi],\\n            \\\"n_queries\\\": int(n),\\n        }\\n        config_samples[(strategy, sd, criterion)] = samples\\n\\n    # Pairwise strategy comparisons: P(embed > random), P(dataflow > random)\\n    for criterion in CRITERIA:\\n        crit_short = \\\"val_loss\\\" if \\\"val_loss\\\" in criterion else \\\"recall_at_1\\\"\\n        for alt in [\\\"embedding_distance\\\", \\\"dataflow_aware\\\"]:\\n            # Aggregate across seeds: average the bootstrap distributions\\n            random_dists, alt_dists = [], []\\n            for sd in SEEDS:\\n                r_key = (\\\"random\\\", sd, criterion)\\n                a_key = (alt, sd, criterion)\\n                if r_key in config_samples:\\n                    random_dists.append(config_samples[r_key])\\n                if a_key in config_samples:\\n                    alt_dists.append(config_samples[a_key])\\n\\n            pair_key = f\\\"{alt}_vs_random_{crit_short}\\\"\\n            if random_dists and alt_dists:\\n                # Mean across available seeds\\n                r_agg = np.mean(random_dists, axis=0)\\n                a_agg = np.mean(alt_dists, axis=0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "bb8fafc2-de20-4f66-bc66-68c90d303cf7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"D062 selection-set analysis: summary table, stratified effects, bootstrap CIs.\\\\n\\\\nReads /root/autodl-tmp/structfuse/d062_results/selection_*.json files produced\\\\nby D062 pool=50 eval across 3 strategies × 3 seeds × 2 criteria (14 configs).\\\\n\\\\nInputs:\\\\n  - selection_{strategy}_{seed}_{criterion}.json  (flat JSON with recall@1/5/10, total, ckpt_dir)\\\\n\\\\nOutputs:\\\\n  - d062_summary.csv   — cross-table of R@1 by strategy × criterion × seed\\\\n  - d062_stratified.json — criterion / strategy / interaction main effects\\\\n  - d062_bootstrap.json  — 95% bootstrap CIs and pairwise P(A > B)\\\\n\\\\nDependencies: numpy, json, glob, argparse (stdlib + numpy only)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport glob\\\\nimport json\\\\nimport os\\\\nimport re\\\\nimport sys\\\\n\\\\nimport numpy as np\\\\n\\\\n\\\\nSTRATEGIES = [\\\\\\\"random\\\\\\\", \\\\\\\"embedding_distance\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\"]\\\\nSEEDS = [\\\\\\\"s42\\\\\\\", \\\\\\\"s43\\\\\\\", \\\\\\\"s44\\\\\\\"]\\\\nCRITERIA = [\\\\\\\"best_by_val_loss\\\\\\\", \\\\\\\"best_by_recall_at_1\\\\\\\"]\\\\nMETRICS = [\\\\\\\"recall@1\\\\\\\", \\\\\\\"recall@5\\\\\\\", \\\\\\\"recall@10\\\\\\\"]\\\\n\\\\n\\\\ndef parse_filename(path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract (strategy, seed, criterion) from selection_{strategy}_{seed}_{criterion}.json.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    basename = os.path.basename(path)\\\\n    m = re.match(r\\\\\\\"selection_(.+?)_(s\\\\\\\\d+)_(best_by_.+)\\\\\\\\.json$\\\\\\\", basename)\\\\n    if not m:\\\\n        return None\\\\n    return m.group(1), m.group(2), m.group(3)\\\\n\\\\n\\\\ndef load_results(results_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load all selection_*.json files into a nested dict keyed by (strategy, seed, criterion).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    files = glob.glob(os.path.join(results_dir, \\\\\\\"selection_*.json\\\\\\\"))\\\\n    data = {}\\\\n    for f in sorted(files):\\\\n        parsed = parse_filename(f)\\\\n        if parsed is None:\\\\n            print(f\\\\\\\"  [WARN] Skipping unrecognized file: {f}\\\\\\\", file=sys.stderr)\\\\n            continue\\\\n        strategy, seed, criterion = parsed\\\\n        with open(f) as fh:\\\\n            data[(strategy, seed, criterion)] = json.load(fh)\\\\n    return data\\\\n\\\\n\\\\ndef build_summary_table(data, metric=\\\\\\\"recall@1\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Build a summary dict: {strategy: {criterion: {seed: value, 'mean': value}}}.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    table = {}\\\\n    for strategy in STRATEGIES:\\\\n        table[strategy] = {}\\\\n        for criterion in CRITERIA:\\\\n            row = {}\\\\n            vals = []\\\\n            for seed in SEEDS:\\\\n                key = (strategy, seed, criterion)\\\\n                if key in data:\\\\n                    v = data[key].get(metric)\\\\n                    row[seed] = v\\\\n                    if v is not None:\\\\n                        vals.append(v)\\\\n                else:\\\\n                    row[seed] = None\\\\n            row[\\\\\\\"mean\\\\\\\"] = float(np.mean(vals)) if vals else None\\\\n            table[strategy][criterion] = row\\\\n    return table\\\\n\\\\n\\\\ndef print_summary_table(table, metric=\\\\\\\"recall@1\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Pretty-print the summary table to terminal.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*90}\\\\\\\")\\\\n    print(f\\\\\\\"  D062 Summary Table — {metric}\\\\\\\")\\\\n    print(f\\\\\\\"{'='*90}\\\\\\\")\\\\n\\\\n    # Header\\\\n    header = f\\\\\\\"{'Strategy':<22}\\\\\\\"\\\\n    for criterion in CRITERIA:\\\\n        short = \\\\\\\"val_loss\\\\\\\" if \\\\\\\"val_loss\\\\\\\" in criterion else \\\\\\\"recall@1\\\\\\\"\\\\n        for seed in SEEDS:\\\\n            header += f\\\\\\\" {short}/{seed:>3}\\\\\\\"\\\\n        header += f\\\\\\\" {short}/mean\\\\\\\"\\\\n    print(header)\\\\n    print(\\\\\\\"-\\\\\\\" * 90)\\\\n\\\\n    # Rows\\\\n    for strategy in STRATEGIES:\\\\n        row_str = f\\\\\\\"{strategy:<22}\\\\\\\"\\\\n        for criterion in CRITERIA:\\\\n            entry = table[strategy][criterion]\\\\n            for seed in SEEDS:\\\\n                v = entry.get(seed)\\\\n                row_str += f\\\\\\\"  {v*100:>8.2f}\\\\\\\" if v is not None else f\\\\\\\"  {'—':>8}\\\\\\\"\\\\n            m = entry.get(\\\\\\\"mean\\\\\\\")\\\\n            row_str += f\\\\\\\"  {m*100:>8.2f}\\\\\\\" if m is not None else f\\\\\\\"  {'—':>8}\\\\\\\"\\\\n        print(row_str)\\\\n\\\\n    # Criterion main effect row\\\\n    print(\\\\\\\"-\\\\\\\" * 90)\\\\n    row_str = f\\\\\\\"{'Δ(recall@1-val_loss)':<22}\\\\\\\"\\\\n    # For each strategy, compute the difference of means\\\\n    all_diffs = []\\\\n    for strategy in STRATEGIES:\\\\n        vl_mean = table[strategy][CRITERIA[0]].get(\\\\\\\"mean\\\\\\\")\\\\n        r1_mean = table[strategy][CRITERIA[1]].get(\\\\\\\"mean\\\\\\\")\\\\n        if vl_mean is not None and r1_mean is not None:\\\\n            diff = r1_mean - vl_mean\\\\n            all_diffs.append(diff)\\\\n    # Print aggregate\\\\n    for criterion in CRITERIA:\\\\n\\\\n\\\\n... [截断: 输出过长，省略 2614 字符] ...\\\\n\\\\n1_mean\\\\\\\"] = float(np.mean(r1_vals))\\\\n        if entry[\\\\\\\"by_val_loss_mean\\\\\\\"] is not None and entry[\\\\\\\"by_recall_at_1_mean\\\\\\\"] is not None:\\\\n            entry[\\\\\\\"delta\\\\\\\"] = entry[\\\\\\\"by_recall_at_1_mean\\\\\\\"] - entry[\\\\\\\"by_val_loss_mean\\\\\\\"]\\\\n        result[\\\\\\\"criterion_effect\\\\\\\"][strategy] = entry\\\\n\\\\n    # Strategy main effect: fixed criterion, embed vs random, dataflow vs random\\\\n    for criterion in CRITERIA:\\\\n        crit_short = \\\\\\\"val_loss\\\\\\\" if \\\\\\\"val_loss\\\\\\\" in criterion else \\\\\\\"recall_at_1\\\\\\\"\\\\n        strat_means = {}\\\\n        for strategy in STRATEGIES:\\\\n            vals = []\\\\n            for seed in SEEDS:\\\\n                key = (strategy, seed, criterion)\\\\n                if key in data and data[key].get(metric) is not None:\\\\n                    vals.append(data[key][metric])\\\\n            strat_means[strategy] = float(np.mean(vals)) if vals else None\\\\n\\\\n        comparisons = {}\\\\n        for alt in [\\\\\\\"embedding_distance\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\"]:\\\\n            if strat_means.get(alt) is not None and strat_means.get(\\\\\\\"random\\\\\\\") is not None:\\\\n                comparisons[f\\\\\\\"{alt}_vs_random\\\\\\\"] = strat_means[alt] - strat_means[\\\\\\\"random\\\\\\\"]\\\\n            else:\\\\n                comparisons[f\\\\\\\"{alt}_vs_random\\\\\\\"] = None\\\\n        result[\\\\\\\"strategy_effect\\\\\\\"][crit_short] = {\\\\n            \\\\\\\"means\\\\\\\": {k: v for k, v in strat_means.items()},\\\\n            \\\\\\\"comparisons\\\\\\\": comparisons,\\\\n        }\\\\n\\\\n    # Interaction: which strategy benefits more from better criterion\\\\n    for strategy in STRATEGIES:\\\\n        ce = result[\\\\\\\"criterion_effect\\\\\\\"].get(strategy, {})\\\\n        result[\\\\\\\"interaction\\\\\\\"][strategy] = ce.get(\\\\\\\"delta\\\\\\\")\\\\n\\\\n    # Interaction contrast vs random\\\\n    random_delta = result[\\\\\\\"interaction\\\\\\\"].get(\\\\\\\"random\\\\\\\")\\\\n    for alt in [\\\\\\\"embedding_distance\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\"]:\\\\n        alt_delta = result[\\\\\\\"interaction\\\\\\\"].get(alt)\\\\n        key = f\\\\\\\"{alt}_interaction_vs_random\\\\\\\"\\\\n        if alt_delta is not None and random_delta is not None:\\\\n            result[\\\\\\\"interaction\\\\\\\"][key] = alt_delta - random_delta\\\\n        else:\\\\n            result[\\\\\\\"interaction\\\\\\\"][key] = None\\\\n\\\\n    return result\\\\n\\\\n\\\\ndef bootstrap_ci(data, metric=\\\\\\\"recall@1\\\\\\\", n_bootstrap=1000, seed=42):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Binomial bootstrap CIs for each config and pairwise strategy comparisons.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    rng = np.random.default_rng(seed)\\\\n    result = {\\\\\\\"metric\\\\\\\": metric, \\\\\\\"n_bootstrap\\\\\\\": n_bootstrap, \\\\\\\"seed\\\\\\\": seed, \\\\\\\"configs\\\\\\\": {}, \\\\\\\"pairwise\\\\\\\": {}}\\\\n\\\\n    # Per-config CIs\\\\n    config_samples = {}  # (strategy, seed, criterion) -> bootstrap distribution\\\\n    for (strategy, sd, criterion), rec in data.items():\\\\n        p = rec.get(metric)\\\\n        n = rec.get(\\\\\\\"total\\\\\\\", 504)\\\\n        if p is None:\\\\n            continue\\\\n\\\\n        # Binomial bootstrap: sample n Bernoulli(p) trials, compute mean, repeat\\\\n        samples = rng.binomial(n, p, size=n_bootstrap) / n\\\\n        lo, hi = float(np.percentile(samples, 2.5)), float(np.percentile(samples, 97.5))\\\\n        config_key = f\\\\\\\"{strategy}_{sd}_{criterion}\\\\\\\"\\\\n        result[\\\\\\\"configs\\\\\\\"][config_key] = {\\\\n            \\\\\\\"point\\\\\\\": float(p),\\\\n            \\\\\\\"ci_95\\\\\\\": [lo, hi],\\\\n            \\\\\\\"n_queries\\\\\\\": int(n),\\\\n        }\\\\n        config_samples[(strategy, sd, criterion)] = samples\\\\n\\\\n    # Pairwise strategy comparisons: P(embed > random), P(dataflow > random)\\\\n    for criterion in CRITERIA:\\\\n        crit_short = \\\\\\\"val_loss\\\\\\\" if \\\\\\\"val_loss\\\\\\\" in criterion else \\\\\\\"recall_at_1\\\\\\\"\\\\n        for alt in [\\\\\\\"embedding_distance\\\\\\\", \\\\\\\"dataflow_aware\\\\\\\"]:\\\\n            # Aggregate across seeds: average the bootstrap distributions\\\\n            random_dists, alt_dists = [], []\\\\n            for sd in SEEDS:\\\\n                r_key = (\\\\\\\"random\\\\\\\", sd, criterion)\\\\n                a_key = (alt, sd, criterion)\\\\n                if r_key in config_samples:\\\\n                    random_dists.append(config_samples[r_key])\\\\n                if a_key in config_samples:\\\\n                    alt_dists.append(config_samples[a_key])\\\\n\\\\n            pair_key = f\\\\\\\"{alt}_vs_random_{crit_short}\\\\\\\"\\\\n            if random_dists and alt_dists:\\\\n                # Mean across available seeds\\\\n                r_agg = np.mean(random_dists, axis=0)\\\\n                a_agg = np.mean(alt_dists, axis=0)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"D062 selection-set analysis: summary table, stratified effects, bootstrap CIs.\\n\\nReads /root/autodl-tmp/structfuse/d062_results/selection_*.json files produced\\nby D062 pool=50 eval across 3 strategies × 3 seeds × 2 criteria (14 configs).\\n\\nInputs:\\n  - selection_{strategy}_{seed}_{criterion}.json  (flat JSON with recall@1/5/10, total, ckpt_dir)\\n\\nOutputs:\\n  - d062_summary.csv   — cross-table of R@1 by strategy × criterion × seed\\n  - d062_stratified.json — criterion / strategy / interaction main effects\\n  - d062_bootstrap.json  — 95% bootstrap CIs and pairwise P(A > B)\\n\\nDependencies: numpy, json, glob, argparse (stdlib + numpy only)\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport glob\\nimport json\\nimport os\\nimport re\\nimport sys\\n\\nimport numpy as np\\n\\n\\nSTRATEGIES = [\\\"random\\\", \\\"embedding_distance\\\", \\\"dataflow_aware\\\"]\\nSEEDS = [\\\"s42\\\", \\\"s43\\\", \\\"s44\\\"]\\nCRITERIA = [\\\"best_by_val_loss\\\", \\\"best_by_recall_at_1\\\"]\\nMETRICS = [\\\"recall@1\\\", \\\"recall@5\\\", \\\"recall@10\\\"]\\n\\n\\ndef parse_filename(path):\\n    \\\"\\\"\\\"Extract (strategy, seed, criterion) from selection_{strategy}_{seed}_{criterion}.json.\\\"\\\"\\\"\\n    basename = os.path.basename(path)\\n    m = re.match(r\\\"selection_(.+?)_(s\\\\d+)_(best_by_.+)\\\\.json$\\\", basename)\\n    if not m:\\n        return None\\n    return m.group(1), m.group(2), m.group(3)\\n\\n\\ndef load_results(results_dir):\\n    \\\"\\\"\\\"Load all selection_*.json files into a nested dict keyed by (strategy, seed, criterion).\\\"\\\"\\\"\\n    files = glob.glob(os.path.join(results_dir, \\\"selection_*.json\\\"))\\n    data = {}\\n    for f in sorted(files):\\n        parsed = parse_filename(f)\\n        if parsed is None:\\n            print(f\\\"  [WARN] Skipping unrecognized file: {f}\\\", file=sys.stderr)\\n            continue\\n        strategy, seed, criterion = parsed\\n        with open(f) as fh:\\n            data[(strategy, seed, criterion)] = json.load(fh)\\n    return data\\n\\n\\ndef build_summary_table(data, metric=\\\"recall@1\\\"):\\n    \\\"\\\"\\\"Build a summary dict: {strategy: {criterion: {seed: value, 'mean': value}}}.\\\"\\\"\\\"\\n    table = {}\\n    for strategy in STRATEGIES:\\n        table[strategy] = {}\\n        for criterion in CRITERIA:\\n            row = {}\\n            vals = []\\n            for seed in SEEDS:\\n                key = (strategy, seed, criterion)\\n                if key in data:\\n                    v = data[key].get(metric)\\n                    row[seed] = v\\n                    if v is not None:\\n                        vals.append(v)\\n                else:\\n                    row[seed] = None\\n            row[\\\"mean\\\"] = float(np.mean(vals)) if vals else None\\n            table[strategy][criterion] = row\\n    return table\\n\\n\\ndef print_summary_table(table, metric=\\\"recall@1\\\"):\\n    \\\"\\\"\\\"Pretty-print the summary table to terminal.\\\"\\\"\\\"\\n    print(f\\\"\\\\n{'='*90}\\\")\\n    print(f\\\"  D062 Summary Table — {metric}\\\")\\n    print(f\\\"{'='*90}\\\")\\n\\n    # Header\\n    header = f\\\"{'Strategy':<22}\\\"\\n    for criterion in CRITERIA:\\n        short = \\\"val_loss\\\" if \\\"val_loss\\\" in criterion else \\\"recall@1\\\"\\n        for seed in SEEDS:\\n            header += f\\\" {short}/{seed:>3}\\\"\\n        header += f\\\" {short}/mean\\\"\\n    print(header)\\n    print(\\\"-\\\" * 90)\\n\\n    # Rows\\n    for strategy in STRATEGIES:\\n        row_str = f\\\"{strategy:<22}\\\"\\n        for criterion in CRITERIA:\\n            entry = table[strategy][criterion]\\n            for seed in SEEDS:\\n                v = entry.get(seed)\\n                row_str += f\\\"  {v*100:>8.2f}\\\" if v is not None else f\\\"  {'—':>8}\\\"\\n            m = entry.get(\\\"mean\\\")\\n            row_str += f\\\"  {m*100:>8.2f}\\\" if m is not None else f\\\"  {'—':>8}\\\"\\n        print(row_str)\\n\\n    # Criterion main effect row\\n    print(\\\"-\\\" * 90)\\n    row_str = f\\\"{'Δ(recall@1-val_loss)':<22}\\\"\\n    # For each strategy, compute the difference of means\\n    all_diffs = []\\n    for strategy in STRATEGIES:\\n        vl_mean = table[strategy][CRITERIA[0]].get(\\\"mean\\\")\\n        r1_mean = table[strategy][CRITERIA[1]].get(\\\"mean\\\")\\n        if vl_mean is not None and r1_mean is not None:\\n            diff = r1_mean - vl_mean\\n            all_diffs.append(diff)\\n    # Print aggregate\\n    for criterion in CRITERIA:\\n\\n\\n... [截断: 输出过长，省略 2614 字符] ...\\n\\n1_mean\\\"] = float(np.mean(r1_vals))\\n        if entry[\\\"by_val_loss_mean\\\"] is not None and entry[\\\"by_recall_at_1_mean\\\"] is not None:\\n            entry[\\\"delta\\\"] = entry[\\\"by_recall_at_1_mean\\\"] - entry[\\\"by_val_loss_mean\\\"]\\n        result[\\\"criterion_effect\\\"][strategy] = entry\\n\\n    # Strategy main effect: fixed criterion, embed vs random, dataflow vs random\\n    for criterion in CRITERIA:\\n        crit_short = \\\"val_loss\\\" if \\\"val_loss\\\" in criterion else \\\"recall_at_1\\\"\\n        strat_means = {}\\n        for strategy in STRATEGIES:\\n            vals = []\\n            for seed in SEEDS:\\n                key = (strategy, seed, criterion)\\n                if key in data and data[key].get(metric) is not None:\\n                    vals.append(data[key][metric])\\n            strat_means[strategy] = float(np.mean(vals)) if vals else None\\n\\n        comparisons = {}\\n        for alt in [\\\"embedding_distance\\\", \\\"dataflow_aware\\\"]:\\n            if strat_means.get(alt) is not None and strat_means.get(\\\"random\\\") is not None:\\n                comparisons[f\\\"{alt}_vs_random\\\"] = strat_means[alt] - strat_means[\\\"random\\\"]\\n            else:\\n                comparisons[f\\\"{alt}_vs_random\\\"] = None\\n        result[\\\"strategy_effect\\\"][crit_short] = {\\n            \\\"means\\\": {k: v for k, v in strat_means.items()},\\n            \\\"comparisons\\\": comparisons,\\n        }\\n\\n    # Interaction: which strategy benefits more from better criterion\\n    for strategy in STRATEGIES:\\n        ce = result[\\\"criterion_effect\\\"].get(strategy, {})\\n        result[\\\"interaction\\\"][strategy] = ce.get(\\\"delta\\\")\\n\\n    # Interaction contrast vs random\\n    random_delta = result[\\\"interaction\\\"].get(\\\"random\\\")\\n    for alt in [\\\"embedding_distance\\\", \\\"dataflow_aware\\\"]:\\n        alt_delta = result[\\\"interaction\\\"].get(alt)\\n        key = f\\\"{alt}_interaction_vs_random\\\"\\n        if alt_delta is not None and random_delta is not None:\\n            result[\\\"interaction\\\"][key] = alt_delta - random_delta\\n        else:\\n            result[\\\"interaction\\\"][key] = None\\n\\n    return result\\n\\n\\ndef bootstrap_ci(data, metric=\\\"recall@1\\\", n_bootstrap=1000, seed=42):\\n    \\\"\\\"\\\"Binomial bootstrap CIs for each config and pairwise strategy comparisons.\\\"\\\"\\\"\\n    rng = np.random.default_rng(seed)\\n    result = {\\\"metric\\\": metric, \\\"n_bootstrap\\\": n_bootstrap, \\\"seed\\\": seed, \\\"configs\\\": {}, \\\"pairwise\\\": {}}\\n\\n    # Per-config CIs\\n    config_samples = {}  # (strategy, seed, criterion) -> bootstrap distribution\\n    for (strategy, sd, criterion), rec in data.items():\\n        p = rec.get(metric)\\n        n = rec.get(\\\"total\\\", 504)\\n        if p is None:\\n            continue\\n\\n        # Binomial bootstrap: sample n Bernoulli(p) trials, compute mean, repeat\\n        samples = rng.binomial(n, p, size=n_bootstrap) / n\\n        lo, hi = float(np.percentile(samples, 2.5)), float(np.percentile(samples, 97.5))\\n        config_key = f\\\"{strategy}_{sd}_{criterion}\\\"\\n        result[\\\"configs\\\"][config_key] = {\\n            \\\"point\\\": float(p),\\n            \\\"ci_95\\\": [lo, hi],\\n            \\\"n_queries\\\": int(n),\\n        }\\n        config_samples[(strategy, sd, criterion)] = samples\\n\\n    # Pairwise strategy comparisons: P(embed > random), P(dataflow > random)\\n    for criterion in CRITERIA:\\n        crit_short = \\\"val_loss\\\" if \\\"val_loss\\\" in criterion else \\\"recall_at_1\\\"\\n        for alt in [\\\"embedding_distance\\\", \\\"dataflow_aware\\\"]:\\n            # Aggregate across seeds: average the bootstrap distributions\\n            random_dists, alt_dists = [], []\\n            for sd in SEEDS:\\n                r_key = (\\\"random\\\", sd, criterion)\\n                a_key = (alt, sd, criterion)\\n                if r_key in config_samples:\\n                    random_dists.append(config_samples[r_key])\\n                if a_key in config_samples:\\n                    alt_dists.append(config_samples[a_key])\\n\\n            pair_key = f\\\"{alt}_vs_random_{crit_short}\\\"\\n            if random_dists and alt_dists:\\n                # Mean across available seeds\\n                r_agg = np.mean(random_dists, axis=0)\\n                a_agg = np.mean(alt_dists, axis=0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a complete picture of the script. Let me also read the truncated part around lines 100-150 (the print_summary_table and write_summary_csv functions):
+
+Actually, I have enough to understand the full structure. Let me now create the modified version of the script. The key changes are:
+
+1. Add a `REGIME` dict mapping seeds to their regime info
+2. Modify `build_summary_table` to add `mean_all` and `mean_comparable` 
+3. Modify `print_summary_table` to show regime annotations and both mean versions
+
+
+4. Modify `write_summary_csv` to add a `regime` column
+5. Modify `stratified_analysis` to provide `all_seeds` and `comparable_only` versions
+6. Modify `bootstrap_ci` to provide both versions
+
+I need to think carefully about how to structure these changes to preserve existing functionality while adding the new features. Let me map out the constants and function modifications I'll need to make.
+
+Defining the seed regime mapping...
+
+Updating `build_summary_table` to compute both overall and comparable-only means, then modifying `print_summary_table` to display regime annotations and both mean rows with a note at the bottom. The CSV writer will need a regime column and the comparable mean row, while `stratified_analysis` and `bootstrap_ci` will each need to generate both all-seeds and comparable-only versions of their results.
+
+Writing the complete modified script... Refactoring the build_summary_table function...
+
+Now I need to handle the print_summary_table function to display the regime tags on seed headers, show both mean calculations, and add a note about comparable seeds. Finishing the row formatting with the comparable mean values, then printing each strategy's results. I'm also adding a note about the different training regimes used across seeds, and I'm realizing the header is getting quite wide with all these columns—I should reconsider the column widths to keep the output readable. I'm reconsidering the layout—maybe the regime annotations should go in the data rows themselves rather than cluttering the headers. Looking back at the requirements, it seems like they want the seed values annotated with their regime tags, possibly by restructuring the table so each seed becomes a row instead of a column, which would make the annotations cleaner and more readable. I think the simplest approach is to annotate the column headers in the printed table to show which regime each seed belongs to—marking s42 with `[3ep/p0]` and s43/s44 with `[2ep/p2]`—and add a note at the bottom explaining the mapping.
+
+For the CSV, I should add a `regime` column that indicates which regime each seed used, though this means either restructuring to long format or finding a way to represent per-seed regime information in the current wide format.
+
+The cleanest solution is to convert to long format with columns for strategy, criterion, seed, regime, and the metric values — that way adding the regime column feels natural rather than forcing it into a wide-format structure. Though I'm aware this would change the existing CSV format, it's the most straightforward way to include regime information as requested. I'm going in circles here—let me step back and focus on what the user actually needs. The requirements are clear: add a `regime` column to the CSV, and split the JSON outputs into `all_seeds` and `comparable_only` groups. For the CSV in wide format, the simplest approach is to add regime as metadata or restructure it to long format where each row represents a strategy-seed-criterion combination, which would naturally accommodate the regime information. and add a header comment or note row with regime info. Actually, I think the cleanest approach is to restructure the data so each row represents a strategy-seed combination with the regime included as its own column—that way I can naturally include val_loss and recall_at_1 values without awkward wide formatting.
+
+Generating the CSV structure... I need to transfer this script to the server, and since I don't have direct scp access, I'll use ssh_execute with a heredoc to write the file directly. Let me construct the complete modified script with all the changes I've outlined—updating the CSV format to include regime as a column, adjusting the summary rows, and refactoring the analysis functions accordingly.
+
+Writing the modified script... I'm going to use a heredoc approach with `cat` to write the file directly via SSH, being careful with escaping since the script contains various quote types. Since I'm using `'SCRIPT_EOF'` with quotes, shell expansion will be prevented, which should handle the f-strings and mixed quotes in the Python code. Let me construct the full modified script and deploy it.
+
+The script will analyze D062 selection results by reading JSON files from the pool evaluation across different strategies, seeds, and criteria, then generate a summary CSV table, stratified effects analysis, and bootstrap confidence intervals with pairwise comparisons.
+
+Setting up the imports and defining the constants for strategies, seeds, criteria, and metrics, along with a seed-to-regime mapping and a list of comparable seeds for filtering.
+
+Now I'm parsing filenames to extract the strategy, seed, and criterion components from the selection JSON files, then loading all of them into a nested dictionary keyed by those three parameters.
+
+Building a summary table... Writing the table formatting... Building the table output... I'm finishing the output formatting for the comparison results, printing the overall criterion effect across all seeds and comparable subsets, then adding a note about the different training regimes used in seed 42 versus the others, and finally closing out the summary section before moving into the CSV writing function. Writing CSV output...
+
+I'm realizing the user wants a regime column added, but restructuring to long format changes the existing CSV structure significantly. They said not to break existing functionality, so maybe I should keep the wide format and add regime information as separate columns per seed instead — that way the original structure stays intact while adding the requested regime data. I'm weighing whether to restructure the CSV into long format or keep it wide but add clarity around which seeds share comparable regimes. The long format would be cleaner, but I think the simpler approach is to keep the existing structure, rename the mean columns to distinguish between all-seeds and comparable-seeds means, and add a header comment documenting which seed uses which regime. I'm settling on the long format CSV with a regime column that labels each data point, including aggregate rows for mean_all and mean_comparable. Now for the stratified analysis, I need to add both all_seeds and comparable_only versions for each section—criterion_effect and strategy_effect will each have variants depending on which seed set I'm iterating over, and the interaction analysis will derive from those. For bootstrap_ci, I'll add a comparable section alongside the existing configs section to handle the comparable seeds separately.
+
+Structuring the output JSON...
+
+I'm laying out the complete script now, thinking through the line count and making sure all the stratified analysis logic with both aggregate and comparable-only branches is properly implemented. Writing the full script... Building the summary table... Generating the summary table... Finishing the criterion comparison output and then moving into a function to write the results to a CSV file...
+
+Now I'm setting up the CSV structure with columns for strategy, criterion, seed, training regime, and the metric value, then iterating through each combination to populate rows with either individual seed results or aggregate means.
+
+Writing CSV output... I'm completing the delta calculation when both metrics are available, then organizing the results by strategy to compare how different selection criteria affect performance across the various approaches. Completing the interaction comparison logic and then setting up the stratified analysis function that computes effects across different seed configurations and regimes...
+
+Now I'm implementing a bootstrap confidence interval function that samples from binomial distributions to estimate uncertainty around each configuration's performance metric.
+
+Computing pairwise comparisons... Still writing comparison logic... Setting up the analysis pipeline...
+
+Now I'm checking if we have enough result files, and if not, requiring the `--partial` flag to proceed. Then I'm creating the output directory and building the summary table with recall@1 metrics, writing it to CSV. After that, I'm running a stratified analysis on the same metric and preparing to save those results as well.
+
+Writing analysis outputs... Finishing the pairwise comparison output with mean differences and confidence intervals, then wrapping up the script. I'm reviewing the implementation to confirm all the key changes are in place—the seed regime constants, the summary table builder, and the bootstrap analysis logic. I'm concerned the new nested structure for `stratified_analysis` might break downstream code that expects the flat format, though since this is a standalone analysis script it's probably fine. Looking at the table formatting now—with the current column widths of 10 characters each, a two-criterion layout would span about 162 characters, which is too wide, so I should stick with the original 10-character column sizing that's already in the code. I'm settling on a column width of 8 characters for the data columns, which keeps the total table width at 122 characters—still a bit wide but manageable. The regime tags like `[3ep/p0]` fit perfectly in this width when right-aligned, so this should work cleanly. I'm considering whether to put regime information in a sub-header row below each column name, or just annotate it directly in the header itself with brackets showing which regime each seed uses.
+
+The sub-header approach feels cleaner, so I'll go with that. The current table is already quite wide at 90 characters, and adding mean columns for multiple criteria would push it to around 130 characters total—still manageable for terminal scrolling.
+
+Defining the table printing function... Formatting the results table... I'm overthinking the formatting details here. The user cares about correctness first, so let me just write the script with reasonable column widths and move on. I'll use consistent spacing for the data columns and keep the headers simple, accepting that perfect alignment isn't critical. My plan is straightforward: update the summary table to show seed regimes in the header, rename `mean` to `mean_all`, add `mean_cmp`, include a note at the bottom, and then handle the CSV output. Looking at the column widths, the header uses about 13 characters per seed column while data rows use 10 characters, so they won't align perfectly but that's acceptable. I'm modifying the header to show both `mean_all` and `mean_cmp` for each criterion, and updating the data rows to output values for both means alongside the existing seed columns.
+
+I'm also adding a regime note line right after the header to document the experimental setup. This keeps things simple without disrupting the column structure.
+
+Now I'm finalizing the script and writing out the complete `print_summary_table` function with the header, regime note, and column formatting all in place. Finishing the table formatting with the mean values, then calculating the differences between validation loss and recall metrics across all seeds to show the criterion effects. Finishing the output formatting, then I'll write out the complete script as a string and deploy it to the server using SSH with a heredoc approach—using single quotes around the delimiter to prevent shell expansion of any special characters.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "d00cf1ec-a58d-4b0c-a79e-29061d26aeea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuGYYjX2q4ihH8YqZSzsXY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3302,
+      "cache_read_input_tokens": 33586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3302
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+现在已有完整脚本结构（368行）。准备编写修改后的版本并部署到服务器。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "962f3a59-463c-45c8-83b4-5f908441fd21",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuGYYjX2q4ihH8YqZSzsXY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3302,
+      "cache_read_input_tokens": 33586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3302
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PCNLcWQow53h7QUj8Bu3vE`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "cp /root/structfuse/scripts/d062_analysis.py /root/structfuse/scripts/d062_analysis.py.bak",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "fb3aa048-453a-4ec6-9fe8-438137374d30",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KuGYYjX2q4ihH8YqZSzsXY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3302,
+      "cache_read_input_tokens": 33586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3302
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T11:53:01.150Z_
+
+<details><summary>↩ Tool result · `toolu_01PCNLcWQow53h7QUj8Bu3vE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "bc336f75-1235-4e72-ac7c-12e5e86eb4a2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, backup made. Now let me write the full modified script to the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "16375eba-f97e-4be3-a0e8-bc58a898286b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MmLgYmHGfMYNB4rHhRam8e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18210,
+      "cache_read_input_tokens": 36888,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18210
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+备份完成。现在部署修改后的脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "123c3ef2-ed71-43e3-a64e-784d8dab89f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MmLgYmHGfMYNB4rHhRam8e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18210,
+      "cache_read_input_tokens": 36888,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18210
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LJJhJ9EqihHM6BfsZqbpUV`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "cat << 'SCRIPT_EOF' > /root/structfuse/scripts/d062_analysis.py\n\"\"\"D062 selection-set analysis: summary table, stratified effects, bootstrap CIs.\n\nReads /root/autodl-tmp/structfuse/d062_results/selection_*.json files produced\nby D062 pool=50 eval across 3 strategies x 3 seeds x 2 criteria (14 configs).\n\nInputs:\n  - selection_{strategy}_{seed}_{criterion}.json  (flat JSON with recall@1/5/10, total, ckpt_dir)\n\nOutputs:\n  - d062_summary.csv   -- cross-table of R@1 by strategy x criterion x seed (with regime column)\n  - d062_stratified.json -- criterion / strategy / interaction main effects (all_seeds + comparable_only)\n  - d062_bootstrap.json  -- 95% bootstrap CIs and pairwise P(A > B) (all_seeds + comparable_only)\n\nDependencies: numpy, json, glob, argparse (stdlib + numpy only)\n\"\"\"\n\nimport argparse\nimport glob\nimport json\nimport os\nimport re\nimport sys\n\nimport numpy as np\n\n\nSTRATEGIES = [\"random\", \"embedding_distance\", \"dataflow_aware\"]\nSEEDS = [\"s42\", \"s43\", \"s44\"]\nCRITERIA = [\"best_by_val_loss\", \"best_by_recall_at_1\"]\nMETRICS = [\"recall@1\", \"recall@5\", \"recall@10\"]\nSEED_REGIME = {\"s42\": \"3ep/p0\", \"s43\": \"2ep/p2\", \"s44\": \"2ep/p2\"}\nCOMPARABLE_SEEDS = [\"s43\", \"s44\"]\n\n\ndef parse_filename(path):\n    basename = os.path.basename(path)\n    m = re.match(r\"selection_(.+?)_(s\\d+)_(best_by_.+)\\.json$\", basename)\n    if not m:\n        return None\n    return m.group(1), m.group(2), m.group(3)\n\n\ndef load_results(results_dir):\n    files = glob.glob(os.path.join(results_dir, \"selection_*.json\"))\n    data = {}\n    for f in sorted(files):\n        parsed = parse_filename(f)\n        if parsed is None:\n            print(f\"  [WARN] Skipping unrecognized file: {f}\", file=sys.stderr)\n            continue\n        strategy, seed, criterion = parsed\n        with open(f) as fh:\n            data[(strategy, seed, criterion)] = json.load(fh)\n    return data\n\n\ndef build_summary_table(data, metric=\"recall@1\"):\n    table = {}\n    for strategy in STRATEGIES:\n        table[strategy] = {}\n        for criterion in CRITERIA:\n            row = {}\n            all_vals = []\n            comparable_vals = []\n            for seed in SEEDS:\n                key = (strategy, seed, criterion)\n                if key in data:\n                    v = data[key].get(metric)\n                    row[seed] = v\n                    if v is not None:\n                        all_vals.append(v)\n                        if seed in COMPARABLE_SEEDS:\n                            comparable_vals.append(v)\n                else:\n                    row[seed] = None\n            row[\"mean_all\"] = float(np.mean(all_vals)) if all_vals else None\n            row[\"mean_comparable\"] = float(np.mean(comparable_vals)) if comparable_vals else None\n            table[strategy][criterion] = row\n    return table\n\n\ndef print_summary_table(table, metric=\"recall@1\"):\n    W = 110\n    print(f\"\\n{'='*W}\")\n    print(f\"  D062 Summary Table -- {metric}\")\n    print(f\"  Regime: s42=[3ep/p0]  s43,s44=[2ep/p2]\")\n    print(f\"{'='*W}\")\n\n    header = f\"{'Strategy':<22}\"\n    for criterion in CRITERIA:\n        short = \"val_loss\" if \"val_loss\" in criterion else \"recall@1\"\n        for seed in SEEDS:\n            header += f\" {short}/{seed:>3}\"\n        header += f\"  {short}/mean_all\"\n        header += f\"  {short}/mean_cmp\"\n    print(header)\n    print(\"-\" * W)\n\n    for strategy in STRATEGIES:\n        row_str = f\"{strategy:<22}\"\n        for criterion in CRITERIA:\n            entry = table[strategy][criterion]\n            for seed in SEEDS:\n                v = entry.get(seed)\n                row_str += f\"  {v*100:>8.2f}\" if v is not None else f\"  {'---':>8}\"\n            m_all = entry.get(\"mean_all\")\n            row_str += f\"  {m_all*100:>8.2f}\" if m_all is not None else f\"  {'---':>8}\"\n            m_cmp = entry.get(\"mean_comparable\")\n            row_str += f\"  {m_cmp*100:>8.2f}\" if m_cmp is not None else f\"  {'---':>8}\"\n        print(row_str)\n\n    print(\"-\" * W)\n    for strategy in STRATEGIES:\n        vl_all = table[strategy][CRITERIA[0]].get(\"mean_all\")\n        r1_all = table[strategy][CRITERIA[1]].get(\"mean_all\")\n        vl_cmp = table[strategy][CRITERIA[0]].get(\"mean_comparable\")\n        r1_cmp = table[strategy][CRITERIA[1]].get(\"mean_comparable\")\n        parts = []\n        if vl_all is not None and r1_all is not None:\n            parts.append(f\"all={((r1_all - vl_all) * 100):+.2f}pp\")\n        if vl_cmp is not None and r1_cmp is not None:\n            parts.append(f\"comparable={((r1_cmp - vl_cmp) * 100):+.2f}pp\")\n        if parts:\n            print(f\"  {strategy}: delta(criterion) = {', '.join(parts)}\")\n        else:\n            print(f\"  {strategy}: delta = --- (incomplete data)\")\n\n    print(\"-\" * W)\n    print(\"NOTE: s42 used different training regime (3 epochs, patience=0) vs s43/s44 (2 epochs, patience=2)\")\n    print(\"      mean_all = all 3 seeds; mean_cmp = s43+s44 only (comparable regime)\")\n    print(f\"{'='*W}\\n\")\n\n\ndef write_summary_csv(table, output_path, metric=\"recall@1\"):\n    lines = []\n    metric_col = metric.replace(\"@\", \"_at_\")\n    cols = [\"strategy\", \"criterion\", \"seed\", \"regime\", metric_col]\n    lines.append(\",\".join(cols))\n\n    for strategy in STRATEGIES:\n        for criterion in CRITERIA:\n            crit_short = \"val_loss\" if \"val_loss\" in criterion else \"recall_at_1\"\n            entry = table[strategy][criterion]\n            for seed in SEEDS:\n                v = entry.get(seed)\n                regime = SEED_REGIME[seed]\n                val_str = f\"{v:.6f}\" if v is not None else \"\"\n                lines.append(f\"{strategy},{crit_short},{seed},{regime},{val_str}\")\n            m_all = entry.get(\"mean_all\")\n            val_str = f\"{m_all:.6f}\" if m_all is not None else \"\"\n            lines.append(f\"{strategy},{crit_short},mean_all,all_seeds,{val_str}\")\n            m_cmp = entry.get(\"mean_comparable\")\n            val_str = f\"{m_cmp:.6f}\" if m_cmp is not None else \"\"\n            lines.append(f\"{strategy},{crit_short},mean_comparable,s43+s44_only,{val_str}\")\n\n    with open(output_path, \"w\") as f:\n        f.write(\"\\n\".join(lines) + \"\\n\")\n    print(f\"  Written: {output_path}\")\n\n\ndef _compute_effects(data, metric, seed_list):\n    criterion_effect = {}\n    for strategy in STRATEGIES:\n        vl_vals, r1_vals = [], []\n        for seed in seed_list:\n            vl_key = (strategy, seed, \"best_by_val_loss\")\n            r1_key = (strategy, seed, \"best_by_recall_at_1\")\n            if vl_key in data and data[vl_key].get(metric) is not None:\n                vl_vals.append(data[vl_key][metric])\n            if r1_key in data and data[r1_key].get(metric) is not None:\n                r1_vals.append(data[r1_key][metric])\n        entry = {\"by_val_loss_mean\": None, \"by_recall_at_1_mean\": None, \"delta\": None, \"n_seeds\": len(seed_list)}\n        if vl_vals:\n            entry[\"by_val_loss_mean\"] = float(np.mean(vl_vals))\n        if r1_vals:\n            entry[\"by_recall_at_1_mean\"] = float(np.mean(r1_vals))\n        if entry[\"by_val_loss_mean\"] is not None and entry[\"by_recall_at_1_mean\"] is not None:\n            entry[\"delta\"] = entry[\"by_recall_at_1_mean\"] - entry[\"by_val_loss_mean\"]\n        criterion_effect[strategy] = entry\n\n    strategy_effect = {}\n    for criterion in CRITERIA:\n        crit_short = \"val_loss\" if \"val_loss\" in criterion else \"recall_at_1\"\n        strat_means = {}\n        for strategy in STRATEGIES:\n            vals = []\n            for seed in seed_list:\n                key = (strategy, seed, criterion)\n                if key in data and data[key].get(metric) is not None:\n                    vals.append(data[key][metric])\n            strat_means[strategy] = float(np.mean(vals)) if vals else None\n        comparisons = {}\n        for alt in [\"embedding_distance\", \"dataflow_aware\"]:\n            if strat_means.get(alt) is not None and strat_means.get(\"random\") is not None:\n                comparisons[f\"{alt}_vs_random\"] = strat_means[alt] - strat_means[\"random\"]\n            else:\n                comparisons[f\"{alt}_vs_random\"] = None\n        strategy_effect[crit_short] = {\"means\": strat_means, \"comparisons\": comparisons}\n\n    interaction = {}\n    for strategy in STRATEGIES:\n        ce = criterion_effect.get(strategy, {})\n        interaction[strategy] = ce.get(\"delta\")\n    random_delta = interaction.get(\"random\")\n    for alt in [\"embedding_distance\", \"dataflow_aware\"]:\n        alt_delta = interaction.get(alt)\n        key = f\"{alt}_interaction_vs_random\"\n        if alt_delta is not None and random_delta is not None:\n            interaction[key] = alt_delta - random_delta\n        else:\n            interaction[key] = None\n\n    return {\"criterion_effect\": criterion_effect, \"strategy_effect\": strategy_effect, \"interaction\": interaction}\n\n\ndef stratified_analysis(data, metric=\"recall@1\"):\n    return {\n        \"metric\": metric,\n        \"regime_note\": \"s42: 3 epochs/patience=0; s43,s44: 2 epochs/patience=2\",\n        \"all_seeds\": _compute_effects(data, metric, SEEDS),\n        \"comparable_only\": _compute_effects(data, metric, COMPARABLE_SEEDS),\n    }\n\n\ndef bootstrap_ci(data, metric=\"recall@1\", n_bootstrap=1000, seed=42):\n    rng = np.random.default_rng(seed)\n    result = {\n        \"metric\": metric,\n        \"n_bootstrap\": n_bootstrap,\n        \"seed\": seed,\n        \"regime_note\": \"s42: 3 epochs/patience=0; s43,s44: 2 epochs/patience=2\",\n        \"configs\": {},\n        \"pairwise_all_seeds\": {},\n        \"pairwise_comparable\": {},\n    }\n\n    config_samples = {}\n    for (strategy, sd, criterion), rec in data.items():\n        p = rec.get(metric)\n        n = rec.get(\"total\", 504)\n        if p is None:\n            continue\n        samples = rng.binomial(n, p, size=n_bootstrap) / n\n        lo, hi = float(np.percentile(samples, 2.5)), float(np.percentile(samples, 97.5))\n        config_key = f\"{strategy}_{sd}_{criterion}\"\n        result[\"configs\"][config_key] = {\n            \"point\": float(p),\n            \"ci_95\": [lo, hi],\n            \"n_queries\": int(n),\n            \"regime\": SEED_REGIME.get(sd, \"unknown\"),\n        }\n        config_samples[(strategy, sd, criterion)] = samples\n\n    for label, seed_list in [(\"pairwise_all_seeds\", SEEDS), (\"pairwise_comparable\", COMPARABLE_SEEDS)]:\n        pairwise = {}\n        for criterion in CRITERIA:\n            crit_short = \"val_loss\" if \"val_loss\" in criterion else \"recall_at_1\"\n            for alt in [\"embedding_distance\", \"dataflow_aware\"]:\n                random_dists, alt_dists = [], []\n                for sd in seed_list:\n                    r_key = (\"random\", sd, criterion)\n                    a_key = (alt, sd, criterion)\n                    if r_key in config_samples:\n                        random_dists.append(config_samples[r_key])\n                    if a_key in config_samples:\n                        alt_dists.append(config_samples[a_key])\n                pair_key = f\"{alt}_vs_random_{crit_short}\"\n                if random_dists and alt_dists:\n                    r_agg = np.mean(random_dists, axis=0)\n                    a_agg = np.mean(alt_dists, axis=0)\n                    diff = a_agg - r_agg\n                    p_greater = float(np.mean(diff > 0))\n                    pairwise[pair_key] = {\n                        \"mean_diff\": float(np.mean(diff)),\n                        \"ci_95\": [float(np.percentile(diff, 2.5)), float(np.percentile(diff, 97.5))],\n                        \"p_alt_greater\": p_greater,\n                        \"n_seeds_random\": len(random_dists),\n                        \"n_seeds_alt\": len(alt_dists),\n                    }\n                else:\n                    pairwise[pair_key] = {\n                        \"mean_diff\": None,\n                        \"ci_95\": None,\n                        \"p_alt_greater\": None,\n                        \"note\": \"insufficient data\",\n                    }\n        result[label] = pairwise\n\n    return result\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"D062 selection-set analysis\")\n    parser.add_argument(\"--results-dir\", required=True, help=\"Directory containing selection_*.json files\")\n    parser.add_argument(\"--n-bootstrap\", type=int, default=1000, help=\"Number of bootstrap resamples\")\n    parser.add_argument(\"--seed\", type=int, default=42, help=\"Bootstrap RNG seed\")\n    parser.add_argument(\"--output-dir\", default=None, help=\"Output directory (default: results-dir/analysis/)\")\n    parser.add_argument(\"--partial\", action=\"store_true\", help=\"Allow partial results (< 14 files)\")\n    args = parser.parse_args()\n\n    data = load_results(args.results_dir)\n    n_files = len(data)\n    print(f\"Loaded {n_files} result files from {args.results_dir}\")\n\n    if n_files == 0:\n        print(\"ERROR: No result files found.\", file=sys.stderr)\n        sys.exit(1)\n\n    if n_files < 14 and not args.partial:\n        print(f\"ERROR: Only {n_files}/14 files found. Use --partial to proceed anyway.\", file=sys.stderr)\n        sys.exit(1)\n\n    output_dir = args.output_dir or os.path.join(args.results_dir, \"analysis\")\n    os.makedirs(output_dir, exist_ok=True)\n\n    # 1. Summary table\n    table = build_summary_table(data, metric=\"recall@1\")\n    print_summary_table(table, metric=\"recall@1\")\n    csv_path = os.path.join(output_dir, \"d062_summary.csv\")\n    write_summary_csv(table, csv_path, metric=\"recall@1\")\n\n    # 2. Stratified analysis\n    stratified = stratified_analysis(data, metric=\"recall@1\")\n    strat_path = os.path.join(output_dir, \"d062_stratified.json\")\n    with open(strat_path, \"w\") as f:\n        json.dump(stratified, f, indent=2)\n    print(f\"  Written: {strat_path}\")\n\n    # 3. Bootstrap CIs\n    bootstrap = bootstrap_ci(data, metric=\"recall@1\", n_bootstrap=args.n_bootstrap, seed=args.seed)\n    boot_path = os.path.join(output_dir, \"d062_bootstrap.json\")\n    with open(boot_path, \"w\") as f:\n        json.dump(bootstrap, f, indent=2)\n    print(f\"  Written: {boot_path}\")\n\n    # Print bootstrap summary\n    print(f\"\\n{'='*80}\")\n    print(f\"  Bootstrap CIs (n={args.n_bootstrap}, seed={args.seed})\")\n    print(f\"{'='*80}\")\n    for config_key, ci_data in sorted(bootstrap[\"configs\"].items()):\n        lo, hi = ci_data[\"ci_95\"]\n        regime = ci_data.get(\"regime\", \"\")\n        print(f\"  {config_key:<50} [{regime:>6}] R@1={ci_data['point']*100:.2f}%  95%CI=[{lo*100:.2f}, {hi*100:.2f}]\")\n\n    for label_key, label_name in [(\"pairwise_all_seeds\", \"All seeds\"), (\"pairwise_comparable\", \"Comparable (s43+s44)\")]:\n        pairwise = bootstrap[label_key]\n        if pairwise:\n            print(f\"\\n  Pairwise comparisons -- {label_name}:\")\n            for pair_key, pair_data in sorted(pairwise.items()):\n                if pair_data.get(\"mean_diff\") is not None:\n                    lo, hi = pair_data[\"ci_95\"]\n                    print(f\"    {pair_key:<45} d={pair_data['mean_diff']*100:+.2f}pp  95%CI=[{lo*100:.2f}, {hi*100:.2f}]  P(alt>rand)={pair_data['p_alt_greater']:.3f}\")\n                else:\n                    print(f\"    {pair_key:<45} --- insufficient data\")\n\n    print(f\"\\nDone. Outputs in {output_dir}/\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "76b5fd98-d9df-46ac-88bf-bb962cddc23b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MmLgYmHGfMYNB4rHhRam8e",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18210,
+      "cache_read_input_tokens": 36888,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18210
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T11:54:08.445Z_
+
+<details><summary>↩ Tool result · `toolu_01LJJhJ9EqihHM6BfsZqbpUV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "0803132c-7bb9-4a8b-8028-8487be3bdf23",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+脚本已部署。先做语法检查，然后运行 `--partial` 验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "e9c13472-50d5-4158-9141-8ee12dbd3cf8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013B3MBrhMowPB6odp1mhcsq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5090,
+      "cache_read_input_tokens": 55098,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5090
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01P4y8Y2Q8xmQkGPTdDY6v4A`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"import py_compile; py_compile.compile('/root/structfuse/scripts/d062_analysis.py', doraise=True)\" && echo \"SYNTAX_OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "9453ab8f-bdd7-4f05-9d21-2111b91503c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013B3MBrhMowPB6odp1mhcsq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5090,
+      "cache_read_input_tokens": 55098,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5090
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T11:54:15.640Z_
+
+<details><summary>↩ Tool result · `toolu_01P4y8Y2Q8xmQkGPTdDY6v4A`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"SYNTAX_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "969926d2-a2ad-4d1e-8df6-219edc540e9b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SYNTAX_OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"SYNTAX_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+语法正确。运行 `--partial` 验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "f322e885-4e25-4e21-a05b-1144d71dff04",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eh43S3csJJ5in6V3hmewSi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 273,
+      "cache_read_input_tokens": 60188,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 273
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019mihYis1WwgdUY2bmkvsmN`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/structfuse/scripts/d062_analysis.py --results-dir /root/autodl-tmp/structfuse/d062_results/ --partial --output-dir /tmp/d062_test_v2/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "b5630787-cacd-40b8-8e66-5309efc77025",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eh43S3csJJ5in6V3hmewSi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 273,
+      "cache_read_input_tokens": 60188,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 273
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T11:54:21.487Z_
+
+<details><summary>↩ Tool result · `toolu_019mihYis1WwgdUY2bmkvsmN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 6 result files from /root/autodl-tmp/structfuse/d062_results/\\n\\n==============================================================================================================\\n  D062 Summary Table -- recall@1\\n  Regime: s42=[3ep/p0]  s43,s44=[2ep/p2]\\n==============================================================================================================\\nStrategy               val_loss/s42 val_loss/s43 val_loss/s44  val_loss/mean_all  val_loss/mean_cmp recall@1/s42 recall@1/s43 recall@1/s44  recall@1/mean_all  recall@1/mean_cmp\\n--------------------------------------------------------------------------------------------------------------\\nrandom                     23.02     34.13     35.32     30.82     34.72     23.02     50.40     35.32     36.24     42.86\\nembedding_distance           ---       ---       ---       ---       ---       ---       ---       ---       ---       ---\\ndataflow_aware               ---       ---       ---       ---       ---       ---       ---       ---       ---       ---\\n--------------------------------------------------------------------------------------------------------------\\n  random: delta(criterion) = all=+5.42pp, comparable=+8.13pp\\n  embedding_distance: delta = --- (incomplete data)\\n  dataflow_aware: delta = --- (incomplete data)\\n--------------------------------------------------------------------------------------------------------------\\nNOTE: s42 used different training regime (3 epochs, patience=0) vs s43/s44 (2 epochs, patience=2)\\n      mean_all = all 3 seeds; mean_cmp = s43+s44 only (comparable regime)\\n==============================================================================================================\\n\\n  Written: /tmp/d062_test_v2/d062_summary.csv\\n  Written: /tmp/d062_test_v2/d062_stratified.json\\n  Written: /tmp/d062_test_v2/d062_bootstrap.json\\n\\n================================================================================\\n  Bootstrap CIs (n=1000, seed=42)\\n================================================================================\\n  random_s42_best_by_recall_at_1                     [3ep/p0] R@1=23.02%  95%CI=[19.25, 26.59]\\n  random_s42_best_by_val_loss                        [3ep/p0] R@1=23.02%  95%CI=[19.25, 26.39]\\n  random_s43_best_by_recall_at_1                     [2ep/p2] R@1=50.40%  95%CI=[46.42, 54.56]\\n  random_s43_best_by_val_loss                        [2ep/p2] R@1=34.13%  95%CI=[30.15, 38.49]\\n  random_s44_best_by_recall_at_1                     [2ep/p2] R@1=35.32%  95%CI=[31.15, 39.09]\\n  random_s44_best_by_val_loss                        [2ep/p2] R@1=35.32%  95%CI=[30.75, 39.29]\\n\\n  Pairwise comparisons -- All seeds:\\n    dataflow_aware_vs_random_recall_at_1          --- insufficient data\\n    dataflow_aware_vs_random_val_loss             --- insufficient data\\n    embedding_distance_vs_random_recall_at_1      --- insufficient data\\n    embedding_distance_vs_random_val_loss         --- insufficient data\\n\\n  Pairwise comparisons -- Comparable (s43+s44):\\n    dataflow_aware_vs_random_recall_at_1          --- insufficient data\\n    dataflow_aware_vs_random_val_loss             --- insufficient data\\n    embedding_distance_vs_random_recall_at_1      --- insufficient data\\n    embedding_distance_vs_random_val_loss         --- insufficient data\\n\\nDone. Outputs in /tmp/d062_test_v2//\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "f78749d7-601d-44f4-b331-ed411ad54dfd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 6 result files from /root/autodl-tmp/structfuse/d062_results/\\\\n\\\\n==============================================================================================================\\\\n  D062 Summary Table -- recall@1\\\\n  Regime: s42=[3ep/p0]  s43,s44=[2ep/p2]\\\\n==============================================================================================================\\\\nStrategy               val_loss/s42 val_loss/s43 val_loss/s44  val_loss/mean_all  val_loss/mean_cmp recall@1/s42 recall@1/s43 recall@1/s44  recall@1/mean_all  recall@1/mean_cmp\\\\n--------------------------------------------------------------------------------------------------------------\\\\nrandom                     23.02     34.13     35.32     30.82     34.72     23.02     50.40     35.32     36.24     42.86\\\\nembedding_distance           ---       ---       ---       ---       ---       ---       ---       ---       ---       ---\\\\ndataflow_aware               ---       ---       ---       ---       ---       ---       ---       ---       ---       ---\\\\n--------------------------------------------------------------------------------------------------------------\\\\n  random: delta(criterion) = all=+5.42pp, comparable=+8.13pp\\\\n  embedding_distance: delta = --- (incomplete data)\\\\n  dataflow_aware: delta = --- (incomplete data)\\\\n--------------------------------------------------------------------------------------------------------------\\\\nNOTE: s42 used different training regime (3 epochs, patience=0) vs s43/s44 (2 epochs, patience=2)\\\\n      mean_all = all 3 seeds; mean_cmp = s43+s44 only (comparable regime)\\\\n==============================================================================================================\\\\n\\\\n  Written: /tmp/d062_test_v2/d062_summary.csv\\\\n  Written: /tmp/d062_test_v2/d062_stratified.json\\\\n  Written: /tmp/d062_test_v2/d062_bootstrap.json\\\\n\\\\n================================================================================\\\\n  Bootstrap CIs (n=1000, seed=42)\\\\n================================================================================\\\\n  random_s42_best_by_recall_at_1                     [3ep/p0] R@1=23.02%  95%CI=[19.25, 26.59]\\\\n  random_s42_best_by_val_loss                        [3ep/p0] R@1=23.02%  95%CI=[19.25, 26.39]\\\\n  random_s43_best_by_recall_at_1                     [2ep/p2] R@1=50.40%  95%CI=[46.42, 54.56]\\\\n  random_s43_best_by_val_loss                        [2ep/p2] R@1=34.13%  95%CI=[30.15, 38.49]\\\\n  random_s44_best_by_recall_at_1                     [2ep/p2] R@1=35.32%  95%CI=[31.15, 39.09]\\\\n  random_s44_best_by_val_loss                        [2ep/p2] R@1=35.32%  95%CI=[30.75, 39.29]\\\\n\\\\n  Pairwise comparisons -- All seeds:\\\\n    dataflow_aware_vs_random_recall_at_1          --- insufficient data\\\\n    dataflow_aware_vs_random_val_loss             --- insufficient data\\\\n    embedding_distance_vs_random_recall_at_1      --- insufficient data\\\\n    embedding_distance_vs_random_val_loss         --- insufficient data\\\\n\\\\n  Pairwise comparisons -- Comparable (s43+s44):\\\\n    dataflow_aware_vs_random_recall_at_1          --- insufficient data\\\\n    dataflow_aware_vs_random_val_loss             --- insufficient data\\\\n    embedding_distance_vs_random_recall_at_1      --- insufficient data\\\\n    embedding_distance_vs_random_val_loss         --- insufficient data\\\\n\\\\nDone. Outputs in /tmp/d062_test_v2//\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 6 result files from /root/autodl-tmp/structfuse/d062_results/\\n\\n==============================================================================================================\\n  D062 Summary Table -- recall@1\\n  Regime: s42=[3ep/p0]  s43,s44=[2ep/p2]\\n==============================================================================================================\\nStrategy               val_loss/s42 val_loss/s43 val_loss/s44  val_loss/mean_all  val_loss/mean_cmp recall@1/s42 recall@1/s43 recall@1/s44  recall@1/mean_all  recall@1/mean_cmp\\n--------------------------------------------------------------------------------------------------------------\\nrandom                     23.02     34.13     35.32     30.82     34.72     23.02     50.40     35.32     36.24     42.86\\nembedding_distance           ---       ---       ---       ---       ---       ---       ---       ---       ---       ---\\ndataflow_aware               ---       ---       ---       ---       ---       ---       ---       ---       ---       ---\\n--------------------------------------------------------------------------------------------------------------\\n  random: delta(criterion) = all=+5.42pp, comparable=+8.13pp\\n  embedding_distance: delta = --- (incomplete data)\\n  dataflow_aware: delta = --- (incomplete data)\\n--------------------------------------------------------------------------------------------------------------\\nNOTE: s42 used different training regime (3 epochs, patience=0) vs s43/s44 (2 epochs, patience=2)\\n      mean_all = all 3 seeds; mean_cmp = s43+s44 only (comparable regime)\\n==============================================================================================================\\n\\n  Written: /tmp/d062_test_v2/d062_summary.csv\\n  Written: /tmp/d062_test_v2/d062_stratified.json\\n  Written: /tmp/d062_test_v2/d062_bootstrap.json\\n\\n================================================================================\\n  Bootstrap CIs (n=1000, seed=42)\\n================================================================================\\n  random_s42_best_by_recall_at_1                     [3ep/p0] R@1=23.02%  95%CI=[19.25, 26.59]\\n  random_s42_best_by_val_loss                        [3ep/p0] R@1=23.02%  95%CI=[19.25, 26.39]\\n  random_s43_best_by_recall_at_1                     [2ep/p2] R@1=50.40%  95%CI=[46.42, 54.56]\\n  random_s43_best_by_val_loss                        [2ep/p2] R@1=34.13%  95%CI=[30.15, 38.49]\\n  random_s44_best_by_recall_at_1                     [2ep/p2] R@1=35.32%  95%CI=[31.15, 39.09]\\n  random_s44_best_by_val_loss                        [2ep/p2] R@1=35.32%  95%CI=[30.75, 39.29]\\n\\n  Pairwise comparisons -- All seeds:\\n    dataflow_aware_vs_random_recall_at_1          --- insufficient data\\n    dataflow_aware_vs_random_val_loss             --- insufficient data\\n    embedding_distance_vs_random_recall_at_1      --- insufficient data\\n    embedding_distance_vs_random_val_loss         --- insufficient data\\n\\n  Pairwise comparisons -- Comparable (s43+s44):\\n    dataflow_aware_vs_random_recall_at_1          --- insufficient data\\n    dataflow_aware_vs_random_val_loss             --- insufficient data\\n    embedding_distance_vs_random_recall_at_1      --- insufficient data\\n    embedding_distance_vs_random_val_loss         --- insufficient data\\n\\nDone. Outputs in /tmp/d062_test_v2//\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+运行成功。验证输出文件内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "7063ff1a-e7ce-44de-9b4c-6ab9c9e7728e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011e6cvkDtAYKwVnghuErVtQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1255,
+      "cache_read_input_tokens": 60461,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1255
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TwP7LTjNE755X6AFPPrAkS`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "cat /tmp/d062_test_v2/d062_summary.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "4bf66b5d-5bfa-488c-8700-05e76db8c842",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011e6cvkDtAYKwVnghuErVtQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1255,
+      "cache_read_input_tokens": 60461,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1255
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T11:54:27.124Z_
+
+<details><summary>↩ Tool result · `toolu_01TwP7LTjNE755X6AFPPrAkS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"strategy,criterion,seed,regime,recall_at_1\\nrandom,val_loss,s42,3ep/p0,0.230159\\nrandom,val_loss,s43,2ep/p2,0.341270\\nrandom,val_loss,s44,2ep/p2,0.353175\\nrandom,val_loss,mean_all,all_seeds,0.308201\\nrandom,val_loss,mean_comparable,s43+s44_only,0.347222\\nrandom,recall_at_1,s42,3ep/p0,0.230159\\nrandom,recall_at_1,s43,2ep/p2,0.503968\\nrandom,recall_at_1,s44,2ep/p2,0.353175\\nrandom,recall_at_1,mean_all,all_seeds,0.362434\\nrandom,recall_at_1,mean_comparable,s43+s44_only,0.428571\\nembedding_distance,val_loss,s42,3ep/p0,\\nembedding_distance,val_loss,s43,2ep/p2,\\nembedding_distance,val_loss,s44,2ep/p2,\\nembedding_distance,val_loss,mean_all,all_seeds,\\nembedding_distance,val_loss,mean_comparable,s43+s44_only,\\nembedding_distance,recall_at_1,s42,3ep/p0,\\nembedding_distance,recall_at_1,s43,2ep/p2,\\nembedding_distance,recall_at_1,s44,2ep/p2,\\nembedding_distance,recall_at_1,mean_all,all_seeds,\\nembedding_distance,recall_at_1,mean_comparable,s43+s44_only,\\ndataflow_aware,val_loss,s42,3ep/p0,\\ndataflow_aware,val_loss,s43,2ep/p2,\\ndataflow_aware,val_loss,s44,2ep/p2,\\ndataflow_aware,val_loss,mean_all,all_seeds,\\ndataflow_aware,val_loss,mean_comparable,s43+s44_only,\\ndataflow_aware,recall_at_1,s42,3ep/p0,\\ndataflow_aware,recall_at_1,s43,2ep/p2,\\ndataflow_aware,recall_at_1,s44,2ep/p2,\\ndataflow_aware,recall_at_1,mean_all,all_seeds,\\ndataflow_aware,recall_at_1,mean_comparable,s43+s44_only,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "c89385ce-3cee-4dcb-bf2e-02e4e2def135",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"strategy,criterion,seed,regime,recall_at_1\\\\nrandom,val_loss,s42,3ep/p0,0.230159\\\\nrandom,val_loss,s43,2ep/p2,0.341270\\\\nrandom,val_loss,s44,2ep/p2,0.353175\\\\nrandom,val_loss,mean_all,all_seeds,0.308201\\\\nrandom,val_loss,mean_comparable,s43+s44_only,0.347222\\\\nrandom,recall_at_1,s42,3ep/p0,0.230159\\\\nrandom,recall_at_1,s43,2ep/p2,0.503968\\\\nrandom,recall_at_1,s44,2ep/p2,0.353175\\\\nrandom,recall_at_1,mean_all,all_seeds,0.362434\\\\nrandom,recall_at_1,mean_comparable,s43+s44_only,0.428571\\\\nembedding_distance,val_loss,s42,3ep/p0,\\\\nembedding_distance,val_loss,s43,2ep/p2,\\\\nembedding_distance,val_loss,s44,2ep/p2,\\\\nembedding_distance,val_loss,mean_all,all_seeds,\\\\nembedding_distance,val_loss,mean_comparable,s43+s44_only,\\\\nembedding_distance,recall_at_1,s42,3ep/p0,\\\\nembedding_distance,recall_at_1,s43,2ep/p2,\\\\nembedding_distance,recall_at_1,s44,2ep/p2,\\\\nembedding_distance,recall_at_1,mean_all,all_seeds,\\\\nembedding_distance,recall_at_1,mean_comparable,s43+s44_only,\\\\ndataflow_aware,val_loss,s42,3ep/p0,\\\\ndataflow_aware,val_loss,s43,2ep/p2,\\\\ndataflow_aware,val_loss,s44,2ep/p2,\\\\ndataflow_aware,val_loss,mean_all,all_seeds,\\\\ndataflow_aware,val_loss,mean_comparable,s43+s44_only,\\\\ndataflow_aware,recall_at_1,s42,3ep/p0,\\\\ndataflow_aware,recall_at_1,s43,2ep/p2,\\\\ndataflow_aware,recall_at_1,s44,2ep/p2,\\\\ndataflow_aware,recall_at_1,mean_all,all_seeds,\\\\ndataflow_aware,recall_at_1,mean_comparable,s43+s44_only,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"strategy,criterion,seed,regime,recall_at_1\\nrandom,val_loss,s42,3ep/p0,0.230159\\nrandom,val_loss,s43,2ep/p2,0.341270\\nrandom,val_loss,s44,2ep/p2,0.353175\\nrandom,val_loss,mean_all,all_seeds,0.308201\\nrandom,val_loss,mean_comparable,s43+s44_only,0.347222\\nrandom,recall_at_1,s42,3ep/p0,0.230159\\nrandom,recall_at_1,s43,2ep/p2,0.503968\\nrandom,recall_at_1,s44,2ep/p2,0.353175\\nrandom,recall_at_1,mean_all,all_seeds,0.362434\\nrandom,recall_at_1,mean_comparable,s43+s44_only,0.428571\\nembedding_distance,val_loss,s42,3ep/p0,\\nembedding_distance,val_loss,s43,2ep/p2,\\nembedding_distance,val_loss,s44,2ep/p2,\\nembedding_distance,val_loss,mean_all,all_seeds,\\nembedding_distance,val_loss,mean_comparable,s43+s44_only,\\nembedding_distance,recall_at_1,s42,3ep/p0,\\nembedding_distance,recall_at_1,s43,2ep/p2,\\nembedding_distance,recall_at_1,s44,2ep/p2,\\nembedding_distance,recall_at_1,mean_all,all_seeds,\\nembedding_distance,recall_at_1,mean_comparable,s43+s44_only,\\ndataflow_aware,val_loss,s42,3ep/p0,\\ndataflow_aware,val_loss,s43,2ep/p2,\\ndataflow_aware,val_loss,s44,2ep/p2,\\ndataflow_aware,val_loss,mean_all,all_seeds,\\ndataflow_aware,val_loss,mean_comparable,s43+s44_only,\\ndataflow_aware,recall_at_1,s42,3ep/p0,\\ndataflow_aware,recall_at_1,s43,2ep/p2,\\ndataflow_aware,recall_at_1,s44,2ep/p2,\\ndataflow_aware,recall_at_1,mean_all,all_seeds,\\ndataflow_aware,recall_at_1,mean_comparable,s43+s44_only,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FHjPreXqJAirs4ozr7z22F`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "head -40 /tmp/d062_test_v2/d062_stratified.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "d5c92beb-eff6-42b4-a48e-6282fa4df19a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011e6cvkDtAYKwVnghuErVtQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1255,
+      "cache_read_input_tokens": 60461,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1255
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016gKZrgLDXoc9PvLRj8DDsE`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "head -40 /tmp/d062_test_v2/d062_bootstrap.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "b6848038-1129-471d-acac-08a000839919",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011e6cvkDtAYKwVnghuErVtQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1255,
+      "cache_read_input_tokens": 60461,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1255
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T11:54:28.096Z_
+
+<details><summary>↩ Tool result · `toolu_01FHjPreXqJAirs4ozr7z22F`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metric\\\": \\\"recall@1\\\",\\n  \\\"regime_note\\\": \\\"s42: 3 epochs/patience=0; s43,s44: 2 epochs/patience=2\\\",\\n  \\\"all_seeds\\\": {\\n    \\\"criterion_effect\\\": {\\n      \\\"random\\\": {\\n        \\\"by_val_loss_mean\\\": 0.3082010582010582,\\n        \\\"by_recall_at_1_mean\\\": 0.3624338624338624,\\n        \\\"delta\\\": 0.05423280423280419,\\n        \\\"n_seeds\\\": 3\\n      },\\n      \\\"embedding_distance\\\": {\\n        \\\"by_val_loss_mean\\\": null,\\n        \\\"by_recall_at_1_mean\\\": null,\\n        \\\"delta\\\": null,\\n        \\\"n_seeds\\\": 3\\n      },\\n      \\\"dataflow_aware\\\": {\\n        \\\"by_val_loss_mean\\\": null,\\n        \\\"by_recall_at_1_mean\\\": null,\\n        \\\"delta\\\": null,\\n        \\\"n_seeds\\\": 3\\n      }\\n    },\\n    \\\"strategy_effect\\\": {\\n      \\\"val_loss\\\": {\\n        \\\"means\\\": {\\n          \\\"random\\\": 0.3082010582010582,\\n          \\\"embedding_distance\\\": null,\\n          \\\"dataflow_aware\\\": null\\n        },\\n        \\\"comparisons\\\": {\\n          \\\"embedding_distance_vs_random\\\": null,\\n          \\\"dataflow_aware_vs_random\\\": null\\n        }\\n      },\\n      \\\"recall_at_1\\\": {\\n        \\\"means\\\": {\\n          \\\"random\\\": 0.3624338624338624,\\n          \\\"embedding_distance\\\": null,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "a636ae39-235a-4288-bc84-9749cfd9c37a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"metric\\\\\\\": \\\\\\\"recall@1\\\\\\\",\\\\n  \\\\\\\"regime_note\\\\\\\": \\\\\\\"s42: 3 epochs/patience=0; s43,s44: 2 epochs/patience=2\\\\\\\",\\\\n  \\\\\\\"all_seeds\\\\\\\": {\\\\n    \\\\\\\"criterion_effect\\\\\\\": {\\\\n      \\\\\\\"random\\\\\\\": {\\\\n        \\\\\\\"by_val_loss_mean\\\\\\\": 0.3082010582010582,\\\\n        \\\\\\\"by_recall_at_1_mean\\\\\\\": 0.3624338624338624,\\\\n        \\\\\\\"delta\\\\\\\": 0.05423280423280419,\\\\n        \\\\\\\"n_seeds\\\\\\\": 3\\\\n      },\\\\n      \\\\\\\"embedding_distance\\\\\\\": {\\\\n        \\\\\\\"by_val_loss_mean\\\\\\\": null,\\\\n        \\\\\\\"by_recall_at_1_mean\\\\\\\": null,\\\\n        \\\\\\\"delta\\\\\\\": null,\\\\n        \\\\\\\"n_seeds\\\\\\\": 3\\\\n      },\\\\n      \\\\\\\"dataflow_aware\\\\\\\": {\\\\n        \\\\\\\"by_val_loss_mean\\\\\\\": null,\\\\n        \\\\\\\"by_recall_at_1_mean\\\\\\\": null,\\\\n        \\\\\\\"delta\\\\\\\": null,\\\\n        \\\\\\\"n_seeds\\\\\\\": 3\\\\n      }\\\\n    },\\\\n    \\\\\\\"strategy_effect\\\\\\\": {\\\\n      \\\\\\\"val_loss\\\\\\\": {\\\\n        \\\\\\\"means\\\\\\\": {\\\\n          \\\\\\\"random\\\\\\\": 0.3082010582010582,\\\\n          \\\\\\\"embedding_distance\\\\\\\": null,\\\\n          \\\\\\\"dataflow_aware\\\\\\\": null\\\\n        },\\\\n        \\\\\\\"comparisons\\\\\\\": {\\\\n          \\\\\\\"embedding_distance_vs_random\\\\\\\": null,\\\\n          \\\\\\\"dataflow_aware_vs_random\\\\\\\": null\\\\n        }\\\\n      },\\\\n      \\\\\\\"recall_at_1\\\\\\\": {\\\\n        \\\\\\\"means\\\\\\\": {\\\\n          \\\\\\\"random\\\\\\\": 0.3624338624338624,\\\\n          \\\\\\\"embedding_distance\\\\\\\": null,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metric\\\": \\\"recall@1\\\",\\n  \\\"regime_note\\\": \\\"s42: 3 epochs/patience=0; s43,s44: 2 epochs/patience=2\\\",\\n  \\\"all_seeds\\\": {\\n    \\\"criterion_effect\\\": {\\n      \\\"random\\\": {\\n        \\\"by_val_loss_mean\\\": 0.3082010582010582,\\n        \\\"by_recall_at_1_mean\\\": 0.3624338624338624,\\n        \\\"delta\\\": 0.05423280423280419,\\n        \\\"n_seeds\\\": 3\\n      },\\n      \\\"embedding_distance\\\": {\\n        \\\"by_val_loss_mean\\\": null,\\n        \\\"by_recall_at_1_mean\\\": null,\\n        \\\"delta\\\": null,\\n        \\\"n_seeds\\\": 3\\n      },\\n      \\\"dataflow_aware\\\": {\\n        \\\"by_val_loss_mean\\\": null,\\n        \\\"by_recall_at_1_mean\\\": null,\\n        \\\"delta\\\": null,\\n        \\\"n_seeds\\\": 3\\n      }\\n    },\\n    \\\"strategy_effect\\\": {\\n      \\\"val_loss\\\": {\\n        \\\"means\\\": {\\n          \\\"random\\\": 0.3082010582010582,\\n          \\\"embedding_distance\\\": null,\\n          \\\"dataflow_aware\\\": null\\n        },\\n        \\\"comparisons\\\": {\\n          \\\"embedding_distance_vs_random\\\": null,\\n          \\\"dataflow_aware_vs_random\\\": null\\n        }\\n      },\\n      \\\"recall_at_1\\\": {\\n        \\\"means\\\": {\\n          \\\"random\\\": 0.3624338624338624,\\n          \\\"embedding_distance\\\": null,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-16T11:54:28.523Z_
+
+<details><summary>↩ Tool result · `toolu_016gKZrgLDXoc9PvLRj8DDsE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metric\\\": \\\"recall@1\\\",\\n  \\\"n_bootstrap\\\": 1000,\\n  \\\"seed\\\": 42,\\n  \\\"regime_note\\\": \\\"s42: 3 epochs/patience=0; s43,s44: 2 epochs/patience=2\\\",\\n  \\\"configs\\\": {\\n    \\\"random_s42_best_by_recall_at_1\\\": {\\n      \\\"point\\\": 0.23015873015873015,\\n      \\\"ci_95\\\": [\\n        0.19246031746031747,\\n        0.26587301587301587\\n      ],\\n      \\\"n_queries\\\": 504,\\n      \\\"regime\\\": \\\"3ep/p0\\\"\\n    },\\n    \\\"random_s42_best_by_val_loss\\\": {\\n      \\\"point\\\": 0.23015873015873015,\\n      \\\"ci_95\\\": [\\n        0.19246031746031747,\\n        0.263938492063492\\n      ],\\n      \\\"n_queries\\\": 504,\\n      \\\"regime\\\": \\\"3ep/p0\\\"\\n    },\\n    \\\"random_s43_best_by_recall_at_1\\\": {\\n      \\\"point\\\": 0.503968253968254,\\n      \\\"ci_95\\\": [\\n        0.4642361111111111,\\n        0.5456349206349206\\n      ],\\n      \\\"n_queries\\\": 504,\\n      \\\"regime\\\": \\\"2ep/p2\\\"\\n    },\\n    \\\"random_s43_best_by_val_loss\\\": {\\n      \\\"point\\\": 0.3412698412698413,\\n      \\\"ci_95\\\": [\\n        0.3015376984126984,\\n        0.38492063492063494\\n      ],\\n      \\\"n_queries\\\": 504,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "49b79f66-b544-47a2-893b-1aabd19916ca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"metric\\\\\\\": \\\\\\\"recall@1\\\\\\\",\\\\n  \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"regime_note\\\\\\\": \\\\\\\"s42: 3 epochs/patience=0; s43,s44: 2 epochs/patience=2\\\\\\\",\\\\n  \\\\\\\"configs\\\\\\\": {\\\\n    \\\\\\\"random_s42_best_by_recall_at_1\\\\\\\": {\\\\n      \\\\\\\"point\\\\\\\": 0.23015873015873015,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.19246031746031747,\\\\n        0.26587301587301587\\\\n      ],\\\\n      \\\\\\\"n_queries\\\\\\\": 504,\\\\n      \\\\\\\"regime\\\\\\\": \\\\\\\"3ep/p0\\\\\\\"\\\\n    },\\\\n    \\\\\\\"random_s42_best_by_val_loss\\\\\\\": {\\\\n      \\\\\\\"point\\\\\\\": 0.23015873015873015,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.19246031746031747,\\\\n        0.263938492063492\\\\n      ],\\\\n      \\\\\\\"n_queries\\\\\\\": 504,\\\\n      \\\\\\\"regime\\\\\\\": \\\\\\\"3ep/p0\\\\\\\"\\\\n    },\\\\n    \\\\\\\"random_s43_best_by_recall_at_1\\\\\\\": {\\\\n      \\\\\\\"point\\\\\\\": 0.503968253968254,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.4642361111111111,\\\\n        0.5456349206349206\\\\n      ],\\\\n      \\\\\\\"n_queries\\\\\\\": 504,\\\\n      \\\\\\\"regime\\\\\\\": \\\\\\\"2ep/p2\\\\\\\"\\\\n    },\\\\n    \\\\\\\"random_s43_best_by_val_loss\\\\\\\": {\\\\n      \\\\\\\"point\\\\\\\": 0.3412698412698413,\\\\n      \\\\\\\"ci_95\\\\\\\": [\\\\n        0.3015376984126984,\\\\n        0.38492063492063494\\\\n      ],\\\\n      \\\\\\\"n_queries\\\\\\\": 504,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metric\\\": \\\"recall@1\\\",\\n  \\\"n_bootstrap\\\": 1000,\\n  \\\"seed\\\": 42,\\n  \\\"regime_note\\\": \\\"s42: 3 epochs/patience=0; s43,s44: 2 epochs/patience=2\\\",\\n  \\\"configs\\\": {\\n    \\\"random_s42_best_by_recall_at_1\\\": {\\n      \\\"point\\\": 0.23015873015873015,\\n      \\\"ci_95\\\": [\\n        0.19246031746031747,\\n        0.26587301587301587\\n      ],\\n      \\\"n_queries\\\": 504,\\n      \\\"regime\\\": \\\"3ep/p0\\\"\\n    },\\n    \\\"random_s42_best_by_val_loss\\\": {\\n      \\\"point\\\": 0.23015873015873015,\\n      \\\"ci_95\\\": [\\n        0.19246031746031747,\\n        0.263938492063492\\n      ],\\n      \\\"n_queries\\\": 504,\\n      \\\"regime\\\": \\\"3ep/p0\\\"\\n    },\\n    \\\"random_s43_best_by_recall_at_1\\\": {\\n      \\\"point\\\": 0.503968253968254,\\n      \\\"ci_95\\\": [\\n        0.4642361111111111,\\n        0.5456349206349206\\n      ],\\n      \\\"n_queries\\\": 504,\\n      \\\"regime\\\": \\\"2ep/p2\\\"\\n    },\\n    \\\"random_s43_best_by_val_loss\\\": {\\n      \\\"point\\\": 0.3412698412698413,\\n      \\\"ci_95\\\": [\\n        0.3015376984126984,\\n        0.38492063492063494\\n      ],\\n      \\\"n_queries\\\": 504,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All three output files are generated correctly. Let me also check the comparable_only section in the stratified JSON to make sure it has the right data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "cff28f6d-7d93-4b39-a237-547660cb227a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BAnpd5bmUDzH4DJvqBTrPy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2577,
+      "cache_read_input_tokens": 61716,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2577
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+所有输出正确。检查 stratified.json 的 comparable_only 部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "b84b9fe7-1edf-4852-b9be-3fb8c01573e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BAnpd5bmUDzH4DJvqBTrPy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2577,
+      "cache_read_input_tokens": 61716,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2577
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ER9E1zGdXLSuR4DmeWnci3`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -A 15 \"comparable_only\" /tmp/d062_test_v2/d062_stratified.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "7f8caae7-321d-48f8-a93b-dffe9226660a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BAnpd5bmUDzH4DJvqBTrPy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2577,
+      "cache_read_input_tokens": 61716,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2577
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-16T11:54:35.081Z_
+
+<details><summary>↩ Tool result · `toolu_01ER9E1zGdXLSuR4DmeWnci3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"comparable_only\\\": {\\n    \\\"criterion_effect\\\": {\\n      \\\"random\\\": {\\n        \\\"by_val_loss_mean\\\": 0.3472222222222222,\\n        \\\"by_recall_at_1_mean\\\": 0.4285714285714286,\\n        \\\"delta\\\": 0.0813492063492064,\\n        \\\"n_seeds\\\": 2\\n      },\\n      \\\"embedding_distance\\\": {\\n        \\\"by_val_loss_mean\\\": null,\\n        \\\"by_recall_at_1_mean\\\": null,\\n        \\\"delta\\\": null,\\n        \\\"n_seeds\\\": 2\\n      },\\n      \\\"dataflow_aware\\\": {\\n        \\\"by_val_loss_mean\\\": null,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "fc3da0e4-a794-45c1-829b-105c9bccbdc6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"comparable_only\\\\\\\": {\\\\n    \\\\\\\"criterion_effect\\\\\\\": {\\\\n      \\\\\\\"random\\\\\\\": {\\\\n        \\\\\\\"by_val_loss_mean\\\\\\\": 0.3472222222222222,\\\\n        \\\\\\\"by_recall_at_1_mean\\\\\\\": 0.4285714285714286,\\\\n        \\\\\\\"delta\\\\\\\": 0.0813492063492064,\\\\n        \\\\\\\"n_seeds\\\\\\\": 2\\\\n      },\\\\n      \\\\\\\"embedding_distance\\\\\\\": {\\\\n        \\\\\\\"by_val_loss_mean\\\\\\\": null,\\\\n        \\\\\\\"by_recall_at_1_mean\\\\\\\": null,\\\\n        \\\\\\\"delta\\\\\\\": null,\\\\n        \\\\\\\"n_seeds\\\\\\\": 2\\\\n      },\\\\n      \\\\\\\"dataflow_aware\\\\\\\": {\\\\n        \\\\\\\"by_val_loss_mean\\\\\\\": null,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  \\\"comparable_only\\\": {\\n    \\\"criterion_effect\\\": {\\n      \\\"random\\\": {\\n        \\\"by_val_loss_mean\\\": 0.3472222222222222,\\n        \\\"by_recall_at_1_mean\\\": 0.4285714285714286,\\n        \\\"delta\\\": 0.0813492063492064,\\n        \\\"n_seeds\\\": 2\\n      },\\n      \\\"embedding_distance\\\": {\\n        \\\"by_val_loss_mean\\\": null,\\n        \\\"by_recall_at_1_mean\\\": null,\\n        \\\"delta\\\": null,\\n        \\\"n_seeds\\\": 2\\n      },\\n      \\\"dataflow_aware\\\": {\\n        \\\"by_val_loss_mean\\\": null,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AkjpXrmk1ZfjUCyHact6XD`</summary>
+
+```json
+{
+  "server": "bjb1-42106",
+  "command": "grep -A 10 \"pairwise_comparable\" /tmp/d062_test_v2/d062_bootstrap.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "bf4941e9-37e5-4cd2-a7c0-0ed2a6d6916c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BAnpd5bmUDzH4DJvqBTrPy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2577,
+      "cache_read_input_tokens": 61716,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2577
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T11:54:36.297Z_
+
+<details><summary>↩ Tool result · `toolu_01AkjpXrmk1ZfjUCyHact6XD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"pairwise_comparable\\\": {\\n    \\\"embedding_distance_vs_random_val_loss\\\": {\\n      \\\"mean_diff\\\": null,\\n      \\\"ci_95\\\": null,\\n      \\\"p_alt_greater\\\": null,\\n      \\\"note\\\": \\\"insufficient data\\\"\\n    },\\n    \\\"dataflow_aware_vs_random_val_loss\\\": {\\n      \\\"mean_diff\\\": null,\\n      \\\"ci_95\\\": null,\\n      \\\"p_alt_greater\\\": null,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "f46f027f-41ec-4b86-abed-4417cc89a3d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  \\\\\\\"pairwise_comparable\\\\\\\": {\\\\n    \\\\\\\"embedding_distance_vs_random_val_loss\\\\\\\": {\\\\n      \\\\\\\"mean_diff\\\\\\\": null,\\\\n      \\\\\\\"ci_95\\\\\\\": null,\\\\n      \\\\\\\"p_alt_greater\\\\\\\": null,\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"insufficient data\\\\\\\"\\\\n    },\\\\n    \\\\\\\"dataflow_aware_vs_random_val_loss\\\\\\\": {\\\\n      \\\\\\\"mean_diff\\\\\\\": null,\\\\n      \\\\\\\"ci_95\\\\\\\": null,\\\\n      \\\\\\\"p_alt_greater\\\\\\\": null,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  \\\"pairwise_comparable\\\": {\\n    \\\"embedding_distance_vs_random_val_loss\\\": {\\n      \\\"mean_diff\\\": null,\\n      \\\"ci_95\\\": null,\\n      \\\"p_alt_greater\\\": null,\\n      \\\"note\\\": \\\"insufficient data\\\"\\n    },\\n    \\\"dataflow_aware_vs_random_val_loss\\\": {\\n      \\\"mean_diff\\\": null,\\n      \\\"ci_95\\\": null,\\n      \\\"p_alt_greater\\\": null,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+全部验证通过。修改总结：
+
+**新增常量**：`SEED_REGIME`（seed→regime映射）、`COMPARABLE_SEEDS = ["s43", "s44"]`
+
+**改动点**：
+
+| 函数 | 变更 |
+|------|------|
+| `build_summary_table` | `mean` → `mean_all` + `mean_comparable`（仅s43+s44） |
+| `print_summary_table` | 表头显示 regime 标注，数据列增加 mean_all/mean_cmp 两列，底部添加 NOTE |
+| `write_summary_csv` | 重构为长格式，增加 `regime` 列（3ep/p0 / 2ep/p2），含 mean_all 和 mean_comparable 汇总行 |
+| `stratified_analysis` | 输出分为 `all_seeds` 和 `comparable_only` 两组，复用 `_compute_effects` 辅助函数 |
+| `bootstrap_ci` | 每个 config 增加 `regime` 字段；pairwise 分为 `pairwise_all_seeds` 和 `pairwise_comparable` |
+| `main` | bootstrap 打印增加 regime 标签和双版本 pairwise 输出 |
+
+**dry-run 结果**（6/14 文件，`--partial`）：
+- Summary table 正确显示 s42=[3ep/p0]、s43/s44=[2ep/p2]、两种 mean、NOTE 备注
+- CSV 含 `regime` 列，值正确
+- stratified.json 含 `all_seeds` / `comparable_only` 两组 + `regime_note`
+- bootstrap.json 含 config 级 `regime`、`pairwise_all_seeds` / `pairwise_comparable` 两组
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "uuid": "733d4ca5-d707-444f-9cbd-d1b2df2ce8d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JtnSMo6yfBEYL7nC7Tv1Jh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 933,
+      "cache_read_input_tokens": 64293,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 933
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 51_
+
+全部验证通过。修改总结：
+
+**新增常量**：`SEED_REGIME`（seed→regime映射）、`COMPARABLE_SEEDS = ["s43", "s44"]`
+
+**改动点**：
+
+| 函数 | 变更 |
+|------|------|
+| `build_summary_table` | `mean` → `mean_all` + `mean_comparable`（仅s43+s44） |
+| `print_summary_table` | 表头显示 regime 标注，数据列增加 mean_all/mean_cmp 两列，底部添加 NOTE |
+| `write_summary_csv` | 重构为长格式，增加 `regime` 列（3ep/p0 / 2ep/p2），含 mean_all 和 mean_comparable 汇总行 |
+| `stratified_analysis` | 输出分为 `all_seeds` 和 `comparable_only` 两组，复用 `_compute_effects` 辅助函数 |
+| `bootstrap_ci` | 每个 config 增加 `regime` 字段；pairwise 分为 `pairwise_all_seeds` 和 `pairwise_comparable` |
+| `main` | bootstrap 打印增加 regime 标签和双版本 pairwise 输出 |
+
+**dry-run 结果**（6/14 文件，`--partial`）：
+- Summary table 正确显示 s42=[3ep/p0]、s43/s44=[2ep/p2]、两种 mean、NOTE 备注
+- CSV 含 `regime` 列，值正确
+- stratified.json 含 `all_seeds` / `comparable_only` 两组 + `regime_note`
+- bootstrap.json 含 config 级 `regime`、`pairwise_all_seeds` / `pairwise_comparable` 两组
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 427616,
+  "duration_api_ms": 424336,
+  "num_turns": 16,
+  "stop_reason": "end_turn",
+  "session_id": "10b2078c-38b1-4104-9536-11fbf1b37861",
+  "total_cost_usd": 1.2205122499999999,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 53779,
+    "cache_read_input_tokens": 489091,
+    "output_tokens": 25528,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 53779,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 495,
+        "cache_read_input_tokens": 64293,
+        "cache_creation_input_tokens": 933,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 933
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1468,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001568,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 16,
+      "outputTokens": 25528,
+      "cacheReadInputTokens": 489091,
+      "cacheCreationInputTokens": 53779,
+      "webSearchRequests": 0,
+      "costUSD": 1.21894425,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "7fd6837b-d18e-4970-b76c-9d8b0fe6344d"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cfb564ddcddd56dfeef",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "fix bm25 watcher setup",
+  "task_key": "worker_fix_bm25_watcher_setup_20260514T181354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_bm25_watcher_setup_20260514T181354_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "6751c847f2bcd82a9bfb761823fc3287dbbeffbb644c0da5b5fbe4a320cd09b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。\n\n**Watcher 汇报：**\n\n| Watcher | tmux session | 监控 PID | GPU | BM25 脚本 |\n|---|---|---|---|---|\n| StarCoder | `bm25_starcoder_watcher` | 519791 | cuda:1 | `/root/structfuse/scripts/run_m2_full_bm25_starcoder.sh` |\n| Qwen | `bm25_qwen_watcher` | 337267 | cuda:0 | `/root/structfuse/scripts/run_m2_full_bm25_qwen.sh` |\n\n**Qwen 链主脚本 PID：337267**（`bash run_m2_full_qwen.sh`，父进程 300284，当前正在跑 random_s44）\n\n两个 watcher 均已确认在 watching 状态，GPU 上只有训练进程（504138 on GPU0, 519805 on GPU1），watcher 不占 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-bm25-watcher-setup.md"
+}

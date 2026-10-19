@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19bf026d3af9a34e40a1",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code evaluate pool50",
+  "task_key": "worker_code_evaluate-pool50_20260515T021152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_evaluate-pool50_20260515T021152_result.json",
+    "occurrence": 1,
+    "bytes": 1126,
+    "sha256": "307ef14aa43e4e811ab801aad8a9279a011ec0c5d972bb364695e881eb857128"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n- **数据加载**：2980 条验证样本正常解析\n- **Checkpoint 发现**：找到 10 个 best checkpoint（6 个 qwen + 4 个 starcoder，含 best_by_recall_at_1 和 best_by_val_loss）\n- **Pool 评估逻辑**：dummy embedding 测试中，注入信号后 R@1=0.96, R@5=1.0，符合预期\n\n脚本已写入 `/root/structfuse/evaluation/evaluate_pool50.py`。GPU 空闲后可直接运行，例如：\n\n```bash\n# 单 checkpoint\npython evaluate_pool50.py \\\n  --checkpoint-dir /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s42/best_by_recall_at_1 \\\n  --data-path /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl \\\n  --pool-size 50 --num-samples 5 --gpu 0 \\\n  --output /root/structfuse/results/pool50_qwen_s42_r1.json\n\n# 批量模式\npython evaluate_pool50.py \\\n  --checkpoint-dir /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/ \\\n  --data-path /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s42.jsonl \\\n  --batch-mode --pool-size 50 --gpu 0 \\\n  --output /root/structfuse/results/pool50_qwen_all.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-evaluate-pool50.md"
+}

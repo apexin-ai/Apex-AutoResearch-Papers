@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df9252eee065f752bb9d",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops bjb1 flash attn fix",
+  "task_key": "worker_ops_bjb1-flash-attn-fix_20260513T044139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1-flash-attn-fix_20260513T044139_result.json",
+    "occurrence": 1,
+    "bytes": 94,
+    "sha256": "6ce959319b48b3302a9134e57b813ef08fd5e98bc63e8c381e6b91a080172f8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "flash-attn 后台编译中 (PID=12207, MAX_JOBS=4)，2 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-flash-attn-fix.md"
+}

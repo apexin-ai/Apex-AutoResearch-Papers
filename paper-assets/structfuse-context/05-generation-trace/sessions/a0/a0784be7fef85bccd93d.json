@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0784be7fef85bccd93d",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops qwen step and eval1000",
+  "task_key": "worker_ops_qwen-step-and-eval1000_20260515T212422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_qwen-step-and-eval1000_20260515T212422_result.json",
+    "occurrence": 1,
+    "bytes": 1828,
+    "sha256": "4976e978ff2e609655269a92007344db0c305e5b652dd4215ba772b203fee6d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## dataflow_s43 训练状态报告\n\n### 1. PID 337267\n**存活**（bash wrapper，sleeping）。实际训练子进程为 **PID 18427**（python train.py），运行 5h 33m，CPU 99.6%。\n\n### 2. 当前 step\n**step 1000 / 2810**（35.6%）。日志最后一行：`step 1000 loss=0.4353 lr=1.63e-05`\n\n### 3. eval@1000\n**尚未出结果**。日志自 05:22 CST 起未更新（~8 min），推断 eval@1000 + save@1000 正在执行中。\n\n上一次 eval 结果 (eval@500)：\n| 指标 | 值 |\n|------|------|\n| val_loss | **0.4617** |\n| R@1 | **0.5495** |\n| R@5 | 0.9728 |\n| R@10 | 1.0 |\n\n### 4. 训练速率\n**~182 steps/h**（1000 steps / 5.48h，含 eval@500 暂停时间）。**比之前的 ~230 steps/h 慢了 21%。**\n\n原因：GPU 0 上有新的竞争进程——**PID 61328**（`eval_swebench.py` 评估 random_s42_100 checkpoint），占用 **11614 MiB**，已运行 2h 41m。这不是之前 kill 的 PID 94874，而是一个新启动的 swebench eval。\n\n### 5. GPU 状态\n| GPU | 利用率 | 显存占用 | 进程 |\n|-----|--------|----------|------|\n| 0 | 100% | 62620 / 97887 MiB | PID 18427 训练 (50992 MiB) + PID 61328 swebench eval (11614 MiB) |\n| 1 | 100% | 54767 / 97887 MiB | PID 38016 starcoder训练 (54758 MiB) |\n\n### 6. ETA 估算\n\n| 阶段 | 剩余 steps | 预计耗时 | 预计完成 (CST) |\n|------|-----------|----------|---------------|\n| dataflow_s43 (5/7) | 1810 | ~10.7h | May 16 ~16:00 |\n| dataflow_s44 (6/7) | 2810 | ~16h | May 17 ~08:00 |\n| bm25_s42 (7/7) | 2810 | ~16h | May 18 ~00:00 |\n\n**整链完成：约 May 18 00:00 CST（~43h 后）**\n\n---\n\n**注意**：GPU 0 上的 swebench eval（PID 61328）正在拖慢训练。如果 kill 掉它，速率有望恢复到 230+ steps/h，整链 ETA 可提前约 8-10 小时。是否需要处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-qwen-step-and-eval1000.md"
+}

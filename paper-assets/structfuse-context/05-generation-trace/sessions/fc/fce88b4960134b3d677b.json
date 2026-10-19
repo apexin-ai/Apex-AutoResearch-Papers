@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fce88b4960134b3d677b",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code eval swebench framework",
+  "task_key": "worker_code_eval_swebench_framework_20260512T220532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_swebench_framework_20260512T220532_result.json",
+    "occurrence": 1,
+    "bytes": 1085,
+    "sha256": "587326d164171300cebc9afecf1da00e72355df29216d71e0fe6372bce22a992"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n### Part A: M1 提取状态\n\n| 指标 | 值 |\n|------|-----|\n| 进程 PID 577864 | **运行中**，已运行 1h18m |\n| 已完成 repo | **14 / 131** (10.7%) |\n| 已产出 JSON 文件 | **1713** |\n| 已跳过 instance | **660** (skip_log.jsonl) |\n| 磁盘 /root/autodl-tmp/ | 102G / 169G (60%，剩余 68G) |\n| 最新日志 | 正在处理 `Suor/funcy`, `oauthlib/oauthlib`, `agronholm/typeguard` |\n\n按当前速率（14 repo / 1.3h），预计总耗时 ~12h（比预期 36h 快不少，可能小 repo 先完成）。\n\n### Part B: eval_swebench.py\n\n已创建 `/root/structfuse/scripts/eval_swebench.py`，`--help` 验证通过。框架包含：\n- 完整 argparse（9 个参数）\n- `compute_bootstrap_ci()` — 10000 resamples, percentile method, seed=42\n- 单 instance 评估流程（checkout → retrieve → context → patch → verify）\n- 异常隔离（单 instance 失败不中断）\n- 输出 `results.jsonl` + `summary.json`\n- 4 处 TODO placeholder 已标注（retriever 加载、文件检索、LLM agent、测试验证）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-swebench-framework.md"
+}

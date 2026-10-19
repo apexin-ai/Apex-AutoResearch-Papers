@@ -1,0 +1,1204 @@
+{
+  "schema_version": "1.0",
+  "session_id": "ac7c65a20e4d0b911a92",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The registry has the m2_full_qwen experiment in PREPARING status. I need to update it to RUNNING with the correct spec. Let me do that, and also register the wrapper script as an artifact.\n\nLet me also update the status to RUNNING with the required provenance metadata.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "32cd436c-1dbf-4574-b1b7-4211e193e058",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0111KZr8hGV7k2NRHguvabbC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3791,
+                "cache_read_input_tokens": 31136,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3791
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry shows m2_full_qwen in PREPARING. Let me update it to RUNNING and register the wrapper script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "7b87019e-947e-4baf-8855-a782912e14b1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0111KZr8hGV7k2NRHguvabbC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3791,
+                "cache_read_input_tokens": 31136,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3791
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HSAcyfqQim9A3LmK1xNNk8",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "project": "structfuse-context",
+                "exp_id": "m2_full_qwen",
+                "field": "status",
+                "value": "RUNNING",
+                "spec": {
+                  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh\"",
+                  "server": "bjb1-42106",
+                  "gpu": [
+                    "cuda:0"
+                  ],
+                  "data_path": "/root/autodl-tmp/structfuse/full_m2_training_data/",
+                  "data_count": 11300,
+                  "model_name": "Qwen/Qwen2.5-Coder-3B",
+                  "seed": "42,43,44",
+                  "checkpoint_path": "/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/",
+                  "log_path": "/root/runs/m2_full_qwen/"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "11eeba0a-6509-4be8-8e7b-4c537f05d417",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0111KZr8hGV7k2NRHguvabbC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3791,
+                "cache_read_input_tokens": 31136,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3791
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-13T16:56:00.002Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HSAcyfqQim9A3LmK1xNNk8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0632}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "032b8d1b-6b76-421c-8b01-52d5a4bf4178",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0632}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0632}}"
+              }
+            }
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JR6KNP4FfBe2XZ9CsjDUy3",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "m2_full_qwen_wrapper_script",
+                "type": "intermediate",
+                "description": "Wrapper shell script for 9 sequential M2 full Qwen training runs (3 strategies × 3 seeds). Handles environment setup, sequential execution with error propagation, dual checkpoint saving, and cleanup.",
+                "project": "structfuse-context",
+                "exp_id": "m2_full_qwen",
+                "source_path": "/root/structfuse/run_m2_full_qwen.sh",
+                "tags": [
+                  "training",
+                  "shell-script",
+                  "m2"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "ff8fb218-a421-49a7-a518-17142716df74",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0111KZr8hGV7k2NRHguvabbC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3791,
+                "cache_read_input_tokens": 31136,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3791
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": "2026-05-13T16:56:03.401Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JR6KNP4FfBe2XZ9CsjDUy3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/structfuse/run_m2_full_qwen.sh\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "269a9688-91f5-4ab0-95e2-d6264b309c5c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/structfuse/run_m2_full_qwen.sh\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/structfuse/run_m2_full_qwen.sh\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Two issues:\n1. Registry won't allow PREPARING → RUNNING transition. Need to go through PENDING or QUEUED first. Let me try PREPARING → QUEUED → RUNNING, or just update to QUEUED first then RUNNING.\n\nActually wait, the allowed transitions from PREPARING are PENDING and QUEUED. Let me go PREPARING → QUEUED → RUNNING.\n\n2. The source_path is on the remote server, not local. I need to use `content` instead and provide the script content, or use the URL approach. Let me read the script content from the server and register it with `content`.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "b9fedc58-9ac5-425e-a8dc-962073a9621f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018uYw9RFEBzSNnxUwdCPGm1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 876,
+                "cache_read_input_tokens": 34927,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 876
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000727"
+        },
+        {
+          "source_line": 728,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TkyaMVyCwb9VcvrsDAgtJT",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "project": "structfuse-context",
+                "exp_id": "m2_full_qwen",
+                "field": "status",
+                "value": "QUEUED"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "a6d05851-8aa8-43a3-87a2-7f0b280c5e54",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018uYw9RFEBzSNnxUwdCPGm1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 876,
+                "cache_read_input_tokens": 34927,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 876
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000728"
+        },
+        {
+          "source_line": 729,
+          "timestamp": "2026-05-13T16:56:11.215Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TkyaMVyCwb9VcvrsDAgtJT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"m2_full_qwen\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T16:18:14.870Z\\\", \\\"updated_at\\\": \\\"2026-05-13T16:56:11.030Z\\\", \\\"hypothesis\\\": \\\"Full M2 Qwen: 3 strategies (random/embedding/dataflow) × 3 seeds on full M1 data (~11K train/seed). Statistical validation of pilot signal (embedding > random +2pp). Go/no-go for paper claims per D018.\\\", \\\"parent\\\": \\\"m2_embed_verify\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"69580\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/m2_full_qwen.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T16:43:12.437Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"Full M2 go/no-go: 3 strategies (random, embedding_distance, dataflow_aware) × 3 seeds (42, 43, 44) = 9 runs sequential on cuda:0. Config: lr=2e-5, epochs=3, batch_size=8, eval_steps=500, num_negatives=7, max_seq_length=2048, warmup_ratio=0.1, weight_decay=0.01, temperature=0.07, LoRA r=16, gradient_checkpointing=True, proj_dim=256. Dual checkpoint: best_by_val_loss + best_by_recall_at_1. Train ~11.3K/seed, val ~3K/seed.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2445}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "439141e9-ca84-4c8c-8b8e-cddebedbb6d5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"m2_full_qwen\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T16:18:14.870Z\\\", \\\"updated_at\\\": \\\"2026-05-13T16:56:11.030Z\\\", \\\"hypothesis\\\": \\\"Full M2 Qwen: 3 strategies (random/embedding/dataflow) × 3 seeds on full M1 data (~11K train/seed). Statistical validation of pilot signal (embedding > random +2pp). Go/no-go for paper claims per D018.\\\", \\\"parent\\\": \\\"m2_embed_verify\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"69580\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/m2_full_qwen.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T16:43:12.437Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"Full M2 go/no-go: 3 strategies (random, embedding_distance, dataflow_aware) × 3 seeds (42, 43, 44) = 9 runs sequential on cuda:0. Config: lr=2e-5, epochs=3, batch_size=8, eval_steps=500, num_negatives=7, max_seq_length=2048, warmup_ratio=0.1, weight_decay=0.01, temperature=0.07, LoRA r=16, gradient_checkpointing=True, proj_dim=256. Dual checkpoint: best_by_val_loss + best_by_recall_at_1. Train ~11.3K/seed, val ~3K/seed.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2445}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"m2_full_qwen\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-13T16:18:14.870Z\", \"updated_at\": \"2026-05-13T16:56:11.030Z\", \"hypothesis\": \"Full M2 Qwen: 3 strategies (random/embedding/dataflow) × 3 seeds on full M1 data (~11K train/seed). Statistical validation of pilot signal (embedding > random +2pp). Go/no-go for paper claims per D018.\", \"parent\": \"m2_embed_verify\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh\\\"\", \"server\": \"bjb1-42106\", \"gpu\": [\"cuda:0\"], \"pid\": \"69580\", \"log_path\": \"~/runs/structfuse-context/m2_full_qwen.log\", \"submitted_at\": \"2026-05-13T16:43:12.437Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"notes\": \"Full M2 go/no-go: 3 strategies (random, embedding_distance, dataflow_aware) × 3 seeds (42, 43, 44) = 9 runs sequential on cuda:0. Config: lr=2e-5, epochs=3, batch_size=8, eval_steps=500, num_negatives=7, max_seq_length=2048, warmup_ratio=0.1, weight_decay=0.01, temperature=0.07, LoRA r=16, gradient_checkpointing=True, proj_dim=256. Dual checkpoint: best_by_val_loss + best_by_recall_at_1. Train ~11.3K/seed, val ~3K/seed.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2445}}"
+              }
+            }
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019PQQwcLNCsczEom65uLrYr",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "cat /root/structfuse/run_m2_full_qwen.sh"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "242ec136-6fe1-42ab-8f9e-793213ee9b7a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018uYw9RFEBzSNnxUwdCPGm1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 876,
+                "cache_read_input_tokens": 34927,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 876
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": "2026-05-13T16:56:11.883Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019PQQwcLNCsczEom65uLrYr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -eo pipefail\\\\n\\\\nexport CUDA_VISIBLE_DEVICES=0\\\\nexport PYTHONUNBUFFERED=1\\\\nexport PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True\\\\nexport WANDB_MODE=offline\\\\nexport WANDB_CONSOLE=off\\\\nexport WANDB_DIR=/root/autodl-tmp/structfuse/wandb_logs/\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport TRANSFORMERS_OFFLINE=1\\\\nexport HF_HUB_OFFLINE=1\\\\n\\\\ntrap 'echo \\\\\\\"INTERRUPTED at $(date), cleaning up...\\\\\\\"; kill 0; exit 1' INT TERM\\\\n\\\\nDATA_DIR=\\\\\\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\\\\\"\\\\nOUT_BASE=\\\\\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen\\\\\\\"\\\\nLOG_DIR=\\\\\\\"/root/runs/m2_full_qwen\\\\\\\"\\\\nMODEL=\\\\\\\"/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B\\\\\\\"\\\\nTRAIN_SCRIPT=\\\\\\\"/root/structfuse/training/train.py\\\\\\\"\\\\n\\\\nSTRATEGIES=(\\\\\\\"random\\\\\\\" \\\\\\\"embedding_distance\\\\\\\" \\\\\\\"dataflow_aware\\\\\\\")\\\\nSEEDS=(42 43 44)\\\\n\\\\nmkdir -p \\\\\\\"${LOG_DIR}\\\\\\\" \\\\\\\"${OUT_BASE}\\\\\\\"\\\\n\\\\nTOTAL_RUNS=9\\\\nRUN_NUM=0\\\\n\\\\nfor STRATEGY in \\\\\\\"${STRATEGIES[@]}\\\\\\\"; do\\\\n    for SEED in \\\\\\\"${SEEDS[@]}\\\\\\\"; do\\\\n        RUN_NUM=$((RUN_NUM + 1))\\\\n        TAG=\\\\\\\"${STRATEGY}_s${SEED}\\\\\\\"\\\\n        LOG_FILE=\\\\\\\"${LOG_DIR}/${TAG}.log\\\\\\\"\\\\n\\\\n        echo \\\\\\\"==========================================\\\\\\\"\\\\n        echo \\\\\\\"[${RUN_NUM}/${TOTAL_RUNS}] Starting: ${TAG} at $(date)\\\\\\\"\\\\n        echo \\\\\\\"==========================================\\\\\\\"\\\\n\\\\n        TRAIN_FILE=\\\\\\\"${DATA_DIR}/train_${STRATEGY}_s${SEED}.jsonl\\\\\\\"\\\\n        VAL_FILE=\\\\\\\"${DATA_DIR}/val_${STRATEGY}_s${SEED}.jsonl\\\\\\\"\\\\n        OUT_DIR=\\\\\\\"${OUT_BASE}/${TAG}\\\\\\\"\\\\n\\\\n        if [ ! -f \\\\\\\"${TRAIN_FILE}\\\\\\\" ]; then\\\\n            echo \\\\\\\"ERROR: Train file not found: ${TRAIN_FILE}\\\\\\\"\\\\n            exit 1\\\\n        fi\\\\n        if [ ! -f \\\\\\\"${VAL_FILE}\\\\\\\" ]; then\\\\n            echo \\\\\\\"ERROR: Val file not found: ${VAL_FILE}\\\\\\\"\\\\n            exit 1\\\\n        fi\\\\n\\\\n        EXTRA_ARGS=\\\\\\\"\\\\\\\"\\\\n        if [ \\\\\\\"${STRATEGY}\\\\\\\" = \\\\\\\"dataflow_aware\\\\\\\" ]; then\\\\n            EXTRA_ARGS=\\\\\\\"--dataflow-graph-file ${DATA_DIR}/dataflow_graph.json\\\\\\\"\\\\n        fi\\\\n\\\\n        python \\\\\\\"${TRAIN_SCRIPT}\\\\\\\" \\\\\\\\\\\\n            --model-name \\\\\\\"${MODEL}\\\\\\\" \\\\\\\\\\\\n            --train-file \\\\\\\"${TRAIN_FILE}\\\\\\\" \\\\\\\\\\\\n            --val-file \\\\\\\"${VAL_FILE}\\\\\\\" \\\\\\\\\\\\n            --output-dir \\\\\\\"${OUT_DIR}\\\\\\\" \\\\\\\\\\\\n            --hard-negative-strategy \\\\\\\"${STRATEGY}\\\\\\\" \\\\\\\\\\\\n            --learning-rate 2e-5 \\\\\\\\\\\\n            --temperature 0.07 \\\\\\\\\\\\n            --batch-size 8 \\\\\\\\\\\\n            --num-epochs 3 \\\\\\\\\\\\n            --num-negatives 7 \\\\\\\\\\\\n            --hard-negative-ratio 0.5 \\\\\\\\\\\\n            --use-lora \\\\\\\\\\\\n            --gradient-checkpointing \\\\\\\\\\\\n            --max-seq-length 2048 \\\\\\\\\\\\n            --seed \\\\\\\"${SEED}\\\\\\\" \\\\\\\\\\\\n            --eval-steps 500 \\\\\\\\\\\\n            --save-steps 1000 \\\\\\\\\\\\n            --wandb-project structfuse \\\\\\\\\\\\n            --wandb-run-name \\\\\\\"m2_full_${TAG}\\\\\\\" \\\\\\\\\\\\n            ${EXTRA_ARGS} \\\\\\\\\\\\n            > \\\\\\\"${LOG_FILE}\\\\\\\" 2>&1\\\\n\\\\n        TRAIN_EXIT=$?\\\\n        if [ ${TRAIN_EXIT} -ne 0 ]; then\\\\n            echo \\\\\\\"ERROR: ${TAG} failed with exit code ${TRAIN_EXIT}\\\\\\\"\\\\n            echo \\\\\\\"Last 20 lines of log:\\\\\\\"\\\\n            tail -20 \\\\\\\"${LOG_FILE}\\\\\\\"\\\\n            exit ${TRAIN_EXIT}\\\\n        fi\\\\n\\\\n        echo \\\\\\\"[${RUN_NUM}/${TOTAL_RUNS}] Completed: ${TAG} at $(date)\\\\\\\"\\\\n\\\\n        # Print final eval metrics from log\\\\n        grep -E \\\\\\\"\\\\\\\\[Final eval\\\\\\\\]|\\\\\\\\[eval@\\\\\\\" \\\\\\\"${LOG_FILE}\\\\\\\" | tail -3\\\\n\\\\n        # Print checkpoint summary\\\\n        if [ -f \\\\\\\"${OUT_DIR}/best_by_val_loss/training_config.json\\\\\\\" ]; then\\\\n            echo \\\\\\\"  best_by_val_loss checkpoint saved\\\\\\\"\\\\n        fi\\\\n        if [ -f \\\\\\\"${OUT_DIR}/best_by_recall_at_1/training_config.json\\\\\\\" ]; then\\\\n            echo \\\\\\\"  best_by_recall_at_1 checkpoint saved\\\\\\\"\\\\n        fi\\\\n\\\\n        # Clean intermediate checkpoints to save disk\\\\n        find \\\\\\\"${OUT_DIR}\\\\\\\" -maxdepth 1 -name \\\\\\\"checkpoint-*\\\\\\\" -type d -exec rm -rf {} + 2>/dev/null || true\\\\n\\\\n        echo \\\\\\\"\\\\\\\"\\\\n    done\\\\ndone\\\\n\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\necho \\\\\\\"ALL 9 RUNS COMPLETED at $(date)\\\\\\\"\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "35723e80-73db-4a63-bc60-ea0fe57e6f7d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -eo pipefail\\\\n\\\\nexport CUDA_VISIBLE_DEVICES=0\\\\nexport PYTHONUNBUFFERED=1\\\\nexport PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True\\\\nexport WANDB_MODE=offline\\\\nexport WANDB_CONSOLE=off\\\\nexport WANDB_DIR=/root/autodl-tmp/structfuse/wandb_logs/\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport TRANSFORMERS_OFFLINE=1\\\\nexport HF_HUB_OFFLINE=1\\\\n\\\\ntrap 'echo \\\\\\\"INTERRUPTED at $(date), cleaning up...\\\\\\\"; kill 0; exit 1' INT TERM\\\\n\\\\nDATA_DIR=\\\\\\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\\\\\"\\\\nOUT_BASE=\\\\\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen\\\\\\\"\\\\nLOG_DIR=\\\\\\\"/root/runs/m2_full_qwen\\\\\\\"\\\\nMODEL=\\\\\\\"/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B\\\\\\\"\\\\nTRAIN_SCRIPT=\\\\\\\"/root/structfuse/training/train.py\\\\\\\"\\\\n\\\\nSTRATEGIES=(\\\\\\\"random\\\\\\\" \\\\\\\"embedding_distance\\\\\\\" \\\\\\\"dataflow_aware\\\\\\\")\\\\nSEEDS=(42 43 44)\\\\n\\\\nmkdir -p \\\\\\\"${LOG_DIR}\\\\\\\" \\\\\\\"${OUT_BASE}\\\\\\\"\\\\n\\\\nTOTAL_RUNS=9\\\\nRUN_NUM=0\\\\n\\\\nfor STRATEGY in \\\\\\\"${STRATEGIES[@]}\\\\\\\"; do\\\\n    for SEED in \\\\\\\"${SEEDS[@]}\\\\\\\"; do\\\\n        RUN_NUM=$((RUN_NUM + 1))\\\\n        TAG=\\\\\\\"${STRATEGY}_s${SEED}\\\\\\\"\\\\n        LOG_FILE=\\\\\\\"${LOG_DIR}/${TAG}.log\\\\\\\"\\\\n\\\\n        echo \\\\\\\"==========================================\\\\\\\"\\\\n        echo \\\\\\\"[${RUN_NUM}/${TOTAL_RUNS}] Starting: ${TAG} at $(date)\\\\\\\"\\\\n        echo \\\\\\\"==========================================\\\\\\\"\\\\n\\\\n        TRAIN_FILE=\\\\\\\"${DATA_DIR}/train_${STRATEGY}_s${SEED}.jsonl\\\\\\\"\\\\n        VAL_FILE=\\\\\\\"${DATA_DIR}/val_${STRATEGY}_s${SEED}.jsonl\\\\\\\"\\\\n        OUT_DIR=\\\\\\\"${OUT_BASE}/${TAG}\\\\\\\"\\\\n\\\\n        if [ ! -f \\\\\\\"${TRAIN_FILE}\\\\\\\" ]; then\\\\n            echo \\\\\\\"ERROR: Train file not found: ${TRAIN_FILE}\\\\\\\"\\\\n            exit 1\\\\n        fi\\\\n        if [ ! -f \\\\\\\"${VAL_FILE}\\\\\\\" ]; then\\\\n            echo \\\\\\\"ERROR: Val file not found: ${VAL_FILE}\\\\\\\"\\\\n            exit 1\\\\n        fi\\\\n\\\\n        EXTRA_ARGS=\\\\\\\"\\\\\\\"\\\\n        if [ \\\\\\\"${STRATEGY}\\\\\\\" = \\\\\\\"dataflow_aware\\\\\\\" ]; then\\\\n            EXTRA_ARGS=\\\\\\\"--dataflow-graph-file ${DATA_DIR}/dataflow_graph.json\\\\\\\"\\\\n        fi\\\\n\\\\n        python \\\\\\\"${TRAIN_SCRIPT}\\\\\\\" \\\\\\\\\\\\n            --model-name \\\\\\\"${MODEL}\\\\\\\" \\\\\\\\\\\\n            --train-file \\\\\\\"${TRAIN_FILE}\\\\\\\" \\\\\\\\\\\\n            --val-file \\\\\\\"${VAL_FILE}\\\\\\\" \\\\\\\\\\\\n            --output-dir \\\\\\\"${OUT_DIR}\\\\\\\" \\\\\\\\\\\\n            --hard-negative-strategy \\\\\\\"${STRATEGY}\\\\\\\" \\\\\\\\\\\\n            --learning-rate 2e-5 \\\\\\\\\\\\n            --temperature 0.07 \\\\\\\\\\\\n            --batch-size 8 \\\\\\\\\\\\n            --num-epochs 3 \\\\\\\\\\\\n            --num-negatives 7 \\\\\\\\\\\\n            --hard-negative-ratio 0.5 \\\\\\\\\\\\n            --use-lora \\\\\\\\\\\\n            --gradient-checkpointing \\\\\\\\\\\\n            --max-seq-length 2048 \\\\\\\\\\\\n            --seed \\\\\\\"${SEED}\\\\\\\" \\\\\\\\\\\\n            --eval-steps 500 \\\\\\\\\\\\n            --save-steps 1000 \\\\\\\\\\\\n            --wandb-project structfuse \\\\\\\\\\\\n            --wandb-run-name \\\\\\\"m2_full_${TAG}\\\\\\\" \\\\\\\\\\\\n            ${EXTRA_ARGS} \\\\\\\\\\\\n            > \\\\\\\"${LOG_FILE}\\\\\\\" 2>&1\\\\n\\\\n        TRAIN_EXIT=$?\\\\n        if [ ${TRAIN_EXIT} -ne 0 ]; then\\\\n            echo \\\\\\\"ERROR: ${TAG} failed with exit code ${TRAIN_EXIT}\\\\\\\"\\\\n            echo \\\\\\\"Last 20 lines of log:\\\\\\\"\\\\n            tail -20 \\\\\\\"${LOG_FILE}\\\\\\\"\\\\n            exit ${TRAIN_EXIT}\\\\n        fi\\\\n\\\\n        echo \\\\\\\"[${RUN_NUM}/${TOTAL_RUNS}] Completed: ${TAG} at $(date)\\\\\\\"\\\\n\\\\n        # Print final eval metrics from log\\\\n        grep -E \\\\\\\"\\\\\\\\[Final eval\\\\\\\\]|\\\\\\\\[eval@\\\\\\\" \\\\\\\"${LOG_FILE}\\\\\\\" | tail -3\\\\n\\\\n        # Print checkpoint summary\\\\n        if [ -f \\\\\\\"${OUT_DIR}/best_by_val_loss/training_config.json\\\\\\\" ]; then\\\\n            echo \\\\\\\"  best_by_val_loss checkpoint saved\\\\\\\"\\\\n        fi\\\\n        if [ -f \\\\\\\"${OUT_DIR}/best_by_recall_at_1/training_config.json\\\\\\\" ]; then\\\\n            echo \\\\\\\"  best_by_recall_at_1 checkpoint saved\\\\\\\"\\\\n        fi\\\\n\\\\n        # Clean intermediate checkpoints to save disk\\\\n        find \\\\\\\"${OUT_DIR}\\\\\\\" -maxdepth 1 -name \\\\\\\"checkpoint-*\\\\\\\" -type d -exec rm -rf {} + 2>/dev/null || true\\\\n\\\\n        echo \\\\\\\"\\\\\\\"\\\\n    done\\\\ndone\\\\n\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\necho \\\\\\\"ALL 9 RUNS COMPLETED at $(date)\\\\\\\"\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -eo pipefail\\n\\nexport CUDA_VISIBLE_DEVICES=0\\nexport PYTHONUNBUFFERED=1\\nexport PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True\\nexport WANDB_MODE=offline\\nexport WANDB_CONSOLE=off\\nexport WANDB_DIR=/root/autodl-tmp/structfuse/wandb_logs/\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport TRANSFORMERS_OFFLINE=1\\nexport HF_HUB_OFFLINE=1\\n\\ntrap 'echo \\\"INTERRUPTED at $(date), cleaning up...\\\"; kill 0; exit 1' INT TERM\\n\\nDATA_DIR=\\\"/root/autodl-tmp/structfuse/full_m2_training_data\\\"\\nOUT_BASE=\\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen\\\"\\nLOG_DIR=\\\"/root/runs/m2_full_qwen\\\"\\nMODEL=\\\"/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B\\\"\\nTRAIN_SCRIPT=\\\"/root/structfuse/training/train.py\\\"\\n\\nSTRATEGIES=(\\\"random\\\" \\\"embedding_distance\\\" \\\"dataflow_aware\\\")\\nSEEDS=(42 43 44)\\n\\nmkdir -p \\\"${LOG_DIR}\\\" \\\"${OUT_BASE}\\\"\\n\\nTOTAL_RUNS=9\\nRUN_NUM=0\\n\\nfor STRATEGY in \\\"${STRATEGIES[@]}\\\"; do\\n    for SEED in \\\"${SEEDS[@]}\\\"; do\\n        RUN_NUM=$((RUN_NUM + 1))\\n        TAG=\\\"${STRATEGY}_s${SEED}\\\"\\n        LOG_FILE=\\\"${LOG_DIR}/${TAG}.log\\\"\\n\\n        echo \\\"==========================================\\\"\\n        echo \\\"[${RUN_NUM}/${TOTAL_RUNS}] Starting: ${TAG} at $(date)\\\"\\n        echo \\\"==========================================\\\"\\n\\n        TRAIN_FILE=\\\"${DATA_DIR}/train_${STRATEGY}_s${SEED}.jsonl\\\"\\n        VAL_FILE=\\\"${DATA_DIR}/val_${STRATEGY}_s${SEED}.jsonl\\\"\\n        OUT_DIR=\\\"${OUT_BASE}/${TAG}\\\"\\n\\n        if [ ! -f \\\"${TRAIN_FILE}\\\" ]; then\\n            echo \\\"ERROR: Train file not found: ${TRAIN_FILE}\\\"\\n            exit 1\\n        fi\\n        if [ ! -f \\\"${VAL_FILE}\\\" ]; then\\n            echo \\\"ERROR: Val file not found: ${VAL_FILE}\\\"\\n            exit 1\\n        fi\\n\\n        EXTRA_ARGS=\\\"\\\"\\n        if [ \\\"${STRATEGY}\\\" = \\\"dataflow_aware\\\" ]; then\\n            EXTRA_ARGS=\\\"--dataflow-graph-file ${DATA_DIR}/dataflow_graph.json\\\"\\n        fi\\n\\n        python \\\"${TRAIN_SCRIPT}\\\" \\\\\\n            --model-name \\\"${MODEL}\\\" \\\\\\n            --train-file \\\"${TRAIN_FILE}\\\" \\\\\\n            --val-file \\\"${VAL_FILE}\\\" \\\\\\n            --output-dir \\\"${OUT_DIR}\\\" \\\\\\n            --hard-negative-strategy \\\"${STRATEGY}\\\" \\\\\\n            --learning-rate 2e-5 \\\\\\n            --temperature 0.07 \\\\\\n            --batch-size 8 \\\\\\n            --num-epochs 3 \\\\\\n            --num-negatives 7 \\\\\\n            --hard-negative-ratio 0.5 \\\\\\n            --use-lora \\\\\\n            --gradient-checkpointing \\\\\\n            --max-seq-length 2048 \\\\\\n            --seed \\\"${SEED}\\\" \\\\\\n            --eval-steps 500 \\\\\\n            --save-steps 1000 \\\\\\n            --wandb-project structfuse \\\\\\n            --wandb-run-name \\\"m2_full_${TAG}\\\" \\\\\\n            ${EXTRA_ARGS} \\\\\\n            > \\\"${LOG_FILE}\\\" 2>&1\\n\\n        TRAIN_EXIT=$?\\n        if [ ${TRAIN_EXIT} -ne 0 ]; then\\n            echo \\\"ERROR: ${TAG} failed with exit code ${TRAIN_EXIT}\\\"\\n            echo \\\"Last 20 lines of log:\\\"\\n            tail -20 \\\"${LOG_FILE}\\\"\\n            exit ${TRAIN_EXIT}\\n        fi\\n\\n        echo \\\"[${RUN_NUM}/${TOTAL_RUNS}] Completed: ${TAG} at $(date)\\\"\\n\\n        # Print final eval metrics from log\\n        grep -E \\\"\\\\[Final eval\\\\]|\\\\[eval@\\\" \\\"${LOG_FILE}\\\" | tail -3\\n\\n        # Print checkpoint summary\\n        if [ -f \\\"${OUT_DIR}/best_by_val_loss/training_config.json\\\" ]; then\\n            echo \\\"  best_by_val_loss checkpoint saved\\\"\\n        fi\\n        if [ -f \\\"${OUT_DIR}/best_by_recall_at_1/training_config.json\\\" ]; then\\n            echo \\\"  best_by_recall_at_1 checkpoint saved\\\"\\n        fi\\n\\n        # Clean intermediate checkpoints to save disk\\n        find \\\"${OUT_DIR}\\\" -maxdepth 1 -name \\\"checkpoint-*\\\" -type d -exec rm -rf {} + 2>/dev/null || true\\n\\n        echo \\\"\\\"\\n    done\\ndone\\n\\necho \\\"==========================================\\\"\\necho \\\"ALL 9 RUNS COMPLETED at $(date)\\\"\\necho \\\"==========================================\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V6jqnKXdrYvAR2AZhAAaDr",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "project": "structfuse-context",
+                "exp_id": "m2_full_qwen",
+                "field": "status",
+                "value": "RUNNING",
+                "spec": {
+                  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh\"",
+                  "server": "bjb1-42106",
+                  "gpu": [
+                    "cuda:0"
+                  ],
+                  "data_path": "/root/autodl-tmp/structfuse/full_m2_training_data/",
+                  "data_count": 11300,
+                  "model_name": "Qwen/Qwen2.5-Coder-3B",
+                  "seed": "42,43,44"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "f58185ee-31cf-498e-9b32-3abd8f442819",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015MoXAo5L2DmSH9EpszvEz3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2740,
+                "cache_read_input_tokens": 35803,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2740
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": "2026-05-13T16:56:19.103Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V6jqnKXdrYvAR2AZhAAaDr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1528}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "6e1c01a5-adc5-476f-a892-a9b21afc7161",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1528}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.1528}}"
+              }
+            }
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Gs1jaXAzRh5mZ5UYaLfFcQ",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "m2_full_qwen_wrapper_script",
+                "type": "intermediate",
+                "description": "Wrapper shell script for 9 sequential M2 full Qwen training runs (3 strategies × 3 seeds). set -eo pipefail, dual checkpoint, WANDB_CONSOLE=off, direct file redirect.",
+                "project": "structfuse-context",
+                "exp_id": "m2_full_qwen",
+                "content": "#!/bin/bash\nset -eo pipefail\n\nexport CUDA_VISIBLE_DEVICES=0\nexport PYTHONUNBUFFERED=1\nexport PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True\nexport WANDB_MODE=offline\nexport WANDB_CONSOLE=off\nexport WANDB_DIR=/root/autodl-tmp/structfuse/wandb_logs/\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport TRANSFORMERS_OFFLINE=1\nexport HF_HUB_OFFLINE=1\n\ntrap 'echo \"INTERRUPTED at $(date), cleaning up...\"; kill 0; exit 1' INT TERM\n\nDATA_DIR=\"/root/autodl-tmp/structfuse/full_m2_training_data\"\nOUT_BASE=\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen\"\nLOG_DIR=\"/root/runs/m2_full_qwen\"\nMODEL=\"/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B\"\nTRAIN_SCRIPT=\"/root/structfuse/training/train.py\"\n\nSTRATEGIES=(\"random\" \"embedding_distance\" \"dataflow_aware\")\nSEEDS=(42 43 44)\n\nmkdir -p \"${LOG_DIR}\" \"${OUT_BASE}\"\n\nTOTAL_RUNS=9\nRUN_NUM=0\n\nfor STRATEGY in \"${STRATEGIES[@]}\"; do\n    for SEED in \"${SEEDS[@]}\"; do\n        RUN_NUM=$((RUN_NUM + 1))\n        TAG=\"${STRATEGY}_s${SEED}\"\n        LOG_FILE=\"${LOG_DIR}/${TAG}.log\"\n\n        echo \"==========================================\"\n        echo \"[${RUN_NUM}/${TOTAL_RUNS}] Starting: ${TAG} at $(date)\"\n        echo \"==========================================\"\n\n        TRAIN_FILE=\"${DATA_DIR}/train_${STRATEGY}_s${SEED}.jsonl\"\n        VAL_FILE=\"${DATA_DIR}/val_${STRATEGY}_s${SEED}.jsonl\"\n        OUT_DIR=\"${OUT_BASE}/${TAG}\"\n\n        if [ ! -f \"${TRAIN_FILE}\" ]; then\n            echo \"ERROR: Train file not found: ${TRAIN_FILE}\"\n            exit 1\n        fi\n        if [ ! -f \"${VAL_FILE}\" ]; then\n            echo \"ERROR: Val file not found: ${VAL_FILE}\"\n            exit 1\n        fi\n\n        EXTRA_ARGS=\"\"\n        if [ \"${STRATEGY}\" = \"dataflow_aware\" ]; then\n            EXTRA_ARGS=\"--dataflow-graph-file ${DATA_DIR}/dataflow_graph.json\"\n        fi\n\n        python \"${TRAIN_SCRIPT}\" \\\n            --model-name \"${MODEL}\" \\\n            --train-file \"${TRAIN_FILE}\" \\\n            --val-file \"${VAL_FILE}\" \\\n            --output-dir \"${OUT_DIR}\" \\\n            --hard-negative-strategy \"${STRATEGY}\" \\\n            --learning-rate 2e-5 \\\n            --temperature 0.07 \\\n            --batch-size 8 \\\n            --num-epochs 3 \\\n            --num-negatives 7 \\\n            --hard-negative-ratio 0.5 \\\n            --use-lora \\\n            --gradient-checkpointing \\\n            --max-seq-length 2048 \\\n            --seed \"${SEED}\" \\\n            --eval-steps 500 \\\n            --save-steps 1000 \\\n            --wandb-project structfuse \\\n            --wandb-run-name \"m2_full_${TAG}\" \\\n            ${EXTRA_ARGS} \\\n            > \"${LOG_FILE}\" 2>&1\n\n        TRAIN_EXIT=$?\n        if [ ${TRAIN_EXIT} -ne 0 ]; then\n            echo \"ERROR: ${TAG} failed with exit code ${TRAIN_EXIT}\"\n            echo \"Last 20 lines of log:\"\n            tail -20 \"${LOG_FILE}\"\n            exit ${TRAIN_EXIT}\n        fi\n\n        echo \"[${RUN_NUM}/${TOTAL_RUNS}] Completed: ${TAG} at $(date)\"\n\n        grep -E \"\\[Final eval\\]|\\[eval@\" \"${LOG_FILE}\" | tail -3\n\n        if [ -f \"${OUT_DIR}/best_by_val_loss/training_config.json\" ]; then\n            echo \"  best_by_val_loss checkpoint saved\"\n        fi\n        if [ -f \"${OUT_DIR}/best_by_recall_at_1/training_config.json\" ]; then\n            echo \"  best_by_recall_at_1 checkpoint saved\"\n        fi\n\n        find \"${OUT_DIR}\" -maxdepth 1 -name \"checkpoint-*\" -type d -exec rm -rf {} + 2>/dev/null || true\n\n        echo \"\"\n    done\ndone\n\necho \"==========================================\"\necho \"ALL 9 RUNS COMPLETED at $(date)\"\necho \"==========================================\"",
+                "content_filename": "run_m2_full_qwen.sh",
+                "tags": [
+                  "training",
+                  "shell-script",
+                  "m2"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "edbff512-2a60-420b-beaa-3e5145603f35",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015MoXAo5L2DmSH9EpszvEz3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2740,
+                "cache_read_input_tokens": 35803,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2740
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": "2026-05-13T16:56:34.628Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Gs1jaXAzRh5mZ5UYaLfFcQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260513_c3956f\\\", \\\"name\\\": \\\"m2_full_qwen_wrapper_script\\\", \\\"type\\\": \\\"intermediate\\\", \\\"description\\\": \\\"Wrapper shell script for 9 sequential M2 full Qwen training runs (3 strategies × 3 seeds). set -eo pipefail, dual checkpoint, WANDB_CONSOLE=off, direct file redirect.\\\", \\\"path\\\": \\\"projects/structfuse-context/artifacts/m2_full_qwen/intermediate/run_m2_full_qwen.sh\\\", \\\"url\\\": null, \\\"project\\\": \\\"structfuse-context\\\", \\\"exp_id\\\": \\\"m2_full_qwen\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-13T16:56:34.582285+00:00\\\", \\\"tags\\\": [\\\"training\\\", \\\"shell-script\\\", \\\"m2\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "99c9c5f6-103f-4919-89a1-58ea5323475a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260513_c3956f\\\", \\\"name\\\": \\\"m2_full_qwen_wrapper_script\\\", \\\"type\\\": \\\"intermediate\\\", \\\"description\\\": \\\"Wrapper shell script for 9 sequential M2 full Qwen training runs (3 strategies × 3 seeds). set -eo pipefail, dual checkpoint, WANDB_CONSOLE=off, direct file redirect.\\\", \\\"path\\\": \\\"projects/structfuse-context/artifacts/m2_full_qwen/intermediate/run_m2_full_qwen.sh\\\", \\\"url\\\": null, \\\"project\\\": \\\"structfuse-context\\\", \\\"exp_id\\\": \\\"m2_full_qwen\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-13T16:56:34.582285+00:00\\\", \\\"tags\\\": [\\\"training\\\", \\\"shell-script\\\", \\\"m2\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260513_c3956f\", \"name\": \"m2_full_qwen_wrapper_script\", \"type\": \"intermediate\", \"description\": \"Wrapper shell script for 9 sequential M2 full Qwen training runs (3 strategies × 3 seeds). set -eo pipefail, dual checkpoint, WANDB_CONSOLE=off, direct file redirect.\", \"path\": \"projects/structfuse-context/artifacts/m2_full_qwen/intermediate/run_m2_full_qwen.sh\", \"url\": null, \"project\": \"structfuse-context\", \"exp_id\": \"m2_full_qwen\", \"skill\": \"\", \"created_at\": \"2026-05-13T16:56:34.582285+00:00\", \"tags\": [\"training\", \"shell-script\", \"m2\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The artifact was registered. The registry update failed because it thinks this is an eval experiment (it has a parent field set to \"m2_embed_verify\"). Let me try adding checkpoint_source and eval_data to the spec.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "51ef452e-c1d0-4687-8e75-a75ee6ae6355",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RGMUa3ne5Rmj3HGj8VBeam",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2321,
+                "cache_read_input_tokens": 38543,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2321
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000736"
+        },
+        {
+          "source_line": 737,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact registered. The RUNNING transition failed because it has a parent and the registry treats it as an eval experiment. Let me fix that."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "df2804de-b04f-4dfd-8143-d899e0804b1e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RGMUa3ne5Rmj3HGj8VBeam",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2321,
+                "cache_read_input_tokens": 38543,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2321
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QjxjgbRQBHsVFo2ads3rV7",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "project": "structfuse-context",
+                "exp_id": "m2_full_qwen",
+                "field": "status",
+                "value": "RUNNING",
+                "spec": {
+                  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh\"",
+                  "server": "bjb1-42106",
+                  "gpu": [
+                    "cuda:0"
+                  ],
+                  "data_path": "/root/autodl-tmp/structfuse/full_m2_training_data/",
+                  "data_count": 11300,
+                  "model_name": "Qwen/Qwen2.5-Coder-3B",
+                  "seed": "42,43,44",
+                  "checkpoint_source": "training from scratch (not eval)",
+                  "eval_data": "N/A (training, not eval)"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "132a49de-6022-44e1-ae6f-44d5bee0b078",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RGMUa3ne5Rmj3HGj8VBeam",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2321,
+                "cache_read_input_tokens": 38543,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2321
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000738"
+        },
+        {
+          "source_line": 739,
+          "timestamp": "2026-05-13T16:56:43.838Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QjxjgbRQBHsVFo2ads3rV7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"m2_full_qwen\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T16:18:14.870Z\\\", \\\"updated_at\\\": \\\"2026-05-13T16:56:43.592Z\\\", \\\"hypothesis\\\": \\\"Full M2 Qwen: 3 strategies (random/embedding/dataflow) × 3 seeds on full M1 data (~11K train/seed). Statistical validation of pilot signal (embedding > random +2pp). Go/no-go for paper claims per D018.\\\", \\\"parent\\\": \\\"m2_embed_verify\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"69580\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/m2_full_qwen.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T16:43:12.437Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/full_m2_training_data/\\\", \\\"data_count\\\": 11300, \\\"model_name\\\": \\\"Qwen/Qwen2.5-Coder-3B\\\", \\\"seed\\\": \\\"42,43,44\\\", \\\"checkpoint_source\\\": \\\"training from scratch (not eval)\\\", \\\"eval_data\\\": \\\"N/A (training, not eval)\\\"}, \\\"notes\\\": \\\"Full M2 go/no-go: 3 strategies (random, embedding_distance, dataflow_aware) × 3 seeds (42, 43, 44) = 9 runs sequential on cuda:0. Config: lr=2e-5, epochs=3, batch_size=8, eval_steps=500, num_negatives=7, max_seq_length=2048, warmup_ratio=0.1, weight_decay=0.01, temperature=0.07, LoRA r=16, gradient_checkpointing=True, proj_dim=256. Dual checkpoint: best_by_val_loss + best_by_recall_at_1. Train ~11.3K/seed, val ~3K/seed.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3138}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "16c7c8b6-0c65-440e-9f67-cee2cc9de8d7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"m2_full_qwen\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T16:18:14.870Z\\\", \\\"updated_at\\\": \\\"2026-05-13T16:56:43.592Z\\\", \\\"hypothesis\\\": \\\"Full M2 Qwen: 3 strategies (random/embedding/dataflow) × 3 seeds on full M1 data (~11K train/seed). Statistical validation of pilot signal (embedding > random +2pp). Go/no-go for paper claims per D018.\\\", \\\"parent\\\": \\\"m2_embed_verify\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-42106\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"69580\\\", \\\"log_path\\\": \\\"~/runs/structfuse-context/m2_full_qwen.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T16:43:12.437Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/structfuse/full_m2_training_data/\\\", \\\"data_count\\\": 11300, \\\"model_name\\\": \\\"Qwen/Qwen2.5-Coder-3B\\\", \\\"seed\\\": \\\"42,43,44\\\", \\\"checkpoint_source\\\": \\\"training from scratch (not eval)\\\", \\\"eval_data\\\": \\\"N/A (training, not eval)\\\"}, \\\"notes\\\": \\\"Full M2 go/no-go: 3 strategies (random, embedding_distance, dataflow_aware) × 3 seeds (42, 43, 44) = 9 runs sequential on cuda:0. Config: lr=2e-5, epochs=3, batch_size=8, eval_steps=500, num_negatives=7, max_seq_length=2048, warmup_ratio=0.1, weight_decay=0.01, temperature=0.07, LoRA r=16, gradient_checkpointing=True, proj_dim=256. Dual checkpoint: best_by_val_loss + best_by_recall_at_1. Train ~11.3K/seed, val ~3K/seed.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3138}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"m2_full_qwen\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T16:18:14.870Z\", \"updated_at\": \"2026-05-13T16:56:43.592Z\", \"hypothesis\": \"Full M2 Qwen: 3 strategies (random/embedding/dataflow) × 3 seeds on full M1 data (~11K train/seed). Statistical validation of pilot signal (embedding > random +2pp). Go/no-go for paper claims per D018.\", \"parent\": \"m2_embed_verify\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse && bash run_m2_full_qwen.sh\\\"\", \"server\": \"bjb1-42106\", \"gpu\": [\"cuda:0\"], \"pid\": \"69580\", \"log_path\": \"~/runs/structfuse-context/m2_full_qwen.log\", \"submitted_at\": \"2026-05-13T16:43:12.437Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/structfuse/full_m2_training_data/\", \"data_count\": 11300, \"model_name\": \"Qwen/Qwen2.5-Coder-3B\", \"seed\": \"42,43,44\", \"checkpoint_source\": \"training from scratch (not eval)\", \"eval_data\": \"N/A (training, not eval)\"}, \"notes\": \"Full M2 go/no-go: 3 strategies (random, embedding_distance, dataflow_aware) × 3 seeds (42, 43, 44) = 9 runs sequential on cuda:0. Config: lr=2e-5, epochs=3, batch_size=8, eval_steps=500, num_negatives=7, max_seq_length=2048, warmup_ratio=0.1, weight_decay=0.01, temperature=0.07, LoRA r=16, gradient_checkpointing=True, proj_dim=256. Dual checkpoint: best_by_val_loss + best_by_recall_at_1. Train ~11.3K/seed, val ~3K/seed.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3138}}"
+              }
+            }
+          },
+          "id": "event-000739"
+        },
+        {
+          "source_line": 740,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated to RUNNING. Let me now wait briefly and check for step 100 to get a precise per-step timing."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "1f0bac26-e3a9-4ab8-a397-1d4dcfe2c8ba",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QWw7CzU6j1JSb4ERtbPkii",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1095,
+                "cache_read_input_tokens": 40864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1095
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000740"
+        },
+        {
+          "source_line": 741,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NDf3mH8hJsDrts1Qp5NRD8",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "tail -5 /root/runs/m2_full_qwen/random_s42.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "cb9400a8-7f23-43b3-9c00-62c356e9c709",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QWw7CzU6j1JSb4ERtbPkii",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1095,
+                "cache_read_input_tokens": 40864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1095
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000741"
+        },
+        {
+          "source_line": 742,
+          "timestamp": "2026-05-13T16:56:51.747Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NDf3mH8hJsDrts1Qp5NRD8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.07it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.04it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.79it/s]\\\\n[Epoch 1] Using pre-mined negatives (random)...\\\\n  Training loop start: 1414 batches/epoch, total_steps_per_epoch=1414\\\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n  step 50  loss=0.6716  lr=2.36e-06\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "ff4723ea-3ac6-4f82-b36d-504c98ddb959",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.07it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.04it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.79it/s]\\\\n[Epoch 1] Using pre-mined negatives (random)...\\\\n  Training loop start: 1414 batches/epoch, total_steps_per_epoch=1414\\\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n  step 50  loss=0.6716  lr=2.36e-06\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  1.07it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  2.04it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.79it/s]\\n[Epoch 1] Using pre-mined negatives (random)...\\n  Training loop start: 1414 batches/epoch, total_steps_per_epoch=1414\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\n  step 50  loss=0.6716  lr=2.36e-06\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000742"
+        },
+        {
+          "source_line": 743,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Still only step 50 in the log. Let me check the process elapsed time again and estimate when step 100 will appear.",
+              "signature": "Eq4CClkIDRgCKkCCMzu57zjlKOPRWEOZOM4S9HmQy5QjDeJ8+JohIEP2tA/+b/v8Cfn3BLm0nAi3Xj8BsvnCFBahowCRpOcWWUpDMg9jbGF1ZGUtb3B1cy00LTY4ABIM/v4Nk0R6AJlch/ORGgzjI0ARrv1I7RtKMrgiMISXirWznsOWj+zr4lbUGEfGn22WPWYC9tuQVlWJ1iseorYSt7aEtIp7AgcNiz41NSqCAba2iuRRcXETF8E3BB2ToSNektb9ntYFotJCTCmVI9YJDh+7XsKI17r97i4OfyDybrNbzGki+YO6ExS12IccJ08R7KOjeWh8/cS2M/FLEE/zEapP0npGkXfQU/owtA4CWrAfq94I9FbKfDl+LTEh7kb2V7RpSv5BK0cOUraXEdSGW5gYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "27a80e8e-5a34-4786-876d-42c32c81f210",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LFQpUKuFWwLT4abLHHBnM6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 449,
+                "cache_read_input_tokens": 41959,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 449
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000743"
+        },
+        {
+          "source_line": 744,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X9dMCgGfqqMpz7sBbtd9yF",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "ps -p 69592 -o etime --no-headers"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "0434aa98-7c92-4ac0-98d3-fd47acae1714",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LFQpUKuFWwLT4abLHHBnM6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 449,
+                "cache_read_input_tokens": 41959,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 449
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000744"
+        },
+        {
+          "source_line": 745,
+          "timestamp": "2026-05-13T16:56:55.985Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X9dMCgGfqqMpz7sBbtd9yF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      13:43\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "7a42e4af-424d-44d9-82a8-08cfd5bce02b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"      13:43\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"      13:43\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000745"
+        },
+        {
+          "source_line": 746,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Process elapsed: 13:43 = 823 seconds. Still on step 50 output (step 100 hasn't appeared).\n\nTraining started ~3 min after process start. So training has been running for ~823-180 = ~643 seconds. If we're around step 65-70 now (50 steps took ~460s, so ~9.2s/step), step 100 would appear at about 50 more steps × 9.2s = ~460 more seconds from step 50 arrival, which means at ~920s training time or ~1100s process time = ~18-19 min elapsed. \n\nThat's roughly 5 more minutes from now. Based on the 9.2 seconds per step rate, I can extrapolate that a full run of 4242 steps would take around 10.8 hours, and with 9 runs total, the entire process should complete in about 4 days. I should probably wait for step 100 to arrive for a more precise measurement, but I have enough data to give the user a solid estimate now.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "36dab141-30c2-4855-b8f6-980e13cf3423",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CZtx3SFgFWeQUVc4Liw2pW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 222,
+                "cache_read_input_tokens": 42408,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 222
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000746"
+        },
+        {
+          "source_line": 747,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Process at 13:43 elapsed, still only step 50 logged. Based on timing:\n\n- Training loop started ~3 min after process launch\n- 50 steps completed in ~10 min of training → **~9-10 s/step**\n- 4242 steps/run × ~9.5s/step ≈ **11.2 hours/run**\n- **9 runs total ≈ 101 hours ≈ 4.2 days**\n\n**Status summary:**\n\n| Item | Value |\n|------|-------|\n| Wrapper script | `/root/structfuse/run_m2_full_qwen.sh` (registered as artifact) |\n| Log directory | `/root/runs/m2_full_qwen/{strategy}_s{seed}.log` |\n| Checkpoint dir | `/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/{strategy}_s{seed}/` |\n| Current run | 1/9: `random_s42` |\n| Step 50 loss | 0.6716 (lr=2.36e-06, warmup phase) |\n| GPU util | 100%, 49.4 GB / 95.6 GB VRAM |\n| Registry | `m2_full_qwen` → RUNNING |\n| Estimated completion | ~4.2 days from now (≈May 17) |\n\nTraining is healthy — loss is reasonable for early warmup, GPU fully utilized, dual checkpoint logic patched and verified, logs flushing correctly with `_print_flush()`. Next log line (step 100) should appear in ~5 minutes."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "uuid": "a2f48f49-ccb3-463b-8c93-3e0147fc8306",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CZtx3SFgFWeQUVc4Liw2pW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 222,
+                "cache_read_input_tokens": 42408,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 222
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000747"
+        },
+        {
+          "source_line": 748,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Process at 13:43 elapsed, still only step 50 logged. Based on timing:\n\n- Training loop started ~3 min after process launch\n- 50 steps completed in ~10 min of training → **~9-10 s/step**\n- 4242 steps/run × ~9.5s/step ≈ **11.2 hours/run**\n- **9 runs total ≈ 101 hours ≈ 4.2 days**\n\n**Status summary:**\n\n| Item | Value |\n|------|-------|\n| Wrapper script | `/root/structfuse/run_m2_full_qwen.sh` (registered as artifact) |\n| Log directory | `/root/runs/m2_full_qwen/{strategy}_s{seed}.log` |\n| Checkpoint dir | `/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/{strategy}_s{seed}/` |\n| Current run | 1/9: `random_s42` |\n| Step 50 loss | 0.6716 (lr=2.36e-06, warmup phase) |\n| GPU util | 100%, 49.4 GB / 95.6 GB VRAM |\n| Registry | `m2_full_qwen` → RUNNING |\n| Estimated completion | ~4.2 days from now (≈May 17) |\n\nTraining is healthy — loss is reasonable for early warmup, GPU fully utilized, dual checkpoint logic patched and verified, logs flushing correctly with `_print_flush()`. Next log line (step 100) should appear in ~5 minutes."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 2219141,
+            "duration_api_ms": 2079261,
+            "num_turns": 293,
+            "stop_reason": "end_turn",
+            "session_id": "181dfea1-1c18-45ab-a57e-320027904b3a",
+            "total_cost_usd": 17.411620249999988,
+            "usage": {
+              "input_tokens": 265,
+              "cache_creation_input_tokens": 186408,
+              "cache_read_input_tokens": 28033217,
+              "output_tokens": 80250,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 186408,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 843,
+                  "cache_read_input_tokens": 42408,
+                  "cache_creation_input_tokens": 222,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 222
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2072,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002177,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 4371,
+                "outputTokens": 84857,
+                "cacheReadInputTokens": 28199889,
+                "cacheCreationInputTokens": 186595,
+                "webSearchRequests": 0,
+                "costUSD": 17.40944324999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "d67ecdc3-5625-4433-88f3-223ed650d671"
+          },
+          "id": "event-000748"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "3d044f0d42a77ccd9ab3",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "ops plan013 random eval recovery",
+  "task_key": "worker_ops_plan013-random-eval-recovery_20260513T080148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan013-random-eval-recovery_20260513T080148.log",
+    "occurrence": 1,
+    "bytes": 1059337,
+    "sha256": "ca723b262ad679e16ce51c2aa61dabc1a0b82149242a8af2284449476ca3d151"
+  },
+  "statistics": {
+    "messages": 655,
+    "user_turns": 0,
+    "tool_calls": 305,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 305,
+      "tool_result": 305,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 655,
+      "chunks": [
+        {
+          "path": "3d044f0d42a77ccd9ab3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3d044f0d42a77ccd9ab3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3d044f0d42a77ccd9ab3-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3d044f0d42a77ccd9ab3-part-0004.json",
+          "message_count": 115
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-plan013-random-eval-recovery.md"
+}

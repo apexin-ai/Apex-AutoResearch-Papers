@@ -1,0 +1,1276 @@
+{
+  "schema_version": "1.0",
+  "id": "8198bad0ca58fa35e326",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "ops get embed s44 eval2000",
+  "task_key": "worker_ops_get-embed-s44-eval2000_20260515T155552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_get-embed-s44-eval2000_20260515T155552.log",
+    "occurrence": 1,
+    "bytes": 91057,
+    "sha256": "c6251975eece07ca0b65ae68767553ae77c635e88a544b9c4c603eb3f2d6bff9"
+  },
+  "statistics": {
+    "messages": 30,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+                "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "ff9fad84-2a8a-4878-9423-fb3cf9ab8e3f",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-structfuse-context/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778872800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "0e82f355-e9de-4c53-bc6b-05aed482fd3c",
+                "session_id": "4d450153-df62-467e-af82-07ab39fdcb95"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to extract eval@2000 metrics for embedding_distance_s44 from Qwen training logs on the server. Let me SSH in and search the logs.",
+              "signature": "Es8CClkIDRgCKkDAOUiGlzzhAtVNwphcMsNCy0bCtJhD3BvUexjA2rNPnqm77UpSS8h5K3mwXL1hBNlKtqFUFIUokUB/U2sTMkR3Mg9jbGF1ZGUtb3B1cy00LTY4ABIMlr0ZCYbWx4Xl57q1GgyLuA+ouQc+6NnbkdQiMCECHCCQ34EIpKWbJ56+kMM2eDVKY+0RvCNVF+jlcMAT/Ep9jUCMl4tYO2dJfvBjhSqjAX80E2I1lgEh+dSWFY+TvTWGPeQA21BRKYn6EeDD28LbLSz8NZkPGf/i/EEY21metu3a0F8PB6W+IZ6qcqSIo/HW1quJtKtJRv2v8x6d/pO2EvlOaUv3rYX7SbBE9z3e9639oVqmpzY5Snor8jdb623vmgwBtJ1nMm24930mX6qZL+w3SZrHODVdc1PUijh4pwBbJc4Jv8GAVIzsJWBHZVuYxMEYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "45535b23-2dd5-48ce-b6da-4e81888a6da0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015nJsq63QDmYkHaG7Wo7fit",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11294,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11294
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Lj2KJi9ZnQSXHbMrgJwt8n",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "ceb4a1e8-7097-4db7-83e0-4f765a75f4d0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015nJsq63QDmYkHaG7Wo7fit",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11294,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11294
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T15:56:06.162Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Lj2KJi9ZnQSXHbMrgJwt8n",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "b293242a-c728-4482-b963-bbcd66fb6d5b",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GXkmjsvsMGTm6Q3x7yBW2c",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "grep -n \"embedding_distance_s44\" /root/runs/structfuse-context/m2_full_qwen.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "d0c5683a-3180-474d-8d65-afe9b26e1d3b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EGZctdKiCe2vKkye8z5D9R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 480,
+                "cache_read_input_tokens": 23135,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 480
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T15:56:09.544Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GXkmjsvsMGTm6Q3x7yBW2c",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "a292a1e2-db5d-4e37-a8d5-553a2d9823dc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.07}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有直接匹配。尝试更宽泛的搜索。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "fa1b30a9-8a47-4681-bb72-5fc13c7c9d10",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017H6gxchSRqavRwsaLL6R7Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 214,
+                "cache_read_input_tokens": 23615,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 214
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KpmqvUejFUPR8S8mNcKjHK",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "grep -n \"embed.*s44\\|s44\" /root/runs/structfuse-context/m2_full_qwen.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "9a1e4dbe-f3f5-4320-8e30-4cf63f6d2bee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017H6gxchSRqavRwsaLL6R7Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 214,
+                "cache_read_input_tokens": 23615,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 214
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T15:56:14.412Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KpmqvUejFUPR8S8mNcKjHK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "8ae99927-9c8b-48cf-a71f-f4ecb1f294d8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FdUcxcWHMeYP2CM1tuw64t",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "ls -la /root/runs/structfuse-context/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "d786cee2-cb9d-480b-aad4-38c427648b2e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017H6gxchSRqavRwsaLL6R7Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 214,
+                "cache_read_input_tokens": 23615,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 214
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T15:56:15.092Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FdUcxcWHMeYP2CM1tuw64t",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 9324\\\\ndrwxr-xr-x 2 root root     155 May 14 03:59 .\\\\ndrwxr-xr-x 6 root root     122 May 14 00:26 ..\\\\n-rw-r--r-- 1 root root 4403206 May 15 23:55 m1_reextract_v2.log\\\\n-rw-r--r-- 1 root root 4758619 May 15 23:55 m1_rerun.log\\\\n-rw-r--r-- 1 root root     157 May 14 19:17 m2_full_qwen.log\\\\n-rw-r--r-- 1 root root    7625 May 15 23:50 m2_full_starcoder.log\\\\n-rw-r--r-- 1 root root   50951 May 14 01:31 sc_data_build.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "f882833b-cf82-41e2-8636-b071174d7fe9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 9324\\\\ndrwxr-xr-x 2 root root     155 May 14 03:59 .\\\\ndrwxr-xr-x 6 root root     122 May 14 00:26 ..\\\\n-rw-r--r-- 1 root root 4403206 May 15 23:55 m1_reextract_v2.log\\\\n-rw-r--r-- 1 root root 4758619 May 15 23:55 m1_rerun.log\\\\n-rw-r--r-- 1 root root     157 May 14 19:17 m2_full_qwen.log\\\\n-rw-r--r-- 1 root root    7625 May 15 23:50 m2_full_starcoder.log\\\\n-rw-r--r-- 1 root root   50951 May 14 01:31 sc_data_build.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 9324\\ndrwxr-xr-x 2 root root     155 May 14 03:59 .\\ndrwxr-xr-x 6 root root     122 May 14 00:26 ..\\n-rw-r--r-- 1 root root 4403206 May 15 23:55 m1_reextract_v2.log\\n-rw-r--r-- 1 root root 4758619 May 15 23:55 m1_rerun.log\\n-rw-r--r-- 1 root root     157 May 14 19:17 m2_full_qwen.log\\n-rw-r--r-- 1 root root    7625 May 15 23:50 m2_full_starcoder.log\\n-rw-r--r-- 1 root root   50951 May 14 01:31 sc_data_build.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "m2_full_qwen.log 只有 157 字节，非常小。直接看全文。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "da4b9750-3d5b-4512-b730-6df6f880f7ca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FHVRBqMG2g4E3GvkU1udMM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 725,
+                "cache_read_input_tokens": 23829,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 725
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TxDXaEMbpaabJoRf1meXrQ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "cat /root/runs/structfuse-context/m2_full_qwen.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "29e74160-3fef-4605-a8b3-2e7605d44ead",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FHVRBqMG2g4E3GvkU1udMM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 725,
+                "cache_read_input_tokens": 23829,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 725
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T15:56:19.892Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TxDXaEMbpaabJoRf1meXrQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"==========================================\\\\n[1/9] Starting: random_s42 at Thu May 14 01:39:30 CST 2026\\\\n==========================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "8848ed5e-2de5-4e4c-a3b1-20206c827782",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"==========================================\\\\n[1/9] Starting: random_s42 at Thu May 14 01:39:30 CST 2026\\\\n==========================================\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"==========================================\\n[1/9] Starting: random_s42 at Thu May 14 01:39:30 CST 2026\\n==========================================\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "m2_full_qwen.log 几乎为空——只记录了 random_s42 的启动，没有 embed_s44 的任何数据。日志可能在其他位置。搜索更广的范围。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "bc723e03-9da3-42c5-ad44-cd696cf2de95",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011GgnyXZ4Yh9nw6P4kpdb5x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 273,
+                "cache_read_input_tokens": 24554,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 273
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RXKbhjUUyRZ4aUyQThHE6n",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "find /root -name \"*.log\" -newer /root/runs/structfuse-context/m2_full_qwen.log -type f",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "2df4911e-a0ea-476b-be2c-5bc10ced1c01",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011GgnyXZ4Yh9nw6P4kpdb5x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 273,
+                "cache_read_input_tokens": 24554,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 273
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T15:56:24.954Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RXKbhjUUyRZ4aUyQThHE6n",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/database-create-20260515.094716.833.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/database-index-files-20260515.094732.482.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.094739.907.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.094740.358.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.095246.419.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.095246.878.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.095751.549.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.095751.991.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.100257.227.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.100257.710.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.100803.101.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.100803.589.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.101309.285.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.101309.812.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.101816.599.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.101817.889.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.102331.815.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.102332.999.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.102847.076.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.102848.067.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.103401.575.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.103402.724.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.103914.994.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.103915.955.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.104427.603.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.104429.198.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.104945.788.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.104947.075.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.105459.118.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.105500.373.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.110012.897.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.110014.198.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.110528.884.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.110530.084.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.111044.722.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/l\\\\n\\\\n... [截断: 输出过长，省略 233322 字符] ...\\\\n\\\\nog\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/Project-MONAI__MONAI_codeql_db/log/execute-queries-20260515.235322.065.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/Project-MONAI__MONAI_codeql_db/log/query-run-20260515.235452.840.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/Project-MONAI__MONAI_codeql_db/log/execute-queries-20260515.235453.289.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_015842-hfo1edho/logs/debug.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_015842-hfo1edho/logs/debug-internal.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_145021-tdmforx1/logs/debug.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_145021-tdmforx1/logs/debug-internal.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_235341-klexs2jq/logs/debug.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_235341-klexs2jq/logs/debug-internal.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260514_013934-pthrowuk/logs/debug.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260514_013934-pthrowuk/logs/debug-internal.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260514_192418-ejygo7zh/logs/debug.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260514_192418-ejygo7zh/logs/debug-internal.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_083218-4iueajjf/logs/debug.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_083218-4iueajjf/logs/debug-internal.log\\\\n/root/.cache/wandb/logs/core-debug-20260514_013934.log\\\\n/root/.cache/wandb/logs/core-debug-20260514_023015.log\\\\n/root/.cache/wandb/logs/core-debug-20260514_192418.log\\\\n/root/.cache/wandb/logs/xpu-debug-20260514_192418.log\\\\n/root/.cache/wandb/logs/core-debug-20260515_014036.log\\\\n/root/.cache/wandb/logs/xpu-debug-20260515_014037.log\\\\n/root/.cache/wandb/logs/core-debug-20260515_015721.log\\\\n/root/.cache/wandb/logs/xpu-debug-20260515_015721.log\\\\n/root/.cache/wandb/logs/core-debug-20260515_015842.log\\\\n/root/.cache/wandb/logs/xpu-debug-20260515_015842.log\\\\n/root/.cache/wandb/logs/core-debug-20260515_020316.log\\\\n/root/.cache/wandb/logs/xpu-debug-20260515_020316.log\\\\n/root/.cache/wandb/logs/core-debug-20260515_083218.log\\\\n/root/.cache/wandb/logs/xpu-debug-20260515_083218.log\\\\n/root/.cache/wandb/logs/core-debug-20260515_145021.log\\\\n/root/.cache/wandb/logs/xpu-debug-20260515_145021.log\\\\n/root/.cache/wandb/logs/core-debug-20260515_162852.log\\\\n/root/.cache/wandb/logs/xpu-debug-20260515_162852.log\\\\n/root/.cache/wandb/logs/core-debug-20260515_235341.log\\\\n/root/.cache/wandb/logs/xpu-debug-20260515_235342.log\\\\n/root/runs/structfuse-context/m2_full_starcoder.log\\\\n/root/runs/structfuse-context/m1_rerun.log\\\\n/root/runs/structfuse-context/m1_reextract_v2.log\\\\n/root/runs/m2_full_qwen/random_s42.log\\\\n/root/runs/m2_full_qwen/s43plus_all.log\\\\n/root/runs/m2_full_qwen/random_s43.log\\\\n/root/runs/m2_full_qwen/random_s44.log\\\\n/root/runs/m2_full_qwen/embedding_distance_s43.log\\\\n/root/runs/m2_full_qwen/embedding_distance_s44.log\\\\n/root/runs/m2_full_qwen/dataflow_aware_s43.log\\\\n/root/runs/m2_full_starcoder/random_s42.log\\\\n/root/runs/m2_full_starcoder/s43plus_all.log\\\\n/root/runs/m2_full_starcoder/random_s43.log\\\\n/root/runs/m2_full_starcoder/random_s44.log\\\\n/root/structfuse-context/wandb/offline-run-20260515_014036-pfp8j6so/logs/debug.log\\\\n/root/structfuse-context/wandb/offline-run-20260515_014036-pfp8j6so/logs/debug-internal.log\\\\n/root/structfuse-context/wandb/offline-run-20260515_015720-9mlvclfu/logs/debug.log\\\\n/root/structfuse-context/wandb/offline-run-20260515_015720-9mlvclfu/logs/debug-internal.log\\\\n/root/structfuse-context/wandb/offline-run-20260515_020316-qj1v54rj/logs/debug.log\\\\n/root/structfuse-context/wandb/offline-run-20260515_020316-qj1v54rj/logs/debug-internal.log\\\\n/root/structfuse-context/wandb/offline-run-20260515_162852-gefohrp8/logs/debug.log\\\\n/root/structfuse-context/wandb/offline-run-20260515_162852-gefohrp8/logs/debug-internal.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "d27bd25c-f12c-4399-97f8-93df14b25d40",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/database-create-20260515.094716.833.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/database-index-files-20260515.094732.482.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.094739.907.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.094740.358.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.095246.419.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.095246.878.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.095751.549.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.095751.991.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.100257.227.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.100257.710.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.100803.101.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.100803.589.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.101309.285.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.101309.812.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.101816.599.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.101817.889.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.102331.815.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.102332.999.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.102847.076.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.102848.067.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.103401.575.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.103402.724.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.103914.994.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.103915.955.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.104427.603.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.104429.198.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.104945.788.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.104947.075.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.105459.118.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.105500.373.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.110012.897.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.110014.198.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.110528.884.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.110530.084.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.111044.722.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/l\\\\n\\\\n... [截断: 输出过长，省略 233322 字符] ...\\\\n\\\\nog\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/Project-MONAI__MONAI_codeql_db/log/execute-queries-20260515.235322.065.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/Project-MONAI__MONAI_codeql_db/log/query-run-20260515.235452.840.log\\\\n/root/autodl-tmp/structfuse/full_m1_data/repos/Project-MONAI__MONAI_codeql_db/log/execute-queries-20260515.235453.289.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_015842-hfo1edho/logs/debug.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_015842-hfo1edho/logs/debug-internal.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_145021-tdmforx1/logs/debug.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_145021-tdmforx1/logs/debug-internal.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_235341-klexs2jq/logs/debug.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_235341-klexs2jq/logs/debug-internal.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260514_013934-pthrowuk/logs/debug.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260514_013934-pthrowuk/logs/debug-internal.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260514_192418-ejygo7zh/logs/debug.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260514_192418-ejygo7zh/logs/debug-internal.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_083218-4iueajjf/logs/debug.log\\\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_083218-4iueajjf/logs/debug-internal.log\\\\n/root/.cache/wandb/logs/core-debug-20260514_013934.log\\\\n/root/.cache/wandb/logs/core-debug-20260514_023015.log\\\\n/root/.cache/wandb/logs/core-debug-20260514_192418.log\\\\n/root/.cache/wandb/logs/xpu-debug-20260514_192418.log\\\\n/root/.cache/wandb/logs/core-debug-20260515_014036.log\\\\n/root/.cache/wandb/logs/xpu-debug-20260515_014037.log\\\\n/root/.cache/wandb/logs/core-debug-20260515_015721.log\\\\n/root/.cache/wandb/logs/xpu-debug-20260515_015721.log\\\\n/root/.cache/wandb/logs/core-debug-20260515_015842.log\\\\n/root/.cache/wandb/logs/xpu-debug-20260515_015842.log\\\\n/root/.cache/wandb/logs/core-debug-20260515_020316.log\\\\n/root/.cache/wandb/logs/xpu-debug-20260515_020316.log\\\\n/root/.cache/wandb/logs/core-debug-20260515_083218.log\\\\n/root/.cache/wandb/logs/xpu-debug-20260515_083218.log\\\\n/root/.cache/wandb/logs/core-debug-20260515_145021.log\\\\n/root/.cache/wandb/logs/xpu-debug-20260515_145021.log\\\\n/root/.cache/wandb/logs/core-debug-20260515_162852.log\\\\n/root/.cache/wandb/logs/xpu-debug-20260515_162852.log\\\\n/root/.cache/wandb/logs/core-debug-20260515_235341.log\\\\n/root/.cache/wandb/logs/xpu-debug-20260515_235342.log\\\\n/root/runs/structfuse-context/m2_full_starcoder.log\\\\n/root/runs/structfuse-context/m1_rerun.log\\\\n/root/runs/structfuse-context/m1_reextract_v2.log\\\\n/root/runs/m2_full_qwen/random_s42.log\\\\n/root/runs/m2_full_qwen/s43plus_all.log\\\\n/root/runs/m2_full_qwen/random_s43.log\\\\n/root/runs/m2_full_qwen/random_s44.log\\\\n/root/runs/m2_full_qwen/embedding_distance_s43.log\\\\n/root/runs/m2_full_qwen/embedding_distance_s44.log\\\\n/root/runs/m2_full_qwen/dataflow_aware_s43.log\\\\n/root/runs/m2_full_starcoder/random_s42.log\\\\n/root/runs/m2_full_starcoder/s43plus_all.log\\\\n/root/runs/m2_full_starcoder/random_s43.log\\\\n/root/runs/m2_full_starcoder/random_s44.log\\\\n/root/structfuse-context/wandb/offline-run-20260515_014036-pfp8j6so/logs/debug.log\\\\n/root/structfuse-context/wandb/offline-run-20260515_014036-pfp8j6so/logs/debug-internal.log\\\\n/root/structfuse-context/wandb/offline-run-20260515_015720-9mlvclfu/logs/debug.log\\\\n/root/structfuse-context/wandb/offline-run-20260515_015720-9mlvclfu/logs/debug-internal.log\\\\n/root/structfuse-context/wandb/offline-run-20260515_020316-qj1v54rj/logs/debug.log\\\\n/root/structfuse-context/wandb/offline-run-20260515_020316-qj1v54rj/logs/debug-internal.log\\\\n/root/structfuse-context/wandb/offline-run-20260515_162852-gefohrp8/logs/debug.log\\\\n/root/structfuse-context/wandb/offline-run-20260515_162852-gefohrp8/logs/debug-internal.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/database-create-20260515.094716.833.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/database-index-files-20260515.094732.482.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.094739.907.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.094740.358.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.095246.419.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.095246.878.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.095751.549.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.095751.991.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.100257.227.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.100257.710.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.100803.101.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.100803.589.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.101309.285.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.101309.812.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.101816.599.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.101817.889.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.102331.815.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.102332.999.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.102847.076.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.102848.067.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.103401.575.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.103402.724.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.103914.994.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.103915.955.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.104427.603.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.104429.198.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.104945.788.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.104947.075.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.105459.118.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.105500.373.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.110012.897.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.110014.198.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.110528.884.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/execute-queries-20260515.110530.084.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/log/query-run-20260515.111044.722.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/getmoto__moto_codeql_db/l\\n\\n... [截断: 输出过长，省略 233322 字符] ...\\n\\nog\\n/root/autodl-tmp/structfuse/full_m1_data/repos/Project-MONAI__MONAI_codeql_db/log/execute-queries-20260515.235322.065.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/Project-MONAI__MONAI_codeql_db/log/query-run-20260515.235452.840.log\\n/root/autodl-tmp/structfuse/full_m1_data/repos/Project-MONAI__MONAI_codeql_db/log/execute-queries-20260515.235453.289.log\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_015842-hfo1edho/logs/debug.log\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_015842-hfo1edho/logs/debug-internal.log\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_145021-tdmforx1/logs/debug.log\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_145021-tdmforx1/logs/debug-internal.log\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_235341-klexs2jq/logs/debug.log\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_235341-klexs2jq/logs/debug-internal.log\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260514_013934-pthrowuk/logs/debug.log\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260514_013934-pthrowuk/logs/debug-internal.log\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260514_192418-ejygo7zh/logs/debug.log\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260514_192418-ejygo7zh/logs/debug-internal.log\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_083218-4iueajjf/logs/debug.log\\n/root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_083218-4iueajjf/logs/debug-internal.log\\n/root/.cache/wandb/logs/core-debug-20260514_013934.log\\n/root/.cache/wandb/logs/core-debug-20260514_023015.log\\n/root/.cache/wandb/logs/core-debug-20260514_192418.log\\n/root/.cache/wandb/logs/xpu-debug-20260514_192418.log\\n/root/.cache/wandb/logs/core-debug-20260515_014036.log\\n/root/.cache/wandb/logs/xpu-debug-20260515_014037.log\\n/root/.cache/wandb/logs/core-debug-20260515_015721.log\\n/root/.cache/wandb/logs/xpu-debug-20260515_015721.log\\n/root/.cache/wandb/logs/core-debug-20260515_015842.log\\n/root/.cache/wandb/logs/xpu-debug-20260515_015842.log\\n/root/.cache/wandb/logs/core-debug-20260515_020316.log\\n/root/.cache/wandb/logs/xpu-debug-20260515_020316.log\\n/root/.cache/wandb/logs/core-debug-20260515_083218.log\\n/root/.cache/wandb/logs/xpu-debug-20260515_083218.log\\n/root/.cache/wandb/logs/core-debug-20260515_145021.log\\n/root/.cache/wandb/logs/xpu-debug-20260515_145021.log\\n/root/.cache/wandb/logs/core-debug-20260515_162852.log\\n/root/.cache/wandb/logs/xpu-debug-20260515_162852.log\\n/root/.cache/wandb/logs/core-debug-20260515_235341.log\\n/root/.cache/wandb/logs/xpu-debug-20260515_235342.log\\n/root/runs/structfuse-context/m2_full_starcoder.log\\n/root/runs/structfuse-context/m1_rerun.log\\n/root/runs/structfuse-context/m1_reextract_v2.log\\n/root/runs/m2_full_qwen/random_s42.log\\n/root/runs/m2_full_qwen/s43plus_all.log\\n/root/runs/m2_full_qwen/random_s43.log\\n/root/runs/m2_full_qwen/random_s44.log\\n/root/runs/m2_full_qwen/embedding_distance_s43.log\\n/root/runs/m2_full_qwen/embedding_distance_s44.log\\n/root/runs/m2_full_qwen/dataflow_aware_s43.log\\n/root/runs/m2_full_starcoder/random_s42.log\\n/root/runs/m2_full_starcoder/s43plus_all.log\\n/root/runs/m2_full_starcoder/random_s43.log\\n/root/runs/m2_full_starcoder/random_s44.log\\n/root/structfuse-context/wandb/offline-run-20260515_014036-pfp8j6so/logs/debug.log\\n/root/structfuse-context/wandb/offline-run-20260515_014036-pfp8j6so/logs/debug-internal.log\\n/root/structfuse-context/wandb/offline-run-20260515_015720-9mlvclfu/logs/debug.log\\n/root/structfuse-context/wandb/offline-run-20260515_015720-9mlvclfu/logs/debug-internal.log\\n/root/structfuse-context/wandb/offline-run-20260515_020316-qj1v54rj/logs/debug.log\\n/root/structfuse-context/wandb/offline-run-20260515_020316-qj1v54rj/logs/debug-internal.log\\n/root/structfuse-context/wandb/offline-run-20260515_162852-gefohrp8/logs/debug.log\\n/root/structfuse-context/wandb/offline-run-20260515_162852-gefohrp8/logs/debug-internal.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014Lusp9xU9ioBWni42mgPWg",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "find /root/structfuse -name \"*.log\" -type f",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "b614a6f3-c1ad-4a4b-a1c4-d348e9dceb81",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011GgnyXZ4Yh9nw6P4kpdb5x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 273,
+                "cache_read_input_tokens": 24554,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 273
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CrFUknibMqAop6GHg92T7d",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "find /root -path \"*/embed*s44*\" -type f",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "c65a1d5b-4b04-4247-895f-5d8f85b24ca1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011GgnyXZ4Yh9nw6P4kpdb5x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 273,
+                "cache_read_input_tokens": 24554,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 273
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T15:56:25.886Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014Lusp9xU9ioBWni42mgPWg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "4cd2abcf-932b-44bc-8e8d-b641939b63bb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T15:56:26.644Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CrFUknibMqAop6GHg92T7d",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/model.pt\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/chat_template.jinja\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/tokenizer_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/special_tokens_map.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/added_tokens.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/vocab.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/merges.txt\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/tokenizer.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/training_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/model.pt\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/chat_template.jinja\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/tokenizer_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/special_tokens_map.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/added_tokens.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/vocab.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/merges.txt\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/tokenizer.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/training_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/model.pt\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/chat_template.jinja\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/tokenizer_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/special_tokens_map.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/added_tokens.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/vocab.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/merges.txt\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/tokenizer.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/training_config.json\\\\n/root/runs/m2_full_qwen/embedding_distance_s44.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "6f38d2a9-f3c9-4b49-8f75-c0f482b31d9b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/model.pt\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/chat_template.jinja\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/tokenizer_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/special_tokens_map.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/added_tokens.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/vocab.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/merges.txt\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/tokenizer.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/training_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/model.pt\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/chat_template.jinja\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/tokenizer_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/special_tokens_map.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/added_tokens.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/vocab.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/merges.txt\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/tokenizer.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/training_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/model.pt\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/chat_template.jinja\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/tokenizer_config.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/special_tokens_map.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/added_tokens.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/vocab.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/merges.txt\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/tokenizer.json\\\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/training_config.json\\\\n/root/runs/m2_full_qwen/embedding_distance_s44.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/model.pt\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/chat_template.jinja\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/tokenizer_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/special_tokens_map.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/added_tokens.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/vocab.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/merges.txt\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/tokenizer.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/model.pt\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/chat_template.jinja\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/tokenizer_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/special_tokens_map.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/added_tokens.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/vocab.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/merges.txt\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/tokenizer.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss/training_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/model.pt\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/chat_template.jinja\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/tokenizer_config.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/special_tokens_map.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/added_tokens.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/vocab.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/merges.txt\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/tokenizer.json\\n/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final/training_config.json\\n/root/runs/m2_full_qwen/embedding_distance_s44.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了独立日志文件 `/root/runs/m2_full_qwen/embedding_distance_s44.log`。同时读取这个日志和 random_s44 的日志。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "88fd0166-b282-4a68-87dc-a8c4954d381a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YBswaER1PtQ9zPZt2D21aV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5702,
+                "cache_read_input_tokens": 24827,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5702
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KagZmkaAWJdPrQqCFVdvB7",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "cat /root/runs/m2_full_qwen/embedding_distance_s44.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "a6ff096e-6d83-414e-9171-154ab1ca3006",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YBswaER1PtQ9zPZt2D21aV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5702,
+                "cache_read_input_tokens": 24827,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5702
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T15:56:34.095Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KagZmkaAWJdPrQqCFVdvB7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"wandb: Tracking run with wandb version 0.26.0\\\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\\\nwandb: Run data is saved locally in /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_145021-tdmforx1\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.01s/it]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.83it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.63it/s]\\\\n[Epoch 1] Using pre-mined negatives (embedding_distance)...\\\\n  Training loop start: 1408 batches/epoch, total_steps_per_epoch=1408\\\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n  step 50  loss=0.6666  lr=3.56e-06\\\\n  step 100  loss=0.7370  lr=7.05e-06\\\\n  step 150  loss=0.6856  lr=1.06e-05\\\\n  step 200  loss=0.6390  lr=1.41e-05\\\\n  step 250  loss=0.4734  lr=1.77e-05\\\\n  step 300  loss=0.4891  lr=2.00e-05\\\\n  step 350  loss=0.3546  lr=2.00e-05\\\\n  step 400  loss=0.4118  lr=1.99e-05\\\\n  step 450  loss=0.4618  lr=1.98e-05\\\\n  step 500  loss=0.2752  lr=1.96e-05\\\\n  [eval@500] {'val_loss': 0.44032017948726815, 'recall@1': 0.5942460317460317, 'recall@5': 0.9563492063492064, 'recall@10': 1.0}\\\\n  New best val_loss=0.4403, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss\\\\n  New best R@1=0.5942, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1\\\\n  step 550  loss=0.4410  lr=1.95e-05\\\\n  step 600  loss=0.2011  lr=1.92e-05\\\\n  step 650  loss=0.3066  lr=1.90e-05\\\\n  step 700  loss=0.4475  lr=1.87e-05\\\\n  step 750  loss=0.5840  lr=1.84e-05\\\\n  step 800  loss=0.1979  lr=1.80e-05\\\\n  step 850  loss=0.4400  lr=1.76e-05\\\\n  step 900  loss=0.1194  lr=1.72e-05\\\\n  step 950  loss=0.5303  lr=1.68e-05\\\\n  step 1000  loss=0.2518  lr=1.63e-05\\\\n  [eval@1000] {'val_loss': 0.4341431890648824, 'recall@1': 0.5813492063492064, 'recall@5': 0.9642857142857143, 'recall@10': 1.0}\\\\n  New best val_loss=0.4341, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss\\\\n  step 1050  loss=0.4320  lr=1.58e-05\\\\n  step 1100  loss=0.2879  lr=1.53e-05\\\\n  step 1150  loss=0.5213  lr=1.48e-05\\\\n  step 1200  loss=0.2099  lr=1.42e-05\\\\n  step 1250  loss=0.1303  lr=1.37e-05\\\\n  step 1300  loss=0.2161  lr=1.31e-05\\\\n  step 1350  loss=0.3560  lr=1.25e-05\\\\n  step 1400  loss=0.0763  lr=1.19e-05\\\\n[Epoch 2] Using pre-mined negatives (embedding_distance)...\\\\n  step 1450  loss=0.2389  lr=1.13e-05\\\\n  step 1500  loss=0.1238  lr=1.06e-05\\\\n  [eval@1500] {'val_loss': 0.5255766192342711, 'recall@1': 0.5472883597883598, 'recall@5': 0.9421296296296297, 'recall@10': 1.0}\\\\n  val_loss not improved (1/2)\\\\n  step 1550  loss=0.2214  lr=1.00e-05\\\\n  step 1600  loss=0.1668  lr=9.40e-06\\\\n  step 1650  loss=0.2158  lr=8.78e-06\\\\n  step 1700  loss=0.2071  lr=8.17e-06\\\\n  step 1750  loss=0.2921  lr=7.56e-06\\\\n  step 1800  loss=0.1910  lr=6.97e-06\\\\n  step 1850  loss=0.1397  lr=6.38e-06\\\\n  step 1900  loss=0.1650  lr=5.81e-06\\\\n  step 1950  loss=0.0883  lr=5.26e-06\\\\n  step 2000  loss=0.2718  lr=4.72e-06\\\\n  [eval@2000] {'val_loss': 0.5182343455691817, 'recall@1': 0.5390211640211641, 'recall@5': 0.9467592592592593, 'recall@10': 1.0}\\\\n  val_loss not improved (2/2)\\\\nEarly stopping triggered at step 2000, best val_loss=0.4341 at step 1000\\\\n[Final eval] {'val_loss': 0.5123182460172939, 'recall@1': 0.546957671957672, 'recall@5': 0.9480820105820106, 'recall@10': 1.0}\\\\nTraining complete. Model saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final\\\\nwandb: \\\\nwandb: Run history:\\\\nwandb: learning_rate ▁▂▄▅▇████████▇▇▇▇▇▇▆▆▆▆▆▅▅▅▅▄▄▄▃▃▃▃▂▂▂▂▁\\\\nwandb:      recall@1 █▆▁▁\\\\nwandb:     recall@10 ▁▁▁▁\\\\nwandb:      recall@5 ▅█▁▃\\\\nwandb:    train_loss ▇█▇▇▅▅▄���▅▃▅▂▃▅▆▂▅▁▆▃▅▃▆▂▂▂▄▁▃▂▃▂▂▂▃▂▂▂▁▃\\\\nwandb:      val_loss ▁▁█▇\\\\nwandb: \\\\nwandb: Run summary:\\\\nwandb: learning_rate 0.0\\\\nwandb:      recall@1 0.54696\\\\nwandb:     recall@10 1\\\\nwandb:      recall@5 0.94808\\\\nwandb:    train_loss 0.27182\\\\nwandb:      val_loss 0.51232\\\\nwandb: \\\\nwandb: You can sync this run to the cloud by running:\\\\nwandb: wandb sync /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_145021-tdmforx1\\\\nwandb: Find logs at: /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_145021-tdmforx1/logs\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "4aaf9519-8bc2-46d8-bf3a-ab257475864c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"wandb: Tracking run with wandb version 0.26.0\\\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\\\nwandb: Run data is saved locally in /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_145021-tdmforx1\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.01s/it]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.83it/s]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.63it/s]\\\\n[Epoch 1] Using pre-mined negatives (embedding_distance)...\\\\n  Training loop start: 1408 batches/epoch, total_steps_per_epoch=1408\\\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n  step 50  loss=0.6666  lr=3.56e-06\\\\n  step 100  loss=0.7370  lr=7.05e-06\\\\n  step 150  loss=0.6856  lr=1.06e-05\\\\n  step 200  loss=0.6390  lr=1.41e-05\\\\n  step 250  loss=0.4734  lr=1.77e-05\\\\n  step 300  loss=0.4891  lr=2.00e-05\\\\n  step 350  loss=0.3546  lr=2.00e-05\\\\n  step 400  loss=0.4118  lr=1.99e-05\\\\n  step 450  loss=0.4618  lr=1.98e-05\\\\n  step 500  loss=0.2752  lr=1.96e-05\\\\n  [eval@500] {'val_loss': 0.44032017948726815, 'recall@1': 0.5942460317460317, 'recall@5': 0.9563492063492064, 'recall@10': 1.0}\\\\n  New best val_loss=0.4403, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss\\\\n  New best R@1=0.5942, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1\\\\n  step 550  loss=0.4410  lr=1.95e-05\\\\n  step 600  loss=0.2011  lr=1.92e-05\\\\n  step 650  loss=0.3066  lr=1.90e-05\\\\n  step 700  loss=0.4475  lr=1.87e-05\\\\n  step 750  loss=0.5840  lr=1.84e-05\\\\n  step 800  loss=0.1979  lr=1.80e-05\\\\n  step 850  loss=0.4400  lr=1.76e-05\\\\n  step 900  loss=0.1194  lr=1.72e-05\\\\n  step 950  loss=0.5303  lr=1.68e-05\\\\n  step 1000  loss=0.2518  lr=1.63e-05\\\\n  [eval@1000] {'val_loss': 0.4341431890648824, 'recall@1': 0.5813492063492064, 'recall@5': 0.9642857142857143, 'recall@10': 1.0}\\\\n  New best val_loss=0.4341, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss\\\\n  step 1050  loss=0.4320  lr=1.58e-05\\\\n  step 1100  loss=0.2879  lr=1.53e-05\\\\n  step 1150  loss=0.5213  lr=1.48e-05\\\\n  step 1200  loss=0.2099  lr=1.42e-05\\\\n  step 1250  loss=0.1303  lr=1.37e-05\\\\n  step 1300  loss=0.2161  lr=1.31e-05\\\\n  step 1350  loss=0.3560  lr=1.25e-05\\\\n  step 1400  loss=0.0763  lr=1.19e-05\\\\n[Epoch 2] Using pre-mined negatives (embedding_distance)...\\\\n  step 1450  loss=0.2389  lr=1.13e-05\\\\n  step 1500  loss=0.1238  lr=1.06e-05\\\\n  [eval@1500] {'val_loss': 0.5255766192342711, 'recall@1': 0.5472883597883598, 'recall@5': 0.9421296296296297, 'recall@10': 1.0}\\\\n  val_loss not improved (1/2)\\\\n  step 1550  loss=0.2214  lr=1.00e-05\\\\n  step 1600  loss=0.1668  lr=9.40e-06\\\\n  step 1650  loss=0.2158  lr=8.78e-06\\\\n  step 1700  loss=0.2071  lr=8.17e-06\\\\n  step 1750  loss=0.2921  lr=7.56e-06\\\\n  step 1800  loss=0.1910  lr=6.97e-06\\\\n  step 1850  loss=0.1397  lr=6.38e-06\\\\n  step 1900  loss=0.1650  lr=5.81e-06\\\\n  step 1950  loss=0.0883  lr=5.26e-06\\\\n  step 2000  loss=0.2718  lr=4.72e-06\\\\n  [eval@2000] {'val_loss': 0.5182343455691817, 'recall@1': 0.5390211640211641, 'recall@5': 0.9467592592592593, 'recall@10': 1.0}\\\\n  val_loss not improved (2/2)\\\\nEarly stopping triggered at step 2000, best val_loss=0.4341 at step 1000\\\\n[Final eval] {'val_loss': 0.5123182460172939, 'recall@1': 0.546957671957672, 'recall@5': 0.9480820105820106, 'recall@10': 1.0}\\\\nTraining complete. Model saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final\\\\nwandb: \\\\nwandb: Run history:\\\\nwandb: learning_rate ▁▂▄▅▇████████▇▇▇▇▇▇▆▆▆▆▆▅▅▅▅▄▄▄▃▃▃▃▂▂▂▂▁\\\\nwandb:      recall@1 █▆▁▁\\\\nwandb:     recall@10 ▁▁▁▁\\\\nwandb:      recall@5 ▅█▁▃\\\\nwandb:    train_loss ▇█▇▇▅▅▄���▅▃▅▂▃▅▆▂▅▁▆▃▅▃▆▂▂▂▄▁▃▂▃▂▂▂▃▂▂▂▁▃\\\\nwandb:      val_loss ▁▁█▇\\\\nwandb: \\\\nwandb: Run summary:\\\\nwandb: learning_rate 0.0\\\\nwandb:      recall@1 0.54696\\\\nwandb:     recall@10 1\\\\nwandb:      recall@5 0.94808\\\\nwandb:    train_loss 0.27182\\\\nwandb:      val_loss 0.51232\\\\nwandb: \\\\nwandb: You can sync this run to the cloud by running:\\\\nwandb: wandb sync /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_145021-tdmforx1\\\\nwandb: Find logs at: /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_145021-tdmforx1/logs\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"wandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_145021-tdmforx1\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.01s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.83it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.63it/s]\\n[Epoch 1] Using pre-mined negatives (embedding_distance)...\\n  Training loop start: 1408 batches/epoch, total_steps_per_epoch=1408\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\n  step 50  loss=0.6666  lr=3.56e-06\\n  step 100  loss=0.7370  lr=7.05e-06\\n  step 150  loss=0.6856  lr=1.06e-05\\n  step 200  loss=0.6390  lr=1.41e-05\\n  step 250  loss=0.4734  lr=1.77e-05\\n  step 300  loss=0.4891  lr=2.00e-05\\n  step 350  loss=0.3546  lr=2.00e-05\\n  step 400  loss=0.4118  lr=1.99e-05\\n  step 450  loss=0.4618  lr=1.98e-05\\n  step 500  loss=0.2752  lr=1.96e-05\\n  [eval@500] {'val_loss': 0.44032017948726815, 'recall@1': 0.5942460317460317, 'recall@5': 0.9563492063492064, 'recall@10': 1.0}\\n  New best val_loss=0.4403, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss\\n  New best R@1=0.5942, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_recall_at_1\\n  step 550  loss=0.4410  lr=1.95e-05\\n  step 600  loss=0.2011  lr=1.92e-05\\n  step 650  loss=0.3066  lr=1.90e-05\\n  step 700  loss=0.4475  lr=1.87e-05\\n  step 750  loss=0.5840  lr=1.84e-05\\n  step 800  loss=0.1979  lr=1.80e-05\\n  step 850  loss=0.4400  lr=1.76e-05\\n  step 900  loss=0.1194  lr=1.72e-05\\n  step 950  loss=0.5303  lr=1.68e-05\\n  step 1000  loss=0.2518  lr=1.63e-05\\n  [eval@1000] {'val_loss': 0.4341431890648824, 'recall@1': 0.5813492063492064, 'recall@5': 0.9642857142857143, 'recall@10': 1.0}\\n  New best val_loss=0.4341, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/best_by_val_loss\\n  step 1050  loss=0.4320  lr=1.58e-05\\n  step 1100  loss=0.2879  lr=1.53e-05\\n  step 1150  loss=0.5213  lr=1.48e-05\\n  step 1200  loss=0.2099  lr=1.42e-05\\n  step 1250  loss=0.1303  lr=1.37e-05\\n  step 1300  loss=0.2161  lr=1.31e-05\\n  step 1350  loss=0.3560  lr=1.25e-05\\n  step 1400  loss=0.0763  lr=1.19e-05\\n[Epoch 2] Using pre-mined negatives (embedding_distance)...\\n  step 1450  loss=0.2389  lr=1.13e-05\\n  step 1500  loss=0.1238  lr=1.06e-05\\n  [eval@1500] {'val_loss': 0.5255766192342711, 'recall@1': 0.5472883597883598, 'recall@5': 0.9421296296296297, 'recall@10': 1.0}\\n  val_loss not improved (1/2)\\n  step 1550  loss=0.2214  lr=1.00e-05\\n  step 1600  loss=0.1668  lr=9.40e-06\\n  step 1650  loss=0.2158  lr=8.78e-06\\n  step 1700  loss=0.2071  lr=8.17e-06\\n  step 1750  loss=0.2921  lr=7.56e-06\\n  step 1800  loss=0.1910  lr=6.97e-06\\n  step 1850  loss=0.1397  lr=6.38e-06\\n  step 1900  loss=0.1650  lr=5.81e-06\\n  step 1950  loss=0.0883  lr=5.26e-06\\n  step 2000  loss=0.2718  lr=4.72e-06\\n  [eval@2000] {'val_loss': 0.5182343455691817, 'recall@1': 0.5390211640211641, 'recall@5': 0.9467592592592593, 'recall@10': 1.0}\\n  val_loss not improved (2/2)\\nEarly stopping triggered at step 2000, best val_loss=0.4341 at step 1000\\n[Final eval] {'val_loss': 0.5123182460172939, 'recall@1': 0.546957671957672, 'recall@5': 0.9480820105820106, 'recall@10': 1.0}\\nTraining complete. Model saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s44/final\\nwandb: \\nwandb: Run history:\\nwandb: learning_rate ▁▂▄▅▇████████▇▇▇▇▇▇▆▆▆▆▆▅▅▅▅▄▄▄▃▃▃▃▂▂▂▂▁\\nwandb:      recall@1 █▆▁▁\\nwandb:     recall@10 ▁▁▁▁\\nwandb:      recall@5 ▅█▁▃\\nwandb:    train_loss ▇█▇▇▅▅▄���▅▃▅▂▃▅▆▂▅▁▆▃▅▃▆▂▂▂▄▁▃▂▃▂▂▂▃▂▂▂▁▃\\nwandb:      val_loss ▁▁█▇\\nwandb: \\nwandb: Run summary:\\nwandb: learning_rate 0.0\\nwandb:      recall@1 0.54696\\nwandb:     recall@10 1\\nwandb:      recall@5 0.94808\\nwandb:    train_loss 0.27182\\nwandb:      val_loss 0.51232\\nwandb: \\nwandb: You can sync this run to the cloud by running:\\nwandb: wandb sync /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_145021-tdmforx1\\nwandb: Find logs at: /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_145021-tdmforx1/logs\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MBUNCbuqwZsjK1yzVe4Zcn",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "cat /root/runs/m2_full_qwen/random_s44.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "94599287-14bb-4494-8e4a-d48d609df710",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YBswaER1PtQ9zPZt2D21aV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5702,
+                "cache_read_input_tokens": 24827,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5702
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T15:56:34.671Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MBUNCbuqwZsjK1yzVe4Zcn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"wandb: Tracking run with wandb version 0.26.0\\\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\\\nwandb: Run data is saved locally in /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_015842-hfo1edho\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.58s/it]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.14s/it]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.50s/it]\\\\n[Epoch 1] Using pre-mined negatives (random)...\\\\n  Training loop start: 1408 batches/epoch, total_steps_per_epoch=1408\\\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n  step 50  loss=0.6693  lr=3.56e-06\\\\n  step 100  loss=0.6215  lr=7.12e-06\\\\n  step 150  loss=0.6199  lr=1.05e-05\\\\n  step 200  loss=0.5004  lr=1.41e-05\\\\n  step 250  loss=0.3052  lr=1.77e-05\\\\n  step 300  loss=0.4615  lr=2.00e-05\\\\n  step 350  loss=0.2364  lr=2.00e-05\\\\n  step 400  loss=0.4278  lr=1.99e-05\\\\n  step 450  loss=0.4535  lr=1.98e-05\\\\n  step 500  loss=0.2498  lr=1.96e-05\\\\n  [eval@500] {'val_loss': 0.4251521137498674, 'recall@1': 0.6008597883597884, 'recall@5': 0.9583333333333334, 'recall@10': 1.0}\\\\n  New best val_loss=0.4252, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s44/best_by_val_loss\\\\n  New best R@1=0.6009, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s44/best_by_recall_at_1\\\\n  step 550  loss=0.4017  lr=1.95e-05\\\\n  step 600  loss=0.1953  lr=1.92e-05\\\\n  step 650  loss=0.2362  lr=1.90e-05\\\\n  step 700  loss=0.3076  lr=1.87e-05\\\\n  step 750  loss=0.5210  lr=1.84e-05\\\\n  step 800  loss=0.2329  lr=1.80e-05\\\\n  step 850  loss=0.2837  lr=1.76e-05\\\\n  step 900  loss=0.1696  lr=1.72e-05\\\\n  step 950  loss=0.4273  lr=1.68e-05\\\\n  step 1000  loss=0.1893  lr=1.63e-05\\\\n  [eval@1000] {'val_loss': 0.46949244308329763, 'recall@1': 0.5638227513227513, 'recall@5': 0.9523809523809523, 'recall@10': 1.0}\\\\n  val_loss not improved (1/2)\\\\n  step 1050  loss=0.3990  lr=1.58e-05\\\\n  step 1100  loss=0.3263  lr=1.53e-05\\\\n  step 1150  loss=0.3797  lr=1.48e-05\\\\n  step 1200  loss=0.2656  lr=1.42e-05\\\\n  step 1250  loss=0.0322  lr=1.37e-05\\\\n  step 1300  loss=0.2833  lr=1.31e-05\\\\n  step 1350  loss=0.4379  lr=1.25e-05\\\\n  step 1400  loss=0.0587  lr=1.19e-05\\\\n[Epoch 2] Using pre-mined negatives (random)...\\\\n  step 1450  loss=0.2003  lr=1.13e-05\\\\n  step 1500  loss=0.2084  lr=1.06e-05\\\\n  [eval@1500] {'val_loss': 0.49175971771082866, 'recall@1': 0.5591931216931217, 'recall@5': 0.9503968253968254, 'recall@10': 1.0}\\\\n  val_loss not improved (2/2)\\\\nEarly stopping triggered at step 1500, best val_loss=0.4252 at step 500\\\\n[Final eval] {'val_loss': 0.4943022895702925, 'recall@1': 0.5542328042328042, 'recall@5': 0.9513888888888888, 'recall@10': 1.0}\\\\nTraining complete. Model saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s44/final\\\\nwandb: \\\\nwandb: Run history:\\\\nwandb: learning_rate ▁▃▄▅▇████████▇▇▇▇▇▇▆▆▆▆▆▅▅▅▅▄▄\\\\nwandb:      recall@1 █▂▁\\\\nwandb:     recall@10 ▁▁▁\\\\nwandb:      recall@5 █▂▁\\\\nwandb:    train_loss █▇▇▆▄▆▃▅▆▃▅▃▃▄▆▃▄▃▅▃▅▄▅▄▁▄▅▁▃▃\\\\nwandb:      val_loss ▁▅█\\\\nwandb: \\\\nwandb: Run summary:\\\\nwandb: learning_rate 1e-05\\\\nwandb:      recall@1 0.55423\\\\nwandb:     recall@10 1\\\\nwandb:      recall@5 0.95139\\\\nwandb:    train_loss 0.20844\\\\nwandb:      val_loss 0.4943\\\\nwandb: \\\\nwandb: You can sync this run to the cloud by running:\\\\nwandb: wandb sync /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_015842-hfo1edho\\\\nwandb: Find logs at: /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_015842-hfo1edho/logs\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "29a8a9da-e718-474b-bd73-b8ae0f8547e9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"wandb: Tracking run with wandb version 0.26.0\\\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\\\nwandb: Run data is saved locally in /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_015842-hfo1edho\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.58s/it]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.14s/it]\\\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.50s/it]\\\\n[Epoch 1] Using pre-mined negatives (random)...\\\\n  Training loop start: 1408 batches/epoch, total_steps_per_epoch=1408\\\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n  step 50  loss=0.6693  lr=3.56e-06\\\\n  step 100  loss=0.6215  lr=7.12e-06\\\\n  step 150  loss=0.6199  lr=1.05e-05\\\\n  step 200  loss=0.5004  lr=1.41e-05\\\\n  step 250  loss=0.3052  lr=1.77e-05\\\\n  step 300  loss=0.4615  lr=2.00e-05\\\\n  step 350  loss=0.2364  lr=2.00e-05\\\\n  step 400  loss=0.4278  lr=1.99e-05\\\\n  step 450  loss=0.4535  lr=1.98e-05\\\\n  step 500  loss=0.2498  lr=1.96e-05\\\\n  [eval@500] {'val_loss': 0.4251521137498674, 'recall@1': 0.6008597883597884, 'recall@5': 0.9583333333333334, 'recall@10': 1.0}\\\\n  New best val_loss=0.4252, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s44/best_by_val_loss\\\\n  New best R@1=0.6009, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s44/best_by_recall_at_1\\\\n  step 550  loss=0.4017  lr=1.95e-05\\\\n  step 600  loss=0.1953  lr=1.92e-05\\\\n  step 650  loss=0.2362  lr=1.90e-05\\\\n  step 700  loss=0.3076  lr=1.87e-05\\\\n  step 750  loss=0.5210  lr=1.84e-05\\\\n  step 800  loss=0.2329  lr=1.80e-05\\\\n  step 850  loss=0.2837  lr=1.76e-05\\\\n  step 900  loss=0.1696  lr=1.72e-05\\\\n  step 950  loss=0.4273  lr=1.68e-05\\\\n  step 1000  loss=0.1893  lr=1.63e-05\\\\n  [eval@1000] {'val_loss': 0.46949244308329763, 'recall@1': 0.5638227513227513, 'recall@5': 0.9523809523809523, 'recall@10': 1.0}\\\\n  val_loss not improved (1/2)\\\\n  step 1050  loss=0.3990  lr=1.58e-05\\\\n  step 1100  loss=0.3263  lr=1.53e-05\\\\n  step 1150  loss=0.3797  lr=1.48e-05\\\\n  step 1200  loss=0.2656  lr=1.42e-05\\\\n  step 1250  loss=0.0322  lr=1.37e-05\\\\n  step 1300  loss=0.2833  lr=1.31e-05\\\\n  step 1350  loss=0.4379  lr=1.25e-05\\\\n  step 1400  loss=0.0587  lr=1.19e-05\\\\n[Epoch 2] Using pre-mined negatives (random)...\\\\n  step 1450  loss=0.2003  lr=1.13e-05\\\\n  step 1500  loss=0.2084  lr=1.06e-05\\\\n  [eval@1500] {'val_loss': 0.49175971771082866, 'recall@1': 0.5591931216931217, 'recall@5': 0.9503968253968254, 'recall@10': 1.0}\\\\n  val_loss not improved (2/2)\\\\nEarly stopping triggered at step 1500, best val_loss=0.4252 at step 500\\\\n[Final eval] {'val_loss': 0.4943022895702925, 'recall@1': 0.5542328042328042, 'recall@5': 0.9513888888888888, 'recall@10': 1.0}\\\\nTraining complete. Model saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s44/final\\\\nwandb: \\\\nwandb: Run history:\\\\nwandb: learning_rate ▁▃▄▅▇████████▇▇▇▇▇▇▆▆▆▆▆▅▅▅▅▄▄\\\\nwandb:      recall@1 █▂▁\\\\nwandb:     recall@10 ▁▁▁\\\\nwandb:      recall@5 █▂▁\\\\nwandb:    train_loss █▇▇▆▄▆▃▅▆▃▅▃▃▄▆▃▄▃▅▃▅▄▅▄▁▄▅▁▃▃\\\\nwandb:      val_loss ▁▅█\\\\nwandb: \\\\nwandb: Run summary:\\\\nwandb: learning_rate 1e-05\\\\nwandb:      recall@1 0.55423\\\\nwandb:     recall@10 1\\\\nwandb:      recall@5 0.95139\\\\nwandb:    train_loss 0.20844\\\\nwandb:      val_loss 0.4943\\\\nwandb: \\\\nwandb: You can sync this run to the cloud by running:\\\\nwandb: wandb sync /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_015842-hfo1edho\\\\nwandb: Find logs at: /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_015842-hfo1edho/logs\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"wandb: Tracking run with wandb version 0.26.0\\nwandb: W&B syncing is set to `offline` in this directory. Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.\\nwandb: Run data is saved locally in /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_015842-hfo1edho\\n\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:06<00:06,  6.58s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.14s/it]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.50s/it]\\n[Epoch 1] Using pre-mined negatives (random)...\\n  Training loop start: 1408 batches/epoch, total_steps_per_epoch=1408\\n`use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\n  step 50  loss=0.6693  lr=3.56e-06\\n  step 100  loss=0.6215  lr=7.12e-06\\n  step 150  loss=0.6199  lr=1.05e-05\\n  step 200  loss=0.5004  lr=1.41e-05\\n  step 250  loss=0.3052  lr=1.77e-05\\n  step 300  loss=0.4615  lr=2.00e-05\\n  step 350  loss=0.2364  lr=2.00e-05\\n  step 400  loss=0.4278  lr=1.99e-05\\n  step 450  loss=0.4535  lr=1.98e-05\\n  step 500  loss=0.2498  lr=1.96e-05\\n  [eval@500] {'val_loss': 0.4251521137498674, 'recall@1': 0.6008597883597884, 'recall@5': 0.9583333333333334, 'recall@10': 1.0}\\n  New best val_loss=0.4252, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s44/best_by_val_loss\\n  New best R@1=0.6009, saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s44/best_by_recall_at_1\\n  step 550  loss=0.4017  lr=1.95e-05\\n  step 600  loss=0.1953  lr=1.92e-05\\n  step 650  loss=0.2362  lr=1.90e-05\\n  step 700  loss=0.3076  lr=1.87e-05\\n  step 750  loss=0.5210  lr=1.84e-05\\n  step 800  loss=0.2329  lr=1.80e-05\\n  step 850  loss=0.2837  lr=1.76e-05\\n  step 900  loss=0.1696  lr=1.72e-05\\n  step 950  loss=0.4273  lr=1.68e-05\\n  step 1000  loss=0.1893  lr=1.63e-05\\n  [eval@1000] {'val_loss': 0.46949244308329763, 'recall@1': 0.5638227513227513, 'recall@5': 0.9523809523809523, 'recall@10': 1.0}\\n  val_loss not improved (1/2)\\n  step 1050  loss=0.3990  lr=1.58e-05\\n  step 1100  loss=0.3263  lr=1.53e-05\\n  step 1150  loss=0.3797  lr=1.48e-05\\n  step 1200  loss=0.2656  lr=1.42e-05\\n  step 1250  loss=0.0322  lr=1.37e-05\\n  step 1300  loss=0.2833  lr=1.31e-05\\n  step 1350  loss=0.4379  lr=1.25e-05\\n  step 1400  loss=0.0587  lr=1.19e-05\\n[Epoch 2] Using pre-mined negatives (random)...\\n  step 1450  loss=0.2003  lr=1.13e-05\\n  step 1500  loss=0.2084  lr=1.06e-05\\n  [eval@1500] {'val_loss': 0.49175971771082866, 'recall@1': 0.5591931216931217, 'recall@5': 0.9503968253968254, 'recall@10': 1.0}\\n  val_loss not improved (2/2)\\nEarly stopping triggered at step 1500, best val_loss=0.4252 at step 500\\n[Final eval] {'val_loss': 0.4943022895702925, 'recall@1': 0.5542328042328042, 'recall@5': 0.9513888888888888, 'recall@10': 1.0}\\nTraining complete. Model saved to /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s44/final\\nwandb: \\nwandb: Run history:\\nwandb: learning_rate ▁▃▄▅▇████████▇▇▇▇▇▇▆▆▆▆▆▅▅▅▅▄▄\\nwandb:      recall@1 █▂▁\\nwandb:     recall@10 ▁▁▁\\nwandb:      recall@5 █▂▁\\nwandb:    train_loss █▇▇▆▄▆▃▅▆▃▅▃▃▄▆▃▄▃▅▃▅▄▅▄▁▄▅▁▃▃\\nwandb:      val_loss ▁▅█\\nwandb: \\nwandb: Run summary:\\nwandb: learning_rate 1e-05\\nwandb:      recall@1 0.55423\\nwandb:     recall@10 1\\nwandb:      recall@5 0.95139\\nwandb:    train_loss 0.20844\\nwandb:      val_loss 0.4943\\nwandb: \\nwandb: You can sync this run to the cloud by running:\\nwandb: wandb sync /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_015842-hfo1edho\\nwandb: Find logs at: /root/autodl-tmp/structfuse/wandb_logs/wandb/offline-run-20260515_015842-hfo1edho/logs\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整数据已提取。\n\n## embedding_distance_s44 完整训练轨迹\n\n| Step | val_loss | R@1 | R@5 | R@10 |\n|------|----------|------|------|------|\n| 500 | 0.4403 | 0.5942 | 0.9563 | 1.0 |\n| 1000 | **0.4341** (best) | 0.5813 | 0.9643 | 1.0 |\n| 1500 | 0.5256 | 0.5473 | 0.9421 | 1.0 |\n| **2000** | **0.5182** | **0.5390** | **0.9468** | **1.0** |\n| Final eval | 0.5123 | 0.5470 | 0.9481 | 1.0 |\n\n- Early stop 在 step 2000 触发（patience 2/2），best val_loss=0.4341 at step 1000\n- Final eval 指标略好于 eval@2000（可能用了 best checkpoint 做最终评估）\n\n## random_s44 完整训练轨迹（交叉验证）\n\n| Step | val_loss | R@1 | R@5 | R@10 |\n|------|----------|------|------|------|\n| 500 | **0.4252** (best) | **0.6009** | 0.9583 | 1.0 |\n| 1000 | 0.4695 | 0.5638 | 0.9524 | 1.0 |\n| 1500 | 0.4918 | 0.5592 | 0.9504 | 1.0 |\n| Final eval | 0.4943 | 0.5542 | 0.9514 | 1.0 |\n\n- random_s44 在 step 1500 early stop（patience 2/2），best at step 500"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "uuid": "ce016d66-d703-47bd-a95a-72c3a41d960c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R6AU7e4pQPeJW9rUXWVzga",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4691,
+                "cache_read_input_tokens": 30529,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4691
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整数据已提取。\n\n## embedding_distance_s44 完整训练轨迹\n\n| Step | val_loss | R@1 | R@5 | R@10 |\n|------|----------|------|------|------|\n| 500 | 0.4403 | 0.5942 | 0.9563 | 1.0 |\n| 1000 | **0.4341** (best) | 0.5813 | 0.9643 | 1.0 |\n| 1500 | 0.5256 | 0.5473 | 0.9421 | 1.0 |\n| **2000** | **0.5182** | **0.5390** | **0.9468** | **1.0** |\n| Final eval | 0.5123 | 0.5470 | 0.9481 | 1.0 |\n\n- Early stop 在 step 2000 触发（patience 2/2），best val_loss=0.4341 at step 1000\n- Final eval 指标略好于 eval@2000（可能用了 best checkpoint 做最终评估）\n\n## random_s44 完整训练轨迹（交叉验证）\n\n| Step | val_loss | R@1 | R@5 | R@10 |\n|------|----------|------|------|------|\n| 500 | **0.4252** (best) | **0.6009** | 0.9583 | 1.0 |\n| 1000 | 0.4695 | 0.5638 | 0.9524 | 1.0 |\n| 1500 | 0.4918 | 0.5592 | 0.9504 | 1.0 |\n| Final eval | 0.4943 | 0.5542 | 0.9514 | 1.0 |\n\n- random_s44 在 step 1500 early stop（patience 2/2），best at step 500"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 42259,
+            "duration_api_ms": 40490,
+            "num_turns": 11,
+            "stop_reason": "end_turn",
+            "session_id": "4d450153-df62-467e-af82-07ab39fdcb95",
+            "total_cost_usd": 0.27579375,
+            "usage": {
+              "input_tokens": 11,
+              "cache_creation_input_tokens": 23379,
+              "cache_read_input_tokens": 162330,
+              "output_tokens": 1888,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 23379,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 520,
+                  "cache_read_input_tokens": 30529,
+                  "cache_creation_input_tokens": 4691,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 4691
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1160,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001255,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 11,
+                "outputTokens": 1888,
+                "cacheReadInputTokens": 162330,
+                "cacheCreationInputTokens": 23379,
+                "webSearchRequests": 0,
+                "costUSD": 0.27453875,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "fdec8f49-507e-43b6-b1c3-807e97b44696"
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 30
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-get-embed-s44-eval2000.md"
+}

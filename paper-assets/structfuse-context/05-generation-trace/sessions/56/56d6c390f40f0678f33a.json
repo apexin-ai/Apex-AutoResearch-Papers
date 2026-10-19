@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56d6c390f40f0678f33a",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops disk cleanup m1 check",
+  "task_key": "worker_ops_disk-cleanup-m1-check_20260513T013350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-m1-check_20260513T013350_result.json",
+    "occurrence": 1,
+    "bytes": 2757,
+    "sha256": "793df5ad51f409b7e9ed27cce5bb9e57ef6561b7158acae432ac3e9770078dec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总完成。\n\n---\n\n## 1. 磁盘清理\n\n| 指标 | 清理前 | 清理后 | 变化 |\n|------|--------|--------|------|\n| 已用 | 155G (92%) | 142G (84%) | **-13G** |\n| 可用 | 15G | 28G | **+13G** |\n\n清理项：`._____temp/`、`Qwen3-14B-AWQ/`、`.ms_cache/`\n\n---\n\n## 2. M1 提取进度\n\n**进程 577864 仍在运行**，已运行 ~4h46m。\n\n截至最新日志（09:34），**21 个 repo 已开始提取**，进度如下：\n\n| Repo | 进度 | 状态 |\n|------|------|------|\n| seatgeek/thefuzz | 完成 | 文件已在输出目录 |\n| pytest-dev/iniconfig | 50/63 | 接近完成 |\n| luozhouyang/python-string-similarity | 50/59 | 接近完成 |\n| jd/tenacity | 150/152 | 接近完成 |\n| pudo/dataset | 100/107 | 接近完成 |\n| Suor/funcy | 300/306 | 接近完成 |\n| cknd/stackprinter | 100/137 | |\n| agronholm/exceptiongroup | 100/139 | |\n| agronholm/typeguard | 300/333 | 接近完成 |\n| jaraco/inflect | 100/133 | |\n| bottlepy/bottle | 350/373 | 接近完成 |\n| joke2k/faker | 150/360 | |\n| PyCQA/flake8 | 450/454 | 接近完成 |\n| Cog-Creators/Red-DiscordBot | 450/460 | 接近完成 |\n| marshmallow-code/webargs | 50/321 | |\n| pyupio/safety | 300/759 | |\n| mahmoud/boltons | 450/737 | |\n| oauthlib/oauthlib | 700/940 | |\n| pygments/pygments | 450/1430 | |\n| cantools/cantools | 350/1440 | |\n| keleshev/schema | 在处理中（CodeQL 日志可见） |\n\n当前提取输出占 **2.2GB**，skip_log 有 **660 条**（主要是 pdfminer 等 clone 失败的）。\n\n---\n\n## 3. m1_training_data 来源分析\n\n**位置**：`/root/autodl-tmp/structfuse/m1_training_data/`（不是 `/root/structfuse/data/`）\n\n**文件数量确认**：\n- train_dataflow.jsonl: **1086 行** (93.9MB)\n- train_embedding.jsonl: **1086 行** (104.5MB)\n- train_random.jsonl: **1086 行** (86.9MB)\n- val.jsonl: **272 行** (22.1MB)\n\n**生成时间**：2026-05-13 **05:12:46**（创建）→ 05:17（写完）\n\n**生成脚本**：`/root/structfuse/scripts/build_m1_training_data.py`，参数为 `--extraction-dir`、`--repos-dir`、`--output-dir`、`--embedding-mining-mode static`\n\n**基于 10 个 repo 的数据**（不是全量 131 个）：\n1. Cog-Creators/Red-DiscordBot\n2. Suor/funcy\n3. agronholm/typeguard\n4. cknd/stackprinter\n5. jd/tenacity\n6. oauthlib/oauthlib\n7. pudo/dataset\n8. pygments/pygments\n9. pytest-dev/iniconfig\n10. seatgeek/thefuzz\n\n**时间线推断**：提取进程 ~04:48 启动，05:01-05:07 这 10 个 repo 陆续产出了第一批（50条）结果。训练数据在 **05:12** 生成，抓取的是当时已有的**早期/部分提取结果**。这就是为什么只有 10 个 repo — 它不是基于全量数据，而是提取刚开始 ~25 分钟时的快照。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-m1-check.md"
+}

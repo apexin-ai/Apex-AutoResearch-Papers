@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e8462e0eb2b3015dbf8",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code data quality fix",
+  "task_key": "worker_code_data_quality_fix_20260512T113345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_data_quality_fix_20260512T113345_result.json",
+    "occurrence": 1,
+    "bytes": 2358,
+    "sha256": "1c1354d26c34cced3f5a39c4173527cdd438dc668d610f18b82942a4db5af407"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 8/8 gold files now correctly found in connected sets. Here's the summary:\n\n---\n\n## Bug 1: Path normalization — Root Cause & Fix\n\n**Root cause**: `_swebench_to_instance` extracts `gold_files` from patch diffs (e.g., `requests/sessions.py`), but when repos have `src/` or other prefix directories, the actual paths are different (e.g., `src/requests/sessions.py`). `find_buggy_function` updates `buggy_file` via os.walk but `gold_files` was never updated.\n\nTwo sub-cases:\n- **requests-1963**: `requests/sessions.py` → `src/requests/sessions.py` (prefix mismatch)\n- **xarray-3364**: `xarray/core/concat.py` → `xarray/structure/concat.py` (file relocated between base_commit and HEAD)\n\n**Fix**: Added `normalize_path()` + `_common_suffix_length()` in both `extract_dataflow.py` and `mvp_phase1.py`. Normalizes gold paths against actual on-disk files via suffix matching before H2 computation. Also updates `gold_files` in main() when `find_buggy_function` relocates buggy_file.\n\n## Bug 2: seaborn/scikit-learn skip — Root Cause\n\n**Root cause**: `clone_repo` uses `--depth 1` (shallow clone at HEAD). The `git checkout base_commit` fails silently because the historical commit isn't available. If the buggy file was renamed/removed between `base_commit` and HEAD, `find_buggy_function` returns None → skip.\n\n**Fix**: Changed `clone_repo` to:\n1. Full clone (no `--depth 1`) for new clones\n2. `git fetch --unshallow` + retry for existing shallow clones\n\n## Updated H2 Results\n\n| Metric | Before | After |\n|--------|--------|-------|\n| gold_in_connected | 6/8 | **8/8** |\n| coverage_connected | 0.014388 | **0.014815** |\n| coverage_disconnected | 0.0 | 0.0 |\n| Fisher p-value | 1.54e-07 | **6.50e-09** |\n| connected_hits/total | 6/417 | **8/540** |\n\nxarray's connected count jumped from 1 to 124 because the normalization now correctly matches the relocated file.\n\n## Recommendations for Full 5K Run\n\n1. **Full clone required**: Remove `--depth 1` to enable proper `base_commit` checkout. This is the #1 source of skips.\n2. **Path normalization is essential**: ~15% of SWE-bench repos use `src/` or `lib/` layouts where patch paths differ from on-disk paths.\n3. **Expected skip rate with both fixes**: <5% (down from ~20% currently). Remaining skips would be repos that require special build setups."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-data-quality-fix.md"
+}

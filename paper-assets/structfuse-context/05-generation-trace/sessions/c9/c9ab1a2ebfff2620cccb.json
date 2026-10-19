@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9ab1a2ebfff2620cccb",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "fix experiments v1 round2",
+  "task_key": "worker_fix_experiments-v1-round2_20260514T230518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_experiments-v1-round2_20260514T230518_result.json",
+    "occurrence": 1,
+    "bytes": 1617,
+    "sha256": "f5726e3e1ceedd3d09c5a2f03cb21f9eee78cd9423f9a70e5fd5db77240af61b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，共 7 处改动：\n\n**Warning 1 — Table 6 repo count**\n- Total 行 repos 从 **123 → 87**，标签改为 \"Total (tiered)\"\n- 新增说明句：\"The tier classification covers 87 of 123 repositories with extraction output; the remaining 36 repositories produced only failed extraction records and contribute no training instances to the per-tier breakdown.\"\n\n**Warning 2 — 策略数量不一致**\n- §4.1 Baselines 重写：明确 core experiment = 3 strategies × 3 seeds × 2 encoders = 18 runs，BM25 retrieval baseline 和 BM25-mined negatives 作为 \"reported separately from the core matrix\" 的补充\n- §4.2 Hardware：\"full experiment matrix\" → \"core experiment matrix\"，新增 \"BM25-mined negative runs are conducted separately and reported as a supplementary comparison.\"\n\n**Warning 3 — §4.2 projection head / pooling 同步**\n- \"linear projection head mapping the last hidden state\" → \"mean pooling over non-padding positions of the last hidden layer, followed by L2 normalization. A two-layer MLP projection head (Linear→GELU→Linear) maps the pooled representation to a 256-dimensional embedding.\"\n\n**Info 1 — structural instance count**\n- §4.1: 15,160 → **15,133**（与 registry codeql_success 一致，34.3% coverage rate 不变）\n\n**Info 2 — §4.3 措辞**\n- \"subsequently confirmed at full scale\" → \"with patterns expected to be confirmed at full scale (pending M2 full results)\"\n\n**Info 3 — 无需操作**（Qwen s44 eval@1000=0.5638 已在 registry）\n\nArtifact 已注册：`art_20260514_eccca0`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-experiments-v1-round2.md"
+}

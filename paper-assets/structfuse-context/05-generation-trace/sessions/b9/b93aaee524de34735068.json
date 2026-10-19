@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b93aaee524de34735068",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "analysis bm25 overlap stratified",
+  "task_key": "worker_analysis_bm25_overlap_stratified_20260514T170408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bm25_overlap_stratified_20260514T170408_result.json",
+    "occurrence": 1,
+    "bytes": 1067,
+    "sha256": "80cea7ed710dd28a5f47fcade40e460d00e44940fd8c6fadffc0320083bebad8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分层结果清晰，验证了 Director 的假设：\n\n| Tier | Repos | Instances | BM25 vs Embedding | BM25 vs Random | BM25 vs Dataflow |\n|------|-------|-----------|-------------------|----------------|------------------|\n| **small** (<50 files) | 46 | 4,467 | **88.2%** | **88.2%** | 74.3% |\n| **medium** (50-200) | 29 | 3,300 | **68.0%** | **53.5%** | 53.8% |\n| **large** (200+) | 8 | 601 | **28.0%** | **7.1%** | 17.6% |\n| overall | 83 | 8,368 | 75.9% | 68.7% | 62.2% |\n\n关键发现：\n- **小 repo** 候选池平均仅 25 个文件，所有策略被迫选相同 negatives（embedding 和 random 与 BM25 重合度完全相同，88.2%）\n- **中 repo** 开始分化，BM25 vs random 降到 53.5%\n- **大 repo**（平均 315 文件）差异巨大，BM25 vs random 仅 7.1%，vs embedding 仅 28.0%——BM25 在大 repo 上选出的 negatives 与其他策略截然不同\n\noverlap 指标：`|BM25_negs ∩ other_negs| / |BM25_negs|`。小 repo 的 neg 数量平均只有 23（远低于 50 上限），候选池太小无选择余地。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bm25-overlap-stratified.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ec0e9a5f4af92f3b5c9",
+  "project": "structfuse-context",
+  "kind": "history",
+  "title": "director / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_4.md",
+    "occurrence": 1,
+    "bytes": 4068,
+    "sha256": "1890ec1f9153484e2777cb149e69e252766111a052b7cbcd3357d3c0f554ff78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_messages\nupdated: '2026-05-14T07:58:33+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:0 和 cuda:1（bjb1-42106，2× RTX PRO 6000 96GB）\n- D026: 当前 s42 runs 保持 3 epochs 跑完，后续 s43+ 必须用 2 epochs（脚本已改）\n- D024: 旧 Claim 2（\"embedding harms\"）已证伪，paper_framing.md 已重写。**绝对不能**在任何写作中引用旧的 -27pp BM25-proxy 数据作为 embedding 危害证据\n- m1_reextract_v2 数据定位为 camera-ready，不用于当前 M2 训练（没时间重跑）\n- plan_014 缩减为 6 runs（D025）：2 strategies × 3τ × 2 epochs，不是原来的 9 runs\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-42106 (connect.bjb1.seetacloud.com)，工作目录 `/root/structfuse-context/`（代码）+ `/root/autodl-tmp/structfuse/`（数据/模型/checkpoint）\n- Python：系统 Python 或项目 venv（需 Agent 确认）\n- 模型缓存：`/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B`\n- 训练数据：`/root/autodl-tmp/structfuse/full_m2_training_data/`（9 个 train/val jsonl）\n- Dataflow graph：`/root/autodl-tmp/structfuse/dataflow_graph.json`（94MB）\n- Checkpoint 输出：`/root/autodl-tmp/structfuse/checkpoints/m2_full/`\n- Eval 输出：`/root/autodl-tmp/structfuse/eval_results/`\n- Artifacts：`/root/autodl-tmp/structfuse/artifacts/`（neg_difficulty 图表等）\n- 活跃进程：PID 73558 (m2_full_qwen s42, cuda:0), PID 76627 (m2_full_starcoder s42, cuda:1)\n- m1_reextract_v2：4 workers 后台跑 CodeQL 提取，~13% 进度\n\n### 3. 📊 当前状态\n**刚做完**：D024 paper framing 重写 + D025 plan_014 缩减 + D026 epoch 缩减（eval@2000 确认过拟合）+ neg_difficulty 可视化 Figure + plan_003 eval pipeline dry-run v2 PASS + plan_014 脚本更新 PASS + experiment_plan.yaml 更新\n\n**RUNNING 实验**：\n- m2_full_qwen: Qwen random_s42, step ~3500/4242 (epoch 3), best R@1=55.3% @step1000, 预计 ~18:30 CST 完成 → s43 自动启动 (2 epochs)\n- m2_full_starcoder: StarCoder random_s42, step ~2400/4242 (epoch 2), best R@1=45.4% @step1000, 过拟合 @1500 确认, 预计 ~01:30 明天完成\n- m1_reextract_v2: 后台 CodeQL 提取\n\n**等待中**：\n- Dream `dream_20260514T075732`（full review mode，基于 D024 新 framing）正在运行，15-25 min 完成后会注入 session\n- 用户在等 Dream 结果\n\n### 4. 📋 待办\n- Dream `dream_20260514T075732` 完成回调 → Read `dream-report-action` skill → 分析三档审稿 → 汇报用户\n- Qwen s42 完成（~18:30 CST）→ 确认 s43 自动启动成功 → 检查 s43 用的是 2 epochs\n- StarCoder s42 完成（~01:30 明天）→ 同上确认 s43\n- 全部 18 runs 完成（~May 17-18）→ 统计检验（bootstrap CI, paired t-test）→ go/no-go 判定\n- M2 完成后 → plan_014 temp ablation 双卡并行（~35h wall time）→ plan_003 SWE-bench eval\n- 写作时：plan_015 → Limitation 段落（static vs dynamic mining confound），plan_017 → Discussion 段落（inference-time graph comparison，0 GPU-h）\n\n### 5. 🎯 战略上下文\n- **核心决策链**：D017(pilot 结果验证) → D024(framing 重写：从\"method beats all\"转为\"systematic analysis\") → D025(plan_014 缩减 6 runs) → D026(epoch 3→2, 节省 48h/GPU)\n- **新 framing 三条 claim**：(1) embedding mining 普遍有效（纠正 CoCoHaNeRe 误解）(2) dataflow mining 有条件有效（表征饱和度机制）(3) CodeQL 可扩展\n- **关键路径**：M2(May 18) → plan_014(May 19) → plan_003 SWE-bench(May 21) → 统计+初稿(May 24) → ARR May 25\n- **易错点**：(1) 不要把 MVP 的 BM25-proxy 结果 (-27pp) 当作 embedding distance 证据，那是 mislabeling (2) n=3 seeds 统计功效很低(df=2)，Type II error 高，No-Go 不等于无效应 (3) 过拟合模式一致（两编码器都 step 1000 best），但 StarCoder 的 eval@1500 降幅比 Qwen 小（-0.5pp vs -3pp），表征空间更健康 (4) plan_014 的 temperature 是 learnable parameter（`log_temperature`），ablation 测的是初始化值，已修复传参 bug\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4.md"
+}

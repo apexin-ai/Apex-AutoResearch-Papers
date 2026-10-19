@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6d1e1a2547e1caa6153",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "experiment mvp p2b contrastive",
+  "task_key": "worker_experiment_mvp_p2b_contrastive_20260512T115900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_mvp_p2b_contrastive_20260512T115900_result.json",
+    "occurrence": 1,
+    "bytes": 594,
+    "sha256": "b3a7e10f0103bdb5a74890fc811b51bfcc2d776eedff7cb6ecf252fd9af84e7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training is running. Summary of what's in progress:\n\n- **9 training runs** (3 strategies × 3 seeds) executing sequentially on GPU 4\n- Run 1/9 (`p2b_random_s42`) at step 100, loss decreasing from 0.36→0.09\n- Estimated total time: ~11-12 hours\n- Each run: 3 epochs × ~253 steps, eval every 50 steps, checkpoint every 200 steps\n- When complete, `collect_p2b_results.py` will aggregate training-time metrics\n- `eval_p2b.py` is ready for full 25-candidate-pool evaluation on final checkpoints\n- Pass condition: dataflow recall@5 > random recall@5 by ≥2pp in ≥2/3 seeds"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-mvp-p2b-contrastive.md"
+}

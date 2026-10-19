@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f425940d00403f4c2bd7",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code pool sensitivity prep",
+  "task_key": "worker_code_pool_sensitivity_prep_20260516T075945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pool_sensitivity_prep_20260516T075945_result.json",
+    "occurrence": 1,
+    "bytes": 1942,
+    "sha256": "7303b169d410a09fa66c8d8fafcb8f99d081b11f6ad4f0fc59cf82b34193c788"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出总结\n\n### 1. evaluate_pool50.py 修改\n已添加 `--max-queries` 参数（4 处改动），用于 dry-run 限制 query 数量。`--pool-size` 参数原本就支持，无需修改核心逻辑。\n\n### 2. 脚本路径\n`/root/structfuse/scripts/run_pool_sensitivity.sh`\n\n### 3. Pool size 可行性分析\n\n| Pool | 全局候选池 | 每 sample 自带 neg | 补齐来源 | 可行性 |\n|------|-----------|-------------------|---------|--------|\n| 50 | 50318 | max=50, median=50 | 多数不需补齐 | ✓ 完全可行 |\n| 100 | 50318 | max=50 | 从全局池补 ~50 | ✓ 完全可行 |\n| 200 | 50318 | max=50 | 从全局池补 ~150 | ✓ 完全可行 |\n| 500 | 50318 | max=50 | 从全局池补 ~450 | ✓ 完全可行 |\n\n所有 pool size 下全部 2476 test 样本均可参与评估（全局池 50318 远大于 500）。\n\n**注意**：pool>50 时，额外候选来自其他 repo 的全局池（随机采样），不是同一 repo 内的文件。这意味着更大 pool 的\"难度\"取决于跨 repo 候选的迷惑性。\n\n### 4. 执行命令模板\n\n```bash\n# 标准运行（GPU 空闲后执行）\nDEVICE=cuda:1 bash /root/structfuse/scripts/run_pool_sensitivity.sh\n\n# Dry-run（5 queries 验证）\nDEVICE=cuda:1 MAX_QUERIES=5 bash /root/structfuse/scripts/run_pool_sensitivity.sh\n\n# 全 seed 运行\nDEVICE=cuda:1 SEEDS=\"42 43 44\" bash /root/structfuse/scripts/run_pool_sensitivity.sh\n```\n\n### 5. 预估 GPU 时间（A6000, test set 2476 samples）\n\n| Pool | 每 query 前向次数 | 预估单 checkpoint | 3 strategies × 1 seed |\n|------|-----------------|------------------|----------------------|\n| 50 | ~5 | ~12 min | ~36 min |\n| 100 | ~8 | ~18 min | ~54 min |\n| 200 | ~14 | ~30 min | ~90 min |\n| 500 | ~33 | ~70 min | ~210 min |\n| **合计** | | | **~6.5 hrs** |\n\n3 strategies × 3 seeds × 4 pool sizes ≈ 19.5 hrs。建议先跑 seed=43 单 seed 验证排名趋势。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-pool-sensitivity-prep.md"
+}

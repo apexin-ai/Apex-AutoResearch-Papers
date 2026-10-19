@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a139c480bdfa01d0b9e",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code random s42 retrain script",
+  "task_key": "worker_code_random_s42_retrain_script_20260516T074833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_random_s42_retrain_script_20260516T074833_result.json",
+    "occurrence": 1,
+    "bytes": 1262,
+    "sha256": "2d7ab988ea7486f17fff0e402e59dc9d864048838443e9459fa09f55e841e018"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n**总结**：\n\n| 项目 | 状态 |\n|------|------|\n| 脚本路径 | `/root/structfuse/scripts/run_random_s42_retrain.sh` |\n| 语法检查 | PASS |\n| 训练数据 | train: 11308 行 (1.1GB), val: 2980 行 (361MB) |\n| 模型文件 | `/root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B/config.json` 存在 |\n| 输出目录 | `/root/autodl-tmp/structfuse/full_m2_qwen_outputs/random_s42_retrain/` 不存在（安全） |\n| GPU | 2× RTX PRO 6000 Blackwell (96GB) |\n| 预估时间 | ~45-90 分钟 (11308 样本 × 2 epochs ÷ batch 8 ≈ 2828 步, 单 Blackwell GPU) |\n\n**提交命令**（训练时使用 GPU 0）：\n\n```bash\nnohup bash /root/structfuse/scripts/run_random_s42_retrain.sh 0 > /root/autodl-tmp/structfuse/full_m2_qwen_outputs/random_s42_retrain.log 2>&1 &\n```\n\n**关键配置对比**：\n\n| 参数 | 原 s42 (错误) | 本次 retrain | s43/s44 (正确) |\n|------|--------------|-------------|---------------|\n| epochs | 3 | 2 | 2 |\n| patience | 0 (无ES) | 2 | 2 |\n| 其余参数 | batch=8, lr=2e-5, neg=7 | 相同 | 相同 |\n\n训练代码自动保存 `best_by_val_loss` 和 `best_by_recall_at_1` 两个 checkpoint。无 `--dry-run` 或 `--max-steps` 参数可用于单步验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-random-s42-retrain-script.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcd89abaa36b3aa23a13",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops local pilot artifacts fix",
+  "task_key": "worker_ops_local-pilot-artifacts-fix_20260513T115113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_local-pilot-artifacts-fix_20260513T115113_result.json",
+    "occurrence": 1,
+    "bytes": 449,
+    "sha256": "bdff272e3f17c31161c7a464a4edbe713d38d467c82686024eebc29fc14c7f02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个文件已覆写并注册：\n\n- `pilot_results_summary.md` — StarCoder random 行已补全（val_loss=0.5113, R@1=0.4922, R@5=0.98, R@10=1.0），Cross-Encoder 表包含全部 5 行，Qwen embedding 状态更正为 completed\n- `pilot_results.json` — 替换指针文件为完整结构化数据，包含所有 encoder/strategy 的指标\n- 两个 artifact 已注册（`art_20260513_64aa24`, `art_20260513_920f68`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-local-pilot-artifacts-fix.md"
+}

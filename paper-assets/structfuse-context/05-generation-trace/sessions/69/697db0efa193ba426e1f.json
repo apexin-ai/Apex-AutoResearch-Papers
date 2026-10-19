@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "697db0efa193ba426e1f",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops fix m2 qwen restart",
+  "task_key": "worker_ops_fix_m2_qwen_restart_20260513T171748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_m2_qwen_restart_20260513T171748_result.json",
+    "occurrence": 1,
+    "bytes": 843,
+    "sha256": "4d38c3663a3c0d9672376f94935639859265c5c7d8d6c4fb019963f366dee822"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果汇报\n\n### 三项验证：❌ 失败\n\n| 验证项 | 结果 | 详情 |\n|--------|------|------|\n| PID 71387 kill | ✅ KILLED | 进程已终止 |\n| tmux m2_qwen | ❌ TMUX_DEAD | 脚本不存在导致 session 退出 |\n| GPU cuda:0 训练进程 | ❌ 无进程 | cuda:0 上没有训练进程 |\n| 日志内容 | ❌ 脚本缺失 | `bash: scripts/run_m2_full_qwen.sh: No such file or directory` |\n| cuda:1 StarCoder | ✅ 未受影响 | PID 72399 在 GPU 1 上运行，11426 MiB，正常 |\n\n### 失败原因\n\n`/root/structfuse/scripts/run_m2_full_qwen.sh` **不存在**。scripts 目录下实际可用的相关脚本：\n- `run_full_m2_training.sh` — 最可能是对应脚本\n- `run_m2_pilot.sh`\n- `schedule_m2_runs.sh`\n\n按指示，不自行修复。请确认应使用哪个脚本重启训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-m2-qwen-restart.md"
+}

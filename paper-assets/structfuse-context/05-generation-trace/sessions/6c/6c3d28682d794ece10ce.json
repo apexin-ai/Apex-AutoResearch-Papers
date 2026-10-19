@@ -1,0 +1,1525 @@
+{
+  "schema_version": "1.0",
+  "id": "6c3d28682d794ece10ce",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "writing discussion draft",
+  "task_key": "worker_writing_discussion_draft_20260514T101811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_discussion_draft_20260514T101811.log",
+    "occurrence": 1,
+    "bytes": 98898,
+    "sha256": "ddbc3d01b8c5d52af90ca2e0843b983c5583953aadc25808478b816821199b13"
+  },
+  "statistics": {
+    "messages": 36,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 10,
+      "tool_call": 11,
+      "tool_result": 11,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context",
+                "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "9d818dcb-f057-4b0c-b5ff-b36e4c610e7c",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-5-projects-structfuse-context/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778763000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "8d160ec0-c4b5-4e6e-8522-a7f59500cc20",
+                "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read the literature comparison document and paper framing first, then draft the Discussion section."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "40212f90-6fcd-42aa-927a-155d0ad643f5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DfyCTyF7r6BW646cnpsgDn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11876,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11876
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QHsAuyzEEArvmSgEunELEB",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "47a2ca08-c009-4401-af27-540eb790c5d5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DfyCTyF7r6BW646cnpsgDn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11876,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11876
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T10:18:23.495Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01QHsAuyzEEArvmSgEunELEB",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "a06ed54a-2898-4a44-9686-75492cc9aa77",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__save_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the literature comparison document and paper framing in parallel.",
+              "signature": "EogCClkIDRgCKkC+XXIUINTBYaIITrA7z3y5cEHk8QibYZEXDeaVXjTADda70mRO+IYeHxyVQuYteq3C4fUr7D9l8Q77BB8wz0u5Mg9jbGF1ZGUtb3B1cy00LTY4ABIMsZN4Pl/3sLsA4rFlGgzIH6sy0SPIntMEkbYiMH5sF90kCsJuD06H0uIkyPzZD78VQfsPXkUVfFcxfoZphYcqfVVCkr4vTNHby3mMZipdIgSVr/8A3S/yyxMEGaQojRsfiYdgIazUCuAJxyezZzFryy0/7c1gIzuc5q57ng6T3p0qi8HK92CfPAjS7cmQpGJmHFVzZba3V2BfdTYZwzhGXFWoaHSUASYFz3t8GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "c14b74be-7707-4977-9bf2-bc1e0ebd5e3e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YRCmqPeFnU3KQ3uerhy5os",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 709,
+                "cache_read_input_tokens": 23717,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 709
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H7KpH8aNVCAM3um7g1sNCt",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "cat /root/structfuse-context/artifacts/analysis/plan017_literature_comparison.md",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "0bc74ec1-5e91-41f4-9e79-e31626afce53",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YRCmqPeFnU3KQ3uerhy5os",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 709,
+                "cache_read_input_tokens": 23717,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 709
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016mWRSrZhmqnLwKcF6ViGAc",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "cat /root/structfuse-context/paper_framing.md",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "faf06f98-f0d1-4b69-8b90-34fef1821107",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YRCmqPeFnU3KQ3uerhy5os",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 709,
+                "cache_read_input_tokens": 23717,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 709
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T10:18:28.664Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H7KpH8aNVCAM3um7g1sNCt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Inference-time vs Training-time Structural Information: CodexGraph, LocAgent, and Related Methods vs StructFuse\\\\n\\\\n## 1. Method Summaries\\\\n\\\\n### 1.1 CodexGraph (Liu et al., NAACL 2025; arXiv:2408.03910)\\\\n\\\\n**Core idea.** CodexGraph bridges LLM agents and code repositories by materializing a code property graph in a Neo4j graph database, then exposing a Cypher query interface that the LLM agent uses to perform multi-hop, structure-aware code retrieval at inference time.\\\\n\\\\n**Graph construction.** A two-stage static analysis pipeline: (1) shallow intra-file indexing extracts MODULE, CLASS, and FUNCTION nodes; (2) cross-file analysis resolves inter-file relationships (CONTAINS, INHERITS, USES edges). The schema is task-agnostic—the same graph supports debugging, navigation, comment generation, etc. Importantly, CodexGraph captures *symbol-level structural relations* (call graphs, inheritance hierarchies) but **does not model data-flow semantics** (no taint tracking, no def-use chains).\\\\n\\\\n**Computational overhead.** Graph construction is a one-time per-repository cost (comparable to IDE indexing), but **at inference time**, each query triggers the LLM agent to formulate and execute Cypher queries against the graph DB, often requiring multiple rounds of query refinement. This incurs latency proportional to the complexity of the code navigation task.\\\\n\\\\n**Evaluation.** CrossCodeEval (code completion), SWE-bench (issue resolution), EvoCodeBench (evolving code). Five real-world application scenarios demonstrated.\\\\n\\\\n**Open source.** Demo available at `modelscope/modelscope-agent/apps/codexgraph_agent` on GitHub.\\\\n\\\\n### 1.2 LocAgent (Chen et al., ACL 2025; arXiv:2503.09089)\\\\n\\\\n**Core idea.** LocAgent parses codebases into directed heterogeneous graphs and equips LLM agents with graph traversal tools, enabling multi-hop dependency reasoning for fault localization. The agent autonomously navigates the graph to locate buggy code given an issue description.\\\\n\\\\n**Graph construction.** A directed heterogeneous graph with four edge types: *contain*, *import*, *invoke*, and *inherit*. Nodes represent files, classes, and functions. Graph construction is done per-repository (batch mode via `batch_build_graph.py`). Like CodexGraph, LocAgent captures **structural dependencies but not data-flow**—edges represent syntactic relationships (who calls whom, who inherits from whom), not how values propagate.\\\\n\\\\n**Computational overhead.** The key cost driver is the LLM backbone: LocAgent achieves SOTA with a fine-tuned Qwen-2.5-Coder-32B model, but also works (at higher cost) with proprietary models. The authors report **~86% cost reduction** compared to proprietary-model baselines by using the fine-tuned open model. However, each localization query still requires multiple LLM inference calls as the agent traverses the graph.\\\\n\\\\n**Evaluation.** SWE-bench-Lite: 92.7% file-level localization accuracy. Downstream: +12% Pass@10 on issue resolution when using LocAgent's localization output.\\\\n\\\\n**Open source.** Available at `gersteinlab/LocAgent` on GitHub.\\\\n\\\\n### 1.3 Other Related Inference-time Graph Methods\\\\n\\\\n#### 1.3.1 RepoGraph (Ouyang et al., ICLR 2025; arXiv:2410.14684)\\\\n\\\\nA plug-in module that constructs a **line-level code graph** (nodes = code lines; edges = definition-reference dependencies, class hierarchy, call graph). Designed as a drop-in enhancement for existing SE agents. On SWE-bench, integrating RepoGraph yields +32.8% relative improvement. Open source: `ozyyshr/RepoGraph` on GitHub. **No data-flow analysis**—purely structural relations.\\\\n\\\\n#### 1.3.2 GraphCoder (Liu et al., ASE 2024; arXiv:2406.07003)\\\\n\\\\nConstructs a **Code Context Graph (CCG)** combining control-flow graph (CFG), control-dependence graph (CDG), and data-dependence graph (DDG) for repository-level code completion. Employs coarse-to-fine retrieval: first match graph structure, then rank by code similarity. **Closest to StructFuse in using data/control flow**, but analysis is **intra-procedural only**—no cr\\\\n\\\\n... [截断: 输出过长，省略 12296 字符] ...\\\\n\\\\nrtizes all structural computation to training time: our CodeQL extraction costs approximately 8.9 seconds per instance (~110 GPU-free hours for 44K instances), after which the trained encoder operates at standard inference speed with no graph overhead. This makes StructFuse particularly suited for latency-sensitive, high-throughput retrieval scenarios. Moreover, the two paradigms are composable: a StructFuse-trained encoder can serve as an efficient first-stage retriever whose embeddings already encode data-flow semantics, reducing the search space for inference-time graph agents that perform targeted reranking. A promising direction for future work is evaluating such hybrid pipelines, as well as extending StructFuse's bounded inter-procedural analysis beyond the current 2-hop scope or to the inference-time setting where it could further benefit graph-guided agents.\\\\n\\\\n### Reviewer question strategy: \\\\\\\"Why not compare directly with inference-time graph methods?\\\\\\\"\\\\n\\\\n**Key arguments:**\\\\n\\\\n1. **Different computational paradigms, not directly comparable.** StructFuse is a *training method* that improves encoder quality; CodexGraph/LocAgent are *inference systems* that augment LLM agents with runtime graph access. Comparing them is like comparing data augmentation vs. test-time augmentation—they operate at different stages and can be combined.\\\\n\\\\n2. **Different task interfaces.** Most inference-time graph methods are designed for agentic tasks (issue resolution, fault localization) where the LLM agent interacts with the graph over multiple turns. StructFuse targets embedding-based code retrieval where the output is a ranked list, not a multi-turn interaction.\\\\n\\\\n3. **Complementary, not competing.** We can acknowledge this gap and frame it constructively: \\\\\\\"StructFuse's trained encoder could serve as the retrieval backbone within these systems, replacing their default embedding models. Evaluating such integration is a natural and valuable direction for future work.\\\\\\\"\\\\n\\\\n4. **Empirical grounding.** If pressed, note that inference-time methods have been evaluated on different benchmarks (SWE-bench for LocAgent, CrossCodeEval for CodexGraph) with different metrics, making direct numerical comparison methodologically questionable without a unified evaluation setup.\\\\n\\\\n<!-- 中文注释：核心策略——承认对比的价值，但指出\\\\\\\"不同范式\\\\\\\"+\\\\\\\"不同任务接口\\\\\\\"使直接对比不恰当，同时提出组合使用作为 future work -->\\\\n\\\\n---\\\\n\\\\n## References\\\\n\\\\n- **CodexGraph:** Liu et al., \\\\\\\"CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases,\\\\\\\" NAACL 2025. arXiv:2408.03910. [Paper](https://arxiv.org/abs/2408.03910)\\\\n- **LocAgent:** Chen et al., \\\\\\\"LocAgent: Graph-Guided LLM Agents for Code Localization,\\\\\\\" ACL 2025. arXiv:2503.09089. [Paper](https://arxiv.org/abs/2503.09089) | [Code](https://github.com/gersteinlab/LocAgent)\\\\n- **RepoGraph:** Ouyang et al., \\\\\\\"Enhancing AI Software Engineering with Repository-level Code Graph,\\\\\\\" ICLR 2025. arXiv:2410.14684. [Paper](https://arxiv.org/abs/2410.14684) | [Code](https://github.com/ozyyshr/RepoGraph)\\\\n- **GraphCoder:** Liu et al., \\\\\\\"GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model,\\\\\\\" ASE 2024. arXiv:2406.07003. [Paper](https://arxiv.org/abs/2406.07003) | [Code](https://github.com/oceaneLIU/GraphCoder)\\\\n- **RANGER:** Shah et al., \\\\\\\"RANGER: Repository-Level Agent for Graph-Enhanced Retrieval,\\\\\\\" 2025. arXiv:2509.25257. [Paper](https://arxiv.org/abs/2509.25257)\\\\n- **ARISE:** Seddik & Fard, \\\\\\\"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair,\\\\\\\" 2026. arXiv:2605.03117. [Paper](https://arxiv.org/abs/2605.03117)\\\\n- **CodeGRAG:** \\\\\\\"CodeGRAG: Bridging the Gap between Natural Language and Programming Language via Graphical Retrieval Augmented Generation,\\\\\\\" 2024. arXiv:2405.02355. [Paper](https://arxiv.org/abs/2405.02355)\\\\n- **CodeRAG:** \\\\\\\"CodeRAG: Supportive Code Retrieval on Bigraph for Real-World Code Generation,\\\\\\\" 2025. arXiv:2504.10046. [Paper](https://arxiv.org/abs/2504.10046)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "8493ab65-350b-4162-a76e-3bd1adf7f07a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Inference-time vs Training-time Structural Information: CodexGraph, LocAgent, and Related Methods vs StructFuse\\\\n\\\\n## 1. Method Summaries\\\\n\\\\n### 1.1 CodexGraph (Liu et al., NAACL 2025; arXiv:2408.03910)\\\\n\\\\n**Core idea.** CodexGraph bridges LLM agents and code repositories by materializing a code property graph in a Neo4j graph database, then exposing a Cypher query interface that the LLM agent uses to perform multi-hop, structure-aware code retrieval at inference time.\\\\n\\\\n**Graph construction.** A two-stage static analysis pipeline: (1) shallow intra-file indexing extracts MODULE, CLASS, and FUNCTION nodes; (2) cross-file analysis resolves inter-file relationships (CONTAINS, INHERITS, USES edges). The schema is task-agnostic—the same graph supports debugging, navigation, comment generation, etc. Importantly, CodexGraph captures *symbol-level structural relations* (call graphs, inheritance hierarchies) but **does not model data-flow semantics** (no taint tracking, no def-use chains).\\\\n\\\\n**Computational overhead.** Graph construction is a one-time per-repository cost (comparable to IDE indexing), but **at inference time**, each query triggers the LLM agent to formulate and execute Cypher queries against the graph DB, often requiring multiple rounds of query refinement. This incurs latency proportional to the complexity of the code navigation task.\\\\n\\\\n**Evaluation.** CrossCodeEval (code completion), SWE-bench (issue resolution), EvoCodeBench (evolving code). Five real-world application scenarios demonstrated.\\\\n\\\\n**Open source.** Demo available at `modelscope/modelscope-agent/apps/codexgraph_agent` on GitHub.\\\\n\\\\n### 1.2 LocAgent (Chen et al., ACL 2025; arXiv:2503.09089)\\\\n\\\\n**Core idea.** LocAgent parses codebases into directed heterogeneous graphs and equips LLM agents with graph traversal tools, enabling multi-hop dependency reasoning for fault localization. The agent autonomously navigates the graph to locate buggy code given an issue description.\\\\n\\\\n**Graph construction.** A directed heterogeneous graph with four edge types: *contain*, *import*, *invoke*, and *inherit*. Nodes represent files, classes, and functions. Graph construction is done per-repository (batch mode via `batch_build_graph.py`). Like CodexGraph, LocAgent captures **structural dependencies but not data-flow**—edges represent syntactic relationships (who calls whom, who inherits from whom), not how values propagate.\\\\n\\\\n**Computational overhead.** The key cost driver is the LLM backbone: LocAgent achieves SOTA with a fine-tuned Qwen-2.5-Coder-32B model, but also works (at higher cost) with proprietary models. The authors report **~86% cost reduction** compared to proprietary-model baselines by using the fine-tuned open model. However, each localization query still requires multiple LLM inference calls as the agent traverses the graph.\\\\n\\\\n**Evaluation.** SWE-bench-Lite: 92.7% file-level localization accuracy. Downstream: +12% Pass@10 on issue resolution when using LocAgent's localization output.\\\\n\\\\n**Open source.** Available at `gersteinlab/LocAgent` on GitHub.\\\\n\\\\n### 1.3 Other Related Inference-time Graph Methods\\\\n\\\\n#### 1.3.1 RepoGraph (Ouyang et al., ICLR 2025; arXiv:2410.14684)\\\\n\\\\nA plug-in module that constructs a **line-level code graph** (nodes = code lines; edges = definition-reference dependencies, class hierarchy, call graph). Designed as a drop-in enhancement for existing SE agents. On SWE-bench, integrating RepoGraph yields +32.8% relative improvement. Open source: `ozyyshr/RepoGraph` on GitHub. **No data-flow analysis**—purely structural relations.\\\\n\\\\n#### 1.3.2 GraphCoder (Liu et al., ASE 2024; arXiv:2406.07003)\\\\n\\\\nConstructs a **Code Context Graph (CCG)** combining control-flow graph (CFG), control-dependence graph (CDG), and data-dependence graph (DDG) for repository-level code completion. Employs coarse-to-fine retrieval: first match graph structure, then rank by code similarity. **Closest to StructFuse in using data/control flow**, but analysis is **intra-procedural only**—no cr\\\\n\\\\n... [截断: 输出过长，省略 12296 字符] ...\\\\n\\\\nrtizes all structural computation to training time: our CodeQL extraction costs approximately 8.9 seconds per instance (~110 GPU-free hours for 44K instances), after which the trained encoder operates at standard inference speed with no graph overhead. This makes StructFuse particularly suited for latency-sensitive, high-throughput retrieval scenarios. Moreover, the two paradigms are composable: a StructFuse-trained encoder can serve as an efficient first-stage retriever whose embeddings already encode data-flow semantics, reducing the search space for inference-time graph agents that perform targeted reranking. A promising direction for future work is evaluating such hybrid pipelines, as well as extending StructFuse's bounded inter-procedural analysis beyond the current 2-hop scope or to the inference-time setting where it could further benefit graph-guided agents.\\\\n\\\\n### Reviewer question strategy: \\\\\\\"Why not compare directly with inference-time graph methods?\\\\\\\"\\\\n\\\\n**Key arguments:**\\\\n\\\\n1. **Different computational paradigms, not directly comparable.** StructFuse is a *training method* that improves encoder quality; CodexGraph/LocAgent are *inference systems* that augment LLM agents with runtime graph access. Comparing them is like comparing data augmentation vs. test-time augmentation—they operate at different stages and can be combined.\\\\n\\\\n2. **Different task interfaces.** Most inference-time graph methods are designed for agentic tasks (issue resolution, fault localization) where the LLM agent interacts with the graph over multiple turns. StructFuse targets embedding-based code retrieval where the output is a ranked list, not a multi-turn interaction.\\\\n\\\\n3. **Complementary, not competing.** We can acknowledge this gap and frame it constructively: \\\\\\\"StructFuse's trained encoder could serve as the retrieval backbone within these systems, replacing their default embedding models. Evaluating such integration is a natural and valuable direction for future work.\\\\\\\"\\\\n\\\\n4. **Empirical grounding.** If pressed, note that inference-time methods have been evaluated on different benchmarks (SWE-bench for LocAgent, CrossCodeEval for CodexGraph) with different metrics, making direct numerical comparison methodologically questionable without a unified evaluation setup.\\\\n\\\\n<!-- 中文注释：核心策略——承认对比的价值，但指出\\\\\\\"不同范式\\\\\\\"+\\\\\\\"不同任务接口\\\\\\\"使直接对比不恰当，同时提出组合使用作为 future work -->\\\\n\\\\n---\\\\n\\\\n## References\\\\n\\\\n- **CodexGraph:** Liu et al., \\\\\\\"CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases,\\\\\\\" NAACL 2025. arXiv:2408.03910. [Paper](https://arxiv.org/abs/2408.03910)\\\\n- **LocAgent:** Chen et al., \\\\\\\"LocAgent: Graph-Guided LLM Agents for Code Localization,\\\\\\\" ACL 2025. arXiv:2503.09089. [Paper](https://arxiv.org/abs/2503.09089) | [Code](https://github.com/gersteinlab/LocAgent)\\\\n- **RepoGraph:** Ouyang et al., \\\\\\\"Enhancing AI Software Engineering with Repository-level Code Graph,\\\\\\\" ICLR 2025. arXiv:2410.14684. [Paper](https://arxiv.org/abs/2410.14684) | [Code](https://github.com/ozyyshr/RepoGraph)\\\\n- **GraphCoder:** Liu et al., \\\\\\\"GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model,\\\\\\\" ASE 2024. arXiv:2406.07003. [Paper](https://arxiv.org/abs/2406.07003) | [Code](https://github.com/oceaneLIU/GraphCoder)\\\\n- **RANGER:** Shah et al., \\\\\\\"RANGER: Repository-Level Agent for Graph-Enhanced Retrieval,\\\\\\\" 2025. arXiv:2509.25257. [Paper](https://arxiv.org/abs/2509.25257)\\\\n- **ARISE:** Seddik & Fard, \\\\\\\"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair,\\\\\\\" 2026. arXiv:2605.03117. [Paper](https://arxiv.org/abs/2605.03117)\\\\n- **CodeGRAG:** \\\\\\\"CodeGRAG: Bridging the Gap between Natural Language and Programming Language via Graphical Retrieval Augmented Generation,\\\\\\\" 2024. arXiv:2405.02355. [Paper](https://arxiv.org/abs/2405.02355)\\\\n- **CodeRAG:** \\\\\\\"CodeRAG: Supportive Code Retrieval on Bigraph for Real-World Code Generation,\\\\\\\" 2025. arXiv:2504.10046. [Paper](https://arxiv.org/abs/2504.10046)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"# Inference-time vs Training-time Structural Information: CodexGraph, LocAgent, and Related Methods vs StructFuse\\n\\n## 1. Method Summaries\\n\\n### 1.1 CodexGraph (Liu et al., NAACL 2025; arXiv:2408.03910)\\n\\n**Core idea.** CodexGraph bridges LLM agents and code repositories by materializing a code property graph in a Neo4j graph database, then exposing a Cypher query interface that the LLM agent uses to perform multi-hop, structure-aware code retrieval at inference time.\\n\\n**Graph construction.** A two-stage static analysis pipeline: (1) shallow intra-file indexing extracts MODULE, CLASS, and FUNCTION nodes; (2) cross-file analysis resolves inter-file relationships (CONTAINS, INHERITS, USES edges). The schema is task-agnostic—the same graph supports debugging, navigation, comment generation, etc. Importantly, CodexGraph captures *symbol-level structural relations* (call graphs, inheritance hierarchies) but **does not model data-flow semantics** (no taint tracking, no def-use chains).\\n\\n**Computational overhead.** Graph construction is a one-time per-repository cost (comparable to IDE indexing), but **at inference time**, each query triggers the LLM agent to formulate and execute Cypher queries against the graph DB, often requiring multiple rounds of query refinement. This incurs latency proportional to the complexity of the code navigation task.\\n\\n**Evaluation.** CrossCodeEval (code completion), SWE-bench (issue resolution), EvoCodeBench (evolving code). Five real-world application scenarios demonstrated.\\n\\n**Open source.** Demo available at `modelscope/modelscope-agent/apps/codexgraph_agent` on GitHub.\\n\\n### 1.2 LocAgent (Chen et al., ACL 2025; arXiv:2503.09089)\\n\\n**Core idea.** LocAgent parses codebases into directed heterogeneous graphs and equips LLM agents with graph traversal tools, enabling multi-hop dependency reasoning for fault localization. The agent autonomously navigates the graph to locate buggy code given an issue description.\\n\\n**Graph construction.** A directed heterogeneous graph with four edge types: *contain*, *import*, *invoke*, and *inherit*. Nodes represent files, classes, and functions. Graph construction is done per-repository (batch mode via `batch_build_graph.py`). Like CodexGraph, LocAgent captures **structural dependencies but not data-flow**—edges represent syntactic relationships (who calls whom, who inherits from whom), not how values propagate.\\n\\n**Computational overhead.** The key cost driver is the LLM backbone: LocAgent achieves SOTA with a fine-tuned Qwen-2.5-Coder-32B model, but also works (at higher cost) with proprietary models. The authors report **~86% cost reduction** compared to proprietary-model baselines by using the fine-tuned open model. However, each localization query still requires multiple LLM inference calls as the agent traverses the graph.\\n\\n**Evaluation.** SWE-bench-Lite: 92.7% file-level localization accuracy. Downstream: +12% Pass@10 on issue resolution when using LocAgent's localization output.\\n\\n**Open source.** Available at `gersteinlab/LocAgent` on GitHub.\\n\\n### 1.3 Other Related Inference-time Graph Methods\\n\\n#### 1.3.1 RepoGraph (Ouyang et al., ICLR 2025; arXiv:2410.14684)\\n\\nA plug-in module that constructs a **line-level code graph** (nodes = code lines; edges = definition-reference dependencies, class hierarchy, call graph). Designed as a drop-in enhancement for existing SE agents. On SWE-bench, integrating RepoGraph yields +32.8% relative improvement. Open source: `ozyyshr/RepoGraph` on GitHub. **No data-flow analysis**—purely structural relations.\\n\\n#### 1.3.2 GraphCoder (Liu et al., ASE 2024; arXiv:2406.07003)\\n\\nConstructs a **Code Context Graph (CCG)** combining control-flow graph (CFG), control-dependence graph (CDG), and data-dependence graph (DDG) for repository-level code completion. Employs coarse-to-fine retrieval: first match graph structure, then rank by code similarity. **Closest to StructFuse in using data/control flow**, but analysis is **intra-procedural only**—no cr\\n\\n... [截断: 输出过长，省略 12296 字符] ...\\n\\nrtizes all structural computation to training time: our CodeQL extraction costs approximately 8.9 seconds per instance (~110 GPU-free hours for 44K instances), after which the trained encoder operates at standard inference speed with no graph overhead. This makes StructFuse particularly suited for latency-sensitive, high-throughput retrieval scenarios. Moreover, the two paradigms are composable: a StructFuse-trained encoder can serve as an efficient first-stage retriever whose embeddings already encode data-flow semantics, reducing the search space for inference-time graph agents that perform targeted reranking. A promising direction for future work is evaluating such hybrid pipelines, as well as extending StructFuse's bounded inter-procedural analysis beyond the current 2-hop scope or to the inference-time setting where it could further benefit graph-guided agents.\\n\\n### Reviewer question strategy: \\\"Why not compare directly with inference-time graph methods?\\\"\\n\\n**Key arguments:**\\n\\n1. **Different computational paradigms, not directly comparable.** StructFuse is a *training method* that improves encoder quality; CodexGraph/LocAgent are *inference systems* that augment LLM agents with runtime graph access. Comparing them is like comparing data augmentation vs. test-time augmentation—they operate at different stages and can be combined.\\n\\n2. **Different task interfaces.** Most inference-time graph methods are designed for agentic tasks (issue resolution, fault localization) where the LLM agent interacts with the graph over multiple turns. StructFuse targets embedding-based code retrieval where the output is a ranked list, not a multi-turn interaction.\\n\\n3. **Complementary, not competing.** We can acknowledge this gap and frame it constructively: \\\"StructFuse's trained encoder could serve as the retrieval backbone within these systems, replacing their default embedding models. Evaluating such integration is a natural and valuable direction for future work.\\\"\\n\\n4. **Empirical grounding.** If pressed, note that inference-time methods have been evaluated on different benchmarks (SWE-bench for LocAgent, CrossCodeEval for CodexGraph) with different metrics, making direct numerical comparison methodologically questionable without a unified evaluation setup.\\n\\n<!-- 中文注释：核心策略——承认对比的价值，但指出\\\"不同范式\\\"+\\\"不同任务接口\\\"使直接对比不恰当，同时提出组合使用作为 future work -->\\n\\n---\\n\\n## References\\n\\n- **CodexGraph:** Liu et al., \\\"CodexGraph: Bridging Large Language Models and Code Repositories via Code Graph Databases,\\\" NAACL 2025. arXiv:2408.03910. [Paper](https://arxiv.org/abs/2408.03910)\\n- **LocAgent:** Chen et al., \\\"LocAgent: Graph-Guided LLM Agents for Code Localization,\\\" ACL 2025. arXiv:2503.09089. [Paper](https://arxiv.org/abs/2503.09089) | [Code](https://github.com/gersteinlab/LocAgent)\\n- **RepoGraph:** Ouyang et al., \\\"Enhancing AI Software Engineering with Repository-level Code Graph,\\\" ICLR 2025. arXiv:2410.14684. [Paper](https://arxiv.org/abs/2410.14684) | [Code](https://github.com/ozyyshr/RepoGraph)\\n- **GraphCoder:** Liu et al., \\\"GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model,\\\" ASE 2024. arXiv:2406.07003. [Paper](https://arxiv.org/abs/2406.07003) | [Code](https://github.com/oceaneLIU/GraphCoder)\\n- **RANGER:** Shah et al., \\\"RANGER: Repository-Level Agent for Graph-Enhanced Retrieval,\\\" 2025. arXiv:2509.25257. [Paper](https://arxiv.org/abs/2509.25257)\\n- **ARISE:** Seddik & Fard, \\\"ARISE: A Repository-level Graph Representation and Toolset for Agentic Fault Localization and Program Repair,\\\" 2026. arXiv:2605.03117. [Paper](https://arxiv.org/abs/2605.03117)\\n- **CodeGRAG:** \\\"CodeGRAG: Bridging the Gap between Natural Language and Programming Language via Graphical Retrieval Augmented Generation,\\\" 2024. arXiv:2405.02355. [Paper](https://arxiv.org/abs/2405.02355)\\n- **CodeRAG:** \\\"CodeRAG: Supportive Code Retrieval on Bigraph for Real-World Code Generation,\\\" 2025. arXiv:2504.10046. [Paper](https://arxiv.org/abs/2504.10046)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.26}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T10:18:29.089Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016mWRSrZhmqnLwKcF6ViGAc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/structfuse-context/paper_framing.md: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "5616373f-7e24-4d05-9d59-c8ea613337ff",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/structfuse-context/paper_framing.md: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/structfuse-context/paper_framing.md: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.41}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The paper_framing.md doesn't exist at that path. Let me search for it.",
+              "signature": "EoECClkIDRgCKkBuD05MCK2O+ODeGOjcoxmGa1kUGfOV3oExBeKqDj52W/Y7fDA5uNJq5z6jzIojjE03Vaf96Rx+Tn90l+FKWJ4fMg9jbGF1ZGUtb3B1cy00LTY4ABIMY041MK0jpP0OXDzxGgw06M5cPxqnzQEzjxsiMFxzYhiFu7dCWIMI0Rs6YuPqeFKuCFerAVHhG77Nii/BqGgQWrREK5XHtRdwyAvzkCpWV/1d6OUZtuFbSMwE9YBhfeHlgzKmAejZlxM7C04k8DC5HCi93C1Psw8gCBeSOtwixkdSJDiP5CGHxNSw6QU3iBgEHZQc61XVYbXfKvDHZG2ENR7nUFUYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "80d339da-072b-4407-8cdf-5cf36f81bb6b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0139P7G33qzuUTmwzj62XLwj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2878,
+                "cache_read_input_tokens": 24426,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2878
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Paper framing file not found at that path. Let me search for it and also check the artifacts directory structure."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "c86d473b-534c-4a1c-9d91-f60d30f21ad7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0139P7G33qzuUTmwzj62XLwj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2878,
+                "cache_read_input_tokens": 24426,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2878
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qx6xLeycsbx2NJxeL26pkf",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "find /root/structfuse-context -name \"paper_framing*\" -type f",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "6b960d3d-e657-47e2-a178-710e5c74a3d8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0139P7G33qzuUTmwzj62XLwj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2878,
+                "cache_read_input_tokens": 24426,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2878
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T10:18:34.540Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qx6xLeycsbx2NJxeL26pkf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "bdae7174-74e0-4899-a4a2-7f2b80d792bf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012TavPwUm5ykSEwhD68C5Lc",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "ls /root/structfuse-context/artifacts/paper_drafts/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "d849a0ab-3dea-4a68-9c19-4bbe1955740b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0139P7G33qzuUTmwzj62XLwj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2878,
+                "cache_read_input_tokens": 24426,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2878
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T10:18:35.354Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012TavPwUm5ykSEwhD68C5Lc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/structfuse-context/artifacts/paper_drafts/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "fe31c755-cf35-4cde-aa3a-0314ca5505fa",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/structfuse-context/artifacts/paper_drafts/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/structfuse-context/artifacts/paper_drafts/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "No paper_framing.md found, and paper_drafts directory doesn't exist yet. Let me also try to read the project's paper_framing.md via the MCP tool, and check if there's a local copy.",
+              "signature": "EvACClkIDRgCKkBhvZBmlc2oGYgLVLLT+1VNAz6aKuGGPb3X/BiaJP+6eGGLS9QhYoMjJWO8xZhCGJ1wFeqRouPKd0hva2yY4ObjMg9jbGF1ZGUtb3B1cy00LTY4ABIM23XnWPpfg9TkQd8WGgy4/YL/dxl9Y4C4SDsiMGHRox7MwtPSByCdP2fUBgUIxniydmiCe1S6CbJ5ZGDCxn/Kboo/rsAAETbYSPSagyrEAajuV2veXosngqGj4Jl74jWz4i0uRS8b7vuoimbeBvBWZHPC/NkELYaxVK3pK+Ed4r9ipBmMSRfGkxagWCgU0MEdahY79tBL3AOkarwfRkgcT+5uFklY/FhLlaLagN8EM9c+YKfkCl4mga4FtmEdT0PCFwk+Hbd57Qh/V+vBh6Mv5Dzb79a6/7mRL4azF9j3D9u/UGMXQKw3RthPLNmymID4DXvjeckJ7Y7eiiuGHOXj46a1QSkU+MDvJYXgkDmhzxSUQWUYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "8d099824-b845-47e8-9a83-4e9cf13f1c54",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017vFucZ2dzUU5csXzHaqAzT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 524,
+                "cache_read_input_tokens": 27304,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 524
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No paper_framing.md on the server. Let me check if it exists as a project file, and create the output directory."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "ac7f6b38-adaf-47ad-8d04-3e3392cf0b62",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017vFucZ2dzUU5csXzHaqAzT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 524,
+                "cache_read_input_tokens": 27304,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 524
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012MBtPS7hCpMneXeAWfFyEq",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "file": "paper_framing.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "8ea9d477-44dc-4508-a9b5-0398472bf896",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017vFucZ2dzUU5csXzHaqAzT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 524,
+                "cache_read_input_tokens": 27304,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 524
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T10:18:40.738Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool read_project_file: 1 validation error for read_project_fileArguments\nproject\n  Field required [type=missing, input_value={'file': 'paper_framing.md'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing",
+              "is_error": true,
+              "tool_use_id": "toolu_012MBtPS7hCpMneXeAWfFyEq"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "548a98f3-8b1a-433f-b806-45224efe506e",
+            "tool_use_result": "Error: Error executing tool read_project_file: 1 validation error for read_project_fileArguments\nproject\n  Field required [type=missing, input_value={'file': 'paper_framing.md'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011xwTByquz1PsTyg8Tf97Xi",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "b9a141a5-3f90-4edb-ab19-e031411872f3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017vFucZ2dzUU5csXzHaqAzT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 524,
+                "cache_read_input_tokens": 27304,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 524
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T10:18:41.186Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_011xwTByquz1PsTyg8Tf97Xi",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "b540eb1c-599d-437a-8b20-ee1fca31f5dd",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y8GFcj1NwPC5pFW9EvDhbA",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "structfuse-context",
+                "file": "paper_framing.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "475401fb-65f2-489c-b9f6-2cb05230edc5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017oXp8L1wX4EnqPHpDfMoXr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 724,
+                "cache_read_input_tokens": 27828,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 724
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T10:18:44.109Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y8GFcj1NwPC5pFW9EvDhbA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — StructFuse\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Claims (3)\\\\n\\\\n1. **True embedding-distance hard negative mining consistently improves contrastive code retrieval over random baselines, correcting the prior misconception that embedding negatives harm performance.** The reported \\\\\\\"harm\\\\\\\" (CoCoHaNeRe-derived, -27pp R@1) was an artifact of BM25-proxy negatives mislabeled as embedding-distance — genuine embedding mining yields +1.6–2.0pp R@1 across two architecturally distinct encoders (Qwen2.5-Coder-3B, StarCoder2-3B).\\\\n\\\\n2. **Structure-grounded (dataflow) hard negatives provide conditional additional benefit beyond embedding mining, mediated by encoder representation saturation.** When pretrained encoder representations are compressed (pos_sim > 0.98, as in Qwen), random and embedding negatives become too easy; dataflow-disconnected negatives force discrimination along a structural dimension the encoder cannot separate via text alone. When representation space is healthy (pos_sim ~ 0.80, as in StarCoder), embedding mining alone suffices. Mechanism: neg_difficulty margin analysis (+17% Qwen, +28% StarCoder) provides quantitative evidence for this interaction.\\\\n\\\\n3. **Scope-bounded inter-procedural data-flow analysis via CodeQL is a scalable, model-independent method for computing structural connectivity.** 0% timeout, 78% connected-not-gold rate (Z%), 123/131 repos with output at full scale. Method is a general-purpose structural negative generator applicable beyond code (molecular networks, circuit topology, KG retrieval).\\\\n\\\\n## Story Spine\\\\n\\\\n- **Problem**: Repo-level code repair requires selecting relevant files from large codebases. Current retrievers rely on text similarity alone, but lexical similarity ≠ structural relevance. Hard negative mining is the standard approach to improve contrastive retrievers, yet the field lacks systematic understanding of what negative selection strategies work for code and why.\\\\n\\\\n- **Existing approaches & gaps**:\\\\n  - Text-based retrieval (SweRank, SWE-Fixer): blind to structural dependencies\\\\n  - Graph-guided at inference (LocAgent, RANGER, CodexGraph): structural graphs at inference only, no training signal\\\\n  - ARISE: data-flow but intra-procedural only (no call boundary crossing), runtime tool calls only\\\\n  - CoCoHaNeRe: reports embedding negatives harm code search — but uses BM25 proxy, not true embedding distance\\\\n  - Gap: no systematic study comparing negative mining strategies with proper controls, and no mechanistic explanation for when/why each strategy works\\\\n\\\\n- **Our contribution**: A systematic analysis of hard negative mining strategies for contrastive code retrieval. We (1) correct the misconception that embedding negatives harm performance (BM25 proxy ≠ embedding distance), (2) introduce structure-grounded negatives via inter-procedural dataflow and characterize when they provide additional benefit, and (3) provide mechanistic explanation via representation space saturation analysis.\\\\n\\\\n- **Headline result template**: \\\\\\\"True embedding-distance mining consistently improves code retrieval (+1.6–2.0pp R@1, 2 encoders), correcting prior reports of harm. Structure-grounded (dataflow) negatives provide further conditional benefit (+0.8–2.3pp) when encoder representations are saturated, with the interaction mechanism quantified via negative difficulty analysis.\\\\\\\"\\\\n\\\\n## Core Insight\\\\n\\\\nThe effectiveness of hard negative mining strategies depends on the encoder's representation geometry. When the pretrained space is saturated (high pos_sim → low margin between positive and negative), the encoder needs harder negatives from an orthogonal signal dimension (structure). When the space has healthy separation, embedding-distance mining alone captures sufficient difficulty gradient. This encoder-strategy interaction explains contradictory findings in prior work.\\\\n\\\\n## Dual-Pillar Motivation\\\\n\\\\n1. **Primary — Systematic analysis correcting misconceptions**: Prior work (CoCoHaNeRe) conflated BM25-proxy negatives with true embedding-distance negatives, leading to incorrect conclusions about hard negative mining for code. Our controlled comparison isolates the effect of each strategy.\\\\n2. **Secondary — Mechanistic explanation via representation geometry**: neg_difficulty analysis (margin distribution × strategy × encoder) provides explanatory depth beyond empirical comparison, enabling practitioners to predict which strategy suits their encoder without exhaustive experiments.\\\\n\\\\n## Formal Definition\\\\n\\\\nGiven retrieval domain D, structural graph G, similarity function s, query q:\\\\n**structure-grounded hard negative** = argmax_{x ∈ D : s(x,q) > τ ∧ ¬reachable_G(x,q)} s(x,q)\\\\n\\\\nThe structural graph is externally fixed and does not update with the encoder (drift-immune).\\\\n\\\\n## Title Options\\\\n\\\\n- Primary: \\\\\\\"What Makes Hard Negatives Work for Code Retrieval? A Systematic Study of Mining Strategies and Representation Geometry\\\\\\\"\\\\n- Alternative: \\\\\\\"StructFuse: When and Why Structure-Grounded Hard Negatives Improve Contrastive Code Retrieval\\\\\\\"\\\\n- Backup: \\\\\\\"Correcting Misconceptions in Hard Negative Mining for Code: Embedding Distance Helps, Structure Helps Conditionally\\\\\\\"\\\\n\\\\n## Venue Fit\\\\n\\\\n1. **EMNLP Main fit**: Empirical analysis + mechanistic insight papers are a strong EMNLP archetype (cf. \\\\\\\"Do Language Models...\\\\\\\" papers). Contribution is understanding, not just a new method.\\\\n2. **NLP audience**: Frame as contrastive learning methodology with code as instantiation. Representation geometry analysis generalizes beyond code.\\\\n3. **Against \\\\\\\"incremental\\\\\\\" criticism**: Paper corrects a misconception + provides mechanistic explanation + introduces new negative mining paradigm. Three contributions, not one marginal improvement.\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n| Concern | Response | Evidence |\\\\n|---------|----------|----------|\\\\n| Only 2 encoders — can you generalize? | n=2 is minimum for interaction claim; we frame as observation with mechanism, not universal law; cross-architecture (decoder vs encoder-decoder) strengthens it | plan_013 (done), m2_full runs |\\\\n| Temperature regime specificity | Ablate τ ∈ {0.05, 0.1, 0.2} | plan_014 |\\\\n| No downstream task evaluation | SWE-bench Lite end-to-end with LLM agent | plan_003 |\\\\n| Static vs dynamic mining confound | Clarify mining is static; add dynamic baseline | plan_015 |\\\\n| CodeQL scalability at larger scale | 0% timeout, 78% Z%, 123 repos; m1_reextract_v2 adds more | plan_006 (done) |\\\\n| Why not compare inference-time graph methods? | Complementary: they navigate at inference, we mine at training. Discuss relationship. | plan_017 |\\\\n| Single benchmark | Add RepoBench-R cross-file retrieval | plan_004 |\\\\n| Statistical significance | Bootstrap 95% CI for all comparisons; full M2 = 9 seeds × 3 strategies × 2 encoders | plan_016, m2_full |\\\\n| \\\\\\\"Complementary signal\\\\\\\" overstatement | Temper: \\\\\\\"conditionally beneficial\\\\\\\" not \\\\\\\"always complementary\\\\\\\" | Writing discipline |\\\\n| Missing related work | RepoFusion, GRACE, GraphCodeBERT, ANCE, curriculum HN mining | Writing task |\\\\n\\\\n## Evidence Status\\\\n\\\\n### Confirmed findings (basis for claims):\\\\n- D017: True embedding mining helps (+2.0pp Qwen, +1.6pp StarCoder) — corrects MVP BM25-proxy artifact\\\\n- D021/neg_difficulty: Qwen pos_sim=0.9855 (saturated), StarCoder pos_sim=0.7985 (healthy); margin differential explains strategy interaction\\\\n- m2_embed_verify (pilot): 3-strategy comparison confirms ranking (embedding > random, dataflow conditional)\\\\n- plan_013 (StarCoder pilot): Confirms cross-encoder pattern — embedding helps both, dataflow helps Qwen only\\\\n- plan_006: CodeQL scalability confirmed at 123-repo scale\\\\n\\\\n### In progress:\\\\n- m2_full_qwen: 9 seeds × 3 strategies (seed 1 running, best R@1=55.3% at step 1000)\\\\n- m2_full_starcoder: 9 seeds × 3 strategies (seed 1 running, R@1=45.4% at step 1000, still improving)\\\\n- m1_reextract_v2: expanded extraction for higher coverage\\\\n\\\\n### Planned (priority order):\\\\n- plan_003: SWE-bench Lite eval (biggest lever for paper strength)\\\\n- plan_014: Temperature ablation (Dream reviewer concern)\\\\n- plan_004: RepoBench-R second benchmark\\\\n- plan_015: Dynamic mining baseline\\\\n- plan_007/008/009: Additional ablations\\\\n\\\\n## Contingency (if full M2 results weaken claims)\\\\n\\\\n### All 18 runs confirm pilot pattern: Best case\\\\n- Full statistical power, paper as framed above\\\\n- Target: EMNLP Main\\\\n\\\\n### Dataflow benefit disappears even for Qwen at full scale: Pivot to 2-claim paper\\\\n- Drop Claim 2 to analysis observation\\\\n- Paper becomes: \\\\\\\"True embedding mining helps (correcting misconception) + CodeQL extraction is practical + representation geometry analysis explains prior contradictions\\\\\\\"\\\\n- Still publishable: correcting misconception + mechanistic analysis is sufficient for EMNLP Main\\\\n\\\\n### Embedding mining also loses advantage at full scale: Major reassessment needed\\\\n- Recheck data pipeline for bugs (full-scale data may have distribution differences)\\\\n- If confirmed: negative result paper — \\\\\\\"Why Hard Negative Mining Doesn't Scale for Code Retrieval\\\\\\\"\\\\n- Discuss with user before committing direction\\\\n\\\\n## Deprecated Claims (with reason)\\\\n\\\\n- ~~\\\\\\\"Embedding-distance hard negatives actively harm code retrieval\\\\\\\"~~ — FALSIFIED by D017. Original evidence (-27pp R@1) was from BM25-proxy negatives incorrectly labeled as embedding_distance in MVP. True embedding mining shows consistent improvement. Preserved here to prevent regression.\\\\n\\\", \\\"total_chars\\\": 9391, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "3cea786e-ecca-40e7-bb53-6f47274d7214",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — StructFuse\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Claims (3)\\\\n\\\\n1. **True embedding-distance hard negative mining consistently improves contrastive code retrieval over random baselines, correcting the prior misconception that embedding negatives harm performance.** The reported \\\\\\\"harm\\\\\\\" (CoCoHaNeRe-derived, -27pp R@1) was an artifact of BM25-proxy negatives mislabeled as embedding-distance — genuine embedding mining yields +1.6–2.0pp R@1 across two architecturally distinct encoders (Qwen2.5-Coder-3B, StarCoder2-3B).\\\\n\\\\n2. **Structure-grounded (dataflow) hard negatives provide conditional additional benefit beyond embedding mining, mediated by encoder representation saturation.** When pretrained encoder representations are compressed (pos_sim > 0.98, as in Qwen), random and embedding negatives become too easy; dataflow-disconnected negatives force discrimination along a structural dimension the encoder cannot separate via text alone. When representation space is healthy (pos_sim ~ 0.80, as in StarCoder), embedding mining alone suffices. Mechanism: neg_difficulty margin analysis (+17% Qwen, +28% StarCoder) provides quantitative evidence for this interaction.\\\\n\\\\n3. **Scope-bounded inter-procedural data-flow analysis via CodeQL is a scalable, model-independent method for computing structural connectivity.** 0% timeout, 78% connected-not-gold rate (Z%), 123/131 repos with output at full scale. Method is a general-purpose structural negative generator applicable beyond code (molecular networks, circuit topology, KG retrieval).\\\\n\\\\n## Story Spine\\\\n\\\\n- **Problem**: Repo-level code repair requires selecting relevant files from large codebases. Current retrievers rely on text similarity alone, but lexical similarity ≠ structural relevance. Hard negative mining is the standard approach to improve contrastive retrievers, yet the field lacks systematic understanding of what negative selection strategies work for code and why.\\\\n\\\\n- **Existing approaches & gaps**:\\\\n  - Text-based retrieval (SweRank, SWE-Fixer): blind to structural dependencies\\\\n  - Graph-guided at inference (LocAgent, RANGER, CodexGraph): structural graphs at inference only, no training signal\\\\n  - ARISE: data-flow but intra-procedural only (no call boundary crossing), runtime tool calls only\\\\n  - CoCoHaNeRe: reports embedding negatives harm code search — but uses BM25 proxy, not true embedding distance\\\\n  - Gap: no systematic study comparing negative mining strategies with proper controls, and no mechanistic explanation for when/why each strategy works\\\\n\\\\n- **Our contribution**: A systematic analysis of hard negative mining strategies for contrastive code retrieval. We (1) correct the misconception that embedding negatives harm performance (BM25 proxy ≠ embedding distance), (2) introduce structure-grounded negatives via inter-procedural dataflow and characterize when they provide additional benefit, and (3) provide mechanistic explanation via representation space saturation analysis.\\\\n\\\\n- **Headline result template**: \\\\\\\"True embedding-distance mining consistently improves code retrieval (+1.6–2.0pp R@1, 2 encoders), correcting prior reports of harm. Structure-grounded (dataflow) negatives provide further conditional benefit (+0.8–2.3pp) when encoder representations are saturated, with the interaction mechanism quantified via negative difficulty analysis.\\\\\\\"\\\\n\\\\n## Core Insight\\\\n\\\\nThe effectiveness of hard negative mining strategies depends on the encoder's representation geometry. When the pretrained space is saturated (high pos_sim → low margin between positive and negative), the encoder needs harder negatives from an orthogonal signal dimension (structure). When the space has healthy separation, embedding-distance mining alone captures sufficient difficulty gradient. This encoder-strategy interaction explains contradictory findings in prior work.\\\\n\\\\n## Dual-Pillar Motivation\\\\n\\\\n1. **Primary — Systematic analysis correcting misconceptions**: Prior work (CoCoHaNeRe) conflated BM25-proxy negatives with true embedding-distance negatives, leading to incorrect conclusions about hard negative mining for code. Our controlled comparison isolates the effect of each strategy.\\\\n2. **Secondary — Mechanistic explanation via representation geometry**: neg_difficulty analysis (margin distribution × strategy × encoder) provides explanatory depth beyond empirical comparison, enabling practitioners to predict which strategy suits their encoder without exhaustive experiments.\\\\n\\\\n## Formal Definition\\\\n\\\\nGiven retrieval domain D, structural graph G, similarity function s, query q:\\\\n**structure-grounded hard negative** = argmax_{x ∈ D : s(x,q) > τ ∧ ¬reachable_G(x,q)} s(x,q)\\\\n\\\\nThe structural graph is externally fixed and does not update with the encoder (drift-immune).\\\\n\\\\n## Title Options\\\\n\\\\n- Primary: \\\\\\\"What Makes Hard Negatives Work for Code Retrieval? A Systematic Study of Mining Strategies and Representation Geometry\\\\\\\"\\\\n- Alternative: \\\\\\\"StructFuse: When and Why Structure-Grounded Hard Negatives Improve Contrastive Code Retrieval\\\\\\\"\\\\n- Backup: \\\\\\\"Correcting Misconceptions in Hard Negative Mining for Code: Embedding Distance Helps, Structure Helps Conditionally\\\\\\\"\\\\n\\\\n## Venue Fit\\\\n\\\\n1. **EMNLP Main fit**: Empirical analysis + mechanistic insight papers are a strong EMNLP archetype (cf. \\\\\\\"Do Language Models...\\\\\\\" papers). Contribution is understanding, not just a new method.\\\\n2. **NLP audience**: Frame as contrastive learning methodology with code as instantiation. Representation geometry analysis generalizes beyond code.\\\\n3. **Against \\\\\\\"incremental\\\\\\\" criticism**: Paper corrects a misconception + provides mechanistic explanation + introduces new negative mining paradigm. Three contributions, not one marginal improvement.\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n| Concern | Response | Evidence |\\\\n|---------|----------|----------|\\\\n| Only 2 encoders — can you generalize? | n=2 is minimum for interaction claim; we frame as observation with mechanism, not universal law; cross-architecture (decoder vs encoder-decoder) strengthens it | plan_013 (done), m2_full runs |\\\\n| Temperature regime specificity | Ablate τ ∈ {0.05, 0.1, 0.2} | plan_014 |\\\\n| No downstream task evaluation | SWE-bench Lite end-to-end with LLM agent | plan_003 |\\\\n| Static vs dynamic mining confound | Clarify mining is static; add dynamic baseline | plan_015 |\\\\n| CodeQL scalability at larger scale | 0% timeout, 78% Z%, 123 repos; m1_reextract_v2 adds more | plan_006 (done) |\\\\n| Why not compare inference-time graph methods? | Complementary: they navigate at inference, we mine at training. Discuss relationship. | plan_017 |\\\\n| Single benchmark | Add RepoBench-R cross-file retrieval | plan_004 |\\\\n| Statistical significance | Bootstrap 95% CI for all comparisons; full M2 = 9 seeds × 3 strategies × 2 encoders | plan_016, m2_full |\\\\n| \\\\\\\"Complementary signal\\\\\\\" overstatement | Temper: \\\\\\\"conditionally beneficial\\\\\\\" not \\\\\\\"always complementary\\\\\\\" | Writing discipline |\\\\n| Missing related work | RepoFusion, GRACE, GraphCodeBERT, ANCE, curriculum HN mining | Writing task |\\\\n\\\\n## Evidence Status\\\\n\\\\n### Confirmed findings (basis for claims):\\\\n- D017: True embedding mining helps (+2.0pp Qwen, +1.6pp StarCoder) — corrects MVP BM25-proxy artifact\\\\n- D021/neg_difficulty: Qwen pos_sim=0.9855 (saturated), StarCoder pos_sim=0.7985 (healthy); margin differential explains strategy interaction\\\\n- m2_embed_verify (pilot): 3-strategy comparison confirms ranking (embedding > random, dataflow conditional)\\\\n- plan_013 (StarCoder pilot): Confirms cross-encoder pattern — embedding helps both, dataflow helps Qwen only\\\\n- plan_006: CodeQL scalability confirmed at 123-repo scale\\\\n\\\\n### In progress:\\\\n- m2_full_qwen: 9 seeds × 3 strategies (seed 1 running, best R@1=55.3% at step 1000)\\\\n- m2_full_starcoder: 9 seeds × 3 strategies (seed 1 running, R@1=45.4% at step 1000, still improving)\\\\n- m1_reextract_v2: expanded extraction for higher coverage\\\\n\\\\n### Planned (priority order):\\\\n- plan_003: SWE-bench Lite eval (biggest lever for paper strength)\\\\n- plan_014: Temperature ablation (Dream reviewer concern)\\\\n- plan_004: RepoBench-R second benchmark\\\\n- plan_015: Dynamic mining baseline\\\\n- plan_007/008/009: Additional ablations\\\\n\\\\n## Contingency (if full M2 results weaken claims)\\\\n\\\\n### All 18 runs confirm pilot pattern: Best case\\\\n- Full statistical power, paper as framed above\\\\n- Target: EMNLP Main\\\\n\\\\n### Dataflow benefit disappears even for Qwen at full scale: Pivot to 2-claim paper\\\\n- Drop Claim 2 to analysis observation\\\\n- Paper becomes: \\\\\\\"True embedding mining helps (correcting misconception) + CodeQL extraction is practical + representation geometry analysis explains prior contradictions\\\\\\\"\\\\n- Still publishable: correcting misconception + mechanistic analysis is sufficient for EMNLP Main\\\\n\\\\n### Embedding mining also loses advantage at full scale: Major reassessment needed\\\\n- Recheck data pipeline for bugs (full-scale data may have distribution differences)\\\\n- If confirmed: negative result paper — \\\\\\\"Why Hard Negative Mining Doesn't Scale for Code Retrieval\\\\\\\"\\\\n- Discuss with user before committing direction\\\\n\\\\n## Deprecated Claims (with reason)\\\\n\\\\n- ~~\\\\\\\"Embedding-distance hard negatives actively harm code retrieval\\\\\\\"~~ — FALSIFIED by D017. Original evidence (-27pp R@1) was from BM25-proxy negatives incorrectly labeled as embedding_distance in MVP. True embedding mining shows consistent improvement. Preserved here to prevent regression.\\\\n\\\", \\\"total_chars\\\": 9391, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/paper_framing.md\", \"content\": \"# Paper Framing — StructFuse\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main\\n- Deadline: ARR May 25, 2026\\n\\n## Core Claims (3)\\n\\n1. **True embedding-distance hard negative mining consistently improves contrastive code retrieval over random baselines, correcting the prior misconception that embedding negatives harm performance.** The reported \\\"harm\\\" (CoCoHaNeRe-derived, -27pp R@1) was an artifact of BM25-proxy negatives mislabeled as embedding-distance — genuine embedding mining yields +1.6–2.0pp R@1 across two architecturally distinct encoders (Qwen2.5-Coder-3B, StarCoder2-3B).\\n\\n2. **Structure-grounded (dataflow) hard negatives provide conditional additional benefit beyond embedding mining, mediated by encoder representation saturation.** When pretrained encoder representations are compressed (pos_sim > 0.98, as in Qwen), random and embedding negatives become too easy; dataflow-disconnected negatives force discrimination along a structural dimension the encoder cannot separate via text alone. When representation space is healthy (pos_sim ~ 0.80, as in StarCoder), embedding mining alone suffices. Mechanism: neg_difficulty margin analysis (+17% Qwen, +28% StarCoder) provides quantitative evidence for this interaction.\\n\\n3. **Scope-bounded inter-procedural data-flow analysis via CodeQL is a scalable, model-independent method for computing structural connectivity.** 0% timeout, 78% connected-not-gold rate (Z%), 123/131 repos with output at full scale. Method is a general-purpose structural negative generator applicable beyond code (molecular networks, circuit topology, KG retrieval).\\n\\n## Story Spine\\n\\n- **Problem**: Repo-level code repair requires selecting relevant files from large codebases. Current retrievers rely on text similarity alone, but lexical similarity ≠ structural relevance. Hard negative mining is the standard approach to improve contrastive retrievers, yet the field lacks systematic understanding of what negative selection strategies work for code and why.\\n\\n- **Existing approaches & gaps**:\\n  - Text-based retrieval (SweRank, SWE-Fixer): blind to structural dependencies\\n  - Graph-guided at inference (LocAgent, RANGER, CodexGraph): structural graphs at inference only, no training signal\\n  - ARISE: data-flow but intra-procedural only (no call boundary crossing), runtime tool calls only\\n  - CoCoHaNeRe: reports embedding negatives harm code search — but uses BM25 proxy, not true embedding distance\\n  - Gap: no systematic study comparing negative mining strategies with proper controls, and no mechanistic explanation for when/why each strategy works\\n\\n- **Our contribution**: A systematic analysis of hard negative mining strategies for contrastive code retrieval. We (1) correct the misconception that embedding negatives harm performance (BM25 proxy ≠ embedding distance), (2) introduce structure-grounded negatives via inter-procedural dataflow and characterize when they provide additional benefit, and (3) provide mechanistic explanation via representation space saturation analysis.\\n\\n- **Headline result template**: \\\"True embedding-distance mining consistently improves code retrieval (+1.6–2.0pp R@1, 2 encoders), correcting prior reports of harm. Structure-grounded (dataflow) negatives provide further conditional benefit (+0.8–2.3pp) when encoder representations are saturated, with the interaction mechanism quantified via negative difficulty analysis.\\\"\\n\\n## Core Insight\\n\\nThe effectiveness of hard negative mining strategies depends on the encoder's representation geometry. When the pretrained space is saturated (high pos_sim → low margin between positive and negative), the encoder needs harder negatives from an orthogonal signal dimension (structure). When the space has healthy separation, embedding-distance mining alone captures sufficient difficulty gradient. This encoder-strategy interaction explains contradictory findings in prior work.\\n\\n## Dual-Pillar Motivation\\n\\n1. **Primary — Systematic analysis correcting misconceptions**: Prior work (CoCoHaNeRe) conflated BM25-proxy negatives with true embedding-distance negatives, leading to incorrect conclusions about hard negative mining for code. Our controlled comparison isolates the effect of each strategy.\\n2. **Secondary — Mechanistic explanation via representation geometry**: neg_difficulty analysis (margin distribution × strategy × encoder) provides explanatory depth beyond empirical comparison, enabling practitioners to predict which strategy suits their encoder without exhaustive experiments.\\n\\n## Formal Definition\\n\\nGiven retrieval domain D, structural graph G, similarity function s, query q:\\n**structure-grounded hard negative** = argmax_{x ∈ D : s(x,q) > τ ∧ ¬reachable_G(x,q)} s(x,q)\\n\\nThe structural graph is externally fixed and does not update with the encoder (drift-immune).\\n\\n## Title Options\\n\\n- Primary: \\\"What Makes Hard Negatives Work for Code Retrieval? A Systematic Study of Mining Strategies and Representation Geometry\\\"\\n- Alternative: \\\"StructFuse: When and Why Structure-Grounded Hard Negatives Improve Contrastive Code Retrieval\\\"\\n- Backup: \\\"Correcting Misconceptions in Hard Negative Mining for Code: Embedding Distance Helps, Structure Helps Conditionally\\\"\\n\\n## Venue Fit\\n\\n1. **EMNLP Main fit**: Empirical analysis + mechanistic insight papers are a strong EMNLP archetype (cf. \\\"Do Language Models...\\\" papers). Contribution is understanding, not just a new method.\\n2. **NLP audience**: Frame as contrastive learning methodology with code as instantiation. Representation geometry analysis generalizes beyond code.\\n3. **Against \\\"incremental\\\" criticism**: Paper corrects a misconception + provides mechanistic explanation + introduces new negative mining paradigm. Three contributions, not one marginal improvement.\\n\\n## Anticipated Reviewer Concerns\\n\\n| Concern | Response | Evidence |\\n|---------|----------|----------|\\n| Only 2 encoders — can you generalize? | n=2 is minimum for interaction claim; we frame as observation with mechanism, not universal law; cross-architecture (decoder vs encoder-decoder) strengthens it | plan_013 (done), m2_full runs |\\n| Temperature regime specificity | Ablate τ ∈ {0.05, 0.1, 0.2} | plan_014 |\\n| No downstream task evaluation | SWE-bench Lite end-to-end with LLM agent | plan_003 |\\n| Static vs dynamic mining confound | Clarify mining is static; add dynamic baseline | plan_015 |\\n| CodeQL scalability at larger scale | 0% timeout, 78% Z%, 123 repos; m1_reextract_v2 adds more | plan_006 (done) |\\n| Why not compare inference-time graph methods? | Complementary: they navigate at inference, we mine at training. Discuss relationship. | plan_017 |\\n| Single benchmark | Add RepoBench-R cross-file retrieval | plan_004 |\\n| Statistical significance | Bootstrap 95% CI for all comparisons; full M2 = 9 seeds × 3 strategies × 2 encoders | plan_016, m2_full |\\n| \\\"Complementary signal\\\" overstatement | Temper: \\\"conditionally beneficial\\\" not \\\"always complementary\\\" | Writing discipline |\\n| Missing related work | RepoFusion, GRACE, GraphCodeBERT, ANCE, curriculum HN mining | Writing task |\\n\\n## Evidence Status\\n\\n### Confirmed findings (basis for claims):\\n- D017: True embedding mining helps (+2.0pp Qwen, +1.6pp StarCoder) — corrects MVP BM25-proxy artifact\\n- D021/neg_difficulty: Qwen pos_sim=0.9855 (saturated), StarCoder pos_sim=0.7985 (healthy); margin differential explains strategy interaction\\n- m2_embed_verify (pilot): 3-strategy comparison confirms ranking (embedding > random, dataflow conditional)\\n- plan_013 (StarCoder pilot): Confirms cross-encoder pattern — embedding helps both, dataflow helps Qwen only\\n- plan_006: CodeQL scalability confirmed at 123-repo scale\\n\\n### In progress:\\n- m2_full_qwen: 9 seeds × 3 strategies (seed 1 running, best R@1=55.3% at step 1000)\\n- m2_full_starcoder: 9 seeds × 3 strategies (seed 1 running, R@1=45.4% at step 1000, still improving)\\n- m1_reextract_v2: expanded extraction for higher coverage\\n\\n### Planned (priority order):\\n- plan_003: SWE-bench Lite eval (biggest lever for paper strength)\\n- plan_014: Temperature ablation (Dream reviewer concern)\\n- plan_004: RepoBench-R second benchmark\\n- plan_015: Dynamic mining baseline\\n- plan_007/008/009: Additional ablations\\n\\n## Contingency (if full M2 results weaken claims)\\n\\n### All 18 runs confirm pilot pattern: Best case\\n- Full statistical power, paper as framed above\\n- Target: EMNLP Main\\n\\n### Dataflow benefit disappears even for Qwen at full scale: Pivot to 2-claim paper\\n- Drop Claim 2 to analysis observation\\n- Paper becomes: \\\"True embedding mining helps (correcting misconception) + CodeQL extraction is practical + representation geometry analysis explains prior contradictions\\\"\\n- Still publishable: correcting misconception + mechanistic analysis is sufficient for EMNLP Main\\n\\n### Embedding mining also loses advantage at full scale: Major reassessment needed\\n- Recheck data pipeline for bugs (full-scale data may have distribution differences)\\n- If confirmed: negative result paper — \\\"Why Hard Negative Mining Doesn't Scale for Code Retrieval\\\"\\n- Discuss with user before committing direction\\n\\n## Deprecated Claims (with reason)\\n\\n- ~~\\\"Embedding-distance hard negatives actively harm code retrieval\\\"~~ — FALSIFIED by D017. Original evidence (-27pp R@1) was from BM25-proxy negatives incorrectly labeled as embedding_distance in MVP. True embedding mining shows consistent improvement. Preserved here to prevent regression.\\n\", \"total_chars\": 9391, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have both documents. Let me synthesize the key information:\n\nFrom the literature comparison (plan_017):\n- CodexGraph: inference-time graph DB (Neo4j/Cypher), symbol-level structural relations, no data-flow\n- LocAgent: inference-time directed heterogeneous graph, structural dependencies only, no data-flow\n- RepoGraph: line-level code graph, no data-flow\n- GraphCoder: CCG with CFG+CDG+DDG, but intra-procedural only\n- RANGER: inference-time knowledge graph\n\n\n- ARISE: intra-procedural data-flow with runtime tool calls\n- CodeGRAG/CodeRAG: graph-augmented retrieval\n\nStructFuse stands out in several ways: it extracts the graph once at training time using CodeQL (taking about 110 hours for 44K files), eliminating any inference overhead, whereas most competitors do this at inference time. It also handles inter-procedural data-flow across function boundaries with a 2-hop bounded approach, going beyond the intra-procedural scope of most existing methods. Rather than relying on structural graphs like call or inheritance relationships, StructFuse leverages semantic data-flow analysis. And it can serve as a first-stage retriever for inference-time agents, complementing their capabilities.\n\nThe core findings show that true embedding mining does help—correcting a misconception from prior work—and structure-grounded negatives provide conditional benefits depending on whether the encoder is already saturated. The CodeQL bounded inter-procedural approach scales well. Looking at the hard negative mining strategies systematically, I'm seeing gains of 1.6-2.0 percentage points in R@1, with positive similarity reaching 0.9855 for Qwen (already saturated) versus 0.7985 for StarCoder (still healthy). The data extraction takes roughly 110 hours for 44K instances with zero timeouts, and about 36% of the structural data comes from the inter-procedural scope.\n\nNow I'm drafting the Discussion section, making sure to use consistent terminology around \"bounded inter-procedural data-flow (2-hop call-graph scope)\" and grounding all quantitative claims in their sources.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "bf52517c-ca5d-45c1-88e9-58b2de89d5a5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MXZ7QpZesEZDzgGhYmRRe1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2771,
+                "cache_read_input_tokens": 28552,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2771
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I have both documents. Now I'll draft the Discussion section. Creating the output directory and writing the draft."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "d711acfd-08c7-4b8b-b1f7-6bdadbd77858",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MXZ7QpZesEZDzgGhYmRRe1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2771,
+                "cache_read_input_tokens": 28552,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2771
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VJLarGBGk5MH4SYr4ofQG8",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "mkdir -p /root/structfuse-context/artifacts/paper_drafts",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "df3a4c9a-a8f3-4b97-b300-c715e487e9b7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MXZ7QpZesEZDzgGhYmRRe1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2771,
+                "cache_read_input_tokens": 28552,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2771
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T10:19:06.050Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VJLarGBGk5MH4SYr4ofQG8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "12c73f55-88f6-45c7-a7b3-3cf8982ada47",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y2XZDwd9CGFoUXRaVZpqJv",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "cat > /root/structfuse-context/artifacts/paper_drafts/discussion_draft.md << 'ENDOFDRAFT'\n# Discussion (Draft)\n\n## Training-time vs Inference-time Structural Information\n\nA growing body of work integrates structural code information into retrieval and localization systems, but the *stage* at which structural information is consumed differs fundamentally across methods. CodexGraph (Liu et al., NAACL 2025) materializes a code property graph in a Neo4j database and exposes a Cypher query interface that an LLM agent invokes at inference time; each query triggers multiple rounds of LLM-guided graph traversal, incurring latency proportional to task complexity. LocAgent (Chen et al., ACL 2025) similarly constructs a directed heterogeneous graph with call, import, and inheritance edges, achieving 92.7% file-level localization on SWE-bench-Lite—but again through multi-turn LLM inference over the graph at query time. RANGER (Shah et al., 2025) and RepoGraph (Ouyang et al., ICLR 2025) follow the same paradigm: runtime graph construction and traversal with per-query computational cost that scales linearly with query volume. [源: plan_017]\n\nStructFuse takes a different approach by amortizing all structural computation into the training phase. We perform bounded inter-procedural data-flow analysis (2-hop call-graph scope) via CodeQL as a one-time extraction step—approximately 8.9 seconds per instance, totaling ~110 hours for 44K instances with zero timeouts—and use the resulting connectivity information exclusively for hard negative mining during contrastive training. At inference time, the trained encoder operates at standard embedding speed with no graph overhead. This design makes StructFuse suited for latency-sensitive, high-throughput retrieval scenarios where per-query graph traversal would be prohibitive. [源: m1_extraction / plan_006]\n\nThe two paradigms are complementary rather than competing. A StructFuse-trained encoder, whose representations already encode data-flow semantics, can serve as a first-stage retriever that narrows the candidate set before an inference-time graph agent (e.g., LocAgent or CodexGraph) performs targeted structural reranking. Evaluating such hybrid pipelines is a natural direction for future work. We note that direct numerical comparison between StructFuse and inference-time graph methods is methodologically challenging: they address different task interfaces (embedding-based ranked retrieval vs. multi-turn agentic localization) and have been evaluated on different benchmarks under different metrics. [源: plan_017]\n\n## Inter-procedural vs Intra-procedural Scope\n\nAmong methods that incorporate data-flow or control-flow analysis, scope varies considerably. GraphCoder (Liu et al., ASE 2024) constructs a Code Context Graph combining control-flow, control-dependence, and data-dependence subgraphs—the closest to StructFuse in leveraging data-flow semantics—but its analysis is strictly intra-procedural: no information crosses function boundaries. ARISE (Seddik & Fard, 2026) performs repository-level graph construction with data-flow edges, yet its data-flow analysis is also intra-procedural, limited to within-function def-use chains, with cross-function relationships captured only through structural edges (call, inheritance). CodexGraph and LocAgent capture call graphs and inheritance hierarchies but model no data-flow semantics at all—edges represent syntactic relationships (who calls whom), not how values propagate. [源: plan_017]\n\nStructFuse occupies a middle ground: bounded inter-procedural data-flow analysis with a 2-hop call-graph scope. This design crosses function boundaries to capture indirect data dependencies (e.g., a value defined in function A that flows through function B to affect function C) while remaining computationally tractable. Our plan_006 analysis shows that 2-hop scoping covers Z=40.8% of query-candidate pairs with structural connectivity, with median coverage reaching 96% for extra-large repositories where inter-procedural dependencies are most prevalent. The bounding trades completeness for scalability: deeper call chains (>2 hops) are truncated, but the resulting extraction completes with 0% timeout rate across 123 repositories. Exploring larger hop bounds (3-hop and beyond) via plan_007 ablation remains a direction for future investigation. [源: plan_006 / m1_extraction]\n\n## Limitations\n\n**Bounded inter-procedural scope.** The 2-hop call-graph bounding in our CodeQL extraction truncates data-flow paths that traverse more than two function boundaries. While 2-hop coverage reaches Z=40.8% overall and is high for large repositories (median 96% for XL repos), deep call chains characteristic of certain architectural patterns (e.g., deeply layered middleware stacks, recursive visitor patterns) may be incompletely captured. The planned hop-count ablation (plan_007) will quantify the marginal value of extending the analysis boundary, though we expect diminishing returns as longer paths introduce noise from increasingly indirect dependencies. [源: plan_006]\n\n**Language and tooling constraints.** Our structural extraction relies on CodeQL, which supports a fixed set of languages (Python, Java, JavaScript, C/C++, Go, Ruby, C#, Swift). For languages outside this set, alternative static analysis frameworks (e.g., tree-sitter for syntax, Joern for data-flow) would be required, and the quality of bounded inter-procedural data-flow analysis may differ. The method's core principle—using structural connectivity for training-time negative mining—is language-agnostic, but the specific extraction pipeline is not. [源: m1_extraction]\n\n**Structural data coverage.** In the current M1 extraction, 36% of instances yield structural data, meaning 64% lack data-flow connectivity information and fall back to non-structural negative mining strategies. This rate reflects runtime extraction failures rather than a fundamental limitation of the approach; a planned re-extraction (m1_reextract_v2) with improved error handling is expected to raise coverage substantially. Nonetheless, even at full coverage, instances from small or self-contained repositories may genuinely lack inter-procedural data-flow paths, limiting the applicability of structure-grounded negatives for those cases. [源: m1_extraction / registry]\n\n**Statistical power.** Our current results are based on n=3 random seeds per configuration, yielding df=2 for pairwise comparisons. This limits statistical power and increases Type II error risk—observed effect sizes (+1.6–2.0pp R@1 for embedding mining, +0.8–2.3pp for dataflow negatives on Qwen) may not reach conventional significance thresholds. The full M2 experimental matrix (9 seeds × 3 strategies × 2 encoders) is in progress and will provide adequate power for bootstrap confidence interval estimation. Until then, we characterize our findings as observed patterns with mechanistic support rather than statistically confirmed effects. [源: m2_full / plan_016]\nENDOFDRAFT",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "25476b58-e9a9-4179-ad9d-6d9c49741fd9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QLMJM3L7xUwfHGRLDHxHrC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 823,
+                "cache_read_input_tokens": 31323,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 823
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T10:19:53.103Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y2XZDwd9CGFoUXRaVZpqJv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "bfc84040-3457-4b76-a451-3a5d2b7dab77",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证文件写入成功。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "e5f762a7-af04-4567-ad4e-a9f7f32860f6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RGayHu2eYLaByyRifqpqEN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1800,
+                "cache_read_input_tokens": 32146,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1800
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RRoT7ojKE2XJxDkeWt7Qq2",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-42106",
+                "command": "wc -l /root/structfuse-context/artifacts/paper_drafts/discussion_draft.md",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "0d5f47fa-ecba-4400-a67d-fcc391de32f9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RGayHu2eYLaByyRifqpqEN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1800,
+                "cache_read_input_tokens": 32146,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1800
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T10:19:58.641Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RRoT7ojKE2XJxDkeWt7Qq2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"25 /root/structfuse-context/artifacts/paper_drafts/discussion_draft.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "35d5b346-9da9-4815-812c-61f2516a8a5e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"25 /root/structfuse-context/artifacts/paper_drafts/discussion_draft.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"25 /root/structfuse-context/artifacts/paper_drafts/discussion_draft.md\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Discussion 草稿已写入 `/root/structfuse-context/artifacts/paper_drafts/discussion_draft.md`。\n\n核心论点：\n\n1. **Training-time vs Inference-time**：StructFuse 将结构计算一次性摊销到训练阶段（~110h, 0 timeout），推理零开销；CodexGraph/LocAgent/RANGER 每次查询需图遍历+LLM调用。两种范式互补——StructFuse encoder 可作 first-stage retriever 缩小搜索空间。直接数值对比因任务接口和评测基准不同而不恰当。\n\n2. **Inter- vs Intra-procedural**：GraphCoder/ARISE 仅 intra-procedural data-flow，CodexGraph/LocAgent 无 data-flow。StructFuse 的 2-hop bounded inter-procedural 在覆盖率（Z=40.8%，XL repos 96%）和可扩展性（0% timeout）间取得平衡。\n\n3. **Limitations**（4点）：2-hop 截断深调用链；CodeQL 语言限制；36% structural data rate（re-extraction 可改善）；n=3 seeds 统计功效不足，待 M2 full 补齐。所有定量 claim 已标注来源，强度词与 evidence 匹配（未用 \"significantly\"/\"consistently\"）。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "uuid": "06b19350-2ec5-4fdf-a5e1-b35b3456a189",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NJxgLRo2jEqLa3s5u5CMec",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 235,
+                "cache_read_input_tokens": 33946,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 235
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Discussion 草稿已写入 `/root/structfuse-context/artifacts/paper_drafts/discussion_draft.md`。\n\n核心论点：\n\n1. **Training-time vs Inference-time**：StructFuse 将结构计算一次性摊销到训练阶段（~110h, 0 timeout），推理零开销；CodexGraph/LocAgent/RANGER 每次查询需图遍历+LLM调用。两种范式互补——StructFuse encoder 可作 first-stage retriever 缩小搜索空间。直接数值对比因任务接口和评测基准不同而不恰当。\n\n2. **Inter- vs Intra-procedural**：GraphCoder/ARISE 仅 intra-procedural data-flow，CodexGraph/LocAgent 无 data-flow。StructFuse 的 2-hop bounded inter-procedural 在覆盖率（Z=40.8%，XL repos 96%）和可扩展性（0% timeout）间取得平衡。\n\n3. **Limitations**（4点）：2-hop 截断深调用链；CodeQL 语言限制；36% structural data rate（re-extraction 可改善）；n=3 seeds 统计功效不足，待 M2 full 补齐。所有定量 claim 已标注来源，强度词与 evidence 匹配（未用 \"significantly\"/\"consistently\"）。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 111749,
+            "duration_api_ms": 110353,
+            "num_turns": 12,
+            "stop_reason": "end_turn",
+            "session_id": "c678dc8f-7caa-4992-ac75-02004299cda9",
+            "total_cost_usd": 0.3615545,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 22340,
+              "cache_read_input_tokens": 241083,
+              "output_tokens": 3982,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 22340,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 383,
+                  "cache_read_input_tokens": 33946,
+                  "cache_creation_input_tokens": 235,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 235
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1698,
+                "outputTokens": 14,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001768,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 3982,
+                "cacheReadInputTokens": 241083,
+                "cacheCreationInputTokens": 22340,
+                "webSearchRequests": 0,
+                "costUSD": 0.3597865,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "c213d117-502b-46e7-8d68-e31cca7ac164"
+          },
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 36
+    }
+  ],
+  "readable_path": "readable/worker-executions/writing-discussion-draft.md"
+}

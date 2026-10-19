@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "122eb1ee0012d5166b13",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "eval repobench r prep",
+  "task_key": "worker_eval_repobench_r_prep_20260516T074605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_repobench_r_prep_20260516T074605_result.json",
+    "occurrence": 1,
+    "bytes": 4048,
+    "sha256": "ffa3cfeedf642fc3843c6cfa0a6abff79aa93dc55d21a53f39021a651cbdc99c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 成功。脚本正常工作，模型加载、数据加载、检索评估、bootstrap CI 全部通过。\n\n---\n\n## 总结\n\n### 1. Eval 脚本审查\n\n**路径**: `/root/structfuse/evaluation/eval_repobench.py`\n\n- **输入**: RepoBench-R gzipped pickle 文件（python/java × cff/cfr）\n- **Checkpoint**: 需要含 `model.pt` + `training_config.json` + tokenizer 文件的目录\n- **输出**: R@1, R@5, R@10, MRR + 95% bootstrap CI + per-difficulty (easy/hard) 分解\n- **已支持多 seed**: `--batch-mode` 可批量评估同一目录下所有 checkpoint，输出 summary 对比表\n- **CI 已内置**: `--n-bootstrap 1000` 默认就有 95% CI\n\n### 2. Checkpoint 可用性 ✓\n\n所有需要的 `best_by_val_loss` 均存在：\n- `random_s42`, `random_s43`, `random_s44`\n- `embedding_distance_s43`, `embedding_distance_s44`\n- 额外还有 `dataflow_aware_s43`, `dataflow_aware_s44`\n\n路径: `/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/{name}/best_by_val_loss/`\n\n### 3. GPU 可行性\n\n| GPU | 已用 | 剩余 | 结论 |\n|-----|------|------|------|\n| cuda:0 | 81 GiB / 98 GiB | ~17 GiB | 可行但紧张（训练进程 3 个） |\n| cuda:1 | 54 GiB / 98 GiB | **~44 GiB** | **充裕，推荐用 cuda:1** |\n\nQwen2.5-Coder-3B + LoRA 推理约 6-8 GiB，**可以在 cuda:1 上与现有训练并行**，无需等待。\n\n### 4. RepoBench-R 数据 ✓\n\n`/root/autodl-tmp/structfuse/data/repobench/data/` 下 4 个文件全部就绪：\n- `python_cff.gz`, `python_cfr.gz`, `java_cff.gz`, `java_cfr.gz`\n\n### 5. 完整执行命令\n\n每个 checkpoint 单独运行（用 `--gpu 1`）：\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/structfuse\n\n# random seeds\nfor seed in 42 43 44; do\n  python evaluation/eval_repobench.py \\\n    --checkpoint-path /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s${seed}/best_by_val_loss \\\n    --language both --split both --gpu 1 --n-bootstrap 1000 \\\n    --output /root/autodl-tmp/structfuse/eval_results/repobench_random_s${seed}.json\ndone\n\n# embedding_distance seeds\nfor seed in 43 44; do\n  python evaluation/eval_repobench.py \\\n    --checkpoint-path /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/embedding_distance_s${seed}/best_by_val_loss \\\n    --language both --split both --gpu 1 --n-bootstrap 1000 \\\n    --output /root/autodl-tmp/structfuse/eval_results/repobench_embed_dist_s${seed}.json\ndone\n\n# dataflow_aware seeds (bonus)\nfor seed in 43 44; do\n  python evaluation/eval_repobench.py \\\n    --checkpoint-path /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/dataflow_aware_s${seed}/best_by_val_loss \\\n    --language both --split both --gpu 1 --n-bootstrap 1000 \\\n    --output /root/autodl-tmp/structfuse/eval_results/repobench_dataflow_s${seed}.json\ndone\n```\n\n或用 batch-mode 一次性跑全部：\n```bash\npython evaluation/eval_repobench.py \\\n  --checkpoint-path /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen \\\n  --batch-mode --language both --split both --gpu 1 --n-bootstrap 1000 \\\n  --output /root/autodl-tmp/structfuse/eval_results/repobench_all.json\n```\n\n⚠️ **注意**: `--batch-mode` 的 `discover_checkpoints` 只搜一级子目录，而实际结构是二级（`random_s42/best_by_val_loss/`），所以需要逐个 checkpoint 跑或修改 discover 逻辑。\n\n### 6. 缺失/需修改清单\n\n| 项目 | 状态 |\n|------|------|\n| eval 脚本 | ✓ 就绪 |\n| RepoBench 数据 | ✓ 就绪 |\n| Checkpoint | ✓ 全部就绪 |\n| 多 seed CI 报告 | ✓ 单 checkpoint 内 bootstrap CI 已支持；**跨 seed 聚合需手动计算 mean±std** |\n| `--batch-mode` discover 深度 | ⚠️ 只搜一级目录，对 `best_by_val_loss` 二级结构无效——需逐个指定路径 |\n| GPU 并行可行性 | ✓ cuda:1 有 44 GiB 空余，可立即并行 |\n| 依赖 | ✓ 无额外依赖（dry-run 已验证） |\n\n**结论：可以立即在 cuda:1 上启动 RepoBench-R 评估，无需等训练完成。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-repobench-r-prep.md"
+}

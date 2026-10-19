@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d18d8e5e9f6b78d23e57",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "fix d041 method drafts",
+  "task_key": "worker_fix_d041-method-drafts_20260515T020954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d041-method-drafts_20260515T020954_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "e2670e28ab20f39b98c76543d55b8a488a4c6082ec0074e23d209ec32503964d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改已完成且验证通过。`experiment_setup_v1.md` 无 dataflow-aware 排序描述，无需修改。\n\n修改汇总：\n\n| 文件 | 修改内容 |\n|------|---------|\n| **method_v1.md** (×2) | 公式 `sim(E_θ0)` → `BM25(q,f)`；约束 `f ∉ R_G` → `f ∈ R_G`；\"structurally disconnected\" → \"structurally connected\"；`E*` 改为 2-hop bounded；Difficulty Gradient 段同步修正 |\n| **experiments_v1.md** (×2) | \"selecting by embedding distance\" → \"rank them by BM25 to select top-K negatives\" |\n| **introduction_v2.md** (×2) | \"filters structurally connected files from the embedding-distance candidate set\" → \"selects negatives from structurally connected files ranked by BM25\" |\n| **experiment_setup_v1.md** | 无改动（不含 dataflow-aware 排序描述） |\n\n所有修改文件末尾已添加 `<!-- D041 dataflow-aware BM25 fix: 2026-05-15 -->`。embedding-distance 策略描述未改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d041-method-drafts.md"
+}

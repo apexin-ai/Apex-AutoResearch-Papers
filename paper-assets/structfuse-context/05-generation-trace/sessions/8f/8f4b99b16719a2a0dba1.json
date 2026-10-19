@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f4b99b16719a2a0dba1",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ssh starcoder eval1500 check",
+  "task_key": "worker_ssh_starcoder_eval1500_check_20260514T053507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_starcoder_eval1500_check_20260514T053507_result.json",
+    "occurrence": 1,
+    "bytes": 939,
+    "sha256": "1aa4cbf4579b9f6561bac1a7e3177bfd9909498e669814f214b22bc40f9f2157"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval@1500 已出，且 **eval@2000 马上要来了**（当前 step 2000）。\n\n## StarCoder random_s42 eval 进度\n\n| step | val_loss | R@1 | R@5 | 趋势 |\n|------|----------|-----|-----|------|\n| 500 | 0.6194 | 0.4352 | 0.9054 | baseline |\n| 1000 | **0.6134** | **0.4537** | 0.9201 | best |\n| 1500 | 0.6528 | 0.4490 | 0.9057 | 下降 |\n\n**结论：StarCoder 也过拟合了。**\n\n- eval@1500 val_loss 从 0.6134 升到 0.6528（+6.4%），R@1 从 0.4537 降到 0.4490（-1.0%），R@5 从 0.9201 降到 0.9057\n- best 仍在 eval@1000：val_loss=0.6134, R@1=0.4537\n- 进入 epoch 2 后 val_loss 明显反弹，early_stopping 计数器已触发（\"val_loss not improved (1/0)\"）\n- 当前 step 2000，eval@2000 即将出。如果继续恶化，patience=3 的话还有 2 次机会\n\n训练 loss 在持续下降（step 1950 loss=0.0509），但 val_loss 反升，典型的过拟合模式，和 Qwen 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-starcoder-eval1500-check.md"
+}

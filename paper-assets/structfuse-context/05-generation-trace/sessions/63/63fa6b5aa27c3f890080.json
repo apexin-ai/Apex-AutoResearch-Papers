@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "63fa6b5aa27c3f890080",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "code starcoder2 support",
+  "task_key": "worker_code_starcoder2_support_20260513T000505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_starcoder2_support_20260513T000505.log",
+    "occurrence": 1,
+    "bytes": 673121,
+    "sha256": "b896b45ed6c1e556ac3d267cca7d13641bf65e4cbadaee042ebe12139232cd98"
+  },
+  "statistics": {
+    "messages": 456,
+    "user_turns": 0,
+    "tool_calls": 193,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 66,
+      "tool_call": 193,
+      "tool_result": 193,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 456,
+      "chunks": [
+        {
+          "path": "63fa6b5aa27c3f890080-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "63fa6b5aa27c3f890080-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "63fa6b5aa27c3f890080-part-0003.json",
+          "message_count": 96
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-starcoder2-support.md"
+}

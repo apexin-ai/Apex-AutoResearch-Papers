@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35d0d16ebd8c4b28a9ea",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "analysis plan 005 stratified v2",
+  "task_key": "worker_analysis_plan_005_stratified_v2_20260514T202757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_005_stratified_v2_20260514T202757_result.json",
+    "occurrence": 1,
+    "bytes": 2717,
+    "sha256": "6815ea6a63995300de6f5d80e7d4751d07db0ed853a33ef92964dc37fad06179"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 验证通过，所有输出完整。汇报如下：\n\n---\n\n## 汇报\n\n### 1. 脚本信息\n\n- **路径**: `/root/structfuse/evaluation/analyze_stratified.py` (910 行)\n- **关键参数**:\n  - `--m1-data` (required): M1 all.jsonl 路径\n  - `--output-dir` (required): 输出目录\n  - `--predictions-dir` / `--checkpoints-dir` / `--dry-run`: 三选一数据来源\n  - `--val-data-dir`: val JSONL 目录（默认 `/root/autodl-tmp/structfuse/full_m2_training_data`）\n  - `--dataflow-graph`: dataflow_graph.json 路径（启用 structural data 维度）\n  - `--seeds`: 默认 `42,43,44`\n  - `--n-bootstrap`: bootstrap CI 次数，默认 1000\n  - `--device`: 默认 `cuda`\n\n### 2. 5 个分层维度 — 全部已实现\n\n| 维度 | 状态 | bins |\n|------|------|------|\n| repo_size | ✅ | small(<50), medium(50-200), large(200-500), xlarge(500+) |\n| pool_size | ✅ | small(<20), medium(20-40), large(40-51) |\n| query-pos similarity | ✅ | low(<0.3), medium(0.3-0.6), high(0.6+) |\n| structural data availability (dataflow) | ✅ | sparse(<2 edges), moderate(2-10), rich(10+) |\n| neg_difficulty quartile | ✅ | Q1_easy, Q2, Q3, Q4_hard |\n\n### 3. GPU 需求\n\n- `--dry-run` 模式: **CPU 即可**（mock predictions + text-overlap similarity）\n- `--checkpoints-dir` 模式: **需要 GPU**（加载模型做 forward pass） → 当前 GPU 被训练占用，**阻塞**\n- `--predictions-dir` 模式: **CPU 即可**，但目前无预计算 predictions 文件\n\n### 4. dry-run 执行结果\n\n已成功运行（seeds=42,43, n_bootstrap=200, CPU, 27秒完成），产出:\n- `/root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_results.json`\n- `/root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_summary.csv`\n- `/root/autodl-tmp/structfuse/stratified_analysis_dryrun/stratified_plots.pdf`\n\nCSV 覆盖全部 5 维度 × 3 策略，含 bootstrap 95% CI 和 delta 对比。Pipeline 端到端验证通过。\n\n### 5. 真实数据运行阻塞\n\n**阻塞原因**: 只有 `random_s42/43/44` 的 checkpoints 存在（`/root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/`），缺少 `embedding_distance_s*` 和 `dataflow_aware_s*` checkpoints。且 checkpoint 模式需要 GPU。\n\n**解决方案**（优先级排序）:\n1. 等当前训练完成后，用 `eval_retrieval.py` 对已有 checkpoints 生成 per-instance predictions JSON，然后用 `--predictions-dir` 在 CPU 上跑\n2. 如果 embedding_distance / dataflow_aware 策略有训练计划，等 checkpoints 产出后用 `--checkpoints-dir` 跑完整对比\n3. 只分析 random 策略的分层特征（不做策略间对比），可用现有 checkpoints + GPU 空闲时段执行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-005-stratified-v2.md"
+}

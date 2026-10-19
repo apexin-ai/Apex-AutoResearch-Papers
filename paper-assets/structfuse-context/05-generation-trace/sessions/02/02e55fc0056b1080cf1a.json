@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02e55fc0056b1080cf1a",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops bjb1 clone repos",
+  "task_key": "worker_ops_bjb1-clone-repos_20260513T112059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1-clone-repos_20260513T112059_result.json",
+    "occurrence": 1,
+    "bytes": 199,
+    "sha256": "bae01d250da828d10d3673cf15d22de88d22d1b4a2b064cce58a23f3d6380a63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Clone 全部完成。最终结果：\n\n- **Clone: 123/123 成功，0 失败**\n- **Checkout: 123/123 成功，0 失败**\n- **总大小: 3.2GB**\n- **磁盘剩余: 170GB（充裕）**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-clone-repos.md"
+}

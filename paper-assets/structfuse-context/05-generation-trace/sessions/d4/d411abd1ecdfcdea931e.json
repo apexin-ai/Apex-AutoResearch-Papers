@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d411abd1ecdfcdea931e",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops monitor qwen dataflow s43 progress",
+  "task_key": "worker_ops_monitor-qwen-dataflow-s43-progress_20260515T181558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor-qwen-dataflow-s43-progress_20260515T181558_result.json",
+    "occurrence": 1,
+    "bytes": 900,
+    "sha256": "fdf713611d0e3d66af969408e9fe579e7de87d1ddba9b9a49ac2e66aac197cb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**dataflow_s43 状态报告：**\n\n- **当前 step**: 550 / 2810 (epoch 1)\n- **训练速度**: ~229 steps/h（与预期 228 一致）\n- **唯一 eval 数据点**: eval@500 — val_loss=0.4617, R@1=0.5495, R@5=0.9728, R@10=1.0\n\n**R@1 对比（@step 500）：**\n\n| 策略 | R@1 @500 | Best R@1 |\n|------|----------|----------|\n| random_s43 | — | 0.5554 (step 1500) |\n| embed_s43 | — | 0.5606 (step 1500) |\n| **dataflow_s43** | **0.5495** | 进行中 |\n\ndataflow_s43 @500 的 R@1=0.5495 略低于 random/embed 的最终 best，但这是第一个 eval 点，后续可能提升。\n\n**ETA：**\n- eval@1000: ~2h 后（约 step 1000 时触发）\n- 训练完成（2810 steps）: ~9.9h 后\n\n**无 early stopping 迹象** — 目前只有 1 个 eval 点，patience=2 尚不可能触发。\n\n无新 eval 数据需要更新 registry，当前 metrics 与上次检查一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-qwen-dataflow-s43-progress.md"
+}

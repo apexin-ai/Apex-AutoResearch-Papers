@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44c767825a3065c0280f",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops deploy build script bjb1",
+  "task_key": "worker_ops_deploy-build-script-bjb1_20260513T114703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deploy-build-script-bjb1_20260513T114703_result.json",
+    "occurrence": 1,
+    "bytes": 805,
+    "sha256": "d270c7675f52256b4c66c9451e9de8517eb2781727951c2f66cd1e0861953ec7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 1 就绪，汇报：\n\n**脚本部署** — 3 个脚本均已写入 `/root/structfuse/scripts/` 并设置 `+x`：\n- `build_full_m2_data.sh` (3453B)\n- `run_full_m2_training.sh` (5039B)\n- `schedule_m2_runs.sh` (4433B)\n\n**依赖检查** — 全部通过：\n| 依赖 | 状态 |\n|------|------|\n| `build_m1_training_data.py` | 存在 (20944B) |\n| Qwen2.5-Coder-3B `config.json` | 存在 |\n| `all.jsonl` | 存在 (6.1GB) |\n| `repos/` 目录 | 存在，~120 个仓库（双下划线命名） |\n\n**Dry-run 语法检查** — 3 个脚本 `bash -n` 全部 `SYNTAX_OK`。\n\n**build_m1_training_data.py 参数** — 与 `build_full_m2_data.sh` 调用一致：`--extraction-dir`, `--repos-dir`, `--output-dir`, `--seed`, `--model-path` 全部匹配。\n\n可以启动数据构建。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-build-script-bjb1.md"
+}

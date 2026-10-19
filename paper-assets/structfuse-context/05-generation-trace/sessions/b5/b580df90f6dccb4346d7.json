@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b580df90f6dccb4346d7",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops plan013 add early stopping",
+  "task_key": "worker_ops_plan013-add-early-stopping_20260513T051801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan013-add-early-stopping_20260513T051801_result.json",
+    "occurrence": 1,
+    "bytes": 241,
+    "sha256": "3a60d85fed36b6a17bff5a8ebad51a2d164ffee87fe236b2b134d3cf781d16ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- Wrapper 脚本 `/root/structfuse/run_plan013_starcoder.sh` 已添加 `--early-stopping-patience 3`（第 55 行）\n- 旧训练已终止，新训练已提交，PID: **20813**，tmux session: `plan_013_starcoder`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan013-add-early-stopping.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a5abc6caca1792767e0",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "prep swebench eval readiness",
+  "task_key": "worker_prep_swebench_eval_readiness_20260514T080045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_swebench_eval_readiness_20260514T080045_result.json",
+    "occurrence": 1,
+    "bytes": 643,
+    "sha256": "dc3ad1de40cfcabc9aa3850ea1f79b070dda3fe8c741d70eb58a41218a107e99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/swebench_eval_readiness.md`。\n\n**总结**: 11 项检查中 10 项通过，唯一缺失项是 `dataflow_aware_s42` checkpoint（等 M2 训练完成）。pipeline 其余部分完全就绪：\n\n- 数据（300 test instances）和 HF 缓存就绪，12/12 repos 已 clone\n- 评估脚本、所有 Python 依赖、基座模型、random_s42 checkpoint 均到位\n- 2× RTX PRO 6000 Blackwell (98GB)，磁盘余 90GB，资源充足\n- 预估评估耗时 2.5-5 小时（300 instances, 含 repo checkout + batch encoding）\n- 可立即用 random_s42 跑 baseline，或先 `--dry-run` 验证 pipeline 逻辑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-swebench-eval-readiness.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a60abd97995353dbd0f7",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "check gpu status 20260514",
+  "task_key": "worker_check_gpu_status_20260514_20260514T180700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu_status_20260514_20260514T180700_result.json",
+    "occurrence": 1,
+    "bytes": 460,
+    "sha256": "e9fec0d05e1728f979b13e914ada9365ef19ed88d41050c9d579cfa26457770b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/status_check_20260514.md`。\n\n**汇总**：\n- **cuda:0 (Qwen)**: random_s44 刚启动（2/9），上一轮 s43 recall@1=0.5501。剩余 8 runs，预计 5月17日完成\n- **cuda:1 (StarCoder)**: random_s43 刚启动（1/8），剩余 8 runs，预计 5月17日完成\n- **m1_reextract_v2**: 66/82 groups 完成 (80.5%)，预计今天 07:00-08:00 CST 完成\n- 两张 GPU 均 100% 利用率，全部任务正常运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-status-20260514.md"
+}

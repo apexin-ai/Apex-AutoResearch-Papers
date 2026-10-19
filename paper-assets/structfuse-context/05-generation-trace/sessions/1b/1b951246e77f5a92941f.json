@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b951246e77f5a92941f",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "data bm25 precompute",
+  "task_key": "worker_data_bm25_precompute_20260512T111113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_bm25_precompute_20260512T111113_result.json",
+    "occurrence": 1,
+    "bytes": 1285,
+    "sha256": "29d284e1804fe4d845630ba81b648b3b56d1fc38882f80a14c18b23d50cd808a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**10 个 repos 全部处理完毕**，总耗时约 31.5 秒。\n\n| Repo | 文件数 | BM25 Mean ± Std | Max | 耗时 |\n|------|--------|-----------------|-----|------|\n| black | 286 | 887.9 ± 8974.2 | 442297.0 | 9.6s |\n| click | 40 | 831.9 ± 1795.8 | 14010.5 | 0.6s |\n| fastapi | 440 | 311.0 ± 1769.1 | 47647.9 | 6.7s |\n| flask | 53 | 572.8 ± 1016.5 | 7367.8 | 0.5s |\n| httpx | 26 | 636.6 ± 861.0 | 5745.5 | 0.2s |\n| pydantic | 192 | 1472.4 ± 2793.6 | 25905.7 | 6.6s |\n| pytest | 132 | 1389.9 ± 2320.2 | 26252.3 | 3.8s |\n| requests | 27 | 459.2 ± 731.3 | 4359.7 | 0.2s |\n| rich | 148 | 566.6 ± 1203.4 | 11217.0 | 2.0s |\n| typer | 285 | 138.7 ± 462.0 | 9474.7 | 1.3s |\n\n**产出文件**（均在 `/root/structfuse/mvp_data/bm25/`）：\n- 10 个 per-repo JSON：`<repo>_bm25.json`（含文件列表 + top-20 pairwise scores）\n- `bm25_all.jsonl`：32,580 条 JSONL 记录\n- `bm25_summary.json`：统计摘要\n\n**脚本位置**：`/root/structfuse/extraction/precompute_bm25.py`\n\n**问题**：无。BM25 分数分布高度右偏（std >> mean），符合预期——大部分文件对相关性低，少数高度相关文件对得分极高。black 的 max 异常高（442K），可能由某个超长文件导致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-bm25-precompute.md"
+}

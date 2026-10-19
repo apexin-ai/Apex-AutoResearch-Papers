@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be04fe8ad351ee7ec52d",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops urgent disk cleanup",
+  "task_key": "worker_ops_urgent_disk_cleanup_20260513T004445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_disk_cleanup_20260513T004445_result.json",
+    "occurrence": 1,
+    "bytes": 245,
+    "sha256": "01dd36413ed37ea7e1f7285987b7a12a25ea83468f1fcdd9ba238725b238912a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理后可用空间 **39GB**，已超过 30GB 阈值，无需进一步清理。\n\n| 操作 | 状态 |\n|------|------|\n| 删除 StarCoder2 缓存 | 完成 |\n| 删除 50repo_repos | 完成 |\n| 可用空间 | 39GB (78% used) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-disk-cleanup.md"
+}

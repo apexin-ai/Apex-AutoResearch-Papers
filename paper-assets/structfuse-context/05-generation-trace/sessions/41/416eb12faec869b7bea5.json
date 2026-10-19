@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "416eb12faec869b7bea5",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops m2 embedding completion watch",
+  "task_key": "worker_ops_m2-embedding-completion-watch_20260513T105641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_m2-embedding-completion-watch_20260513T105641_result.json",
+    "occurrence": 1,
+    "bytes": 262,
+    "sha256": "b95f82d6c649ab335f78c90758b24be37f0307ae91b71675479b1974765cd871"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询 1/10：PID 37880 存活，step 1500/1640。Embedding 训练接近尾声：\n- Best: val_loss=0.4603, R@1=0.5557, R@5=0.9808, R@10=1.0 (step 500)\n- 当前 patience 2/3，如果 step 1640 eval 仍未改善会 early stop\n- 60 秒后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-m2-embedding-completion-watch.md"
+}

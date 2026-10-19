@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f29dfad6039ddbe8c660",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops status snapshot 0516c",
+  "task_key": "worker_ops_status-snapshot-0516c_20260515T181527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status-snapshot-0516c_20260515T181527_result.json",
+    "occurrence": 1,
+    "bytes": 2508,
+    "sha256": "43f5425219d0c7f2a8976d7bdec68b7965fb0be943e16689f980bce125e564c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n---\n\n## 状态快照 — 2026-05-16 02:30 UTC\n\n### Watchers\n\n| PID | 状态 | 运行时长 | 脚本 |\n|-----|------|---------|------|\n| 966920 | **ALIVE** | 1d 2h 42m | `watch_and_chain_qwen_s42.sh` |\n| 20226 | **ALIVE** | 2h 16m | `watch_and_chain_starcoder_s42.sh` |\n\n### Qwen cuda:0 (`m2_full_qwen_continued`)\n\n| subrun | 状态 | best val_loss | best R@1 | early stop | final R@1 |\n|--------|------|--------------|----------|-----------|-----------|\n| random_s43 | DONE | 0.4476 | 0.5554 | step 1500 | 0.5501 |\n| random_s44 | DONE | 0.4252 | **0.6009** | step 1500 | 0.5542 |\n| embed_dist_s43 | DONE | 0.4541 | 0.5606 | step 1500 | 0.5655 |\n| embed_dist_s44 | DONE | 0.4341 | 0.5942 | step 2000 | 0.5470 |\n| **dataflow_s43** | **RUNNING** | 0.4617 | 0.5495 | — | — |\n| dataflow_s44 | PENDING | — | — | — | — |\n| bm25_s42 | PENDING | — | — | — | — |\n\n- PID 18427, step ~550/2810 (epoch 1/2), VRAM 50992 MiB, ~230 steps/h\n- eval@500: val_loss=0.4617, R@1=0.5495, R@5=0.9728\n- **ETA dataflow_s43**: ~May 16 12:00 CST | **ETA 全链完成**: ~May 17 14:00-18:00 CST\n\n### StarCoder cuda:1 (`m2_full_starcoder_resumed`)\n\n| subrun | 状态 | best val_loss | best R@1 | early stop | final R@1 |\n|--------|------|--------------|----------|-----------|-----------|\n| random_s42 | DONE | 0.6134 | 0.4604 | — (3 epoch) | — |\n| random_s43 | DONE | 0.5239 | 0.4912 | step 2500 | 0.4859 |\n| random_s44 | DONE | 0.5913 | 0.4897 | step 1500 | 0.4897 |\n| **embed_dist_s42** | **RUNNING** | — | — | — | — |\n| embed_dist_s43 | PENDING | — | — | — | — |\n| embed_dist_s44 | PENDING | — | — | — | — |\n| dataflow_s42–s44 | PENDING | — | — | — | — |\n\n- PID 38016, step ~200/4242 (epoch 1/3, 3 epochs), VRAM 54478 MiB, ~200 steps/h\n- **ETA embed_dist_s42**: ~May 17 00:00 CST | **ETA 全链完成**: ~May 19-20 CST\n\n### m1_reextract_v2\n\n- MONAI 和 moto 均有大量已生产的 JSON 文件（从 `-newer` 查询可见持续输出）\n- codeql DB 已建成：`Project-MONAI__MONAI_codeql_db`, `getmoto__moto_codeql_db`\n- 上次检查：80/82 repos done，剩余 MONAI (~91.8%) 和 moto (~35.8%，call_graph 100% timeout)\n- **ETA**: ~May 16 10:00-12:00 CST（可能已完成或接近完成）\n\n### 磁盘\n\n| 挂载点 | 总量 | 已用 | 可用 | 使用率 |\n|--------|------|------|------|--------|\n| /root | 30G | 11G | 20G | 34% |\n| /root/autodl-tmp | 250G | 171G | 80G | 69% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-snapshot-0516c.md"
+}

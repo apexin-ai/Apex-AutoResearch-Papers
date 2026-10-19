@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "adb0a6bcaf8130753e03",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops bjb1 full status and security",
+  "task_key": "worker_ops_bjb1-full-status-and-security_20260513T100709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1-full-status-and-security_20260513T100709_result.json",
+    "occurrence": 1,
+    "bytes": 1978,
+    "sha256": "c807ab72ba2ac958296c5ef21c4c6755603025cd657d14d4365c8a96a2200205"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总如下：\n\n---\n\n## 双卡状态表\n\n| 维度 | cuda:0 — plan_013_starcoder | cuda:1 — m2_embed_verify |\n|---|---|---|\n| **GPU** | RTX PRO 6000 Black, 73°C, 100% util | RTX PRO 6000 Black, 70°C, 100% util |\n| **VRAM** | 23,858 / 97,887 MiB (24%) | 22,330 / 97,887 MiB (23%) |\n| **主 PID** | 39221 (dataflow train, 48min) | 37880 (embedding train, 1h03m) |\n| **Wrapper PID** | 23798 (alive, 4h41m) | 29290 (alive) |\n| **当前策略** | **dataflow_aware** (3/3) | **embedding_distance** (2/3) |\n| **进度** | Epoch 1, step 500/~1640, eval@500 pending | Epoch 2, step 900/~1640 |\n| **已完成策略** | random ✅ embedding ✅ | random ✅ |\n\n### plan_013_starcoder 已完成策略指标\n\n| 策略 | best val_loss | recall@1 | recall@5 | best step |\n|---|---|---|---|---|\n| random | 0.5113 | 0.492 | 0.980 | — |\n| **embedding** | **0.4816** | **0.508** | **0.984** | 1000 |\n| dataflow | — 训练中 — | | | |\n\n### m2_embed_verify 已完成策略指标\n\n| 策略 | best val_loss | recall@1 | recall@5 | best step |\n|---|---|---|---|---|\n| random | 0.4834 | 0.536 | 0.981 | 500 |\n| **embedding** (当前best) | **0.4603** | **0.556** | **0.981** | 500 |\n| dataflow | — pending — | | | |\n\n## Dataflow 启动情况\n\n**不需要手动启动 dataflow retry。** Wrapper 脚本 (PID 23798) 在 embedding 完成后自动推进到 dataflow 阶段，使用原始参数 batch=4/neg=5/seq=2048。在 96GB 卡上运行正常（仅用 24% VRAM），无 OOM。auto_start 脚本 (PID 38446) 也已正常退出确认。\n\n## 可疑进程排查\n\n**无可疑进程。** 检测到的额外 python 进程：\n- PID 41171, 41172, 41173 (ppid=37880) — m2_embed_verify 的 PyTorch DataLoader workers\n- PID 41507, 41508 (ppid=39221) — plan_013 dataflow 的 PyTorch DataLoader workers\n\n全部为主训练进程的正常子进程，无非预期进程。tmux session 仅 `m2_embed_verify`（预期）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-full-status-and-security.md"
+}

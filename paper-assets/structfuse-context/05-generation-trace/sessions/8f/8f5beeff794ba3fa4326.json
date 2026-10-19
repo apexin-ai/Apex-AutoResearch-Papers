@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f5beeff794ba3fa4326",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "analysis bm25 stratified overlap",
+  "task_key": "worker_analysis_bm25_stratified_overlap_20260514T170331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bm25_stratified_overlap_20260514T170331_result.json",
+    "occurrence": 1,
+    "bytes": 1292,
+    "sha256": "65bbfcee561101a2459b17b3e168764195445ebbd19ad7d2917afbfb950ad94a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**分层后 BM25 与其他策略的 top-7 Jaccard 重叠率差异巨大：**\n\n| 层级 | Repos | BM25 vs Embedding | BM25 vs Random | BM25 vs Dataflow |\n|------|-------|-------------------|----------------|------------------|\n| Small (<50) | 39 | 0.668 | 0.411 | 0.667 |\n| Medium (50-200) | 29 | 0.380 | 0.067 | 0.363 |\n| Large (200+) | 15 | 0.297 | 0.007 | 0.405 |\n\n关键点：\n\n1. **小 repo 重叠高但不是 1.0**：平均 pool 只有 22.3 个候选，取 top-7 时各策略仍有 ~33% 差异（Jaccard 0.67 而非 1.0），说明即使候选池小，BM25 排序与 embedding/dataflow 排序也不同。\n\n2. **大 repo BM25 vs random 几乎为零**（0.007）：候选池 200+ 文件，随机抽 7 个和 BM25 top-7 基本不重合——BM25 确实在做有意义的筛选。\n\n3. **BM25 vs dataflow 在大 repo 反而高于 vs embedding**（0.405 > 0.297）：大 repo 中 BM25 的词汇相似性信号与数据流依赖比与纯嵌入距离更一致。\n\n4. **matched_queries 只有 2920/12290**：因 BM25 和其他策略的 train/val 划分不同，只有约 24% 的 query 能做配对比较。\n\n脚本：`/root/structfuse/scripts/analyze_bm25_overlap_stratified.py`\n产出：`artifacts/bm25_overlap_stratified.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bm25-stratified-overlap.md"
+}

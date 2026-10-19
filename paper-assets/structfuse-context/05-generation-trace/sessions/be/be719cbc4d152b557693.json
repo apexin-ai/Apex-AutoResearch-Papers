@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be719cbc4d152b557693",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code true embedding mining",
+  "task_key": "worker_code_true-embedding-mining_20260513T041546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_true-embedding-mining_20260513T041546_result.json",
+    "occurrence": 1,
+    "bytes": 1557,
+    "sha256": "8eaff4d18107d6e2a94bc6fe69a9b6371e6c149cfe997a67d26c940a4e8f4637"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实现完成。总结：\n\n### 修改内容\n\n**文件**: `/root/structfuse/scripts/build_m1_training_data.py` (432 → 518 行, +86 行)\n\n**核心变更**:\n1. **新增 `EmbeddingMiner` 类** (line 119): 使用 Qwen2.5-Coder-3B 的 encoder 做 mean pooling + L2 normalize，批量编码文件，计算 cosine similarity\n2. **修改 `build_candidate_pools` 签名**: 新增 `embedding_scores` 参数，\"embedding\" 策略用真正 cosine similarity 排序，\"dataflow\" 策略继续用 BM25\n3. **新增 `--model-path` 参数**: 指定模型路径启用真正 embedding mining，不指定则回退到 BM25\n4. **Repo 级 embedding 缓存**: 每个 repo 的所有文件只编码一次，跨 instance 复用\n\n### 性能数据\n- 模型加载: **3.2s** (Qwen2.5-Coder-3B, fp16, GPU 1)\n- 8 文件编码: **0.4s** (首次), **0.0s** (缓存后)\n\n### Smoke Test 结果\n- 三个策略 MD5 全部不同: random(`984d`), embedding(`9c7a`), dataflow(`6366`)\n- Strategy divergence: 100% — embedding vs dataflow 池完全不同\n- BM25 回退模式正常，dynamic mode 不受影响\n\n### 设计决策\n- BM25 保留给 \"dataflow\" 策略（结构断连 + 文本相似性选 hard negatives）\n- \"embedding\" 策略用模型 cosine similarity（论文 Claim 2 的实验依据）\n- 不提供 `--model-path` 时两个策略都退化为 BM25（向后兼容）\n\n### 注意事项\n- bjb1 上无 M1 extraction 原始数据，smoke test 用合成数据。正式运行需先将 cqa1 上的 M1 数据 scp 过来，或直接在 cqa1 上执行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-true-embedding-mining.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34bf18e088e8c38c4bc1",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "ops gpu violation audit",
+  "task_key": "worker_ops_gpu-violation-audit_20260513T021132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-violation-audit_20260513T021132_result.json",
+    "occurrence": 1,
+    "bytes": 1114,
+    "sha256": "fb6287f64552f4917648a9560676728559143e29f14c229dea73db239b8f4e18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n```\n=== PID 795791 状态 ===\n存活，运行时间 16:25，状态 Sl\n运行在 GPU 4，显存使用 9260 MiB\n\n=== GPU 全局状态 ===\nGPU 0: 0 MiB / 24564 MiB, 0% — 空闲 ✅\nGPU 1: 0 MiB / 24564 MiB, 0% — 空闲\nGPU 2: 22101 MiB, 100% — 其他项目\nGPU 3: 22099 MiB, 100% — 其他项目\nGPU 4: 9269 MiB, 99% — 我们的合法训练 ✅\nGPU 5: 2609 MiB, 97% — 其他项目\n\n=== GPU 越界原因分析 ===\n根因：run_m2_early_pilot.sh 缺少 CUDA_VISIBLE_DEVICES 设置。\n脚本内没有任何 GPU 绑定，如果 submit_training_job 注入的环境变量在 conda activate 后被重置，或脚本被手动运行，进程就会默认使用 cuda:0。\n\n=== 脚本修复 ===\n已在 shebang 后第一行插入 `export CUDA_VISIBLE_DEVICES=4`，位于 conda activate 和所有 python 命令之前。\ntrain.py 中无 CUDA_VISIBLE_DEVICES 相关代码，无需修改。\n\n=== tmux sessions ===\n仅 hgate-dpo003-merged（其他项目），无残留 m2_early_pilot session。\n\n=== 当前 GPU 4 训练状态 ===\n正常运行，无需干预。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-violation-audit.md"
+}

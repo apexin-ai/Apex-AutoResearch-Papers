@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a4165336b9a6b27a892",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "fix cuda1 conflict emergency",
+  "task_key": "worker_fix_cuda1_conflict_emergency_20260514T180110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_cuda1_conflict_emergency_20260514T180110_result.json",
+    "occurrence": 1,
+    "bytes": 1200,
+    "sha256": "ea1d55829d1e1d52cc409934fe09d9e9d03a33eebc7703a2ccb77bb74e37c6ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成，汇报如下：\n\n---\n\n### 清理结果\n\n| 项目 | 状态 |\n|------|------|\n| **进程 442120（旧 chain）** | 已杀死 |\n| **进程 499718（新 resume）** | 已不存在（随 442120 终止） |\n| **Checkpoint 清理** | `random_s43` 目录为空，`full_m2_outputs` 下无 starcoder s43 数据，无需清理 |\n| **cuda:1** | 完全干净：0MiB / 0% utilization |\n| **cuda:0 Qwen** | 正常运行中（PID 504138, random_s44, 49072MiB） |\n\n### tmux sessions（清理后）\n```\nm1_reextract_v2    — 保留\nm2_qwen_s43        — 保留（Qwen chain）\nqwen_s42_watcher   — 保留\n```\n`m2_starcoder_s43` 和 `starcoder_s42_watcher` 已杀掉。\n\n### Resume 脚本内容\n`run_m2_full_starcoder_resume.sh` 包含 **8 个 runs** 顺序执行：\n1. random:43:2ep\n2. random:44:2ep\n3. embedding_distance:42:3ep\n4. embedding_distance:43:2ep\n5. embedding_distance:44:2ep\n6. dataflow_aware:42:3ep\n7. dataflow_aware:43:2ep\n8. dataflow_aware:44:2ep\n\n脚本配置：`CUDA_VISIBLE_DEVICES=1`，model 路径 `starcoder2-3b`，数据目录 `full_m2_starcoder_data`。\n\n**未启动新训练，等你用 submit_training_job 重新提交。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-cuda1-conflict-emergency.md"
+}

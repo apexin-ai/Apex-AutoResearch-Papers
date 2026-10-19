@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "864714d6126c4cd28628",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "fix m2 full starcoder resume",
+  "task_key": "worker_fix_m2_full_starcoder_resume_20260514T175326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_m2_full_starcoder_resume_20260514T175326_result.json",
+    "occurrence": 1,
+    "bytes": 1407,
+    "sha256": "5d2b6e7e718b450cc78e1dfcf2d13fc4c3fbba107310d34f0faceef7c56aeb09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。\n\n## 结果汇总\n\n### random_s42 checkpoint 验证\n| 目录 | model.pt | 状态 |\n|------|----------|------|\n| `best_by_val_loss/` | 5.7GB | OK |\n| `best_by_recall_at_1/` | 5.7GB | OK |\n\n### Resume 脚本\n**路径**: `/root/structfuse/run_m2_full_starcoder_resume.sh`\n\n**8 runs 配置**:\n\n| # | Run | Strategy | Seed | Epochs |\n|---|-----|----------|------|--------|\n| 1 | random_s43 | random | 43 | 2 |\n| 2 | random_s44 | random | 44 | 2 |\n| 3 | embedding_distance_s42 | embedding_distance | 42 | 3 |\n| 4 | embedding_distance_s43 | embedding_distance | 43 | 2 |\n| 5 | embedding_distance_s44 | embedding_distance | 44 | 2 |\n| 6 | dataflow_aware_s42 | dataflow_aware | 42 | 3 |\n| 7 | dataflow_aware_s43 | dataflow_aware | 43 | 2 |\n| 8 | dataflow_aware_s44 | dataflow_aware | 44 | 2 |\n\n### 验证结果\n- 语法检查: `SYNTAX_OK`\n- `train.py --help`: 正常加载，参数匹配\n- 所有 seed 42/43/44 数据文件已就绪\n\n### 时间估算\nrandom_s42 是 3 epochs × 11308 samples / batch 8 ≈ 4242 steps，耗时约 ~23.6h（20s/step）。\n\n| Epochs | 预估 steps/run | 预估时间/run |\n|--------|----------------|-------------|\n| 3 epochs (s42) | ~4242 | ~23.6h |\n| 2 epochs (s43) | ~2808 | ~15.6h |\n| 2 epochs (s44) | ~2816 | ~15.6h |\n\n- 2 个 3-epoch runs: ~47.2h\n- 6 个 2-epoch runs: ~93.6h\n- **总计 ≈ 141h (~5.9 天)**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-m2-full-starcoder-resume.md"
+}

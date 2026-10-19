@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60659523260be7f0d15c",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code m2 early stopping",
+  "task_key": "worker_code_m2_early_stopping_20260514T081434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_m2_early_stopping_20260514T081434_result.json",
+    "occurrence": 1,
+    "bytes": 1997,
+    "sha256": "bf029c3508d9834e8db66d6af0ea78554da584ab449e0841ad2a8eba49a3f7ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n**注意**：当前正在运行的 launcher 脚本（bash for 循环）已经把整个循环体读入内存，所以修改 `.sh` 文件不会影响本次执行中尚未启动的 s43/s44。如果需要让 s43 起来就带 early stopping，需要 **kill 当前脚本进程，等 random_s42 跑完后重新启动脚本**。\n\n---\n\n### 修改汇总\n\n**方案**：方案 A（训练循环内判断），代码已预先存在，本次补充 `best_val_loss_step` 追踪 + 改善日志。\n\n**修改的文件（3 个）**：\n\n| 文件 | 修改 |\n|---|---|\n| `/root/structfuse-context/training/train.py` | L362: 加 `best_val_loss_step = 0`；L442: 加 `best_val_loss_step = global_step`；L463: 日志改为 `Early stopping triggered at step {step}, best val_loss={best} at step {best_step}` |\n| `/root/structfuse-context/run_m2_full_qwen.sh` | L78: 加 `--early-stopping-patience 2` |\n| `/root/structfuse-context/run_m2_full_starcoder.sh` | L184: 加 `--early-stopping-patience 2` |\n\n**s43 启动时的完整命令（以 Qwen random_s43 为例）**：\n```bash\npython /root/structfuse-context/training/train.py \\\n    --model-name /root/autodl-tmp/structfuse/models/Qwen/Qwen2.5-Coder-3B \\\n    --train-file /root/autodl-tmp/structfuse/full_m2_training_data/train_random_s43.jsonl \\\n    --val-file /root/autodl-tmp/structfuse/full_m2_training_data/val_random_s43.jsonl \\\n    --output-dir /root/autodl-tmp/structfuse/checkpoints/m2_full_qwen/random_s43 \\\n    --hard-negative-strategy random \\\n    --learning-rate 2e-5 --temperature 0.07 --batch-size 8 --num-epochs 2 \\\n    --num-negatives 7 --hard-negative-ratio 0.5 --use-lora --gradient-checkpointing \\\n    --max-seq-length 2048 --seed 43 --eval-steps 500 --save-steps 1000 \\\n    --wandb-project structfuse --wandb-run-name m2_full_random_s43 \\\n    --early-stopping-patience 2\n```\n\n**dry-run 验证**：`python train.py --help` 正常显示 `--early-stopping-patience` 参数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-m2-early-stopping.md"
+}

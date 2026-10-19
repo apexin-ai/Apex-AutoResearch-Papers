@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "1a4b7352de5bd1efc0ab",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "code bm25 swebench 300",
+  "task_key": "worker_code_bm25-swebench-300_20260515T204050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bm25-swebench-300_20260515T204050.log",
+    "occurrence": 1,
+    "bytes": 515248,
+    "sha256": "40ca988e6d33bbd992530704285fd7d7e99f61930e6e9010ec05a819790a66ab"
+  },
+  "statistics": {
+    "messages": 284,
+    "user_turns": 0,
+    "tool_calls": 112,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 112,
+      "tool_result": 112,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 284,
+      "chunks": [
+        {
+          "path": "1a4b7352de5bd1efc0ab-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1a4b7352de5bd1efc0ab-part-0002.json",
+          "message_count": 104
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-bm25-swebench-300.md"
+}

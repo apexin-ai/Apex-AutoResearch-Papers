@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9fa299341dbfa7ef14a",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "code prepare stat analysis",
+  "task_key": "worker_code_prepare_stat_analysis_20260514T150704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare_stat_analysis_20260514T150704_result.json",
+    "occurrence": 1,
+    "bytes": 621,
+    "sha256": "ccb1f5b9944a6fdcd4c2d14ddeb3e521bd8dacf17de7bb4bf2eaf0c47af2a87b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并验证通过。\n\n**结果**：`/root/structfuse/analysis/m2_stat_analysis.py` 已部署到服务器，dry-run 成功。当前 3/18 runs 有数据（qwen/random_s42 完成、qwen/random_s43 和 starcoder/random_s42 进行中），统计检验因 embedding_distance 和 dataflow_aware 数据尚未到位而跳过，符合预期。\n\n脚本功能：\n- `--status-only`：仅查看数据可用性\n- 默认运行：数据可用时自动执行 paired t-test、bootstrap CI、Cohen's d、encoder×strategy 交互对比，输出格式化表格 + JSON\n- 缺失 run 自动跳过，不会报错"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-stat-analysis.md"
+}

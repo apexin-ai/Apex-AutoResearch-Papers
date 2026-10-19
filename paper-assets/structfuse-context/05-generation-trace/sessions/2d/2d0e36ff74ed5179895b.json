@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d0e36ff74ed5179895b",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "research plan015 design",
+  "task_key": "worker_research_plan015_design_20260514T161215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_plan015_design_20260514T161215_result.json",
+    "occurrence": 1,
+    "bytes": 959,
+    "sha256": "793564c4232b7d4b0b5c182d967910c5c1ebf0ebf04d1f883682e2630684fe06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "设计文档已注册为 artifact `art_20260514_b47344`。\n\n核心结论：\n\n**代码现状**：当前 `train.py` 虽然每 epoch 调 `mine_batch()`，但 embeddings 是从文件一次性加载、从未更新——**实际是 static mining**。\n\n**实验设计**：3 个 variants\n1. **static_pt**（当前做法）：pretrained embeddings 一次性挖掘\n2. **dynamic_ep**：每 epoch 用当前 checkpoint 重新编码 → 重新挖掘\n3. **dynamic_500**（可选）：每 500 steps re-mine\n\n**GPU 开销**：每次 re-mine 仅需 ~5 min（~11K samples re-encode），占总训练时间 <1%。两个 variant 共需 ~44h，可在 M2 完成后单卡串行。\n\n**最可能结果**：Dynamic ≈ Static（<1pp 差异）。理由：数据规模仅 11K，dataflow structural signal 才是核心差异化因素而非 embedding recency。这对论文是最佳场景——直接在 Limitation 段落用实验数据回应 reviewer concern。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-plan015-design.md"
+}

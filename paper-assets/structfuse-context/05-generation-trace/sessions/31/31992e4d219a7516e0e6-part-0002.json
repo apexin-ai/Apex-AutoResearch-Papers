@@ -1,0 +1,420 @@
+{
+  "schema_version": "1.0",
+  "session_id": "31992e4d219a7516e0e6",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-15T02:24:53.773Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PvfEzk2KiwJKkituYpqUiZ",
+              "type": "tool_result",
+              "content": "73\t## §4.4 Evaluation Metrics\n74\t\n75\t**Retrieval metrics.** We report Recall@$k$ for $k \\in \\{1, 5, 10\\}$, computed over a candidate pool of size 50 (1 positive + 49 negatives sampled per evaluation query). Recall@1 serves as the primary metric for checkpoint selection and strategy comparison. We also report validation loss (InfoNCE) as a secondary training diagnostic.\n76\t\n77\t**Statistical reporting.** All comparisons report:"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b3be714-dffa-4be3-aa7c-cd702c390311",
+            "uuid": "90b202b0-b97a-41a0-89b7-cfd6f83e14ff",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/_project/paper/experiment_setup_v1.md",
+                "content": "## §4.4 Evaluation Metrics\n\n**Retrieval metrics.** We report Recall@$k$ for $k \\in \\{1, 5, 10\\}$, computed over a candidate pool of size 50 (1 positive + 49 negatives sampled per evaluation query). Recall@1 serves as the primary metric for checkpoint selection and strategy comparison. We also report validation loss (InfoNCE) as a secondary training diagnostic.\n\n**Statistical reporting.** All comparisons report:",
+                "numLines": 5,
+                "startLine": 73,
+                "totalLines": 85
+              }
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XwKHzBEws5a4v5GXEjsEyA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/_project/paper/experiment_setup_v1.md",
+                "limit": 5,
+                "offset": 82
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b3be714-dffa-4be3-aa7c-cd702c390311",
+            "uuid": "fc97c079-422e-4668-a9a3-e997b9e081b9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fhb47YHQEufyiU5DnmPhHg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 414,
+                "cache_read_input_tokens": 108891,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 414
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-15T02:24:57.671Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XwKHzBEws5a4v5GXEjsEyA",
+              "type": "tool_result",
+              "content": "82\t- **Per-seed consistency**: individual seed results reported alongside aggregates to assess stability. [TBD: exact CI and Cohen's d values pending M2 completion]\n83\t\n84\t**Checkpoint criterion.** Primary results use the $\\theta^*_{\\text{R@1}}$ checkpoint. We additionally report $\\theta^*_{\\text{loss}}$ results to characterize the disagreement between optimization-aligned (loss) and task-aligned (R@1) checkpoint criteria [Source: D036].\n85\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b3be714-dffa-4be3-aa7c-cd702c390311",
+            "uuid": "4d499d6a-3ccb-42f4-bb9c-42e42ab57467",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/_project/paper/experiment_setup_v1.md",
+                "content": "- **Per-seed consistency**: individual seed results reported alongside aggregates to assess stability. [TBD: exact CI and Cohen's d values pending M2 completion]\n\n**Checkpoint criterion.** Primary results use the $\\theta^*_{\\text{R@1}}$ checkpoint. We additionally report $\\theta^*_{\\text{loss}}$ results to characterize the disagreement between optimization-aligned (loss) and task-aligned (R@1) checkpoint criteria [Source: D036].\n",
+                "numLines": 4,
+                "startLine": 82,
+                "totalLines": 85
+              }
+            }
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The _project/paper copy doesn't have the comment tags. Let me add them.",
+              "signature": "EoICClkIDRgCKkAMlrLgEZnw41Yrno4YeoXjDBe+RUBt6Q21BCK6KdVyHKPcyLousMUzGc0pXw3k/3UFf5NDN4F4ofn6CiJt0cqVMg9jbGF1ZGUtb3B1cy00LTY4ABIMRblmSbOvbO1O2WiNGgxmU7fZ0E916OowNxgiMOqIDEy117wBmppDNAF9atgnQardpdjDeXQuIdAnPMns5UrZKu6NXWnQosnwWg4yACpXqvVITvRzqkBbzV+IIKpHzcT21Jj0nGDJLRoLejdMMTk/mgxs22cbZXpCBOTjndtWFGpvjKzsjcGk0tWGEWXuypvh8N5WqoJShAwWiiPpryinUkFo4ktnGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b3be714-dffa-4be3-aa7c-cd702c390311",
+            "uuid": "0aac2c53-2433-4894-a021-9094bdca37e4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J6ZaSvgk2szkLxwe9jtaLe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 259,
+                "cache_read_input_tokens": 109305,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 259
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The `_project/paper/` copy needs the comment tags too."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b3be714-dffa-4be3-aa7c-cd702c390311",
+            "uuid": "5eb64147-992c-4bbf-9333-136ed32d114e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J6ZaSvgk2szkLxwe9jtaLe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 259,
+                "cache_read_input_tokens": 109305,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 259
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013GHQtiTxY11ZH142DroCPn",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/_project/paper/experiment_setup_v1.md",
+                "old_string": "**Checkpoint criterion.** Primary results use the $\\theta^*_{\\text{R@1}}$ checkpoint. We additionally report $\\theta^*_{\\text{loss}}$ results to characterize the disagreement between optimization-aligned (loss) and task-aligned (R@1) checkpoint criteria [Source: D036].",
+                "new_string": "**Checkpoint criterion.** Primary results use the $\\theta^*_{\\text{R@1}}$ checkpoint. We additionally report $\\theta^*_{\\text{loss}}$ results to characterize the disagreement between optimization-aligned (loss) and task-aligned (R@1) checkpoint criteria [Source: D036].\n\n<!-- Claim 2 wording fix: 2026-05-15 -->\n<!-- D042 data pipeline numbers fix: 2026-05-15 -->"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b3be714-dffa-4be3-aa7c-cd702c390311",
+            "uuid": "ac5f6cb8-7133-494e-944f-7c04c449a94a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J6ZaSvgk2szkLxwe9jtaLe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 259,
+                "cache_read_input_tokens": 109305,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 259
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-15T02:25:03.130Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013GHQtiTxY11ZH142DroCPn",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/_project/paper/experiment_setup_v1.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9b3be714-dffa-4be3-aa7c-cd702c390311",
+            "uuid": "545828d5-24e8-4c87-bf46-7668d26cb162",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_5/projects/structfuse-context/artifacts/_project/paper/experiment_setup_v1.md",
+              "oldString": "**Checkpoint criterion.** Primary results use the $\\theta^*_{\\text{R@1}}$ checkpoint. We additionally report $\\theta^*_{\\text{loss}}$ results to characterize the disagreement between optimization-aligned (loss) and task-aligned (R@1) checkpoint criteria [Source: D036].",
+              "newString": "**Checkpoint criterion.** Primary results use the $\\theta^*_{\\text{R@1}}$ checkpoint. We additionally report $\\theta^*_{\\text{loss}}$ results to characterize the disagreement between optimization-aligned (loss) and task-aligned (R@1) checkpoint criteria [Source: D036].\n\n<!-- Claim 2 wording fix: 2026-05-15 -->\n<!-- D042 data pipeline numbers fix: 2026-05-15 -->",
+              "originalFile": "# §4 Experimental Setup\n\n## §4.1 Dataset\n\nWe construct our training corpus from SWE-smith \\cite{yang2025swesmith}, a large-scale dataset of synthetic Python bug-fix instances generated by applying program mutations to real-world GitHub repositories. The full SWE-smith collection provides 50,869 instances across 131 unique (repository, commit) pairs. After excluding 6,696 instances from 8 repositories that failed clone or checkout, 44,173 instances across 123 repositories remain.\n\nWe run the StructFuse extraction pipeline (§3.2) on all 44,173 instances. The extraction pipeline proceeds as follows:\n\n| Stage | Instances | Notes |\n|-------|-----------|-------|\n| SWE-smith (raw) | 50,869 | 131 (repo, commit) pairs |\n| After clone/checkout filtering | 44,173 | 6,696 dropped from 8 failed repos |\n| Successful extraction | 15,897 (36.0%) | 15,133 via CodeQL; 764 via beniget fallback |\n| Failed extraction | 28,276 (64.0%) | Buggy file path resolution failures during batch processing |\n| Usable training instances | 14,288 | Require $\\geq$1 resolvable positive file |\n\nExtraction succeeds for 15,897 instances (36.0% of 44,173): 15,133 via CodeQL inter-procedural dataflow analysis and 764 via beniget fallback. The remaining 28,276 instances fail due to buggy file path resolution errors during batch extraction—a runtime engineering limitation rather than a method constraint, as manual spot-checks confirm the source files exist in the repository checkouts [Source: D022]. Of the 15,897 successfully extracted instances, 14,288 yield at least one resolvable positive file (a structurally connected file distinct from the query file that exists in the repository checkout). The remaining 1,609 instances have successful extraction but no usable positive pairs after file resolution, and are excluded from training [Source: m1_extraction registry, plan006_full_scalability.json, build_m1_training_data.py].\n\nFor each random seed, we perform a per-repository stratified split to produce training and validation partitions. The per-seed split ensures that no repository appears exclusively in one partition, preserving the distribution of repository sizes and structural properties. Exact split sizes:\n\n| Seed | Train | Val | Total |\n|------|-------|-----|-------|\n| 42 | 11,308 | 2,980 | 14,288 |\n| 43 | 11,236 | 3,052 | 14,288 |\n| 44 | 11,264 | 3,024 | 14,288 |\n\n[Source: plan_018 registry, confirmed identical across all four strategies (random, embedding, dataflow, BM25)]\n\n## §4.2 Models\n\nWe select two decoder-only pretrained code models with distinct pretraining regimes and representation geometries, enabling us to study how encoder properties mediate the effectiveness of different negative mining strategies.\n\n**Qwen2.5-Coder-3B** \\cite{hui2024qwen25coder} is trained primarily with Fill-in-the-Middle (FIM) on a curated multilingual code corpus. It exhibits a near-saturated pretrained representation space: mean positive cosine similarity of 0.986 and mean margin (pos_sim − neg_sim) of only 0.074 with random negatives at 2,048-token context [Source: neg_difficulty_analysis registry, qwen_2048]. This saturation—where nearly all file pairs receive high similarity scores—makes the baseline representation space challenging for contrastive learning and provides a stress test for negative mining strategies.\n\n**StarCoder2-3B** \\cite{li2023starcoder} uses a multi-task pretraining objective including FIM on The Stack v2. It maintains healthy representation separation: mean positive cosine similarity of 0.799 and a margin of 0.194 with random negatives—2.6× larger than Qwen's [Source: neg_difficulty_analysis registry, starcoder_2048]. This well-separated space allows us to contrast the behavior of mining strategies under fundamentally different geometric conditions.\n\nThe two encoders' divergent pretraining corpora and representation geometries provide a meaningful comparison axis: if a strategy improves both encoders, the benefit is likely encoder-agnostic; if it shows differential effects, the interaction reveals how representation geometry mediates strategy effectiveness.\n\n## §4.3 Training Configuration\n\nAll hyperparameters are shared across strategies and encoders unless otherwise noted. The configuration was fixed before the full multi-seed experiment based on pilot runs.\n\n| Parameter | Value |\n|-----------|-------|\n| Optimizer | AdamW |\n| Learning rate | $2 \\times 10^{-5}$ |\n| LR schedule | Cosine annealing with linear warmup |\n| Warmup ratio | 0.1 |\n| Weight decay | 0.01 |\n| Gradient clipping | Max norm 1.0 |\n| Batch size | 8 |\n| Negatives per query ($K$) | 7 |\n| Max sequence length | 2,048 tokens |\n| Temperature ($\\tau$, initial) | 0.07 (learnable) |\n| LoRA rank ($r$) | 16 |\n| LoRA scaling ($\\alpha$) | 32 |\n| LoRA dropout | 0.05 |\n| LoRA target modules | $W_q$, $W_v$ (all attention layers) |\n| Projection dimension | 256 |\n| Gradient checkpointing | Enabled |\n| Evaluation interval | Every 500 steps |\n\n[Source: m2_full_qwen registry spec and notes]\n\n**Epoch schedule.** Seed 42 trains for 3 epochs without early stopping to provide a complete overfitting curve. Seeds 43 and 44 train for 2 epochs with early stopping (patience = 2 evaluation cycles based on validation loss). This asymmetric design was adopted after observing consistent overfitting past epoch 1 in the seed 42 exploratory run [Source: D026 decision].\n\n**Checkpoint selection.** We maintain dual checkpoints: $\\theta^*_{\\text{loss}}$ (minimum validation loss) and $\\theta^*_{\\text{R@1}}$ (maximum validation Recall@1). Primary results use $\\theta^*_{\\text{R@1}}$; both are reported for metric-loss disagreement analysis [Source: D036 decision].\n\n**Seeds.** 42, 43, 44. The core experiment consists of 3 strategies × 3 seeds × 2 encoders = 18 runs. BM25-mined negatives are evaluated as a supplementary comparison (additional 2 encoders × 3 seeds = 6 runs) [Source: plan_018 registry].\n\n**Hardware.** All experiments are conducted on a single node with 2× NVIDIA RTX PRO 6000 (96 GB VRAM each). Qwen and StarCoder training chains run on separate GPUs (cuda:0 and cuda:1) in parallel. Each individual run (single strategy, single seed, single encoder) requires approximately 5–7 hours. The core 18-run matrix requires approximately 120 GPU-hours [Source: m2_full_qwen and m2_full_starcoder registries].\n\n## §4.4 Evaluation Metrics\n\n**Retrieval metrics.** We report Recall@$k$ for $k \\in \\{1, 5, 10\\}$, computed over a candidate pool of size 50 (1 positive + 49 negatives sampled per evaluation query). Recall@1 serves as the primary metric for checkpoint selection and strategy comparison. We also report validation loss (InfoNCE) as a secondary training diagnostic.\n\n**Statistical reporting.** All comparisons report:\n\n- **Aggregate**: mean ± standard deviation across 3 seeds per condition.\n- **Confidence intervals**: bootstrap 95% CIs for pairwise strategy comparisons (embedding vs. random, dataflow vs. random, dataflow vs. embedding).\n- **Effect size**: Cohen's $d$ for key comparisons, providing a standardized measure of practical significance independent of sample size.\n- **Per-seed consistency**: individual seed results reported alongside aggregates to assess stability. [TBD: exact CI and Cohen's d values pending M2 completion]\n\n**Checkpoint criterion.** Primary results use the $\\theta^*_{\\text{R@1}}$ checkpoint. We additionally report $\\theta^*_{\\text{loss}}$ results to characterize the disagreement between optimization-aligned (loss) and task-aligned (R@1) checkpoint criteria [Source: D036].\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 82,
+                  "oldLines": 3,
+                  "newStart": 82,
+                  "newLines": 6,
+                  "lines": [
+                    " - **Per-seed consistency**: individual seed results reported alongside aggregates to assess stability. [TBD: exact CI and Cohen's d values pending M2 completion]",
+                    " ",
+                    " **Checkpoint criterion.** Primary results use the $\\theta^*_{\\text{R@1}}$ checkpoint. We additionally report $\\theta^*_{\\text{loss}}$ results to characterize the disagreement between optimization-aligned (loss) and task-aligned (R@1) checkpoint criteria [Source: D036].",
+                    "+",
+                    "+<!-- Claim 2 wording fix: 2026-05-15 -->",
+                    "+<!-- D042 data pipeline numbers fix: 2026-05-15 -->"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修正完成。两份副本（`paper_drafts/` 和 `_project/paper/`）已同步更新。\n\n**修正摘要：**\n\n| 问题 | 原文 | 修正 |\n|------|------|------|\n| 数据来源 | \"5,029 task instances... expand... yielding 44,173\" | 50,869 SWE-smith instances → 减去 6,696 clone/checkout 失败 = 44,173 |\n| 14,288 来源 | \"After filtering for extraction errors, we retain 14,288\" | 44,173 → 15,897 提取成功(36%) → 14,288 有可解析正样本 |\n| 34% vs 36% | \"Of these [14,288], approximately 34% possess CodeQL structural connectivity data (15,133 + 764)\" | 统一为 36.0% = 15,897/44,173（15,133 CodeQL + 764 beniget）；旧文的\"Of these\"指的是 14,288 但给的数字比 14,288 还大，逻辑矛盾 |\n| 14,288 vs 15,897 | 未解释 | 差额 1,609 = 提取成功但无法解析出正样本文件的实例（buggy file 或 connected files 在 repo checkout 中找不到对应 .py 文件）|\n| 28,276 失败原因 | \"transient filesystem failures\" | buggy file path 解析失败；D022 确认是运行时工程限制，文件实际存在 |\n\n新增了完整的数据管道表格，每层都可追溯到服务器实际文件（`all.jsonl` = 44,173 行，`train_*_s42.jsonl` = 11,308 行，`val_*_s42.jsonl` = 2,980 行，`plan006_full_scalability.json`，`plan006_error_patterns.json`）。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9b3be714-dffa-4be3-aa7c-cd702c390311",
+            "uuid": "68d3ec70-6a82-4a2d-8feb-08e123aed311",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QfbL7UMGeJyCcGvespTU8v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 441,
+                "cache_read_input_tokens": 109564,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 441
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修正完成。两份副本（`paper_drafts/` 和 `_project/paper/`）已同步更新。\n\n**修正摘要：**\n\n| 问题 | 原文 | 修正 |\n|------|------|------|\n| 数据来源 | \"5,029 task instances... expand... yielding 44,173\" | 50,869 SWE-smith instances → 减去 6,696 clone/checkout 失败 = 44,173 |\n| 14,288 来源 | \"After filtering for extraction errors, we retain 14,288\" | 44,173 → 15,897 提取成功(36%) → 14,288 有可解析正样本 |\n| 34% vs 36% | \"Of these [14,288], approximately 34% possess CodeQL structural connectivity data (15,133 + 764)\" | 统一为 36.0% = 15,897/44,173（15,133 CodeQL + 764 beniget）；旧文的\"Of these\"指的是 14,288 但给的数字比 14,288 还大，逻辑矛盾 |\n| 14,288 vs 15,897 | 未解释 | 差额 1,609 = 提取成功但无法解析出正样本文件的实例（buggy file 或 connected files 在 repo checkout 中找不到对应 .py 文件）|\n| 28,276 失败原因 | \"transient filesystem failures\" | buggy file path 解析失败；D022 确认是运行时工程限制，文件实际存在 |\n\n新增了完整的数据管道表格，每层都可追溯到服务器实际文件（`all.jsonl` = 44,173 行，`train_*_s42.jsonl` = 11,308 行，`val_*_s42.jsonl` = 2,980 行，`plan006_full_scalability.json`，`plan006_error_patterns.json`）。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 640434,
+            "duration_api_ms": 533704,
+            "num_turns": 45,
+            "stop_reason": "end_turn",
+            "session_id": "9b3be714-dffa-4be3-aa7c-cd702c390311",
+            "total_cost_usd": 1.8835355,
+            "usage": {
+              "input_tokens": 23,
+              "cache_creation_input_tokens": 98558,
+              "cache_read_input_tokens": 1356408,
+              "output_tokens": 23495,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 98558,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 538,
+                  "cache_read_input_tokens": 109564,
+                  "cache_creation_input_tokens": 441,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 441
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1764,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001854,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 23,
+                "outputTokens": 23495,
+                "cacheReadInputTokens": 1356408,
+                "cacheCreationInputTokens": 98558,
+                "webSearchRequests": 0,
+                "costUSD": 1.8816815000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "cfdaa36f-bb0f-4a17-b052-bb06546c528f"
+          },
+          "id": "event-000118"
+        }
+      ]
+    }
+  ]
+}

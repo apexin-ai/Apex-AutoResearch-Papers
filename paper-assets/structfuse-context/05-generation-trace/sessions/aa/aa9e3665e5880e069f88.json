@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "aa9e3665e5880e069f88",
+  "project": "structfuse-context",
+  "kind": "worker",
+  "title": "ssh negative difficulty margin",
+  "task_key": "worker_ssh_negative_difficulty_margin_20260513T191124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_negative_difficulty_margin_20260513T191124.log",
+    "occurrence": 1,
+    "bytes": 639066,
+    "sha256": "f0abeb19274dcab13bcb705df776035665607fd44a8fce4be7da82869a9afe5c"
+  },
+  "statistics": {
+    "messages": 478,
+    "user_turns": 0,
+    "tool_calls": 193,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 88,
+      "tool_call": 193,
+      "tool_result": 193,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 478,
+      "chunks": [
+        {
+          "path": "aa9e3665e5880e069f88-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "aa9e3665e5880e069f88-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "aa9e3665e5880e069f88-part-0003.json",
+          "message_count": 118
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-negative-difficulty-margin.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb229288304806362124",
+  "project": "structfuse-context",
+  "kind": "result",
+  "title": "review bm25 mining code",
+  "task_key": "worker_review_bm25-mining-code_20260515T020409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_bm25-mining-code_20260515T020409_result.json",
+    "occurrence": 1,
+    "bytes": 768,
+    "sha256": "d01981f4e428b7cd427adf7e4886e7af68517f6572eb708add4aa709cf338fc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Review 报告已写入 `artifacts/paper_drafts/bm25_code_review.md`。\n\n核心结论：**BM25 Phase 2 训练可以安全进行。**\n\n关键审查结果：\n- **正确性全部通过**: positive/query 排除、pool_size=50、num_negatives=7、BM25Okapi 标准参数 (k1=1.5, b=0.75)，均与其他策略一致\n- **数据一致性完全匹配**: 3 seeds record counts 与 random 策略完全相同 (11308/11236/11264)，val 直接复制\n- **3 个低风险 warning**: repo 目录缺失时静默 fallback、小 repo padding 用字母序、BM25 query 用原始文件内容——均不影响实验有效性\n- **Overlap 分析合理**: BM25 vs random 15.5%, vs embedding 30.6%, vs dataflow 25.5%，说明 BM25 确实提供了差异化的 negative mining"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-bm25-mining-code.md"
+}
