@@ -113,6 +113,8 @@ def slugify(value, limit=100):
 
 def readable_stem(path, title):
     """Derive a descriptive filename from the recorded source name."""
+    if path.startswith("logs/chats/exported-trajectories/"):
+        return slugify(title)
     stem = Path(path).stem.removesuffix("_result")
     timestamp = re.search(r"(\d{8})T(\d{6})", stem)
     if "feishu_group_" in stem:
@@ -123,6 +125,21 @@ def readable_stem(path, title):
     stem = re.sub(r"_\d{8}T\d{6}$", "", stem).removeprefix("worker_")
     candidate = slugify(stem)
     return candidate if candidate != "record" else slugify(title)
+
+
+def exported_conversation_title(events):
+    """Quote a recorded instruction instead of presenting an opaque source UUID."""
+    for event in events:
+        if event["role"] != "user":
+            continue
+        prompt = text_of(event["content"])
+        prompt = re.sub(r"<system-reminder>.*?</system-reminder>", "", prompt, flags=re.S)
+        prompt = re.sub(r"\s+", " ", prompt).strip(" #\n\t")
+        if prompt:
+            # This is a short quotation used as a label. Full text stays in the
+            # event body; no topic, action, or translation is inferred.
+            return "Research conversation: " + prompt[:120]
+    return "Research conversation without a recorded user instruction"
 
 
 def markdown_fence(text, language="text"):
@@ -443,7 +460,8 @@ def build_project(project):
                 result_errors = sum(1 for e in events if e.get("metadata", {}).get("is_error") is True)
                 task_key = Path(member.name).stem.removesuffix("_result")
                 source = {"archive": "trace-files.tar.gz" if (directory / "trace-files.tar.gz").exists() else "trace-files.tar.gz.parts/", "member": member.name, "occurrence": occurrence, "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()}
-                session = {"schema_version": VERSION, "id": session_id, "project": project.name, "kind": kind, "title": title_for(member.name), "task_key": task_key, "source": source, "statistics": {"messages": len(events), "user_turns": roles["user"], "tool_calls": tools, "roles": dict(roles), "unparsed_lines_preserved": unparsed, "reported_errors": result_errors}, "rounds": rounds}
+                title = exported_conversation_title(events) if member.name.startswith("logs/chats/exported-trajectories/") else title_for(member.name)
+                session = {"schema_version": VERSION, "id": session_id, "project": project.name, "kind": kind, "title": title, "task_key": task_key, "source": source, "statistics": {"messages": len(events), "user_turns": roles["user"], "tool_calls": tools, "roles": dict(roles), "unparsed_lines_preserved": unparsed, "reported_errors": result_errors}, "rounds": rounds}
                 readable_dir = READABLE_DIRS.get(kind, "other-records")
                 readable_base = readable_stem(member.name, session["title"])
                 readable_names[(readable_dir, readable_base)] += 1
@@ -466,7 +484,9 @@ def build_project(project):
                 entries.append(entry)
                 totals.update(files=1, messages=len(events), user_turns=roles["user"], tool_calls=tools, unparsed_lines=unparsed)
                 totals[kind] += 1
-    if len(entries) != sum(1 for _ in csv.DictReader((directory / "trace-index.csv").open(encoding="utf-8-sig"))):
+    with (directory / "trace-index.csv").open(encoding="utf-8-sig") as index_file:
+        source_count = sum(1 for _ in csv.DictReader(index_file))
+    if len(entries) != source_count:
         raise ValueError(f"Archive/index file count mismatch in {project.name}")
     entries.sort(key=lambda e: (e["kind"] != "conversation", e["started_at"] or "9999", e["source_path"], e["occurrence"]))
     catalog = {"schema_version": VERSION, "project": project.name, "title": manifest["title"], "statistics": dict(totals), "sessions": entries}

@@ -1,0 +1,35 @@
+name: Release manuscript export bundles
+on:
+  workflow_dispatch:
+    inputs:
+      document_manifest:
+        description: Expiring object URLs and source metadata for manuscript-only archives
+        required: true
+        type: string
+permissions:
+  contents: write
+concurrency:
+  group: research-asset-release
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/paper-assets/
+            /paper-assets/*/08-index/
+            !/research-snapshots/
+            /research-snapshots/*/*/08-index/
+          persist-credentials: false
+      - run: python3 -m pip install --quiet pypdf
+      - name: Release one document bundle at a time
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/release_s3_documents.py
