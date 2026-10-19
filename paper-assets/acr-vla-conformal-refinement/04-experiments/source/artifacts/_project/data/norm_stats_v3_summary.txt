@@ -1,0 +1,12 @@
+norm_stats.pt saved at /root/autodl-tmp/checkpoints/crm_v3/norm_stats.pt
+
+Components (n_samples=2402, spatial only):
+- ba (30D):       mean_abs=0.808  std=[0.285, 1.313]
+- uf_full (40D):  mean_abs=1.100  std=[0.189, 2.137]
+  - per_dof_std [0:30]  mean_abs=0.887  std=[0.189, 0.722]
+  - conf_radius [30:35] mean=1.865    std=[0.197, 0.278]
+  - log_volume  [35:40] mean=-1.612   std=[1.633, 2.137]
+- uf_scalar (3D): mean=[5.27, 1.86, -1.61]  std=[1.41, 0.17, 1.68]
+- obs (960D):     mean_abs=0.361  std=[0.033, 0.741]
+
+No near-zero std features. All safe for division.

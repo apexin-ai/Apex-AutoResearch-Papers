@@ -1,0 +1,128 @@
+{
+  "VLA-only": {
+    "per_task": {
+      "alphabet_soup": 0.0,
+      "cream_cheese": 10.0,
+      "salad_dressing": 20.0,
+      "bbq_sauce": 20.0,
+      "ketchup": 0.0,
+      "tomato_sauce": 10.0,
+      "butter": 0.0,
+      "milk": 10.0,
+      "chocolate_pudding": 20.0,
+      "orange_juice": 30.0
+    },
+    "overall_sr": 12.0,
+    "n_tasks_completed": 10,
+    "exp_id": "eval-vla-only-object",
+    "status": "DONE"
+  },
+  "VLA-mean": {
+    "per_task": {
+      "alphabet_soup": 0.0,
+      "cream_cheese": 0.0,
+      "salad_dressing": 10.0,
+      "bbq_sauce": 30.0,
+      "ketchup": 10.0,
+      "tomato_sauce": 10.0,
+      "butter": 0.0,
+      "milk": 20.0,
+      "chocolate_pudding": 30.0,
+      "orange_juice": 10.0
+    },
+    "overall_sr": 12.0,
+    "n_tasks_completed": 10,
+    "exp_id": "eval-vla-mean-object",
+    "status": "DONE"
+  },
+  "ReconVLA": {
+    "per_task": {
+      "alphabet_soup": 0.0,
+      "cream_cheese": 0.0,
+      "salad_dressing": 10.0,
+      "bbq_sauce": 30.0,
+      "ketchup": 0.0,
+      "tomato_sauce": 0.0,
+      "butter": 10.0,
+      "milk": 10.0,
+      "chocolate_pudding": 30.0,
+      "orange_juice": 30.0
+    },
+    "overall_sr": 12.0,
+    "n_tasks_completed": 10,
+    "exp_id": "eval-reconvla-object",
+    "status": "DONE"
+  },
+  "ACR per-DOF": {
+    "per_task": {
+      "alphabet_soup": 0.0,
+      "cream_cheese": 0.0,
+      "salad_dressing": 20.0,
+      "bbq_sauce": 30.0,
+      "ketchup": 0.0,
+      "tomato_sauce": 0.0,
+      "butter": 10.0,
+      "milk": 0.0,
+      "chocolate_pudding": 20.0,
+      "orange_juice": 30.0
+    },
+    "overall_sr": 11.0,
+    "n_tasks_completed": 10,
+    "exp_id": "eval-acr-object-v4-perdof",
+    "status": "DONE"
+  },
+  "ACR obs-only": {
+    "per_task": {
+      "alphabet_soup": 0.0,
+      "cream_cheese": 10.0,
+      "salad_dressing": 20.0,
+      "bbq_sauce": 40.0,
+      "ketchup": 10.0,
+      "tomato_sauce": 0.0,
+      "butter": 10.0,
+      "milk": 20.0,
+      "chocolate_pudding": 50.0,
+      "orange_juice": 30.0
+    },
+    "overall_sr": 19.0,
+    "n_tasks_completed": 10,
+    "exp_id": "eval-acr-object-v4-obs-only",
+    "status": "DONE"
+  },
+  "ACR scalar": {
+    "per_task": {
+      "alphabet_soup": 0.0,
+      "cream_cheese": 0.0,
+      "salad_dressing": 10.0,
+      "bbq_sauce": 10.0,
+      "ketchup": 0.0,
+      "tomato_sauce": 0.0,
+      "butter": 10.0,
+      "milk": 10.0,
+      "chocolate_pudding": 30.0,
+      "orange_juice": 20.0
+    },
+    "overall_sr": 9.0,
+    "n_tasks_completed": 10,
+    "exp_id": "eval-acr-object-v4-scalar",
+    "status": "DONE"
+  },
+  "ACR obs-only-0.2": {
+    "per_task": {
+      "alphabet_soup": 0.0,
+      "cream_cheese": 0.0,
+      "salad_dressing": 30.0,
+      "bbq_sauce": 40.0,
+      "ketchup": 20.0,
+      "tomato_sauce": 10.0,
+      "butter": 10.0,
+      "milk": 20.0,
+      "chocolate_pudding": 60.0,
+      "orange_juice": 30.0
+    },
+    "overall_sr": 22.0,
+    "n_tasks_completed": 10,
+    "exp_id": "eval-acr-object-obs-only-norm02",
+    "status": "DONE"
+  }
+}

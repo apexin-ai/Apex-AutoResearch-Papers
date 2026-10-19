@@ -1,0 +1,88 @@
+{
+  "metadata": {
+    "benchmark": "LIBERO Object",
+    "n_tasks": 10,
+    "n_rollouts_per_task": 10,
+    "total_per_seed": 100,
+    "compiled_date": "2026-05-16"
+  },
+  "magnitude_curve": {
+    "obs_only": [
+      {"norm": 0.03, "sr": 0.16, "successes": 16, "total": 100, "exp_id": "eval-mag-obsonly-norm003-object", "seed": 42},
+      {"norm": 0.05, "sr": 0.13, "successes": 13, "total": 100, "exp_id": "eval-mag-obsonly-norm005-object", "seed": 42},
+      {"norm": 0.10, "sr": 0.19, "successes": 19, "total": 100, "exp_id": "eval-acr-object-v4-obs-only", "seed": 42},
+      {"norm": 0.20, "sr": 0.22, "successes": 22, "total": 100, "exp_id": "eval-acr-object-obs-only-norm02", "seed": 42},
+      {"norm": 0.30, "sr": 0.19, "successes": 19, "total": 100, "exp_id": "eval-mag-obsonly-norm03-object", "seed": 42},
+      {"norm": 1.42, "sr": 0.17, "successes": 17, "total": 100, "exp_id": "eval-acr-object-obs-only-default", "seed": 42, "note": "default norm, no clipping"}
+    ],
+    "perdof": [
+      {"norm": 0.03, "sr": 0.14, "successes": 14, "total": 100, "exp_id": "eval-mag-perdof-norm003-object", "seed": 42},
+      {"norm": 0.05, "sr": 0.14, "successes": 14, "total": 100, "exp_id": "eval-mag-perdof-norm005-object", "seed": 42},
+      {"norm": 0.10, "sr": 0.11, "successes": 11, "total": 100, "exp_id": "eval-acr-object-v4-perdof", "seed": 42},
+      {"norm": 0.20, "sr": 0.11, "successes": 11, "total": 100, "exp_id": "eval-mag-perdof-norm02-object", "seed": 42},
+      {"norm": 0.30, "sr": 0.04, "successes": 4, "total": 100, "exp_id": "eval-mag-perdof-norm03-object-r3", "seed": 42},
+      {"norm": 1.42, "sr": 0.00, "successes": 0, "total": 100, "exp_id": "eval-acr-object-v4-default-r2", "seed": 42, "note": "default norm, catastrophic failure"}
+    ]
+  },
+  "magnitude_curve_spatial": {
+    "obs_only": [
+      {"norm": 0.03, "sr": 0.34, "successes": 34, "total": 100, "exp_id": "eval-mag-obsonly-norm003-b2", "seed": 42},
+      {"norm": 0.05, "sr": 0.35, "successes": 35, "total": 100, "exp_id": "eval-mag-obsonly-norm005", "seed": 42},
+      {"norm": 0.10, "sr": 0.35, "successes": 35, "total": 100, "exp_id": "eval-acr-spatial-v4-obs-only-r3", "seed": 42},
+      {"norm": 0.20, "sr": 0.35, "successes": 35, "total": 100, "exp_id": "eval-mag-obsonly-norm02", "seed": 42},
+      {"norm": 0.30, "sr": 0.36, "successes": 36, "total": 100, "exp_id": "eval-mag-obsonly-norm03-r2", "seed": 42}
+    ],
+    "perdof": [
+      {"norm": 0.03, "sr": 0.30, "successes": 30, "total": 100, "exp_id": "eval-mag-perdof-norm003", "seed": 42},
+      {"norm": 0.05, "sr": 0.31, "successes": 31, "total": 100, "exp_id": "eval-mag-perdof-norm005", "seed": 42},
+      {"norm": 0.10, "sr": 0.35, "successes": 35, "total": 100, "exp_id": "eval-acr-spatial-v4-small-r2", "seed": 42},
+      {"norm": 0.30, "sr": 0.26, "successes": 26, "total": 100, "exp_id": "eval-mag-perdof-norm03", "seed": 42}
+    ]
+  },
+  "baselines": {
+    "object": {
+      "argmin_seed42": {"sr": 0.12, "successes": 12, "total": 100, "exp_id": "eval-reconvla-object", "seed": 42},
+      "vla_only_seed42": {"sr": 0.12, "successes": 12, "total": 100, "exp_id": "eval-vla-only-object", "seed": 42},
+      "vla_mean_seed42": {"sr": 0.12, "successes": 12, "total": 100, "exp_id": "eval-vla-mean-object", "seed": 42}
+    },
+    "spatial": {
+      "argmin_seed42": {"sr": 0.34, "successes": 34, "total": 100, "exp_id": "eval-argmin-only-spatial-r2", "seed": 42},
+      "vla_only_seed42": {"sr": 0.30, "successes": 30, "total": 100, "exp_id": "eval-spatial-v7-full", "seed": 42},
+      "vla_mean_seed42": {"sr": 0.32, "successes": 32, "total": 100, "exp_id": "eval-vla-mean-spatial", "seed": 42}
+    }
+  },
+  "seed_comparison": {
+    "obs_only_norm02": [
+      {"seed": 42, "sr": 0.22, "successes": 22, "total": 100, "exp_id": "eval-acr-object-obs-only-norm02"},
+      {"seed": 43, "sr": 0.16, "successes": 16, "total": 100, "exp_id": "eval-obs-only-object-norm02-seed43-r2"},
+      {"seed": 44, "sr": 0.16, "successes": 16, "total": 100, "exp_id": "eval-obs-only-object-norm02-seed44-r2"}
+    ],
+    "obs_only_norm01": [
+      {"seed": 42, "sr": 0.19, "successes": 19, "total": 100, "exp_id": "eval-acr-object-v4-obs-only"},
+      {"seed": 43, "sr": 0.12, "successes": 12, "total": 100, "exp_id": "eval-obs-only-object-seed43"}
+    ],
+    "argmin": [
+      {"seed": 42, "sr": 0.12, "successes": 12, "total": 100, "exp_id": "eval-reconvla-object"},
+      {"seed": 43, "sr": 0.17, "successes": 17, "total": 100, "exp_id": "eval-argmin-object-seed43"},
+      {"seed": 44, "sr": 0.13, "successes": 13, "total": 100, "exp_id": "eval-argmin-object-seed44-r2"}
+    ],
+    "perdof_norm01": [
+      {"seed": 42, "sr": 0.11, "successes": 11, "total": 100, "exp_id": "eval-acr-object-v4-perdof"},
+      {"seed": 43, "sr": 0.12, "successes": 12, "total": 100, "exp_id": "eval-perdof-object-seed43"}
+    ],
+    "perdof_norm02": [
+      {"seed": 42, "sr": 0.11, "successes": 11, "total": 100, "exp_id": "eval-mag-perdof-norm02-object"},
+      {"seed": 43, "sr": 0.09, "successes": 9, "total": 100, "exp_id": "eval-mag-perdof-norm02-seed43-object-r3"}
+    ],
+    "vla_only": [
+      {"seed": 42, "sr": 0.12, "successes": 12, "total": 100, "exp_id": "eval-vla-only-object"},
+      {"seed": 43, "sr": 0.12, "successes": 12, "total": 100, "exp_id": "eval-vla-only-object-seed43"},
+      {"seed": 44, "sr": 0.10, "successes": 10, "total": 100, "exp_id": "eval-vla-only-object-seed44-r2"}
+    ],
+    "vla_mean": [
+      {"seed": 42, "sr": 0.12, "successes": 12, "total": 100, "exp_id": "eval-vla-mean-object"},
+      {"seed": 43, "sr": 0.15, "successes": 15, "total": 100, "exp_id": "eval-vla-mean-object-seed43"},
+      {"seed": 44, "sr": 0.10, "successes": 10, "total": 100, "exp_id": "eval-vla-mean-object-seed44"}
+    ]
+  }
+}

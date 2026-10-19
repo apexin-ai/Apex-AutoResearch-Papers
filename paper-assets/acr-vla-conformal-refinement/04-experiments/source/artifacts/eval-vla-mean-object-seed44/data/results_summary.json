@@ -1,0 +1,24 @@
+{
+  "overall_sr": 0.10,
+  "per_task_sr": {
+    "pick_up_the_alphabet_soup_and_place_it_in_the_basket": 0.0,
+    "pick_up_the_cream_cheese_and_place_it_in_the_basket": 0.0,
+    "pick_up_the_salad_dressing_and_place_it_in_the_basket": 0.1,
+    "pick_up_the_bbq_sauce_and_place_it_in_the_basket": 0.3,
+    "pick_up_the_ketchup_and_place_it_in_the_basket": 0.1,
+    "pick_up_the_tomato_sauce_and_place_it_in_the_basket": 0.1,
+    "pick_up_the_butter_and_place_it_in_the_basket": 0.0,
+    "pick_up_the_milk_and_place_it_in_the_basket": 0.0,
+    "pick_up_the_chocolate_pudding_and_place_it_in_the_basket": 0.2,
+    "pick_up_the_orange_juice_and_place_it_in_the_basket": 0.2
+  },
+  "total_rollouts": 100,
+  "n_rollouts_per_task": 10,
+  "n_tasks": 10,
+  "seed": 44,
+  "mode": "vla_only",
+  "baseline_mode": "mean",
+  "benchmark": "object",
+  "K": 10,
+  "conclusion": "success"
+}

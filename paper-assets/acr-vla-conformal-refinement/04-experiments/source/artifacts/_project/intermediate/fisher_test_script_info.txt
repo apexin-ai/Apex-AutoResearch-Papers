@@ -1,0 +1,6 @@
+Remote path: /root/acr-vla-conformal-refinement/src/analysis/fisher_test.py
+
+Usage (file mode): python src/analysis/fisher_test.py --results_dir logs/ --benchmark object --seeds 42 43 --all_pairs
+Usage (manual mode): python src/analysis/fisher_test.py --manual --method_a obs_only --successes_a 19 --trials_a 100 --method_b argmin --successes_b 12 --trials_b 100
+
+Dry-run verified with seed=42 data. Key result: obs_only_0.2 vs argmin p=0.0892 (n.s. at 100 trials).

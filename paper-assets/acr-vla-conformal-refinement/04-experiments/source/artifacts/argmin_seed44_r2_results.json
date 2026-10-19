@@ -1,0 +1,31 @@
+{
+  "experiment": "eval-argmin-object-seed44-r2",
+  "mode": "reconvla",
+  "benchmark": "object",
+  "seed": 44,
+  "K": 10,
+  "n_rollouts_per_task": 10,
+  "pid_alive": true,
+  "status": "still_running_last_task",
+  "tasks_done": 9,
+  "tasks_total": 10,
+  "successes_so_far": 12,
+  "rollouts_completed": 90,
+  "overall_sr_partial": 0.1333,
+  "per_task_results": {
+    "pick_up_the_alphabet_soup_and_place_it_in_the_basket": {"successes": 0, "rollouts": 10, "sr": 0.0},
+    "pick_up_the_cream_cheese_and_place_it_in_the_basket": {"successes": 0, "rollouts": 10, "sr": 0.0},
+    "pick_up_the_salad_dressing_and_place_it_in_the_basket": {"successes": 1, "rollouts": 10, "sr": 0.1},
+    "pick_up_the_bbq_sauce_and_place_it_in_the_basket": {"successes": 2, "rollouts": 10, "sr": 0.2},
+    "pick_up_the_ketchup_and_place_it_in_the_basket": {"successes": 1, "rollouts": 10, "sr": 0.1},
+    "pick_up_the_tomato_sauce_and_place_it_in_the_basket": {"successes": 1, "rollouts": 10, "sr": 0.1},
+    "pick_up_the_butter_and_place_it_in_the_basket": {"successes": 0, "rollouts": 10, "sr": 0.0},
+    "pick_up_the_milk_and_place_it_in_the_basket": {"successes": 1, "rollouts": 10, "sr": 0.1},
+    "pick_up_the_chocolate_pudding_and_place_it_in_the_basket": {"successes": 5, "rollouts": 10, "sr": 0.5},
+    "pick_up_the_orange_juice_and_place_it_in_the_basket": {"successes": 1, "rollouts": 5, "sr": null, "note": "in_progress_5_of_10"}
+  },
+  "r4_killed": true,
+  "r4_pid": 501420,
+  "cuda2_freed": true,
+  "note": "Eval still running on last task (orange_juice). JSON output will be at logs/eval_object_reconvla_seed44.json once complete."
+}

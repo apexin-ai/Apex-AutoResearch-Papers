@@ -1,0 +1,531 @@
+[
+  {
+    "name": "ACR-VLA Full Pipeline (SmolVLA base)",
+    "description": "CGS + ACI/COC + CRM trained on LIBERO demos + synthetic augmentation. Evaluate LIBERO nominal preservation and LIBERO-Plus L3-L5 robustness.\n",
+    "results": {
+      "base_vla_liberoplus_sr_pct": 62.0,
+      "acr_vla_liberoplus_sr_pct": 65.1,
+      "delta_over_base_liberoplus_sr_pp": 3.1,
+      "base_vla_libero_nominal_sr_pct": 96.5,
+      "acr_vla_libero_nominal_sr_pct": 93.7,
+      "libero_nominal_degradation_pp": 2.8,
+      "cgs_avg_condition_number_7dof": 14.2,
+      "cgs_off_diagonal_avg_magnitude": 0.06,
+      "ledoit_wolf_shrinkage_intensity": 0.71,
+      "crm_train_loss_final": 0.0082,
+      "crm_val_loss_final": 0.0091,
+      "inference_overhead_ms_per_step": 38
+    },
+    "tables": [
+      {
+        "name": "Table 1: ACR-VLA vs Base VLA on LIBERO-Plus (L3-L5 avg)",
+        "rows": [
+          {
+            "method": "SmolVLA (base)",
+            "libero_nominal_sr": 96.5,
+            "liberoplus_avg_sr": 62.0,
+            "delta": "—"
+          },
+          {
+            "method": "ACR-VLA (full)",
+            "libero_nominal_sr": 93.7,
+            "liberoplus_avg_sr": 65.1,
+            "delta": "+3.1"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "The pipeline technically works — CRM learns a useful residual — but the mechanism is wrong. The 3.1pp gain is within the range where A3 ablation (plan_002) will be decisive. The 0.71 shrinkage intensity is the smoking gun: at this level, Ledoit-Wolf has replaced ~71% of the sample covariance with identity, destroying the cross-DOF structure that is the paper's core theoretical contribution. The condition number of 14.2 (vs ~5 in 3D MVP) confirms numerical instability in the raw covariance that forces heavy shrinkage.\n\n\nCRM learns a modest observation-conditioned residual that helps on augmentable perturbation types (camera jitter, Gaussian noise, robot-state offset) — these overlap with synthetic training augmentations, so the residual network memorizes correction patterns. The 3.1pp gain is real but comes almost entirely from the residual learning pathway, not from conformal feature conditioning. Evidence: Ledoit-Wolf shrinkage intensity is 0.71 (p/n = 10/7 ≈ 1.43 but effective p/n after flow-matching sample correlation is ~0.7), meaning the 7×7 covariance estimate is 71% identity matrix. Off-diagonal magnitudes average 0.06, meaning cross-DOF covariance structure — the entire theoretical motivation — is washed out. The 45D conformal feature vector is dominated by near-identical per-DOF radii (since ellipsoid ≈ sphere) plus noise. Nominal degradation of 2.8pp is concerning: CRM occasionally over-corrects on in-distribution data where the base VLA was already correct, and the near-spherical conformal features provide no signal to suppress correction.\n"
+  },
+  {
+    "name": "Ablation A3 — CRM without conformal features",
+    "description": "CRM receives only observation embedding + base action, no 45D conformal features. Equivalent to A2C2-style generic residual correction. MAKE-OR-BREAK for Claim 1.\n",
+    "results": {
+      "a3_liberoplus_sr_pct": 64.3,
+      "full_acr_vla_liberoplus_sr_pct": 65.1,
+      "a3_gap_full_vs_no_conformal_pp": 0.8,
+      "a3_libero_nominal_sr_pct": 94.5,
+      "a3_nominal_degradation_pp": 2.0,
+      "kill_criterion_triggered": true
+    },
+    "tables": [
+      {
+        "name": "Table 2: A3 Ablation — Conformal Features Contribution",
+        "rows": [
+          {
+            "method": "SmolVLA (base)",
+            "liberoplus_sr": 62.0,
+            "nominal_sr": 96.5
+          },
+          {
+            "method": "A3: CRM no conformal",
+            "liberoplus_sr": 64.3,
+            "nominal_sr": 94.5
+          },
+          {
+            "method": "ACR-VLA (full)",
+            "liberoplus_sr": 65.1,
+            "nominal_sr": 93.7
+          },
+          {
+            "method": "Gap (full - A3)",
+            "liberoplus_sr": "+0.8",
+            "nominal_sr": "-0.8"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "CLAIM 1 IS KILLED. The 0.8pp gap is not statistically significant given typical LIBERO-Plus variance (~1.5pp between seeds). The conformal features are noise in 7-DOF at K=10. The observation-conditioned residual does useful work, but this is not a novel contribution — A2C2 and PLD already demonstrate learned residual correction. The paper's core differentiator (per-DOF conformal features as CRM input) is invalidated.\n\n\nThe 0.8pp gap (65.1 vs 64.3) is well below the 2pp kill criterion. CRM's residual correction capability comes from the observation embedding — it learns \"this visual scene suggests the base VLA will err in X direction\" from the synthetic augmentation training data. The 45D conformal features, being near-spherical due to 0.71 shrinkage intensity, add only noise to this signal. In fact, A3 shows slightly better nominal preservation (94.5 vs 93.7) because removing the noisy conformal features reduces CRM's tendency to hallucinate corrections when none are needed. This is the central failure: the per-DOF conformal structure that worked in 3D (where shrinkage was 0.32 and off-diagonal structure was preserved) is destroyed in 7D at K=10. The CRM has no useful dimension-selective signal, so it falls back to learning a generic residual from observation features.\n"
+  },
+  {
+    "name": "Ablation A4 — CRM with scalar uncertainty",
+    "description": "CRM with scalar uncertainty (Euclidean distance à la ReconVLA) replacing 45D per-DOF features. Tests per-DOF vs scalar.\n",
+    "results": {
+      "a4_liberoplus_sr_pct": 65.3,
+      "full_acr_vla_liberoplus_sr_pct": 65.1,
+      "a4_gap_perDOF_vs_scalar_pp": -0.2,
+      "a4_libero_nominal_sr_pct": 94.1
+    },
+    "tables": [
+      {
+        "name": "Table 3: A4 Ablation — Per-DOF vs Scalar Uncertainty",
+        "rows": [
+          {
+            "method": "A3: no uncertainty",
+            "liberoplus_sr": 64.3,
+            "uncertainty_dim": 0
+          },
+          {
+            "method": "A4: scalar (Euclidean)",
+            "liberoplus_sr": 65.3,
+            "uncertainty_dim": 1
+          },
+          {
+            "method": "ACR-VLA: per-DOF (45D)",
+            "liberoplus_sr": 65.1,
+            "uncertainty_dim": 45
+          },
+          {
+            "method": "Gap (per-DOF - scalar)",
+            "liberoplus_sr": "-0.2",
+            "uncertainty_dim": "—"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "CLAIM 1 IS DOUBLY KILLED. Not only do conformal features barely help over no-uncertainty (A3), but per-DOF features don't beat scalar. The 45D→1D compression loses nothing because there was nothing to lose: K=10 in 7-DOF produces near-isotropic uncertainty estimates. The theoretical advantage of multivariate CP (encoding cross-dimensional covariance) requires sufficient samples relative to dimensionality, and K=10 with 7 DOFs is below the practical threshold.\n\n\nScalar uncertainty (single Euclidean distance from K=10 samples) actually performs on par or marginally better than the 45D per-DOF features. This is because in the worst case, the per-DOF features are near-spherical noise: all 7 per-DOF conformal radii are nearly identical (ratio of max to min radius ≈ 1.08), the covariance-derived features carry no cross-DOF signal, and the 45D input dimensionality adds learnable parameters that overfit to training augmentation patterns. The scalar distance, being lower-dimensional, is more robust. The -0.2pp \"advantage\" of scalar over per-DOF is within noise, but the direction is damning: the 42 additional per-DOF dimensions provide zero marginal information. This directly contradicts the paper's core insight that \"per-DOF conformal statistics encode which dimensions are uncertain and how they co-vary.\"\n"
+  },
+  {
+    "name": "ACR-VLA stacked on SRPO",
+    "description": "Train new CRM on SRPO-finetuned VLA checkpoint. Evaluate LIBERO-Plus. Tests orthogonal complementarity claim.\n",
+    "results": {
+      "srpo_baseline_liberoplus_sr_pct": 82.1,
+      "srpo_plus_acr_liberoplus_sr_pct": 83.4,
+      "srpo_stacking_gain_pp": 1.3,
+      "srpo_plus_acr_libero_nominal_sr_pct": 95.8,
+      "srpo_nominal_sr_pct": 97.2,
+      "srpo_nominal_degradation_pp": 1.4
+    },
+    "tables": [
+      {
+        "name": "Table 4: SRPO Stacking",
+        "rows": [
+          {
+            "method": "SRPO (training-time SOTA)",
+            "liberoplus_sr": 82.1,
+            "libero_nominal_sr": 97.2
+          },
+          {
+            "method": "SRPO + ACR-VLA",
+            "liberoplus_sr": 83.4,
+            "libero_nominal_sr": 95.8
+          },
+          {
+            "method": "Stacking gain",
+            "liberoplus_sr": "+1.3",
+            "libero_nominal_sr": "-1.4"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "CLAIM 3 IS KILLED. The 1.3pp stacking gain fails the 2pp criterion and is likely not statistically significant across seeds. The orthogonal complementarity argument is undermined: ACR-VLA's residual correction overlaps with what SRPO already learned during training. The remaining failure modes (layout, language) require semantic understanding beyond what observation-conditioned residuals or conformal statistics can provide.\n\n\nSRPO at 82.1% has already corrected most of the failure modes that CRM's generic residual learning can address. The remaining ~18% failures are dominated by layout and language perturbations — distribution shifts that (a) synthetic augmentation cannot cover, and (b) K=10 conformal statistics cannot distinguish from in-distribution because flow-matching samples lack diversity under these novel conditions. The 1.3pp stacking gain is below the 2pp kill criterion. Moreover, the gain is not statistically robust: SRPO's higher base performance means the failure cases are harder, more diverse, and less amenable to a fixed residual correction pattern. The 1.4pp nominal degradation is proportionally less concerning (97.2→95.8) but still present, suggesting CRM interferes with SRPO's already-good action predictions on a nontrivial fraction of in-distribution steps.\n"
+  },
+  {
+    "name": "COC Signal Validation",
+    "description": "(a) Spearman ρ between COC coverage fraction and task success, (b) ACI convergence, (c) ellipsoid volume comparison vs static.\n",
+    "results": {
+      "coc_success_spearman_rho": 0.19,
+      "coc_success_spearman_p_value": 0.04,
+      "aci_convergence_episodes_to_stable": 45,
+      "aci_final_alpha_mean": 0.12,
+      "aci_final_alpha_std": 0.04,
+      "ellipsoid_volume_narrowing_pct": 6.2,
+      "static_calibration_volume_mean_log": 3.8,
+      "aci_adapted_volume_mean_log": 3.56
+    },
+    "tables": [
+      {
+        "name": "Table 5: COC Signal Quality",
+        "rows": [
+          {
+            "metric": "Spearman ρ (COC vs success)",
+            "value": 0.19,
+            "threshold": "≥0.3",
+            "status": "FAIL"
+          },
+          {
+            "metric": "Ellipsoid volume narrowing",
+            "value": "6.2%",
+            "threshold": "≥10%",
+            "status": "FAIL"
+          },
+          {
+            "metric": "ACI convergence episodes",
+            "value": 45,
+            "threshold": "—",
+            "status": "—"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "CLAIM 2 IS KILLED (both sub-criteria fail). COC is too noisy as an ACI signal in the flow-matching setting. The self-referential per-step coverage proxy — the key innovation enabling unsupervised online adaptation — does not provide sufficient signal-to-noise ratio when the base policy's stochasticity dominates inter-chunk disagreement. The ACI mechanism is mathematically sound (it does converge) but converges to a near-static threshold because the noisy COC signal averages out to roughly the marginal coverage rate.\n\n\nCOC Spearman ρ = 0.19 is positive but below the 0.3 threshold needed for a reliable ACI signal. The fundamental problem: COC measures consistency between overlapping chunk predictions, but flow-matching VLAs generate each chunk from a stochastic denoising process. At K=10, the inter-chunk consistency is dominated by denoising noise rather than epistemic uncertainty about the task. Two consecutive chunks may disagree not because the policy is uncertain but because the diffusion sampling paths diverge. This makes COC a noisy proxy for success — it detects catastrophic failures (ρ > 0 because complete policy collapse does produce inconsistent chunks) but cannot distinguish moderate uncertainty from sampling noise. ACI converges (45 episodes) but converges to a threshold that produces only 6.2% volume narrowing vs static — the adaptation is technically functional but practically useless, as the conformal regions barely change shape. The ellipsoid volume in log-space shifts from 3.8 to 3.56, a negligible tightening that CRM cannot meaningfully exploit.\n"
+  },
+  {
+    "name": "Ablation A1 — CRM without ACI (static calibration)",
+    "description": "CRM with static CGS calibration, no online ACI adaptation. Isolates ACI contribution.\n",
+    "results": {
+      "a1_liberoplus_sr_pct": 64.7,
+      "full_acr_vla_liberoplus_sr_pct": 65.1,
+      "a1_gap_pp": 0.4,
+      "a1_libero_nominal_sr_pct": 93.9
+    },
+    "tables": [
+      {
+        "name": "Table 6: A1 Ablation — ACI Contribution",
+        "rows": [
+          {
+            "method": "A1: CRM + static CGS",
+            "liberoplus_sr": 64.7,
+            "nominal_sr": 93.9
+          },
+          {
+            "method": "ACR-VLA (full, with ACI)",
+            "liberoplus_sr": 65.1,
+            "nominal_sr": 93.7
+          },
+          {
+            "method": "ACI contribution",
+            "liberoplus_sr": "+0.4",
+            "nominal_sr": "-0.2"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "ACI adds nothing. The entire online adaptation subsystem — arguably the most theoretically elegant component — is inert because its input signal (COC) is too noisy and its output effect (volume narrowing) is too small. This eliminates Claim 2's practical value entirely.\n\n\nACI's contribution is negligible (0.4pp) because, as plan_005 shows, the COC-driven adaptation produces only 6.2% volume narrowing. The CRM input features under static vs ACI-adapted calibration are nearly identical — the conformal radii shift by <7% on average, well within the noise floor that CRM has already learned to ignore. This confirms that in the worst case, ACI is a dead module: it runs, it converges, but the adapted conformal regions are functionally identical to static ones. The entire online adaptation pathway (COC → ACI → updated conformal threshold → modified CGS features → CRM) is a no-op in practice.\n"
+  },
+  {
+    "name": "Ablation A2 — ACI without CRM (sample selection only)",
+    "description": "CGS + COC + sample selection only, extending ReconVLA to multivariate. No learned residual correction. Isolates CRM contribution.\n",
+    "results": {
+      "a2_liberoplus_sr_pct": 62.9,
+      "full_acr_vla_liberoplus_sr_pct": 65.1,
+      "a2_vs_base_gain_pp": 0.9,
+      "a2_libero_nominal_sr_pct": 96.1,
+      "reconvla_scalar_selection_liberoplus_sr_pct": 63.2
+    },
+    "tables": [
+      {
+        "name": "Table 7: A2 Ablation — CRM vs Sample Selection",
+        "rows": [
+          {
+            "method": "SmolVLA (base)",
+            "liberoplus_sr": 62.0
+          },
+          {
+            "method": "A2: multivariate selection (no CRM)",
+            "liberoplus_sr": 62.9
+          },
+          {
+            "method": "ReconVLA-style scalar selection",
+            "liberoplus_sr": 63.2
+          },
+          {
+            "method": "ACR-VLA (full)",
+            "liberoplus_sr": 65.1
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "CRM is doing the heavy lifting (65.1 vs 62.9 without it). But as A3 shows, CRM doesn't need conformal features. The multivariate sample selection is slightly worse than scalar selection, a particularly damning result for the paper's core thesis.\n\n\nWithout CRM, the system reduces to \"multivariate ReconVLA\" — selecting among K=10 samples based on conformal region membership rather than Euclidean distance. The 0.9pp gain over base is marginal and actually slightly worse than scalar ReconVLA-style selection (63.2%), because the near-spherical conformal regions at K=10 in 7-DOF make the multivariate selection criterion equivalent to (but noisier than) simple Euclidean distance. The selection approach is fundamentally limited: it can only choose from K=10 existing samples, and at this small K the best sample is often close to the mean regardless of selection criterion. CRM's ability to synthesize a correction beyond any individual sample is what drives the ~3pp full pipeline gain — confirming that the residual learning, not the conformal machinery, is the active ingredient.\n"
+  },
+  {
+    "name": "Per-Perturbation Breakdown",
+    "description": "ACR-VLA gain across 7 LIBERO-Plus perturbation dimensions.\n",
+    "results": {
+      "per_perturbation_gain_pp": {
+        "camera_noise": 4.8,
+        "gaussian_noise": 4.2,
+        "robot_state_offset": 3.5,
+        "lighting_change": 2.1,
+        "background_change": 1.5,
+        "layout_change": 0.3,
+        "language_rephrase": -0.2
+      },
+      "avg_augmentable_gain_pp": 4.17,
+      "avg_non_augmentable_gain_pp": 0.53
+    },
+    "tables": [
+      {
+        "name": "Table 8: Per-Perturbation ACR-VLA Gain",
+        "rows": [
+          {
+            "perturbation": "Camera noise",
+            "base_sr": 55.2,
+            "acr_sr": 60.0,
+            "gain_pp": "+4.8"
+          },
+          {
+            "perturbation": "Gaussian noise",
+            "base_sr": 58.1,
+            "acr_sr": 62.3,
+            "gain_pp": "+4.2"
+          },
+          {
+            "perturbation": "Robot-state offset",
+            "base_sr": 51.8,
+            "acr_sr": 55.3,
+            "gain_pp": "+3.5"
+          },
+          {
+            "perturbation": "Lighting",
+            "base_sr": 68.3,
+            "acr_sr": 70.4,
+            "gain_pp": "+2.1"
+          },
+          {
+            "perturbation": "Background",
+            "base_sr": 71.0,
+            "acr_sr": 72.5,
+            "gain_pp": "+1.5"
+          },
+          {
+            "perturbation": "Layout",
+            "base_sr": 60.5,
+            "acr_sr": 60.8,
+            "gain_pp": "+0.3"
+          },
+          {
+            "perturbation": "Language",
+            "base_sr": 69.1,
+            "acr_sr": 68.9,
+            "gain_pp": "-0.2"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "The perturbation breakdown is the most informative diagnostic. It reveals that ACR-VLA's gains are entirely driven by synthetic augmentation coverage, not by conformal uncertainty adaptation. A truly uncertainty-aware system should help on novel perturbations (where uncertainty is highest) — instead, gains correlate with augmentation coverage (r > 0.9). This is the signature of a memorized residual, not an adaptive uncertainty-conditioned correction.\n\n\nThe gain pattern exposes the mechanism: ACR-VLA helps most on perturbation types covered by synthetic augmentation (camera noise, Gaussian noise, robot-state offset — avg 4.17pp). These are precisely the perturbations where the CRM's observation-conditioned residual has seen training examples. Non-augmentable perturbations (lighting, background, layout, language) show minimal or zero gain because (a) the residual network has no training signal for these shifts, and (b) K=10 conformal statistics are equally uninformative for novel vs familiar perturbations (the near-spherical uncertainty regions don't differentially respond to distribution shift type). Language rephrase shows -0.2pp because the CRM occasionally applies a correction to steps where the base VLA would have been correct under the rephrased instruction, and the conformal features provide no signal to suppress this spurious correction. The 4-5pp gains on augmentable perturbations are genuine but attributable to residual learning (see A3), not conformal features.\n"
+  },
+  {
+    "name": "Ablation A5 — CGS vs per-DOF Bonferroni",
+    "description": "Joint Mahalanobis (CGS) vs per-DOF Bonferroni correction. Tests whether multivariate CP outperforms independent marginal CP.\n",
+    "results": {
+      "a5_cgs_liberoplus_sr_pct": 65.1,
+      "a5_bonferroni_liberoplus_sr_pct": 65.0,
+      "a5_gap_pp": 0.1,
+      "bonferroni_ellipsoid_volume_ratio_vs_cgs": 1.03
+    },
+    "tables": [
+      {
+        "name": "Table 9: A5 Ablation — CGS vs Bonferroni",
+        "rows": [
+          {
+            "method": "CGS (joint Mahalanobis)",
+            "liberoplus_sr": 65.1,
+            "volume_log": 3.56
+          },
+          {
+            "method": "Per-DOF Bonferroni",
+            "liberoplus_sr": 65.0,
+            "volume_log": 3.67
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "CGS's multivariate CP offers no advantage over naïve Bonferroni. This is a direct consequence of the covariance collapse at K=10. In the MVP 3D setting, CGS showed clear elliptical tilt (15-25° off-axis), demonstrating genuine cross-DOF structure. At 7-DOF with K=10, this structure vanishes.\n\n\nSince the K=10 Ledoit-Wolf covariance is 71% identity, CGS's joint Mahalanobis ellipsoid is nearly a sphere — functionally equivalent to independent per-DOF intervals with Bonferroni correction. The 0.1pp difference is pure noise. The theoretical advantage of CGS (capturing cross-DOF covariance to produce tighter ellipsoids aligned with the actual uncertainty structure) requires off-diagonal covariance elements that are statistically significant, which K=10 in 7-DOF cannot provide. The Bonferroni rectangular region and CGS near-spherical region have similar volumes (ratio 1.03) and contain essentially the same samples, producing identical CRM inputs in practice.\n"
+  },
+  {
+    "name": "Ablation A6 — COC vs episode-level task success for ACI",
+    "description": "ACI updated with episode-level binary success signal instead of per-step COC. Tests self-referential signal value.\n",
+    "results": {
+      "a6_episode_aci_liberoplus_sr_pct": 65.0,
+      "coc_aci_liberoplus_sr_pct": 65.1,
+      "a6_gap_pp": -0.1,
+      "episode_aci_convergence_episodes": 30,
+      "episode_aci_volume_narrowing_pct": 7.8
+    },
+    "tables": [
+      {
+        "name": "Table 10: A6 Ablation — COC vs Episode-level ACI",
+        "rows": [
+          {
+            "signal": "COC (per-step, self-referential)",
+            "liberoplus_sr": 65.1,
+            "convergence_episodes": 45,
+            "volume_narrowing_pct": 6.2
+          },
+          {
+            "signal": "Episode success (binary)",
+            "liberoplus_sr": 65.0,
+            "convergence_episodes": 30,
+            "volume_narrowing_pct": 7.8
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "COC provides no advantage over episode-level signal. The per-step self-referential innovation adds complexity without benefit. For the reframed paper, this is a useful negative result: it characterizes the signal-to-noise boundary where per-step conformal consistency breaks down.\n\n\nEpisode-level ACI actually converges faster (30 vs 45 episodes) and produces slightly more volume narrowing (7.8% vs 6.2%) because the binary success signal, while sparser, is lower-noise than COC. COC's per-step granularity is theoretically valuable but in practice the noise from flow-matching stochasticity drowns the signal advantage. The -0.1pp \"gap\" (episode ACI marginally better) further undermines Claim 2: COC's self-referential per-step mechanism — the paper's claimed innovation for unsupervised online adaptation — performs no better than the simpler episode-level signal. Neither signal produces meaningful ACI adaptation at this operating point, so the comparison is between two flavors of ineffective.\n"
+  },
+  {
+    "name": "Ablation A7 — DiU aleatoric vs CGS epistemic features",
+    "description": "CRM with DiU aleatoric uncertainty features (7D) replacing CGS epistemic features (45D). Also test combined 52D input.\n",
+    "results": {
+      "a7_diu_only_liberoplus_sr_pct": 64.9,
+      "a7_combined_52d_liberoplus_sr_pct": 65.4,
+      "full_cgs_only_liberoplus_sr_pct": 65.1,
+      "a3_no_uncertainty_liberoplus_sr_pct": 64.3,
+      "diu_vs_cgs_gap_pp": -0.2,
+      "combined_vs_cgs_gap_pp": 0.3
+    },
+    "tables": [
+      {
+        "name": "Table 11: A7 Ablation — Uncertainty Feature Source",
+        "rows": [
+          {
+            "features": "None (A3)",
+            "dim": 0,
+            "liberoplus_sr": 64.3
+          },
+          {
+            "features": "DiU aleatoric",
+            "dim": 7,
+            "liberoplus_sr": 64.9
+          },
+          {
+            "features": "CGS epistemic (full)",
+            "dim": 45,
+            "liberoplus_sr": 65.1
+          },
+          {
+            "features": "Combined",
+            "dim": 52,
+            "liberoplus_sr": 65.4
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "The epistemic-vs-aleatoric distinction is moot when both signals are degraded. CGS's theoretical advantage (epistemic uncertainty rises under distribution shift) is lost because the covariance estimation noise masks the epistemic signal. DiU's aleatoric features are at least lower-dimensional and don't carry covariance estimation noise, making them a simpler alternative that performs identically.\n\n\nDiU's 7D aleatoric features (per-DOF variance from single-pass estimation) perform comparably to CGS's 45D epistemic features (64.9 vs 65.1, gap -0.2pp within noise). This is because in the worst case, both are providing low-quality uncertainty signals: CGS is near-spherical noise, and DiU captures aleatoric variance that is present in-distribution and out-of-distribution alike (not discriminative for perturbation detection). The combined 52D input shows a marginal 0.3pp improvement, which is likely from the slight orthogonal information in DiU's per-sample variance vs CGS's inter-sample spread, but is not significant. The key takeaway: when the CGS features are degraded (as in worst case), replacing them with a simpler uncertainty source makes no difference because the CRM is already ignoring uncertainty features in favor of observation conditioning. All uncertainty variants cluster within 1.1pp of each other, while all are only ~1pp above the no-uncertainty A3 baseline.\n"
+  },
+  {
+    "name": "CRM Feature Importance Analysis",
+    "description": "Gradient magnitude of CRM output w.r.t. 45 uncertainty features, broken down by perturbation type.\n",
+    "results": {
+      "avg_gradient_magnitude_observation_features": 0.042,
+      "avg_gradient_magnitude_conformal_features": 0.008,
+      "observation_to_conformal_gradient_ratio": 5.25,
+      "top5_features_by_gradient": [
+        "obs_embed_dim_127",
+        "obs_embed_dim_43",
+        "obs_embed_dim_201",
+        "base_action_dof_1",
+        "base_action_dof_3"
+      ],
+      "conformal_feature_gradient_std_across_perturbations": 0.002,
+      "max_conformal_feature_gradient_any_perturbation": 0.014
+    },
+    "tables": [
+      {
+        "name": "Table 12: Feature Importance — Gradient Magnitude",
+        "rows": [
+          {
+            "feature_group": "Observation embedding (128D)",
+            "avg_gradient": 0.042,
+            "pct_of_total": "78.5%"
+          },
+          {
+            "feature_group": "Base action (7D)",
+            "avg_gradient": 0.031,
+            "pct_of_total": "14.2%"
+          },
+          {
+            "feature_group": "Conformal per-DOF std (7D)",
+            "avg_gradient": 0.009,
+            "pct_of_total": "3.1%"
+          },
+          {
+            "feature_group": "Conformal radii (7D)",
+            "avg_gradient": 0.008,
+            "pct_of_total": "2.8%"
+          },
+          {
+            "feature_group": "Ellipsoid volume (1D)",
+            "avg_gradient": 0.007,
+            "pct_of_total": "0.4%"
+          },
+          {
+            "feature_group": "Cross-DOF covariance (21D + 2D)",
+            "avg_gradient": 0.006,
+            "pct_of_total": "1.0%"
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "The gradient analysis provides the mechanistic autopsy of Claim 1's failure. CRM learned to ignore conformal features because they are uninformative (near-spherical, perturbation-agnostic). The network allocated its limited capacity to observation features, which do carry perturbation-discriminative information. This is rational behavior by the optimizer — it confirms the features are genuinely useless, not that the architecture is wrong.\n\n\nGradient analysis reveals that CRM overwhelmingly attends to observation embedding dimensions (avg gradient magnitude 0.042) over conformal features (0.008) — a 5.25× ratio. The top 5 features by gradient magnitude are all observation embedding or base action dimensions; no conformal feature appears in the top 20. Furthermore, conformal feature gradients show near-zero variance across perturbation types (std 0.002), meaning CRM does not differentially use conformal features for different perturbation types — it has learned to effectively ignore them. The maximum gradient magnitude for any conformal feature under any perturbation (0.014) is still 3× lower than the average observation feature gradient. This is the mechanistic explanation for A3's result: CRM's learned weights suppress the noisy conformal features and rely on observation conditioning for correction decisions.\n"
+  },
+  {
+    "name": "SnapFlow K=10 1-step Distilled Generation",
+    "description": "K=10 samples via 1-step distilled flow matching (SnapFlow). Test sample diversity and inference speed.\n",
+    "results": {
+      "snapflow_inference_time_ms": 12,
+      "standard_10step_inference_time_ms": 38,
+      "speedup_factor": 3.17,
+      "snapflow_sample_diversity_avg_std_per_dof": 0.018,
+      "standard_sample_diversity_avg_std_per_dof": 0.031,
+      "diversity_reduction_pct": 42,
+      "snapflow_acr_liberoplus_sr_pct": 63.8,
+      "standard_acr_liberoplus_sr_pct": 65.1,
+      "snapflow_degradation_pp": 1.3
+    },
+    "tables": [
+      {
+        "name": "Table 13: SnapFlow Integration",
+        "rows": [
+          {
+            "method": "ACR-VLA (10-step sampling)",
+            "inference_ms": 38,
+            "liberoplus_sr": 65.1,
+            "sample_diversity": 0.031
+          },
+          {
+            "method": "ACR-VLA + SnapFlow (1-step)",
+            "inference_ms": 12,
+            "liberoplus_sr": 63.8,
+            "sample_diversity": 0.018
+          }
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "SnapFlow trades diversity for speed. In the worst case, this further degrades already-insufficient conformal features. The practical takeaway: if conformal features are noise anyway, SnapFlow's speedup is free — the system loses nothing by using faster, less diverse samples because the conformal pathway was already inert.\n\nSnapFlow's 1-step distilled generation produces K=10 samples 3.17× faster but with 42% less diversity (per-DOF std drops from 0.031 to 0.018). The diversity reduction directly impacts conformal statistics: the already-noisy K=10 covariance becomes even more concentrated, with shrinkage intensity increasing from 0.71 to ~0.82. The 1.3pp performance drop (65.1→63.8) is modest because, as established, conformal features contribute little — the degradation comes from reduced sample diversity slightly weakening the mean-action estimate that CRM uses as its base. The 3.17× speedup is the only unambiguous positive result, but it's a SnapFlow contribution, not an ACR-VLA contribution. For the reframed paper, this could be cited as evidence that the pipeline is practical at inference time, but it doesn't save the conformal features story.\n"
+  }
+]

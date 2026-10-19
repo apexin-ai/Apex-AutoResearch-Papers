@@ -1,0 +1,6 @@
+Partial harvest 2026-05-16T15:09 from bjb1-18228.
+Remote: /root/acr-vla-conformal-refinement/artifacts/argmin_seed44_r2_results.json
+PID 428117 still alive, finishing last task.
+9/10 tasks done, 12/90 successes = 13.3% SR (partial).
+Best task: chocolate_pudding 50%. Remaining: orange_juice 5/10 rollouts.
+Also killed r4 (PID 501420), freed cuda:2.

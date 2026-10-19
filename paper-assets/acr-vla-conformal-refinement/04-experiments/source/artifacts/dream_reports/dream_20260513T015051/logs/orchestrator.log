@@ -1,0 +1,3 @@
+2026-05-13 02:20:43,714 INFO    core.tools.feishu  create_chat: name='acr-vla-conformal-refinement-审稿群' → chat_id=oc_416d453a45869a9406db62186b1e3ef7
+2026-05-13 02:20:43,716 INFO    core.tools.dream  [dream] auto-created Group C for project=acr-vla-conformal-refinement: oc_416d453a45869a9406db62186b1e3ef7
+2026-05-13 02:20:43,772 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0509_8/config/mcp_config_dream_review_director.json
