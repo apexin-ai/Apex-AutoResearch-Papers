@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "685a1de7e04c212a41bb",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "ssh fix eval true dense",
+  "task_key": "worker_ssh_fix-eval-true-dense_20260515T162544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-eval-true-dense_20260515T162544.log",
+    "occurrence": 1,
+    "bytes": 597768,
+    "sha256": "5daeeb4c43e0486b8b2119b1e351940711d82cf28e648a77c12ebfb80008b8d0"
+  },
+  "statistics": {
+    "messages": 229,
+    "user_turns": 0,
+    "tool_calls": 76,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 73,
+      "tool_call": 76,
+      "tool_result": 76,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 229,
+      "chunks": [
+        {
+          "path": "685a1de7e04c212a41bb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "685a1de7e04c212a41bb-part-0002.json",
+          "message_count": 49
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-fix-eval-true-dense.md"
+}

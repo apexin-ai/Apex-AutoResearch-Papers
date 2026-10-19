@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61d652d12a872b33ee1e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code bce isocompute v2",
+  "task_key": "worker_code_bce_isocompute_v2_20260515T195750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bce_isocompute_v2_20260515T195750_result.json",
+    "occurrence": 1,
+    "bytes": 633,
+    "sha256": "538edd49390bfc3caa10449bb5ee9284725963d6fdaf07cb13c01adc286c8046"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并注册完成。总结：\n\n**bce_isocompute_v2_s42** 已在 westd-34887 cuda:0 上启动（PID 125967）\n\n- 修改了 `train.py`：新增 `--save_every` 参数，在 `train_bce` 循环中每 N 步 + 最终步保存 checkpoint\n- 终止了旧的 2700 步实验（PID 123989），释放 cuda:0\n- 配置：BCE loss, 1000 步, save_every=250 → 将在 step 250/500/750/1000 各保存一个 checkpoint\n- 输出目录：`/root/distill_sparse_swiglu/checkpoints/bce_isocompute_v2_s42/`\n- 日志：`~/runs/distill_sparse_swiglu/bce_isocompute_v2_s42.log`\n- Registry 状态：RUNNING, plan_id=plan_003"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bce-isocompute-v2.md"
+}

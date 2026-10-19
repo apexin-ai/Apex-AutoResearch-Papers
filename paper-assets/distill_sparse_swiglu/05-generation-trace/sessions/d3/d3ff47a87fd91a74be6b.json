@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3ff47a87fd91a74be6b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "data flashinfer benchmark extract",
+  "task_key": "worker_data_flashinfer_benchmark_extract_20260519T175139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_flashinfer_benchmark_extract_20260519T175139_result.json",
+    "occurrence": 1,
+    "bytes": 899,
+    "sha256": "7b91f62df15bc6ef674f073c1e44ad9f711085b4677e469eef13ece18203cde1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。数据保存在 `results/benchmark/flashinfer_benchmark.json`，已注册为 artifact `art_20260519_4bed22`。\n\n**数据概要**（28 条记录，LLaMA-3.1-8B，RTX PRO 6000 Blackwell）：\n\n| 配置 | sparse_50 加速比 | sparse_30 加速比 |\n|------|-----------------|-----------------|\n| BS=1, SL=512 | 1.035x | 0.890x |\n| BS=1, SL=2048 | 1.051x | 0.861x |\n| BS=8, SL=512 | 1.126x | 0.899x |\n| BS=8, SL=2048 | 1.109x | 0.902x |\n\n- `mask_multiply` 模式几乎无加速（~0.98x），符合预期（仍做全尺寸 matmul）\n- `sparse_50` 在所有配置下都有正向加速（3.5%-12.6%）\n- `sparse_30` 因 gather 开销反而变慢（~10%），仅剪掉 30% 不足以抵消索引开销\n- predictor 开销极小：BS=1 时 2.4-3.2ms，BS=8 时 4.9-14.4ms\n- `flashinfer_30/50` 模式因 masks 未正确加载被跳过（v2 实验停留在 PREPARING）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-flashinfer-benchmark-extract.md"
+}

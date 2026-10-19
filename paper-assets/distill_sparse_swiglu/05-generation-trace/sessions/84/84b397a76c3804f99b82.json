@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84b397a76c3804f99b82",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval sparsity70 predictor teal",
+  "task_key": "worker_eval_sparsity70_predictor_teal_20260515T232107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_sparsity70_predictor_teal_20260515T232107_result.json",
+    "occurrence": 1,
+    "bytes": 72,
+    "sha256": "5e030b89b2d283c94b7864be8717f6be334bd2875d1aff1904f8be91a3fe8a20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 6 background timers now cleared. Task fully complete."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-sparsity70-predictor-teal.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a27c75b75974512be808",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis perlayer kl k2 s42",
+  "task_key": "worker_analysis_perlayer_kl_k2_s42_20260523T055755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_perlayer_kl_k2_s42_20260523T055755_result.json",
+    "occurrence": 1,
+    "bytes": 1025,
+    "sha256": "10d15c7c4fa98182d50dbe6bd932bc654060af18756cd36941a281aa4c5bafbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`perlayer_kl_k2_s42_train` 不存在，不需要处理重复条目。\n\n---\n\n## 总结\n\n**K=2 训练 (perlayer_kl_k2_s42)** — 正常完成，1000 steps，EXIT_CODE=0。\n\n| 指标 | K=2 | K=4 | K=8 | K=16 | K=32 (joint) |\n|------|-----|-----|-----|------|-------------|\n| final_avg_kl | 0.0358 | — | 0.0983 | 0.1582 | — |\n| final_avg_sparsity | 0.268 | 0.282 | 0.281 | 0.286 | — |\n| wall_time (s) | 3841 | — | 1894 | 1983 | — |\n| WikiText-2 PPL | **未评估** | 8.8932 | 8.9704 | 8.6737 | 8.8157 |\n\n**关键发现：**\n- K=2 的 avg_kl (0.0358) 是所有 K 值中最低的，符合预期（每步只训练 2 层，梯度信号更集中）\n- avg_sparsity 0.268 略低于目标 0.3，部分层的 lambda 没有收敛到足够高\n- wall_time 3841s 约为 K=8 的 2 倍，因为 K=2 每步只覆盖 2/32 层，需要更多步数累积覆盖\n- **PPL eval 尚未运行**——需要单独跑 benchmark_eval.py 才能获得 WikiText-2 PPL 和下游任务分数，完成 K-curve 数据点"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-perlayer-kl-k2-s42.md"
+}

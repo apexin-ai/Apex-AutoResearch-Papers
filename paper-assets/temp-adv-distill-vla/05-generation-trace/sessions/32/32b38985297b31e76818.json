@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32b38985297b31e76818",
+  "project": "temp-adv-distill-vla",
+  "kind": "result",
+  "title": "research vip features",
+  "task_key": "worker_research_vip-features_20260515T053222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_vip-features_20260515T053222_result.json",
+    "occurrence": 1,
+    "bytes": 1819,
+    "sha256": "8ae0f334bbecb85763de89e8e73edd424c35435f80237a559b8547c62a8af714"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。以下是报告摘要：\n\n---\n\n## VIP Features 调研报告\n\n**VIP (Value-Implicit Pre-training)** — ICLR 2023, Meta/UPenn。在 Ego4D 人类视频上自监督预训练，将表征学习建模为 offline goal-conditioned RL，学到时间平滑的 embedding，使得 embedding distance 隐式等价于 value function，可直接作为任意 goal-image 任务的 dense reward。\n\n**架构**: ResNet50, 输出 1024 维 embedding, 输入 224×224 RGB。模型约 100MB，单帧推理 <5ms (GPU)，远快于 OpenVLA。\n\n**预训练模型获取**:\n- 官方 repo: [facebookresearch/vip](https://github.com/facebookresearch/vip)\n- TorchRL 内置: `from torchrl.envs.transforms import VIPTransform`\n- 独立安装: `pip install vip-reward`\n\n**核心优势 vs OpenVLA features**: VIP 的 embedding distance 设计上就是 temporally smooth + 单调的，论文验证在 sim/real robot 任务上 zero-shot 即可提供 dense reward，不需要微调。相比之下 R3M 的 embedding 平滑性较差，LIV 需要语言条件。\n\n**集成步骤**:\n1. `pip install vip-reward`\n2. `load_vip()` 加载预训练模型\n3. 对 LIBERO 轨迹帧提取 1024 维 embedding\n4. 计算 `cos_sim(emb_t, emb_goal)` 作为 progress indicator\n5. 与 OpenVLA features 在相同轨迹上对比单调性和平滑性\n\n**预估工作量**: 2-3 小时（含环境搭建、特征提取、对比实验）。\n\nSources:\n- [VIP Paper (arXiv)](https://arxiv.org/abs/2210.00030)\n- [VIP Official Repo](https://github.com/facebookresearch/vip)\n- [VIP Project Page](https://sites.google.com/view/vip-rl)\n- [ICLR 2023 OpenReview](https://openreview.net/forum?id=YJ7o2wetJ2)\n- [TorchRL VIPTransform Docs](https://docs.pytorch.org/rl/stable/reference/generated/torchrl.envs.transforms.VIPTransform.html)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-vip-features.md"
+}

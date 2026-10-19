@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9dd36bf4e1d68b991766",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh director cleanup 34887",
+  "task_key": "worker_ssh_director_cleanup_34887_20260520T210504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_director_cleanup_34887_20260520T210504_result.json",
+    "occurrence": 1,
+    "bytes": 430,
+    "sha256": "d9b6201dd105fb0e0c09e4fa318ddbb0aa054660045c03bd25cd85fdb9c54063"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**最终结果：**\n\n- MSE s123 进程：**已不存在**（无需 kill，可能之前已经结束或被 kill 过）\n- 无任何 Python 训练进程在运行（仅有 tensorboard、jupyter 等系统服务）\n- **两块 GPU 均空闲**，显存占用 0MiB，无 GPU 进程\n\ncuda:0 的 GPU-Util 100% 是瞬时读数波动，实际无进程占用，可放心使用。两块 RTX PRO 6000 Black (96GB) 均可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-director-cleanup-34887.md"
+}

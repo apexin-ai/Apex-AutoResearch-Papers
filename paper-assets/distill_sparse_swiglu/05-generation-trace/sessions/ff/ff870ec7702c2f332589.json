@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff870ec7702c2f332589",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops collect divergence 30pct",
+  "task_key": "worker_ops_collect-divergence-30pct_20260519T123938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-divergence-30pct_20260519T123938_result.json",
+    "occurrence": 1,
+    "bytes": 904,
+    "sha256": "7ea9e8fd2582b3f121f761e0a94feb74d7ab07381ea0306141b7d1a743a0b22b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 不在可用 MCP 工具列表中。artifact 文件已写入本地，跳过注册步骤。\n\n结果汇总：\n\n**30% Sparsity Mask Divergence (64 samples, 131K tokens)**\n\n| 指标 | 30% Sparsity | 50% Sparsity |\n|------|-------------|-------------|\n| Mean Jaccard Distance | **46.26%** | **68.24%** |\n| Min Layer Distance | 36.14% (L31) | — |\n| Max Layer Distance | 60.01% (L27) | — |\n\n关键发现：\n- 30% sparsity 的 mask divergence 显著低于 50%（46.26% vs 68.24%），低约 22 个百分点\n- **最稳定层**：Layers 15-18（中层）和 Layer 31（末层），Jaccard dist 36-39%\n- **最不稳定层**：Layers 25-29（后层），Jaccard dist 54-60%\n- KL sparsity 与 Jaccard distance 强相关（高 KL = 高 divergence）\n- Neuron-level disagree rate (L16): 8.71%\n\nArtifact 已写入 `artifacts/mask_divergence_30pct_64samples.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-divergence-30pct.md"
+}

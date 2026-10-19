@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc00ecf22d1430c4f432",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops resubmit c1 ablation",
+  "task_key": "worker_ops_resubmit-c1-ablation_20260518T155009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_resubmit-c1-ablation_20260518T155009_result.json",
+    "occurrence": 1,
+    "bytes": 943,
+    "sha256": "4023aec23692aea61514abfbdc178e4b90340f5de59282b046758c839f916316"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE (negative)。\n\n## 报告\n\n### 1. 死亡原因\n进程**未死亡**，两个进程均正常完成 1000 步训练后退出。日志末尾显示 \"Done.\"，checkpoint 已保存。\n\n### 2. 实验结果（假设被否定）\n\n| Metric | BCE+KL targets | KL distill | BCE |\n|--------|---------------|-----------|-----|\n| WikiText-2 PPL | **9.29** | 11.79 | 22.51 |\n| Eval sparsity | 0.609 | - | - |\n| Oracle agreement | 97.8% | - | - |\n\n假设预测 BCE+KL targets 的 PPL 会接近 BCE (22.51)，但实际 PPL=9.29 比 KL (11.79) 还好。**Target quality 是关键因素，非 gradient coupling。** BCE 用 KL-derived oracle masks 作为训练目标后，因为优化地形更简单，反而超越了 KL distillation 本身。\n\n### 3. 操作\n- 无需重新提交\n- Registry 已更新：status=DONE, conclusion=negative, metrics 已录入\n- westd-41718 GPU 1 空闲可用于其他实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-resubmit-c1-ablation.md"
+}

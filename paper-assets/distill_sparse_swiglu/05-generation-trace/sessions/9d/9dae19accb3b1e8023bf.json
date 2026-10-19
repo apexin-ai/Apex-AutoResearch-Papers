@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9dae19accb3b1e8023bf",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh urgent status check 41718",
+  "task_key": "worker_ssh_urgent_status_check_41718_20260520T205243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_status_check_41718_20260520T205243_result.json",
+    "occurrence": 1,
+    "bytes": 1189,
+    "sha256": "b0403943d4f29e272a797742f008d61ef097b1b3a98cf39f4b2e2d72e584d8d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-41718 状态报告\n\n### GPU\n| GPU | Util | VRAM |\n|-----|------|------|\n| 0 | 0% | 0 / 97887 MiB (空闲) |\n| 1 | 96% | 95690 / 97887 MiB |\n\n### JSD 30% uniform eval — ✅ 已完成\n\n| Metric | Value |\n|--------|-------|\n| WikiText-2 PPL | **8.8848** |\n| ARC-c (acc_norm) | **0.4437** |\n| WinoGrande | **0.6977** |\n| MMLU | **0.3857** |\n| GSM8K | **0.0857** |\n| HellaSwag (acc_norm) | **0.7063** |\n| PIQA (acc_norm) | **0.7519** |\n\n### RevKL 30% uniform eval — 🔄 运行中\n\n- PID 280143 (tmux, exp_id=`revkl_30_s42_uniform_eval`): alive, 运行 1h01m, GSM8K generate_until **77%** (1017/1319)\n- PID 279686 (nohup, exp_id=`reverse_kl_30_s42_uniform_eval`): alive, GSM8K generate_until **93%** (1225/1319)\n- 完成 GSM8K 后还有 hellaswag + piqa (loglikelihood，速度快)，预计 **~15-20 分钟**全部完成\n\n### ⚠️ 问题：两个 RevKL eval 进程重复跑\n\n同一个 checkpoint (`predictor_reverse_kl.pt`)、同一个配置，被用不同 exp_id 启动了两次，都在 cuda:1 上。两个都会产出结果，取先完成的那个即可（nohup 那个更快）。不影响正确性，但浪费了一半 GPU 算力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-status-check-41718.md"
+}

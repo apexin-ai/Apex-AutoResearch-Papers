@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e100aceb4e95f31abdfe",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diag kl50 s123 reeval failure",
+  "task_key": "worker_diag_kl50_s123_reeval_failure_20260517T184405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_kl50_s123_reeval_failure_20260517T184405_result.json",
+    "occurrence": 1,
+    "bytes": 1254,
+    "sha256": "e6ae3732133387440096ae1afb19a43c45cb4ea1d1bf026bca5b5c2c54988c31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**实验实际上已成功完成**，EXIT_CODE=1 是误报。\n\n### 证据\n- 所有 4 个 benchmark 全部跑完，结果已保存到 `results/benchmark/kl50_global_s123_reeval/results.json`\n- Checkpoint 存在且正确加载（`mvp_kl_norm_v2_s123/predictor_kl_normalized.pt`, 145MB）\n- 参数 flag 正确：脚本使用 `--checkpoint`（不是 `--predictor_path`）\n\n### 结果摘要\n| Benchmark | Metric | Value |\n|-----------|--------|-------|\n| WikiText-2 | PPL | 11.72 |\n| ARC-Challenge | acc_norm | 0.3635 |\n| WinoGrande | acc | 0.6109 |\n| MMLU | acc | 0.2834 |\n| GSM8K | exact_match | 0.0258 |\n\n### 失败根因\n日志末尾有 `fatal: not a git repository (or any of the parent directories): .git`。这是 lm-evaluation-harness 内部尝试记录 git hash 时触发的，因为 westd-41718 上的工作目录不是 git repo。这个非零退出码被外层脚本/wrapper 捕获并报告为 EXIT_CODE=1，但评估本身已正常完成。\n\n### 修复方案\n不需要重跑。结果文件完整可用。如果需要消除 git 报错：\n```bash\ncd /root/distill_sparse_swiglu && git init\n```\n或在启动命令中设置 `GIT_DISCOVERY_ACROSS_FILESYSTEM=0` 环境变量来静默该警告。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-kl50-s123-reeval-failure.md"
+}

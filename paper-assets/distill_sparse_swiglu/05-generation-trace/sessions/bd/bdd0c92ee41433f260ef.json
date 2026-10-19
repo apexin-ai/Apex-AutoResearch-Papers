@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bdd0c92ee41433f260ef",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh kill c4 ood s123",
+  "task_key": "worker_ssh_kill_c4_ood_s123_20260520T135328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_c4_ood_s123_20260520T135328_result.json",
+    "occurrence": 1,
+    "bytes": 340,
+    "sha256": "d0399e1b9d926caf4c136aa68769cd80b2dabeb610a0f79f26a739267ebe9251"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "c4_ood_kl30_s123 已完全终止。\n\n**westd-41718 GPU 状态**：\n| GPU | 显存占用 | 状态 |\n|-----|---------|------|\n| cuda:0 | 46199MiB / 97887MiB | PID 259022 仍在运行（另一个实验） |\n| cuda:1 | 0MiB / 97887MiB | 空闲 |\n\nc4_ood_kl30_s123 释放了 ~46GB 显存，cuda:0 上还剩 ~51GB 可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-c4-ood-s123.md"
+}

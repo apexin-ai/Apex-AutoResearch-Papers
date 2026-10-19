@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b36cb2ab6e6a7ef19f33",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "monitor bce sparsity drift",
+  "task_key": "worker_monitor_bce_sparsity_drift_20260515T193848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_bce_sparsity_drift_20260515T193848_result.json",
+    "occurrence": 1,
+    "bytes": 1637,
+    "sha256": "935628a8a180bbb10d3a7591642016fcab622d5885da06f5a0a0e678f039d0cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Sparsity Drift 报告：bce_isocompute_s42\n\n### 状态：训练已停止，未到达 step 1000\n\n训练进程不在运行。日志停在 step 500/2700，最后修改时间 03:37:45。无 exit file，无 traceback。\n\nGPU 0 当前被 `eval_spon_supplementary.py`（PID 122406，03:38 启动）占用，很可能是 bce_isocompute_s42 被挤掉或 OOM。\n\n### Sparsity 趋势\n\n| Step | Loss | BCE | Reg | Sparsity | LR |\n|------|------|-----|-----|----------|----|\n| 100 | 0.6711 | 0.6628 | 0.0082 | **0.582** | 1.00e-3 |\n| 200 | 0.6570 | 0.6504 | 0.0066 | **0.566** | 9.96e-4 |\n| 300 | 0.6494 | 0.6437 | 0.0057 | **0.557** | 9.85e-4 |\n| 400 | 0.6457 | 0.6402 | 0.0054 | **0.554** | 9.68e-4 |\n| 500 | 0.6461 | 0.6406 | 0.0055 | **0.555** | 9.43e-4 |\n\n### 分析\n\n1. **Sparsity 趋势**：从 0.582 下降到 0.555，有收敛趋势但在 step 400-500 已停滞在 0.554-0.555，仍高于目标 0.50 约 +0.055。\n2. **漂移模式确认**：与 bce_comp_staged_s42 一致——BCE 训练的 sparsity 容易偏高且难以拉回目标值。Reg loss 从 0.0082 降到 0.0055 但 sparsity 下降速度已放缓。\n3. **step 1000 预判**：按 step 300-500 的趋势（每 100 步仅下降 ~0.001），外推到 step 1000 sparsity 约 **0.550**，**大概率 > 0.55**。\n\n### 需要关注\n\n- **训练已死**：bce_isocompute_s42 不在运行，需要重启。\n- **GPU 冲突**：GPU 0 当前被 eval_spon_supplementary.py 占用，需等其完成或杀掉后再重启训练。\n- 即使重启，sparsity 漂移问题大概率持续——可能需要调大 reg 权重或换 sparsity 约束策略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-bce-sparsity-drift.md"
+}

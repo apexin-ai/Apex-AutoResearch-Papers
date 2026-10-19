@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c03f00ff44a7a659ad83",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval kl sparsity70 v2 ppl",
+  "task_key": "worker_eval_kl_sparsity70_v2_ppl_20260515T221311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_kl_sparsity70_v2_ppl_20260515T221311_result.json",
+    "occurrence": 1,
+    "bytes": 932,
+    "sha256": "010cd07d9aeeffee1eb7e5fb51441ea34f09eebed711b55186e7e3ac785c1782"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n## kl_sparsity70_s42_v2 PPL 评估结果\n\n| Metric | Value |\n|--------|-------|\n| true_dense_ppl | 6.12 |\n| **predictor_hard_mask_ppl** | **13.84** |\n| teal_sparse_ppl | 136,069.61 (broken) |\n| model_level_sparsity | 0.699 |\n\n## 70% vs 50% Sparsity 对比\n\n| | 50% KL (4-seed mean) | 70% KL (seed 42) |\n|--|--|--|\n| PPL | 12.00 ± 0.07 | 13.84 |\n| PPL degradation vs dense | +5.88 (+96%) | +7.72 (+126%) |\n\n**关键发现：**\n- 70% sparsity 的 predictor hard mask PPL (13.84) 仅比 50% (12.00) 高 15%，说明 KL predictor 在高稀疏度下仍能有效分配 neuron budget\n- Static global topk (teal_sparse) 在 70% sparsity 下完全失效——per-layer sparsity 分布极不均匀 (0.508–0.876)，late layers (L25-28) 被过度剪枝至 85%+ 导致 PPL 爆炸。这表明 70% sparsity 下 **必须用 per-token adaptive masking**，static allocation 不可行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-kl-sparsity70-v2-ppl-copy-2.md"
+}

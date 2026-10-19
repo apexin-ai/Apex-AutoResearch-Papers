@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb9dd3f3d738cb460d2f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper prep crossarch table",
+  "task_key": "worker_paper_prep_crossarch_table_20260518T002805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_prep_crossarch_table_20260518T002805_result.json",
+    "occurrence": 1,
+    "bytes": 602,
+    "sha256": "4f08a592cdd8187e5425d06384bca0705db4ea408278ce8670505ebb87ea15c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Memo 已写入 `artifacts/crossarch_table_prep.md`。\n\n关键发现:\n- 14B 表格在 `experiments.tex` lines 231–248 (`tab:14b`), uniform row 在 line 245 以注释形式预留\n- KL 的 PPL-MMLU 解耦是核心问题: PPL 最优 (7.62) 但 MMLU 最差 (63.72 vs TEAL 71.83)\n- Uniform 数据到位后需改: table row (L245), 叙事段 (L226–229), caption (L233), 以及 sec:scaling 的 cross-arch reference (L192)\n- 两种情景方案已写好: A (allocation 根因, 强化 phase transition narrative) vs B (结构性问题, 弱化 claim 聚焦 PPL generalization + limitation)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-prep-crossarch-table.md"
+}

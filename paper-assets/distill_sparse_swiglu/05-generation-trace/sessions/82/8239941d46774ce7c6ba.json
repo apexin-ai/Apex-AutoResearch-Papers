@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8239941d46774ce7c6ba",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis perlayer kl k8 s42",
+  "task_key": "worker_analysis_perlayer_kl_k8_s42_20260523T031356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_perlayer_kl_k8_s42_20260523T031356_result.json",
+    "occurrence": 1,
+    "bytes": 570,
+    "sha256": "bb01119b89aee51389b5df9f28db695cf25e099de6f5151211b51804d5aacdb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| 指标 | 值 |\n|------|-----|\n| 训练状态 | 正常完成（1000/1000 steps） |\n| Final avg KL | 0.0983 |\n| Final avg sparsity | 0.281 |\n| Wall time | ~1894s |\n| **WikiText-2 PPL** | **8.97** |\n\n### 对比\n\n| 配置 | PPL (uniform 30%) |\n|------|-------------------|\n| K=1 (E2E) | 9.05 |\n| K=4 | 9.22 |\n| **K=8** | **8.97** |\n\n**Conclusion: success.** K=8 的 PPL 8.97 优于 K=4 (9.22) 和 K=1 (9.05)，验证了 doubling masking breadth 改善 train-inference alignment 的假设。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-perlayer-kl-k8-s42.md"
+}

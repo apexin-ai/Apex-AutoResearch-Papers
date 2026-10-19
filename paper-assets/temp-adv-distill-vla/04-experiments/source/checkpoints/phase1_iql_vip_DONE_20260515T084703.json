@@ -1,0 +1,60 @@
+{
+  "exp_id": "phase1_iql_vip",
+  "project": "temp-adv-distill-vla",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:33:03.620Z",
+    "updated_at": "2026-05-15T08:47:03.832Z",
+    "hypothesis": "IQL trained on VIP MLP progress reward can compute per-timestep advantage that effectively separates no-op vs progress timesteps (AUROC > RINSE SAL/TED)",
+    "parent": "phase0_feature_val",
+    "metrics": {
+      "cross_task_mlp_validation": {
+        "single_task_pass_rate": "2/9",
+        "result": "FAIL"
+      },
+      "multitask_mlp": {
+        "overall_r2": 0.9653,
+        "pass_rate": "10/10",
+        "result": "ALL PASS"
+      },
+      "iql_training": {
+        "tasks_trained": 10,
+        "total_time_s": 2060,
+        "hyperparams": "tau=0.8, gamma=0.99, lr=3e-4, 100k steps, batch=256",
+        "salad_dressing_early_stop": "75k steps"
+      },
+      "gate2": {
+        "passed": false,
+        "tasks_passed": "0/10",
+        "iql_auroc_mean": 0.506,
+        "iql_auroc_range": "0.473-0.521",
+        "saliency_auroc_mean": 0.006,
+        "ted_auroc_mean": 0.619,
+        "ted_auroc_range": "0.556-0.699",
+        "iqr_pass_count": "4/10 (>0.1)",
+        "cohens_d_max": 0.135,
+        "cohens_d_pass_count": "0/10 (>0.5)",
+        "verdict": "FAIL: IQL advantage AUROC ~ random (0.50), no discriminative power"
+      }
+    },
+    "spec": {
+      "command": "python phase1_iql_training.py (per-task IQL, 10 tasks) + python gate2_evaluation.py",
+      "server": "westd-34887",
+      "data_path": "/root/temp-adv-distill-vla/data/libero/libero_object/",
+      "data_count": "10 tasks x 50 demos, ~7000-8000 transitions/task",
+      "model_name": "IQL (tau=0.8, gamma=0.99, lr=3e-4, 100k steps, batch=256) on VIP+MLP reward",
+      "seed": "not specified",
+      "checkpoint_path": "/root/temp-adv-distill-vla/artifacts/iql_checkpoints/",
+      "log_path": "/root/temp-adv-distill-vla/artifacts/gate2_results.json",
+      "checkpoint_source": "phase0_feature_val (gate1b_mlp_multitask.pt as reward model)",
+      "eval_data": "libero_object 10 tasks, no-op/progress split by MLP reward threshold"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-15T08:47:03.832Z"
+  },
+  "timestamp": "2026-05-15T08:47:03.841793+00:00",
+  "trigger": "update_registry"
+}

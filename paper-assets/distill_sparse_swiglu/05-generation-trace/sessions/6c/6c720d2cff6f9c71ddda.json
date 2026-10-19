@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c720d2cff6f9c71ddda",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops westd 34887 gpu check",
+  "task_key": "worker_ops_westd-34887-gpu-check_20260518T061334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-34887-gpu-check_20260518T061334_result.json",
+    "occurrence": 1,
+    "bytes": 1295,
+    "sha256": "35983a63627646752ba03e59229127526e56d9f589e6a7d8a99a5906256612b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 状态\n\n| GPU | 型号 | 显存占用 | GPU Util | 温度 | 功耗 |\n|-----|------|---------|----------|------|------|\n| cuda:0 | RTX PRO 6000 Black | 66988 / 97887 MiB | 64% | 48°C | 235W/600W |\n| cuda:1 | RTX PRO 6000 Black | 67569 / 97887 MiB | 100% | 80°C | 581W/600W |\n\n### 实验状态\n\n**1. kl50_s123_uniform_eval (cuda:0, PID 3143)**\n- 命令: `src/benchmark_eval.py`, tasks=wikitext2,arc_challenge,winogrande,mmlu,gsm8k\n- 配置: TEAL global sparsity 50%, uniform allocation, checkpoint=kl_50pct_s123\n- 进度: 正在跑 `generate_until` 请求，281/1319 (21%)，速度 ~1.13s/it，预计当前 task 剩余约 20 分钟。前面几个小 benchmark 已完成。\n\n**2. kl50_s456_train (cuda:1, PID 2589)**\n- 命令: `src/train.py`, seed=456, kl_normalized loss, 1000 steps\n- 进度: **step 730/1000** (73%)，剩余 270 steps\n- 训练指标 (step 730): loss=0.324, sparsity=0.492 (接近目标 0.5), constraint=0.0 (已满足), tau=0.343, lr=2.06e-04\n- 训练稳定，loss 在 0.28-0.36 之间波动，sparsity 收敛于 0.48-0.50\n\n注意：用户提供的 PID 100563 与实际 PID 2589 不符，可能进程重启过。cmdline 显示 `--gpu 0`，但 nvidia-smi 显示在 GPU 1 上，推测有 `CUDA_VISIBLE_DEVICES` 重映射。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-34887-gpu-check.md"
+}

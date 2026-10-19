@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5eb364c8ac934b12833",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "data snr extended extract",
+  "task_key": "worker_data_snr-extended-extract_20260518T040927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_snr-extended-extract_20260518T040927_result.json",
+    "occurrence": 1,
+    "bytes": 446,
+    "sha256": "b047996c8e3418dac80e07f7e54035bed8790757049d48953ca5f92112fe94be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。JSON 已保存到本地 `artifacts/snr_extended_results.json` 并注册为 artifact `art_20260518_edbba5`。\n\n包含内容：\n- 7 个 checkpoint (steps 0-300) 的 KL/BCE SNR mean + 95% CI + std\n- 每个 checkpoint 32 层的 per-layer SNR\n- KL 和 BCE 完整 loss curve (每 10 步)\n- 训练时间 (KL: 641s, BCE: 320s)\n- Final ratio KL/BCE at step 300 = 5.14x\n- 两个前置实验 (v1, constrained) 的汇总对比"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-snr-extended-extract.md"
+}

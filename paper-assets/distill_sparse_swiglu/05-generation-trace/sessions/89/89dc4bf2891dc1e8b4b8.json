@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89dc4bf2891dc1e8b4b8",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval bench d029 cuda1",
+  "task_key": "worker_eval_bench_d029_cuda1_20260516T025620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_bench_d029_cuda1_20260516T025620_result.json",
+    "occurrence": 1,
+    "bytes": 191,
+    "sha256": "90f9a282c514b3746258cd810cbc9491d584ebf7dbb6199cfd85b2cc60e96b7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "批量脚本已在 cuda:1 上启动（PID 195903），5 个条件顺序执行中。条件 1 (bench_teal50) 正在跑 WikiText-2 PPL 评估。~4.5 分钟后自动轮询进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-bench-d029-cuda1.md"
+}

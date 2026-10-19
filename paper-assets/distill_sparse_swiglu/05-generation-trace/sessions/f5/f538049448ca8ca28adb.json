@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f538049448ca8ca28adb",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check running experiments",
+  "task_key": "worker_check_running_experiments_20260516T030643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_running_experiments_20260516T030643_result.json",
+    "occurrence": 1,
+    "bytes": 812,
+    "sha256": "26b011c2286dc631117f22d132fdca3dcbd4e920ccb7833e7873a996712e727d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n两个实验均 **ALIVE**，无错误。\n\n### 实验 1: lm_eval_teal_30pct (PID 194814)\n- **状态**: 运行中，已 11 分钟\n- **GPU**: cuda:0, 19984 MiB\n- **进度**: `generate_until` 337/1319 (25%) — 已完成 loglikelihood 阶段（arc_challenge, winogrande, mmlu），当前在跑 gsm8k 生成\n- **速度**: ~1.38s/it\n- **预计剩余**: ~23 分钟\n\n### 实验 2: lm_eval_mistral_kl_50pct (PID 195242)\n- **状态**: 运行中，已 10 分钟\n- **GPU**: cuda:1, 16524 MiB\n- **进度**: loglikelihood 已 100% 完成 (63389/63389)，`generate_until` 刚开始 29/1319 (2%)\n- **速度**: ~3.6s/it\n- **预计剩余**: ~77 分钟\n\n两个实验运行正常，不需要干预。TEAL 30% 预计 ~25 分钟后完成，Mistral KL 50% 预计 ~80 分钟后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-running-experiments.md"
+}

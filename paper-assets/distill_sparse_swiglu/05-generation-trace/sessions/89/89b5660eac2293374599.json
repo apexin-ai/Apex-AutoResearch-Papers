@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89b5660eac2293374599",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops collect uniform v2 final",
+  "task_key": "worker_ops_collect-uniform-v2-final_20260518T131254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-uniform-v2-final_20260518T131254_result.json",
+    "occurrence": 1,
+    "bytes": 68,
+    "sha256": "f3330a4b20b037478d0aa3b6271d8ecb5443f39cfe75237288b36f9dd2d3c360"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Waiting ~20 minutes for GSM8K to finish on both GPUs."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-uniform-v2-final.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec68f4d6ecc7eaf3c444",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code perlayer kl 50 eval prep",
+  "task_key": "worker_code_perlayer_kl_50_eval_prep_20260522T031347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_perlayer_kl_50_eval_prep_20260522T031347_result.json",
+    "occurrence": 1,
+    "bytes": 3007,
+    "sha256": "fc94f5973294192474be7c46b25a7610ac6134a5b20c773367752e31b1d48f68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks complete. Here's the full analysis:\n\n---\n\n## 兼容性分析\n\n### 1. `--sparsity_target 0.5` 支持情况\n**完全兼容。** `benchmark_eval.py` 的 `--sparsity_target` 默认值就是 `0.5`（L110），没有硬编码限制。\n\n### 2. Checkpoint 格式兼容性\n**兼容。** 两边都用 `ckpt[\"predictors\"]` key：\n- `train_perlayer_kl.py` L351: `torch.save({\"predictors\": wrapper.predictors.state_dict(), \"args\": vars(args)}, ...)`\n- `benchmark_eval.py` L171: `wrapper.predictors.load_state_dict(ckpt[\"predictors\"])`\n\n### 3. Checkpoint 文件名\n- 中间 checkpoint（save_every=2000）：`predictor_perlayer_kl_step_{N}.pt`\n  - 已有：`predictor_perlayer_kl_step_2000.pt`\n  - 将生成：`..._step_4000.pt`, `..._step_6000.pt`, `..._step_8000.pt`, `..._step_10000.pt`\n- **最终 checkpoint**（L350）：`predictor_perlayer_kl.pt`\n\n路径：`/root/distill_sparse_swiglu/checkpoints/perlayer_kl_50_s42/predictor_perlayer_kl.pt`\n\n### 4. 训练进度\n当前 step 2800/10000，每 step ~1.82s。剩余 ~7200 steps ≈ 3.6h，**预计完成时间 ~14:55 UTC**。\n\n### 5. Eval 在 westd-41718 执行\n训练和 checkpoint 都在 westd-41718，eval 应该也在这台机器上跑。训练占 cuda:0，训练结束后两张卡都可用。\n\n---\n\n## 最终 Eval 命令\n\n**命令 A — PPL eval (cuda:0)：**\n```bash\ncd /root/distill_sparse_swiglu && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\nexport HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 && \\\nCUDA_VISIBLE_DEVICES=0 python -u src/benchmark_eval.py \\\n  --exp_id perlayer_kl_50_s42_ppl \\\n  --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b \\\n  --checkpoint checkpoints/perlayer_kl_50_s42/predictor_perlayer_kl.pt \\\n  --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform \\\n  --tasks wikitext2 --seq_len 2048 --gpu 0\n```\n\n**命令 B — Downstream + BoolQ (cuda:1)：**\n```bash\ncd /root/distill_sparse_swiglu && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\nexport HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 && \\\nCUDA_VISIBLE_DEVICES=1 python -u src/benchmark_eval.py \\\n  --exp_id perlayer_kl_50_s42_downstream \\\n  --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b \\\n  --checkpoint checkpoints/perlayer_kl_50_s42/predictor_perlayer_kl.pt \\\n  --sparsity_mode teal_global --sparsity_target 0.5 --allocation uniform \\\n  --tasks arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa,boolq \\\n  --seq_len 2048 --gpu 0\n```\n\n注意 `--gpu 0` 是正确的——因为 `CUDA_VISIBLE_DEVICES` 已经限定了物理卡，逻辑上只有 device 0。\n\n---\n\n## 问题清单\n**无兼容性问题。** checkpoint key 格式一致，sparsity_target 无限制，bottleneck_size 默认 128 与训练一致。命令可直接使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-perlayer-kl-50-eval-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f09eb67e794ed25ba91",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "exp c4 ood downstream investigate",
+  "task_key": "worker_exp_c4_ood_downstream_investigate_20260520T115749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_c4_ood_downstream_investigate_20260520T115749_result.json",
+    "occurrence": 1,
+    "bytes": 1301,
+    "sha256": "97a3db01622197848ffa3127c33e0ac16a4c2e66cf562297d0c9f1413a69c1fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Process alive (PID 250944). Log output is buffered (nohup + Python full buffering) — actual progress won't appear until chunks flush. This is normal for 6-task downstream eval, expected runtime ~1-2 hours.\n\n**调研结论：**\n\n| 问题 | 结果 |\n|------|------|\n| `--calibration_data` 参数 | 原来不支持，已添加 (`choices=[\"wikitext2\", \"c4\"]`) |\n| Mask 预测方式 | `teal_global` = 静态 calibration-based；`per_token` = 动态每 token |\n| C4 OOD downstream 是否可行 | **可行** — `teal_global` 模式下，改 calibration data 为 C4 即可测 predictor 对 calibration domain shift 的鲁棒性 |\n| C4 数据 | 已有 `/root/autodl-tmp/data/c4_val/` (~800MB) |\n\n**代码修改（benchmark_eval.py）：**\n- L119: 新增 `--calibration_data` 参数\n- L153: `get_calibration_ids()` 接受 `dataset` 参数\n- L348, L374: 两个 call site 透传 `args.calibration_data`\n\n**已提交实验：**\n- `c4_ood_downstream_kl30` on westd-41718:cuda:1 (PID 250944)\n- C4 calibration + teal_global + uniform 30% + 6 tasks (arc_challenge, winogrande, mmlu, gsm8k, hellaswag, piqa)\n- 对比基准：`bench_kl30_uniform`（WikiText-2 calibration 下的同 checkpoint 同 tasks）\n\n日志：`/root/distill_sparse_swiglu/logs/c4_ood_downstream_kl30.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-c4-ood-downstream-investigate.md"
+}

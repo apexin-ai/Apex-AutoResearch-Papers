@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cee3d580fac472ad44b5",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops restore plan005",
+  "task_key": "worker_ops_restore_plan005_20260515T202723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restore_plan005_20260515T202723_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "087df2fb74e7721b75b5d15a74337831491ac35fa215559828c61be47692d276"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### (1) plan_005 subsumption test — **已正常完成** (EXIT_CODE=0)\n\nPID 129873 已退出，但日志显示实验跑完了全部 50 个样本，结果已保存到 `results/subsumption_test/subsumption_results.json` (15KB, May 16 04:20)。\n\n关键结果：\n| 指标 | 值 |\n|------|-----|\n| Linearity ratio | 0.2644 ± 0.0073 |\n| Magnitude ratio | 0.1578 ± 0.0088 |\n| Cosine similarity | 0.1962 ± 0.0268 |\n| ‖D(s)‖ mean | 482.65 |\n| ‖D(c)‖ mean | 76.20 |\n| ‖interaction‖ | 147.74 |\n\n结论：**Weak subsumption — significant non-linear interaction detected.** SPON 校正项与 predictor 蒸馏项之间存在明显的非线性交互，不能简单叠加。\n\n### (2) 采取的操作\n\n无需恢复。plan_005 是正常退出，不是被 kill。\n\ncuda:1 上的 PID 131619 也已退出（ps 查不到），nvidia-smi 可能是缓存残留。\n\n### (3) bce_isocompute_v2 (PID 129187) — **运行中**\n\n状态 `Rl`（running），当前 step 600/1000，loss=0.6696，1.05s/step，预计还需 ~7 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restore-plan005.md"
+}

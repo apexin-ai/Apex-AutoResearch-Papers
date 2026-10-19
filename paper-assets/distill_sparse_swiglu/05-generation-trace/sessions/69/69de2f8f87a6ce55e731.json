@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69de2f8f87a6ce55e731",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops p0 fix c1 s123 and verify evals",
+  "task_key": "worker_ops_p0-fix-c1-s123-and-verify-evals_20260518T171731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_p0-fix-c1-s123-and-verify-evals_20260518T171731_result.json",
+    "occurrence": 1,
+    "bytes": 1198,
+    "sha256": "4403604f28656aa3201d5e658a5631f14879b0165441f1e2788279a804c70a72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### Task 1: 50% KL s123 checkpoint\n\n**存在，在 westd-34887 上：**\n```\n/root/distill_sparse_swiglu/checkpoints/kl_50pct_s123/predictor_kl_normalized.pt\n```\n- 大小：151,966,687 bytes\n- 时间：May 17 18:56\n\nwestd-41718 上没有 `kl_50pct_s123`，但有 `mvp_kl_norm_v2_s123`（不同实验）。如果 C1 ablation 需要在 41718 上跑，需要先把 checkpoint scp 过去。\n\n### Task 2: 3 个 eval 全部在跑\n\n| Eval | Server | tmux session | PID | GPU 占用 | 状态 |\n|------|--------|-------------|-----|---------|------|\n| bce_30pct_s42_eval | westd-41718 | ✅ 存在 (01:12:43) | 89401 | 44840 MiB (cuda:0) | ✅ 运行中 |\n| kl_sparsity35_s42_eval_teal | westd-34887 | ✅ 存在 (01:12:47) | 39468 | 44840 MiB (cuda:0) | ✅ 运行中 |\n| kl_sparsity45_s42_eval_teal | westd-34887 | ✅ 存在 (01:12:49) | 39548 | 44840 MiB (cuda:1) | ✅ 运行中 |\n\n三个 eval 日志都显示 progress bar 正在推进，无需重新提交。\n\n### 下一步\n\nC1 ablation s123 需要的 50% KL checkpoint 在 westd-34887 上已就绪。需要确认 C1 ablation 在哪台机器上跑，如果在 41718 需要先传输 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-p0-fix-c1-s123-and-verify-evals.md"
+}

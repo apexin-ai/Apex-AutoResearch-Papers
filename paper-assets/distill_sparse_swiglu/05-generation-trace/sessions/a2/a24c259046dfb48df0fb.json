@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a24c259046dfb48df0fb",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code fix evaluate py d075 FINAL",
+  "task_key": "worker_code_fix_evaluate_py_d075_FINAL_20260519T142424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_evaluate_py_d075_FINAL_20260519T142424_result.json",
+    "occurrence": 1,
+    "bytes": 1403,
+    "sha256": "f57b661ee226d4cb3a043c8ea9ef9e08c52d2df8b1f1a6bf71f251e064c8b611"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n---\n\n### 1. evaluate.py 修复前后关键行\n\n**`teal_global_masks()` — 修复前（westd-41718 原始）：**\n```\n79:  hard_mask = (logits > 0).float()\n80:  mag = intermediates[layer_idx].abs().float().to(pred_device)\n81:  scores = (mag * hard_mask).mean(dim=(0, 1))\n```\n\n**修复后（两台服务器一致）：**\n```\n78:  scores = torch.sigmoid(logits).mean(dim=(0, 1))\n```\n\n**`_uniform_topk_masks()` — 新增 sparsity 断言（line 164-165）：**\n```\n164:  actual_sparsity = 1 - masks[li].float().mean()\n165:  assert abs(actual_sparsity - sparsity_target) < 0.02, f\"Layer {li}: ...\"\n```\n\n### 2. 修改时间戳\n\n| 服务器 | evaluate.py Modify | lm_eval_sparse_uniform.py Modify |\n|--------|-------------------|----------------------------------|\n| westd-34887 | **2026-05-19 22:22:11** ✅ | 2026-05-19 21:55:01 (未被本次修改) ✅ |\n| westd-41718 | **2026-05-19 22:26:23** ✅ | 2026-05-19 21:56:07 (未被本次修改) ✅ |\n\n### 3. lm_eval_sparse_uniform.py 未被触动 ✅\n\n两台服务器上 `grep -n \"hard_mask\" evaluate.py` 均返回空（exit code 1）。\n\n### 4. s42 eval 提交状态\n\n- **exp_id**: `qwen14b_kl30_s42_eval_uniform_v3`\n- **PID**: 114087（westd-34887 cuda:0）\n- **状态**: RUNNING\n- 日志显示 mask 已生成（model-level sparsity 0.296），正在评估 WikiText-2 PPL"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-evaluate-py-d075-final.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac6f60bf7fefb6b272ec",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code latency benchmark",
+  "task_key": "worker_code_latency_benchmark_20260518T183429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_latency_benchmark_20260518T183429_result.json",
+    "occurrence": 1,
+    "bytes": 1093,
+    "sha256": "a77cc3fc52e762f17e0d3c93bb7cb343b0fc4120cd9a46cf7745adea2dd93454"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。\n\n**产出总结**:\n\n1. **脚本**: 已写入 `/root/distill_sparse_swiglu/src/benchmark_latency.py`，`--help` 和 `--dry_run` 均验证通过。\n\n2. **TEAL sparse kernel 调研结论**: **纯 mask-and-multiply，没有 sparse kernel**。`PredictorWrapper._patch_single_mlp` 计算完整的 `gate_proj`、`up_proj`、`down_proj` dense matmul，只在中间激活上做 element-wise mask。没有 triton kernel、cuSPARSE、或任何结构化稀疏优化。预期 sparse 模式会比 dense **更慢**（额外 predictor forward 开销，无 FLOP 节省）。\n\n3. **Checkpoint 路径修正**: 30% sparsity 用的是 `kl_sparsity30_s42_v3`（用户指定的 `kl_sparsity30_s42` 不存在）。\n\n4. **Predictor 参数验证** (与 C003 约束一致): GELU 激活, d_b=128, 2,373,760 params/layer, 75,960,320 total。\n\n脚本支持: `--batch_sizes 1,8`, `--runs 3`, `--iters 100`, `--warmup 10`, JSON 输出, markdown 表格, GPU memory 测量, predictor 独立开销测量。等 GPU 空闲后可跑: `python src/benchmark_latency.py --device cuda:0`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-latency-benchmark.md"
+}

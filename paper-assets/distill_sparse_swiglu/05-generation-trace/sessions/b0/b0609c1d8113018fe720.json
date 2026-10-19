@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0609c1d8113018fe720",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis kl bce f1 oracle",
+  "task_key": "worker_analysis_kl_bce_f1_oracle_20260517T051453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_kl_bce_f1_oracle_20260517T051453_result.json",
+    "occurrence": 1,
+    "bytes": 1331,
+    "sha256": "f1c8f6f382e2fa080cf8a6d519163583aa6657f8e74519aa453ec2b3224c1e80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Server `westd-34887` is unreachable (connection refused on port 34887). The instance appears to be powered off.\n\n**Script ready**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/kl_bce_f1_oracle.py`\n\n**When server comes back**, deploy and run with:\n```bash\n# Upload to server\nscp artifacts/kl_bce_f1_oracle.py connect.westd.seetacloud.com:/root/distill_sparse_swiglu/scripts/\n\n# Run (GPU needed for model forward pass)\nssh connect.westd.seetacloud.com \"cd /root/distill_sparse_swiglu && \\\n  source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\n  CUDA_VISIBLE_DEVICES=0 nohup python -u scripts/kl_bce_f1_oracle.py \\\n  > ~/runs/distill_sparse_swiglu/kl_bce_f1_oracle.log 2>&1 &\"\n```\n\n**Script details**:\n- Loads LLaMA-3.1-8B, computes per-token magnitude top-k oracle at 50% retain\n- KL checkpoint: `checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt`\n- BCE checkpoint: searches `bce_isocompute_v3_s42/` dir, falls back to `bce_framework_lr3e3/predictor_bce_gumbel.pt`, falls back to random baseline\n- Threshold: `logits > 0` (hard mask, same as inference protocol)\n- Output: F1/precision/recall overall + per-layer breakdown → `artifacts/kl_bce_f1_oracle.json`\n- 50 C4 validation samples, seq_len=2048, batch_size=2"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-kl-bce-f1-oracle.md"
+}

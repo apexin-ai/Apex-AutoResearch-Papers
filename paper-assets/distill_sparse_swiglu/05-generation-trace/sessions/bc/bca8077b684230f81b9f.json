@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bca8077b684230f81b9f",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_4_1778900747.md",
+  "task_key": "loop_4_1778900747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778900747.md",
+    "occurrence": 1,
+    "bytes": 4782,
+    "sha256": "ebaf5f9364106759a868852001191130d5d71cbd04283a5f3fdc56c7c06e4a05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-16T02:52:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 **cuda:0 + cuda:1** on westd-34887，不可用其他 GPU\n- KL PPL 引用统一用 **4-seed mean 12.00±0.07**（TEAL sparse PPL），禁止用单 seed 最佳值 11.91\n- BCE framing 用 **\"objective mismatch\"**，禁止 \"anti-learning\"\n- SPON framing 用 **\"marginal complement\"**，禁止 \"KL subsumes SPON\"\n- s456 outlier 处理：报 \"5-seed mean 12.32±0.71\" + \"Excluding s456: 12.00±0.07\"，不跑第 6 seed\n- DDL **2026-05-25** (ARR May)，9 天后\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-34887, account=root\n- **工作目录**: `/root/distill_sparse_swiglu/`\n- **Python**: conda 环境（aml-train 镜像），`/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: Llama-3.1-8B（主模型），Mistral-7B at `/root/autodl-tmp/models/mistral-7b/`\n- **Checkpoints**: 见 memory.md Checkpoints 段，KL-only s42 在 `/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt`\n- **HF cache**: 默认位置（非 AutoDL，无需特殊配置）\n- **活跃进程**: 无。0 个 cron，0 个 RUNNING 实验，所有 Worker 已完成。**GPU 当前空闲**\n\n### 3. 📊 当前状态\n**刚完成**: 上一轮 session 做了 lm_eval_kl_30pct_s42（negative）和 lm_eval_teal_50pct（success）分析，确认 50% downstream collapse 是 universal（D028），不是 KL predictor 特有问题。还做了 PPL-downstream disconnect 文献调研和 method/related-work 初稿。\n\n**Registry 全景**: 51 实验，43 DONE（18 success / 10 negative / 7 killed / 8 failed），**8 PREPARING**，**0 RUNNING**。\n\n**8 个 PREPARING 实验**:\n1. `lm_eval_teal_30pct` — TEAL 30% downstream eval\n2. `diag_teal_downstream` — 诊断\n3. `diag_gsm8k_gencomp` — 诊断\n4. `diag_30pct_downstream` — 诊断\n5. `spon_kl_s42` — SPON 相关\n6. `mvp_kl_norm_s456` — s456 重跑\n7. `kl_norm_v3_quicktest` — quicktest\n8. `kl_lagrangian_v2` — Lagrangian v2\n\n这些 PREPARING 实验大部分是旧的探索分支或诊断实验。**当前无 cron、无 Worker、GPU 全空——严重违反 L1 红线（分配的 GPU 必须每张都在跑）**。\n\n**等待中**: 无 Worker 回调，无 cron，无 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- **立即（GPU 空闲 = 失职）** → 优先启动 plan_007 full benchmark（P0），D029 已决定用 benchmark_eval.py 统一 few-shot 重跑所有条件（KL-only + training-free）；cuda:0/cuda:1 各跑一组\n- plan_007 benchmark 脚本就绪 → 提交 KL 50% + TEAL 50% + dense baseline 三组 lm-eval\n- plan_009 Mistral KL 训练 → 代码已确认零改动兼容，需 spawn Worker 在 cuda:1 上跑\n- plan_008 sparsity sweep 收尾 → 30% v3 checkpoint 已有（`kl_sparsity30_s42_v3`），70% checkpoint 已有（`kl_sparsity70_s42`），需整理 PPL 汇总 + KL-BCE delta scaling trend\n- lm_eval_kl_30pct_s42 = negative → **需产出 Framing 调整提案**（30% downstream 也崩了，影响 \"30% 为推荐配置\" 的 claim）。但 D028 已锁定 \"50% downstream collapse universal\" narrative，30% 数据可能改变 claim 3 的 sparsity scaling story\n- 论文各 section 写作 → method 和 related work 初稿已有，需续写 intro/experiments/analysis/conclusion\n- R-Sparse 修复 → 低优先级，appendix only\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D028: 50% downstream collapse 是所有 sparsity 方法的固有限制（TEAL 也崩），非 KL predictor 特有问题 → Narrative A 锁定\n- D029: plan_007 统一 few-shot benchmark，重跑所有条件以消除评估不一致\n- Claim 1（KL >> all baselines）PPL 层面已确认；Claim 2（SPON marginal）已确认；Claim 3（sparsity scaling）数据有了但 downstream 方向有风险\n- **BCE \"objective mismatch\" 发现**是本文重要 contribution：BCE per-neuron binary accuracy vs TEAL global top-k 的结构性不兼容，比 \"KL 就是好\" 更有 insight\n\n**易错点**:\n- **不要混淆 hard-mask PPL 和 TEAL sparse PPL**：hard-mask PPL ~9.2（稳定），TEAL sparse PPL ~12.0（方差大）。对比必须用同类 PPL\n- **30% downstream negative 还没做 Framing 调整提案**——按 red-section skill 这是必须的，不能默默跳过\n- **plan_007 是最高优先级**——DDL 9 天后，full benchmark 数据必须齐全才能写 experiments section\n- submit_training_job 的 command 必须自带环境激活（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python ...`）\n- gradient_checkpointing 对所有 LLaMA-3.1-8B 训练必须开启，否则 OOM\n- lambda_max 对低 sparsity target 需要 5000+（30% 用 1000 会卡）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778900747.md"
+}

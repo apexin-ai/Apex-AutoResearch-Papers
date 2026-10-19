@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b54c2826d1fb617d46e6",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval kl sparsity40 global collect now",
+  "task_key": "worker_eval_kl_sparsity40_global_collect_now_20260520T092650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_kl_sparsity40_global_collect_now_20260520T092650_result.json",
+    "occurrence": 1,
+    "bytes": 1250,
+    "sha256": "65947a561269c54ce85c399a7e55d3badd0127a1616d3440ff1c31d4fa5f021b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Global eval 已完成。完整结果如下：\n\n⚠️ **注意：config 中 sparsity_target=0.5，不是 0.4**——exp_id 写的是 `kl_sparsity40` 但实际跑的是 50% global_topk allocation。\n\n---\n\n## Global eval (kl_sparsity40_s42, global_topk, **实际 sparsity=50%**)\n\n| Metric | Value |\n|--------|-------|\n| wikitext2_ppl | **12.8894** |\n| arc_challenge_acc_norm | **0.3549** |\n| winogrande_acc | **0.6227** |\n| mmlu_acc | **0.3139** |\n| gsm8k_exact_match | **0.0182** |\n| hellaswag_acc_norm | **0.5885** |\n| piqa_acc_norm | **0.6855** |\n\n## Uniform eval (kl_sparsity40_s42, uniform, sparsity=40%)\n\n| Metric | Value |\n|--------|-------|\n| wikitext2_ppl | **10.7605** |\n| arc_challenge_acc_norm | **0.3959** |\n| winogrande_acc | **0.6306** |\n| mmlu_acc | **0.3550** |\n| gsm8k_exact_match | **0.0356** |\n| hellaswag_acc_norm | **缺失**（未跑） |\n| piqa_acc_norm | **缺失**（未跑） |\n\n---\n\n**关键问题**：Global eval 的 `sparsity_target` 配置为 0.5 而非 0.4，这意味着这次 global eval 用的是 50% sparsity 而非 40%。所有指标明显低于 uniform 40% 的结果，与此一致。如果需要真正的 40% global eval，需要用 `--sparsity_target 0.4` 重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-kl-sparsity40-global-collect-now.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3fe743ee6322f145a04",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "download mistral 7b",
+  "task_key": "worker_download_mistral-7b_20260515T200011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_download_mistral-7b_20260515T200011_result.json",
+    "occurrence": 1,
+    "bytes": 85,
+    "sha256": "9899562b51a9be469aa3f08a0175a8d9ceaa3aecffc95cc53b41da4d067fb5e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载已在后台运行，约 60 秒后我会检查进度和速度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/download-mistral-7b.md"
+}

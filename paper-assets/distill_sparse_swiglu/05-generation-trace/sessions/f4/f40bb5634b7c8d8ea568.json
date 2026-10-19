@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f40bb5634b7c8d8ea568",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code perlayer kl k4 pilot",
+  "task_key": "worker_code_perlayer_kl_k4_pilot_20260522T095949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_perlayer_kl_k4_pilot_20260522T095949_result.json",
+    "occurrence": 1,
+    "bytes": 2587,
+    "sha256": "af0301ea7be118e0478548dc53c20665a46534ce2ca3ca358c292789fe2c4efc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## K=4 Per-layer KL Pilot — 启动成功\n\n### 修改内容\n新文件 `src/train_perlayer_kl_k4.py`（363 行，从 `train_perlayer_kl.py` 派生），关键改动：\n\n1. **CLI**: 新增 `--num_masked_layers` (默认 K=4)\n2. **`patch_perlayer_masking`**: `wrapper._active_layer`(单 int) → `wrapper._active_layers`(set), `should_mask` 判定改为 `li in active_layers`\n3. **训练循环**: `random.randint(0, n-1)` → `random.sample(range(n), K)`；K 层同时 mask\n4. **Sparsity constraint**: 对 K 个 active layer 各算一份 lambda·clamp(|sp-target|-margin,0)² 并求和参与反传\n5. **Lagrangian update**: 每个 active layer 用自己当步的 sparsity 独立更新 lambda\n6. **Checkpoint 命名**: `predictor_perlayer_kl_k4_step_*.pt` / `predictor_perlayer_kl_k4.pt`（避免覆盖 K=1）\n7. **wandb run_name**: 默认 `perlayer_kl_k{K}_s{sp}_seed{s}`\n\n其他保持与 K=1 一致：tau 1.0→0.1, warmup 100, lr 1e-3, lambda_max 5000, margin 0.02, batch_size 4, seq_len 2048。\n\n### 启动命令\n```bash\ncd /root/distill_sparse_swiglu && nohup env CUDA_VISIBLE_DEVICES=1 HF_HOME=/root/autodl-tmp/.hf_cache WANDB_MODE=offline \\\n  /root/miniconda3/bin/python -u src/train_perlayer_kl_k4.py \\\n  --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --dataset wikitext-103 \\\n  --seq_len 2048 --num_steps 2700 --lr 1e-3 --seed 42 --sparsity_target 0.3 \\\n  --num_masked_layers 4 --output_dir checkpoints/perlayer_kl_k4_s42 --gpu 0 \\\n  --gradient_checkpointing --save_every 500 --wandb_run_name perlayer_kl_k4_s42 \\\n  > logs/perlayer_kl_k4_s42.log 2>&1 &\n```\n\n注意：用户原命令中的 `--dataset_name wikitext2`/`--data_path` 不是脚本参数，已映射为 `--dataset wikitext-103`（与 K=1 baseline 一致）和 `HF_HOME` 环境变量。首次启动因 wandb 未登录崩溃，已加 `WANDB_MODE=offline` 重启成功。\n\n### 运行状态\n- **Python PID**: 42941（bash wrapper 42940）\n- **GPU**: cuda:1 = 100% 利用率, 36.7 GB / 97.9 GB（cuda:0 qwen14b eval 未受影响）\n- **日志**: `/root/distill_sparse_swiglu/logs/perlayer_kl_k4_s42.log`\n- **Step 1**: `layers=[1,7,15,17] kl=0.1191 avg_sp=0.406 avg_lambda=0.50 tau=1.000 lr=1.00e-05 dt=2.2s` — K=4 层正确同时 mask，KL 数量级合理（K=1 baseline 起步 kl=0.0203，K=4 起步更高是预期：4 层同时 mask 引入更大扰动）\n- **Lagrangian**: 四层 lambda 从 1.0 → 0.5（初始 sparsity 0.406 > target 0.3 + margin 0.02，按规则减半，正常）\n\nCheckpoint 每 500 step 保存到 `checkpoints/perlayer_kl_k4_s42/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-perlayer-kl-k4-pilot.md"
+}

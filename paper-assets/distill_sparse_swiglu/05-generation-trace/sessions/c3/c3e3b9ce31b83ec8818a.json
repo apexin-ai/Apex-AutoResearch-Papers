@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3e3b9ce31b83ec8818a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code prep eval kl30 teal",
+  "task_key": "worker_code_prep-eval-kl30-teal_20260516T052024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-eval-kl30-teal_20260516T052024_result.json",
+    "occurrence": 1,
+    "bytes": 1802,
+    "sha256": "c5482ece2f3d8cfd47cf43d71f17134f2709f494c0ea8e7c2408e03f6639954d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "一切确认完毕。\n\n**汇总：**\n\n| 项 | 状态 |\n|---|---|\n| evaluate.py | `/root/distill_sparse_swiglu/src/evaluate.py` |\n| checkpoint | `/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt` (32 layers, 76M params, 加载正常) |\n| 模型 | `/root/autodl-tmp/models/llama-3.1-8b` (4 shards, OK) |\n| wikitext-2 缓存 | `/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-2-raw-v1` (需 `HF_HOME` 指向) |\n| `--sparsity_target` 默认值 | **0.5** — 必须显式传 `0.3` |\n| GPU | cuda:0 空闲 (97GB free)，cuda:1 在用 (91GB used)。用 `--gpu 0` |\n| 显存需求 | LLaMA-3.1-8B bf16 ≈ 16GB + predictor ~150MB + eval buffer ≈ 总 ~20GB，单卡 97GB 绰绰有余 |\n| 预估运行时间 | 200 samples × seq_len 2048，单卡推理约 15-25 分钟 |\n\n### 完整提交命令\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && CUDA_VISIBLE_DEVICES=0 nohup python src/evaluate.py \\\n  --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b \\\n  --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt \\\n  --gpu 0 \\\n  --seq_len 2048 \\\n  --sparsity_target 0.3 \\\n  --skip_c4 \\\n  > logs/eval_kl30_teal_30pct.log 2>&1 &\n```\n\n**关键点：**\n- `--sparsity_target 0.3` — 显式指定，避免落入默认 0.5 的陷阱\n- `CUDA_VISIBLE_DEVICES=0` — 只用 cuda:0（约束 C001），`--gpu 0` 对应映射后的设备\n- `HF_HOME=/root/autodl-tmp/.hf_cache` — 指向 wikitext-2 缓存位置\n- `--skip_c4` — 只评 wikitext-2（任务只需 TEAL PPL）\n- `nohup` + 日志重定向 — 约束 C002\n- 日志写到 `logs/eval_kl30_teal_30pct.log`，用 `tail -f` 监控"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-eval-kl30-teal.md"
+}

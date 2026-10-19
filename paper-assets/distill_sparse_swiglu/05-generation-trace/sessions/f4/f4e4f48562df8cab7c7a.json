@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4e4f48562df8cab7c7a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval downstream dense baseline",
+  "task_key": "worker_eval_downstream_dense_baseline_20260517T163021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_downstream_dense_baseline_20260517T163021_result.json",
+    "occurrence": 1,
+    "bytes": 405,
+    "sha256": "68d71e49ac976290379dcccf3df5412cde8865f5b7b0ac9d7d746300d6cc32a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务正在正常运行。\n\n**已提交：**\n- Server: westd-41718, GPU: cuda:0\n- PID: 10343\n- 命令: `benchmark_eval.py --dense --tasks hellaswag,piqa,boolq`\n- 日志: `/root/distill_sparse_swiglu/logs/downstream_dense_baseline.log`\n- 状态: HellaSwag 评测进行中（~85% at 235 it/s），PIQA 和 BoolQ 待后续\n\n注意：原始命令缺少 `--dense` 标志，已补充。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-downstream-dense-baseline.md"
+}

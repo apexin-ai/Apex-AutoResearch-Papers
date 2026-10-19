@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "873e4de28efbe134d8d9",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diagnose stale running 41718",
+  "task_key": "worker_diagnose_stale_running_41718_20260522T023215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_stale_running_41718_20260522T023215_result.json",
+    "occurrence": 1,
+    "bytes": 1674,
+    "sha256": "192ccdc55067b809d9a56a4303822a6a5464423b4c526e6dfe45a2653090be41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在死亡前成功完成，结果已落盘。\n\n---\n\n## 实验 1: reverse_kl_30_s42_uniform_eval ✅ 已完成\n\n- **日志**: `/root/distill_sparse_swiglu/logs/reverse_kl_30_s42_uniform_eval.log` (1.1MB, 完整)\n- **结果**: `/root/distill_sparse_swiglu/results/benchmark/reverse_kl_30_s42_uniform_eval/results.json`\n- **时间戳**: 2026-05-21 03:47:55\n- **配置**: llama-3.1-8b, teal_global mode, sparsity=0.3, allocation=uniform, checkpoint=`reverse_kl_30_s42/predictor_reverse_kl.pt`\n\n**Metrics (7 tasks)**:\n| Task | Metric | Value |\n|------|--------|-------|\n| wikitext2 | PPL | **9.3081** |\n| arc_challenge | acc / acc_norm | 0.3968 / **0.4283** |\n| winogrande | acc | **0.7009** |\n| mmlu | acc | **0.3749** |\n| gsm8k | exact_match (flex) | **0.0697** |\n| hellaswag | acc / acc_norm | 0.5057 / **0.6969** |\n| piqa | acc / acc_norm | 0.7427 / **0.7459** |\n\n---\n\n## 实验 2: qwen14b_teal30_uniform_hspiqa_v2 ✅ 已完成\n\n- **日志**: 没有 `*_v2.log` 文件，只有早期版本 `qwen14b_teal30_uniform_hspiqa.log` (May 19)\n- **结果**: `/root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform_hspiqa_v2/results.json`\n- **时间戳**: 2026-05-19 22:26:26\n- **配置**: qwen2.5-14b, baseline_teal_vanilla (per_token mode), sparsity=0.3, allocation=uniform\n\n**Metrics (2 tasks)**:\n| Task | Metric | Value |\n|------|--------|-------|\n| hellaswag | acc / acc_norm | 0.4936 / **0.6756** |\n| piqa | acc / acc_norm | **0.7443** / 0.7427 |\n\n---\n\n**结论**：两个 PID 虽已死，但都是在写完 results.json 之后才死的，无需重跑。可直接用这两个 JSON 填充论文。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-stale-running-41718.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a02f7e46ca2248fdd36f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis plan008 ppl consolidation",
+  "task_key": "worker_analysis_plan008_ppl_consolidation_20260516T025552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan008_ppl_consolidation_20260516T025552_result.json",
+    "occurrence": 1,
+    "bytes": 721,
+    "sha256": "be75e1c4b0e4828f26d829ff08c5e7ae8004ea5269fbb760a5d387deabb60a1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `artifacts/plan008_ppl_summary.md` 并注册为 artifact（`save_project_file` 不支持该文件名，但本地文件和 artifact 注册均成功）。\n\n核心发现：\n\n1. **KL 退化近似 quadratic**（70%/30% ratio = 4.12×），training-free 退化为指数级（TEAL 19.4×, WINA 24.6×）\n2. **KL vs TEAL delta 从 30%→70% 增长 41.3×**，KL 优势在高稀疏度急剧放大（18%→49%→82%）\n3. **Downstream 全面崩溃**，PPL-downstream disconnect 在 30% 和 50% 均成立\n4. **Claim 3 数据缺口**：KL vs BCE scaling 只有 50% 单点，无法验证 quadratic 预测。建议补 BCE 30%/70%，否则将 Claim 3 重新聚焦为 \"KL vs training-free scaling\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan008-ppl-consolidation.md"
+}

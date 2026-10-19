@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9187188d61dde7a83651",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis perlayer kl k2 s123 result",
+  "task_key": "worker_analysis_perlayer_kl_k2_s123_result_20260523T082515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_perlayer_kl_k2_s123_result_20260523T082515_result.json",
+    "occurrence": 1,
+    "bytes": 470,
+    "sha256": "cf013f8763140385e93196179f950cdd18569dcb4b57de60afc410bf5bbbab99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇报\n\n**K=2 s123** — 训练成功\n- 1000/1000 steps 完成，最终 avg_kl = **0.0373**，avg_sparsity = **0.307**\n- Final checkpoint: `predictor_perlayer_kl_k4.pt` (145 MB)\n- 训练耗时 ~1839s (~30.6 min)\n\n**K=2 s456** — 训练成功\n- 1000/1000 steps 完成，最终 avg_kl 与 s123 接近（Layer 31 avg_kl=0.0763）\n- Final checkpoint: `predictor_perlayer_kl_k4.pt` (145 MB)\n\n两个 registry 均已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-perlayer-kl-k2-s123-result.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d52068ebe4667d7291ed",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check mse30 s456 downstream result",
+  "task_key": "worker_check_mse30_s456_downstream_result_20260522T105702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_mse30_s456_downstream_result_20260522T105702_result.json",
+    "occurrence": 1,
+    "bytes": 581,
+    "sha256": "e6b38dc53324232764be46e5c94caf551aaa5c78c3cdbfe48d6510989229e261"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MSE 30% s456 downstream eval 完成，registry 已更新为 DONE/success。Cron 不存在（可能已被清理）。\n\n**结果汇总**：\n\n| Benchmark | Metric | Value |\n|-----------|--------|-------|\n| ARC-c | acc_norm | **0.3882** |\n| WinoGrande | acc | **0.6196** |\n| MMLU | acc | **0.3264** |\n| GSM8K | exact_match | **0.0311** |\n| HellaSwag | acc_norm | **0.6129** |\n| PIQA | acc_norm | **0.7383** |\n| BoolQ | acc | **0.7034** |\n\n耗时 4056s (~67min)，1.18 GPU-hours。s456 seed 数据已就绪，可与 s42/s123 合并计算 3-seed mean±std。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-mse30-s456-downstream-result.md"
+}

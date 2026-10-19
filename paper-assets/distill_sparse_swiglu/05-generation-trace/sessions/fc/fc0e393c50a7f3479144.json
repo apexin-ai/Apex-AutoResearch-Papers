@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc0e393c50a7f3479144",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops teal30 result collect",
+  "task_key": "worker_ops_teal30_result_collect_20260516T033140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_teal30_result_collect_20260516T033140_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "1325082a471d1a71b704b2400d2c2d208fec2519f93944b7c79636f1277d6269"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新，实验标记为 DONE (negative)。\n\n**TEAL 30% Downstream 结果总结：**\n\n| Metric | Dense | KL 30% | TEAL 30% | TEAL vs KL |\n|--------|-------|--------|----------|------------|\n| ARC-c acc_norm | 0.5819 | 0.3737 | 0.4155 | +4.2pp |\n| WinoGrande | 0.7814 | 0.6756 | 0.6559 | -2.0pp |\n| MMLU | 0.6532 | 0.2874 | 0.3598 | +7.2pp |\n| GSM8K strict | 0.5004 | 0.0743 | 0.0849 | +1.1pp |\n\nTEAL (training-free) 在知识密集型任务上显著优于 KL distill，尤其 MMLU 领先 7.2pp。但两者在 GSM8K 推理任务上都严重退化（从 Dense 的 0.50 降到 ~0.08），30% sparsity 整体对 downstream 损害巨大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-teal30-result-collect.md"
+}

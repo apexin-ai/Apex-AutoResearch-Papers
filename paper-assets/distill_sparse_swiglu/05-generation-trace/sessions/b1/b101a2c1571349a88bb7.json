@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b101a2c1571349a88bb7",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check perlayer kl 50 downstream progress",
+  "task_key": "worker_check_perlayer_kl_50_downstream_progress_20260522T080436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_perlayer_kl_50_downstream_progress_20260522T080436_result.json",
+    "occurrence": 1,
+    "bytes": 551,
+    "sha256": "71e8d53533a047dd4d31db71158d9c6a2b670c531fcf0ec70d8788f74b173fbb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成，总耗时 4291.9s（~71.5 分钟）。6 个 task 全部跑完，结果：\n\n| Task | Metric | Score |\n|------|--------|-------|\n| arc_challenge | acc / acc_norm | 24.15% / 27.05% |\n| winogrande | acc | 51.54% |\n| mmlu | acc | 26.58% |\n| gsm8k | exact_match | 1.74% |\n| hellaswag | acc / acc_norm | 31.02% / 38.18% |\n| piqa | acc / acc_norm | 63.98% / 62.79% |\n\n结果已保存到 `/root/distill_sparse_swiglu/results/benchmark/perlayer_kl_50_s42_downstream/results.json`。进程已正常退出（EXIT_CODE=0）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-perlayer-kl-50-downstream-progress-copy-2.md"
+}

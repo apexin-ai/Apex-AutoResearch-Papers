@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89cc410809fdb9497b09",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops sync 30pct figures to local",
+  "task_key": "worker_ops_sync-30pct-figures-to-local_20260518T202229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync-30pct-figures-to-local_20260518T202229_result.json",
+    "occurrence": 1,
+    "bytes": 484,
+    "sha256": "3f348505d3ecea48f69987ae60a370fafc3217e3965f80a6171c1605cef69314"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "7/7 文件全部同步完成，大小与远程一致：\n\n| 文件 | 大小 |\n|------|------|\n| mask_divergence_heatmap_30pct_64samples.pdf | 14,649 |\n| mask_divergence_heatmap_30pct_64samples.png | 65,619 |\n| neuron_scatter_layer16_30pct_64samples.pdf | 40,361 |\n| neuron_scatter_layer16_30pct_64samples.png | 289,542 |\n| mask_comparison_30pct_64samples.pdf | 16,230 |\n| mask_comparison_30pct_64samples.png | 53,446 |\n| mask_stats_30pct_64samples.json | 998 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-30pct-figures-to-local.md"
+}

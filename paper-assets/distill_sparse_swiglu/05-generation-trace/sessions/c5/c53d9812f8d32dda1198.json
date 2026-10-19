@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c53d9812f8d32dda1198",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops collect all running results",
+  "task_key": "worker_ops_collect-all-running-results_20260519T034526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-all-running-results_20260519T034526_result.json",
+    "occurrence": 1,
+    "bytes": 151,
+    "sha256": "30d181a42f225f48e25a8d5ff5e8106d48d06ab05855b775895f92cadc95aa4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Waiting ~4.5 min for cache-warm check. Mistral experiments should be close to done by then; I'll collect results as soon as they finish."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-all-running-results.md"
+}

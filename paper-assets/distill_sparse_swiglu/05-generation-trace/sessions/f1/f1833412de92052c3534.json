@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "f1833412de92052c3534",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "analyze mvp kl norm v2 s42",
+  "task_key": "worker_analyze_mvp_kl_norm_v2_s42_20260515T155645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_mvp_kl_norm_v2_s42_20260515T155645.log",
+    "occurrence": 1,
+    "bytes": 674029,
+    "sha256": "fff7e68bb1cb35b61f40295ce5f38b3519b292907a60c4fc8b437b1d0bd55734"
+  },
+  "statistics": {
+    "messages": 530,
+    "user_turns": 0,
+    "tool_calls": 236,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 236,
+      "tool_result": 236,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 530,
+      "chunks": [
+        {
+          "path": "f1833412de92052c3534-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f1833412de92052c3534-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f1833412de92052c3534-part-0003.json",
+          "message_count": 170
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analyze-mvp-kl-norm-v2-s42.md"
+}

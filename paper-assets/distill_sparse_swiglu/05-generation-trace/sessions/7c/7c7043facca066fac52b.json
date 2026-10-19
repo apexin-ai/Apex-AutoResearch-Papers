@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c7043facca066fac52b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check qwen14b uniform eval status",
+  "task_key": "worker_check_qwen14b_uniform_eval_status_20260518T002644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_qwen14b_uniform_eval_status_20260518T002644_result.json",
+    "occurrence": 1,
+    "bytes": 1597,
+    "sha256": "c2888108e64ebfb2c04f3591190aa99439f6fc26d123073eb758a36856fa5b0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 14B Uniform Eval 状态报告\n\n### 进程状态\n\n| 实验 | PID | GPU | VRAM | GPU Util | 运行时长 |\n|------|-----|-----|------|----------|----------|\n| `qwen14b_kl30_uniform_eval` | **79839** | cuda:0 | 93,978 MiB / 97,887 MiB | 79% | 1h32m |\n| `qwen14b_teal30_uniform_eval` | **80810** | cuda:1 | 61,656 MiB / 97,887 MiB | 73% | 1h22m |\n\n### 任务进度\n\n两个实验都评估 5 个 task: `wikitext2, arc_challenge, winogrande, mmlu, gsm8k`\n\n前 4 个 task 均为 loglikelihood 类型，已全部完成。当前都在跑最后一个 task **gsm8k** (generate_until, 1319 items):\n\n| 实验 | GSM8K 进度 | GSM8K 耗时 | 速度 | 预估剩余 |\n|------|-----------|-----------|------|---------|\n| KL30 uniform | 337/1319 (26%) | 1h04m | ~13.3s/item | **~3h38m** |\n| TEAL30 uniform | 217/1319 (16%) | 55m | ~15.1s/item | **~4h37m** |\n\n### 预估完成时间 (UTC)\n\n- **KL30**: ~12:05 (约 3.5h 后)\n- **TEAL30**: ~13:05 (约 4.5h 后)\n\n### 中间结果\n\n结果目录已创建但尚无输出文件（benchmark_eval.py 在所有 task 完成后才写结果）:\n- `/root/distill_sparse_swiglu/results/benchmark/qwen14b_kl30_uniform/` — 空\n- `/root/distill_sparse_swiglu/results/benchmark/qwen14b_teal30_uniform/` — 空\n\n### 日志路径\n\n- `/root/runs/distill_sparse_swiglu/qwen14b_kl30_uniform_eval.log`\n- `/root/runs/distill_sparse_swiglu/qwen14b_teal30_uniform_eval.log`\n\n注意: KL30 的日志包含一段初始启动失败的 traceback（模型路径大小写问题 `qwen2.5-14b` vs `Qwen2.5-14B`），后续被重启成功覆盖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-qwen14b-uniform-eval-status.md"
+}

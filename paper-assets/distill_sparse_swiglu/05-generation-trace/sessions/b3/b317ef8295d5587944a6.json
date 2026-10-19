@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b317ef8295d5587944a6",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops post restart status check",
+  "task_key": "worker_ops_post_restart_status_check_20260520T030321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post_restart_status_check_20260520T030321_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "080ed947560e6afdee6051d3fc8d7905482cb305c89df67521a245f955f92098"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== westd-41718 ===\nmse30_s42_train (cuda:0): ALIVE  step 170/1000  loss=0.0043  sparsity=0.336  checkpoint: 无\ncuda:1: 空闲 (0 MiB, 0%)\n\n=== westd-34887 ===\nqwen14b_teal30_global_hspiqa (cuda:0): ALIVE  45% (18305/40168 loglikelihood)  ~28min elapsed  结果: 无\nqwen14b_bce30_global_hspiqa (cuda:1): ALIVE  46% (18321/40168 loglikelihood)  ~28min elapsed  结果: 无\n```\n\n三个进程全部存活，服务重启未受影响。MSE 训练约完成 17%，两个 global eval 均约 45%，预计还需 ~35 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-restart-status-check.md"
+}

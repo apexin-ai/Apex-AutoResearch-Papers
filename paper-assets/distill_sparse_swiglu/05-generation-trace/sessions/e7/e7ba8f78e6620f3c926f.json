@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "e7ba8f78e6620f3c926f",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "ops tau schedule ablation",
+  "task_key": "worker_ops_tau-schedule-ablation_20260516T220836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_tau-schedule-ablation_20260516T220836.log",
+    "occurrence": 1,
+    "bytes": 1109412,
+    "sha256": "811c4c02b0b99a61f0028f7445618a84db141a9be17a28865fff0bf4c5735044"
+  },
+  "statistics": {
+    "messages": 865,
+    "user_turns": 1,
+    "tool_calls": 374,
+    "roles": {
+      "log": 1,
+      "system": 12,
+      "record": 1,
+      "assistant": 99,
+      "tool_call": 374,
+      "tool_result": 374,
+      "user": 1,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 799,
+      "chunks": [
+        {
+          "path": "e7ba8f78e6620f3c926f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e7ba8f78e6620f3c926f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e7ba8f78e6620f3c926f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e7ba8f78e6620f3c926f-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "e7ba8f78e6620f3c926f-part-0005.json",
+          "message_count": 79
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 66,
+      "chunks": [
+        {
+          "path": "e7ba8f78e6620f3c926f-part-0005.json",
+          "message_count": 66
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-tau-schedule-ablation.md"
+}

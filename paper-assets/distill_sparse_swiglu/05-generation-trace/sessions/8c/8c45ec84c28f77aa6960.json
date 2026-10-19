@@ -1,0 +1,1011 @@
+{
+  "schema_version": "1.0",
+  "id": "8c45ec84c28f77aa6960",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "cron hook downstream teal30 baseline 20260517T214857 403723",
+  "task_key": "cron_hook_downstream_teal30_baseline_20260517T214857_403723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_downstream_teal30_baseline_20260517T214857_403723.jsonl",
+    "occurrence": 1,
+    "bytes": 52577,
+    "sha256": "cd8e96ef613406bdf0475e675dbe0f3ecd310f55492f4caad3c738ca7059b637"
+  },
+  "statistics": {
+    "messages": 50,
+    "user_turns": 2,
+    "tool_calls": 23,
+    "roles": {
+      "user": 2,
+      "tool_call": 23,
+      "tool_result": 23,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T17:44:09.647959+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: downstream_teal30_baseline\n- project: distill_sparse_swiglu\n- server: westd-41718\n- log_path: ~/runs/distill_sparse_swiglu/downstream_teal30_baseline.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T17:44:22.094500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__load_project_config",
+              "max_results": "12"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T17:44:22.145224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T17:44:26.913575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "distill_sparse_swiglu",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T17:44:26.913985+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T17:44:27.772919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (219,517 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-0e64eaeb/38536b0e-4c51-459a-9ce5-b20f9253e628/tool-results/mcp-agent-ml-research-read_registry-1779039867582.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-0e64eaeb/38536b0e-4c51-459a-9ce5-b20f9253e628/tool-results/mcp-agent-ml-research-read_registry-1779039867582.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-0e64eaeb/38536b0e-4c51-459a-9ce5-b20f9253e628/tool-results/mcp-agent-ml-research-read_registry-1779039867582.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 859
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T17:44:27.825191+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "distill_sparse_swiglu",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T17:44:27.825626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T17:44:34.560202+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 3, \\\"results\\\": [{\\\"exp_id\\\": \\\"qwen14b_kl30_s42_eval\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=52224)\\\"]}, {\\\"exp_id\\\": \\\"qwen14b_teal30_eval\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=6896)\\\"]}, {\\\"exp_id\\\": \\\"qwen14b_bce30_s42_eval\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=59122)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 7646
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T17:44:34.611109+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-17T17:44:08Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 136 个实验 — ANALYZING 1, DONE 116, PREPARING 16, RUNNING 3\\\\n**DONE 分布**: failed 15, killed 10, negative 17, success 74\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — westd-34887:cuda:0, westd-34887:cuda:1\\\\n- **实际运行**: 3 张 — westd-34887:cuda:1(qwen14b_kl30_s42_eval), westd-41718:cuda:1(qwen14b_teal30_eval), westd-34887:cuda:0(qwen14b_bce30_s42_eval)\\\\n\\\\n### 💾 磁盘余量\\\\n- **westd-34887**:\\\\n  - `/init`: 150M/150M 可用（已用 1%）\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\\\n- **westd-41718**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/usr/bin/nvidia-smi`: 764G/879G 可用（已用 9%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `qwen14b_kl30_s42_eval` | westd-34887 | cuda:1 | 52224 | `~/runs/distill_sparse_swiglu/qwen14b_kl30_s42_eval.log` |\\\\n| `qwen14b_teal30_eval` | westd-41718 | cuda:1 | 6896 | `—` |\\\\n| `qwen14b_bce30_s42_eval` | westd-34887 | cuda:0 | 59122 | `~/runs/distill_sparse_swiglu/qwen14b_bce30_s42_eval.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `kl30_s456_uniform_eval` [success] — 2026-05-17T17:39:20\\\\n- `downstream_dense_baseline` [success] — 2026-05-17T17:05:51\\\\n- `qwen14b_bce30_s42_v2` [negative] — 2026-05-17T16:51:07\\\\n- `qwen14b_bce30_s42` [success] — 2026-05-17T16:48:35\\\\n- `downstream_extended_kl30_s42` [success] — 2026-05-17T16:29:24\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-17\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| qwen14b_bce30_s42_eval | Qwen-14B BCE predictor at 30% sparsity shows worse downstrea\n…[truncated 3985 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 6785
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T17:44:34.611583+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/ROADMAP.md\\\", \\\"content\\\": \\\"# distill_sparse_swiglu — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-17 04:42 UTC | 更新原因: 同步：Round 1 issues 状态更新，新分析结果汇总，Paper Agent SNR patch dispatched\\\\n\\\\n## 核心方向\\\\nKL distillation 使 SwiGLU LLM 的 contextual sparsity prediction 不再需要 error compensation 和 static bias correction，实现最简推理管线。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research 完成 + 论文质量提升（EMNLP 2026 ARR May, DDL 2026-05-25，剩 8 天）\\\\n- **实验**: 94 registered, 47 success, 13 negative, 15 failed\\\\n- **论文评分**: Step 5 Round 5 = 7/10（文本收敛，无 critical）\\\\n- **Round 1 审稿**: 3.0/5, 4 critical + 7 warning → 全部 critical resolved, 2 warning in_progress (R1-W4 SNR patch, R1-W5 λ curve)\\\\n- **Claim 1 (KL >> baselines)**: ✅ Strong — PPL + downstream + iso-compute + gradient SNR 5.76×\\\\n- **Claim 2 (SPON orthogonal)**: ✅ Adequate — cos_sim=0.196, 2.4% relative improvement\\\\n- **Claim 3 (Three-regime phase transition)**: ✅ Strong — 30%/40%/50% × global/uniform 完整矩阵\\\\n- **Cross-arch**: ✅ Mistral-7B 30%/50%/70% 三点验证 + TEAL baselines\\\\n- **Ablations**: ✅ d_b/τ/steps/Lagrangian/component isolation 全覆盖\\\\n\\\\n## 新分析结果（待写入论文）\\\\n- **Gradient SNR** (success): KL/BCE = 5.76×, early layers 34-156×, late layers 2-4× → Paper Agent patching §3.5\\\\n- **TEAL-KL overlap** (success): Jaccard=0.396, middle layers L17-18 最低(0.19) → 待决定是否写入\\\\n- **Component ablation** (success): BCE+Gumbel+Lagrangian PPL=38.02 vs KL=11.79 → 已在 Table ablation\\\\n- **Natural sparsity floor**: 30% 仅 0.06% always-pruned → 扩展到 50%/70% 中\\\\n\\\\n## 近期任务\\\\n- [ ] Paper Agent: §3.5 SNR empirical verification paragraph (dispatched)\\\\n- [ ] Agent: 处理 worker-done 通知 + sparsity floor expansion (queued)\\\\n- [ ] 生成 λ/sparsity 时序曲线图 → Appendix C (R1-W5)\\\\n- [ ] SNR patch 完成后提交 Round 2 review (submit_paper_to_review)\\\\n- [ ] TEAL-KL overlap 修正 magnitude baseline (selection bias)\\\\n- [ ] 决定 overlap analysis 是否值得写入论文\\\\n\\\\n## G\n…[truncated 1543 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 6785
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T17:44:43.199058+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-0e64eaeb/38536b0e-4c51-459a-9ce5-b20f9253e628/tool-results/mcp-agent-ml-research-read_registry-1779039867582.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Find the target experiment\nfor e in exps:\n    if e.get('exp_id') == 'downstream_teal30_baseline':\n        print(json.dumps(e, indent=2))\n        break\n\"",
+              "description": "Extract downstream_teal30_baseline experiment from registry"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T17:44:44.958205+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 8, in <module>\n    if e.get('exp_id') == 'downstream_teal30_baseline':\n       ^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "Bash",
+            "elapsed_ms": 1759
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T17:44:45.109261+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-0e64eaeb/38536b0e-4c51-459a-9ce5-b20f9253e628/tool-results/mcp-agent-ml-research-read_registry-1779039867582.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Find the dense baseline for comparison\nfor e in exps:\n    if e.get('exp_id') == 'downstream_dense_baseline':\n        print(json.dumps(e, indent=2))\n        break\n\"",
+              "description": "Extract downstream_dense_baseline experiment from registry"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T17:44:45.109628+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-3/proje…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T17:44:47.769472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-0e64eaeb/38536b0e-4c51-459a-9ce5-b20f9253e628/tool-results/mcp-agent-ml-research-read_registry-1779039867582.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Find other downstream/extended experiments for context\nfor e in exps:\n    eid = e.get('exp_id', '')\n    if 'downstream' in eid or 'extended' in eid:\n        print(f'{eid}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\")}, metrics={e.get(\\\"metrics\\\")}')\n\"",
+              "description": "List all downstream/extended experiments for context"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T17:44:47.769943+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-3/proje…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T17:44:53.044189+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-0e64eaeb/38536b0e-4c51-459a-9ce5-b20f9253e628/tool-results/mcp-agent-ml-research-read_registry-1779039867582.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\n# Check structure\nprint(type(result))\nif isinstance(result, dict):\n    print(list(result.keys())[:5])\n    d = result.get('data', result)\n    if isinstance(d, dict):\n        print(list(d.keys())[:5])\n        exps = d.get('experiments', [])\n        if exps:\n            print(type(exps[0]), str(exps[0])[:200])\n\"",
+              "description": "Probe registry JSON structure"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T17:44:53.245375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 15, in <module>\n    print(type(exps[0]), str(exps[0])[:200])\n               ~~~~^^^\nKeyError: 0\n<class 'dict'>\n['success', 'data', 'error', 'metadata']\n['experiments', 'count', 'total', 'baseline']"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T17:44:58.267452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-0e64eaeb/38536b0e-4c51-459a-9ce5-b20f9253e628/tool-results/mcp-agent-ml-research-read_registry-1779039867582.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(type(exps))\nif isinstance(exps, dict):\n    # Dict keyed by exp_id\n    target = exps.get('downstream_teal30_baseline')\n    if target:\n        print(json.dumps(target, indent=2))\n    else:\n        print('Not found. Keys containing downstream:', [k for k in exps if 'downstream' in k or 'teal30' in k])\n\"",
+              "description": "Extract downstream_teal30_baseline from registry dict"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T17:44:58.368338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<class 'dict'>\n{\n  \"status\": \"ANALYZING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-17T17:08:25.083Z\",\n  \"updated_at\": \"2026-05-17T17:44:05.961Z\",\n  \"hypothesis\": \"TEAL magnitude pruning at 30% sparsity on LLaMA-8B produces worse downstream performance (HellaSwag/PIQA/BoolQ) than KL-distilled predictor (KL: 0.727/0.760/0.769), establishing KL advantage extends beyond PPL to diverse downstream tasks\",\n  \"server\": \"westd-41718\",\n  \"gpu\": \"cuda:0\",\n  \"account\": \"root\",\n  \"spec\": {\n    \"command\": \"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id downstream_teal30_baseline --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --sparsity_target 0.3 --tasks hellaswag,piqa,boolq --gpu 0\",\n    \"server\": \"westd-41718\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": \"12150\",\n    \"log_path\": \"~/runs/distill_sparse_swiglu/downstream_teal30_baseline.log\",\n    \"submitted_at\": \"2026-05-17T17:09:09.433Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\"\n  },\n  \"pid\": \"12150\",\n  \"log_path\": \"~/runs/distill_sparse_swiglu/downstream_teal30_baseline.log\",\n  \"reproduce\": {\n    \"command\": \"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id downstream_teal30_baseline --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --sparsity_target 0.3 --tasks hellaswag,piqa,boolq --gpu 0\",\n    \"finished_at\": \"2026-05-17T17:44:05.384Z\"\n  },\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-17T17:44:09.138919+00:00\"\n      }\n    ]\n  \n…[truncated 3 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T17:45:06.265507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu--claude-sessions-agent-0e64eaeb/38536b0e-4c51-459a-9ce5-b20f9253e628/tool-results/mcp-agent-ml-research-read_registry-1779039867582.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Get dense baseline and KL downstream results\nfor k in ['downstream_dense_baseline', 'downstream_extended_kl30_s42']:\n    e = exps.get(k)\n    if e:\n        print(f'=== {k} ===')\n        print(json.dumps({f: e.get(f) for f in ['status','conclusion','metrics','hypothesis','spec']}, indent=2))\n        print()\n\"",
+              "description": "Get dense baseline and KL downstream comparison data"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T17:45:06.466824+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== downstream_dense_baseline ===\n{\n  \"status\": \"DONE\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"hellaswag_acc_norm\": 0.8233,\n    \"hellaswag_acc_norm_stderr\": 0.0038,\n    \"piqa_acc_norm\": 0.8074,\n    \"piqa_acc_norm_stderr\": 0.0092,\n    \"boolq_acc\": 0.8294,\n    \"boolq_acc_stderr\": 0.0066\n  },\n  \"hypothesis\": \"Dense LLaMA-3.1-8B baseline on HellaSwag/PIQA/BoolQ provides reference scores for computing KL-30% sparsity degradation on extended downstream tasks, expected to show minimal degradation (less than 5pp drop from dense)\",\n  \"spec\": {\n    \"command\": \"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id downstream_dense_baseline --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --tasks hellaswag,piqa,boolq --gpu 0\",\n    \"server\": \"westd-41718\",\n    \"gpu\": \"cuda:0\",\n    \"account\": \"root\",\n    \"model_name\": \"llama-3.1-8b\",\n    \"seed\": 42,\n    \"data_path\": \"hellaswag,piqa,boolq\",\n    \"data_count\": 0\n  }\n}\n\n=== downstream_extended_kl30_s42 ===\n{\n  \"status\": \"DONE\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"hellaswag_acc_norm\": 0.727,\n    \"hellaswag_acc\": 0.527,\n    \"piqa_acc_norm\": 0.7595,\n    \"piqa_acc\": 0.747,\n    \"boolq_acc\": 0.7685\n  },\n  \"hypothesis\": \"KL-distilled 30% sparsity predictor (s42, global) maintains strong performance on extended downstream benchmarks (HellaSwag, PIQA, TriviaQA, HumanEval) beyond the core evaluation suite, demonstrating broad capability retention at 30% activation sparsity\",\n  \"spec\": {\n    \"command\": \"cd /root/distill_sparse_swiglu && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id downstream_extended_kl30_s42 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --tasks hellaswag,piqa\n…[truncated 273 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T17:45:06.517593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__tail_training_logs",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T17:45:06.568260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T17:45:11.948150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "westd-41718",
+              "exp_id": "downstream_teal30_baseline",
+              "project": "distill_sparse_swiglu",
+              "n": "100"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T17:45:13.003902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"Loading model: /root/autodl-tmp/models/llama-3.1-8b\\\", \\\"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\", \\\"\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<01:08,  4.22it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<01:13,  3.91it/s]\\\\rLoading weights:   3%|▎         | 8/291 [00:00<00:16, 17.19it/s]\\\\rLoading weights:   5%|▌         | 15/291 [00:00<00:09, 30.07it/s]\\\\rLoading weights:   8%|▊         | 24/291 [00:00<00:05, 45.63it/s]\\\\rLoading weights:  10%|█         | 30/291 [00:00<00:06, 42.98it/s]\\\\rLoading weights:  16%|█▌        | 46/291 [00:01<00:03, 72.24it/s]\\\\rLoading weights:  19%|█▉        | 55/291 [00:01<00:03, 73.77it/s]\\\\rLoading weights:  22%|██▏       | 64/291 [00:01<00:03, 59.49it/s]\\\\rLoading weights:  27%|██▋       | 78/291 [00:01<00:02, 77.18it/s]\\\\rLoading weights:  30%|███       | 88/291 [00:01<00:02, 80.23it/s]\\\\rLoading weights:  34%|███▎      | 98/291 [00:01<00:02, 78.66it/s]\\\\rLoading weights:  37%|███▋      | 107/291 [00:01<00:02, 79.48it/s]\\\\rLoading weights:  40%|████      | 117/291 [00:01<00:02, 83.55it/s]\\\\rLoading weights:  43%|████▎     | 126/291 [00:02<00:02, 82.35it/s]\\\\rLoading weights:  46%|████▋     | 135/291 [00:02<00:01, 80.76it/s]\\\\rLoading weights:  49%|████▉     | 144/291 [00:02<00:01, 79.17it/s]\\\\rLoading weights:  53%|█████▎    | 153/291 [00:02<00:02, 68.68it/s]\\\\rLoading weights:  57%|█████▋    | 167/291 [00:02<00:01, 83.03it/s]\\\\rLoading weights:  60%|██████    | 176/291 [00:02<00:01, 79.09it/s]\\\\rLoading weights:  64%|██████▎   | 185/291 [00:02<00:01, 73.85it/s]\\\\rLoading weights:  67%|██████▋   | 195/291 [00:03<00:01, 76.31it/s]\\\\rLoading weights:  70%|███████   | 204/291 [00:03<00:01, 76.77it/s]\\\\rLoading weights:  73%|███████▎  | 212/291 [00:03<00:01, 59.54it/s]\\\\rLoading weights:  79%|███████▉  | 231/291 [00:03<00:00, 84.98it/s]\\\\rLoading weights:  83%|████████▎ | 241/291 [00\n…[truncated 6726 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 1055
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T17:45:36.768398+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "downstream_teal30_baseline",
+              "field": "metrics",
+              "value": "{'hellaswag_acc': 0.4878, 'hellaswag_acc_norm': 0.667, 'piqa_acc': 0.7258, 'piqa_acc_norm': 0.7361, 'boolq_acc': 0.685}",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T17:45:37.421912+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"downstream_teal30_baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T17:08:25.083Z\\\", \\\"updated_at\\\": \\\"2026-05-17T17:45:37.146Z\\\", \\\"hypothesis\\\": \\\"TEAL magnitude pruning at 30% sparsity on LLaMA-8B produces worse downstream performance (HellaSwag/PIQA/BoolQ) than KL-distilled predictor (KL: 0.727/0.760/0.769), establishing KL advantage extends beyond PPL to diverse downstream tasks\\\", \\\"server\\\": \\\"westd-41718\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id downstream_teal30_baseline --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --sparsity_target 0.3 --tasks hellaswag,piqa,boolq --gpu 0\\\", \\\"server\\\": \\\"westd-41718\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"12150\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/downstream_teal30_baseline.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T17:09:09.433Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"12150\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/downstream_teal30_baseline.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id downstream_teal30_baseline --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --sparsity_target 0.3 --tasks hellaswag,piqa,boolq --gpu 0\\\", \\\"finished_at\\\": \\\"2026-05-17T17:44:05.384Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \n…[truncated 258 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 653
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T17:45:41.109174+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "downstream_teal30_baseline",
+              "field": "conclusion",
+              "value": "success",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T17:45:41.862176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"downstream_teal30_baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T17:08:25.083Z\\\", \\\"updated_at\\\": \\\"2026-05-17T17:45:41.488Z\\\", \\\"hypothesis\\\": \\\"TEAL magnitude pruning at 30% sparsity on LLaMA-8B produces worse downstream performance (HellaSwag/PIQA/BoolQ) than KL-distilled predictor (KL: 0.727/0.760/0.769), establishing KL advantage extends beyond PPL to diverse downstream tasks\\\", \\\"server\\\": \\\"westd-41718\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id downstream_teal30_baseline --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --sparsity_target 0.3 --tasks hellaswag,piqa,boolq --gpu 0\\\", \\\"server\\\": \\\"westd-41718\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"12150\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/downstream_teal30_baseline.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T17:09:09.433Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"12150\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/downstream_teal30_baseline.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id downstream_teal30_baseline --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --sparsity_target 0.3 --tasks hellaswag,piqa,boolq --gpu 0\\\", \\\"finished_at\\\": \\\"2026-05-17T17:44:05.384Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \n…[truncated 287 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 752
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T17:45:41.862672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "downstream_teal30_baseline",
+              "field": "checkpoint_path",
+              "value": "N/A (eval-only)",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-17T17:45:42.568407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"downstream_teal30_baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T17:08:25.083Z\\\", \\\"updated_at\\\": \\\"2026-05-17T17:45:42.259Z\\\", \\\"hypothesis\\\": \\\"TEAL magnitude pruning at 30% sparsity on LLaMA-8B produces worse downstream performance (HellaSwag/PIQA/BoolQ) than KL-distilled predictor (KL: 0.727/0.760/0.769), establishing KL advantage extends beyond PPL to diverse downstream tasks\\\", \\\"server\\\": \\\"westd-41718\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id downstream_teal30_baseline --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --sparsity_target 0.3 --tasks hellaswag,piqa,boolq --gpu 0\\\", \\\"server\\\": \\\"westd-41718\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"12150\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/downstream_teal30_baseline.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T17:09:09.433Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"12150\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/downstream_teal30_baseline.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id downstream_teal30_baseline --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --sparsity_target 0.3 --tasks hellaswag,piqa,boolq --gpu 0\\\", \\\"finished_at\\\": \\\"2026-05-17T17:44:05.384Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \n…[truncated 329 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 705
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-17T17:45:45.782669+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "downstream_teal30_baseline",
+              "field": "status",
+              "value": "DONE",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-17T17:45:46.893771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"downstream_teal30_baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T17:08:25.083Z\\\", \\\"updated_at\\\": \\\"2026-05-17T17:45:46.103Z\\\", \\\"hypothesis\\\": \\\"TEAL magnitude pruning at 30% sparsity on LLaMA-8B produces worse downstream performance (HellaSwag/PIQA/BoolQ) than KL-distilled predictor (KL: 0.727/0.760/0.769), establishing KL advantage extends beyond PPL to diverse downstream tasks\\\", \\\"server\\\": \\\"westd-41718\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id downstream_teal30_baseline --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --sparsity_target 0.3 --tasks hellaswag,piqa,boolq --gpu 0\\\", \\\"server\\\": \\\"westd-41718\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"12150\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/downstream_teal30_baseline.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T17:09:09.433Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 2196.7, \\\"gpu_hours\\\": 0.61}, \\\"pid\\\": \\\"12150\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/downstream_teal30_baseline.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id downstream_teal30_baseline --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --sparsity_target 0.3 --tasks hellaswag,piqa,boolq --gpu 0\\\", \\\"finished_at\\\": \\\"2026-05-17T17:44:05.384Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"e\n…[truncated 476 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1111
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-17T17:45:55.642149+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "distill_sparse_swiglu",
+              "section": "execution"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-17T17:45:56.144632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"distill_sparse_swiglu\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_ids\\\": [0, 1], \\\"project_path\\\": \\\"/root/distill_sparse_swiglu/\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"westd-34887\\\"}, {\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"westd-41718\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 502
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-17T17:45:56.145161+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-17T17:45:56.597946+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Four-condition ablation @ 50% model-level sparsity on Llama 3.1 8B: (a) BCE-only, (b) BCE+compensation, (c) KL-only, (d) KL+compensation. Headline comparison: KL-only vs BCE+comp (5 seeds each). Secondary comparisons: 3 seeds each. MVP already completed KL-only 3 seeds (mvp_kl_norm_v2_s42/s123/s456) and BCE-only 3 seeds (mvp_bce_s42/s123/s456).\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 48, \\\"deps\\\": [], \\\"registry_ids\\\": [\\\"mvp_kl_norm_v2_s42\\\", \\\"mvp_kl_norm_v2_s123\\\", \\\"mvp_kl_norm_v2_s456\\\", \\\"mvp_bce_s42\\\", \\\"mvp_bce_s123\\\", \\\"mvp_bce_s456\\\"], \\\"remaining_runs\\\": [\\\"KL-only 2 additional seeds (s0, s1) for 5-seed headline\\\", \\\"BCE+comp 5 seeds (s42, s123, s456, s0, s1)\\\", \\\"KL+comp 3 seeds (s42, s123, s456)\\\"], \\\"registry_id\\\": \\\"kl_only_s1\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"true_dense_ppl\\\": 6.12, \\\"predictor_hard_mask_ppl\\\": 9.15, \\\"teal_sparse_ppl\\\": 11.99, \\\"model_level_sparsity\\\": 0.498, \\\"ppl_increase_vs_true_dense_pct\\\": 96}}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"STE baseline: KL loss + Straight-Through Estimator (instead of Gumbel-sigmoid). Isolates whether KL advantage comes from loss function or relaxation method. 3 seeds.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 10, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"ste_baseline_s42\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"true_dense_ppl\\\": 6.12, \\\"predictor_hard_mask_ppl\\\": 8.18, \\\"teal_sparse_ppl\\\": 15.77, \\\"model_level_sparsity\\\": 0.47, \\\"ppl_increase_vs_true_dense_pct\\\": 157.7, \\\"eval_seq_len\\\": 2048, \\\"calibration_samples\\\": 32, \\\"eval_dataset\\\": \\\"wikitext-2\\\", \\\"per_token_sparsity\\\": 0.47, \\\"lambda_stats\\\": {\\\"steps_70_130_mean\\\": 66.4, \\\"steps_70_130_std\\\": 94.87, \\\"first_500_mean\\\": 688.07, \\\"first_500_std\\\": 440.57, \\\"last_500_mean\\\": 965.69, \\\"last_500_std\\\": 141.59, \\\"overall_mean\\\": \n…[truncated 7301 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 452
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-17T17:45:56.749042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_project_resource_usage",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-17T17:45:56.799653+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-17T17:46:00.012700+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-17T17:46:00.164124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "distill_sparse_swiglu",
+              "status": "running"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-17T17:46:00.415738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"westd-34887\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"westd-34887\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"westd-34887\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"qwen14b_kl30_s42_eval\\\"}, {\\\"server\\\": \\\"westd-41718\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"qwen14b_teal30_eval\\\"}, {\\\"server\\\": \\\"westd-34887\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"qwen14b_bce30_s42_eval\\\"}], \\\"allocated_but_idle\\\": [], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"qwen14b_kl30_s42_eval\\\", \\\"gpus\\\": [\\\"cuda:1\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"qwen14b_teal30_eval\\\", \\\"gpus\\\": [\\\"cuda:1\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"qwen14b_bce30_s42_eval\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}], \\\"worker_pool\\\": {\\\"total\\\": 1, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 1, \\\"details\\\": [{\\\"worker_id\\\": \\\"worker_analysis_lambda_sparsity_curve_20260517T173720\\\", \\\"task\\\": \\\"analysis:lambda_sparsity_curve\\\"}]}, \\\"summary\\\": \\\"分配 2 张, 实际跑 3 张 | Worker 1 (GPU 0 / CPU 1)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 403
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-17T17:46:00.466521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_analysis_lambda_sparsity_curve_20260517T173720\\\", \\\"task_type\\\": \\\"analysis:lambda_sparsity_curve\\\", \\\"project\\\": \\\"distill_sparse_swiglu\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-17T17:37:20.915403+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 1}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 302
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-17T17:46:33.919429+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 2/2 (allocated) + 1 extra | 实际跑 3 张 (westd-34887:cuda:0,1 + westd-41718:cuda:1) | Worker 1 (CPU 1) | 磁盘: westd-34887 93%可用 / westd-41718 87%可用\n\n**downstream_teal30_baseline → DONE (success)**\n\nTEAL magnitude pruning 30% 在 LLaMA-8B 扩展下游任务上的表现：\n\n| Task | Dense | KL 30% | TEAL 30% | KL vs TEAL |\n|------|-------|--------|----------|------------|\n| HellaSwag (acc_norm) | 0.8233 | 0.727 | 0.667 | **+6.0pp** |\n| PIQA (acc_norm) | 0.8074 | 0.7595 | 0.7361 | **+2.34pp** |\n| BoolQ (acc) | 0.8294 | 0.7685 | 0.685 | **+8.35pp** |\n\n**结论**: KL 在全部三个扩展下游任务上均大幅优于 TEAL，平均优势 +5.6pp。BoolQ 差距最大（+8.35pp），暗示 TEAL magnitude pruning 在需要推理的任务上尤其脆弱。\n\n**对比 dense→sparse 退化**:\n- KL 30%: 平均退化 6.8pp (vs dense)\n- TEAL 30%: 平均退化 12.4pp (vs dense)\n- KL 将退化减少约 45%\n\n**Claim 1 支撑增强**: 此前 KL 优势主要体现在 PPL 和 MMLU/ARC/WinoGrande/GSM8K。现在 HellaSwag/PIQA/BoolQ 三个任务进一步确认 KL 优势延伸到更广泛的下游任务集。\n\n**实验计划反思**:\n- 当前 3 个 Qwen-14B eval 仍在跑（kl/teal/bce），完成后将有跨规模下游数据\n- 这组数据可入论文 supplementary table（扩展下游评估）或用于 §4.3 extended downstream 段落\n- 无需调整实验顺序，当前队列合理\n\n**当前运行**: qwen14b_kl30_s42_eval + qwen14b_teal30_eval + qwen14b_bce30_s42_eval（Qwen-14B 跨规模验证）+ 1 CPU Worker (λ/sparsity curve 分析)",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-17T17:46:37.787720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3868
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-17T17:46:43.236492+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已汇报 Director。实验 `downstream_teal30_baseline` 处理完成：\n\n- **结论**: success — TEAL 30% 在 HellaSwag/PIQA/BoolQ 全面劣于 KL 30%，平均 5.6pp 差距\n- **Registry**: 已更新 metrics + conclusion=success + status=DONE\n- **Claim 1 增强**: KL 优势从 PPL 扩展到 6 个下游任务（原 MMLU/ARC/WinoGrande/GSM8K + 新 HellaSwag/PIQA/BoolQ）\n- **当前运行**: 3 个 Qwen-14B eval + 1 个 λ curve 分析 Worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline"
+          },
+          "id": "event-000048"
+        }
+      ],
+      "message_count": 48
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-17T21:48:14.229230+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-17T21:48:57.402015+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-34887 cuda:0 + cuda:1。westd-41718 的 GPU 目前被 Qwen-14B eval 临时占用（Director 批准），但不在常规白名单内，新实验不要往那提交\n- Qwen-14B 实验跑在 westd-41718 是因为模型太大 westd-34887 单卡放不下，这是特批例外\n- 论文数字必须有代码来源（C003），不能手动编造\n- EMNLP 2026 ARR May DDL = 2026-05-25，剩 8 天\n\n### 2. 🖥️ 基础设施快照\n- **westd-34887**: 工作目录 `/root/distill_sparse_swiglu/`，Python `/root/miniconda3/bin/python`，RTX PRO 6000 Blackwell 95GB×2\n- **westd-41718**: 同上路径结构，同型号 GPU\n- 模型路径: `/root/autodl-tmp/models/llama-3.1-8b`（LLaMA），`/root/autodl-tmp/models/Qwen2.5-14B`（Qwen）\n- HF cache: `/root/autodl-tmp/.hf_cache/datasets`\n- W&B: 大部分 eval 实验 WANDB_MODE=disabled（离线评估）\n- 活跃进程:\n  - qwen14b_kl30_s42_eval: PID 52224, westd-34887:cuda:1\n  - qwen14b_bce30_s42_eval: PID 59122, westd-34887:cuda:0\n  - qwen14b_teal30_eval: PID 6896, westd-41718:cuda:1\n- 活跃 Worker: `worker_analysis_lambda_sparsity_curve_20260517T173720`（CPU，生成 λ/sparsity 时序曲线图，R1-W5）\n\n### 3. 📊 当前状态\n刚完成 `downstream_teal30_baseline` 分析并推至 DONE(success)。TEAL 30% 在 HellaSwag/PIQA/BoolQ 全面弱于 KL（平均 -5.6pp），已汇报 Director。\n\nRegistry 摘要：\n- **RUNNING (3)**: qwen14b_kl30_s42_eval / qwen14b_teal30_eval / qwen14b_bce30_s42_eval — 全是 Qwen-14B 跨规模下游验证（MMLU/ARC/WinoGrande/GSM8K）\n- **PREPARING (16)**: 包括 bce_isocompute_v3_s456/s123（多 seed）、kl50_global_s123_reeval（数据一致性修复）、wallclock_speedup_30_50、longbench_dense_v5 等\n- **DONE**: 117 个（75 success, 17 negative, 15 failed, 10 killed）\n\n等待中：\n- 3 个 Qwen-14B eval 的 cron 回调（预计各 ~30-60min）\n- λ/sparsity curve Worker 回调\n- Director 对 downstream_teal30_baseline 汇报的回复\n\n### 4. 📋 待办\n- qwen14b_kl30_s42_eval cron 回调 → 读日志提取 MMLU/ARC/WinoGrande/GSM8K → 更新 registry → 与 8B 对应指标对比退化比\n- qwen14b_teal30_eval cron 回调 → 同上，这是 14B TEAL baseline\n- qwen14b_bce30_s42_eval cron 回调 → 同上，14B BCE baseline；三个都完成后汇总 14B cross-scale table 汇报 Director\n- λ/sparsity curve Worker 回调 → 注册 artifact → 更新 ROADMAP（R1-W5 resolved）\n- 三个 14B eval 全完成 + λ curve 完成 → 提交 Round 2 review（submit_paper_to_review）\n- westd-34887 双卡空出后 → 从 PREPARING 队列中优先提交 wallclock_speedup_30_50（论文需要 latency 数据）或 kl50_global_s123_reeval（Table 2 数据一致性修复）\n\n### 5. 🎯 战略上下文\n- 论文核心叙事（D047）：KL distillation 使 SwiGLU 的 contextual sparsity prediction 不再需要 error compensation，实现最简推理管线。三个 claim：KL>>baselines / SPON orthogonal / three-regime phase transition\n- Allocation narrative 已定稿（D050）：variance reduction only，不再 claim uniform > global mean\n- Round 1 审稿 3.0/5，4 critical 已全部 resolved，剩 2 warning in_progress（R1-W4 SNR patch 已 dispatched，R1-W5 λ curve 正在生成）\n- qwen14b_bce30_s42_v2 是 **negative**（BCE 10x stronger Lagrangian 仍然失败），这是 publishable finding：BCE gradient signal 在 14B scale fundamentally insufficient\n- 易错点：14B TEAL PPL 此前有 misattribution（8.76 已移除，保留 KL 7.62），不要把旧数字写回论文\n- 易错点：50% global KL MMLU 数据已升级为 3-seed mean±std（28.1±0.2），不要用单 seed 数字\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:downstream_teal30_baseline"
+          },
+          "id": "event-000050"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-downstream-teal30-baseline-20260517t214857-403723.md"
+}

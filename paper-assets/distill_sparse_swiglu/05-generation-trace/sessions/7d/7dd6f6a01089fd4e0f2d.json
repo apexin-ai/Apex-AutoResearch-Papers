@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7dd6f6a01089fd4e0f2d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra diagnose bce s123 exit",
+  "task_key": "worker_infra_diagnose_bce_s123_exit_20260517T213538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_diagnose_bce_s123_exit_20260517T213538_result.json",
+    "occurrence": 1,
+    "bytes": 443,
+    "sha256": "cfaf7b4200c8895937136586e80732e68264d2f7e2b8c61bb6b2f38a4223afaf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能之前已删除或由其他 session 创建）。\n\n**结果：正常完成。**\n\n| 项目 | 值 |\n|---|---|\n| 状态 | 正常完成 (\"BCE training complete\") |\n| 总 steps | 2700/2700 |\n| 最终 loss | 0.6362 (bce=0.6350, reg=0.0011) |\n| 最终 sparsity | 0.511 |\n| 训练耗时 | 2823.8s (~47min), 1.05s/step |\n| Checkpoint | `checkpoints/bce_isocompute_v3_s123/predictor_bce.pt` (145MB) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-diagnose-bce-s123-exit.md"
+}

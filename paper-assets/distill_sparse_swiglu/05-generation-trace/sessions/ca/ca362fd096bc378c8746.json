@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca362fd096bc378c8746",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "train kl sparsity30 s42",
+  "task_key": "worker_train_kl_sparsity30_s42_20260515T202333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_kl_sparsity30_s42_20260515T202333_result.json",
+    "occurrence": 1,
+    "bytes": 441,
+    "sha256": "41a5f4a14ad7ee8cd212fb4b89b8c084c77fa569361d681867071e46708b1b0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**总结：**\n- 实验 `kl_sparsity30_s42` 已在 westd-34887 cuda:1 上启动（cuda:0 被 `bce_isocompute_v2_s42` 占满）\n- 因 OOM 自动加了 `--gradient_checkpointing` 标志\n- Step 1/1000 已正常输出：loss=1.1875, sparsity=0.406\n- Registry 状态已更新为 RUNNING\n- 注意：任务描述指定 cuda:0 但实际用了 cuda:1（cuda:0 无可用显存），GPU 仍在约束 C001 允许范围内"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-kl-sparsity30-s42.md"
+}

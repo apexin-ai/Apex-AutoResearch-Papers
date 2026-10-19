@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc90c7794926ad764f15",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze longbench dense v6",
+  "task_key": "worker_analyze_longbench_dense_v6_20260516T165422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_longbench_dense_v6_20260516T165422_result.json",
+    "occurrence": 1,
+    "bytes": 337,
+    "sha256": "e0001b3df3e5df39c29beff1780a12f97f8bfd04c832df706c25229ec61275d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。`longbench_dense_v6` 标记为 success，metrics 和 log_path 已写入。\n\nDense baseline 在 LongBench 上的平均分 0.1343，其中 gov_report (0.3048) 最高，multi_news (0.0249) 最低。结果 JSON 保存在 `/root/distill_sparse_swiglu/results/benchmark/longbench_dense_v6/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-longbench-dense-v6.md"
+}

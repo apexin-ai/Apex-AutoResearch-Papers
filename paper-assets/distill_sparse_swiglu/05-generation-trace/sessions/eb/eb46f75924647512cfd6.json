@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "eb46f75924647512cfd6",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "analysis teal kl overlap correction",
+  "task_key": "worker_analysis_teal_kl_overlap_correction_20260517T044656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_teal_kl_overlap_correction_20260517T044656.log",
+    "occurrence": 1,
+    "bytes": 623110,
+    "sha256": "e049295c6b5a32e7931f96686d8a4ac64b9e4558d02957c590b13a17a7a78692"
+  },
+  "statistics": {
+    "messages": 339,
+    "user_turns": 0,
+    "tool_calls": 136,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 136,
+      "tool_result": 136,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 339,
+      "chunks": [
+        {
+          "path": "eb46f75924647512cfd6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "eb46f75924647512cfd6-part-0002.json",
+          "message_count": 159
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-teal-kl-overlap-correction.md"
+}

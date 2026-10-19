@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce162b07ec1095d7cb9b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval submit mistral downstream",
+  "task_key": "worker_eval_submit_mistral_downstream_20260515T232548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_submit_mistral_downstream_20260515T232548_result.json",
+    "occurrence": 1,
+    "bytes": 126,
+    "sha256": "1be1c1da196921e1ec2c7228aaa752bdb396447c75a8a89bae2f1fdba828a76b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 163723 仍在运行，generate_until 进度 60% (785/1319)，预计还需 ~13 分钟。2 分钟后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-submit-mistral-downstream.md"
+}

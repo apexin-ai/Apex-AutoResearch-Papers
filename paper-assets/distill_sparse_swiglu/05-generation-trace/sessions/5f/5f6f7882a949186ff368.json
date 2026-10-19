@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f6f7882a949186ff368",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops db sweep status check",
+  "task_key": "worker_ops_db-sweep-status-check_20260516T205953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_db-sweep-status-check_20260516T205953_result.json",
+    "occurrence": 1,
+    "bytes": 918,
+    "sha256": "76ff951e8d1db74b8154ee6f9182fffb4a81fd8cda6f35c0367087b8b1a1c5e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已齐。汇总如下：\n\n---\n\n## d_b Sweep 状态 (2026-05-17 05:00 UTC)\n\n| d_b | 状态 | 进度 | 关键 Metrics |\n|-----|------|------|-------------|\n| **64** | **完成** (train + eval) | 1000/1000 | final_loss=0.361, final_sparsity=0.484, **WikiText-2 PPL=10.158** |\n| **256** | **训练中** | ~500/1000 | 当前 loss≈0.236, sparsity≈0.480 |\n| **512** | **未开始** | — | 等 d_b=256 完成后自动启动 |\n\n**详细说明**:\n- GPU 0 在跑 d_b=256 (PID 265221, 100% utilization, 66GB VRAM)\n- d_b=64 的 eval 结果已保存：`results/benchmark/db_sweep_64/results.json`\n- d_b=256 训练从 04:41 开始，d_b=64 用了约 36 分钟（04:05→04:41），预计 d_b=256 约 05:20 完成训练，加上 eval 约 05:22\n- d_b=512 预计 ~06:00 全部结束\n\n**d_b=64 final step metrics** (Step 1000): loss=0.361, kl_norm=0.361, sparsity=0.484, lambda=1000, tau=0.100"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-db-sweep-status-check.md"
+}

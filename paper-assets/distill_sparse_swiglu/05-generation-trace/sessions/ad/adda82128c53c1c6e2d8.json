@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "adda82128c53c1c6e2d8",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "reviewer / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_3.md",
+    "occurrence": 1,
+    "bytes": 4025,
+    "sha256": "6cdbcafd30f5daef15644b2ea7cc53a6d58c53d37de17373b0f8a1d74d488c94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_wall_time\nupdated: '2026-05-15T22:51:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-34887 的 cuda:0 和 cuda:1（`execution.gpu_ids=[0,1]`）\n- eval_benchmark.py 中 TEAL/WINA baseline 实现有 critical bug（已报告 Director）：TEAL 调用了 `teal_activation_magnitude_masks`（greedy，PPL=48715）而非 `vanilla_teal_global_masks`（global，PPL=23.31）；WINA 调用了 `wina_greedy_allocation_masks`（inverted bug，PPL=2126）而非 `wina_global_masks`（PPL=27.93）。**在确认修复前，eval_benchmark.py 输出的 training-free baseline 数字不可引用**\n- Mistral 模型路径是 `/root/autodl-tmp/models/mistral-7b/`（实际为 Mistral-7B-v0.3，config 可验证 `rope_theta=1000000, vocab_size=32768`）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887(root)，工作目录 `/root/distill_sparse_swiglu/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- Llama 模型：`/root/autodl-tmp/models/llama-3.1-8b/`\n- Mistral 模型：`/root/autodl-tmp/models/mistral-7b/`\n- HF cache：`/root/autodl-tmp/.hf_cache/`（datasets 子目录有 wikitext, ai2_arc, winogrande, cais/mmlu, gsm8k；C4 validation 下载未完成，仅 1/8 分片）\n- wandb：offline 模式，本地 `/root/distill_sparse_swiglu/wandb/`\n- 两套 eval 脚本共存：`src/eval_benchmark.py`（有 baseline bug）和 `src/benchmark_eval.py`（lm-eval-harness 集成，imports 正确的 global 函数）\n- 活跃进程（截至 handoff 前）：GPU 0 上有 eval 进程（PIDs 164139/163723），Mistral 训练已完成释放 GPU 1\n\n### 3. 📊 当前状态\n本轮审查了 4 个 worker + 1 个 cron 回调：\n- **plan_007 eval prep**：eval 基础架构就绪但 TEAL/WINA baseline 实现错误 → 已 CRITICAL 报告 Director\n- **dataset precache**：MMLU/ARC/WinoGrande/GSM8K 已缓存，C4 validation 下载未完成\n- **stale process cleanup**：旧卡死进程（10h+ wikitext、stuck C4 streaming）已清理\n- **mistral_kl_s42 训练完成**：1000 步完成，final loss=0.2188，sparsity=0.48，checkpoint 已保存（152MB）。Registry 状态 ANALYZING。\n- Registry 中 PREPARING 的：`lm_eval_dense`、`lm_eval_kl_s42`、`lm_eval_dense_test`（plan_007 lm-eval 相关）\n- kl_sparsity30_s42_v3 DONE 但备注\"TEAL sparse PPL 因 GPU 并发 OOM 未获取\"\n\n### 4. 📋 待办\n- mistral_kl_s42 ANALYZING → DONE 时 → 核实 eval metrics（PPL + sparsity），与 Llama KL 对比确认跨架构泛化（Llama PPL=12.00 @ 50% sparsity，Mistral 应在合理范围内）\n- eval_benchmark.py TEAL/WINA 修复确认 → 重跑 consolidated results，验证 PPL 与 registry headline 数字一致（Dense=6.12, KL=12.00, TEAL=23.31, WINA=27.93）\n- lm_eval_dense / lm_eval_kl_s42 完成 → 审查 ARC-c/WinoGrande/MMLU/GSM8K 数字，确认 downstream accuracy 支持 Claim 1\n- C4 validation 下载完成 → 确认 C4 PPL 评估可用\n- plan_008 sparsity70 eval 若有结果 → 审查 sparsity scaling trend（30%/50%/70% KL-BCE delta）\n\n### 5. 🎯 战略上下文\n- **核心 story**：KL distillation 使 SwiGLU contextual sparsity prediction 不需要 error compensation，实现最简推理管线\n- **三层梯队已确认**：KL PPL 12.00 >> training-free (TEAL 23.31) >> BCE iso-compute 54.84\n- **Claim 2 已 reframe**：不再是\"KL subsumes SPON\"，而是\"SPON orthogonal 且量级小\"（predictor effect 482 vs SPON 76）\n- **Claim 3 (sparsity scaling)** 正在收集数据点：30% 已有（PPL 7.30 @ 28.5% achieved），50% 已有，70% eval 进行中\n- **DDL**：EMNLP 2026 ARR May，截稿 2026-05-25（还剩 10 天）\n- **最容易判断错的事**：eval_benchmark.py 和 benchmark_eval.py 是两个不同脚本，前者有 baseline bug 后者没有。不要看到 benchmark 结果就信——先确认是哪个脚本产出的\n- **易踩坑**：Dense PPL 在不同 eval 路径下有 6.12 vs 6.48 的偏差，可能是 sample 数量差异（20 vs 141+），引用论文数字前必须确认 eval 配置一致\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-copy-3.md"
+}

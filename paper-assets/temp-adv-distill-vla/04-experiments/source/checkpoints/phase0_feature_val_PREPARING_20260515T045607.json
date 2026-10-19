@@ -1,0 +1,14 @@
+{
+  "exp_id": "phase0_feature_val",
+  "project": "temp-adv-distill-vla",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:56:07.263Z",
+    "updated_at": "2026-05-15T04:56:07.263Z"
+  },
+  "timestamp": "2026-05-15T04:56:07.273518+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,372 @@
+{
+  "schema_version": "1.0",
+  "id": "6e8a7857f4b66bfad709",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "ops check teal vanilla cmd",
+  "task_key": "worker_ops_check-teal-vanilla-cmd_20260516T094054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_check-teal-vanilla-cmd_20260516T094054.jsonl",
+    "occurrence": 1,
+    "bytes": 15547,
+    "sha256": "74c3271a1faf3f25b511db0ace1b0d9156ca59434585f87b1c40de0b39cdab50"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T09:41:54.894074+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check-teal-vanilla-cmd_20260516T094054",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T09:41:54.894439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check-teal-vanilla-cmd_20260516T094054",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T09:41:54.894638+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check-teal-vanilla-cmd_20260516T094054",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "cat /root/distill_sparse_swiglu/src/benchmark_eval.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T09:41:54.895344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Benchmark evaluation for sparsity predictor checkpoints via lm-evaluation-harness.\\\\n\\\\nInput:\\\\n  --checkpoint PATH       Predictor .pt file (required for predictor modes)\\\\n  --tasks LIST            Comma-separated: wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\\n  --sparsity_mode MODE    \\\\\\\"per_token\\\\\\\" (dynamic predictor mask) or \\\\\\\"teal_global\\\\\\\" (static calibrated mask)\\\\n  --baseline_mode MODE    Training-free: teal_vanilla,teal_greedy,wina,wina_greedy,rsparse\\\\n  --dense                 Evaluate unsparsified model\\\\n  --exp_id ID             Experiment identifier -> results/benchmark/{exp_id}/results.json\\\\n\\\\nOutput:\\\\n  results/benchmark/{exp_id}/results.json\\\\n\\\\nDependencies:\\\\n  lm-eval >= 0.4.0, transformers, torch, datasets\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\n\\\\nfrom evaluate import (\\\\n    _best_attn_impl,\\\\n    _make_original_fwd,\\\\n    evaluate_perplexity,\\\\n    evaluate_true_dense,\\\\n    teal_global_masks,\\\\n    vanilla_teal_global_masks,\\\\n    _collect_swiglu_magnitudes,\\\\n    _print_mask_stats,\\\\n    teal_activation_magnitude_masks,\\\\n    wina_global_masks,\\\\n    rsparse_global_masks,\\\\n    collect_layer_inputs,\\\\n)\\\\nfrom data_utils import get_eval_dataset\\\\nfrom predictor import PredictorWrapper, CompensationNetwork\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nBASE_DIR = \\\\\\\"/root/distill_sparse_swiglu\\\\\\\"\\\\nDEFAULT_MODEL = \\\\\\\"/root/autodl-tmp/models/llama-3.1-8b\\\\\\\"\\\\n\\\\n# Default few-shot counts per task (following standard evaluation practice)\\\\nLM_EVAL_DEFAULTS = {\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 25},\\\\n    \\\\\\\"winogrande\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 5},\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 5},\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 8},\\\\n}\\\\n\\\\n\\\\ndef parse\n…[truncated 7195 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check-teal-vanilla-cmd_20260516T094054",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T09:41:54.895690+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check-teal-vanilla-cmd_20260516T094054",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "wc -l /root/distill_sparse_swiglu/src/benchmark_eval.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T09:41:54.895863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"397 /root/distill_sparse_swiglu/src/benchmark_eval.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check-teal-vanilla-cmd_20260516T094054",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T09:41:54.896031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check-teal-vanilla-cmd_20260516T094054",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "grep -n \"def compute_baseline_masks\\|def apply_static_masks\\|def setup_predictor\\|def get_calibration\\|baseline_mode\\|teal_vanilla\\|allocation\" /root/distill_sparse_swiglu/src/benchmark_eval.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T09:41:54.896307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check-teal-vanilla-cmd_20260516T094054",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T09:41:54.896451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check-teal-vanilla-cmd_20260516T094054",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "head -200 /root/distill_sparse_swiglu/src/benchmark_eval.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T09:41:54.896912+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Benchmark evaluation for sparsity predictor checkpoints via lm-evaluation-harness.\\\\n\\\\nInput:\\\\n  --checkpoint PATH       Predictor .pt file (required for predictor modes)\\\\n  --tasks LIST            Comma-separated: wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\\n  --sparsity_mode MODE    \\\\\\\"per_token\\\\\\\" (dynamic predictor mask) or \\\\\\\"teal_global\\\\\\\" (static calibrated mask)\\\\n  --baseline_mode MODE    Training-free: teal_vanilla,teal_greedy,wina,wina_greedy,rsparse\\\\n  --dense                 Evaluate unsparsified model\\\\n  --exp_id ID             Experiment identifier -> results/benchmark/{exp_id}/results.json\\\\n\\\\nOutput:\\\\n  results/benchmark/{exp_id}/results.json\\\\n\\\\nDependencies:\\\\n  lm-eval >= 0.4.0, transformers, torch, datasets\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\n\\\\nfrom evaluate import (\\\\n    _best_attn_impl,\\\\n    _make_original_fwd,\\\\n    evaluate_perplexity,\\\\n    evaluate_true_dense,\\\\n    teal_global_masks,\\\\n    vanilla_teal_global_masks,\\\\n    _collect_swiglu_magnitudes,\\\\n    _print_mask_stats,\\\\n    teal_activation_magnitude_masks,\\\\n    wina_global_masks,\\\\n    rsparse_global_masks,\\\\n    collect_layer_inputs,\\\\n)\\\\nfrom data_utils import get_eval_dataset\\\\nfrom predictor import PredictorWrapper, CompensationNetwork\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nBASE_DIR = \\\\\\\"/root/distill_sparse_swiglu\\\\\\\"\\\\nDEFAULT_MODEL = \\\\\\\"/root/autodl-tmp/models/llama-3.1-8b\\\\\\\"\\\\n\\\\n# Default few-shot counts per task (following standard evaluation practice)\\\\nLM_EVAL_DEFAULTS = {\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 25},\\\\n    \\\\\\\"winogrande\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 5},\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 5},\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\\\\"num_fewshot\\\\\\\": 8},\\\\n}\\\\n\\\\n\\\\ndef parse\n…[truncated 7089 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check-teal-vanilla-cmd_20260516T094054",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T09:41:54.897180+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check-teal-vanilla-cmd_20260516T094054",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "tail -200 /root/distill_sparse_swiglu/src/benchmark_eval.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T09:41:54.897496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            continue\\\\n        saved[layer_idx] = layer.mlp.forward\\\\n        mask = masks[layer_idx].to(device=device, dtype=layer.mlp.gate_proj.weight.dtype)\\\\n        mlp = layer.mlp\\\\n\\\\n        def _make(gp, up, dp, af, m):\\\\n            def fwd(x):\\\\n                return dp(af(gp(x)) * up(x) * m.unsqueeze(0).unsqueeze(0))\\\\n            return fwd\\\\n\\\\n        layer.mlp.forward = _make(\\\\n            mlp.gate_proj, mlp.up_proj, mlp.down_proj, mlp.act_fn, mask)\\\\n    return saved\\\\n\\\\n\\\\ndef restore_forwards(model, saved):\\\\n    for idx, fwd in saved.items():\\\\n        model.model.layers[idx].mlp.forward = fwd\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Evaluation runners\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef run_wikitext2_ppl(model, tokenizer, seq_len, device, max_samples=None):\\\\n    wt2 = get_eval_dataset(\\\\\\\"wikitext2\\\\\\\", tokenizer, seq_len, max_samples=max_samples)\\\\n    print(f\\\\\\\"  WikiText-2: {len(wt2)} sequences, seq_len={seq_len}\\\\\\\")\\\\n    return evaluate_perplexity(model, wt2, device)\\\\n\\\\n\\\\ndef run_lm_eval_tasks(model, tokenizer, tasks, batch_size, device):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Run lm-evaluation-harness tasks. Returns dict[task_name -> metric_dict].\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    import lm_eval\\\\n    from lm_eval.models.huggingface import HFLM\\\\n\\\\n    lm_obj = HFLM(pretrained=model, tokenizer=tokenizer, batch_size=batch_size)\\\\n\\\\n    # Group tasks by num_fewshot to minimize lm_eval invocations\\\\n    by_fewshot = {}\\\\n    for t in tasks:\\\\n        fs = LM_EVAL_DEFAULTS.get(t, {}).get(\\\\\\\"num_fewshot\\\\\\\", 0)\\\\n        by_fewshot.setdefault(fs, []).append(t)\\\\n\\\\n    all_results = {}\\\\n    for num_fewshot, task_group in by_fewshot.items():\\\\n        print(f\\\\\\\"  Running {task_group} (num_fewshot={num_fewshot}) ...\\\\\\\")\\\\n        out = lm_eval.simple_evaluate(\\\\n            model=lm_obj,\\\\n            tasks=task_\n…[truncated 6937 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check-teal-vanilla-cmd_20260516T094054",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T09:41:54.897668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check-teal-vanilla-cmd_20260516T094054",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "grep -n \"gpu\\|svd_rank\\|seq_len\\|bottleneck\\|batch_size\\|calibration\" /root/distill_sparse_swiglu/src/benchmark_eval.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T09:41:54.897818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check-teal-vanilla-cmd_20260516T094054",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T09:41:54.897943+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check-teal-vanilla-cmd_20260516T094054",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "grep -n \"add_argument\" /root/distill_sparse_swiglu/src/benchmark_eval.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T09:41:54.898103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"82:    p.add_argument(\\\\\\\"--model_name_or_path\\\\\\\", type=str, default=DEFAULT_MODEL)\\\\n83:    p.add_argument(\\\\\\\"--checkpoint\\\\\\\", type=str, default=None,\\\\n85:    p.add_argument(\\\\\\\"--tasks\\\\\\\", type=str, default=\\\\\\\"wikitext2,arc_challenge,winogrande\\\\\\\",\\\\n87:    p.add_argument(\\\\\\\"--sparsity_mode\\\\\\\", type=str, default=\\\\\\\"per_token\\\\\\\",\\\\n90:    p.add_argument(\\\\\\\"--baseline_mode\\\\\\\", type=str, default=None,\\\\n93:    p.add_argument(\\\\\\\"--dense\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n95:    p.add_argument(\\\\\\\"--exp_id\\\\\\\", type=str, required=True,\\\\n97:    p.add_argument(\\\\\\\"--sparsity_target\\\\\\\", type=float, default=0.5)\\\\n98:    p.add_argument(\\\\\\\"--allocation\\\\\\\", type=str, default=\\\\\\\"global_topk\\\\\\\",\\\\n101:    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n102:    p.add_argument(\\\\\\\"--seq_len\\\\\\\", type=int, default=2048)\\\\n103:    p.add_argument(\\\\\\\"--calibration_samples\\\\\\\", type=int, default=32)\\\\n104:    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=8,\\\\n106:    p.add_argument(\\\\\\\"--bottleneck_size\\\\\\\", type=int, default=128)\\\\n107:    p.add_argument(\\\\\\\"--svd_rank\\\\\\\", type=int, default=256,\\\\n109:    p.add_argument(\\\\\\\"--max_eval_samples\\\\\\\", type=int, default=None,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check-teal-vanilla-cmd_20260516T094054",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T09:41:54.898382+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认完毕。\n\n## 回答\n\n### 1. 不传 `--checkpoint` 不会自动用 magnitude-based sparsity\n\n`main()` 中有显式校验（第~290行）：如果 `--dense`、`--checkpoint`、`--baseline_mode` 都没传，直接报错退出。\n\n### 2. TEAL vanilla 用 `--baseline_mode teal_vanilla`\n\n这是独立于 `--sparsity_mode` 的参数。`--sparsity_mode` 仅用于 predictor 模式（`per_token` / `teal_global`），而 `--baseline_mode` 用于无 predictor 的 training-free baselines。\n\n`teal_vanilla` 内部调用 `_collect_swiglu_magnitudes` 收集 activation magnitudes，然后 `vanilla_teal_global_masks` 做 global top-k mask。\n\n### 3. 完整命令\n\n**bench_teal30** (cuda:0):\n```bash\nbash -c 'cd /root/distill_sparse_swiglu && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 nohup python -u src/benchmark_eval.py --exp_id bench_teal30 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --sparsity_target 0.3 --allocation global_topk --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0 > logs/bench_teal30.log 2>&1 &'\n```\n\n**bench_teal50** (cuda:1):\n```bash\nbash -c 'cd /root/distill_sparse_swiglu && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 nohup python -u src/benchmark_eval.py --exp_id bench_teal50 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --baseline_mode teal_vanilla --sparsity_target 0.5 --allocation global_topk --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0 > logs/bench_teal50.log 2>&1 &'\n```\n\n注意：`CUDA_VISIBLE_DEVICES=1` + `--gpu 0` 的组合让 PyTorch 在可见的唯一 GPU（实际 cuda:1）上以 `cuda:0` 索引运行，两个实验可并行。需确保 `logs/` 目录存在。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check-teal-vanilla-cmd_20260516T094054"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/ops-check-teal-vanilla-cmd.md"
+}

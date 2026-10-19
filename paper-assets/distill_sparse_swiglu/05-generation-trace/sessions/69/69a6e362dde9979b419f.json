@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69a6e362dde9979b419f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check perlayer kl 50 boolq result",
+  "task_key": "worker_check_perlayer_kl_50_boolq_result_20260522T071604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_perlayer_kl_50_boolq_result_20260522T071604_result.json",
+    "occurrence": 1,
+    "bytes": 261,
+    "sha256": "a533f8f8091da4b99bbd690989ab9ce63fa9e6b423f1adc06f87f872757f6eed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 成功完成。\n\n- **EXIT_CODE**: 0\n- **boolq_acc**: 0.6309 (63.09%)\n- Model-level sparsity: 0.496 (接近目标 0.50)\n- 结果 JSON: `/root/distill_sparse_swiglu/results/benchmark/perlayer_kl_50_s42_boolq/results.json`\n- 耗时: 39.8s"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-perlayer-kl-50-boolq-result.md"
+}

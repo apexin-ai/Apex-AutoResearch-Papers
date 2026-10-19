@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a4f6a28871b51b1f8c9",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval bce isocompute v2 teal",
+  "task_key": "worker_eval_bce_isocompute_v2_teal_20260515T211005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_bce_isocompute_v2_teal_20260515T211005_result.json",
+    "occurrence": 1,
+    "bytes": 645,
+    "sha256": "0768e4b3e3a281a23d9b056645a072b66923d0b12fcf92b688c904647c68ab30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n## 评估结果汇总\n\n**bce_isocompute_v2_s42** (BCE loss, reg_weight=2.0, 1000 steps, sparsity≈0.50):\n\n| 指标 | 值 |\n|------|------|\n| true_dense_ppl | 6.12 |\n| predictor_hard_mask_ppl | **26.76** |\n| teal_sparse_ppl | **54.84** |\n| model_level_sparsity | 0.493 |\n\n**Iso-compute 对比 (seed=42, 1000 steps)**:\n\n| 方案 | hard_mask_ppl | teal_sparse_ppl |\n|------|-------------|----------------|\n| KL-only | **9.19** | **11.91** |\n| BCE iso-compute v2 | 26.76 | 54.84 |\n\nBCE 方案在 iso-compute 条件下 PPL 显著劣于 KL，差距约 3x (hard_mask) 和 4.6x (teal_sparse)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-bce-isocompute-v2-teal.md"
+}

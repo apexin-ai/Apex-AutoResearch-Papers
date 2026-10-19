@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efb29e958f072da38868",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diag perlayer kl k16 eval final",
+  "task_key": "worker_diag_perlayer_kl_k16_eval_final_20260523T051709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_perlayer_kl_k16_eval_final_20260523T051709_result.json",
+    "occurrence": 1,
+    "bytes": 687,
+    "sha256": "50acad1088a25db41c160b523b13cbecee7109e85f804aa8597fb032b49db5ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。总结：\n\n**三次失败的根因都是 nohup 环境隔离问题：**\n\n| 次数 | EXIT_CODE | 根因 |\n|------|-----------|------|\n| v3_eval | 1 | 网络不可达，未设离线模式 |\n| eval_v2 | 1 | 设了 `HF_DATASETS_OFFLINE=1` 但没设 `HF_HOME`，找不到缓存 |\n| eval_final | 127 | nohup shell 没有 conda，`python` 不在 PATH |\n\n**当前状态：第4次尝试 eval_final2 (PID 114997) 正在运行**，已修复全部三个问题，arc_challenge 正在跑（~32%），预计 30-60 分钟完成。\n\nK=8 eval 日志未在 `~/runs/` 下找到，无法直接对比命令结构——K=8 可能在交互式 shell 中直接运行的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-perlayer-kl-k16-eval-final.md"
+}

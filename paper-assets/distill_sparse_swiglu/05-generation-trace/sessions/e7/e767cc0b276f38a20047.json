@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e767cc0b276f38a20047",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "research bce compensation data",
+  "task_key": "worker_research_bce_compensation_data_20260522T133603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_bce_compensation_data_20260522T133603_result.json",
+    "occurrence": 1,
+    "bytes": 999,
+    "sha256": "bc6185f097c360ebb682d13725fd2d78f9f72859faf805c326dceed10a4878ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已验证。memory.md 中的 \"BCE Compensation Data\" 段已经包含完整且准确的数据，与 registry.yaml 原始记录一致：\n\n## 数据摘要\n\n### 50% Sparsity\n- **BCE + comp**: PPL = 25.44 (`bce_comp_staged_s42`, `predictor_hard_mask_ppl`)\n- **BCE no comp**: PPL = 27.96 (`bce_comp_staged_s42`, `predictor_hard_mask_ppl_no_comp`；独立验证 `bce_50pct_teal_global_unified` = 27.97)\n- **Δ = 2.52 pp** (comp 提升 ~9%)\n- 稀疏度注意: BCE+comp 实际 0.558 vs KL baseline 0.498\n\n### 30% Sparsity\n- **BCE + comp**: 不存在（registry 中无 30% BCE+comp 实验）\n- **BCE no comp (uniform, 3-seed)**: s42=14.95, s123=15.21, s456=15.11 (`bce_iso_v3_s{42,123,456}_30pct_uniform_eval`)\n- **BCE no comp (global_topk)**: 11.24 (`bce_30pct_s42_eval`)\n- 30% 的 Δ 无法计算（缺 comp 数据）\n\nmemory.md 已在之前的 session 中写入了完整的 \"BCE Compensation Data\" 段，数据全部可追溯到具体 exp_id，无需更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-bce-compensation-data.md"
+}

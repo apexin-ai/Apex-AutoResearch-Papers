@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "839453ab68b1671686b3",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh kl50 global s456 eval",
+  "task_key": "worker_ssh_kl50_global_s456_eval_20260520T173043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kl50_global_s456_eval_20260520T173043_result.json",
+    "occurrence": 1,
+    "bytes": 470,
+    "sha256": "791a086180bd7e03d5d1d82d9ec9d67057025dff6abbc82fa55469664c38141a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动，正在跑 arc_challenge（24%，~48 it/s）。\n\n**汇总**：\n- **服务器**: westd-41718, cuda:1\n- **PID**: 272684\n- **exp_id**: `kl50_global_s456_eval`\n- **status**: RUNNING\n- **checkpoint**: 从 westd-34887 scp 过来 `mvp_kl_norm_v2_s456/predictor_kl_normalized.pt`（151MB，校验一致）\n- **配置**: sparsity_target=0.5, allocation=global_topk, 7 tasks\n- **日志**: `~/runs/distill_sparse_swiglu/kl50_global_s456_eval.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kl50-global-s456-eval.md"
+}

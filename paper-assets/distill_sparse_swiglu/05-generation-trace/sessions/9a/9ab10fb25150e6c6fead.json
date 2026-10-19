@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ab10fb25150e6c6fead",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval kl50 s123 independent",
+  "task_key": "worker_eval_kl50_s123_independent_20260517T112431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_kl50_s123_independent_20260517T112431_result.json",
+    "occurrence": 1,
+    "bytes": 426,
+    "sha256": "94479d754f88095fd03573176f24eb29f42d2e6370eb46d376f3902b5b61a043"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，模型正在加载。\n\n---\n\n**汇报：**\n\n```\n50% s123 eval:\n- PPL: 11.745\n- ARC-c (acc_norm): 38.14%\n- WinoGrande (acc): 61.25%\n- MMLU (acc): 27.52%\n- GSM8K (exact_match): 2.81%\n\ns456 训练已提交: kl50_s456_train (PID 35825, tmux session: kl50_s456_train, cuda:0)\n```\n\n结果文件: `/root/distill_sparse_swiglu/results/benchmark/kl_50pct_s123_global/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-kl50-s123-independent.md"
+}

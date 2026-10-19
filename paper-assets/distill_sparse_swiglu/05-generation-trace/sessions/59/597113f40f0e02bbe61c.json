@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "597113f40f0e02bbe61c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops mask divergence 50pct 64samples",
+  "task_key": "worker_ops_mask-divergence-50pct-64samples_20260519T121559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mask-divergence-50pct-64samples_20260519T121559_result.json",
+    "occurrence": 1,
+    "bytes": 477,
+    "sha256": "454e56a33dfa669e1f6f2bff3e8fe36f4cdc3592c9620c7556b83484b9666395"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已存在，无需重新运行。结果汇总：\n\n**50% Sparsity Mask Divergence (64 samples, 131K tokens)**\n\n| Metric | Value |\n|--------|-------|\n| Mean Jaccard Distance | **0.6824 (68.24%)** |\n| Min (layer 31) | 0.5234 |\n| Max (layer 26) | 0.7517 |\n\n论文声称的 ~68% divergence 与实测数据一致。数据来源文件 `/root/distill_sparse_swiglu/figures/mask_stats_50pct_64samples.json`，已注册为 artifact `art_20260519_bb2328`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mask-divergence-50pct-64samples.md"
+}

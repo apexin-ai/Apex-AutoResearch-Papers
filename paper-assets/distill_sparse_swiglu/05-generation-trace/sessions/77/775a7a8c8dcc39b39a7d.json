@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "775a7a8c8dcc39b39a7d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper mistral consistency check",
+  "task_key": "worker_paper_mistral-consistency-check_20260519T055356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_mistral-consistency-check_20260519T055356_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "cdcad1fb4d64d8b62e7901cca9b3b626471196442fe0b8f956b27a39a0b138e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Audit complete. Wrote `artifacts/mistral_consistency_audit.md` with 7 issues found:\n\n- **P0 (1)**: `experiments.tex:228` — \"KL's downstream advantage is consistent\" is factually wrong; GSM8K reverses -4.8pp\n- **P1 (3)**: `abstract.tex:6` and `introduction.tex:16` both say \"downstream advantages hold\" without GSM8K caveat; `limitations.tex` has no mention of Mistral GSM8K reversal\n- **P2 (3)**: `appendix.tex:364` unqualified \"generalizes\"; `ethics.tex:3,32` missing HellaSwag/PIQA from benchmark lists\n\nAll suggested replacement text avoids em-dashes and -ing phrase endings. Numbers trace to exp_id: mistral_kl30_downstream, mistral_teal30_downstream. The appendix Table 16 data and caption are already correct (\"5 of 6 tasks, GSM8K sole reversal\")."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-mistral-consistency-check.md"
+}

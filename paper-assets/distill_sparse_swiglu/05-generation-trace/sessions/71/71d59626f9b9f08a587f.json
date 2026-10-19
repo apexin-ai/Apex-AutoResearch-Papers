@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71d59626f9b9f08a587f",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3.md",
+    "occurrence": 1,
+    "bytes": 4850,
+    "sha256": "1494e790267e5ce505853d269f858ecfa0143eb403ec4fc862c1971d9dc1f824"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T22:11:47+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 westd-34887 的 cuda:0 和 cuda:1，不得使用其他 GPU\n- cuda:1 曾有系统性问题（kl_sparsity70_s42, kl_sparsity30_s42, ste_kl_s42 连续三次进程启动即死，零日志），后确认为缺 `--gradient_checkpointing` 导致 OOM。所有 LLaMA-3.1-8B sparsity 训练必须加 `--gradient_checkpointing`\n- `submit_training_job` 的 command 必须自带环境激活：`source /root/miniconda3/bin/activate && python ...`（服务器用 conda，不是 venv）\n- EMNLP 2026 ARR May DDL = **2026-05-25**，剩余 10 天\n- Training-free baseline 数据已修复（原始全 buggy，per-layer normalization fix 后：Vanilla TEAL 23.31, WINA 27.93, TEAL Greedy 33.47），不要引用旧的 50K-80K 数字\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-34887**，工作目录 `/root/distill_sparse_swiglu/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型：`/root/autodl-tmp/models/llama-3.1-8b`（LLaMA-3.1-8B），Mistral 备用 `/root/autodl-tmp/models/mistral-7b/`\n- 数据：wikitext-103（训练）/ wikitext-2（eval, seq_len=2048, 141 sequences），HF cached\n- Checkpoints 目录：`/root/distill_sparse_swiglu/checkpoints/<exp_id>/`\n- Logs 目录：`~/runs/distill_sparse_swiglu/<exp_id>.log`\n- W&B：项目内配置（未见显式 wandb project name，需查服务器）\n- 活跃进程：**无**。所有实验已完成或 killed，无 RUNNING 实验，reconcile_crons 返回 0 active\n\n### 3. 📊 当前状态\n**无任何实验在跑。** 两块 GPU 均空闲。\n\nRegistry 共 29 个实验：13 success / 6 negative / 5 failed / 5 killed。核心结论：\n- **Claim 1 (KL > BCE+comp)**: ✅ 强确认。KL TEAL PPL 12.00±0.07 (4-seed) vs BCE 44.54 vs BCE+comp 25.44 vs training-free 23-33。BCE iso-compute (1000步, matched FLOPs) PPL=54.84，比 training-free 还差\n- **Claim 2 (SPON composition)**: ❌ Negative → reframed to \"KL subsumes SPON\"。SPON recovery 仅 3.8%(seq128）/ 7.3%（seq2048），均 < 10% threshold。D013-D014 确认 SPON 正交且量级小\n- **Claim 3 (sparsity scaling)**: 70% 数据点完成（sparsity=0.688），30% 卡住（sparsity=0.281, lambda_max=1000 不够），v3 准备 lambda_max=5000 重跑但未提交\n- **STE baseline**: PPL 15.77，比 Gumbel(KL) 差 31.4%，Reviewer Concern #3 已有数据\n- **s456 outlier**: 根因已知（TEAL Layer 31 over-pruning），不需重跑\n\nPREPARING 状态的实验（均未提交）：kl_sparsity30_s42_v3, bce_isocompute_s42_v2(killed), eval_spon_supp_retry, spon_kl_s42, mvp_kl_norm_s456(killed/superseded), kl_norm_v3_quicktest(实际 success 未转 DONE), kl_lagrangian_v2(killed/superseded)\n\n无等待中的 Worker 回调或 Cron。无待处理的 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- Director 指示恢复实验 → 优先提交 kl_sparsity30_s42_v3（lambda_max=5000），填 plan_008 sparsity sweep 最后一格\n- kl_sparsity30_s42_v3 完成且 sparsity 收敛到 ~0.30 → 收集 30/50/70% 三点 PPL，画 sparsity-PPL 曲线（Claim 3 scaling）\n- kl_sparsity30_s42_v3 sparsity 仍卡住 → lambda_max 继续提高或换策略（如 target 0.35 插值），汇报 Director\n- Director 确认 Claim 2 reframe 最终版本 → 更新 paper_framing.md，全文 re-audit（读 framing-reaudit skill）\n- DDL 倒计时进入 5 天 → 启动论文写作 Worker（需 Director 批准 writing_plan）\n- bce_isocompute_s42_v2 如需重跑 → 注意原因是 tmux 被外部 kill，检查服务器是否有 cron/OOM killer 干扰\n\n### 5. 🎯 战略上下文\n**核心结论链**：KL distillation 是唯一有效的 contextual sparsity prediction 方法。BCE（independent per-neuron）根本无法学习 inter-neuron coordination，即使 iso-compute 也比 training-free 差。SPON（static bias）被 KL 的 per-token contextual mask 完全包含。Training-free（magnitude-based）在 50% sparsity 下 PPL 3.8-5.5x dense，可用但远不如 KL 的 2.0x。\n\n**决策链要点**：D005(KL 归一化 seq_len-only) → D006(发现÷vocab_size bug 紧急停) → D007(MVP PASS) → D008(BCE+comp/SPON 双 negative) → D009-D014(Claim 2 多轮 reframe)\n\n**易错点**：\n1. 不要把 hard-mask PPL（~9.2, predictor 质量指标）和 TEAL sparse PPL（~12.0, 端到端指标）混用。论文需分开报告\n2. s456 的 TEAL PPL 13.58 是 outlier（Layer 31 全局分配问题），不是 predictor 质量问题。报 4-seed mean 或标注\n3. KL per-step FLOPs = 2.71x BCE，iso-compute 对比的步数比是 2700:1000 不是 1:1\n4. Training-free baselines 数字已修复过一次（per-layer normalization bug），引用时用修复后的 23-33 范围\n5. 两块 GPU 都空着 = 失职状态，接手后应立即向 Director 汇报并推进待提交实验\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-copy-2.md"
+}

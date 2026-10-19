@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "d87a53544c9bd019a59f",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "eval downstream extended kl30 s42",
+  "task_key": "worker_eval_downstream_extended_kl30_s42_20260517T152838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_downstream_extended_kl30_s42_20260517T152838.log",
+    "occurrence": 1,
+    "bytes": 1075352,
+    "sha256": "3e7d0e8950ca63de184baf6123efe9ce4eb1a966caa308a059eb5a8f16528513"
+  },
+  "statistics": {
+    "messages": 751,
+    "user_turns": 1,
+    "tool_calls": 331,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 79,
+      "tool_call": 331,
+      "tool_result": 331,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 740,
+      "chunks": [
+        {
+          "path": "d87a53544c9bd019a59f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d87a53544c9bd019a59f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d87a53544c9bd019a59f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d87a53544c9bd019a59f-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d87a53544c9bd019a59f-part-0005.json",
+          "message_count": 20
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "d87a53544c9bd019a59f-part-0005.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-downstream-extended-kl30-s42.md"
+}

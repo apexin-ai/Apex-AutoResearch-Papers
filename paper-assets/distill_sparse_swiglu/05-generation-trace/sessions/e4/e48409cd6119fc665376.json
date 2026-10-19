@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e48409cd6119fc665376",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops verify checkpoint 41718",
+  "task_key": "worker_ops_verify_checkpoint_41718_20260519T181708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_checkpoint_41718_20260519T181708_result.json",
+    "occurrence": 1,
+    "bytes": 96,
+    "sha256": "ade22054cc2151b61236e59732d2f0833ae555358b4d8fc1271b1e852a00782c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件存在，大小 234,191,583 bytes（~223.3 MB），与预期完全匹配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-checkpoint-41718.md"
+}

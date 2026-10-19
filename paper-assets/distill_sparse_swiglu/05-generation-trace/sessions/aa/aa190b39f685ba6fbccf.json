@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa190b39f685ba6fbccf",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_16_1779583683.md",
+  "task_key": "loop_16_1779583683",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779583683.md",
+    "occurrence": 1,
+    "bytes": 3852,
+    "sha256": "d6b2cf0c8e89233f916ed118ab4f6c4dee17570519b0a59ee40248dc006c3887"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-24T00:40:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd-34887 cuda:0, cuda:1（2× RTX PRO 6000 Blackwell 96GB）。westd-41718 已由用户释放，不可使用\n- DDL: 2026-05-25 EMNLP 2026 ARR May cycle，剩余不到 2 天，当前阶段是写作修复，不是新实验\n- D104 决策: K=8/K=16 和 Table 4 3-seed 不做（DDL 不允许），但 D107 override: 补跑 K=2/K=8/K=16 + C4 eval（用户指令）\n- `perlayer_kl_k2_s42` 和 `perlayer_kl_k2_s42_train` 指向同一个 checkpoint 目录 `/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s42`，是重复提交，分析时只取一个结果\n\n### 2. 🖥️ 基础设施快照\n- 服务器: westd-34887，工作目录 `/root/distill_sparse_swiglu`\n- Python: `/root/miniconda3/bin/python`（conda base 环境，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型: llama-3.1-8b（路径需 SSH 确认，训练脚本自动加载）\n- Checkpoint 目录: `/root/distill_sparse_swiglu/checkpoints/`\n- 日志目录: `~/runs/distill_sparse_swiglu/`\n- 活跃进程: `perlayer_kl_k16_eval_final2`（PID 114997，cron 监控中，K=16 downstream eval）\n- Worker: `worker_analysis_perlayer_kl_k2_s42_train` 刚派出，正在分析 K=2 训练日志 + 跑 PPL eval\n\n### 3. 📊 当前状态\n刚收到 `perlayer_kl_k2_s42_train` 的 cron 完成回调（进程正常退出）。已派 Worker 去读训练日志、检查 checkpoint、跑 PPL eval。\n\nRegistry 状态:\n- `perlayer_kl_k16_eval_final2`: RUNNING — K=16 downstream eval（第 N 次尝试，之前 3 次 failed）\n- `perlayer_kl_k2_s42_train`: ANALYZING — 等 Worker 回调（日志分析 + PPL eval）\n- `perlayer_kl_k2_s42`: ANALYZING — 同一训练的重复 entry，需合并或 kill 一个\n- 其余 386 个实验全部 DONE\n\n等待中:\n- Worker `worker_analysis_perlayer_kl_k2_s42_train` 回调 → 拿到 K=2 PPL 后更新 registry + 安排 downstream eval\n- Cron `perlayer_kl_k16_eval_final2` 回调 → K=16 downstream 结果\n- Paper Agent 写作修复（R24）— 当前无 running worker，可能已完成或需重新派\n\n### 4. 📋 待办\n- Worker K=2 分析回调到 → 更新 registry metrics（PPL/KL/sparsity）→ 派 Worker 跑 K=2 downstream eval（ARC-c/WG/MMLU/GSM8K/HellaSwag/PIQA）→ 参考 K=8 eval 成功命令\n- K=2 downstream eval 完成 → 合并 K-curve 全部数据点（K=1 PPL=9.06, K=2=?, K=4 downstream only, K=8 PPL=8.97, K=16=?, K=32≈8.81）→ 汇报 Director\n- `perlayer_kl_k16_eval_final2` cron 回调 → 提取 K=16 downstream metrics → 如果又 failed，检查之前 K=8 eval 成功的命令格式，严格复用\n- K-curve 数据齐全 → 更新论文 Table（如果 DDL 允许）或至少更新 report.md\n- `perlayer_kl_k2_s42` 重复 entry → 设为 killed 或 redirect 到 `perlayer_kl_k2_s42_train`\n- R24 写作修复状态需确认: 检查是否有 Paper Agent worker 已完成但未处理回调\n\n### 5. 🎯 战略上下文\n- 核心结论: KL distillation for SwiGLU sparsity prediction 中，output-distribution alignment 是 PPL 的主导因素。Cross-layer coupling 的贡献是 task-dependent 的（commonsense-dominated vs reasoning-dominated）\n- K-curve 实验（D107）是为了量化 coupling scope 对质量的影响。已有数据: K=1 PPL=9.06, K=8 PPL=8.97, K=32≈8.81。K=2 和 K=16 是缺失点\n- K=16 eval 连续 3 次 failed（EXIT_CODE=127/1），大概率是环境激活或命令格式问题。下一轮需要仔细对照 K=8 eval 成功的 spec 来构造命令\n- 易踩坑: K=4 有 downstream 但没有 PPL（perlayer_kl_k4_s42 的 metrics 为空），需要补跑 PPL eval 才能画完整 K-curve\n- 当前最紧迫: DDL 5/25，R24 写作修复才是主线。K-curve 数据是 D107 override 的补充实验，不应阻塞写作修复提交\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779583683.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c146debdd81dac97649",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops restart3 full check",
+  "task_key": "worker_ops_restart3_full_check_20260520T032819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart3_full_check_20260520T032819_result.json",
+    "occurrence": 1,
+    "bytes": 1332,
+    "sha256": "2206708ee6cf39081ffba4396774219691d8299c9c7e09a75ec1a2318954b9c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### westd-41718\n\n| # | 实验 | GPU | PID | 状态 | 详情 |\n|---|------|-----|-----|------|------|\n| 1 | MSE 30% 7-task eval | cuda:0 | 202340 | **DEAD — 崩溃** | `AssertionError: Layer 27: sparsity 0.248 deviates from target 0.300`。sparsity 断言阈值 0.05 太严格，Layer 27 实际 0.248 vs 目标 0.300，差 0.052。cuda:0 已空闲 (0 MiB, 0%)。 |\n| 2 | MSE 50% train | cuda:1 | 202489 | **ALIVE — 训练中** | Step 80/1000, loss 从 97.9→0.006 快速收敛。sparsity=0.508 (目标0.5)。lambda 自动调到 128。cuda:1 满载 (53353 MiB, 100%)。checkpoint 尚未生成。 |\n\n### westd-34887\n\n| # | 实验 | GPU | PID | 状态 | 详情 |\n|---|------|-----|-----|------|------|\n| 3 | TEAL global HS/PIQA | cuda:0 | 157764 | **ALIVE — 93%** | 37585/40168 loglikelihood requests, ~3min 剩余。cuda:0 满载 (39993 MiB, 99%)。 |\n| 4 | BCE global HS/PIQA | cuda:1 | 157845 | **ALIVE — 93%** | 37657/40168 loglikelihood requests, ~3min 剩余。cuda:1 满载 (68697 MiB, 98%)。 |\n\n### 需要处理\n\n**实验 1 (MSE 7-task eval)** 需要修复：`evaluate.py:165` 的 sparsity 断言容差 0.05 对 MSE predictor 太严格。Layer 27 sparsity 0.248 偏离目标 0.300 仅 5.2%，应放宽容差或改为 warning。修复后需在 cuda:0 上重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart3-full-check.md"
+}

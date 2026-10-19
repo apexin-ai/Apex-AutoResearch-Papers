@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "daa2a980df0cd3094138",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops mistral dense version check",
+  "task_key": "worker_ops_mistral-dense-version-check_20260519T061822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mistral-dense-version-check_20260519T061822_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "2356c56a88d16d2e084bd2eb40e90a191921bf83122ba18a3e6df51356998432"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job is running. HellaSwag eval is ~52% through (5232/10042 samples at ~234 it/s).\n\n**Summary:**\n\n1. **Model version: Mistral-7B-v0.3**\n   - `architectures`: `MistralForCausalLM`\n   - `vocab_size`: 32768 (v0.3 extended from v0.1's 32000)\n   - `rope_theta`: 1000000.0 (v0.1 = 10000.0)\n   - `sliding_window`: null (v0.1 = 4096)\n   - `num_key_value_heads`: 8 (GQA)\n\n2. **Experiment submitted:**\n   - `exp_id`: `mistral_dense_hellaswag_piqa`\n   - PID: 84284\n   - Server: westd-34887, cuda:0\n   - Registry status: RUNNING\n   - Log: `/root/distill_sparse_swiglu/logs/mistral_dense_hellaswag_piqa.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mistral-dense-version-check.md"
+}

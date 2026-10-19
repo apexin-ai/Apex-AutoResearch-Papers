@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "f90b60c3870765c20de6",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis perlayer kl k16 s123 eval",
+  "task_key": "worker_analysis_perlayer_kl_k16_s123_eval_20260523T135310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_perlayer_kl_k16_s123_eval_20260523T135310_result.json",
+    "occurrence": 1,
+    "bytes": 956,
+    "sha256": "ecc6429ffb3ed4e1692ec0bdc4eb1a482d683809e17649805544039a2853c01f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正常完成（EXIT_CODE=0），耗时 4179.3s。\n\n```json\n{\n  \"wikitext2_ppl\": 8.6939,\n  \"arc_challenge_acc_norm\": 0.4317,\n  \"winogrande_acc\": 0.6772,\n  \"mmlu_acc\": 0.3996,\n  \"gsm8k_exact_match\": 0.0986,\n  \"hellaswag_acc_norm\": 0.7050,\n  \"piqa_acc_norm\": 0.7481,\n  \"sparsity_per_layer\": \"0.293–0.301 (avg ≈ 0.298, 32 layers)\"\n}\n```\n\n**Checkpoint 目录注意**：`/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s123/` 存在，但里面只有一个文件 `predictor_perlayer_kl_k4.pt`（145MB）——文件名是 k4 而非 k16，可能是命名不一致或复用了其他 checkpoint。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "wikitext2_ppl": 8.6939,
+              "arc_challenge_acc_norm": 0.4317,
+              "winogrande_acc": 0.6772,
+              "mmlu_acc": 0.3996,
+              "gsm8k_exact_match": 0.0986,
+              "hellaswag_acc_norm": 0.705,
+              "piqa_acc_norm": 0.7481,
+              "sparsity_per_layer": "0.293–0.301 (avg ≈ 0.298, 32 layers)"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-perlayer-kl-k16-s123-eval.md"
+}

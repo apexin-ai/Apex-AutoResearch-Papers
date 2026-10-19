@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7af90a5c94d71d2bf48f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code cleanup 41718 benchmark",
+  "task_key": "worker_code_cleanup_41718_benchmark_20260519T170948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cleanup_41718_benchmark_20260519T170948_result.json",
+    "occurrence": 1,
+    "bytes": 272,
+    "sha256": "4cfc2e3ba00b0fc61d1d29c1af6b2cabd14b983181fda701a433fcec90b704e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 中没有 flashinfer benchmark 实验，无需更新。\n\n**清理结果：**\n- westd-41718 上有 3 个 flashinfer benchmark 进程（PID 161147/161152/161153），已全部 kill，确认退出\n- Registry 中无对应实验条目，无需更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cleanup-41718-benchmark.md"
+}

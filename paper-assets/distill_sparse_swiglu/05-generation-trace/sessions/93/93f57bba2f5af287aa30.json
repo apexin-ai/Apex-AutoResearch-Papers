@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93f57bba2f5af287aa30",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code plan 007 eval prep",
+  "task_key": "worker_code_plan_007_eval_prep_20260515T210552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_007_eval_prep_20260515T210552_result.json",
+    "occurrence": 1,
+    "bytes": 968,
+    "sha256": "f65e0e7adffc87be8d73932c0dedacde51ab54226c0acc7275c5e5799e0e9aa4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**产出：**\n- `src/benchmark_eval.py` — benchmark 评估脚本，已部署到服务器\n- `lm-eval 0.4.12` — 新安装的依赖\n\n**脚本支持 4 种模式：**\n\n| 模式 | 参数 | 说明 |\n|------|------|------|\n| per_token predictor | `--checkpoint ... --sparsity_mode per_token` | PredictorWrapper 动态逐 token 硬掩码 |\n| TEAL global mask | `--checkpoint ... --sparsity_mode teal_global` | predictor 在校准集上计算静态全局掩码 |\n| Training-free baseline | `--baseline_mode teal_vanilla/wina/rsparse/...` | 无 checkpoint，基于激活幅值的掩码 |\n| Dense | `--dense` | 无稀疏，原始模型 |\n\n**评估任务：** wikitext2 (PPL), arc_challenge (25-shot), winogrande (5-shot), mmlu (5-shot), gsm8k (8-shot)\n\n**输出：** `results/benchmark/{exp_id}/results.json`\n\n自动检测并加载 compensation network（bce_comp checkpoint）。模型只加载一次，所有任务批量评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-007-eval-prep.md"
+}

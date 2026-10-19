@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b7bd619ac839f79cac22",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "code lagrangian kl",
+  "task_key": "worker_code_lagrangian-kl_20260515T131820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_lagrangian-kl_20260515T131820.log",
+    "occurrence": 1,
+    "bytes": 551835,
+    "sha256": "0fb52047ddc28e632fece5f7bd4e2d770b84a797264cd038479e52f2238b5947"
+  },
+  "statistics": {
+    "messages": 299,
+    "user_turns": 0,
+    "tool_calls": 119,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 119,
+      "tool_result": 119,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 299,
+      "chunks": [
+        {
+          "path": "b7bd619ac839f79cac22-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b7bd619ac839f79cac22-part-0002.json",
+          "message_count": 119
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-lagrangian-kl.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca24f6bc425c6d2631dc",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval fix and launch 14b 4task uniform",
+  "task_key": "worker_eval_fix_and_launch_14b_4task_uniform_20260518T005341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_fix_and_launch_14b_4task_uniform_20260518T005341_result.json",
+    "occurrence": 1,
+    "bytes": 1465,
+    "sha256": "a0fae10ea57ed73520b62369b0db13abd5f836f7fd34f26af5a20e4ec3712585"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断与状态报告\n\n### 原始失败原因\n\n| 实验 | 失败原因 |\n|------|----------|\n| KL uniform eval | 模型路径大小写错误：命令用了 `Qwen2.5-14B`，实际目录是 `qwen2.5-14b` → HuggingFace 把路径当 repo ID 解析 → `OSError` |\n| TEAL uniform eval | 未失败，但卡在 GSM8K `generate_until`（1319 items，15s/it，需要 ~5.5h），实质上是 GSM8K 太慢导致超时或被认为失败 |\n\n### 当前状态：4-task eval 已在运行\n\n有人已经修复路径并启动了 4-task 版本，两个 GPU 都在跑：\n\n| 实验 | PID | GPU | exp_id | WikiText-2 PPL | 当前阶段 |\n|------|-----|-----|--------|-----------------|---------|\n| KL uniform | 87149 | cuda:0 | `qwen14b_kl30_uniform_4task` | **7.6318** | MMLU loglikelihood 296/4687 (~6%) |\n| TEAL uniform | 87288 | cuda:1 | `qwen14b_teal30_uniform_4task` | **8.0054** | MMLU loglikelihood 312/4687 (~7%) |\n\nKL 用了 `--sparsity_mode teal_global --checkpoint ...predictor_kl_normalized.pt`，TEAL 用了 `--baseline_mode teal_vanilla`。`--allocation uniform` 参数正确（代码 L111-113 确认支持 `global_topk` 和 `uniform` 两个选项）。\n\nUniform allocation 每层约 0.30 sparsity，两者均已完成 WikiText-2 和 ARC Challenge，正在跑 MMLU。按当前速度 (~9.4 it/s)，MMLU 约需 8 分钟完成。整体预计 **10-15 分钟内** 两个 eval 都会跑完。\n\n**无需重新提交，等结果即可。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-fix-and-launch-14b-4task-uniform.md"
+}

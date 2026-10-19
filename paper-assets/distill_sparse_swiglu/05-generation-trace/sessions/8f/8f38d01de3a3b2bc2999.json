@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f38d01de3a3b2bc2999",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh verify ste vs kl config",
+  "task_key": "worker_ssh_verify_ste_vs_kl_config_20260520T183822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_ste_vs_kl_config_20260520T183822_result.json",
+    "occurrence": 1,
+    "bytes": 2434,
+    "sha256": "e96f9ca9cb22c5e2f27be52710a39cd524fa086ddfd4794a047e6fbac82717ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整数据已收集。以下是对比结果：\n\n---\n\n## 训练配置对比：STE 30% vs KL+Gumbel 30%\n\n来源：两个 checkpoint 中保存的 `vars(args)`（westd-41718）\n\n| 参数 | STE 30% s42 | KL+Gumbel 30% s42 v3 | 一致？ |\n|------|-------------|----------------------|--------|\n| **model_name_or_path** | llama-3.1-8b | llama-3.1-8b | ✅ |\n| **loss_type** | kl_normalized | kl_normalized | ✅ |\n| **relaxation** | **ste** | **gumbel** | ❌ 有意差异 |\n| **num_steps** | 1000 | 1000 | ✅ |\n| **batch_size** | 4 | 4 | ✅ |\n| **seq_len** | 2048 | 2048 | ✅ |\n| **lr** | 1e-3 | 1e-3 | ✅ |\n| **seed** | 42 | 42 | ✅ |\n| **sparsity_target** | 0.3 | 0.3 | ✅ |\n| **lambda_max** | 5000.0 | 5000.0 | ✅ |\n| **kl_temperature** | 1.0 | 1.0 | ✅ |\n| **tau_start** | 1.0 | 1.0 | ✅ |\n| **tau_end** | 0.1 | 0.1 | ✅ |\n| **warmup_steps** | 100 | 100 | ✅ |\n| **dataset** | wikitext-103 | wikitext-103 | ✅ |\n| **gradient_accumulation_steps** | 1 | 1 | ✅ |\n| **gradient_checkpointing** | true | true | ✅ |\n| **bottleneck_dim** | 128 | *(缺失，旧版代码)* | ✅ 实际相同 |\n| **sparsity_reg_weight** | 0.1 | 0.1 | ✅ |\n| **trainable params** | 75,960,320 | 75,960,320 | ✅ |\n\n**结论：训练超参完全一致，唯一差异是 `--relaxation ste` vs `gumbel`（有意的实验变量）。**\n\n注意：`kl_sparsity30_s42.log` 日志文件显示 `cap=1000`，那是旧版 run（非 v3）。v3 checkpoint 确认 `lambda_max=5000`。\n\n---\n\n## Eval 配置对比\n\n| 参数 | STE eval (`ste_30_s42_eval`) | KL+Gumbel eval (`d030_kl30_uniform`) | 一致？ |\n|------|------------------------------|--------------------------------------|--------|\n| **checkpoint** | ste_30_s42/predictor_kl_normalized.pt | kl_sparsity30_s42_v3/predictor_kl_normalized.pt | — |\n| **sparsity_mode** | teal_global | teal_global | ✅ |\n| **allocation** | uniform | uniform | ✅ |\n| **sparsity_target** | 0.3 | 0.3 | ✅ |\n| **seq_len** | 2048 | 2048 | ✅ |\n| **calibration_samples** | 32 | 32 | ✅ |\n| **batch_size** | 8 | 8 | ✅ |\n| **bottleneck_size** | 128 | 128 | ✅ |\n| **tasks** | wikitext2, arc, winogrande, mmlu, gsm8k, **hellaswag, piqa** | wikitext2, arc, winogrande, mmlu, gsm8k | ⚠️ STE 多 2 个 task |\n\n**Eval 差异**：STE eval 包含 7 个 task（含 hellaswag + piqa），KL+Gumbel eval 只有 5 个。评估框架配置本身一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-ste-vs-kl-config.md"
+}

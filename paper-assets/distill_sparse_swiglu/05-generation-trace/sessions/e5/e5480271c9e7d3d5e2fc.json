@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5480271c9e7d3d5e2fc",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval collect uniform results",
+  "task_key": "worker_eval_collect_uniform_results_20260517T235026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect_uniform_results_20260517T235026_result.json",
+    "occurrence": 1,
+    "bytes": 1050,
+    "sha256": "1f1d9755e01be00ac36b7e5b541fa118007c5cb8af64d452e12ad7985fac34d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n\n```\nTEAL uniform 状态: 进行中\n- GSM8K generate_until: 81/1319 (6%), 已运行 20:57, 剩余 ~5h15m (~15.3s/it)\n- wikitext2_ppl: 不可读（日志损坏）\n- arc_challenge_acc_norm: 不可读\n- winogrande_acc: 不可读\n- mmlu_acc: 不可读\n- gsm8k_exact_match: 未完成\n- per_layer_sparsity: 不可读\n\nKL uniform 状态: 进行中\n- GSM8K generate_until: 137/1319 (10%), 已运行 29:50, 剩余 ~4h55m (~15.0s/it)\n- 同上，所有中间指标不可读\n```\n\n**问题说明：** 两个日志文件都存在 null 字节损坏。初始错误（`/root/autodl-tmp/models/Qwen2.5-14B` 路径大小写导致的 `OSError`）之后，第二次启动的 stdout（含 PPL、mask stats、Mode 等 print 输出）被 48KB-254KB 的 null 字节覆盖。当前可见的只有 progress bar。\n\n结果 JSON 仅在全部 5 个 task 完成后才写入，没有中间产物。\n\n**预计完成时间：** 两个实验都还需要 ~5 小时（GSM8K 14B 单卡 generate 极慢，1319 samples * ~15s/sample）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-uniform-results.md"
+}

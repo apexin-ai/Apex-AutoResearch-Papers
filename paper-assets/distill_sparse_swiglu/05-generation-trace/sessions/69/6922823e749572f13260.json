@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "6922823e749572f13260",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "fix download boolq and resubmit revkl",
+  "task_key": "worker_fix_download_boolq_and_resubmit_revkl_20260522T031715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_fix_download_boolq_and_resubmit_revkl_20260522T031715.jsonl",
+    "occurrence": 1,
+    "bytes": 370,
+    "sha256": "1929978385a4cab23ccc4dc5e90d5a6d15a8efd31854333d7ebae34783d2c122"
+  },
+  "statistics": {
+    "messages": 2,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T03:17:26.298285+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_download_boolq_and_resubmit_revkl_20260522T031715"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T03:17:33.971624+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_download_boolq_and_resubmit_revkl_20260522T031715"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/fix-download-boolq-and-resubmit-revkl.md"
+}

@@ -1,0 +1,207 @@
+{
+  "schema_version": "1.0",
+  "id": "c960bfbdc4c2ea8650ab",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "paper writing conclusion",
+  "task_key": "worker_paper_writing_conclusion_20260516T132836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_conclusion_20260516T132836.jsonl",
+    "occurrence": 1,
+    "bytes": 11148,
+    "sha256": "af48ec0d2a71a950b125efc70c4f78620982ef7cda35f4afcc332648235a736a"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T13:29:30.588835+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_20260516T132836",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T13:29:30.589641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_20260516T132836",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T13:29:30.589839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_20260516T132836",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/",
+              "description": "List existing paper files for context"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T13:29:30.589989+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "abstract.tex\nexperiments.tex\nintroduction.tex\nmethod.tex\nreferences.bib\nrelated_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_20260516T132836",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T13:29:30.590229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_20260516T132836",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T13:29:30.590416+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\n3\tSwiGLU feed-forward networks~\\cite{shazeer2020glu} in modern LLMs exhibit high contextual sparsity: at any given token, a large fraction of FFN neurons contribute negligibly to the output.\n4\tExploiting this sparsity can yield up to 2$\\times$ inference speedup by pruning 50\\% of FFN neurons per token---without modifying the pretrained weights.\n5\tYet the gap between potential and practice remains wide.\n6\tTraining-free methods such as TEAL~\\cite{liu2025teal} select neurons by activation magnitude alone, degrading perplexity from 6.12 (dense) to 23.31 at 50\\% sparsity on LLaMA-3.1-8B~\\cite{grattafiori2024llama3}---a 281\\% increase.\n7\tLearned predictors~\\cite{liu2023dejavu,gautam2026fastforward} close part of this gap by training small auxiliary networks to anticipate which neurons will be important, but they rely on error compensation modules (output rescaling networks or additive correction layers) that add latency and memory overhead at inference.\n8\tThe question is whether a predictor can be trained so that compensation becomes unnecessary.\n9\t\n10\tThe answer depends on the training objective.\n11\tCurrent learned predictors use binary cross-entropy (BCE) loss: each neuron is independently classified as ``keep'' or ``prune'' against an oracle mask derived from the dense model's activations.\n12\tThe gradient of BCE with respect to neuron $j$'s score is $\\partial \\mathcal{L}_{\\text{BCE}} / \\partial s_j = \\sigma(s_j) - m_j^*$---a function of neuron $j$ alone, independent of every other neuron in the network.\n13\tBut at inference, no neuron is evaluated in isolation.\n14\tTEAL's global top-$k$ mechanism~\\cite{liu2025teal} ranks all neurons across all layers and retains only those above a model-wide threshold.\n15\tWhether neuron $j$ survives depends not on its own score but on how that score compares to the scores of all $L \\times d_{\\text{ff}}$ neurons.\n16\tThis creates a structural mismatch: the training objective decomposes per neuron, while the infe\n…[truncated 4780 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_20260516T132836",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T13:29:30.590610+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_20260516T132836",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/conclusion.tex",
+              "content": "\\section{Conclusion}\n\nWe have shown that training sparsity predictors with KL divergence eliminates the need for error compensation networks in activation sparsity for LLMs.\nThe mechanism is structural: BCE's per-neuron gradient is independent of other neurons' mask states, creating a mismatch with global top-$k$ inference allocation that no amount of additional training resolves.\nKL divergence couples all neurons through the output distribution, aligning the training objective with the inference mechanism.\nThe resulting predictor---a two-layer MLP with 2.37M parameters per layer (75.9M total, $<$1\\% of the base model)---achieves PPL 11.79 at 50\\% sparsity on LLaMA-3.1-8B under TEAL's global allocation, compared to 23.31 for vanilla TEAL and 27.97 for BCE.\nOur two-dimensional taxonomy (correction granularity $\\times$ training signal coupling) situates this result within the broader landscape of activation sparsity methods and identifies the previously unexplored cell of per-token contextual prediction with coupled training signals.\n\nSeveral empirical findings deserve emphasis.\nThe KL advantage scales super-linearly with sparsity---18\\% relative improvement at 30\\%, 49\\% at 50\\%, and 82\\% at 70\\%---indicating that distributional coupling becomes increasingly important as more neurons are pruned.\nThe non-monotonic allocation preference reveals three distinct regimes: budget-surplus ($\\leq$30\\%), where uniform allocation suffices and even outperforms global allocation on MMLU; budget-constrained ($\\sim$40\\%), where global allocation provides measurable gains; and capacity-cliff ($\\geq$50\\%), where both strategies fail to preserve downstream reasoning.\nSPON's static bias correction achieves only cosine similarity 0.196 with the predictor's effect and recovers 2.4\\% of residual error, confirming that the KL predictor subsumes static correction.\nCross-architecture evaluation on Mistral-7B-v0.3 yields +63\\% relative degradation from dense, compared to +93\\% on LLaMA, demonstrating generalization across SwiGLU architectures with different attention configurations.\n\n\\paragraph{Limitations.}\nOur primary evaluation uses WikiText-2 perplexity, and downstream benchmarks reveal that perplexity is a poor proxy for reasoning ability at moderate sparsity: 40\\% sparsity achieves PPL 8.36 but MMLU already degrades, motivating 30\\% as the recommended operating point for downstream fidelity.\nTraining requires 1000 steps on WikiText-103 ($\\sim$17 minutes on A6000), but a separate predictor must be trained for each sparsity target.\nAll experiments use 7--8B parameter models (LLaMA-3.1-8B, Mistral-7B-v0.3); scaling behavior to 13B or 70B models remains untested.\n\nFuture work should explore N:M structured sparsity patterns for hardware-native acceleration on modern GPUs, and scale the approach to 13B and 70B parameter models where the latency--quality tradeoff is more consequential.\nPrecise characterization of the phase transition boundary between allocation-fixable and capacity-limited regimes---and whether it shifts with model scale---would enable principled sparsity budget selection.\nTraining a single predictor that serves multiple sparsity targets simultaneously would amortize the per-target training cost and improve practical deployment.\n"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T13:29:30.590781+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/conclusion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_20260516T132836",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T13:29:30.590929+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Conclusion written to `projects/distill_sparse_swiglu/paper/conclusion.tex`. Four paragraphs: summary restating the structural mismatch + KL mechanism + taxonomy, key empirical insights (super-linear scaling, non-monotonic regimes, SPON orthogonality, cross-arch), honest limitations paragraph, and future work. All numbers match exactly; no hedging words (\"significantly\"/\"state-of-the-art\"/\"consistently\"); terminology consistent with the introduction."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_conclusion_20260516T132836"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-conclusion.md"
+}

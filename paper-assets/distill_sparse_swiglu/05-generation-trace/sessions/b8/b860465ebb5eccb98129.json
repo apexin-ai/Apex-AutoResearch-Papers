@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b860465ebb5eccb98129",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops gpu check urgent",
+  "task_key": "worker_ops_gpu-check-urgent_20260516T065842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-check-urgent_20260516T065842_result.json",
+    "occurrence": 1,
+    "bytes": 1473,
+    "sha256": "92f7e80e512983bc2e0f1cf65f3827476bc639ef9d714a8f672d02d59fb42524"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态\n| GPU | VRAM | Util | 进程 |\n|-----|------|------|------|\n| cuda:0 | 0/97887 MiB | 0% | **空闲** — bench_dense 已完成 |\n| cuda:1 | 37017/97887 MiB | 0% | eval_bce_v3_s42 Phase 2 运行中 (PID 211882) |\n\n## bench_dense\n状态: **completed** (EXIT_CODE=0)\n\n| Metric | Value |\n|--------|-------|\n| wikitext2_ppl | 6.1173 |\n| arc_challenge (acc/acc_norm) | 0.5478 / 0.5828 |\n| winogrande | 0.7806 |\n| mmlu | 0.6527 |\n| gsm8k | 0.4875 |\n\nRegistry: 已更新 (metrics + conclusion=success, 已是 DONE 状态)\n\n## d030_kl40_uniform\n状态: **failed** — 启动即崩溃，wandb API key 未配置\n```\nwandb.errors.UsageError: No API key configured. Use `wandb login` to log in.\n```\nRegistry: 未注册（从未成功启动），无 cron。**cuda:0 现在空闲可用。**\n\n## eval_bce_v3_s42\n状态: **running** — Phase 2 (benchmark_eval.py downstream)\n\nPhase 1 已完成:\n| Metric | Value |\n|--------|-------|\n| dense_ppl | 6.12 |\n| predictor_hard_mask_ppl | 22.51 |\n| teal_sparse_ppl | 27.97 |\n\nPhase 2 正在处理 MMLU 子任务（使用 HF 缓存，网络不可达但缓存 OK）。预计 ~20-30 min 完成。\n\nRegistry: RUNNING（保持不变）\n\n## 待跑实验列表\n- **PREPARING**: 7 个实验，全部 conclusion=killed，无可提交实验\n- **QUEUED**: 0 个\n\n**可用资源**: cuda:0 空闲，可立即提交新实验。d030_kl40_uniform 需要先 `wandb login` 后才能重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-check-urgent.md"
+}

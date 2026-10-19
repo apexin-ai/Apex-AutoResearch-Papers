@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f65f29e1c7da2ff68d07",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code run benchmark 34887",
+  "task_key": "worker_code_run_benchmark_34887_20260519T170507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_run_benchmark_34887_20260519T170507_result.json",
+    "occurrence": 1,
+    "bytes": 648,
+    "sha256": "a15bea65b6750a367b999bb5fef457a5cd6c8a3c87f938aa24f92de8a0a925a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Benchmark 已成功启动。**\n\n- **PID**: 123470 (Python 进程)\n- **服务器**: westd-34887, cuda:0\n- **状态**: 模型加载完成，正在跑各 (batch_size, seq_len) 组合的计时\n- **已完成**: batch_size=1, seq_len=512（dense/mask_multiply/sparse/predictor_only 均有结果，flashinfer 模式被跳过 — \"masks not loaded or unknown mode\"）\n- **正在跑**: batch_size=1, seq_len=2048\n- **日志**: `logs/flashinfer_benchmark.log`\n- **注意**: `flashinfer_30` 和 `flashinfer_50` 被跳过了（\"Skipping flashinfer_30/50 (masks not loaded or unknown mode)\"），这可能是需要关注的问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-run-benchmark-34887.md"
+}

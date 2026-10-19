@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c846f131272b9e6a7a29",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval check mmlu acc norm and teal",
+  "task_key": "worker_eval_check_mmlu_acc_norm_and_teal_20260516T002408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_check_mmlu_acc_norm_and_teal_20260516T002408_result.json",
+    "occurrence": 1,
+    "bytes": 2843,
+    "sha256": "ff1cb6b0a8a85ba3d4499469335c755a99f61d017c68d4f6cb3737740680ded2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Here's the summary:\n\n---\n\n## 1. MMLU acc_norm\n\n**MMLU 不产生 acc_norm。** lm-eval-harness 0.4.12 中 MMLU 子任务的 `metric_list` 只配置了 `acc`，未配置 `acc_norm`（与 ARC-Challenge 不同，后者明确配置了两者）。\n\nDense (Llama) 的 MMLU 完整结果只有：\n- `acc,none`: 0.6532\n- 无 `acc_norm`\n\n**如需 MMLU acc_norm**，须修改 lm-eval 的 MMLU task YAML 在 `metric_list` 中添加 `acc_norm`，然后重跑。\n\nARC-Challenge 已有 acc_norm：\n- Dense: acc=0.5478, **acc_norm=0.5819**\n\n## 2. PID 179918 状态（注意：是 KL sparse，不是 TEAL）\n\nPID 179918 运行的是 `lm_eval_sparse.py` + **KL predictor**（predictor_kl_normalized.pt），不是 TEAL。\n- 当前进度：GSM8K generate_until **453/1319 (34%)**，ETA ~30 min\n- 输出目录 `results/lm_eval_kl_s42/` 会在完成时写入\n\n**TEAL downstream 未运行过**，只有 PPL 结果（corrected: 23.31）。\n\n## 3. 其他进程状态\n\n| Job | GPU | Progress | ETA |\n|-----|-----|----------|-----|\n| KL sparse lm_eval (PID 179918) | cuda:0 | GSM8K 34% (453/1319) | ~30 min |\n| Mistral KL downstream | cuda:1 | GSM8K 52% (685/1319) | ~25 min |\n| Mistral Dense downstream | cuda:0 | GSM8K 15% (197/1319) | ~25 min |\n| Dense (Llama) lm_eval | — | **COMPLETE** | — |\n\n## 4. 完整对比表\n\n| Condition | ARC-c acc | ARC-c acc_norm | WinoGrande acc | MMLU acc | GSM8K exact_match |\n|-----------|-----------|----------------|----------------|----------|-------------------|\n| Dense (Llama) | 0.5478 | **0.5819** | 0.7814 | 0.6532 | 0.5004 |\n| KL sparse 50% (Llama) | pending | pending | pending | pending | pending |\n| TEAL sparse 50% (Llama) | **not run** | **not run** | **not run** | **not run** | **not run** |\n| Dense (Mistral) | pending | pending | pending | pending | pending |\n| KL sparse 50% (Mistral) | pending | pending | pending | pending | pending |\n\n**说明：**\n- \"MMLU acc_norm\" 列已移除——lm-eval-harness 对 MMLU 不输出此指标\n- WinoGrande 也只有 acc，无 acc_norm\n- KL sparse (Llama) 结果 ~30 min 后可用\n- Mistral 两条 ~25-30 min 后可用\n- TEAL downstream 从未启动，需要另行安排\n\n## 5. 如需重跑 MMLU 以获取 acc_norm\n\n需要自定义 task config 覆盖默认 MMLU 配置：\n\n```bash\n# 创建自定义 MMLU config（添加 acc_norm metric）\ncat > /root/distill_sparse_swiglu/configs/mmlu_with_acc_norm.yaml << 'EOF'\ngroup: mmlu\ntask:\n  - mmlu_abstract_algebra\n  # ... 所有 MMLU 子任务\nmetadata:\n  version: 1.0\naggregate_metric_list:\n  - metric: acc_norm\n    aggregation: mean\n    higher_is_better: true\nEOF\n```\n\n但考虑到 MMLU 是 multiple choice（选项长度差异不大），acc 和 acc_norm 通常非常接近，重跑的性价比可能不高。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-check-mmlu-acc-norm-and-teal.md"
+}

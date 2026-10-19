@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb3af345f9abb46e3d6a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops status check all 4gpu",
+  "task_key": "worker_ops_status-check-all-4gpu_20260519T000124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status-check-all-4gpu_20260519T000124_result.json",
+    "occurrence": 1,
+    "bytes": 1817,
+    "sha256": "1351ff9ec8fc6cc25bb4e33be43cdddb601d2ef975773c0e97342fde1830e372"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇报\n\n### 1. c1_ablation_30pct_s42 (westd-34887, GPU 0) — **FAILED**\n- tmux session: 不存在\n- 错误: `python: can't open file '/root/distill_sparse_swiglu/src/train_bce_kl_targets.py': [Errno 2] No such file or directory`\n- EXIT_CODE=2, 无 checkpoint 生成\n\n### 2. kl30_uniform_hellaswag_piqa_v2 (westd-34887, GPU 1) — **RUNNING**\n- tmux session: 存在\n- 均匀稀疏度 30.1%/layer, model-level 0.300\n- hellaswag 已完成 map, 正在跑 loglikelihood requests: ~97% (38933/40168)\n- piqa 尚未开始（或在 hellaswag 之后）\n- 预计还需几分钟完成\n\n### 3. kl30_s42_global_mmlu_recheck (westd-41718, GPU 1) — **COMPLETED**\n- tmux session: 不存在（正常退出）\n- **MMLU acc = 0.2527** (stderr = 0.00364)\n- 这基本等于随机猜测（4 选 1 = 0.25），说明 KL predictor global_topk 在 30% 稀疏度下 MMLU 崩了\n- 结果已保存: `/root/distill_sparse_swiglu/results/benchmark/kl30_s42_global_mmlu_recheck/results.json`\n\n### 4. kl50_global_hellaswag_piqa_v2 (westd-41718, GPU 0) — **RUNNING**\n- tmux session: 存在\n- 全局稀疏度分配: 0.301~0.701/layer, model-level 0.500\n- loglikelihood requests: ~94% (37969/40168)\n- 预计还需几分钟完成\n\n### GPU 利用率\n\n| 服务器 | GPU 0 | GPU 1 |\n|--------|-------|-------|\n| westd-34887 | **0%, 0 MiB** (空闲) | **100%, 48577/97887 MiB** (kl30_uniform) |\n| westd-41718 | **98%, 48577/97887 MiB** (kl50_global) | **0%, 0 MiB** (空闲) |\n\n### 需要关注\n\n1. **c1_ablation** 脚本路径错误 (`train_bce_kl_targets.py` 不存在)，需要修复后重跑\n2. **MMLU recheck = 0.2527** 本质上是随机水平，KL predictor global_topk @30% 在 MMLU 上完全失效\n3. westd-34887 GPU 0 和 westd-41718 GPU 1 当前空闲，可以安排新任务"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-check-all-4gpu.md"
+}

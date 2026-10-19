@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "690fff46d393badc7895",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "debug kl downstream disconnect",
+  "task_key": "worker_debug_kl_downstream_disconnect_20260516T000033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_kl_downstream_disconnect_20260516T000033.log",
+    "occurrence": 1,
+    "bytes": 917233,
+    "sha256": "b60170948e5f99e15e4ecc955f9ccce81906e5009298b3aa749472602d94c5bb"
+  },
+  "statistics": {
+    "messages": 223,
+    "user_turns": 0,
+    "tool_calls": 78,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 78,
+      "tool_result": 78,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 223,
+      "chunks": [
+        {
+          "path": "690fff46d393badc7895-part-0001.json",
+          "message_count": 136
+        },
+        {
+          "path": "690fff46d393badc7895-part-0002.json",
+          "message_count": 87
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/debug-kl-downstream-disconnect.md"
+}

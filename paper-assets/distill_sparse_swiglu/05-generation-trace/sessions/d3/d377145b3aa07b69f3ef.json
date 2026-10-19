@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d377145b3aa07b69f3ef",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops verify fix s456",
+  "task_key": "worker_ops_verify-fix-s456_20260516T145721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-fix-s456_20260516T145721_result.json",
+    "occurrence": 1,
+    "bytes": 836,
+    "sha256": "16761ce2b6db874586a10e11601f58636b2e6f5f4d1b2aa7bd15a84e089b1590"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在正常运行，无需重提交。\n\n## 状态报告\n\n### nvidia-smi\n| GPU | 进程 PID | 显存占用 | GPU 利用率 |\n|-----|---------|---------|-----------|\n| cuda:0 | 244554 | 66986 MiB / 97887 MiB | 100% |\n| cuda:1 | 245032 | 49090 MiB / 97887 MiB | 0% (CPU tokenizing 阶段) |\n\n### cuda:0 — bench_kl50_uniform_s123\n- **状态**: 正常运行\n- **当前阶段**: MMLU loglikelihood evaluation，865/58702 (~1.5%)，速度 ~32 it/s\n- 预计 MMLU 还需 ~30 分钟\n\n### cuda:1 — bench_kl50_uniform_s456\n- **状态**: 正常运行（PID 245022 存活）\n- **当前阶段**: MMLU tokenizing inputs，56275/58702 (~96%)\n- GPU util 为 0% 是因为 tokenization 是 CPU-bound，tokenizing 完成后会进入 loglikelihood 推理阶段，GPU 利用率将上升\n- **无需重提交**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-fix-s456.md"
+}

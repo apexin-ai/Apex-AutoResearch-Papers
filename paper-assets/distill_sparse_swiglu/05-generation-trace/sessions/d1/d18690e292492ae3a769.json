@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0",
+  "id": "d18690e292492ae3a769",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "analysis perlayer kl k2 s456 eval",
+  "task_key": "worker_analysis_perlayer_kl_k2_s456_eval_20260523T112226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_perlayer_kl_k2_s456_eval_20260523T112226.jsonl",
+    "occurrence": 1,
+    "bytes": 6126,
+    "sha256": "d0976ae6b9434fb0d6fb9459b847dbc6ca50ec01b33ba24ff11930801605f092"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T11:22:49.758266+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_perlayer_kl_k2_s456_eval_20260523T112226",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T11:22:49.758566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_perlayer_kl_k2_s456_eval_20260523T112226",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T11:22:49.758725+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_perlayer_kl_k2_s456_eval_20260523T112226",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "cat /root/distill_sparse_swiglu/results/benchmark/perlayer_kl_k2_s456_eval/results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T11:22:49.758863+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_perlayer_kl_k2_s456_eval_20260523T112226",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "grep -i \"ppl\\|perplexity\\|wikitext2\\|word_perplexity\" /root/runs/distill_sparse_swiglu/perlayer_kl_k2_s456_eval.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T11:22:49.759120+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp_id\\\\\\\": \\\\\\\"perlayer_kl_k2_s456_eval\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_name_or_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/llama-3.1-8b\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s456/predictor_perlayer_kl_k4.pt\\\\\\\",\\\\n    \\\\\\\"tasks\\\\\\\": \\\\\\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k,hellaswag,piqa\\\\\\\",\\\\n    \\\\\\\"sparsity_mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"baseline_mode\\\\\\\": null,\\\\n    \\\\\\\"dense\\\\\\\": false,\\\\n    \\\\\\\"exp_id\\\\\\\": \\\\\\\"perlayer_kl_k2_s456_eval\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.3,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\",\\\\n    \\\\\\\"gpu\\\\\\\": 0,\\\\n    \\\\\\\"multi_gpu\\\\\\\": false,\\\\n    \\\\\\\"seq_len\\\\\\\": 2048,\\\\n    \\\\\\\"calibration_samples\\\\\\\": 32,\\\\n    \\\\\\\"batch_size\\\\\\\": 8,\\\\n    \\\\\\\"bottleneck_size\\\\\\\": 128,\\\\n    \\\\\\\"svd_rank\\\\\\\": 256,\\\\n    \\\\\\\"max_eval_samples\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"mode\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"teal_global\\\\\\\",\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s456/predictor_perlayer_kl_k4.pt\\\\\\\",\\\\n    \\\\\\\"sparsity_target\\\\\\\": 0.3,\\\\n    \\\\\\\"allocation\\\\\\\": \\\\\\\"uniform\\\\\\\"\\\\n  },\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"wikitext2_ppl\\\\\\\": 10.5826,\\\\n    \\\\\\\"lm_eval\\\\\\\": {\\\\n      \\\\\\\"arc_challenge\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1172,\\\\n        \\\\\\\"acc\\\\\\\": 0.3473,\\\\n        \\\\\\\"acc_stderr\\\\\\\": 0.013913034529620455,\\\\n        \\\\\\\"acc_norm\\\\\\\": 0.384,\\\\n        \\\\\\\"acc_norm_stderr\\\\\\\": 0.014212444980651792\\\\n      },\\\\n      \\\\\\\"winogrande\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1267,\\\\n        \\\\\\\"acc\\\\\\\": 0.6488,\\\\n        \\\\\\\"acc_stderr\\\\\\\": 0.013415981370545133\\\\n      },\\\\n      \\\\\\\"mmlu\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 14042,\\\\n        \\\\\\\"acc\\\\\\\": 0.3542,\\\\n        \\\\\\\"acc_stderr\\\\\\\": 0.00394809615270629\\\\n      },\\\\n      \\\\\\\"gsm8k\\\\\\\": {\\\\n        \\\\\\\"sample_len\\\\\\\": 1319,\\\\n        \\\\\\\"exact_match\\\\\\\": 0.0205,\\\\n        \\\\\\\"exact_match_stderr\\\\\\\": 0.003\n…[truncated 2917 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_perlayer_kl_k2_s456_eval_20260523T112226",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T11:22:49.759308+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_perlayer_kl_k2_s456_eval_20260523T112226",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T11:22:49.759449+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_perlayer_kl_k2_s456_eval_20260523T112226",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "grep -i \"sparsity\\|actual.*spars\" /root/runs/distill_sparse_swiglu/perlayer_kl_k2_s456_eval.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T11:22:49.759579+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_perlayer_kl_k2_s456_eval_20260523T112226",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T11:22:49.759738+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已包含全部数据。结果如下：\n\n## `perlayer_kl_k2_s456_eval` 结果\n\n**配置**: TEAL global, sparsity_target=0.3, uniform allocation, bottleneck_size=128\n\n| Metric | Value |\n|--------|-------|\n| **wikitext2_ppl** | **10.5826** |\n| arc_challenge_acc_norm | 0.3840 |\n| winogrande_acc | 0.6488 |\n| mmlu_acc | 0.3542 |\n| gsm8k_exact_match (flexible) | 0.0205 |\n| gsm8k_exact_match (strict) | 0.0190 |\n| hellaswag_acc_norm | 0.6590 |\n| piqa_acc_norm | 0.7280 |\n\nSparsity 信息未在日志中单独记录（grep 被 pipe 阻断），但 config 中 `sparsity_target=0.3`（即 30% sparsity）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_perlayer_kl_k2_s456_eval_20260523T112226"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-perlayer-kl-k2-s456-eval.md"
+}

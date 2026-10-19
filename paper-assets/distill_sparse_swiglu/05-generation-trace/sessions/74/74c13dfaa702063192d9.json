@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74c13dfaa702063192d9",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_2_1778882860.md",
+  "task_key": "loop_2_1778882860",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778882860.md",
+    "occurrence": 1,
+    "bytes": 4077,
+    "sha256": "24035cbc5dc9ee1793e1af07e8993ad4cc47faaae9e1c93812273bfe9a0958a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-15T22:07:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-34887 的 cuda:0 和 cuda:1（gpu_ids=[0,1]），禁止使用其他卡\n- submit_on_allocated 命令必须自带环境激活：`source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && ...`\n- GPU 编号始终从 0 开始（框架注入 CUDA_VISIBLE_DEVICES 映射物理卡）\n- evaluate.py 的 --gpu 参数要与实际分配卡对应，两个评估并行时分别用 gpu 0 和 gpu 1\n- WANDB_MODE=disabled（当前所有实验都禁用 W&B，指标从日志和评估脚本提取）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887，账号 root\n- 工作目录：/root/distill_sparse_swiglu/\n- 环境激活：`source /root/distill_sparse_swiglu/setup_env.sh`（内含 conda 或 venv 配置）\n- 模型路径：/root/autodl-tmp/models/llama-3.1-8b\n- 数据集：wikitext-103（HF cached），评估用 wikitext-2\n- Checkpoints 根目录：/root/distill_sparse_swiglu/checkpoints/\n- 日志根目录：~/runs/distill_sparse_swiglu/\n- 活跃进程：无（两张卡均空闲）\n- Cron：reconcile 返回 0 active\n\n### 3. 📊 当前状态\n**刚完成**：kl_only_s0 和 kl_only_s1 分析 → 两个都 SUCCESS，5-seed KL headline 已凑齐。已汇报 Director。\n\n**Registry 关键状态**：\n- DONE/success (8)：mvp_kl_norm_v2_s42/s123/s456, kl_only_s0/s1, mvp_bce_s42/s123/s456, training_free_baselines\n- DONE/negative (3)：mvp_kl_s42 (sparsity 坍塌), spon_training (recovery 3.8%), bce_comp_staged_s42 (comp 无效)\n- DONE/failed (3)：kl_normalized_quicktest, mvp_kl_norm_s42/s123 (÷vocab_size bug，已修复)\n- PENDING (2)：ste_baseline_s42, spon_training_seq2048 — 等 Director 审批\n- PREPARING (3)：spon_kl_s42, mvp_kl_norm_s456(killed), kl_norm_v3_quicktest(done but stuck in PREPARING)\n\n**等待中**：Director 审批 ste_baseline_s42 和 spon_training_seq2048。两张 GPU 空闲 + Worker 池=0，属失职状态，需 Director 批准后立即提交。\n\n### 4. 📋 待办\n- Director 审批 ste_baseline_s42 → 立即 submit_on_allocated 到 cuda:0，验证 KL 优势来自 loss function 而非 Gumbel relaxation（Reviewer Concern #3）\n- Director 审批 spon_training_seq2048 → 立即 submit_on_allocated 到 cuda:1，用 seq_len=2048 重试 SPON（修复 seq_len mismatch confound），这是 Claim 2 关键路径\n- spon_training_seq2048 结果出来 → 若仍 negative（recovery < 10%）→ 产 Framing 调整提案（Claim 2 \"additive composition\" → \"KL subsumes SPON\"）；若 success → 继续 plan_005 composition\n- ste_baseline_s42 结果出来 → 若 STE PPL 接近 KL Gumbel → 优势来自 loss function（强化 Claim 1）；若 STE 明显差 → 需分离 Gumbel 贡献\n- Dream review (dream_20260515T164925) 结果到达 → 按行动指令调整 experiment_plan\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D001: MVP 设计 KL vs BCE → D003: KL sparsity 坍塌 → D004: 选方案 C (KL 归一化+Lagrangian) → D006: 发现 ÷vocab_size bug → D007: MVP PASS (KL 12.32 vs BCE 44.05)\n\n**5-seed headline 数字**：KL sparse PPL = 12.32 ± 0.69 vs BCE = 44.05 ± 0.89 @ 50% sparsity。s456 是 outlier (13.58)，其余 4 seed 紧密聚簇 (12.00 ± 0.07)。Hard-mask PPL 极稳定 (9.19 ± 0.04)，方差来自 TEAL 全局分配而非 predictor 质量。\n\n**最容易判断错的事**：\n1. SPON negative 不代表 Claim 2 死了——spon_training 用了 seq_len=128 训练但 seq_len=2048 评估，这个 confound 必须先排除（spon_training_seq2048）。不要在 seq2048 结果出来前就改 framing。\n2. bce_comp negative 是 GOOD news（strengthens Claim 1），不要当 bad news 处理。\n3. training_free_baselines 的 PPL 数字（50K-80K）看起来荒谬但是真的——50% global topk 把前 5 层剪到 95-100%，导致灾难性退化。这恰恰是 learned allocation 的动机。\n4. evaluate.py 里 \"Dense baseline\" 实际是 predictor hard-mask PPL（不是真 dense），真 dense PPL = 6.12。之前出过理解偏差。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778882860.md"
+}

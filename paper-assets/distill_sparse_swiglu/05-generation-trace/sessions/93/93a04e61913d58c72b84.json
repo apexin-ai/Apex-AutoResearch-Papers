@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93a04e61913d58c72b84",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "train kl50 multiseed cuda0",
+  "task_key": "worker_train_kl50_multiseed_cuda0_20260517T111901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_kl50_multiseed_cuda0_20260517T111901_result.json",
+    "occurrence": 1,
+    "bytes": 164,
+    "sha256": "37183e60337c8f5a2142a7800b7a096dbd4b363f909fb372fe4f6375b48bc3d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitoring scheduled. s123 eval is at ~12% on GSM8K (last task). s456 will auto-start after s123 eval exits. I'll report PPL results as they come in."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-kl50-multiseed-cuda0.md"
+}

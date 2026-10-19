@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7dd71543725e913b5826",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "submit kcurve batch1 k2 seeds",
+  "task_key": "worker_submit_kcurve_batch1_k2_seeds_20260523T075228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_kcurve_batch1_k2_seeds_20260523T075228_result.json",
+    "occurrence": 1,
+    "bytes": 529,
+    "sha256": "9b8bdb4e1e07eba215cdc9db7af08ed1d64127ec32fe88cee4ec2360516dc48c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n| 实验 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| `perlayer_kl_k2_s123` | cuda:0 (100%, 35981 MiB) | 123969 | RUNNING, Step 1已输出 |\n| `perlayer_kl_k2_s456` | cuda:1 (96%, 34857 MiB) | 124297 | RUNNING, Step 1已输出 |\n\n两个训练都正常启动：模型加载完成，predictor参数75.9M，K=2 per-layer masking，gradient checkpointing启用，~2.3s/step。Registry已推进到RUNNING，cron监控已注册（120s间隔）。预计约40分钟完成1000步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-kcurve-batch1-k2-seeds.md"
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "b6bcbf270250a4748817",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "investigate s456 checkpoint discrepancy",
+  "task_key": "worker_investigate_s456-checkpoint-discrepancy_20260518T040837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_s456-checkpoint-discrepancy_20260518T040837.log",
+    "occurrence": 1,
+    "bytes": 1573243,
+    "sha256": "dbac52a1828d04cf019c0d0177871e4a916719eb25aaddb781f63178107e05f7"
+  },
+  "statistics": {
+    "messages": 482,
+    "user_turns": 2,
+    "tool_calls": 172,
+    "roles": {
+      "log": 1,
+      "system": 19,
+      "record": 3,
+      "assistant": 112,
+      "tool_call": 172,
+      "tool_result": 172,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 68,
+      "chunks": [
+        {
+          "path": "b6bcbf270250a4748817-part-0001.json",
+          "message_count": 68
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 311,
+      "chunks": [
+        {
+          "path": "b6bcbf270250a4748817-part-0001.json",
+          "message_count": 81
+        },
+        {
+          "path": "b6bcbf270250a4748817-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b6bcbf270250a4748817-part-0003.json",
+          "message_count": 50
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 103,
+      "chunks": [
+        {
+          "path": "b6bcbf270250a4748817-part-0003.json",
+          "message_count": 103
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/investigate-s456-checkpoint-discrepancy.md"
+}

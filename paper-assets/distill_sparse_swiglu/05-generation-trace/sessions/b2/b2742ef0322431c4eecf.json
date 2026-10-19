@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2742ef0322431c4eecf",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval spon supp resubmit",
+  "task_key": "worker_eval_spon_supp_resubmit_20260515T194209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_spon_supp_resubmit_20260515T194209_result.json",
+    "occurrence": 1,
+    "bytes": 798,
+    "sha256": "bd06e995d161e6417e41358534b18aefd5c44a9af818b6f5266629e209c7064c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Model is loading. Job is running.\n\n**Summary:**\n\n1. **Original command**: `python src/eval_spon_supplementary.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --spon_checkpoint /root/distill_sparse_swiglu/checkpoints/spon_2048_s42/spon_biases.pt --gpu 0 --seq_len 2048`\n\n2. **Crash cause confirmed**: `RuntimeError: Cannot send a request, as the client has been closed.` — triggered when `load_dataset(\"wikitext\", ...)` tried to reach `huggingface.co` (network unreachable on the server). See `/tmp/eval_spon_supp.log`.\n\n3. **Resubmitted command**: Same as above with `TRANSFORMERS_OFFLINE=1 HF_DATASETS_OFFLINE=1` added. Log at `~/runs/distill_sparse_swiglu/eval_spon_supp_retry.log`.\n\n4. **New PID**: `123231`, tmux session `eval_spon_supp_retry`, cuda:0."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-spon-supp-resubmit.md"
+}

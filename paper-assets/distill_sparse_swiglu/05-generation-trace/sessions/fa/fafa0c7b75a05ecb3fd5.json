@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fafa0c7b75a05ecb3fd5",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper mistral table update",
+  "task_key": "worker_paper_mistral-table-update_20260519T055314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_mistral-table-update_20260519T055314_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "b967ca3adbbc12a12baaa3f1022ea4a974e03b1a8771f5346ca95083084eaeb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Data already present, caption fixed. Summary:\n\n1. **Table data**: HellaSwag and PIQA already in `tab:mistral_downstream` with correct numbers (KL: 68.9/75.2, TEAL: 60.1/72.1). No changes needed.\n2. **Caption fix**: Corrected \"largest\" claim from HellaSwag +8.8pp to ARC-c +9.0pp (the actual largest delta).\n3. **Text references**: experiments.tex (line 228) already mentions \"HellaSwag +8.8pp, ARC +9.0pp, WG +5.6pp\". Abstract/introduction list selected deltas without explicit task counts. No updates needed.\n4. **Task counts**: Caption \"5 of 6 tasks\" is correct. No \"N tasks\" claims elsewhere need updating.\n\nOne discrepancy to flag: the Dense PPL in `tab:mistral_downstream` is 5.06, but `tab:cross_arch` section text (line 344) says \"dense PPL 5.52\", and the task context also says 5.52. You may want to verify which is correct."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-mistral-table-update.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c1e69f43ff7c4049ab7",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "research check c4 data and scripts",
+  "task_key": "worker_research_check_c4_data_and_scripts_20260523T005500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_check_c4_data_and_scripts_20260523T005500_result.json",
+    "occurrence": 1,
+    "bytes": 1596,
+    "sha256": "ac3780b7f1eec144ef14e40b455a5c10819bec57462b9fa6a0ff60e806e52e77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n== 1. 数据集可用性 ==\nC4:        有\n  - /root/autodl-tmp/data/c4_val/    785MB, 364,608 条 (C4 validation split, load_from_disk 格式)\n  - /root/autodl-tmp/.hf_cache/hub/datasets--allenai--c4/  419MB (HF cache)\n  - ⚠️ 只有 validation split，没有 train split 本地缓存\nRedPajama: 没有\nPile:      没有\nSlimPajama:没有\n其他:      wikitext103 (564MB), wikitext2 (test split)\n磁盘剩余:  181GB (250G 数据盘用了 28%)\n\n== 2. 脚本数据集支持 ==\n--dataset 参数: choices=[\"wikitext-103\", \"c4\"]，默认 \"wikitext-103\"\n支持的脚本: train.py (E2E KL), train_perlayer_kl.py (per-layer KL) 均支持\n数据加载逻辑 (data_utils.py):\n  - get_calibration_loader(dataset_name=\"c4\") 先查本地 /root/autodl-tmp/data/c4_val，\n    有则 load_from_disk + shuffle；无则 streaming 从 HF 拉\n  - 不需要修改任何代码，直接加 --dataset c4 即可\n\n== 3. C4 训练准备工作 ==\n无需准备，开箱即用：\n  1. 代码已支持 --dataset c4\n  2. 本地已有 c4_val 数据 (364K 条)\n  3. 1000 steps × bs=4 × seq_len=2048 ≈ 需 ~8M tokens，364K 条绰绰有余\n\n唯一注意点：\n  - 本地缓存的是 C4 validation split (非 train split)\n  - 对 1000 步 predictor 校准来说数据量足够，但如果严格要求用 train split，\n    需下载 C4-en train（全量 ~305GB，或用 streaming 模式，代码已支持 fallback）\n\n启动命令示例：\n  python train_perlayer_kl.py --dataset c4 --num_steps 1000 --gpu 0\n预估额外时间：0（无需下载/预处理）\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-check-c4-data-and-scripts.md"
+}

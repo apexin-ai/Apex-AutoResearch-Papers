@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9602ea91318cfeb36f2",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check k4 pipelines urgent",
+  "task_key": "worker_check_k4_pipelines_urgent_20260522T151111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_k4_pipelines_urgent_20260522T151111_result.json",
+    "occurrence": 1,
+    "bytes": 1100,
+    "sha256": "4e66bf7c4cd6dbda4fbd35fc03a442871b343b1afe214527f034b5f917acd7e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## K=4 Pipeline 状态\n\n**s123** (PID 59565): Phase 3 进行中\n- Phase 1 训练: ✅ DONE (final ckpt 152MB @ 23:04, 2700 steps)\n- Phase 2 PPL: ✅ DONE — `wikitext2_ppl = 8.8897`\n- Phase 3 Downstream 7-task: 🔄 RUNNING (PID 65980, 启动 23:04, 当前在 tokenizing ~78%/58702 samples)\n- Phase 4 Sparsity: ⏳ Pending\n\n**s456** (PID 59879): Phase 3 进行中\n- Phase 1 训练: ✅ DONE (final ckpt 152MB @ 23:04, 2700 steps)\n- Phase 2 PPL: ✅ DONE — `wikitext2_ppl = 8.8828`\n- Phase 3 Downstream 7-task: 🔄 RUNNING (PID 66278, 启动 23:05, 同步进行)\n- Phase 4 Sparsity: ⏳ Pending\n\n**GPU**: 0/1 各持 48GB 显存, util 0%（处于 tokenization 间隙）\n**Tmux**: 无（用 nohup 启动，符合 C002）\n**两个 seed PPL 一致性极佳**: 8.8897 vs 8.8828 (Δ=0.007)\n\nDownstream eval 任务: arc_challenge, winogrande, mmlu, gsm8k, hellaswag, piqa, boolq @ teal_global sparsity=0.3 uniform。当前在 mmlu/hellaswag 这类大数据集的 tokenization 阶段，预估还需 30-60 min 完成 Phase 3，之后 Phase 4 sparsity 分析约 10-15 min。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-k4-pipelines-urgent.md"
+}

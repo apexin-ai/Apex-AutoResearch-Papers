@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a89e6d3b6b0a3f8d101a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code train bce comp script",
+  "task_key": "worker_code_train_bce_comp_script_20260515T173032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_train_bce_comp_script_20260515T173032_result.json",
+    "occurrence": 1,
+    "bytes": 684,
+    "sha256": "990d2f2b1fec1ae2bd63afe48ddd063363338a6406f1e48e4e76c0dd368fac56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Import 和参数解析均通过。\n\n`src/train_bce_comp.py` 已写入服务器，`--help` 验证通过。关键设计：\n\n- **Phase 1** (step 1..`comp_warmup_steps`): BCE + SparsityReg，仅训练 predictor；CompensationHead 通过 `requires_grad_(False)` 冻结\n- **Phase 2** (step `comp_warmup_steps+1`..`num_steps`): BCE + comp_loss_weight × CompMSE + SparsityReg，predictor + CompensationHead 联合训练\n- **Optimizer**: 单个 AdamW 含两个 param group（predictor_lr / comp_lr），Phase 1 期间 comp params 无梯度自动跳过，Phase 2 解冻后无缝衔接\n- **Checkpoint**: 保存 `predictor_bce_comp.pt`（predictors + comp_network + args）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-train-bce-comp-script.md"
+}

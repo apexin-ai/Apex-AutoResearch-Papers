@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2e7311beb222f467e37",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops c1 retrain checkpoint search",
+  "task_key": "worker_ops_c1-retrain-checkpoint-search_20260519T031853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_c1-retrain-checkpoint-search_20260519T031853_result.json",
+    "occurrence": 1,
+    "bytes": 1038,
+    "sha256": "c601a4628c65186a6434855bfce18218742ed97fcb4177496ea468f8bbcf3448"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个都进入 winogrande + mmlu（5-shot）。MMLU 有 57 个子任务，约需 10-15 分钟。之后还有 gsm8k。总计还需 15-25 分钟。\n\nBenchmark eval 还在运行中。以下是目前已有的结果汇总：\n\n## 当前状态\n\n**训练完成：**\n- `c1_retrain_30pct_s123`: 1000 steps, 878s, EXIT_CODE=0\n- `c1_retrain_30pct_s456`: 1000 steps, 876s, EXIT_CODE=0\n\n**训练内部 eval（来自 train_bce_kl_targets.py）：**\n- s123: KL PPL=11.79, BCE PPL=22.51\n- s456: KL PPL=11.79, BCE PPL=22.51\n\n**Benchmark eval 进度：**\n- WikiText-2 PPL: s123=8.8372, s456=8.8181 ✅\n- ARC-Challenge: 已完成，结果待最终日志刷出\n- Winogrande + MMLU: 正在运行\n- GSM8K: 待运行\n\nEval 任务在 westd-41718 上两张 GPU 并行执行，预计还需 15-25 分钟。日志路径：\n- `~/runs/distill_sparse_swiglu/eval_c1_retrain_30pct_s123.log`\n- `~/runs/distill_sparse_swiglu/eval_c1_retrain_30pct_s456.log`\n\n需要我继续等待并汇报最终结果，还是你之后自己查看？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-c1-retrain-checkpoint-search.md"
+}

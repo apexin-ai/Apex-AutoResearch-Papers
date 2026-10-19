@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ca7ee4d445c3a6eb9c3",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_2_1778876347.md",
+  "task_key": "loop_2_1778876347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778876347.md",
+    "occurrence": 1,
+    "bytes": 5327,
+    "sha256": "391f87ec56b9577e14cadf04ff8a7656485c2ad82e4f6345e7bbfb59c6c0ef19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-15T20:16:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 cuda:0 和 cuda:1**（westd-34887），execution config `gpu_ids: [0, 1]`。禁止用其他 GPU\n- 服务器：**仅 westd-34887**，account=root\n- EMNLP 2026 ARR May DDL = **2026-05-25**，剩 10 天\n- Claim 2 已 reframe 为 \"KL subsumes SPON\"（D009/D010），**不要**用旧 \"additive composition\" 叙事\n- Training-free baselines 中 vanilla TEAL 已标记 INVALID strawman，**禁止引用**其数字作为正式对比\n- bce_isocompute_s42_v2 / eval_spon_supp_retry / spon_kl_s42 等 PREPARING 状态实验有旧 PID 残留，**不要假设**这些进程还活着——必须先 SSH 验证\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-34887, account=root\n- **工作目录**: `/root/distill_sparse_swiglu/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/llama-3.1-8b`（主模型）；Mistral-7B 正在下载中（worker_download_mistral-7b-retry RUNNING）\n- **数据**: wikitext-103（具体路径由 train.py 内部解析）\n- **HF cache**: 未确认，AutoDL 实例应设为 `/root/autodl-tmp/.hf_cache`\n- **Checkpoints**: `/root/distill_sparse_swiglu/checkpoints/` 下各实验子目录\n- **Logs**: `~/runs/distill_sparse_swiglu/` 下各实验 .log 文件\n- **活跃进程**: bce_isocompute_v2_s42 PID 125967 (cuda:0)，cron 监控中\n- **活跃 Workers**: 3 个 running —\n  - `worker_exp_bce_isocompute_v2_s42_20260515T200230`（实验提交）\n  - `worker_download_mistral-7b-retry_20260515T200519`（Mistral 下载）\n  - `worker_diagnose_cuda0_kill_root_cause_20260515T200619`（诊断 cuda:0 进程被 kill 原因）\n\n### 3. 📊 当前状态\n**刚做完**: STE baseline (ste_baseline_s42) 完成并标 success，hard_mask_ppl=8.18（vs KL 9.21，STE 更好但 Gumbel 允许端到端梯度流过 predictor 使 TEAL PPL 更优）。SPON 2048 验证完成确认 subsumption（recovery 仅 7.3%）。\n\n**正在跑**:\n- `bce_isocompute_v2_s42` (RUNNING, cuda:0, PID 125967) — BCE 1000 步 iso-compute 对比，回答 Reviewer Concern #2\n- Mistral-7B 下载中（plan_009 跨架构验证前置）\n- cuda:0 kill root cause 诊断中\n\n**PREPARING 但未提交**（需要清理/推进）:\n- `bce_isocompute_s42_v2` — 2700 步 BCE，等 v2 (1000步) 结果后决定是否需要\n- `eval_spon_supp_retry` — SPON 补充评测\n- `spon_kl_s42` — SPON+KL 联合训练\n- `mvp_kl_norm_s456` — 第 5 seed KL（s456 outlier 已解释为 TEAL 分配问题，可能不需要重跑）\n- `kl_norm_v3_quicktest` — 已 PASS 验证，应标 DONE\n- `kl_lagrangian_v2` — 已取消，应标 killed\n\n**QUEUED 但已废弃**: mvp_kl_s456, mvp_kl_s123（旧 KL 无归一化，已被 v2 替代）\n\n**等待中**:\n- bce_isocompute_v2_s42 cron 回调（实验完成）\n- 3 个 Worker 完成回调\n- Director 未决事项：Claim 2 reframe 最终确认、plan_008 scaling sweep 是否启动\n\n### 4. 📋 待办（条件触发式）\n- **bce_isocompute_v2_s42 完成回调** → 取 eval PPL，与 KL 1000步 (PPL 9.21) 对比；若 BCE 1000步 PPL >> 9.21 → 强化 \"KL 优势非 compute 造成\" 论点（Concern #2 defense 成功）；然后决定是否需要 2700 步完整 iso-compute\n- **Mistral-7B 下载完成** → 适配 train.py 支持 Mistral（GQA + sliding window），dry-run → 提交 plan_009 跨架构验证\n- **cuda:0 kill 诊断完成** → 根据原因决定是否需要保护措施（tmux 设置、OOM 处理）\n- **bce_isocompute_v2_s42 完成释放 cuda:0** → 优先提交 bce_isocompute_s42_v2 (2700步) 或 eval_spon_supp_retry 或 spon_kl_s42（按 paper 需求排优先级）\n- **cuda:1 当前空闲** → 立即检查是否有可提交实验（STE 已完成释放了 cuda:1），ste_baseline 其余 seed 或 plan_009 Mistral\n- **清理 registry**: kl_norm_v3_quicktest → DONE, kl_lagrangian_v2 → killed, mvp_kl_s456/s123 → killed\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D007: MVP PASS，KL >> BCE 已确认（PPL 9.21 vs 27.96，3x gap）\n- D008: BCE+Comp 和 SPON 均 negative → Claim 1 极强确认\n- D009/D010: Claim 2 reframe \"KL subsumes SPON\"（recovery 仅 7.3%）\n- D011/D012: iso-compute 方案调整（先跑 1000 步取快速数据点）\n\n**Paper 覆盖状态**: Claim 1 ✅ 强确认 | Claim 2 ⚠️ reframe 待 Director 最终确认 | Claim 3 (scaling) 未开始\n\n**DDL 压力**: 距 ARR May DDL 仅 10 天。Claim 3 scaling sweep (plan_008) 需 7 级 sparsity × 多 seed，GPU 时间紧张。可能需要向 Director 申请额外 GPU 或精简 sweep 范围。\n\n**易踩的坑**:\n- **cuda:1 闲着 = 失职**。STE 已完成释放 cuda:1，必须立即安排下一个实验\n- 不要把 hard_mask_ppl 和 teal_sparse_ppl 混淆对比——前者是 per-token mask 质量，后者是端到端 TEAL 全局分配效果\n- s456 outlier (TEAL PPL 13.58) 已查明是 TEAL Layer 31 分配问题，**不需要重跑**，报 4-seed mean±std 即可\n- PREPARING 状态的实验有些有旧 PID，不代表在跑——状态机可能没推进，需要逐个核实\n- Mistral-7B 下载用的是哪个源（HF/ModelScope）未确认，如果是 AutoDL 实例注意网络限制\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778876347.md"
+}

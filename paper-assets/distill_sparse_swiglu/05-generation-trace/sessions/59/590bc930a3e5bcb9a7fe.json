@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "590bc930a3e5bcb9a7fe",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops comp s42 eval setup",
+  "task_key": "worker_ops_comp-s42-eval-setup_20260518T085448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_comp-s42-eval-setup_20260518T085448_result.json",
+    "occurrence": 1,
+    "bytes": 851,
+    "sha256": "819a0377eff8773a72502afe081fad2b6547f4fee548fc1e5a9212ed498d1b51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**kl_comp_30pct_s42 训练结果**（已标记 DONE）：\n- Final loss: 0.6992 (从 2.36 下降), 1000 steps\n- Compensation params: 67.2M (0.837% of 8B)\n- Checkpoint: `checkpoints/kl_comp_30pct_s42/predictor_with_comp.pt` (273MB, predictor + comp_network 合并)\n\n**Checkpoint 搬运**：\n- 41718 → 34887 通过临时 SSH key + scp 完成，临时 key 已清理\n\n**提交的 eval 任务**：\n\n| Exp ID | Server | GPU | Tasks | Status |\n|--------|--------|-----|-------|--------|\n| `kl_comp_30pct_s42_eval` | westd-34887 | cuda:1 (PID 14307) | wikitext2,arc,winogrande,mmlu,gsm8k | RUNNING |\n| `kl_comp_30pct_s42_ppl` | westd-41718 | cuda:0 (PID 61490) | wikitext2,c4 | RUNNING |\n\n两个 eval 日志都确认 \"Compensation network loaded from checkpoint\"，合并 checkpoint 工作正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-comp-s42-eval-setup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a34b6bbf5a2cec2cd829",
+  "project": "temp-adv-distill-vla",
+  "kind": "result",
+  "title": "infra openvla download recovery",
+  "task_key": "worker_infra_openvla-download-recovery_20260515T080600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_openvla-download-recovery_20260515T080600_result.json",
+    "occurrence": 1,
+    "bytes": 1776,
+    "sha256": "5d6bd1a7569d1784bfaa3065537fd752068188332b84e29b0d0a3d4f06e25359"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Download confirmed progressing steadily. Here's the full status report:\n\n---\n\n## OpenVLA 模型状态\n\n**路径**: `/root/autodl-tmp/models/openvla-7b-finetuned-libero-spatial/`\n\n| Shard | 大小 | 状态 |\n|-------|------|------|\n| model-00001-of-00004.safetensors | 4.6GB (预期) | **正在下载** — curl PID 20135, ~1MB/s, 当前 48MB |\n| model-00002-of-00004.safetensors | 4.7G | 完整 |\n| model-00003-of-00004.safetensors | 4.7G | 完整 |\n| model-00004-of-00004.safetensors | 251M | 完整 |\n\n- 总模型大小: 15.08GB (index metadata)\n- config.json / tokenizer 等辅助文件齐全\n- **Shard 1 之前损坏**(仅 5.5M),已删除并重新用 curl 下载\n- **预计完成时间**: ~17:35 北京时间(约 80 分钟)\n\n## 磁盘空间\n\n| 分区 | 总量 | 已用 | 可用 |\n|------|------|------|------|\n| 根分区 (/) | 30G | 9.8G (33%) | 21G |\n| 数据盘 (/dev/sda2) | 879G | 17G (3%) | 817G |\n\n## 已有资源\n\n- **VIP 模型**: `/root/temp-adv-distill-vla/vip/`\n- **MLP checkpoints**: `artifacts/gate1b_mlp_layer_0.pt` (2.3M), `gate1b_mlp_multitask.pt` (2.3M)\n- **IQL checkpoints**: `artifacts/iql_checkpoints/`\n- **Gate 2 结果**: `artifacts/gate2_results.json` + ROC curves + advantage dist plots\n- **VIP features**: `artifacts/vip_features/` (per-task) + `vip_features_all/`\n- **LIBERO 数据**: 仅 `libero_object` (10 tasks) — **无 `libero_spatial`**（但 OpenVLA 模型是 libero_spatial fine-tuned）\n\n## 注意事项\n\n1. Shard 1 下载用 `curl -L` 后台运行 (nohup, PID 20135), 速度受 AutoDL 代理限制\n2. HF Python 库和 `hf` CLI 均因 xet bridge SSL 问题在此服务器上不可靠,curl 最稳定\n3. `libero_spatial` 数据集缺失 — 如果后续实验需要,需单独下载"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-openvla-download-recovery.md"
+}

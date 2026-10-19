@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be62894b56dec6cc2200",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis snr extended r6w3",
+  "task_key": "worker_analysis_snr_extended_r6w3_20260518T020355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_snr_extended_r6w3_20260518T020355_result.json",
+    "occurrence": 1,
+    "bytes": 216,
+    "sha256": "512b45ffdd8d5e47ddeb9a017ee4c33a0e2898b954f59097f8653b4008a65c9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script `gradient_snr_extended.py` is already running (PID 92074, cuda:0). Currently at KL step 100/300. Estimated total time ~25 minutes (both KL and BCE phases). I'll check back when it's likely done."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-snr-extended-r6w3.md"
+}

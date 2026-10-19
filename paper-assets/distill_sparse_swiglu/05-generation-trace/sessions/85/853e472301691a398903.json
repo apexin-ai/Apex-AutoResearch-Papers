@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "853e472301691a398903",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code check kl30 s456 v3 result",
+  "task_key": "worker_code_check_kl30_s456_v3_result_20260519T171035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_kl30_s456_v3_result_20260519T171035_result.json",
+    "occurrence": 1,
+    "bytes": 467,
+    "sha256": "16f6f2e615c8cede8aa1be7d559336666113b66dfe6ff0962818807071a97f53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**conclusion: success**\n\n`qwen14b_kl30_s456_eval_v3` (Qwen2.5-14B, KL 30% uniform, seed 456) metrics:\n\n| Metric | Value |\n|--------|-------|\n| wikitext2 PPL | **7.8992** |\n| arc_challenge acc_norm | **0.5145** |\n| winogrande acc | **0.7316** |\n| hellaswag acc_norm | **0.7249** |\n| piqa acc_norm | **0.7677** |\n| mmlu acc | **0.6351** |\n\nRegistry updated to DONE/success. Cron job not found (already deleted or never created with that ID)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-kl30-s456-v3-result.md"
+}

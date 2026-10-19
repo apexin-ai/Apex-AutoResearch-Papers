@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1f44f2c8bf591563566",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_6_1778950529.md",
+  "task_key": "loop_6_1778950529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778950529.md",
+    "occurrence": 1,
+    "bytes": 3680,
+    "sha256": "9249cb6491a3f560b920e628f41b33feba7c80f3cc96c56f80f47eab6b962093"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_wall_time\nupdated: '2026-05-16T13:39:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-34887 cuda:0 + cuda:1（仅此两张，���其他可用）\n- LongBench 当前方案：2 卡 tensor parallel (device_map=\"auto\")，两张卡给一个进程，串行执行实验。不要尝试单卡跑 LongBench（32k tokens OOM，已失败 3 次）\n- submit_training_job 命令必须 `bash -c \"...\"` 包裹（tmux 用 sh 不是 bash）\n- 所有 train.py 必须加 `WANDB_MODE=offline`（服务器无 wandb key）\n- AutoDL 网络操作必须 `source /etc/network_turbo` + SSL 证书变��\n- KL 30% predictor checkpoint 路径：`checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt`（不是 kl_sparsity30_s42）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887 (root)，工作目录 /root/distill_sparse_swiglu/\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`���不是 venv）\n- 模型：/root/autodl-tmp/models/llama-3.1-8b\n- HF cache：/root/autodl-tmp/.hf_cache\n- flash-attn：2.8.3 已装\n- LongBench 数据：已缓存（Xnhyacinth/LongBench，�� THUDM/LongBench）\n- 活跃：Worker `worker_ops_fix-longbench-tp-resubmit_20260516T133817` 正在修改 benchmark_eval.py 加 `--multi_gpu` 支持并提交 longbench_dense_v4\n\n### 3. 📊 当前状态\n**刚完成**：allocation matrix 全部实��� + TEAL vanilla baselines + bench_kl40_global/bench_kl50_uniform。论文 5 个章节初稿完成（abstract/intro/method/experiments/related_work/conclusion）。\n\n**等待中**：\n- Worker `fix-longbench-tp-resubmit` 回调 → 确认 longbench_dense_v4 是否启动成功\n- longbench_dense_v4 ���成后 → 提交 longbench_kl30_uniform_v4（同样 2 卡 TP）\n- v3 实验 registry 待标 failed（Worker 应该已做）\n\n**Registry RUNNING/QUEUED**：\n- longbench_dense_v4: QUEUED → Worker 正在提交\n- longbench_kl30_uniform_v4: 尚未创建（等 dense 成功后再提交）\n\n### 4. 📋 待办\n- Worker `fix-longbench-tp-resubmit` 回调 → 确认 dense_v4 启动成功；���果失败继续诊断 OOM/���码问题\n- longbench_dense_v4 完成（cron 回调）→ 收 metrics → 提交 longbench_kl30_uniform_v4（同命令换 checkpoint + allocation）\n- longbench_kl30_uniform_v4 完成 → 收 metrics → 向 Director 汇报完整 LongBench 对比 → 补入 paper/experiments.tex\n- LongBench 全���完成后 → 两张卡空出 → P1: spon_kl_s42（Reviewer Concern #1 ���御���\n- Director 如果发 [FRAMING APPROVED] → Read framing-reaudit skill → 全文 re-audit\n\n### 5. 🎯 战略上下文\n**项目核心**：KL distillation for contextual sparsity prediction in SwiGLU LLMs。DDL 2026-05-25 (EMNLP ARR May)，剩 9 天。\n\n**三大 Claims 数据已齐**：\n1. KL >> TEAL/BCE on PPL (18%/49% better)\n2. PPL-downstream disconnect: PPL 8.98 vs 8.82 (差 2%) → MMLU 25.27% vs 40.61% (差 15pp)\n3. Allocation threshold: 30% uniform = 唯一有效配置；50% 任何 allocation 都是 random\n\n**LongBench 是最后一块拼图**——EMNLP venue fit，证明 long-context 场景下 sparsity 的影响。已失败 3 次（offline 数据/GPU 冲突/单卡 OOM），当前方案是 2 卡 TP。\n\n**易错点**：\n- benchmark_eval.py 的 `--multi_gpu` flag 是本轮新��的，之前提交用的命令没有这个参数\n- LongBench 用 `Xnhyacinth/LongBench` 数据集（���是 THUDM/LongBench）\n- 40% global MMLU=38% 好于 30% global MMLU=25%——这是 cross-predictor 对比，论文中不要作为主要论据\n- KL 30% uniform 的 checkpoint 是 `kl_sparsity30_s42_v3`（v3！不是无后缀版本）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778950529.md"
+}

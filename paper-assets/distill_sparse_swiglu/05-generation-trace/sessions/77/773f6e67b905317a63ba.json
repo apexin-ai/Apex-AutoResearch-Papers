@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "773f6e67b905317a63ba",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval constraint remove valley",
+  "task_key": "worker_eval_constraint_remove_valley_20260522T133549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_constraint_remove_valley_20260522T133549_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "9e320302f46a25bcca3b8dda66dd3dcf619cd6acd18eb81d2e03d69530db039c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job is running well and already progressing through evaluations:\n\n- **WikiText-2 PPL**: 8.7592 (completed)\n- **ARC-Challenge**: completed (log shows it moved past it)\n- **MMLU**: currently running, ~20% through loglikelihood requests\n- **GSM8K**: pending\n\nThe job was already submitted by a prior process with the exact correct parameters (correct checkpoint, cuda:1, correct script). It's running on `CUDA_VISIBLE_DEVICES=1` with 4h timeout. No action needed — Condition B is in progress."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-constraint-remove-valley.md"
+}

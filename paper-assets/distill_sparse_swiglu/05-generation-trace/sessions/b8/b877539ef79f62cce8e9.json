@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b877539ef79f62cce8e9",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis kl sparsity30 s42 v2",
+  "task_key": "worker_analysis_kl_sparsity30_s42_v2_20260515T210900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_kl_sparsity30_s42_v2_20260515T210900_result.json",
+    "occurrence": 1,
+    "bytes": 2631,
+    "sha256": "45f79ade0924b543d963e11896b5ce82ba93e5c79319b2e3b6ccab2c62b14cc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。\n\n## kl_sparsity30_s42_v2 训练结果分析\n\n### Conclusion: **success** (训练完成，sparsity 收敛；但缺少 eval PPL 数据)\n\n### 关键指标\n\n| 指标 | 值 |\n|------|-----|\n| 最终 loss | 0.1465 |\n| 最终 kl_norm | 0.1465 |\n| 最终 sparsity | **0.281** (target=0.30, margin=0.02, 在可接受范围 [0.28, 0.32] 内) |\n| 最终 lambda | 1000.00 (已达 cap) |\n| 最终 tau | 0.100 |\n| constraint | 0.000 (收敛) |\n| 训练步数 | 1000/1000 |\n| 训练时间 | ~36 min (04:30 → 05:06) |\n| trainable params | 75.96M / 8.03B (0.946%) |\n| checkpoint | `/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42/predictor_kl_normalized.pt` (145MB) |\n| log | `~/runs/distill_sparse_swiglu/kl_sparsity30_s42_v2.log` |\n| W&B | offline mode, run ID `i1rrewz9`，无法远程查询 |\n| warnings/errors | 无（`use_cache=True` 兼容性提示为正常行为） |\n\n### Sparsity 收敛轨迹\n\n```\nStep   1: 0.406 (初始高 sparsity)\nStep 100: 0.348 (逐步下降)\nStep 130: 0.289 (进入目标附近)\nStep 150: 0.258 (过冲, lambda spike → 327.68)\nStep 160: 0.324 (反弹)\nStep 270: 0.270 (再次过冲, lambda → 500 → 1000)\nStep 330+: 0.281-0.293 稳定震荡, lambda 饱和在 1000\nStep 1000: 0.281\n```\n\n### Lambda 行为\n\nLambda 在训练中段经历剧烈震荡：从 0.01 快速增长到 327.68（step 150），经多次 growth/decay 循环后，~step 330 饱和在 cap=1000 并保持至训练结束。Lambda 饱和说明 Lagrangian 机制尝试推高 sparsity 但模型倾向于更低的 sparsity（~0.281），cap 阻止了进一步推高。实际收敛值（0.281）在 margin 内，训练是稳定的。\n\n### 缺失数据\n\n**没有 eval PPL 数据。** 训练脚本未包含自动评估，checkpoint 目录下也无 eval 日志。无法直接与 50% baseline 对比以下指标：\n- eval/true_dense_ppl\n- eval/predictor_hard_mask_ppl\n- eval/teal_sparse_ppl\n\n### 与 50% baseline 初步对比\n\n| | 30% (本次) | 50% (plan_001 baseline) |\n|---|---|---|\n| target sparsity | 0.30 | 0.50 |\n| actual sparsity | 0.281 | 0.498 |\n| final train loss | 0.1465 | — |\n| predictor_hard_mask_ppl | **需要 eval** | 9.15 |\n| teal_sparse_ppl | **需要 eval** | 11.99 |\n\n### 对 plan_008 sparsity sweep 的判断\n\n训练成功收敛，但**必须先跑 eval 才能出有意义的结论**。预期 30% sparsity（保留 70% 神经元）的 PPL 应显著优于 50% sparsity baseline。建议下一步：用保存的 checkpoint 跑 eval 脚本，获取 true_dense_ppl / predictor_hard_mask_ppl / teal_sparse_ppl 三项指标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-kl-sparsity30-s42-v2.md"
+}

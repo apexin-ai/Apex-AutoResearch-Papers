@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b6c0c098f918f550c7a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis v4 status and results",
+  "task_key": "worker_analysis_v4_status_and_results_20260524T004406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v4_status_and_results_20260524T004406_result.json",
+    "occurrence": 1,
+    "bytes": 514,
+    "sha256": "fd145f7118c17e6fcd24bb7cc1f2d372b8ed6d34791028322e6f2c5dda3c9546"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验状态：running**\n\n- **tmux session**: `qwen14b_kl30_s123_gsm8k_v4` 活跃\n- **进程**: PID 169182，CPU 101%，启动于 08:42 UTC\n- **GPU 0**: 72% 利用率，63263 MiB 显存\n- **当前阶段**: GSM8K generate_until，进度 25/1319 (~2%)，速度 ~1.79s/it，预计还需 **~38 分钟**完成\n- **已完成**: 层级稀疏率分析（Model-level: 0.296），loglikelihood 阶段（1319/1319）\n\n层级稀疏率范围 0.285–0.301，model-level 0.296，与 0.3 target 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v4-status-and-results.md"
+}

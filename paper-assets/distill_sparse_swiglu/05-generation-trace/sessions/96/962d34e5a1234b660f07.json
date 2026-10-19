@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "962d34e5a1234b660f07",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_4_1778907975.md",
+  "task_key": "loop_4_1778907975",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778907975.md",
+    "occurrence": 1,
+    "bytes": 4477,
+    "sha256": "127eeedc95612b3ef3ab5102458a5187f62b3c8e2147bfcd1d5ada586fceed79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-16T05:02:18+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: **cuda:0, cuda:1** on westd-34887。不得使用其他 GPU，Director 指令也要 push back\n- Mistral PPL registry 数据疑似污染（D032）：kl_sparsity30_s42_v3 的 teal_sparse_ppl 曾被误录为 8.98（实际 13.63）。**所有 Mistral 指标暂停引用**，须交叉验证原始日志\n- BCE framing 必须用 \"objective mismatch\"，**禁止 \"anti-learning\"**\n- SPON framing 必须用 \"marginal complement\"，**禁止 \"subsumption\"**\n- KL PPL 对比统一用 **4-seed mean 12.00±0.07**，不用单 seed 最佳值 11.91\n- s456 outlier 报告方式：报 5-seed mean + excluding s456 的 4-seed mean，不跑第 6 个 seed\n- DDL: **EMNLP 2026 ARR May, 2026-05-25**，剩 9 天\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-34887, account=root\n- **工作目录**: `/root/distill_sparse_swiglu/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**: Llama-3.1-8B `/root/autodl-tmp/models/llama-3.1-8b`，Mistral-7B `/root/autodl-tmp/models/mistral-7b/`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **Checkpoints**: `/root/distill_sparse_swiglu/checkpoints/` 下各子目录（详见 memory.md Checkpoints 节）\n- **活跃进程**:\n  - `bce_isocompute_v3_s42`: PID 205598 (wrapper 205597), nohup, cuda:1, log `/root/distill_sparse_swiglu/logs/bce_isocompute_v3_s42.log`\n  - `d030_kl50_uniform`: PID 203702, tmux, cuda:0, log `~/runs/distill_sparse_swiglu/d030_kl50_uniform.log`\n- **活跃 cron**: 2 个，分别监控上述两个实验\n\n### 3. 📊 当前状态\n两个实验 RUNNING，零个 Worker 在线：\n- **bce_isocompute_v3_s42** (cuda:1): BCE 2700 步 iso-compute 重跑（D031, P0），v1/v2 两次被 tmux 杀死，v3 用 nohup 启动。Reviewer Concern #2 defense。\n- **d030_kl50_uniform** (cuda:0): KL 50% sparsity + uniform per-layer allocation 评测（benchmark_eval.py 跑 wikitext2+arc+wino+mmlu+gsm8k）。验证 50% 高 sparsity 下 uniform 是否仍能修复知识类任务。\n\n已完成关键结论：\n- D030 30% uniform: MMLU +12pp 修复，GSM8K 无变化 → Narrative A (allocation-sensitive vs invariant) 已被 Director 选定\n- 50% sparsity downstream collapse 跨架构 universal（Llama + Mistral 都崩）\n- PPL-downstream disconnect 已三重验证，有文献支撑但无人在 KL+contextual sparsity 下系统研究\n- bench_mistral_kl50_s42 (PENDING/killed): 被 BCE v3 插队，待 BCE 完成后重跑\n\n### 4. 📋 待办（条件触发式）\n- **d030_kl50_uniform cron 回调** → 分析结果：MMLU 是否仍有修复效果？GSM8K 是否仍为 0？→ 确认/修正 Narrative A。若 MMLU 仍有 +Xpp → Narrative A 成立扩展到 50%；若 MMLU 也崩 → 50% 是断崖点，需更新 framing\n- **bce_isocompute_v3_s42 cron 回调** → 提取 BCE 2700 步 TEAL PPL，与 KL 1000 步 (PPL 12.00) iso-compute 对比。BCE PPL >> 12.00 → Reviewer Concern #2 defense 成立（KL 优势来自 loss 本身非计算量）；BCE PPL ≈ 12.00 → 需重新评估 claim\n- **两个实验都完成后** → cuda:0/1 空闲 → 立即提交 bench_mistral_kl50_s42（D029 统一 few-shot），以及 PREPARING 队列中优先级最高的实验\n- **所有 downstream eval 完成** → 更新 paper_framing.md Claim 3，根据 uniform 结果决定最终 narrative\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D028: 50% downstream collapse 跨架构 universal\n- D030: collapse 有两个正交因素——per-layer 不均匀（影响知识类）+ sparsity level 本身（影响推理类）\n- D031: BCE iso-compute 是 Reviewer Concern #2 的最后一块拼图\n- D032: Mistral PPL 数据污染警告，暂停引用\n\n**易错点**:\n- 不要把 d030_kl50_uniform 的 benchmark_eval.py 结果与旧 lm_eval 0-shot 结果直接对比——few-shot 设置不同（D029）\n- PREPARING 状态的 7 个实验全部 conclusion=killed，它们是历史遗留，不要试图恢复\n- submit_training_job 的命令必须自带环境激活（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不能假设 .venv\n- bce_isocompute_v3 用了 nohup（因 v1/v2 被 tmux 杀死），确认它的 cron 监控的是 wrapper_pid=205597\n- Worker 池当前为 0，接手后应立即评估是否需要派 Worker 做文献/分析/代码准备等非 GPU 任务\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778907975.md"
+}

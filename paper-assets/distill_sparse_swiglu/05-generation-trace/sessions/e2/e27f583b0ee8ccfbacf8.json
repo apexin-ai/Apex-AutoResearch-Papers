@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e27f583b0ee8ccfbacf8",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze perlayer kl 50 s42 downstream",
+  "task_key": "worker_analyze_perlayer_kl_50_s42_downstream_20260522T080709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_perlayer_kl_50_s42_downstream_20260522T080709_result.json",
+    "occurrence": 1,
+    "bytes": 837,
+    "sha256": "e1cf1e259c8808f078995d8513023bff6b6555290354d987f0bc5e1313fbc632"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成分析并注册。结果摘要：\n\n**Per-layer KL 50% downstream：确认 NEGATIVE**\n\n| Task | Per-Layer KL 50% | E2E KL 50% | TEAL 50% | Dense |\n|------|-----------------|------------|----------|-------|\n| ARC-c | 0.271 | 0.328 | 0.275 | 0.583 |\n| WinoGrande | 0.515 | 0.629 | 0.544 | 0.781 |\n| MMLU | 0.266 | 0.278 | 0.293 | 0.653 |\n| GSM8K | 0.017 | 0.021 | 0.017 | 0.488 |\n| HellaSwag | 0.382 | 0.567 | 0.394 | 0.823 |\n| PIQA | 0.628 | 0.691 | 0.637 | 0.809 |\n\n所有 6 个 task 近乎随机水平。比 E2E KL 50% 平均低 7.24pp，比训练无关的 TEAL 50% baseline 还低 1.33pp。PPL 34.85 vs E2E KL 的 11.96，HellaSwag 崩塌最严重（-18.5pp vs E2E KL）。\n\n分析报告已写入 `artifacts/perlayer_kl_50_s42_downstream/analysis.md`，registry 已更新为 DONE/negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-perlayer-kl-50-s42-downstream.md"
+}

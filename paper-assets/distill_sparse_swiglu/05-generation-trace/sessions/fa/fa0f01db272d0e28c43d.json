@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa0f01db272d0e28c43d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "research plan009 mistral prep",
+  "task_key": "worker_research_plan009_mistral_prep_20260515T221320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_plan009_mistral_prep_20260515T221320_result.json",
+    "occurrence": 1,
+    "bytes": 592,
+    "sha256": "dad34ad6cf38f7ace1c322918de99218ee4183397f9a72e0a25dcf635227880b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/plan_009_readiness_report.md`。\n\n**核心结论**:\n\n- **模型就绪**: Mistral-7B-v0.3 已在 `/root/autodl-tmp/models/mistral-7b/`，14GB，文件完整\n- **代码零改动**: Mistral 和 LLaMA-3.1-8B 的 MLP 维度完全一致（hidden=4096, intermediate=14336, 32层），HuggingFace 内部接口相同。所有代码文件（train/evaluate/predictor/baselines）仅需传 `--model_name_or_path /root/autodl-tmp/models/mistral-7b` 即可运行\n- **磁盘充足**: 数据盘 212GB 可用\n- **可直接启动训练**，无额外预备步骤"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-plan009-mistral-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7907ed153ce76eedddcc",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis lambda sparsity curve",
+  "task_key": "worker_analysis_lambda_sparsity_curve_20260517T173720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_lambda_sparsity_curve_20260517T173720_result.json",
+    "occurrence": 1,
+    "bytes": 1611,
+    "sha256": "7a4dd719bcde010771898792c586be4edf99c198e1a23b6da8fc0ef7315df00e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并保存。\n\n**产出文件：**\n- `/root/distill_sparse_swiglu/figures/lambda_sparsity_curve.pdf` (19KB, 矢量)\n- `/root/distill_sparse_swiglu/figures/lambda_sparsity_curve.png` (164KB, 1755x1205px @300dpi)\n\n**图表结构：** 两面板共享 X 轴（Training Step），上面板 λ（对数刻度），下面板 sparsity，三条曲线对应 s*=0.3/0.5/0.7，色盲友好配色。\n\n**数据来源：**\n- 30% target: `kl_sparsity30_s42_v3.log` (cap=5000, 101 data points, steps 1-1000)\n- 50% target: `mvp_kl_norm_v2_s42.log` (cap=1000, 101 points)\n- 70% target: `kl_sparsity70_s42_v2.log` (cap=1000, 101 points)\n\n**关键观察：**\n\n| Target | λ 初始 | λ 达到 cap 的 step | 最终 sparsity | 备注 |\n|--------|--------|-------------------|---------------|------|\n| 30% | 0.50 → 0.01 | ~260 (cap=5000) | 0.285 | 最有趣的动态：λ 先降后升 |\n| 50% | 2.0 | ~10 (cap=1000) | 0.488 | λ 几乎立即饱和 |\n| 70% | 2.0 | ~10 (cap=1000) | 0.688 | λ 几乎立即饱和 |\n\n**Lagrangian 动态分析：**\n- **30% target** 展示最完整的控制回路：自然 sparsity (0.406) > target，λ 先被抑制到 0.01；随着训练推进 sparsity 降到 target 以下，λ 快速指数上升到 cap 5000，形成 U 型曲线\n- **50%/70% target** 因初始 sparsity (0.406) 远低于 target，λ 在前 10 步即饱和到 cap 1000，之后靠 KL loss 驱动 sparsity 上升\n- 所有三个 target 的最终 sparsity 都略低于目标值（分别差 1.5pp/1.2pp/1.2pp），说明 Lagrangian 机制有效但在 cap 限制下存在系统性偏差"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lambda-sparsity-curve.md"
+}

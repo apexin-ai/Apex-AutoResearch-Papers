@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df9716afdb2fba0c760e",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_16_1779583250.md",
+  "task_key": "loop_16_1779583250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779583250.md",
+    "occurrence": 1,
+    "bytes": 3660,
+    "sha256": "f0e5979848c4eec64a85f911690edefe228398be0d6dc41244f6a9ffa29a43af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-24T00:40:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-34887 cuda:0, cuda:1（2× RTX PRO 6000 Blackwell 96GB）。westd-41718 已被用户释放，禁止使用\n- DDL：2026-05-25 EMNLP 2026 ARR May cycle，剩余不到 2 天\n- 决策 D104：K=8/K=16 的 Table 4 3-seed 不做（DDL 不允许），转写作处理\n- 决策 D107 override D104：补跑 K=2/K=8/K=16 + C4 eval，但 K=16 已连续 2 次 failed\n- 当前阶段是 R24 写作修复，Paper Agent 已派出，主要是写作任务非新实验\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887，工作目录 /root/distill_sparse_swiglu/\n- Python：/root/miniconda3/bin/python（aml-train 镜像，conda base 环境）\n- 模型路径：/root/autodl-tmp/models/llama-3.1-8b\n- 数据：wikitext-103（默认），C4 数据已下载到服务器\n- 训练脚本：/root/distill_sparse_swiglu/src/train_perlayer_kl_k4.py\n- 日志目录：~/runs/distill_sparse_swiglu/\n- Checkpoint 目录：/root/distill_sparse_swiglu/checkpoints/\n- 磁盘：/autodl-pub 5.3T/7.3T 可用（24%），充裕\n\n### 3. 📊 当前状态\n- 我收到 perlayer_kl_k16_s42_v2 失败回调（EXIT_CODE=1），已派 Worker `worker_diagnose_perlayer_kl_k16_s42_v2_20260523T040655` 去 SSH 读日志诊断根因，**尚未收到回调**\n- perlayer_kl_k16_s42（v1）失败原因已知：argparse 不识别 `--loss_type kl_normalized`；v2 去掉了该参数但仍 EXIT_CODE=1，根因未明\n- perlayer_kl_k8_s42_eval：RUNNING（PID 104348，westd-34887），K=8 eval at 30% TEAL uniform\n- perlayer_kl_k2_s42：PREPARING 状态\n- c4_kl30_s42_eval：已 success（C4 训练数据 eval 完成）\n- perlayer_kl_k8_s42：已 success\n- 总计：384 实验，success 239，negative 24，failed 36，killed 82\n\n### 4. 📋 待办\n- Worker diagnose 回调到达 → 读诊断报告 → 根据根因决定：(a) 可修复则派 Worker 修代码重跑 K=16，(b) 不可修复则汇报 Director 放弃 K=16 数据点（DDL 压力下合理）\n- perlayer_kl_k8_s42_eval cron 回调 → 按 on-experiment-done 流程处理（更新 registry、report.md、汇报 Director K=8 eval 结果）\n- K=8 eval 完成后 → 用 cuda:0 跑 perlayer_kl_k2_s42（K=2 训练），完成 K-curve 数据\n- R24 写作修复 Paper Agent 完成 → 编译检查 8 页 → submit_paper_to_review（continue mode）\n- 所有 K-curve 数据收齐后 → 更新论文 Table/Figure + 汇报 Director\n\n### 5. 🎯 战略上下文\n- 核心结论：KL distillation 是 SwiGLU sparsity prediction 的 PPL 主导设计维度；cross-layer coupling 贡献 task-dependent（commonsense-dominated vs reasoning-dominated）\n- K-curve 实验（K=1,2,4,8,16,32）是 D107 要求的补充证据，用于量化 coupling scope 对质量的影响。目前 K=1（baseline per-layer）、K=4（3-seed 完成）、K=8（训练完成/eval 在跑）已有数据，K=2 待跑，K=16 连续 2 次 failed 待修，K=32 尚未规划\n- 易错点：K=16 v1 失败是 `--loss_type kl_normalized` 参数错误（脚本不接受），v2 去掉后仍失败——很可能是脚本对 `--num_masked_layers 16` 有隐式限制（如超过模型层数的某个比例），下一个\"你\"拿到诊断报告后注意检查这个方向\n- 易错点：主表数据（30% uniform 3-seed）已稳定，不要重跑；K-curve 是补充实验，即使不完整也不影响核心 claim\n- 2D Decomposition 数据中 MMLU >100% 是 anomalous（allocation alignment artifact），K=4 50% PPL 有 reversal（K=4 PPL=44.23 > K=1 34.85），这些需要在论文中用定性描述处理而非精确数值分解（R24 C1 修复方向）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779583250.md"
+}

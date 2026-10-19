@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67a4c1152721715a0b24",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis lagrangian code verify",
+  "task_key": "worker_analysis_lagrangian-code-verify_20260516T220051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_lagrangian-code-verify_20260516T220051_result.json",
+    "occurrence": 1,
+    "bytes": 3887,
+    "sha256": "4202c2e04b416e0cb04815e62958c20aa7248cbbc74db4d2aa095e2dbac43419"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have all the data needed. Here's the complete report.\n\n---\n\n## Part 1: Code Implementation Confirmation\n\nThe relevant function is `train_kl_normalized` (all 4 runs used `loss_type: kl_normalized`).\n\n### 4 Questions Answered:\n\n**Q1. λ 更新规则: MULTIPLICATIVE ×2.0/×0.5**\n\n```python\n# train.py lines 280-286 (train_kl_normalized)\nold_lambda = lambda_sparse\nif avg_sparsity < target_sparsity - margin:\n    lambda_sparse *= 2.0\nelif avg_sparsity > target_sparsity + margin:\n    lambda_sparse *= 0.5\nlambda_sparse = max(0.01, min(lambda_sparse, args.lambda_max))\n```\n\nUpdate frequency: **every step** (not batched).\n\n**Q2. lambda_max cap: CONFIGURABLE (default=1000)**\n\n```python\n# train.py line 72\np.add_argument(\"--lambda_max\", type=float, default=1000.0, ...)\n```\n\nActual runs:\n- kl_30pct_s42, kl_40pct_s42: ran with `--lambda_max 5000`\n- kl_50pct_s42, kl_70pct_s42: ran with `--lambda_max 1000`\n\n**Q3. Constraint loss: SQUARED with margin (deadzone)**\n\n```python\n# train.py line 259\nsparsity_error = torch.abs(actual_sparsity - target_sparsity)\nconstraint_loss = lambda_sparse * torch.clamp(sparsity_error - margin, min=0.0) ** 2\n```\n\nTwo-sided (uses abs), squared, with deadzone.\n\n**Q4. Margin: 0.02**\n\n```python\n# train.py line 223\nmargin = 0.02\n```\n\nFloor: `max(0.01, ...)` (lambda never goes below 0.01).\n\n---\n\n## Part 2: λ Data Table\n\n| Run | Target | Final λ | Final Sparsity | λ 模式 | λ_max used |\n|-----|--------|---------|---------------|--------|------------|\n| kl_30pct_s42 | 0.3 | **5000** (cap) | **0.285** | multiplicative ×2/×0.5 | 5000 |\n| kl_40pct_s42 | 0.4 | **625** | **0.398** | multiplicative ×2/×0.5 | 5000 |\n| kl_50pct_s42 | 0.5 | **8** | **0.504** | multiplicative ×2/×0.5 | 1000 |\n| kl_70pct_s42 | 0.7 | **1000** (cap) | **0.688** | multiplicative ×2/×0.5 | 1000 |\n\nλ 变化模式（from data）:\n- **kl_30pct**: 1→0.5→0.25→...→0.01 (decay), then explosive ×2 jumps to 5000 cap at step ~260\n- **kl_40pct**: stays 1 for ~160 steps, jumps to 64→5000 (cap), later decays to 625\n- **kl_50pct**: 1→2→4→8, stabilizes at 8 (constraint satisfied quickly)\n- **kl_70pct**: 2→4→8→...→512→1000 (geometric doubling to cap within 10 steps)\n\n---\n\n## Part 3: 代码 vs 论文差异（严重）\n\n### Paper Eq.4 (method.tex L96-108) claims:\n\n```\nL = L_KL + λ · (s̄ - (1-ρ))          [linear penalty]\nλ ← λ + η_λ · (s̄ - (1-ρ))           [additive gradient ascent]\nη_λ = 0.1,  λ_max = 5000\n```\n\n### Code actually does:\n\n```\nL = L_KL + λ · clamp(|s - target| - 0.02, 0)²   [squared + deadzone]\nλ ← λ × 2.0  or  λ × 0.5                         [multiplicative]\nNo η_λ parameter. λ_max varies (1000 or 5000).\n```\n\n### Specific mismatches:\n\n| Aspect | Paper | Code | Severity |\n|--------|-------|------|----------|\n| Update rule | additive `λ + η·v` | multiplicative `λ×2` / `λ×0.5` | **Critical** |\n| Penalty form | linear `λ·v` | squared `λ·clamp(v-m,0)²` | **Critical** |\n| η_λ | 0.1 | N/A (multiplicative) | **Critical** |\n| Deadzone/margin | not mentioned | 0.02 | Medium |\n| λ_max | 5000 (uniform) | 5000 (30%/40%), 1000 (50%/70%) | Medium |\n\n### Appendix Table data mismatches:\n\n| Run | Paper claims | Actual from logs |\n|-----|-------------|-----------------|\n| kl_40pct Final λ | ~2100 | **625** |\n| kl_70pct Final λ | ~3800 | **1000** (capped) |\n| Table caption λ_max | 5000 | 1000 for 50%/70% runs |\n\nkl_30pct (5000) and kl_50pct (8) match. kl_40pct and kl_70pct are **fabricated/wrong**.\n\n---\n\n**Summary**: The paper's Eq.4 describes a standard additive dual gradient ascent that was **never implemented**. The actual code uses a heuristic multiplicative controller. The appendix table has 2 of 4 λ values that don't match the logged data."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lagrangian-code-verify.md"
+}

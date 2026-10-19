@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "db90b738ba9fa61e71a9",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval bench d029 cuda0",
+  "task_key": "worker_eval_bench_d029_cuda0_20260516T025609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_bench_d029_cuda0_20260516T025609_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "f998d6f228698aa736a0f826218496f23c7f262d08b97c397ddecce498ffac0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: {\"type\":\"error\",\"error\":{\"details\":null,\"type\":\"overloaded_error\",\"message\":\"Overloaded\"},\"request_id\":\"req_011Cb5VjgGqSirSGFNRWrj4R\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "details": null,
+                "type": "overloaded_error",
+                "message": "Overloaded"
+              },
+              "request_id": "req_011Cb5VjgGqSirSGFNRWrj4R"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-bench-d029-cuda0.md"
+}

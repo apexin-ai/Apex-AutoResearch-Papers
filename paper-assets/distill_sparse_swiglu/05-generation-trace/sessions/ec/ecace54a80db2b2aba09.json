@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ecace54a80db2b2aba09",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check k4 downstream result",
+  "task_key": "worker_check_k4_downstream_result_20260522T124709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_k4_downstream_result_20260522T124709_result.json",
+    "occurrence": 1,
+    "bytes": 1020,
+    "sha256": "07cdd31b8d7b9c88b1032e9459fe1cf200083294dcb7679e6b746697be168812"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated (DONE/success). Results:\n\n| Task | K=4 | K=1 | E2E KL | Gap closed |\n|------|-----|-----|--------|------------|\n| ARC-c (acc_norm) | **41.0** | 39.9 | 43.7 | 28.9% |\n| WG (acc) | **66.7** | 65.9 | 68.9 | 26.7% |\n| MMLU (acc) | **43.5** | 38.6 | 40.7 | **233%** (超 E2E) |\n| GSM8K (em) | 5.2 | 5.8 | 7.5 | **-35%** (低于 K=1) |\n| HS (acc_norm) | **68.5** | — | — | — |\n| PIQA (acc_norm) | **74.0** | — | — | — |\n| BoolQ (acc) | **73.2** | 64.5 | 73.7 | **94.6%** |\n\n**关键发现**：\n\n- **BoolQ 几乎完全弥合 gap**（94.6%），K=4 ≈ E2E\n- **MMLU 超越 E2E** (+2.8pp)，K=4 在知识密集任务上意外更强\n- **ARC-c/WG 弥合约 1/4**，有改善但不如 BoolQ/MMLU 显著\n- **GSM8K 反而退步** (-0.6pp vs K=1)，数学推理任务未受益于 K=4\n\n整体来看 K=4 在 5/5 可比任务中有 3 个显著优于 K=1，支持\"梯度耦合是关键机制\"的叙事，但 GSM8K 退步说明推理任务可能需要更强的跨层信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-k4-downstream-result.md"
+}

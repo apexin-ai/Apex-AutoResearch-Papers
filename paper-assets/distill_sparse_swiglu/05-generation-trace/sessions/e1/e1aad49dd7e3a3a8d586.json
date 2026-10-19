@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1aad49dd7e3a3a8d586",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "exp mse lr sweep 30 s42",
+  "task_key": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_mse_lr_sweep_30_s42_20260524T100212_result.json",
+    "occurrence": 1,
+    "bytes": 894,
+    "sha256": "bb5f4b4492b352a12920cdf7f42f4e28ed8810d13af181c117e7af92e1151f1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验已提交并在运行中：\n\n| Exp ID | LR | GPU | Status |\n|--------|-----|------|--------|\n| `mse30_lr2e4_s42` | 2e-4 | cuda:0 | RUNNING |\n| `mse30_lr1e4_s42` | 1e-4 | cuda:1 | RUNNING |\n\n**配置确认：**\n- 模型：LLaMA-3.1-8B (`/root/autodl-tmp/models/llama-3.1-8b`)\n- Loss：Per-layer MSE (FFN output)\n- Sparsity：30%, uniform, Lagrangian constraint\n- Seed：42, num_steps=1000, batch_size=4, seq_len=2048, warmup=100\n- 训练后自动链式执行 WikiText-2 eval（`benchmark_eval.py --tasks wikitext2`）\n- wandb 已禁用（服务器无 API key）\n- 日志：`~/runs/distill_sparse_swiglu/mse30_lr{2e4,1e4}_s42.log`\n\n**早期训练信号（~step 40）：**\n- LR=2e-4: mse=0.00697, sparsity=0.402\n- LR=1e-4: mse 略高（符合预期，学习更慢），sparsity=0.406\n\n每步 ~0.9s，预估 1000 步约 15 分钟完成训练 + eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-mse-lr-sweep-30-s42.md"
+}

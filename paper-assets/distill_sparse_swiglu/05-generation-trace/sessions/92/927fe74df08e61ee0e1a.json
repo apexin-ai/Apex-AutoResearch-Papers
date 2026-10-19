@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "927fe74df08e61ee0e1a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code resubmit teal vanilla exps",
+  "task_key": "worker_code_resubmit_teal_vanilla_exps_20260519T142442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_resubmit_teal_vanilla_exps_20260519T142442_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "52235fa2eb92f25c3fd9401a9c165698923860832c53d3d40ca1c64ed47679b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验 A (`qwen14b_teal275_uniform_eval_v2`)** 在 westd-34887 cuda:1 上启动失败——`AssertionError: Layer 12: sparsity 0.253 deviates from target 0.275`。`_uniform_topk_masks` 的 assert 阈值 0.02 太紧，27.5% 目标在某些层偏差超限。\n\n**实验 B (`qwen14b_teal30_uniform_hspiqa_v2`)** 在 westd-41718 cuda:0 上正常运行，HellaSwag 评估已完成约 36%，正在 tokenizing PIQA。\n- exp_id: `qwen14b_teal30_uniform_hspiqa_v2`\n- server: westd-41718, GPU: cuda:0\n- PID: 152255\n\n---\n\n实验 A 需要修复 `src/evaluate.py:165` 的 assert 阈值后重跑。要查看该断言上下文来确定合理的放松方案吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-resubmit-teal-vanilla-exps.md"
+}

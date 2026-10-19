@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "badffa76fd46008de318",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis v4 final check",
+  "task_key": "worker_analysis_v4_final_check_20260524T005608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v4_final_check_20260524T005608_result.json",
+    "occurrence": 1,
+    "bytes": 444,
+    "sha256": "55dde2e59b9ea2d5e8a423ef26fa6931db778c8200b68cb19b73068954c585f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验状态：**running**\n\n- 当前阶段：`generate_until` (生成阶段)\n- 进度：**113/1319** (~9%)\n- 速度：变化较大，从 ~2.8s/it 到 ~10.7s/it 不等（取决于答案长度）\n- GPU 0：75% 利用率，63263 MiB 显存占用\n- 结果目录 `qwen14b_kl30_s123_gsm8k_v4` 已创建但尚空（size=10）\n\n按当前平均速度（~5-7s/it），剩余 ~1206 samples，预计还需 **1.5-2.5 小时**完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v4-final-check.md"
+}

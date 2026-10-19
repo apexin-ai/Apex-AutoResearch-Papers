@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b6933f006d062084b49",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze qwen14b kl30 s42 eval",
+  "task_key": "worker_analyze_qwen14b_kl30_s42_eval_20260517T185314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_qwen14b_kl30_s42_eval_20260517T185314_result.json",
+    "occurrence": 1,
+    "bytes": 941,
+    "sha256": "bf307958cc2bbf6ba02f91f9b96d6ffc31faa7765d8f295c3594237e8958ba53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 文件包含完整结果。评测已正常完成（EXIT_CODE=0），总耗时约 4 小时。\n\n## qwen14b_kl30_s42 评测结果（30% KL sparsity, seed 42）\n\n| Task | Metric | 值 | stderr | 样本数 |\n|------|--------|------|--------|--------|\n| **wikitext2** | perplexity | **7.6232** | — | — |\n| **arc_challenge** | acc_norm | **0.5717** | ±0.0145 | 1172 |\n| **arc_challenge** | acc | 0.5469 | ±0.0145 | 1172 |\n| **winogrande** | acc | **0.7206** | ±0.0126 | 1267 |\n| **mmlu** | acc (5-shot) | **0.6372** | ±0.0039 | 14042 |\n| **gsm8k** | exact_match (flexible) | **0.4882** | ±0.0138 | 1319 |\n| **gsm8k** | exact_match (strict) | 0.4837 | ±0.0138 | 1319 |\n\n配置确认：`teal_global` mode, `global_topk` allocation, sparsity_target=0.3, bottleneck_size=128, seq_len=2048。结果 JSON 已保存至 `/root/distill_sparse_swiglu/results/benchmark/qwen14b_kl30_s42/results.json`。无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-qwen14b-kl30-s42-eval.md"
+}

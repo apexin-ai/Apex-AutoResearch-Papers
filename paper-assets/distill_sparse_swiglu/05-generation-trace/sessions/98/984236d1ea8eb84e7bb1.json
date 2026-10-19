@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "984236d1ea8eb84e7bb1",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code c1 ablation s123 pipeline",
+  "task_key": "worker_code_c1-ablation-s123-pipeline_20260518T170457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_c1-ablation-s123-pipeline_20260518T170457_result.json",
+    "occurrence": 1,
+    "bytes": 301,
+    "sha256": "fdaa7ae018aded65fe3ff30c275fdbf68cd327ac5d30c174a332f1b99c6b1791"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 已超时，不需要重新启动——kl_sparsity25_s123 早已完成，c1_ablation_bce_kl_targets_s123 训练正在正常运行中。\n\n训练预计还需约 15 分钟完成（1000 步 + eval）。如需我持续监控训练进度或完成后执行后续操作，请告知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-c1-ablation-s123-pipeline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3dcd65603d2af81d77e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra sync checkpoints and resubmit",
+  "task_key": "worker_infra_sync_checkpoints_and_resubmit_20260517T175039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_sync_checkpoints_and_resubmit_20260517T175039_result.json",
+    "occurrence": 1,
+    "bytes": 437,
+    "sha256": "cf8549e55352058af345658c374649a3a8e7b42aa03b53350072d04192eea445"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n- **checkpoint 拷贝**: mvp_kl_norm_v2_s123 已成功拷贝到 westd-41718（~145MB）\n- **KL-30% checkpoint**: kl_sparsity30_s42_v3 已存在于 westd-41718，无需拷贝\n- **eval 已启动**: PID 14578，模型加载完成，正在计算 TEAL global masks，已开始 wikitext2 评估。日志无 FileNotFoundError。\n- 日志路径: `/root/distill_sparse_swiglu/logs/kl50_global_s123_reeval.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-sync-checkpoints-and-resubmit.md"
+}

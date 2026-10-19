@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "df3923430430bb6392df",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "ops c1 retrain checkpoint search",
+  "task_key": "worker_ops_c1-retrain-checkpoint-search_20260519T031853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_c1-retrain-checkpoint-search_20260519T031853.log",
+    "occurrence": 1,
+    "bytes": 858941,
+    "sha256": "3ff6701971a568a93288b017cf8647ab28b3ab9bed57ef86007207795bea686c"
+  },
+  "statistics": {
+    "messages": 552,
+    "user_turns": 0,
+    "tool_calls": 219,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 3,
+      "assistant": 106,
+      "tool_call": 219,
+      "tool_result": 219,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 552,
+      "chunks": [
+        {
+          "path": "df3923430430bb6392df-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "df3923430430bb6392df-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "df3923430430bb6392df-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "df3923430430bb6392df-part-0004.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-c1-retrain-checkpoint-search.md"
+}

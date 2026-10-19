@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70cb3182681b6d11e433",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis round2 metrics pull",
+  "task_key": "worker_analysis_round2_metrics_pull_20260517T142307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_round2_metrics_pull_20260517T142307_result.json",
+    "occurrence": 1,
+    "bytes": 895,
+    "sha256": "f0e228f35e281a313dcc47fd6ce845ed80ae7cdeb82a048eeb2325842b7b1a15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已更新为 DONE (success)。完整 metrics 汇总：\n\n### kl50_s456_global_eval (50% sparsity, seed 456, global allocation)\n\n| Benchmark | Score |\n|---|---|\n| wikitext2 PPL | **11.81** |\n| arc_challenge (acc_norm) | **33.19%** |\n| winogrande | **64.88%** |\n| MMLU | **27.94%** |\n| GSM8K | **2.12%** |\n\n### kl30_s456_global_eval (30% sparsity, seed 456, global allocation)\n\n| Benchmark | Score |\n|---|---|\n| wikitext2 PPL | **8.93** |\n| arc_challenge (acc_norm) | **46.33%** |\n| winogrande | **71.11%** |\n| MMLU | **43.82%** |\n| GSM8K | **7.58%** |\n\nDirector 确认的 MMLU=43.82% 已验证正确。\n\n备注：multiseed 训练日志显示训练后的 benchmark_eval.py 调用因 HuggingFace Hub 连接错误崩溃，但 `results/benchmark/` 下已有完整结果文件（时间戳 22:16-22:17），说明 eval 在之后被成功重跑过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-round2-metrics-pull.md"
+}

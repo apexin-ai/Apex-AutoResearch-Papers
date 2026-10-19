@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df268076a45e91f70a8e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops westd 34887 fix hf cache resubmit",
+  "task_key": "worker_ops_westd-34887-fix-hf-cache-resubmit_20260518T090523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-34887-fix-hf-cache-resubmit_20260518T090523_result.json",
+    "occurrence": 1,
+    "bytes": 390,
+    "sha256": "1e55831d46a31e68f686222c58961d4872e473d9a8dbccbed99077f5e8b01e69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部正常：\n\n- **cuda:0** (PID 15057): kl_comp_30pct_s42_eval — 49GB 显存，98% GPU 利用率，正在跑 arc_challenge\n- **cuda:1** (PID 15367): kl50_s42_uniform_eval — 42GB 显存，正在跑 arc_challenge\n- 两个日志都显示 \"Using the latest cached version\"，HF 离线缓存命中，无 ConnectionError\n- Registry 两个实验均已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-34887-fix-hf-cache-resubmit.md"
+}

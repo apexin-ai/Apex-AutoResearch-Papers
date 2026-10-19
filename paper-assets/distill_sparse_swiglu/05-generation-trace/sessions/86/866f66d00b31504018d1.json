@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "866f66d00b31504018d1",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "eval qwen14b kl30 gsm8k",
+  "task_key": "worker_eval_qwen14b_kl30_gsm8k_20260522T064413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_qwen14b_kl30_gsm8k_20260522T064413.jsonl",
+    "occurrence": 1,
+    "bytes": 171,
+    "sha256": "4f7f2058a32574b70a3647a6a3b79b60796b0ce7c1a5399076b6dcdf930078b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T06:44:24.727514+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_qwen14b_kl30_gsm8k_20260522T064413"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/eval-qwen14b-kl30-gsm8k.md"
+}

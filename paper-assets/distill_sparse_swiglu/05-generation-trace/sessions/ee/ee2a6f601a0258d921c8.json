@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee2a6f601a0258d921c8",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval perlayer kl 50 s42 boolq",
+  "task_key": "worker_eval_perlayer_kl_50_s42_boolq_20260522T070908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_perlayer_kl_50_s42_boolq_20260522T070908_result.json",
+    "occurrence": 1,
+    "bytes": 329,
+    "sha256": "f071f75e8bd7cd15996d3e2a414e262b73b907aa572d6a04cb467c92148d0159"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，汇总：\n\n| 项目 | 结果 |\n|------|------|\n| SCP | 成功，151,966,163 bytes (145MB)，源与目标一致 |\n| GPU | cuda:1（cuda:0 被占用，63GB） |\n| PID | 18485 |\n| 日志 | `~/runs/distill_sparse_swiglu/perlayer_kl_50_s42_boolq.log` |\n| 状态 | 模型加载中，正常启动 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-perlayer-kl-50-s42-boolq.md"
+}

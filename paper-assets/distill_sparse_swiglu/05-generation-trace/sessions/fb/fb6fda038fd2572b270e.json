@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "fb6fda038fd2572b270e",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "exp c1 ablation 30pct s456",
+  "task_key": "worker_exp_c1-ablation-30pct-s456_20260519T020814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_c1-ablation-30pct-s456_20260519T020814.log",
+    "occurrence": 1,
+    "bytes": 1075123,
+    "sha256": "8e89c5627b60071a02300fd5f57c8414116a5cbf72c66f7fc0410acbf8b0bcb6"
+  },
+  "statistics": {
+    "messages": 784,
+    "user_turns": 1,
+    "tool_calls": 291,
+    "roles": {
+      "log": 1,
+      "system": 14,
+      "record": 2,
+      "assistant": 182,
+      "tool_call": 291,
+      "tool_result": 291,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 759,
+      "chunks": [
+        {
+          "path": "fb6fda038fd2572b270e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fb6fda038fd2572b270e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fb6fda038fd2572b270e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "fb6fda038fd2572b270e-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "fb6fda038fd2572b270e-part-0005.json",
+          "message_count": 39
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "fb6fda038fd2572b270e-part-0005.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-c1-ablation-30pct-s456.md"
+}

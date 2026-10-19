@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "743cb9190463f99f48c5",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval collect llama70 results",
+  "task_key": "worker_eval_collect_llama70_results_20260517T021010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect_llama70_results_20260517T021010_result.json",
+    "occurrence": 1,
+    "bytes": 1006,
+    "sha256": "71fab30c4d4ae435eac057d1e45a4a19a3943995ab38de9c3b728b1664d87ea6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇报\n\n```\nKL teal_global 70% PPL = 18.5432\nTEAL vanilla 70% PPL  = 125.4204\n```\n\n### 与 registry 对比\n\n| 方法 | 本次结果 | Registry 值 | 差异 |\n|------|---------|-------------|------|\n| KL teal_global | 18.54 | 17.91 | +0.63 (偏高) |\n| TEAL vanilla | 125.42 | 100.11 | +25.31 (显著偏高) |\n\n两个值均高于 registry 记录。KL predictor 差异较小（+3.5%），TEAL vanilla baseline 差异显著（+25.2%）。\n\n### 额外 benchmark 指标\n\n| Task | KL teal_global | TEAL vanilla |\n|------|---------------|--------------|\n| ARC-Challenge acc_norm | 0.2474 | 0.2295 |\n| MMLU acc | 0.2670 | 0.2615 |\n\nKL predictor 在所有指标上优于 TEAL vanilla baseline，但两者在 ARC/MMLU 上均接近随机水平（70% sparsity 对下游任务破坏严重）。\n\nTEAL vanilla PPL 与 registry 差异大，可能原因：评估配置不同（seq_len、calibration_samples）或 registry 值来自不同 checkpoint/设置，需要排查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-llama70-results.md"
+}

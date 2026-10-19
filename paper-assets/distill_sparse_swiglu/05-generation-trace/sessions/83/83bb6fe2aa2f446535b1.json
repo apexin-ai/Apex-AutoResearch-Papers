@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83bb6fe2aa2f446535b1",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diagnose kl30 8b multiseed fail",
+  "task_key": "worker_diagnose_kl30_8b_multiseed_fail_20260518T010952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_kl30_8b_multiseed_fail_20260518T010952_result.json",
+    "occurrence": 1,
+    "bytes": 1099,
+    "sha256": "208bb560255d63591b36a60315744eada4d78cd33c725fe4174728b186ba48e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：实验没有失败，正在正常运行\n\n两个实验的状态报告有误。实际情况：\n\n### 训练（Phase 1）已成功完成\n| | s123 | s456 |\n|---|---|---|\n| 训练步数 | 1000/1000 | 1000/1000 |\n| 最终 sparsity | 0.300 | 0.300 |\n| WikiText-2 PPL | 8.9267 | 8.9614 |\n\n### 评估（Phase 2）正在进行\n两个 `benchmark_eval.py` 进程均在活跃运行：\n- GPU 0 (s123): PID 37184, 100% GPU util, 49GB VRAM\n- GPU 1 (s456): PID 37480, 100% GPU util, 49GB VRAM\n- 当前都在跑 MMLU loglikelihood（s123 进度约 75%，s456 约 64%）\n\n### 根因\nEXIT_CODE=1 的报告是**误报**。可能是监控系统在实验仍在运行时超时判定为失败（wall_clock ~46-47 min 时检查，但实验还没完成）。实际的 nohup 启动命令是 train + eval 两阶段串联，训练约 30 分钟完成后进入评估阶段，评估包含 4 个 benchmark（arc_challenge, winogrande, mmlu, gsm8k），MMLU 本身就很耗时。\n\n**无需任何修复，等评估自然跑完即可。** 日志末尾会输出 `ALL_DONE_OK` 表示成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-kl30-8b-multiseed-fail.md"
+}

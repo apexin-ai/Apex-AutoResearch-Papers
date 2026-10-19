@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e3bfb8dc95ad809cf47",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra check all evals status",
+  "task_key": "worker_infra_check_all_evals_status_20260517T171213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check_all_evals_status_20260517T171213_result.json",
+    "occurrence": 1,
+    "bytes": 1241,
+    "sha256": "f1a2489a43ca5c29d8672307d6f30ac46e05fb30f5e731100506761f445eabf5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个任务全部在运行中，无结果文件产出。汇总：\n\n```\nexp_id                      | status  | progress\n─────────────────────────────┼─────────┼──────────────────────────────────────────────\nqwen14b_kl30_s42            | running | PPL=7.6232 ✓; arc ✓; wino+mmlu ✓; gsm8k 49% (641/1319, ~2h left)\nqwen14b_bce30_s42_eval      | running | PPL=8.7634 ✓; arc ✓; wino+mmlu 70% (41125/58702, ~3min left); gsm8k 未开始 (~3.5h)\nqwen14b_teal30              | running | PPL=8.7332 ✓; arc ✓; wino+mmlu ✓; gsm8k 13% (169/1319, ~5.8h left)\ndownstream_teal30_baseline  | running | hellaswag 5% (1865/40168, ~35min left); piqa+boolq 未开始 (~30min)\n```\n\n备注：\n- **KL30 s42** (westd-34887 cuda:1): 最快，预计 ~2h 完成\n- **BCE30 s42** (westd-34887 cuda:0): MMLU 快完成，但 GSM8K 还要 ~3.5h\n- **teal30** (westd-41718 cuda:1): GSM8K 生成速度慢 (~18.4s/item vs 34887 的 ~10s/item)，预计 ~6h\n- **downstream baseline** (westd-41718 cuda:0): LLaMA-8B 上的 hellaswag/piqa/boolq，预计 ~1h 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-all-evals-status.md"
+}

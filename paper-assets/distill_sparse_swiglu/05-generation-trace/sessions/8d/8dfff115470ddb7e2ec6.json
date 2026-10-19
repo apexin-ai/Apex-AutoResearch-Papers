@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8dfff115470ddb7e2ec6",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh collect westd 41718 results",
+  "task_key": "worker_ssh_collect_westd_41718_results_20260520T132333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_collect_westd_41718_results_20260520T132333_result.json",
+    "occurrence": 1,
+    "bytes": 1665,
+    "sha256": "d6409c4632380afc975b9ae4dbafa7c194924d9265e9fef91ed9ef94782f5f5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-41718 实验结果汇总\n\n### GPU 状态\n\n| GPU | 型号 | 温度 | 功耗 | 显存 | 利用率 | 进程 |\n|-----|------|------|------|------|--------|------|\n| 0 | RTX PRO 6000 Blackwell | 29°C | 33W/600W | 0/97GB | 0% | 空闲 |\n| 1 | RTX PRO 6000 Blackwell | 79°C | 601W/600W | 64/97GB | 100% | PID 254228 |\n\nPython 进程仅 PID 254228 (c4_ood_downstream_kl30)。\n\n---\n\n### 1. BCE+STE (PID 249688) — **已完成** ✓\n\n配置：checkpoint=`bce_ste_s42`, sparsity_target=0.5, allocation=uniform\n\n| 指标 | 值 |\n|------|-----|\n| **model_level_sparsity** | 0.495 |\n| **PPL (WikiText-2)** | 60.54 |\n| **ARC-c (acc_norm)** | 0.2321 |\n| **WinoGrande (acc)** | 0.5185 |\n| **MMLU (acc)** | 0.2898 |\n| **GSM8K (exact_match)** | 0.0182 |\n| **HellaSwag (acc_norm)** | 0.3446 |\n| **PIQA (acc_norm)** | 0.6273 |\n\n完成时间：2026-05-20 19:53:20，耗时 4297.5s (~72min)\n\n---\n\n### 2. C4 OOD Downstream KL30 (PID 254228) — **运行中** ⏳\n\n配置：checkpoint=`kl_sparsity30_s42_v3`, sparsity_target=0.3, allocation=uniform, calibration=c4\n\n| 信息 | 值 |\n|------|-----|\n| **model_level_sparsity** | 0.295 |\n| **当前进度** | 20% (8145/40168 loglikelihood requests) |\n| **速度** | ~20.47 it/s |\n| **预计剩余** | ~26 min |\n| **已完成任务** | arc_challenge (样本已加载) |\n| **待完成** | winogrande, mmlu, gsm8k, hellaswag, piqa 的 loglikelihood 评估中 |\n\n此实验无 PPL 评估。之前独立跑的 C4 OOD PPL 结果 (`c4_ood_ppl.json`)：\n\n| 模型 | C4 OOD PPL |\n|------|-----------|\n| Dense | 9.21 |\n| KL predictor 50% | 18.40 |\n| TEAL vanilla 50% | 38.75 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-collect-westd-41718-results.md"
+}

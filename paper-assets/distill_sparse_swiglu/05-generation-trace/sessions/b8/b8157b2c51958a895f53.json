@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8157b2c51958a895f53",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis perlayer kl 30 s123 v4",
+  "task_key": "worker_analysis_perlayer_kl_30_s123_v4_20260521T190820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_perlayer_kl_30_s123_v4_20260521T190820_result.json",
+    "occurrence": 1,
+    "bytes": 945,
+    "sha256": "fb41baf9d9f1f5964a902aa1c4778100a499da1ba79382d4fe261c8d1844b634"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析结果\n\n**perlayer_kl_30_s123_v4** 训练正常完成，PPL 评估已出。\n\n### 训练\n- 10000 steps 完成，EXIT_CODE=0\n- avg_kl=0.0114, model-level sparsity=0.296\n- Checkpoint: `checkpoints/perlayer_kl_30_s123/predictor_perlayer_kl.pt`\n\n### PPL (WikiText-2, 30% uniform, TEAL global mask)\n**PPL = 9.0598**\n\n### 3-seed 汇总\n\n| Seed | PPL | Gap vs E2E (8.81) |\n|------|-----|-------------------|\n| s42  | 9.0568 | +0.247 (+2.8%) |\n| s123 | **9.0598** | +0.250 (+2.8%) |\n| s456 | 9.0282 | +0.218 (+2.5%) |\n| **Mean** | **9.0483** | **+0.238 (+2.7%)** |\n\n### 结论: **success** (hypothesis confirmed)\n\n3 个 seed 一致：per-layer KL 训练 PPL 在 9.03~9.06，均显著高于端到端 KL (8.81)。Mean gap = +0.238 (+2.7%)，跨 seed 标准差仅 0.017。Cross-layer gradient coupling 在端到端训练中提供稳定、可复现的 PPL 收益，可作为论文 C1 ablation 的因果证据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-perlayer-kl-30-s123-v4.md"
+}

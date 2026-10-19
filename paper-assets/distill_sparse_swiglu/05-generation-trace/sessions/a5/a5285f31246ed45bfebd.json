@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "a5285f31246ed45bfebd",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "ssh verify table4 eval commands",
+  "task_key": "worker_ssh_verify_table4_eval_commands_20260520T191142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_verify_table4_eval_commands_20260520T191142.jsonl",
+    "occurrence": 1,
+    "bytes": 187,
+    "sha256": "2e0d5eb4e9e3a06a9f70d86632d703be634f4c9d45b3a3ed1de09f1da07b6a3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T19:11:49.773692+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 5am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_verify_table4_eval_commands_20260520T191142"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-verify-table4-eval-commands.md"
+}

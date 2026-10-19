@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e478ceb6bfd3674ccd10",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra prep bce v3 s42 eval",
+  "task_key": "worker_infra_prep_bce_v3_s42_eval_20260518T010609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_prep_bce_v3_s42_eval_20260518T010609_result.json",
+    "occurrence": 1,
+    "bytes": 1106,
+    "sha256": "1d4d9d27ffcad6e842889ea8d04108d06f27e6f8352cace968582b0d4aa86e7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 项检查通过：\n\n| 检查项 | 状态 |\n|--------|------|\n| checkpoint 存在 | `predictor_bce.pt` 145MB, 2026-05-16 13:25 |\n| benchmark_eval import | OK |\n| wikitext 缓存 | OK |\n| arc_challenge 缓存 | OK (`allenai___ai2_arc`) |\n| winogrande 缓存 | OK (`allenai___winogrande`) |\n| mmlu 缓存 | OK (`cais___mmlu`) |\n| gsm8k 缓存 | OK (`openai___gsm8k`) |\n\n**就绪的提交命令：**\n\n```bash\ncd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id bce_isocompute_v3_s42 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/bce_isocompute_v3_s42/predictor_bce.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\n```\n\n按 C002 约束，实际提交时需用 `nohup` 包裹并重定向日志。等 14B eval 跑完释放 cuda:0 后即可提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-prep-bce-v3-s42-eval.md"
+}

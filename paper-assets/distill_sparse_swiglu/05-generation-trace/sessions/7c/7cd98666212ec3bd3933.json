@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "7cd98666212ec3bd3933",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "download mistral 7b retry",
+  "task_key": "worker_download_mistral-7b-retry_20260515T200519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_download_mistral-7b-retry_20260515T200519.log",
+    "occurrence": 1,
+    "bytes": 1428418,
+    "sha256": "fe4bbb0172f4c3b65fdd8244721b5652c6120a72da02e67817672538ade6696e"
+  },
+  "statistics": {
+    "messages": 1091,
+    "user_turns": 1,
+    "tool_calls": 439,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 203,
+      "tool_call": 439,
+      "tool_result": 439,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 798,
+      "chunks": [
+        {
+          "path": "7cd98666212ec3bd3933-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7cd98666212ec3bd3933-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7cd98666212ec3bd3933-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7cd98666212ec3bd3933-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "7cd98666212ec3bd3933-part-0005.json",
+          "message_count": 78
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 293,
+      "chunks": [
+        {
+          "path": "7cd98666212ec3bd3933-part-0005.json",
+          "message_count": 102
+        },
+        {
+          "path": "7cd98666212ec3bd3933-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "7cd98666212ec3bd3933-part-0007.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/download-mistral-7b-retry.md"
+}

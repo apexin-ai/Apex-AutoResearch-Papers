@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b98dd3ecde877f806e0",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops kl50 multiseed eval",
+  "task_key": "worker_ops_kl50-multiseed-eval_20260516T142647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kl50-multiseed-eval_20260516T142647_result.json",
+    "occurrence": 1,
+    "bytes": 79,
+    "sha256": "12f51562482273fd3d314808e9a91f16b4a7ab1ee93363121b6eeab2043f64d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval job 均已确认正常运行，等待完成即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kl50-multiseed-eval.md"
+}

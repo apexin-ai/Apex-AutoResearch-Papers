@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bd9bd4d6b4dbb37d9f5",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops server diagnostics",
+  "task_key": "worker_ops_server-diagnostics_20260516T052010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_server-diagnostics_20260516T052010_result.json",
+    "occurrence": 1,
+    "bytes": 1446,
+    "sha256": "d3d863e4063aa621cc263320a8c7e7446f7f3af3d44a2caf8a7036e44dd6343e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:0 已完全释放。诊断报告如下：\n\n---\n\n## 诊断报告 (2026-05-16 13:21 UTC)\n\n### 1. bench_dense (PID 207789) — **已死亡**\n- 启动后立即退出（exit code 2），参数错误：`--sparsity_mode dense` 不是有效选项（只接受 `per_token` / `teal_global`）\n- 应改用 `--dense` flag 而非 `--sparsity_mode dense`\n- **需要修复参数后重新启动**\n\n### 2. bench_mistral_kl50_s42 (PID 207957) — **已清理**\n- 父进程 207957 + 子进程 207962 均已 kill\n- kill 前状态：运行 9h16m，正在跑 MMLU loglikelihood（2273/58702, ~4%），距离完成还很远\n- cuda:0 显存已释放（0 MiB）\n\n### 3. bce_isocompute_v3_s42 (PID 205597/205598) — **正常运行中**\n- 运行时长：41h57m\n- 当前进度：**step 2400/2700**（89%），剩余 300 步\n- 速度：1.05s/step → **预计 ~5 分钟后完成**\n- 最新指标：loss=0.6359, bce=0.6349, sparsity=0.511, lr=3.25e-05\n- cuda:1 占用 90938 MiB，100% 利用率\n\n### 4. GPU 状态\n| GPU | 显存 | 利用率 | 温度 | 进程 |\n|-----|------|--------|------|------|\n| cuda:0 | **0 / 97887 MiB** | 100%→空闲 | 64°C | 无（已清理） |\n| cuda:1 | 90938 / 97887 MiB | 100% | 65°C | bce_v3 (205598) |\n\n### 待办\n- **bench_dense** 需修复参数（用 `--dense` 替代 `--sparsity_mode dense`），cuda:0 现已空闲可重跑\n- bench_dense registry 无需更新（从未成功运行）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-server-diagnostics.md"
+}

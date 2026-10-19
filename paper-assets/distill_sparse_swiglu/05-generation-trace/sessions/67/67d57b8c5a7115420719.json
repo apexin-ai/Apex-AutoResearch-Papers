@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "67d57b8c5a7115420719",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "analysis gradient snr constrained",
+  "task_key": "worker_analysis_gradient_snr_constrained_20260517T041834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_snr_constrained_20260517T041834.log",
+    "occurrence": 1,
+    "bytes": 994118,
+    "sha256": "5b4efd4bba6c7a5094560bd8bd9c75fc1a0f437f840e183bacd6e36021267d0d"
+  },
+  "statistics": {
+    "messages": 502,
+    "user_turns": 0,
+    "tool_calls": 206,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 86,
+      "tool_call": 206,
+      "tool_result": 206,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 502,
+      "chunks": [
+        {
+          "path": "67d57b8c5a7115420719-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "67d57b8c5a7115420719-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "67d57b8c5a7115420719-part-0003.json",
+          "message_count": 142
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-gradient-snr-constrained.md"
+}

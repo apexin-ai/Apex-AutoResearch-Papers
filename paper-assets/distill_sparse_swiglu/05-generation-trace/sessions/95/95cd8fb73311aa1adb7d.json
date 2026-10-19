@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95cd8fb73311aa1adb7d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check teal30 gsm8k status",
+  "task_key": "worker_ops_check_teal30_gsm8k_status_20260519T212835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_teal30_gsm8k_status_20260519T212835_result.json",
+    "occurrence": 1,
+    "bytes": 255,
+    "sha256": "fb087a9db68edeb52fd5c0e85b26ff17b6e45cf7cfefc06dfd4a0f4f71b76d87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态报告已写入 `task_context/teal30_gsm8k_status.md`。\n\n总结：实验正常运行，actual sparsity 0.293 符合目标，GSM8K generate_until 阶段 15%，预计还需约 4h 46min 完成。GPU 1 占用 37GB 显存，无报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-teal30-gsm8k-status.md"
+}

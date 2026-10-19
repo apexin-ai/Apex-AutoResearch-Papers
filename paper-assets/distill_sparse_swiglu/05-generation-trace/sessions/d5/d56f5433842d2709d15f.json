@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d56f5433842d2709d15f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code sparse inference benchmark",
+  "task_key": "worker_code_sparse-inference-benchmark_20260519T113305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sparse-inference-benchmark_20260519T113305_result.json",
+    "occurrence": 1,
+    "bytes": 1022,
+    "sha256": "4a29b0914eefb1aa2cd161b9d8d9e694d787a5e0fa1cf2b6f44d6dfd42377785"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Benchmark complete. Summary of results:\n\n**Key findings on RTX PRO 6000 Blackwell, LLaMA-3.1-8B, 30% sparsity:**\n\n| Config | Prefill (ms) | Decode (ms/tok) | Speedup |\n|--------|-------------|-----------------|---------|\n| Dense bs=1 | 116.6 | 14.48 | 1.000x |\n| Sparse 30% bs=1 | 125.1 | 15.23 | 0.932x / 0.950x |\n| Dense bs=8 | 1034.2 | 18.51 | 1.000x |\n| Sparse 30% bs=8 | 1105.3 | 19.31 | 0.936x / 0.959x |\n\n**Predictor overhead:** 2.5% of prefill, 6-8% of decode (very lightweight).\n\n**Why no speedup:** Zero-masking zeroes neurons but all matmuls still run full-size. The 5-7% slowdown is entirely predictor overhead. Gather-scatter (Python `index_select`) was tested but is 40% slower due to weight-copy overhead.\n\n**Theoretical with sparse CUDA kernels:** ~1.17x prefill, ~1.13x decode speedup possible (30% FFN reduction minus predictor overhead).\n\nResults JSON saved to `results/speedup_benchmark/speedup_results.json` on westd-41718, artifact registered as `art_20260519_10c6a7`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sparse-inference-benchmark.md"
+}

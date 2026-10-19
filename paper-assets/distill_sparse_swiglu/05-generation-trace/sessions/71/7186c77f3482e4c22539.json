@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7186c77f3482e4c22539",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_11_1779065407.md",
+  "task_key": "loop_11_1779065407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1779065407.md",
+    "occurrence": 1,
+    "bytes": 3927,
+    "sha256": "0dd388efdc186fb0c4a96a9aba0920875004e608f12ae786485820f124bccdfd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-18T00:48:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd-34887 cuda:0,1 + westd-41718 cuda:0,1，共 4 卡，其他设备号禁止使用\n- KL PPL 引用必须用 4-seed mean 12.00±0.07，禁用单 seed 最佳 11.91\n- TEAL 30% PPL = 8.98（曾有 D032 错误将 13.63 误标为 30%，已修正）\n- Mistral registry 数据疑似污染（D032），暂不在论文中引用 Mistral 具体数字除非重新验证\n- 50% uniform MMLU≈random，已验证不可修复，不要再尝试\n- 50% global 3-seed MMLU mean=27.8%±0.2%（D051 修正），旧值 38.07% 是错误 checkpoint\n- WANDB_MODE=offline（服务器无 wandb API key）\n- DDL: EMNLP 2026 ARR May = 2026-05-25（剩 7 天）\n\n### 2. 🖥️ 基础设施快照\n- **westd-34887**: 2×RTX PRO 6000 Blackwell, conda base, `/root/miniconda3/bin/python`\n- **westd-41718**: 2×RTX PRO 6000 Blackwell 97GB each, PyTorch 2.8.0+cu128, `/root/miniconda3/bin/python`\n- 工作目录: `/root/distill_sparse_swiglu/`\n- 模型路径: LLaMA-3.1-8B `/root/autodl-tmp/models/llama-3.1-8b/`, Mistral-7B `/root/autodl-tmp/models/mistral-7b/`, Qwen-2.5-14B `/root/autodl-tmp/models/qwen2.5-14b/`\n- Qwen-14B KL ckpt: `checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt`; BCE ckpt: `checkpoints/qwen14b_bce30_s42/predictor_bce.pt`\n- 活跃进程 (cron 监控中，Loop #11 reconcile 全部确认 alive):\n  - qwen14b_teal30_eval: PID 6896, westd-41718 cuda:1\n  - qwen14b_bce30_s42_eval: PID 59122, westd-34887 cuda:0\n  - qwen14b_dense_baseline: PID 18845, westd-41718 cuda:0\n  - bce_isocompute_v3_s456_eval: PID 69504, westd-34887 cuda:1\n\n### 3. 📊 当前状态\n**刚完成**: Session start 初始化 + Worker 结果处理 + Director 汇报。Worker `worker_infra_collect_all_running_eval_results` 已 done（20:43 UTC），采集了 4 个 eval 的中间 PPL：\n- qwen14b_dense: 5.1854 | qwen14b_teal30: 8.7332 | qwen14b_bce30: 8.7634 | bce_isocompute_v3_s456: 28.3503\n- 所有 eval 都在跑 GSM8K generate_until（最后 task），bce_isocompute_v3_s456 当时 90% 应该快完了\n\n**RUNNING**: 4 个 eval（见上），全部 cron 监控中。无 Worker 在跑。\n\n**等待**: cron 回调（实验完成）+ Director 对汇报的回复。\n\n### 4. 📋 待办（条件触发式）\n- bce_isocompute_v3_s456_eval cron 回调 → 合并 s42/s456 结果计算 BCE 50% 2-seed mean±std，若还需 s123 则在空出的 34887:1 上提交 bce_isocompute_v3_s123\n- qwen14b_dense_baseline + qwen14b_bce30_s42_eval + qwen14b_teal30_eval 三个 cron 回调 → 汇总 cross-arch table（Dense/KL/BCE/TEAL 四行 × PPL+ARC+WG+MMLU+GSM8K），与 8B degradation ratio 对比，写入论文 experiments.tex cross-arch subsection\n- 所有 Qwen-14B eval + BCE 3-seed 完成 → 论文数据完整 → 提交 Round 2 review（需 Director 批准）\n- 任何 GPU 空出 → 优先: bce_isocompute_v3_s123（如需）或 C4 OOD eval\n\n### 5. 🎯 战略上下文\n- **核心结论**: KL distillation >> BCE/TEAL，机制是 output distribution fidelity 而非 per-neuron accuracy。30% 安全区，50% phase transition 临界点。Uniform allocation 的价值是 variance reduction（非 starvation fix）。\n- **决策链**: D047 Round 3 reframe（PPL-Downstream Disconnect 叙事），D050 allocation narrative 定稿（variance reduction only），D051 50% s123 数据修正\n- **论文状态**: 7/10，文本已收敛。Cross-arch (Qwen-14B) 是最后一块拼图。\n- **易错点**:\n  - 14B 上 KL vs BCE gap (~15%) 远小于 8B (~91%)——论文叙事必须承认 scale 效应，不能照搬 8B 结论\n  - Qwen-14B KL 已知 PPL=7.62（eval 已完成），但 downstream 在 qwen14b_kl30_s42_eval 里（已 DONE，metrics 在 registry）\n  - bce_isocompute_v3_s456_eval 是 LLaMA-8B 50% BCE 的 multi-seed（不是 Qwen-14B），别混淆\n  - 训练 log 中 `sparsity` 列是 training-time diagnostic，不是推理 sparsity\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1779065407.md"
+}

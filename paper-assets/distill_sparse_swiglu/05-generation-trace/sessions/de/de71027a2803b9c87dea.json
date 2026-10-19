@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de71027a2803b9c87dea",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh install tmux",
+  "task_key": "worker_ssh_install-tmux_20260515T115614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_install-tmux_20260515T115614_result.json",
+    "occurrence": 1,
+    "bytes": 92,
+    "sha256": "b4c66612e6d39160c1fa257e2b53d9838a60782e57059aa35cd0e25f335af0f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux 3.2a 已安装，路径 `/usr/bin/tmux`。训练提交不再被阻塞。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-install-tmux.md"
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "caae0f2df5dd9a7a7b7d",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "ops w1 results collection",
+  "task_key": "worker_ops_w1-results-collection_20260516T225911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_w1-results-collection_20260516T225911.log",
+    "occurrence": 1,
+    "bytes": 1271757,
+    "sha256": "c934165e807c263b67c67bfd848132fdfa453d8dbef1c6e55c5023d021bc60a2"
+  },
+  "statistics": {
+    "messages": 870,
+    "user_turns": 1,
+    "tool_calls": 358,
+    "roles": {
+      "log": 1,
+      "system": 18,
+      "record": 1,
+      "assistant": 132,
+      "tool_call": 358,
+      "tool_result": 358,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 718,
+      "chunks": [
+        {
+          "path": "caae0f2df5dd9a7a7b7d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "caae0f2df5dd9a7a7b7d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "caae0f2df5dd9a7a7b7d-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "caae0f2df5dd9a7a7b7d-part-0004.json",
+          "message_count": 178
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 152,
+      "chunks": [
+        {
+          "path": "caae0f2df5dd9a7a7b7d-part-0004.json",
+          "message_count": 2
+        },
+        {
+          "path": "caae0f2df5dd9a7a7b7d-part-0005.json",
+          "message_count": 150
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-w1-results-collection.md"
+}

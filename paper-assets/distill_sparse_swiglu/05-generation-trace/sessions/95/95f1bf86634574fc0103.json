@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "95f1bf86634574fc0103",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "debug d017 teal normalization",
+  "task_key": "worker_debug_d017_teal_normalization_20260515T222817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_d017_teal_normalization_20260515T222817.log",
+    "occurrence": 1,
+    "bytes": 974178,
+    "sha256": "e96634253e4ec4e5b5fbcb8915768260d21b92c59e90be7c103bdb82c9c1b3a8"
+  },
+  "statistics": {
+    "messages": 468,
+    "user_turns": 0,
+    "tool_calls": 182,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 99,
+      "tool_call": 182,
+      "tool_result": 182,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 468,
+      "chunks": [
+        {
+          "path": "95f1bf86634574fc0103-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "95f1bf86634574fc0103-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "95f1bf86634574fc0103-part-0003.json",
+          "message_count": 108
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/debug-d017-teal-normalization.md"
+}

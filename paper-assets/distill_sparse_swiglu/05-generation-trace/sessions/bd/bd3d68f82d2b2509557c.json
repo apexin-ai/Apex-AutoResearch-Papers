@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd3d68f82d2b2509557c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh check all servers status 20260520",
+  "task_key": "worker_ssh_check_all_servers_status_20260520_20260520T190019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_all_servers_status_20260520_20260520T190019_result.json",
+    "occurrence": 1,
+    "bytes": 1079,
+    "sha256": "b51a9322589568e2d5518e45a9f23433ff4f64eb8a8d15b1164e03fdf0e1f169"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-34887\n\n**GPU**: cuda:0 占用 48GB/97GB（100% util），cuda:1 空闲\n\n**运行中进程**:\n- `mse50_s123` (PID 235955) — `train_perlayer_mse.py`，**仍在训练阶段**，step 280/1000，~0.9s/step\n  - 进展：sparsity 已从 0.406 收敛到 0.086（lambda=1000 在压稀疏度），mse 已降到 0.000033\n  - 预计还需 ~11 分钟训完，之后进入 7-task eval（30-60 分钟）\n  - tmux session `mse50_s123` 存活（C002 合规）\n\n**已完成（PID 已消失）**:\n- 133906 (qwen14b_teal30_uniform_gsm8k) — 日志 5/20 10:02 截止\n- 115174 (qwen14b_teal275_uniform_eval_v3) — 5/19 22:26 截止\n- 114094 (qwen14b_kl30_s42_eval_uniform_v3) — 5/19 23:54 截止\n\n## westd-41718\n\n**GPU**: cuda:0/cuda:1 均空闲（0 MiB）\n\n**运行中进程**: 无（仅基础服务进程）\n\n**已完成**:\n- 152255 (qwen14b_teal30_uniform_hspiqa_v2) — 日志 5/19 23:25 截止\n\n## mse50_s123 metrics\n\n**尚未完成** — 当前在训练 step 280/1000，未进入 benchmark_eval 阶段。下次检查建议 ~45 分钟后。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-all-servers-status-20260520.md"
+}

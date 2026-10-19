@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edf8ea7ede742576502e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops collect 14b results and status",
+  "task_key": "worker_ops_collect_14b_results_and_status_20260520T035003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect_14b_results_and_status_20260520T035003_result.json",
+    "occurrence": 1,
+    "bytes": 466,
+    "sha256": "42945d11f97c4e94f36a9bfad7fc68f9183196cb1ef856fd9606d99c236c7aad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n14B TEAL global: [完成] HS=0.7051 PIQA=0.7470\n14B BCE global:  [完成] HS=0.5343 PIQA=0.6828\nMSE 50% train:   [完成] step 1000/1000, loss=0.0083, sparsity=0.539, checkpoint已保存 (152MB)\nMSE 30% eval:    [运行中] arc_challenge 进行中 (525/1172, ~45%)\n```\n\n关键发现：BCE global 的 HS/PIQA 大幅低于 TEAL global（HS 差 17pp, PIQA 差 6.4pp），说明 BCE predictor 在 global_topk allocation 下表现严重退化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-14b-results-and-status.md"
+}

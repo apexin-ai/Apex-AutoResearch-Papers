@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8486d8a56c4a237ce9a1",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops bce 3lr eval now",
+  "task_key": "worker_ops_bce-3lr-eval-now_20260516T203844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bce-3lr-eval-now_20260516T203844_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "9c0307cf03c8d658822b795ec480540dd5cd5873ee9f4282d8f4bab2b4d9bec2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 3 个 eval 成功完成。汇总结果：\n\n| LR | BCE Loss | Sparsity | WikiText-2 PPL | vs KL (11.79) |\n|----|----------|----------|---------------|---------------|\n| 1e-4 | 0.7158 | 0.514 | **42.99** | +31.20 (3.6× worse) |\n| 1e-3 | 0.6781 | 0.506 | **48.40** | +36.61 (4.1× worse) |\n| 3e-3 | 0.6632 | 0.504 | **38.02** | +26.23 (3.2× worse) |\n\n**结论：所有 BCE+Gumbel+Lagrangian PPL (38–48) 都远差于 KL baseline PPL=11.79。**\n\n- 最好的 BCE (LR=3e-3, PPL=38.02) 仍比 KL 差 3.2×\n- BCE loss 更低不等于 PPL 更好——LR=1e-3 的 BCE loss 最低之一但 PPL 最差\n- 这有力证明了 **loss function 本身（BCE vs KL）是关键差异因素**，而非框架/训练设置差异\n\n注意：LR=1e-4 的 model-level sparsity 为 0.469（所有层 0.500），而 LR=1e-3 有一层 (Layer 28) 为 0.000 导致 model-level 0.484。LR=3e-3 的 PPL 最优可能与其 sparsity 分布有关，需检查其 layer-wise 数据确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bce-3lr-eval-now.md"
+}

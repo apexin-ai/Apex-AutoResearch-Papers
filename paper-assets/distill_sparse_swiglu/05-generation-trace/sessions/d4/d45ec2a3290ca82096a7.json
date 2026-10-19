@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d45ec2a3290ca82096a7",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check teal v3 log",
+  "task_key": "worker_ops_check_teal_v3_log_20260519T202747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_teal_v3_log_20260519T202747_result.json",
+    "occurrence": 1,
+    "bytes": 606,
+    "sha256": "1e44bff58b8eee20f9e60fa5611fd05bfc19ceec7844d91d83feabcb265a423b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已在之前的 session 清除），无需处理。\n\n**总结：** `qwen14b_teal275_uniform_eval_v3` 成功完成，registry 已更新为 DONE/success。\n\n关键数据（Qwen-14B, TEAL@27.5% uniform）：\n\n| Metric | Value |\n|--------|-------|\n| WikiText-2 PPL | **7.7087** |\n| ARC-C acc_norm | **0.5700** |\n| WinoGrande acc | **0.7167** |\n| MMLU acc | **0.6738** |\n| GSM8K exact_match | **0.5709** |\n\n运行耗时约 5.8 小时（20789s），结果 JSON 在 `/root/distill_sparse_swiglu/results/benchmark/qwen14b_teal275_uniform_eval_v3/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-teal-v3-log.md"
+}

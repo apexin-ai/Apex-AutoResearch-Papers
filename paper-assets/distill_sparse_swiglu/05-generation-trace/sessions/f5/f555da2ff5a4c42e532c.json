@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f555da2ff5a4c42e532c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper prep 14b cross arch table",
+  "task_key": "worker_paper_prep_14b_cross_arch_table_20260518T001836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_prep_14b_cross_arch_table_20260518T001836_result.json",
+    "occurrence": 1,
+    "bytes": 1321,
+    "sha256": "d772e8ad319e9a8b9dc1b31f639166b030ae70b7cfca743d74e498e81af78108"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good. Now let me also check the `paper_framing.md` mention about the Dense PPL — the current text uses 5.19 consistently in the table (eval-time PPL), which matches the user's instruction. The old paragraph had \"dense PPL 5.18\" which I've now corrected to 5.19 in the table.\n\nLet me also check if there's a cross-reference issue — the `\\label{sec:cross_arch}` was on line 204 previously and the new `\\label{sec:14b}` is inside the same subsection, which is fine.\n\n**Status report:**\n\n**Current 14B coverage in the paper:**\n- Expanded from a 2-line paragraph + TODO into a full table (`tab:14b`) with all verified global top-k data (Dense, KL, TEAL, BCE) across 5 metrics.\n- Fixed dense PPL from 5.18 to 5.19 (eval-time value).\n- TEAL PPL correctly shown as 8.73 (not the previously misattributed 8.76).\n- BCE native sparsity collapse point retained as separate narrative (different eval mode than the table).\n\n**What to do when uniform results arrive:**\n1. Uncomment the `KL uniform` row in `tab:14b` (line 247) and fill in the numbers.\n2. If uniform shows better downstream stability (as at 8B), add a sentence noting this mirrors the budget-surplus regime finding.\n3. Consider whether uniform data warrants a second 14B row in `tab:phase` (Table 5) for the regime analysis section."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-prep-14b-cross-arch-table.md"
+}

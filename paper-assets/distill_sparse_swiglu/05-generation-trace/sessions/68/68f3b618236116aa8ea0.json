@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "68f3b618236116aa8ea0",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diagnose mvp kl s42",
+  "task_key": "worker_diagnose_mvp_kl_s42_20260515T115944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_mvp_kl_s42_20260515T115944_result.json",
+    "occurrence": 1,
+    "bytes": 1608,
+    "sha256": "3577fe1169fe4b5c5e4958518efa6639f346cb257b6f15443e752a63db0dd061"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。两个实验同一根因。\n\n```json\n{\"root_cause\":\"datasets.exceptions.DatasetNotFoundError: Dataset 'cerebras/SlimPajama-627B' doesn't exist on the Hub or cannot be accessed. (data_utils.py:36)\",\"error_type\":\"data\",\"fix_steps\":[\"将 data_utils.py 中 cerebras/SlimPajama-627B 替换为可用数据集（服务器 HF cache 已有 allenai/c4 和 wikitext，或用 DKYoon/SlimPajama-6B 等仍在线的子集）\",\"如果必须用原数据集，需配置 HF token（当前服务器无 token）并确认数据集是否变为 gated access\"],\"can_auto_fix\":true}\n```\n\n**细节**：\n- 模型加载正常（291 weights 全部加载完成），崩溃发生在 `get_slimpajama_loader()` 调用 `load_dataset(\"cerebras/SlimPajama-627B\", streaming=True)`\n- `cerebras/SlimPajama-627B` 已从 HuggingFace Hub 下架或改为需认证访问\n- 服务器无 HF token（`~/.cache/huggingface/token` 不存在）\n- 服务器 HF cache 中已有 `allenai/c4` 和 `wikitext`，可作为替代数据源"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "datasets.exceptions.DatasetNotFoundError: Dataset 'cerebras/SlimPajama-627B' doesn't exist on the Hub or cannot be accessed. (data_utils.py:36)",
+              "error_type": "data",
+              "fix_steps": [
+                "将 data_utils.py 中 cerebras/SlimPajama-627B 替换为可用数据集（服务器 HF cache 已有 allenai/c4 和 wikitext，或用 DKYoon/SlimPajama-6B 等仍在线的子集）",
+                "如果必须用原数据集，需配置 HF token（当前服务器无 token）并确认数据集是否变为 gated access"
+              ],
+              "can_auto_fix": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-mvp-kl-s42.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "cabacb4470cc87eb85b8",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "fix mistral registry backfill",
+  "task_key": "worker_fix_mistral_registry_backfill_20260517T114351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_mistral_registry_backfill_20260517T114351.log",
+    "occurrence": 1,
+    "bytes": 607889,
+    "sha256": "a8d8cb9003c7b11bfb1670609bee9e8bd7629229015c182295a86a7d91b87d4c"
+  },
+  "statistics": {
+    "messages": 222,
+    "user_turns": 0,
+    "tool_calls": 96,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 26,
+      "tool_call": 96,
+      "tool_result": 96,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 222,
+      "chunks": [
+        {
+          "path": "cabacb4470cc87eb85b8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "cabacb4470cc87eb85b8-part-0002.json",
+          "message_count": 42
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-mistral-registry-backfill.md"
+}

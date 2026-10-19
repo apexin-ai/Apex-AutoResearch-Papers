@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a7b6fa141ce5e3bd1bb",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis qwen14b bce30 s42",
+  "task_key": "worker_analysis_qwen14b_bce30_s42_20260517T155633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen14b_bce30_s42_20260517T155633_result.json",
+    "occurrence": 1,
+    "bytes": 1524,
+    "sha256": "1739ac228d49ec9e72dd62a3c16f538c104a09a212a6c5bf2e7021e47ad53828"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All results collected. Here's the summary:\n\n```\n=== qwen14b_bce30_s42 ===\nfinal_loss: 0.5561\nfinal_bce_loss: 0.5324\nactual_sparsity: 0.300 (model-level, TEAL global allocation)\nconstraint_satisfied: true\ntraining_steps: 1000\ncheckpoint_path: /root/distill_sparse_swiglu/checkpoints/qwen14b_bce30_s42/predictor_bce.pt\nppl_dense: 5.18\nppl_predictor_hard_mask: 5.57\nppl_teal_sparse: 8.76\ntraining_completed_normally: yes\nlog_tail (last 5 lines):\n  [Step 980/1000] loss=0.5563 bce=0.5326 reg=0.0237 sparsity=0.064 lr=1.22e-06\n  [Step 990/1000] loss=0.5571 bce=0.5334 reg=0.0237 sparsity=0.063 lr=3.05e-07\n  [Step 1000/1000] loss=0.5561 bce=0.5324 reg=0.0236 sparsity=0.064 lr=0.00e+00\n  BCE training complete: 1000 steps in 424.2s (0.42s/step)\n  Saved checkpoint -> checkpoints/qwen14b_bce30_s42/predictor_bce.pt\n\n=== kl30_s456_uniform_eval ===\nwikitext2_ppl: 8.7947\narc_challenge_acc_norm: 0.4505\nwinogrande_acc: 0.6875\nmmlu_acc: 0.4198\ngsm8k_exact_match: 0.0758\nactual_sparsity: 0.301 (uniform per-layer, all 32 layers identical)\n```\n\n**Notes:**\n- qwen14b training log 中 `sparsity` 列 (~0.064) 是训练过程中 predictor 的 regularization diagnostic，不是实际推理 sparsity。实际 TEAL global mask 在 eval 时确认为 model-level 0.300。\n- Qwen-14B 使用非均匀分配：早期层高 sparsity (Layer 1: 0.917)，中间层低 (Layer 14: 0.078)，后期层递增 (Layer 47: 0.808)。\n- kl30_s456_uniform_eval 使用 uniform 分配，所有 32 层均为 0.301。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen14b-bce30-s42.md"
+}

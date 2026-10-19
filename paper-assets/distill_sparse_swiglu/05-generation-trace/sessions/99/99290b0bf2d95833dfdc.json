@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99290b0bf2d95833dfdc",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval jsd reverseKL c4 ood",
+  "task_key": "worker_eval_jsd_reverseKL_c4_ood_20260517T080825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_jsd_reverseKL_c4_ood_20260517T080825_result.json",
+    "occurrence": 1,
+    "bytes": 535,
+    "sha256": "6305d9cc9a49b99239d91d008bf138ef6212abf13d42ab966a94fd2810c927af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个评估均完成。C4 validation (OOD) PPL 结果汇总：\n\n| Condition | C4 PPL | Δ vs Dense |\n|---|---|---|\n| Dense | 9.21 | baseline |\n| **Forward KL** | **18.40** | **+99.8%** |\n| **Reverse KL** | **19.93** | **+116.4%** |\n| **JSD** | **26.16** | **+184.0%** |\n| TEAL | 38.75 | +320.8% |\n\n排序：Forward KL > Reverse KL > JSD > TEAL。Forward KL 在 OOD 上泛化最好，JSD 退化较严重但仍大幅优于 TEAL。这与 in-distribution 的趋势一致，Forward KL 的 OOD 优势更加显著。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-jsd-reversekl-c4-ood.md"
+}

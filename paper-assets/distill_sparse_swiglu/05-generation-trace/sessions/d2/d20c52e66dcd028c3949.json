@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d20c52e66dcd028c3949",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops read s456 eval results",
+  "task_key": "worker_ops_read-s456-eval-results_20260519T124947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_read-s456-eval-results_20260519T124947_result.json",
+    "occurrence": 1,
+    "bytes": 684,
+    "sha256": "b8fe64717b2b43cac3785304b899f34776ecb9a9f74ba308f81e5712d50b80e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Qwen-14B KL 30% s456 eval_v2 完整结果\n\n| 指标 | 值 |\n|---|---|\n| **WikiText-2 PPL** | **7.6933** |\n| ARC-Challenge acc | 0.5051 |\n| ARC-Challenge acc_norm | 0.5324 |\n| WinoGrande acc | 0.7230 |\n| HellaSwag acc | 0.5197 |\n| HellaSwag acc_norm | 0.7113 |\n| PIQA acc | 0.7421 |\n| PIQA acc_norm | 0.7552 |\n| MMLU acc | 0.6411 |\n\n配置：sparsity_target=0.3, uniform allocation, bottleneck_size=128, seq_len=2048, batch_size=8。时间戳 2026-05-19 19:21:35。\n\n## s123 eval 状态\n\n- `s123_eval_v4` 目录已创建但为空（可能正在运行或刚启动）\n- `s123_eval_v3` 也没有 results.json\n- 尚无可用的 s123 最新完整结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-read-s456-eval-results.md"
+}

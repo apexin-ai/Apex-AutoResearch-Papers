@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b82920ff20458fcce072",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval mistral downstream submit v2",
+  "task_key": "worker_eval_mistral_downstream_submit_v2_20260515T232850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mistral_downstream_submit_v2_20260515T232850_result.json",
+    "occurrence": 1,
+    "bytes": 147,
+    "sha256": "726e9d66604a72ba3e11d727f53e4f5e2cacb78ff05ab30772a10bc6a0e7842b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台等待脚本已在服务器上运行。2 分钟后回来检查 dense eval 是否完成，完成后立即提交 Mistral eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mistral-downstream-submit-v2.md"
+}

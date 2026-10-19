@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac658cf7eaf63c002d1d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper research",
+  "task_key": "worker_paper_research_20260516T083800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_20260516T083800_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "ecf910a7f28c909e38515b9d9a351958e635f3408a7ea573e0d6a424301a4f1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已追加 2 篇论文到 literature_map.yaml：\n\n1. **PowerInfer** (SOSP 2024, 2312.12456) — GPU-CPU 混合推理利用 activation sparsity 的开创工作。建立 neuron activation power-law 分布假设，adaptive predictor 为高稀疏层构建更小预测网络。\n2. **Polar Sparsity** (NeurIPS 2025, 2505.14884) — 揭示 MLP contextual sparsity 在 batch 场景下的扩展性瓶颈（active neuron 并集趋近 dense），attention head sparsity 是 batch-invariant 的。对我们工作的适用范围定位有直接意义。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-copy-2.md"
+}

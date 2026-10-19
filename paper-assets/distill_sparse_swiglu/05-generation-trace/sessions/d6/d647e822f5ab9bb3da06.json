@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "d647e822f5ab9bb3da06",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "check k4 pipelines status",
+  "task_key": "worker_check_k4_pipelines_status_20260522T150918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_check_k4_pipelines_status_20260522T150918.jsonl",
+    "occurrence": 1,
+    "bytes": 173,
+    "sha256": "9d2ba2e197e2679fa3dd8a744bd3d4a068507acce8dcb12b83580566e520d1d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T15:09:25.739218+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_k4_pipelines_status_20260522T150918"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/check-k4-pipelines-status.md"
+}

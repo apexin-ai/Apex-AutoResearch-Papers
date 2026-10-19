@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1d27474e0af08a502d9",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops crosscheck 70pct and cleanup",
+  "task_key": "worker_ops_crosscheck_70pct_and_cleanup_20260515T225914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_crosscheck_70pct_and_cleanup_20260515T225914_result.json",
+    "occurrence": 1,
+    "bytes": 1295,
+    "sha256": "5e4cfa3f402e076ded7715dee9e6f3bcdc4aab1546de06891252d68cb680a8ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 171565 是另一个 Worker 刚启动的 `kl_s42` lm_eval 评估（44 秒前），合法进程。\n\n---\n\n## 报告\n\n### 1. P0-C 结论：kl_sparsity70_s42_v2 sparsity_target 正确，数据点有效\n\n- **predictor_hard_mask_ppl (13.84)**：`patch_predictor()` 用 `(_pred(x) > 0)` 硬阈值生成 mask，不使用 `--sparsity_target` 参数。`model_level_sparsity=0.699` 确认 predictor 自然达到 ~70% 稀疏度。\n- **teal_sparse_ppl (17.91)**：`plan_007_all_ppl_fixed.json` 明确标注 sparsity70 使用了单独的 70% target（mode=`static_mask_70pct`）。旧值 136K 是 `_global_topk_masks` 归一化 bug，已修复。\n- **结论：无需重跑。**\n\n### 2. 清理结果\n\n- **PID 169864**（dry run arc_challenge → /tmp/dryrun_test）：已自行退出，无需手动 kill\n- **PID 163723**（lm_eval dense，11h）：保留，正在跑 MMLU tokenization\n- 无卡死进程需要清理\n\n### 3. 当前 GPU 状态\n\n| GPU | PID | 任务 | 显存 | Util |\n|-----|-----|------|------|------|\n| cuda:0 | 171565 | `kl_s42` lm_eval（刚启动 44s） | 18318MiB/97887MiB | 0% (loading) |\n| cuda:1 | 163723 | `dense` lm_eval（11h, MMLU tokenizing） | 20831MiB/97887MiB | 0% (CPU-bound) |\n\n两张 GPU 都在执行合法的 lm_eval 评估任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-crosscheck-70pct-and-cleanup.md"
+}

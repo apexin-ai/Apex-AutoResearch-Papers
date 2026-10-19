@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "71ea7a52386c0c28e6b7",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "code c1 ablation bce kl targets",
+  "task_key": "worker_code_c1-ablation-bce-kl-targets_20260518T144952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_c1-ablation-bce-kl-targets_20260518T144952.log",
+    "occurrence": 1,
+    "bytes": 605380,
+    "sha256": "9b936a847ccd62791a225edebd24d8f8e3b47c6be1e2da4c319285babb55b714"
+  },
+  "statistics": {
+    "messages": 155,
+    "user_turns": 0,
+    "tool_calls": 56,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 56,
+      "tool_result": 56,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 155,
+      "chunks": [
+        {
+          "path": "71ea7a52386c0c28e6b7-part-0001.json",
+          "message_count": 149
+        },
+        {
+          "path": "71ea7a52386c0c28e6b7-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-c1-ablation-bce-kl-targets.md"
+}

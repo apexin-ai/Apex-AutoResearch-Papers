@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bd715153623f66f4ad9",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "train perlayer kl k4 s456",
+  "task_key": "worker_train_perlayer_kl_k4_s456_20260522T133458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_perlayer_kl_k4_s456_20260522T133458_result.json",
+    "occurrence": 1,
+    "bytes": 365,
+    "sha256": "77fa32bcda3ab39eb979e1d1a9fe07207b107b3b31ef09229030b4c59caf2fef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Submitted: `perlayer_kl_k4_s456` on westd-34887 cuda:1 (PID 59021, tmux session `perlayer_kl_k4_s456`, log `~/runs/distill_sparse_swiglu/perlayer_kl_k4_s456.log`). Pipeline mirrors s42 (2700 steps, save_every=500, gradient_checkpointing, output_dir=checkpoints/perlayer_kl_k4_s456) then runs PPL → 7-task downstream → per-layer sparsity analysis."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-perlayer-kl-k4-s456.md"
+}

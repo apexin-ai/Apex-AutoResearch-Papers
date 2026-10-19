@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e26bcff655f3c51a1793",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops run latency benchmark now",
+  "task_key": "worker_ops_run-latency-benchmark-now_20260516T144455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_run-latency-benchmark-now_20260516T144455_result.json",
+    "occurrence": 1,
+    "bytes": 161,
+    "sha256": "1f84719c277388ce6a3286a841b46d715d251edaf63586e680bb40a18a2bff58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Benchmark 正在运行中（PID=243661）。模型加载已完成约 100%，即将进入 warmup 和 timing 阶段。90 秒后回来检查结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-run-latency-benchmark-now.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a32b9377986358f24af4",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval extract uniform intermediate",
+  "task_key": "worker_eval_extract_uniform_intermediate_20260518T001238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_extract_uniform_intermediate_20260518T001238_result.json",
+    "occurrence": 1,
+    "bytes": 1510,
+    "sha256": "0caff1f4fee51c796ef7f3897171d83f9ae44fe6f119a656382ed9d145537992"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both experiments confirmed running but intermediate results cannot be extracted. Here's the situation:\n\n```\n== qwen14b_kl30_uniform_eval ==\n进程状态: 运行中 PID 79839 (cuda:0, 93987 MiB)\nwikitext2_ppl: 不可提取 (在进程内存中，未刷新到日志)\narc_challenge_acc_norm: 不可提取\nwinogrande_acc: 不可提取\nmmlu_acc: 不可提取\ngsm8k_exact_match: 进行中 23% (297/1319), ~10s/item\nper_layer_sparsity: 均匀 0.300\n\n== qwen14b_teal30_uniform_eval ==\n进程状态: 运行中 PID 80810 (cuda:1, 61665 MiB)\nwikitext2_ppl: 不可提取\narc_challenge_acc_norm: 不可提取\nwinogrande_acc: 不可提取\nmmlu_acc: 不可提取\ngsm8k_exact_match: 进行中 14% (185/1319), ~15s/item\nper_layer_sparsity: 均匀 0.300\n```\n\n**根因**：`benchmark_eval.py` 把所有 lm-eval 任务按 fewshot 分组，但结果统一在 `run_lm_eval_tasks()` 返回后才 `print` 和写 JSON。所以尽管 PPL/ARC/WG/MMLU 已经计算完毕（存在进程内存中），日志和 results.json 都为空。stdout 的 print 输出也未刷新到日志（只有 tqdm stderr 写入了日志）。\n\n**预计完成时间**：\n- KL eval: ~2.5-3 小时\n- TEAL eval: ~4-5 小时\n\n**可选方案**：\n1. **等待自然完成**（最安全）\n2. **用 gdb attach 进程提取内存中的中间结果**（有崩溃风险，可能丢失数小时计算）\n3. **在另一台机器上跑一次仅 PPL+ARC+WG+MMLU 的快速评估**（无 GSM8K，~40min）\n\n你想怎么处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-extract-uniform-intermediate.md"
+}

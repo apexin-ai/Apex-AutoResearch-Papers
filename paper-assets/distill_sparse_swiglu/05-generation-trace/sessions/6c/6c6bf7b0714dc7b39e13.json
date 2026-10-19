@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c6bf7b0714dc7b39e13",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh check revkl mse status 20260520",
+  "task_key": "worker_ssh_check_revkl_mse_status_20260520_20260520T205750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_revkl_mse_status_20260520_20260520T205750_result.json",
+    "occurrence": 1,
+    "bytes": 1292,
+    "sha256": "eb128b6384903e16649d81fe0c208d17bbe6f968662c116f7519e264b838e92d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== westd-41718: RevKL 30% uniform ===\nStatus: RUNNING (both on HellaSwag, competing for GPU 0)\nPID 279686 (nohup): alive, 1h11m elapsed\nPID 280143 (tmux):  alive, 1h08m elapsed\n\nPartial results:\n  PPL: 9.3081  (both processes agree)\n\nProgress:\n  Completed tasks: wikitext2, arc_challenge, winogrande+mmlu, gsm8k\n  Current task: hellaswag (loglikelihood)\n    PID 279686: 3673/40168 = 9.1%, ~8.65 it/s, ETA ~70 min\n    PID 280143:  489/40168 = 1.2%, ~8.25 it/s, ETA ~80 min\n  Remaining: piqa\n\n⚠️ 两个进程抢同一个 GPU 0，互相拖慢。速度只有正常的一半（~8 it/s vs 正常 ~18 it/s）。\n建议 kill 其中一个，预计 HellaSwag + PIQA 还需 ~40-50 min（单进程）。\n\n=== westd-34887: MSE 50% s123 eval retry ===\nStatus: RUNNING\nPID 240870: alive, 4m elapsed\n\nPartial results:\n  PPL: 15789.6426  ⚠️⚠️⚠️\n\nProgress:\n  Completed tasks: wikitext2, arc_challenge\n  Current task: winogrande + mmlu (just started)\n  Remaining: gsm8k, hellaswag, piqa\n\n⚠️ PPL=15789 基本等于随机输出，checkpoint 有严重问题。\n日志显示 layers 17-19, 22, 26-28 的 sparsity 严重偏离 target（0.255~0.381 vs target 0.500）。\n下游指标大概率也会崩。是否要提前 kill 节省时间？\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-revkl-mse-status-20260520.md"
+}

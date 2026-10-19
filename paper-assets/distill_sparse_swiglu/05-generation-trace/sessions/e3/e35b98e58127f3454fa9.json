@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e35b98e58127f3454fa9",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval kl only s0 fix",
+  "task_key": "worker_eval_kl_only_s0_fix_20260515T181049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_kl_only_s0_fix_20260515T181049_result.json",
+    "occurrence": 1,
+    "bytes": 1012,
+    "sha256": "01f48b636a243c136415fac687456f12e45b6129ece9c98214e7d8b3bc630447"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新（status/conclusion/checkpoint_path/log_path 已正确设置，无需重复更新）。\n\n## kl_only_s0 评估结果 (seq_len=2048, WikiText-2)\n\n| 指标 | 值 |\n|------|-----|\n| true_dense_ppl | 6.12 |\n| predictor_hard_mask_ppl | 9.19 |\n| teal_sparse_ppl | 12.03 |\n| model_level_sparsity | 0.499 |\n| ppl_increase_vs_true_dense_pct | 96.6% |\n\n## 5-seed 对比表 (KL normalized v3, seq_len=2048)\n\n| Metric | s0 | s1 | s42 | s123 | s456 | Mean ± Std |\n|--------|-----|-----|------|------|------|------------|\n| true_dense_ppl | 6.12 | 6.12 | 6.12 | 6.12 | 6.12 | 6.12 ± 0.00 |\n| hard_mask_ppl | 9.19 | 9.15 | 9.21 | 9.25 | 9.14 | 9.19 ± 0.04 |\n| teal_sparse_ppl | 12.03 | 11.99 | 12.08 | 11.91 | **13.58** | 12.32 ± 0.71 |\n| sparsity | 0.499 | 0.498 | 0.498 | 0.498 | 0.498 | 0.498 |\n| ppl_inc_vs_dense | 96.6% | 95.9% | 97.4% | 94.7% | **121.9%** | 101.3% |\n\n4-seed (排除 s456 异常值): teal_sparse_ppl = **12.00 ± 0.07**，s0 在正常聚类内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-kl-only-s0-fix.md"
+}

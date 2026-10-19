@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "883297b7de42a9bd90a0",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval teal baseline rerun all sparsity",
+  "task_key": "worker_eval_teal_baseline_rerun_all_sparsity_20260515T234046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_teal_baseline_rerun_all_sparsity_20260515T234046_result.json",
+    "occurrence": 1,
+    "bytes": 1591,
+    "sha256": "51e45c486be20a57eb9b2a3a6c6bc3d4aded106483c6ed8ee90a6e7b26d835bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出汇总\n\n### 1. 三个 sparsity level 的 TEAL PPL（修复后，重跑确认）\n\n| Sparsity | Vanilla TEAL PPL | WINA PPL | Dense PPL |\n|----------|-----------------|----------|-----------|\n| 30% | **10.97** | 11.45 | 6.12 |\n| 50% | **23.31** | 27.93 | 6.12 |\n| 70% | **100.11** | 137.24 | 6.12 |\n\n### 2. 与旧值对比\n\n- **50% TEAL: 23.31 → 23.31**（完全一致，旧值正确）\n- **50% WINA: 27.93 → 27.93**（完全一致）\n- 30% 和 70% 无旧的 vanilla TEAL 数据\n\n### 3. KL vs TEAL gap（新数字）\n\n| Sparsity | KL Predictor PPL | Vanilla TEAL PPL | Gap (TEAL/KL) |\n|----------|-----------------|------------------|---------------|\n| ~28.5% | 8.98 | 10.97 | **1.22x** |\n| 50% | 12.00 ± 0.07 | 23.31 | **1.94x** |\n| 70% | 17.91 | 100.11 | **5.59x** |\n\n### 4. Claim 1 headline 影响评估\n\n**Claim 1 完全成立，且比预想更强。**\n\nReviewer 的疑虑基于混淆了两种不同方法：\n- **50% TEAL=23.31** 是 vanilla TEAL（training-free），normalization fix 前后数字一致，不是 inflated\n- **70% TEAL=17.91** 是 predictor-based TEAL（训练后的 KL predictor），不是 vanilla TEAL\n\nVanilla TEAL PPL 随 sparsity 单调递增（10.97 → 23.31 → 100.11），物理上完全合理。KL predictor 的优势随 sparsity 增加而急剧增大（1.22x → 1.94x → 5.59x），这说明训练的 predictor 在高稀疏度下价值更大。\n\n**论文表格需要明确区分 \"Vanilla TEAL (training-free)\" 和 \"Predictor TEAL (trained)\" 两列，避免 Reviewer 再次混淆。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-teal-baseline-rerun-all-sparsity.md"
+}

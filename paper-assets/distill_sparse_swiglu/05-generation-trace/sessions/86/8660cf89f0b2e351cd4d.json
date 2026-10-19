@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8660cf89f0b2e351cd4d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis teal kl overlap correction",
+  "task_key": "worker_analysis_teal_kl_overlap_correction_20260517T044656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_teal_kl_overlap_correction_20260517T044656_result.json",
+    "occurrence": 1,
+    "bytes": 947,
+    "sha256": "b9d636783023f29cc3bca8acb3aec276d0a5cada7d816418573e7d312da4940e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果摘要：\n\n**Null Baseline (Permutation Test)**\n| | KL-only-pruned | Random subset (null) |\n|---|---|---|\n| Mean \\|act\\| | 0.0596 | 0.0366 |\n| Z-score | 7260.3 | |\n| P-value | ≈ 0 | |\n\n**Percentile Rank Method**\n- Median: **78.6th** percentile (IQR: 64.4-89.1%)\n- KL-only-pruned neurons 系统性地位于 token 内 magnitude 分布的高位\n\n**Per-Layer**\n- 31/32 层在 p<0.001 下显著（empirical 1000 permutations 验证）\n- 唯一例外：Layer 31（最后一层），z=-186.5，KL-only neurons 反而 magnitude 更低\n- Percentile rank 范围：69.5%-87.5%\n\n**结论**：1.48x magnitude ratio 不是 selection bias artifact。KL distillation 确实系统性地 prune 了高 magnitude neurons（TEAL 会保留它们）。\n\n脚本：`/root/distill_sparse_swiglu/scripts/teal_kl_overlap_corrected.py`\n输出：`/root/distill_sparse_swiglu/artifacts/teal_kl_overlap_corrected.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-teal-kl-overlap-correction.md"
+}

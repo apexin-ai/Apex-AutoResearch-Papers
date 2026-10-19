@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4251de077336e0ae01c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops fix bce v2 registry",
+  "task_key": "worker_ops_fix_bce_v2_registry_20260515T201921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_bce_v2_registry_20260515T201921_result.json",
+    "occurrence": 1,
+    "bytes": 1943,
+    "sha256": "9c2c9d4e9a706bc3cbb9c80e84168a9d22d283f25725b6c30b9722ea9cc5cb87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### (1) PID 129187 完整命令\n```\npython src/train.py \\\n  --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b \\\n  --loss_type bce --num_steps 1000 --warmup_steps 100 \\\n  --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 42 \\\n  --sparsity_target 0.5 --sparsity_reg_weight 2.0 \\\n  --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/bce_isocompute_v2_s42 \\\n  --gradient_checkpointing --log_every 100 --save_every 250 \\\n  --wandb_run_name bce_isocompute_v2_s42\n```\n进程树：PID 129182 (bash wrapper) → 129186 (timeout 7200) → **129187** (python)，GPU 显存 90.7GB。\n\n### (2) reg_weight = **2.0** \n满足 Director 要求（≥0.2）。注意这比旧版大幅提高（之前默认可能是 0.1），且 num_steps 从 2700 改为 **1000**（iso-compute 策略变了：不再是 FLOPs 匹配 2700 步，而是同步数 1000 步 + 高 reg_weight 逼 sparsity 到 0.5）。\n\n### (3) 当前训练进度\n| 指标 | 值 |\n|------|-----|\n| 进度 | Step 200/1000 (20%) |\n| loss | 0.6802 |\n| bce | 0.6652 |\n| reg | 0.0171 |\n| **sparsity** | **0.501** (已收敛到 target 0.5) |\n| 速度 | 1.05 s/step |\n| 预计剩余 | ~14 min |\n\nSparsity 趋势良好：Step 100 = 0.502, Step 200 = 0.501，reg_weight=2.0 有效地将 sparsity 锁定在 target 附近。\n\n### (4) 日志路径\n`~/runs/distill_sparse_swiglu/bce_isocompute_v2_s42.log`\n\n### (5) Registry 更新\n- **PID/log_path**：registry 中已有 PID 129182（bash wrapper，正确）和正确日志路径，无需更新\n- **Status**：当前为 ANALYZING，state machine 不允许回退到 RUNNING，已在 notes 中标注实际仍在训练\n- **Notes**：已更新，记录进程树、训练进度、状态说明\n\n### 异常说明\n用户提到的 PID 127703 已死（介于旧 PID 125967 和当前 129187 之间），可能是中间一次短命的重启。当前运行是第三次提交，状态正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-bce-v2-registry.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec0d9056789170ed7d74",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops mask vis 64samples 50pct",
+  "task_key": "worker_ops_mask-vis-64samples-50pct_20260518T195924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mask-vis-64samples-50pct_20260518T195924_result.json",
+    "occurrence": 1,
+    "bytes": 1071,
+    "sha256": "86f77c3e04ccbc80d867f898946d17a91a90ceedcf0f5a1ae7b8f6829e316ff8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。50% sparsity + 64 samples 的 3 张可视化已生成。\n\n## 产出文件\n\n| 图 | PDF | PNG |\n|---|---|---|\n| 1. Mask divergence heatmap | `figures/mask_divergence_heatmap_50pct_64samples.pdf` | `.png` |\n| 2. Neuron scatter (Layer 16) | `figures/neuron_scatter_layer16_50pct_64samples.pdf` | `.png` |\n| 3. Mask comparison grid | `figures/mask_comparison_50pct_64samples.pdf` | `.png` |\n| Stats JSON | `figures/mask_stats_50pct_64samples.json` | |\n\n## 关键数值\n\n- **Mean Jaccard similarity: 0.3176 (31.8%)**\n- **Mean Jaccard distance: 0.6824 (68.2%)**\n- Neuron scatter disagree (Layer 16): 40.6%\n- Total tokens analyzed: 131,072 (64 samples x 2048 seq_len)\n- Jaccard range: 0.2483 (Layer 26) ~ 0.4766 (Layer 31)\n\n**注意**: 64 samples 下 Jaccard 均值 31.8% 与论文中引用的 47% 有显著差异。论文中写的 47% 可能来自之前 16 samples 或不同的计算口径（WikiText-2 eval set vs WikiText-103 calibration）。需要检查论文中 47% 的原始来源，考虑是否需要更新论文数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mask-vis-64samples-50pct.md"
+}

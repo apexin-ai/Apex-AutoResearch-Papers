@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d670310a1b569a6addca",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_3_1778896576.md",
+  "task_key": "loop_3_1778896576",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778896576.md",
+    "occurrence": 1,
+    "bytes": 4099,
+    "sha256": "3e54a0c54dcf50c7ab7a8674a8fe9fdf5bc92a37cd7b71b9604332ead350acb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-16T01:56:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 只能用 westd-34887 的 cuda:0 和 cuda:1**（constraints.yaml C001，RTX PRO 6000 Blackwell × 2）\n- KL PPL 引用标准：**4-seed mean 12.00±0.07**，禁止引用单 seed 最佳 11.91\n- s456 是 TEAL 分配异常的 outlier（PPL 13.58），必须单独报告，不混入主均值\n- 禁用术语：\"anti-learning\"、\"subsumption\"——改用 \"objective mismatch\"、\"marginal complement\"（Director 已批准 D010）\n- 投稿 DDL **2026-05-25**（ARR May），仅剩 9 天\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-34887，工作目录 `/root/distill_sparse_swiglu/`\n- **Python**: conda base 环境（aml-train 镜像），`/root/miniconda3/bin/python`\n- **模型路径**: `/root/distill_sparse_swiglu/checkpoints/` 下各实验子目录\n  - KL s42: `mvp_kl_norm_v2_s42/predictor_kl_normalized.pt`\n  - KL 70%: `kl_sparsity70_s42/predictor_kl_normalized.pt`\n  - KL 30%: `kl_sparsity30_s42_v3/predictor_kl_normalized.pt`\n- **基础模型**: LLaMA-3.1-8B（主）+ Mistral-7B-v0.3（跨架构验证）\n- **W&B**: 项目内实验有 wandb 记录\n- **RUNNING 进程**: lm_eval_teal_50pct、lm_eval_kl_s42（均在跑 lm-evaluation-harness 下游评测）\n- **Cron**: 上述两个 RUNNING 实验应有 cron 监控，reconcile_crons 确认\n\n### 3. 📊 当前状态\n**刚做完**: plan_007 lm_eval 下游评测部分跑通——发现 PPL-downstream 严重断裂（KL PPL 12.00 但 GSM8K exact_match 仅 0.012，50% 稀疏度摧毁自回归生成能力）。D025/D026 已确认这是真实现象而非 eval bug。\n\n**RUNNING**: \n- `lm_eval_kl_s42` — KL predictor 50% sparsity 下游评测（Arc/WinoGrande/MMLU/GSM8K 部分结果已出）\n- `lm_eval_teal_50pct` — TEAL training-free baseline 同条件下游评测（对照组）\n\n**PREPARING**:\n- `diag_gsm8k_gencomp` — GSM8K 生成对比诊断\n- `lm_eval_kl_30pct_s42` — 30% sparsity 下游评测\n- `diag_teal_downstream` — TEAL 下游诊断\n- 多个 sparsity sweep 评测实验\n\n**等待中**: \n- 两个 RUNNING 的 cron 回调\n- plan_008 sparsity sweep 70% eval 待完成\n- Director 对 PPL-downstream disconnect 的写作策略决策\n\n### 4. 📋 待办（条件触发式）\n- `lm_eval_kl_s42` cron 回调到达 → 记录完整下游 metrics 到 registry → 对比 lm_eval_dense baseline → 更新 report.md\n- `lm_eval_teal_50pct` cron 回调到达 → 同上，对比 KL vs TEAL 下游表现 → 判断是否所有方法在 50% 都崩溃（验证\"sparsity 本身的问题\" vs \"KL 特有问题\"）\n- 两个 lm_eval 都完成 → spawn Worker 跑 30% sparsity 下游评测（预期 30% 应保留更多能力）→ 这是 Claim 3 的关键数据\n- plan_008 全部完成 → 汇总 sparsity scaling 曲线 → 向 Director 汇报 Claim 3 是否成立\n- Director 批准写作方向 → 按 writing_plan.yaml 顺序（experiments → method → intro）spawn Writer Workers\n\n### 5. 🎯 战略上下文\n**核心发现链**: KL loss 训练稀疏度预测器（PPL 12.00）远优于 BCE（54.84）和 training-free（23-33），且不需要误差补偿网络。但 50% 稀疏度下游任务严重崩溃，这是当前最大的 narrative 风险。\n\n**最容易判断错的事**:\n- PPL-downstream disconnect 不是 KL 特有问题——dense→sparse 50% 对所有方法都是毁灭性的，30% 才是实际可用的稀疏度。下一步 30% 下游评测是关键：如果 30% 保住大部分下游能力，paper narrative 可以调整为\"30% 是 sweet spot\"\n- BCE iso-compute（54.84）比 training-free baselines（23-33）还差——这不是 BCE 弱，而是 BCE 的 per-neuron 优化目标和 global top-k 推理之间存在结构性不匹配（\"objective mismatch\" framing，不要说 \"anti-learning\"）\n- Mistral 验证（PPL 8.98, 1.63x dense）比 LLaMA（1.96x）好，但这是在 50% sparsity 下——跨架构验证的下游评测还没做\n\n**决策链关键节点**: D007（MVP PASS）→ D010（SPON reframe）→ D024（暂停 Claim 1 headline 等下游）→ D025/D026（下游崩溃确认）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778896576.md"
+}

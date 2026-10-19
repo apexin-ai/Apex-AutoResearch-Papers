@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bcd7ea31e7ac8768849d",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "reviewer / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_8.md",
+    "occurrence": 1,
+    "bytes": 3708,
+    "sha256": "4a0d41ddb7976d8eddf8f65227b0431a328b7371253602fccdef6f2a936e25bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_wall_time\nupdated: '2026-05-17T17:10:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 (C004): westd-34887 cuda:0/cuda:1 + westd-41718 cuda:0/cuda:1。其他 GPU 一律 CRITICAL。\n- 论文 allocation 叙事已锁定 (D050): **只能说 variance reduction (7.5×)**，禁止说 mean improvement / \"+15.3pp\" / \"uniform recovers accuracy\"。3-seed 数据证明 mean 差异不显著。\n- qwen14b_bce30_s42 的 `constraint_satisfied` 必须为 false（训练只达到 6.4% sparsity）。TEAL forced 30% 是 inference 行为，不等于训练约束满足。\n- 公平比较 14B KL vs BCE 必须用 TEAL 30% PPL（KL 7.62 vs BCE 8.76），不能用 hard_mask PPL（sparsity 不等）。\n\n### 2. 🖥️ 基础设施快照\n- **westd-34887** (root): `/root/distill_sparse_swiglu/`，Python `/root/miniconda3/bin/python`\n  - 模型: `/root/autodl-tmp/models/llama-3.1-8b/`, `/root/autodl-tmp/models/qwen2.5-14b/`\n  - HF cache: `/root/autodl-tmp/.hf_cache/datasets`，HF_HUB_OFFLINE=1\n  - 活跃: PID 52229 (tmux pane %2, cuda:1) = qwen14b_kl30_s42_eval; PID 59127 (tmux pane %5, cuda:0) = qwen14b_bce30_s42_eval\n- **westd-41718** (root): `/root/distill_sparse_swiglu/`，同 Python/cache 配置\n  - 活跃: PID 6896 (cuda:1) = qwen14b_teal30_eval\n- WANDB_MODE=disabled（全项目）\n- 本地 workspace: `/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/`\n\n### 3. 📊 当前状态\n**刚完成的审查**:\n- D050 paper rewrite 验证通过（3-seed variance framing 正确）\n- qwen14b_bce30_s42 + v2: BCE Lagrangian 约束在 14B 完全失效（lambda 5000/50000 均只达 6.4%），已报 Director\n- downstream_dense_baseline 完成: hellaswag 82.3%, piqa 80.7%, boolq 82.9%\n- downstream_ext_kl30_s42 完成: hellaswag 72.7%, piqa 76.0%, boolq 76.9%（30% global degradation 合理）\n\n**RUNNING 实验**:\n- `qwen14b_kl30_s42_eval` (westd-34887 cuda:1): 14B KL downstream，GSM8K generate 阶段 ~15%，预计还需 2-3h\n- `qwen14b_bce30_s42_eval` (westd-34887 cuda:0): 14B BCE downstream（via TEAL 30%），刚启动\n- `qwen14b_teal30_eval` (westd-41718 cuda:1): 14B TEAL vanilla baseline，loglikelihood ~13%，预计 3-4h\n\n### 4. 📋 待办（条件触发式）\n- qwen14b_kl30_s42_eval 完成 → 读 results.json，验证 MMLU/ARC/WG/GSM8K；对比 training PPL ratio 1.31× 是否在 downstream 得到验证\n- qwen14b_teal30_eval 完成 → 三方对比: KL vs BCE vs TEAL at 14B 30%。验证论文 \"KL >> TEAL\" claim 在 14B 是否成立\n- qwen14b_bce30_s42_eval 完成 → 确认 BCE TEAL PPL 8.76 对应的 downstream 数字，验证 \"KL > BCE at 14B\"\n- 三个 14B eval 全部完成 → 审查 Agent 是否在论文中添加 14B section，验证 claims 与数据一致\n- paper git 有新 commit 涉及 14B → 审查是否正确标注 \"preliminary (single seed)\" 或有无 overclaim\n\n### 5. 🎯 战略上下文\n- **核心决策链**: D050 = allocation 叙事从 mean improvement 转为 variance reduction only。这是 3-seed 数据驱动的硬结论，不可回退。\n- **14B scaling story**: KL training PPL 1.31× (vs TEAL 1.47×) 表明方法 generalize。但 downstream 未验证（正在跑）。论文当前 limitations 说 \"scaling untested\"——如果 14B 下 KL downstream 不如 TEAL，需要非常谨慎处理 claim。\n- **易错点**: \n  1. BCE 的 `ppl_ratio_hard_mask=1.075` 是 6.4% sparsity 下的（近 dense），绝对不能用于与 KL 的 `ppl_ratio=1.31`（28% sparsity）对比\n  2. Worker completion ≠ experiment completion。Worker 通知只说 Claude session 结束，tmux 里的 eval 可能还在跑\n  3. 30% global MMLU 单 seed 数据不可信（s42=25.27%, s456=43.82%），必须引用 3-seed mean±std\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-copy-3.md"
+}

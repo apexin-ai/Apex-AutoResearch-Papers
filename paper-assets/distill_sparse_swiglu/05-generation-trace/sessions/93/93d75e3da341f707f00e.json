@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93d75e3da341f707f00e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis snr trajectory figure",
+  "task_key": "worker_analysis_snr_trajectory_figure_20260520T054147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_snr_trajectory_figure_20260520T054147_result.json",
+    "occurrence": 1,
+    "bytes": 1271,
+    "sha256": "9d7d4c460fd635c3bdefc4bf1a27357104dcb61e07e631c6c0d22b5dcd5ac581"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表生成完成。\n\n---\n\n## 完整 14-snapshot 数据表\n\n| Step | KL SNR | BCE SNR | BCE/KL Ratio |\n|------|--------|---------|--------------|\n| 0 | 1.296e-05 | 6.991e-05 | 5.39× |\n| 50 | 2.533e-04 | 8.233e-06 | 0.03× |\n| 100 | 6.114e-04 | 1.729e-03 | 2.83× |\n| 150 | 5.700e-04 | 2.926e-03 | 5.13× |\n| 200 | 2.357e-04 | 3.078e-03 | 13.06× |\n| 250 | 2.331e-04 | 3.991e-03 | 17.12× |\n| 300 | 3.464e-04 | 1.742e-03 | 5.03× |\n| 400 | 3.389e-04 | 4.221e-03 | 12.46× |\n| 500 | 3.500e-04 | 1.677e-03 | 4.79× |\n| 600 | 5.836e-04 | 5.063e-03 | 8.68× |\n| 700 | 2.145e-04 | 1.413e-03 | 6.59× |\n| 800 | 2.971e-05 | 1.038e-03 | 34.95× |\n| 900 | 5.524e-04 | 1.970e-03 | 3.57× |\n| 1000 | 8.777e-04 | 2.026e-03 | 2.31× |\n\n**Final summary (step 1000)**: KL SNR = 8.78e-04, BCE SNR = 2.03e-03, ratio = 2.31×\n\n## 输出文件\n\n- 脚本: `figures/paper/gen_snr_trajectory.py`\n- PDF: `figures/paper/snr_trajectory.pdf`\n- PNG: `figures/paper/snr_trajectory.png`\n\n## 观察\n\n从 step 100 起 BCE SNR 持续高于 KL（2-35×），step 50 是异常点（BCE 初始化阶段 SNR 骤降）。图上标注了核心 narrative: \"signal strength ≠ signal quality\"——BCE 梯度信噪比更高，但 KL downstream 表现更好。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-snr-trajectory-figure.md"
+}

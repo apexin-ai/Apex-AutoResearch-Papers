@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dcb2017d1066a0a0f4bd",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops 34887 training collect and eval",
+  "task_key": "worker_ops_34887-training-collect-and-eval_20260518T164906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_34887-training-collect-and-eval_20260518T164906_result.json",
+    "occurrence": 1,
+    "bytes": 100,
+    "sha256": "d1a97b4a0356e35759271826c49b5d029437524ce7e9ffebbd944493fc9df750"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在 step 970/1000，进程活跃。2 分钟后再检查完成状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-34887-training-collect-and-eval.md"
+}

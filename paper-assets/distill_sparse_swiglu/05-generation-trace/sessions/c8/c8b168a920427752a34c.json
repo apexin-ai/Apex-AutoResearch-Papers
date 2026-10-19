@@ -1,0 +1,498 @@
+{
+  "schema_version": "1.0",
+  "id": "c8b168a920427752a34c",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "analysis kl35 kl45 eval teal",
+  "task_key": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_kl35_kl45_eval_teal_20260518T175653.jsonl",
+    "occurrence": 1,
+    "bytes": 28448,
+    "sha256": "b7c7e4be63d6d86ba12c4c2847090db7545e5760462ef3ab972a2bb66ea5c22d"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T17:58:45.596155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T17:58:45.596670+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T17:58:45.597085+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "cat ~/runs/distill_sparse_swiglu/kl_sparsity35_s42_eval_teal.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T17:58:45.597438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "cat ~/runs/distill_sparse_swiglu/kl_sparsity45_s42_eval_teal.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T17:58:45.597807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model: /root/autodl-tmp/models/llama-3.1-8b\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:46,  6.21it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:49,  5.80it/s]\\\\rLoading weights:   4%|▍         | 13/291 [00:00<00:07, 39.46it/s]\\\\rLoading weights:   8%|▊         | 23/291 [00:00<00:04, 57.19it/s]\\\\rLoading weights:  11%|█▏        | 33/291 [00:00<00:04, 61.79it/s]\\\\rLoading weights:  17%|█▋        | 50/291 [00:00<00:02, 90.95it/s]\\\\rLoading weights:  22%|██▏       | 63/291 [00:00<00:02, 100.14it/s]\\\\rLoading weights:  26%|██▌       | 76/291 [00:01<00:02, 106.41it/s]\\\\rLoading weights:  30%|███       | 88/291 [00:01<00:01, 103.33it/s]\\\\rLoading weights:  35%|███▍      | 101/291 [00:01<00:01, 110.57it/s]\\\\rLoading weights:  39%|███▉      | 113/291 [00:01<00:01, 105.37it/s]\\\\rLoading weights:  43%|████▎     | 124/291 [00:01<00:01, 105.73it/s]\\\\rLoading weights:  47%|████▋     | 136/291 [00:01<00:01, 108.81it/s]\\\\rLoading weights:  51%|█████     | 148/291 [00:01<00:01, 109.51it/s]\\\\rLoading weights:  55%|█████▍    | 160/291 [00:01<00:01, 104.06it/s]\\\\rLoading weights:  60%|██████    | 175/291 [00:01<00:01, 110.48it/s]\\\\rLoading weights:  64%|██████▍   | 187/291 [00:02<00:01, 60.00it/s] \\\\rLoading weights:  82%|████████▏ | 238/291 [00:02<00:00, 133.60it/s]\\\\rLoading weights:  89%|████████▊ | 258/291 [00:02<00:00, 122.88it/s]\\\\rLoading weights:  95%|█████████▍| 275/291 [00:02<00:00, 117.70it/s]\\\\rLoading weights: 100%|█████████▉| 290/291 [00:02<00:00, 122.13it/s]\\\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 98.99it/s] \\\\nMode: TEAL global mask from predictor (allocation=global_topk)\\\\n  checkpoint: /root/distill_sparse_swiglu/checkpoints/kl_sparsity35_s42/predictor_kl_normalized.pt\\\\nComputing TEAL global masks from predictor ...\\\\n\\\\nPer-layer sparsity (\n…[truncated 6483 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T17:58:45.598224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model: /root/autodl-tmp/models/llama-3.1-8b\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:38,  7.48it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:42,  6.76it/s]\\\\rLoading weights:   4%|▍         | 13/291 [00:00<00:10, 26.71it/s]\\\\rLoading weights:  17%|█▋        | 49/291 [00:00<00:02, 102.96it/s]\\\\rLoading weights:  22%|██▏       | 63/291 [00:00<00:02, 106.40it/s]\\\\rLoading weights:  26%|██▋       | 77/291 [00:00<00:01, 112.86it/s]\\\\rLoading weights:  31%|███▏      | 91/291 [00:01<00:01, 118.88it/s]\\\\rLoading weights:  36%|███▌      | 105/291 [00:01<00:01, 113.89it/s]\\\\rLoading weights:  41%|████      | 118/291 [00:01<00:01, 114.34it/s]\\\\rLoading weights:  46%|████▌     | 134/291 [00:01<00:01, 123.44it/s]\\\\rLoading weights:  51%|█████     | 149/291 [00:01<00:01, 127.96it/s]\\\\rLoading weights:  56%|█��███▌    | 163/291 [00:01<00:00, 131.04it/s]\\\\rLoading weights:  61%|██████    | 177/291 [00:01<00:00, 115.27it/s]\\\\rLoading weights:  66%|██████▋   | 193/291 [00:01<00:00, 126.43it/s]\\\\rLoading weights:  71%|███████   | 207/291 [00:01<00:00, 126.48it/s]\\\\rLoading weights:  76%|███████▌  | 221/291 [00:02<00:00, 125.11it/s]\\\\rLoading weights:  81%|████████  | 235/291 [00:02<00:00, 129.05it/s]\\\\rLoading weights:  86%|████████▌ | 249/291 [00:02<00:00, 120.02it/s]\\\\rLoading weights:  91%|█████████ | 265/291 [00:02<00:00, 128.77it/s]\\\\rLoading weights:  96%|█████████▌| 279/291 [00:02<00:00, 106.23it/s]\\\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 112.07it/s]\\\\nMode: TEAL global mask from predictor (allocation=global_topk)\\\\n  checkpoint: /root/distill_sparse_swiglu/checkpoints/kl_sparsity45_s42/predictor_kl_normalized.pt\\\\nComputing TEAL global masks from predictor ...\\\\n\\\\nPer-layer sparsity (TEAL-predictor):\\\\n  Layer  0: 0.297\\\\n  Layer  1: 0.375\\\\n  Lay\n…[truncated 6482 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T17:58:45.599145+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T17:58:45.599399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T17:58:45.599693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "kl_sparsity35_s42_eval_teal",
+              "field": "metrics",
+              "value": "{'ppl_wikitext2': 9.3133, 'arc_challenge_acc': 0.3643, 'arc_challenge_acc_norm': 0.3891, 'winogrande_acc': 0.6764, 'mmlu_acc': 0.4041, 'gsm8k_exact_match': 0.0773, 'actual_sparsity': 0.336}",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T17:58:45.599983+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"kl_sparsity35_s42_eval_teal\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T16:42:55.307Z\\\", \\\"updated_at\\\": \\\"2026-05-18T17:58:02.073Z\\\", \\\"hypothesis\\\": \\\"KL predictor at 35% actual sparsity evaluated with TEAL global top-k produces PPL in the 9.5-10.5 range, filling a data point between 30% (PPL 8.82) and 50% (PPL 11.79) for the sparsity-quality tradeoff curve.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/benchmark_eval.py --exp_id kl_sparsity35_s42_eval_teal --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity35_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.336 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"39463\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/kl_sparsity35_s42_eval_teal.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T17:12:47.611Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"llama-3.1-8b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/kl_sparsity35_s42/predictor_kl_normalized.pt\\\", \\\"eval_data\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T17:55:53.602Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T17:55:58.536696+00:00\\\"}]}, \\\"metrics\\\": {\\\"ppl_wikitext2\\\": 9.3133, \\\"arc_challenge_acc\\\": 0.3643, \\\"arc_challenge_acc_norm\\\": 0.3891, \\\"winogrande_acc\\\": 0.6764, \\\"mmlu_acc\\\": 0.4041, \\\"gsm8k_exact_match\\\": 0.0773, \\\"actual_sparsity\\\": 0.336}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4643}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T17:58:45.600289+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "kl_sparsity45_s42_eval_teal",
+              "field": "metrics",
+              "value": "{'ppl_wikitext2': 10.803, 'arc_challenge_acc': 0.3498, 'arc_challenge_acc_norm': 0.3916, 'winogrande_acc': 0.6464, 'mmlu_acc': 0.3037, 'gsm8k_exact_match': 0.0296, 'actual_sparsity': 0.449}",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T17:58:45.600597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"kl_sparsity45_s42_eval_teal\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T16:42:56.721Z\\\", \\\"updated_at\\\": \\\"2026-05-18T17:58:03.777Z\\\", \\\"hypothesis\\\": \\\"KL predictor at 45% actual sparsity evaluated with TEAL global top-k produces PPL in the 10.5-11.5 range, extending the sparsity-quality curve from 3 to 6 data points for smoother regime characterization.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/benchmark_eval.py --exp_id kl_sparsity45_s42_eval_teal --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity45_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.449 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"39543\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/kl_sparsity45_s42_eval_teal.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T17:12:50.194Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"llama-3.1-8b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/kl_sparsity45_s42/predictor_kl_normalized.pt\\\", \\\"eval_data\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\", \\\"wall_clock_seconds\\\": 2697.4, \\\"gpu_hours\\\": 0.75}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T17:53:16.532Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T17:53:21.006870+00:00\\\"}]}, \\\"metrics\\\": {\\\"ppl_wikitext2\\\": 10.803, \\\"arc_challenge_acc\\\": 0.3498, \\\"arc_challenge_acc_norm\\\": 0.3916, \\\"winogrande_acc\\\": 0.6464, \\\"mmlu_acc\\\": 0.3037, \\\"gsm8k_exact_match\\\": 0.0296, \\\"actual_sparsity\\\": 0.449}, \\\"checkpoint_path\\\": \\\"/root/distill_sparse_swiglu/results/benchmark/kl_sparsity45_s42_eval_teal/results.json\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swig\n…[truncated 180 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T17:58:45.600920+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "kl_sparsity35_s42_eval_teal",
+              "field": "log_path",
+              "value": "~/runs/distill_sparse_swiglu/kl_sparsity35_s42_eval_teal.log",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T17:58:45.601241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "kl_sparsity35_s42_eval_teal",
+              "field": "checkpoint_path",
+              "value": "/root/distill_sparse_swiglu/results/benchmark/kl_sparsity35_s42_eval_teal/results.json",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T17:58:45.601496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"kl_sparsity35_s42_eval_teal\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T16:42:55.307Z\\\", \\\"updated_at\\\": \\\"2026-05-18T17:58:17.342Z\\\", \\\"hypothesis\\\": \\\"KL predictor at 35% actual sparsity evaluated with TEAL global top-k produces PPL in the 9.5-10.5 range, filling a data point between 30% (PPL 8.82) and 50% (PPL 11.79) for the sparsity-quality tradeoff curve.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/benchmark_eval.py --exp_id kl_sparsity35_s42_eval_teal --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity35_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.336 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"39463\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/kl_sparsity35_s42_eval_teal.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T17:12:47.611Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"llama-3.1-8b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/kl_sparsity35_s42/predictor_kl_normalized.pt\\\", \\\"eval_data\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T17:55:53.602Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T17:55:58.536696+00:00\\\"}]}, \\\"metrics\\\": {\\\"ppl_wikitext2\\\": 9.3133, \\\"arc_challenge_acc\\\": 0.3643, \\\"arc_challenge_acc_norm\\\": 0.3891, \\\"winogrande_acc\\\": 0.6764, \\\"mmlu_acc\\\": 0.4041, \\\"gsm8k_exact_match\\\": 0.0773, \\\"actual_sparsity\\\": 0.336}, \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/kl_sparsity35_s42_eval_teal.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.19}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T17:58:45.601773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"kl_sparsity35_s42_eval_teal\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T16:42:55.307Z\\\", \\\"updated_at\\\": \\\"2026-05-18T17:58:19.054Z\\\", \\\"hypothesis\\\": \\\"KL predictor at 35% actual sparsity evaluated with TEAL global top-k produces PPL in the 9.5-10.5 range, filling a data point between 30% (PPL 8.82) and 50% (PPL 11.79) for the sparsity-quality tradeoff curve.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/benchmark_eval.py --exp_id kl_sparsity35_s42_eval_teal --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity35_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.336 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"39463\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/kl_sparsity35_s42_eval_teal.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T17:12:47.611Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"llama-3.1-8b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/kl_sparsity35_s42/predictor_kl_normalized.pt\\\", \\\"eval_data\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T17:55:53.602Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T17:55:58.536696+00:00\\\"}]}, \\\"metrics\\\": {\\\"ppl_wikitext2\\\": 9.3133, \\\"arc_challenge_acc\\\": 0.3643, \\\"arc_challenge_acc_norm\\\": 0.3891, \\\"winogrande_acc\\\": 0.6764, \\\"mmlu_acc\\\": 0.4041, \\\"gsm8k_exact_match\\\": 0.0773, \\\"actual_sparsity\\\": 0.336}, \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/kl_sparsity35_s42_eval_teal.log\\\", \\\"checkpoint_path\\\": \\\"/root/distill_sparse_swiglu/results/benchmark/kl_sparsity35_s42_eval_teal/results.json\\\"}}, \\\"e\n…[truncated 60 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T17:58:45.602059+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "kl_sparsity35_s42_eval_teal",
+              "field": "conclusion",
+              "value": "negative",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T17:58:45.602359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"kl_sparsity35_s42_eval_teal\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T16:42:55.307Z\\\", \\\"updated_at\\\": \\\"2026-05-18T17:58:23.308Z\\\", \\\"hypothesis\\\": \\\"KL predictor at 35% actual sparsity evaluated with TEAL global top-k produces PPL in the 9.5-10.5 range, filling a data point between 30% (PPL 8.82) and 50% (PPL 11.79) for the sparsity-quality tradeoff curve.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/benchmark_eval.py --exp_id kl_sparsity35_s42_eval_teal --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity35_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.336 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"39463\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/kl_sparsity35_s42_eval_teal.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T17:12:47.611Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"llama-3.1-8b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/kl_sparsity35_s42/predictor_kl_normalized.pt\\\", \\\"eval_data\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T17:55:53.602Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T17:55:58.536696+00:00\\\"}]}, \\\"metrics\\\": {\\\"ppl_wikitext2\\\": 9.3133, \\\"arc_challenge_acc\\\": 0.3643, \\\"arc_challenge_acc_norm\\\": 0.3891, \\\"winogrande_acc\\\": 0.6764, \\\"mmlu_acc\\\": 0.4041, \\\"gsm8k_exact_match\\\": 0.0773, \\\"actual_sparsity\\\": 0.336}, \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/kl_sparsity35_s42_eval_teal.log\\\", \\\"checkpoint_path\\\": \\\"/root/distill_sparse_swiglu/results/benchmark/kl_sparsity35_s42_eval_teal/results.json\\\", \\\"con\n…[truncated 89 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T17:58:45.602634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "kl_sparsity35_s42_eval_teal",
+              "field": "status",
+              "value": "DONE",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T17:58:45.602867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "kl_sparsity45_s42_eval_teal",
+              "field": "conclusion",
+              "value": "negative",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T17:58:45.603161+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"kl_sparsity35_s42_eval_teal\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T16:42:55.307Z\\\", \\\"updated_at\\\": \\\"2026-05-18T17:58:27.455Z\\\", \\\"hypothesis\\\": \\\"KL predictor at 35% actual sparsity evaluated with TEAL global top-k produces PPL in the 9.5-10.5 range, filling a data point between 30% (PPL 8.82) and 50% (PPL 11.79) for the sparsity-quality tradeoff curve.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/benchmark_eval.py --exp_id kl_sparsity35_s42_eval_teal --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity35_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.336 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"39463\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/kl_sparsity35_s42_eval_teal.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T17:12:47.611Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"llama-3.1-8b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/kl_sparsity35_s42/predictor_kl_normalized.pt\\\", \\\"eval_data\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\", \\\"wall_clock_seconds\\\": 2739.8, \\\"gpu_hours\\\": 0.76}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T17:55:53.602Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T17:55:58.536696+00:00\\\"}]}, \\\"metrics\\\": {\\\"ppl_wikitext2\\\": 9.3133, \\\"arc_challenge_acc\\\": 0.3643, \\\"arc_challenge_acc_norm\\\": 0.3891, \\\"winogrande_acc\\\": 0.6764, \\\"mmlu_acc\\\": 0.4041, \\\"gsm8k_exact_match\\\": 0.0773, \\\"actual_sparsity\\\": 0.336}, \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/kl_sparsity35_s42_eval_teal.log\\\", \\\"checkpoint_path\\\": \\\"/root/distill_sparse_swiglu/results/benchmark/k\n…[truncated 237 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T17:58:45.603584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"kl_sparsity45_s42_eval_teal\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T16:42:56.721Z\\\", \\\"updated_at\\\": \\\"2026-05-18T17:58:29.468Z\\\", \\\"hypothesis\\\": \\\"KL predictor at 45% actual sparsity evaluated with TEAL global top-k produces PPL in the 10.5-11.5 range, extending the sparsity-quality curve from 3 to 6 data points for smoother regime characterization.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/benchmark_eval.py --exp_id kl_sparsity45_s42_eval_teal --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity45_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.449 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"39543\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/kl_sparsity45_s42_eval_teal.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T17:12:50.194Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"llama-3.1-8b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"checkpoints/kl_sparsity45_s42/predictor_kl_normalized.pt\\\", \\\"eval_data\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\", \\\"wall_clock_seconds\\\": 2697.4, \\\"gpu_hours\\\": 0.75}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T17:53:16.532Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T17:53:21.006870+00:00\\\"}]}, \\\"metrics\\\": {\\\"ppl_wikitext2\\\": 10.803, \\\"arc_challenge_acc\\\": 0.3498, \\\"arc_challenge_acc_norm\\\": 0.3916, \\\"winogrande_acc\\\": 0.6464, \\\"mmlu_acc\\\": 0.3037, \\\"gsm8k_exact_match\\\": 0.0296, \\\"actual_sparsity\\\": 0.449}, \\\"checkpoint_path\\\": \\\"/root/distill_sparse_swiglu/results/benchmark/kl_sparsity45_s42_eval_teal/results.json\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swig\n…[truncated 675 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T17:58:45.603888+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。两个实验都标记为 `conclusion=negative`。\n\n## 汇总表\n\n| Metric | kl_sparsity35_s42_eval_teal | kl_sparsity45_s42_eval_teal |\n|--------|---------------------------|---------------------------|\n| PPL | **9.31** | **10.80** |\n| ARC (acc_norm) | **38.91%** | **39.16%** |\n| WinoGrande | **67.64%** | **64.64%** |\n| MMLU | **40.41%** | **30.37%** |\n| GSM8K | **7.73%** | **2.96%** |\n| Actual Sparsity | 33.6% | 44.9% |\n| Errors | None | None |\n\n## 严重异常：Downstream 指标崩塌\n\nPPL 完全符合预期（35%→9.31，45%→10.80，与 30%/40%/50% 单调递增），**但 downstream 全部崩塌**：\n\n| Metric | KL 30% (参考) | KL 35% (本次) | KL 45% (本次) | KL 50% (参考) |\n|--------|------------|------------|------------|------------|\n| ARC | 51.19% | 38.91% | 39.16% | 46.42% |\n| WinoGrande | 71.98% | 67.64% | 64.64% | 67.40% |\n| MMLU | 62.68% | 40.41% | 30.37% | 51.05% |\n| GSM8K | 38.06% | 7.73% | 2.96% | 19.94% |\n\n35% 和 45% 的 downstream **比 50% 还差**，这在 PPL 单调递增的前提下不可能。特别是：\n- MMLU 35%=40.41% vs 50%=51.05% (低 10pp)\n- GSM8K 35%=7.73% vs 50%=19.94% (低 12pp)\n- GSM8K 45%=2.96% 接近随机\n\n**最可能的原因**：eval 脚本中 lm-eval 的 few-shot 配置或 mask 应用方式与之前 30%/50% 的 eval 不一致。PPL 用自定义 eval loop 所以正常，downstream 走 lm-eval harness 可能在 mask 传递上有 bug。建议对比本次和 30%/50% eval 的 lm-eval 调用方式差异。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_kl35_kl45_eval_teal_20260518T175653"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-kl35-kl45-eval-teal.md"
+}

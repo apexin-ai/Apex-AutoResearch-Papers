@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9ad37751cc75d125210",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_7_1778964952.md",
+  "task_key": "loop_7_1778964952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778964952.md",
+    "occurrence": 1,
+    "bytes": 3681,
+    "sha256": "ebaacf277df2bd78847a73eadaa86ec420a9788f81af1448b791745027e2d727"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-16T19:35:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：只能用 westd-34887:cuda:0 和 westd-34887:cuda:1，其他设备号禁止\n- benchmark_eval.py 的 `--gpu` 参数从 0 开始（框架自动映射物理 GPU）\n- Claim 3 (sparsity scaling) 尚未验证完毕，论文中不得用 \"consistently\" 等强措辞\n- Per-layer sparsity 数据（D030）证实全局 top-k 导致后层集中，uniform allocation 是当前修复方向——不要回退到 global allocation 做新实验\n- 所有 sparse vs dense 对比必须用相同 n-shot 设置（D029 发现之前 sparse=0-shot vs dense=few-shot 不公平）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887，工作目录 /root/distill_sparse_swiglu/\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型 checkpoints：/root/distill_sparse_swiglu/checkpoints/（mvp_kl_norm_v2_s123/, mvp_kl_norm_v2_s456/ 等）\n- 日志目录：~/runs/distill_sparse_swiglu/\n- W&B：数据可用（cron 回调提到 W&B data available）\n- 活跃进程：bench_kl50_uniform_s456 已完成（PID 245022 已退出）；无其他 RUNNING 实验\n\n### 3. 📊 当前状态\n**刚做完**：收到 bench_kl50_uniform_s456 cron 完成回调，已派 Worker（worker_ops_analyze-bench-kl50-uniform-s456_20260516T153343）SSH 读日志提取 metrics。Worker 尚未返回。\n\n**Registry 状态**：\n- ANALYZING: bench_kl50_uniform_s456（KL 50% uniform seed=456 benchmark eval）\n- QUEUED (4): longbench_dense_v3, longbench_kl30_uniform_v3, longbench_dense_v2, longbench_kl30_uniform_v2\n- PREPARING (8): longbench_dense_v5, kl_lagrangian_v2, kl_norm_v3_quicktest, mvp_kl_s456, spon_kl_s42, diag_30pct_downstream 等\n\n**对照数据**（bench_kl50_uniform_s123 已 DONE/success）：\n- wikitext2_ppl: 11.83, arc: 0.3515, winogrande: 0.6298, mmlu: 0.2751, gsm8k: 0.0235\n\n**等待中**：Worker 回调 → 拿到 s456 metrics 后更新 registry → 推进到 DONE → 汇报 Director multi-seed 结果汇总\n\n### 4. 📋 待办（条件触发式）\n- Worker 回调到达 → 提取 s456 metrics → update_registry(conclusion/metrics/checkpoint_path/log_path) → 推进 DONE\n- s456 metrics 与 s123 一致（PPL 差<0.5, downstream 差<3pp）→ conclusion=success → 汇报 Director \"multi-seed 稳定性确认\" → 推进 QUEUED 中的 longbench 实验\n- s456 metrics 异常偏离 s123 → 标 negative → 产 Framing 提案 → 汇报 Director\n- 两个 GPU 当前空闲 → Worker 回调处理完后，立即检查 QUEUED 实验是否可以提交（longbench 系列）\n- ROADMAP P0 任务\"BCE iso-compute v3 重跑\"仍待处理，需 Director 确认优先级\n\n### 5. 🎯 战略上下文\n- **核心论点**：KL distillation 使 SwiGLU LLM 的 contextual sparsity prediction 无需 error compensation，实现最简推理管线\n- **D030 是关键转折**：全局 top-k 在 downstream 崩溃，uniform per-layer allocation 修复了这个问题。bench_kl50_uniform 系列（s123 已 success）正在验证 uniform 方案的 multi-seed 稳定性\n- **D041 三相框架**：Claim 3 升级为 budget-surplus (uniform) → budget-constrained → phase transition\n- **DDL 压力**：EMNLP 2026 ARR May DDL 2026-05-25，剩 9 天\n- **易错点**：\n  - bench_kl50_uniform 的 PPL ~11.83 比 bench_kl50_global 高（global PPL 更低但 downstream 崩溃），不要误判为 regression——这是 uniform 的 trade-off\n  - D032 警告 Mistral PPL 数据可能污染，暂停引用\n  - longbench 系列已连续 4 次 failed（v1-v4），提交前必须确认脚本修复\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778964952.md"
+}

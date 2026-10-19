@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77c4e4fa24110ce127c1",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval qwen14b teal275 uniform eval",
+  "task_key": "worker_eval_qwen14b_teal275_uniform_eval_20260519T134737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen14b_teal275_uniform_eval_20260519T134737_result.json",
+    "occurrence": 1,
+    "bytes": 429,
+    "sha256": "8a521dc1b22690297e33080792fe985359521c76553b929485cc69b74f4d2f4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提交完成。\n\n| 项目 | 值 |\n|------|-----|\n| exp_id | `qwen14b_teal275_uniform_eval` |\n| PID | 110669 |\n| 服务器 | westd-34887, GPU 1 (CUDA_VISIBLE_DEVICES=1) |\n| 日志 | `/root/distill_sparse_swiglu/logs/qwen14b_teal275_uniform_eval.log` |\n| Registry 状态 | RUNNING |\n| Tasks | wikitext2, arc_challenge, winogrande, hellaswag, piqa, mmlu |\n| Sparsity | 0.275 uniform, TEAL vanilla baseline |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen14b-teal275-uniform-eval.md"
+}

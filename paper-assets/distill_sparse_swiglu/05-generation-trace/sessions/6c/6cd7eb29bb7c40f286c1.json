@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6cd7eb29bb7c40f286c1",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check 41718 gpu util",
+  "task_key": "worker_ops_check_41718_gpu_util_20260519T223216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_41718_gpu_util_20260519T223216_result.json",
+    "occurrence": 1,
+    "bytes": 855,
+    "sha256": "fc264c5c9f7e65def957f0ba2db90d2a43a05e290087fe0924fe2b4b52805c5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-41718 状态\n\n### GPU 占用\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 | 95% | 63,263 / 97,887 MiB |\n| cuda:1 | 0% | 0 MiB (空闲) |\n\n### 进程状态\n\n| 实验 | PID | 状态 |\n|------|-----|------|\n| bench_teal30_uniform_gsm8k | 176588 | **已结束** (进程不存在) |\n| qwen14b_kl30_s42_gsm8k_v2 | 166099 | **运行中**, 已跑 4h14m |\n\n### 日志详情\n\n**bench_teal30_uniform_gsm8k** — 已完成，EXIT_CODE=0\n- GSM8K (8-shot): **exact_match = 0.0879** (8.79%)\n- 耗时 1251.3s (~21min)\n- 结果已保存: `results/benchmark/bench_teal30_uniform_gsm8k/results.json`\n\n**qwen14b_kl30_s42_gsm8k_v2** — 正在跑 generate_until\n- 进度: **91% (1201/1319)**, 速度 ~14s/it\n- 预计剩余 ~29 min\n- 无 error，只有 `max_new_tokens` vs `max_length` 的 warning（无害）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-41718-gpu-util.md"
+}

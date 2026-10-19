@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "c961c91df74cc50233da",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "eval mse30 s42 boolq",
+  "task_key": "worker_eval_mse30_s42_boolq_20260522T091500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_mse30_s42_boolq_20260522T091500.jsonl",
+    "occurrence": 1,
+    "bytes": 168,
+    "sha256": "6066e54bab11ebaa212a66c3527e2cf1f6900112a3dae9a49eb64f48f0a31afa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T09:15:10.941354+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mse30_s42_boolq_20260522T091500"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/eval-mse30-s42-boolq.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4d2396331fe57e4d9c6",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval mistral kl s42 analysis",
+  "task_key": "worker_eval_mistral_kl_s42_analysis_20260515T225044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mistral_kl_s42_analysis_20260515T225044_result.json",
+    "occurrence": 1,
+    "bytes": 675,
+    "sha256": "2a4c37d54752affa460634ac16ccf1f73366a140e7822d5769d4679e2e0f666e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## mistral_kl_s42 结果摘要\n\n| 指标 | Mistral-7B-v0.3 | Llama-3.1-8B (4-seed mean) |\n|------|-----------------|---------------------------|\n| dense_ppl | **5.52** | 6.12 |\n| predictor_hard_mask_ppl | **7.30** (1.32x) | — |\n| teal_sparse_ppl | **8.98** (1.63x) | 12.00±0.07 (1.96x) |\n| model_level_sparsity | 0.500 | 0.500 |\n\n**跨架构泛化结论：成立。** Mistral-7B 在 50% sparsity 下 PPL 降级比例 (1.63x) 优于 Llama (1.96x)，KL distillation 方法对非 Llama 架构同样有效。Per-layer sparsity 分布合理——早期/晚期层稀疏度高 (~0.6)，中间层低 (~0.36-0.47)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mistral-kl-s42-analysis.md"
+}

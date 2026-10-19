@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9604b020301320cedd72",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops resolve dense 4task v2",
+  "task_key": "worker_ops_resolve_dense_4task_v2_20260519T203559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_resolve_dense_4task_v2_20260519T203559_result.json",
+    "occurrence": 1,
+    "bytes": 331,
+    "sha256": "07836b839ed0f70722092c3b3d6a682d3f0f9bb395f9a2b2348967877288c476"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`qwen14b_dense_4task_v2` 已关闭，状态 DONE/success。\n\n**指标汇总**（Qwen2.5-14B dense baseline）：\n\n| 指标 | 值 |\n|------|-----|\n| wikitext2_ppl | 5.1854 |\n| arc_challenge_acc_norm | 0.6758 |\n| winogrande_acc | 0.8106 |\n| mmlu_acc | 0.7977 |\n\n耗时 2.79 GPU-hours，westd-41718 cuda:1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-resolve-dense-4task-v2.md"
+}

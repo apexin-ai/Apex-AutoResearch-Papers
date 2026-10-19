@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b288ef8d5e245ca0347",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code plan 007 lm eval script",
+  "task_key": "worker_code_plan_007_lm_eval_script_20260515T210739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_007_lm_eval_script_20260515T210739_result.json",
+    "occurrence": 1,
+    "bytes": 1058,
+    "sha256": "cb2d6502cb06e6516291876f35b7d23be32990b43926afae5fd2eebf5996f20a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Plan 007 eval_benchmark 交付完成。总结：\n\n**已完成：**\n- `src/eval_benchmark.py` (640行) — 支持 9 个条件、6 个 benchmark、增量保存、markdown 表格输出\n- `scripts/run_plan007_benchmark.sh` — 三步流程（验证→PPL→lm-eval），默认 GPU 1\n- 全部 9 个条件的 WikiText-2 PPL 已验证通过\n- 离线错误处理测试通过（C4 streaming 和 lm-eval 数据集均优雅报错）\n- 结果已整合到 `results/plan_007/consolidated/`\n- 两个 artifact 已注册\n\n**核心发现：** 学习型预测器（KL=9.65, STE=8.18, SPON=9.41）在 50% 稀疏度下保持接近 dense（6.48）的质量，而所有静态 mask 基线都严重退化（R-Sparse=151, WINA=2126, TEAL=48715）。\n\n**待完成（需联网）：**\n1. C4 validation 数据集预缓存（streaming 模式离线不可用）\n2. lm-eval 下游数据集预缓存：`allenai/ai2_arc`, `allenai/winogrande`, `hails/mmlu_no_train`, `openai/gsm8k`\n3. 预缓存后执行完整 benchmark（C4 PPL + 4 个下游任务 × 9 条件）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-007-lm-eval-script.md"
+}

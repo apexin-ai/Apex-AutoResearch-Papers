@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf0d895449aa1fd40cdf",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis qwen14b kl30 s42",
+  "task_key": "worker_analysis_qwen14b_kl30_s42_20260517T144541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen14b_kl30_s42_20260517T144541_result.json",
+    "occurrence": 1,
+    "bytes": 1065,
+    "sha256": "717379e3fed9476562dd1b23e2a470a9b328dee862a9b28a029eda4d12b41b6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## qwen14b_kl30_s42 分析完成 — **conclusion: success**\n\n### 评估结果\n\n| 指标 | 值 |\n|---|---|\n| Dense PPL (WikiText-2) | 5.18 |\n| Predictor Hard Mask PPL | 6.80 (1.31x) |\n| TEAL Global PPL | 7.62 (1.47x) |\n| 训练 Sparsity | 0.281 |\n| TEAL Global Sparsity | 0.300（精确命中） |\n| Final Loss | 0.3398 |\n| Lambda | 5000 (cap) |\n| 训练步数 | 1000/1000 |\n\n### 关键结论\n\nPredictor hard mask 的 PPL ratio 1.31x **优于** LLaMA-8B 的 1.47x，说明 Qwen-2.5-14B 在 30% sparsity 下对 neuron pruning 更鲁棒（可能因模型更大、冗余更多）。TEAL global 模式恰好 1.47x，与 LLaMA-8B 持平。跨架构（LLaMA→Qwen）和跨规模（8B→14B）迁移验证通过。\n\n### 注意事项\n- 层级 sparsity 分布不均匀：中间层（Layer 10-44）约 0.12-0.20，首尾层更高（Layer 0: 0.50, Layer 47: 0.73），符合预期\n- 评估日志：`~/runs/distill_sparse_swiglu/qwen14b_kl30_s42_eval.log`\n- Checkpoint：`checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt`（223MB）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen14b-kl30-s42.md"
+}

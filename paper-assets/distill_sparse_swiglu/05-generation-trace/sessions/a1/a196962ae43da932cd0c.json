@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "a196962ae43da932cd0c",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "exp bce ste s42",
+  "task_key": "worker_exp_bce_ste_s42_20260520T113034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_bce_ste_s42_20260520T113034.log",
+    "occurrence": 1,
+    "bytes": 1096747,
+    "sha256": "c6abb4c6a5e608a607a5e658ab905e0d968259ba73ee0b2e3801c0eeac68eb81"
+  },
+  "statistics": {
+    "messages": 708,
+    "user_turns": 1,
+    "tool_calls": 312,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 76,
+      "tool_call": 312,
+      "tool_result": 312,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 687,
+      "chunks": [
+        {
+          "path": "a196962ae43da932cd0c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a196962ae43da932cd0c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a196962ae43da932cd0c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a196962ae43da932cd0c-part-0004.json",
+          "message_count": 147
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "a196962ae43da932cd0c-part-0004.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-bce-ste-s42.md"
+}

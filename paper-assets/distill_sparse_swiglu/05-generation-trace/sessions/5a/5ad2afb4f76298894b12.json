@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "5ad2afb4f76298894b12",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "check perlayer kl 50 downstream progress",
+  "task_key": "worker_check_perlayer_kl_50_downstream_progress_20260522T080436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_check_perlayer_kl_50_downstream_progress_20260522T080436.jsonl",
+    "occurrence": 1,
+    "bytes": 188,
+    "sha256": "81669b77c2fecd93eb76616ac384a39c5d472e1fa8be93002d468c3840aceeb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T08:04:47.211521+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_perlayer_kl_50_downstream_progress_20260522T080436"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/check-perlayer-kl-50-downstream-progress.md"
+}

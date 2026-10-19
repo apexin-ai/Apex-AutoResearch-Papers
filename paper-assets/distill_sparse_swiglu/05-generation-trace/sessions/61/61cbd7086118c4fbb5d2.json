@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61cbd7086118c4fbb5d2",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval bce isocompute v3 s456 eval",
+  "task_key": "worker_eval_bce_isocompute_v3_s456_eval_20260517T200438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_bce_isocompute_v3_s456_eval_20260517T200438_result.json",
+    "occurrence": 1,
+    "bytes": 669,
+    "sha256": "cc70f84131e4bb40da40e4360ffc3791bb9ccd8675e27cdad59c7322f56a5074"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。实验 `bce_isocompute_v3_s456_eval` 已经在运行中：\n\n- **状态**: RUNNING（PID 69504，tmux session on westd-34887:cuda:1）\n- **已完成**: WikiText-2 PPL = 28.35（teal_global 模式，s42 对应值为 27.97）\n- **当前**: MMLU loglikelihood ~80%，之后还有 WinoGrande 和 GSM8K\n- **预计耗时**: 参照 s42 约 2h 总，已跑约 16min 进入 MMLU 阶段\n\n注意：当前 eval 使用的是 `--sparsity_mode teal_global`（对应 s42 eval 中 `teal_sparse_ppl=27.97`），而非 Phase 1 的 `evaluate.py` 三模式 PPL。如果 Table 2 还需要 `predictor_hard_mask_ppl`，需要额外跑一次 `evaluate.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-bce-isocompute-v3-s456-eval.md"
+}

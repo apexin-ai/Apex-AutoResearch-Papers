@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffcfb65f362aa42c852a",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_16_1779588396.md",
+  "task_key": "loop_16_1779588396",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779588396.md",
+    "occurrence": 1,
+    "bytes": 3815,
+    "sha256": "d4d63b11613cfca9b0316e80e924f8ee0abf1018f80fc694a325ff1d6ef62ada"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-24T00:53:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-34887 cuda:0,1（2× RTX PRO 6000 Blackwell 96GB）。westd-41718 已由用户释放，不可使用\n- GPU 编号脚本内始终从 0 开始（框架自动注入 CUDA_VISIBLE_DEVICES）\n- DDL: 2026-05-25 EMNLP 2026 ARR May cycle，剩余 ~1.5 天\n- 决策 D104: K=8/K=16 Table 4 3-seed 不做（DDL 不允许）；D107 override: 补跑 K=2/K=8/K=16 单 seed + C4 eval\n- checkpoint 路径注意：K=16 训练用的脚本是 train_perlayer_kl_k4.py（不是 k16），checkpoint 文件名也带 k4（predictor_perlayer_kl_k4.pt）——这是正常的，脚本通过 --num_masked_layers 16 控制\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887，工作目录 /root/distill_sparse_swiglu\n- Python：/root/miniconda3/bin/python（conda base 环境，不是 venv）\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：/root/autodl-tmp/models/llama-3.1-8b（或服务器本地缓存，需确认）\n- Checkpoints：/root/distill_sparse_swiglu/checkpoints/\n- 日志：~/runs/distill_sparse_swiglu/\n- 活跃进程：无（所有实验已完成或失败，GPU 全部空闲）\n- Cron：reconcile 返回 0 条活跃\n\n### 3. 📊 当前状态\n**刚做完**：Session 启动初始化（read_registry + reconcile_crons + 读 report/ROADMAP）\n\n**正在处理**：perlayer_kl_k16_s42_v3_eval 失败诊断——已派 Worker `worker_diag_perlayer_kl_k16_s42_v3_eval_20260523T045110` 去 SSH 读日志，**尚未收到回调**。\n\n**Registry 关键状态**：\n- perlayer_kl_k16_s42_v3_eval: DONE/failed — K=16 eval，EXIT_CODE=1，运行 158s 后挂。可能部分 task 已完成（跑了 2.5 分钟）\n- perlayer_kl_k8_s42_eval: DONE/success — K=8 eval 已成功\n- perlayer_kl_k2_s42_train: 待提交（已分配 GPU 但未提交）\n- perlayer_kl_k2_s42: 准备中\n- 总计：success 242 / negative 24 / failed 37\n\n**等待中**：\n- Worker 回调：diag worker 诊断 K=16 eval 失败原因\n- Paper Agent：R24 写作修复（另外派的，可能已完成也可能在跑）\n\n### 4. 📋 待办\n- diag Worker 回调到达 → 根据诊断结果决定：若为数据集下载/OOM/临时错误 → 修复后重跑 eval；若为代码 bug → 修复 benchmark_eval.py 后重跑\n- K=16 eval 修复成功 → 提取 metrics → update_registry → 更新 report.md → 汇报 Director K-curve 最新数据\n- perlayer_kl_k2_s42_train 待提交 → 确认 GPU 空闲后 submit（K=2 是 K-curve 最后缺失的低端点）\n- K=2 训练完成 → 立即跑 K=2 eval → K-curve {1,2,4,8,16} 全部集齐 → 更新论文表格\n- R24 写作修复完成 → submit_paper_to_review（continue mode）→ R25 验证 → 提交最终版本\n\n### 5. 🎯 战略上下文\n- **核心结论**：KL distillation 是 SwiGLU sparsity prediction 的主导设计维度。Cross-layer coupling 的贡献是 task-dependent（commonsense 高依赖，reasoning 低依赖）\n- **K-curve 进展**：K=1 ✓, K=4 ✓(3-seed), K=8 ✓, K=16 训练 ✓ eval ✗, K=2 未跑。K=32 = E2E（已有数据）。K-curve 是 D107 的核心产出，用于量化 coupling scope 对下游质量的影响\n- **易错点**：\n  - K=16 eval 的 checkpoint 文件名是 `predictor_perlayer_kl_k4.pt`（不是 k16），因为训练脚本统一命名。不要以为 checkpoint 错了\n  - K=16 训练经历了 3 次迭代（v1 argparse 错误, v2 wandb API key 错误, v3 成功），eval 用的是 v3 的 checkpoint\n  - 2D decomposition 表中 MMLU >100% 是 anomalous（allocation alignment artifact），不是 bug\n  - 论文 abstract 不能超 200 words（EMNLP 硬限）\n  - 当前阶段是\"写作修复 + 补数据\"，不是探索新方向。所有实验必须服务于已有 claims\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779588396.md"
+}

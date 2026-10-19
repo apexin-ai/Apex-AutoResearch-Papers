@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "997f90b240dad531e25b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "download mistral 7b retry",
+  "task_key": "worker_download_mistral-7b-retry_20260515T200519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_download_mistral-7b-retry_20260515T200519_result.json",
+    "occurrence": 1,
+    "bytes": 1073,
+    "sha256": "b2a416a675a1741661a349837aec184ee28f312fba55f38c1ec6b2c9ceec1440"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Mistral-7B-v0.3 下载完成，全部验证通过。\n\n## 结果报告\n\n| 项目 | 结果 |\n|------|------|\n| **下载方式** | `huggingface_hub.snapshot_download` via hf-mirror.com（无代理） |\n| **模型路径** | `/root/autodl-tmp/models/mistral-7b/` |\n| **safetensors 文件** | 3 个分片，总计 14,496,080,928 bytes (13.50 GB) |\n| **参数量** | **7,248,023,552 (7.25B)** — bf16 数据量与 index metadata 精确匹配 |\n| **config 验证** | model_type=mistral, hidden_size=4096, 32 layers, intermediate_size=14336 |\n| **目录总大小** | 14GB（含 tokenizer、config 等） |\n| **磁盘剩余** | 186GB / 250GB (26% used) |\n| **清理** | 已删除 `.cache/` 和 `mistralai/` 临时目录 |\n\n文件清单：\n```\nmodel-00001-of-00003.safetensors  4.7G\nmodel-00002-of-00003.safetensors  4.7G\nmodel-00003-of-00003.safetensors  4.3G\nconfig.json / model.safetensors.index.json\ntokenizer.json / tokenizer.model / tokenizer.model.v3\ntokenizer_config.json / special_tokens_map.json\ngeneration_config.json / README.md\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/download-mistral-7b-retry.md"
+}

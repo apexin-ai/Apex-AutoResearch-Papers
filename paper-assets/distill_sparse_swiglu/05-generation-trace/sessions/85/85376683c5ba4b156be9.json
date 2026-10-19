@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85376683c5ba4b156be9",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper mistral consistency fix",
+  "task_key": "worker_paper_mistral-consistency-fix_20260519T055808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_mistral-consistency-fix_20260519T055808_result.json",
+    "occurrence": 1,
+    "bytes": 1226,
+    "sha256": "36d7ddc595cba77fe4423c9aec70dbd517edaa534cc31b44fa2e219191818ea2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无 dash 引入。\n\n### 修改摘要\n\n| # | 文件 | Before | After |\n|---|------|--------|-------|\n| 1 | experiments.tex:228 | \"KL's downstream advantage is consistent: HS +8.8pp, ARC +9.0pp, WG +5.6pp\" | \"KL outperforms TEAL on 5 of 6 downstream tasks … GSM8K is the sole reversal (11.1% vs. 15.9%, Table ref)\" |\n| 2 | abstract.tex:6 | \"Both PPL and downstream advantages hold across architectures (Mistral-7B: ARC +9.0pp, WG +5.6pp)\" | \"PPL and downstream advantages hold on most tasks … KL wins 5 of 6 … GSM8K reverses\" |\n| 3 | introduction.tex:16 | \"both PPL and downstream advantages hold (ARC +9.0pp, WG +5.6pp)\" | \"KL wins on PPL and 5 of 6 downstream tasks … GSM8K reverses\" |\n| 4 | limitations.tex:5 | (无 Mistral GSM8K 段落) | 新增 Mistral GSM8K 反转讨论段落，插入在 Qwen-14B MMLU 段之前 |\n| 5 | appendix.tex:364 | \"generalizes across architectures.\" | \"generalizes on 5 of 6 tasks; GSM8K is the sole reversal.\" |\n| 6 | ethics.tex:3 | benchmark 列表缺 HellaSwag/PIQA | 添加 HellaSwag, PIQA |\n| 7 | ethics.tex:32 | few-shot 列表缺 HellaSwag/PIQA | 添加 HellaSwag 10-shot, PIQA 0-shot |\n\n编译通过，0 errors，无 em-dash/en-dash。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-mistral-consistency-fix.md"
+}

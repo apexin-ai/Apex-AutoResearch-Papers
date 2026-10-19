@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfe71ff53a1605fb6c90",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops collect latency results",
+  "task_key": "worker_ops_collect-latency-results_20260516T144626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-latency-results_20260516T144626_result.json",
+    "occurrence": 1,
+    "bytes": 88,
+    "sha256": "ba1a26deabe45aceb779e9b108c2a9ea7954f60af3af9de1c9474a8129a9c32a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 PID=243661 仍在运行（已 ~1 分钟），90 秒后再检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-latency-results.md"
+}

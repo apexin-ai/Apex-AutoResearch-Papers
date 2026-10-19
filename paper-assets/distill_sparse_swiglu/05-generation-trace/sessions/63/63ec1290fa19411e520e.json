@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63ec1290fa19411e520e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops kill dryrun pid169864",
+  "task_key": "worker_ops_kill_dryrun_pid169864_20260515T230150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_dryrun_pid169864_20260515T230150_result.json",
+    "occurrence": 1,
+    "bytes": 327,
+    "sha256": "6413042a789ad4272aa7b46d6466b3cd17e8d60edd587c63d25b3910bbca82e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 169864 已终止（KILLED_OK）。\n\n但 GPU0 并未完全释放——当前有另一个进程 PID 170986 占用 GPU0 约 40GB 显存（99% 利用率）。GPU1 上也有 PID 163723 占用约 20GB。\n\n这两个进程不是刚才的 dry-run 测试，需要确认是否为正式实验再决定是否处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-dryrun-pid169864.md"
+}

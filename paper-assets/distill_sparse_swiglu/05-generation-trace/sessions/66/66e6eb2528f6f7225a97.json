@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66e6eb2528f6f7225a97",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra fix tmux and submit teal",
+  "task_key": "worker_infra_fix_tmux_and_submit_teal_20260517T155417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix_tmux_and_submit_teal_20260517T155417_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "975ae6c97251a80e503588c97a0e9a8a7a18c9c033d2bdfc151b2ea53ccc9494"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n1. **tmux** 已在 westd-41718 安装成功\n2. **TEAL eval** (PID 6896) 正在 GPU 1 上运行，进度：wikitext2 已完成 (PPL=8.7332)，arc_challenge 已完成，MMLU 约 56%，剩余 winogrande 和 gsm8k\n3. **Registry** 已更新为 RUNNING，记录了 PID、server、GPU、log_path 等元数据\n\n注意：实际运行命令使用的是 `--baseline_mode teal_vanilla`（非 `--sparsity_mode teal_global`），这是之前 worker 启动时的配置。GPU 0 上还有一个 `downstream_ext_kl30_s42` eval 也在并行运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-tmux-and-submit-teal.md"
+}

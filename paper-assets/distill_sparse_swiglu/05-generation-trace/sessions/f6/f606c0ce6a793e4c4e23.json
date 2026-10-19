@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f606c0ce6a793e4c4e23",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_2_1778885311.md",
+  "task_key": "loop_2_1778885311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778885311.md",
+    "occurrence": 1,
+    "bytes": 4675,
+    "sha256": "a69e64993dc1f61671351a776b514d112ba47b346d9c0017cc7963c82444fe4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-15T22:31:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**：westd-34887 cuda:0 + cuda:1，严禁用其他设备\n- **KL PPL 引用规范**：论文中统一用 4-seed mean **12.00±0.07**（TEAL sparse PPL），禁止用单 seed 最佳值 11.91\n- **BCE framing 禁令**：禁止 \"anti-learning\" 措辞，必须用 \"objective mismatch\"（BCE per-neuron binary accuracy vs TEAL global top-k）\n- **SPON framing 禁令**：禁止 \"KL subsumes SPON\" 措辞，用 \"marginal complement\"（cos_sim=0.196, magnitude ratio=16%）\n- **sparsity30 报告**：报 achieved sparsity 28.5%，不写 target 30%（D016 决策）\n- **s456 outlier**：报 \"5-seed mean: 12.32±0.71\" + \"Excluding s456: 12.00±0.07\"，不跑第 6 seed\n- **DDL**：EMNLP 2026 ARR May, **2026-05-25**（10 天后）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：westd-34887, root@\n- **工作目录**：`/root/distill_sparse_swiglu/`\n- **Python**：conda base (`/root/miniconda3/bin/python`)，镜像 aml-train，**不用 venv**\n- **模型**：LLaMA-3.1-8B（路径未在 memory 中记录，需 SSH 确认）；Mistral-7B 在 `/root/autodl-tmp/models/mistral-7b/`\n- **Checkpoints**：`/root/distill_sparse_swiglu/checkpoints/` 下多个子目录（见 memory.md Checkpoints 节）\n- **W&B**：offline mode（未 sync）\n- **活跃进程**：无。0 个 RUNNING 实验，0 个活跃 cron。所有 GPU 当前空闲\n\n### 3. 📊 当前状态\n**所有实验都已停止。** Registry 30 个实验：14 success / 7 negative / 5 failed / 4 killed，0 RUNNING。\n\n**已完成的关键结果**：\n- Claim 1 (KL >> all baselines)：✅ KL 12.00 >> training-free (23-33) >> BCE iso-compute 54.84；STE 15.77（Gumbel 贡献确认）\n- Claim 2 (SPON orthogonal)：✅ cos_sim=0.196, magnitude ratio=16%, recovery仅7.3%\n- Claim 3 (sparsity scaling)：🔄 50% 已有，30%(实际28.5%) 训练完成但 **未 eval PPL**，70% eval 完成（hard-mask 13.84，TEAL 136K 异常）\n\n**PREPARING 中的实验**（7 个，全部停滞等 GPU 或被 killed）：\n- `mistral_kl_s42`：Plan_009 Mistral 跨架构验证，代码就绪，未提交\n- `bce_isocompute_s42_v2`：2700 步重跑，被 tmux kill，未重提交\n- `eval_spon_supp_retry` / `spon_kl_s42` / `mvp_kl_norm_s456` / `kl_norm_v3_quicktest` / `kl_lagrangian_v2`：大部分已 killed 或 obsolete\n\n**无等待中的 Worker 回调或 Cron。**\n\n### 4. 📋 待办（条件触发式）\n- **立即（GPU 空闲）** → eval sparsity30_v3 PPL（训练完成但未 evaluate）→ 完成 plan_008 三点 sweep\n- **sparsity30 eval 完成** → 汇总 28.5%/50%/70% KL-BCE delta scaling trend → 写入 Claim 3\n- **GPU 空闲** → 提交 `mistral_kl_s42`（Plan_009，cuda:0 或 cuda:1）→ Reviewer Concern #4 defense\n- **GPU 空闲** → plan_007 full benchmark（lm-eval 脚本就绪）→ Reviewer Concern #5 defense\n- **70% TEAL PPL=136K** → D017 判断为 evaluate.py per-layer normalization bug（同 training-free baselines 的 bug），需修复后重 eval → 低优先级（hard-mask 13.84 是 valid metric）\n- **bce_isocompute_s42_v2** → 决定是否重跑（Director 已有 1000 步数据 PPL=54.84，2700 步重跑优先级低于 Mistral 和 benchmark）\n- **论文写作** → DDL 05-25，10 天内需完成。所有 framing decisions 已在 memory.md，paper_framing.md 完整\n\n### 5. 🎯 战略上下文\n**核心结论链**：KL distillation + Gumbel-sigmoid 是 contextual sparsity prediction 的最优训练方案，无需 error compensation（BCE+comp 67.2M 参数仅改善 9% 且仍差 KL 2.8x）。SPON 正交且量级微小。三层梯队：KL (12.00) >> training-free (23-33) >> BCE (54.84)。\n\n**决策链**：D008→D010→D013→D014（SPON reframe）；D011→D012（BCE iso-compute）；D015→D016（sparsity30 接受 28.5%）；D017（70% TEAL anomaly）\n\n**易踩的坑**：\n1. **70% sparsity 的 TEAL PPL 136K 不能用**——这是 global topk per-layer normalization bug（与 training-free baselines 同一个 bug），hard-mask PPL 13.84 才是 valid metric。不要直接对比 50% TEAL PPL 和 70% TEAL PPL\n2. **cuda:1 曾有系统性进程 kill 问题**（plan_005 之后连续 3 个进程死亡），原因未查明。优先用 cuda:0，或先诊断 cuda:1\n3. **sparsity30_v3 训练完了但没 eval**——这是当前最容易出成果的一步（几分钟 GPU 时间），不要忘\n4. **DDL 05-25 只剩 10 天**，plan_007（full benchmark）和 plan_009（Mistral）是论文完整性的关键拼图，必须并行推进\n5. **R-Sparse baseline 仍 broken**（PPL=151.2，SVD scores 需 percentile/max normalization），低优先级 appendix only\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778885311.md"
+}

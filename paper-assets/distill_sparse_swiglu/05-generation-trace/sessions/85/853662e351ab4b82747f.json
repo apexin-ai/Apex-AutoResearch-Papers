@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "853662e351ab4b82747f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops cleanup k16 intermediates",
+  "task_key": "worker_ops_cleanup_k16_intermediates_20260523T100922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_k16_intermediates_20260523T100922_result.json",
+    "occurrence": 1,
+    "bytes": 294,
+    "sha256": "ee5e33568feefd61c8425cf13124c38fb6d2db1c7718816bc1a53505e4754568"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n| 项目 | 详情 |\n|------|------|\n| 删除文件 | s123: step_1000 (435MB)；s456: step_500 + step_1000 (870MB) |\n| 释放空间 | **~1.3GB** |\n| Final checkpoint | 两个均完好保留 (145MB each) |\n| 磁盘使用 | 76% → **72%** (可用 7.5G → 8.7G) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-k16-intermediates.md"
+}

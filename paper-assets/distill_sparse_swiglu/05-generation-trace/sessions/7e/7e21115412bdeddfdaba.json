@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e21115412bdeddfdaba",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops server check v2",
+  "task_key": "worker_ops_server-check-v2_20260516T053608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_server-check-v2_20260516T053608_result.json",
+    "occurrence": 1,
+    "bytes": 965,
+    "sha256": "e6470bf0b620bc8cf98d397b5e29304c572ce0322d319cba099f40e09602648b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Server Status\n- **cuda:0**: bench_dense running (PID 209887, child PID 209892, 44105/97887 MiB used, GPU util 100%, elapsed 12m23s)\n- **cuda:1**: IDLE (0 MiB used, 0% util)\n\n## bce_v3 Status\n- **Log found**: yes, `/root/distill_sparse_swiglu/logs/bce_isocompute_v3_s42.log`\n- **Last step reached**: 2700/2700\n- **Completed**: YES — cron 误判，训练正常完成\n- **Final metrics** (step 2700):\n  - loss = 0.6382\n  - bce = 0.6371\n  - reg = 0.0010\n  - sparsity = 0.510\n- **Checkpoint exists**: yes, `/root/distill_sparse_swiglu/checkpoints/bce_isocompute_v3_s42/predictor_bce.pt` (145 MB)\n- **Evaluation done**: NO — 日志在 \"Saved checkpoint\" 后结束，没有 evaluation 阶段输出\n\n**总结**: bce_isocompute_v3_s42 训练 2700 steps 全部完成（耗时 2828s，1.05s/step），sparsity 收敛到 ~51%。但没有跑 downstream evaluation。bench_dense 正在 cuda:0 上跑 benchmark eval，cuda:1 空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-server-check-v2.md"
+}

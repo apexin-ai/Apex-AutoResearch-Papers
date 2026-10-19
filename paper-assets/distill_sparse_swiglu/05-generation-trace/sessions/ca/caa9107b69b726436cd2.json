@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "caa9107b69b726436cd2",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_15.md",
+  "task_key": "loop_15",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15.md",
+    "occurrence": 1,
+    "bytes": 3514,
+    "sha256": "adb40ffba9e09d28efe3fc8771dfa1949685e431ff7e2d55e01e2dd7009ac8e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-23T00:03:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-41718 cuda:0,1 + westd-34887 cuda:0,1（共 4× RTX PRO 6000）\n- westd-41718 无外网，所有 HF 下载必须先 `source /etc/network_turbo` + 设 SSL 证书环境变量，或从 westd-34887 同步缓存\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- 论文 DDL：2026-05-25（EMNLP 2026 ARR May cycle），Round 19 审稿已提交等用户审批\n- RevKL BoolQ 数据是 Table 4 唯一缺失格，填完前不要声称表格完整\n\n### 2. 🖥️ 基础设施快照\n- **westd-41718**：工作目录 `/root/distill_sparse_swiglu`，Python `/root/miniconda3/bin/python`（conda base），HF_HOME `/root/autodl-tmp/.hf_cache`，模型 `/root/autodl-tmp/models/llama-3.1-8b`，磁盘 765G/879G 可用（9%已用）\n- **westd-34887**：同结构，有 super_glue 数据集缓存，磁盘 817G/879G 可用（3%已用）\n- **活跃进程**：perlayer_kl_50_s42（PID 359439，tmux，westd-41718 cuda:0）— reconcile_crons 确认仍在跑\n- **Cron**：perlayer_kl_50_s42 监控中（1 active cron）\n- W&B 项目：distill_sparse_swiglu\n\n### 3. 📊 当前状态\n- **刚做完**：诊断 revkl_30_s42_boolq_uniform 失败（super_glue 数据集缓存缺失 + 无外网），已更新 registry failure_reason，已派 Worker `worker_fix_revkl_30_s42_boolq_uniform_20260522T032151` 去修复（启用代理下载数据集 + 用 submit_training_job 重跑）\n- **RUNNING**：perlayer_kl_50_s42（westd-41718 cuda:0）— per-layer KL 50% uniform 训练，填 Table 4 高 sparsity 行\n- **PREPARING**：revkl_30_s42_boolq_uniform（等 Worker 修复重跑）、perlayer_kl_s123_downstream_v2（PENDING 等人工审批）、另有 ~37 项历史 PREPARING 残留\n- **等待中的回调**：Worker `worker_fix_revkl_30_s42_boolq_uniform_20260522T032151` 完成回调；perlayer_kl_50_s42 cron 完成回调\n\n### 4. 📋 待办\n- Worker fix 回调到达 → 确认 revkl_30_s42_boolq_uniform 已重新提交并 RUNNING，更新 registry\n- revkl_30_s42_boolq_uniform 完成 → 提取 BoolQ acc，填入 ROADMAP 表 RevKL 行（当前为 —），更新 report.md，汇报 Director\n- perlayer_kl_50_s42 完成 → eval PPL（应在 E2E KL 50% 11.84 和 MSE 18.52 之间），验证 2D decomposition claim 在 50% sparsity 成立，更新 Table 4\n- Round 19 审稿用户审批通过 → 按 review-report-action skill 处理审稿反馈\n- perlayer_kl_s123_downstream_v2 审批通过 → 确认 westd-34887 环境就绪（之前因 super_glue 缓存问题排除了 BoolQ）\n\n### 5. 🎯 战略上下文\n- **核心结论**：KL distillation 在 PPL 上全面碾压 MSE/BCE/TEAL，2D decomposition（signal type × coupling scope）是论文核心 claim——signal type 占 PPL gap 97.5%，coupling scope 主导 downstream\n- **论文已接近完稿**，Round 19 fresh review 已提交。当前跑的实验是填充 Table 4 空行（RevKL BoolQ、per-layer KL 50%），不是探索新方向\n- **易错点**：westd-41718 的 HF_DATASETS_OFFLINE=1 在数据集未缓存时会直接报错而非优雅降级——每次在 41718 跑新 task/benchmark 前必须确认缓存存在\n- **D091**：Table 4 allocation 统一规则——30% 列用 uniform，50% 列用 global。提交评估实验时必须匹配\n- **MSE 50% 已放弃**（D092）：seed sensitivity 导致 sparsity collapse（5.1%），不再重跑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15.md"
+}

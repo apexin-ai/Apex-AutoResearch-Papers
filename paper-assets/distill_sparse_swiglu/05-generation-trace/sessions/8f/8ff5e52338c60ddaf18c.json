@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ff5e52338c60ddaf18c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh check cuda0 status",
+  "task_key": "worker_ssh_check_cuda0_status_20260516T052230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_cuda0_status_20260516T052230_result.json",
+    "occurrence": 1,
+    "bytes": 639,
+    "sha256": "85d6ccc6eb9bb7f97cdbc48dea594e4d8af7d523893a7e28ef57d25a81b245a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态汇总\n\n| GPU | 状态 | 显存占用 | GPU利用率 | 进程 |\n|-----|------|----------|-----------|------|\n| cuda:0 | **空闲** | 0 / 97887 MiB | 100%* | 无 |\n| cuda:1 | 占用 | 90947 / 97887 MiB | 100% | PID 205598 - bce_isocompute_v3_s42 训练 |\n\n**cuda:0**：无 GPU 进程，显存 0 MiB 占用，空闲可用。GPU 利用率显示 100% 但无进程挂载，可能是 nvidia-smi 采样延迟，实际空闲。\n\n**cuda:1**：bce_isocompute_v3_s42 正常运行中（PID 205597/205598），占用 ~91GB 显存。\n\n**PID 194814**：已死。ROADMAP 中记录的 TEAL 30% eval 进程已结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-cuda0-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6f572f6aa6ec4c376f6",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops urgent kl40 checkpoint check",
+  "task_key": "worker_ops_urgent-kl40-checkpoint-check_20260518T190135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-kl40-checkpoint-check_20260518T190135_result.json",
+    "occurrence": 1,
+    "bytes": 1347,
+    "sha256": "5b1415546b750e471c0601eb8e23913574eec3f2bcd71b00709a32530bf48b85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "关键信息找到了。\n\n## 结果\n\n### kl_sparsity40_s42 checkpoint\n\n**不存在。** 两台服务器（westd-34887、westd-41718）的 `checkpoints/` 目录下都没有 `kl_sparsity40_s42/` 文件夹。\n\n存在的相邻 sparsity checkpoints：`kl_sparsity35_s42`、`kl_sparsity45_s42`（均在 34887）。\n\n### bench_kl40_global 用的 checkpoint\n\nRegistry 记录（`registry.yaml:3311`）显示命令行用的是：\n```\ncheckpoints/kl_sparsity40_s42/predictor_kl_normalized.pt\n```\n这个实验在 2026-05-16 成功完成（PPL=10.117, MMLU=38.06%），说明 **checkpoint 当时存在但后来被删除了**。\n\n### d030_kl40_uniform 也引用了 40% \n\n也有 `d030_kl40_uniform` 实验（DONE/success），同样使用了 40% sparsity 配置。\n\n### 34887 GPU 状态\n\n| GPU | 状态 | 显存 | 利用率 |\n|-----|------|------|--------|\n| cuda:0 | **占用** | 67.0 / 97.9 GB | 63% |\n| cuda:1 | **空闲** | 0 / 97.9 GB | 0% |\n\nGPU 0 有进程在跑（PID 47633），GPU 1 完全空闲可用。\n\n### 总结\n\n`kl_sparsity40_s42` checkpoint 曾经存在于 westd-34887 并被 `bench_kl40_global` 成功使用，但目前已不在两台服务器的磁盘上。如果需要重新评测（如 `kl_sparsity40_s42_eval_teal_uniform` 还在 PREPARING 状态），需要**重新训练**该 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-kl40-checkpoint-check.md"
+}

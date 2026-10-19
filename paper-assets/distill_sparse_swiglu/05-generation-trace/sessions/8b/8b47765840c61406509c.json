@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b47765840c61406509c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis f1 oracle deploy",
+  "task_key": "worker_analysis_f1_oracle_deploy_20260517T073603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_f1_oracle_deploy_20260517T073603_result.json",
+    "occurrence": 1,
+    "bytes": 1104,
+    "sha256": "87737eb6e8096087f26dda2c8646971577752e8cfa07b03d75982029a08ee6ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果确认了预期的 structural mismatch：\n\n**F1 vs Oracle Magnitude Mask (top-50%)**\n\n| Predictor | F1 | Precision | Recall |\n|-----------|------|-----------|--------|\n| **BCE** | **0.6128** | 0.6132 | 0.6124 |\n| KL | 0.5397 | 0.5112 | 0.5715 |\n| Random | 0.5000 | 0.5000 | 0.5000 |\n\n关键发现：\n- **BCE F1 (0.613) > KL F1 (0.540)**：BCE 在逐 neuron 预测 oracle mask 上确实更准确（+7.3 pp）\n- **KL precision 极低（0.511）**：KL 几乎退化为\"保留所有 neuron\"策略（recall 0.572 > precision 0.511），说明 KL loss 不鼓励精确匹配 oracle mask，而是通过 output distribution 间接学习\n- Per-layer 模式：BCE 在中间层(3-13) F1 最高(~0.65)，后期层逐渐下降；KL 在 layer 4-9 表现最差（F1 < 0.46）\n\n这验证了论文的核心论点：**BCE 以更高的 per-neuron mask accuracy 达到了更差的 PPL（22.51 vs 11.79）**，因为 oracle magnitude mask 本身不是 output-distribution-optimal 的选择。\n\n输出已保存至 `/root/distill_sparse_swiglu/artifacts/kl_bce_f1_oracle.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-f1-oracle-deploy.md"
+}

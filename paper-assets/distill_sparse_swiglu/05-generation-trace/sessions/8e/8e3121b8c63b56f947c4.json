@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e3121b8c63b56f947c4",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "submit k16 eval final2",
+  "task_key": "worker_submit_k16_eval_final2_20260523T051642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_k16_eval_final2_20260523T051642_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "2bf39a0e21e88b29a614f7c2416cd638cc1d161a45d6539e9e4940ded87f011f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n- **PID**: 114997（GPU0, 40831MiB）\n- **GPU占用**: 确认 cuda:0 被 PID 114997 占用\n- **日志状态**: 正常。模型已加载完毕，TEAL global mask 已计算完成，per-layer sparsity 均在 0.285–0.301 范围（目标 0.30）\n- **Registry**: `perlayer_kl_k16_eval_final2` → RUNNING\n- **Cron**: 120s 间隔监控已注册"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-k16-eval-final2.md"
+}

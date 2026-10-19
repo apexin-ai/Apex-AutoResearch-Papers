@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba2d07c05f116d03f599",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval qwen14b kl30 gsm8k",
+  "task_key": "worker_eval_qwen14b_kl30_gsm8k_20260522T064413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen14b_kl30_gsm8k_20260522T064413_result.json",
+    "occurrence": 1,
+    "bytes": 448,
+    "sha256": "79653dc359858d4ca0fec61280df6c4d70bfd5ed34c764cfb75e607dab8449b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已经在运行中，无需重复提交。\n\n**状态汇总：**\n- **PID**: 14263\n- **日志路径**: `/root/runs/distill_sparse_swiglu/qwen14b_kl30_s42_gsm8k_uniform.log`\n- **GPU**: cuda:0，占用 63GB 显存\n- **进度**: 模型已加载，sparsity 校验通过（model-level 0.296 ≈ 30%），GSM8K log-likelihood 阶段已完成（1319/1319），当前正在 `generate_until` 阶段（8-shot generation，1319 条）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen14b-kl30-gsm8k.md"
+}

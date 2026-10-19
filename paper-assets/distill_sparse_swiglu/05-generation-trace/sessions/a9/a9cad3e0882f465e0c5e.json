@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9cad3e0882f465e0c5e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis retention 50 70 viz",
+  "task_key": "worker_analysis_retention_50_70_viz_20260517T074026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_retention_50_70_viz_20260517T074026_result.json",
+    "occurrence": 1,
+    "bytes": 1504,
+    "sha256": "0711919047c957b77858a83747c2764325444bf3c4356e62ac6beca6f2e07e3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Summary of results:\n\n## Results\n\n### 50% Sparsity (mvp_kl_norm_v2_s42)\n| Region | Avg Retention |\n|--------|-------------|\n| Early (L0-7) | 0.531 |\n| Middle (L8-23) | 0.564 |\n| Knowledge (L12-20) | 0.606 |\n| **Late (L24-31)** | **0.342** |\n\nStarved layers: L27-L31 (below 0.35 threshold)\nMin: L28 = 0.266, Max: L18 = 0.737\n\n### 70% Sparsity (kl_sparsity70_s42)\n| Region | Avg Retention |\n|--------|-------------|\n| Early (L0-7) | 0.306 |\n| Middle (L8-23) | 0.334 |\n| Knowledge (L12-20) | 0.381 |\n| **Late (L24-31)** | **0.226** |\n\nStarved layers: L10-L12, L27-L29 (below 0.21 threshold)\nMin: L10 = 0.167, Max: L17 = 0.496\n\n### Key Finding\nProgressive starvation pattern: at 30% sparsity only late layers (L27-L31) are starved; at 50% the same late layers remain the bottleneck; at 70%, starvation spreads to early-middle layers (L10-L12) as well. The \"bump\" at L15-L20 (knowledge layers) is preserved across all levels, confirming that global allocation preferentially feeds knowledge-critical middle layers at the expense of late layers.\n\n### Output Files (on westd-34887)\n- `/root/distill_sparse_swiglu/artifacts/global_50pct_retention_analysis.json`\n- `/root/distill_sparse_swiglu/artifacts/global_70pct_retention_analysis.json`\n- `/root/distill_sparse_swiglu/artifacts/per_layer_retention_chart.pdf`\n- `/root/distill_sparse_swiglu/artifacts/per_layer_retention_chart.png`\n- `/root/distill_sparse_swiglu/scripts/retention_analysis_multi.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-retention-50-70-viz.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f48c02d9b6be8d539e92",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "fix wikitext103 local fallback",
+  "task_key": "worker_fix_wikitext103_local_fallback_20260517T101529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_wikitext103_local_fallback_20260517T101529_result.json",
+    "occurrence": 1,
+    "bytes": 600,
+    "sha256": "90ff74ada6344e3daef38d720bd0286b99878aba48221afd9d119fa7b752d6d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n1. **数据准备**：从 HF 缓存 (`/root/autodl-tmp/.hf_cache/datasets/wikitext/wikitext-103-raw-v1/`) 导出为 `save_to_disk` 格式到 `/root/autodl-tmp/data/wikitext103/`（1,801,350 samples）。\n\n2. **代码修改**：`src/data_utils.py` 的 `get_calibration_loader` 中，wikitext-103 分支现在优先从 `/root/autodl-tmp/data/wikitext103/` 用 `load_from_disk` 加载，不存在时才回退到 HuggingFace 下载。\n\n3. **验证通过**：`--dataset wikitext-103 --seed 123` 的 5 步 dry-run 训练正常完成，数据加载无网络依赖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-wikitext103-local-fallback.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c251cfdeee730aba891",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code c3 coupling oracle prep",
+  "task_key": "worker_code_c3_coupling_oracle_prep_20260517T110528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_c3_coupling_oracle_prep_20260517T110528_result.json",
+    "occurrence": 1,
+    "bytes": 1645,
+    "sha256": "efc53cd16e3472a547cdead62284e73e4d41336f099f0bcca580cde3dafe92cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完全成功。5 steps 正常运行，训练循环无报错。\n\n**结果总结：**\n\n脚本 `/root/distill_sparse_swiglu/scripts/c3_coupling_oracle.py` 已就绪。\n\n**关键参数：**\n| 参数 | 默认值 | 说明 |\n|------|--------|------|\n| `--num_steps` | 1000 | 与 KL 训练一致 |\n| `--batch_size` | 4 | 与 KL 训练一致 |\n| `--lr` | 1e-3 | 与 KL 训练一致 |\n| `--bottleneck_dim` | 128 | d_b=128，与 KL/BCE 一致 |\n| `--sparsity_target` | 0.5 | 50% sparsity |\n| `--sparsity_reg_weight` | 0.1 | 与 BCE 训练一致 |\n| `--kl_checkpoint` | `checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt` | 冻结 KL oracle |\n| `--dataset` | wikitext-103 | 与 KL 训练一致 |\n\n**预估训练资源：**\n- GPU: 1× RTX PRO 6000 (`cuda:0`)，无需梯度回传基础模型\n- 时间: ~0.3s/step × 1000 steps ≈ **~5 分钟**（远快于 KL 的 ~45min，因为无需 gradient checkpointing/模型反向传播）\n- 显存: ~16GB（仅基础模型 fp16 推理 + predictor fp32 训练）\n\n**正式训练命令：**\n```bash\ncd /root/distill_sparse_swiglu && WANDB_MODE=disabled nohup /root/miniconda3/bin/python scripts/c3_coupling_oracle.py --gpu 0 --dataset wikitext-103 > logs/c3_coupling_oracle.log 2>&1 &\n```\n\n**实验逻辑：**\n- 每个 batch：基础模型 forward（no grad）→ 用冻结 KL predictor 生成 sigmoid(logits) 作为 soft target → 新 predictor 以 BCE loss 拟合这些 soft target\n- 去掉了 gradient coupling（梯度不流经基础模型），保留了 KL oracle 的\"什么该 prune\"的信息\n- 训完后对比 PPL，即可判断 hypothesis A vs B"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-c3-coupling-oracle-prep.md"
+}

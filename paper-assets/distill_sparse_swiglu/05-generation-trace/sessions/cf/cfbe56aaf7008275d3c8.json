@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfbe56aaf7008275d3c8",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops urgent status check",
+  "task_key": "worker_ops_urgent-status-check_20260516T193709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-status-check_20260516T193709_result.json",
+    "occurrence": 1,
+    "bytes": 2169,
+    "sha256": "5dc01ecb8be7ed5a0cac64c9ca3b0a34aa2468cbd5d54c0fa520f2118c66e531"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 检查 1: GPU 进程状态\n\n| GPU | 状态 | 进程 |\n|-----|------|------|\n| **GPU 0** | 空闲 | 0MiB 占用，无进程 |\n| **GPU 1** | 满载 | PID 257933，68538MiB/97887MiB，GPU-Util 100%，`python src/train_bce_gumbel.py` |\n\n### 检查 2: Python 训练进程\n\nPID 257933 正在跑 BCE+Gumbel+Lagrangian 训练：\n```\npython -u src/train_bce_gumbel.py --lr 1e-3 --num_steps 1000 --sparsity_target 0.5\n  --output_dir checkpoints/bce_framework_lr1e3 --gpu 0 (CUDA_VISIBLE_DEVICES=1)\n```\n\n这是 `run_bce_iso.sh` 的 **Run 2/3 (lr=1e-3)**，Run 1/3 (lr=1e-4) 已完成。当前进度约 step 50/1000，刚进入训练（模型加载完毕）。\n\n脚本结构：3 轮 sequential 训练 (lr=1e-4 → 1e-3 → 3e-3)，用 nohup 启动，日志写 `/root/runs/bce_iso_framework.log`。\n\n### 检查 3: BCE clean isolation 输出\n\n- **Run 1 (lr=1e-4)**: 已完成，checkpoint 存在 `bce_framework_lr1e4/predictor_bce_gumbel.pt` (145MB, 03:35)\n- **Run 2 (lr=1e-3)**: 正在训练中，`bce_framework_lr1e3/` 目录为空（尚未保存 checkpoint）\n- **Run 3 (lr=3e-3)**: 未开始，`bce_framework_lr3e3/` 目录为空\n- 先前的 isocompute 实验 (v1/v2/v3) 的 checkpoint 和 log 也都存在\n\n### 检查 4: C4 OOD eval 结果\n\n**存在**，位于 `/root/distill_sparse_swiglu/results/c4_ood_ppl.json`：\n\n| 方法 | PPL | 时间(s) |\n|------|-----|---------|\n| Dense | **9.2075** | 14.6 |\n| KL predictor 50% | **18.401** | 15.4 |\n| TEAL vanilla 50% | **38.7503** | 14.5 |\n\n与预期数字一致 (dense=9.21, KL=18.40, TEAL=38.75)。\n\n### 检查 5: tmux sessions\n\nssh_read_only 不允许 tmux 命令。但从 ps 输出看，**没有 tmux 进程**。训练是通过 nohup 启动的（符合 C002 约束）。\n\n---\n\n### 结论\n\n- **GPU 0**: 空闲，可用\n- **GPU 1**: BCE+Gumbel+Lagrangian framework ablation 正在跑 (Run 2/3, lr=1e-3, ~step 50/1000)\n- **BCE clean isolation**: Run 1 完成，Run 2 进行中，Run 3 待启动，预计还需较长时间完成全部 3 轮\n- **C4 OOD eval**: 已完成，数据确认无误\n- **无 tmux session**，训练用 nohup 后台运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-status-check.md"
+}

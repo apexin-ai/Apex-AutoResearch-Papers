@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a76b5c98bdd3dbe32ffb",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh quick 34887 gpu status",
+  "task_key": "worker_ssh_quick_34887_gpu_status_20260520T183426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_quick_34887_gpu_status_20260520T183426_result.json",
+    "occurrence": 1,
+    "bytes": 278,
+    "sha256": "e42506b065f7010bb423bc4dc4e99d33f68415877f01d6c5613a59a6472ec7e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两张 GPU 均空闲，无任何进程占用。\n\n| GPU | 显存占用 | 总显存 | GPU利用率 | 温度 |\n|-----|---------|--------|----------|------|\n| cuda:0 | 0 MiB | 97,887 MiB (~96GB) | 0% | 30°C |\n| cuda:1 | 0 MiB | 97,887 MiB (~96GB) | 0% | 29°C |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-quick-34887-gpu-status.md"
+}

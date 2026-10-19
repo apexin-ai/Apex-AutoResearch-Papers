@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "747e88de52b086551981",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh urgent status check 34887",
+  "task_key": "worker_ssh_urgent_status_check_34887_20260520T205249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_status_check_34887_20260520T205249_result.json",
+    "occurrence": 1,
+    "bytes": 1242,
+    "sha256": "5c7b4fcfc7cce626d73366aecdc318735b41aa2c8df154715dc630cac6a8a796"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 1. GPU 状态\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 | 0% | 0 / 97887 MiB |\n| cuda:1 | 0% | 0 / 97887 MiB |\n\n**两卡完全空闲。**\n\n### 2. MSE 50% s123 进程\n**PID 235945 和 235955 均已死亡。**\n\n### 3. 训练状态：已完成 1000/1000 步\n- 最终 step: `[Step 1000/1000] loss=185.000015 mse=0.000017 constraint=185.000000 sparsity=0.051 lambda=1000.00 tau=0.100`\n- Checkpoint 已保存: `checkpoints/mse50_s123/predictor_mse.pt` (145MB, May 21 03:11)\n\n### 4. Eval 状态：**失败**\n- `benchmark_eval.py` 在 lm_eval 加载数据集时崩溃\n- 错误: `RuntimeError: Cannot send a request, as the client has been closed.` — HuggingFace Hub httpx client 连接问题\n- `mse50_s123_eval/` 目录为空，**无结果产出**\n\n### 5. 问题分析\n训练正常完成但 **sparsity 收敛到 0.051（~5%）而非目标 50%**，MSE loss 约束项主导了优化。Eval 因 HF Hub 网络问题失败，需要重新启动 eval（先 `source /etc/network_turbo` 修复网络）。\n\n**注意**: sparsity=0.051 严重偏离 50% 目标——MSE loss 训练出的 predictor 几乎不做稀疏化，这个 checkpoint 可能无法直接用于论文对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-status-check-34887.md"
+}

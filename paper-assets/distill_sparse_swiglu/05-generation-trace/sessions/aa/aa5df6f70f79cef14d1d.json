@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa5df6f70f79cef14d1d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code flashinfer readiness check",
+  "task_key": "worker_code_flashinfer_readiness_check_20260519T155945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_flashinfer_readiness_check_20260519T155945_result.json",
+    "occurrence": 1,
+    "bytes": 2463,
+    "sha256": "cadda6c7d3dfa22cd2a87a78386b3208e8e5d15f04950102a45eb3cc81fe593e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。汇总如下：\n\n---\n\n## FlashInfer Inference Benchmark 就绪状态报告\n\n### flashinfer 包：**未安装**\n- `import flashinfer` → `ModuleNotFoundError`\n- miniconda3 下无 flashinfer 相关文件\n- 服务器上无任何代码 import flashinfer\n\n### 现有 benchmark 代码：**有，但是 mask-and-multiply（无真正加速）**\n两个脚本：\n- `src/benchmark_latency.py` — 较完整，支持多 batch size、多 sparsity level、predictor overhead 测量、JSON 输出\n- `src/latency_benchmark.py` — 较早版本，固定 batch=1\n\n**已有运行结果** (`results/benchmark_latency.json`, 2026-05-19)：\n| 条件 | batch=1 tok/s | batch=8 tok/s | vs Dense |\n|------|--------------|--------------|----------|\n| Dense | 17,309 | 15,637 | 1.00x |\n| KL Sparse 30% | 16,089 | 14,697 | **0.93x (慢 7%)** |\n| KL Sparse 50% | 16,057 | 14,757 | **0.93x (慢 7%)** |\n\n这正是 W3 质疑的核心：mask-and-multiply 没有 FLOP 节省，predictor 还加了 overhead（bs=1: 3.26ms, bs=8: 14.4ms），所以比 dense 更慢。\n\n### 模型和 checkpoint：**就绪**\n- LLaMA-3.1-8B: `/root/autodl-tmp/models/llama-3.1-8b` ✓\n- KL 30% predictor: `checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt` ✓\n- KL 50% predictor: `checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt` ✓\n\n### 环境\n- GPU: 2x NVIDIA RTX PRO 6000 Blackwell (96GB each)\n- PyTorch: 2.8.0+cu128\n- CUDA: 12.8\n\n### 本地 flashinfer 仓库\n- `/home/ubuntu/.../projects/distill_sparse_swiglu/flashinfer/` 有完整 flashinfer 源码 clone（含 benchmarks、CUDA kernels）\n- 但尚未 push 到服务器，也未安装为 Python 包\n\n### 缺什么\n\n1. **flashinfer Python 包安装**（`pip install flashinfer` 或从源码编译，需匹配 cu128 + torch 2.8）\n2. **sparse kernel benchmark 脚本**——现有脚本只做 mask-and-multiply。需要新脚本利用 flashinfer 的 sparse matmul/structured sparsity kernel 实现真正的 FLOP 节省，然后测 wall-clock speedup\n3. **sparse FFN forward pass 实现**——用 flashinfer API 将 predictor mask 转换为实际跳过 down_proj 计算的 sparse execution path\n\n### 预估搭建时间\n- flashinfer 安装（预编译 wheel if available for cu128）：5-15 min\n- 从源码编译（如无匹配 wheel）：20-40 min\n- sparse kernel benchmark 脚本编写 + 调试：1-2 hours\n- 端到端测试 + 数据收集：30 min"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-flashinfer-readiness-check.md"
+}

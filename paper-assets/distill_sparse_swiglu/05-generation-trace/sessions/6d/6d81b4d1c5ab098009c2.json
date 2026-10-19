@@ -1,0 +1,1658 @@
+{
+  "schema_version": "1.0",
+  "id": "6d81b4d1c5ab098009c2",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "cron hook kl30 s456 global eval 20260517T224954 014649",
+  "task_key": "cron_hook_kl30_s456_global_eval_20260517T224954_014649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_kl30_s456_global_eval_20260517T224954_014649.jsonl",
+    "occurrence": 1,
+    "bytes": 83297,
+    "sha256": "98fe53df69f5fa65140f318183d8ae5aa36a9cf84dcd4003afa386148a775210"
+  },
+  "statistics": {
+    "messages": 82,
+    "user_turns": 2,
+    "tool_calls": 39,
+    "roles": {
+      "user": 2,
+      "tool_call": 39,
+      "tool_result": 39,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T18:41:48.761976+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #11。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd-34887 cuda:0,1 + westd-41718 cuda:0,1（共 4 张）。config 里 gpu_ids=[0,1] 只列了两张，但 westd-41718 也在 servers 列表且 memory.md 确认 4 卡白名单\n- qwen14b_teal30_eval 跑在 westd-41718:cuda:1（registry 里 server/gpu 显示 N/A 但 report.md 确认），cron 监控 pid=6896\n- WANDB_MODE=offline，两台服务器都没有 wandb API key，指标只能从 log 文件提取\n- KL PPL 引用必须用 4-seed mean 12.00±0.07，禁用单 seed 最佳 11.91\n- 论文数字必须有代码来源（C003），不能凭推理改数字（D032 教训）\n- DDL: EMNLP 2026 ARR May **2026-05-25**，剩 8 天\n\n### 2. 🖥️ 基础设施快照\n- **westd-34887**: root@, `/root/distill_sparse_swiglu/`, Python `/root/miniconda3/bin/python`, conda base env, 2×RTX PRO 6000 Blackwell 95GB each\n- **westd-41718**: root@, `/root/distill_sparse_swiglu/`, 2×RTX PRO 6000 Blackwell 97GB each, PyTorch 2.8.0+cu128\n- 模型路径: LLaMA-3.1-8B `/root/autodl-tmp/models/llama-3.1-8b/`, Mistral-7B `/root/autodl-tmp/models/mistral-7b/`, Qwen-2.5-14B `/root/autodl-tmp/models/qwen2.5-14b/`\n- Checkpoint 关键路径见 memory.md \"Checkpoints 路径\" 段（KL 30/40/50% 各 seed, BCE v3, Qwen-14B KL/BCE）\n- 磁盘: westd-34887 `/usr/bin/nvidia-smi` 817G/879G 可用(3%), westd-41718 764G/879G 可用(9%)\n- 活跃进程:\n  - qwen14b_kl30_s42_eval: PID 52224, westd-34887:cuda:1, cron 监控中\n  - qwen14b_bce30_s42_eval: PID 59122, westd-34887:cuda:0, cron 监控中\n  - qwen14b_teal30_eval: PID 6896, westd-41718:cuda:1, cron 监控中\n\n### 3. 📊 当前状态\n**刚发生的事**: 本 session 刚启动，执行了 session-start 初始化（registry 同步 + cron reconcile）。3 个 Qwen-14B eval 实验仍在运行。kl50_global_s123_reeval 最近 failed（EXIT_CODE=1，未被前任 session 处理）。0 个 Worker 在跑。\n\n**RUNNING (3)**:\n| exp_id | 服务器 | GPU | 内容 |\n|--------|--------|-----|------|\n| qwen14b_kl30_s42_eval | westd-34887 | cuda:1 | Qwen-14B KL 30% downstream eval (MMLU/ARC/WG/GSM8K) |\n| qwen14b_bce30_s42_eval | westd-34887 | cuda:0 | Qwen-14B BCE 30% downstream eval |\n| qwen14b_teal30_eval | westd-41718 | cuda:1 | Qwen-14B TEAL 30% baseline eval |\n\n**PREPARING (15)**: bce_isocompute_v3_s456/s123 (BCE 多 seed), wallclock_speedup_30_50, kl50_s456_train/eval, kl50_s123_eval, c4_ood_kl30_s42, 以及若干已废弃的 diag/longbench/spon 实验（大部分无 hypothesis，可能是历史残留）\n\n**待处理**:\n- kl50_global_s123_reeval failed 未被分析（D051 数据修正相关，re-eval 50% KL s123 用正确 checkpoint）\n- 3 个 Qwen-14B eval 的 cron 回调尚未到达\n- Worker 池 = 0（违反 L1 红线 #4，但当前无 GPU 空闲且无非 GPU 任务明确 pending）\n\n### 4. 📋 待办（条件触发式）\n- **qwen14b_kl30_s42_eval cron 回调到达** → spawn Worker 提取 downstream metrics → update_registry → 与 LLaMA-8B 数据对比（KL 优势是否跨规模一致）→ 汇报 Director\n- **qwen14b_bce30_s42_eval cron 回调到达** → 同上，对比 Qwen KL vs BCE downstream，验证 objective mismatch 在 14B 是否持续\n- **qwen14b_teal30_eval cron 回调到达** → 同上，建立 Qwen-14B TEAL baseline\n- **三个 Qwen eval 全部完成** → 汇总 14B 跨规模验证表格，写入论文 cross-architecture section → 这是论文最后一块重要拼图\n- **kl50_global_s123_reeval failed** → spawn Worker 查 log tail 诊断失败原因 → 如果是简单错误则修复重跑（D051 数据一致性修正依赖此实验）\n- **GPU 释放后** → 优先级: (1) kl50_global_s123_reeval 重跑 (2) bce_isocompute_v3_s123/s456 多 seed (3) wallclock_speedup_30_50\n- **论文侧**: Round 1 还有 2 个 warning in_progress: R1-W4 SNR patch（§3.5 已 dispatch）, R1-W5 λ curve（Appendix C）。Qwen-14B 结果到齐后需要更新 cross-arch table + narrative\n\n### 5. 🎯 战略上下文\n**项目核心**: KL distillation 让 SwiGLU LLM 的 contextual sparsity predictor 不需要 error compensation，实现最简推理管线。三个 core claims: (1) KL >> baselines (强), (2) SPON orthogonal but weak (充分), (3) Phase transition 三 regime (强)。\n\n**决策链关键节点**:\n- D007: MVP PASS，KL PPL 12.52 vs BCE 44.05\n- D034: Phase transition reframe（从 quadratic scaling 改为三 regime）\n- D044: 修正 Eq.4 + Appendix D 与代码一致\n- D048: 新增 Qwen-14B 跨规模验证（当前正在跑的 3 个 eval）\n- D049-D050: Allocation narrative 最终定稿为 variance reduction only\n- D051: 50% global s123 数据修正（reeval failed，待处理）\n\n**最容易判断错的事**:\n- 训练 log 中 `sparsity` 列是 training-time diagnostic，**不是**推理 sparsity。推理 sparsity 由 TEAL global top-k 在 eval 时决定。之前踩过坑（见 memory.md）\n- 50% uniform MMLU≈random（27.8%），不要再尝试 allocation 拯救 50%\n- 14B 上 KL vs BCE gap (15%) 比 8B (91%) 小很多——这不是 KL 变弱，是 14B 冗余更多抵消了 BCE mismatch\n- PREPARING 里很多实验（diag_*, longbench_*, spon_*, mag_preservation_reg 等）是历史残留，无 hypothesis，大概率不需要跑。优先级应放在: Qwen-14B eval 收尾 → kl50_s123 reeval 修复 → BCE 多 seed → 论文收尾\n- westd-41718:cuda:0 当前空闲，可用于新任务\n\n## 项目硬约束 (memory.md 节选)\n\n## 约束\n\n### 服务器环境\n- westd-34887, conda base 环境, `/root/miniconda3/bin/python`\n- westd-41718, 2×RTX PRO 6000 Blackwell 97GB each, PyTorch 2.8.0+cu128, 已部署\n- 工作目录: `/root/distill_sparse_swiglu/`\n- 模型: Llama-3.1-8B at `/root/autodl-tmp/models/llama-3.1-8b/`\n- Mistral-7B at `/root/autodl-tmp/models/mistral-7b/`\n- Qwen-2.5-14B at `/root/autodl-tmp/models/qwen2.5-14b/`\n- WANDB_MODE=offline（服务器无 wandb API key）\n- GPU 白名单: westd-34887 cuda:0,1 + westd-41718 cuda:0,1\n\n### 数据红线\n- KL PPL 引用: 4-seed mean 12.00±0.07（禁用单 seed 最佳 11.91）\n- D032 TEAL 30% PPL = 8.98（13.63 是 50% target 的结果，D032 错误修正已撤回）\n- Mistral registry 数据疑似污染（D032），暂不引用\n\n## 可查的历史\n前 65 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T18:41:58.459002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T18:41:58.510208+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T18:42:01.527739+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T18:42:01.528127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T18:42:01.983198+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"qwen14b_teal30_eval\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-17T15:55:19.487Z\\\", \\\"updated_at\\\": \\\"2026-05-17T15:55:24.125Z\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0174}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 455
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T18:42:01.983640+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T18:42:02.284773+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "distill_sparse_swiglu",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T18:42:13.380518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 3, \\\"results\\\": [{\\\"exp_id\\\": \\\"qwen14b_kl30_s42_eval\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=52224)\\\"]}, {\\\"exp_id\\\": \\\"qwen14b_teal30_eval\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=6896)\\\"]}, {\\\"exp_id\\\": \\\"qwen14b_bce30_s42_eval\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=59122)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 11852
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T18:42:13.381041+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/ROADMAP.md\\\", \\\"content\\\": \\\"# distill_sparse_swiglu — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-17 04:42 UTC | 更新原因: 同步：Round 1 issues 状态更新，新分析结果汇总，Paper Agent SNR patch dispatched\\\\n\\\\n## 核心方向\\\\nKL distillation 使 SwiGLU LLM 的 contextual sparsity prediction 不再需要 error compensation 和 static bias correction，实现最简推理管线。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research 完成 + 论文质量提升（EMNLP 2026 ARR May, DDL 2026-05-25，剩 8 天）\\\\n- **实验**: 94 registered, 47 success, 13 negative, 15 failed\\\\n- **论文评分**: Step 5 Round 5 = 7/10（文本收敛，无 critical）\\\\n- **Round 1 审稿**: 3.0/5, 4 critical + 7 warning → 全部 critical resolved, 2 warning in_progress (R1-W4 SNR patch, R1-W5 λ curve)\\\\n- **Claim 1 (KL >> baselines)**: ✅ Strong — PPL + downstream + iso-compute + gradient SNR 5.76×\\\\n- **Claim 2 (SPON orthogonal)**: ✅ Adequate — cos_sim=0.196, 2.4% relative improvement\\\\n- **Claim 3 (Three-regime phase transition)**: ✅ Strong — 30%/40%/50% × global/uniform 完整矩阵\\\\n- **Cross-arch**: ✅ Mistral-7B 30%/50%/70% 三点验证 + TEAL baselines\\\\n- **Ablations**: ✅ d_b/τ/steps/Lagrangian/component isolation 全覆盖\\\\n\\\\n## 新分析结果（待写入论文）\\\\n- **Gradient SNR** (success): KL/BCE = 5.76×, early layers 34-156×, late layers 2-4× → Paper Agent patching §3.5\\\\n- **TEAL-KL overlap** (success): Jaccard=0.396, middle layers L17-18 最低(0.19) → 待决定是否写入\\\\n- **Component ablation** (success): BCE+Gumbel+Lagrangian PPL=38.02 vs KL=11.79 → 已在 Table ablation\\\\n- **Natural sparsity floor**: 30% 仅 0.06% always-pruned → 扩展到 50%/70% 中\\\\n\\\\n## 近期任务\\\\n- [ ] Paper Agent: §3.5 SNR empirical verification paragraph (dispatched)\\\\n- [ ] Agent: 处理 worker-done 通知 + sparsity floor expansion (queued)\\\\n- [ ] 生成 λ/sparsity 时序曲线图 → Appendix C (R1-W5)\\\\n- [ ] SNR patch 完成后提交 Round 2 review (submit_paper_to_review)\\\\n- [ ] TEAL-KL overlap 修正 magnitude baseline (selection bias)\\\\n- [ ] 决定 overlap analysis 是否值得写入论文\\\\n\\\\n## G\n…[truncated 1545 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 11397
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T18:42:13.432467+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-17T18:29:01Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 136 个实验 — DONE 118, PREPARING 15, RUNNING 3\\\\n**DONE 分布**: failed 16, killed 10, negative 17, success 75\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — westd-34887:cuda:0, westd-34887:cuda:1\\\\n- **实际运行**: 3 张 — westd-34887:cuda:1(qwen14b_kl30_s42_eval), westd-41718:cuda:1(qwen14b_teal30_eval), westd-34887:cuda:0(qwen14b_bce30_s42_eval)\\\\n\\\\n### 💾 磁盘余量\\\\n- **westd-34887**:\\\\n  - `/init`: 150M/150M 可用（已用 1%）\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\\\n- **westd-41718**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/usr/bin/nvidia-smi`: 764G/879G 可用（已用 9%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `qwen14b_kl30_s42_eval` | westd-34887 | cuda:1 | 52224 | `~/runs/distill_sparse_swiglu/qwen14b_kl30_s42_eval.log` |\\\\n| `qwen14b_teal30_eval` | westd-41718 | cuda:1 | 6896 | `—` |\\\\n| `qwen14b_bce30_s42_eval` | westd-34887 | cuda:0 | 59122 | `~/runs/distill_sparse_swiglu/qwen14b_bce30_s42_eval.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `kl50_global_s123_reeval` [failed] — 2026-05-17T18:28:57 — EXIT_CODE=1 (generic error — check log tail)\\\\n- `downstream_teal30_baseline` [success] — 2026-05-17T17:45:46\\\\n- `kl30_s456_uniform_eval` [success] — 2026-05-17T17:39:20\\\\n- `downstream_dense_baseline` [success] — 2026-05-17T17:05:51\\\\n- `qwen14b_bce30_s42_v2` [negative] — 2026-05-17T16:51:07\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `kl50_global_s123_reeval`: EXIT_CODE=1 (generic error — check log tail)\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-17\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 |\n…[truncated 3864 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 11147
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T18:42:31.967456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T18:42:32.269063+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"qwen14b_teal30_eval\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T15:55:19.487Z\\\", \\\"updated_at\\\": \\\"2026-05-17T15:55:24.125Z\\\", \\\"spec\\\": {\\\"pid\\\": \\\"6896\\\", \\\"server\\\": \\\"westd-41718\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"account\\\": \\\"root\\\", \\\"log_path\\\": \\\"logs/qwen14b_teal30_eval.log\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id qwen14b_teal30 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --baseline_mode teal_vanilla --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\", \\\"model_name\\\": \\\"qwen2.5-14b\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"seed\\\": 42}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.016}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 301
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T18:42:32.269495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'qwen14b_kl30_s42_eval'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T18:42:32.671036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0212}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 401
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T18:42:32.671441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'qwen14b_bce30_s42_eval'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T18:42:33.123216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0181}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 451
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T18:42:33.225004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'kl50_global_s123_reeval'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T18:42:33.275635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0186}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 50
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T18:42:42.313178+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "limit": "10",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T18:42:42.364316+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"qwen14b_teal30_eval\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T15:55:19.487Z\\\", \\\"updated_at\\\": \\\"2026-05-17T15:55:24.125Z\\\", \\\"spec\\\": {\\\"pid\\\": \\\"6896\\\", \\\"server\\\": \\\"westd-41718\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"account\\\": \\\"root\\\", \\\"log_path\\\": \\\"logs/qwen14b_teal30_eval.log\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id qwen14b_teal30 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --baseline_mode teal_vanilla --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\", \\\"model_name\\\": \\\"qwen2.5-14b\\\", \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0, \\\"seed\\\": 42}}, \\\"kl30_s456_uniform_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T15:06:13.257Z\\\", \\\"updated_at\\\": \\\"2026-05-17T15:06:40.927Z\\\", \\\"metrics\\\": {\\\"wikitext2_ppl\\\": 8.7947, \\\"arc_challenge_acc_norm\\\": 0.4505, \\\"winogrande_acc\\\": 0.6875, \\\"mmlu_acc\\\": 0.4198, \\\"gsm8k_exact_match\\\": 0.0758, \\\"actual_sparsity\\\": 0.3, \\\"allocation\\\": \\\"uniform\\\"}, \\\"hypothesis\\\": \\\"30% sparsity with uniform allocation on seed 456 will show MMLU comparable to s42/s123 uniform results (~0.39-0.41), confirming uniform allocation provides more consistent cross-seed MMLU than global allocation which showed high variance (0.25-0.44)\\\", \\\"log_path\\\": \\\"/root/runs/distill_sparse_swiglu/kl30_s456_uniform_eval.log\\\", \\\"checkpoint_path\\\": \\\"/root/distill_sparse_swiglu/checkpoints/kl_30pct_s456/predictor_kl_normalized.pt\\\", \\\"conclusion\\\": \\\"success\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_sparse.py --exp_id kl30_s456_uniform --allocation uniform --sparsity_target 0.3 --checkpoint checkpoints/kl_30pct_s456/predictor_kl_normalized.pt\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"data_path\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"llama-3.1-8b\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"kl_30\n…[truncated 6921 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 51
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T18:42:54.583558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "qwen14b_kl30|qwen14b_bce30|kl50_global_s123_reeval",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu",
+              "glob": "registry.yaml",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T18:42:54.784690+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/registry.yaml:5065:  qwen14b_kl30_s42:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/registry.yaml:5080:        --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_kl30_s42\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/registry.yaml:5081:        --wandb_run_name qwen14b_kl30_s42 --gpu 0\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/registry.yaml:5086:      log_path: ~/runs/distill_sparse_swiglu/qwen14b_kl30_s42.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/registry.yaml:5097:    log_path: ~/runs/distill_sparse_swiglu/qwen14b_kl30_s42.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/registry.yaml:5104:        --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_kl30_s42\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/registry.yaml:5105:        --wandb_run_name qwen14b_kl30_s42 --gpu 0\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/registry.yaml:5123:    checkpoint_path: checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/registry.yaml:5126:  qwen14b_kl30_s42_eval:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/registry.yaml:5135:    parent: qwen14b_kl30_s42\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/registry.yaml:5139:        && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s42\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/registry.yaml:5140:        --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt\n/home/ubuntu/.agent-ml-researc\n…[truncated 5333 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Grep",
+            "elapsed_ms": 201
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T18:43:03.020232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/registry.yaml",
+              "offset": "5126",
+              "limit": "50"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T18:43:03.292964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5126\t  qwen14b_kl30_s42_eval:\n5127\t    status: RUNNING\n5128\t    retry_count: 0\n5129\t    created_at: '2026-05-17T14:50:41.706Z'\n5130\t    updated_at: '2026-05-17T14:52:08.726Z'\n5131\t    hypothesis: Qwen-2.5-14B with distilled 30% sparsity predictor maintains strong\n5132\t      downstream performance (MMLU, ARC, WinoGrande) at 30% activation sparsity, with\n5133\t      PPL degradation ratio consistent with training-time measurement (1.47x TEAL\n5134\t      global)\n5135\t    parent: qwen14b_kl30_s42\n5136\t    spec:\n5137\t      command: cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export\n5138\t        HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets\n5139\t        && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s42\n5140\t        --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt\n5141\t        --sparsity_mode teal_global --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k\n5142\t        --gpu 0\n5143\t      server: westd-34887\n5144\t      gpu:\n5145\t      - cuda:1\n5146\t      pid: '52224'\n5147\t      log_path: ~/runs/distill_sparse_swiglu/qwen14b_kl30_s42_eval.log\n5148\t      submitted_at: '2026-05-17T14:52:07.328Z'\n5149\t      submitted_via: submit_training_job\n5150\t      backend: tmux\n5151\t      account: root\n5152\t    server: westd-34887\n5153\t    gpu: cuda:1\n5154\t    account: root\n5155\t    pid: '52224'\n5156\t    log_path: ~/runs/distill_sparse_swiglu/qwen14b_kl30_s42_eval.log\n5157\t    reproduce:\n5158\t      command: cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export\n5159\t        HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets\n5160\t        && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s42\n5161\t        --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint \n…[truncated 911 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Read",
+            "elapsed_ms": 272
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T18:43:04.102687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/registry.yaml",
+              "offset": "5408",
+              "limit": "50"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T18:43:04.153360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5408\t  qwen14b_bce30_s42_eval:\n5409\t    status: RUNNING\n5410\t    retry_count: 0\n5411\t    created_at: '2026-05-17T16:47:04.947Z'\n5412\t    updated_at: '2026-05-17T16:47:52.204Z'\n5413\t    hypothesis: Qwen-14B BCE predictor at 30% sparsity shows worse downstream performance\n5414\t      (MMLU, ARC, WinoGrande, GSM8K) than KL predictor, confirming objective mismatch\n5415\t      penalty persists in downstream tasks beyond PPL (KL TEAL PPL=7.62 vs BCE TEAL\n5416\t      PPL=8.76)\n5417\t    parent: qwen14b_bce30_s42\n5418\t    server: westd-34887\n5419\t    gpu: cuda:0\n5420\t    account: root\n5421\t    spec:\n5422\t      command: cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export\n5423\t        HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets\n5424\t        && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id qwen14b_bce30_s42_eval\n5425\t        --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_bce30_s42/predictor_bce.pt\n5426\t        --sparsity_mode teal_global --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k\n5427\t        --gpu 0\n5428\t      server: westd-34887\n5429\t      gpu:\n5430\t      - cuda:0\n5431\t      pid: '59122'\n5432\t      log_path: ~/runs/distill_sparse_swiglu/qwen14b_bce30_s42_eval.log\n5433\t      submitted_at: '2026-05-17T16:47:51.067Z'\n5434\t      submitted_via: submit_training_job\n5435\t      backend: tmux\n5436\t      account: root\n5437\t    pid: '59122'\n5438\t    log_path: ~/runs/distill_sparse_swiglu/qwen14b_bce30_s42_eval.log\n5439\t    reproduce:\n5440\t      command: cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export\n5441\t        HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets\n5442\t        && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id qwen14b_bce30_s42_eval\n5443\t        --model_name_or_path /root/autodl-tmp/models/qwen2.5-1\n…[truncated 745 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T18:43:04.355413+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/registry.yaml",
+              "offset": "5498",
+              "limit": "50"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T18:43:04.406103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5498\t  kl50_global_s123_reeval:\n5499\t    status: DONE\n5500\t    retry_count: 1\n5501\t    created_at: '2026-05-17T17:41:56.673Z'\n5502\t    updated_at: '2026-05-17T18:34:20.571Z'\n5503\t    hypothesis: Re-eval 50% KL global s123 with correct checkpoint (mvp_kl_norm_v2_s123)\n5504\t      to fix data consistency issue in Table 2 Row 6, where previous eval used kl_50pct_s123\n5505\t      checkpoint instead\n5506\t    parent: kl_50pct_s123_global\n5507\t    server: westd-41718\n5508\t    gpu: cuda:0\n5509\t    account: root\n5510\t    reproduce:\n5511\t      command: cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export\n5512\t        HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets\n5513\t        && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id kl50_global_s123_reeval\n5514\t        --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt\n5515\t        --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k\n5516\t        --gpu 0\n5517\t      finished_at: '2026-05-17T18:28:54.207Z'\n5518\t    failure_reason: EXIT_CODE=1 (generic error — check log tail)\n5519\t    completed_at: '2026-05-17T17:48:21.031Z'\n5520\t    extra:\n5521\t      hook_events:\n5522\t      - event: on_failed\n5523\t        action: agent\n5524\t        ts: '2026-05-17T17:48:24.990388+00:00'\n5525\t      - event: on_failed\n5526\t        action: agent\n5527\t        ts: '2026-05-17T18:28:59.489303+00:00'\n5528\t      previous_failure:\n5529\t        conclusion: failed\n5530\t    spec:\n5531\t      pid: '14578'\n5532\t      server: westd-41718\n5533\t      gpu:\n5534\t      - cuda:0\n5535\t      account: root\n5536\t      log_path: logs/kl50_global_s123_reeval.log\n5537\t      command: CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python -u src/benchmark_eval.py\n5538\t        --exp_id kl50_global_s123 --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b/\n5539\n…[truncated 467 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T18:43:35.303671+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__get_worker_status",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T18:43:35.304069+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T18:43:36.057218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__send_progress,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__get_project_resource_usage",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-17T18:43:36.157945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-17T18:43:42.532493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-17T18:43:42.935512+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "distill_sparse_swiglu",
+              "section": "execution"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-17T18:43:42.986232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"westd-34887\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"westd-34887\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"westd-34887\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"qwen14b_kl30_s42_eval\\\"}, {\\\"server\\\": \\\"westd-41718\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"qwen14b_teal30_eval\\\"}, {\\\"server\\\": \\\"westd-34887\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"qwen14b_bce30_s42_eval\\\"}], \\\"allocated_but_idle\\\": [], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"qwen14b_kl30_s42_eval\\\", \\\"gpus\\\": [\\\"cuda:1\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"qwen14b_teal30_eval\\\", \\\"gpus\\\": [\\\"cuda:1\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"qwen14b_bce30_s42_eval\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}], \\\"worker_pool\\\": {\\\"total\\\": 1, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 1, \\\"details\\\": [{\\\"worker_id\\\": \\\"worker_eval_c4_ood_followup_20260517T184033\\\", \\\"task\\\": \\\"eval:c4_ood_followup\\\"}]}, \\\"summary\\\": \\\"分配 2 张, 实际跑 3 张 | Worker 1 (GPU 0 / CPU 1)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 453
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-17T18:43:43.037009+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"distill_sparse_swiglu\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_ids\\\": [0, 1], \\\"project_path\\\": \\\"/root/distill_sparse_swiglu/\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"westd-34887\\\"}, {\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"westd-41718\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 101
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-17T18:43:53.036446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_eval_c4_ood_followup_20260517T184033",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-17T18:43:53.388517+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_c4_ood_followup_20260517T184033\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"eval:c4_ood_followup\\\", \\\"project\\\": \\\"distill_sparse_swiglu\\\", \\\"started_at\\\": \\\"2026-05-17T18:40:33.441378+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_execute\\\", \\\"Bash\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\"], \\\"last_text\\\": \\\"网络是通的（baidu、aliyun 都能访问），只是 HuggingFace 被墙了。可以用 HF 镜像。测试镜像访问。\\\", \\\"turn_count\\\": 25}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 352
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-17T18:44:04.785718+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diag:kl50_s123_reeval_failure",
+              "project": "distill_sparse_swiglu",
+              "task_prompt": "## 任务：诊断 kl50_global_s123_reeval 失败原因\n\n### 背景\n实验 `kl50_global_s123_reeval` 在 westd-41718 上跑 benchmark_eval.py 评估 50% KL global s123，用正确 checkpoint (`mvp_kl_norm_v2_s123`)。已失败两次（retry_count=1），EXIT_CODE=1。\n\n### 需要做的事\n1. SSH 到 westd-41718（root@），读取日志尾部：\n   ```\n   tail -100 /root/distill_sparse_swiglu/logs/kl50_global_s123_reeval.log\n   ```\n   如果这个路径不存在，尝试：\n   ```\n   tail -100 /root/runs/distill_sparse_swiglu/kl50_global_s123_reeval.log\n   ```\n\n2. 检查 checkpoint 是否存在：\n   ```\n   ls -la /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt\n   ```\n\n3. 检查实际跑的命令（两次尝试用了不同参数，spec 中用 `--predictor_path` 而 reproduce 中用 `--checkpoint`，确认 benchmark_eval.py 接受哪个 flag）：\n   ```\n   head -50 /root/distill_sparse_swiglu/src/benchmark_eval.py | grep -E \"add_argument|predictor|checkpoint\"\n   ```\n   或者：\n   ```\n   grep -n \"predictor_path\\|--checkpoint\\|add_argument\" /root/distill_sparse_swiglu/src/benchmark_eval.py\n   ```\n\n4. 分析失败原因后，输出诊断结论：\n   - 失败根因\n   - 修复方案（具体的命令修正）\n   - 是否可以直接重跑\n\n### 环境\n- 服务器: westd-41718, root@, Python `/root/miniconda3/bin/python`\n- 工作目录: `/root/distill_sparse_swiglu/`\n- WANDB_MODE=offline",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-17T18:44:07.498586+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_kl50_s123_reeval_failure_20260517T184405\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/logs/workers/worker_diag_kl50_s123_reeval_failure_20260517T184405.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diag_kl50_s123_reeval_failure_20260517T184405 started. Use get_worker_status('worker_diag_kl50_s123_reeval_failure_20260517T184405') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2712
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-17T18:44:41.666820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 3/4 占用 (34887:0,1 + 41718:1) | 41718:cuda:0 空闲 | Worker 2 (GPU 0 / CPU 2) | 磁盘: 34887 3%用, 41718 9%用\n\n**Session #11 启动汇报**\n\n## RUNNING (3 Qwen-14B eval)\n| exp_id | 服务器:GPU | 内容 |\n|--------|-----------|------|\n| qwen14b_kl30_s42_eval | 34887:cuda:1 | KL 30% downstream (MMLU/ARC/WG/GSM8K) |\n| qwen14b_bce30_s42_eval | 34887:cuda:0 | BCE 30% downstream |\n| qwen14b_teal30_eval | 41718:cuda:1 | TEAL 30% baseline |\n\nCron 监控确认三个进程存活，等回调。\n\n## 待处理\n1. **kl50_global_s123_reeval failed** (EXIT_CODE=1, retry_count=1) — 已 spawn Worker 诊断失败原因（查 log + 检查 checkpoint + 确认 CLI flag 一致性）。诊断完成后修复重跑，用 41718:cuda:0。\n2. **eval:c4_ood_followup Worker** 在跑第 25 轮，处理 HF 镜像访问问题，继续等。\n3. **R1-W4 SNR patch** (§3.5) 和 **R1-W5 λ curve** (Appendix C) 状态待确认。\n\n## 计划\n- Qwen-14B 三个 eval 回调到达 → 提取 metrics → 汇总跨规模验证表 → 写入论文 cross-arch section\n- kl50_s123 诊断完 → 修复重跑（D051 数据一致性依赖此实验）\n- 41718:cuda:0 空闲，优先给 kl50_s123 reeval，若诊断显示需要大改则考虑 bce_isocompute_v3 多 seed\n\nDDL 5/25 剩 8 天，关键路径：Qwen-14B eval 收尾 → 跨规模表格 → 论文最终修订。",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-17T18:44:45.384076+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3717
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-17T18:44:55.857465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "SNR|signal.to.noise|gradient.*snr",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-17T18:44:56.309369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex:101:Forward KL (mode-covering) outperforms JSD (+6.4\\%) and reverse KL (+8.6\\%), consistent with the SNR analysis in \\S\\ref{sec:method:gradient}: complete teacher supervision enables better global allocation learning. % exp_id: jsd_ablation_s42, reverse_kl_ablation_s42\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/method.tex:151:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/method.tex:152:BCE's early-layer SNR collapses to ${\\sim}10^{-8}$ after step~10, consistent with rapid convergence of per-neuron classification, though an alternative explanation is loss saturation (gradient vanishing once accuracy plateaus).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/limitations.tex:7:Our attribution of KL's advantage to gradient coupling (\\S\\ref{sec:method:gradient}) is supported by SNR measurements and the BCE isolation ablation, but does not fully disentangle coupling from oracle quality: BCE uses magnitude-based oracles while KL directly optimizes output preservation, and an ablation using KL-derived masks as BCE targets would more precisely isolate the coupling effect.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex:23:\\item Quantitative characterization of the structural mismatch between per-neuron BCE training and global top-$k$ inference allocation, supported by oracle F1 decomposition and gradient SNR measurements (\\S\\ref{sec:method:gradient})."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Grep",
+            "elapsed_ms": 451
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-17T18:44:56.912456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "lambda.*curve|sparsity.*curve|lagrangian.*schedule|appendix.*C",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-17T18:44:56.963070+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex:115:Appendix~\\ref{app:db_sensitivity} confirms robustness to predictor capacity ($d_b$, $<$3\\%), temperature ($<$1.8\\%), and training steps (saturated by 800). % exp_id: db_sensitivity_sweep, tau_schedule_sweep, training_steps_sweep\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex:194:Decomposing the Dense$\\to$KL gap under uniform allocation (5.85 PPL): per-token hard mask evaluation (Appendix~\\ref{app:db_sensitivity}) yields PPL 9.22, attributing 53\\% to predictor approximation (including discretization) and 47\\% to per-layer budget allocation.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex:229:The pipeline adds 6.4\\% overhead to dense inference (RTX PRO 6000 Blackwell) while removing the compensation network ($-$2.7\\% latency, $-$67.2M params); post-hoc SPON yields $<$3\\% additional gain (\\S\\ref{sec:spon}), suggesting the predictor already internalizes most error-correction signal (Appendix~\\ref{app:latency}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/method.tex:105:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/limitations.tex:6:Out-of-distribution evaluation (Appendix~\\ref{app:ood}) covers only 50\\% sparsity on C4; extending to 30\\% and 70\\% is left to future work."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-17T18:45:00.583170+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/method.tex",
+              "offset": "140",
+              "limit": "30"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-17T18:45:00.634428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "140\t\\end{itemize}\n141\t\n142\t\\paragraph{The structural mismatch.}\n143\tThe key observation is that factor (b) makes the KL gradient for neuron $j$ depend on \\emph{all} other neurons' mask values.\n144\tBCE's factorized gradient (Eq.~\\ref{eq:bce_grad}) optimizes each neuron's prediction accuracy in isolation, but TEAL inference selects neurons via a global ranking across all layers.\n145\tUnder global top-$k$, the decision to retain neuron $j$ depends on the scores of all other neurons, a combinatorial interaction that BCE cannot capture.\n146\t\n147\tConcretely, BCE achieves high per-neuron accuracy ($>$90\\% oracle agreement) yet produces poor output under TEAL, because it optimizes a proxy misaligned with output preservation under global budget allocation.\n148\tKL directly optimizes the end-to-end objective, with gradients that reflect inter-neuron dependencies through the computation graph.\n149\t\n150\t\\paragraph{Empirical verification.}\n151\tMeasuring gradient SNR\\footnote{$\\text{SNR}_\\ell = \\|\\mathbb{E}[\\nabla_{\\theta_\\ell} \\mathcal{L}]\\|_2^2 / \\text{Var}[\\nabla_{\\theta_\\ell} \\mathcal{L}]$, expectation over mini-batches.} over 80 steps on LLaMA-3.1-8B (C4 data), KL achieves $5.76\\times$ higher average SNR than BCE ($5.77{\\times}10^{-5}$ vs.\\ $1.00{\\times}10^{-5}$), concentrated in early layers (0--4: $34$--$156\\times$) where factor~(b)'s Jacobian traverses the full remaining network; late layers (27--31: $1.7$--$3.8\\times$) show reduced advantage.\n152\tBCE's early-layer SNR collapses to ${\\sim}10^{-8}$ after step~10, consistent with rapid convergence of per-neuron classification, though an alternative explanation is loss saturation (gradient vanishing once accuracy plateaus).\n153\tThis preliminary measurement persists across learning rates; full-trajectory characterization is left to future work.\n154\t\n155\t\\subsection{Two-Dimensional Taxonomy of Sparsity Prediction Methods}\n156\t\\label{sec:method:taxonomy}\n157\t\n158\tWe organize prior work along two axes that capture the essential de\n…[truncated 897 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-17T18:45:06.206885+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "app:lagrangian|app:lambda|appendix.*lagrangian|label.*app:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-17T18:45:06.257630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex:183:Uniform allocation provides $7.5\\times$ smaller cross-seed MMLU standard deviation ($\\sigma$: 1.3pp vs.\\ 9.5pp), eliminating catastrophic seed-dependent degradation under global top-$k$ (MMLU 35.7$\\pm$9.5\\% vs.\\ 40.7$\\pm$1.3\\%, 3-seed). Global top-$k$ starves late layers (L31: 28.4\\%, std/mean$=$1.89), and this starvation interacts unpredictably with predictor initialization (Appendix~\\ref{app:lagrangian}). % exp_id: kl30_3seed\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/method.tex:105:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:4:\\label{app:latency}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:38:\\label{app:db_sensitivity}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:64:\\label{app:tau_sensitivity}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:86:\\label{app:training_convergence}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:111:\\label{app:lagrangian}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:151:\\label{app:ood}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:176:\\label{app:retention}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex:187:\\label{app:stability}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-17T18:45:09.168194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex",
+              "offset": "111",
+              "limit": "45"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-17T18:45:09.218898+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "111\t\\label{app:lagrangian}\n112\t\n113\tTable~\\ref{tab:lagrangian} reports the convergence of the adaptive penalty controller across sparsity targets.\n114\tThe geometric doubling pattern ($1 \\to 2 \\to 4 \\to 8 \\to \\ldots$) enables $\\lambda$ to reach steady state within $\\sim$10 steps; the deadzone ($\\epsilon = 0.02$) then stabilizes $\\lambda$ once actual sparsity is within $\\pm$2\\% of the target.\n115\t\n116\t\\begin{table}[h]\n117\t\\centering\n118\t\\caption{Penalty controller convergence across sparsity targets (multiplicative schedule, margin $\\epsilon=0.02$, 1000 training steps). Deviation is $|$actual $-$ target$|$ / target.}\n119\t\\label{tab:lagrangian}\n120\t\\small\n121\t\\begin{tabular}{lccccc}\n122\t\\toprule\n123\tTarget $\\rho$ & $\\lambda_{\\max}$ & Final $\\lambda$ & Actual sparsity & Deviation \\\\\n124\t\\midrule\n125\t30\\% & 5000 & 5000 (cap) & 0.285 & 5.0\\% \\\\ % exp_id: kl_30pct_s42\n126\t40\\% & 5000 & 625 & 0.398 & 0.5\\% \\\\ % exp_id: kl_40pct_s42\n127\t50\\% & 1000 & 8 & 0.504 & 0.8\\% \\\\ % exp_id: kl_50pct_s42\n128\t70\\% & 1000 & 1000 (cap) & 0.688 & 1.7\\% \\\\ % exp_id: kl_70pct_s42\n129\t\\bottomrule\n130\t\\end{tabular}\n131\t\\end{table}\n132\t\n133\tAt 50\\% sparsity, the SwiGLU gate distribution already clusters near the target, so $\\lambda$ remains low (8); the constraint is nearly satisfied by the initial predictor outputs.\n134\tAt 30\\% and 70\\%, the gap between the gate prior and target is larger, driving $\\lambda$ to its respective caps.\n135\tThe 40\\% target converges to $\\lambda = 625$ with only 0.5\\% deviation, illustrating the controller's precision when the target is reachable without saturating.\n136\t\n137\t\\begin{figure}[h]\n138\t\\centering\n139\t\\includegraphics[width=\\columnwidth]{lagrangian_dynamics.pdf}\n140\t\\caption{Adaptive penalty controller convergence across sparsity targets. Upper panel: penalty weight $\\lambda$ (log scale) over training steps. The 30\\% target requires extreme penalty ($\\lambda \\to 5000$) to suppress activations below their natural density, while 50\\% needs only $\\lambda \\appr\n…[truncated 1069 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-17T18:45:14.990193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/lagrangian_dynamics*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-17T18:45:15.041212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/_project/chart/lagrangian_dynamics_figure.txt\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/_project/chart/lagrangian_dynamics_figure_2eeac2.txt\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/figures/paper/lagrangian_dynamics.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Glob",
+            "elapsed_ms": 51
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-17T18:45:48.014796+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-17T18:45:48.065596+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-17T18:45:53.448477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_roadmap",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-17T18:45:53.549292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-17T18:45:56.861278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/ROADMAP.md"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-17T18:45:56.911967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# distill_sparse_swiglu — Research Dashboard\n2\t\n3\t> 最后更新: 2026-05-17 04:42 UTC | 更新原因: 同步：Round 1 issues 状态更新，新分析结果汇总，Paper Agent SNR patch dispatched\n4\t\n5\t## 核心方向\n6\tKL distillation 使 SwiGLU LLM 的 contextual sparsity prediction 不再需要 error compensation 和 static bias correction，实现最简推理管线。详见 paper_framing.md。\n7\t\n8\t## 当前进展\n9\t- **阶段**: Research 完成 + 论文质量提升（EMNLP 2026 ARR May, DDL 2026-05-25，剩 8 天）\n10\t- **实验**: 94 registered, 47 success, 13 negative, 15 failed\n11\t- **论文评分**: Step 5 Round 5 = 7/10（文本收敛，无 critical）\n12\t- **Round 1 审稿**: 3.0/5, 4 critical + 7 warning → 全部 critical resolved, 2 warning in_progress (R1-W4 SNR patch, R1-W5 λ curve)\n13\t- **Claim 1 (KL >> baselines)**: ✅ Strong — PPL + downstream + iso-compute + gradient SNR 5.76×\n14\t- **Claim 2 (SPON orthogonal)**: ✅ Adequate — cos_sim=0.196, 2.4% relative improvement\n15\t- **Claim 3 (Three-regime phase transition)**: ✅ Strong — 30%/40%/50% × global/uniform 完整矩阵\n16\t- **Cross-arch**: ✅ Mistral-7B 30%/50%/70% 三点验证 + TEAL baselines\n17\t- **Ablations**: ✅ d_b/τ/steps/Lagrangian/component isolation 全覆盖\n18\t\n19\t## 新分析结果（待写入论文）\n20\t- **Gradient SNR** (success): KL/BCE = 5.76×, early layers 34-156×, late layers 2-4× → Paper Agent patching §3.5\n21\t- **TEAL-KL overlap** (success): Jaccard=0.396, middle layers L17-18 最低(0.19) → 待决定是否写入\n22\t- **Component ablation** (success): BCE+Gumbel+Lagrangian PPL=38.02 vs KL=11.79 → 已在 Table ablation\n23\t- **Natural sparsity floor**: 30% 仅 0.06% always-pruned → 扩展到 50%/70% 中\n24\t\n25\t## 近期任务\n26\t- [ ] Paper Agent: §3.5 SNR empirical verification paragraph (dispatched)\n27\t- [ ] Agent: 处理 worker-done 通知 + sparsity floor expansion (queued)\n28\t- [ ] 生成 λ/sparsity 时序曲线图 → Appendix C (R1-W5)\n29\t- [ ] SNR patch 完成后提交 Round 2 review (submit_paper_to_review)\n30\t- [ ] TEAL-KL overlap 修正 magnitude baseline (selection bias)\n31\t- [ ] 决定 overlap analysis 是否值得写入论文\n32\t\n33\t## GPU 预算\n34\t- 分配: westd-34887 cuda:0 + cuda:1 (RTX PRO 6000 Blackwell, 95GB each)\n35\t- 当前: 双卡空闲（Agent 处理队列中，即将分配新任务）\n36\t- 累计 GPU·h: ~125h us\n…[truncated 1364 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-17T18:46:01.634813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/ROADMAP.md",
+              "old_string": "> 最后更新: 2026-05-17 04:42 UTC | 更新原因: 同步：Round 1 issues 状态更新，新分析结果汇总，Paper Agent SNR patch dispatched",
+              "new_string": "> 最后更新: 2026-05-17 18:45 UTC | 更新原因: Session #11 初始化：R1-W4/W5 confirmed done, Qwen-14B eval 进行中, kl50_s123 reeval 诊断中"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-17T18:46:01.685576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-17T18:46:10.774578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/ROADMAP.md",
+              "old_string": "- **实验**: 94 registered, 47 success, 13 negative, 15 failed\n- **论文评分**: Step 5 Round 5 = 7/10（文本收敛，无 critical）\n- **Round 1 审稿**: 3.0/5, 4 critical + 7 warning → 全部 critical resolved, 2 warning in_progress (R1-W4 SNR patch, R1-W5 λ curve)\n- **Claim 1 (KL >> baselines)**: ✅ Strong — PPL + downstream + iso-compute + gradient SNR 5.76×\n- **Claim 2 (SPON orthogonal)**: ✅ Adequate — cos_sim=0.196, 2.4% relative improvement\n- **Claim 3 (Three-regime phase transition)**: ✅ Strong — 30%/40%/50% × global/uniform 完整矩阵\n- **Cross-arch**: ✅ Mistral-7B 30%/50%/70% 三点验证 + TEAL baselines\n- **Ablations**: ✅ d_b/τ/steps/Lagrangian/component isolation 全覆盖",
+              "new_string": "- **实验**: 136 registered, 75 success, 17 negative, 16 failed, 3 RUNNING (Qwen-14B eval)\n- **论文评分**: Step 5 Round 5 = 7/10（文本收敛，无 critical）\n- **Round 1 审稿**: 3.0/5, 4 critical + 7 warning → 全部 critical resolved, ✅ R1-W4 SNR patch done (method.tex §3.5), ✅ R1-W5 λ curve done (Appendix C fig)\n- **Claim 1 (KL >> baselines)**: ✅ Strong — PPL + downstream + iso-compute + gradient SNR 5.76×\n- **Claim 2 (SPON orthogonal)**: ✅ Adequate — cos_sim=0.196, 2.4% relative improvement\n- **Claim 3 (Three-regime phase transition)**: ✅ Strong — 30%/40%/50% × global/uniform 完整矩阵\n- **Cross-arch**: ✅ Mistral-7B 30%/50%/70% 三点验证 + TEAL baselines; ⏳ Qwen-14B 30% KL/BCE/TEAL eval 进行中\n- **Ablations**: ✅ d_b/τ/steps/Lagrangian/component isolation 全覆盖"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-17T18:46:10.825361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-17T18:46:22.234890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/ROADMAP.md",
+              "old_string": "## 新分析结果（待写入论文）\n- **Gradient SNR** (success): KL/BCE = 5.76×, early layers 34-156×, late layers 2-4× → Paper Agent patching §3.5\n- **TEAL-KL overlap** (success): Jaccard=0.396, middle layers L17-18 最低(0.19) → 待决定是否写入\n- **Component ablation** (success): BCE+Gumbel+Lagrangian PPL=38.02 vs KL=11.79 → 已在 Table ablation\n- **Natural sparsity floor**: 30% 仅 0.06% always-pruned → 扩展到 50%/70% 中\n\n## 近期任务\n- [ ] Paper Agent: §3.5 SNR empirical verification paragraph (dispatched)\n- [ ] Agent: 处理 worker-done 通知 + sparsity floor expansion (queued)\n- [ ] 生成 λ/sparsity 时序曲线图 → Appendix C (R1-W5)\n- [ ] SNR patch 完成后提交 Round 2 review (submit_paper_to_review)\n- [ ] TEAL-KL overlap 修正 magnitude baseline (selection bias)\n- [ ] 决定 overlap analysis 是否值得写入论文",
+              "new_string": "## 新分析结果（待写入论文）\n- **Gradient SNR** (done): KL/BCE = 5.76×, early layers 34-156×, late layers 2-4× → ✅ 已写入 method.tex §3.5\n- **TEAL-KL overlap** (success): Jaccard=0.396, middle layers L17-18 最低(0.19) → 待决定是否写入\n- **Component ablation** (done): BCE+Gumbel+Lagrangian PPL=38.02 vs KL=11.79 → ✅ 已在 Table ablation\n- **Natural sparsity floor**: 30% 仅 0.06% always-pruned → 扩展到 50%/70% 中\n\n## 近期任务\n- [x] Paper Agent: §3.5 SNR empirical verification paragraph ✅\n- [x] 生成 λ/sparsity 时序曲线图 → Appendix C (R1-W5) ✅\n- [ ] Qwen-14B KL/BCE/TEAL 30% downstream eval → 跨规模验证表格 → 论文 cross-arch section (RUNNING)\n- [ ] kl50_global_s123_reeval 失败诊断 + 修复重跑 (Worker 诊断中)\n- [ ] C4 OOD followup eval (Worker 进行中)\n- [ ] 提交 Round 2 review (blocked on Qwen-14B + kl50 reeval)\n- [ ] TEAL-KL overlap 修正 magnitude baseline (selection bias)\n- [ ] 决定 overlap analysis 是否值得写入论文"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-17T18:46:22.286424+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-17T18:46:28.271176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/ROADMAP.md",
+              "old_string": "## GPU 预算\n- 分配: westd-34887 cuda:0 + cuda:1 (RTX PRO 6000 Blackwell, 95GB each)\n- 当前: 双卡空闲（Agent 处理队列中，即将分配新任务）\n- 累计 GPU·h: ~125h used",
+              "new_string": "## GPU 预算\n- 分配: westd-34887 cuda:0,1 + westd-41718 cuda:0,1 (4× RTX PRO 6000 Blackwell)\n- 当前: 3/4 卡占用 (34887:0,1 Qwen eval + 41718:1 TEAL eval), 41718:cuda:0 空闲\n- 累计 GPU·h: ~130h used"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-17T18:46:28.326397+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Edit",
+            "elapsed_ms": 55
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-17T18:46:41.415086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "cross.arch|qwen|14b|cross.model|generalization|scalab",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-17T18:46:41.466300+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex:191:Late-layer starvation persists across levels (L24--31 retention: 50.1/34.2/22.6\\% at 30/50/70\\% sparsity; Figure~\\ref{fig:retention}), consistent on both 7--8B models (\\S\\ref{sec:cross_arch}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex:203:\\paragraph{Cross-Architecture Validation.}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex:204:\\label{sec:cross_arch}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex:205:Table~\\ref{tab:cross_arch} evaluates on Mistral-7B-v0.3~\\cite{jiang2023mistral} (GQA + sliding window, dense PPL 5.52).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex:209:\\caption{Cross-architecture comparison (WikiText-2 PPL$\\downarrow$). Adv = TEAL\\,/\\,KL ratio. LLaMA uses global top-$k$; Mistral uses uniform allocation (matched within each architecture).}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex:210:\\label{tab:cross_arch}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex:224:The KL advantage ratio (computed within each architecture under matched allocation) is consistent across architectures (within 8\\% at $\\leq$50\\% sparsity), with larger variance at 70\\% (4.63$\\times$ vs.\\ 5.59$\\times$) due to differential baseline collapse.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex:7:Cross-architecture evaluation on Mistral-7B-v0.3 confirms consistent improvements (within 8\\% ratio at $\\leq$50\\% sparsity).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex:19:Cross-architecture evaluation on Mistral-7B-v0.3~\\cite{jiang2023mistral} conf\n…[truncated 153 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Grep",
+            "elapsed_ms": 51
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-17T18:46:44.338178+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex",
+              "offset": "203",
+              "limit": "30"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-17T18:46:44.388846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "203\t\\paragraph{Cross-Architecture Validation.}\n204\t\\label{sec:cross_arch}\n205\tTable~\\ref{tab:cross_arch} evaluates on Mistral-7B-v0.3~\\cite{jiang2023mistral} (GQA + sliding window, dense PPL 5.52).\n206\t\n207\t\\begin{table}[t]\n208\t\\centering\n209\t\\caption{Cross-architecture comparison (WikiText-2 PPL$\\downarrow$). Adv = TEAL\\,/\\,KL ratio. LLaMA uses global top-$k$; Mistral uses uniform allocation (matched within each architecture).}\n210\t\\label{tab:cross_arch}\n211\t\\small\n212\t\\begin{tabular}{l@{\\hspace{4pt}}cc@{\\hspace{3pt}}c@{\\hspace{6pt}}|@{\\hspace{6pt}}cc@{\\hspace{3pt}}c}\n213\t\\toprule\n214\t & \\multicolumn{3}{c}{Mistral-7B} & \\multicolumn{3}{c}{LLaMA-8B} \\\\\n215\t & KL & TEAL & Adv & KL & TEAL & Adv \\\\\n216\t\\midrule\n217\t30\\% & \\textbf{6.77} & 8.38 & 1.24$\\times$ & \\textbf{8.98} & 10.97 & 1.22$\\times$ \\\\ % exp_id: kl_30_mistral, teal_30_mistral\n218\t50\\% & \\textbf{8.65} & 18.31 & 2.12$\\times$ & \\textbf{11.79} & 23.31 & 1.98$\\times$ \\\\ % exp_id: kl_50_mistral, teal_50_mistral\n219\t70\\% & \\textbf{13.33} & 61.72 & 4.63$\\times$ & \\textbf{17.91} & 100.11 & 5.59$\\times$ \\\\ % exp_id: kl_70_mistral, teal_70_mistral\n220\t\\bottomrule\n221\t\\end{tabular}\n222\t\\end{table}\n223\t\n224\tThe KL advantage ratio (computed within each architecture under matched allocation) is consistent across architectures (within 8\\% at $\\leq$50\\% sparsity), with larger variance at 70\\% (4.63$\\times$ vs.\\ 5.59$\\times$) due to differential baseline collapse.\n225\tConsistent ratios despite Mistral's stronger TEAL baseline (gate distribution favors magnitude pruning) provide preliminary evidence of generality across SwiGLU architectures at the 7--8B scale.\n226\t\n227\t\n228\t\\paragraph{Inference Efficiency.}\n229\tThe pipeline adds 6.4\\% overhead to dense inference (RTX PRO 6000 Blackwell) while removing the compensation network ($-$2.7\\% latency, $-$67.2M params); post-hoc SPON yields $<$3\\% additional gain (\\S\\ref{sec:spon}), suggesting the predictor already internalizes most error-correction signal (Appendix~\\ref{app:latency\n…[truncated 155 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-17T18:46:59.566957+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "qwen14b_kl30_s42:|qwen14b_bce30_s42:|qwen14b_teal30:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-17T18:46:59.818742+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5065:  qwen14b_kl30_s42:\n5218:  qwen14b_bce30_s42:"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Grep",
+            "elapsed_ms": 251
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-17T18:47:02.632576+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/registry.yaml",
+              "offset": "5065",
+              "limit": "60"
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-17T18:47:03.135174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5065\t  qwen14b_kl30_s42:\n5066\t    status: DONE\n5067\t    retry_count: 0\n5068\t    created_at: '2026-05-17T14:27:08.956Z'\n5069\t    updated_at: '2026-05-17T14:50:16.405Z'\n5070\t    hypothesis: 'KL-normalized sparsity predictor distillation generalizes from LLaMA-8B\n5071\t      to Qwen-2.5-14B: at 30% sparsity the predictor should achieve comparable relative\n5072\t      PPL degradation (dense→sparse ratio) as LLaMA-8B (6.12→8.98, 1.47x), validating\n5073\t      cross-scale and cross-architecture transferability of the distillation method'\n5074\t    spec:\n5075\t      command: cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export\n5076\t        HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets\n5077\t        && /root/miniconda3/bin/python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/\n5078\t        --loss_type kl_normalized --num_steps 1000 --batch_size 1 --seq_len 2048 --lr\n5079\t        1e-3 --seed 42 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing\n5080\t        --dataset wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_kl30_s42\n5081\t        --wandb_run_name qwen14b_kl30_s42 --gpu 0\n5082\t      server: westd-34887\n5083\t      gpu:\n5084\t      - cuda:1\n5085\t      pid: '50349'\n5086\t      log_path: ~/runs/distill_sparse_swiglu/qwen14b_kl30_s42.log\n5087\t      submitted_at: '2026-05-17T14:28:58.095Z'\n5088\t      submitted_via: submit_training_job\n5089\t      backend: tmux\n5090\t      account: root\n5091\t      wall_clock_seconds: 1278.3\n5092\t      gpu_hours: 0.36\n5093\t    server: westd-34887\n5094\t    gpu: cuda:1\n5095\t    account: root\n5096\t    pid: '50349'\n5097\t    log_path: ~/runs/distill_sparse_swiglu/qwen14b_kl30_s42.log\n5098\t    reproduce:\n5099\t      command: cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export\n5100\t        HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets\n5101\t  \n…[truncated 1085 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-17T18:47:03.486786+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/registry.yaml",
+              "offset": "5218",
+              "limit": "90"
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-17T18:47:03.587848+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5218\t  qwen14b_bce30_s42:\n5219\t    status: DONE\n5220\t    retry_count: 0\n5221\t    created_at: '2026-05-17T15:44:00.465Z'\n5222\t    updated_at: '2026-05-17T16:48:35.405Z'\n5223\t    hypothesis: BCE objective on Qwen-2.5-14B at 30% sparsity produces significantly\n5224\t      worse PPL than KL (mirroring LLaMA-8B where KL PPL=11.79 vs BCE PPL=22.51),\n5225\t      confirming objective mismatch between per-neuron BCE training and global top-k\n5226\t      inference generalizes across model scales\n5227\t    spec:\n5228\t      command: cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export\n5229\t        HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets\n5230\t        && /root/miniconda3/bin/python -u src/train.py --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/\n5231\t        --loss_type bce --num_steps 1000 --batch_size 1 --seq_len 2048 --lr 1e-3 --seed\n5232\t        42 --sparsity_target 0.3 --lambda_max 5000 --gradient_checkpointing --dataset\n5233\t        wikitext-103 --log_every 10 --output_dir checkpoints/qwen14b_bce30_s42 --wandb_run_name\n5234\t        qwen14b_bce30_s42 --gpu 0\n5235\t      server: westd-34887\n5236\t      gpu:\n5237\t      - cuda:0\n5238\t      pid: '55026'\n5239\t      log_path: ~/runs/distill_sparse_swiglu/qwen14b_bce30_s42.log\n5240\t      submitted_at: '2026-05-17T15:45:38.131Z'\n5241\t      submitted_via: submit_training_job\n5242\t      backend: tmux\n5243\t      account: root\n5244\t      wall_clock_seconds: 2533.6\n5245\t      gpu_hours: 0.7\n5246\t    server: westd-34887\n5247\t    gpu: cuda:0\n5248\t    account: root\n5249\t    reproduce:\n5250\t      server: westd-34887\n5251\t      gpu: cuda:0\n5252\t      started_at: '2026-05-17T15:45:17.302Z'\n5253\t      command: cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export\n5254\t        HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets\n5255\t        && /root/miniconda3/bin/python -u sr\n…[truncated 2555 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-17T18:47:38.469991+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Session #11 初始化完成。\n\n**当前状态**：\n- 3 个 Qwen-14B 30% eval 进行中（KL/BCE/TEAL downstream，cron 监控存活）\n- 已有训练数据：KL TEAL PPL=7.62, BCE TEAL PPL=8.76, Dense PPL=5.18\n- Worker 2 个：`eval:c4_ood_followup`（25 轮，处理 HF 镜像）+ `diag:kl50_s123_reeval_failure`（刚 spawn）\n- R1-W4/W5 均已完成，ROADMAP 已更新\n- westd-41718:cuda:0 空闲，等诊断结果后重跑 kl50_s123_reeval\n\n**等待触发**：\n- Qwen eval cron 回调 → 提取 metrics → 扩展 cross-arch 表（加 Qwen-14B 列 + downstream）→ 更新论文叙事\n- 诊断 Worker 完成 → 修复 kl50_s123 → 重跑在 41718:cuda:0\n- c4_ood Worker 完成 → 整合 OOD 结果"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval"
+          },
+          "id": "event-000080"
+        }
+      ],
+      "message_count": 80
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-17T22:48:53.812690+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-17T22:49:54.012625+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd-34887 cuda:0,1 + westd-41718 cuda:0,1（共 4 张）。config gpu_ids=[0,1] 只列了 34887，但 41718 也合法（servers 列表 + 历史实验确认）\n- KL PPL 引用必须用 4-seed mean 12.00±0.07，禁用单 seed 最佳 11.91\n- 论文数字必须有代码来源（C003），不能凭推理改数字（D032 教训）\n- WANDB_MODE=offline，两台服务器都没有 wandb API key，指标只能从 log 文件提取\n- DDL: EMNLP 2026 ARR May **2026-05-25**，剩 8 天\n- qwen14b_bce30_s42 训练时 Lagrangian 失败（predictor sparsity=6.4%），TEAL PPL 8.76 是外部强制 30% 的结果，对比时须注明\n\n### 2. 🖥️ 基础设施快照\n- **westd-34887**: root@, `/root/distill_sparse_swiglu/`, Python `/root/miniconda3/bin/python`, conda base\n- **westd-41718**: root@, `/root/distill_sparse_swiglu/`, Python `/root/miniconda3/bin/python`, 2×RTX PRO 6000 Blackwell 97GB, PyTorch 2.8.0+cu128\n- 模型: LLaMA-3.1-8B `/root/autodl-tmp/models/llama-3.1-8b/`, Qwen-2.5-14B `/root/autodl-tmp/models/qwen2.5-14b/`, Mistral-7B `/root/autodl-tmp/models/mistral-7b/`\n- HF cache: `/root/autodl-tmp/.hf_cache/datasets`\n- 磁盘: westd-34887 97%用(817G/879G可用), westd-41718 91%用(764G/879G可用)\n- 活跃进程:\n  - qwen14b_kl30_s42_eval: PID 52224, westd-34887:cuda:1, cron 监控中\n  - qwen14b_bce30_s42_eval: PID 59122, westd-34887:cuda:0, cron 监控中\n  - qwen14b_teal30_eval: PID 6896, westd-41718:cuda:1, cron 监控中\n- Workers:\n  - worker_eval_c4_ood_followup_20260517T184033 (25+ turns, 处理 HF 镜像问题)\n  - worker_diag_kl50_s123_reeval_failure_20260517T184405 (刚 spawn, 诊断失败原因)\n\n### 3. 📊 当前状态\nSession #11 完成了 session-start 初始化：registry 同步、cron reconcile（3 进程存活）、ROADMAP 更新（R1-W4/W5 标记完成）、向 Director 汇报。\n\n**已确认**: R1-W4 SNR patch (method.tex:150-153) 和 R1-W5 λ curve (figures/paper/lagrangian_dynamics.pdf + appendix.tex:137-142) 都已完成，Round 1 所有 issues resolved。\n\n**RUNNING (3)**: Qwen-14B 30% downstream eval 三件套（KL/BCE/TEAL），跑 MMLU/ARC/WinoGrande/GSM8K + WikiText-2。\n\n**已有 Qwen-14B 训练 metrics**:\n- KL: dense_ppl=5.18, teal_global_ppl=7.62, ratio=1.47×\n- BCE: dense_ppl=5.18, teal_global_ppl=8.76, ratio=1.69× (Lagrangian 失败，TEAL 外部强制 30%)\n- TEAL baseline: 正在 eval 中\n\n**kl50_global_s123_reeval**: DONE(failed), EXIT_CODE=1, retry_count=1。Worker 正在诊断（可能是 CLI flag 不一致：spec 用 `--predictor_path` 而 reproduce 用 `--checkpoint`）。\n\n### 4. 📋 待办（条件触发式）\n- **qwen14b_kl30_s42_eval cron 回调** → 提取 downstream metrics → update_registry → 与 LLaMA-8B 对比（KL 30% downstream 跨规模一致性）\n- **qwen14b_bce30_s42_eval cron 回调** → 提取 metrics → 对比 Qwen KL vs BCE downstream gap（14B 上 objective mismatch 是否持续）\n- **qwen14b_teal30_eval cron 回调** → 提取 metrics → 建立 Qwen-14B TEAL 30% baseline\n- **三个 Qwen eval 全部完成** → spawn Worker 汇总跨规模表格 → 扩展 experiments.tex cross-arch table (加 Qwen-14B 列) → 更新 abstract/intro 提及 14B\n- **diag Worker 完成** → 根据诊断修复 kl50_global_s123_reeval，重跑在 41718:cuda:0（D051 数据一致性依赖此实验）\n- **kl50_s123 reeval 成功** → 修正 Table 2 Row 6 的 50% global s123 MMLU 数据\n- **c4_ood_followup Worker 完成** → 整合 OOD 结果到 Appendix\n- **所有数据到齐** → 提交 Round 2 internal review → 最终修订 → 投稿\n\n### 5. 🎯 战略上下文\n**核心**: KL distillation 让 SwiGLU LLM 的 contextual sparsity predictor 不需要 error compensation，三个 core claims 全部 strong/adequate。\n\n**决策链关键**:\n- D048: Qwen-14B 跨规模验证（当前关键路径）\n- D051: 50% global s123 用错 checkpoint，需 reeval 修正 Table 2\n- D049-D050: Allocation narrative 定稿为 \"variance reduction only\"\n\n**最容易判断错的事**:\n- 训练 log 中 `sparsity` 列是 training-time diagnostic，**不是**推理 sparsity（推理由 TEAL global top-k 决定）\n- qwen14b_bce30_s42 的 hard_mask_ppl=5.57 看起来很好，但那是在 predictor native 6.4% sparsity 下测的（Lagrangian 失败），不能和 KL 的 6.8（28.1% sparsity）比\n- 14B 上 KL vs BCE TEAL PPL gap (7.62 vs 8.76, 15%) 远小于 8B (11.79 vs 22.51, 91%)——这不是 KL 变弱，是 14B 冗余更大导致 TEAL 本身就能较好应对 BCE 的次优 mask\n- read_registry API 有分页问题：按 status=RUNNING 过滤只返回 1 条（qwen14b_teal30_eval），但实际有 3 个 RUNNING。需要直接 Read registry.yaml 或用 reconcile_crons 确认\n- westd-41718:cuda:0 空闲，优先留给 kl50_s123_reeval 修复重跑\n- PREPARING 里大量实验 (diag_*, longbench_*, spon_*) 是历史残留，无 hypothesis，不需要跑\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl30_s456_global_eval"
+          },
+          "id": "event-000082"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-kl30-s456-global-eval-20260517t224954-014649.md"
+}

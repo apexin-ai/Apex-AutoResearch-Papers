@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc623383c16d80740899",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis spon 2048 s42",
+  "task_key": "worker_analysis_spon_2048_s42_20260515T191953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_spon_2048_s42_20260515T191953_result.json",
+    "occurrence": 1,
+    "bytes": 975,
+    "sha256": "295593b8a45c722c5bb67c7209da3e7dfdaaf3b46ef9fc965b1ca375c4920be4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## spon_2048_s42 分析完成\n\n### 结论：**Negative** — SPON recovery 7.3% < 10% 阈值\n\n### Eval 结果\n\n| 指标 | 值 |\n|------|-----|\n| True Dense PPL | 6.12 |\n| Sparse PPL (no SPON) | 9.22 |\n| SPON Sparse PPL | **8.99** |\n| **SPON recovery** | **7.3%** |\n| Mean bias norm | 0.053 |\n\n### 与前次实验对比 (seq_len=128 → 2048)\n\n| | seq_len=128 | seq_len=2048 |\n|--|-------------|--------------|\n| SPON recovery | 3.8% | 7.3% (+3.5pp) |\n| PPL improvement | 0.12 | 0.23 |\n| Bias norm | 0.041 | 0.053 (+30%) |\n\n### 解读\n- seq_len mismatch 确实是部分原因（recovery 翻倍），但不是根本原因\n- 即使匹配条件下，static bias 仍只恢复 7.3% 的稀疏化误差\n- **确认 D009 \"KL subsumes SPON\"**：KL predictor 的 per-token mask 已经较好地保留重要 neuron，残余误差非 additive bias 能补偿\n- Claim 2 \"additive composition\" 路线不可行，需要更高表达力的补偿机制"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-spon-2048-s42.md"
+}

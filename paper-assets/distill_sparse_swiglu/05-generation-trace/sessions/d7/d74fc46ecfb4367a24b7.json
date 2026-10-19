@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "id": "d74fc46ecfb4367a24b7",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "eval plan 007 lm eval",
+  "task_key": "worker_eval_plan_007_lm_eval_20260515T222734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan_007_lm_eval_20260515T222734.log",
+    "occurrence": 1,
+    "bytes": 2105463,
+    "sha256": "724cccaae6b44468feeb828c0bfa2588eba3388ed512614a2015d7cca62346fb"
+  },
+  "statistics": {
+    "messages": 914,
+    "user_turns": 2,
+    "tool_calls": 329,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 2,
+      "assistant": 243,
+      "tool_call": 329,
+      "tool_result": 329,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 241,
+      "chunks": [
+        {
+          "path": "d74fc46ecfb4367a24b7-part-0001.json",
+          "message_count": 143
+        },
+        {
+          "path": "d74fc46ecfb4367a24b7-part-0002.json",
+          "message_count": 98
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 657,
+      "chunks": [
+        {
+          "path": "d74fc46ecfb4367a24b7-part-0002.json",
+          "message_count": 48
+        },
+        {
+          "path": "d74fc46ecfb4367a24b7-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d74fc46ecfb4367a24b7-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d74fc46ecfb4367a24b7-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "d74fc46ecfb4367a24b7-part-0006.json",
+          "message_count": 69
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "d74fc46ecfb4367a24b7-part-0006.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-plan-007-lm-eval.md"
+}

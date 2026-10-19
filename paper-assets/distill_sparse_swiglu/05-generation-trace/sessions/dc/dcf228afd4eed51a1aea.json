@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dcf228afd4eed51a1aea",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code kl30 s42 gsm8k",
+  "task_key": "worker_code_kl30_s42_gsm8k_20260519T173416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_kl30_s42_gsm8k_20260519T173416_result.json",
+    "occurrence": 1,
+    "bytes": 490,
+    "sha256": "3e8db4fde69c0df161d92acfa146b26d5eecc4d27f8ce0e65d2be1f76a290741"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已成功启动。\n\n**状态**：\n- **PID**: 163224（westd-41718 cuda:1）\n- **进度**: loglikelihood 100% 完成，generate_until 进行中（1319 样本）\n- **Checkpoint**: 从 34887 scp 到 41718（224MB，临时密钥已清理）\n- **Registry**: `qwen14b_kl30_s42_gsm8k` → RUNNING\n- **日志**: `/root/distill_sparse_swiglu/logs/qwen14b_kl30_s42_gsm8k.log`\n\nGSM8K generate_until 对 14B 模型可能需要 30-60 分钟，需要时可查日志跟踪进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-kl30-s42-gsm8k.md"
+}

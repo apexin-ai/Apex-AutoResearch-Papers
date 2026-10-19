@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98c7c003bcd1f20691ac",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code mistral downstream eval prep",
+  "task_key": "worker_code_mistral_downstream_eval_prep_20260515T231945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mistral_downstream_eval_prep_20260515T231945_result.json",
+    "occurrence": 1,
+    "bytes": 2373,
+    "sha256": "d8fae2a823bc645d9c12dd5f209bf0d28266de962937024988dcff7540e63af3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All info gathered. Here's the analysis and plan.\n\n## 报告\n\n### 1. 现状确认\n\n| 项目 | 状态 |\n|------|------|\n| Mistral checkpoint | ✅ `/root/distill_sparse_swiglu/checkpoints/mistral_kl_s42/predictor_kl_normalized.pt` (152MB) |\n| Mistral 模型 | ✅ `/root/autodl-tmp/models/mistral-7b` (hidden=4096, inter=14336, 32 layers) |\n| 维度兼容性 | ✅ 与 Llama-3.1-8B 完全一致，SparsityPredictor 可直接加载 |\n| MLP 结构 | ✅ MistralForCausalLM 与 LlamaForCausalLM 共享 `model.model.layers[].mlp.{gate_proj,up_proj,down_proj,act_fn}` |\n| ARC-Challenge 缓存 | ✅ 已缓存 |\n| MMLU 缓存 | ✅ 已缓存（57 个子集全部就绪） |\n\n### 2. 需要代码改动\n\neval_benchmark.py 需要 3 处修改：\n\n**改动 1** — CONDITIONS 添加 `mistral_kl_s42` 条目（~line 90）：\n```python\n    (\"mistral_kl_s42\", {\n        \"mode\": \"predictor\",\n        \"checkpoint\": _CKPT(\"mistral_kl_s42/predictor_kl_normalized.pt\"),\n    }),\n```\n\n**改动 2** — parse_args 添加 `--model_path` 参数（~line 429）：\n```python\n    p.add_argument(\"--model_path\", type=str, default=MODEL_PATH,\n                   help=\"Path to base model\")\n```\n\n**改动 3** — main() 中 `MODEL_PATH` 替换为 `args.model_path`（model loading 段，约两处）：\n```python\n    print(f\"Loading model from {args.model_path} ...\")\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path)\n    ...\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_path,\n```\n\n### 3. 完整命令\n\n```bash\nCUDA_VISIBLE_DEVICES=1 nohup python -u src/eval_benchmark.py \\\n  --condition dense,mistral_kl_s42 \\\n  --tasks arc_challenge,mmlu \\\n  --skip_ppl \\\n  --gpu 0 \\\n  --model_path /root/autodl-tmp/models/mistral-7b \\\n  --batch_size 4 \\\n  --output_dir results/plan_009_mistral \\\n  > logs/eval_mistral_downstream.log 2>&1 &\n```\n\n- `CUDA_VISIBLE_DEVICES=1` 遵守 C001 约束，`--gpu 0` 因 CVID 重映射\n- `dense` condition 一起跑，作为 Mistral baseline 对照\n- `--skip_ppl` 只跑 downstream，与任务要求一致\n\n### 4. 预计运行时间\n\n- Mistral-7B 加载：~30s\n- ARC-Challenge (25-shot)：~15-20min × 2 conditions\n- MMLU (5-shot)：~40-60min × 2 conditions\n- **总计约 2-3 小时**\n\n是否现在应用代码改动并部署到服务器？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mistral-downstream-eval-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1c4ae8a5fa51ed4efeb",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper d055 table consistency fix",
+  "task_key": "worker_paper_d055-table-consistency-fix_20260518T050839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d055-table-consistency-fix_20260518T050839_result.json",
+    "occurrence": 1,
+    "bytes": 619,
+    "sha256": "b4e43d3ac9b55aef020d9fb33f02d93e32f50a52b3c812effa71b3b7a545def3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All updates applied and verified. Summary of changes in `experiments.tex`:\n\n| Metric | Old | New |\n|--------|-----|-----|\n| PPL std | 0.03 | 0.02 |\n| ARC-C | 43.9±3.9 | 43.8±3.6 |\n| WG | 70.6±0.7 | 70.2±0.9 |\n| GSM8K | 8.9±0.2 | 8.0±0.7 |\n| MMLU | 35.7±9.5 | (unchanged, already correct) |\n\nUpdated 3 locations: inline text (line 28), Table 1 (line 49), Table 3 (line 166). Bold markings remain correct (KL global still best for ARC-C, WG, GSM8K at 30%). The \"7.5×\" MMLU stability ratio and \"9.5pp\" references are unchanged since MMLU data didn't change. Compilation passes cleanly."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d055-table-consistency-fix.md"
+}

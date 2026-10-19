@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5a2c631d038e81407bc",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diag westd 41718 hf cache",
+  "task_key": "worker_diag_westd-41718-hf-cache_20260518T072946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_westd-41718-hf-cache_20260518T072946_result.json",
+    "occurrence": 1,
+    "bytes": 1478,
+    "sha256": "da22d62fa0ab15ae3ea22b5211e4eb9b32e5e8d7d7ac91a4cb9f1c63da507dcd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "以下是 westd-41718 完整诊断输出：\n\n---\n\n### 1. ENV（环境变量）\n```\n=== ENV ===\n（无 HF/TRANSFORM/XDG 相关环境变量）\n```\n\n### 2. CACHE LOCATIONS\n```\n=== CACHE LOCATIONS ===\n/root/autodl-tmp/.hf_cache/datasets/wikitext\n/root/.cache/huggingface/datasets/wikitext\n/root/.cache/huggingface/datasets\n```\n（未找到 ai2_arc）\n\n### 3. DEFAULT HF HOME\n```\n=== DEFAULT HF HOME ===\ntotal 8\ndrwxr-xr-x 4 root root   45 May 18 08:31 .\ndrwx------ 5 root root   97 May 18 08:27 ..\ndrwxr-xr-x 3 root root 4096 May 18 08:32 datasets\ndrwxr-xr-x 8 root root 4096 May 18 02:44 hub\n_root_.cache_huggingface_datasets_wikitext_wikitext-103-raw-v1_0.0.0_b08601e04326c79dfdd32d625aee71d232d685c3.lock\n_root_.cache_huggingface_datasets_wikitext_wikitext-2-raw-v1_0.0.0_b08601e04326c79dfdd32d625aee71d232d685c3.lock\nwikitext\n```\n\n### 4. PYTHON\n```\nwhich python → 失败（不在 PATH 中）\n\n/root/miniconda3/bin/python:\nCUDA: 2\nHF_HOME: NOT SET\nHF_DATASETS_CACHE: NOT SET\n```\n\n### 5. .bashrc 中 HF/CONDA 相关\n```\nexport PATH=/root/miniconda3/bin:$PATH\nexport HF_HUB_OFFLINE=1\nexport HF_DATASETS_OFFLINE=1\n```\n\n### 6. GPU / 进程 / tmux\n```\nNVIDIA-SMI 580.95.05    CUDA Version: 13.0\n\nGPU 0: NVIDIA RTX PRO 6000 Black   0MiB/97887MiB   0%   29C\nGPU 1: NVIDIA RTX PRO 6000 Black   0MiB/97887MiB   0%   30C\n\nNo running processes found\nNo benchmark_eval/train.py processes\ntmux: no server running\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-westd-41718-hf-cache.md"
+}

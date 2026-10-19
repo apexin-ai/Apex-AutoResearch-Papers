@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa459aea5830f06c8f35",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra check server status",
+  "task_key": "worker_infra_check_server_status_20260516T034913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check_server_status_20260516T034913_result.json",
+    "occurrence": 1,
+    "bytes": 1205,
+    "sha256": "6fa92adabe95e808f090fa3b089d859c0af2fdf9b7d5685d219d0959b4a5a101"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "save_project_file 不支持该文件名，已写入 artifacts 目录。\n\n---\n\n## 汇总\n\n### PID 状态\n- **PID 194814** (lm_eval_teal_30pct, cuda:0): **已结束**，结果已收取\n- **PID 195242** (lm_eval_mistral_kl_50pct, cuda:1): **运行中** 53 分钟，GSM8K generate_until **71%** (941/1319)，预计 **~17min 后完成**\n\n### GPU 可用性\n| GPU | VRAM | 利用率 | 状态 |\n|-----|------|--------|------|\n| cuda:0 | 18.3/97.9 GB | 0% | **立即可用** |\n| cuda:1 | 62.1/97.9 GB | 95% | ~17min 后释放 |\n\n### 已完成 Eval 对比（vs Mistral dense baseline）\n\n| 方法 | Sparsity | ARC-c | WinoGrande | MMLU | GSM8K |\n|------|----------|-------|------------|------|-------|\n| **Mistral dense** | 0% | **0.6024** | **0.7869** | **0.6244** | **0.3654** |\n| Vanilla TEAL | 30% | 0.3933 | 0.6559 | 0.3598 | 0.0925 |\n| KL distill (kl_30pct) | 30% | 0.3575 | 0.6756 | 0.2874 | 0.0781 |\n| Vanilla TEAL | 50% | 0.2491 | 0.5556 | 0.2856 | 0.0190 |\n| **Mistral KL 50%** | 50% | *running...* | — | — | — |\n\nMistral KL 50% 的结果是本次最关键的数据点，大约 17 分钟后可收取。文件已保存至 `artifacts/server_status_check.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-server-status.md"
+}

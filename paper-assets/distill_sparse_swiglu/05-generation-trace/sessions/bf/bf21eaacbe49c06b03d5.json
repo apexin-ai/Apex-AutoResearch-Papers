@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf21eaacbe49c06b03d5",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code sync and dryrun perlayer kl",
+  "task_key": "worker_code_sync_and_dryrun_perlayer_kl_20260521T020437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sync_and_dryrun_perlayer_kl_20260521T020437_result.json",
+    "occurrence": 1,
+    "bytes": 456,
+    "sha256": "8b8f9d3be459b841abdca73387309001fc783656cb28d18422ae3ab287158c17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "DRY-RUN OK.\n\n- 文件已同步（322 行，MD5 匹配：`9dc34eb4c9111f90966476cbabe5ea8f`）\n- 2 步 dry-run 通过：`[Step 1/2] layer=7 kl=0.0108 sparsity=0.383` 和 `[Step 2/2] layer=1 kl=0.6641 sparsity=0.371`\n- Predictor 参数 75,960,320 (144.9 MB bf16) — 符合 C003 约束（75.9M total）\n- Per-layer Lagrangian、随机 layer 采样、checkpoint 保存全部正常\n- 总耗时 8.3s（含 gradient checkpointing，cuda:0）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sync-and-dryrun-perlayer-kl.md"
+}

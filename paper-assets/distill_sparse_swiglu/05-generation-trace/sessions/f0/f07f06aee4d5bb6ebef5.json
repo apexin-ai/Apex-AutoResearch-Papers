@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f07f06aee4d5bb6ebef5",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis k16 s456 eval extract",
+  "task_key": "worker_analysis_k16_s456_eval_extract_20260523T135531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_k16_s456_eval_extract_20260523T135531_result.json",
+    "occurrence": 1,
+    "bytes": 338,
+    "sha256": "567a905f5d403920f27889b2a2abec78d78561d240e3ed7b4d610e92964f90b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。提取的 7 个指标：\n\n| Metric | Value |\n|---|---|\n| ppl_wikitext2 | **8.655** |\n| arc_challenge_acc_norm | **0.4155** |\n| winogrande_acc | **0.6946** |\n| mmlu_acc | **0.3873** |\n| gsm8k_exact_match | **0.0766** |\n| hellaswag_acc_norm | **0.7015** |\n| piqa_acc_norm | **0.7437** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-k16-s456-eval-extract.md"
+}

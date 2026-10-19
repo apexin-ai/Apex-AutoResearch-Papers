@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2dd6f2d7d011f08aef8",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diagnose spon 2048 s42",
+  "task_key": "worker_diagnose_spon_2048_s42_20260515T185625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_spon_2048_s42_20260515T185625_result.json",
+    "occurrence": 1,
+    "bytes": 282,
+    "sha256": "29dc3478f3526a725361b8a27591086c58cb8b6bee4c27237503682e0b5b8119"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 状态转换受限，不影响实际结论。\n\n**总结：spon_2048_s42 正在 cuda:0 上正常训练，当前 Step 400/1000，无需任何修复或重提交。** 预计以当前速度（~15 分钟完成 400 步）还需约 20 分钟完成剩余 600 步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-spon-2048-s42.md"
+}

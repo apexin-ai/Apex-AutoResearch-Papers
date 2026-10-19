@@ -1,0 +1,1118 @@
+{
+  "schema_version": "1.0",
+  "session_id": "ad1e2ed7998a5e27bd6b",
+  "rounds": [
+    {
+      "number": 4,
+      "messages": [
+        {
+          "source_line": 496,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AnkpdPSTo2CK27oLN9FcQk",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport numpy as np\n\n# KL 50% global 3-seed PPL\ns42 = 11.7933\ns123 = 11.7184  # from kl50_global_s123_reeval\ns456 = 12.01\n\nvals = np.array([s42, s123, s456])\nprint(f\"KL 50% global: mean={vals.mean():.4f}, std={vals.std(ddof=1):.4f}\")\nprint(f\"Paper says: 11.84±0.15\")\n\n# Also try s123_eval (different eval)\ns123_alt = 11.745\nvals2 = np.array([s42, s123_alt, s456])\nprint(f\"\\nWith kl50_s123_eval: mean={vals2.mean():.4f}, std={vals2.std(ddof=1):.4f}\")\nPYEOF\n",
+                "description": "Compute KL50 global 3-seed statistics",
+                "timeout": 10000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "837fdeab-4b5c-4f18-bfed-d4814ca62163",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CqwsVsrjB2MEMkVP4gHsYz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1406,
+                "cache_read_input_tokens": 114467,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1406
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000496"
+        },
+        {
+          "source_line": 497,
+          "timestamp": "2026-05-23T19:36:01.201Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AnkpdPSTo2CK27oLN9FcQk",
+              "type": "tool_result",
+              "content": "KL 50% global: mean=11.8406, std=0.1514\nPaper says: 11.84±0.15\n\nWith kl50_s123_eval: mean=11.8494, std=0.1411",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "7522ed6a-ce9f-4570-9466-49aca1f60719",
+            "tool_use_result": {
+              "stdout": "KL 50% global: mean=11.8406, std=0.1514\nPaper says: 11.84±0.15\n\nWith kl50_s123_eval: mean=11.8494, std=0.1411",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000497"
+        },
+        {
+          "source_line": 498,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the KL 50% global 3-seed PPL:\n- s42 = 11.7933 (bench_kl50_global)\n- s123 = 11.7184 (kl50_global_s123_reeval)\n- s456 = 12.01 (kl50_global_s456_eval)\n- Mean = 11.84, Std = 0.15\n\nPaper says 11.84±0.15. **MATCH** ✓\n\nNow for the sparsity sweep figure (gen_fig2.py):\n\n\nLooking at the KL and TEAL data points across the sparsity levels, I'm seeing a discrepancy between what the figure displays and what the paper caption claims. The KL curve shows PPL values increasing from 8.98 to 17.91 as sparsity goes from 28.5% to 69.9%, while TEAL jumps dramatically at higher sparsities. The advantage percentages labeled on the figure (18%, 48%, 82%) don't quite align with the paper's stated values (14.5% at 30%, 50% at 50%, 82% at 70%), so I need to figure out where this mismatch is coming from.\n\nThe issue appears to be that the figure uses global allocation metrics, where KL at 28.5% gives 8.98 PPL and TEAL gives 10.97 PPL, yielding an 18% advantage. But the caption's \"14.5%\" figure is based on a different comparison using uniform allocation baselines—8.81 versus 10.30—which produces that lower percentage. So the figure and caption are actually measuring against different reference points. I'm noticing the figure uses KL=12.00 at 50% sparsity, which gives about 48.5% improvement, but the caption reports 50% based on a different KL value (11.79 from the global benchmark). The discrepancy stems from whether we're comparing against the global baseline or the uniform matched baseline, and which specific KL measurements we're using. I'm tracking down where the 12.00 value comes from—the global KL metrics around 50% sparsity are all slightly below that (11.79-11.84), but the uniform variant at 11.96 rounds to 12.00 when displayed with two decimal places. I'm noticing the figure only has four data points for KL across different sparsities, which might explain why the 12.00 value doesn't align perfectly with any single registry entry—it could be a rounded or averaged value from the kl50_global_s456_eval at 12.01, or possibly derived from a different evaluation method altogether. I'm seeing a mismatch between what the figure actually shows and what the caption claims. The figure displays global allocation comparisons with advantages of 18%, 48%, and 82%, but the caption lists different percentages (14.5%, 50%, 82%) because it's referencing a uniform allocation baseline instead. The caption appears to be mixing data from two different comparison frameworks. I see — the caption is actually presenting two different comparisons. The \"14.5%\" refers to the matched-sparsity scenario where both methods are evaluated at the same actual sparsity level, while the figure's annotations (18%, 48%, 82%) show the global allocation comparison. The caption clarifies this distinction with its parentheticals, so it's not contradictory — just potentially confusing because it's mixing two different evaluation frameworks in one figure.\n\nNow I need to verify whether the numbers themselves are accurate. The figure annotations check out against the visual data, and the caption numbers match the uniform comparison results. But there's a discrepancy with the KL PPL value at 50% sparsity showing 12.00 in the figure — I should cross-reference this against Table 3 to see if there's a data inconsistency or if the figure might be from an earlier evaluation run.\n\nLooking more closely, the 50% KL value of 12.00 in the figure doesn't match the global seed result of 11.79, but it does match the uniform allocation value of 11.963 when rounded. This suggests the figure might be pulling from uniform data while claiming to show global allocation. I'm checking the other data points to see if this pattern holds — the 28.5% value matches global, but I need to verify the 40% point as well. Now I'm compiling my findings into a final report. I've identified one clear fix needed for the K=8 PPL value, and I'm documenting the discrepancies in the figure source data where the KL PPL at 50% shows 12.00 in the figure but doesn't align cleanly with either the global or uniform allocation values from the registry—this is worth flagging since the figure title specifies global allocation.\n\nThere's also a mismatch between the advantage annotations shown in the figure (18%/48%/82%) versus what the caption states (14.5%/50%/82%), suggesting different allocation baselines were used. A few data points from Qwen TEAL need human verification since the paper references v1 evaluation results while v2 gives slightly different numbers for PIQA and HS. The remaining discrepancies are minor rounding variations that don't warrant changes.\n\nFor the K=8 perplexity issue where the paper shows 8.99 but should be 9.00, I need to update this across the experiments table, the appendix K-curve table, and the generation script that computes these values.\n\nLooking at the actual calculation: the mean of the three runs (8.9704, 9.0648, 8.9515) gives 8.99556667, which rounds to 9.00 at two decimal places since the third decimal is 5. So the correction is justified and I should apply it consistently across all three files.\n\nNow I need to verify the KL PPL value at 50% sparsity—the figure shows 12.00 but the actual computed value is 11.7933, so that needs checking too. Looking at the other seed values, I notice that `kl50_s456_eval` gives PPL = 12.01, which matches the figure's 12.00 much better than the s42 values. But using s456 just for the 50% point while the rest of the data uses s42 would be inconsistent. Given the unclear provenance of the figure, I should flag this as a potential discrepancy that needs human review rather than trying to fix it myself.\n\nNow I need to systematically verify all the data points in the figure against the registry to identify any other issues before finalizing the audit report. The TEAL benchmarks all check out correctly across all three data points. Now I need to finalize the report and apply the K=8 correction.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "43f88d9f-47fd-4bc2-9aa9-f2f3d01cf90c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0133xDrn7z2xw1vrrm73avWJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2097,
+                "cache_read_input_tokens": 115873,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2097
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000498"
+        },
+        {
+          "source_line": 499,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "K=4 std 和 KL50 3-seed mean 都验证通过。现在确认发现的问题并进行修复。\n\n核对完成。发现以下问题：\n\n**需修复（1项）：**\n- K=8 PPL: 论文写 8.99，registry 3-seed mean = 8.9956，正确四舍五入应为 9.00\n\n**需人工确认（3项）：**\n- Qwen TEAL uniform PIQA: 两次 eval 结果不一致（v1=74.70, v2=74.27），论文用 v1\n- Qwen TEAL uniform HS: 同上（v1=67.72, v2=67.56）\n- Figure 2 (sparsity sweep) KL 50% PPL = 12.00: bench_kl50_global=11.79 (s42), 3-seed mean=11.84, bench_kl50_uniform=11.96，均不精确等于 12.00。来源不明确。\n\n先修复 K=8 PPL。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "5491c4ef-fd87-46df-8cea-a2f5af124236",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0133xDrn7z2xw1vrrm73avWJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2097,
+                "cache_read_input_tokens": 115873,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2097
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000499"
+        },
+        {
+          "source_line": 500,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SV7Acypj2wXLH8e7ZY2bHE",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex",
+                "old_string": "Per-layer KL ($K{=}8$) & --- & 8.99 & --- \\\\ % exp_id:",
+                "new_string": "Per-layer KL ($K{=}8$) & --- & 9.00 & --- \\\\ % exp_id:"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "e0c5051a-6311-402b-86f1-28c5934d7558",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0133xDrn7z2xw1vrrm73avWJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2097,
+                "cache_read_input_tokens": 115873,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2097
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000500"
+        },
+        {
+          "source_line": 501,
+          "timestamp": "2026-05-23T19:37:57.431Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>String to replace not found in file.\nString: Per-layer KL ($K{=}8$) & --- & 8.99 & --- \\\\ % exp_id:</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_01SV7Acypj2wXLH8e7ZY2bHE"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "b07735ac-9e61-41b0-8570-4c1650166666",
+            "tool_use_result": "Error: String to replace not found in file.\nString: Per-layer KL ($K{=}8$) & --- & 8.99 & --- \\\\ % exp_id:"
+          },
+          "id": "event-000501"
+        },
+        {
+          "source_line": 502,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017SSZwvrYesyVnTGPwSa4Qr",
+              "name": "Grep",
+              "input": {
+                "pattern": "8\\.99",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "a7591598-906e-4ac3-a61b-dc66be3d69fe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EAc8mMjCBuKMBoxknx8xtz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5821,
+                "cache_read_input_tokens": 117970,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5821
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000502"
+        },
+        {
+          "source_line": 503,
+          "timestamp": "2026-05-23T19:38:01.177Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017SSZwvrYesyVnTGPwSa4Qr",
+              "type": "tool_result",
+              "content": "paper/appendix.tex:639:8 & 8.99$\\pm$0.06 & 40.7$\\pm$1.0 & 68.7$\\pm$1.3 & 40.4$\\pm$0.6 & 6.8$\\pm$1.3 & 69.0$\\pm$1.1 & 75.1$\\pm$1.1 \\\\"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "91f56089-7e73-44aa-b701-1b5277e4a9c6",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "paper/appendix.tex:639:8 & 8.99$\\pm$0.06 & 40.7$\\pm$1.0 & 68.7$\\pm$1.3 & 40.4$\\pm$0.6 & 6.8$\\pm$1.3 & 69.0$\\pm$1.1 & 75.1$\\pm$1.1 \\\\",
+              "numLines": 1
+            }
+          },
+          "id": "event-000503"
+        },
+        {
+          "source_line": 504,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The K=8 value 8.99 only appears in the appendix K-curve table (line 639). It doesn't appear in the main ablation table (Table 5) because there's no K=8 row in the ablation table - K=8 isn't one of the ablation configurations.\n\nWait, looking at Table 5 in experiments.tex again - I see there's no K=8 row. K=8 only appears in the K-curve discussion and the appendix table. \n\nBut let me also check the figure source data.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "76f8d7b1-09d4-4cc3-b254-fa3b1abcaef7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VHqRXnGAqWGodN5KoZmPiT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 340,
+                "cache_read_input_tokens": 123791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 340
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000504"
+        },
+        {
+          "source_line": 505,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "K=8 的 8.99 只出现在 appendix K-curve 表和 figure 源码中。修复这两处。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "8dc1a735-fd00-4751-ae1e-070aa835f65f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VHqRXnGAqWGodN5KoZmPiT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 340,
+                "cache_read_input_tokens": 123791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 340
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000505"
+        },
+        {
+          "source_line": 506,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0138e6hTBVxGFyFUxz7nGh4k",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex",
+                "old_string": "8 & 8.99$\\pm$0.06 & 40.7$\\pm$1.0 & 68.7$\\pm$1.3 & 40.4$\\pm$0.6 & 6.8$\\pm$1.3 & 69.0$\\pm$1.1 & 75.1$\\pm$1.1 \\\\",
+                "new_string": "8 & 9.00$\\pm$0.06 & 40.7$\\pm$1.0 & 68.7$\\pm$1.3 & 40.4$\\pm$0.6 & 6.8$\\pm$1.3 & 69.0$\\pm$1.1 & 75.1$\\pm$1.1 \\\\"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "5b3467f4-2e1d-4dad-b6a3-842ae0e14fe0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VHqRXnGAqWGodN5KoZmPiT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 340,
+                "cache_read_input_tokens": 123791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 340
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000506"
+        },
+        {
+          "source_line": 507,
+          "timestamp": "2026-05-23T19:38:09.042Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0138e6hTBVxGFyFUxz7nGh4k",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "2a352baa-7b44-4c9d-8ab0-4aafeff4450d",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/appendix.tex",
+              "oldString": "8 & 8.99$\\pm$0.06 & 40.7$\\pm$1.0 & 68.7$\\pm$1.3 & 40.4$\\pm$0.6 & 6.8$\\pm$1.3 & 69.0$\\pm$1.1 & 75.1$\\pm$1.1 \\\\",
+              "newString": "8 & 9.00$\\pm$0.06 & 40.7$\\pm$1.0 & 68.7$\\pm$1.3 & 40.4$\\pm$0.6 & 6.8$\\pm$1.3 & 69.0$\\pm$1.1 & 75.1$\\pm$1.1 \\\\",
+              "originalFile": "\\appendix\n\n\\section{Inference Efficiency}\n\\label{app:latency}\n\nTable~\\ref{tab:latency} reports inference throughput on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (96\\,GB; batch size 1, sequence length 2048, fp16, averaged over 100 forward passes).\n\n\\begin{table}[h]\n\\centering\n\\caption{Inference latency on LLaMA-3.1-8B (RTX PRO 6000 Blackwell, batch=1, seq=2048, fp16, 100 forward passes). Overhead is relative to dense inference.}\n\\label{tab:latency}\n\\small\n\\begin{tabular}{llcccc}\n\\toprule\nMethod & Sparsity & ms/fwd & tok/s & Overhead \\\\\n\\midrule\nDense & 0\\% & 119.11$\\pm$0.57 & 17{,}195 & --- \\\\\n\\midrule\nKL predictor-only & 30\\% & 126.64$\\pm$0.70 & 16{,}172 & +6.3\\% \\\\ % exp_id: latency_bench\nKL predictor-only & 50\\% & 126.78$\\pm$0.31 & 16{,}154 & +6.4\\% \\\\ % exp_id: latency_bench\n\\midrule\nPredictor + compensation & 30\\% & 129.94$\\pm$0.75 & 15{,}761 & +9.1\\% \\\\ % exp_id: latency_bench\nPredictor + compensation & 50\\% & 129.71$\\pm$0.53 & 15{,}789 & +8.9\\% \\\\ % exp_id: latency_bench\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe full KL-sparse pipeline adds 6.4\\% overhead to dense inference (126.78 vs.\\ 119.11\\,ms/forward), of which the predictor's 32-layer forward pass contributes 3.17\\,ms (2.7\\%); the remainder arises from mask application and sparse FFN indexing.\nEliminating the compensation network saves an additional $\\sim$2.7\\% latency overhead and 67.2M parameters (the per-layer GEMV required for output rescaling); output-distribution KL thus provides both quality and efficiency advantages over BCE-based approaches.\nThe overhead is near-identical at 30\\% and 50\\% sparsity because the predictor runs the same computation regardless of target sparsity; only the top-$k$ threshold changes.\n\nNote that the current implementation uses unstructured element-wise masks, which do not translate to wall-clock speedup without sparse kernel support.\nThe pipeline adds $\\sim$6.4\\% overhead; net acceleration requires kernel-level sparse computation optimizations (e.g., Triton block-sparse, cuSPARSE) that are beyond the scope of this work.\nOur contribution is prediction quality and inference simplification (removing the compensation network), not end-to-end latency reduction.\n\n\n\\section{Predictor Bottleneck Sensitivity}\n\\label{app:db_sensitivity}\n\nTable~\\ref{tab:db_sensitivity} reports the effect of predictor bottleneck dimension $d_b$ on PPL at 50\\% sparsity under both TEAL global allocation (the paper's primary inference protocol) and per-token evaluation.\n\n\\begin{table}[h]\n\\centering\n\\caption{Predictor bottleneck sensitivity at 50\\% sparsity (WikiText-2 PPL$\\downarrow$). TEAL global is the primary inference protocol; per-token shown for reference.}\n\\label{tab:db_sensitivity}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n$d_b$ & Params & TEAL global & $\\Delta$ & Per-token \\\\\n\\midrule\n64 & 38.2M (0.48\\%) & 12.076 & +0.9\\% & 10.16 \\\\ % exp_id: db_sensitivity_sweep\n128 & 75.9M (0.95\\%) & 11.963 & --- & 9.218 \\\\ % exp_id: db_sensitivity_sweep\n256 & 151.5M (1.89\\%) & 12.105 & +1.2\\% & 8.586 \\\\ % exp_id: db_sensitivity_sweep\n512 & 302.5M (3.77\\%) & 12.315 & +2.9\\% & 7.93 \\\\ % exp_id: db_sensitivity_sweep\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nUnder TEAL global allocation, increasing $d_b$ beyond 128 provides no benefit (PPL slightly worsens), while per-token evaluation shows monotonic improvement (10.16$\\to$7.93).\nThis divergence indicates that the global top-$k$ allocation mechanism, not predictor capacity, is the binding constraint: additional predictor capacity produces better per-neuron scores, but the global ranking and budget distribution cannot exploit them.\nThe $d_b{=}128$ configuration (75.9M params, $<$1\\% of base model) is therefore optimal for the TEAL inference protocol.\n\n\\subsection{Temperature Schedule Sensitivity}\n\\label{app:tau_sensitivity}\n\n\\begin{table}[h]\n\\centering\n\\caption{Temperature schedule sensitivity at 50\\% sparsity (WikiText-2 PPL$\\downarrow$, TEAL global).}\n\\label{tab:tau_sensitivity}\n\\small\n\\begin{tabular}{lc}\n\\toprule\n$\\tau$ Schedule & PPL$\\downarrow$ \\\\\n\\midrule\nFixed $\\tau{=}0.5$ & \\textbf{11.861} \\\\ % exp_id: tau_schedule_sweep\nLinear $1.0 \\to 0.1$ (default) & 11.963 \\\\ % exp_id: tau_schedule_sweep\nFixed $\\tau{=}0.1$ & 12.072 \\\\ % exp_id: tau_schedule_sweep\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTemperature schedule has minimal impact ($<$1.8\\% PPL variation).\nThe linear annealing default is a conservative choice; even removing annealing entirely (fixed $\\tau{=}0.5$) yields comparable performance.\n\n\\subsection{Training Convergence}\n\\label{app:training_convergence}\n\n\\begin{table}[h]\n\\centering\n\\caption{Training convergence at 50\\% sparsity (WikiText-2 PPL$\\downarrow$, TEAL global).}\n\\label{tab:training_convergence}\n\\small\n\\begin{tabular}{cc}\n\\toprule\nSteps & PPL$\\downarrow$ \\\\\n\\midrule\n200 & 15.158 \\\\ % exp_id: training_steps_sweep\n400 & 12.538 \\\\ % exp_id: training_steps_sweep\n600 & 12.046 \\\\ % exp_id: training_steps_sweep\n800 & 11.907 \\\\ % exp_id: training_steps_sweep\n1000 & \\textbf{11.906} \\\\ % exp_id: training_steps_sweep\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTraining converges rapidly: 95\\% of the quality gap closes by step 600, and performance saturates by step 800 ($\\Delta < 0.001$ between 800 and 1000 steps).\nOur default of 1000 steps provides a conservative margin.\n\n\n\\section{Geometric Penalty Schedule Dynamics}\n\\label{app:lagrangian}\n\nTable~\\ref{tab:lagrangian} reports the convergence of the geometric penalty schedule across sparsity targets.\nThe geometric doubling pattern ($1 \\to 2 \\to 4 \\to 8 \\to \\ldots$) enables $\\lambda$ to reach steady state within $\\sim$10 steps; the deadzone ($\\epsilon = 0.02$) then stabilizes $\\lambda$ once actual sparsity is within $\\pm$2\\% of the target.\n\n\\begin{table}[h]\n\\centering\n\\caption{Geometric penalty schedule convergence across sparsity targets (margin $\\epsilon=0.02$, 1000 training steps). Deviation is $|$actual $-$ target$|$ / target.}\n\\label{tab:lagrangian}\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\nTarget $\\rho$ & $\\lambda_{\\max}$ & Final $\\lambda$ & Actual sparsity & Deviation \\\\\n\\midrule\n30\\% & 5000 & 5000 (cap) & 0.285 & 5.0\\% \\\\ % exp_id: kl_30pct_s42\n40\\% & 5000 & 625 & 0.398 & 0.5\\% \\\\ % exp_id: kl_40pct_s42\n50\\% & 1000 & 8 & 0.504 & 0.8\\% \\\\ % exp_id: kl_50pct_s42\n70\\% & 1000 & 1000 (cap) & 0.688 & 1.7\\% \\\\ % exp_id: kl_70pct_s42\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAt 50\\% sparsity, the SwiGLU gate distribution already clusters near the target, so $\\lambda$ remains low (8); the constraint is nearly satisfied by the initial predictor outputs.\nAt 30\\% and 70\\%, the gap between the gate prior and target is larger, driving $\\lambda$ to its respective caps.\nThe 40\\% target converges to $\\lambda = 625$ with only 0.5\\% deviation; this precision reflects a regime where the target is reachable without $\\lambda$ saturation.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{lagrangian_dynamics.pdf}\n\\caption{Lagrangian controller dynamics for 30\\% sparsity target ($\\lambda_{\\max}=5000$). Left axis (log scale): penalty weight $\\lambda$ rises from $0.01$ to its cap once actual sparsity undershoots the target at $\\sim$step~150, exhibiting bang-bang oscillations before saturating. Right axis: actual sparsity (solid) converges from the natural density ($\\approx$0.41) toward the target (dashed) and stabilizes near 0.28.}\n\\label{fig:lagrangian_dynamics}\n\\end{figure}\n\nTemperature $\\tau$ is annealed linearly from 1.0 to 0.1 over 1000 steps.\nA mild loss increase in the final $\\sim$100 steps is expected: as masks become more binary ($\\tau \\to 0$), discrete rounding noise slightly increases KL divergence, consistent with convergence toward the hard-mask inference regime.\n\nThe controller reliably drives actual sparsity to within 5\\% of the target across all tested regimes, with $\\lambda$ spanning three orders of magnitude (8 to 5000) via geometric doubling.\nFor the 30\\% target, actual sparsity is $\\approx$28.5\\% (5\\% deviation). This does not affect conclusions: TEAL at 28.5\\% actual sparsity yields PPL 10.30 (vs.\\ 10.97 at exact 30\\%), a 0.67 PPL difference negligible relative to the KL vs.\\ TEAL gap (8.96 vs.\\ 10.97).\n\n\n\\section{Out-of-Distribution Evaluation}\n\\label{app:ood}\n\nTo address concerns about data homogeneity between training (WikiText-103) and evaluation (WikiText-2), we evaluate on C4~\\cite{raffel2020c4} validation set under TEAL global allocation.\n\n\\begin{table}[h]\n\\centering\n\\caption{Out-of-distribution evaluation on C4 validation (PPL$\\downarrow$). 30\\% KL reports 2-seed mean$\\pm$std; other entries use seed 42.}\n\\label{tab:ood}\n\\small\n\\begin{tabular}{llc}\n\\toprule\nSparsity & Method & C4 PPL$\\downarrow$ \\\\\n\\midrule\n0\\% & Dense & 9.21 \\\\\n\\midrule\n30\\% & KL predictor (Ours) & \\textbf{16.03$\\pm$0.01} \\\\ % exp_id: c4_ood_kl30_s42, c4_ood_kl30_s123\n\\midrule\n\\multirow{2}{*}{50\\%} & KL predictor (Ours) & \\textbf{18.40} \\\\ % exp_id: eval_c4_ood_kl50\n& TEAL vanilla & 38.75 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAt the 30\\% sparsity level, the KL predictor achieves C4 PPL 16.03$\\pm$0.01 (2-seed, global allocation, $1.74\\times$ dense), confirming OOD generalization.\nAt 50\\%, the KL predictor achieves 52.5\\% relative advantage over TEAL (18.40 vs.\\ 38.75), comparable to the 50\\% advantage on WikiText-2 (11.92 vs.\\ 23.90), confirming that KL-trained predictions generalize across distributions.\n\n\\paragraph{Uniform Allocation.}\nUnder uniform allocation at 30\\%, C4 PPL across three seeds is 18.22 (s42), 16.37 (s123), 16.36 (s456), yielding mean 16.98$\\pm$1.07 ($1.84\\times$ dense). % exp_id: c4_ood_kl30_uniform_3seed\nThe cross-seed variance is substantially higher than in-domain: CV=6.3\\% on C4 vs.\\ 0.2\\% on WikiText-2 (PPL 8.81$\\pm$0.02), driven by seed 42's elevated C4 PPL (18.22 vs.\\ 16.37 for other seeds).\nGlobal allocation's cross-layer budget flexibility partially compensates for domain shift (PPL 16.03 global vs.\\ 16.98 uniform), consistent with the Limitations observation that the predictor partially overfits to training-domain activation patterns.\n\n\\paragraph{Downstream Task Robustness.}\nTable~\\ref{tab:ood_downstream} compares downstream performance when the predictor generates masks from C4 text (OOD) vs.\\ WikiText (in-domain), both at 30\\% uniform allocation (seed 42). All six benchmarks show $\\Delta$$\\leq$1.1pp, confirming that predictor masks are robust to calibration domain shift. % exp_id: c4_ood_downstream_kl30, bench_kl30_uniform, kl30_uniform_hellaswag_piqa\n\n\\begin{table}[h]\n\\centering\n\\caption{Downstream task robustness to calibration domain shift (KL 30\\% uniform, seed 42). WikiText: predictor masks from in-domain text; C4: masks from OOD text. Metrics: acc\\_norm (ARC-c, HS, PIQA), acc (WG, MMLU), exact\\_match (GSM8K).}\n\\label{tab:ood_downstream}\n\\small\n\\begin{tabular}{lcccccc}\n\\toprule\nCalibration & ARC-c & WG & MMLU & GSM8K & HS & PIQA \\\\\n\\midrule\nWikiText & 40.8 & 68.6 & 40.6 & 7.4 & 70.9 & 74.8 \\\\ % exp_id: bench_kl30_uniform, kl30_uniform_hellaswag_piqa\nC4 (OOD) & 40.4 & 69.3 & 41.4 & 6.3 & 70.7 & 74.0 \\\\ % exp_id: c4_ood_downstream_kl30\n\\midrule\n$\\Delta$ & $-$0.4 & +0.7 & +0.8 & $-$1.1 & $-$0.2 & $-$0.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\n\\section{Per-Layer Retention Analysis}\n\\label{app:retention}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{per_layer_retention_chart.pdf}\n\\caption{Per-layer neuron retention under global top-$k$ allocation at 30\\%, 50\\%, and 70\\% sparsity. Dashed lines indicate uniform retention baselines. Late layers (L24--31) are consistently starved due to long-tailed activation distributions, with retention dropping to 28.4\\% (L31) even at 30\\% sparsity. At 70\\%, starvation extends to mid-layers (L10--12: 16.7--20.1\\%), explaining the transition to the capacity-limited regime.}\n\\label{fig:retention}\n\\end{figure}\n\n\n\\section{Training Stability}\n\\label{app:stability}\n\nThree-seed evaluation ($s \\in \\{42, 123, 456\\}$) at 50\\% sparsity under uniform allocation yields PPL $11.92 \\pm 0.07$ (CV=0.6\\%); training is stable across random initializations. % exp_id: multi_seed_kl50_uniform\nDownstream metrics are similarly stable: ARC-c $33.8 \\pm 1.2$\\%, WinoGrande $62.9 \\pm 0.1$\\%, MMLU $28.0 \\pm 0.6$\\%, GSM8K $2.2 \\pm 0.1$\\%.\n\nUnder global allocation at 50\\%, MMLU is $28.3 \\pm 0.7$\\%; the near-random performance is capacity-limited rather than seed-sensitive ($\\sigma$=0.7pp vs.\\ 9.5pp at 30\\% global). % exp_id: bench_kl50_global, kl50_global_s123_downstream_v2, kl50_global_s456_eval\nThe low standard deviation across both allocation strategies indicates that the KL training landscape is well-conditioned for this predictor architecture, with low sensitivity to initialization.\n\n\\subsection{Cross-Seed Mask Consistency}\n\\label{app:cross_seed_jaccard}\n\nTo assess whether KL predictors discover consistent mask patterns across initializations, we compute pairwise Jaccard distances among three independently trained KL predictors (s42/s123/s456) at 30\\% uniform allocation (100 sequences, WikiText-2 validation). % exp_id: cross_seed_jaccard_kl30\n\nThe mean cross-seed Jaccard distance is 0.363 (IoU = 0.637), substantially lower than the KL-vs-magnitude divergence (0.46--0.68), confirming that KL-discovered patterns form a distinct cluster from magnitude-based masks.\nPer-layer divergence follows a U-shaped pattern: lowest at embedding-adjacent layers (L0: 0.33), peaking at early layers (L1: 0.41), with a mid-network valley (L12--14: 0.33). The random baseline Jaccard distance is 0.462.\n\nWhile specific mask configurations vary moderately across seeds (Jaccard distance 36.3\\%), the resulting PPL is highly stable (8.81$\\pm$0.02, CV=0.2\\%), suggesting multiple near-equivalent optima in the activation mask space.\nThe cross-seed divergence (36.3\\%) is substantially lower than the KL-vs-magnitude divergence (46--68\\%), confirming that KL discovers effective patterns that cluster distinctly from magnitude-based selection.\n\n\n\\section{MSE Baseline Configuration}\n\\label{app:mse_config}\n\nThe MSE predictor uses identical architecture (two-layer MLP, bottleneck $d_b{=}128$), training data (WikiText-103, 1000 steps), optimizer (AdamW, lr=$1{\\times}10^{-3}$, weight decay $1{\\times}10^{-2}$, cosine decay), Gumbel-Sigmoid mask generation ($\\tau$: $1.0 \\to 0.1$), and adaptive Lagrangian sparsity control as the KL and BCE predictors.\nThe only difference is the loss target: per-layer $\\|\\mathbf{W}_d^{(\\ell)}(\\tilde{\\mathbf{m}}^{(\\ell)} \\odot \\mathbf{g}^{(\\ell)} \\odot \\mathbf{x}^{(\\ell)} \\mathbf{W}_u^{(\\ell)}) - \\mathbf{y}_{\\text{dense}}^{(\\ell)}\\|_2^2$, replacing the end-to-end KL divergence.\nThis controlled comparison isolates the effect of output-distribution alignment: all three predictors see identical data in identical order with identical architectures; only the loss function differs. % exp_id: mse30_uniform_s42, mse50_uniform_s42\n\nMSE uses $\\lambda_{\\max}{=}1000$ (vs.\\ KL's 5000) because MSE's per-layer gradient magnitude is approximately $5\\times$ larger than KL's end-to-end gradient, requiring proportionally less penalty pressure to achieve comparable sparsity control. Both reach their target sparsity within 110 steps.\nAt 50\\% target, MSE converges to the target sparsity for seed 42; however, with seed 123, sparsity reaches only 5.1\\% under the same $\\lambda_{\\max}$ cap (eval PPL$=$15{,}789, random-level), indicating high sensitivity to initialization---a failure mode not observed with KL-based losses.\nAt 30\\%, MSE achieves 27.7\\% actual sparsity for s42 (gap 2.3pp).\nThe 3-seed MSE mean (18.52$\\pm$1.68; s42=20.43, s123=17.73, s456=17.39) is still $1.7\\times$ worse than TEAL (10.82), confirming that the performance deficit stems from the loss function, not insufficient sparsity pressure.\n\n\n\\section{Extended SNR Analysis}\n\\label{app:snr_extended}\n\nFigure~\\ref{fig:snr_trajectory} plots gradient SNR across the full 1000-step training for both KL and BCE predictors, measured at 14 checkpoints (LLaMA-3.1-8B, C4) with 95\\% bootstrap confidence intervals.\nFrom step 100 onward, BCE maintains consistently higher SNR than KL (2.3--17$\\times$ depending on training phase), with the gap narrowing toward convergence ($2.3\\times$ at step 1000: $2.026{\\times}10^{-3}$ vs.\\ $8.78{\\times}10^{-4}$). % exp_id: snr_full_curve_1000steps\nDespite KL's noisier gradient signal, KL-trained predictors produce substantially better masks (Table~\\ref{tab:main}), confirming that \\emph{target alignment} matters more than gradient clarity for mask quality.\nBCE's higher SNR reflects its simpler per-neuron classification objective, which concentrates gradients on individual neuron decisions; KL's coupled gradient distributes signal across all mask decisions jointly, yielding lower SNR but discovering compositionally superior mask patterns (\\S\\ref{sec:method:gradient}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{snr_trajectory.pdf}\n\\caption{Gradient SNR trajectory across 1000 training steps. BCE (orange) maintains consistently higher SNR than KL (blue) from step 100 onward (2.3--17$\\times$), yet KL produces superior masks (Table~\\ref{tab:main}), suggesting that target alignment matters more than gradient clarity for mask quality.}\n\\label{fig:snr_trajectory}\n\\end{figure}\n\n\n\\section{Extended Downstream Evaluation}\n\\label{app:downstream}\n\nTable~\\ref{tab:downstream} reports HellaSwag and PIQA across sparsity levels and allocation strategies.\n\n\\begin{table}[h]\n\\centering\n\\caption{Extended downstream benchmarks (LLaMA-3.1-8B). HellaSwag: 10-shot normalized acc; PIQA: 0-shot normalized acc. KL 30\\% uniform: 3-seed mean$\\pm$std; others: seed 42.}\n\\label{tab:downstream}\n\\small\n\\begin{tabular}{llcc}\n\\toprule\nSparsity & Method & HellaSwag & PIQA \\\\\n\\midrule\n0\\% & Dense & \\textbf{82.35} & \\textbf{80.90} \\\\\n\\midrule\n\\multirow{3}{*}{30\\%}\n& KL uniform & \\textbf{71.07$\\pm$0.54} & \\textbf{74.95$\\pm$0.25} \\\\ % exp_id: hellaswag_piqa_kl30_uniform (3-seed)\n& TEAL uniform & 63.31 & 72.80 \\\\ % exp_id: bench_teal30_uniform_6task\n& BCE isocompute & 62.81 & 74.21 \\\\ % exp_id: bce_isocompute_30u_hellaswag_piqa\n\\midrule\n\\multirow{3}{*}{50\\%}\n& KL global & \\textbf{58.95} & \\textbf{69.48} \\\\ % exp_id: hellaswag_piqa_kl50_global\n& KL uniform & 56.66 & 69.10 \\\\ % exp_id: hellaswag_piqa_kl50_uniform\n& TEAL uniform & 39.35 & 63.66 \\\\ % exp_id: bench_teal50_uniform_6task\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAt 30\\%, the KL predictor retains 86.3\\% of dense HellaSwag accuracy (71.07$\\pm$0.54 vs.\\ 82.35, 3-seed) and 92.6\\% of PIQA (74.95$\\pm$0.25 vs.\\ 80.90), confirming moderate degradation on non-reasoning tasks.\nAt 50\\%, global allocation outperforms uniform on HellaSwag (+2.29pp), consistent with the budget-concentration benefit observed for PPL in the capacity-limited regime (\\S\\ref{sec:scaling}); PIQA shows a smaller gap (+0.38pp).\n\n\n\\section{Compensation Training Convergence}\n\\label{app:comp_convergence}\n\nAll compensation networks~\\cite{gautam2026fastforward} were trained for 1000 steps (lr=$10^{-4}$, batch size 4, seq length 2048). Training loss plateaus by step 700 across all valid runs: 30\\% s42 (final loss 0.70), 30\\% s456 (0.68), 50\\% s42 (1.07), with fluctuations remaining within 0.08 loss units for the final 300 steps. The compensation network converges but provides no quality improvement over the KL predictor alone, confirming that the redundancy result reflects predictor self-sufficiency rather than insufficient compensation training. % exp_id: kl_comp_30_s42, kl_comp_30_s456, kl_comp_50_s42\n\n\n\\section{Qwen-2.5-14B Detailed Results}\n\\label{app:14b}\n\n\\begin{table}[h]\n\\centering\n\\caption{Qwen-2.5-14B at 30\\% nominal sparsity. Actual sparsity differs: KL 29.6\\% (3-seed), TEAL 29.3\\% (target 30\\%). \\textbf{Bold}: best sparse per column per group. BCE collapses to 6.4\\% native sparsity (\\S\\ref{sec:method:gradient}), so forced global top-$k$ is used.}\n\\label{tab:14b}\n\\small\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcccccccc}\n\\toprule\nMethod & PPL$\\downarrow$ & ARC-c & WG & MMLU & GSM8K & HS & PIQA \\\\\n\\midrule\nDense & 5.19 & 67.58 & 81.06 & 79.77 & 87.57 & 84.20 & 81.94 \\\\\n\\midrule\n\\multicolumn{8}{l}{\\emph{Global top-$k$ allocation}} \\\\\nKL (Ours) & \\textbf{7.62} & 57.17 & 72.06 & 63.72 & 48.82 & \\textbf{75.01} & \\textbf{77.37} \\\\ % exp_id: qwen14b_kl30_s42\nTEAL & 8.73 & 56.83 & \\textbf{72.69} & \\textbf{71.83} & 49.51 & 70.51 & 74.70 \\\\ % exp_id: qwen14b_teal30_eval\nBCE & 8.76 & \\textbf{57.59} & 72.61 & 71.67 & \\textbf{53.07} & 53.43 & 68.28 \\\\ % exp_id: qwen14b_bce30_s42_eval\n\\midrule\n\\multicolumn{8}{l}{\\emph{Uniform allocation}} \\\\\nKL (Ours) & \\textbf{7.90} & 53.50 & \\textbf{72.82} & 63.55 & 32.0$\\pm$5.2 & \\textbf{72.68$\\pm$0.2} & \\textbf{76.01$\\pm$1.1} \\\\ % exp_id: qwen14b_kl30_uniform (v3/v5 3-seed, HS/PIQA updated from v3/v5)\nTEAL & 8.01 & \\textbf{55.29} & 69.85 & \\textbf{66.34} & \\textbf{52.1} & 67.72 & 74.70 \\\\ % exp_id: qwen14b_teal30_uniform\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nUnder global allocation, BCE's HellaSwag drops to 53.43\\% ($-$17pp vs.\\ TEAL), indicating that the magnitude-based predictor's mask quality degrades severely when combined with non-uniform budget distribution at 14B scale. % exp_id: qwen14b_bce30_s42_eval, qwen14b_teal30_eval\n\n\\section{Full Allocation Analysis}\n\\label{app:alloc_full}\n\n\\begin{table}[t]\n\\centering\n\\caption{Allocation summary (LLaMA-3.1-8B). $\\pm$: 3-seed; $^\\ast$high seed variance.}\n\\label{tab:phase}\n\\footnotesize\n\\begin{tabular}{llcc}\n\\toprule\nSparsity & Allocation & PPL$\\downarrow$ & MMLU \\\\\n\\midrule\n\\multirow{2}{*}{30\\%}\n& Global & 8.96$\\pm$0.02 & 35.7$\\pm$9.5$^\\ast$ \\\\ % exp_id: kl30_3seed_global\n& Uniform & \\textbf{8.81$\\pm$0.02} & \\textbf{40.7$\\pm$1.3} \\\\ % exp_id: bench_kl30_uniform\n\\midrule\n\\multirow{2}{*}{50\\%}\n& Global & \\textbf{11.84$\\pm$0.15} & \\textbf{28.3$\\pm$0.7} \\\\ % exp_id: bench_kl50_global, kl50_global_s123_downstream_v2, kl50_global_s456_eval\n& Uniform & 11.92$\\pm$0.07 & 28.0$\\pm$0.6 \\\\ % exp_id: multi_seed_kl50_uniform\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:phase_full} extends Table~\\ref{tab:phase} with all downstream metrics.\n\n\\begin{table*}[t]\n\\centering\n\\caption{Full allocation analysis: global top-$k$ vs.\\ uniform across sparsity levels (LLaMA-3.1-8B). Entries with $\\pm$: 3-seed mean$\\pm$std ($s \\in \\{42, 123, 456\\}$); others: seed 42. $^\\ast$High MMLU seed variance (individual seeds span 25.3--43.5\\%).}\n\\label{tab:phase_full}\n\\begin{tabular}{llccccc}\n\\toprule\nSparsity & Allocation & PPL$\\downarrow$ & ARC-c & WG & MMLU & GSM8K \\\\\n\\midrule\n\\multirow{2}{*}{25\\%}\n& Global & \\textbf{8.17} & 45.4 & 70.6 & \\textbf{46.6} & \\textbf{11.5} \\\\\n& Uniform & 8.23 & \\textbf{46.5} & \\textbf{71.8} & 44.0 & 11.0 \\\\\n\\midrule\n\\multirow{2}{*}{30\\%}\n& Global & 8.96$\\pm$0.02 & \\textbf{43.8$\\pm$3.6} & \\textbf{70.2$\\pm$0.9} & 35.7$\\pm$9.5$^\\ast$ & \\textbf{8.0$\\pm$0.7} \\\\\n& Uniform & \\textbf{8.81$\\pm$0.02} & 43.7$\\pm$2.5 & 68.9$\\pm$0.4 & \\textbf{40.7$\\pm$1.3} & 7.5$\\pm$0.1 \\\\\n\\midrule\n\\multirow{2}{*}{35\\%}\n& Global & \\textbf{9.31} & \\textbf{38.9} & \\textbf{67.6} & \\textbf{40.4} & \\textbf{7.7} \\\\\n& Uniform & 9.44 & 38.7 & 66.5 & 37.8 & 4.3 \\\\\n\\midrule\n\\multirow{2}{*}{40\\%}\n& Global & \\textbf{10.14} & 39.5 & \\textbf{67.5} & \\textbf{39.5} & \\textbf{6.6} \\\\\n& Uniform & 10.76 & \\textbf{39.6} & 63.1 & 35.5 & 3.6 \\\\\n\\midrule\n\\multirow{2}{*}{45\\%}\n& Global & \\textbf{10.80} & \\textbf{39.2} & \\textbf{64.6} & 30.4 & \\textbf{3.0} \\\\\n& Uniform & 10.95 & 37.6 & 63.6 & \\textbf{30.6} & 2.7 \\\\\n\\midrule\n\\multirow{2}{*}{50\\%}\n& Global & \\textbf{11.84$\\pm$0.15} & \\textbf{36.3$\\pm$3.2} & \\textbf{63.8$\\pm$0.3} & \\textbf{28.3$\\pm$0.7} & \\textbf{2.7$\\pm$1.3} \\\\\n& Uniform & 11.92$\\pm$0.07 & 33.8$\\pm$1.2 & 62.9$\\pm$0.1 & 28.0$\\pm$0.6 & 2.2$\\pm$0.1 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\n\\section{Mask Pattern Visualization}\n\\label{app:mask_viz}\n\nFigure~\\ref{fig:mask_heatmap} shows per-layer Jaccard distance between KL-derived and magnitude-based masks at 30\\% and 50\\% sparsity.\nFigure~\\ref{fig:scatter} shows per-neuron importance scores at layer 16.\nFigure~\\ref{fig:mask_comparison} shows binary mask comparisons at layers 2, 16, and 28.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.95\\columnwidth]{neuron_scatter_layer16.pdf}\n\\caption{KL vs.\\ magnitude importance scores for layer 16 neurons at 50\\% sparsity. 41\\% of neurons fall in disagreement quadrants where one method selects a neuron the other discards.}\n\\label{fig:scatter}\n\\end{figure}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{mask_divergence_heatmap.pdf}\n\\caption{Per-layer Jaccard distance between KL-derived and magnitude-based masks at 30\\% and 50\\% sparsity (64 samples, 131K tokens). Divergence peaks in layers 24--28 (Jaccard distance $>$0.73 at 50\\%) and increases with sparsity across all layers.}\n\\label{fig:mask_heatmap}\n\\end{figure*}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=\\textwidth]{mask_comparison.pdf}\n\\caption{Binary mask comparison between KL-derived and magnitude-based masks at selected layers (L2, L16, L28) for 30\\% and 50\\% sparsity (64 samples). Black = selected by both, light regions = selected by only one method. Deep layers show the largest divergence (L28 Jaccard distance: 0.60 at 30\\%, 0.74 at 50\\%).}\n\\label{fig:mask_comparison}\n\\end{figure*}\n\n\n\\section{Cross-Architecture Comparison}\n\\label{app:cross_arch}\n\nTable~\\ref{tab:cross_arch} evaluates on Mistral-7B-v0.3~\\cite{jiang2023mistral} (GQA + sliding window, dense PPL 5.52).\n\n\\begin{table}[h]\n\\centering\n\\caption{Cross-architecture comparison (WikiText-2 PPL$\\downarrow$). Adv = TEAL\\,/\\,KL ratio. \\textbf{Note:} LLaMA results use global top-$k$ allocation; Mistral results use uniform allocation. Mistral 30\\%: 3-seed mean$\\pm$std; other rows: seed 42.}\n\\label{tab:cross_arch}\n\\small\n\\begin{tabular}{l@{\\hspace{4pt}}cc@{\\hspace{3pt}}c@{\\hspace{6pt}}|@{\\hspace{6pt}}cc@{\\hspace{3pt}}c}\n\\toprule\n & \\multicolumn{3}{c}{Mistral-7B} & \\multicolumn{3}{c}{LLaMA-8B} \\\\\n & KL & TEAL & Adv & KL & TEAL & Adv \\\\\n\\midrule\n30\\% & \\textbf{6.93$\\pm$0.19} & 8.38 & 1.21$\\times$ & \\textbf{8.96} & 10.97 & 1.22$\\times$ \\\\ % exp_id: mistral_kl30_s42, mistral_kl30_s123, mistral_kl30_s456, teal_30_mistral, kl30_3seed_global\n50\\% & \\textbf{8.65} & 18.31 & 2.12$\\times$ & \\textbf{11.79} & 23.31 & 1.98$\\times$ \\\\ % exp_id: kl_50_mistral, teal_50_mistral\n70\\% & \\textbf{13.33} & 61.72 & 4.63$\\times$ & \\textbf{17.91} & 100.11 & 5.59$\\times$ \\\\ % exp_id: kl_70_mistral, teal_70_mistral\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe KL PPL advantage ratio is consistent across architectures (within 8\\% at $\\leq$50\\% sparsity).\nTable~\\ref{tab:mistral_downstream} reports downstream task accuracy at 30\\% sparsity on Mistral-7B-v0.3 (3-seed). KL improves PPL ($-$17.3\\%) and commonsense tasks (WG +6.7pp) but MMLU is tied (43.3\\% vs.\\ 43.5\\%); ARC-c shows high seed variance ($\\sigma$=6.4pp); GSM8K reverses.\n\n\\begin{table}[h]\n\\centering\n\\caption{Mistral-7B-v0.3 downstream evaluation at 30\\% sparsity. $\\pm$: 3-seed mean$\\pm$std ($s \\in \\{42, 123, 456\\}$); TEAL is deterministic (single run). ARC-c exhibits high seed variance ($\\sigma$=6.4pp).}\n\\label{tab:mistral_downstream}\n\\small\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lccccccc}\n\\toprule\nMethod & PPL$\\downarrow$ & ARC-c & WG & HS & PIQA & MMLU & GSM8K \\\\\n\\midrule\nDense & 5.52 & 60.2 & 78.7 & 83.2 & 81.9 & 62.4 & 36.5 \\\\ % exp_id: lm_eval_mistral_dense, mistral_dense_hellaswag_piqa\nKL 30\\% & \\textbf{6.93$\\pm$0.19} & \\textbf{44.9$\\pm$6.4} & \\textbf{70.2$\\pm$1.2} & \\textbf{69.7$\\pm$0.8} & \\textbf{74.8$\\pm$0.4} & 43.3$\\pm$1.5 & 8.6$\\pm$2.2 \\\\ % exp_id: mistral_kl30_s42, mistral_kl30_s123, mistral_kl30_s456\nTEAL 30\\% & 8.38 & 41.1 & 63.5 & 60.1 & 72.1 & \\textbf{43.5} & \\textbf{15.9} \\\\ % exp_id: mistral_teal30_downstream\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\n\\section{Taxonomy Discussion}\n\\label{app:taxonomy}\n\n\\paragraph{Correction granularity.}\n\\emph{Static} methods~\\cite{xu2025spon} learn a fixed bias vector per layer that does not depend on the input token.\n\\emph{Per-token} methods~\\cite{liu2023dejavu,gautam2026fastforward,akhauri2024shadowllm,szatkowski2024d2dmoe} produce a unique mask for each input position, conditioning on the token's hidden state at each layer.\n\n\\paragraph{Training signal coupling.}\n\\emph{Decomposed} objectives (BCE) treat each neuron independently, optimizing per-element classification against an oracle mask.\n\\emph{Intermediate} objectives (MSE on hidden states) capture local coupling within a single layer but not end-to-end output effects.\n\\emph{Coupled} objectives (KL on output distribution) propagate gradients through the full forward pass; each mask decision's gradient reflects its joint effect with all other masks on the final distribution.\n\nSPON~\\cite{xu2025spon} distills a per-layer bias via KL but cannot adapt to per-input neuron importance (static $\\times$ coupled).\nDejaVu~\\cite{liu2023dejavu} and FastForward~\\cite{gautam2026fastforward} achieve per-token granularity but use BCE, where each neuron's gradient is independent of other mask states.\nD2DMoE~\\cite{szatkowski2024d2dmoe} provides intermediate coupling (MSE on hidden states) but not end-to-end output effects.\nWe define \\emph{output-distribution alignment} as whether the training loss optimizes a quantity that composes across layers.\nKL on output logits directly optimizes next-token prediction loss, which does not suffer from error composition; per-layer MSE minimizes reconstruction error independently at each layer, but layer-wise optima do not compose---a mask minimizing FFN output error at layer $\\ell$ may amplify errors in layers $\\ell{+}1 \\ldots L$.\nThe SNR analysis (\\S\\ref{sec:method:gradient}) corroborates this: KL achieves the best masks despite $2.3\\times$ lower SNR than BCE, while MSE produces the worst masks.\nThe framework predicts that losses operating on output-level quantities should outperform intermediate-level losses, a hypothesis consistent with our MSE results and testable with alternative output-level objectives.\n\n\\section{Oracle Mask Provenance}\n\\label{app:oracle_provenance}\n\nC1's oracle masks are extracted from a converged KL predictor and binarized via hard threshold (logits $> 0$, equivalent to $\\sigma > 0.5$); they reflect one specific training trajectory (optimizer state, data order, Gumbel noise).\nThe s42/s123/s456 consistency ($\\leq$1.70pp) provides partial evidence of robustness, but does not rule out trajectory-dependent confounds.\n\n\\section{SPON Orthogonality}\n\\label{app:spon}\n\nSPON~\\cite{xu2025spon} bias correction is weakly correlated with the KL predictor (cosine similarity 0.196, $R^2$=0.038) and yields only 2.4\\% PPL improvement (12.08$\\to$11.79); the predictor already captures most recoverable signal. % exp_id: spon_decomposition, spon_2048_s42, mvp_kl_norm_v2_s42\nThe decomposition confirms that SPON and the KL predictor operate on largely orthogonal error sources.\n\n\\section{Per-Layer KL Downstream Decomposition}\n\\label{app:perlayer_downstream}\n\nTable~\\ref{tab:perlayer_downstream} reports raw downstream numbers for the signal type vs.\\ coupling scope decomposition at 30\\% sparsity (\\S\\ref{sec:perlayer}). BoolQ's $\\approx$100\\% coupling is an upper bound confounded by high cross-seed variance ($\\pm$11.5pp for per-layer KL); the $K{=}4$ pilot (Table~\\ref{tab:k4_downstream}) suggests much of this gap is train--inference mismatch.\n\n\\begin{table}[h]\n\\centering\n\\caption{2D decomposition at 30\\% sparsity (LLaMA-3.1-8B, uniform allocation). All rows are 3-seed mean$\\pm$std. Signal type = per-layer KL $-$ MSE; coupling = E2E KL $-$ per-layer KL. Percentages are upper bounds (dimensions not fully orthogonal; see \\S\\ref{sec:perlayer}).}\n\\label{tab:perlayer_downstream}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcccccc}\n\\toprule\n& PPL$\\downarrow$ & ARC-c & WG & MMLU & GSM8K & BoolQ \\\\\n\\midrule\nE2E KL & 8.81$\\pm$0.02 & 43.7 & 68.9 & 40.7 & 7.5 & 73.7 \\\\\nPer-layer KL & 9.05$\\pm$0.02 & 39.9 & 65.9 & 38.6 & 5.8 & 64.5 \\\\\nMSE & 18.52$\\pm$1.68 & 35.8$\\pm$4.1 & 59.8$\\pm$2.6 & 30.7$\\pm$2.6 & 2.3$\\pm$0.7 & 64.5$\\pm$5.3 \\\\\n\\midrule\nTotal gap & 9.71 & 7.9 & 9.1 & 10.0 & 5.2 & 9.2 \\\\\nSignal type (\\%) & 97.5 & 51.9 & 67.0 & 79.0 & 67.3 & $\\approx$0 \\\\\nCoupling (\\%) & 2.5 & 48.1 & 33.0 & 21.0 & 32.7 & $\\approx$100 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n\\section{$K{=}4$ Mismatch Control}\n\\label{app:k4_downstream}\n\nTable~\\ref{tab:k4_downstream} reports 3-seed $K{=}4$ per-layer KL results at 30\\% sparsity.\nTraining with $K{=}4$ random layers per step reduces the train--inference mismatch (4/32 vs.\\ 1/32 layers masked during training, while inference applies all 32).\nThe gap closure column reports the fraction of the $K{=}1 \\to$ E2E KL gap closed by $K{=}4$.\n\n\\begin{table}[h]\n\\centering\n\\caption{3-seed $K{=}4$ mismatch control at 30\\% sparsity (LLaMA-3.1-8B, uniform allocation, $s \\in \\{42, 123, 456\\}$). Actual sparsity 29.6\\%; per-layer sparsity std=0.003 (near-uniform). Gap closure $= (K{=}4 - K{=}1) / (\\text{E2E} - K{=}1) \\times 100$.}\n\\label{tab:k4_downstream}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcccc}\n\\toprule\n& $K{=}4$ (3-seed) & $K{=}1$ (3-seed) & E2E KL (3-seed) & Gap closure (\\%) \\\\\n\\midrule\nPPL$\\downarrow$ & 8.89$\\pm$0.01 & 9.05$\\pm$0.02 & 8.81$\\pm$0.02 & 66.7 \\\\\nARC-c & 40.0$\\pm$1.3 & 39.9 & 43.7$\\pm$2.5 & 2.6 \\\\\nWG & 66.9$\\pm$0.2 & 65.9 & 68.9$\\pm$0.4 & 33.3 \\\\\nMMLU$^\\ast$ & 42.7$\\pm$1.4 & 38.6 & 40.7$\\pm$1.3 & $>$100 \\\\\nGSM8K & 7.0$\\pm$1.6 & 5.8 & 7.5$\\pm$0.1 & 70.6 \\\\\nBoolQ$^\\dagger$ & 67.7$\\pm$7.5 & 64.5$\\pm$11.5 & 73.7 & 34.8 \\\\\n\\bottomrule\n\\end{tabular}}\n\\vspace{2pt}\n{\\footnotesize $^\\ast$MMLU $K{=}4$ systematically exceeds E2E across all 3 seeds; attributable to $K{=}4$'s near-uniform per-layer sparsity (std=0.003) matching uniform eval allocation. Independently confirmed: removing the predictor's middle-layer valley yields MMLU=44.0\\% (Appendix~\\ref{app:constraint}).\n$^\\dagger$BoolQ exhibits high inter-seed variance for both $K{=}4$ (std=7.5) and $K{=}1$ (std=11.5); gap closure unreliable.}\n\\end{table}\n\n\\section{Per-Layer Sparsity Constraint Analysis}\n\\label{app:constraint}\n\nTo test the causal role of the KL predictor's learned per-layer allocation, we evaluate two inference-time interventions at 30\\% overall sparsity (seed 42, uniform allocation baseline):\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-layer sparsity constraint analysis. \\emph{Protect late}: cap L22--L28 sparsity $\\leq$30\\%; \\emph{Remove valley}: override L14--L18 sparsity to 30\\%. Budget redistributed to maintain 30\\% overall.}\n\\label{tab:constraint}\n\\begin{tabular}{lcccc}\n\\toprule\nCondition & PPL & ARC-c & MMLU & GSM8K \\\\\n\\midrule\nKL baseline (s42) & 8.82 & 40.8 & 40.6 & 7.4 \\\\\nProtect late layers & 9.26 & 42.4 & 40.7 & 6.5 \\\\\nRemove valley & 8.76 & 39.3 & 44.0 & 9.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nProtecting late layers (L22--L28) does not improve knowledge-intensive metrics despite reducing their sparsity from 48--57\\% to $\\leq$30\\%, while worsening PPL by 5.2\\%.\nConversely, removing the protection valley (forcing L14--L18 to 30\\% instead of 14--18\\%) improves MMLU by +3.4pp and GSM8K by +1.6pp at the cost of ARC-c $-$1.5pp.\nThe KL predictor's learned allocation thus represents a task-dependent trade-off---prioritizing commonsense reasoning via middle-layer protection---rather than a uniformly optimal pattern.\nThis allocation trade-off also explains the $K{=}4$ MMLU anomaly (\\S\\ref{app:k4_downstream}): $K{=}4$'s near-uniform learned sparsity (std=0.003) inherently removes the valley, producing MMLU=43.5 comparable to the remove-valley condition (44.0).\n\n\\section{Per-Layer Sparsity Distribution}\n\\label{app:perlayer_sparsity}\n\nThe KL predictor at 30\\% target sparsity learns a non-uniform per-layer allocation that differs markedly from magnitude-based selection.\nAggregate sparsity is similar across broad regions (early L0--L7: KL 28.1\\% vs.\\ magnitude 27.5\\%; late L24--L31: 44.9\\% vs.\\ 47.2\\%), but middle layers (L8--L23) exhibit high internal variance despite similar averages (28.2\\% vs.\\ 27.3\\%).\nTable~\\ref{tab:perlayer_sparsity} highlights three sub-ranges.\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-layer sparsity sub-ranges: KL predictor vs.\\ magnitude (LLaMA-3.1-8B, 30\\%, uniform allocation). Ranges denote min--max across layers in each group.}\n\\label{tab:perlayer_sparsity}\n\\begin{tabular}{lccc}\n\\toprule\nLayer Range & KL (\\%) & Mag (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\nL8--L12 (high pruning) & 32--36 & 25--26 & $+$7 to $+$10 \\\\\nL14--L18 (protection valley) & 14--18 & 28--30 & $-$8 to $-$16 \\\\\nL22--L28 (aggressive pruning) & 48--57 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{C4 Training Data Control}\n\\label{app:c4_control}\n\nTo test whether WikiText-103's narrow domain drives the knowledge-task regression (\\S\\ref{sec:experiments}), we train the KL predictor on C4~\\cite{raffel2020c4} (diverse web text) under identical hyperparameters (1000 steps, 30\\% uniform, s42).\n\n\\begin{table}[h]\n\\centering\n\\caption{C4-trained vs.\\ WikiText-trained KL predictor (LLaMA-3.1-8B, 30\\% uniform, s42).}\n\\label{tab:c4_control}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{lcccccc}\n\\toprule\nTraining Data & PPL$\\downarrow$ & ARC-c & WG & MMLU & GSM8K & HS / PIQA \\\\\n\\midrule\nWikiText-103 & 8.82 & 40.78 & 68.59 & 40.6 & 7.35 & 69.4 / 75.5 \\\\\nC4 & 11.55 & 43.09 & 68.67 & 39.95 & 4.09 & 69.24 / 74.86 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nThe C4-trained predictor achieves comparable MMLU (40.0\\% vs.\\ 40.6\\%) but worse GSM8K (4.1\\% vs.\\ 7.4\\%) and higher PPL (11.55 vs.\\ 8.82), despite training on more diverse text.\nThis rules out training data composition as the primary cause of knowledge-task regression and supports the hypothesis that forward KL's mode-covering property structurally under-protects rare reasoning-critical activations. % exp_id: c4_control_eval\n\n\\section{Per-Layer Coupling Breadth Analysis}\n\\label{app:k_curve}\n\nWe vary the number of layers coupled per training step ($K$) from 1 (pure per-layer) to 32 (end-to-end), evaluating all predictors under TEAL uniform allocation at 30\\% sparsity on LLaMA-3.1-8B.\n\n\\begin{table}[h]\n\\centering\n\\caption{K-curve: coupling breadth vs.\\ predictor quality (30\\%, TEAL uniform, LLaMA-3.1-8B). All values are 3-seed mean$\\pm$std (s42/s123/s456) except $K{=}1$ downstream (single seed). ``---'' = not evaluated.}\n\\label{tab:k_curve}\n\\resizebox{\\columnwidth}{!}{\n\\begin{tabular}{cccccccc}\n\\toprule\n$K$ & PPL$\\downarrow$ & ARC-c & WG & MMLU & GSM8K & HS & PIQA \\\\\n\\midrule\n1 & 9.05$\\pm$0.02 & 39.9 & 65.9 & 38.6 & 5.8 & --- & --- \\\\\n2 & 10.75$\\pm$0.15 & 39.7$\\pm$1.2 & 63.2$\\pm$1.7 & 38.3$\\pm$3.2 & 2.8$\\pm$0.6 & 66.5$\\pm$1.0 & 73.5$\\pm$0.7 \\\\\n4 & 8.89$\\pm$0.01 & 40.0$\\pm$1.2 & 66.9$\\pm$0.2 & 42.7$\\pm$1.4 & 7.0$\\pm$1.6 & 67.8$\\pm$1.0 & 74.5$\\pm$0.5 \\\\\n8 & 8.99$\\pm$0.06 & 40.7$\\pm$1.0 & 68.7$\\pm$1.3 & 40.4$\\pm$0.6 & 6.8$\\pm$1.3 & 69.0$\\pm$1.1 & 75.1$\\pm$1.1 \\\\\n16 & 8.67$\\pm$0.02 & 41.9$\\pm$1.1 & 68.5$\\pm$0.9 & 40.9$\\pm$2.9 & 8.5$\\pm$1.2 & 70.1$\\pm$0.4 & 75.0$\\pm$0.8 \\\\\n32 (E2E) & 8.81$\\pm$0.02 & 43.7$\\pm$2.5 & 68.9$\\pm$0.4 & 40.7$\\pm$1.3 & 7.5$\\pm$0.1 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\nPPL exhibits a non-monotonic U-shape (Figure~\\ref{fig:k_curve_ppl}): $K{=}2$ is worst (10.75$\\pm$0.15), likely due to insufficient per-layer updates (${\\sim}$62 updates/layer vs.\\ ${\\sim}$250 at $K{=}8$). $K{=}16$ achieves the lowest PPL (8.67$\\pm$0.02), marginally better than E2E (8.81$\\pm$0.02). $K{=}16$ MMLU exhibits high seed variance (std=2.9; s42=44.0, s123=40.0, s456=38.7), with the 3-seed mean (40.9) indistinguishable from E2E (40.7$\\pm$1.3).\nThe signal type gap ($K{=}1$ KL 9.05 vs.\\ per-layer MSE 18.52$\\pm$1.68) of 9.47 PPL dwarfs the coupling breadth range within KL (best $K{=}16$ 8.67 vs.\\ worst $K{=}2$ 10.75 = 2.08 PPL), reinforcing that output-distribution alignment, not coupling scope, is the primary quality lever for PPL at this sparsity level. % exp_id: k_curve_k2_3seed, k_curve_k8_3seed, k_curve_k16_3seed, perlayer_kl_30_3seed, perlayer_kl_k4_3seed\n\n\\section{Licenses}\n\\label{app:licenses}\n\nLLaMA-3.1-8B is released under the Llama 3.1 Community License Agreement.\nMistral-7B-v0.3 is released under the Apache 2.0 License.\nQwen-2.5-14B is released under the Apache 2.0 License.\nWikiText-103 and WikiText-2~\\cite{merity2017pointer} are released under the Creative Commons Attribution-ShareAlike License (CC BY-SA 3.0).\nAll evaluation benchmarks (ARC, WinoGrande, MMLU, GSM8K, HellaSwag, PIQA) are publicly available under their respective licenses.\nOur code will be released under the MIT License upon acceptance.\n\n\\section{Use of AI Assistants}\n\\label{app:ai-assistants}\n\nWe used Claude (Anthropic) as an AI coding and writing assistant\nthroughout this work. Specifically:\n\\begin{itemize}\n    \\item \\textbf{Code:} drafting experiment scripts, data-processing\n    pipelines, and analysis utilities; debugging and refactoring.\n    \\item \\textbf{Writing:} drafting and revising paper sections,\n    polishing prose, and reformatting LaTeX.\n    \\item \\textbf{Literature:} summarizing related papers to inform\n    related-work section.\n\\end{itemize}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 636,
+                  "oldLines": 7,
+                  "newStart": 636,
+                  "newLines": 7,
+                  "lines": [
+                    " 1 & 9.05$\\pm$0.02 & 39.9 & 65.9 & 38.6 & 5.8 & --- & --- \\\\",
+                    " 2 & 10.75$\\pm$0.15 & 39.7$\\pm$1.2 & 63.2$\\pm$1.7 & 38.3$\\pm$3.2 & 2.8$\\pm$0.6 & 66.5$\\pm$1.0 & 73.5$\\pm$0.7 \\\\",
+                    " 4 & 8.89$\\pm$0.01 & 40.0$\\pm$1.2 & 66.9$\\pm$0.2 & 42.7$\\pm$1.4 & 7.0$\\pm$1.6 & 67.8$\\pm$1.0 & 74.5$\\pm$0.5 \\\\",
+                    "-8 & 8.99$\\pm$0.06 & 40.7$\\pm$1.0 & 68.7$\\pm$1.3 & 40.4$\\pm$0.6 & 6.8$\\pm$1.3 & 69.0$\\pm$1.1 & 75.1$\\pm$1.1 \\\\",
+                    "+8 & 9.00$\\pm$0.06 & 40.7$\\pm$1.0 & 68.7$\\pm$1.3 & 40.4$\\pm$0.6 & 6.8$\\pm$1.3 & 69.0$\\pm$1.1 & 75.1$\\pm$1.1 \\\\",
+                    " 16 & 8.67$\\pm$0.02 & 41.9$\\pm$1.1 & 68.5$\\pm$0.9 & 40.9$\\pm$2.9 & 8.5$\\pm$1.2 & 70.1$\\pm$0.4 & 75.0$\\pm$0.8 \\\\",
+                    " 32 (E2E) & 8.81$\\pm$0.02 & 43.7$\\pm$2.5 & 68.9$\\pm$0.4 & 40.7$\\pm$1.3 & 7.5$\\pm$0.1 & --- & --- \\\\",
+                    " \\bottomrule"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000507"
+        },
+        {
+          "source_line": 508,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012s6qTyybi9FCgrv9sCfyRN",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/figures/paper/gen_k_curve_ppl.py",
+                "old_string": "ppl_mean = [9.05, 10.75, 8.89, 8.99, 8.67, 8.81]",
+                "new_string": "ppl_mean = [9.05, 10.75, 8.89, 9.00, 8.67, 8.81]"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "101fc875-9a9c-4fcd-bb11-5ca2d4de2ede",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VHqRXnGAqWGodN5KoZmPiT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 340,
+                "cache_read_input_tokens": 123791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 340
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000508"
+        },
+        {
+          "source_line": 509,
+          "timestamp": "2026-05-23T19:38:11.170Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012s6qTyybi9FCgrv9sCfyRN",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/figures/paper/gen_k_curve_ppl.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "cec56636-748e-450f-959f-3879a0e28f36",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/figures/paper/gen_k_curve_ppl.py",
+              "oldString": "ppl_mean = [9.05, 10.75, 8.89, 8.99, 8.67, 8.81]",
+              "newString": "ppl_mean = [9.05, 10.75, 8.89, 9.00, 8.67, 8.81]",
+              "originalFile": "import matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 9,\n    'axes.titlesize': 10,\n    'axes.labelsize': 9,\n    'xtick.labelsize': 8,\n    'ytick.labelsize': 8,\n    'legend.fontsize': 7.5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\nCOLOR_KL = '#0072B2'\nCOLOR_TEAL = '#E69F00'\n\n# K-curve data: all 3-seed mean ± std (Director-verified 2026-05-23)\nK = [1, 2, 4, 8, 16, 32]\nppl_mean = [9.05, 10.75, 8.89, 8.99, 8.67, 8.81]\nppl_std =  [0.02, 0.15,  0.005, 0.06, 0.02, 0.02]\nis_3seed = [True, True, True, True, True, True]\n\nTEAL_PPL = 10.82\n\nfig, ax = plt.subplots(figsize=(3.5, 1.9))\n\nx_pos = np.arange(len(K))\n\nfor i, (k, m, s) in enumerate(zip(K, ppl_mean, ppl_std)):\n    ax.errorbar(x_pos[i], m, yerr=s if s > 0 else None,\n                fmt='o', color=COLOR_KL, markersize=5,\n                capsize=2.5, capthick=1.0, elinewidth=1.0,\n                markeredgecolor='white', markeredgewidth=0.5,\n                zorder=5)\n\nax.plot(x_pos, ppl_mean, '-', color=COLOR_KL, alpha=0.4, zorder=3)\n\nax.axhline(y=TEAL_PPL, color=COLOR_TEAL, linestyle='--', linewidth=1.2,\n           alpha=0.8, zorder=2)\nax.text(x_pos[0] + 0.15, TEAL_PPL + 0.05, 'TEAL', color=COLOR_TEAL,\n        fontsize=7, va='bottom', ha='left')\n\nax.annotate(f'{ppl_mean[1]:.1f}',\n            xy=(x_pos[1], ppl_mean[1]),\n            xytext=(x_pos[1] + 0.45, ppl_mean[1] + 0.2),\n            fontsize=7, color='#333333',\n            arrowprops=dict(arrowstyle='->', color='#333333', lw=0.8))\n\nbest_idx = np.argmin(ppl_mean)\nax.annotate(f'{ppl_mean[best_idx]:.1f}',\n            xy=(x_pos[best_idx], ppl_mean[best_idx]),\n            xytext=(x_pos[best_idx] + 0.45, ppl_mean[best_idx] - 0.25),\n            fontsize=7, color='#333333',\n            arrowprops=dict(arrowstyle='->', color='#333333', lw=0.8))\n\nax.set_xticks(x_pos)\nax.set_xticklabels(['32\\n(E2E)' if k == 32 else str(k) for k in K])\nax.set_xlabel('Coupling breadth $K$')\nax.set_ylabel('Perplexity (WikiText-2)')\n\nax.set_ylim(8.2, 11.3)\n\nfrom matplotlib.lines import Line2D\nlegend_elements = [\n    Line2D([0], [0], marker='o', color=COLOR_KL, label='3-seed mean$\\\\pm$std',\n           markersize=5, markeredgecolor='white', markeredgewidth=0.4, linestyle=''),\n    Line2D([0], [0], color=COLOR_TEAL, linestyle='--', label='TEAL baseline',\n           linewidth=1.2),\n]\nax.legend(handles=legend_elements, loc='upper right', frameon=True,\n          fancybox=False, edgecolor='#cccccc', fontsize=7)\n\nplt.tight_layout()\nplt.savefig('figures/paper/k_curve_ppl.pdf')\nplt.savefig('figures/paper/k_curve_ppl.png')\nprint('Saved k_curve_ppl.pdf and k_curve_ppl.png')\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 25,
+                  "oldLines": 7,
+                  "newStart": 25,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " # K-curve data: all 3-seed mean ± std (Director-verified 2026-05-23)",
+                    " K = [1, 2, 4, 8, 16, 32]",
+                    "-ppl_mean = [9.05, 10.75, 8.89, 8.99, 8.67, 8.81]",
+                    "+ppl_mean = [9.05, 10.75, 8.89, 9.00, 8.67, 8.81]",
+                    " ppl_std =  [0.02, 0.15,  0.005, 0.06, 0.02, 0.02]",
+                    " is_3seed = [True, True, True, True, True, True]",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000509"
+        },
+        {
+          "source_line": 510,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also check if experiments.tex references the K=8 PPL value in the text."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "f4cc4c24-c6b0-4064-853b-ced6dee919c5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C9hcgSUJyDUkb3PuY55mvb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 869,
+                "cache_read_input_tokens": 124131,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 869
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000510"
+        },
+        {
+          "source_line": 511,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QgJqJReTUfG1G7GpgQiUjz",
+              "name": "Grep",
+              "input": {
+                "pattern": "8\\.99",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu",
+                "output_mode": "content",
+                "glob": "*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "53a844f0-f97d-47cb-a190-abf360ff4bf3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C9hcgSUJyDUkb3PuY55mvb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 869,
+                "cache_read_input_tokens": 124131,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 869
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000511"
+        },
+        {
+          "source_line": 512,
+          "timestamp": "2026-05-23T19:38:23.730Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QgJqJReTUfG1G7GpgQiUjz",
+              "type": "tool_result",
+              "content": "artifacts/dream_reports/dream_20260518T173518/median/paper.tex:338:KL pred.\\ PPL (with SPON) & 8.991 \\\\\nartifacts/_project/paper/experiments.tex:165:In terms of PPL recovery, SPON provides: 7.3\\% improvement under hard-mask inference (9.22 $\\to$ 8.99) and 4.8\\% under TEAL-path inference (12.08 $\\to$ 11.79). % exp_id: spon_ppl_recovery"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "18e7add3-9a19-4306-a776-a942c48a54df",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "artifacts/dream_reports/dream_20260518T173518/median/paper.tex:338:KL pred.\\ PPL (with SPON) & 8.991 \\\\\nartifacts/_project/paper/experiments.tex:165:In terms of PPL recovery, SPON provides: 7.3\\% improvement under hard-mask inference (9.22 $\\to$ 8.99) and 4.8\\% under TEAL-path inference (12.08 $\\to$ 11.79). % exp_id: spon_ppl_recovery",
+              "numLines": 2
+            }
+          },
+          "id": "event-000512"
+        },
+        {
+          "source_line": 513,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The 8.99 in `experiments.tex:165` refers to SPON, not K=8. And the artifacts one is in a dream report. But wait, let me re-read - these are SPON-related, not K=8. These are different contexts. Let me check if they're in the current paper version.\n\nLet me re-read experiments.tex to check if there's a SPON section - but I already read the file earlier and didn't see it. Let me check if the search hit is in the main paper or an artifact.\n\nLooking at the path: `artifacts/_project/paper/experiments.tex` — this is an artifact copy, not the main paper file. \n\nSo I need to check the actual paper file at `paper/experiments.tex` to see what's really there.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "108fc9b0-165e-473c-912f-27495e81324e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ASVxUadRcBW64cr75T3iH1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 307,
+                "cache_read_input_tokens": 125000,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 307
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000513"
+        },
+        {
+          "source_line": 514,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The remaining 8.99 occurrences are in artifacts (not the main paper) and refer to SPON (not K=8). No further fixes needed for that value.\n\nNow let me also check if the K=8 PPL value appears in any text discussion."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "cc6d844d-6b8a-4883-9092-e7ed77cf5d21",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ASVxUadRcBW64cr75T3iH1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 307,
+                "cache_read_input_tokens": 125000,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 307
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000514"
+        },
+        {
+          "source_line": 515,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019TZmBvPbtWzHLFwvh93EAx",
+              "name": "Grep",
+              "input": {
+                "pattern": "K.*=.*8.*8\\.99|8\\.99.*K.*8",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper",
+                "output_mode": "content",
+                "-i": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "59f434f5-990f-4d11-ada7-d44f0f52797d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ASVxUadRcBW64cr75T3iH1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 307,
+                "cache_read_input_tokens": 125000,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 307
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000515"
+        },
+        {
+          "source_line": 516,
+          "timestamp": "2026-05-23T19:38:32.681Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019TZmBvPbtWzHLFwvh93EAx",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "b8c8c2f1-8b7c-4f7d-ac64-79cd8ddb7c7c",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            }
+          },
+          "id": "event-000516"
+        },
+        {
+          "source_line": 517,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good — K=8 PPL isn't mentioned in running text, only in the appendix table (now fixed). Let me also check one more consistency: the experiments.tex §4.5 mentions \"coupling range 2.08 PPL\" — with K=8 changing from 8.99 to 9.00, the coupling range would be 10.75 - 8.67 = 2.08 (unchanged since it's K=2 vs K=16, not K=8). ✓\n\nNow let me verify the K-curve text in experiments.tex also doesn't reference the specific K=8 value."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "81a188b5-9fb6-4cfe-8fb3-8ccee6391c14",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RewnEEyx7cukJifPnC2orQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 413,
+                "cache_read_input_tokens": 125307,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 413
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000517"
+        },
+        {
+          "source_line": 518,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018Ugoie3Wo8Qff9fLazdofk",
+              "name": "Grep",
+              "input": {
+                "pattern": "K.*=.*8|K\\{=\\}8",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "00ff2429-b9be-4f84-bdf3-ff836a027162",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RewnEEyx7cukJifPnC2orQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 413,
+                "cache_read_input_tokens": 125307,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 413
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000518"
+        },
+        {
+          "source_line": 519,
+          "timestamp": "2026-05-23T19:38:39.422Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018Ugoie3Wo8Qff9fLazdofk",
+              "type": "tool_result",
+              "content": "139:Per-layer KL ($K{=}1$) & 9.05$\\pm$0.02 & 34.85 & +23.06 \\\\ % exp_id: perlayer_kl_30_3seed, perlayer_kl_50_s42\n140:Per-layer KL ($K{=}4$) & 8.89$\\pm$0.01 & 44.23 & +32.44 \\\\ % exp_id: perlayer_kl_k4_3seed, perlayer_kl_k4_50_s42\n158:[Omitted long matching line]\n159:At 50\\%, partial coupling ($K{=}4$: 44.23) is \\emph{worse} than $K{=}1$ (34.85) while E2E achieves 11.84, suggesting gradient interference under tight capacity; the decomposition is interpretable only at 30\\%. % exp_id: perlayer_kl_k4_50_s42, perlayer_kl_50_s42, bench_kl50_global\n165:\\caption{Coupling breadth $K$ vs.\\ perplexity (30\\%, TEAL uniform, 3-seed mean$\\pm$std). $K{=}32$ denotes end-to-end training. $K{=}2$ degradation reflects insufficient per-layer updates (${\\sim}62$ vs.\\ ${\\sim}250$ at $K{=}8$).}\n170:The $K$-curve (Figure~\\ref{fig:k_curve_ppl}) confirms non-monotonic coupling effects: $K{=}16$ achieves the lowest PPL (8.67$\\pm$0.02 vs.\\ E2E 8.81$\\pm$0.02), yet the full coupling range (2.08 PPL) is dwarfed by the signal type gap (9.47 PPL). % exp_id: k_curve_k2_3seed, k_curve_k8_3seed, k_curve_k16_3seed"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "a1faf1e9-331b-404f-a31a-f1abd56b6af5",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "139:Per-layer KL ($K{=}1$) & 9.05$\\pm$0.02 & 34.85 & +23.06 \\\\ % exp_id: perlayer_kl_30_3seed, perlayer_kl_50_s42\n140:Per-layer KL ($K{=}4$) & 8.89$\\pm$0.01 & 44.23 & +32.44 \\\\ % exp_id: perlayer_kl_k4_3seed, perlayer_kl_k4_50_s42\n158:[Omitted long matching line]\n159:At 50\\%, partial coupling ($K{=}4$: 44.23) is \\emph{worse} than $K{=}1$ (34.85) while E2E achieves 11.84, suggesting gradient interference under tight capacity; the decomposition is interpretable only at 30\\%. % exp_id: perlayer_kl_k4_50_s42, perlayer_kl_50_s42, bench_kl50_global\n165:\\caption{Coupling breadth $K$ vs.\\ perplexity (30\\%, TEAL uniform, 3-seed mean$\\pm$std). $K{=}32$ denotes end-to-end training. $K{=}2$ degradation reflects insufficient per-layer updates (${\\sim}62$ vs.\\ ${\\sim}250$ at $K{=}8$).}\n170:The $K$-curve (Figure~\\ref{fig:k_curve_ppl}) confirms non-monotonic coupling effects: $K{=}16$ achieves the lowest PPL (8.67$\\pm$0.02 vs.\\ E2E 8.81$\\pm$0.02), yet the full coupling range (2.08 PPL) is dwarfed by the signal type gap (9.47 PPL). % exp_id: k_curve_k2_3seed, k_curve_k8_3seed, k_curve_k16_3seed",
+              "numLines": 6
+            }
+          },
+          "id": "event-000519"
+        },
+        {
+          "source_line": 520,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "K=8 is only mentioned in the K-curve figure caption context (\"~250 at K=8\"), not with a specific PPL value in the main text. Appendix fix is sufficient.\n\n## 数据自查报告\n\n### ✅ 已核对一致\n\n**Abstract & Introduction:**\n- \"14.5% PPL reduction\" ← (10.30−8.81)/10.30=14.47% ✓ (teal_28.5pct_sanity PPL=10.30)\n- \"<1% of base\" ← 75.9M/8.03B=0.95% ✓\n- \"MMLU −5.2pp on 8B\" ← 40.7−45.86=−5.16pp ✓\n- \"GSM8K −20.1pp on 14B\" ← 32.0−52.1=−20.1pp ✓\n- \"+67.2M params compensation\" ✓\n- \"46–68% Jaccard divergence\" ✓ (30%=46.26%, 50%=68.24%)\n- \"PPL gap ≤0.65pp\" (C1 ablation) ✓\n- \"28.13±0.20\" (BCE 50% 3-seed) ✓\n- \"8.81 vs 10.30, both at 28.5%\" ✓\n- \"7.3× variance amplification\" ← 9.5/1.3=7.31 ✓\n- \"−17.3% on Mistral\" ← (8.38−6.93)/8.38=17.3% ✓\n- \"6.4% latency overhead\" ← (126.78−119.11)/119.11=6.44% ✓\n\n**Table 3 (Main Results):** 所有行全部核对通过\n- Dense, TEAL 30%/50% uniform (含GSM8K), BCE global/uniform, MSE, KL global/uniform — 每个数字均与 registry 一致\n\n**Table 4 (C1 Ablation):** 所有 12 行 × 5 列核对通过\n- 30% s42/s123/s456 C1 vs KL ✓\n- 50% s42 C1 (c1_ablation_eval_uniform) ✓\n- 50% s42 KL (kl50_s42_uniform_eval: ARC 32.59, WG 62.35, MMLU 27.92, GSM8K 1.97) ✓\n\n**Table 5 (Ablation):** 所有 PPL 值核对通过\n- Forward KL, JSD, Reverse KL, STE, MSE, Per-layer KL (K=1, K=4), BCE variants ✓\n\n**§4.5 Derived Claims:**\n- \"within 2.7%\" ← (9.05−8.81)/8.81=2.72% ✓\n- \"2.05× worse\" ← 18.52/9.05=2.05 ✓\n- \"PPL 67% closure\" ← (9.05−8.89)/(9.05−8.81)=66.7% ✓\n- \"coupling range 2.08 PPL\" ← 10.75−8.67=2.08 ✓\n- \"signal type gap 9.47 PPL\" ← 18.52−9.05=9.47 ✓\n- K=16 PPL 8.67±0.02 ✓\n\n**Appendix Tables:**\n- Latency: 全部 5 行 ✓\n- OOD (C4): 全部 ✓\n- OOD Downstream: 全部 12 个数字 ✓\n- Constraint: 全部 ✓\n- Cross-architecture (Mistral): PPL/Adv 全部 ✓\n- Mistral downstream: TEAL 全部 ✓, KL PPL ✓\n- Qwen-14B: KL global/uniform, TEAL global/uniform (PPL, ARC-c, WG, MMLU, GSM8K) ✓\n- Allocation summary: 全部 ✓\n- K-curve table (Appendix W): K=1,2,4,16,32 ✓\n- db sensitivity, tau schedule, training convergence ✓\n\n**Figure source data:**\n- gen_k_curve_ppl.py: K=1,2,4,16,32 数据点 ✓\n\n### ⚠️ 已修复\n\n1. **K=8 PPL (K-curve table + figure)**: 8.99 → **9.00**\n   - Registry 3-seed: s42=8.9704, s123=9.0648, s456=8.9515, mean=8.9956, 标准四舍五入为 9.00\n   - 修复: `appendix.tex:639`, `gen_k_curve_ppl.py:28`\n\n### ❌ 待人工确认\n\n1. **Qwen-14B TEAL uniform HS/PIQA**: 两次独立 eval 结果不一致\n   - v1 (`qwen14b_teal30_uniform_hspiqa`, updated 5/20): HS=67.72, PIQA=74.70 ← 论文使用此值\n   - v2 (`qwen14b_teal30_uniform_hspiqa_v2`, completed 5/19): HS=67.56, PIQA=74.27\n   - 影响: appendix.tex Table 6 TEAL uniform 行的 HS/PIQA 两个值\n   - 建议: 确认哪次 eval 是权威版本\n\n2. **Figure 2 (sparsity sweep) KL 50% PPL = 12.00**: 来源不明确\n   - bench_kl50_global (s42) = 11.79\n   - 3-seed mean KL50 global = 11.84\n   - bench_kl50_uniform (s42) = 11.96 ← 最接近 12.00 但标注为 \"global allocation\"\n   - 影响: Figure 2 的 50% 数据点位置和 \"48% better\" 标注\n   - 建议: 确认数据来源，如为 uniform 值则改为 11.96 或改用 global 值 11.79/11.84\n\n3. **Figure 2 caption vs annotation 不一致**: caption 引用 \"14.5%, 50%, 82%\" (uniform 比较), 但 figure 标注显示 \"18%, 48%, 82%\" (global 比较)。两套数字各自正确但来自不同 allocation baseline，可能引起审稿人困惑。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "uuid": "9fc97062-0072-4b92-8da9-e9e07cddb3d5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JrPnX36QVSR4xcFe7vdM4V",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 793,
+                "cache_read_input_tokens": 125720,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 793
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000520"
+        },
+        {
+          "source_line": 521,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "K=8 is only mentioned in the K-curve figure caption context (\"~250 at K=8\"), not with a specific PPL value in the main text. Appendix fix is sufficient.\n\n## 数据自查报告\n\n### ✅ 已核对一致\n\n**Abstract & Introduction:**\n- \"14.5% PPL reduction\" ← (10.30−8.81)/10.30=14.47% ✓ (teal_28.5pct_sanity PPL=10.30)\n- \"<1% of base\" ← 75.9M/8.03B=0.95% ✓\n- \"MMLU −5.2pp on 8B\" ← 40.7−45.86=−5.16pp ✓\n- \"GSM8K −20.1pp on 14B\" ← 32.0−52.1=−20.1pp ✓\n- \"+67.2M params compensation\" ✓\n- \"46–68% Jaccard divergence\" ✓ (30%=46.26%, 50%=68.24%)\n- \"PPL gap ≤0.65pp\" (C1 ablation) ✓\n- \"28.13±0.20\" (BCE 50% 3-seed) ✓\n- \"8.81 vs 10.30, both at 28.5%\" ✓\n- \"7.3× variance amplification\" ← 9.5/1.3=7.31 ✓\n- \"−17.3% on Mistral\" ← (8.38−6.93)/8.38=17.3% ✓\n- \"6.4% latency overhead\" ← (126.78−119.11)/119.11=6.44% ✓\n\n**Table 3 (Main Results):** 所有行全部核对通过\n- Dense, TEAL 30%/50% uniform (含GSM8K), BCE global/uniform, MSE, KL global/uniform — 每个数字均与 registry 一致\n\n**Table 4 (C1 Ablation):** 所有 12 行 × 5 列核对通过\n- 30% s42/s123/s456 C1 vs KL ✓\n- 50% s42 C1 (c1_ablation_eval_uniform) ✓\n- 50% s42 KL (kl50_s42_uniform_eval: ARC 32.59, WG 62.35, MMLU 27.92, GSM8K 1.97) ✓\n\n**Table 5 (Ablation):** 所有 PPL 值核对通过\n- Forward KL, JSD, Reverse KL, STE, MSE, Per-layer KL (K=1, K=4), BCE variants ✓\n\n**§4.5 Derived Claims:**\n- \"within 2.7%\" ← (9.05−8.81)/8.81=2.72% ✓\n- \"2.05× worse\" ← 18.52/9.05=2.05 ✓\n- \"PPL 67% closure\" ← (9.05−8.89)/(9.05−8.81)=66.7% ✓\n- \"coupling range 2.08 PPL\" ← 10.75−8.67=2.08 ✓\n- \"signal type gap 9.47 PPL\" ← 18.52−9.05=9.47 ✓\n- K=16 PPL 8.67±0.02 ✓\n\n**Appendix Tables:**\n- Latency: 全部 5 行 ✓\n- OOD (C4): 全部 ✓\n- OOD Downstream: 全部 12 个数字 ✓\n- Constraint: 全部 ✓\n- Cross-architecture (Mistral): PPL/Adv 全部 ✓\n- Mistral downstream: TEAL 全部 ✓, KL PPL ✓\n- Qwen-14B: KL global/uniform, TEAL global/uniform (PPL, ARC-c, WG, MMLU, GSM8K) ✓\n- Allocation summary: 全部 ✓\n- K-curve table (Appendix W): K=1,2,4,16,32 ✓\n- db sensitivity, tau schedule, training convergence ✓\n\n**Figure source data:**\n- gen_k_curve_ppl.py: K=1,2,4,16,32 数据点 ✓\n\n### ⚠️ 已修复\n\n1. **K=8 PPL (K-curve table + figure)**: 8.99 → **9.00**\n   - Registry 3-seed: s42=8.9704, s123=9.0648, s456=8.9515, mean=8.9956, 标准四舍五入为 9.00\n   - 修复: `appendix.tex:639`, `gen_k_curve_ppl.py:28`\n\n### ❌ 待人工确认\n\n1. **Qwen-14B TEAL uniform HS/PIQA**: 两次独立 eval 结果不一致\n   - v1 (`qwen14b_teal30_uniform_hspiqa`, updated 5/20): HS=67.72, PIQA=74.70 ← 论文使用此值\n   - v2 (`qwen14b_teal30_uniform_hspiqa_v2`, completed 5/19): HS=67.56, PIQA=74.27\n   - 影响: appendix.tex Table 6 TEAL uniform 行的 HS/PIQA 两个值\n   - 建议: 确认哪次 eval 是权威版本\n\n2. **Figure 2 (sparsity sweep) KL 50% PPL = 12.00**: 来源不明确\n   - bench_kl50_global (s42) = 11.79\n   - 3-seed mean KL50 global = 11.84\n   - bench_kl50_uniform (s42) = 11.96 ← 最接近 12.00 但标注为 \"global allocation\"\n   - 影响: Figure 2 的 50% 数据点位置和 \"48% better\" 标注\n   - 建议: 确认数据来源，如为 uniform 值则改为 11.96 或改用 global 值 11.79/11.84\n\n3. **Figure 2 caption vs annotation 不一致**: caption 引用 \"14.5%, 50%, 82%\" (uniform 比较), 但 figure 标注显示 \"18%, 48%, 82%\" (global 比较)。两套数字各自正确但来自不同 allocation baseline，可能引起审稿人困惑。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1397770,
+            "duration_api_ms": 2492044,
+            "num_turns": 39,
+            "stop_reason": "end_turn",
+            "session_id": "471eadfd-715d-4d55-863d-6199e56819c8",
+            "total_cost_usd": 10.461531999999993,
+            "usage": {
+              "input_tokens": 2545,
+              "cache_creation_input_tokens": 114672,
+              "cache_read_input_tokens": 1982760,
+              "output_tokens": 42478,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 114672,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1753,
+                  "cache_read_input_tokens": 125720,
+                  "cache_creation_input_tokens": 793,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 793
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2274,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002354,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 2670,
+                "outputTokens": 128780,
+                "cacheReadInputTokens": 9240556,
+                "cacheCreationInputTokens": 416968,
+                "webSearchRequests": 0,
+                "costUSD": 10.459177999999994,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "9d60b780-1ec7-4495-b450-aa2f998e91a0"
+          },
+          "id": "event-000521"
+        }
+      ]
+    }
+  ]
+}

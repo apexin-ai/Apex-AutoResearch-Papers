@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "d77bf6f6e8bf339744d6",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "code plan 007 lm eval script",
+  "task_key": "worker_code_plan_007_lm_eval_script_20260515T210739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_007_lm_eval_script_20260515T210739.log",
+    "occurrence": 1,
+    "bytes": 1546108,
+    "sha256": "77303870d0806e01043e93145b9f66fb44658fea058d69619cbe88f76e46550b"
+  },
+  "statistics": {
+    "messages": 687,
+    "user_turns": 1,
+    "tool_calls": 263,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 152,
+      "tool_call": 263,
+      "tool_result": 263,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 325,
+      "chunks": [
+        {
+          "path": "d77bf6f6e8bf339744d6-part-0001.json",
+          "message_count": 152
+        },
+        {
+          "path": "d77bf6f6e8bf339744d6-part-0002.json",
+          "message_count": 173
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 362,
+      "chunks": [
+        {
+          "path": "d77bf6f6e8bf339744d6-part-0002.json",
+          "message_count": 7
+        },
+        {
+          "path": "d77bf6f6e8bf339744d6-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d77bf6f6e8bf339744d6-part-0004.json",
+          "message_count": 175
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan-007-lm-eval-script.md"
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "e20ff359f221c0edff9d",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "fix wikitext2 fallback and multiseed",
+  "task_key": "worker_fix_wikitext2_fallback_and_multiseed_20260517T110410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_wikitext2_fallback_and_multiseed_20260517T110410.log",
+    "occurrence": 1,
+    "bytes": 582786,
+    "sha256": "b8d8a63cafc544a48fa88939edb6cd31ad9e956a9a090d0a253590b5a1e73853"
+  },
+  "statistics": {
+    "messages": 276,
+    "user_turns": 0,
+    "tool_calls": 104,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 65,
+      "tool_call": 104,
+      "tool_result": 104
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 276,
+      "chunks": [
+        {
+          "path": "e20ff359f221c0edff9d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e20ff359f221c0edff9d-part-0002.json",
+          "message_count": 96
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-wikitext2-fallback-and-multiseed.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6761ebd80c6fa299910",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval mistral 50 70 collect",
+  "task_key": "worker_eval_mistral_50_70_collect_20260517T010355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mistral_50_70_collect_20260517T010355_result.json",
+    "occurrence": 1,
+    "bytes": 1152,
+    "sha256": "1dc37834c5217dff7d5eb6b6233a470862eb3c3aa67be6a4db8692ccbec226c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All results collected. 70% TEAL baseline PPL = 61.7160.\n\n## 完整结果表\n\n| Sparsity | KL per_token | KL teal_global | TEAL baseline | Dense |\n|----------|-------------|----------------|---------------|-------|\n| 0% | — | — | — | **5.5238** |\n| 30% | **6.0480** | 6.7733 | 8.3807 | — |\n| 50% | **7.2931** | 8.6489 | 18.3061 | — |\n| 70% | **9.1086** | 13.3254 | 61.7160 | — |\n\n**说明：**\n- **KL per_token**: 使用 predictor 对每个 token 动态生成 sparse mask\n- **KL teal_global**: 使用 predictor 生成 importance score 后用 TEAL 的全局阈值方式决定 mask（静态 calibrated mask）\n- **TEAL baseline**: 无 predictor，vanilla TEAL 方法（原始 activation magnitude 阈值）\n\n**关键观察：**\n- 30% sparsity: KL per_token 仅比 dense 高 0.52 PPL (+9.5%)，TEAL baseline 高 2.86 (+51.8%)\n- 50% sparsity: KL per_token 比 TEAL baseline 好 11.0 PPL（7.29 vs 18.31）\n- 70% sparsity: KL per_token 比 TEAL baseline 好 52.6 PPL（9.11 vs 61.72），predictor 优势在高 sparsity 下急剧放大\n\n70% 训练最终 loss=0.3945, 实际 sparsity=0.682, 1000 steps 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mistral-50-70-collect.md"
+}

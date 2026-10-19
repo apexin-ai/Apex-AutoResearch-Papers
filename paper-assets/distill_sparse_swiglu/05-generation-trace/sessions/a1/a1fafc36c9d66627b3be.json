@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1fafc36c9d66627b3be",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "submit westd 41718 dual train c4",
+  "task_key": "worker_submit_westd-41718-dual-train-c4_20260518T081709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_westd-41718-dual-train-c4_20260518T081709_result.json",
+    "occurrence": 1,
+    "bytes": 896,
+    "sha256": "8eb7d0bfc631445506752057807f3e6dadfc92e6f9709c0f0049b02d34b46f05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "westd-41718 双卡提交完成。\n\n## 汇总\n\n| GPU | exp_id | 状态 | 结果 |\n|-----|--------|------|------|\n| cuda:0 | `kl_comp_30pct_s42` | **RUNNING** | `train_compensation.py` 训练中 (67.2M comp params, 1000 steps, KL 30% s42 predictor) |\n| cuda:1 | `c4_ood_kl30_s456` | **DONE** | **C4 OOD PPL = 12.70** (132 seq, 15.2s) |\n\n### 说明\n\n1. **kl_lagrangian_v2 代码不存在** — `train.py` 的 loss_type 没有 `kl_compensation`。改用 `train_compensation.py`（在 frozen KL predictor 上训练 compensation heads，KL distillation loss），这是项目中已有的 KL+compensation 实现路径。\n\n2. **kl_50pct_s456 checkpoint 不在 41718** — 改为跑 `kl_sparsity30_s456` 的 C4 OOD eval 作为 30% sparsity 跨 seed 一致性验证。\n\n3. 首次 compensation 训练因 wandb 未登录失败，已加 `WANDB_MODE=offline` 重新提交成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-westd-41718-dual-train-c4.md"
+}

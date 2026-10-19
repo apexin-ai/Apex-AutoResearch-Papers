@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "673a9db87983c9609c80",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "director / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_4.md",
+    "occurrence": 1,
+    "bytes": 3602,
+    "sha256": "00e945d199d2b5cc80fe96d1e47886a039c8f4c6c3578f2c268892cdb3270722"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_messages\nupdated: '2026-05-16T19:35:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 仅限 westd-34887 cuda:0 + cuda:1（RTX PRO 6000 Blackwell, 95GB each）\n- C4 实验（BCE+Gumbel+Lagrangian）必须用**正确的 clean isolation 实现**：Gumbel-Sigmoid mask + Lagrangian multiplier + 唯一变量是 loss。现有 `train_bce()` (train.py L407-498) 用的是 STE+SparsityRegularizer，**不能直接用**\n- Paper 数字必须有代码源验证（C003 constraint），predictor 参数 2.37M/layer, 75.9M total, d_b=128\n- 论文不再 claim \"acceleration\" / \"speedup\"——已 reframe 为 prediction quality + inference simplification\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887，工作目录 `/root/distill_sparse_swiglu/`\n- Python：conda base (`/root/miniconda3/bin/python`)\n- 模型：LLaMA-3.1-8B (路径在项目 config execution section)\n- 训练数据：WikiText-103；OOD eval: C4 validation (`/root/autodl-tmp/data/c4_val`)\n- Paper 真源：本地 workspace `projects/distill_sparse_swiglu/paper/`\n- 活跃 Workers（可能已完成，需确认）:\n  - `worker_ops_bce-clean-isolation-p0` (cuda:1) — BCE+Gumbel+Lagrangian clean isolation\n  - C4 OOD eval worker (cuda:0) — 已完成，结果: dense=9.21, KL=18.40, TEAL=38.75\n  - Loss curve extraction worker (CPU)\n\n### 3. 📊 当前状态\n**审稿 Round 1 处理中**（3.0/5 borderline → 目标 weak accept 3.5+）。DDL 2026-05-25。\n\n**已完成**:\n- C1/C2 格式修复 ✅（commit 7018701）\n- W2/W3/W4/W5/W7/R2-N3 文本修复 ✅（commit 028bca6）\n- C3 OOD eval ✅：KL 在 C4 上仍优于 TEAL 52.5%（132 samples, 非 200）\n\n**进行中**:\n- C4: BCE+Gumbel+Lagrangian clean isolation 实验（3 LR: 1e-4/1e-3/3e-3）— Worker 已派但可能因 reset 中断，需确认\n- Loss curve extraction（从 wandb/logs 提取 KL vs BCE loss 对比图）\n\n**未开始**:\n- R1-N3: d_b={64,128,256,512} sensitivity sweep (~80min)\n- R1-W5: λ curve + sparsity ratio 曲线提取 → Appendix\n- 结果集成到论文 → re-submit review\n\n### 4. 📋 待办\n- C4 Worker 完成回调 → 检查 3 个 BCE+framework PPL vs KL=11.79。若 BCE+framework 仍 saturate/显著劣于 KL → \"structural\" confirmed，保持 claim。若 BCE+framework 接近 KL (如 PPL 15-18) → 降级 claim 为 \"KL provides significant advantage with simpler training\"\n- C4 结果确认 → 派 d_b sweep (W1) 到 cuda:0+cuda:1 并行\n- d_b sweep 完成 → 派 Paper Agent 集成所有新实验数据（C3 OOD table + C4 isolation table + d_b sensitivity + λ curve）\n- 全部实验+文本修复完成 → `submit_paper_to_review` (mode=continue) 进行 Round 2 审稿\n- C3 论文引用时注意：132 samples 如实报告；强调\"relative advantage generalizes\"而非\"quality generalizes\"（OOD absolute degradation +100% vs in-domain +54%）\n\n### 5. 🎯 战略上下文\n- D043: Action Matrix 决策——聚焦 C1-C4 critical + overclaim 弱化，目标 borderline→weak accept\n- 核心论文 story: KL divergence 训练 sparsity predictor 消除 compensation network 需求；证据链依赖 C4 clean isolation 证明是 loss function structural property\n- **最大风险**: C4 如果 BCE+framework 表现不差 → Plan B framing 准备好（从 \"structural failure\" 退回 \"significant advantage\"）\n- **易错点**: (1) 不要用旧 `train_bce()` 的结果声称 structural failure；(2) C3 OOD 数据量是 132 不是 200；(3) Paper Agent 已完成全部文本修复，不要重复派单\n- review_issues.yaml 已更新：8/13 issues resolved, 2 in_progress (C3/C4), 3 open (d_b/λ curve/3-seed)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4.md"
+}

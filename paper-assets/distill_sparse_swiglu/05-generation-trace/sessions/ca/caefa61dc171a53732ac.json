@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "caefa61dc171a53732ac",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper writing",
+  "task_key": "worker_paper_writing_20260516T131207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_20260516T131207_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "c1f40cb7e54feb9d2117fe00afa1b244016e3f797b09e1c51e486ababc98c212"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract 已写入 `paper/abstract.tex`，~189 词，7 句。覆盖所有要求的数字（11.79/23.31/27.97/2.71×/18%→49%→82%/2.37M/75.9M/+63%/+93%/0.196/2.4%），使用了指定措辞（structural mismatch、global top-$k$ allocation、Gumbel-Sigmoid relaxation、correction granularity × training signal coupling、KL advantage scales super-linearly、allocation-fixable/capacity-limited）。无 \"significantly\"/\"state-of-the-art\"/\"consistently\"，无 `\\begin{abstract}` 包裹。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing.md"
+}

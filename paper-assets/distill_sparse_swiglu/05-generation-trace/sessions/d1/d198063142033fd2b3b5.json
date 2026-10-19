@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d198063142033fd2b3b5",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze spon training",
+  "task_key": "worker_analyze_spon_training_20260515T182312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_spon_training_20260515T182312_result.json",
+    "occurrence": 1,
+    "bytes": 1159,
+    "sha256": "13a502ec52d801c866867bee45c48bfe9e315c8fa699c81021bc4ebe152d4f5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n## 实验结果总结\n\n**SPON 训练实验 (spon_training): Negative**\n\n### 训练\n- 1000 steps 正常完成，loss 在 0.38-0.47 波动未有效收敛\n- Bias norm: 0 → 0.041，step 700 后饱和\n- 仅 458K 可训练参数 (0.0057%)\n\n### WikiText-2 评估 (seq_len=2048)\n\n| 配置 | PPL | vs Dense |\n|------|-----|----------|\n| True Dense | 6.12 | — |\n| Per-token sparse (no SPON) | 9.22 | +50.6% |\n| Per-token sparse + SPON | 9.10 | +48.7% |\n| TEAL global mask (参考) | 12.08 | +97.4% |\n\n**SPON 仅恢复 3.8% 的 sparse-vs-dense gap（PPL 改善 0.12）。**\n\n### 分析\n1. Per-token predictor hard mask 本身已比 TEAL global mask 好很多（9.22 vs 12.08），残余误差的结构可能不适合用 static additive bias 补偿\n2. Bias norm 极小且提前饱和，学习容量不足\n3. 训练 seq_len=128 vs 评估 seq_len=2048 的 mismatch 可能也有影响\n\n### Claim 2 影响\nSPON + KL predictor 加性组合的收益 marginal。若要继续验证 Claim 2，需要更高表达力的补偿机制或在 TEAL global mask 场景下测试（误差更大，补偿空间更大）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-spon-training.md"
+}

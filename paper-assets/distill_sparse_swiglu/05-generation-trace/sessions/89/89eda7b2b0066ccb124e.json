@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89eda7b2b0066ccb124e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "verify weight decay check",
+  "task_key": "worker_verify_weight_decay_check_20260520T074348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_weight_decay_check_20260520T074348_result.json",
+    "occurrence": 1,
+    "bytes": 532,
+    "sha256": "858757dafc1db7c73ab5ffe62467ef054a585bc6fb16c520e306f6a93445fc0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：代码实际值是 `weight_decay=0.01`，不是论文写的 0.05。**\n\n具体来源：`/root/distill_sparse_swiglu/src/train.py` 共 5 处 AdamW 初始化（行 98、206、324、420、538），全部硬编码 `weight_decay=0.01`。没有通过 argparse 覆盖——值直接写死在代码里。训练日志中也无 weight_decay 的打印记录。\n\n**论文与代码不一致：论文写 5×10⁻²（0.05），代码实际用 1×10⁻²（0.01）。** 需要修正论文或确认哪个是正确值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-weight-decay-check.md"
+}

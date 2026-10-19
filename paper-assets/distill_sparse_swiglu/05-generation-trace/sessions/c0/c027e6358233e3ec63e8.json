@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c027e6358233e3ec63e8",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_2_1778874382.md",
+  "task_key": "loop_2_1778874382",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778874382.md",
+    "occurrence": 1,
+    "bytes": 3962,
+    "sha256": "8d9848d0b28704408e959a3320f8a72a3c5104811ef9e073e16a87a60d463719"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-15T19:38:33+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 只能用 westd-34887 的 cuda:0 和 cuda:1（gpu_ids=[0,1]，约束 C001）\n- WANDB_MODE=disabled（当前所有实验都是离线模式，指标从 log 提取）\n- evaluate.py 的 \"Dense PPL\" 实际是 predictor hard-mask 评估，不是真 dense baseline（有 Worker 正在修复）\n- submit 命令必须带 `source /root/distill_sparse_swiglu/setup_env.sh`，服务器用 conda base 不是 venv\n- checkpoint 命名规则：predictor_kl_normalized.pt（KL）/ predictor_bce.pt（BCE），路径在 /root/distill_sparse_swiglu/checkpoints/{exp_id}/\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887，工作目录 /root/distill_sparse_swiglu\n- Python：/root/miniconda3/bin/python（conda base），激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 快捷激活：`source /root/distill_sparse_swiglu/setup_env.sh`\n- 模型：/root/autodl-tmp/models/llama-3.1-8b\n- 数据集：wikitext-103（HF cached），wikitext-2（eval 用，HF cached）\n- GPU：2× RTX PRO 6000 Blackwell (98GB each, compute cap 12.0)\n- 活跃进程：无（mvp_kl_norm_v2_s456 已退出）\n- 活跃 cron：无（reconcile 返回 0）\n\n### 3. 📊 当前状态\nmvp_kl_norm_v2_s456（KL normalized v3 最后一个 seed）刚训练完成，已派 Worker 做 log 分析 + WikiText-2 评估。\n\n**ANALYZING**: mvp_kl_norm_v2_s456（等 Worker 回调）\n**DONE (success)**: mvp_kl_norm_v2_s42 (sparse PPL 12.08), mvp_kl_norm_v2_s123 (sparse PPL 11.91), mvp_bce_s42/s123/s456\n**DONE (negative)**: mvp_kl_s42（稀疏性坍塌，旧配方）, kl_lagrangian_quicktest\n**DONE (failed)**: kl_normalized_quicktest, mvp_kl_norm_s42/s123（÷vocab_size double normalization bug）\n**KILLED**: mvp_kl_s123/s456, mvp_kl_norm_s456, kl_lagrangian_v2\n\n等待中的 Worker（3 个）：\n1. `worker_analysis_mvp_kl_norm_v2_s456_20260515T163529` — 分析 s456 结果（刚派发）\n2. `worker_analysis_mvp_kl_norm_v2_s42_20260515T155645` — 分析 s42 结果（接近完成，turn 10）\n3. `worker_ssh_fix-eval-true-dense_20260515T162544` — 修复 evaluate.py 真实 dense baseline（turn 23）\n\n已向 Director 汇报 MVP 预判 PASS + 请示是否立即启动 Post-MVP Phase 1 代码准备。等 Director 回复。\n\n### 4. 📋 待办\n- s456 Worker 回调 → 更新 registry (metrics/conclusion/notes) → 产出完整 3-seed MVP 报告 → 向 Director 汇报最终 MVP 判定\n- Director 回复\"开始 Phase 1\" → 立即写 paper_framing.md + experiment_plan.yaml → 派 Worker 实现 error compensation 模块 → 铺四条件 ablation\n- Director 回复\"等确认\" → s456 确认后再推进\n- fix-eval-true-dense Worker 完成 → 用新 evaluate.py 重跑所有 6 个 checkpoint 的真 dense baseline → 更新 registry metrics\n- 两张 GPU 空闲 → Phase 1 审批通过后立即双卡并行铺 ablation\n\n### 5. 🎯 战略上下文\n- **核心结论**：KL normalized v3（÷seq_len only + Lagrangian）大幅优于 BCE。Sparse PPL ~12 vs ~44，PPL increase ~30% vs ~58%。MVP 几乎确定 PASS。\n- **决策链**：D001(MVP 设计) → D002(数据改 wikitext-103) → D003(KL 稀疏性坍塌→Lagrangian) → D004(选方案 C: KL 归一化+Lagrangian) → D005(确认 seq_len-only 归一化) → D006(紧急停止旧 KL: ÷vocab_size bug)\n- **易错点 1**：evaluate.py 的 \"Dense PPL\" 9.21 不是真 dense（是 predictor hard-mask），真 dense ~8-9。Worker 正在修复，修复后所有 checkpoint 需重新评估。当前 KL vs BCE 对比是公平的（同 evaluate.py），但绝对数字可能变\n- **易错点 2**：旧配方（无归一化的 KL、÷vocab_size 的 KL）的实验全部无效（failed/negative/killed），不要复用那些 checkpoint\n- **易错点 3**：Post-MVP 路线中 SPON 需要 reimplement，之前没有碰过这部分代码\n- **目标 DDL**：EMNLP 2026 ARR，2026-05-25 提交，仅剩 10 天\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778874382.md"
+}

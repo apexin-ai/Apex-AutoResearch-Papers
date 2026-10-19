@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97ae8a6ecfb7a2023fb1",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis k8 batch2 status check",
+  "task_key": "worker_analysis_k8_batch2_status_check_20260523T090316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_k8_batch2_status_check_20260523T090316_result.json",
+    "occurrence": 1,
+    "bytes": 506,
+    "sha256": "3363e7afdb1e8740a0cd0f1c51724f34326bb4b373b5ef32071d39e961d60e15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已完成，registry 已更新为 DONE。\n\n## 汇报\n\n| 实验 | 状态 | avg_kl | avg_sparsity | final_kl (Step 1000) | 耗时 |\n|------|------|--------|-------------|---------------------|------|\n| perlayer_kl_k8_s123 | DONE (success) | 0.0997 | 0.286 | 0.0825 | ~36min |\n| perlayer_kl_k8_s456 | DONE (success) | 0.0982 | 0.285 | 0.1079 | ~36min |\n\n**GPU 状态**：cuda:0 和 cuda:1 均已空闲（0% 利用率，0 MiB 显存占用），可用于下一批任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-k8-batch2-status-check.md"
+}

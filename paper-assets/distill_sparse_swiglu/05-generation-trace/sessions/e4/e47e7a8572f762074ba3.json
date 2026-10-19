@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e47e7a8572f762074ba3",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "fix mvp kl oom",
+  "task_key": "worker_fix_mvp_kl_oom_20260515T122135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_mvp_kl_oom_20260515T122135_result.json",
+    "occurrence": 1,
+    "bytes": 1317,
+    "sha256": "8f5c89f820dc6f7f0b38c0ec378df1dbeb91f83287f1f2bb20d94d446fd62824"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **模型加载**: 16.9 GB\n- **训练步峰值显存 (bs=2, seq=2048)**: 29.5 GB（从之前的 ~88 GB 降到 29.5 GB）\n- **Loss**: 2976.00（随机数据，KL 值合理，不是 NaN/inf）\n- **无 OOM**\n\n显存从 88GB → 29.5GB，95GB 显卡绰绰有余。\n\n### 修改总结\n\n**文件**: `/root/distill_sparse_swiglu/src/train.py`\n\n| 位置 | 改动 |\n|------|------|\n| L5-7 (header) | 新增 KL + grad_accum 用法示例 |\n| L54-55 (parse_args) | 新增 `--gradient_checkpointing` 参数 |\n| L84-92 (train_kl) | 循环前启用 `model.train()` + `gradient_checkpointing_enable(use_reentrant=False)` |\n| L266-268 (main) | KL 模式自动开启 gradient checkpointing |\n\n`train_bce()` 未改动。\n\n### Dry-run 显存\n\n| 指标 | 修复前 (估算) | 修复后 (实测) |\n|------|-------------|-------------|\n| 训练步峰值 | ~88 GB (OOM) | 29.5 GB |\n| 安全余量 | -| ~65 GB |\n\n### 建议的生产命令\n\n```bash\nCUDA_VISIBLE_DEVICES=0 python src/train.py \\\n    --loss_type kl \\\n    --num_steps 1000 \\\n    --batch_size 2 \\\n    --gradient_accumulation_steps 2 \\\n    --seq_len 2048 \\\n    --gpu 0 \\\n    --wandb_run_name mvp_kl_s42\n```\n\n有效 batch size = 2 × 2 = 4，与原始设置一致。显存 29.5 GB，远低于 95 GB 上限。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-mvp-kl-oom.md"
+}

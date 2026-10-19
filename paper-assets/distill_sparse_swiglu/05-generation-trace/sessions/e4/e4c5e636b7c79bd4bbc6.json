@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4c5e636b7c79bd4bbc6",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval qwen14b kl30 s42 eval uniform v2",
+  "task_key": "worker_eval_qwen14b_kl30_s42_eval_uniform_v2_20260519T132416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen14b_kl30_s42_eval_uniform_v2_20260519T132416_result.json",
+    "occurrence": 1,
+    "bytes": 947,
+    "sha256": "9cd6206642caf59c9884718e5808cf2de84df63443cd9d5e7b96891f115b5cda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出\n\n### 1. 提交状态\n- **PID**: 108497 (nohup, westd-34887 cuda:0)\n- **Registry**: `qwen14b_kl30_s42_eval_uniform_v2` → RUNNING\n- **日志**: `/root/distill_sparse_swiglu/logs/qwen14b_kl30_s42_eval_uniform_v2.log`\n- 当前进度：已完成 per-layer sparsity 打印，正在跑 WikiText-2 PPL (145 sequences)\n\n### 2. Per-layer sparsity 对比结论\n\n**三个 seed (s42/s123/s456) 的 per-layer sparsity 完全一致：**\n\n| Layer | Sparsity |\n|-------|----------|\n| 0 | 0.301 |\n| **1-4** | **0.000** |\n| 5-47 | 0.301 |\n| Model-level | 0.275 |\n\n**结论：Layer 1-4 sparsity=0.000 是 predictor 的确定性特征，与 seed 无关。** 这些层的 sigmoid 输出在 uniform allocation 下全部超过 threshold，predictor 一致决定不剪枝。s42 checkpoint 没有问题。Model-level sparsity 为 0.275（低于 target 0.3），正是因为这 4 层贡献了 0 sparsity 拉低了全局均值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen14b-kl30-s42-eval-uniform-v2.md"
+}

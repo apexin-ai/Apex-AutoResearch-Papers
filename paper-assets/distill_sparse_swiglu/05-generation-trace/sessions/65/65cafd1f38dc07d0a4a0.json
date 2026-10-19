@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65cafd1f38dc07d0a4a0",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis k8 s123 eval result",
+  "task_key": "worker_analysis_k8_s123_eval_result_20260523T122212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_k8_s123_eval_result_20260523T122212_result.json",
+    "occurrence": 1,
+    "bytes": 361,
+    "sha256": "754b814d87fcaf3a4b3eba91853fd0e51baa79bfe718e7c2041c9cb8bbe25719"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。K=8 s123 eval 完整结果：\n\n| Metric | Value |\n|--------|-------|\n| wikitext2_ppl | **9.0648** |\n| arc_challenge_acc_norm | **0.4155** |\n| winogrande_acc | **0.6993** |\n| mmlu_acc | **0.4042** |\n| gsm8k_exact_match | **0.0682** |\n| hellaswag_acc_norm | **0.6997** |\n| piqa_acc_norm | **0.7508** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-k8-s123-eval-result.md"
+}

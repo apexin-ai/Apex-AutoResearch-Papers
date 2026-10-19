@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdbd48132aee10c88e69",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval mistral downstream prep",
+  "task_key": "worker_eval_mistral_downstream_prep_20260515T231938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mistral_downstream_prep_20260515T231938_result.json",
+    "occurrence": 1,
+    "bytes": 1351,
+    "sha256": "dd7d27c7e254664c017cbc8e94f690cd3c4ec92dae997bfcbab0447763f01849"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n**eval_benchmark.py 修改完成**：\n- 新增 `mistral_dense` 和 `mistral_kl_s42` conditions（自动使用 Mistral 模型路径）\n- 新增 `--model_path` CLI 参数（conditions 自动检测 model_path）\n- 语法检查通过，`--list_conditions` 正常显示\n\n**GPU 状态**：\n| GPU | tmux session | 任务 | 进度 | 预计剩余 |\n|-----|-------------|------|------|---------|\n| cuda:0 | lm_eval_kl_s42 | Llama kl_s42 GSM8K generate_until | 11% (141/1319) | ~28 min |\n| cuda:1 | lm_dense | Llama dense GSM8K generate_until | 51% (673/1319) | ~10 min |\n\n**GPU 1 约 10 分钟后释放**。\n\n**准备好的提交命令**（等 GPU 1 空闲后执行）：\n\n```bash\n# Mistral KL sparse downstream eval\nCUDA_VISIBLE_DEVICES=1 python -u src/eval_benchmark.py \\\n  --condition mistral_kl_s42 \\\n  --tasks lm_eval \\\n  --skip_ppl \\\n  --gpu 0 \\\n  --batch_size 4 \\\n  --output_dir results/plan_009_mistral\n\n# Mistral dense baseline (接着跑)\nCUDA_VISIBLE_DEVICES=1 python -u src/eval_benchmark.py \\\n  --condition mistral_dense \\\n  --tasks lm_eval \\\n  --skip_ppl \\\n  --gpu 0 \\\n  --batch_size 4 \\\n  --output_dir results/plan_009_mistral\n```\n\n可以合并为一个 submit_training_job 顺序执行。要现在设定监控等 GPU 1 释放后自动提交，还是手动触发？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mistral-downstream-prep.md"
+}

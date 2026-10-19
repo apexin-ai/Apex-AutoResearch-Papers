@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84279ab0f28fbaa4a9c2",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra collect dense baseline results",
+  "task_key": "worker_infra_collect_dense_baseline_results_20260517T222103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_collect_dense_baseline_results_20260517T222103_result.json",
+    "occurrence": 1,
+    "bytes": 326,
+    "sha256": "045e143d1b1ca5c4dfbee5f992f40fc8a1af9171de1b33b528fd94b6054b37e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个进程都还在跑 GSM8K：\n\n| 实验 | PID | 进度 | 预计剩余 |\n|------|-----|------|----------|\n| **qwen14b_dense_baseline** | 18845 | 1273/1319 (97%) | ~3-5 min |\n| **qwen14b_teal30_eval** | 6896 | 1249/1319 (95%) | ~18 min |\n\ndense_baseline 马上就完成了。建议 5 分钟后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-collect-dense-baseline-results.md"
+}

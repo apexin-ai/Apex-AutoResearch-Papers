@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66b86eaf89aaef8176a5",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh check 41718 collect and submit",
+  "task_key": "worker_ssh_check_41718_collect_and_submit_20260520T134818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_41718_collect_and_submit_20260520T134818_result.json",
+    "occurrence": 1,
+    "bytes": 1306,
+    "sha256": "8e99225c18236f502e6f1c548a9c5ff3615290e079a6310bd3e2df1cdda2e2ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Summary:\n\n## Part A — westd-41718 状态\n- **GPU 0**: NVIDIA RTX PRO 6000 Black (96GB) — 空闲 → 已被 c4_ood_kl30_s123 占用\n- **GPU 1**: NVIDIA RTX PRO 6000 Black (96GB) — 空闲\n- 无 Python 进程运行（PID 254228 已完成）\n\n## Part B — C4 OOD downstream KL30 s42 结果\n\n| Task | Metric | Value |\n|------|--------|-------|\n| ARC-c | acc_norm | **0.4036** |\n| WinoGrande | acc | **0.6930** |\n| MMLU | acc | **0.4137** |\n| GSM8K | exact_match | **0.0629** |\n| HellaSwag | acc_norm | **0.7074** |\n| PIQA | acc_norm | **0.7399** |\n\nresults.json 中无 `model_level_sparsity` 字段。日志显示 per-layer sparsity 在 0.281–0.301 范围（target 0.30, uniform allocation）。\n\n## Part C — c4_ood_kl30_s123 已启动\n- **PID**: 259363, **GPU**: cuda:0, **Server**: westd-41718\n- 日志: `~/runs/distill_sparse_swiglu/c4_ood_kl30_s123.log`\n- 已在运行中（正在 tokenize + 评估 PIQA）\n- Registry 已更新 hypothesis 和 parent\n\n**注意**: `benchmark_eval.py` 没有 `--seed` 参数，源码中也无 `random`/`manual_seed`。由于使用相同 checkpoint 和配置，且 calibration 采样可能是确定性的，s123 结果可能与 s42 完全相同。如需真正的 multi-seed 变异，需在脚本中加入 seed 控制逻辑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-41718-collect-and-submit.md"
+}

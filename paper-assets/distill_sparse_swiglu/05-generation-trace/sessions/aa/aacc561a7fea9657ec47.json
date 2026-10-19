@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aacc561a7fea9657ec47",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh fix data and gpu",
+  "task_key": "worker_ssh_fix-data-and-gpu_20260515T120102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-data-and-gpu_20260515T120102_result.json",
+    "occurrence": 1,
+    "bytes": 1474,
+    "sha256": "42bb000867e05d385975309c0f58ab74b5c7f6cf378f9aa3f885a98dffe0cab7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 dry-run 全部通过。\n\n---\n\n## 报告\n\n### 1. SlimPajama 数据集修复\n\n**诊断**：`cerebras/SlimPajama-627B` 在 HuggingFace Hub 上不可访问（AutoDL 代理环境下）。`allenai/c4` streaming 也超时。\n\n**方案**：改用本地已缓存的 WikiText-103（1.8M 条目，~100M tokens），足够 MVP 训练（1000 steps × batch 4 × seq 2048 = ~8M tokens）。\n\n**代码修改**：\n- `data_utils.py`：`get_slimpajama_loader` → `get_calibration_loader(tokenizer, batch_size, seq_len, seed, dataset_name=\"wikitext-103\")`，支持 `wikitext-103` 和 `c4` 两种数据集\n- `train.py`：导入改为 `get_calibration_loader`，新增 `--dataset` 参数（默认 `wikitext-103`）\n\n### 2. GPU 分配\n\n**实际行为确认**：train.py 使用 `torch.device(f\"cuda:{args.gpu}\")`。当框架设置 `CUDA_VISIBLE_DEVICES=0` 或 `=1` 时，torch 只看到 1 个设备（cuda:0）。因此：\n- mvp_kl_s42: `CUDA_VISIBLE_DEVICES=0 --gpu 0` → 物理 GPU 0 ✓\n- mvp_bce_s42: `CUDA_VISIBLE_DEVICES=1 --gpu 0` → 物理 GPU 1 ✓\n\n**`--gpu 0` 对两个实验都正确，无需修改。**\n\n### 3. Dry-run 验证\n\n| 模式 | GPU | 结果 | 示例输出 |\n|------|-----|------|----------|\n| KL | CUDA_VISIBLE_DEVICES=0 | ✓ 3 steps 完成 | loss=0.5938, sparsity=0.371 |\n| BCE | CUDA_VISIBLE_DEVICES=1 | ✓ 3 steps 完成 | loss=0.6986, sparsity=0.507 |\n\n两个阻塞问题已解决，MVP 实验可以启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-data-and-gpu.md"
+}

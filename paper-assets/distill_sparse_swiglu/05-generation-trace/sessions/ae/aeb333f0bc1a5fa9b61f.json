@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aeb333f0bc1a5fa9b61f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "submit westd 34887 cuda1 lmeval",
+  "task_key": "worker_submit_westd-34887-cuda1-lmeval_20260518T081715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_westd-34887-cuda1-lmeval_20260518T081715_result.json",
+    "occurrence": 1,
+    "bytes": 294,
+    "sha256": "edf98fc6a94731fcc095d3cb8400bbc84128eb3ec99ba3236ce5beca7f207280"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认：\n\n- **cuda:0**: `kl50_s456_eval`（lm-eval benchmarks）运行中，66988MiB\n- **cuda:1**: `c4_ood_kl50_s456`（C4 OOD eval）已启动，15870MiB，PID 10973\n- tmux session: `c4_ood_kl50_s456`\n\n日志路径：`~/runs/distill_sparse_swiglu/c4_ood_kl50_s456.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-westd-34887-cuda1-lmeval.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "e9220b3fadb96de08238",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "ops c4 data download",
+  "task_key": "worker_ops_c4_data_download_20260515T223821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_c4_data_download_20260515T223821.log",
+    "occurrence": 1,
+    "bytes": 718987,
+    "sha256": "5631d85631e02a318e0e02f8fdfde5864693526eacbb6da7cc95d0b893ff785b"
+  },
+  "statistics": {
+    "messages": 437,
+    "user_turns": 0,
+    "tool_calls": 167,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 98,
+      "tool_call": 167,
+      "tool_result": 167,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 437,
+      "chunks": [
+        {
+          "path": "e9220b3fadb96de08238-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e9220b3fadb96de08238-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e9220b3fadb96de08238-part-0003.json",
+          "message_count": 77
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-c4-data-download.md"
+}

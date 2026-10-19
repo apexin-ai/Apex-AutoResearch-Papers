@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb9ef7bc6fb5bd3e9e49",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra kill and restart 14b 4task",
+  "task_key": "worker_infra_kill_and_restart_14b_4task_20260518T003208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill_and_restart_14b_4task_20260518T003208_result.json",
+    "occurrence": 1,
+    "bytes": 334,
+    "sha256": "2c4fa559637be4841eeca485511e8b382c827991461cce63fcd291aa0558bf15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。\n\n| 项目 | 状态 |\n|------|------|\n| 旧进程 79839, 80810 | 已终止 (SIGTERM) |\n| KL uniform 4-task | PID 85522/85524, cuda:0, 63.9GB, 正在跑 arc_challenge |\n| TEAL uniform 4-task | PID 85850/85852, cuda:1, 34.6GB, 正在跑 arc_challenge |\n| 日志 | 两边均无报错，正常运行 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-and-restart-14b-4task.md"
+}

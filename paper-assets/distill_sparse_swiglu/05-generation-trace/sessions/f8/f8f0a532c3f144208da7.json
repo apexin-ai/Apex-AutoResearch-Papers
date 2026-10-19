@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8f0a532c3f144208da7",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops extract comp loss curves",
+  "task_key": "worker_ops_extract-comp-loss-curves_20260518T115453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_extract-comp-loss-curves_20260518T115453_result.json",
+    "occurrence": 1,
+    "bytes": 887,
+    "sha256": "dd90607b6c9cf94df1fa35b674ad70dfca73a1159cf7e0ca98386b668a9a1b1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 CSV 已保存。汇总：\n\n| 训练 | Initial Loss | Final Loss | 下降比 | Plateau? |\n|------|-------------|------------|--------|----------|\n| comp_30pct_s42 | 2.3594 | 0.6992 | 70.4% | Yes (900→1000 微升 0.6953→0.6992) |\n| comp_30pct_s123 | 2.0469 | 0.7617 | 62.8% | No (700 处 0.6875 后反弹至 0.7617，过拟合迹象) |\n| comp_30pct_s456 | 2.0938 | 0.6797 | 67.5% | Yes (800→1000 在 0.72-0.76 间波动) |\n| comp_50pct_s42 | 3.4375 | 1.0703 | 68.9% | Yes (900→1000 微升 1.0625→1.0703) |\n\n关键观察：\n- 30% 三个 seed 的 final loss 范围 0.68-0.76，s123 在 step 700 后出现反弹（best loss 0.6875 在 step 700）\n- 50% 的 initial loss 显著更高（3.44 vs ~2.1-2.4），final loss 也更高（1.07 vs ~0.70），符合更高稀疏率补偿更困难的预期\n- 所有训练均在 step 700-900 区间收敛/plateau"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-extract-comp-loss-curves.md"
+}

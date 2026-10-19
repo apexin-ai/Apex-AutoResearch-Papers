@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ddf54088b444278929e7",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_2_1778873177.md",
+  "task_key": "loop_2_1778873177",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778873177.md",
+    "occurrence": 1,
+    "bytes": 4365,
+    "sha256": "fce7af5982394bb9b92c606c3d23eb39a7b2c7de21662f07b7242e116c637b29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-15T19:18:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**westd-34887 cuda:0 + cuda:1**，不得用其他 GPU，即使 Director 指令也必须 push back\n- submit_training_job 命令必须自带环境激活：`source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && ...`\n- vanilla_teal_ppl=66036 标记为 **INVALID**（实现有 bug），论文和汇报中禁止引用\n- SPON 训练必须用 seq_len=2048（之前 seq_len=128 导致 train/eval mismatch confound）\n- DDL：**EMNLP 2026 ARR May 2026-05-25**，剩 10 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-34887**，工作目录 `/root/distill_sparse_swiglu/`\n- Python 环境：`source /root/distill_sparse_swiglu/setup_env.sh`（不是 conda/venv，是项目自定义 setup）\n- 模型路径：`/root/autodl-tmp/models/llama-3.1-8b`\n- HF cache：服务器本地（wikitext-103 + wikitext-2 已缓存，WANDB_MODE=disabled/offline）\n- Checkpoints：`/root/distill_sparse_swiglu/checkpoints/<exp_name>/`\n- Logs：`~/runs/distill_sparse_swiglu/<exp_name>.log`\n- 活跃进程：**无**（两张 GPU 都空闲）\n- 活跃 Worker：`worker_ops_kill-wina-greedy`（running，清理 WINA greedy 进程）\n- Cron：reconcile 刚清理完，spon_2048_s42 EXIT_CODE=0 → ANALYZING，ste_kl_s42 stale cron 已删\n\n### 3. 📊 当前状态\n**刚完成的关键事件**：`spon_2048_s42` 训练完成（EXIT_CODE=0），reconcile 已将其推至 ANALYZING，**但尚未有 Worker 分析结果**。这是 Claim 2 reframe 的关键数据点——决定\"KL subsumes SPON\"narrative 是否成立。\n\n**Registry 概况**：27 实验，19 DONE (9 success / 5 negative / 3 failed / 2 killed)，6 PREPARING，2 QUEUED。\n\n**两张 GPU 都空闲 = 失职状态**，需立即提交：\n- cuda:0 → spon_2048_s42 刚跑完，应接 plan_003 iso-compute BCE\n- cuda:1 → ste_baseline_s42 代码已就绪（STEMask 类实现完成，dry-run 通过），等待提交\n\n**等待中**：\n- spon_2048_s42 分析结果 → 决定 Claim 2 narrative\n- ste_baseline_s42 提交 → Reviewer Concern #3 defense\n- worker_ops_kill-wina-greedy 回调\n\n### 4. 📋 待办（条件触发式）\n- **立即** → spawn Worker 分析 spon_2048_s42 结果（SSH 读日志 + eval metrics），update_registry，决定 Claim 2\n- **立即** → 提交 ste_baseline_s42 到 cuda:1（代码+dry-run 已就绪，spec 里有完整 command）\n- **spon_2048_s42 分析完成** → 若 SPON recovery >10% → Claim 2 \"additive composition\" 仍有希望，推进 plan_005；若 recovery ≤10% → 确认 D009 \"KL subsumes SPON\" reframe，更新 paper_framing.md\n- **ste_baseline_s42 完成** → 若 STE PPL ≈ Gumbel PPL → relaxation 不重要，KL 优势来自 loss function（强化 Claim 1）；若 STE 显著差 → Gumbel soft mask 对 KL 至关重要（Reviewer Concern #3 有实质回应）\n- **cuda:0 空出** → 立即提交 plan_003 iso-compute BCE（3 seeds，Reviewer Concern #2 defense）\n- **ste_baseline s42 成功** → 接 s123/s456 两个 seed 凑齐 3-seed（同 cuda:1 串行）\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D001→D007：MVP PASS，KL >> BCE（PPL 9.21 vs 27.96，3x 差距）\n- D008：BCE+Comp (25.44) 和 SPON (9.10, 仅 3.8% recovery) 均 negative\n- D009：tentative reframe Claim 2 为 \"KL subsumes SPON\"，等 spon_2048_s42 确认\n\n**Paper story**：Claim 1 (KL > BCE+comp) 极强确认。Claim 2 (SPON composition) 需要 reframe。Claim 3 (scaling) 未开始。Training-free baselines 全崩（50K-82K PPL）提供强动机。\n\n**易错点**：\n1. **不要把 spon_2048_s42（ANALYZING）和 spon_training（DONE/negative, seq_len=128）搞混**——前者是后者的修正实验\n2. **s456 是 KL 5-seed 的 outlier**（sparse PPL 13.58 vs 4-seed mean 12.00），原因未查明，论文报告需分开讨论\n3. **BCE sparsity mismatch**：BCE+comp model_level_sparsity=0.558 vs KL=0.498，论文对比必须标注\n4. **PREPARING/QUEUED 里有\"僵尸\"实验**（mvp_kl_norm_s456 killed、kl_lagrangian_v2 killed、kl_norm_v3_quicktest success 但状态卡 PREPARING）——是历史遗留，不要试图提交它们\n5. **plan_006 (training-free baselines) 在 plan 里标 planned 但实际已完成**（training_free_baselines + training_free_wina_greedy），registry_id 未关联到 plan\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778873177.md"
+}

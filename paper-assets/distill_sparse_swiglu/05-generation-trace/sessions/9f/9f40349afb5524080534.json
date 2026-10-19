@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f40349afb5524080534",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diagnose perlayer kl 50 s42",
+  "task_key": "worker_diagnose_perlayer_kl_50_s42_20260522T021138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_perlayer_kl_50_s42_20260522T021138_result.json",
+    "occurrence": 1,
+    "bytes": 1069,
+    "sha256": "c94957163d711b479d03b5816996e9dc1a656d3e7dde22c45589063414eac766"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n| 项目 | 状态 |\n|------|------|\n| **PID 359439** | agent-ml job wrapper（bash），非原始训练进程。实际训练进程是 PID **359449**（`python -u src/train_perlayer_kl.py`），已运行约 42 分钟 |\n| **训练状态** | **正在运行**，当前到 step **1300/10000**（13%），未完成 |\n| **Checkpoint** | `checkpoints/perlayer_kl_50_s42/` 目录存在但**为空**（首次 save 在 step 2000） |\n| **日志路径** | `/root/runs/distill_sparse_swiglu/perlayer_kl_50_s42.log`（31 行，每 100 步记录一次） |\n| **GPU 状态** | cuda:0 占用 35754 MiB / 97887 MiB，利用率 100%；cuda:1 空闲 |\n\n### 训练参数\n- 模型: LLaMA-3.1-8B, sparsity=0.5, seed=42, 10000 steps\n- lambda_max=5000, tau: 1.0→0.1, save_every=2000\n- 每步约 1.82s，预计总时长 ~5.1h，完成时间约今天 **14:50** (UTC)\n\n### 训练趋势\n- avg_kl 从 0.020 上升到 ~0.028 后趋稳\n- sparsity 从 0.406 逐渐逼近 0.50 目标（step 1000 时已达 0.508）\n- lambda 自适应调节正常工作"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-perlayer-kl-50-s42.md"
+}

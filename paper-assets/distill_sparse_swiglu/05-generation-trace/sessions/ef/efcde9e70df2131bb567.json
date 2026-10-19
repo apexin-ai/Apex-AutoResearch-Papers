@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "efcde9e70df2131bb567",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "analyze perlayer kl 50 s42 downstream 20260522T080709 retry1",
+  "task_key": "worker_analyze_perlayer_kl_50_s42_downstream_20260522T080709_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_perlayer_kl_50_s42_downstream_20260522T080709_retry1.log",
+    "occurrence": 1,
+    "bytes": 830506,
+    "sha256": "33f63c8c9f19d1ebda38b095651641ec838680b6ba1162f287f5d7d6b2244747"
+  },
+  "statistics": {
+    "messages": 111,
+    "user_turns": 1,
+    "tool_calls": 38,
+    "roles": {
+      "system": 23,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 38,
+      "tool_result": 38,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "efcde9e70df2131bb567-part-0001.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 97,
+      "chunks": [
+        {
+          "path": "efcde9e70df2131bb567-part-0002.json",
+          "message_count": 97
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analyze-perlayer-kl-50-s42-downstream-20260522t080709-retry1.md"
+}

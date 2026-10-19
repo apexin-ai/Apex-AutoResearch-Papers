@@ -1,0 +1,506 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'per_layer_retention_chart.pdf' which does not exist",
+          "location": "appendix.tex:204"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'neuron_scatter_layer16.pdf' which does not exist",
+          "location": "appendix.tex:397"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'mask_comparison.pdf' which does not exist",
+          "location": "appendix.tex:404"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'mask_divergence_heatmap.pdf' which does not exist",
+          "location": "experiments.tex:115"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'k_curve_ppl' which does not exist",
+          "location": "experiments.tex:173"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig2_sparsity_sweep.pdf' which does not exist",
+          "location": "experiments.tex:190"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig1_overview.pdf' which does not exist",
+          "location": "introduction.tex:5"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'lagrangian_dynamics.pdf' which does not exist",
+          "location": "method.tex:99"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'snr_trajectory.pdf' which does not exist",
+          "location": "method.tex:120"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method:kl} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:cross_arch} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:k_curve} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method:formulation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:c4_control} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:gumbel} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:sparse_ffn} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:constraint} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:conclusion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:training_convergence} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai-assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:14b} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:ood} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:compensation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:swiglu} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method:predictor} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:licenses} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:predictor} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method:lagrangian} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:constrained} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:kl_loss} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:lagrangian} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:tau_sensitivity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method:taxonomy} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:8"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:42"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:116"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:181"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:263"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:300"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:415"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:435"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:490"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:517"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:544"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:572"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:593"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:616"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:39"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:89"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:131"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "method.tex:143"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "9 critical, 44 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 3,
+          "num_cites": 0
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 4,
+          "num_cites": 0
+        },
+        {
+          "file": "ethics.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "experiments.tex",
+          "role": "result",
+          "num_numbers": 232,
+          "num_cites": 13
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 6,
+          "num_cites": 9
+        },
+        {
+          "file": "limitations.tex",
+          "role": "other",
+          "num_numbers": 5,
+          "num_cites": 0
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 16,
+          "num_cites": 8
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 29
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 1.7, but result section reports 1.74. Same metric must use identical precision.",
+          "location": "conclusion"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'raffel2020c4' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "conclusion": [
+              "\\leq",
+              "\\times"
+            ],
+            "experiments": [
+              "\\Delta",
+              "\\S",
+              "\\ast",
+              "\\dagger",
+              "\\ddagger",
+              "\\downarrow",
+              "\\geq",
+              "\\leq",
+              "\\pm",
+              "\\sigma",
+              "\\sim",
+              "\\tau",
+              "\\times",
+              "\\to"
+            ],
+            "introduction": [
+              "\\leq"
+            ],
+            "limitations": [
+              "\\in",
+              "\\sim",
+              "\\times"
+            ],
+            "method": [
+              "\\approx",
+              "\\bar",
+              "\\ell",
+              "\\epsilon",
+              "\\geq",
+              "\\in",
+              "\\lambda",
+              "\\ldots",
+              "\\max",
+              "\\nabla",
+              "\\partial",
+              "\\rho",
+              "\\sigma",
+              "\\tau",
+              "\\theta",
+              "\\tilde",
+              "\\times",
+              "\\to"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 2,
+        "info": 1
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/_audit_compile_bcegv6fs",
+        "main_tex": "main.tex",
+        "log_tail": "Package hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 510.\n\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 510.\n\n\nUnderfull \\vbox (badness 10000) has occurred while \\output is active []\n\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[16]\nUnderfull \\vbox (badness 10000) has occurred while \\output is active []\n\n [17 <../figures/paper/mask_comparison.pdf>]\nUnderfull \\hbox (badness 1715) in paragraph at lines 635--637\n\\T1/ptm/m/n/10.95 (+20) ure [][]5[][]): $\\OML/cmm/m/it/10.95 K[]\\OT1/cmr/m/n/10\n.95 2$ \\T1/ptm/m/n/10.95 (+20) is worst (10.75$\\OMS/cmsy/m/n/10.95 ^^F$\\T1/ptm/\nm/n/10.95 (+20) 0.15), likely\n []\n\n\nUnderfull \\hbox (badness 1092) in paragraph at lines 654--656\n[]\\T1/ptm/b/n/10.95 (+20) Code: \\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\n scripts, data-\n []\n\n) [18] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: 1B1D87ED15B490D3B0413B3424F708C9;8113.\n ) \nHere is how much of TeX's memory you used:\n 16715 strings out of 469438\n 263710 string characters out of 5468411\n 746058 words of memory out of 5000000\n 44496 multiletter control sequences out of 15000+600000\n 707585 words of font info for 417 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 84i,12n,93p,1001b,686s stack positions out of 10000i,1000n,20000p,200000b,200000s\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/share/\ntexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/t\nype1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu\nblic/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am\nsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\ncm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6\n.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></u\nsr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive\n/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf\n-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/f\nonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub\nlic/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams\nfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier\n/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>\n</usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/tex\nlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist\n/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (18 pages, 866671 bytes).\nPDF statistics:\n 1186 PDF objects out of 1200 (max. 8388607)\n 966 compressed objects within 10 object streams\n 172 named destinations out of 1000 (max. 500000)\n 74654 words of extra memory for PDF output out of 89155 (max. 10000000)\n",
+        "error": "",
+        "pages": 18,
+        "warnings": [
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'."
+        ]
+      },
+      "pages": 18,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 5--5",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 5--5",
+        "Underfull \\hbox (badness 1168) in paragraph at lines 10--15",
+        "Underfull \\hbox (badness 1043) in paragraph at lines 21--25",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 18--1",
+        "Underfull \\hbox (badness 4660) in paragraph at lines 18--1",
+        "Underfull \\hbox (badness 1946) in paragraph at lines 4--6",
+        "Underfull \\hbox (badness 1371) in paragraph at lines 7--9",
+        "Underfull \\hbox (badness 3815) in paragraph at lines 7--9",
+        "Underfull \\hbox (badness 3396) in paragraph at lines 122--122",
+        "Underfull \\hbox (badness 1902) in paragraph at lines 33--37",
+        "Underfull \\hbox (badness 1147) in paragraph at lines 72--77",
+        "Underfull \\hbox (badness 4927) in paragraph at lines 146--151",
+        "Underfull \\hbox (badness 2073) in paragraph at lines 255--260",
+        "Underfull \\hbox (badness 1648) in paragraph at lines 255--260",
+        "Underfull \\hbox (badness 2521) in paragraph at lines 82--84",
+        "Underfull \\hbox (badness 2426) in paragraph at lines 90--90",
+        "Underfull \\hbox (badness 1248) in paragraph at lines 149--150",
+        "Underfull \\hbox (badness 2189) in paragraph at lines 174--177",
+        "Underfull \\hbox (badness 2837) in paragraph at lines 219--221",
+        "Underfull \\hbox (badness 3078) in paragraph at lines 219--221",
+        "Underfull \\hbox (badness 1205) in paragraph at lines 432--434",
+        "Underfull \\hbox (badness 2351) in paragraph at lines 437--437",
+        "Underfull \\hbox (badness 1028) in paragraph at lines 457--459",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1715) in paragraph at lines 635--637",
+        "Underfull \\hbox (badness 1092) in paragraph at lines 654--656"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "info",
+      "dimension": "agent_error",
+      "message": "[ERROR] Agent exited 1: You've hit your limit · resets 5pm (UTC)"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "info",
+      "dimension": "agent_error",
+      "message": "[ERROR] Agent exited 1: You've hit your limit · resets 5pm (UTC)"
+    }
+  ],
+  "counts": {
+    "critical": 9,
+    "warning": 84,
+    "info": 2
+  },
+  "error": "",
+  "timestamp": "2026-05-25T11:21:26.064149+00:00"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6303b4367f6a195e5264",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval lm eval kl s42 submit",
+  "task_key": "worker_eval_lm_eval_kl_s42_submit_20260515T234515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_lm_eval_kl_s42_submit_20260515T234515_result.json",
+    "occurrence": 1,
+    "bytes": 448,
+    "sha256": "037c64fa5792ee1ded1aad8b63d641f8ae2e4f9d0609a5c281f9f063ca7fd33c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交 `lm_eval_kl_s42`，状态 RUNNING。\n\n- **服务器**: westd-34887, cuda:0\n- **tmux session**: `lm_eval_kl_s42`\n- **日志**: `/tmp/lm_eval_kl_s42.log`\n- **命令**: `CUDA_VISIBLE_DEVICES=0 python -u src/eval_benchmark.py --condition kl_s42 --tasks lm_eval --skip_ppl --gpu 0 --batch_size 4`\n- **Checkpoint**: `mvp_kl_norm_v2_s42/predictor_kl_normalized.pt`\n- **评估任务**: arc_challenge, winogrande, mmlu, gsm8k"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-lm-eval-kl-s42-submit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df12e2dd079d47add510",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code bce isocompute v3 s123 prep",
+  "task_key": "worker_code_bce_isocompute_v3_s123_prep_20260517T200454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bce_isocompute_v3_s123_prep_20260517T200454_result.json",
+    "occurrence": 1,
+    "bytes": 1289,
+    "sha256": "7f3c22537252ca1eceaf75f6ad2e4a39c3f9379a4173ea4145726c541996eb75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## s123 就绪状态汇报\n\n**环境检查：**\n\n| 项目 | 状态 |\n|------|------|\n| 模型 `/root/autodl-tmp/models/llama-3.1-8b` | ✅ 存在 |\n| 训练脚本 `src/train.py` | ✅ 存在 (May 17 更新) |\n| 数据集 wikitext-103 | ✅ 已缓存 (`/root/autodl-tmp/.hf_cache/datasets/wikitext`) |\n| 磁盘空间 | ✅ checkpoint ~145MB，overlay 剩余 5.9G 足够 |\n| Registry | ✅ PREPARING，hypothesis 已更新 |\n| Dry-run | ⏭ 跳过 — cuda:0 跑 qwen14b eval，cuda:1 跑 s456 eval，两卡都占满 |\n\n**完整训练命令**（GPU 编号按空闲情况调整 `CUDA_VISIBLE_DEVICES`）：\n\n```bash\ncd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && \\\nCUDA_VISIBLE_DEVICES=<空闲GPU> /root/miniconda3/bin/python -u src/train.py \\\n  --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b \\\n  --loss_type bce --num_steps 2700 --batch_size 4 --seq_len 2048 \\\n  --lr 1e-3 --seed 123 --sparsity_target 0.5 --gpu 0 \\\n  --output_dir checkpoints/bce_isocompute_v3_s123 \\\n  --wandb_run_name bce_isocompute_v3_s123 \\\n  --dataset wikitext-103 --gradient_checkpointing --log_every 100\n```\n\n与 s456 命令完全一致，仅 seed 和路径名不同。\n\n**预估训练时间：~49 min**（s456 实测 2957s ≈ 49.3 min）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bce-isocompute-v3-s123-prep.md"
+}

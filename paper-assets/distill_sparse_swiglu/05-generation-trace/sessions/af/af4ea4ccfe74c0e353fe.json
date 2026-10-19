@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af4ea4ccfe74c0e353fe",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval kl sparsity40 global results",
+  "task_key": "worker_eval_kl_sparsity40_global_results_20260520T081754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_kl_sparsity40_global_results_20260520T081754_result.json",
+    "occurrence": 1,
+    "bytes": 269,
+    "sha256": "431ebadbff76849528149b336ef717ee1abfa963aa79e14ca675720172ec39ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：40% global eval 未成功执行，启动即失败。**\n\n**失败原因**：`--allocation global` 参数无效，正确值应为 `global_topk`。\n\n需要用 `--allocation global_topk` 重新启动 eval。要我现在修正参数重跑吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-kl-sparsity40-global-results.md"
+}

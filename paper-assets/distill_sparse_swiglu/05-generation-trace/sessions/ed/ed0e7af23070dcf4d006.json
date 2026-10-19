@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed0e7af23070dcf4d006",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code check hspiqa v2 result",
+  "task_key": "worker_code_check_hspiqa_v2_result_20260519T153004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_hspiqa_v2_result_20260519T153004_result.json",
+    "occurrence": 1,
+    "bytes": 406,
+    "sha256": "dcb83850c86f98396568f27092ad1e040bb5f7c66c14007a8f6d1e3ec00cd39a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "磁盘 registry.yaml 已同步——status: DONE, conclusion: success, metrics 完整。无需额外编辑。\n\n**结果汇总**：`qwen14b_teal30_uniform_hspiqa_v2` 成功完成（耗时 ~59 min），TEAL 30% uniform on Qwen-14B：\n\n| Task | acc | acc_norm |\n|------|-----|----------|\n| HellaSwag | 0.4936 | 0.6756 |\n| PIQA | 0.7443 | 0.7427 |\n\nRegistry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-hspiqa-v2-result.md"
+}

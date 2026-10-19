@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dabb499188151e7d3b27",
+  "project": "temp-adv-distill-vla",
+  "kind": "result",
+  "title": "run multitask mlp retrain",
+  "task_key": "worker_run_multitask-mlp-retrain_20260515T065339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_multitask-mlp-retrain_20260515T065339_result.json",
+    "occurrence": 1,
+    "bytes": 1261,
+    "sha256": "9ff94ac147f228a5a4589996f618e370e032ada4eff772d9c020ff6cd74c3354"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 多任务 MLP 重训结果\n\n### VIP 特征提取\n- 总任务数: 10\n- 总轨迹数: 500\n- 总 timestep 数: 74,507\n- 提取时间: 0.4 分钟\n\n### 多任务 MLP 训练\n- 训练样本: 59,656\n- Best epoch: 11 (early stop at 21)\n- Overall R²: 0.9653\n\n### Per-task Test R²\n| Task | # Test Steps | R² | Status |\n|------|-------------|-----|--------|\n| alphabet_soup | 1266 | 0.9691 | PASS |\n| bbq_sauce | 1216 | 0.9673 | PASS |\n| butter | 1263 | 0.9836 | PASS |\n| chocolate_pudding | 1265 | 0.9897 | PASS |\n| cream_cheese | 1140 | 0.9769 | PASS |\n| ketchup | 1304 | 0.9695 | PASS |\n| milk | 1123 | 0.9796 | PASS |\n| orange_juice | 1152 | 0.8546 | PASS |\n| salad_dressing | 989 | 0.9825 | PASS |\n| tomato_sauce | 1167 | 0.9776 | PASS |\n\n### 判定: ALL PASSED (10/10 tasks R² > 0.7)\n\n最低的 orange_juice 也有 0.8546，其余全在 0.96+。可以继续 Phase 1 IQL。\n\n### 产出文件\n| 文件 | 大小 | 位置 |\n|------|------|------|\n| VIP 特征 (10个 .pt) | 292MB | `artifacts/vip_features_all/` |\n| MLP checkpoint | 2.3MB | `artifacts/gate1b_mlp_multitask.pt` |\n| 结果 JSON | 1.5KB | `artifacts/multitask_mlp_results.json` |\n| R² 条形图 | 82KB | `artifacts/multitask_mlp_per_task_r2.png` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-multitask-mlp-retrain.md"
+}

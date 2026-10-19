@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df13a824bc477df1cc35",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval c4 ood kl30 dense",
+  "task_key": "worker_eval_c4_ood_kl30_dense_20260517T183448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_c4_ood_kl30_dense_20260517T183448_result.json",
+    "occurrence": 1,
+    "bytes": 121,
+    "sha256": "897f0e14620c0f2cacb82962f890e4f352b740bdd0c1e608b7b494e5497152a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Run 1 resubmitted (without offline flags, with `--allocation global_topk`). Will check back in ~2 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-c4-ood-kl30-dense.md"
+}

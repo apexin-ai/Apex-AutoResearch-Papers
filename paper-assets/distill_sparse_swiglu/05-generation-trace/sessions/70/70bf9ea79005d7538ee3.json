@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "70bf9ea79005d7538ee3",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "analysis k2 eval status",
+  "task_key": "worker_analysis_k2_eval_status_20260523T063719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_k2_eval_status_20260523T063719.log",
+    "occurrence": 1,
+    "bytes": 874214,
+    "sha256": "307bc358933cd789780771664c4282697cdad2137dcb1898ae8c63d09c9d9e1d"
+  },
+  "statistics": {
+    "messages": 75,
+    "user_turns": 0,
+    "tool_calls": 28,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 15,
+      "tool_call": 28,
+      "tool_result": 28,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 75,
+      "chunks": [
+        {
+          "path": "70bf9ea79005d7538ee3-part-0001.json",
+          "message_count": 28
+        },
+        {
+          "path": "70bf9ea79005d7538ee3-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "70bf9ea79005d7538ee3-part-0003.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-k2-eval-status.md"
+}

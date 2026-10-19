@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a64a03eb35583992d86b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis qwen14b dense baseline",
+  "task_key": "worker_analysis_qwen14b_dense_baseline_20260517T222533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen14b_dense_baseline_20260517T222533_result.json",
+    "occurrence": 1,
+    "bytes": 458,
+    "sha256": "88aff817160700a3ec0dfb89bf344a1ae997727b473d2a7581fb97a3e1961230"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry already had `status=DONE`, `conclusion=success`, `checkpoint_path`, and `log_path` set. Metrics updated successfully.\n\n**Qwen-2.5-14B dense baseline results:**\n\n| Metric | Value |\n|---|---|\n| WikiText-2 PPL | 5.1854 |\n| ARC-Challenge (acc_norm) | 0.6758 |\n| WinoGrande (acc) | 0.8106 |\n| MMLU (acc) | 0.7977 |\n| GSM8K (exact_match) | 0.8757 |\n\nAll 5 tasks completed successfully, no errors. Total wall time ~3.6 GPU-hours."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen14b-dense-baseline.md"
+}

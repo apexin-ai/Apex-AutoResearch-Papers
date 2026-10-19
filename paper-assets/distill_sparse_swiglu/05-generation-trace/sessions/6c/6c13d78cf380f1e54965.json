@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "6c13d78cf380f1e54965",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "ops collect final results v2",
+  "task_key": "worker_ops_collect-final-results-v2_20260519T034933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-final-results-v2_20260519T034933.log",
+    "occurrence": 1,
+    "bytes": 1325096,
+    "sha256": "8003149b0cf210daadb55518ae2097b2b006178cb5701bc772de763592ce713e"
+  },
+  "statistics": {
+    "messages": 1071,
+    "user_turns": 1,
+    "tool_calls": 361,
+    "roles": {
+      "log": 1,
+      "system": 98,
+      "record": 1,
+      "assistant": 232,
+      "tool_call": 361,
+      "tool_result": 361,
+      "user": 1,
+      "result": 16
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 831,
+      "chunks": [
+        {
+          "path": "6c13d78cf380f1e54965-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6c13d78cf380f1e54965-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6c13d78cf380f1e54965-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "6c13d78cf380f1e54965-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "6c13d78cf380f1e54965-part-0005.json",
+          "message_count": 111
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 240,
+      "chunks": [
+        {
+          "path": "6c13d78cf380f1e54965-part-0005.json",
+          "message_count": 69
+        },
+        {
+          "path": "6c13d78cf380f1e54965-part-0006.json",
+          "message_count": 171
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-collect-final-results-v2.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a85f05e3b9cb578347a0",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "eval teal baseline rerun all sparsity",
+  "task_key": "worker_eval_teal_baseline_rerun_all_sparsity_20260515T234046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_teal_baseline_rerun_all_sparsity_20260515T234046.log",
+    "occurrence": 1,
+    "bytes": 747515,
+    "sha256": "c38f73711e2649d2de4e70c594c557710146716079aa2a69f1b1a904c2a33476"
+  },
+  "statistics": {
+    "messages": 282,
+    "user_turns": 0,
+    "tool_calls": 96,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 86,
+      "tool_call": 96,
+      "tool_result": 96,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 282,
+      "chunks": [
+        {
+          "path": "a85f05e3b9cb578347a0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a85f05e3b9cb578347a0-part-0002.json",
+          "message_count": 102
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-teal-baseline-rerun-all-sparsity.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c51e6594084988659c8f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis qwen14b kl30 s123 gsm8k v6",
+  "task_key": "worker_analysis_qwen14b_kl30_s123_gsm8k_v6_20260525T090543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen14b_kl30_s123_gsm8k_v6_20260525T090543_result.json",
+    "occurrence": 1,
+    "bytes": 1276,
+    "sha256": "be2f860ee4813d77159bcea2e7d75b35fa09b7aed330dda1361085fe879b3911"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Qwen-14B KL 30% GSM8K 三种子汇总\n\n### v6 结果（s123）\n- **exact_match (flexible)**: **0.3609** ± 0.0132 (stderr)\n- **exact_match (strict)**: 0.3601\n- 样本数: 1319, 耗时 ~2h45m, EXIT_CODE=0\n- 配置: uniform allocation, batch_size=1, sparsity=0.3\n\n### 三种子对比\n\n| Seed | GSM8K exact_match | batch_size | 来源 |\n|------|-------------------|------------|------|\n| s42  | 0.3548 | (default) | registry `qwen14b_kl30_s42_gsm8k_uniform` |\n| s123 | 0.3609 | 1 | v6 results.json |\n| s456 | 0.2608 | 8 | results.json `qwen14b_kl30_s456_gsm8k` |\n\n### 统计\n- **3-seed mean**: 0.3255\n- **3-seed std**: 0.0561\n\n### 异常标记\n\n**s456 显著偏低**：0.2608 比 s42/s123（~0.36）低约 10pp。可能原因：\n1. 种子依赖的 predictor 质量差异（s456 predictor 在 GSM8K 这类 generation task 上表现更差）\n2. batch_size 差异（s456 用 bs=8，s42/s123 用 bs=1/default）——对 greedy generation 理论上不应影响结果，但 padding 策略可能引入差异\n3. 真实的种子间方差——但 std=5.6pp 对于 GSM8K 来说偏高\n\n**建议**：如果要用这个 3-seed 数据，高方差（σ=5.6pp）会削弱置信度。可以考虑用 bs=1 重跑 s456 GSM8K 排除 batch_size 因素。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen14b-kl30-s123-gsm8k-v6.md"
+}

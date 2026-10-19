@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c859f7d3ea497ab0a3b4",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval wina greedy",
+  "task_key": "worker_eval_wina_greedy_20260515T192120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_wina_greedy_20260515T192120_result.json",
+    "occurrence": 1,
+    "bytes": 1052,
+    "sha256": "a69a1966d6c0e2ecff5e00ccfeef9dffe528148fd3a2b60f53a4cb9ae6738f86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已正常退出。\n\n## 报告：WINA Greedy Baseline 评估 — 已验证（已重跑复现）\n\n**状态：已重跑，结果与 registry 一致**\n\n| 指标 | Registry 值 | 重跑值 |\n|------|-------------|--------|\n| dense_ppl | 6.12 | 6.12 |\n| wina_greedy_ppl | 2126.03 | **2126.03** |\n| model_level_sparsity | 0.5 | 0.500 |\n\n**Greedy Per-Layer Allocation（重跑确认）：**\n- Layers 0-11: 0.90（最高 sparsity，浅层 reconstruction error 低）\n- Layer 12: 0.85, Layer 13: 0.80, Layer 14: 0.70\n- Layer 15: 0.55, Layer 16: 0.50\n- Layers 17-20: 0.30-0.35\n- Layers 21-24: 0.05-0.15\n- Layers 25-31: 0.00（深层完全保留，error 最大）\n\n**结论：** 原始结果通过标准流程 `evaluate.py --baseline_mode wina_greedy` 复现，PPL=2126.03 精确匹配。日志已保存至 `/root/runs/distill_sparse_swiglu/training_free_wina_greedy.log`。\n\n**注：** 首次运行因未 source `setup_env.sh` 导致 HF 数据集下载失败（缺少 `HF_HOME` 环境变量），修正后成功完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-wina-greedy.md"
+}

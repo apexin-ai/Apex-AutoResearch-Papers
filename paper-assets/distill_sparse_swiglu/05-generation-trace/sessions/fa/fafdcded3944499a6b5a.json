@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fafdcded3944499a6b5a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra c4 ood eval prep",
+  "task_key": "worker_infra_c4_ood_eval_prep_20260517T171948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_c4_ood_eval_prep_20260517T171948_result.json",
+    "occurrence": 1,
+    "bytes": 2486,
+    "sha256": "428f21c679c2511e8b95b701c63f20af2e04d7339cb0b03fc64d95d75488ff6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整情况已清楚。总结如下：\n\n---\n\n## C4 数据状态\n\n| 服务器 | 路径 | 状态 |\n|--------|------|------|\n| westd-34887 | `/root/autodl-tmp/data/c4_val/` | **已有** (785MB, Arrow 格式) |\n| westd-41718 | `/root/autodl-tmp/data/` | **不存在** |\n\n---\n\n## Eval 方式分析\n\n**现状**：`benchmark_eval.py` 对 C4 的支持是**半成品**：\n- `data_utils.py:get_eval_dataset(\"c4\", ...)` 已实现，能读取本地 `/root/autodl-tmp/data/c4_val`\n- 但 `benchmark_eval.py` 只特殊处理 `wikitext2`，\"c4\" 会被当作 unknown task 忽略\n\n**需要的代码修改**（约 10 行）：仿照 `run_wikitext2_ppl()` 加一个 `run_c4_ppl()`，并在 main 函数中加 `do_c4` 分支。\n\nlm-eval-harness 也有 `c4` task（`/root/miniconda3/lib/python3.12/site-packages/lm_eval/tasks/c4/c4.yaml`），但它需要从 HF 下载 `allenai/c4` 的 json.gz 分片，不如用已有本地数据。\n\n---\n\n## Blocker\n\n**需要修改 `benchmark_eval.py`** 加入 C4 PPL 支持。修改很小，我现在写好吗？\n\n---\n\n## 命令模板（修改完成后可用）\n\n```bash\n# KL-30% predictor (seed 42) on C4\npython /root/distill_sparse_swiglu/src/benchmark_eval.py \\\n  --exp_id c4_ood_kl30_s42 \\\n  --checkpoint checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt \\\n  --sparsity_mode teal_global --sparsity_target 0.3 \\\n  --tasks c4 --gpu 0\n\n# KL-30% predictor (seed 123)\npython /root/distill_sparse_swiglu/src/benchmark_eval.py \\\n  --exp_id c4_ood_kl30_s123 \\\n  --checkpoint checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt \\\n  --sparsity_mode teal_global --sparsity_target 0.3 \\\n  --tasks c4 --gpu 0\n\n# KL-30% predictor (seed 456)\npython /root/distill_sparse_swiglu/src/benchmark_eval.py \\\n  --exp_id c4_ood_kl30_s456 \\\n  --checkpoint checkpoints/mvp_kl_norm_v2_s456/predictor_kl_normalized.pt \\\n  --sparsity_mode teal_global --sparsity_target 0.3 \\\n  --tasks c4 --gpu 0\n\n# Dense baseline\npython /root/distill_sparse_swiglu/src/benchmark_eval.py \\\n  --exp_id c4_ood_dense \\\n  --dense --tasks c4 --gpu 0\n\n# TEAL baseline (vanilla activation magnitude)\npython /root/distill_sparse_swiglu/src/benchmark_eval.py \\\n  --exp_id c4_ood_teal_vanilla_30 \\\n  --baseline_mode teal_vanilla --sparsity_target 0.3 \\\n  --tasks c4 --gpu 0\n```\n\n---\n\n**下一步**：需要我写 `benchmark_eval.py` 的 C4 PPL 补丁吗？（~10行，加 `run_c4_ppl` + `do_c4` 分支）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-c4-ood-eval-prep.md"
+}

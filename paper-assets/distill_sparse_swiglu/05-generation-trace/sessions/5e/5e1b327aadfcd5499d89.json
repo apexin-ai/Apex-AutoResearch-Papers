@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e1b327aadfcd5499d89",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "exp mag preservation collect",
+  "task_key": "worker_exp_mag_preservation_collect_20260517T051328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_mag_preservation_collect_20260517T051328_result.json",
+    "occurrence": 1,
+    "bytes": 1586,
+    "sha256": "b44a813f9eae4b916dd03627b1939904a74d6387fa94d06c2433df34c28f8601"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇报\n\n**服务器 westd-34887 不可达**，无法收集结果。\n\n### 已知信息（从 worker log 恢复）\n\n**训练配置**：\n- 脚本：`scripts/run_mag_reg.sh` → 顺序执行 alpha=0.01 和 alpha=0.1（各 1000 步）\n- 输出目录：`checkpoints/kl_mag_reg_a001`（alpha=0.01）、`checkpoints/kl_mag_reg_a01`（alpha=0.1）\n- GPU：cuda:1，batch_size=4，seq_len=2048，lr=1e-3，seed=42，sparsity_target=0.5\n- 日志：`/root/distill_sparse_swiglu/logs/mag_reg_full.log`\n- PID：301887\n\n**最后观测点**（alpha=0.01 运行中）：\n| 指标 | 值 |\n|------|-----|\n| Step | 390/1000 |\n| loss | 0.2876 |\n| kl | 0.2852 |\n| mag_reg | 0.0243 |\n| sparsity | 0.496 |\n| lambda | 1000.0 |\n| tau | 0.649 |\n| elapsed | 872s (~2.2s/step) |\n\n**预估时间线**：\n- alpha=0.01 应在 ~37min 完成（约 13:40 CST）\n- alpha=0.1 应在 ~14:20 CST 完成\n- 训练开始于 2026-05-17 13:03 CST\n\n**当前状态**：服务器端口不可达，可能是实例过期/关机。训练本身通过 nohup 启动，如果服务器在训练期间存活，结果应保存在上述 checkpoint 路径中。\n\n### 下一步\n\n1. 等服务器恢复（或检查 SeetaCloud 控制台确认实例状态）\n2. 恢复后执行：\n   - `tail -50 /root/distill_sparse_swiglu/logs/mag_reg_full.log` 确认两个 alpha 是否都跑完\n   - `ls /root/distill_sparse_swiglu/checkpoints/kl_mag_reg_a*/` 检查 checkpoint\n   - 对完成的 checkpoint 跑 PPL eval + downstream eval\n\n需要我在服务器恢复后重新执行收集任务吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-mag-preservation-collect.md"
+}

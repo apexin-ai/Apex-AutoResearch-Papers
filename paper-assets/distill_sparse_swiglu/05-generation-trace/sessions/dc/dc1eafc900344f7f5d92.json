@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc1eafc900344f7f5d92",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diagnose qwen14b uniform eval fail",
+  "task_key": "worker_diagnose_qwen14b_uniform_eval_fail_20260518T003449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_qwen14b_uniform_eval_fail_20260518T003449_result.json",
+    "occurrence": 1,
+    "bytes": 1740,
+    "sha256": "f536119060f62d6928fb43b4bf279ae81b56951439117da5faa065b110d84840"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 诊断结果\n\n### 1. 原始 5-task 运行失败原因\n\n**失败 task**: GSM8K (`generate_until`)\n\n**失败模式**: 进程在 GSM8K 生成阶段被直接 kill（无 Python traceback），疑似 OOM：\n- KL30: 死在 369/1319 (28%), 运行 1h08m\n- TEAL30: 死在 225/1319 (17%), 运行 57m\n\nautoregressive generation 比 loglikelihood forward pass 需要更多显存，14B 模型在生成 2048 tokens 时 OOM 合理。\n\n### 2. 4-task 重跑也失败了\n\n两个 `_4task` 日志（08:35）显示 WikiText-2 PPL 成功，但 lm-eval 阶段崩溃：\n\n```\nRuntimeError: Cannot send a request, as the client has been closed.\n```\n\n崩在 `datasets.load_dataset` 下载 arc_challenge 时。原始 5-task 跑通是因为有 `HF_HUB_OFFLINE=1` + 缓存，4-task 重跑没设 offline mode 或缓存路径不对。\n\n### 3. 已完成的指标\n\n| Model | WikiText-2 PPL | ARC/Winogrande/MMLU |\n|-------|---------------|---------------------|\n| KL30 uniform | **7.6318** | 未完成 |\n| TEAL30 uniform | **8.0054** | 未完成 |\n\n### 4. 判断\n\n**不能直接用旧结果，必须重跑。** 原因：\n- 5-task 运行虽然完成了 loglikelihood 阶段，但脚本在 GSM8K OOM 死后没有输出任何结果\n- 4-task 重跑只拿到了 WikiText-2 PPL（可用），lm-eval 部分因 HF Hub 连接失败\n\n### 5. 修复建议\n\n重跑时需要：\n1. 去掉 GSM8K（D053 已决定）\n2. 设置 `HF_HUB_OFFLINE=1` 环境变量（或 `HF_DATASETS_OFFLINE=1`）\n3. 确认 `--cache_dir /root/autodl-tmp/.hf_cache` 指向已有缓存\n4. 5-task 运行时数据集确实被缓存过（日志里有 \"Using the latest cached version\"），缓存在 `/root/autodl-tmp/.hf_cache/datasets/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-qwen14b-uniform-eval-fail.md"
+}

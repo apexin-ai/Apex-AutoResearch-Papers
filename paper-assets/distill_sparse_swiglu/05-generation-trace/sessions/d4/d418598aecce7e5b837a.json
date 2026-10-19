@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d418598aecce7e5b837a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis kl sparsity70 s42 v2",
+  "task_key": "worker_analysis_kl_sparsity70_s42_v2_20260515T211314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_kl_sparsity70_s42_v2_20260515T211314_result.json",
+    "occurrence": 1,
+    "bytes": 1242,
+    "sha256": "1f058400782d0b009b1ff6e88b05676ae29d45d66732d92b7e539dc19d728246"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated to DONE/success. Analysis summary:\n\n**kl_sparsity70_s42_v2 — SUCCESS (training converged)**\n\n| Metric | Value |\n|--------|-------|\n| final_sparsity | 0.688 (target 0.70) |\n| sparsity_range (last 200 steps) | 0.674–0.707 |\n| final_kl_loss | 0.609 |\n| final_constraint_loss | 0 |\n| lambda_max | 1000 (hit cap at step 10) |\n| tau_final | 0.100 |\n| training_steps | 1000/1000 |\n| wall_clock | ~41 min (0.68 GPU-hours) |\n| checkpoint | `/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt` |\n\n**Key findings:**\n- Sparsity converged quickly (~step 40) to ~0.68 and stayed stable throughout — well within the 0.65–0.75 success range\n- lambda_max=1000 was sufficient (v1 was killed before reaching this; v2 with gradient_checkpointing ran to completion)\n- Training was stable with no divergence or OOM\n\n**Action needed:**\n- **PPL evaluation not yet run.** The training script only logs KL/sparsity metrics. Need to run `evaluate.py` on the checkpoint to get `true_dense_ppl`, `predictor_hard_mask_ppl`, `teal_sparse_ppl` — these are critical for the plan_008 sparsity sweep comparison (30% vs 50% vs 70%).\n- W&B run was offline — not synced to cloud."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-kl-sparsity70-s42-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9706db1d5b75c8c1223",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code training free baselines",
+  "task_key": "worker_code_training_free_baselines_20260515T171125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_training_free_baselines_20260515T171125_result.json",
+    "occurrence": 1,
+    "bytes": 2154,
+    "sha256": "ccdb7be7012008ed71fbe7283461e722fd7518ac3e31e6cdf4e2157325f63f31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 全部通过。最终结果：\n\n---\n\n## 报告\n\n### 1. Scoring Formulas（论文确认）\n\n| 方法 | 公式 | 来源 |\n|------|------|------|\n| **Vanilla TEAL** | `score_j = mean(|act(gate(x))_j · up(x)_j|)` | Liu et al., ICLR 2025, arXiv 2408.14690 |\n| **WINA** | `score_j = mean(|h_j|) · ‖W_down[:, j]‖₂` | Chen et al., arXiv 2505.19427 |\n| **R-Sparse** | `score_j = mean(|h_j|) · Σ_{i<r} σ_i · |Vh[i,j]|` | Zhang et al., ICLR 2025, arXiv 2504.19449 |\n\n三者共享 `h_j = act(gate(x))_j · up(x)_j` 的 calibration pass，区别在权重信息的利用方式。\n\n### 2. 修改文件\n\n**`/root/distill_sparse_swiglu/src/evaluate.py`**（原 284 行 → 403 行）\n\n新增函数：\n- `_collect_swiglu_magnitudes()` — 共享 calibration，收集 per-neuron 平均激活幅度\n- `_global_topk_masks()` — 通用 global top-K 分配\n- `vanilla_teal_global_masks()` — Vanilla TEAL（+ alias `teal_activation_magnitude_masks`）\n- `wina_global_masks()` — WINA\n- `rsparse_global_masks()` — R-Sparse\n- `_print_mask_stats()` — 统一输出格式\n\nCLI 新增参数：`--baseline_mode`（逗号分隔：`teal_vanilla,wina,rsparse`）、`--svd_rank`（默认 256）、`--checkpoint` 改为可选。\n\n### 3. Dry-run 结果\n\n```\nvanilla TEAL: 32 layers, sparsity=0.498\nWINA:         32 layers, sparsity=0.500\nR-Sparse:    32 layers, sparsity=0.500\n\nMask diffs: TEAL-WINA=9917, TEAL-RSparse=78849, WINA-RSparse=76894\nALL DRY-RUN TESTS PASSED\n```\n\n三组 mask 两两不同，R-Sparse 与另外两个差异最大（SVD 权重信息的影响），符合预期。\n\n### 4. 已知局限\n\n- **R-Sparse SVD 耗时**：对 32 层 `[4096, 14336]` 矩阵做 SVD，在 GPU 上约需数分钟。`svd_rank` 参数控制截断秩，但 `torch.linalg.svd` 仍计算完整分解\n- **Calibration 数据**：dry-run 使用随机 token，正式评估需用 WikiText-103 calibration 数据（`--use_random_data` 或默认 WikiText）\n- **GPU 内存**：SVD 在 float32 下运行，单层峰值约 ~500MB 额外显存，逐层计算避免 OOM\n- 备份文件 `evaluate.py.bak` 留在服务器上"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-training-free-baselines.md"
+}

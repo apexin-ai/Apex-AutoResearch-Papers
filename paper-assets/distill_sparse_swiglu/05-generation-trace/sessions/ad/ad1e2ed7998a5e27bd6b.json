@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "id": "ad1e2ed7998a5e27bd6b",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "analysis data audit final",
+  "task_key": "worker_analysis_data_audit_final_20260523T191559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_data_audit_final_20260523T191559.log",
+    "occurrence": 1,
+    "bytes": 1973946,
+    "sha256": "32ff4738215f868cdb9063ce1602eed08e364307407c5bdb029c9656f25a996d"
+  },
+  "statistics": {
+    "messages": 521,
+    "user_turns": 4,
+    "tool_calls": 172,
+    "roles": {
+      "log": 1,
+      "system": 143,
+      "record": 1,
+      "assistant": 27,
+      "tool_call": 172,
+      "tool_result": 172,
+      "user": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 54,
+      "chunks": [
+        {
+          "path": "ad1e2ed7998a5e27bd6b-part-0001.json",
+          "message_count": 9
+        },
+        {
+          "path": "ad1e2ed7998a5e27bd6b-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "ad1e2ed7998a5e27bd6b-part-0003.json",
+          "message_count": 44
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "ad1e2ed7998a5e27bd6b-part-0003.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "ad1e2ed7998a5e27bd6b-part-0003.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "ad1e2ed7998a5e27bd6b-part-0003.json",
+          "message_count": 32
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 393,
+      "chunks": [
+        {
+          "path": "ad1e2ed7998a5e27bd6b-part-0003.json",
+          "message_count": 7
+        },
+        {
+          "path": "ad1e2ed7998a5e27bd6b-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "ad1e2ed7998a5e27bd6b-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "ad1e2ed7998a5e27bd6b-part-0006.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-data-audit-final.md"
+}

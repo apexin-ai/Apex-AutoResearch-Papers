@@ -1,0 +1,2 @@
+Remote path: /root/temp-adv-distill-vla/artifacts/multitask_mlp_results.json
+Overall R2: 0.9653, All 10 tasks PASS (>0.7), Best epoch: 11, Train samples: 59656

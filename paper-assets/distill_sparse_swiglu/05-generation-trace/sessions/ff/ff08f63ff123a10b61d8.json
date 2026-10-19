@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff08f63ff123a10b61d8",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check 41718 experiments",
+  "task_key": "worker_ops_check_41718_experiments_20260519T231549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_41718_experiments_20260519T231549_result.json",
+    "occurrence": 1,
+    "bytes": 992,
+    "sha256": "dff8be245e95445b066b85c269fccc1d6deeebe7b8b29f0d6d5859e8317f0147"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在运行中。\n\n## bench_teal30_uniform_6task (PID 178274)\n- **状态**: 存活，已运行 38m58s\n- **当前进度**: MMLU loglikelihood 62% (24889/40168)，预计还需 ~11 分钟\n- **已完成 tasks**: wikitext2, arc_challenge, winogrande（进度条已跑完）\n- **剩余 tasks**: mmlu（进行中）, hellaswag, piqa\n- **无 error/traceback**\n\n## c1_eval_30pct_s456 (PID 179834)\n- **状态**: 存活，已运行 19m04s\n- **当前进度**: GSM8K generate_until 10% (137/1319)，~17 分钟剩余\n- **已完成 tasks**: wikitext2, arc_challenge, winogrande, mmlu\n- **剩余 tasks**: gsm8k（进行中）\n- **无 error/traceback**\n\n## GPU 状态\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 93% | 66.1 / 97.9 GB |\n| 1 | 98% | 45.6 / 97.9 GB |\n\n两个实验均正常推进，无异常。c1_eval_30pct_s456 预计 ~20 分钟内完成，bench_teal30_uniform_6task 还需跑完 mmlu + hellaswag + piqa，预计 ~30-40 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-41718-experiments.md"
+}

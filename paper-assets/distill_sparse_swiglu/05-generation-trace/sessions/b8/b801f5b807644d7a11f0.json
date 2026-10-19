@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b801f5b807644d7a11f0",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "eval spon 2048 supplementary",
+  "task_key": "worker_eval_spon_2048_supplementary_20260515T193220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_spon_2048_supplementary_20260515T193220.log",
+    "occurrence": 1,
+    "bytes": 585258,
+    "sha256": "53ad3ea916f3ffba4dae43b3d19c52892709e047f5afe7f3a08126442cf9b0da"
+  },
+  "statistics": {
+    "messages": 219,
+    "user_turns": 0,
+    "tool_calls": 76,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 76,
+      "tool_result": 76,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 219,
+      "chunks": [
+        {
+          "path": "b801f5b807644d7a11f0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b801f5b807644d7a11f0-part-0002.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-spon-2048-supplementary.md"
+}

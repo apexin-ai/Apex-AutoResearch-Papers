@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6a8fb9cfdfe21069be3",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "train perlayer kl k4 s123",
+  "task_key": "worker_train_perlayer_kl_k4_s123_20260522T133446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_perlayer_kl_k4_s123_20260522T133446_result.json",
+    "occurrence": 1,
+    "bytes": 232,
+    "sha256": "ff33d7218e8ff6bd479a89a63277bd290b29746eaad7c2823ad12d09a56df2ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Submitted. PID 59186, tmux session `perlayer_kl_k4_s123` on westd-34887 cuda:0. Pipeline runs Phase 1 (train 2700 steps) → Phase 2 (PPL) → Phase 3 (7-task downstream) → Phase 4 (per-layer analysis) sequentially."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-perlayer-kl-k4-s123.md"
+}

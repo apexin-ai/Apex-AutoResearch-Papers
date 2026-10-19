@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "264a13bdf7f3f13c48a1",
+  "project": "temp-adv-distill-vla",
+  "kind": "result",
+  "title": "infra env setup recovery",
+  "task_key": "worker_infra_env-setup-recovery_20260515T052423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup-recovery_20260515T052423_result.json",
+    "occurrence": 1,
+    "bytes": 1655,
+    "sha256": "15f526d517ea6234e02bc1b2df6f99a89fd7326d3e5ac3971ba654456771eec5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 最终报告\n\n### 1. 环境状态 ✅ 就绪\n| 项目 | 值 |\n|------|-----|\n| Python | 3.12.3 (conda base, `/root/miniconda3`) |\n| PyTorch | 2.8.0+cu128, CUDA 可用 |\n| GPU | 2× NVIDIA RTX PRO 6000 Blackwell (94GB each) |\n| 依赖 | transformers 5.8.1, datasets 4.8.5, accelerate 1.13.0, einops 0.8.2, h5py 3.16.0, scipy 1.17.1, matplotlib 3.10.5, wandb 0.27.0, pillow 11.3.0 — 全部就绪 |\n\n### 2. 模型状态 ⏳ 下载中\n- 路径: `/root/temp-adv-distill-vla/models/openvla-7b-finetuned-libero-spatial/`\n- 当前大小: ~8.3GB\n- 完成: shard 4/4 (251MB) ✅\n- 下载中: shard 1, 2, 3（3个 `.incomplete` 文件，正在以 ~10 MB/s 增长）\n- 有 3 个后台下载进程并行工作（hf CLI、wget、hf-mirror.com 脚本）\n- 预计还需 ~10-15 分钟完成\n\n### 3. 数据状态 ✅ 完成\n- 路径: `/root/temp-adv-distill-vla/data/libero/libero_object/`\n- 10 个 HDF5 文件，每个 50 demos，总计 ~7GB\n- 每个 demo 包含: actions, dones, obs, rewards, robot_states\n- 已验证文件可正常读取\n\n### 4. Phase 0 脚本 ✅ 存在\n- `/root/temp-adv-distill-vla/phase0_feature_validation.py` (19KB)\n\n### 5. 磁盘使用\n- 根分区: 18GB/30GB (60%)，剩余 13GB\n- 数据盘 `/root/autodl-tmp`: 250GB 基本空闲\n\n### 6. 待解决问题\n- **模型下载未完成**：3 个 safetensors shard 仍在后台下载，进度正常，不需要干预。下载完成后即可运行 phase0 脚本。\n- **注意**：有多个重叠的下载进程（hf CLI + wget + mirror script），可能会导致重复下载浪费带宽，但不会导致文件损坏（hf-cli 有完整性校验）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-env-setup-recovery.md"
+}

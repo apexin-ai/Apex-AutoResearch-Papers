@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a47e85754b2dffd4ae4",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh jsd 30 s42",
+  "task_key": "worker_ssh_jsd_30_s42_20260520T155111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_jsd_30_s42_20260520T155111_result.json",
+    "occurrence": 1,
+    "bytes": 497,
+    "sha256": "c86b94825d4b7d2d78511e4ee2851e8b64ad23d57fa26b65a313617926d4ae7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **前置检查**：cuda:0 空闲 (0 MiB / 97887 MiB)，`--loss_type jsd` 和 `--lambda_max` 均支持，checkpoint 命名 `predictor_jsd.pt` 确认正确\n- **训练已启动**：PID 226464，tmux session `jsd_30_s42`，日志 `~/runs/distill_sparse_swiglu/jsd_30_s42.log`\n- **Registry**：`jsd_30_s42` → RUNNING，hypothesis 已填写\n\n训练完成后会自动链式执行 7 任务 eval (wikitext2, arc_challenge, winogrande, mmlu, gsm8k, hellaswag, piqa)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-jsd-30-s42.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "c34f10fb8424e2f1362b",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "eval kl50 global s123 downstream",
+  "task_key": "worker_eval_kl50_global_s123_downstream_20260522T174110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_kl50_global_s123_downstream_20260522T174110.jsonl",
+    "occurrence": 1,
+    "bytes": 180,
+    "sha256": "7d25a3b9dcf6ce160945d74e9ea154ea931d0dcb3bfeac5ec98e2e7040a9cce7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T17:41:18.259888+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_kl50_global_s123_downstream_20260522T174110"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/eval-kl50-global-s123-downstream.md"
+}

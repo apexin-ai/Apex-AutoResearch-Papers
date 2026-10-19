@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc1565541fa2f77720c8",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis qwen14b kl30 multiseed logs",
+  "task_key": "worker_analysis_qwen14b_kl30_multiseed_logs_20260519T084025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen14b_kl30_multiseed_logs_20260519T084025_result.json",
+    "occurrence": 1,
+    "bytes": 1712,
+    "sha256": "bfca30115281f18cac1c0e146496cc289202b152845aba2e70e10e9eb542cf92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "以下是结果汇总。\n\n## 训练状态\n\n两个 seed 均**正常完成**（1000/1000 步, EXIT_CODE=0, checkpoint 已保存）。\n\n## 训练日志指标\n\n| 指标 | s42 (参考) | s123 | s456 |\n|---|---|---|---|\n| steps | 1000 | 1000 | 1000 |\n| final_loss (step 1000) | 0.3398 | 0.3633 | 0.3086 |\n| kl_norm (step 1000) | — | 0.3262 | 0.2715 |\n| training_sparsity (稳定值) | 0.281 | 0.281 | 0.281 |\n| sparsity (step 1000) | — | 0.277 | 0.277 |\n| lambda | 5000.00 | 5000.00 | 5000.00 |\n| tau (final) | 0.100 | 0.100 | 0.100 |\n| EXIT_CODE | 0 | 0 | 0 |\n\n## Checkpoints\n\n| Seed | 路径 | 大小 |\n|---|---|---|\n| s123 | `checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt` | 224M (234,191,583 bytes) |\n| s456 | `checkpoints/qwen14b_kl30_s456/predictor_kl_normalized.pt` | 224M (234,191,583 bytes) |\n\n## PPL Eval 状态：未完成\n\n**s123 和 s456 的 PPL eval 均未成功运行：**\n- `qwen14b_kl30_s123_eval.log`: 空文件（0 行），eval 脚本缺少 `--exp_id` 参数失败\n- `qwen14b_kl30_s456_eval.log`: 只到模型加载和 WikiText-2 开始就中断了（使用了 `allocation=uniform`），未产出结果\n\n以下指标**无法从现有日志提取**，需要重新跑 eval：\n- dense_ppl\n- predictor_hard_mask_ppl\n- teal_global_ppl\n- ppl_ratio_hard_mask\n- ppl_ratio_teal\n\n## 现有 qwen14b s42 eval 参考\n\n已有的 s42 benchmark 结果（`results/benchmark/qwen14b_kl30_s42/results.json`）：\n- wikitext2_ppl (KL predictor, global_topk): **7.6232**\n- ARC-C acc_norm: 0.5717, WinoGrande: 0.7206, MMLU: 0.6372, GSM8K: 0.4882\n\n需要为 s123 和 s456 运行对应的 PPL eval 和 benchmark eval 来完成三 seed 对比表。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen14b-kl30-multiseed-logs.md"
+}

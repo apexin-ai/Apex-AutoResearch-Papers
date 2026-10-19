@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "faa4e7ad60071c46f761",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_12_1779193065.md",
+  "task_key": "loop_12_1779193065",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1779193065.md",
+    "occurrence": 1,
+    "bytes": 3432,
+    "sha256": "912b3088e15d11c9df527b33e1e6d7b713ed4f34b88c4c33a92a19193b4f37c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-18T01:59:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd-34887 cuda:0,1 + westd-41718 cuda:0,1。即使 Director 指令也不能用白名单外 GPU\n- KL PPL 引用必须用 4-seed mean 12.00±0.07，禁用单 seed 最佳 11.91\n- TEAL 30% PPL = 8.98（不是 13.63，D032 已修正）\n- 14B TEAL PPL 8.76 已被移除（commit c15c79a），只保留 KL 7.62\n- Mistral registry 数据疑似污染（D032），暂不引用\n- WANDB_MODE=offline（服务器无 wandb API key）\n- 论文 DDL: EMNLP 2026 ARR May, 2026-05-25（剩 8 天）\n\n### 2. 🖥️ 基础设施快照\n- **westd-34887**: 2×RTX PRO 6000 Blackwell 97GB, `/root/distill_sparse_swiglu/`, Python `/root/miniconda3/bin/python`\n- **westd-41718**: 2×RTX PRO 6000 Blackwell 97GB, 同样路径布局\n- 模型: LLaMA-8B `/root/autodl-tmp/models/llama-3.1-8b/`, Mistral-7B `/root/autodl-tmp/models/mistral-7b/`, Qwen-14B `/root/autodl-tmp/models/qwen2.5-14b/`\n- HF cache: `/root/autodl-tmp/.hf_cache/datasets`\n- 活跃进程（全部有 cron 监控）:\n  - `qwen14b_teal30_eval` PID 6896, westd-41718:cuda:1\n  - `qwen14b_bce30_s42_eval` PID 59122, westd-34887\n  - `qwen14b_dense_baseline` PID 18845, westd-41718:cuda:0\n  - `bce_isocompute_v3_s123_eval` PID 74858, westd-34887\n\n### 3. 📊 当前状态\nSession #12 只做了初始化：read_registry + reconcile_crons + 向 Director 汇报。4 个 eval 全部 cron 确认存活，无回调到达。\n\nRegistry 注意：`read_registry(filters={\"status\":\"RUNNING\"})` 只返回 1 个（qwen14b_teal30_eval），但 YAML 文件 grep 和 cron reconcile 均确认 4 个都是 RUNNING。可能是工具 bug，以 cron 和 YAML 为准。\n\n15 个实验处于 PREPARING（后续 pipeline，等当前 eval 完成后触发）。\n\n### 4. 📋 待办（条件触发式）\n- `bce_isocompute_v3_s123_eval` 完成 → 提取 metrics → Table 2 BCE row 升级为 3-seed mean±std → 更新 experiments.tex\n- `qwen14b_dense_baseline` + `qwen14b_bce30_s42_eval` + `qwen14b_teal30_eval` 三者全部完成 → 汇总 14B cross-scale comparison table → 写入论文 cross-arch section → 向 Director 汇报 \"cross-scale data complete, ready for Round 2 review\"\n- 上述全部完成 → 提交 Round 2 review\n- `c4_download` PREPARING → 需 Director 决策是否在 DDL 前做 C4 OOD eval\n- 回调到达时注意 Worker 池 < 2 = 失职，应同时铺非 GPU 任务（论文模板准备、cross-scale 表格 skeleton 等）\n\n### 5. 🎯 战略上下文\n- **核心 narrative**: KL distillation 让 SwiGLU sparsity prediction 不需要 error compensation，实现最简推理管线。A+C 混合 framing。\n- **决策链**: D047 Round 3 reframe → D048 加 Qwen-14B → D049/D050 allocation narrative 定稿为 \"variance reduction only\" → D051 修正 50% s123 MMLU 数据\n- **论文状态**: 7/10 分，文本基本收敛，缺 Qwen-14B cross-scale 表格数据。数据齐后可直接写入并提交 Round 2 review。\n- **易错点**:\n  - 50% global MMLU 三个 seed 几乎无差异（std=0.0019），不要误以为 allocation 在 50% 有效果\n  - training log 中 `sparsity` 列是 training diagnostic，不是推理 sparsity\n  - Uniform allocation 的机制是消除 within-layer neuron selection sensitivity，不是修复 layer-level starvation\n  - Registry read_registry tool 有 bug，RUNNING filter 可能漏返回——以 cron reconcile 和 YAML grep 为准\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1779193065.md"
+}

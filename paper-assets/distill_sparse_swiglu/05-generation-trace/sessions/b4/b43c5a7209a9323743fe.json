@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b43c5a7209a9323743fe",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check 40pct and prep",
+  "task_key": "worker_ops_check_40pct_and_prep_20260520T052904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_40pct_and_prep_20260520T052904_result.json",
+    "occurrence": 1,
+    "bytes": 341,
+    "sha256": "4ba28b6d35bf1817f50b629be52291bef3333a090bb68ec9c3a27e62289d4b16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n40% checkpoint: 缺失（checkpoints 目录中无 *40* 或 *0.4* 相关目录/文件）\n34887 GPU: cuda:0=空闲(0 MiB, 0%), cuda:1=空闲(0 MiB, 0%)\nSNR output: 存在（77KB, May 20 12:54）\n```\n\n最近的 sparsity 级别有 35% (`kl_sparsity35_s42`) 和 45% (`kl_sparsity45_s42`)，但没有 40% 的 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-40pct-and-prep.md"
+}

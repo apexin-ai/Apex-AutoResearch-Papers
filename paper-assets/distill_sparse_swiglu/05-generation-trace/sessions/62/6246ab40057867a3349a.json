@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6246ab40057867a3349a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "exp mistral kl30 s123 train eval",
+  "task_key": "worker_exp_mistral_kl30_s123_train_eval_20260520T121812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_mistral_kl30_s123_train_eval_20260520T121812_result.json",
+    "occurrence": 1,
+    "bytes": 447,
+    "sha256": "7193663358a19fb05ace974080227272e67eacaae3b4e14d06450e377d9e7586"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动，运行正常。\n\n- **PID**: 212471\n- **日志**: `~/runs/distill_sparse_swiglu/mistral_kl30_s123.log`\n- **状态**: Step 10/1000, loss=0.5664, sparsity=0.406, lambda 正在收敛\n\n注意：命令中 `--gpu 0` 实际使用的是 cuda:0 而非 cuda:1。如果确实需要跑在 cuda:1 上，需要在命令前加 `CUDA_VISIBLE_DEVICES=1`。当前 cuda:0 也是空闲的，训练已在 cuda:0 上正常进行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-mistral-kl30-s123-train-eval.md"
+}

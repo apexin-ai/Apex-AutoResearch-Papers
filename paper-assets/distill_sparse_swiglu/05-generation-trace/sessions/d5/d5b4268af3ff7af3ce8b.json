@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5b4268af3ff7af3ce8b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops bench dense check and next",
+  "task_key": "worker_ops_bench_dense_check_and_next_20260516T055447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bench_dense_check_and_next_20260516T055447_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "c42800309a1fa5d7d51bed1353713867ba9a341d08870a5882f4b7e56ee4e5f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "bench_dense 仍在运行——GSM8K generate_until 进度 82% (1081/1319)，约还需 3-4 分钟完成生成部分。\n\n当前状态：\n- **进程 209887**：仍在运行，正在执行 GSM8K (8-shot) 的 generate_until 请求\n- **cuda:0**：占用中（44105 MiB，93% 利用率）\n- **cuda:1**：空闲（0 MiB，0%）\n\n预计 GSM8K 剩余 ~238 个请求 + 后续汇总，大约 3-5 分钟内完成。不更改 registry 状态。\n\n**cuda:1 当前可用于下一个实验。cuda:0 预计 5 分钟内释放。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bench-dense-check-and-next.md"
+}

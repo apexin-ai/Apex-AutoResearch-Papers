@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfded644d7f7143e2f85",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_4_1778896626.md",
+  "task_key": "loop_4_1778896626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778896626.md",
+    "occurrence": 1,
+    "bytes": 5403,
+    "sha256": "7bd4fbe71eb9bbe3ded0c4bd91aff6f213c41ced7383a79c47e7801d96d73618"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-16T01:56:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 cuda:0 和 cuda:1（westd-34887），不得使用其他卡\n- KL PPL 引用：论文中统一用 **4-seed mean 12.00±0.07**，禁止用单 seed 最佳值 11.91\n- BCE framing：禁止 \"anti-learning\"，必须用 **\"objective mismatch\"**（BCE per-neuron binary accuracy vs TEAL global top-k 结构性不兼容）\n- SPON framing：禁止 \"KL subsumes SPON\"，用 **\"marginal complement\"**（cos_sim=0.196, magnitude ratio=16%）\n- s456 outlier：报 \"5-seed mean: 12.32±0.71\" + \"Excluding s456: 12.00±0.07\"，不跑第 6 个 seed\n- **DDL 2026-05-25**（EMNLP 2026 ARR May），距今 9 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-34887**，account=root\n- 工作目录：`/root/distill_sparse_swiglu/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，**非 venv**）\n- HF cache：`/root/autodl-tmp/.hf_cache`（AutoDL 实例，根分区仅 30GB，大文件放 `/root/autodl-tmp/`）\n- 模型路径：Llama-3.1-8B 在 HF cache，Mistral-7B 在 `/root/autodl-tmp/models/mistral-7b/`\n- KL predictor checkpoint (s42)：`/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt`\n- KL sparsity30 v3 checkpoint：`/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt`\n- KL sparsity70 checkpoint：`/root/distill_sparse_swiglu/checkpoints/kl_sparsity70_s42/predictor_kl_normalized.pt`\n- 活跃进程：\n  - **lm_eval_teal_50pct**：PID 187335，tmux session，cuda:0，TEAL training-free downstream eval (arc_c/winogrande/mmlu/gsm8k)\n  - **lm_eval_kl_s42**：PID 179913，tmux session，cuda:1，KL sparse downstream eval（实际已有一轮结果，正在 rerun，见下文）\n- Cron：reconcile 返回 0 个活跃 cron（可能在 session 切换间丢失，需重新注册）\n\n### 3. 📊 当前状态\n**刚做完**：大量诊断工作确认 50% sparsity downstream collapse 是真实现象而非 eval bug（D026）。三重验证：acc_norm 正确、mask 逻辑无 bug（logit diff=0.0）、GSM8K 生成对比显示推理链完全断裂（0/10 正确，无限重复循环）。\n\n**正在跑**：\n- `lm_eval_teal_50pct` (RUNNING, cuda:0)：TEAL training-free 50% downstream eval，目的是验证 downstream 崩溃是所有 50% sparsity 方法的固有限制（不只是 KL predictor 的问题）\n- `lm_eval_kl_s42` (RUNNING, cuda:1)：KL sparse 50% downstream eval rerun。**已有第一轮结果**：ARC-c 0.3771 (-35%), WinoGrande 0.6156 (-21%), MMLU 0.2591 (-60%), GSM8K 0.0121 (-98%)。第一轮 EXIT_CODE=129 (SIGHUP)，PID 179918 在 rerun\n\n**等待中**：\n- lm_eval_teal_50pct 和 lm_eval_kl_s42 的 cron 回调（reconcile 显示 0 个 cron，可能需要重新注册）\n- 多个 PREPARING 实验等 GPU 释放：lm_eval_kl_30pct_s42, lm_eval_mistral_dense, diag_teal_downstream 等\n\n**Registry 统计**：成功 16 / 负向 8 / 失败 5 / 共 50 个实验\n\n### 4. 📋 待办（条件触发式）\n- lm_eval_teal_50pct 完成 → 对比 TEAL vs KL downstream 崩溃程度。若 TEAL 也崩 → 确认 50% sparsity 固有限制，论文 pivot 到 30% 作为推荐配置。若 TEAL 不崩 → KL predictor 特有问题，需深入诊断\n- lm_eval_kl_s42 rerun 完成 → 确认第一轮结果是否可复现（EXIT_CODE=129 可能导致数据不完整）\n- 两个 RUNNING 实验都完成 → cuda:0/1 释放，立即提交 **lm_eval_kl_30pct_s42**（30% downstream eval，高优先级——决定论文能否 claim \"30% 为推荐配置\"）\n- 30% downstream 结果出 → 若 downstream 保持良好 → 论文 story：\"30% sweet spot, 50% shows PPL-downstream disconnect as interesting finding\"\n- GPU 空闲时 → plan_009 Mistral KL 训练（已确认零改动兼容），plan_007 剩余 benchmark\n- Director 未决策：downstream collapse 后的论文 framing 调整方向（D026 确认根因但未出 framing 提案）\n\n### 5. 🎯 战略上下文\n**核心发现链**：KL distillation >> training-free >> BCE（三层梯队确认）。但 50% sparsity 在 downstream 任务上崩溃（PPL 12.00 看似好，实际 GSM8K 近零、MMLU 随机水平）。\n\n**最关键的判断点**：\n- PPL-downstream disconnect 是本文的 **核心发现之一**，不是坏消息。50% sparsity 的 PPL 仍然有意义（衡量语言建模能力），但 downstream 任务需要 30% 配置。论文需要同时报告两个维度\n- **30% sparsity 是救命稻草**——KL 30% PPL=8.98，hard-mask PPL=7.30，都远好于 50%。如果 30% downstream 保持良好，论文 story 就是 \"30% is the practical sweet spot, 50% reveals fundamental sparsity-task trade-off\"\n- plan_008 sparsity sweep 已完成（30%/50%/70% 都有 KL PPL），但缺 30% 和 70% 的 downstream eval\n\n**易踩的坑**：\n- 不要把 hard-mask PPL（predictor 自己的 mask）和 TEAL sparse PPL（TEAL 全局分配后的 PPL）混为一谈——论文主要报 TEAL sparse PPL，因为这是实际推理管线的指标\n- lm_eval_kl_s42 的 notes 里已经有完整结果但状态仍是 RUNNING——不要重复跑，等 rerun 确认或直接用已有结果\n- AutoDL 网络：pip/git 前必须 `source /etc/network_turbo`，HF 下载设 `HF_HUB_DISABLE_XET=1`\n- 所有训练必须加 `--gradient_checkpointing`，否则 OOM\n- lambda_max 对低 sparsity：30% target 用 lambda_max=5000（默认 1000 不够）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778896626.md"
+}

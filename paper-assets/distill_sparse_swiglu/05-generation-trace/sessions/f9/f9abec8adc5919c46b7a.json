@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "f9abec8adc5919c46b7a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis perlayer kl k2 s123 eval",
+  "task_key": "worker_analysis_perlayer_kl_k2_s123_eval_20260523T111250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_perlayer_kl_k2_s123_eval_20260523T111250_result.json",
+    "occurrence": 1,
+    "bytes": 953,
+    "sha256": "82fc619076bf667c81a1aa13d8eebdedc2a1b9d8fe8da938dcb33a43af623a97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成，`EXIT_CODE=0`，无异常。\n\n```json\n{\n  \"wikitext2_ppl\": 10.8835,\n  \"arc_challenge_acc\": 0.3584,\n  \"arc_challenge_acc_norm\": 0.4078,\n  \"winogrande_acc\": 0.6140,\n  \"mmlu_acc\": 0.3789,\n  \"gsm8k_exact_match\": 0.0326,\n  \"hellaswag_acc\": 0.4716,\n  \"hellaswag_acc_norm\": 0.6605,\n  \"piqa_acc\": 0.7323,\n  \"piqa_acc_norm\": 0.7410\n}\n```\n\n状态：评估成功完成（耗时 4026.2s），结果已保存到 `/root/distill_sparse_swiglu/results/benchmark/perlayer_kl_k2_s123_eval/results.json`。唯一的非致命警告是 `fatal: not a git repository`（不影响结果）。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "wikitext2_ppl": 10.8835,
+              "arc_challenge_acc": 0.3584,
+              "arc_challenge_acc_norm": 0.4078,
+              "winogrande_acc": 0.614,
+              "mmlu_acc": 0.3789,
+              "gsm8k_exact_match": 0.0326,
+              "hellaswag_acc": 0.4716,
+              "hellaswag_acc_norm": 0.6605,
+              "piqa_acc": 0.7323,
+              "piqa_acc_norm": 0.741
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-perlayer-kl-k2-s123-eval.md"
+}

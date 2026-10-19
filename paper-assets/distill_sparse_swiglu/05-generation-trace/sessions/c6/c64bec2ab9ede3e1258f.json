@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c64bec2ab9ede3e1258f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diag revkl 30 s42 boolq uniform",
+  "task_key": "worker_diag_revkl_30_s42_boolq_uniform_20260522T031503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_revkl_30_s42_boolq_uniform_20260522T031503_result.json",
+    "occurrence": 1,
+    "bytes": 1707,
+    "sha256": "eaa43483cd50ace314171bbadd7d73df882b1cdee4683898eb2961e67515e44b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n---\n\n## 诊断报告：`revkl_30_s42_boolq_uniform` 失败\n\n### 错误信息\n\n```\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/aps/super_glue/resolve/.../super_glue.py\nRetrying in 1s [Retry 1/5].\n...\nRuntimeError: Cannot send a request, as the client has been closed.\n```\n\nTraceback 路径：`lm_eval.simple_evaluate` → `task_manager.load` → `ConfigurableTask.__init__` → `download` → `datasets.load_dataset` → `hf_hub_download` → 网络请求失败。\n\n### 根因\n\n**westd-41718 无法访问外网（HuggingFace）。** `lm-eval-harness` 在加载 BoolQ 任务时需要从 HuggingFace 下载 `super_glue` 数据集，而 westd-41718 网络不可达（Errno 101）。重试 5 次后 httpx client 被关闭，抛出 `RuntimeError`。\n\nwestd-41718 上不存在 `super_glue` 数据集的本地缓存，而 **westd-34887 上有缓存**（`/root/autodl-tmp/.hf_cache/datasets/super_glue`）。\n\nCheckpoint 文件、模型加载、mask 计算均正常（已成功打印 32 层 sparsity）。代码本身无问题。\n\n### 修复方案\n\n**方案 A（推荐）：从 westd-34887 同步数据集缓存到 westd-41718**\n\n```bash\n# 在 westd-41718 上\nscp -r westd-34887:/root/autodl-tmp/.hf_cache/datasets/super_glue /root/autodl-tmp/.hf_cache/datasets/\n```\n然后设置 `HF_DATASETS_OFFLINE=1` 重跑，避免再次触发网络请求。\n\n**方案 B：改在 westd-34887 上运行此评估**（该服务器有缓存且网络可达）。\n\n**方案 C：在 westd-41718 上启用代理**（`source /etc/network_turbo`），然后重跑让它在线下载。\n\n需要我执行修复吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-revkl-30-s42-boolq-uniform.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9abd81f1299cf5566cdf",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops p0 c1 eval urgent v2",
+  "task_key": "worker_ops_p0-c1-eval-urgent-v2_20260518T161626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_p0-c1-eval-urgent-v2_20260518T161626_result.json",
+    "occurrence": 1,
+    "bytes": 469,
+    "sha256": "aabd4c6a6a15dd95b933d21f54dec2536d9e6a5529af94d5a26ab46b2bcb81a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n### 产出\n\n1. **KL predictor hard mask**: PPL = **9.21**, actual sparsity = **0.6064 (60.6%)**\n2. **C1 eval 已提交**: PID = **85155** (westd-41718 cuda:0, 日志 `logs/c1_ablation_eval_uniform.log`)\n3. **BCE 30% 结果**: 成功。1000 steps, final loss = 0.607, bce = 0.581, sparsity = 0.042。注意实际 sparsity 仅 4.2%（远低于 30% target），Lagrangian 约束未充分推高稀疏度。Registry 已更新为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-p0-c1-eval-urgent-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "754e7a6d88f0654365cf",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops full 4gpu status check",
+  "task_key": "worker_ops_full_4gpu_status_check_20260520T004148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full_4gpu_status_check_20260520T004148_result.json",
+    "occurrence": 1,
+    "bytes": 1166,
+    "sha256": "c9930ff45deeff1d477ae3ab17db59000e2ae0da99b79c97deade548c0429f68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 4 GPU 实验状态汇总\n\n### westd-41718\n\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| cuda:0 | 98% | 45551/97887 MiB | PID 182924 运行中 (43min) |\n| cuda:1 | 0% | 0 MiB | 空闲 |\n\n**bench_teal50_uniform_6task** — 运行中\n- 进度: 78% (31137/40168 loglikelihood requests)\n- 已耗时 ~24min，预估剩余 ~6min\n- results.json 尚未生成\n\n**kl30_uniform_hspiqa_s123** — ✅ 已完成\n\n| Task | acc | acc_norm |\n|------|-----|----------|\n| HellaSwag | 0.5100 | 0.7067 |\n| PIQA | 0.7410 | 0.7481 |\n\n---\n\n### westd-34887\n\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| cuda:0 | 0% | 0 MiB | 空闲 (PID 142999 已结束) |\n| cuda:1 | 73% | 37277/97887 MiB | PID 133911 运行中 (4h03m) |\n\n**kl30_uniform_hspiqa_s456** — ✅ 已完成\n\n| Task | acc | acc_norm |\n|------|-----|----------|\n| HellaSwag | 0.5112 | 0.7168 |\n| PIQA | 0.7410 | 0.7524 |\n\n**qwen14b_teal30_uniform_gsm8k** — 运行中\n- 进度: 74% (977/1319 generate_until requests)\n- 已耗时 ~4h，预估剩余 ~1h20m\n- 速率 ~14.6s/it (generate_until 比 loglikelihood 慢很多)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-4gpu-status-check.md"
+}

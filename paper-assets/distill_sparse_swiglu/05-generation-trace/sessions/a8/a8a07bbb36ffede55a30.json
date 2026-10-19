@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8a07bbb36ffede55a30",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_11_1779069280.md",
+  "task_key": "loop_11_1779069280",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1779069280.md",
+    "occurrence": 1,
+    "bytes": 4066,
+    "sha256": "19eafe95d064a50ad93efdf28ff81028abdba4d868a55689a58b7112cd7eb5a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-18T00:50:07+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-34887 cuda:0,1 + westd-41718 cuda:0,1，共 4 卡。超出必须 push back Director\n- westd-34887:cuda:1 当前空闲（report 显示\"分配了没跑\"），下一轮需立即利用或向 Director 说明\n- BCE iso-compute s123 训练（bce_isocompute_v3_s123）仍在 PREPARING，是 3-seed 验证最后一块拼图，必须尽快提交\n- 论文数字必须有代码/log 来源（C003），不可凭记忆填写\n- Qwen-14B 的 TEAL PPL 8.76 在论文中已被删除（commit 4ae121c），不要再引用这个数字\n\n### 2. 🖥️ 基础设施快照\n- **westd-34887**: RTX PRO 6000 Blackwell ×2, 工作目录 ~/runs/distill_sparse_swiglu/\n  - cuda:0 → qwen14b_bce30_s42_eval (PID 59122)\n  - cuda:1 → 空闲\n  - 磁盘：/usr/bin/nvidia-smi 817G/879G 可用(3%)\n- **westd-41718**: RTX PRO 6000 Blackwell ×2, 同上目录结构\n  - cuda:0 → qwen14b_dense_baseline (PID 18845)\n  - cuda:1 → qwen14b_teal30_eval (PID 6896)\n  - 磁盘：764G/879G 可用(9%)\n- W&B: entity/project 从 project config 获取（load_project_config）\n- 训练代码在远程服务器，论文在本地 projects/distill_sparse_swiglu/paper/\n\n### 3. 📊 当前状态\n**刚做完**：收到 `bce_isocompute_v3_s456_eval` 完成回调（ANALYZING），已派 Worker `worker_analysis_bce_isocompute_v3_s456_eval_20260517T204713` 去 SSH 读日志 + 提取 metrics + 更新 registry。Worker 尚未回调。\n\n**RUNNING (3)**:\n| exp_id | server | gpu | 摘要 |\n|--------|--------|-----|------|\n| qwen14b_bce30_s42_eval | westd-34887:0 | PID 59122 | Qwen-14B BCE 30% downstream eval |\n| qwen14b_dense_baseline | westd-41718:0 | PID 18845 | Qwen-14B dense baseline downstream |\n| qwen14b_teal30_eval | westd-41718:1 | PID 6896 | Qwen-14B TEAL 30% downstream eval |\n\n**PREPARING (16)**：bce_isocompute_v3_s123（最关键，3-seed 最后一个）、c4_download、c4_ood_kl30_s42、wallclock_speedup_30_50、kl50_s456_train/eval、kl50_s123_eval、mag_preservation_reg、longbench_dense_v5、kl_lagrangian_v2 等。\n\n**等待中**：\n- Worker 回调：bce_isocompute_v3_s456_eval 分析 Worker\n- Cron 监控：3 个 RUNNING 实验的进程存活 cron\n- Director 决策：无阻塞项\n\n### 4. 📋 待办（条件触发式）\n- Worker 回调（bce_isocompute_v3_s456_eval 分析）→ 更新 report.md，与 s42 对比确认一致性，汇报 Director\n- bce_isocompute_v3_s456_eval 确认 success → 立即在 westd-34887:cuda:1 提交 bce_isocompute_v3_s123 训练（3-seed 最后一块）\n- qwen14b_dense_baseline 完成 → 拿 dense baseline 数字，计算 KL/BCE/TEAL 的 degradation ratio\n- qwen14b_bce30_s42_eval + qwen14b_teal30_eval 都完成 → 组装 Qwen-14B cross-scale 对比表，写入论文 cross-arch section\n- 3 个 Qwen-14B eval 全部完成 → 汇报 Director，提交 Round 2 review（之前 blocked on Qwen-14B）\n- bce_isocompute_v3_s123 训练完成 → 提交 s123 eval → 3-seed mean±std 完整 → 更新 Table 2 BCE 行\n\n### 5. 🎯 战略上下文\n- **DDL**: EMNLP 2026 ARR May = 2026-05-25，剩 7 天\n- **论文评分**: 7/10，Round 1 审稿 3.0/5，4 critical 已全部 resolved\n- **核心结论**：KL >> BCE 在 50% sparsity（PPL 12.00 vs 27.97 iso-compute），优势来自 loss 函数本身（coupled gradient）而非计算量\n- **Claim 3 phase transition**：30%/40%/50% × global/uniform 完整矩阵已填满，non-monotonic allocation preference 是关键 insight\n- **易错点**：\n  - Qwen-14B 的 BCE TEAL PPL 数字（8.76）已从论文中删除因无法验证，不要重新引入\n  - kl50_global_s123_reeval 标记为 success 但 EXIT_CODE=1，之前有数据修正（D051），使用其结果时需小心核对\n  - bce_isocompute_v3_s123 是 PREPARING 不是 RUNNING，westd-34887:cuda:1 空着是因为刚完成 s456_eval，需要立即安排\n  - Table 2 的 BCE 行目前只有 s42 一个 seed 的 eval，s456 eval 刚完成待确认，s123 尚未训练——3-seed 验证是投稿前必须完成的\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1779069280.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea3596933b26af070d4d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check c1 eval and server status",
+  "task_key": "worker_ops_check-c1-eval-and-server-status_20260519T013154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-c1-eval-and-server-status_20260519T013154_result.json",
+    "occurrence": 1,
+    "bytes": 1850,
+    "sha256": "7fb659b6df4f74cd3588fb0e923fa22c249e0b69e201d5cfaf6aea3c857ebd88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### 1. westd-34887 GPU 占用\n| GPU | 状态 | 显存 | 进程 |\n|-----|------|------|------|\n| cuda:0 | **100% util** | 49099/97887 MiB | PID 68690 (python) |\n| cuda:1 | 空闲 | 0 MiB | - |\n\n### 2. c1_ablation_30pct_eval_34887（当前进程）\n- **状态：运行中** — tmux session 存活，PID 68680 存活\n- 启动于 09:28，当前正在跑 MMLU (~81% loglikelihood requests)\n- 已完成：PPL = 9.4463，ARC 已完成\n- 待完成：MMLU 剩余 + GSM8K\n\n### 3. c1_ablation_30pct_s42_eval_34887（前一轮 eval，已完成）\n**同一 checkpoint，完整结果已出：**\n\n| Metric | Value |\n|--------|-------|\n| **WikiText-2 PPL** | **9.4463** |\n| ARC-Challenge acc | 0.3652 |\n| ARC-Challenge acc_norm | **0.4027** |\n| WinoGrande acc | **0.6740** |\n| MMLU acc | **0.4229** |\n| GSM8K exact_match | **0.0758** |\n\n结果已保存至 `results/benchmark/c1_ablation_30pct_s42_eval/results.json`\n\n### 4. c1_ablation_30pct_s42_v2（训练日志）\n训练正常完成（925s），最终 BCE=0.0609，sparsity=0.303，agreement=0.975。但训练后内置 eval 因 `TypeError: get_eval_dataset() missing 1 required positional argument` 崩溃（已由独立 benchmark_eval.py 补救）。\n\n### 5. BCE iso-compute checkpoint\n**存在** — `/root/distill_sparse_swiglu/checkpoints/bce_isocompute_v3_s42/predictor_bce.pt`（145MB，May 16）\n\n### 6. westd-41718\n| GPU | 状态 |\n|-----|------|\n| cuda:0 | 空闲（0 MiB）|\n| cuda:1 | 空闲（0 MiB）|\n\n无 python 实验进程，仅 jupyter-lab + tensorboard 后台服务。\n\n---\n\n**关键结论：** C1@30% eval 结果已经在前一轮完整跑出。当前进程是重复 eval（同一 checkpoint + 同一参数），可以考虑终止以释放 GPU。两台机器共 3 块 GPU 空闲（34887 cuda:1 + 41718 cuda:0/1）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-c1-eval-and-server-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd9c248320fcb16c6c5c",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_15_1779495194.md",
+  "task_key": "loop_15_1779495194",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1779495194.md",
+    "occurrence": 1,
+    "bytes": 4105,
+    "sha256": "2b98149eeebeec0b8d0f8d861bbccc0110992e2330aef5077c058db8e01ee6d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-23T00:04:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-41718 cuda:0,1 + westd-34887 cuda:0,1（共 4× RTX PRO 6000）\n- DDL：2026-05-25 EMNLP 2026 ARR May cycle\n- per-layer KL 50% PPL=34.85 已标 negative（D095），已纳入论文 2D decomposition 叙事但作为\"coupling scope 在高 sparsity 更关键\"的证据，不是方法失败\n- Table 4 allocation 规则：30% 列用 uniform，50% 列用 global（D091）\n- MSE 50% 已放弃（sparsity 坍缩到 5.1%，D092），不要再跑\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-41718 + westd-34887，工作目录 /root/distill_sparse_swiglu\n- Python：/root/miniconda3/bin/python（conda base 环境，不是 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：/root/autodl-tmp/models/llama-3.1-8b\n- HF cache：/root/autodl-tmp/.hf_cache（离线模式：HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1）\n- 代码：src/train_perlayer_kl.py, src/benchmark_eval.py, src/train_kl.py 等\n- 活跃进程：qwen14b_kl30_s42_gsm8k_uniform (PID 14263, westd-41718, cron 监控中)\n- 活跃 cron：perlayer_kl_50_s42_downstream（刚创建 <10s，也在 westd-41718）\n\n### 3. 📊 当前状态\n刚收到 `perlayer_kl_50_s42_ppl` 完成回调（benchmark eval, PPL eval for per-layer KL 50%）。已 spawn Worker (`worker_analyze_perlayer_kl_50_s42_ppl_20260522T071107`) 去读日志提取 PPL 结果，**尚未收到 Worker 回调**。\n\nRegistry 关键状态：\n- `perlayer_kl_50_s42_ppl`：PREPARING→应已完成，等 Worker 分析后更新到 DONE\n- `perlayer_kl_50_s42`：ANALYZING，conclusion=negative，PPL=34.85（训练 eval）\n- `perlayer_kl_50_s42_downstream`：刚提交，cron 刚创建（downstream 6-task eval for 50% sparsity）\n- `qwen14b_kl30_s42_gsm8k_uniform`：RUNNING（PID 14263，westd-41718）\n- Round 19 审稿：已提交 fresh review，等用户审批\n\n等待中：\n1. Worker `analyze_perlayer_kl_50_s42_ppl` 回调 → 更新 registry metrics + conclusion\n2. `perlayer_kl_50_s42_downstream` cron 回调 → 50% downstream 6-task 结果\n3. `qwen14b_kl30_s42_gsm8k_uniform` cron 回调 → Qwen 14B GSM8K 结果\n4. Round 19 审稿用户审批\n\n### 4. 📋 待办\n- Worker analyze 回调到达 → 用 PPL 数值 update_registry(perlayer_kl_50_s42_ppl, status=DONE) + 确认与训练 eval 34.85 一致性 → 如果 benchmark PPL 与训练 eval 差异大则需诊断\n- perlayer_kl_50_s42_downstream cron 回调 → 提取 6-task 指标 → 与 E2E KL 50% downstream 对比 → 更新 Table 4 50% 行 → 汇报 Director\n- qwen14b_kl30_s42_gsm8k_uniform 回调 → Qwen 14B GSM8K 结果 → 更新 Qwen 14B 跨模型验证表\n- 父实验 perlayer_kl_50_s42 仍在 ANALYZING → Worker 回调后一并推到 DONE（metrics 已有，只差 benchmark eval 确认）\n- Round 19 审稿批准 → 按 review-report-action skill 处理审稿反馈\n\n### 5. 🎯 战略上下文\n- 核心论点：KL distillation（output-distribution alignment）是 PPL 的主导设计维度；cross-layer coupling 主要贡献 downstream fidelity。这是\"2D decomposition\"叙事（signal type × coupling scope）。\n- 关键数据锚点：E2E KL 30% PPL=8.81±0.02，per-layer KL 30% PPL=9.05±0.02（gap 仅 2.7%），证明 signal type 占 PPL gap 97.5%。\n- per-layer KL 50% PPL=34.85 是 negative 但有论文价值：它证明 coupling scope 在高 sparsity 下变得关键（D095），强化 2D decomposition 的\"交互效应\"叙事。\n- 易错点：不要把 50% 的 negative 当成方法失败——它是 2D decomposition claim 的支撑证据（高 sparsity 下 coupling 从次要变为主导）。\n- 论文已近终版（BoolQ 3-seed 落地，编译通过），主要在等审稿反馈。新实验（50% 行、Qwen 14B GSM8K）是填充 Table 4 空行和跨模型验证。\n- cross_seed_jaccard_r18w7 结果 negative（R18-W7 审稿意见相关），cross-seed mask Jaccard 距离与 KL-vs-magnitude 分歧 comparable，说明 divergence 不完全由 loss function design 驱动。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1779495194.md"
+}

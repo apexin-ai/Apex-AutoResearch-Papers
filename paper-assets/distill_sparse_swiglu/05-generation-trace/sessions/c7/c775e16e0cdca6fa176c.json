@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c775e16e0cdca6fa176c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval qwen14b kl30 s42 eval uniform",
+  "task_key": "worker_eval_qwen14b_kl30_s42_eval_uniform_20260519T131426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen14b_kl30_s42_eval_uniform_20260519T131426_result.json",
+    "occurrence": 1,
+    "bytes": 393,
+    "sha256": "afbe487ef96116bd509b1b86a72fa16d281c91f6e91dfa0cdd8ee719d5d68fbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交并在运行中：\n\n- **exp_id**: `qwen14b_kl30_s42_eval_uniform`\n- **PID**: 107634 on westd-34887 cuda:1\n- **日志**: `logs/qwen14b_kl30_s42_eval_uniform.log`\n- **Registry**: RUNNING，spec 已补充\n\n日志显示已完成 sparsity allocation 计算（model-level 0.275）并开始 WikiText-2 PPL 评估。预计 ~15 分钟完成全部 6 个 benchmark。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen14b-kl30-s42-eval-uniform.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "876191027ba88b2f9e57",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops verify s123 s456 checkpoints",
+  "task_key": "worker_ops_verify_s123_s456_checkpoints_20260519T182224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_s123_s456_checkpoints_20260519T182224_result.json",
+    "occurrence": 1,
+    "bytes": 380,
+    "sha256": "664f77b333c98e2c539a7c985a532715410aad293f12f3baa5f646f210cd7d41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 checkpoint 均存在：\n\n| Checkpoint | 大小 | 时间 |\n|---|---|---|\n| `qwen14b_kl30_s123/predictor_kl_normalized.pt` | 223.3 MB (234,191,583 bytes) | May 19 23:10 |\n| `qwen14b_kl30_s456/predictor_kl_normalized.pt` | 223.3 MB (234,191,583 bytes) | May 19 23:35 |\n\n两个文件大小完全一致（234,191,583 bytes ≈ 223.3 MB），符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-s123-s456-checkpoints.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef6e34e5b09019e8d888",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "submit westd 34887 2gpu",
+  "task_key": "worker_submit_westd-34887-2gpu_20260518T042321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_westd-34887-2gpu_20260518T042321_result.json",
+    "occurrence": 1,
+    "bytes": 467,
+    "sha256": "e9535d9eee3fc2e01003acadd122926905965b62a0a6187b0bb646c9460765a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 job 已提交并确认运行：\n\n| Job | GPU | PID | 显存 | GPU-Util |\n|---|---|---|---|---|\n| **kl50_s123_eval** (downstream eval) | cuda:0 | 99954 | 41718 MiB | 0% (模型加载中) |\n| **kl50_s456_train** (s456 训练) | cuda:1 | 100263 | 41718 MiB | 96% |\n\n两卡均已占用，nohup 启动，日志分别写入 `/root/runs/distill_sparse_swiglu/kl50_s123_eval.log` 和 `kl50_s456_train.log`。Registry 状态已更新为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-westd-34887-2gpu.md"
+}

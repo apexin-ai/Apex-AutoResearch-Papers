@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edb88a679851b3aea682",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh check westd 34887 status",
+  "task_key": "worker_ssh_check_westd_34887_status_20260520T124806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_westd_34887_status_20260520T124806_result.json",
+    "occurrence": 1,
+    "bytes": 1633,
+    "sha256": "71abf914e5ffebb538b94821d6382022537b8fa088193abf81a4335f81ea4708"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 1. GPU 占用\n\n| GPU | 状态 | 显存 | 利用率 | 温度 |\n|-----|------|------|--------|------|\n| cuda:0 | **占用中** | 54025 / 97887 MiB | 100% | 76°C |\n| cuda:1 | **空闲** | 3 / 97887 MiB | 0% | 28°C |\n\n### 2. Python 进程\n\n唯一的 python 训练进程（PID 212478）在 cuda:0 上运行 Mistral KL30 s123 训练。\n\n### 3. Mistral KL30 s123 训练状态\n\n- **进度**：Step **840/1000**（84%），约还剩 160 步\n- **指标趋稳**：loss ~0.095, KL ~0.095, sparsity ~0.28-0.29, lambda=5000, constraint=0\n- **Checkpoint 目录**：`checkpoints/mistral_kl30_s123/` 目前为空（尚未保存 checkpoint，应在训练结束时生成）\n- **启动方式**：nohup（符合 C002 约束），训练完成后会自动链式运行 `benchmark_eval.py` 评估\n- **日志**：`~/runs/distill_sparse_swiglu/mistral_kl30_s123.log`\n- **预计还需**：按当前速率（~30分钟跑了840步），约 5-6 分钟完成训练，之后进入 eval 阶段\n\n### 4. 40% Global Eval v2 结果\n\n已完成（2026-05-20 18:53），LLaMA-3.1-8B, TEAL global_topk 40% sparsity：\n\n| 指标 | 值 |\n|------|-----|\n| WikiText2 PPL | **10.14** |\n| ARC-C (acc_norm) | 39.51% |\n| WinoGrande | 67.48% |\n| MMLU | 39.47% |\n| GSM8K | 6.6% |\n| HellaSwag (acc_norm) | 67.79% |\n| PIQA (acc_norm) | 72.69% |\n\n### 5. cuda:0 可用性\n\n**cuda:0 当前不可用**。Mistral KL30 s123 训练正在使用，预计还需约 5-6 分钟完成训练 + eval 时间（eval 7 个 benchmark 通常需 30-60 分钟）。**cuda:1 空闲**，可以考虑在 cuda:1 上启动 Mistral s456。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-westd-34887-status.md"
+}

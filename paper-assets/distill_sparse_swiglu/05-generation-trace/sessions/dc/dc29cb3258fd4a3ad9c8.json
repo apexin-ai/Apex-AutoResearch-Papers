@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc29cb3258fd4a3ad9c8",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh eval s456 three mode",
+  "task_key": "worker_ssh_eval-s456-three-mode_20260515T164026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval-s456-three-mode_20260515T164026_result.json",
+    "occurrence": 1,
+    "bytes": 518,
+    "sha256": "ade66c7bdded8a566d9bc934ab4a10920f0b522106a058254699e197e10a48e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成，registry 已更新。\n\n**mvp_kl_norm_v2_s456 评估结果：**\n\n| 指标 | 值 |\n|------|-----|\n| true_dense_ppl | 6.1173 |\n| predictor_hard_mask_ppl | 9.14 |\n| teal_sparse_ppl | 13.58 |\n| model_level_sparsity | 0.498 |\n| ppl_increase_vs_true_dense_pct | 121.9% |\n\ntrue_dense_ppl = 6.1173，与其他 5 个 checkpoint 一致。teal_sparse_ppl = 13.58，高于 s42 (12.08) 和 s123 (11.91)，但在预期范围内。status/conclusion 已为 DONE/success，无需额外更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-s456-three-mode.md"
+}

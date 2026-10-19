@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b5a5642b5c2892cb1cf",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops kill duplicate c1 34887",
+  "task_key": "worker_ops_kill-duplicate-c1-34887_20260519T002529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-duplicate-c1-34887_20260519T002529_result.json",
+    "occurrence": 1,
+    "bytes": 595,
+    "sha256": "79eff9343005adbd5fbc93ef20ff33e2b890d0f721ba1a2ed1ba2af500478820"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n1. **PID 64486 已杀掉** — `ps aux` 无匹配输出，确认已终止。\n2. **dense_baseline_hellaswag_piqa** — tmux session 正常运行，日志显示 HellaSwag 10-shot 评估已完成，当前正在 tokenize PIQA 数据集（进度 ~38%）。\n3. **GPU 0 状态** — `nvidia-smi` 显示 GPU 0 上有两个 python 进程（PID 64493 占 63052 MiB，PID 65380 占 18252 MiB），两个都属于 dense baseline 评估（主进程 + lm-eval worker），无重复 C1 训练进程残留。\n\nGPU 0 已清理干净，dense baseline 评估正常推进中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-duplicate-c1-34887.md"
+}

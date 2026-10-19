@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f781202c8b206ae5566",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code find predictor wrapper",
+  "task_key": "worker_code_find_predictor_wrapper_20260521T020004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_find_predictor_wrapper_20260521T020004_result.json",
+    "occurrence": 1,
+    "bytes": 3195,
+    "sha256": "d4997879785ec6edfc26769761e79fde32d7e015cf0404ad55641e311459fcd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件路径：`/root/distill_sparse_swiglu/src/predictor.py`（199 行）\n\n## 完整源代码（关键部分）\n\n### `PredictorWrapper` 类（line 94-199）\n\n**初始化**：\n- 接受 `model` + `bottleneck_size=128`（默认）\n- 冻结 base model 所有参数\n- 创建 `num_layers` 个 `SparsityPredictor`（每层独立）\n- 共享一个 `GumbelSigmoidMask`（无可学习参数）\n- 默认 `sparse_mode=True`\n- `comp_network=None`, `use_compensation=False`\n\n**Monkey-patch 机制（`_patch_single_mlp`）**：每层 MLP 的 `forward` 被替换为 `patched_forward`。\n\n### `forward_sparse` 实现细节\n\n```python\ndef patched_forward(x):\n    gate = act_fn(gate_proj(x))      # SwiGLU gate\n    up = up_proj(x)\n    intermediate = gate * up         # SwiGLU intermediate\n\n    if wrapper.sparse_mode:\n        logits = predictor(x)                              # per-layer predictor: hidden -> intermediate\n        mask = wrapper.gumbel_mask(logits)                 # Gumbel-sigmoid (train) / hard threshold (eval)\n        wrapper._layer_masks[layer_idx] = mask             # 缓存 mask\n        result = down_proj(intermediate * mask)            # 应用 mask 后 down_proj\n        if wrapper.use_compensation and wrapper.comp_network is not None:\n            result = result + wrapper.comp_network.forward_layer(layer_idx, x)  # 补偿\n        return result\n    elif wrapper.capture_intermediates:\n        wrapper._layer_intermediates[layer_idx] = intermediate.detach()\n        wrapper._layer_inputs[layer_idx] = x.detach()\n\n    return down_proj(intermediate)   # dense path\n```\n\n`forward_sparse(input_ids, ...)`（line 184-187）：设置 `sparse_mode=True` → 调 `self.forward` → 走 patched MLP 路径，每层都用 `predictor[layer_idx]` 产生 logits → `gumbel_mask` 二值化 → mask 乘到 intermediate。\n\n### `forward_dense`（line 172-182）\n\n设置 `sparse_mode=False`，在 `torch.no_grad()` 下跑 base model；`capture_intermediates=True` 时缓存每层 `intermediate`（gate*up）和 `x`（MLP 输入）；返回后复位 `sparse_mode=True`。\n\n### `get_masks`（line 189-190）\n\n`return dict(self._layer_masks)` — 返回上一次 forward 各层缓存的 mask 字典 `{layer_idx: mask_tensor}`。Mask 是在 `patched_forward` 里写入的，没有\"批量收集\"步骤。\n\n### `GumbelSigmoidMask` 的 per-layer 工作方式（line 54-72）\n\n**不是 per-layer**：`PredictorWrapper` 只持有**一个共享** `self.gumbel_mask`（无参数）。Per-layer 差异来自 **`predictors[layer_idx]`** 产生的不同 logits，`gumbel_mask` 只是把 logits 二值化：\n- **训练 (`self.training and not self.hard`)**: 加 Gumbel 噪声，sigmoid + 温度 `tau=1.0`（默认），返回 soft mask（梯度可传）\n- **推理或 `hard=True`**: `(logits > 0).to(dtype)` 硬阈值\n\n### 关键超参（与 C003 对照）\n- `SparsityPredictor`: GELU 激活 ✓, `bottleneck_size=128` ✓, structure = `Linear(hidden, 128) → GELU → Linear(128, intermediate)`\n- `CompensationHead`: GELU, `bottleneck_size=256`（默认，与 predictor 不同）\n- `GumbelSigmoidMask`: `tau=1.0`, `hard=False` (默认)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-find-predictor-wrapper.md"
+}

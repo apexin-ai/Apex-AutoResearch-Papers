@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84f3da9786cf6fdde1aa",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code check kl30 s42 v3 result",
+  "task_key": "worker_code_check_kl30_s42_v3_result_20260519T155540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_kl30_s42_v3_result_20260519T155540_result.json",
+    "occurrence": 1,
+    "bytes": 718,
+    "sha256": "926d3dc9553de149d5c16c7e438f5c947ecaf30df3b7c8511d539af55186d2dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。Cron job 不存在（可能已被清除）。\n\n**结果汇报：**\n\n- **Conclusion**: success\n- **耗时**: 5192.4s (~86 min)\n- **Log**: `~/runs/distill_sparse_swiglu/qwen14b_kl30_s42_eval_uniform_v3.log`\n- **Results**: `/root/distill_sparse_swiglu/results/benchmark/qwen14b_kl30_s42_eval_uniform_v3/results.json`\n\n**Metrics (Qwen2.5-14B, KL predictor, 30% sparsity, uniform allocation, sigmoid fix):**\n\n| Task | Metric | Value |\n|------|--------|-------|\n| WikiText-2 | PPL | **7.8715** |\n| ARC-Challenge | acc_norm | **0.5495** |\n| WinoGrande | acc | **0.7127** |\n| HellaSwag | acc_norm | **0.7268** |\n| PIQA | acc_norm | **0.7476** |\n| MMLU | acc | **0.6480** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-kl30-s42-v3-result.md"
+}

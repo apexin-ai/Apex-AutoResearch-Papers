@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e036b8e074c0b5424408",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "verify d029 checkpoint readiness",
+  "task_key": "worker_verify_d029_checkpoint_readiness_20260516T044851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_d029_checkpoint_readiness_20260516T044851_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "c395b2fa769c72514e067f871f774e8f5fbe323656e9b63c79ab4f96f1012f62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/_project/intermediate/d029_readiness_check.md`。\n\n核心结论：\n\n- **6 个 checkpoint 全部就绪**，均为 145M，路径和文件名与命令匹配\n- STE checkpoint 确认文件名为 `predictor_kl_normalized.pt`\n- 模型目录、输出目录、磁盘空间、脚本参数全部 OK\n- `--dense`, `--baseline_mode`, `--allocation uniform` 参数均存在\n- **BCE v3 (PID 205598) 刚跑 11 分钟，checkpoint 目录为空** — 建议先用 v2 跑，v3 完成后单独替换\n\n**D029 可以立即启动。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-d029-checkpoint-readiness.md"
+}

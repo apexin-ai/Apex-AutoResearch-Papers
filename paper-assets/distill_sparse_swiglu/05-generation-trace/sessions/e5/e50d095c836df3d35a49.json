@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e50d095c836df3d35a49",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh monitor kl v2 early",
+  "task_key": "worker_ssh_monitor-kl-v2-early_20260515T151956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_monitor-kl-v2-early_20260515T151956_result.json",
+    "occurrence": 1,
+    "bytes": 719,
+    "sha256": "fbc1baccb4e6ab07d010b83a25a181910250d73953dd0d83aa10680c7d79daf4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无错误、无 OOM、无 Traceback。汇总结果：\n\n```\ns42  step 1:  kl_raw=1.1797, kl_norm=1.179688, sparsity=0.406\ns42  step 50: kl_raw=0.6641, kl_norm=0.664062, sparsity=0.516\ns123 step 1:  kl_raw=1.0703, kl_norm=1.070312, sparsity=0.406\ns123 step 50: kl_raw=0.6562, kl_norm=0.656250, sparsity=0.514\n```\n\n验证：\n- **kl_norm ≈ kl_raw**: 两个实验全部步骤 kl_norm = kl_raw（差异 < 0.001），bug 修复确认生效。旧 bug 的 kl_norm≈7e-5 不再出现。\n- **kl_raw 下降**: s42 1.18→0.66, s123 1.07→0.66，均在下降 ✓\n- **sparsity 范围**: 两个都从 0.406 → 0.51x，在 0.3-0.6 范围内 ✓\n- **无 OOM/Error/Traceback** ✓\n\n**VERDICT: BOTH OK**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-monitor-kl-v2-early.md"
+}

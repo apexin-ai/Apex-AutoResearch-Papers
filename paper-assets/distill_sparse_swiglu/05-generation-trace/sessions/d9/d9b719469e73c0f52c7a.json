@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "d9b719469e73c0f52c7a",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "code anon repo final push",
+  "task_key": "worker_code_anon_repo_final_push_20260524T004702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anon_repo_final_push_20260524T004702.log",
+    "occurrence": 1,
+    "bytes": 856552,
+    "sha256": "c1adfe6ad21d06b6b90ced405f3f6b0330873c4b29ffd5cc10408c15ef62873b"
+  },
+  "statistics": {
+    "messages": 261,
+    "user_turns": 1,
+    "tool_calls": 62,
+    "roles": {
+      "log": 1,
+      "system": 94,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 62,
+      "tool_result": 62,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 132,
+      "chunks": [
+        {
+          "path": "d9b719469e73c0f52c7a-part-0001.json",
+          "message_count": 104
+        },
+        {
+          "path": "d9b719469e73c0f52c7a-part-0002.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 129,
+      "chunks": [
+        {
+          "path": "d9b719469e73c0f52c7a-part-0002.json",
+          "message_count": 129
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-anon-repo-final-push.md"
+}

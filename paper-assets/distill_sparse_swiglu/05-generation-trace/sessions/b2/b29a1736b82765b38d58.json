@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b29a1736b82765b38d58",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops verify teal30 uniform data",
+  "task_key": "worker_ops_verify_teal30_uniform_data_20260520T010111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_teal30_uniform_data_20260520T010111_result.json",
+    "occurrence": 1,
+    "bytes": 1715,
+    "sha256": "4542571a02c460171ee839c2899e1b28cf8c8d826c41f33683e16112fd57a0d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## bench_teal30_uniform_6task 完整结果\n\n**配置确认**: TEAL vanilla, sparsity=0.30, allocation=uniform, model=llama-3.1-8b, seq_len=2048, batch_size=8, 完成时间 2026-05-20 06:37:22, 耗时 2934.2s\n\n### 逐 task 指标\n\n| Task | Metric | 值 | Stderr |\n|------|--------|-----|--------|\n| **wikitext2** | word_perplexity | **10.8173** | — |\n| **arc_challenge** | acc | **0.3771** | ±0.0142 |\n| | acc_norm | **0.3933** | ±0.0143 |\n| **winogrande** | acc | **0.6504** | ±0.0134 |\n| | acc_norm | — (无此指标) | — |\n| **mmlu** | acc | **0.4586** | ±0.0041 |\n| | acc_norm | — (无此指标) | — |\n| **hellaswag** | acc | **0.4617** | ±0.0050 |\n| | acc_norm | **0.6331** | ±0.0048 |\n| **piqa** | acc | **0.7198** | ±0.0105 |\n| | acc_norm | **0.7280** | ±0.0104 |\n\n### 高精度原始值（lm_eval_raw）\n\n| Task.Metric | 精确值 |\n|-------------|--------|\n| arc_challenge.acc | 0.37713310580205 |\n| arc_challenge.acc_norm | 0.39334470989761 |\n| winogrande.acc | 0.65035516969219 |\n| mmlu.acc | 0.45862412761715 |\n| hellaswag.acc | 0.46166102370046 |\n| hellaswag.acc_norm | 0.63314080860386 |\n| piqa.acc | 0.71980413492927 |\n| piqa.acc_norm | 0.72796517954298 |\n\n### 同名实验文件清单\n\n```\nbench_teal30_uniform_6task/results.json     — 2026-05-20 07:26 (3066B) ← 本次\nbench_teal30_uniform_gsm8k/results.json     — 2026-05-20 06:20 (1266B)\nqwen14b_teal30_uniform_hspiqa/results.json  — 2026-05-19 22:20 (1781B)\nqwen14b_teal30_uniform_hspiqa_v2/results.json — 2026-05-19 23:25 (1787B)\n```\n\n注意：winogrande 和 mmlu 只有 `acc`，无 `acc_norm`（lm-eval-harness 对这两个 task 默认不输出 acc_norm）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-teal30-uniform-data.md"
+}

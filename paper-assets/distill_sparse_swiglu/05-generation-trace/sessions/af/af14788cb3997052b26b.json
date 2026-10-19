@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af14788cb3997052b26b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis c1 eval 30pct s456",
+  "task_key": "worker_analysis_c1_eval_30pct_s456_20260519T233548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c1_eval_30pct_s456_20260519T233548_result.json",
+    "occurrence": 1,
+    "bytes": 1948,
+    "sha256": "aa22e75d1006de573e993506f1c9296dc5c7aa8f4bb65ca2e2ff2e49f9e734b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## c1_eval_30pct_s456 结果\n\n**状态**: 成功完成 (EXIT_CODE=0, 2145.7s)\n\n### 指标\n\n| Metric | c1_eval_30pct_s456 | eval_c1_retrain_s456 | eval_c1_retrain_s123 | c1_ablation_s42_v2 |\n|---|---|---|---|---|\n| wikitext2_ppl | **8.9773** | 8.82 | 8.84 | 9.4463 |\n| arc_challenge_acc_norm | **0.4718** | 0.4471 | 0.4471 | 0.4027 |\n| winogrande_acc | **0.6882** | 0.6993 | 0.6977 | 0.674 |\n| mmlu_acc | **0.3656** | 0.4104 | 0.3992 | 0.4229 |\n| gsm8k_exact_match | **0.0842** | 0.066 | 0.0682 | 0.0758 |\n\n### 对比分析\n\n与 retrain 对照组 (s456) 的差值：\n- PPL: +0.16 (更差，符合预期)\n- ARC: **+2.47pp** (更好，反常)\n- WG: -1.11pp (更差，符合预期)\n- MMLU: **-4.48pp** (显著更差)\n- GSM8K: **+1.82pp** (更好，反常)\n\n### 结论: **Mixed / Nuanced**\n\n结果不一致。C1 ablation 在 PPL 和 WG 上符合预期（更差），但 ARC 和 GSM8K 反而更好，MMLU 下降幅度异常大（4.48pp）。这使得\"C1 is causally important\"的论点变得复杂——不能说 C1 均匀地提升所有指标。\n\n**MMLU 的 0.3656 值得关注**——显著低于所有参考值（包括 s42 ablation 的 0.4229），可能是 seed-specific 的异常或 MMLU 评估波动。\n\n### 路径\n\n- Log: `~/runs/distill_sparse_swiglu/c1_eval_30pct_s456.log`\n- Results JSON: `/root/distill_sparse_swiglu/results/benchmark/c1_eval_30pct_s456/results.json`\n- Checkpoint used: `/root/distill_sparse_swiglu/checkpoints/c1_ablation_30pct_s456/predictor_bce_kl_targets.pt`\n- No separate checkpoint directory at `~/checkpoints/distill_sparse_swiglu/`\n\n### 异常\n\n1. MMLU 0.3656 是所有同系列实验中最低的，与 s42 ablation (0.4229) 差距 5.73pp，可能存在评估问题\n2. 日志中有 `fatal: not a git repository` 警告（无影响，只是 lm-eval-harness 的 git version tracking 报错）\n3. 使用了离线模式加载 MMLU 数据集缓存（正常行为）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c1-eval-30pct-s456.md"
+}

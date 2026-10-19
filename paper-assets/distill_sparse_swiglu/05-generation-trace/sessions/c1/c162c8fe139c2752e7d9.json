@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c162c8fe139c2752e7d9",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check lm eval status",
+  "task_key": "worker_check_lm_eval_status_20260516T002511",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_lm_eval_status_20260516T002511_result.json",
+    "occurrence": 1,
+    "bytes": 636,
+    "sha256": "d45b0577ffcb39b44b49661305501f8876a63f8c536b32a92e344f9d9612ca0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**lm_eval_kl_s42 状态：已完成。**\n\n结果摘要：\n\n| Benchmark | Score |\n|-----------|-------|\n| arc_challenge | 0.3771 |\n| winogrande | 0.6156 |\n| mmlu | 0.2591 |\n| gsm8k | 0.0121 |\n\n- PID 179913/179918 技术上还活着（33 min），但日志显示评估全部跑完，结果已写入 `results/plan_007/`\n- EXIT_CODE=129（SIGHUP），评估在信号前已正常完成并保存\n- cuda:0 占 21GB（89%），cuda:1 占 74GB（95%）——两张卡均有其他进程在跑\n- PID 179918 仍占 cuda:1 约 16GB 显存，是残留进程\n\n状态报告已写入 `artifacts/lm_eval_status_check.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-lm-eval-status.md"
+}

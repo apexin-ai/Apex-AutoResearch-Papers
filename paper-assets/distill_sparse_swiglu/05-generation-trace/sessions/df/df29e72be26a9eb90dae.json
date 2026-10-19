@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "df29e72be26a9eb90dae",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "ssh director cleanup 34887",
+  "task_key": "worker_ssh_director_cleanup_34887_20260520T210504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_director_cleanup_34887_20260520T210504.jsonl",
+    "occurrence": 1,
+    "bytes": 364,
+    "sha256": "5aa6b5153281a92c23d11cd2c7b4019c0c67daccc0bc5bde5baed7c38d313a77"
+  },
+  "statistics": {
+    "messages": 2,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T21:05:14.963038+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_director_cleanup_34887_20260520T210504"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T21:05:22.874279+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 5am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_director_cleanup_34887_20260520T210504"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-director-cleanup-34887.md"
+}

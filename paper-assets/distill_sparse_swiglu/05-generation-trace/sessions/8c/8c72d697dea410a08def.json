@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c72d697dea410a08def",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_7_1778965384.md",
+  "task_key": "loop_7_1778965384",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778965384.md",
+    "occurrence": 1,
+    "bytes": 3600,
+    "sha256": "9d984655cdad1e774ff977c32c9b6bf40520c89fd81bff6791bc59bb025c59fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-16T20:55:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格限定 westd-34887 cuda:0 + cuda:1，禁止用其他 GPU\n- KL PPL 引用必须用 4-seed mean 12.00±0.07，禁用单 seed 最佳 11.91\n- Mistral registry 数据疑似污染（D032），暂不引用任何 Mistral 数字\n- 50% uniform 已验证不可能（MMLU=27.77%≈随机），不要再尝试 allocation 方法拯救 50%\n- WANDB_MODE=offline（服务器无 wandb API key），日志分析只能读本地 log 文件\n- 论文所有 sparse-dense 对比必须用相同 few-shot 设置（D029），不同 shot 数不可直接对比\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887，工作目录 `/root/distill_sparse_swiglu/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- Llama-3.1-8B：`/root/autodl-tmp/models/llama-3.1-8b/`\n- Mistral-7B：`/root/autodl-tmp/models/mistral-7b/`\n- KL checkpoints：`/root/distill_sparse_swiglu/checkpoints/` 下各子目录\n- 结果输出：可能在 `/root/distill_sparse_swiglu/results/` 或日志内\n- 活跃进程：无（longbench_dense_v6 PID 247777 已退出，cron 已 reconcile 为 0）\n\n### 3. 📊 当前状态\n刚收到 `longbench_dense_v6` 完成回调（ANALYZING 状态），已派 Worker `worker_analyze_longbench_dense_v6_20260516T165422` 去读日志提取 metrics。**Worker 回调尚未到达**，结果未写入 registry。\n\nRegistry 概况：79 个实验，ANALYZING 1（longbench_dense_v6），DONE 66（success 35 / negative 12 / failed 11 / killed 8），PREPARING 8，QUEUED 4。当前无 RUNNING 实验，两张 GPU 均空闲。\n\n等待中：\n- Worker `worker_analyze_longbench_dense_v6` 回调 → 需更新 registry + 汇报 Director\n- QUEUED 中有 longbench_dense_v3/v2、longbench_kl30_uniform_v3/v2 等待 GPU\n- PREPARING 中有 longbench_dense_v5、kl_lagrangian_v2、spon_kl_s42 等\n\n### 4. 📋 待办\n- Worker analyze 回调到达 → 读取 metrics → update_registry(conclusion=success/failed) → 刷新 report.md → 汇报 Director\n- longbench_dense_v6 确认 success → 立即用两张空闲 GPU 铺 LongBench sparse 评测（KL 30% uniform 等），与 dense baseline 对比\n- longbench_dense_v6 如果又 failed → 检查 v1/v4/v6 三次失败的共性原因，考虑换评测脚本或参数\n- GPU 空闲 → 从 QUEUED/PREPARING 中选最高优先级实验提交（P0: uniform allocation / BCE iso-compute v3 / benchmark 统一重跑）\n- DDL 2026-05-25（剩 9 天）→ 论文写作和实验必须并行推进\n\n### 5. 🎯 战略上下文\n- **核心 narrative**：KL distillation 使 SwiGLU LLM 的 contextual sparsity prediction 不需要 error compensation。A+C 混合 framing，Director 已批准\n- **Claim 3 关键发现（D030）**：per-layer sparsity 不均匀导致 downstream 崩溃。30% uniform 可修复（MMLU 40.6%），50% 不可修复。已 reframe 为 \"phase transition\"（D034）→ 三相框架（D041）\n- **LongBench 是 P1 任务**（D037）：bench queue 完成后排。longbench_dense_v6 就是这个方向的第一步——先拿 dense baseline，再跑 sparse 对比\n- **易错点**：\n  - D032 教训：不要凭推理改数字，必须复现验证\n  - longbench_dense 已连续失败两次（v1/v4），v6 可能也有问题，不要假设成功\n  - Table 1 数据中 KL 40% global 和 KL 50% uniform 仍缺（⏳），需要安排\n  - BCE iso-compute 两次被杀（D031），Reviewer Concern #2 defense 仍无有效数据\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778965384.md"
+}

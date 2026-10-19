@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "647edf3b119c18327d46",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "viz lagrangian 50pct fix v2",
+  "task_key": "worker_viz_lagrangian_50pct_fix_v2_20260517T060112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_lagrangian_50pct_fix_v2_20260517T060112_result.json",
+    "occurrence": 1,
+    "bytes": 530,
+    "sha256": "1f7675766132e13db815af281dc5e05f92cd0782b6e8603f1929e3a2178c35bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已成功生成（177KB PNG）。任务完成：\n\n- **数据来源**：从 `/root/runs/distill_sparse_swiglu/mvp_kl_norm_v2_s42.log` 提取了完整 1000 步数据（101 个点，每 10 步 + step 1）\n- **替换结果**：`kl_50pct_s42` 从 48 点（200 步截断）更新为 101 点（1-1000 步）\n- **Lambda 范围**：1.95 - 1000.00；**Sparsity 范围**：0.406 - 0.529\n- **输出文件**：`lagrangian_dynamics.pdf` 和 `.png` 已更新，50% 曲线现在延伸到 1000 步，与其他三条线一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-lagrangian-50pct-fix-v2.md"
+}

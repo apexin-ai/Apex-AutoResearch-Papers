@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e57885606a61cbf1afc",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis qwen14b kl30 s456 eval v2",
+  "task_key": "worker_analysis_qwen14b_kl30_s456_eval_v2_20260519T125209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen14b_kl30_s456_eval_v2_20260519T125209_result.json",
+    "occurrence": 1,
+    "bytes": 1324,
+    "sha256": "7a06d4d0bddeecf64e581ac79d480423e7f59f104abd11032439f0ef72c1648c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both experiments updated. Here's the summary:\n\n---\n\n## Benchmark Metrics — `qwen14b_kl30_s456_eval_v2`\n\n| Metric | KL s456 | KL s42 | TEAL 30% uniform s42 |\n|---|---|---|---|\n| **WikiText-2 PPL** | **7.69** | 7.63 | 8.01 |\n| **MMLU** | **64.11%** | 64.49% | 66.34% |\n| **ARC-C (norm)** | **53.24%** | 54.44% | 55.29% |\n| **WinoGrande** | **72.30%** | 72.45% | 69.85% |\n| **HellaSwag (norm)** | **71.13%** | — | — |\n| **PIQA (norm)** | **75.52%** | — | — |\n\n## Conclusion: **success** — MMLU reversal is systematic\n\ns456 replicates the same pattern as s42:\n- **PPL improves** over TEAL uniform (7.69 vs 8.01), confirming KL loss learns better masks for perplexity\n- **MMLU drops** below TEAL uniform (64.11% vs 66.34%), and is slightly worse than s42 KL (64.49%)\n- **ARC-C drops** similarly (53.24% vs 55.29% TEAL, 54.44% KL s42)\n- **WinoGrande improves** over TEAL uniform (72.30% vs 69.85%), matching s42 KL (72.45%)\n\nThe PPL↑ / MMLU↓ / WG↑ pattern holds across both seeds — this is a systematic property of the KL loss on Qwen-14B, not seed noise.\n\n## Training experiment `qwen14b_kl30_s456`\nCompleted 1000/1000 steps, final loss=0.309, sparsity=0.277, checkpoint saved. Marked DONE.\n\n## Anomalies\nNone. Both runs exited cleanly (EXIT_CODE=0), no OOM or NaN."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen14b-kl30-s456-eval-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2260502ca17e35cb6fe",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "research check snr data",
+  "task_key": "worker_research_check_snr_data_20260520T022941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_check_snr_data_20260520T022941_result.json",
+    "occurrence": 1,
+    "bytes": 2006,
+    "sha256": "d5098f55331380ac3b5081cf88e9b6d799dc1da6620a89c469001ee733cca630"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the full picture:\n\n## SNR 数据可用性报告\n\n### 1. 数据文件列表\n\n| 文件 | 大小 | 日期 |\n|------|------|------|\n| `artifacts/gradient_snr_results.json` | 173KB | May 17 | 初始版（200 steps，无 CI）|\n| `artifacts/gradient_snr_constrained_results.json` | 4.4KB | May 17 | 受约束版（200 steps）|\n| `artifacts/snr_extended_results.json` | 34KB | May 18 | **主版本**（300 steps，带 95% CI）|\n\n脚本：`scripts/gradient_snr_extended.py`（存在）。`src/gen_gradient_snr.py` **不存在**。\n\n### 2. 覆盖的 step 范围\n\n`snr_extended_results.json` 覆盖 **steps 0, 50, 100, 150, 200, 250, 300**（7 个 checkpoint），每个 checkpoint 包含 32 层的 per-layer SNR + mean/CI。\n\n**step 300-1000 的数据不存在。** 所有三个文件最远只到 step 300。\n\n### 3. 覆盖的 loss type\n\n- **KL**（7 个 SNR snapshots + loss curve，每 10 steps 记录）\n- **BCE**（7 个 SNR snapshots + loss curve，每 10 steps 记录）\n- **MSE 不存在**\n\n### 4. 是否需要补充数据\n\n论文当前写法是 \"step 300 of 1000\"，即声称训练跑到 1000 步但只在 300 步时测了 SNR。Appendix G（`app:snr_extended`）目前只描述 0-300 的 trajectory，**没有要求 300-1000 的数据**。\n\n**现有数据对当前 Appendix G 的写法是完整的。** 如果要扩展 trajectory 到 step 1000，需要重新运行 `gradient_snr_extended.py` 并把 `SNAPSHOT_STEPS` 扩展到 `[0, 50, 100, 150, 200, 250, 300, 500, 750, 1000]`，同时把 `--num_steps` 设为 1000。\n\n### 5. 运行命令和依赖\n\n```bash\npython /root/distill_sparse_swiglu/scripts/gradient_snr_extended.py\n```\n\n依赖（均来自项目 `src/`）：\n- `data_utils.get_calibration_loader`\n- `losses.BCESparsityLoss`, `losses.KLDistillLoss`\n- `predictor.PredictorWrapper`\n- `transformers`, `torch`\n\n配置：`num_steps=300, batch_size=4, seq_len=2048, lr=0.001, warmup_steps=100, sparsity_target=0.3, kl_temperature=1.0`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-check-snr-data.md"
+}

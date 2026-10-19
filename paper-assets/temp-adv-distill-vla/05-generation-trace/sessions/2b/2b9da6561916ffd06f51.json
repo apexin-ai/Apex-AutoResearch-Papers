@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "2b9da6561916ffd06f51",
+  "project": "temp-adv-distill-vla",
+  "kind": "worker",
+  "title": "exp phase1 iql scaled",
+  "task_key": "worker_exp_phase1-iql-scaled_20260515T085012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_phase1-iql-scaled_20260515T085012.log",
+    "occurrence": 1,
+    "bytes": 964321,
+    "sha256": "1a988874391af906d2afa1277654d66a851a6cce2eaeb64a6c945721f8eef061"
+  },
+  "statistics": {
+    "messages": 611,
+    "user_turns": 0,
+    "tool_calls": 277,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 277,
+      "tool_result": 277
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 611,
+      "chunks": [
+        {
+          "path": "2b9da6561916ffd06f51-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2b9da6561916ffd06f51-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2b9da6561916ffd06f51-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "2b9da6561916ffd06f51-part-0004.json",
+          "message_count": 71
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-phase1-iql-scaled.md"
+}

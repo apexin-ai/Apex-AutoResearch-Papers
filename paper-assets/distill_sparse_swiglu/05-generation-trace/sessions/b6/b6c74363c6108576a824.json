@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6c74363c6108576a824",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops cleanup gpu check",
+  "task_key": "worker_ops_cleanup_gpu_check_20260516T003438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_gpu_check_20260516T003438_result.json",
+    "occurrence": 1,
+    "bytes": 1724,
+    "sha256": "d0356af3b185f1dc5145ad91d08bf4f8547b30db402c77bbc987791a9d05a6b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### Kill 结果\n- PID 182573 (diag_hflm.py) — **已 kill**\n- PID 182747 (diag_hflm.py) — **已 kill**\n- PID 184120 (debug_mask_verify.py) — **已 kill**\n\n### GPU 当前状态\n\n| GPU | 显存占用 | 显存总量 | GPU 利用率 | 运行进程 |\n|-----|---------|---------|-----------|---------|\n| cuda:0 | 21,255 MiB | 97,887 MiB | 90% | PID 181121 — `eval_benchmark.py --condition mistral_dense` (21,246 MiB) |\n| cuda:1 | 37,660 MiB | 97,887 MiB | 94% | PID 174850 — `eval_benchmark.py --condition mistral_kl_s42` (21,280 MiB) + PID 179918 — `lm_eval_sparse.py` kl_s42 rerun (16,364 MiB) |\n\n### lm_eval 进程状态\n三个评估任务正在运行：\n\n1. **PID 179918** — `lm_eval_sparse.py` (kl_s42, arc/wino/mmlu/gsm8k, sparsity=0.5) — **仍在跑**，cuda:1，CPU 95.3%\n2. **PID 174850** — `eval_benchmark.py --condition mistral_kl_s42` — cuda:1，CPU 100%\n3. **PID 181121** — `eval_benchmark.py --condition mistral_dense` — cuda:0，CPU 100%\n\n### tmux sessions\n- `lm_eval_kl_s42` (07:52)\n- `lm_eval_mistral_dense` (08:04)\n- `lm_eval_mistral_downstream` (07:34)\n\n另有一个 `lm_dense` tmux session (PID 163716) 也在 ps 中出现，但未占用 GPU 显存（可能已完成或在等待）。\n\n### GPU 空闲情况\n- **cuda:0**: 占用 ~21 GB / 98 GB，剩余 ~76 GB — **有空间安排新实验**\n- **cuda:1**: 占用 ~38 GB / 98 GB，剩余 ~60 GB — **有空间但当前跑着两个评估任务**\n\n两张卡都有充足剩余显存，但 GPU 利用率都在 90%+ 。建议等当前评估任务完成后再安排新的计算密集型实验，或者如果新实验显存需求不大（<60 GB），可以与现有任务共存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-gpu-check.md"
+}

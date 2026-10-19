@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a9d41b805be448bdbc2",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diag gpu status and checkpoints",
+  "task_key": "worker_diag_gpu_status_and_checkpoints_20260521T233009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gpu_status_and_checkpoints_20260521T233009_result.json",
+    "occurrence": 1,
+    "bytes": 1615,
+    "sha256": "00dbc0975fa1d1a40e87cd0f66b85d9996de93a26f4485e8b257733dbdfd6e15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== westd-34887 ===\nGPU Status:\n  cuda:0 — idle (RTX PRO 6000 Blackwell, 0/97887 MiB, 0% util)\n  cuda:1 — idle (RTX PRO 6000 Blackwell, 0/97887 MiB, 0% util)\n  注意: 有一个 perlayer_kl_s456_boolq 进程挂起（SCP 卡在连 westd-41718），未占用 GPU\n\nKL 30% Checkpoints (5 个，均 145M):\n  checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt  (May 16)\n  checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt    (May 18)\n  checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt    (May 18)\n  checkpoints/kl_30pct_s123/predictor_kl_normalized.pt         (May 17)\n  checkpoints/kl_30pct_s456/predictor_kl_normalized.pt         (May 17)\n\nBoolQ cache: MISSING\n\n=== westd-41718 ===\nGPU Status:\n  cuda:0 — idle (RTX PRO 6000 Blackwell, 0/97887 MiB, 0% util)\n  cuda:1 — idle (RTX PRO 6000 Blackwell, 0/97887 MiB, 0% util)\n  无实验进程运行\n\nKL 30% Checkpoints (5 个，均 145M):\n  checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt  (May 16)\n  checkpoints/kl_sparsity30_s123/predictor_kl_normalized.pt    (May 18)\n  checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt    (May 18)\n  checkpoints/kl_30pct_s123/predictor_kl_normalized.pt         (May 19)\n  checkpoints/kl_30pct_s456/predictor_kl_normalized.pt         (May 19)\n\nBoolQ cache: EXISTS\n```\n\n补充说明：westd-34887 上有个 `perlayer_kl_s456_boolq` 任务卡在 SCP 阶段（尝试从 westd-41718 拉 `perlayer_kl_30_s456/predictor_perlayer_kl.pt`），进程状态为 T (stopped)，未占用 GPU 但也不会自行恢复，可能需要手动清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gpu-status-and-checkpoints.md"
+}

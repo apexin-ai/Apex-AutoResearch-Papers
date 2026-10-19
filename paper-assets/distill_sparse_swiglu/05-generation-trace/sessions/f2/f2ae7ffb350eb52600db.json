@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2ae7ffb350eb52600db",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval perlayer kl k4 s42 downstream",
+  "task_key": "worker_eval_perlayer_kl_k4_s42_downstream_20260522T113257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_perlayer_kl_k4_s42_downstream_20260522T113257_result.json",
+    "occurrence": 1,
+    "bytes": 342,
+    "sha256": "f37b4827f97783741f24f279484d91443d4ebdde6aa2fe61fe35687ff3afaea7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已在运行，registry 已创建。\n\n- **PID**: 51247\n- **服务器**: westd-34887 cuda:1\n- **状态**: ARC-c 已完成，MMLU 进行中（~48%）\n- **日志**: `/root/runs/distill_sparse_swiglu/perlayer_kl_k4_s42_downstream.log`\n- **Registry**: `perlayer_kl_k4_s42_downstream` (RUNNING, parent=perlayer_kl_k4_s42)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-perlayer-kl-k4-s42-downstream.md"
+}

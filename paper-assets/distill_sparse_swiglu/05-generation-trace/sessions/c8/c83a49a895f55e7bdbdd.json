@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c83a49a895f55e7bdbdd",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops spon dryrun",
+  "task_key": "worker_ops_spon_dryrun_20260515T173047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_spon_dryrun_20260515T173047_result.json",
+    "occurrence": 1,
+    "bytes": 1249,
+    "sha256": "576ad9aeca6e550463fd529f37e9449ea964a1d48a4a33e72872b2484ea2463e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-Run 验证报告\n\n### GPU 状态\ncuda:0 和 cuda:1 各占 67,569/97,887 MiB，空闲 ~29.7GB，足够最小配置运行。使用 cuda:0。\n\n### 验证清单\n\n| # | 验证项 | 状态 | 关键日志 |\n|---|--------|------|----------|\n| 1 | SPON bias 零初始化 | **PASS** | Step 1 `mean_bias_norm=0.000000`，确认初始 bias 全为零 |\n| 2 | 梯度仅流向 bias vectors | **PASS** | `SPON params: 458,752 / 8,030,261,248 (0.0057%)` — 仅 458K 参数可训练 |\n| 3 | Cosine schedule + warmup | **PASS** | lr 序列：`5e-06 → 1e-05 → 7.5e-06 → 2.5e-06 → 0.0e+00`（2 步 warmup 到 peak 1e-5，后 3 步 cosine 衰减到 0） |\n| 4 | Loss 合理 | **PASS** | `0.4258 → 0.3477 → 0.3906 → 0.4375 → 0.4688`，Step 2 有明显下降；后续回升因 lr cosine 衰减+仅 5 步，属正常 |\n| 5 | 无 OOM / 错误 | **PASS** | 正常完成，checkpoint 已保存到 `/tmp/spon_dryrun/spon_biases.pt` |\n\n### 补充观察\n- `mean_bias_norm` 从 0 逐步增长（0 → 0.000425 → 0.001062 → 0.001450 → 0.001562），bias 在被正常优化\n- Gradient checkpointing 正常启用\n- 临时文件已清理\n\n**结论：train_spon.py 全部 5 项验证通过，可以启动正式训练。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-spon-dryrun.md"
+}

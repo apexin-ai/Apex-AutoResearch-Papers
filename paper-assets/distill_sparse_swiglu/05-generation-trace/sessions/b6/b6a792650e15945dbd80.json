@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6a792650e15945dbd80",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis qwen14b mask divergence",
+  "task_key": "worker_analysis_qwen14b-mask-divergence_20260519T065150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen14b-mask-divergence_20260519T065150_result.json",
+    "occurrence": 1,
+    "bytes": 1653,
+    "sha256": "8565eb69d96c6e611dd1c2650a053c9bc180224d754d87102e134d55f23a7e8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Results summary:\n\n## Per-layer Jaccard Divergence (KL mask vs Magnitude mask, 30% sparsity)\n\n| Metric | Qwen-14B (48L) | LLaMA-8B (32L) |\n|--------|---------------|----------------|\n| Mean Jaccard | **0.4016** | **0.3939** |\n| Std | 0.0756 | 0.0314 |\n| Max J (layer) | 0.446 (L11) | 0.482 (L0) |\n| Min J (layer) | 0.063 (L4) | 0.353 (L14) |\n| First quarter | 0.334 | 0.440 |\n| Middle half | 0.427 | 0.376 |\n| Last quarter | 0.419 | 0.384 |\n\n**Key findings for reviewer response:**\n\n1. **Cross-scale consistency**: Both models show ~0.40 mean Jaccard divergence, confirming the predictor discovers non-trivial patterns that differ substantially from magnitude pruning across architectures (LLaMA vs Qwen) and scales (8B vs 14B).\n\n2. **Per-layer profiles differ by architecture**: LLaMA-8B shows a smooth gradient (highest divergence at early layers, decreasing toward middle). Qwen-14B shows a V-shaped pattern with anomalously low divergence at L3-6 (especially L4=0.063), suggesting early Qwen layers' KL-important neurons happen to align with high-magnitude neurons.\n\n3. **Qwen-14B has more heterogeneous layer behavior** (std 0.076 vs 0.031), consistent with its deeper architecture having more specialized layer roles.\n\n4. **The ~40% Jaccard distance means ~60% of kept neurons agree** between KL and magnitude masks, while ~40% are uniquely selected by each method. This validates that the predictor learns importance patterns not reducible to activation magnitude.\n\nResults saved to `westd-34887:results/qwen14b_mask_divergence_30pct.json` and `results/llama8b_mask_divergence_30pct.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen14b-mask-divergence.md"
+}

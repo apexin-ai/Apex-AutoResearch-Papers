@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b23fe9afe459c85b5bed",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh gpu check s456",
+  "task_key": "worker_ssh_gpu-check-s456_20260515T161959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu-check-s456_20260515T161959_result.json",
+    "occurrence": 1,
+    "bytes": 636,
+    "sha256": "a44aac2a4b1f14bb04e60c26d145122f4a40501d5eeba5fe2efa27d632dadb17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n| GPU | 利用率 | 显存 | 任务 |\n|-----|--------|------|------|\n| cuda:0 | 0%（瞬时） | 18.3/97.9 GB | BCE eval 链：bce_s42→**bce_s123**(进行中)→bce_s456 |\n| cuda:1 | 100% | 67.6/97.9 GB | **mvp_kl_norm_v2_s456 训练** |\n\n**s456 训练进度**：Step **630**/1000（63%），PID 74992 运行中\n- loss ≈ 0.27-0.30，sparsity ≈ 0.48-0.50（接近目标 0.5）\n- tau 从 0.694 降到 0.433，lr 从 8.35e-4 降到 3.62e-4\n- constraint 偶发触发（~0.012），大部分步数为 0\n\n**空闲 GPU**：无。两张卡都在工作。cuda:0 上 eval 完成后会空出来。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-check-s456.md"
+}

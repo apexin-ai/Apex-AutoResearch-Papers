@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e46bf50d3befbf2397e2",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops mask divergence 30pct recovery",
+  "task_key": "worker_ops_mask-divergence-30pct-recovery_20260519T131552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mask-divergence-30pct-recovery_20260519T131552_result.json",
+    "occurrence": 1,
+    "bytes": 1055,
+    "sha256": "9d4efb02f47e121d3c753be49ec402f2becd9954c0f8add0e6f8a6bf64de2c67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态：已完成。** 进程 PID 107986 已运行结束，结果已保存。\n\n### 结果摘要\n\n| 指标 | 值 |\n|------|-----|\n| Mean Jaccard distance | **0.3902** |\n| Std | 0.0336 |\n| Max | 0.4810 (layer 0) |\n| Min | 0.3516 (layer 14) |\n\n### Per-layer pattern\n\n- **前 8 层（0-7）Jaccard 最高**：均值 0.4402，mask 分歧最大，predictor 和 magnitude 选择的神经元重叠度最低\n- **中间层（8-23）最稳定**：均值 ~0.371，mask 分歧最小\n- **后 8 层（24-31）略回升**：均值 0.378\n\n### 其他观察\n\n- `per_layer_kl_retention` 所有层恒定为 0.7000（predictor 精确保留 70% 激活 = 30% sparsity）\n- `per_layer_mag_retention` 在 0.700-0.720 之间轻微波动，说明 magnitude pruning 的实际保留率与 KL predictor 接近但不完全一致\n\n整体 Jaccard ~0.39 意味着 predictor 和 magnitude-based mask 在 30% sparsity 下约有 **61% 的神经元选择一致**，前几层分歧最大（可能因为 embedding-adjacent 层的激活分布更复杂）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mask-divergence-30pct-recovery.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93bc70ab34d45104ced0",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops latency benchmark p0",
+  "task_key": "worker_ops_latency-benchmark-p0_20260516T140521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_latency-benchmark-p0_20260516T140521_result.json",
+    "occurrence": 1,
+    "bytes": 1213,
+    "sha256": "b6ba82d7aab0824b88739d1db85550791e444269cec141eef2720ffe5a579a26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完整结果\n\n| Method | Sparsity | tokens/s | ms/token | speedup vs dense |\n|--------|----------|----------|----------|------------------|\n| Dense | 0% | 17018.0 | 0.0588 | 1.000x |\n| KL predictor-only | 30% | 16069.9 | 0.0622 | 0.944x |\n| KL predictor-only | 50% | 16062.3 | 0.0623 | 0.944x |\n| Predictor+compensation | 30% | 15681.4 | 0.0638 | 0.921x |\n| Predictor+compensation | 50% | 15731.4 | 0.0636 | 0.924x |\n\n**Breakdown:**\n- Predictor overhead (32 layers): **3.16 ms** (2.6% of dense forward)\n- Per-layer predictor: 0.099 ms\n- Dense FFN per layer: 2.424 ± 0.035 ms\n- Sparse FFN+predictor per layer: 2.686 ± 0.009 ms\n- Compensation additional overhead: ~3.16 ms\n\n**关键结论：**\n- 当前实现用 element-wise mask（非结构化稀疏），所以 30% 和 50% latency 几乎相同——dense matmul 大小不变\n- Predictor 开销仅 **5.9%**，compensation 再加 **2.6%**，合计 overhead < 8.5%\n- 若利用结构化稀疏内核（如 Triton block-sparse），50% sparsity 理论可将 FFN 计算减半，净 speedup = 50% FFN 节省 - 5.9% predictor 开销 ≈ 显著正收益\n\n脚本已保存在 `/root/distill_sparse_swiglu/src/latency_benchmark.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-latency-benchmark-p0.md"
+}

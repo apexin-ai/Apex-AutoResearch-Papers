@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8198b8bf925fad70b96a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval perlayer kl k4 s42 ppl",
+  "task_key": "worker_eval_perlayer_kl_k4_s42_ppl_20260522T113248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_perlayer_kl_k4_s42_ppl_20260522T113248_result.json",
+    "occurrence": 1,
+    "bytes": 1041,
+    "sha256": "9a156865f40b1b1b9c20b1ba60d5a71a1c650e3eafbb3fd08456ad91d34ba1af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已经完成，registry 里已有结果。\n\n## K=4 Per-layer KL PPL 结果\n\n| 方法 | WikiText-2 PPL | Δ vs K=1 |\n|------|---------------|----------|\n| K=1 per-layer KL | 9.05 | — |\n| **K=4 per-layer KL** | **8.8932** | **-0.157** |\n| E2E KL | 8.81 | -0.24 |\n\n**关键判断**：K=4 PPL = 8.89，落在 K=1 (9.05) 和 E2E KL (8.81) 之间，距 E2E KL 仅差 0.08。\n\n这属于第一种情况：**K=4 大幅缩小了 mismatch**。增加同时激活的层数从 1→4，per-layer KL 已经接近 E2E KL 表现。说明 K=1 的 PPL 劣势主要来自 train-inference mismatch（训练时只看 1 层，推理时全部层同时激活），而非 per-layer KL 目标本身的根本缺陷。\n\n**对叙事的影响**：\n- coupling claim 需要弱化 — K=4 证明 mismatch 是可修复的\n- 但 K=4 仍未完全追平 E2E KL（差 0.08），说明残余 gap 可能来自跨层交互效应\n- Registry 标记 conclusion=negative，符合预期（对 \"mismatch 不可修复\" 假设是 negative evidence）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-perlayer-kl-k4-s42-ppl.md"
+}

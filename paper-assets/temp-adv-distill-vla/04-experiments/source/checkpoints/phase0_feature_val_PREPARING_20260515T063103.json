@@ -1,0 +1,38 @@
+{
+  "exp_id": "phase0_feature_val",
+  "project": "temp-adv-distill-vla",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:56:07.263Z",
+    "updated_at": "2026-05-15T06:31:03.958Z",
+    "hypothesis": "冻结 VLA 中间层特征的 cos_sim(s_t, s_goal) 与 progress t/T 有强单调关系（Spearman ρ > 0.8），可作为 IQL reward signal",
+    "metrics": {
+      "vip_gate1c": {
+        "rho_mean": 0.7197,
+        "rho_median": 0.7272,
+        "rho_p25": 0.6918,
+        "rho_p75": 0.7523,
+        "rho_gt_0.8_ratio": 0.08,
+        "gate1c_strict_passed": false,
+        "gate1c_reason": "FAIL: only 8% trajectories with rho>0.8, need >80%"
+      },
+      "vip_gate1b_mlp": {
+        "test_r2": 0.9847,
+        "test_mae": 0.028,
+        "best_epoch": 18,
+        "early_stop_epoch": 28,
+        "feature_dim": 1024,
+        "train_samples": 6296,
+        "test_samples": 1512,
+        "gate1b_passed": true
+      },
+      "gate1_result": "PASSED via fallback (b) — VIP MLP R²=0.9847"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T06:31:03.975163+00:00",
+  "trigger": "update_registry"
+}

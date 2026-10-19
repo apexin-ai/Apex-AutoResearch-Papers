@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4e0af2c3b1b087d0892",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "train multiseed kl30 cuda1",
+  "task_key": "worker_train_multiseed_kl30_cuda1_20260517T101907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_multiseed_kl30_cuda1_20260517T101907_result.json",
+    "occurrence": 1,
+    "bytes": 319,
+    "sha256": "4038fe3b1ab9d00a75dc1bc59754ada0c1cdb74cdf252577e9df9dfe59607a04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已提交，30 分钟后回来检查进度。\n\n关键配置确认：\n- **lambda_max**: 默认 1000（与 s42 一致，log 确认 `cap=1000.0`）\n- **CUDA_VISIBLE_DEVICES=1**，eval 用 `--gpu 0`（逻辑 GPU）\n- **nohup** 后台运行，日志 `logs/multiseed_kl30_cuda1.log`\n- **PID 22730**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-multiseed-kl30-cuda1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76919058b13c3c4c2381",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis gradient snr constrained",
+  "task_key": "worker_analysis_gradient_snr_constrained_20260517T041834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_snr_constrained_20260517T041834_result.json",
+    "occurrence": 1,
+    "bytes": 1760,
+    "sha256": "161e33bc22d063285f577b4ef866eac56ae2233daa7e8acc18ba7bea5a85b673"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Gradient SNR v2（带 Lagrangian constraint，公平对比）\n\n| 指标 | KL | BCE | 比值 |\n|------|-----|-----|------|\n| **Avg gradient SNR** | 5.45×10⁻⁴ | 5.28×10⁻⁶ | **103.2×** |\n| **Final sparsity** | 0.508 | 0.591 | — |\n\n### Per-layer SNR（选取层）\n\n| Layer | KL SNR | BCE SNR | Ratio |\n|-------|--------|---------|-------|\n| layer_0 | 4.32e-5 | 8.51e-8 | 508× |\n| layer_12 | 1.55e-3 | 6.90e-7 | 2251× |\n| layer_29 | 9.53e-4 | 7.44e-6 | 128× |\n| layer_31 | 5.89e-4 | 1.17e-4 | 5× |\n\n### vs v1（无 Lagrangian）\n\n| 版本 | KL avg SNR | BCE avg SNR | Ratio |\n|------|-----------|-------------|-------|\n| **v1**（无 Lagrangian） | 5.77e-5 | 1.00e-5 | **5.76×** |\n| **v2**（Lagrangian） | 5.45e-4 | 5.28e-6 | **103.2×** |\n\n### 关键发现\n\n1. **加上 Lagrangian 后 KL SNR 优势不但没有减弱，反而从 5.76× 大幅提升到 103.2×**。Reviewer 的担忧（v1 不公平因无 constraint）被直接反驳。\n\n2. **KL sparsity 成功收敛到 target 0.5**（final 0.508），Lagrangian lambda 轨迹：1→2→4→8→4（step 75 达峰，100 后稳定）。\n\n3. **BCE sparsity 偏离 target**（final 0.591），因 Lagrangian 是单侧 clamp（只惩罚低于 target），BCE predictor 自然偏向高 sparsity 但无约束拉回。\n\n4. **BCE 的 gradient SNR 几乎为零**（多数层 <1e-7），说明 BCE loss 提供的每层梯度方向高度随机，远不如 KL 的端到端信号。\n\n产出文件：\n- 脚本：`/root/distill_sparse_swiglu/scripts/gradient_snr_constrained.py`\n- 结果：`/root/distill_sparse_swiglu/artifacts/gradient_snr_constrained_results.json`\n- 日志：`/root/distill_sparse_swiglu/logs/gradient_snr_v2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gradient-snr-constrained.md"
+}

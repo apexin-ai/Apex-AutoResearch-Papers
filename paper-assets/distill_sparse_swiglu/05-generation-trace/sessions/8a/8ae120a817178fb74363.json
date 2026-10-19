@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "8ae120a817178fb74363",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze k curve training results",
+  "task_key": "worker_analyze_k_curve_training_results_20260523T090401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_k_curve_training_results_20260523T090401_result.json",
+    "occurrence": 1,
+    "bytes": 2026,
+    "sha256": "41335a41b5f8190dd2127c3613c5d2e85d7b64178148f4360abc8e961e8e18b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验均已完成。\n\n```json\n{\n  \"exp_id\": \"perlayer_kl_k8_s456\",\n  \"training_complete\": true,\n  \"final_avg_kl\": 0.0982,\n  \"final_avg_sparsity\": 0.285,\n  \"wall_time_s\": 1894.5,\n  \"training_steps\": 1000,\n  \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k8_s456/predictor_perlayer_kl_k4.pt\",\n  \"log_path\": \"/root/runs/distill_sparse_swiglu/perlayer_kl_k8_s456.log\"\n}\n```\n\n```json\n{\n  \"exp_id\": \"perlayer_kl_k8_s123\",\n  \"training_complete\": true,\n  \"final_avg_kl\": 0.0997,\n  \"final_avg_sparsity\": 0.286,\n  \"wall_time_s\": 1900.2,\n  \"training_steps\": 1000,\n  \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k8_s123/predictor_perlayer_kl_k4.pt\",\n  \"log_path\": \"/root/runs/distill_sparse_swiglu/perlayer_kl_k8_s123.log\"\n}\n```\n\n```json\n{\n  \"exp_id\": \"perlayer_kl_k2_s42_train\",\n  \"training_complete\": true,\n  \"final_avg_kl\": 0.0358,\n  \"final_avg_sparsity\": 0.268,\n  \"wall_time_s\": 3843.1,\n  \"training_steps\": 1000,\n  \"checkpoint_path\": \"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s42/predictor_perlayer_kl_k4.pt\",\n  \"log_path\": \"/root/runs/distill_sparse_swiglu/perlayer_kl_k2_s42_train.log\"\n}\n```\n\n每个 checkpoint 目录下均有 3 个文件：`predictor_perlayer_kl_k4.pt`（final）、`_step_500.pt`、`_step_1000.pt`。\n\nK=2 的 KL 显著低于 K=8（0.036 vs ~0.099），但 sparsity 也略低（0.268 vs ~0.286），训练时间约为 K=8 的 2 倍（3843s vs ~1900s），符合 K=2 每步只更新 2 层导致收敛更慢的预期。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "exp_id": "perlayer_kl_k2_s42_train",
+              "training_complete": true,
+              "final_avg_kl": 0.0358,
+              "final_avg_sparsity": 0.268,
+              "wall_time_s": 3843.1,
+              "training_steps": 1000,
+              "checkpoint_path": "/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s42/predictor_perlayer_kl_k4.pt",
+              "log_path": "/root/runs/distill_sparse_swiglu/perlayer_kl_k2_s42_train.log"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-k-curve-training-results.md"
+}

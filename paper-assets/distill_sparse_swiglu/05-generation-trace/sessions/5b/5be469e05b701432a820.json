@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5be469e05b701432a820",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "research framing 30pct proposal",
+  "task_key": "worker_research_framing_30pct_proposal_20260516T025534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_framing_30pct_proposal_20260516T025534_result.json",
+    "occurrence": 1,
+    "bytes": 1112,
+    "sha256": "2f851f36caf6e1e9704da2efda5561d86f35dc15c341e1a5570996d369cbb6e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提案已写入 `artifacts/framing_proposal_30pct_downstream.md` 并注册 (`art_20260516_b1c4cd`)。\n\n核心结论：\n\n1. **原 Claim 3 (\"30% 为推荐配置\") 被数据否定** — MMLU 在 30% 就崩到随机水平，PPL +47% 完全无法预测这一灾难。\n\n2. **根因是 per-layer sparsity 不均匀** — 30% global top-k 把后层（L26-31）推到 50-70% 实际 sparsity，后层直连 LM head，downstream 依赖后层精确输出。\n\n3. **三种 narrative 备选**：\n   - **A (推荐主线)**: PPL-downstream disconnect 作为论文核心贡献之一，填补文献空白\n   - **B (需新实验)**: Uniform per-layer allocation 修复 collapse — 依赖 P0 实验结果\n   - **C (子节)**: Task-sensitive sparsity spectrum，揭示 WinoGrande(robust) → ARC-c(cliff) → MMLU/GSM8K(ultra-fragile) 三层敏感度\n\n4. **关键决策点**: uniform_30% downstream 实验结果决定最终走 A 还是 B。决策树已在提案 §7 给出。\n\n5. **所有已做实验在新 framing 下仍然有效**，部分实验（50% collapse、GSM8K 生成对比）反而升值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-framing-30pct-proposal.md"
+}

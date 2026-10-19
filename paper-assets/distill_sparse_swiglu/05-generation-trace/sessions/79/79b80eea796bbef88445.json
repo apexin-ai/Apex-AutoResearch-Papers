@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79b80eea796bbef88445",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra check westd41718 evals",
+  "task_key": "worker_infra_check_westd41718_evals_20260517T161032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check_westd41718_evals_20260517T161032_result.json",
+    "occurrence": 1,
+    "bytes": 1025,
+    "sha256": "9f19c8cae57f5c9e74c5cd48759ae6a3501e1cc2af975d13c11126d8f65f4011"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### 1. Downstream Extended Eval (cuda:0) — **已完成**\n\nKL30 s42 (LLaMA-3.1-8B, global_topk, 30% sparsity) 扩展下游评测：\n\n| Task | Metric | Score |\n|------|--------|-------|\n| HellaSwag | acc_norm | **0.7270** |\n| HellaSwag | acc | 0.5270 |\n| PIQA | acc_norm | **0.7595** |\n| PIQA | acc | 0.7470 |\n| BoolQ | acc | **0.7685** |\n\n完成时间：2026-05-17 23:35:38，耗时 2053s (~34 min)。\n\n---\n\n### 2. Qwen-14B TEAL Baseline Eval (cuda:1) — **仍在运行**\n\n- PID 6896, GPU 1 占用 61.6GB, 100% 利用率\n- 命令：`--baseline_mode teal_vanilla --sparsity_target 0.3 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k`\n- 当前进度：**23685 / 58702 loglikelihood requests (40%)**，这应该是 MMLU 阶段\n- 速度：~75 it/s\n- MMLU 剩余估计：~35000 items / 75 it/s ≈ **~8 min**\n- MMLU 之后还要跑 GSM8K（generate_until 模式，14B 模型会比较慢）\n- 预计总剩余时间：**~20-40 min**（取决于 GSM8K 生成速度）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-westd41718-evals.md"
+}

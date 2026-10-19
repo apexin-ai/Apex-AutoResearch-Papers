@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8511ad4df14b61a74598",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "submit westd 34887 dual gpu urgent",
+  "task_key": "worker_submit_westd-34887-dual-gpu-urgent_20260518T075011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_westd-34887-dual-gpu-urgent_20260518T075011_result.json",
+    "occurrence": 1,
+    "bytes": 364,
+    "sha256": "87ee5bc8acd75a6995735f5e3e95d6334654d22b28b577ca2ec69b553aa6b86c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "双卡已跑起来：\n\n| GPU | 实验 | PID | 显存 | 利用率 |\n|-----|------|-----|------|--------|\n| cuda:0 | kl50_s456_eval (wikitext2,arc_c,winogrande,mmlu,gsm8k) | 9003 | 41.7 GB | 100% |\n| cuda:1 | c4_ood_kl50_s456 (C4 OOD perplexity) | 9078 | 29.2 GB | 100% |\n\n两个 job 均已进入 TEAL global mask 计算阶段，正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-westd-34887-dual-gpu-urgent.md"
+}

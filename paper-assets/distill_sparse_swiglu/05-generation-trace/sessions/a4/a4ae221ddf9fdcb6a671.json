@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4ae221ddf9fdcb6a671",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "prep d029 benchmark batch",
+  "task_key": "worker_prep_d029_benchmark_batch_20260516T040547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_d029_benchmark_batch_20260516T040547_result.json",
+    "occurrence": 1,
+    "bytes": 669,
+    "sha256": "dc0deb40ddf17dab27a47abb1acb85efabfe8ce9bdcd9dba1a525284ec5a4420"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已写入并注册。汇总：\n\n**当前状态：** 0 个 benchmark_eval 结果完成。cuda:0 跑 d030_kl30_uniform，cuda:1 跑 lm_eval_mistral（0-shot 旧脚本，需用 benchmark_eval 重跑）。\n\n**剩余 11 条命令：**\n- **cuda:1（5 条，先空出）：** Mistral KL 50% → Mistral Dense → KL 50% → KL 30% → KL 70%\n- **cuda:0（6 条，d030 后）：** Dense baseline → TEAL 50% → TEAL 30% → WINA 50% → STE 50% → BCE iso-compute 50%\n\n**排除：** SPON（benchmark_eval.py 不支持）、多种子（D029 只跑 s42）、d030_kl30_uniform（属 D030）。\n\n**预估总时长：** ~4.5h（双 GPU 并行）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-d029-benchmark-batch.md"
+}

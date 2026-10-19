@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d67da6c4a8b6e3b5b4e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code teal275 hspiqa supplement",
+  "task_key": "worker_code_teal275_hspiqa_supplement_20260519T155832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_teal275_hspiqa_supplement_20260519T155832_result.json",
+    "occurrence": 1,
+    "bytes": 365,
+    "sha256": "a045720df5fb4c59128aec2e7cb24aecdbb5314f0eebd0fabc12b74fb31cf8bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。实验 `qwen14b_teal275_uniform_hspiqa` 已在 westd-34887 cuda:0 运行：\n\n- **PID**: 119473\n- **状态**: hellaswag 评估中，~33% 完成，~241 it/s\n- **预计**: hellaswag ~42s 完成，piqa 随后运行\n- **日志**: `/root/distill_sparse_swiglu/logs/qwen14b_teal275_uniform_hspiqa.log`\n- **Registry**: RUNNING，spec 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-teal275-hspiqa-supplement.md"
+}

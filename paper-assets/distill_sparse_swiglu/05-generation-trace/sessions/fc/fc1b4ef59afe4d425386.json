@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc1b4ef59afe4d425386",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis bce isocompute v2 eval",
+  "task_key": "worker_analysis_bce_isocompute_v2_eval_20260515T204012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bce_isocompute_v2_eval_20260515T204012_result.json",
+    "occurrence": 1,
+    "bytes": 722,
+    "sha256": "8b985c63ebfffcf638e19bfccddf3e0dca41b6969ad96975c87a5dd1d89fe1bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完毕。\n\n---\n\n## 总结\n\n### bce_isocompute_v2_s42 完整分析\n\n**训练**：\n- 1000 steps 正常完成，sparsity 精确收敛到 0.50（STE 修复成功）\n- BCE loss 下降极有限：0.6714 → 0.6586（仅比随机猜测好 5%）\n\n**Eval**：\n| Metric | PPL |\n|--------|-----|\n| true_dense | 6.12 |\n| predictor hard mask | 26.76 |\n| **teal_sparse** | **54.84** |\n\n**vs KL baseline (50% sparsity)**: 54.84 vs 12.00 — BCE 差 4.6x\n\n**结论**: BCE 作为 sparsity predictor 的训练 loss 不可行。独立二分类丢失 neuron 间协同关系，信号密度远低于 KL 的输出分布匹配。建议放弃 BCE 方向，KL normalized 是明确更优的 loss。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bce-isocompute-v2-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75e126d7d3dd350caad1",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze qwen14b uniform eval 4task",
+  "task_key": "worker_analyze_qwen14b_uniform_eval_4task_20260518T012312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_qwen14b_uniform_eval_4task_20260518T012312_result.json",
+    "occurrence": 1,
+    "bytes": 891,
+    "sha256": "350f408fa1b8b89099c0daaf1e027f0d91cf1a0fdd964476aa65daf250a93b7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both experiments completed successfully (EXIT_CODE=0), no errors or warnings.\n\n```\n=== qwen14b_teal30_uniform_eval_4task ===\nwikitext2_ppl: 8.0054\narc_challenge_acc: 0.5128\narc_challenge_acc_norm: 0.5529\nwinogrande_acc: 0.6985\nmmlu_acc: 0.6634\nerrors/warnings: 无\n\n=== qwen14b_kl30_uniform_eval_4task ===\nwikitext2_ppl: 7.6318\narc_challenge_acc: 0.4949\narc_challenge_acc_norm: 0.5444\nwinogrande_acc: 0.7245\nmmlu_acc: 0.6449\nerrors/warnings: 无\n```\n\n关键发现：KL uniform MMLU 从 global_topk 的 63.72% 涨到 64.49%，仅 +0.77pp，远未恢复到 >70%。TEAL uniform MMLU 66.34% 也低于其 global_topk 的 71.8%。uniform allocation 对两者都没有带来预期的 MMLU 恢复，反而 TEAL 的 MMLU 还从 71.8% 跌到 66.3%（-5.5pp）。PPL 方面 KL uniform 7.63 与 global_topk 7.62 持平，TEAL uniform 8.01 略优于 global_topk 8.73。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-qwen14b-uniform-eval-4task.md"
+}

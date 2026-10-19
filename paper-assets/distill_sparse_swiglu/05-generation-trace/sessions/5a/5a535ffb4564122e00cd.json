@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a535ffb4564122e00cd",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval mse30 s42 boolq",
+  "task_key": "worker_eval_mse30_s42_boolq_20260522T091500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mse30_s42_boolq_20260522T091500_result.json",
+    "occurrence": 1,
+    "bytes": 366,
+    "sha256": "a42b1711e6042bfe0db8af57a15534894131f651b9fd969261969d88c2a9d22c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已存在且已完成，无需重跑。Registry 中 `mse30_s42_boolq` 状态为 **DONE**：\n\n| 指标 | 值 |\n|------|-----|\n| boolq_acc | **59.97%** |\n| boolq_acc_stderr | 0.86% |\n| samples | 3270 |\n\n完成时间：2026-05-22T09:17:47，parent=mse30_s42_train，checkpoint 和 log 路径均已记录。可直接用于 2D 分解表格。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mse30-s42-boolq.md"
+}

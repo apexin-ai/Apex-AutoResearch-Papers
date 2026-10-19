@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e74a7a07c649c6e01681",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code check teal275 hspiqa result",
+  "task_key": "worker_code_check_teal275_hspiqa_result_20260519T170210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_teal275_hspiqa_result_20260519T170210_result.json",
+    "occurrence": 1,
+    "bytes": 320,
+    "sha256": "74085da899dbfd7544cca653beb5e4b160dcf45fd77a2376d38ea6ca5b9ce2cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Conclusion: success**\n\nQwen2.5-14B TEAL@27.5% uniform, hellaswag+piqa 结果：\n\n| Task | acc | acc_norm |\n|------|-----|----------|\n| hellaswag | 0.5092 | 0.6993 |\n| piqa | 0.7530 | 0.7476 |\n\nRegistry 已更新为 DONE。Cron job 不存在（已在之前的 session 中删除或未创建）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-teal275-hspiqa-result.md"
+}

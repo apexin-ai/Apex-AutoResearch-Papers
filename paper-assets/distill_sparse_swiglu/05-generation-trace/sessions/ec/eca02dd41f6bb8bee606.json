@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eca02dd41f6bb8bee606",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code implement mse loss",
+  "task_key": "worker_code_implement_mse_loss_20260520T022931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_implement_mse_loss_20260520T022931_result.json",
+    "occurrence": 1,
+    "bytes": 1021,
+    "sha256": "db69cab31788fac8a60106f0e2ab8b9005e012f58aa6cee6f825e91b34d012ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**Dry-run（3 steps, batch_size=4, seq_len=2048, sparsity_target=0.3, cuda:0）：**\n\n| Metric | Step 1 | Step 2 | Step 3 |\n|--------|--------|--------|--------|\n| MSE loss | 0.007992 | 0.008175 | 0.010398 |\n| Constraint loss | 0.005005 | 0.001526 | 0.000656 |\n| Total loss | 0.012997 | 0.009701 | 0.011054 |\n| Sparsity | 0.391 | 0.375 | 0.371 |\n| Lambda | 1.0→0.5 | 0.5→0.25 | 0.25→0.12 |\n| Step time | 1.3s | 0.9s | 0.9s |\n\n- **显存**：~34.6 GB / 97.9 GB（cuda:0），batch_size=4 无 OOM 风险\n- **Sparsity 收敛**：初始 0.391，向 0.3 target 逐步收敛，lambda 自适应下调\n- **Loss 量级**：MSE ~0.008-0.01，合理范围\n- **Checkpoint**：保存为 `predictor_mse.pt`，格式与 KL/BCE 一致（`{\"predictors\": ..., \"args\": ...}`），可直接用 `benchmark_eval.py` 评估\n\n**创建的文件：**\n1. `src/train_perlayer_mse.py` — 完整训练脚本（~200 行）\n2. `src/losses.py` 末尾追加 `PerLayerMSELoss` 类（~10 行）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-implement-mse-loss.md"
+}

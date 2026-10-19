@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f13522f333c7fcd4dd1",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis perlayer kl k16 s42 v3",
+  "task_key": "worker_analysis_perlayer_kl_k16_s42_v3_20260523T044424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_perlayer_kl_k16_s42_v3_20260523T044424_result.json",
+    "occurrence": 1,
+    "bytes": 1375,
+    "sha256": "e08eaa86d6c9ded72d59eb24bf4bd719044e7ba6b60794f8cdaa5e1d1bb29fbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## perlayer_kl_k16_s42_v3 结果汇报\n\n### 提取指标\n| 指标 | 值 |\n|------|-----|\n| final KL (step 1000) | 0.1406 |\n| final avg_kl (running avg) | 0.1582 |\n| final avg_sparsity | 0.286 |\n| wall time | 1982.9s (~33 min) |\n| wikitext2 PPL | **未评估**（训练脚本无 eval 步骤） |\n\n### Checkpoint\n| 文件 | 大小 |\n|------|------|\n| `predictor_perlayer_kl_k4.pt` (final) | 145 MB |\n| `predictor_perlayer_kl_k4_step_1000.pt` | 435 MB |\n| `predictor_perlayer_kl_k4_step_500.pt` | 435 MB |\n\n路径: `/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s42_v3/`\n\n### 与 K=8 对比\n| 指标 | K=8 | K=16 | 差异 |\n|------|-----|------|------|\n| avg_kl | 0.0983 | 0.1582 | +0.0599 (↑61%) |\n| avg_sparsity | 0.281 | 0.286 | +0.005 |\n| wikitext2 PPL | 8.97 | N/A | 需要单独 eval |\n\n### Conclusion: **success**\n- 训练正常完成 1000 steps，无 error/warning\n- 3 个 checkpoint 已保存\n- avg_kl 比 K=8 高 61%，符合预期（K 越大，每步 mask 越多层，KL 优化更难收敛）\n- avg_sparsity 0.286 接近 target 0.3，正常\n- Per-layer summary 显示所有 32 层均有充分训练（每层 ~470-535 次参与），avg_sparsity 在 0.298-0.312 范围内分布均匀\n\n### 待做\n**wikitext2 PPL 需要单独运行 eval 脚本**才能与 K=8 (PPL=8.97) 和 K=1 baseline (PPL~8.81) 对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-perlayer-kl-k16-s42-v3.md"
+}

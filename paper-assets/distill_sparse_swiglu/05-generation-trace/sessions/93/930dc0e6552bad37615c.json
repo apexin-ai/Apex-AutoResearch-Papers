@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "930dc0e6552bad37615c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops launch snr 1000steps",
+  "task_key": "worker_ops_launch_snr_1000steps_20260520T035936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch_snr_1000steps_20260520T035936_result.json",
+    "occurrence": 1,
+    "bytes": 788,
+    "sha256": "b1d20435fe83e61ec9ec75ae6df56cf1deb6a692795c86a08edc6f249033d6ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认运行正常。\n\n**修改内容：**\n- `num_steps`: 300 → 1000\n- `SNAPSHOT_STEPS`: `[0,50,100,150,200,250,300]` → `[0,50,100,150,200,250,300,400,500,600,700,800,900,1000]`\n- 输出路径: `snr_extended_results.json` → `snr_full_1000steps_results.json`\n- summary key: `ratio_at_300` → `ratio_at_final`\n\n**启动确认：**\n- 设备: cuda:0 (westd-34887)\n- PID: **175225**\n- nohup 后台运行，日志: `/root/runs/distill_sparse_swiglu/snr_full_curve_1000steps.log`\n- 模型加载完成，KL Phase 1 已开始（step 0 snapshot 已输出）\n\n注意日志中打印的 `Phase 1: KL distillation (300 steps)` 是硬编码的 print 字符串，不影响实际运行步数（argparse default=1000 已生效，snapshot_steps 列表包含 1000）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-snr-1000steps.md"
+}

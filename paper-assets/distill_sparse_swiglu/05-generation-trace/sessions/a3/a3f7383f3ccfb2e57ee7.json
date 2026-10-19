@@ -1,0 +1,573 @@
+{
+  "schema_version": "1.0",
+  "id": "a3f7383f3ccfb2e57ee7",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "cron hook kl only s0 20260515T210104 608379",
+  "task_key": "cron_hook_kl_only_s0_20260515T210104_608379",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_kl_only_s0_20260515T210104_608379.jsonl",
+    "occurrence": 1,
+    "bytes": 34313,
+    "sha256": "87219da904e23c0cf8dae554952d45e5f3f798b272c3f79729c203b415044d11"
+  },
+  "statistics": {
+    "messages": 28,
+    "user_turns": 2,
+    "tool_calls": 12,
+    "roles": {
+      "user": 2,
+      "tool_call": 12,
+      "tool_result": 12,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T17:57:16.793213+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: kl_only_s0\n- project: distill_sparse_swiglu\n- server: westd-34887\n- log_path: ~/runs/distill_sparse_swiglu/kl_only_s0.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T17:57:30.586195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__load_project_config",
+              "max_results": "11"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T17:57:30.636779+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T17:57:34.953224+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "distill_sparse_swiglu",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T17:57:35.455505+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T17:57:35.457082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"kl_only_s1\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T17:19:37.074Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:57:18.372Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"KL normalized v3 seed robustness: seed=1 应与 s42/s123/s456 一致，扩展到 5-seed headline\\\", \\\"loss_type\\\": \\\"kl_normalized_v3\\\", \\\"kl_normalization\\\": \\\"÷seq_len only (v3 fix)\\\", \\\"lagrangian\\\": \\\"lambda_init=1.0, ×2.0/×0.5 every 25 steps, clamp [0.1, 1000]\\\", \\\"model_name\\\": \\\"llama-3.1-8b\\\", \\\"seed\\\": 1, \\\"data_path\\\": \\\"wikitext-103 (HF cached)\\\", \\\"parent\\\": \\\"mvp_kl_norm_v2_s42\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 1 --sparsity_target 0.5 --gpu 0 --output_dir /root/distill_sparse_swiglu/checkpoints/kl_only_s1 --wandb_run_name kl_only_s1 --dataset wikitext-103\\\\\\\"\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"88843\\\", \\\"data_count\\\": null}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T17:57:17.967Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T17:57:20.105509+00:00\\\"}]}}, \\\"kl_only_s0\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T17:19:35.138Z\\\", \\\"updated_at\\\": \\\"2026-05-15T17:57:15.756Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"KL normalized v3 seed robustness: seed=0 应与 s42/s123/s456 一致，扩展到 5-seed headline\\\", \\\"loss_type\\\": \\\"kl_normalized_v3\\\", \\\"kl_normalization\\\": \\\"÷seq_len only (v3 fix)\\\", \\\"lagrangian\\\": \\\"lambda_init=1.0, ×2.0/×0.5 every 25 steps, clamp [0.1, 1000]\\\", \\\"model_name\\\": \\\"llama-3.1-8b\\\", \\\"seed\\\": 0, \\\"data_path\\\": \\\"wikitext-103 (HF cached)\\\", \\\"parent\\\": \\\"mvp_kl_norm_v2_s42\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/dist\n…[truncated 35846 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 503
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T17:57:35.507677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 52
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T17:57:35.911092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "distill_sparse_swiglu",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T17:57:36.262943+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-15T17:57:19Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 21 个实验 — ANALYZING 2, DONE 11, PENDING 2, PREPARING 4, QUEUED 2\\\\n**DONE 分布**: failed 3, negative 2, success 6\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — westd-34887:cuda:0, westd-34887:cuda:1\\\\n- **空闲（分配了没跑）**: westd-34887:cuda:0, westd-34887:cuda:1\\\\n\\\\n### 🏃 RUNNING\\\\n_（无）_\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `mvp_bce_s456` [success] — 2026-05-15T17:31:43 — EXIT_CODE=129 (non-zero)\\\\n- `mvp_bce_s123` [success] — 2026-05-15T17:31:41\\\\n- `mvp_bce_s42` [success] — 2026-05-15T17:31:40 — EXIT_CODE=1 (generic error — check log tail)\\\\n- `mvp_kl_norm_v2_s456` [success] — 2026-05-15T17:31:38\\\\n- `mvp_kl_norm_v2_s123` [success] — 2026-05-15T17:31:36\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| kl_only_s1 | — | — | — | — |\\\\n| kl_only_s0 | — | — | — | — |\\\\n\\\\n## 待处理\\\\n- spon_training（等待人工审批）\\\\n- bce_comp_staged_s42（等待人工审批）\\\\n- mvp_kl_s456（排队等待 GPU）\\\\n- mvp_kl_s123（排队等待 GPU）\\\\n- spon_kl_s42（准备中）\\\\n- mvp_kl_norm_s456（准备中）\\\\n- kl_norm_v3_quicktest（准备中）\\\\n- kl_lagrangian_v2（准备中）\\\\n\\\\n## 近期结论\\\\n- **mvp_bce_s456** (success): —\\\\n- **mvp_bce_s123** (success): —\\\\n- **mvp_bce_s42** (success): —\\\\n  [report_mvp_bce_s42](/api/workspace-files/projects/distill_sparse_swiglu/artifacts/mvp_bce_s42/report/report_mvp_bce_s42.md)\\\\n\\\\n## 趋势\\\\n成功 6 / 负向 2 / 失败 3 / 共 11\\\\ncalibration_samples: 32 →（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-34887: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- kl_normalized_quicktest: 训练失败 — unknown\\\\n- mvp_kl_norm_s42: 训练失败 — unknown\\\\n- mvp_kl_norm_s123: 训练失败 — unknown\\\\n\\\", \\\"total_cha\n…[truncated 71 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 351
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T17:57:36.313678+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T17:57:36.314139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T17:57:36.365292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/ROADMAP.md\\\", \\\"content\\\": \\\"# distill_sparse_swiglu — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 16:53 UTC | 更新原因: Reviewer warning 修正：BCE std 0.72→0.89，Claim 3 降级，SPON 预算提升，并行启动计划\\\\n\\\\n## 核心方向\\\\nKL-divergence 输出分布蒸馏训练 SwiGLU 激活稀疏性预测器，验证是否消除对 error compensation network 的需求，并测试与 SPON 静态校正的组合加性。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research（MVP 2026-05-15 通过，D007）\\\\n- **MVP 结论**: KL sparse PPL 12.52 ± 0.92 vs BCE 44.05 ± 0.89 @ 50% sparsity，差距 31.53 PPL\\\\n- **关键发现**: KL 非均匀 per-layer 分配（0.22-0.80）vs BCE 均匀（0.43-0.66）；KL hard-mask PPL 9.20 接近 dense 6.12\\\\n- **Dream**: dream_20260515T164925 运行中（full review），等结果后批准 P0 实验\\\\n- **Experiment Plan**: 12 experiments（P0×7, P1×3, P2×2），总 196 GPU-hours。详见 experiment_plan.yaml\\\\n- **Reviewer Warning**: Claim 1 强度取决于 BCE+comp（未测）；Claim 3 降级为 testable prediction；SPON 复现是关键路径\\\\n\\\\n## 近期任务\\\\n- [x] MVP 验证（KL vs BCE @ 50% sparsity, 3 seeds）\\\\n- [x] 写 paper_framing.md + experiment_plan.yaml\\\\n- [x] 启动 Dream full review (dream_20260515T164925)\\\\n- [ ] 等 Dream 结果 → 按行动指令调整\\\\n- [ ] Dream 通过后并行启动: plan_001 BCE+comp (cuda:0) + plan_004 SPON (cuda:1)\\\\n- [ ] Agent 完成 vanilla TEAL baseline（队列中）\\\\n- [ ] 补 KL-only 2 seeds (s0, s1) → 5-seed headline\\\\n- [ ] 实现 BCE+compensation 训练流程\\\\n- [ ] 关注 s456 seed 敏感性（13.58 vs 12.08/11.91）\\\\n\\\\n## GPU 预算\\\\n- 本地: westd-34887 cuda:0, cuda:1 — RTX PRO 6000 Blackwell (98GB each)\\\\n- 可用: 444 GPU-hours remaining (480 - 36 MVP)\\\\n- 计划: P0 114h + P1 70h + P2 12h = 196h（44% 利用率）\\\\n- Constraint: C001 — 仅 cuda:0, cuda:1\\\\n\\\\n## 目标时间线\\\\n| 阶段 | 日期 | 内容 |\\\\n|------|------|------|\\\\n| Dream review | 05-15 | dream_20260515T164925 |\\\\n| Phase 1 | 05-15 ~ 05-18 | plan_001 BCE+comp + plan_004 SPON + plan_006 baselines（并行） |\\\\n| Phase 2 | 05-18 ~ 05-20 | plan_005 composition + plan_002 STE + plan_003 iso-compute |\\\\n| Phase 3 | 05-20 ~ 05-22 | plan_007 full eval + plan_008 sweep + plan_00\n…[truncated 1084 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 51
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T17:57:36.415969+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"westd-34887\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"westd-34887\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}], \\\"actually_running_gpus\\\": [], \\\"allocated_but_idle\\\": [{\\\"server\\\": \\\"westd-34887\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"idle_min\\\": null}, {\\\"server\\\": \\\"westd-34887\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"idle_min\\\": null}], \\\"running_experiments\\\": [], \\\"worker_pool\\\": {\\\"total\\\": 0, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 0, \\\"details\\\": []}, \\\"summary\\\": \\\"分配 2 张, 实际跑 0 张 ⚠️ | Worker 0 (GPU 0 / CPU 0)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 101
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T17:58:25.193499+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:kl_only_seeds",
+              "project": "distill_sparse_swiglu",
+              "task_prompt": "## 任务：分析 kl_only_s0 和 kl_only_s1 两个实验的结果\n\n这两个实验是 KL normalized v3 的 seed robustness 扩展（从 3-seed 扩展到 5-seed）。它们已正常完成训练，需要你分析日志 + 跑评估。\n\n### 服务器信息\n- 服务器: westd-34887\n- 项目路径: /root/distill_sparse_swiglu\n- 环境激活: `source /root/distill_sparse_swiglu/setup_env.sh`\n- Python/conda: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 实验信息\n1. **kl_only_s0**: seed=0, checkpoint 在 `/root/distill_sparse_swiglu/checkpoints/kl_only_s0/`, 日志在 `~/runs/distill_sparse_swiglu/kl_only_s0.log`, GPU: cuda:0\n2. **kl_only_s1**: seed=1, checkpoint 在 `/root/distill_sparse_swiglu/checkpoints/kl_only_s1/`, 日志在 `~/runs/distill_sparse_swiglu/kl_only_s1.log`, GPU: cuda:1\n\n### 具体步骤\n\n#### Step 1: 读取训练日志\nSSH 到 westd-34887，用 ssh_read_only 读取两个实验的日志尾部（各 100 行），提取：\n- 最终 loss (kl_raw, total_loss)\n- 最终 sparsity\n- 最终 lambda, tau\n- 训练是否正常完成 1000/1000 步\n- 有无报错\n\n#### Step 2: 运行评估\n用 ssh_execute 在服务器上运行评估脚本。之前的评估命令格式如下：\n\n```bash\nsource /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && PYTHONUNBUFFERED=1 python src/evaluate.py \\\n  --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b \\\n  --predictor_checkpoint /root/distill_sparse_swiglu/checkpoints/kl_only_s0/predictor_kl_normalized.pt \\\n  --eval_dataset wikitext-2 \\\n  --batch_size 1 \\\n  --seq_len 2048 \\\n  --sparsity_target 0.5 \\\n  --calibration_samples 32 \\\n  --gpu 0\n```\n\n对两个实验分别跑评估。注意：\n- kl_only_s0 的 checkpoint 可能叫 `predictor_kl_normalized.pt`（和之前 MVP 实验一样）\n- 先用 `ls /root/distill_sparse_swiglu/checkpoints/kl_only_s0/` 确认 checkpoint 文件名\n- kl_only_s0 用 --gpu 0 (cuda:0)\n- kl_only_s1 用 --gpu 1 (cuda:1)\n- 可以同时启动两个评估（用 nohup 后台或分两次执行）\n\n#### Step 3: 收集评估结果\n从评估输出提取：\n- true_dense_ppl\n- predictor_hard_mask_ppl (dense PPL)\n- teal_sparse_ppl (sparse PPL)  \n- model_level_sparsity\n- ppl_increase_vs_true_dense_pct\n- eval_md5\n- calibration_samples\n\n#### Step 4: 更新 registry\n用 update_registry 更新两个实验：\n1. 设置 metrics（以上所有评估指标）\n2. 设置 checkpoint_path\n3. 设置 notes（包含训练总结 + 评估结果 + 与 sibling 对比表）\n4. 设置 conclusion（success 或 negative，基于结果判断）\n5. 设置 status=DONE\n\n判断标准：\n- 如果 sparse PPL 在 3-seed 均值 12.52 ± 3（即 < 16）范围内，结论为 success\n- 与已有 5-seed 数据对比：s42=12.08, s123=11.91, s456=13.58\n\n#### Step 5: 生成 5-seed 汇总表\n在 notes 中包含完整的 5-seed 汇总表：\n| Metric | s0 | s1 | s42 | s123 | s456 | Mean ± Std |\n|--------|----|----|-----|------|------|------------|\n| Dense PPL | ? | ? | 9.21 | 9.25 | 9.14 | ? |\n| Sparse PPL | ? | ? | 12.08 | 11.91 | 13.58 | ? |\n| PPL increase | ? | ? | 31.2% | 28.8% | 48.6% | ? |\n\n### 输出\n将所有结果写入 registry，确保 notes 包含完整的 5-seed 汇总。",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T17:58:25.749179+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T17:58:27.806447+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_kl_only_seeds_20260515T175825\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/logs/workers/worker_analysis_kl_only_seeds_20260515T175825.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_kl_only_seeds_20260515T175825 started. Use get_worker_status('worker_analysis_kl_only_seeds_20260515T175825') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2612
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T17:58:27.806975+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "Read",
+            "elapsed_ms": 2057
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T17:58:53.034511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T17:58:53.085116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T17:58:56.163352+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T17:58:56.516583+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Four-condition ablation @ 50% model-level sparsity on Llama 3.1 8B: (a) BCE-only, (b) BCE+compensation, (c) KL-only, (d) KL+compensation. Headline comparison: KL-only vs BCE+comp (5 seeds each). Secondary comparisons: 3 seeds each. MVP already completed KL-only 3 seeds (mvp_kl_norm_v2_s42/s123/s456) and BCE-only 3 seeds (mvp_bce_s42/s123/s456).\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 48, \\\"deps\\\": [], \\\"registry_ids\\\": [\\\"mvp_kl_norm_v2_s42\\\", \\\"mvp_kl_norm_v2_s123\\\", \\\"mvp_kl_norm_v2_s456\\\", \\\"mvp_bce_s42\\\", \\\"mvp_bce_s123\\\", \\\"mvp_bce_s456\\\"], \\\"remaining_runs\\\": [\\\"KL-only 2 additional seeds (s0, s1) for 5-seed headline\\\", \\\"BCE+comp 5 seeds (s42, s123, s456, s0, s1)\\\", \\\"KL+comp 3 seeds (s42, s123, s456)\\\"], \\\"registry_id\\\": \\\"kl_only_s1\\\", \\\"status\\\": \\\"ANALYZING\\\"}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"STE baseline: KL loss + Straight-Through Estimator (instead of Gumbel-sigmoid). Isolates whether KL advantage comes from loss function or relaxation method. 3 seeds.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 10, \\\"deps\\\": [\\\"plan_001\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_003\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"Iso-compute comparison: extend BCE training to match KL total FLOPs (KL requires full forward pass for output logits, BCE can use cached targets). Report per-step FLOPs and total training time for both. 3 seeds.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 10, \\\"deps\\\": [\\\"plan_001\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_004\\\", \\\"claim\\\": 2, \\\"description\\\": \\\"SPON reimplementation on Llama 3.1 8B: learnable bias vectors + KL training. Validate by reproducing SPON published results on 5 QA benchmarks (ARC-c, ARC-e, BoolQ, PIQA, WinoGrande) before composition experiment.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_005\\\", \\\"c\n…[truncated 3185 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 353
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T17:58:56.622230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "distill_sparse_swiglu",
+              "file": "literature_map.yaml"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T17:58:56.673369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/literature_map.yaml\\\", \\\"content\\\": \\\"# Literature Map: KL Distillation for Sparse SwiGLU Activation Prediction\\\\n# Last updated: 2026-05-15\\\\n# Survey scope: 2023-2026, 4 directions\\\\n\\\\n# =============================================================================\\\\n# Direction 1: KL distillation for structured/activation sparsity\\\\n# Finding: NO prior work uses KL to train an activation sparsity PREDICTOR.\\\\n# Existing predictors use BCE (DejaVu, ShadowLLM). SPON uses KL but for\\\\n# learnable bias correction, not predictor training. This is our novelty.\\\\n# =============================================================================\\\\n\\\\n- title: \\\\\\\"Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models\\\\\\\"\\\\n  authors: [Haotian Xu, Jiannan Yang, Tian Gao, Tsui-Wei Weng, Tengfei Ma]\\\\n  venue: ICML 2026\\\\n  year: 2026\\\\n  arxiv_id: \\\\\\\"2512.12744\\\\\\\"\\\\n  category: direct-competitor\\\\n  role: \\\\\\\"最接近的KL蒸馏用于稀疏性的工作——但SPON训练的是可学习bias项而非predictor\\\\\\\"\\\\n  key_finding: \\\\\\\"SPON注入input-independent learnable activation vectors作为sparse computation的anchor，用KL散度(dense vs sparse logits)做distribution matching训练，训练后吸收进bias项，零推理开销\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"SPON证明KL divergence比BCE/MSE更适合sparsity场景的distribution matching。但SPON是全局bias correction而非per-token predictor——我们的predictor方案能实现input-dependent的sparsity pattern，比SPON更灵活。SPON在50-60% sparsity下测试，与我们目标一致\\\\\\\"\\\\n\\\\n- title: \\\\\\\"Compact Language Models via Pruning and Knowledge Distillation\\\\\\\"\\\\n  authors: [Saurav Muralidharan, Sharath Turuvekere Sreenivas, Raviraj Joshi, Marcin Chochowski, Mostofa Patwary, Mohammad Shoeybi, Bryan Catanzaro, Jan Kautz, Pavlo Molchanov]\\\\n  venue: NeurIPS 2024\\\\n  year: 2024\\\\n  arxiv_id: \\\\\\\"2407.14679\\\\\\\"\\\\n  category: method-component\\\\n  role: \\\\\\\"KL蒸馏用于结构化剪枝后恢复——验证logit-only KL优于intermediate matching\\\\\\\"\\\\n  key_finding: \\\\\n…[truncated 11236 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 51
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T17:59:41.143775+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 / 实际跑 0（实验刚完成，分析中）| Worker 池 1 (GPU 0 / CPU 1)\n\n## kl_only_s0 & kl_only_s1 训练完成\n\n两个 KL normalized v3 seed 扩展实验（seed=0, seed=1）均正常退出，已派 Worker 读取日志 + 跑 WikiText-2 评估。\n\n**目的**：扩展 3-seed → 5-seed headline（plan_001 要求 KL-only 5 seeds）。\n\n**已有 3-seed 数据**：\n| Metric | s42 | s123 | s456 | 3-seed Mean ± Std |\n|--------|-----|------|------|-------------------|\n| Dense PPL | 9.21 | 9.25 | 9.14 | 9.20 ± 0.06 |\n| Sparse PPL | 12.08 | 11.91 | 13.58 | 12.52 ± 0.92 |\n| PPL increase | 31.2% | 28.8% | 48.6% | 36.2% ± 10.8% |\n\nWorker 分析完成后将更新 5-seed 汇总表。\n\n**GPU 空闲原因**：kl_only_s0/s1 刚跑完，正在评估。两个 PENDING 实验（spon_training, bce_comp_staged_s42）等待审批。Dream review (dream_20260515T164925) 尚未返回结果。\n\n**下一步**：\n1. Worker 回调后更新 registry + 5-seed 汇总\n2. 等 Dream review 结果 → 按指令调整后启动 plan_001 BCE+comp + plan_004 SPON\n3. PENDING 实验审批通过后立即提交",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T17:59:46.327804+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 5184
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T17:59:49.319974+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已派 Worker 分析 kl_only_s0 + kl_only_s1 的训练日志和评估结果，向 Director 汇报了当前状态。等待 Worker 回调后更新 5-seed 汇总和 registry。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0"
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 26
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T21:00:22.074410+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T21:01:04.606638+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-34887 的 cuda:0 和 cuda:1（constraint C001，gpu_ids 白名单）\n- 模型必须从 `/root/autodl-tmp/models/llama-3.1-8b` 加载，不要重新下载\n- 环境激活用 `source /root/distill_sparse_swiglu/setup_env.sh`（不是 venv，不是 conda activate）\n- WANDB_MODE=disabled（当前所有实验都禁用 W&B 在线同步）\n- evaluate.py 的 \"Dense baseline\" 实际是 predictor hard-mask 评估（不是真 dense），true dense PPL = 6.1173（固定值）\n- kl_only_s0/s1 的 checkpoint 文件名是 `predictor_kl_normalized.pt`（和 MVP 实验一致）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887，工作目录 `/root/distill_sparse_swiglu`\n- Python：`/root/miniconda3/bin/python`（setup_env.sh 会设好 PATH）\n- 模型：`/root/autodl-tmp/models/llama-3.1-8b`（Llama 3.1 8B，本地缓存）\n- 数据集：wikitext-103（HF cached），评估用 wikitext-2\n- Checkpoints：`/root/distill_sparse_swiglu/checkpoints/{exp_id}/`\n- 日志：`~/runs/distill_sparse_swiglu/{exp_id}.log`\n- GPU：2× RTX PRO 6000 Blackwell（98GB each），cuda:0 + cuda:1\n- 活跃进程：无（kl_only_s0/s1 刚跑完退出）\n- 活跃 Worker：`worker_analysis_kl_only_seeds_20260515T175825`（分析 kl_only_s0 + s1，读日志 + 跑评估）\n\n### 3. 📊 当前状态\n**刚做完**：收到 kl_only_s0 cron 回调（kl_only_s1 也同时完成），派 Worker 去分析两个实验（读日志 + 跑 WikiText-2 评估 + 更新 registry）。已向 Director 汇报初步状态。\n\n**Registry 关键实验**：\n- `kl_only_s0` (ANALYZING)：seed=0，KL normalized v3，等 Worker 评估\n- `kl_only_s1` (ANALYZING)：seed=1，同上\n- `spon_training` (PENDING)：SPON bias vectors + KL，dry-run 已 PASS，等审批\n- `bce_comp_staged_s42` (PENDING)：BCE + ErrorCompensation staged，等审批\n- `spon_kl_s42` (PREPARING)：SPON+KL 组合，代码未就绪\n- 6 个 DONE(success)：mvp_bce_s42/s123/s456 + mvp_kl_norm_v2_s42/s123/s456\n\n**等待中**：\n- Worker 回调：`worker_analysis_kl_only_seeds_20260515T175825` → 评估完成后更新 5-seed 汇总\n- Dream review：`dream_20260515T164925` → 结果决定是否启动 plan_001 BCE+comp + plan_004 SPON\n- Director 审批：spon_training + bce_comp_staged_s42\n\n### 4. 📋 待办\n- Worker 分析回调到达 → 更新 registry（metrics/conclusion/checkpoint_path）+ 生成 5-seed 汇总表 + 更新 report.md + 向 Director 汇报完整 on-experiment-done（含反思 + 文献联动）\n- Dream review 结果到达 → 按行动指令调整 experiment_plan / paper_framing → 启动 plan_001 BCE+comp (cuda:0) + plan_004 SPON (cuda:1) 并行\n- spon_training 审批通过 → submit_on_allocated 到 cuda:1（命令已在 registry spec 里）\n- bce_comp_staged_s42 审批通过 → submit_on_allocated 到 cuda:0（命令已在 registry spec 里）\n- 5-seed 汇总出来后如果 s456 仍是 outlier（sparse PPL std > 1.0）→ 在汇报中建议 Director 是否需要调查 seed 敏感性根因\n\n### 5. 🎯 战略上下文\n**核心结论**：KL normalized v3（÷seq_len only + Lagrangian）在 50% sparsity 下大幅优于 BCE。3-seed sparse PPL: KL 12.52 vs BCE 44.05。MVP PASS（D007）。\n\n**决策链**：D001(MVP设计) → D002(数据改WikiText) → D003(KL坍塌→Lagrangian) → D004(选方案C：KL归一化) → D005(确认seq_len-only) → D006(停止旧KL训练,÷vocab_size bug) → D007(MVP PASS,进research阶段)\n\n**易错点**：\n- `mvp_kl_norm_s42/s123`（无 v2）是 FAILED 的旧实验（÷vocab_size bug），不要和 `mvp_kl_norm_v2_s42/s123` 混淆\n- s456 是 3-seed 中的 outlier（sparse PPL 13.58 vs 12.08/11.91），PPL increase 48.6% 远高于 s42(31.2%)/s123(28.8%)。如果 s0/s1 也偏高，seed 敏感性可能成为 Reviewer 攻击面\n- BCE 实验的 `vanilla_teal_sparse_ppl_INVALID = 66036` 是无效值（evaluate.py bug），不要引用\n- plan_001 remaining: BCE+comp 5 seeds + KL+comp 3 seeds（最大工作量，是关键路径）\n- SPON 复现（plan_004）是 Claim 2 的前置，也是 Reviewer Warning 中的\"关键路径\"\n- 论文目标：ARR 05-25 提交，时间紧\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:kl_only_s0"
+          },
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-kl-only-s0-20260515t210104-608379.md"
+}

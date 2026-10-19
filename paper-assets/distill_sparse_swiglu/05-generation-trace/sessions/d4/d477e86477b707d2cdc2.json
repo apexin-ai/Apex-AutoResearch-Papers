@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d477e86477b707d2cdc2",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "submit westd 41718 2gpu",
+  "task_key": "worker_submit_westd-41718-2gpu_20260518T050223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_westd-41718-2gpu_20260518T050223_result.json",
+    "occurrence": 1,
+    "bytes": 667,
+    "sha256": "dbc39886ef277f4125956b9c2634abf0743d5300d96129275aae125c10e5abc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两张卡均已启动，正在运行 C4 PPL 评估：\n\n| GPU | PID | 实验 | VRAM | 状态 |\n|-----|-----|------|------|------|\n| cuda:0 | 47644 | `c4_ood_kl30_s123` — KL 30% teal_global C4 OOD PPL | 41.7 GB | 已进入 C4 PPL 评估（mask 计算完成） |\n| cuda:1 | 47970 | `c4_ood_dense_baseline` — Dense baseline C4 OOD PPL | 18.3 GB | 模型加载完成，已进入 C4 PPL 评估 |\n\n预计时长：每个 job ~5-15 分钟（C4 validation PPL 评估，取决于 sample 数量）。\n\n日志文件：\n- `logs/c4_ood_kl30_s123.log`\n- `logs/c4_ood_dense_baseline.log`\n\n结果将输出到 `results/benchmark/{exp_id}/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-westd-41718-2gpu.md"
+}

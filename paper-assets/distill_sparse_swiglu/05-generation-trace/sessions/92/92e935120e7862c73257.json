@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92e935120e7862c73257",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "exp bce ste s42 collect and eval",
+  "task_key": "worker_exp_bce_ste_s42_collect_and_eval_20260520T115723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_bce_ste_s42_collect_and_eval_20260520T115723_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "15751c1e0995f7065f51df8fe66c76ae1c9c5f73d0805ebe4d853e3a5cd1fac8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n**BCE+STE 训练 (westd-41718)** — 已完成\n- 最终: loss=0.6410, bce=0.6398, reg=0.0012, sparsity=0.512\n- 1000 步, 1045s, 1.05s/step\n- Checkpoint: `/root/distill_sparse_swiglu/checkpoints/bce_ste_s42/predictor_bce.pt` (145MB)\n\n**BCE+STE Eval (westd-41718:cuda:0)** — 运行中 (PID 249688)\n- WikiText-2 PPL = **60.54** ✓\n- arc_challenge (25-shot) ✓ (3m36s)\n- 当前: winogrande + mmlu (5-shot) 进行中\n- 待跑: gsm8k, hellaswag, piqa\n- 预计还需 ~15-20 分钟\n\n**40% Global Eval v2 (westd-34887:cuda:0)** — 运行中 (PID 205789)\n- 当前 batch: 84% (33833/40168), ~26 it/s\n- 该 batch 约 4 分钟完成，但后续可能还有更多 tasks\n\n两个 eval 都在跑，无需干预。要等结果出来还是先做别的？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-bce-ste-s42-collect-and-eval.md"
+}

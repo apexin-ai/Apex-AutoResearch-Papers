@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c17ceab57f8ce77ac5f7",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops urgent results collection",
+  "task_key": "worker_ops_urgent-results-collection_20260519T050232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-results-collection_20260519T050232_result.json",
+    "occurrence": 1,
+    "bytes": 1656,
+    "sha256": "0ef3d35c88f6e0ebd5935a5822a830a38387264fc629a5fd6e1dcbd5c280230b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集完毕。Checkpoint 验证通过。汇总如下：\n\n```\n=== mistral_teal30_downstream ===\nwikitext2_ppl: 8.3807\narc_challenge_acc_norm: 0.4113\nwinogrande_acc: 0.6354\nmmlu_acc: 0.4348\ngsm8k_exact_match: 0.1592\nhellaswag_acc_norm: 0.6011\npiqa_acc_norm: 0.7214\n\n=== mistral_teal50_downstream ===\nwikitext2_ppl: 18.3061\narc_challenge_acc_norm: 0.2457\nwinogrande_acc: 0.5091\nmmlu_acc: 0.2635\ngsm8k_exact_match: 0.0341\nhellaswag_acc_norm: 0.3603\npiqa_acc_norm: 0.6045\n\n=== eval_c1_retrain_30pct_s123 ===\nwikitext2_ppl: 7.54\narc_challenge_acc_norm: 0.4471\nwinogrande_acc: 0.6977\nmmlu_acc: 0.3992\ngsm8k_exact_match: 0.0682\n\n=== eval_c1_retrain_30pct_s456 ===\nwikitext2_ppl: 7.38\narc_challenge_acc_norm: 0.4471\nwinogrande_acc: 0.6993\nmmlu_acc: 0.4104\ngsm8k_exact_match: 0.0660\n\n=== c1_retrain training agreement ===\ns123 final: agreement=0.977, sparsity=0.310\ns456 final: agreement=0.977, sparsity=0.312\n\n=== c1_retrain training PPL (WikiText-2, inline eval) ===\ns123: PPL=7.54, actual_sparsity=0.332\ns456: PPL=7.38, actual_sparsity=0.346\n(reference: KL predictor PPL=11.79, BCE predictor PPL=22.51)\n```\n\n**Checkpoints 验证通过：**\n- `c1_retrain_30pct_s123/predictor_bce_kl_targets.pt` — 145MB\n- `c1_retrain_30pct_s456/predictor_bce_kl_targets.pt` — 145MB\n\n**要点：**\n- C1 retrain 两个 seed 结果高度一致（agreement 0.977，PPL ~7.4-7.5，downstream 差异 <1.1pp），复现性强\n- C1 retrain eval 没有跑 hellaswag 和 piqa（只有 arc/winogrande/mmlu/gsm8k 4 项）\n- TEAL 50% 性能显著退化（PPL 18.3 vs 30% 的 8.4），downstream 全面崩塌"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-results-collection.md"
+}

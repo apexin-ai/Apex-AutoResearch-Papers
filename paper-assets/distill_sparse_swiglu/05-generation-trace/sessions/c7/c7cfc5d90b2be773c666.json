@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7cfc5d90b2be773c666",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check mistral download",
+  "task_key": "worker_ops_check_mistral_download_20260515T200357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_mistral_download_20260515T200357_result.json",
+    "occurrence": 1,
+    "bytes": 986,
+    "sha256": "38722f9cbe4f6339e745f36f41ef7a0b16af58503103390167e770c12d8d3b4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 下载状态：**失败**\n\n**结果汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| 下载进度 | 1/15 文件 (7%)，日志停在此处 |\n| 模型权重 | **0 个 .safetensors 完成**，3 个分片（model-00001~00003-of-00003.safetensors）全未完成 |\n| 缓存碎片 | 4 个 `.incomplete` 文件共 ~3.4GB（1010M + 910M + 850M + 700M） |\n| 元数据 | config.json / tokenizer 等已下载（3.2MB） |\n| 目录总大小 | 4.1GB（全是缓存碎片，不可用） |\n| 磁盘空间 | /root/autodl-tmp 剩余 221GB，空间充足 |\n\n**失败原因：** 日志显示 `Warning: You are sending unauthenticated requests to the HF Hub`，未认证下载大文件大概率被限速或断连，进程中断后 nohup 日志也不存在，进程已死。\n\n**需要重新下载。** 建议：\n1. 清理 `.cache` 目录中的 `.incomplete` 碎片\n2. 设置 `HF_TOKEN` 或改用 ModelScope（AutoDL 上 HF 下载极慢）\n3. 重新用 nohup 启动下载"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-mistral-download.md"
+}

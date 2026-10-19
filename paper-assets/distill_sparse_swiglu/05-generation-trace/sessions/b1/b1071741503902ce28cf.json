@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1071741503902ce28cf",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval sparsity30 v3 ppl",
+  "task_key": "worker_eval_sparsity30_v3_ppl_20260515T223513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_sparsity30_v3_ppl_20260515T223513_result.json",
+    "occurrence": 1,
+    "bytes": 647,
+    "sha256": "18186a067fd363f2b3e14f3cbd5ed5b0cc16d6ac7d46b72b084e45a31f5a12e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。kl_sparsity30_s42_v3 WikiText-2 PPL 评估结果：\n\n| 指标 | 值 |\n|------|-----|\n| true_dense_ppl | 6.12 |\n| predictor_hard_mask_ppl | 7.30 |\n| teal_sparse_ppl | 8.76 |\n| model_level_sparsity | 0.285 |\n\n验证通过：\n- true_dense_ppl = 6.12（与其他实验一致）\n- predictor_hard_mask_ppl = 7.30（28.5% sparsity 较温和，符合预期 7-9 范围）\n- teal_sparse_ppl = 8.76（28.5% 下 TEAL 正常，未触发高 sparsity 的 normalization bug）\n- model_level_sparsity = 0.285（符合训练收敛值）\n\nRegistry 已更新，plan_008 sparsity sweep 三个数据点（28.5%/50%/70%）齐全。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-sparsity30-v3-ppl.md"
+}

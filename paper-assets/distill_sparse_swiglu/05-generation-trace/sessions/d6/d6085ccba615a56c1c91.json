@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6085ccba615a56c1c91",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis qwen14b kl30 s42 gsm8k v2",
+  "task_key": "worker_analysis_qwen14b_kl30_s42_gsm8k_v2_20260519T225148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen14b_kl30_s42_gsm8k_v2_20260519T225148_result.json",
+    "occurrence": 1,
+    "bytes": 1234,
+    "sha256": "fdf5fc9521c11ee0528f7376a19e5756c6a5e5ed09884e31d846579c2253cf95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "注册表已更新完毕。\n\n## 实验结果：qwen14b_kl30_s42_gsm8k_v2\n\n### Metrics\n| 指标 | 值 |\n|------|-----|\n| gsm8k_exact_match (flexible) | **0.3571** |\n| gsm8k_exact_match (strict) | 0.3541 |\n| stderr | ±0.0132 |\n| actual_sparsity | 0.296 |\n| sample_len | 1319 |\n| 运行时间 | ~4.5h, EXIT_CODE=0, 无 OOM/NaN |\n\n### 与 s123 一致性\n| Seed | GSM8K exact_match | Sparsity |\n|------|-------------------|----------|\n| s42 | 0.3571 | 0.296 |\n| s123 | 0.3442 | 0.297 |\n| **差值** | **+1.29pp** | — |\n\n差值在 stderr (~1.3pp) 范围内，**两个 seed 一致**。\n\n### 与 baseline 对比\n| 配置 | GSM8K | vs Dense retention |\n|------|-------|-------------------|\n| Qwen-14B Dense | 0.8757 | 100% |\n| **KL 30% s42** | **0.3571** | **40.8%** |\n| KL 30% s123 | 0.3442 | 39.3% |\n| TEAL 27.5% uniform | 0.5709 | 65.2% |\n| 8B Dense | 0.4875 | — |\n| 8B TEAL 30% uniform | 0.0879 | — |\n\n### 结论：**success**\n\n实验正常完成，结果与 s123 一致。但 GSM8K 上 KL 30% 的 retention 较低（~40%），且显著弱于 TEAL 27.5%（0.5709）。这与其他 5 个任务上 KL 优于或持平 TEAL 的趋势相反——GSM8K 是 KL predictor 的弱势任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen14b-kl30-s42-gsm8k-v2.md"
+}

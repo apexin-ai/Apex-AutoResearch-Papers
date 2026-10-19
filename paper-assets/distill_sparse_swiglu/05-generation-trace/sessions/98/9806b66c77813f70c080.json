@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9806b66c77813f70c080",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops spon eval retry check",
+  "task_key": "worker_ops_spon_eval_retry_check_20260515T200322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_spon_eval_retry_check_20260515T200322_result.json",
+    "occurrence": 1,
+    "bytes": 1332,
+    "sha256": "d289304a499be72039aa8effbdc3f9e2b7fcb41618e19edd8df353ea684df4bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已无残留。\n\n## 报告\n\n**(1) 日志关键内容**\n\n`eval_spon_supp_retry.log`（32 行，4.5KB）完成了 5 步评估中的前 3 步：\n- [1/5] True Dense PPL: **6.1173**\n- [2/5] Dense with SPON biases folded: **6.1823**（degradation +0.0651）\n- [3/5] TEAL sparsity: **0.4993**\n- [4/5] TEAL sparse (no SPON): 开始后日志出现重复输出，**无 PPL 值**\n- [5/5] 完全缺失\n\nEXIT_CODE=0 来自 wrapper 脚本，但 Python 进程实际未完成全部评估。\n\n**(2) 结果：部分失败**\n\n步骤 4-5 的 TEAL sparse PPL 指标未产出。\n\n**(3) 指标**\n\n本次 retry 无新增指标。之前 worker (`worker_eval_spon_2048_supplementary`) 已成功获取的完整指标仍然有效：\n| 指标 | 值 |\n|------|-----|\n| teal_sparse_no_spon_ppl | 12.0776 |\n| teal_sparse_with_spon_ppl | 11.7907 |\n| spon_recovery_teal | 4.8% |\n| dense_with_spon_ppl | 6.1823 |\n\n本次 retry 的步骤 1-2 结果与之前一致（dense PPL 6.1173/6.1823），确认数据无偏差。\n\n**(4) Cron 状态**\n\n`spon_supp_eval_retry` 在 MCP cron 和 session cron 中均不存在，无需删除。Registry 中也无此实验条目（非独立实验），无需更新。\n\n**结论**：retry 部分失败但无影响——所需指标已由先前 worker 完整获取，无需重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-spon-eval-retry-check.md"
+}

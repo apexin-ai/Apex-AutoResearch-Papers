@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70e60ea9098201aae50d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops gpu check and submit teal",
+  "task_key": "worker_ops_gpu-check-and-submit-teal_20260516T113831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-check-and-submit-teal_20260516T113831_result.json",
+    "occurrence": 1,
+    "bytes": 688,
+    "sha256": "0214c4ef2acf9a0713e399bfd022ce5c2c17c8af968f04db5cb8a519eb6c0750"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 已完成实验结果\n\n| 指标 | bench_kl30_global (30% sparsity) | bench_kl50_global (50% sparsity) |\n|------|---:|---:|\n| wikitext2_ppl | **8.9768** | **11.7933** |\n| arc_challenge_acc_norm | 0.3968 | 0.3285 |\n| winogrande_acc | 0.7017 | 0.6346 |\n| mmlu_acc | 0.2527 | 0.2789 |\n| gsm8k_exact_match | 0.0879 | 0.0129 |\n\n两个实验均正常完成（EXIT_CODE=0），runtime ~2h each。\n\n### 2. 已提交新实验\n\n| 实验 | GPU | PID | 模式 |\n|------|-----|-----|------|\n| **bench_teal30** | cuda:0 | 227692 | teal_vanilla, sparsity=0.3 |\n| **bench_teal50** | cuda:1 | 227770 | teal_vanilla, sparsity=0.5 |\n\n预计 ~2h 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-check-and-submit-teal.md"
+}

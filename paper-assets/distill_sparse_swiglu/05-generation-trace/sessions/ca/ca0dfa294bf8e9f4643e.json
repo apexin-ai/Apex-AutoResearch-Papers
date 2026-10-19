@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca0dfa294bf8e9f4643e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis extract 14b intermediate results",
+  "task_key": "worker_analysis_extract_14b_intermediate_results_20260517T215553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_extract_14b_intermediate_results_20260517T215553_result.json",
+    "occurrence": 1,
+    "bytes": 726,
+    "sha256": "c2d9962ff0fd90b0d693abc05ed6b6168c9a5dc949de7005769e79bec2d3e32e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果写入 `artifacts/qwen14b_intermediate_results.md`。\n\n**核心发现：ARC/WinoGrande/MMLU 分数目前不可提取。** 原因：eval 脚本用 lm-eval-harness 将 4 个 task 打包一次性跑，结果只在全部完成后才写入 log/JSON。GSM8K 是最慢的（generate_until），3 个实验都还在跑。\n\n**目前可用数据：**\n\n| Experiment | PPL | GSM8K 进度 |\n|------------|-----|-----------|\n| qwen14b_dense_baseline | 5.1854 | 81% (~50 min remaining) |\n| qwen14b_teal30_eval | 8.7332 | 87% (~49 min remaining) |\n| qwen14b_bce30_s42_eval | 8.7634 | 86% (~46 min remaining) |\n\n预计 30-50 分钟后 GSM8K 跑完，所有指标才会一次性输出。需要到时再提取。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-extract-14b-intermediate-results.md"
+}

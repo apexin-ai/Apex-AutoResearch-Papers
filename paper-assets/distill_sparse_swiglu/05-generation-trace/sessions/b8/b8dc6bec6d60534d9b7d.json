@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8dc6bec6d60534d9b7d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check kl30 global v3 results",
+  "task_key": "worker_ops_check-kl30-global-v3-results_20260518T230950",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-kl30-global-v3-results_20260518T230950_result.json",
+    "occurrence": 1,
+    "bytes": 665,
+    "sha256": "dc9093adcf6f19cab2d14c5483ad871b81d49253df443daeb3141331e8e0af52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已完成，结果如下：\n\n## Global Eval 结果 (TEAL global_topk, 30% sparsity, LLaMA-3.1-8B)\n\n| Metric | s123 | s456 |\n|---|---|---|\n| **WikiText-2 PPL** | 8.9748 | **8.9332** |\n| **ARC-C (acc_norm)** | 0.4531 | **0.4633** |\n| **WinoGrande** | 0.6930 | **0.7111** |\n| **MMLU** | 0.3807 | **0.4382** |\n| **GSM8K** | 0.0758 | 0.0758 |\n\ns456 在所有指标上优于或持平 s123，MMLU 差异最大（+5.75pp）。\n\n**GPU 状态**: 两块 GPU 均空闲（0% utilization, 0 MiB used）。\n\n**HellaSwag/PIQA 支持**: `benchmark_eval.py` 已包含 `hellaswag` (10-shot) 和 `piqa` (0-shot) 配置，可直接使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-kl30-global-v3-results.md"
+}

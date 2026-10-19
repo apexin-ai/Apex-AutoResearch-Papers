@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f2987639a9fda706e08",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra final extract teal30 bce30 now",
+  "task_key": "worker_infra_final_extract_teal30_bce30_now_20260517T223930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_final_extract_teal30_bce30_now_20260517T223930_result.json",
+    "occurrence": 1,
+    "bytes": 497,
+    "sha256": "7d9b95a1c826b16f7edf2bdf12cd76ef78f12694622c58951754e10e7fe7a548"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### qwen14b_teal30_eval — DONE\n\n| Metric | Value |\n|---|---|\n| wikitext2_ppl | **8.7332** |\n| arc_challenge_acc_norm | **0.5683** |\n| winogrande_acc | **0.7269** |\n| mmlu_acc | **0.7183** |\n| gsm8k_exact_match | **0.4951** |\n\nRegistry 已更新为 DONE，cron 已删除。\n\n### qwen14b_bce30_s42_eval — 不存在\n\n- 不在 registry 中\n- westd-34887 和 westd-41718 上均无对应 log 文件、进程或结果文件\n- 该实验似乎从未被启动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-final-extract-teal30-bce30-now.md"
+}

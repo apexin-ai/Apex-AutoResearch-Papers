@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7938d73301198159981e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh read benchmark eval allocation default",
+  "task_key": "worker_ssh_read_benchmark_eval_allocation_default_20260520T190832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_read_benchmark_eval_allocation_default_20260520T190832_result.json",
+    "occurrence": 1,
+    "bytes": 927,
+    "sha256": "48e5e920a5a5b13eb91ac80a90e4b2e4ebbb47da86385325bcdfa2bf994fcfd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n**1. `--allocation` 默认值：`global_topk`**\n\n**2. 无条件分支默认值**：argparse 只定义了一个静态 default，不依赖 `sparsity_mode` 或其他参数。choices=[`global_topk`, `uniform`]。\n\n**3. 代码片段**（benchmark_eval.py:111-113）：\n```python\np.add_argument(\"--allocation\", type=str, default=\"global_topk\",\n               choices=[\"global_topk\", \"uniform\"],\n               help=\"Sparsity budget allocation: single threshold or per-layer independent top-k\")\n```\n\n**下游传递**（一律取 `args.allocation`，不改写）：\n- L344 baseline 模式：`allocation=args.allocation` → 传给 `compute_baseline_masks`\n- L350/L375 predictor + teal_global 模式：同样透传\n\n因此命令行不显式传 `--allocation` 时，所有 baseline（teal_vanilla/teal_greedy/wina/rsparse）和 predictor-teal_global 模式都使用 **global_topk**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-read-benchmark-eval-allocation-default.md"
+}

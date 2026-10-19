@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "713d98731113fee62eda",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval kl30 s456 uniform fix",
+  "task_key": "worker_eval_kl30_s456_uniform_fix_20260517T173705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_kl30_s456_uniform_fix_20260517T173705_result.json",
+    "occurrence": 1,
+    "bytes": 783,
+    "sha256": "2e4f9fca5f39f1c2e061e2950af9611d50a421d4a88043c88684fc8250badff3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here are the results:\n\n```\nkl30_s456_uniform_eval 补全指标:\n  arc_challenge_acc_norm: 0.4505\n  winogrande_acc:         0.6875\n  gsm8k_exact_match:      0.0758\n  mmlu_acc (交叉验证):     0.4198 ✓ (与 registry 一致)\n  ppl_wikitext2:          8.7947\n\nkl30_s456_train:\n  checkpoint_path: /root/distill_sparse_swiglu/checkpoints/kl_30pct_s456/predictor_kl_normalized.pt\n  log_path:        ~/runs/distill_sparse_swiglu/kl30_s456_train.log\n  final_loss:      0.2021\n  actual_sparsity: 0.289\n  training_steps:  1000/1000\n```\n\n所有数据本来就已经跑完了（日志和 `results/benchmark/kl30_s456_uniform/results.json` 都有完整记录），只是 registry 的 metrics 字段当时漏填了 ARC/WG/GSM8K。已补全。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-kl30-s456-uniform-fix.md"
+}

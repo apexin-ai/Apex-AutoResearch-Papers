@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83a737c568f119a63dd2",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code qwen14b kl30 s456 eval 41718",
+  "task_key": "worker_code_qwen14b_kl30_s456_eval_41718_20260519T153305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen14b_kl30_s456_eval_41718_20260519T153305_result.json",
+    "occurrence": 1,
+    "bytes": 820,
+    "sha256": "1014fdc57a01b0591da6cfef471f01f789b73627852590d081f0c2f3f9925f03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n- **进程已启动**：westd-41718 cuda:0，PID 156016，`qwen14b_kl30_s456_eval_v2` 命令\n- **D075 sigmoid 修复**：已确认 (`torch.sigmoid(logits)`)\n- **Checkpoint**：从 westd-34887 scp 到 westd-41718，224M，校验一致\n- **Per-layer sparsity**：~0.29-0.30，符合 0.3 目标\n- **6 tasks**：wikitext2, arc_challenge, winogrande, hellaswag, piqa, mmlu\n- **Registry**：`qwen14b_kl30_s456_eval_v3`（v2 已被之前的 westd-34887 运行占用，status=DONE），当前 status=RUNNING\n- **Cron 监控**：每 2 分钟检查，job ID `8154f724`\n\n注意：`qwen14b_kl30_s456_eval_v2` 在 registry 中已有之前在 westd-34887 完成的结果（PPL=7.69, ARC=0.53, WG=0.72, HS=0.71, PIQA=0.76, MMLU=0.64）。本次在 westd-41718 的重跑注册为 v3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen14b-kl30-s456-eval-41718.md"
+}

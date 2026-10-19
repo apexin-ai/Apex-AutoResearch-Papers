@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b409819ed8963b0da5b9",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh check status teal30",
+  "task_key": "worker_ssh_check_status_teal30_20260516T034540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_status_teal30_20260516T034540_result.json",
+    "occurrence": 1,
+    "bytes": 1436,
+    "sha256": "a9da0cc3328b062d1e96bed10c7bd7e902ac6719c501fb7d1736b16367f82092"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. Mistral KL 50% downstream eval (PID 195242)\n\n**状态: Running** | 已运行 49 分钟\n\n- 已完成: arc_challenge, winogrande, 全部 mmlu 子任务\n- 当前: gsm8k `generate_until` 请求 **64% (841/1319)**，~2.9s/it\n- 预计剩余: ~25 分钟\n- 结果目录 `results/lm_eval_mistral_kl_50pct/` 存在但尚无输出文件（完成后写入）\n- 运行在 cuda:1 (16524MiB)\n\n### 2. TEAL 30% 完整 downstream metrics\n\n| Task | Metric | Value |\n|------|--------|-------|\n| **arc_challenge** | acc | 0.3933 |\n| **arc_challenge** | acc_norm | 0.4155 |\n| **winogrande** | acc | 0.6559 |\n| **mmlu** (overall) | acc | 0.3598 |\n| - mmlu_stem | acc | 0.3130 |\n| - mmlu_humanities | acc | 0.3305 |\n| - mmlu_social_sciences | acc | 0.4108 |\n| - mmlu_other | acc | 0.4010 |\n| **gsm8k** | exact_match (strict) | 0.0849 |\n| **gsm8k** | exact_match (flexible) | 0.0925 |\n\n实际稀疏度: 30.00%。确认 negative — 各项指标均显著低于 dense baseline 预期水平，尤其 gsm8k (<9%) 严重退化。\n\n### 3. GPU 状态\n\n| GPU | 显存 | 利用率 | 状态 |\n|-----|------|--------|------|\n| **cuda:0** | 0 / 97887 MiB | 0% | **空闲可用** |\n| **cuda:1** | 62082 / 97887 MiB | 96% | 占用 |\n\n**注意**: cuda:1 上除 PID 195242 (16524MiB) 外，还有一个未知进程 **PID 195911** (45544MiB)。这不是 mistral eval 的一部分，需要确认来源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-status-teal30.md"
+}

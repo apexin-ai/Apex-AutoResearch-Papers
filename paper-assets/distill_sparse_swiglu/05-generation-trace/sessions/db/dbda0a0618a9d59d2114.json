@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbda0a0618a9d59d2114",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh check jsd and 34887",
+  "task_key": "worker_ssh_check_jsd_and_34887_20260520T161023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_jsd_and_34887_20260520T161023_result.json",
+    "occurrence": 1,
+    "bytes": 843,
+    "sha256": "2f3856bb7a05f261af4329f8a9163362b97b8bffb0e221d7fa818c99ce47e1ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| 实验 | GPU | Step | Loss | Sparsity | Lambda | Tau | 状态 |\n|------|-----|------|------|----------|--------|-----|------|\n| **JSD 30% s42** | cuda:0 (75GB/98GB, 100%) | **500/1000** | 0.0352 | 0.289 | 1310.72 | 0.550 | 正常 |\n| **Reverse KL 30% s42** | cuda:1 (71GB/98GB, 100%) | **510/1000** | 0.2002 | 0.301 | 5000.00 | 0.541 | 正常 |\n\n**关键观察**：\n\n- **Sparsity**：两个实验都稳定在 0.28–0.31 范围，接近 target=0.3，constraint≈0，约束满足良好\n- **Lambda**：JSD 的 lambda 在 300–2600 间振荡（PID 控制还在调节）；Reverse KL 已触及 lambda_max=5000 并稳定\n- **Loss**：JSD loss ~0.035 远低于 Reverse KL ~0.20，符合 JSD 量纲更小的预期\n- **进度**：两者约 50% 完成，Reverse KL 比 JSD 快约 10 步，预计还需数小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-jsd-and-34887.md"
+}

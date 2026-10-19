@@ -1,0 +1,11 @@
+Remote path: /root/temp-adv-distill-vla/artifacts/delta_progress_results.json
+
+Aggregate:
+  mean_auroc_delta_progress: 0.5325
+  mean_auroc_ted: 0.6192
+  mean_auroc_sal_original (fixed, +arc_length): 0.9945
+  mean_auroc_sal_fixed (buggy naming, -arc_length): 0.0055
+  mean_iqr_delta_progress: 0.0104
+  mean_spearman_rho: 0.0208
+  dp_wins_vs_ted: 0/10
+  dp_wins_vs_sal_corrected: 0/10

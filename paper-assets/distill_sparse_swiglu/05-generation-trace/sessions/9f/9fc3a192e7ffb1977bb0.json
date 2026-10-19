@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fc3a192e7ffb1977bb0",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh check two experiments status",
+  "task_key": "worker_ssh_check_two_experiments_status_20260522T182246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_two_experiments_status_20260522T182246_result.json",
+    "occurrence": 1,
+    "bytes": 1274,
+    "sha256": "122d8c9dff3fc19bd7cf0cfcc6dd4a2a7743e08a49a94981b3d5b6ea7861bb62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n== kl50_global_s123_downstream_v2 ==\n状态: 完成\n时间: 2026-05-23 01:43:17\n⚠️ 只跑了 4 个 task（配置里 tasks=\"arc_challenge,winogrande,mmlu,gsm8k\"），缺 hellaswag/piqa/boolq\n\n指标:\n  arc_challenge  acc_norm = 0.3916\n  winogrande     acc      = 0.6401\n  mmlu           acc      = 0.2908\n  gsm8k          exact_match = 0.0341\n\n== perlayer_kl_k4_50_s42 ==\n状态: 训练完成，eval 阶段中断（进程已退出，GPU 空闲，无 error 日志）\n训练: 1000/1000 steps 完成，耗时 ~1857s (~31min)\n  avg_kl = 0.1267 (最终 step)\n  avg_sparsity ≈ 0.496\nCheckpoint:\n  predictor_perlayer_kl_k4.pt        (145 MB, final)\n  predictor_perlayer_kl_k4_step_500.pt  (435 MB)\n  predictor_perlayer_kl_k4_step_1000.pt (435 MB)\nEval 结果: 无。日志最后一行是 \"Eval mode: all layers masked simultaneously (inference config)\"，之后无输出，进程静默退出。可能 OOM 或被 kill。\n```\n\n**需要关注的问题：**\n1. **kl50_global_s123_downstream_v2** 只评估了 4/7 个 task，缺 hellaswag、piqa、boolq。需要补跑或确认这是否符合预期。\n2. **perlayer_kl_k4_50_s42** 训练成功但 eval 中断，需要单独跑 PPL eval（和/或 downstream eval）来获取结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-two-experiments-status.md"
+}

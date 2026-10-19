@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72e5845bfbd8b852d9fa",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diagnose perlayer kl k16 s42 v2",
+  "task_key": "worker_diagnose_perlayer_kl_k16_s42_v2_20260523T040655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_perlayer_kl_k16_s42_v2_20260523T040655_result.json",
+    "occurrence": 1,
+    "bytes": 610,
+    "sha256": "df08f0ba71909e1632d26b9efd9e2d05fd013956c8ae848156898d3ab48feb2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**：`train_perlayer_kl_k4.py:314` 无条件调用 `wandb.init()`，但 westd-34887 上没有配置 wandb API key（无 `.netrc`、无 `~/.config/wandb/`、`.bashrc` 无 `WANDB_API_KEY`）。脚本在初始化阶段就崩溃，未进入训练。\n\n**K=4 为什么没问题**：K=4 训练在 wandb 集成被加入脚本之前完成，K=16 是第一个触发新代码的实验。\n\n**最快修复**：启动命令前加 `WANDB_MODE=disabled`，或在服务器上 `wandb login` 配置 key。\n\n诊断报告已写入 `task_context/diagnose_perlayer_kl_k16_s42_v2.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-perlayer-kl-k16-s42-v2.md"
+}

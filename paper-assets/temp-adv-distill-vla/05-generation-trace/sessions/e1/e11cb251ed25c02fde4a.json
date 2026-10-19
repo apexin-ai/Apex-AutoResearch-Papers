@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e11cb251ed25c02fde4a",
+  "project": "temp-adv-distill-vla",
+  "kind": "result",
+  "title": "exp phase1 iql scaled 1000",
+  "task_key": "worker_exp_phase1-iql-scaled-1000_20260515T091027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_phase1-iql-scaled-1000_20260515T091027_result.json",
+    "occurrence": 1,
+    "bytes": 105,
+    "sha256": "369f9cb6e33cfa3e26ddca2953f60a0396cecf101ca81206682a083f2f76e653"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练在跑，Q_loss 持续下降（253 → 118）。我会在几分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-phase1-iql-scaled-1000.md"
+}

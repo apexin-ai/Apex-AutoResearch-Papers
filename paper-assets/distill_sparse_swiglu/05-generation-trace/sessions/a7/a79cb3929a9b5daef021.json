@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a79cb3929a9b5daef021",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code fix benchmark script",
+  "task_key": "worker_code_fix_benchmark_script_20260519T163114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_benchmark_script_20260519T163114_result.json",
+    "occurrence": 1,
+    "bytes": 845,
+    "sha256": "f243fc94520bca36818e86a3bbd3a8977c36bf65021a70dcfc0ef41cee3e5289"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项验证全部通过：\n\n1. **文件部署** — 21815 bytes 写入 `/root/distill_sparse_swiglu/src/benchmark_flashinfer.py`\n2. **语法检查** — `import src.benchmark_flashinfer` 无报错\n3. **--help** — argparse 正常输出所有参数\n\n三个 fix 总结：\n- **P0 (full-sparse)**: `sparse_gather_ffn` 现在对 gate_proj、up_proj、down_proj 三个投影都做 gather-matmul，`patch_model_sparse_gather` 预切 3 个权重矩阵 `[K,H]`, `[K,H]`, `[H,K]`\n- **P1 (mask 生成)**: 删除了 `patch_model_with_predictor`（用 `mask[0,0]` 的 bug 版本），`compute_teal_masks` 改为在所有 calibration token 上平均 `sigmoid(logits)` 后做 global top-k\n- **P2 (calibration 数据)**: 新增 `load_calibration_data()`，优先加载 WikiText-2（离线缓存），fallback HellaSwag → 合成文本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-benchmark-script.md"
+}

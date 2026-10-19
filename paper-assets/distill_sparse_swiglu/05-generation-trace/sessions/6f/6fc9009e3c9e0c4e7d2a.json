@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fc9009e3c9e0c4e7d2a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "debug kl downstream disconnect",
+  "task_key": "worker_debug_kl_downstream_disconnect_20260516T000033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_kl_downstream_disconnect_20260516T000033_result.json",
+    "occurrence": 1,
+    "bytes": 3659,
+    "sha256": "db28b268188ed02cf6c6718e797e22d2e22d81fb6b39e72dab986b1b2b32895d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已经有足够证据了。以下是完整诊断报告。\n\n---\n\n## 诊断结果\n\n### 根因：不是 mask 应用 bug，是 **token-level bias 放大** + **MMLU 评估格式敏感**\n\n### 证据链\n\n**1. Mask 应用正确**\n- 诊断脚本验证：mask 在所有 32 层生效，平均 sparsity 51.5%，范围 [30%, 68%]\n- Dense/sparse logits 差异 1.34（mask 确实在工作）\n- `patch_predictor` 和 `unpatch_model` 逻辑均无 bug\n\n**2. Sparse 模型保留了 significant 语言理解能力**\n- 手动 QA（完整答案文本 \"Paris\"/\"London\" 等）：**90%** (18/20)\n- PPL 9.2（vs dense 6.1）：合理的 50% sparsity 退化\n\n**3. 关键发现：HFLM loglikelihood 直接测试**\n\nDense:\n```\nQ0: logprobs=[A:-6.06, B:-2.42, C:-6.47, D:-7.50] → B (Au) ✓\n```\nSparse（始终选 \"A\"）:\n```\nQ0: logprobs=[A:-2.80, B:-4.75, C:-4.19, D:-3.61] → A ✗\nQ1: logprobs=[A:-2.81, B:-5.38, C:-3.31, D:-2.81] → A ✗\nQ2: logprobs=[A:-2.47, B:-4.91, C:-4.09, D:-3.72] → A ✗\nQ3: logprobs=[A:-2.92, B:-5.16, C:-4.84, D:-4.28] → A ✗\nQ4: logprobs=[A:-2.56, B:-4.50, C:-4.44, D:-3.88] → A ✗\n```\n\n**Sparse 模型在 \"Answer:\" 后的单字母 token 上有系统性偏差：** \"A\" logprob ~-2.7 始终最高，与问题内容无关。Dense 模型没有此问题。\n\n**4. 评估指标差异导致表象差异**\n\n| Task | Metric | 为何受影响 |\n|------|--------|-----------|\n| MMLU 25.9% | `acc` (raw) | 单字母 A/B/C/D 选择，\"A\" bias 主导 → 随机 |\n| ARC-c 37.7% | `acc_norm` | 归一化消除 unconditional bias → 反映真实退化 |\n| WinoGrande 61.6% | `acc` | 完整句子续写，非字母选择 → bias 不适用 |\n| GSM8K 1.2% | `exact_match` | 生成任务，sparsity 严重降低推理能力 |\n\n### PPL-Downstream Disconnect 解释\n\n- PPL 衡量所有 token 的平均预测质量，分散在数十万个 token 上，单字母 bias 影响极小\n- MMLU 的评估完全依赖 A/B/C/D 这 4 个 token 的 logprob 排序，bias 效应被放大到 100%\n- 这是 **真实的 PPL-downstream disconnect**，但大部分由评估格式造成，不是模型完全失能\n\n### 根因判断\n\n**(A) + (C) 混合**：\n- 不是 eval_benchmark.py 的 code bug（mask 正确应用）\n- 50% dynamic sparsity 削弱了模型在\"Answer:\"上下文中对单字母 token 的区分能力\n- MMLU 的 `acc` 指标 + 字母选择格式将此缺陷放大为 ~random\n\n### 修复方案\n\n**快速修复（评估侧）**：\n\n`eval_benchmark.py` 第 325 行，MMLU 改用 `acc_norm`：\n\n```python\ndef _primary_metric(task_name):\n    return {\n        \"arc_challenge\": \"acc_norm,none\",\n        \"winogrande\": \"acc,none\",\n        \"mmlu\": \"acc_norm,none\",   # ← 修改此行\n        \"gsm8k\": \"exact_match,strict-match\",\n    }.get(task_name, \"acc,none\")\n```\n\n但 MMLU task config 只有 `acc`，没有 `acc_norm`。需要自定义 task config 或改用 `mmlu_pro`/`mmlu_generative` 变体。\n\n**更好的修复方案**：\n\n1. **重跑 MMLU 同时报告 `acc` 和 `acc_norm`** — 需要修改 MMLU task yaml 添加 `acc_norm` metric\n2. **对比 TEAL 静态 mask vs 动态 predictor mask** — PID 179918 正在运行 TEAL 版本，结果即将出来。静态 mask 可能因为全局 sparsity 约束不会有同样严重的 token bias\n3. **长期方案**：如果 dynamic predictor 在评估中持续展现此 bias，考虑训练时加入 token-discrimination 正则化\n\n### PID 179918 状态\n\n正在运行（已 29 分钟），`lm_eval_sparse.py` 用 TEAL 静态 mask + lm-eval，结果目录尚未创建。建议等待完成后对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-kl-downstream-disconnect.md"
+}

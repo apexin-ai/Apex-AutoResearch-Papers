@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd2cd5db6958745d0f7b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra diagnose bce s123 eval exit",
+  "task_key": "worker_infra_diagnose_bce_s123_eval_exit_20260517T222033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_diagnose_bce_s123_eval_exit_20260517T222033_result.json",
+    "occurrence": 1,
+    "bytes": 518,
+    "sha256": "66b493643c2cd94a91842b786cca0166879429421d0504a91ad738b2a12a034e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**bce_isocompute_v3_s123_eval → DONE/success**\n\n| Metric | Value |\n|--------|-------|\n| WikiText-2 PPL | 28.0627 |\n| ARC-Challenge acc_norm | 0.2696 |\n| WinoGrande acc | 0.5130 |\n| MMLU acc | 0.2655 |\n| GSM8K exact_match | 0.0220 |\n\nRegistry 已更新，cron 已删除。注意这些 downstream benchmark 分数很低（MMLU ~26.5% 接近随机），与 PPL 28 一致，说明 50% global sparsity BCE predictor (seed 123) 在 LLaMA-3.1-8B 上的 downstream 质量严重退化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-diagnose-bce-s123-eval-exit.md"
+}

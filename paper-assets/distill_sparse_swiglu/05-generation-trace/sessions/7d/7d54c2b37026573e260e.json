@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "7d54c2b37026573e260e",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "analysis bce isocompute v2 eval",
+  "task_key": "worker_analysis_bce_isocompute_v2_eval_20260515T204012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bce_isocompute_v2_eval_20260515T204012.log",
+    "occurrence": 1,
+    "bytes": 1028590,
+    "sha256": "9f941849649b0b4278d03f3dd61d040a725f225bdab0a83670a9561f8e479f03"
+  },
+  "statistics": {
+    "messages": 823,
+    "user_turns": 0,
+    "tool_calls": 370,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 77,
+      "tool_call": 370,
+      "tool_result": 370,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 823,
+      "chunks": [
+        {
+          "path": "7d54c2b37026573e260e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7d54c2b37026573e260e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7d54c2b37026573e260e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7d54c2b37026573e260e-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "7d54c2b37026573e260e-part-0005.json",
+          "message_count": 103
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-bce-isocompute-v2-eval.md"
+}

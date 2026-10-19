@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b4209829305b827cf20",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra fix and restart 14b 4task",
+  "task_key": "worker_infra_fix_and_restart_14b_4task_20260518T005234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix_and_restart_14b_4task_20260518T005234_result.json",
+    "occurrence": 1,
+    "bytes": 442,
+    "sha256": "ecc701c849d7217f45022105b7aa303b902f8859cb8640ca4ce15617c07816e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 已正常运行：\n\n- **cuda:0** (KL): PID 87149, 63.9GB VRAM, WikiText-2 已完成，正在跑 lm-eval tasks\n- **cuda:1** (TEAL): PID 87288, 34.6GB VRAM, 同上（VRAM 较低因为 TEAL vanilla 不需要 predictor）\n\nHF 缓存路径 `/root/autodl-tmp/.hf_cache` 正确，所有需要的数据集（ai2_arc, winogrande, cais/mmlu, wikitext, gsm8k）都已缓存。离线模式已启用。无需重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-and-restart-14b-4task.md"
+}

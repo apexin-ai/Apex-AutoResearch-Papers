@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d55c0924ece8f700f2d7",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code flashinfer benchmark script",
+  "task_key": "worker_code_flashinfer_benchmark_script_20260519T162354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_flashinfer_benchmark_script_20260519T162354_result.json",
+    "occurrence": 1,
+    "bytes": 1568,
+    "sha256": "60119fff1285817021576fa2be606353f33bf86e6f34b2543f0741a665dc8e0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass. Here's the summary:\n\n**脚本路径**: `/root/distill_sparse_swiglu/src/benchmark_flashinfer.py`\n\n**结构**:\n- **5 种 benchmark 模式**: `dense`, `mask_multiply_{30,50}` (现有方法，无 FLOP 节省), `sparse_{30,50}` (gather-matmul，真正跳过零神经元)\n- **Sparse 实现**: `torch.index_select` 提取 active neurons → 预切片 `down_proj.weight[:, active_idx]` → `F.linear` 做小 matmul。`down_proj` 从 `[H, I]=[4096, 14336]` 降到 `[H, K]`，30% sparsity 时 K≈10035，50% 时 K≈7168\n- **Timing**: `torch.cuda.Event` 精确 GPU timing，取 median\n- **输出**: JSON 到 `results/benchmark_flashinfer.json` + Markdown 汇总表\n- **两层测量**: 全模型 end-to-end latency + FFN-only isolated latency + predictor-only overhead\n\n**验证结果**:\n- Syntax check: PASSED\n- Import check: PASSED\n- `--help`: PASSED\n- 两个 checkpoint 都存在\n- flashinfer 实际已安装（`HAS_FLASHINFER=True`），脚本检测到了（但当前未实现 flashinfer 特定 kernel 路径，仅 detect；gather-matmul 是主要 sparse 路径）\n\n**潜在问题**:\n1. **GPU 占用**: 34887:0 和 :1 当前都在跑实验，不能做 dry_run with GPU。等实验完成后再跑\n2. **flashinfer kernel 路径**: 脚本 detect 到 flashinfer 可用但 `flashinfer_{30,50}` 模式尚未实现具体 kernel 调用——如果需要 flashinfer sparse matmul API 对比，需要补充实现\n3. **mask 计算用简单 calibration text**: 生产 benchmark 可能需要用 C4 calibration data 替代重复文本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-flashinfer-benchmark-script.md"
+}

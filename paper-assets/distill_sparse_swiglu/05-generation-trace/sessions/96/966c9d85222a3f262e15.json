@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "966c9d85222a3f262e15",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "eval sparsity30 v3 ppl",
+  "task_key": "worker_eval_sparsity30_v3_ppl_20260515T223513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_sparsity30_v3_ppl_20260515T223513.log",
+    "occurrence": 1,
+    "bytes": 628088,
+    "sha256": "afedc8da9b3fc9153eeeb2dc84e3c885d6f0c9df6f9a95f60214bf6c7040f3ab"
+  },
+  "statistics": {
+    "messages": 380,
+    "user_turns": 0,
+    "tool_calls": 140,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 4,
+      "assistant": 93,
+      "tool_call": 140,
+      "tool_result": 140,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 380,
+      "chunks": [
+        {
+          "path": "966c9d85222a3f262e15-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "966c9d85222a3f262e15-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "966c9d85222a3f262e15-part-0003.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-sparsity30-v3-ppl.md"
+}

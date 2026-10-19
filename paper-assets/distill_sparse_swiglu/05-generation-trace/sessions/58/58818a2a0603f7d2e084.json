@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0",
+  "id": "58818a2a0603f7d2e084",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "analysis d030 kl30 uniform",
+  "task_key": "worker_analysis_d030_kl30_uniform_20260516T042810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_d030_kl30_uniform_20260516T042810.jsonl",
+    "occurrence": 1,
+    "bytes": 4423,
+    "sha256": "0c32922096044dc1879ca47b1ed4d5c2e75f509754638f460f88076df755163b"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 0,
+    "tool_calls": 2,
+    "roles": {
+      "tool_call": 2,
+      "tool_result": 2,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T04:28:45.330341+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d030_kl30_uniform_20260516T042810",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T04:28:45.330696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d030_kl30_uniform_20260516T042810",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T04:28:45.330865+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d030_kl30_uniform_20260516T042810",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "cat /root/runs/distill_sparse_swiglu/d030_kl30_uniform.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T04:28:45.331121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model: /root/autodl-tmp/models/llama-3.1-8b\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:33,  8.60it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:37,  7.79it/s]\\\\rLoading weights:   5%|▍         | 14/291 [00:00<00:05, 51.51it/s]\\\\rLoading weights:  11%|█         | 31/291 [00:00<00:02, 92.38it/s]\\\\rLoading weights:  14%|█▍        | 41/291 [00:00<00:03, 81.15it/s]\\\\rLoading weights:  21%|██▏       | 62/291 [00:00<00:02, 110.65it/s]\\\\rLoading weights:  30%|██▉       | 87/291 [00:00<00:01, 143.63it/s]\\\\rLoading weights:  36%|███▌      | 104/291 [00:00<00:01, 149.11it/s]\\\\rLoading weights:  41%|████      | 120/291 [00:01<00:01, 152.16it/s]\\\\rLoading weights:  47%|████▋     | 136/291 [00:01<00:01, 149.24it/s]\\\\rLoading weights:  52%|█████▏    | 152/291 [00:01<00:00, 148.95it/s]\\\\rLoading weights:  58%|███��█▊    | 168/291 [00:01<00:00, 144.21it/s]\\\\rLoading weights:  63%|██████▎   | 183/291 [00:01<00:00, 130.37it/s]\\\\rLoading weights:  69%|██████▉   | 202/291 [00:01<00:00, 143.57it/s]\\\\rLoading weights:  75%|███████▍  | 217/291 [00:01<00:00, 133.54it/s]\\\\rLoading weights:  79%|███████▉  | 231/291 [00:01<00:00, 124.97it/s]\\\\rLoading weights:  85%|████████▍ | 247/291 [00:02<00:00, 127.34it/s]\\\\rLoading weights:  89%|████████▉ | 260/291 [00:02<00:00, 121.87it/s]\\\\rLoading weights:  94%|█████████▍| 273/291 [00:02<00:00, 111.57it/s]\\\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 122.16it/s]\\\\nMode: TEAL global mask from predictor (allocation=uniform)\\\\n  checkpoint: /root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt\\\\nUsing the latest cached version of the dataset since wikitext couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'wikitext-2-raw-v1' at /root/a\n…[truncated 6461 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d030_kl30_uniform_20260516T042810",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T04:28:45.331365+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== METRICS ===\nwikitext2_ppl: 8.8157\narc_challenge_acc_norm: 0.4078\nwinogrande_acc: 0.6859\nmmlu_acc: 0.4061\ngsm8k_exact_match: 0.0735\nactual_sparsity: 0.300\n\nPer-layer sparsity: uniform 0.301 across all 32 layers\n\n=== CONCLUSION ===\nnegative (partial)\n\n=== ANALYSIS ===\nMMLU 从 global top-k 的 28.74%（近随机）恢复到 40.61%，有明显改善但仍远低于 dense baseline ~63%，说明 per-layer 不均匀是 MMLU 崩溃的一个因素但非唯一因素。GSM8K 完全没有恢复——7.35% vs global top-k 的 7.43%，差异在噪声范围内，仍处于随机水平（dense ~50%），表明 reasoning 能力的崩溃与 per-layer 分配策略无关，30% sparsity 本身对 reasoning pathway 的破坏是根本原因。WinoGrande 68.59% 和 ARC-Challenge 40.78% 相对合理但也有明显退化。结论：uniform allocation 对知识类任务（MMLU）有部分修复作用，但对推理类任务（GSM8K）无效——per-layer 不均匀不是 downstream 崩溃的唯一根因。\n```"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_d030_kl30_uniform_20260516T042810"
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-d030-kl30-uniform.md"
+}

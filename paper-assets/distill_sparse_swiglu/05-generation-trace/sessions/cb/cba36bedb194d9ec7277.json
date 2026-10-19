@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cba36bedb194d9ec7277",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops locate c1 checkpoint run eval",
+  "task_key": "worker_ops_locate-c1-checkpoint-run-eval_20260519T002933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_locate-c1-checkpoint-run-eval_20260519T002933_result.json",
+    "occurrence": 1,
+    "bytes": 721,
+    "sha256": "2e36a199cc9788ad14b8dcfe36b6881fff40a498843b1348e3d3c4342e682477"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **Checkpoint 位置**：westd-34887，`/root/distill_sparse_swiglu/checkpoints/c1_ablation_30pct_s42/predictor_bce_kl_targets.pt`（152MB）。westd-41718 目录为空。\n- **41718 eval 状态**：已失败（`FileNotFoundError`，找不到 checkpoint）。\n- **34887 eval 状态**：已在 cuda:1 成功启动（nohup），正常运行中：\n  - WikiText-2 PPL = **9.4463** (已完成)\n  - arc_challenge 25-shot 评估中，当前进度 ~29%（345/1172），速度 ~47 it/s\n  - 后续还有 winogrande, mmlu, gsm8k\n  - 全部跑完预计还需 30-40 分钟\n- **exp_id**: `c1_ablation_30pct_s42_eval`，日志在 `/root/runs/distill_sparse_swiglu/c1_ablation_30pct_s42_eval_34887.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-locate-c1-checkpoint-run-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e75fe9d4a0b9913a33a1",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis kl30 s456 train and s123 eval",
+  "task_key": "worker_analysis_kl30_s456_train_and_s123_eval_20260517T133046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_kl30_s456_train_and_s123_eval_20260517T133046_result.json",
+    "occurrence": 1,
+    "bytes": 1211,
+    "sha256": "359050cc46e2d426151927044d598e6037e55390682091bb7b5b5a8f883334fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== kl30_s456_train ===\nStatus: completed (EXIT_CODE=0)\nFinal Loss: 0.2021 (kl_norm)\nActual Sparsity: 28.9%\nConstraint: 0.000000 (satisfied)\nCheckpoint exists: yes (152MB, 2026-05-17 21:28)\nCheckpoint path: /root/distill_sparse_swiglu/checkpoints/kl_30pct_s456/predictor_kl_normalized.pt\nNote: 训练日志无 validation PPL — 这是 predictor 训练，PPL 需单独 eval\n\n=== kl30_s123_eval (uniform allocation) ===\nStatus: completed (EXIT_CODE=0)\nPPL (wikitext2): 8.8308\nARC-Challenge: acc=0.4096, acc_norm=0.4531\nWinoGrande: 0.6938\nMMLU: 0.3944\nGSM8K: 0.0751\nRuntime: ~2155s (~36min)\n\n=== 对比 ===\n                s42 uniform    s123 uniform    delta\nMMLU            0.4061         0.3944          -0.0117\nPPL (wiki2)     —              8.8308          \n\nMMLU vs s42 global (0.2527):  s123 uniform = +14.2pp gain ✓\n```\n\ns456 训练正常完成，sparsity 收敛到 ~29%（目标 30%），constraint 归零，checkpoint 已保存。需要单独跑 eval 才能拿到 s456 的 PPL。\n\ns123 uniform eval 完成，MMLU=0.3944 比 s42 uniform 的 0.4061 低约 1.2pp，但相对 s42 global (0.2527) 仍有 +14.2pp 的显著提升，基本符合 hypothesis。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-kl30-s456-train-and-s123-eval.md"
+}

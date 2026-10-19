@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c330720a7fbf70c39aae",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "debug eval benchmark mask logic audit",
+  "task_key": "worker_debug_eval_benchmark_mask_logic_audit_20260516T002155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_eval_benchmark_mask_logic_audit_20260516T002155_result.json",
+    "occurrence": 1,
+    "bytes": 2141,
+    "sha256": "b5ea2ed5206ab05d12126cb299f778c880e025f409bfb66d525c3b88b8296b65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。所有关键结果已出。\n\n---\n\n## 审查结论\n\n### Mask 应用逻辑：**无 bug**\n\n| 检查项 | 结果 |\n|--------|------|\n| Mask shape | `(B, S, 14336)` 匹配 `intermediate_size` ✅ |\n| Mask 类型 | per-token 动态（非 static）✅ |\n| Mask 应用位置 | `af(gp(x)) * up(x)` 之后, `dp()` 之前 ✅ |\n| Predictor checkpoint | 128 state keys, `down=(128,4096)`, `up=(14336,128)` 正确 ✅ |\n| Predictor eval mode | `.eval()` 已设置 ✅ |\n| Closure bug | 使用 default args (`_gp=gp, ...`) 避免 ✅ |\n| 平均 sparsity | 0.5031 ≈ 目标 0.50 ✅ |\n| **HFLM 透传** | **logit diff = 0.000000** — patch 完整保留到 lm-eval ✅ |\n\n### 关键诊断数据\n\n**Dense 输出** (\"The capital of France is\"):\n```\nTop-5: [(' a', 16.25), (' Paris', 16.0), (' one', 15.44), (' the', 15.44), (' also', 14.88)]\n```\n\n**Sparse 输出**（同一 prompt, KL predictor mask）:\n```\nTop-5: [(' also', 15.88), (' a', 15.75), (' one', 15.19), (' the', 15.12), (' Paris', 14.81)]\n```\n\n- \"Paris\" 从 #2 (16.0) 降到 #5 (14.81)\n- 平均 logit 偏移 0.69, 最大 4.41\n\n**Per-token sparsity**（layer 0）:\n```\nBOS:      0.484\n'The':    0.489\n'capital':0.296\n'of':     0.440\n'France': 0.306\n```\n动态 mask 在工作，content words 保留更多 neurons。\n\n### 结论：**真实现象，非 bug**\n\n50% SwiGLU sparsity 保留了语言建模能力（PPL 6.48 → 9.65），但破坏了知识检索和推理路径：\n\n1. **PPL 是平均指标** — 只要多数 token 预测合理，PPL 就不会灾难性上升\n2. **MMLU/GSM8K 要求精确知识检索** — logit 分布的微小偏移（如 \"Paris\" 掉 1.2 分）足以翻转 4-choice 答案\n3. 预测器在 C4/WikiText 上训练，优化的是 PPL 而非 downstream accuracy\n\n### 缺失验证\n\n唯一未完成的是 **dense 条件的 lm-eval downstream 数字**（预期 MMLU ≈ 65%）。建议用 `eval_benchmark.py --condition dense --tasks mmlu` 补跑确认 lm-eval 集成本身没问题。但基于 HFLM 透传验证 (diff=0.0) 和 dense logits 正确性，集成问题的可能性极低。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-eval-benchmark-mask-logic-audit.md"
+}

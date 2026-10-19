@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f18aba5d09dbccf5a63f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis 30pct global retention",
+  "task_key": "worker_analysis_30pct_global_retention_20260517T051429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_30pct_global_retention_20260517T051429_result.json",
+    "occurrence": 1,
+    "bytes": 1319,
+    "sha256": "975b7bfbaa660e565dad5bbfed3c0cd184422188e58ba54eb6d1819c95bc582a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Server `westd-34887` is unreachable (connection refused on port 34887). This is likely a temporary cloud provider issue.\n\n**What I've done:**\n- Analyzed the global top-k implementation from `gsm8k_gen_compare.py` — the key function `global_topk_masks()` normalizes each layer's scores by per-layer mean, then applies a single global threshold\n- Wrote the full analysis script at `artifacts/global_30pct_retention_analysis_script.py`\n\n**What the script does:**\n1. Loads LLaMA-3.1-8B + predictor (`kl_sparsity30_s42_v3`)\n2. Runs 50 C4 calibration samples through the predictor\n3. Computes per-layer importance scores (`|activation| × hard_mask`, averaged over tokens)\n4. Applies `global_topk_masks()` with per-layer mean normalization at 30% sparsity\n5. Reports per-layer retention ratio and identifies starved layers (L12-L20 knowledge region)\n6. Includes dry-run validation with 2 samples first\n7. Saves full results to `/root/distill_sparse_swiglu/artifacts/global_30pct_retention_analysis.json`\n\n**Once the server is back**, run:\n```bash\nCUDA_VISIBLE_DEVICES=0 python -u /root/distill_sparse_swiglu/artifacts/global_30pct_retention_analysis_script.py\n```\n\nOr I can upload it via ssh_execute. Want me to keep retrying the connection, or should we wait and come back to this later?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-30pct-global-retention.md"
+}

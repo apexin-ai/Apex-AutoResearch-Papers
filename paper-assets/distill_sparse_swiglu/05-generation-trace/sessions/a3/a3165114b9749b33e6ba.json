@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3165114b9749b33e6ba",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis constraint remove valley kl30 s42",
+  "task_key": "worker_analysis_constraint_remove_valley_kl30_s42_20260522T144601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_constraint_remove_valley_kl30_s42_20260522T144601_result.json",
+    "occurrence": 1,
+    "bytes": 1087,
+    "sha256": "637964799598aa2df5cfaa79a0a4ca5ddf930c1bbda57439243d7bbb1fe1c782"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整数据已提取。\n\n```\nMETRICS:\n- wikitext2_ppl: 8.7592\n- arc_challenge_acc: 0.3498 (±0.0139)\n- arc_challenge_acc_norm: 0.3933 (±0.0143)\n- mmlu_acc: 0.4397 (±0.0041)\n- gsm8k_exact_match (strict): 0.0872 (±0.0078)\n- gsm8k_exact_match (flexible): 0.0895 (±0.0079)\n- actual_overall_sparsity: 0.2955\n\nCONSTRAINT MECHANISM:\nremove_valley: 强制将 L14–L18（predictor 发现的\"保护谷\"层，natural sparsity 仅 0.21–0.29）的 sparsity 拉高到 0.30（等于全局目标），多出的 pruning budget 均匀分摊给其余 27 层（使它们的 sparsity 各降低约 0.012），整体 sparsity 保持 ~0.30。目的是消融验证 predictor 自发保护这些层的因果效应。\n\nLOG TAIL (最后有效行):\n  PPL = 8.7592  (15.4s)\n  Completed in 3121.0s\n  arc_challenge: sample_len=1172, acc=0.3498, acc_norm=0.3933\n  mmlu: sample_len=14042, acc=0.4397\n  gsm8k: sample_len=1319, exact_match=0.0895\n  Results saved to /root/distill_sparse_swiglu/results/benchmark/constraint_remove_valley_kl30_s42/results.json\n  EXIT_CODE=0\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-constraint-remove-valley-kl30-s42.md"
+}

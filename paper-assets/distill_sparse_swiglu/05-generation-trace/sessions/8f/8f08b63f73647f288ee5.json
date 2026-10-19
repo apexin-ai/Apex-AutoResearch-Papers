@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f08b63f73647f288ee5",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code add lambda max param",
+  "task_key": "worker_code_add_lambda_max_param_20260515T211020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_add_lambda_max_param_20260515T211020_result.json",
+    "occurrence": 1,
+    "bytes": 182,
+    "sha256": "c56c16bded009e754cdac27f0d99743016acc5718da9c6cd81ef5840387c3354"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`--lambda_max` 参数已添加，默认值 1000.0，3 处 hardcoded clamp 和相关 print/comment 均已替换为 `args.lambda_max`。`--help` 验证通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-add-lambda-max-param.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71b42e190e180d6b63d1",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "reviewer / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_1.md",
+    "occurrence": 1,
+    "bytes": 3893,
+    "sha256": "fa04b377453efbe11b6059f71481db8cd5ad0b498ee45b7476819074ef314fd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-15T14:10:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: 只允许 cuda:0, cuda:1（constraint C001）。submit_training_job 的命令里写 `--gpu 0`，实际 GPU 分配靠 CUDA_VISIBLE_DEVICES 映射——不要被 `--gpu 0` 误导以为都在 cuda:0\n- mvp_kl_s42 的 dense PPL=6.12 与 BCE 的 ~28 **不可交叉对比**——评估方法论不同（evaluate.py 在两次 eval 之间被修改过）。我已提交 CRITICAL，任何引用 KL eval 数据做 MVP 判定前必须确认 eval 代码版本一致\n- KL 训练显存 ~88GB（batch_size=4 + gradient checkpointing），在 98GB 卡上刀刃运行。如果 OOM，降到 batch_size=2 + grad_accum=2\n\n### 2. 🖥️ 基础设施快照\n- 服务器: westd-34887(root), 2× RTX PRO 6000 Blackwell 98GB, compute cap 12.0\n- 远程工作目录: /root/distill_sparse_swiglu/\n- Python: /root/miniconda3/bin/python (conda base)\n- 环境激活: `source /root/distill_sparse_swiglu/setup_env.sh`（含 network_turbo + HF_HOME + SSL 证书 + conda）\n- 模型: /root/autodl-tmp/models/llama-3.1-8b (bf16, flash_attention_2)\n- HF cache: /root/autodl-tmp/.hf_cache\n- 校准数据: WikiText-103 train (在线加载, HF datasets)\n- WANDB: disabled (WANDB_MODE=disabled)\n- 最后一次检查两卡均空闲 (0%, 0 MiB)，无活跃训练进程\n\n### 3. 📊 当前状态\n**我刚完成**: BCE 3-seed 分析报告审查（bce_mvp_3seed_analysis.md），指出了 dense PPL 解释错误和\"KL is broken\"结论过早两个问题。\n\n**Registry 状态 (9 experiments)**:\n- DONE(5): mvp_bce_s42 ✅, mvp_bce_s123 ✅, mvp_bce_s456 ✅, mvp_kl_s42 ❌(sparsity collapse), kl_lagrangian_quicktest ❌(sparsity collapse)\n- PREPARING(2): **kl_normalized_quicktest** (核心——KL 归一化 kl/seq_len + Lagrangian, 200 steps, 代码已就绪待提交), kl_lagrangian_v2 (已取消)\n- QUEUED(2): mvp_kl_s123, mvp_kl_s456 (等 normalized 方案验证后决定是否用新配置跑)\n\n**等待**: kl_normalized_quicktest 提交和完成——这是 KL 侧能否翻盘的关键实验\n\n### 4. 📋 待办（条件触发式）\n- kl_normalized_quicktest 完成 → 检查 sparsity 是否稳定在 ~0.5：稳定 → 审查结果、确认可用于 MVP；坍塌 → KL 方案需要更根本的修改\n- kl_normalized_quicktest PASS → mvp_kl_s123/s456 用新配置重提交时审查命令和 GPU 边界\n- 任何实验 RUNNING → nvidia-smi 独立核实 GPU 边界（L1 #4）+ 资源利用率\n- KL 3-seed 全部完成 → MVP pass/fail 判定（3-seed mean KL ppl < BCE ppl, gap ≥ 0.3）。**必须确认 KL 和 BCE 使用同一 evaluate.py 版本**\n- mvp_bce_s456 的 report.md 仍显示 \"failed\"（auto-facts 过时）——下次 auto_build_report_facts 应修正\n\n### 5. 🎯 战略上下文\n- **核心假设**: KL 端到端蒸馏优于 BCE 逐神经元独立训练。目前 KL 侧 0/3 可用（全部稀疏性坍塌），BCE 侧 3/3 完成（sparse PPL 43.86±1.18, +55.7%）\n- **决策链**: D001(MVP 设计) → D002(数据改 WikiText-103) → KL sparsity collapse → Lagrangian v1 失败 → 归一化修复（kl/seq_len 替代 kl/(seq_len×vocab_size)）\n- **最易判断错的事**: KL normalized 后 KL 值 ~0.27（vs constraint ~0.5），量级终于匹配。但不要因为\"量级平衡了\"就默认会成功——还要看 sparsity 是否真的稳定在 target 附近，以及 predictor 是否学到了有意义的 neuron ranking（不是随机 50%）\n- **evaluate.py 陷阱**: 文件被修改过多次（off-by-one fix, 可能还有临时 sliding-window 改动）。任何 eval 结果都要先确认 dense PPL 在 ~28 范围（packed chunks），如果出现 ~6 说明用了不同评估方法\n- **时间线**: EMNLP 2026 DDL = 2026-05-25，剩 10 天。BCE baseline 就绪，KL 侧阻塞在 normalized quicktest。Post-MVP 还有 4-condition ablation、SPON 组合、多 benchmark 评估\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-copy-3.md"
+}

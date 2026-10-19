@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4176bf7678b3bf06e2e",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "reviewer / loop_10.md",
+  "task_key": "loop_10",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_10.md",
+    "occurrence": 1,
+    "bytes": 3704,
+    "sha256": "228d313c453854a46aff0036ea563a07a1cb5c0b72119343e8cd3ef377db4f20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: max_wall_time\nupdated: '2026-05-19T11:20:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-34887 cuda:0,1 + westd-41718 cuda:0,1（RTX PRO 6000 Blackwell 98GB）。越界立即 critical\n- westd-41718 GPU 是 98GB Blackwell，**不是 A6000 48GB**（Director 之前误判过，已纠正）\n- 论文 eval 有两套 protocol：per-token（evaluate.py）vs TEAL allocation（benchmark_eval.py）。Dense PPL 两者一致，sparse PPL 差异巨大。Table 2/3/4 应全部用 TEAL（benchmark_eval.py）。混用是 critical\n- C1 retrain PPL 异常已修复（registry 从 per-token 7.54/7.38 更正为 TEAL 8.84/8.82），但如果看到旧值要警惕\n- bce_comp_staged_s42 的 TEAL PPL=44.54（comp 网络不兼容 TEAL 路径），per-token PPL=25.44。Table 4 已删除该行\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887(root) + westd-41718(root)\n- 工作目录：/root/distill_sparse_swiglu/\n- Python：/root/miniconda3/bin/python\n- 模型：LLaMA-3.1-8B → /root/autodl-tmp/models/llama-3.1-8b/；Mistral-7B-v0.3 → /root/autodl-tmp/models/Mistral-7B-v0.3/；Qwen2.5-14B → /root/autodl-tmp/models/qwen2.5-14b/\n- HF cache：/root/autodl-tmp/.hf_cache\n- WANDB：disabled（WANDB_MODE=disabled）\n- 活跃进程（截至 handoff）：qwen14b_kl30_s123_eval (RUNNING, westd-34887) + qwen14b_kl30_s456_eval (RUNNING, westd-34887)\n\n### 3. 📊 当前状态\n**刚完成**：\n- R12 action matrix 全面审查，已发送 Director。关键发现：Table 2 \"BCE+comp\" 标签欺骗（实为纯 BCE 2700 steps 无 compensation），C1 50% max Δ 错误（0.59→0.79），WINA baseline 无数据。全部已由 worker 修复并验证\n- BCE data source verify worker 审查通过，所有修复确认正确\n- Qwen-14B KL 30% s123/s456 训练完成审查通过（sparsity=0.277, lambda=5000, 与 s42 一致）\n\n**RUNNING**：\n- qwen14b_kl30_s123_eval — 7 tasks downstream eval（TEAL uniform 30%），关键看 MMLU reversal\n- qwen14b_kl30_s456_eval — 同上\n\n**等待中**：\n- 上述两个 eval 的 cron:on_complete 回调\n\n### 4. 📋 待办\n- qwen14b_kl30_s123_eval 完成 → 核实 MMLU 是否复现 reversal（s42: KL MMLU=63.72 < TEAL=71.83）。如果 3-seed 均 reversal → W2 response 有坚实支撑；如果不一致 → severity warning 建议重新审视 14B 结论\n- qwen14b_kl30_s456_eval 完成 → 同上\n- 两个 eval 都完成后 → 检查 Agent 是否更新了 appendix 14B 表格数据，核对数字一致性\n- 如果 Director 转发 paper 章节审查请求 → 按 §5 对抗审查模式执行，先做合规检查（red-section skill）\n- Table 4 \"unified benchmark protocol\" 次要关注：验证 BCE+Gumbel 系列（32.22, 38.02）的 eval 是 TEAL global 还是 per-token。尚未验证\n\n### 5. 🎯 战略上下文\n- **核心 story**：KL divergence loss 通过 coupled gradients 发现比 magnitude-based 更优的 mask targets（68% 不同），C1 ablation 证明 mask quality 是 proximate driver\n- **三个 sparsity regime**：budget-surplus (≤30%, KL 全面优势)，budget-constrained (35-45%)，capacity-cliff (≥50%, downstream 全崩)\n- **14B MMLU reversal 是最大叙事风险**：s42 单种子显示 KL MMLU < TEAL，与 8B 相反。论文目前 framing 为 \"architecture-dependent limitation\"。如果 s123/s456 不复现 reversal，这个叙事就站不住\n- **易错点**：\n  - checkpoint 版本混淆：kl_30pct_s*（paper main table）vs kl_sparsity30_s*（旧版本，MMLU 低 3pp）\n  - Table 2 \"BCE (2700 steps)\" 刚改名，别再叫它 \"BCE+comp\"\n  - Mistral 是 v0.3（rope_theta=1M, vocab=32768），不是 v0.1\n  - paper_provenance.yaml 严重过时，如果 Director 问起要提醒重建\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-copy-3.md"
+}

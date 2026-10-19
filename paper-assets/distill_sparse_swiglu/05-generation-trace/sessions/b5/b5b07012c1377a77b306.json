@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5b07012c1377a77b306",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis perlayer kl 50 s42",
+  "task_key": "worker_analysis_perlayer_kl_50_s42_20260522T065424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_perlayer_kl_50_s42_20260522T065424_result.json",
+    "occurrence": 1,
+    "bytes": 1290,
+    "sha256": "a3fffdfdc39a8cabcbad361d76c3906984999d53d11dc3bcd70a49bb9c016f2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析结果\n\n### 训练状态：正常完成\n- 10000/10000 steps，EXIT_CODE=0，耗时 ~5.06 小时\n- 最终 avg_kl=0.0282，model-level sparsity=0.496（32层均接近0.50目标）\n\n### Eval PPL（已完成）\n**WikiText-2 PPL = 34.85**\n\n### Baseline 对比\n\n| 方法 | Sparsity | PPL | vs E2E KL |\n|------|----------|-----|-----------|\n| E2E KL 50% | 50% | 11.84 | — |\n| MSE 50% | 50% | 18.52 | +56% |\n| **Per-layer KL 50%** | **50%** | **34.85** | **+194%** |\n\n### 结论：**NEGATIVE**\n\n假设被证伪。Per-layer KL 在 50% sparsity 下 PPL 灾难性退化（34.85），远差于 E2E KL（11.84）和 MSE（18.52）。2D 分解（signal type × coupling scope）在 50% sparsity 下不成立——coupling scope 成为主导因素，层间 mask 协调在高 sparsity 下不可或缺。\n\nPer-layer KL 的 U-shaped KL 分布（早期层 0.041–0.055，中间层 0.018–0.024）也表明各层压缩难度差异大，但 per-layer 独立训练无法利用层间互补来缓解这一问题。\n\n### 待完成\n- Downstream eval（arc_challenge, winogrande, mmlu, gsm8k, hellaswag, piqa）仍在运行中（`perlayer_kl_50_s42_downstream`），目前在跑 MMLU\n- Analysis 已写入 artifact，registry 已更新 metrics + conclusion=negative"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-perlayer-kl-50-s42.md"
+}

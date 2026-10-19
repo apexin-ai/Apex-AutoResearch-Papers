@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "9fcb725b7fc673be17ae",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "paper table2 multiseed update",
+  "task_key": "worker_paper_table2-multiseed-update_20260518T034508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_table2-multiseed-update_20260518T034508.log",
+    "occurrence": 1,
+    "bytes": 595326,
+    "sha256": "87be7ab07e8e4e9e2c61741bfcf8749a0bb013a05d69b5f1c6449639d8c0edba"
+  },
+  "statistics": {
+    "messages": 147,
+    "user_turns": 0,
+    "tool_calls": 56,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 56,
+      "tool_result": 56,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 147,
+      "chunks": [
+        {
+          "path": "9fcb725b7fc673be17ae-part-0001.json",
+          "message_count": 146
+        },
+        {
+          "path": "9fcb725b7fc673be17ae-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-table2-multiseed-update.md"
+}

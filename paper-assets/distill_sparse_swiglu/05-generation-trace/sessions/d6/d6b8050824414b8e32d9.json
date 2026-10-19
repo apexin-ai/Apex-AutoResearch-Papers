@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6b8050824414b8e32d9",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops urgent collect and fill 34887",
+  "task_key": "worker_ops_urgent-collect-and-fill-34887_20260518T105627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-collect-and-fill-34887_20260518T105627_result.json",
+    "occurrence": 1,
+    "bytes": 2044,
+    "sha256": "02c2753b34b7c5d09685688075f4205d53770a5e9ba4cd6e6440d4334fdaad1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 都已通过数据集加载，正在跑 lm-eval loglikelihood 请求。问题已解决。\n\n---\n\n## 状态汇总\n\n### 1. 原 westd-34887 eval 结果（失败 + 部分数据）\n\n两个 eval 都因 `HF_DATASETS_OFFLINE=1` 导致 lm-eval 在加载 `allenai/ai2_arc` 时报 `OfflineModeIsEnabled`，WikiText-2 PPL 已算出但 downstream tasks 全部失败：\n\n| 实验 | WikiText-2 PPL (已获取) | Downstream | 原因 |\n|------|------------------------|------------|------|\n| kl_comp_30pct_s123_eval | **8.9788** | FAILED | HF_DATASETS_OFFLINE=1 |\n| kl50_s456_uniform_eval | **11.9538** | FAILED | HF_DATASETS_OFFLINE=1 |\n\n**修复**: 去掉 `HF_DATASETS_OFFLINE=1`，保留 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`。已重跑。\n\n### 2. westd-41718 训练进度\n\n两个训练都已完成：\n\n| 实验 | Steps | Final Loss | Checkpoint |\n|------|-------|------------|------------|\n| kl_comp_30pct_s456 | **1000/1000** | 0.6797 | `compensation.pt` (128MB) |\n| kl_comp_50pct_s42 | **1000/1000** | 1.0703 | `compensation.pt` (128MB) |\n\n已合并为 `predictor_with_comp.pt`（predictor + comp_network），registry 已更新为 DONE。\n\n### 3. 新提交的实验\n\nSCP 不通（服务器间无密钥），改为直接在 41718 本地跑 eval（模型 + 数据集缓存齐全）：\n\n| 实验 | 服务器 | GPU | 状态 |\n|------|--------|-----|------|\n| kl_comp_30pct_s456_eval | westd-41718 | cuda:0 | RUNNING |\n| kl_comp_50pct_s42_eval | westd-41718 | cuda:1 | RUNNING |\n\n### 4. 四卡最终状态\n\n| 服务器 | GPU | 实验 | GPU Util | VRAM |\n|--------|-----|------|----------|------|\n| westd-34887 | cuda:0 | kl_comp_30pct_s123_eval (re-run) | 100% | 49GB |\n| westd-34887 | cuda:1 | kl50_s456_uniform_eval (re-run) | 97% | 49GB |\n| westd-41718 | cuda:0 | kl_comp_30pct_s456_eval (new) | 99% | 42GB |\n| westd-41718 | cuda:1 | kl_comp_50pct_s42_eval (new) | 100% | 40GB |\n\n**所有 4 卡满载**。预计 ~35 分钟出结果（基于 s42 eval 历史耗时 ~37 分钟）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-collect-and-fill-34887.md"
+}

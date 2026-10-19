@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5bfe57bffbe0d199090a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "research spon survey",
+  "task_key": "worker_research_spon-survey_20260515T103818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_spon-survey_20260515T103818_result.json",
+    "occurrence": 1,
+    "bytes": 975,
+    "sha256": "8ff0867dd5bdc078912051a0f70a985d7450442f01986d16d1ba2eba39de434f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研结果已写入 `memory.md`。核心发现总结：\n\n**SPON**:\n- 论文 \"Resting Neurons, Active Insights\" (arXiv 2512.12744)，每层注入 1 个 learnable input-independent bias vector 作为稀疏化后的 representational anchor\n- 用 **KL divergence** (distribution matching) 训练，完成后 bias 可吸收进模型权重，**零推理开销**\n- 50% sparsity 下一致优于 TEAL baseline\n- 截至今日未找到公开代码仓库，具体超参数需阅读全文\n\n**竞品格局**:\n- DejaVu/PowerInfer/TurboSparse 用 **BCE** 训练 predictor，我们用 **KL** 是核心差异化\n- ProSparse/TurboSparse 需替换激活函数，我们**保留 SwiGLU** 是优势\n- MaskLLM 用 **Gumbel Softmax** 做 differentiable mask sampling，验证了 Gumbel 方向可行性\n\n**Phase 2 组合路径**: KL Predictor 决定 mask → SPON bias vectors 补偿误差，两者互补，SPON 训练成本极低（每层仅 hidden_dim 个参数）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-spon-survey.md"
+}

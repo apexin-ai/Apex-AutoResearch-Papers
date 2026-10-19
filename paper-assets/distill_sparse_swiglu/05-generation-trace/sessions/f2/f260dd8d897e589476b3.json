@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f260dd8d897e589476b3",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops investigate dead experiments",
+  "task_key": "worker_ops_investigate-dead-experiments_20260518T185629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_investigate-dead-experiments_20260518T185629_result.json",
+    "occurrence": 1,
+    "bytes": 1322,
+    "sha256": "8338349c0ec966aa5f71d409168673e1547f31e9c6a590d88af904220e8f4e05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 实验 1: c1_ablation_bce_kl_targets_s123_v2 — **COMPLETED**\n\n| Metric | Seed 123 (v2) | Seed 42 (参考) |\n|--------|--------------|---------------|\n| Final loss | 0.0537 | — |\n| **WikiText-2 PPL** | **9.32** | 11.71 |\n| Eval sparsity | 0.615 | 0.50 |\n| Agreement | 0.979 | 0.834 |\n\nCheckpoint: `predictor_bce_kl_targets.pt` (145M) 已保存。\n\nSeed 123 结果显著优于 seed 42: PPL 低 2.39, agreement 高 14.5pp, 且 sparsity 更高。\n\n---\n\n### 实验 2: kl_sparsity45_s42_eval_teal_uniform — **COMPLETED**\n\n| Task | Metric | Value |\n|------|--------|-------|\n| wikitext2 | PPL | 10.9488 |\n| arc_challenge | acc_norm | 0.3763 |\n| winogrande | acc | 0.6361 |\n| mmlu | acc | 0.3063 |\n| gsm8k | exact_match | 0.0273 |\n\nResults JSON 已保存到 `results/benchmark/kl_sparsity45_s42_eval_teal_uniform/results.json`。\n\n---\n\n### westd-34887 GPU 状态\n\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| cuda:0 | 66995 / 97887 MiB | 100% | **kl_sparsity35_s42_eval_teal_uniform 运行中** (pid 47633, ~8min elapsed) |\n| cuda:1 | 0 / 97887 MiB | 0% | 空闲 |\n\n`kl_sparsity35_s42_eval_teal_uniform` (pid 47628/47633) 仍在运行，刚启动约8分钟，预计还需 30-40 分钟完成全部 5 个 benchmark。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-investigate-dead-experiments.md"
+}

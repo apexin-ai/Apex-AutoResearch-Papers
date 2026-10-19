@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c1bf25a5725661d0d95",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "exp bce 50pct and mistral 34887",
+  "task_key": "worker_exp_bce-50pct-and-mistral-34887_20260519T020835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_bce-50pct-and-mistral-34887_20260519T020835_result.json",
+    "occurrence": 1,
+    "bytes": 489,
+    "sha256": "08862cadc583f814d585bfdc3a696babfc761b06d102ce63bd4f6fd10f9c3e9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已成功提交：\n\n| 实验 | GPU | PID | tmux session | 状态 |\n|------|-----|-----|-------------|------|\n| **A: bce_50pct_teal_global_unified** | cuda:0 | 71114 | `bce_50pct_teal_global_unified` | 运行中（正在跑 benchmark tasks） |\n| **B: mistral_kl30_downstream** | cuda:1 | 71614 | `mistral_kl30_downstream` | 运行中（正在加载 Mistral-7B 权重） |\n\ncuda:1 上之前的 `bce_isocompute_hellaswag_piqa_v2` 已自然完成退出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-bce-50pct-and-mistral-34887.md"
+}

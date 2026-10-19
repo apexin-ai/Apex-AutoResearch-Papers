@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec7b6902f81dfc516d25",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check server status",
+  "task_key": "worker_check_server_status_20260516T034658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_server_status_20260516T034658_result.json",
+    "occurrence": 1,
+    "bytes": 1362,
+    "sha256": "5e0f0c7bbffb543fe1ea7b5dcad9d022b45def0cde85089f55157607c3362798"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "关键发现：`run_bench_cuda1.sh` 设了 `CUDA_VISIBLE_DEVICES=1`，所以 PID 195911 (bench_teal50) 实际用的也是**物理 cuda:1**，与 mistral eval 共享同一块 GPU。\n\n```\n== STATUS SUMMARY ==\nPID 195242 (mistral eval): ALIVE — 运行 51 分钟，generate_until 进度 873/1319 (66%)，~2.8s/it，预计剩余 ~21 分钟\nPID 194814 (teal eval): DEAD — 已完成退出\ncuda:0: FREE (0 MiB, 0% utilization)\ncuda:1: BUSY (62082/97887 MiB, 95% util) — 被两个进程共享：\n  - PID 195242: lm_eval_mistral_kl_50pct\n  - PID 195911: benchmark_eval.py bench_teal50 (run_bench_cuda1.sh 的 [1/5]，该脚本共 5 个 condition 串行跑)\n```\n\n**Teal 30% eval 结果 (已完成)**:\n\n| Benchmark | Score |\n|-----------|-------|\n| arc_challenge | acc=0.393, acc_norm=0.416 |\n| winogrande | acc=0.656 |\n| **mmlu** | **acc=0.360** (STEM=0.313, Social=0.411, Other=0.401, Humanities=0.330) |\n| gsm8k | EM(strict)=0.085, EM(flexible)=0.092 |\n| actual_sparsity | 0.300 |\n\n**注意事项**：`run_bench_cuda1.sh` 是一个 5-condition 批处理脚本（teal50 → teal30 → kl70 → bce_iso50 → mistral_kl50），当前在跑第 1 个 (bench_teal50，585/1319 generate_until)。它与 mistral eval 共享 cuda:1，可能互相拖慢。该脚本未在任务背景中提及——可能是之前启动的遗留任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-server-status.md"
+}

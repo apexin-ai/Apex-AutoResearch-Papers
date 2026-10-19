@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e15e4c9939c84c5d58dd",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check 41718 checkpoint and gpu",
+  "task_key": "worker_ops_check-41718-checkpoint-and-gpu_20260518T175921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-41718-checkpoint-and-gpu_20260518T175921_result.json",
+    "occurrence": 1,
+    "bytes": 1004,
+    "sha256": "993eac024f86ff26606bddcf9ccfcc8e2638f1885a833776d6f9fbe0cca0ef0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n| 项目 | 状态 |\n|------|------|\n| **mvp_kl_norm_v2_s123 checkpoint** | **Y** — `/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt`，145 MB |\n| **cuda:0 空闲** | **Y** — 0% 利用率，0 MiB 显存占用 |\n| **cuda:1 空闲** | **Y** — 0% 利用率，0 MiB 显存占用 |\n| **25% checkpoint (kl_sparsity25_s42)** | **Y** — 存在，`predictor_kl_normalized.pt` 145 MB |\n| **40% checkpoint (kl_sparsity40_s42)** | **N** — 不存在 |\n\n**完整 checkpoint 目录列表（14个）：**\n- `bce_30pct_s42`\n- `c1_ablation_bce_kl_targets_s123`\n- `c1_ablation_bce_kl_targets_s42`\n- `kl_comp_30pct_s123`\n- `kl_comp_30pct_s42`\n- `kl_comp_30pct_s456`\n- `kl_comp_50pct_s42`\n- `kl_sparsity25_s123`\n- `kl_sparsity25_s42`\n- `kl_sparsity30_s123`\n- `kl_sparsity30_s42_v3`\n- `kl_sparsity30_s456`\n- `mvp_kl_norm_v2_s123`\n- `mvp_kl_norm_v2_s42`\n\n两块 RTX PRO 6000 Blackwell (98 GB each) 完全空闲，随时可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-41718-checkpoint-and-gpu.md"
+}

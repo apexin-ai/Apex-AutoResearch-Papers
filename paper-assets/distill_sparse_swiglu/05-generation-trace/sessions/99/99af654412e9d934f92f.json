@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99af654412e9d934f92f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops verify 41718 checkpoints",
+  "task_key": "worker_ops_verify-41718-checkpoints_20260518T232842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-41718-checkpoints_20260518T232842_result.json",
+    "occurrence": 1,
+    "bytes": 1054,
+    "sha256": "de0920a050be7b1054de6950ffbc69eb359362ded1bead9ee417af0749bad3eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**1. Checkpoint 状态 — 两个都已存在于 westd-41718，无需同步**\n\n| Checkpoint | 41718 大小 | 34887 大小 | 匹配 |\n|---|---|---|---|\n| `kl_sparsity30_s42_v3/predictor_kl_normalized.pt` | 151,966,751 bytes | 151,966,751 bytes | 完全一致 |\n| `mvp_kl_norm_v2_s42/predictor_kl_normalized.pt` | 151,966,495 bytes | 151,966,495 bytes | 完全一致 |\n\n**2. MMLU recheck 实验 — 正在运行**\n\n- 进程 PID 107224，CPU 113%，在 cuda:1 上跑（CUDA_VISIBLE_DEVICES=1 映射到 gpu 0）\n- tmux session `kl30_s42_global_mmlu_recheck` 存在\n- 日志显示正在 tokenizing MMLU inputs（约 88% 进度，49665/56168），还在数据预处理阶段\n\n**3. kl50_global_hellaswag_piqa_v2 — 未提交**\n\n- 日志文件 `kl50_global_hellaswag_piqa_v2.log` 不存在\n- 41718 上没有该实验的 tmux session 或进程\n- 这个实验还没有被启动\n\n**4. benchmark_eval.py — 存在**\n\n- `/root/distill_sparse_swiglu/src/benchmark_eval.py` — 17,817 bytes，最后修改 May 18 02:38"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-41718-checkpoints.md"
+}

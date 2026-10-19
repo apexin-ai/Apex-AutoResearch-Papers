@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87ed5ba5f9b5988245e8",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check ste baseline",
+  "task_key": "worker_ops_check_ste_baseline_20260515T192010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_ste_baseline_20260515T192010_result.json",
+    "occurrence": 1,
+    "bytes": 474,
+    "sha256": "8400437d3dbfa6e1f4b38cb728a62cca0f277637ca3021606fc454aae2ccb900"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**ste_baseline_s42 状态汇总：**\n\n- **进程**：PID 116142 存活，已运行 ~3 分钟\n- **GPU**：cuda:1 满载（100% utilization, 75185/97887 MiB）\n- **训练进度**：Step 80/1000，KL loss 从 6.97 → 0.88，sparsity 0.449（lambda 正在上调以拉回 target 0.5）\n- **Registry**：已从 PREPARING → RUNNING\n\n训练曲线正常，loss 稳定下降。按之前同类实验 ~25-30 分钟完成 1000 步估算，约还需 ~25 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-ste-baseline.md"
+}

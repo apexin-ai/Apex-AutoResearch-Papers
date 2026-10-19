@@ -1,0 +1,407 @@
+{
+  "schema_version": "1.0",
+  "id": "7a228325d74eef237bb1",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "paper writing",
+  "task_key": "worker_paper_writing_20260516T131207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_20260516T131207.jsonl",
+    "occurrence": 1,
+    "bytes": 14014,
+    "sha256": "d4eead52612a3a394bc3bb1a5a5349fe7ee0eba1c460b63885de7e9ef7afa6fa"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T13:13:40.705207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260516T131207",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T13:13:40.705832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260516T131207",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T13:13:40.706037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260516T131207",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "projects/distill_sparse_swiglu/paper/sections/introduction.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T13:13:40.706187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260516T131207",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T13:13:40.706324+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260516T131207",
+            "tool": "Agent",
+            "tool_args": {
+              "subagent_type": "Explore",
+              "description": "Find paper files",
+              "prompt": "Find all .tex files under /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/. I need to locate the introduction and main.tex files. Search breadth: medium."
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T13:13:40.706473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260516T131207",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T13:13:40.706591+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "projects/distill_sparse_swiglu/paper/method.tex\nprojects/distill_sparse_swiglu/paper/introduction.tex\nprojects/distill_sparse_swiglu/paper/experiments.tex\nprojects/distill_sparse_swiglu/paper/related_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260516T131207",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T13:13:40.706752+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I found the .tex files in the directory. Here are the results:\n\n**All .tex files found:**\n\n1. **introduction.tex** - `/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex`\n2. **method.tex** - `/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/method.tex`\n3. **experiments.tex** - `/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex`\n4. **related_work.tex** - `/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/related_work.tex`\n\n**Note:** The search found the `introduction.tex` file you were looking for, but I did not find a `main.tex` file in this directory. The directory contains section-specific .tex files (introduction, method, experiments, related_work) but no main.tex. This might be located in a parent directory, or the paper might use a different naming convention for the main entry point.\n\nWould you like me to:\n- Search for main.tex in parent directories or the entire projects folder?\n- Read the introduction.tex file to examine its content?"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260516T131207",
+            "tool": "Agent",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T13:13:40.706884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260516T131207",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/introduction.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T13:13:40.707060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\n3\tSwiGLU feed-forward networks~\\cite{shazeer2020glu} in modern LLMs exhibit high contextual sparsity: at any given token, a large fraction of FFN neurons contribute negligibly to the output.\n4\tExploiting this sparsity can yield up to 2$\\times$ inference speedup by pruning 50\\% of FFN neurons per token---without modifying the pretrained weights.\n5\tYet the gap between potential and practice remains wide.\n6\tTraining-free methods such as TEAL~\\cite{liu2025teal} select neurons by activation magnitude alone, degrading perplexity from 6.12 (dense) to 23.31 at 50\\% sparsity on LLaMA-3.1-8B~\\cite{grattafiori2024llama3}---a 281\\% increase.\n7\tLearned predictors~\\cite{liu2023dejavu,gautam2026fastforward} close part of this gap by training small auxiliary networks to anticipate which neurons will be important, but they rely on error compensation modules (output rescaling networks or additive correction layers) that add latency and memory overhead at inference.\n8\tThe question is whether a predictor can be trained so that compensation becomes unnecessary.\n9\t\n10\tThe answer depends on the training objective.\n11\tCurrent learned predictors use binary cross-entropy (BCE) loss: each neuron is independently classified as ``keep'' or ``prune'' against an oracle mask derived from the dense model's activations.\n12\tThe gradient of BCE with respect to neuron $j$'s score is $\\partial \\mathcal{L}_{\\text{BCE}} / \\partial s_j = \\sigma(s_j) - m_j^*$---a function of neuron $j$ alone, independent of every other neuron in the network.\n13\tBut at inference, no neuron is evaluated in isolation.\n14\tTEAL's global top-$k$ mechanism~\\cite{liu2025teal} ranks all neurons across all layers and retains only those above a model-wide threshold.\n15\tWhether neuron $j$ survives depends not on its own score but on how that score compares to the scores of all $L \\times d_{\\text{ff}}$ neurons.\n16\tThis creates a structural mismatch: the training objective decomposes per neuron, while the infe\n…[truncated 4780 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260516T131207",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T13:13:40.707278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260516T131207",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/",
+              "description": "List paper directory contents"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T13:13:40.707405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "experiments.tex\nintroduction.tex\nmethod.tex\nreferences.bib\nrelated_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260516T131207",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T13:13:40.707535+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260516T131207",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex",
+              "content": "Activation sparsity can accelerate SwiGLU-based LLMs by pruning FFN neurons at inference, but existing learned predictors trained with binary cross-entropy (BCE) require error compensation networks due to a structural mismatch: BCE decomposes per neuron while inference uses global top-$k$ allocation across all layers.\nWe train lightweight predictors (2.37M parameters per layer, 75.9M total, $<$1\\% of the base model) with KL divergence, which couples all neurons through the output distribution via Gumbel-Sigmoid relaxation, eliminating the need for compensation.\nOn LLaMA-3.1-8B (WikiText-2), our KL-trained predictor achieves perplexity 11.79 at 50\\% sparsity, compared to 23.31 for vanilla TEAL and 27.97 for BCE trained at 2.71$\\times$ the compute budget---whose loss saturates, confirming a structural rather than computational failure.\nThe KL advantage scales super-linearly with sparsity: 18\\% relative improvement at 30\\%, 49\\% at 50\\%, and 82\\% at 70\\%.\nCross-architecture evaluation on Mistral-7B-v0.3 yields +63\\% degradation versus +93\\% for TEAL.\nSPON's static bias correction proves near-orthogonal to the predictor (cosine similarity 0.196), recovering only 2.4\\% of residual error.\nWe propose a two-dimensional taxonomy over correction granularity $\\times$ training signal coupling that unifies prior methods and identify a phase transition between allocation-fixable and capacity-limited sparsity regimes.\n"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T13:13:40.707666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260516T131207",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T13:13:40.707790+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260516T131207",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T13:13:40.707903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260516T131207",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T13:13:40.708030+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260516T131207",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "abstract.tex",
+              "type": "paper",
+              "description": "EMNLP 2026 abstract for distill_sparse_swiglu: KL-trained sparse predictors eliminate compensation networks in SwiGLU LLMs",
+              "project": "distill_sparse_swiglu",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/abstract.tex",
+              "tags": "['paper', 'abstract', 'latex']"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T13:13:40.708180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_5c0563\\\", \\\"name\\\": \\\"abstract.tex\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"EMNLP 2026 abstract for distill_sparse_swiglu: KL-trained sparse predictors eliminate compensation networks in SwiGLU LLMs\\\", \\\"path\\\": \\\"projects/distill_sparse_swiglu/artifacts/_project/paper/abstract.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"distill_sparse_swiglu\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T13:13:35.243891+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"abstract\\\", \\\"latex\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260516T131207",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T13:13:40.708335+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract 已写入 `paper/abstract.tex`，~189 词，7 句。覆盖所有要求的数字（11.79/23.31/27.97/2.71×/18%→49%→82%/2.37M/75.9M/+63%/+93%/0.196/2.4%），使用了指定措辞（structural mismatch、global top-$k$ allocation、Gumbel-Sigmoid relaxation、correction granularity × training signal coupling、KL advantage scales super-linearly、allocation-fixable/capacity-limited）。无 \"significantly\"/\"state-of-the-art\"/\"consistently\"，无 `\\begin{abstract}` 包裹。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_20260516T131207"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing.md"
+}

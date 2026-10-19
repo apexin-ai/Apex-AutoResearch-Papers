@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8284095fd949b1e3d4dd",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops post restart status check",
+  "task_key": "worker_ops_post-restart-status-check_20260518T162647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post-restart-status-check_20260518T162647_result.json",
+    "occurrence": 1,
+    "bytes": 972,
+    "sha256": "69775250b4932a69f883fbb6280d8476b932c9da37a48586a384de24a8dd9521"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. All 4 experiments confirmed alive and set to RUNNING.\n\n| 实验 | 服务器 | GPU | 状态 | 指标/进度 |\n|------|--------|-----|------|-----------|\n| c1_ablation_eval_uniform | westd-41718 | 0 | 运行中 | MMLU loglikelihood 321/58702 (~0.5%), 还在评估中 |\n| kl_sparsity25_s42 | westd-41718 | 1 | 运行中 | Step 950/1000, loss=0.236, sparsity=0.227, 即将完成 |\n| kl_sparsity35_s42 | westd-34887 | 0 | 运行中 | Step 360/1000, loss=0.227, sparsity=0.355 |\n| kl_sparsity45_s42 | westd-34887 | 1 | 运行中 | Step 360/1000, loss=0.305, sparsity=0.449 |\n\n要点：\n- **kl_sparsity25_s42** 在 step 950/1000，约 5-10 分钟内完成\n- **c1_ablation_eval_uniform** 正在跑 MMLU（58702 个 loglikelihood requests），GPU 0 显存占用 44.8 GiB 但 util 0%（可能在 CPU tokenization 阶段），预计还需较长时间\n- **westd-34887** 两个训练都在 step 360/1000（~36%），预计还需 ~25 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-restart-status-check-copy-2.md"
+}

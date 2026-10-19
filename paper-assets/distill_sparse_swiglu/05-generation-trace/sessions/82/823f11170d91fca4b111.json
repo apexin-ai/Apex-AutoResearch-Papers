@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "id": "823f11170d91fca4b111",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "writing method section",
+  "task_key": "worker_writing_method-section_20260516T022559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_method-section_20260516T022559_result.json",
+    "occurrence": 1,
+    "bytes": 2845,
+    "sha256": "8f90c9c179ec10d949f0044285685784878dce64f802eba3d8d84ecaffbf6287"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入。报告：\n\n```json\n{\n  \"word_count\": \"~1850 (正文约2页，含algorithm约2.5页)\",\n  \"citations_needed\": [\n    \"placeholder_teal → TEAL (Liu et al., 2025, ICLR)\",\n    \"placeholder_dejavu → Deja Vu (Liu et al., 2023, ICML)\",\n    \"placeholder_shadowllm → ShadowLLM (Akhauri et al., 2024, EMNLP)\",\n    \"placeholder_fastforward → FastForward (Gautam et al., 2026)\",\n    \"placeholder_gumbel → Gumbel-Softmax (Jang et al., 2017 / Maddison et al., 2017)\",\n    \"placeholder_ste → STE (Bengio et al., 2013)\",\n    \"placeholder_adamw → AdamW (Loshchilov & Hutter, 2019)\"\n  ],\n  \"figures_needed\": [\n    \"fig:gradient_coupling — KL vs BCE gradient flow diagram (showing coupled vs factorized paths)\",\n    \"fig:gumbel_vs_ste — Lambda oscillation comparison (STE std=354 vs Gumbel smooth convergence)\"\n  ],\n  \"tables_needed\": [\n    \"tab:taxonomy — Two-dimensional taxonomy (correction granularity × loss coupling), fits in Introduction or Related Work\"\n  ],\n  \"notes\": [\n    \"Algorithm 1 占约0.5页，如需压缩可移至appendix\",\n    \"§3.4 STE对比段落可移至ablation（§4），减少method长度\",\n    \"所有数字来自实验registry，未编造\",\n    \"TEAL score公式(Eq.7)含per-layer mean normalization——对应D017 bugfix\",\n    \"Lagrangian lambda_max=5000对应kl_sparsity30_v3实验（1000不够推低sparsity target）\"\n  ]\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "word_count": "~1850 (正文约2页，含algorithm约2.5页)",
+              "citations_needed": [
+                "placeholder_teal → TEAL (Liu et al., 2025, ICLR)",
+                "placeholder_dejavu → Deja Vu (Liu et al., 2023, ICML)",
+                "placeholder_shadowllm → ShadowLLM (Akhauri et al., 2024, EMNLP)",
+                "placeholder_fastforward → FastForward (Gautam et al., 2026)",
+                "placeholder_gumbel → Gumbel-Softmax (Jang et al., 2017 / Maddison et al., 2017)",
+                "placeholder_ste → STE (Bengio et al., 2013)",
+                "placeholder_adamw → AdamW (Loshchilov & Hutter, 2019)"
+              ],
+              "figures_needed": [
+                "fig:gradient_coupling — KL vs BCE gradient flow diagram (showing coupled vs factorized paths)",
+                "fig:gumbel_vs_ste — Lambda oscillation comparison (STE std=354 vs Gumbel smooth convergence)"
+              ],
+              "tables_needed": [
+                "tab:taxonomy — Two-dimensional taxonomy (correction granularity × loss coupling), fits in Introduction or Related Work"
+              ],
+              "notes": [
+                "Algorithm 1 占约0.5页，如需压缩可移至appendix",
+                "§3.4 STE对比段落可移至ablation（§4），减少method长度",
+                "所有数字来自实验registry，未编造",
+                "TEAL score公式(Eq.7)含per-layer mean normalization——对应D017 bugfix",
+                "Lagrangian lambda_max=5000对应kl_sparsity30_v3实验（1000不够推低sparsity target）"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-method-section.md"
+}

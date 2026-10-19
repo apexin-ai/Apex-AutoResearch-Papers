@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9fdb3e9f4c293c1c9ef",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval qwen14b teal30 uniform hspiqa",
+  "task_key": "worker_eval_qwen14b_teal30_uniform_hspiqa_20260519T131947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen14b_teal30_uniform_hspiqa_20260519T131947_result.json",
+    "occurrence": 1,
+    "bytes": 334,
+    "sha256": "dadbdc422297e9cadec68d27f29160ade1aa5cdd5d0d0724e3e8815765ca6dae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并注册。\n\n**状态汇总:**\n- 服务器: westd-41718, GPU 0\n- PID: **149159**\n- 日志: `/root/distill_sparse_swiglu/logs/qwen14b_teal30_uniform_hspiqa.log`\n- 模型加载完成，正在计算 TEAL baseline masks → 随后跑 HellaSwag + PIQA\n- Registry: `qwen14b_teal30_uniform_hspiqa` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen14b-teal30-uniform-hspiqa.md"
+}

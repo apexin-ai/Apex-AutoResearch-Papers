@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "a795e22fe9948fe4e05b",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "code plan 002 ste",
+  "task_key": "worker_code_plan_002_ste_20260515T183953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_002_ste_20260515T183953.log",
+    "occurrence": 1,
+    "bytes": 550061,
+    "sha256": "0e63c5cdcf7b60a50b71017341a14682771dd0c504b087669c63062c609da50a"
+  },
+  "statistics": {
+    "messages": 242,
+    "user_turns": 1,
+    "tool_calls": 79,
+    "roles": {
+      "log": 1,
+      "system": 16,
+      "record": 1,
+      "assistant": 64,
+      "tool_call": 79,
+      "tool_result": 79,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 132,
+      "chunks": [
+        {
+          "path": "a795e22fe9948fe4e05b-part-0001.json",
+          "message_count": 132
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 110,
+      "chunks": [
+        {
+          "path": "a795e22fe9948fe4e05b-part-0001.json",
+          "message_count": 48
+        },
+        {
+          "path": "a795e22fe9948fe4e05b-part-0002.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan-002-ste.md"
+}

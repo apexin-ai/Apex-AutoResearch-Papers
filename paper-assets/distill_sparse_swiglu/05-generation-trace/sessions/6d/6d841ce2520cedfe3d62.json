@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d841ce2520cedfe3d62",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis per layer allocation profile",
+  "task_key": "worker_analysis_per_layer_allocation_profile_20260517T133538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_per_layer_allocation_profile_20260517T133538_result.json",
+    "occurrence": 1,
+    "bytes": 2806,
+    "sha256": "4dc5e97e5c69c6512aece891ab30c2f6308796853beec37719e0bbfb79fd0eb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Here are the results:\n\n## Per-Layer Allocation: s42 vs s123 (Global Top-K, 30% Sparsity)\n\n### Key Finding: The allocation profiles are remarkably similar between seeds. The MMLU anomaly is NOT caused by gross allocation pattern differences.\n\n**Comparison Table:**\n```\nLayer  s42 ret   s123 ret  delta     flag\n0      0.8159    0.8117    -0.0042\n...\n14     0.7808    0.7406    -0.0402\n15     0.8543    0.8201    -0.0342\n16     0.9010    0.8587    -0.0423   (peak: mid-layers dominate)\n17     0.8656    0.8646    -0.0010\n18     0.8871    0.8768    -0.0103\n...\n24     0.5345    0.6985    +0.1640   BIG_DELTA (only big outlier)\n25     0.5090    0.4901    -0.0189   s123_starved\n26     0.4807    0.4939    +0.0132   both starved\n27     0.4675    0.4926    +0.0251   both starved\n28     0.4570    0.4604    +0.0034   both starved (minimum)\n29     0.5369    0.5229    -0.0140\n30     0.7806    0.7762    -0.0044\n31     0.8345    0.8447    +0.0102\n```\n\n### Summary Statistics\n\n| Region | s42 | s123 | delta |\n|---|---|---|---|\n| Early (0-7) | 0.7397 | 0.7386 | -0.0011 |\n| Mid (8-23) | 0.7426 | 0.7319 | -0.0107 |\n| Knowledge (12-20) | **0.8071** | **0.7856** | -0.0215 |\n| Late (24-31) | 0.5751 | 0.5974 | +0.0223 |\n\n**Starved layers (<50% retention):**\n- s42: layers [26, 27, 28] (3 layers)\n- s123: layers [25, 26, 27, 28] (4 layers)\n- No layers starved below 10%\n\n### Analysis Conclusions\n\n1. **Both seeds show the same \"bathtub\" pattern**: high retention at edges (L0, L30-31), peak in mid-layers (L15-18 at ~85-90%), and a starvation zone at L25-28 (~45-50%). This is a structural property of global allocation, not seed-specific.\n\n2. **The only significant difference is layer 24**: s42 retains 53.5% vs s123's 69.9% (delta=+16.4%). This is the sole BIG_DELTA. Paradoxically, **s42 is MORE starved at L24, yet s123 (which retains more there) has the worse MMLU**... wait, actually s42 has MMLU=25.27% and s123 has MMLU=38.07%. So s42 (the worse MMLU seed) is more starved at L24 specifically.\n\n3. **Knowledge layers (L12-20) are actually well-fed in both seeds** (80.7% vs 78.6%). The \"late-layer starvation destroys MMLU\" hypothesis doesn't hold because the starved zone (L25-28 at ~46%) is common to both seeds with similar severity.\n\n4. **The s42 MMLU anomaly cannot be explained by gross allocation differences.** The profiles differ by only ~2% on average. The root cause is more likely in the specific neurons selected within each layer (which neurons are kept vs pruned), not the layer-level allocation ratio. This points to a quality-of-selection issue (predictor calibration) rather than a quantity-of-allocation issue.\n\nJSON saved to `/root/distill_sparse_swiglu/results/per_layer_allocation_s42_vs_s123.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-per-layer-allocation-profile.md"
+}

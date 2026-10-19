@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1e69770dc052fcc57b8",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "submit westd 41718 2gpu immediate",
+  "task_key": "worker_submit_westd-41718-2gpu-immediate_20260518T081014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_westd-41718-2gpu-immediate_20260518T081014_result.json",
+    "occurrence": 1,
+    "bytes": 428,
+    "sha256": "92990aca8ce8822988458d37af47eed4ac4e271855c8a6ea0aff25a119a9d351"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验状态：\n\n| 实验 | GPU | 状态 | 结果 |\n|------|-----|------|------|\n| c4_ood_kl30_s42_v2 | cuda:0 | **已完成** | C4 PPL = **16.0401** (vs s123 ~16.03，一致) |\n| kl50_s42_uniform_eval | cuda:1 | **运行中** | 15.9GB 已加载 |\n\n实验 1 已出结果：C4 OOD PPL 16.04，与 s123 的 16.03 高度一致，cross-seed OOD 泛化假设成立。实验 2 在 cuda:1 上正常跑着。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-westd-41718-2gpu-immediate.md"
+}

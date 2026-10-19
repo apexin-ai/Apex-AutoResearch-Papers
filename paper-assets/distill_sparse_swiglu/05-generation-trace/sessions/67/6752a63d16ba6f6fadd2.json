@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6752a63d16ba6f6fadd2",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_4_1778908802.md",
+  "task_key": "loop_4_1778908802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778908802.md",
+    "occurrence": 1,
+    "bytes": 4485,
+    "sha256": "a78c0742274dcd13d5573432718eab34d0be2cc2081e30ee131918c1117407dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-16T05:20:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-34887 仅 cuda:0 + cuda:1，绝不碰其他卡\n- D032 数据污染：kl_sparsity30_s42_v3 的 PPL 曾被误录，任何引用 Mistral/Llama 30% PPL 时必须交叉验证原始日志\n- D034 evaluate.py 陷阱：evaluate.py 默认 --sparsity_target 0.5，30% 训练的 predictor eval 必须显式传 --sparsity_target 0.3\n- Mistral PPL 暂停引用（D032）：mistral_kl_s42 和 kl_sparsity30_s42_v3 的 teal_sparse_ppl 疑似污染，未最终确认前不写入论文\n- 禁止 \"anti-learning\" framing（BCE 用 \"objective mismatch\"）；禁止 \"KL subsumes SPON\"（用 \"marginal complement\"）\n- KL PPL 统一引 4-seed mean 12.00±0.07，不用单 seed 最佳值\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887，工作目录 /root/distill_sparse_swiglu\n- Python：/root/miniconda3/bin/python（conda base 环境，非 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径：Llama-3.1-8B 在 HF cache，Mistral-7B 在 /root/autodl-tmp/models/mistral-7b/\n- HF cache：/root/autodl-tmp/.hf_cache\n- Checkpoints 目录：/root/distill_sparse_swiglu/checkpoints/（各子目录见 memory.md Checkpoints 节）\n- W&B：项目名未在 memory 中明确记录，需 Worker 确认\n- 活跃进程：bce_isocompute_v3_s42 PID=205597/205598 tmux session, cuda:1\n- Cron：bce_isocompute_v3_s42 监控中；bench_mistral_kl50_s42 cron 报进程存活(PID 207957)但 registry 已标 DONE/killed——需要排查不一致\n\n### 3. 📊 当前状态\n**刚完成**：Session 启动初始化，reconcile_crons 确认 bce_isocompute_v3_s42 仍在跑。\n\n**RUNNING**：\n- bce_isocompute_v3_s42 (cuda:1, PID 205598)：D031 P0，BCE iso-compute 2700步，Reviewer Concern #2 defense。v1/v2 两次被 tmux 杀死，v3 用 nohup\n\n**PREPARING（未提交）**：\n- eval_kl30_teal_30pct：D034，补跑 30% predictor 在 target=0.3 下真实 TEAL PPL\n- bench_dense：D029，Dense baseline 统一 few-shot 评测\n- 其余 7 个是历史残留（kl_lagrangian_v2, kl_norm_v3_quicktest 等），无 hypothesis，可能废弃\n\n**不一致需排查**：bench_mistral_kl50_s42 cron 报进程存活但 registry 已 killed——可能 orphan 进程占 cuda:0\n\n**等待中**：\n- bce_isocompute_v3_s42 完成回调（预计 2700 步，关注 TEAL PPL 是否 >> KL）\n- Director 对 bench_mistral 重跑 / TEAL 30% eval 结果的指示\n\n### 4. 📋 待办（条件触发式）\n- bce_isocompute_v3_s42 cron 回调（success）→ 记录 TEAL PPL，与 KL 1000步对比；若 BCE >> baseline 则 Reviewer Concern #2 defense 成立，更新 paper_framing\n- bce_isocompute_v3_s42 cron 回调（failed/killed）→ 第三次失败，向 Director 上报决定是否放弃 BCE iso-compute defense\n- 确认 bench_mistral_kl50_s42 PID 207957 是否真在跑 → 若 orphan 则 kill 释放 cuda:0 → 立即提交 eval_kl30_teal_30pct 或 bench_dense\n- cuda:0 空闲后 → 优先提交 eval_kl30_teal_30pct（D034 P0，论文 sparsity sweep 表格必需）\n- eval_kl30_teal_30pct 完成 → 填入论文 Table，30% PPL 列从\"待补\"变确认值\n- bench_dense 完成 → 所有 sparse 条件有公平的 dense baseline 对比（D029 解决）\n- DDL 2026-05-25 前 9 天：P0 全部完成后 → 触发论文终稿写作 + submit\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- KL distillation >> all baselines (PPL 层面 ✅)\n- Downstream collapse at 50% is universal cliff（跨架构 ✅，allocation 不可修复 ✅）\n- 30% uniform allocation 可修复知识类(MMLU +12pp)但不修复推理类(GSM8K)——Narrative A 仅在 30% 成立\n- BCE 是 \"objective mismatch\"（per-neuron scoring vs global top-k allocation 不兼容）\n- SPON 是 marginal complement（cos_sim=0.196, 16% magnitude ratio）\n\n**下一个\"你\"最容易判断错的事**：\n1. bench_mistral_kl50_s42 的 cron/registry 不一致——不要假设 cuda:0 空闲，先 SSH 确认 PID 207957 是否存活\n2. evaluate.py 默认 sparsity_target=0.5——提交任何 eval 实验都要显式检查参数\n3. Narrative A（allocation-sensitive/invariant）在 50% 不成立——不要把 30% 的结论推广到 50%\n4. 离 DDL 仅 9 天——P0 任务（BCE v3 + eval_kl30 + bench_dense）是 blocking 论文提交的关键路径，GPU 一空就要立即填满\n5. D032 Mistral PPL 污染未最终解决——论文表格中 Mistral 数据暂不可用\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778908802.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "830cc22d421811012f1a",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "analysis lambda sparsity curves",
+  "task_key": "worker_analysis_lambda-sparsity-curves_20260516T193855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_lambda-sparsity-curves_20260516T193855.log",
+    "occurrence": 1,
+    "bytes": 617834,
+    "sha256": "d1a5b8284f6d4202261875e12b0b3c7fb8d5e460595e25c0bd8e28dccab748bd"
+  },
+  "statistics": {
+    "messages": 265,
+    "user_turns": 0,
+    "tool_calls": 96,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 69,
+      "tool_call": 96,
+      "tool_result": 96,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 265,
+      "chunks": [
+        {
+          "path": "830cc22d421811012f1a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "830cc22d421811012f1a-part-0002.json",
+          "message_count": 85
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-lambda-sparsity-curves.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "594d42c4a29dc6eedddc",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_11_1779059429.md",
+  "task_key": "loop_11_1779059429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1779059429.md",
+    "occurrence": 1,
+    "bytes": 4985,
+    "sha256": "b0f702bef9e9bf73843b2ea73dc32f06273402f5fb164736dfb956da6120d1b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-17T22:49:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd-34887 cuda:0,1 + westd-41718 cuda:0,1（共 4 张）。config gpu_ids=[0,1] 只列了 34887，但 41718 也合法（servers 列表 + 历史实验确认）\n- KL PPL 引用必须用 4-seed mean 12.00±0.07，禁用单 seed 最佳 11.91\n- 论文数字必须有代码来源（C003），不能凭推理改数字（D032 教训）\n- WANDB_MODE=offline，两台服务器都没有 wandb API key，指标只能从 log 文件提取\n- DDL: EMNLP 2026 ARR May **2026-05-25**，剩 8 天\n- qwen14b_bce30_s42 训练时 Lagrangian 失败（predictor sparsity=6.4%），TEAL PPL 8.76 是外部强制 30% 的结果，对比时须注明\n\n### 2. 🖥️ 基础设施快照\n- **westd-34887**: root@, `/root/distill_sparse_swiglu/`, Python `/root/miniconda3/bin/python`, conda base\n- **westd-41718**: root@, `/root/distill_sparse_swiglu/`, Python `/root/miniconda3/bin/python`, 2×RTX PRO 6000 Blackwell 97GB, PyTorch 2.8.0+cu128\n- 模型: LLaMA-3.1-8B `/root/autodl-tmp/models/llama-3.1-8b/`, Qwen-2.5-14B `/root/autodl-tmp/models/qwen2.5-14b/`, Mistral-7B `/root/autodl-tmp/models/mistral-7b/`\n- HF cache: `/root/autodl-tmp/.hf_cache/datasets`\n- 磁盘: westd-34887 97%用(817G/879G可用), westd-41718 91%用(764G/879G可用)\n- 活跃进程:\n  - qwen14b_kl30_s42_eval: PID 52224, westd-34887:cuda:1, cron 监控中\n  - qwen14b_bce30_s42_eval: PID 59122, westd-34887:cuda:0, cron 监控中\n  - qwen14b_teal30_eval: PID 6896, westd-41718:cuda:1, cron 监控中\n- Workers:\n  - worker_eval_c4_ood_followup_20260517T184033 (25+ turns, 处理 HF 镜像问题)\n  - worker_diag_kl50_s123_reeval_failure_20260517T184405 (刚 spawn, 诊断失败原因)\n\n### 3. 📊 当前状态\nSession #11 完成了 session-start 初始化：registry 同步、cron reconcile（3 进程存活）、ROADMAP 更新（R1-W4/W5 标记完成）、向 Director 汇报。\n\n**已确认**: R1-W4 SNR patch (method.tex:150-153) 和 R1-W5 λ curve (figures/paper/lagrangian_dynamics.pdf + appendix.tex:137-142) 都已完成，Round 1 所有 issues resolved。\n\n**RUNNING (3)**: Qwen-14B 30% downstream eval 三件套（KL/BCE/TEAL），跑 MMLU/ARC/WinoGrande/GSM8K + WikiText-2。\n\n**已有 Qwen-14B 训练 metrics**:\n- KL: dense_ppl=5.18, teal_global_ppl=7.62, ratio=1.47×\n- BCE: dense_ppl=5.18, teal_global_ppl=8.76, ratio=1.69× (Lagrangian 失败，TEAL 外部强制 30%)\n- TEAL baseline: 正在 eval 中\n\n**kl50_global_s123_reeval**: DONE(failed), EXIT_CODE=1, retry_count=1。Worker 正在诊断（可能是 CLI flag 不一致：spec 用 `--predictor_path` 而 reproduce 用 `--checkpoint`）。\n\n### 4. 📋 待办（条件触发式）\n- **qwen14b_kl30_s42_eval cron 回调** → 提取 downstream metrics → update_registry → 与 LLaMA-8B 对比（KL 30% downstream 跨规模一致性）\n- **qwen14b_bce30_s42_eval cron 回调** → 提取 metrics → 对比 Qwen KL vs BCE downstream gap（14B 上 objective mismatch 是否持续）\n- **qwen14b_teal30_eval cron 回调** → 提取 metrics → 建立 Qwen-14B TEAL 30% baseline\n- **三个 Qwen eval 全部完成** → spawn Worker 汇总跨规模表格 → 扩展 experiments.tex cross-arch table (加 Qwen-14B 列) → 更新 abstract/intro 提及 14B\n- **diag Worker 完成** → 根据诊断修复 kl50_global_s123_reeval，重跑在 41718:cuda:0（D051 数据一致性依赖此实验）\n- **kl50_s123 reeval 成功** → 修正 Table 2 Row 6 的 50% global s123 MMLU 数据\n- **c4_ood_followup Worker 完成** → 整合 OOD 结果到 Appendix\n- **所有数据到齐** → 提交 Round 2 internal review → 最终修订 → 投稿\n\n### 5. 🎯 战略上下文\n**核心**: KL distillation 让 SwiGLU LLM 的 contextual sparsity predictor 不需要 error compensation，三个 core claims 全部 strong/adequate。\n\n**决策链关键**:\n- D048: Qwen-14B 跨规模验证（当前关键路径）\n- D051: 50% global s123 用错 checkpoint，需 reeval 修正 Table 2\n- D049-D050: Allocation narrative 定稿为 \"variance reduction only\"\n\n**最容易判断错的事**:\n- 训练 log 中 `sparsity` 列是 training-time diagnostic，**不是**推理 sparsity（推理由 TEAL global top-k 决定）\n- qwen14b_bce30_s42 的 hard_mask_ppl=5.57 看起来很好，但那是在 predictor native 6.4% sparsity 下测的（Lagrangian 失败），不能和 KL 的 6.8（28.1% sparsity）比\n- 14B 上 KL vs BCE TEAL PPL gap (7.62 vs 8.76, 15%) 远小于 8B (11.79 vs 22.51, 91%)——这不是 KL 变弱，是 14B 冗余更大导致 TEAL 本身就能较好应对 BCE 的次优 mask\n- read_registry API 有分页问题：按 status=RUNNING 过滤只返回 1 条（qwen14b_teal30_eval），但实际有 3 个 RUNNING。需要直接 Read registry.yaml 或用 reconcile_crons 确认\n- westd-41718:cuda:0 空闲，优先留给 kl50_s123_reeval 修复重跑\n- PREPARING 里大量实验 (diag_*, longbench_*, spon_*) 是历史残留，无 hypothesis，不需要跑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1779059429.md"
+}

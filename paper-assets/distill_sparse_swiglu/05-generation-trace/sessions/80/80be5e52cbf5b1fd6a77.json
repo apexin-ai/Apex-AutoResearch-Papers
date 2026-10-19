@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80be5e52cbf5b1fd6a77",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops collect and fill 34887 cuda0",
+  "task_key": "worker_ops_collect-and-fill-34887-cuda0_20260518T054951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-and-fill-34887-cuda0_20260518T054951_result.json",
+    "occurrence": 1,
+    "bytes": 522,
+    "sha256": "da1290dabffafb4918136caf254d3c7b945bc59f95ef4e0d7cf0bb09e2e9f335"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已在运行。\n\n**Part 1 — kl50_s123_eval 结果（DONE）：**\n\n| 指标 | 值 |\n|------|-----|\n| wikitext2_ppl | 11.745 |\n| arc_challenge | 0.3814 (acc_norm) |\n| winogrande | 0.6125 |\n| mmlu | 0.2752 |\n| gsm8k | 0.0281 |\n\n**Part 2 — kl50_s123_uniform_eval 已提交：**\n- cuda:0 上运行中（PID 3143, 41.7GB VRAM）\n- 正在跑 arc_challenge（~42% 进度）\n- WikiText-2 PPL 已出：11.8917（略高于 global_topk 的 11.745，符合预期）\n- Registry 已标记 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-and-fill-34887-cuda0.md"
+}

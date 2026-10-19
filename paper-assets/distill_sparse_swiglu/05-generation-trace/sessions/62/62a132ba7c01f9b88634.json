@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62a132ba7c01f9b88634",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code mistral hspiqa check and 41718 gpu1",
+  "task_key": "worker_code_mistral_hspiqa_check_and_41718_gpu1_20260519T144203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mistral_hspiqa_check_and_41718_gpu1_20260519T144203_result.json",
+    "occurrence": 1,
+    "bytes": 1719,
+    "sha256": "21b2c1aac09fbe0becfe247584df008a90f4209fe6f8fdb2b0305a9e23fac9a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报完毕。\n\n---\n\n## 1. Mistral KL 30% HS/PIQA 结果：已完整\n\n结果文件在服务器重启前已生成（`2026-05-19 13:12:13`）。\n\n| Task | Metric | Dense | KL 30% (uniform) | Δ |\n|------|--------|-------|-------------------|---|\n| HellaSwag | acc_norm | 0.8320 | 0.6892 | -14.28pp |\n| PIQA | acc | 0.8003 | 0.7443 | -5.60pp |\n| PIQA | acc_norm | 0.8188 | 0.7519 | -6.69pp |\n\n另有 `mistral_kl30_downstream` 也完整：ARC-C acc_norm=0.5017, WinoGrande acc=0.6914, MMLU acc=0.4404, GSM8K em=0.1114。\n\n## 2. FlashInfer Benchmark 准备情况\n\n**现状**：\n- **flashinfer 未安装**（westd-41718 上 miniconda3 中没有 flashinfer 包；westd-41718 上也没有 flashinfer 源码目录）\n- 本地 repo 有完整的 flashinfer git clone（`flashinfer/`），但未 sync 到服务器\n- **已有 benchmark 脚本**：\n  - `src/benchmark_speedup.py` — 支持 zero-masking + gather-scatter，不含 flashinfer 内核\n  - `src/latency_benchmark.py` — dense vs predictor-only vs predictor+compensation\n- **已有 benchmark 结果**（westd-34887）：zero-masking 方式 speedup = 0.93x（即比 dense 还慢 7%），因为 matmul 仍是 full-size，无实际 FLOP 节省\n\n**需要准备的工作**：\n1. flashinfer 安装（需编译或找预编译 wheel，匹配 CUDA 12.8 + PyTorch 2.8）\n2. 将本地 `flashinfer/` 目录 sync 到 westd-41718\n3. 写/改 benchmark 脚本支持 flashinfer 的 sparse MLP kernel（如果 flashinfer 有 structured sparse matmul 的话）\n4. 明确 benchmark 目标：是要展示真正的稀疏 kernel 加速，还是仅测 flashinfer attention 加速？\n\n**等你确认方案后再在 westd-41718 cuda:1 上执行。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mistral-hspiqa-check-and-41718-gpu1.md"
+}

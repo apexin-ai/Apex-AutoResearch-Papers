@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "ea2d4ea94562c400476a",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "diag check mistral ckpt",
+  "task_key": "worker_diag_check_mistral_ckpt_20260525T091900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_diag_check_mistral_ckpt_20260525T091900.jsonl",
+    "occurrence": 1,
+    "bytes": 171,
+    "sha256": "a42f753086d410140f8b64d337bfd3bc3f2c6d54cedbaecbc0bc86ef1aeb5389"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T09:19:10.834134+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_check_mistral_ckpt_20260525T091900"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/diag-check-mistral-ckpt.md"
+}

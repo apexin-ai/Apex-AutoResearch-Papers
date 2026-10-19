@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "d35e4f1c3d6a1f6e76dd",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "ops bce clean isolation p0",
+  "task_key": "worker_ops_bce-clean-isolation-p0_20260516T193356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bce-clean-isolation-p0_20260516T193356.log",
+    "occurrence": 1,
+    "bytes": 1179322,
+    "sha256": "bdafd3000ba07f80bd22cfef6144e2a83f813c03e58484c019e7459f22074041"
+  },
+  "statistics": {
+    "messages": 728,
+    "user_turns": 1,
+    "tool_calls": 298,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 1,
+      "assistant": 114,
+      "tool_call": 298,
+      "tool_result": 298,
+      "result": 2,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 663,
+      "chunks": [
+        {
+          "path": "d35e4f1c3d6a1f6e76dd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d35e4f1c3d6a1f6e76dd-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d35e4f1c3d6a1f6e76dd-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d35e4f1c3d6a1f6e76dd-part-0004.json",
+          "message_count": 123
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 65,
+      "chunks": [
+        {
+          "path": "d35e4f1c3d6a1f6e76dd-part-0004.json",
+          "message_count": 57
+        },
+        {
+          "path": "d35e4f1c3d6a1f6e76dd-part-0005.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-bce-clean-isolation-p0.md"
+}

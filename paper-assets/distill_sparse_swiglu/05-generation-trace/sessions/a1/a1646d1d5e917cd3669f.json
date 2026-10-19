@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "a1646d1d5e917cd3669f",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "eval training free baselines",
+  "task_key": "worker_eval_training_free_baselines_20260515T180055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_training_free_baselines_20260515T180055.log",
+    "occurrence": 1,
+    "bytes": 652584,
+    "sha256": "64a93867a6afe397c547e1def08d99fc34cfb9a26ac9fedd4962963a227635b3"
+  },
+  "statistics": {
+    "messages": 393,
+    "user_turns": 0,
+    "tool_calls": 152,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 85,
+      "tool_call": 152,
+      "tool_result": 152,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 393,
+      "chunks": [
+        {
+          "path": "a1646d1d5e917cd3669f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1646d1d5e917cd3669f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a1646d1d5e917cd3669f-part-0003.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-training-free-baselines.md"
+}

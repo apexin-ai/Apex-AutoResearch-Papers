@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b34dfcfd8bb6d5a0039",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze qwen14b kl30 s456 gsm8k",
+  "task_key": "worker_analyze_qwen14b_kl30_s456_gsm8k_20260520T000133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_qwen14b_kl30_s456_gsm8k_20260520T000133_result.json",
+    "occurrence": 1,
+    "bytes": 1094,
+    "sha256": "5121d1d80c83c05c2127ea84127118998465547af8686a1e47ef40435bb715a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。结果汇总：\n\n## Metrics — qwen14b_kl30_s456_gsm8k\n\n| 指标 | 值 |\n|------|-----|\n| gsm8k_exact_match (flexible) | 0.2608 |\n| gsm8k_exact_match_stderr | ±0.0121 |\n| gsm8k_exact_match_strict | 0.2547 |\n| gsm8k_exact_match_strict_stderr | ±0.0120 |\n| actual_sparsity | 0.297 |\n| 错误/警告 | 无（仅 transformers max_length 常规 warning） |\n\n## 3-seed GSM8K 汇总\n\n| Seed | exact_match | sparsity |\n|------|-------------|----------|\n| s42 | 0.3571 | 0.296 |\n| s123 | 0.3442 | 0.297 |\n| s456 | **0.2608** | 0.297 |\n| **Mean±Std** | **0.3207±0.0523** | 0.297 |\n\n## 异常\n\n**s456 是明显的 outlier**，比 s42/s123 低约 8-10pp。sparsity 一致（0.297），所以不是 mask 差异导致的。三 seed 标准差 0.0523 偏高——GSM8K 本身方差较大（stderr ~0.012），但跨 seed 这个量级的波动可能指向 predictor 训练的 seed 敏感性，或 s456 predictor 质量本身较差。建议检查 s456 predictor 的训练 loss 曲线与 s42/s123 对比，确认是否存在训练异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-qwen14b-kl30-s456-gsm8k.md"
+}

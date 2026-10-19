@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3a62198f413adfa86ee",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "fix kill old eval gpu0",
+  "task_key": "worker_fix_kill_old_eval_gpu0_20260520T103252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_kill_old_eval_gpu0_20260520T103252_result.json",
+    "occurrence": 1,
+    "bytes": 216,
+    "sha256": "b20602234d46e611af1d10a8680f15134e65fdc98fc9d5d25389496c954c17ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 197977 已不存在，GPU 0 和 GPU 1 均已空闲（0MiB / 97887MiB），无任何 GPU 进程。无需清理。\n\n两块 RTX PRO 6000 Black (各 96GB) 完全可用，可以直接启动新 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-old-eval-gpu0.md"
+}

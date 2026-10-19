@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73db0bb8000016f63d95",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check multiseed status collect",
+  "task_key": "worker_check_multiseed_status_collect_20260517T105807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_multiseed_status_collect_20260517T105807_result.json",
+    "occurrence": 1,
+    "bytes": 1201,
+    "sha256": "632f92dc8a229e29eba5379e50f83e6ac32f04aedc11d5ed52304b337b87caa1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态\n\n| GPU | Config | 状态 |\n|-----|--------|------|\n| cuda:0 (KL 50%) | **DEAD** | s123 训练完成 (1000/1000)，eval 崩溃 (HF Hub httpx client closed)。`set -e` 导致脚本退出，s456 未开始。GPU 空闲 0 MiB。 |\n| cuda:1 (KL 30%) | **RUNNING** | s123 训练中 step 840/1000，约 5-6 分钟完成训练。eval + s456 待运行。 |\n\n## 已完成结果\n\n| Config | Seed | Training | Checkpoint | Eval |\n|--------|------|----------|------------|------|\n| KL 50% | 123 | done (loss=0.30, sparsity=0.484) | `predictor_kl_normalized.pt` (145MB) | **FAILED** — HF Hub 连接错误 |\n| KL 50% | 456 | 未开始 | — | — |\n| KL 30% | 123 | step 840/1000 (~84%) | 未保存 | — |\n| KL 30% | 456 | 未开始 | — | — |\n\n## KL 30% s123 训练指标 (最近)\n- Step 840: loss=0.177, sparsity=0.281, lambda=5000, tau=0.244\n- 收敛良好，sparsity 稳定在 ~0.28\n\n## 问题\nKL 50% 的 `benchmark_eval.py` 在加载 wikitext2 数据集时 HF Hub httpx 报 `RuntimeError: Cannot send a request, as the client has been closed.`。需要在 cuda:0 上重启 eval + s456 流程。\n\n是否要我现在重启 cuda:0 上的 KL 50% eval 和 s456？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-multiseed-status-collect.md"
+}

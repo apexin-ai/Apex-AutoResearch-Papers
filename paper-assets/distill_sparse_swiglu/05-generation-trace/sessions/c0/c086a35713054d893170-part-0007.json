@@ -1,0 +1,261 @@
+{
+  "schema_version": "1.0",
+  "session_id": "c086a35713054d893170",
+  "rounds": [
+    {
+      "number": 50,
+      "messages": [
+        {
+          "source_line": 1081,
+          "timestamp": "2026-05-15T18:36:13.677327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "distill_sparse_swiglu",
+              "file": "decisions.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-001081"
+        },
+        {
+          "source_line": 1082,
+          "timestamp": "2026-05-15T18:36:13.728356+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 10\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-15 10:07 UTC\\\\n  summary: 'MVP 设计: KL vs BCE predictor 在 50% sparsity 下的 perplexity 对比'\\\\n  rationale: '核心假设是 KL 训练通过端到端梯度捕获联合神经元交互，优于 BCE 的逐神经元独立目标。MVP 聚焦最基础的 A/B 对比（KL vs\\\\n    BCE），不涉及 SPON 组合或 compensation network，以最小成本验证核心假设是否成立。Pass criteria: KL ppl <\\\\n    BCE ppl 差距 ≥ 0.3。评审笔记中的 novelty ceiling 和 effect size 风险恰好需要 MVP 先确认效果量级。'\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-15 12:08 UTC\\\\n  summary: 校准数据从 SlimPajama-627B 改为 WikiText-103 train split\\\\n  rationale: SlimPajama-627B 在 AutoDL 代理环境下 HF datasets API 无法访问（DatasetNotFoundError）。WikiText-103\\\\n    (~100M tokens) 满足 MVP 1K steps 需求，KL/BCE 用同一数据保证公平性。偏离 IDEA_BRIEF 原始方案，full paper\\\\n    实验阶段可能需要切回更多样的校准数据。\\\\n  related_experiments:\\\\n  - exp_id: mvp_kl_s42\\\\n    role: affected\\\\n    result: FAILED due to SlimPajama access\\\\n  - exp_id: mvp_bce_s42\\\\n    role: affected\\\\n    result: FAILED due to SlimPajama access\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-15 13:16 UTC\\\\n  summary: KL 训练稀疏性坍塌至 0%，改用 Lagrangian multiplier 替代固定 reg_weight\\\\n  rationale: mvp_kl_s42 的 sparsity 从 0.328 单调降至 0.000。KL loss 天然在 0% sparsity 处最小，固定\\\\n    reg_weight=0.1 被 KL loss（66 倍量级差）完全压制。Lagrangian multiplier 通过 dual gradient ascent\\\\n    自动调整约束强度，是约束优化的标准方案。暂停 KL s123/s456 直到修复验证通过。\\\\n  related_experiments:\\\\n  - exp_id: mvp_kl_s42\\\\n    role: evidence\\\\n    result: sparsity collapsed to 0%, KL=3.3 vs reg=0.05\\\\n  depends_on:\\\\n  - D001\\\\n- id: D004\\\\n  date: 2026-05-15 13:34 UTC\\\\n  summary: KL 稀疏性坍塌修复：选方案 C（KL loss 归一化 + 激进 Lagrangian），保持纯 KL 端到端训练\\\\n  rationale: Lagrangian quicktest 确认 lambda 爬升追不上 KL loss 量级（KL~418 vs constraint~1.2）。根因是\\\\n    KL 用 sum reduction 导致绝对值过大。归一化到 per-token per-dim 后 KL 应降至 ~0.003，与 constraint\\\\n    可比。选 C 而非 A（BCE warm-start）因为 C\n…[truncated 4845 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 51
+          },
+          "id": "event-001082"
+        },
+        {
+          "source_line": 1083,
+          "timestamp": "2026-05-15T18:37:14.773700+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "project": "distill_sparse_swiglu",
+              "text": "## 审查报告 #7 — ROADMAP 更新 + spon_training/bce_comp_staged_s42 结论核实\n\n---\n\n### A. 实验结论核实\n\n**[severity: info] spon_training 结论 \"negative\" — PASS**\n独立核实 eval_spon.log 与 registry 一致：\n- hard_mask: 9.22→9.10（-0.12, recovery 3.8%）✅\n- TEAL: 12.15→11.93（-0.22, recovery 3.6%）\n- 训练日志终态：loss=0.465, bias_norm=0.041, EXIT_CODE=0 ✅\n- \"negative\" 合理——458K 参数仅恢复不到 4% 的稀疏化误差\n\n**[severity: warning] spon_training registry 缺失 TEAL+SPON 结果**\neval_spon.log 明确输出了 TEAL 场景：teal_no_spon=12.15, teal_with_spon=11.93（-0.22）。但 registry 中 `teal_sparse_ppl=12.08` 引用的是旧 KL-only eval 数据，不是 SPON eval 自身结果。且 `teal_sparse_ppl_with_spon` 未记录。TEAL 是论文主要部署路径，这个数据不应丢失。\n\n**[severity: info] spon_training — dense PPL 退化补充**\neval_spon.log：dense PPL 6.12→6.19（+0.07）。SPON folded 进 down_proj 后轻微损害 dense 性能。虽然论文声称\"zero inference overhead\"是指参数量/FLOPs，但 dense PPL 退化应透明披露。\n\n**[severity: info] bce_comp_staged_s42 结论 \"negative\" — PASS**\n- 训练日志终态：bce=0.6379, comp=0.0033, sparsity=0.551, EXIT_CODE=0 ✅ 与 registry 匹配\n- hard_mask: 27.96→25.44（-9%），但仍 2.8× 差于 KL (9.19)\n- TEAL: 44.54，与 BCE-only 完全一致（compensation 对 TEAL 路径零贡献）\n- \"negative\" 合理——67.2M 额外参数仅带来 hard_mask 上 9% 改善，TEAL 零改善\n\n**[severity: warning] bce_comp sparsity 不公平对比**\nbce_comp sparsity=0.558 vs KL sparsity=0.498。BCE 多剪了 ~12% 的神经元。虽然方向性结论（KL >> BCE-comp）不受影响（即使在更宽松的 sparsity 下 BCE-comp 仍差 2.8×），但论文中 report 这些数字时应标注 sparsity 不在同一水平，或做 matched-sparsity 对比。\n\n---\n\n### B. ROADMAP 审查\n\n**[severity: critical] \"Training-free baselines 全崩 (PPL 5万+)\" 引用了 INVALID 数据**\nROADMAP 中 Claim 1 证据写\"Training-free baselines 全崩 (PPL 5万+)\"，这个数字来自 `vanilla_teal_sparse_ppl_INVALID=66036`——已被标记为 INVALID 的 vanilla TEAL（raw magnitude global top-K，已知因极端 per-layer skew 而失效）。\n\n**这是 strawman baseline。** 合理的 training-free baselines 是：\n1. TEAL greedy allocation（per-layer error curve, greedy 分配）\n2. WINA greedy allocation\n3. R-Sparse\n\n这些方法的 evaluate.py 实现已验证通过（审查 #3），Worker `worker_eval_training_free_baselines_20260515T180055` 已完成，但结果从未注册到 registry（审查 #6 已 warning）。**用 INVALID strawman 替代合理 baseline 来支撑 Claim 1 是不可接受的**——审稿人必然会攻击。要求：\n1. 立即将 greedy TEAL / WINA / R-Sparse 结果注册\n2. ROADMAP 中用正确的 baseline 数字替换 \"PPL 5万+\"\n3. paper_framing.md Story Spine 已正确写\"6+ point quality gap\"——ROADMAP 不应用更夸张的数字\n\n**[severity: info] Claim 2 reframe \"KL subsumes SPON\" 逻辑合理**\nD009 决策正确识别了 seq_len=128/2048 confound，安排验证后再确定 reframe。paper_framing.md 仍保持原始 Claim 2（additive composition），与 tentative reframe 不矛盾。流程合理。\n\n**[severity: info] 新实验优先级正确**\n- SPON seq_len=2048 验证 → 解决 Claim 2 confound ✅\n- plan_002 STE baseline → Reviewer Concern #3 ✅\n- plan_003 iso-compute BCE → Reviewer Concern #2 ✅\n\n**[severity: info] GPU 预算充裕**\n已用 ~80h / 计划 196h，剩余 116h。可用预算：2 GPU × 10 天 × 24h = 480h。余量 364h，无 deadline 风险。\n\n---\n\n### C. 待跟踪事项\n\n1. Training-free baselines 注册（CRITICAL，阻塞 Claim 1 的可信引用）\n2. SPON TEAL+SPON metrics 补录（warning）\n3. s456 outlier root cause 分析（ROADMAP 列为 TODO，跟踪中）\n4. SPON seq_len=2048 验证结果（决定 Claim 2 最终 framing）"
+            }
+          },
+          "id": "event-001083"
+        },
+        {
+          "source_line": 1084,
+          "timestamp": "2026-05-15T18:37:18.442860+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3669
+          },
+          "id": "event-001084"
+        },
+        {
+          "source_line": 1085,
+          "timestamp": "2026-05-15T18:37:21.034614+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全面材料已到位，提交综合审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer"
+          },
+          "id": "event-001085"
+        }
+      ]
+    },
+    {
+      "number": 51,
+      "messages": [
+        {
+          "source_line": 1086,
+          "timestamp": "2026-05-15T18:38:21.928319+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — roadmap_updated]:\n[系统通知] ROADMAP.md 已更新（原因：Reviewer critical: fix training-free baseline INVALID strawman reference, add data repair checklist），请审查研究方向和计划的合理性。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "source": "roadmap_updated"
+          },
+          "id": "event-001086"
+        },
+        {
+          "source_line": 1087,
+          "timestamp": "2026-05-15T18:38:28.244060+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "distill_sparse_swiglu",
+              "file": "ROADMAP.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-001087"
+        },
+        {
+          "source_line": 1088,
+          "timestamp": "2026-05-15T18:38:28.346484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/ROADMAP.md\\\", \\\"content\\\": \\\"# distill_sparse_swiglu — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 18:38 UTC | 更新原因: Reviewer critical: fix training-free baseline INVALID strawman reference, add data repair checklist\\\\n\\\\n## 核心方向\\\\nKL distillation 使 SwiGLU LLM 的 contextual sparsity prediction 不再需要 error compensation 和 static bias correction，实现最简推理管线。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research + 审稿进行中（EMNLP 2026 ARR May, DDL 2026-05-25）\\\\n- **实验**: 22 registered, 15 done (10 success, 4 negative, 1 failed)\\\\n- **Claim 1 (KL > BCE+comp)**: ✅ 已确认。KL PPL 9.21 vs BCE+comp 25.44 (2.8x gap)。Training-free baselines 全崩（TEAL greedy 50035, WINA 82567, R-Sparse 74929 — 结果待注册 registry）\\\\n- **Claim 2 (SPON composition)**: ⚠️ SPON recovery 仅 3.8%，暂定 reframe 为 \\\\\\\"KL subsumes SPON\\\\\\\"，等 seq_len=2048 验证\\\\n- **Claim 3 (scaling)**: 未开始 (plan_008)\\\\n- **5-seed headline**: 4/5 seed 收敛 (PPL 12.00±0.07)，s456 outlier (13.58) 调查中\\\\n- **Reviewer defense**: plan_002 STE (Concern #3) 和 plan_003 iso-compute (Concern #2) 启动中\\\\n\\\\n## 数据修复（Reviewer critical）\\\\n- [ ] Training-free baselines 注册 registry（TEAL greedy/WINA/R-Sparse，排除 vanilla TEAL INVALID）\\\\n- [ ] SPON TEAL+SPON metrics 补录（teal_with_spon=11.93）\\\\n- [ ] SPON dense PPL 退化记录（6.12→6.19）\\\\n- [ ] bce_comp sparsity mismatch 标注（0.558 vs 0.498，论文中需注明）\\\\n\\\\n## 近期任务\\\\n- [ ] SPON seq_len=2048 验证 → 确认 Claim 2 reframe (cuda:0, ~4h)\\\\n- [ ] plan_002 STE baseline 3 seeds (cuda:1, ~10h)\\\\n- [ ] plan_003 iso-compute BCE (cuda:0, SPON 后接上, ~10h)\\\\n- [ ] s456 outlier 调查（非 GPU）\\\\n- [ ] Claim 2 reframe 确认后更新 paper_framing.md\\\\n\\\\n## GPU 预算\\\\n- 分配: westd-34887 cuda:0 + cuda:1\\\\n- 当前: cuda:0 → SPON 2048 验证, cuda:1 → STE baseline\\\\n- 累计 GPU·h: ~80h used / plan 总预算 ~196h（剩余 116h，硬件余量 364h）\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D009 | 2026-05-15 | Claim 2 tentative reframe: \\\\\\\"\n…[truncated 1100 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 102
+          },
+          "id": "event-001088"
+        },
+        {
+          "source_line": 1089,
+          "timestamp": "2026-05-15T18:39:39.274293+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "project": "distill_sparse_swiglu",
+              "text": "## 审查报告 #8 — ROADMAP 修复确认 + training-free baseline 数字评估\n\n**[severity: info] ROADMAP 修复确认**\n审查 #7 的 CRITICAL（INVALID strawman baseline）已得到响应：\n- ✅ 替换为具体方法的数字（TEAL greedy 50035, WINA 82567, R-Sparse 74929）\n- ✅ 标注\"结果待注册 registry\"\n- ✅ 新增数据修复 checklist（含审查 #7 全部 4 项）\n- ✅ GPU 预算加入硬件余量计算\n\nCRITICAL 降级为跟踪中。baseline 注册完成后结案。\n\n**[severity: warning] WINA 和 R-Sparse 使用的是 global top-K 而非 greedy allocation**\n根据我对 evaluate.py 的代码审查：\n- `--baseline_mode teal_greedy` → `teal_activation_magnitude_masks()`：greedy per-layer allocation ✅\n- `--baseline_mode wina` → `wina_global_masks()`：**global top-K**（非 greedy）\n- `--baseline_mode rsparse` → `rsparse_global_masks()`：**global top-K**（非 greedy）\n\nWINA 和 R-Sparse 的原始论文确实使用 global top-K，所以这不是错误的实现。但 `baselines.py` 中也实现了 `wina_greedy_allocation_masks()`（greedy per-layer 版本）。\n\n建议：追加运行 WINA greedy 作为\"最强 training-free baseline\"。如果 WINA greedy 仍然崩溃，则 training-free 方法全面失败的结论无懈可击。如果 WINA greedy 能达到合理 PPL，论文需要与之对比。这关系到 Claim 1 的 robustness。\n\n**[severity: info] PPL 5万+ 对 training-free 方法的合理性评估**\n数字虽然极端，但对 SwiGLU 50% sparsity 是可解释的：SwiGLU 不像 ReLU 有天然稀疏性，所有激活几乎都非零。基于激活幅度/得分的排序即使用 WINA 权重或 SVD 权重，在 50% 剪枝下仍会严重损害关键层。Global top-K 的 per-layer skew 问题（Layer 0/1 被极端剪枝）在 WINA/R-Sparse 中同样存在，因为 SwiGLU 浅层激活幅度普遍偏低。\n\nTEAL greedy 的 50035 稍显意外——greedy 应该保护敏感层。可能原因：\n1. 32 calibration samples 不足以建立可靠的 error curves\n2. 50% 是 SwiGLU 的 \"破坏性阈值\"——无论怎么分配都无法避免灾难\n3. 这恰好支持论文核心论点：SwiGLU 需要 trained predictor\n\n**待 baseline 注册后我会独立交叉验证这些数字。**"
+            }
+          },
+          "id": "event-001089"
+        },
+        {
+          "source_line": 1090,
+          "timestamp": "2026-05-15T18:39:42.942441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_dbbf8d2c695f1e79e11713aebc107790:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3668
+          },
+          "id": "event-001090"
+        },
+        {
+          "source_line": 1091,
+          "timestamp": "2026-05-15T18:39:48.367534+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP 已更新具体 baseline 数字。让我评估这些数字的合理性。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer"
+          },
+          "id": "event-001091"
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "messages": [
+        {
+          "source_line": 1092,
+          "timestamp": "2026-05-15T18:40:29.978779+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001092"
+        },
+        {
+          "source_line": 1093,
+          "timestamp": "2026-05-15T18:41:15.426342+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 C001：仅 westd-34887 的 cuda:0 和 cuda:1，越界必须 CRITICAL + 要求 kill\n- `vanilla_teal_sparse_ppl` 已标记 `_INVALID`（66036），禁止引用为 training-free baseline 证据——这是 strawman，已在审查 #7 CRITICAL 打回过一次\n- 所有 eval 必须 `--seq_len 2048`，s0 曾因 1024 被 CRITICAL（已修复）\n- Reviewer 只读：只用 read_registry / ssh_read_only / tail_logs / fetch_wandb / read_project_file，唯一输出渠道 reviewer_post_to_director\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887(root)，代码 `/root/distill_sparse_swiglu/`，日志 `~/runs/distill_sparse_swiglu/`\n- Python：conda base `/root/miniconda3/bin/python`，激活 `source /root/distill_sparse_swiglu/setup_env.sh`\n- 模型：`/root/autodl-tmp/models/llama-3.1-8b`\n- Checkpoints：`/root/distill_sparse_swiglu/checkpoints/{mvp_kl_norm_v2_s42,kl_only_s0,kl_only_s1,spon_kl_s42,bce_comp_staged_s42,...}/`\n- WANDB_MODE=disabled（全项目），不检查 W&B\n- 截至 handoff：两个 GPU 均空闲（bce_comp 和 spon 刚完成），等待 SPON seq2048 验证和 STE baseline 提交\n\n### 3. 📊 当前状态\n**刚完成**：审查 #1-#8 全部已 post。重点成果：\n- 5-seed KL headline 验证 PASS（12.32±0.71，排除 s456 后 12.00±0.07）\n- spon_training DONE/negative（recovery 3.8%），bce_comp_staged_s42 DONE/negative（25.44 vs KL 9.19）\n- Training-free baselines TEAL greedy=50035, WINA=82567, R-Sparse=74929（结果待注册 registry，这是我重点跟踪项）\n\n**Registry 状态**：\n- RUNNING/ANALYZING: 0（全部完成）\n- 即将提交: SPON seq_len=2048 验证 (cuda:0), plan_002 STE baseline 3 seeds (cuda:1)\n- spon_kl_s42: PREPARING（关联 spon_training 的 eval 实验壳）\n\n**等待中**：Director 应调度 SPON 2048 验证和 STE baseline 到空闲 GPU\n\n### 4. 📋 待办\n- Training-free baselines 注册到 registry → 独立交叉验证数字（TEAL greedy 50035 需特别审查——greedy 不应这么高，可能 calibration_samples=32 不够或 50% 是 SwiGLU 破坏阈值）\n- SPON seq_len=2048 完成 → 核实是否改善 3.8% recovery，决定 Claim 2 最终 framing\n- STE baseline 完成 → 验证 loss function vs relaxation method 的贡献隔离（Reviewer Concern #3）\n- s456 outlier 调查结果出来 → 审查 root cause 是否可信，论文是否需要标注\n- WINA greedy allocation 是否追加运行 → 如果 Director 采纳审查 #8 建议，跟踪结果\n- SPON TEAL+SPON metrics 补录 → 确认 teal_with_spon=11.93 和 dense 退化 6.12→6.19 进入 registry\n\n### 5. 🎯 战略上下文\n**核心结论链**：D001(MVP设计) → D003/D004(KL坍塌→Lagrangian+归一化) → D006(Reviewer发现÷vocab_size bug) → D007(MVP PASS: KL 12.52 vs BCE 44.45) → D008/D009(BCE-comp negative, SPON negative → Claim 2 reframe \"KL subsumes SPON\")\n\n**最容易判断错的事**：\n1. \"Training-free baselines 全崩\"看起来像 KL 大获全胜，但 WINA/R-Sparse 用的是 global top-K（不是 greedy）——审稿人会要求最强 baseline。务必追问 WINA greedy 是否运行。\n2. SPON eval_spon.log 中 teal_no_spon=12.15 与 registry 旧值 12.08 不同（calibration 随机性）——不要把两次不同 eval 的数字混在一张表里。\n3. BCE-comp sparsity=0.558 vs KL 0.498，不在同一稀疏水平——数字对比要加 caveat。\n4. paper_framing.md Claim 2 仍写\"additive composition\"但 ROADMAP 已 tentative reframe \"KL subsumes SPON\"——两边不一致是正常的（pending 验证），但 reframe 确认后必须同步更新。\n5. 项目节奏是 AI Agent 级别（分钟级迭代），不要用人类时间尺度判断\"来不来得及\"——只看 GPU-hours 够不够。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_9377f94f5f31e719154474b70f5c3d18:reviewer"
+          },
+          "id": "event-001093"
+        }
+      ]
+    }
+  ]
+}

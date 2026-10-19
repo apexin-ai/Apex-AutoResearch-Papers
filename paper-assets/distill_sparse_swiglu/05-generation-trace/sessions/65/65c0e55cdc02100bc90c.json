@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65c0e55cdc02100bc90c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops prepare kl25 eval",
+  "task_key": "worker_ops_prepare-kl25-eval_20260518T185256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prepare-kl25-eval_20260518T185256_result.json",
+    "occurrence": 1,
+    "bytes": 1333,
+    "sha256": "5da54adf72addaed2d3e0017f3b5543c97d0d04f61d4a386b69dc7927bcea96a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息汇总：\n\n### 1. Checkpoint 确认\n`/root/distill_sparse_swiglu/checkpoints/kl_sparsity25_s42/predictor_kl_normalized.pt` — 145MB, May 19 00:29\n\n### 2. westd-41718 GPU 状态\n**两块 GPU 都完全空闲**（0MiB, 0%）。GPU 0 可用。\n\n### 3. Actual Sparsity\nRegistry `kl_sparsity25_s42` 记录：`sparsity_actual = 0.23`（target 0.25）\n\n### 4. 完整 Eval 命令\n```bash\nbash -c \"source /root/.bashrc && cd /root/distill_sparse_swiglu && export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id kl_sparsity25_s42_eval_teal --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_sparsity25_s42/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.23 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\"\n```\n\n### 5. C1 v2 状态\n**PID 93700 已死**。41718 上无任何 GPU 进程，也无 C1 v2 相关日志。Registry 标记 `c1_ablation_bce_kl_targets_s123_v2` 为 RUNNING，但实际进程已不存在，属于 stale entry。\n\n### 附加发现\nwestd-34887 GPU 0 正在运行 `kl_sparsity35_s42_eval_teal_uniform`（PID 47633, ~4 分钟前启动），GPU 1 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prepare-kl25-eval.md"
+}

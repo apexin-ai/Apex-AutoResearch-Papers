@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "bd153aea5f3831285be9",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis bench teal30 uniform 6task",
+  "task_key": "worker_analysis_bench_teal30_uniform_6task_20260519T232855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bench_teal30_uniform_6task_20260519T232855_result.json",
+    "occurrence": 1,
+    "bytes": 1501,
+    "sha256": "77946cee8734833d0206cbe0ad643782196c47b8c66531dfae939ac55d213953"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成，无错误（EXIT_CODE=0）。无 gsm8k 任务（未包含在 tasks 列表中）。\n\n```json\n{\n  \"exp_id\": \"bench_teal30_uniform_6task\",\n  \"config\": {\n    \"model\": \"llama-3.1-8b\",\n    \"sparsity_mode\": \"per_token\",\n    \"baseline_mode\": \"teal_vanilla\",\n    \"sparsity_target\": 0.3,\n    \"allocation\": \"uniform\",\n    \"bottleneck_size\": 128,\n    \"batch_size\": 8,\n    \"seq_len\": 2048\n  },\n  \"metrics\": {\n    \"wikitext2_ppl\": 10.8173,\n    \"arc_challenge_acc\": 0.3771,\n    \"arc_challenge_acc_norm\": 0.3933,\n    \"winogrande_acc\": 0.6504,\n    \"mmlu_acc\": 0.4586,\n    \"hellaswag_acc\": 0.4617,\n    \"hellaswag_acc_norm\": 0.6331,\n    \"piqa_acc\": 0.7198,\n    \"piqa_acc_norm\": 0.7280\n  },\n  \"timestamp\": \"2026-05-20 06:37:22\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "exp_id": "bench_teal30_uniform_6task",
+              "config": {
+                "model": "llama-3.1-8b",
+                "sparsity_mode": "per_token",
+                "baseline_mode": "teal_vanilla",
+                "sparsity_target": 0.3,
+                "allocation": "uniform",
+                "bottleneck_size": 128,
+                "batch_size": 8,
+                "seq_len": 2048
+              },
+              "metrics": {
+                "wikitext2_ppl": 10.8173,
+                "arc_challenge_acc": 0.3771,
+                "arc_challenge_acc_norm": 0.3933,
+                "winogrande_acc": 0.6504,
+                "mmlu_acc": 0.4586,
+                "hellaswag_acc": 0.4617,
+                "hellaswag_acc_norm": 0.6331,
+                "piqa_acc": 0.7198,
+                "piqa_acc_norm": 0.728
+              },
+              "timestamp": "2026-05-20 06:37:22"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bench-teal30-uniform-6task.md"
+}

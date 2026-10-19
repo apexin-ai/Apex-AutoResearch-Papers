@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa9655a4014534394f67",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "monitor lm eval dual gpu",
+  "task_key": "worker_monitor_lm_eval_dual_gpu_20260515T231931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_lm_eval_dual_gpu_20260515T231931_result.json",
+    "occurrence": 1,
+    "bytes": 1530,
+    "sha256": "43801109ffaf2c9f661f5ff89430043748914e1932fcc837605c2647d1ff2059"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 监控报告\n\n### 进程状态\n\n| 任务 | PID | GPU | 运行时间 | 状态 | GPU 利用率 | 显存 |\n|------|-----|-----|---------|------|-----------|------|\n| kl_s42 | 171565 | cuda:0 | 16h13m | Running | 97% | 29.9/97.9 GB |\n| dense | 163723 | cuda:1 | 31h01m | Running | 85% | 29.8/97.9 GB |\n\n### 进度详情\n\n**kl_s42 (cuda:0)**:\n- 正在运行 **MMLU loglikelihood**: 79% (44525/56168), ~178 it/s, 剩余 ~1 分钟\n- ARC-c、WinoGrande 应已完成推理（结果在所有任务跑完后统一输出）\n- **剩余**: GSM8K（generate_until 模式，比 loglikelihood 慢很多）\n- **预估剩余时间**: 1-3 小时（取决于 GSM8K 生成速度）\n\n**dense (cuda:1)**:\n- 花了 ~30 小时在 tokenizing 阶段（MMLU 57 个子任务 tokenize 耗时极长）\n- 刚进入推理阶段，当前跑 **ARC-c loglikelihood**: 11% (506/4687), ~6 it/s, ARC-c 剩余 ~12 分钟\n- **剩余**: WinoGrande (~2534 requests) + MMLU (~56168 requests) + GSM8K (generation)\n- MMLU loglikelihood 按 6 it/s 估需 ~2.6 小时；GSM8K 额外数小时\n- **预估剩余时间**: 4-6+ 小时\n\n### 结果产出\n- `/root/distill_sparse_swiglu/results/lm_eval/` 目录为空，两个任务均未完成\n- 两个 log 中均无 accuracy 输出（lm_eval 在所有 task 跑完后才统一打印结果）\n\n### 注意\ndense 推理速度 (6 it/s) 远低于 kl_s42 (178 it/s)，部分原因是 ARC-c 用 25-shot（长上下文），但差距仍较大。kl_s42 可能因为是稀疏模型，推理更快。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-lm-eval-dual-gpu.md"
+}

@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "70de2523f96e9a99603b",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "diag check stale running experiments",
+  "task_key": "worker_diag_check_stale_running_experiments_20260521T233457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_diag_check_stale_running_experiments_20260521T233457.jsonl",
+    "occurrence": 1,
+    "bytes": 368,
+    "sha256": "1f6690858405c3a742a85713e3def3a5795638162482d11f085be70174fc2fba"
+  },
+  "statistics": {
+    "messages": 2,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T23:35:05.024683+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_check_stale_running_experiments_20260521T233457"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T23:35:12.213046+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_check_stale_running_experiments_20260521T233457"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/diag-check-stale-running-experiments.md"
+}

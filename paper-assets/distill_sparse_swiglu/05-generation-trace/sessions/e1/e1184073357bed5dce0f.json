@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1184073357bed5dce0f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops anonymous repo push",
+  "task_key": "worker_ops_anonymous_repo_push_20260523T124744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anonymous_repo_push_20260523T124744_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "a92b480829001e240ca3650756a8481b23be67034942a2b259194ffbc7973bc1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n| 项目 | 结果 |\n|------|------|\n| **文件数** | 99 |\n| **Commit 数** | 1 |\n| **Repo URL** | `https://github.com/anonymous-nlp-2026-2/distill_sparse_swiglu` |\n| **caoxiaoyu** | PASS — 未发现 |\n| **1844118046** | PASS — 未发现 |\n| **ghp_ token** | PASS — 仅 `.git/config` 中（已清理），代码文件无泄露 |\n| **checkpoints/wandb/logs/.env** | PASS — 均未复制 |\n| **README.md** | 已创建 |\n\n服务器上 `/tmp/anon_repo/.git/config` 已删除，token 不留在服务器上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-anonymous-repo-push.md"
+}

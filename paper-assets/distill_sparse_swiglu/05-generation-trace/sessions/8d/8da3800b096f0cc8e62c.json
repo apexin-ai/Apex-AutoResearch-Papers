@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8da3800b096f0cc8e62c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code bce 30pct s42 train",
+  "task_key": "worker_code_bce-30pct-s42-train_20260518T151012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bce-30pct-s42-train_20260518T151012_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "0c8ab315a69ba03390546129e79d8163878f71c2894b631bdae5e71288c35dff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**无法提交：westd-41718 两张 GPU 都被占满。**\n\n当前状态：\n- **GPU 0** (PID 79351): `train_bce_kl_targets.py` — C1 ablation, 88366 MiB\n- **GPU 1** (PID 80126): `train_bce_kl_targets.py` — 同样的 C1 ablation 命令, 88366 MiB\n\n两个进程参数完全一致（同 output_dir、同 seed），看起来是 C1 ablation 被重复提交了两次，分别占了两张卡。\n\n**建议：**\n1. 确认是否其中一个是误启动的重复任务，如果是，kill 掉一个释放 GPU 0\n2. 或者等其中一个完成后再提交 BCE 30%\n\n需要 kill 其中一个重复进程吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bce-30pct-s42-train.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9cddfe345fddc012f09",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "verify mistral teal ppl",
+  "task_key": "worker_verify_mistral_teal_ppl_20260516T042626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_mistral_teal_ppl_20260516T042626_result.json",
+    "occurrence": 1,
+    "bytes": 396,
+    "sha256": "70fe8ab66d4a59dbd55590af717ca6590da8678dcf7179fcb90e7fca8d502339"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。\n\n**结论：`mistral_kl_s42` 的 `teal_sparse_ppl=8.98` 无污染，与原始日志 `eval_mistral_kl_s42.log` 完全一致。** 三项 ppl 指标（5.52 / 7.30 / 8.98）均已核实。D032 中 `kl_sparsity30_s42_v3` 被误录的 8.98 确实来自本实验的正确数据，只是被错误地 copy 到了 Llama 30% 的条目。\n\nRegistry 已添加验证注释。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-mistral-teal-ppl.md"
+}

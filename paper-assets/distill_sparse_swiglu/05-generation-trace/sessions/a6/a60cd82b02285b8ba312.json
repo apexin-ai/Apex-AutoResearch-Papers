@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a60cd82b02285b8ba312",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper figure",
+  "task_key": "worker_paper_figure_20260515T231342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_20260515T231342_result.json",
+    "occurrence": 1,
+    "bytes": 436,
+    "sha256": "1b6acef87f5e4abb6c2b0a9ecb6b3f9f117cbe85af4a08df6529ced85b0ef2f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出文件：\n\n- **PDF**: `figures/paper/fig1_overview.pdf` (24 KB, 矢量)\n- **PNG**: `figures/paper/fig1_overview.png` (99 KB, 1762×750 px, 300 DPI)\n\n图表展示 3×3 taxonomy 网格，\"★ Ours\" 在右上角 (Per-token Contextual × Coupled KL) 以浅蓝高亮 + 粗边框突出，其余已有方法 (SPON, ShadowLLM, FastForward/DejaVu) 用灰底斜体标注，空格子用淡灰 \"—\" 填充。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-copy-2.md"
+}

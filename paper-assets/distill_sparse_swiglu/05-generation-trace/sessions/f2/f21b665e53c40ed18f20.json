@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f21b665e53c40ed18f20",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diag longbench logs",
+  "task_key": "worker_diag_longbench_logs_20260525T054829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_longbench_logs_20260525T054829_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "c7702735c7c1b946a52d20eec510d4395d748454f535af27e660dfc4dd3a8c80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因总结：** 不是单一 bug，而是 5 次迭代中 4 个不同根因依次暴露：\n\n1. **v1**: `HF_HUB_OFFLINE=1` + 数据未缓存 + `THUDM/LongBench` loading script 被 datasets>=3.x 拒绝\n2. **v2**: 两个进程同时抢 GPU + 无 flash-attn → OOM\n3. **v3**: 单卡放不下 8B 模型 + 32k token KV cache → OOM\n4. **v4**: multi-GPU 但 CUDA 内存碎片化（reserved 17.98GB > requested 13.98GB）\n5. **v5**: 手动 kill（Director 放弃 LongBench）\n\n**v6 的修复组合：** `--multi_gpu --batch_size 1` + 单进程顺序执行 + 数据已缓存 → 成功。\n\n**无日志的原因：** 所有失败 run 使用 tmux 但未 nohup 重定向，违反 C002，traceback 随 tmux session 消失。\n\n报告已写入 `artifacts/longbench_diagnosis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-longbench-logs.md"
+}

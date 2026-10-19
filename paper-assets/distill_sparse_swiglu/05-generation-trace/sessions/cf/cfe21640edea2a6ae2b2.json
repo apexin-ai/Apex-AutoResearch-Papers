@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfe21640edea2a6ae2b2",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis k2 eval status",
+  "task_key": "worker_analysis_k2_eval_status_20260523T063719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_k2_eval_status_20260523T063719_result.json",
+    "occurrence": 1,
+    "bytes": 1672,
+    "sha256": "1881d47770db97f21be129550e174e9e197e328f228a4e72f2111879b21d728e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## K=2 实验状态\n\n**Eval 仍在运行中**，GPU 1 (98% utilization, 66GB VRAM)。\n\n### 进度\n| 阶段 | 状态 |\n|------|------|\n| WikiText-2 PPL | **完成**: 10.7958 |\n| arc_challenge (25-shot) | **完成** |\n| winogrande + mmlu (5-shot) | **完成** |\n| gsm8k (8-shot) | **完成** |\n| hellaswag (10-shot) | **进行中**: 1129/40168 (~3%), ~36min |\n| piqa | **未开始**, ~4min |\n\n**预计完成时间**: ~40 分钟后\n\n### 训练状态\n训练已完成 (EXIT_CODE=0)，checkpoint: `/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k2_s42/predictor_perlayer_kl_k4.pt`\n\n---\n\n## K-curve 对比（已有数据, 30% sparsity, TEAL uniform）\n\n| Metric | Dense | K=2* | K=4 | K=8 | K=16 |\n|--------|-------|------|-----|-----|------|\n| **WikiText-2 PPL** ↓ | 6.12 | **10.80** | 8.89 | 8.97 | **8.67** |\n| ARC-C (acc_norm) ↑ | 58.28 | — | 40.96 | 41.04 | 41.04 |\n| WinoGrande (acc) ↑ | 78.06 | — | 66.69 | 67.40 | 68.43 |\n| MMLU (acc) ↑ | 65.27 | — | 43.53 | 39.80 | 44.03 |\n| GSM8K (em) ↑ | 48.75 | — | 5.16 | 5.61 | 8.11 |\n| HellaSwag (acc_norm) ↑ | 82.35 | — | 68.49 | 69.19 | 69.63 |\n| PIQA (acc_norm) ↑ | 80.90 | — | 73.99 | 76.12 | 75.90 |\n\n\\* K=2 downstream tasks 仍在运行，PPL 已确认为 10.80（teal_global 模式）。\n\n### 关键观察\n- K=2 PPL (10.80) 显著高于 K=4 (8.89)，差距 +1.91\n- K=4/K=8/K=16 的 PPL 差异很小 (8.67–8.97)，但 K=16 在 downstream tasks 全面领先\n- K=2 是明显的拐点——predictor 容量不足以捕获 sparsity pattern\n\n**不更新 registry**——eval 未完成。建议 ~40 分钟后再次检查提取最终结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-k2-eval-status.md"
+}

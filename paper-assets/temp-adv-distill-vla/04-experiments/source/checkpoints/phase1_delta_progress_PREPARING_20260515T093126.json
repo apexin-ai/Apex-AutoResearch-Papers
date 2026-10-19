@@ -1,0 +1,14 @@
+{
+  "exp_id": "phase1_delta_progress",
+  "project": "temp-adv-distill-vla",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:31:26.617Z",
+    "updated_at": "2026-05-15T09:31:26.617Z"
+  },
+  "timestamp": "2026-05-15T09:31:26.627922+00:00",
+  "trigger": "update_registry"
+}

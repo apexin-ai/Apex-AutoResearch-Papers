@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "7fd6c1010f4a520d5178",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "eval kl only seeds",
+  "task_key": "worker_eval_kl_only_seeds_20260515T180042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_kl_only_seeds_20260515T180042.log",
+    "occurrence": 1,
+    "bytes": 727918,
+    "sha256": "8b8cbe81bb9fe46662efc27ae2c595383c4a5a77a34fa4fa09fe1626269b5a60"
+  },
+  "statistics": {
+    "messages": 482,
+    "user_turns": 0,
+    "tool_calls": 190,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 98,
+      "tool_call": 190,
+      "tool_result": 190,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 482,
+      "chunks": [
+        {
+          "path": "7fd6c1010f4a520d5178-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7fd6c1010f4a520d5178-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7fd6c1010f4a520d5178-part-0003.json",
+          "message_count": 122
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-kl-only-seeds.md"
+}

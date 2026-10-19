@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b418dc11a2d783053371",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check 3tasks status",
+  "task_key": "worker_ops_check_3tasks_status_20260520T053359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_3tasks_status_20260520T053359_result.json",
+    "occurrence": 1,
+    "bytes": 963,
+    "sha256": "3778255d1ae8fd18077d6c8aa7afea5dd38e699dab6fbf4e5ea5e407e4580df1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 任务 1: SNR full curve — **已完成**\n- PID 175225 已退出\n- 结果文件已生成：`snr_full_1000steps_results.json`（77KB，May 20 12:54）\n- KL 和 BCE 两组数据完整，14 个 snapshot steps（0→1000）\n- KL SNR 轨迹：1.3e-5 → 6.1e-4（peak@100）→ 稳定在 2~6e-4 → 最终 8.8e-4\n- BCE SNR 轨迹：7.0e-5 → 上升到 5.1e-3（peak@600）→ 最终 2.0e-3\n- KL sparsity 从 0.41 收敛到 ~0.30；BCE sparsity 从 0.50 收敛到 ~0.30\n\n### 任务 2: KL 40% retrain+eval — **失败**\n- PID 187509 已退出\n- **原因：wandb API key 未配置**，`wandb.init()` 抛 `UsageError: No API key configured`\n- Checkpoint 未生成（`predictor_kl_normalized.pt` 不存在）\n- 需要先在服务器上 `wandb login` 或设置 `WANDB_API_KEY` 环境变量后重跑\n\n### 任务 3: westd-41718 — **空闲**\n- GPU 0: 0 MiB / 0% util\n- GPU 1: 0 MiB / 0% util\n- 无 python 训练进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-3tasks-status.md"
+}

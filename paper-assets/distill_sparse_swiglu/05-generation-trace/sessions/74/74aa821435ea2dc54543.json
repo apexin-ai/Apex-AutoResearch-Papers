@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74aa821435ea2dc54543",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis qwen14b bce30 s42 eval",
+  "task_key": "worker_analysis_qwen14b_bce30_s42_eval_20260517T224156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen14b_bce30_s42_eval_20260517T224156_result.json",
+    "occurrence": 1,
+    "bytes": 1227,
+    "sha256": "c29851f58cedb0bf12c894eb26fb240ed8b7bde638961e5d8cc42dcd3419f65c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Results summary:\n\n## BCE 30% Metrics (qwen14b_bce30_s42_eval)\n\n| Metric | BCE 30% | KL 30% | Dense | vs Dense | vs KL |\n|---|---|---|---|---|---|\n| WikiText-2 PPL | **8.7634** | 7.6232 | 5.1854 | +69.0% | +15.0% (worse) |\n| ARC-C (acc_norm) | **0.5759** | 0.5717 | 0.6758 | -14.8% | +0.4pp (better) |\n| WinoGrande (acc) | **0.7261** | 0.7206 | 0.8106 | -10.4% | +0.6pp (better) |\n| MMLU (acc) | **0.7167** | 0.6372 | 0.7977 | -10.2% | **+7.9pp (better)** |\n| GSM8K (exact_match) | **0.5307** | 0.4882 | 0.8757 | -39.4% | **+4.3pp (better)** |\n\n## Conclusion: **negative** (refutes hypothesis)\n\nHypothesis was that BCE should perform worse than KL on downstream tasks. Reality:\n\n- **PPL: BCE worse** (8.76 vs 7.62), consistent with BCE's weaker language modeling objective\n- **Downstream: BCE uniformly better**, especially MMLU (+7.9pp) and GSM8K (+4.3pp)\n\nBCE trades off perplexity for better downstream task retention. The PPL gap (15%) does not translate into downstream degradation; instead BCE preserves task-relevant features better than KL despite higher PPL. This is a meaningful finding: **PPL is not a reliable proxy for downstream quality in sparsity predictors**."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen14b-bce30-s42-eval.md"
+}

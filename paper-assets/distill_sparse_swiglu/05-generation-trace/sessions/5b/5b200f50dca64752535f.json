@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b200f50dca64752535f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis qwen14b dense 4task v2",
+  "task_key": "worker_analysis_qwen14b_dense_4task_v2_20260519T181935",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen14b_dense_4task_v2_20260519T181935_result.json",
+    "occurrence": 1,
+    "bytes": 1419,
+    "sha256": "db6b6fd9bcaae5f1cf215125d28089622a42e438ca89c4cafeeb1ba11a735d4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 结果文件完整，所有数据已拿到。\n\n## 结果汇总\n\n| 指标 | v2 结果 | baseline 参考值 | 差异 |\n|------|---------|----------------|------|\n| wikitext2 PPL | **5.1854** | 5.1854 | 0 (完全一致) |\n| arc_challenge acc | **0.6493** | — | — |\n| arc_challenge acc_norm | **0.6758** | 0.6758 | 0 (完全一致) |\n| winogrande acc | **0.8106** | 0.8106 | 0 (完全一致) |\n| mmlu acc | **0.7977** | 0.7977 | 0 (完全一致) |\n\n### 完整精度数值\n- arc_challenge: acc=0.6493 (±0.0139), acc_norm=0.6758 (±0.0137)\n- winogrande: acc=0.8106 (±0.0110)\n- mmlu: acc=0.7977 (±0.0032)\n\n### 异常检查\n- EXIT_CODE=0，正常退出\n- 无 OOM/CUDA error\n- 所有 4 个任务均完整评估（sample counts: arc=1172, winogrande=1267, mmlu=14042）\n- 有一条 `fatal: not a git repository` 的无害警告（lm-eval-harness 试图读 git info）\n- 使用了离线缓存的 MMLU 数据集（HF Hub offline mode），数据一致性无问题\n\n### 与 baseline 对比\n所有 4 个指标与 `qwen14b_dense_baseline` **完全一致**（精确到小数点后 4 位），符合预期——同一模型的 dense eval 是确定性的。\n\n### 结论：**Success**\nv2 成功复现了 v1 未能完成的 dense baseline 4-task 评估，所有指标与独立 baseline run 完全吻合。这组数据可以作为论文中 Qwen-14B dense baseline 的权威参考值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen14b-dense-4task-v2.md"
+}

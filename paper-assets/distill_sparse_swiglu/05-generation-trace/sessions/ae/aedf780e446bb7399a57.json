@@ -1,0 +1,209 @@
+{
+  "schema_version": "1.0",
+  "id": "aedf780e446bb7399a57",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "research ppl downstream disconnect",
+  "task_key": "worker_research_ppl-downstream-disconnect_20260516T015921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_ppl-downstream-disconnect_20260516T015921.jsonl",
+    "occurrence": 1,
+    "bytes": 8485,
+    "sha256": "e57ff58a50ee54752c2ae32d0d2928a8899e9914a50f91cc5aa4d87b4c3a4da6"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "tool_call": 5,
+      "tool_result": 4
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T01:59:50.789084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ppl-downstream-disconnect_20260516T015921",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T01:59:50.789584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ppl-downstream-disconnect_20260516T015921",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T01:59:50.789897+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ppl-downstream-disconnect_20260516T015921",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "perplexity downstream accuracy gap LLM pruning sparsity misleading metric"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T01:59:50.790148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ppl-downstream-disconnect_20260516T015921",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "LLM pruning downstream task degradation perplexity does not predict benchmark performance"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T01:59:50.790371+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ppl-downstream-disconnect_20260516T015921",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "activation sparsity SwiGLU neuron pruning downstream evaluation catastrophic"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T01:59:50.790586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ppl-downstream-disconnect_20260516T015921",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "structured pruning LLM perplexity proxy metric limitation arXiv 2024 2025"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T01:59:50.790871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"perplexity downstream accuracy gap LLM pruning sparsity misleading metric\"\n\nLinks: [{\"title\":\"UniPruning: Unifying Local Metric and Global Feedback for Scalable Sparse LLMs\",\"url\":\"https://arxiv.org/html/2510.03291\"},{\"title\":\"Týr-the-Pruner: Unlocking Accurate 50% Structural Pruning ...\",\"url\":\"https://arxiv.org/pdf/2503.09657\"},{\"title\":\"Perplexity for LLM Evaluation - Comet\",\"url\":\"https://www.comet.com/site/blog/perplexity-for-llm-evaluation/\"},{\"title\":\"SoLA: Leveraging Soft Activation Sparsity and Low-Rank Decomposition for Large Language Model Compression\",\"url\":\"https://arxiv.org/html/2604.03258\"},{\"title\":\"Towards Extreme Pruning of LLMs with Plug-and-Play Mixed Sparsity\",\"url\":\"https://arxiv.org/html/2503.11164\"},{\"title\":\"Perplexed by Perplexity: Perplexity-Based Data Pruning With Small Reference Models\",\"url\":\"https://arxiv.org/html/2405.20541v1\"},{\"title\":\"PERPLEXITY-BASED PRUNING WITH SMALL ...\",\"url\":\"https://openreview.net/pdf?id=wNseMYxwpq\"},{\"title\":\"Perplexity for LLM Evaluation - GeeksforGeeks\",\"url\":\"https://www.geeksforgeeks.org/nlp/perplexity-for-llm-evaluation/\"},{\"title\":\"Efficient Post-Training Pruning of Large Language Models with Statistical Correction\",\"url\":\"https://arxiv.org/html/2602.07375v1\"},{\"title\":\"FASP: Fast and Accurate Structured Pruning of Large Language Models\",\"url\":\"https://arxiv.org/html/2501.09412\"}]\n\nBased on the search results, I found relevant research on the gap between perplexity and downstream accuracy metrics in LLM pruning and sparsity:\n\n## Key Finding\n\nTest set perplexity can be a misleading metric for evaluating the efficacy of data pruning techniques, as interventions that result in significantly higher test set perplexity can still achieve better performance on downstream tasks.\n\nThis insight comes from research titled \"Perplexed by Perplexity: Perplexity-Based Data Pruning With Small Reference Models,\" which specifically investigates the disconnect between upstream (perplexity)\n…[truncated 1041 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ppl-downstream-disconnect_20260516T015921",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T01:59:50.793374+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"LLM pruning downstream task degradation perplexity does not predict benchmark performance\"\n\nLinks: [{\"title\":\"Frustratingly Easy Task-aware Pruning for Large Language Models\",\"url\":\"https://arxiv.org/html/2510.22489\"},{\"title\":\"When Less is More: Investigating Data Pruning for Pretraining LLMs at Scale\",\"url\":\"https://openreview.net/pdf?id=XUIYn3jo5T\"},{\"title\":\"LLMs can Compress LLMs: Adaptive Pruning by Agents\",\"url\":\"https://arxiv.org/html/2601.09694\"},{\"title\":\"Mitigating Forgetting in LLM Fine-Tuning via Low-Perplexity Token Learning\",\"url\":\"https://arxiv.org/html/2501.14315v2\"},{\"title\":\"Is my model perplexed for the right reason? Contrasting LLMs’ Benchmark Behavior with Token-Level Perplexity\",\"url\":\"https://arxiv.org/html/2603.29396v1\"},{\"title\":\"Týr-the-Pruner: Unlocking Accurate 50% Structural Pruning ...\",\"url\":\"https://arxiv.org/pdf/2503.09657\"},{\"title\":\"DRPruning: Efficient Large Language Model Pruning through Distributionally Robust Optimization\",\"url\":\"https://arxiv.org/html/2411.14055v1\"},{\"title\":\"Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling\",\"url\":\"https://arxiv.org/html/2604.25098\"},{\"title\":\"Evaluating the Impact of Compression Techniques on Task-Specific Performance of Large Language Models\",\"url\":\"https://arxiv.org/html/2409.11233\"},{\"title\":\"Multi-dimensional Safety Evaluation of LLM Compression\",\"url\":\"https://aclanthology.org/2024.findings-emnlp.901.pdf\"}]\n\nI found several highly relevant research papers on this topic. Here are the key findings:\n\n## Main Findings\n\nStructured pruning methods experience near-total collapse in factual question-answering performance, with N:M sparsity patterns losing over 97% accuracy on knowledge-intensive tasks even at modest sparsity ratios (25-30%), despite negligible perplexity increases. This disconnect between perplexity and actual task performance underscores the inadequacy of current evaluation metrics and pruning strategies.\n\nW\n…[truncated 1062 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ppl-downstream-disconnect_20260516T015921",
+            "tool": "WebSearch",
+            "elapsed_ms": 3
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T01:59:50.793732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"activation sparsity SwiGLU neuron pruning downstream evaluation catastrophic\"\n\nLinks: [{\"title\":\"TRAINING-FREE ACTIVATION SPARSITY IN LARGE ...\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/f3f2ff9579ba6deeb89caa2fe1f0b99c-Paper-Conference.pdf\"},{\"title\":\"Post-Training Statistical Calibration for Higher Activation Sparsity\",\"url\":\"https://arxiv.org/html/2412.07174\"},{\"title\":\"SwiGLU Activation in Transformer Models\",\"url\":\"https://www.emergentmind.com/topics/swiglu-activation\"},{\"title\":\"Turbo Sparse: Achieving LLM SOTA Performance with Minimal Activated Parameters\",\"url\":\"https://arxiv.org/pdf/2406.05955\"},{\"title\":\"training-free activation sparsity in large language models\",\"url\":\"https://www.arxiv.org/pdf/2408.14690\"},{\"title\":\"Resting Neurons, Active Insights: Robustify Activation Sparsity for Large Language Models\",\"url\":\"https://arxiv.org/html/2512.12744\"},{\"title\":\"First Activations Matter: Training-Free Methods for Dynamic Activation in Large Language Models\",\"url\":\"https://arxiv.org/html/2408.11393v1\"},{\"title\":\"Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery in Task-Specific Large Language Models\",\"url\":\"https://arxiv.org/html/2604.27115\"},{\"title\":\"Activation Sparsity Opportunities for Compressing General Large Language Models\",\"url\":\"https://arxiv.org/pdf/2412.12178\"},{\"title\":\"Efficient Activation Functions for Sparse LLMs\",\"url\":\"https://www.emergentmind.com/topics/efficient-activation-functions-for-sparse-llms\"}]\n\nI found several relevant research papers on activation sparsity, SwiGLU, neuron pruning, and downstream evaluation. Here's what the search revealed:\n\n## Key Research Findings:\n\n**Activation Sparsity in SwiGLU Models:**\n\nThe CATS method enables training-free activation sparsity on SwiGLU-based LLMs by applying magnitude pruning on the output of Wgate, and achieves up to 50% sparsity in Wup and Wdown for Mistral and Llama-2-7B.\n\nHowever, SwiGLU demonstrates n\n…[truncated 1224 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_ppl-downstream-disconnect_20260516T015921",
+            "tool": "WebSearch",
+            "elapsed_ms": 3
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/research-ppl-downstream-disconnect.md"
+}

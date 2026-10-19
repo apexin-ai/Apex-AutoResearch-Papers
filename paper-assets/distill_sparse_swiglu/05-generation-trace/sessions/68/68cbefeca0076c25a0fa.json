@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "68cbefeca0076c25a0fa",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "eval bce v3 eval pipeline",
+  "task_key": "worker_eval_bce_v3_eval_pipeline_20260516T055435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_bce_v3_eval_pipeline_20260516T055435.log",
+    "occurrence": 1,
+    "bytes": 2069951,
+    "sha256": "31d05321ed4217062dd919e67786d234cdeb5cffd140ab1e6115f2a624f37a5e"
+  },
+  "statistics": {
+    "messages": 1118,
+    "user_turns": 1,
+    "tool_calls": 391,
+    "roles": {
+      "log": 1,
+      "system": 46,
+      "record": 1,
+      "assistant": 276,
+      "tool_call": 391,
+      "tool_result": 391,
+      "user": 1,
+      "result": 11
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 367,
+      "chunks": [
+        {
+          "path": "68cbefeca0076c25a0fa-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "68cbefeca0076c25a0fa-part-0002.json",
+          "message_count": 175
+        },
+        {
+          "path": "68cbefeca0076c25a0fa-part-0003.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 751,
+      "chunks": [
+        {
+          "path": "68cbefeca0076c25a0fa-part-0003.json",
+          "message_count": 168
+        },
+        {
+          "path": "68cbefeca0076c25a0fa-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "68cbefeca0076c25a0fa-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "68cbefeca0076c25a0fa-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "68cbefeca0076c25a0fa-part-0007.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-bce-v3-eval-pipeline.md"
+}

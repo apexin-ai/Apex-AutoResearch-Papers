@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e51314df7cf04a36f83a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "submit westd 34887 cuda1 kl50eval",
+  "task_key": "worker_submit_westd-34887-cuda1-kl50eval_20260518T081001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_westd-34887-cuda1-kl50eval_20260518T081001_result.json",
+    "occurrence": 1,
+    "bytes": 494,
+    "sha256": "8317cd3ba6297e0c8e50345bd46876467d31f68564094bd0dd6e528abf058d0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:1 显示 0MiB，进程尚未加载到 GPU（刚启动，模型加载中）。cuda:0 有另一个进程在跑。\n\n注意：命令中 `CUDA_VISIBLE_DEVICES=1` 由 submit_training_job 自动设置，脚本内 `--gpu 0` 会映射到物理 cuda:1。模型加载需要一些时间，之后 cuda:1 会出现显存占用。\n\n**完成**：kl50_s456_eval 已提交到 westd-34887 cuda:1，tmux session `kl50_s456_eval`，日志 `~/runs/distill_sparse_swiglu/kl50_s456_eval.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-westd-34887-cuda1-kl50eval.md"
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "bff853805294e6a2071e",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "ssh fix model path",
+  "task_key": "worker_ssh_fix-model-path_20260515T104116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-model-path_20260515T104116.log",
+    "occurrence": 1,
+    "bytes": 1110409,
+    "sha256": "bb8f581d67a4214fbdec4228bb98513c6aa53096434e33d1abe47c96f69e72a4"
+  },
+  "statistics": {
+    "messages": 852,
+    "user_turns": 1,
+    "tool_calls": 379,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 86,
+      "tool_call": 379,
+      "tool_result": 379,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 841,
+      "chunks": [
+        {
+          "path": "bff853805294e6a2071e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bff853805294e6a2071e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bff853805294e6a2071e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "bff853805294e6a2071e-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "bff853805294e6a2071e-part-0005.json",
+          "message_count": 121
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "bff853805294e6a2071e-part-0005.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-fix-model-path.md"
+}

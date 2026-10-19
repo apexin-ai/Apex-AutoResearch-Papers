@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fee56c6c03e8ba7632de",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_3_1778888363.md",
+  "task_key": "loop_3_1778888363",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778888363.md",
+    "occurrence": 1,
+    "bytes": 4611,
+    "sha256": "ac20cb2d4863ddac48eb07424761e5088adfddd692d99f605442952e60257983"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-15T23:24:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 cuda:0 和 cuda:1**（westd-34887），不得用其他 GPU\n- KL PPL 引用统一用 **4-seed mean 12.00±0.07**（TEAL sparse PPL），禁止用单 seed 最佳值 11.91\n- BCE framing 必须用 **\"objective mismatch\"**，禁止 \"anti-learning\"\n- SPON framing 必须用 **\"marginal complement\"**，禁止 \"KL subsumes SPON\"\n- s456 是 TEAL allocation outlier，报告方式：\"5-seed mean: 12.32±0.71\" + \"Excluding s456: 12.00±0.07\"，不跑第 6 个 seed\n- 投稿目标 **EMNLP 2026 ARR May，DDL 2026-05-25**，距今 10 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-34887**，工作目录 `/root/distill_sparse_swiglu/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base` 或 `source /root/distill_sparse_swiglu/setup_env.sh`\n- 模型：Llama-3.1-8B（默认 HF cache），Mistral-7B `/root/autodl-tmp/models/mistral-7b/`\n- Checkpoints 目录：`/root/distill_sparse_swiglu/checkpoints/` — 重要的有：\n  - KL s42: `mvp_kl_norm_v2_s42/predictor_kl_normalized.pt`\n  - STE: `ste_baseline_s42/`\n  - BCE iso-compute v2: `bce_isocompute_v2_s42/`\n  - SPON 2048: `spon_2048_s42/`\n  - Sparsity70: `kl_sparsity70_s42/predictor_kl_normalized.pt`\n  - Sparsity30 v2: `kl_sparsity30_s42/predictor_kl_normalized.pt`（实际 0.281，negative）\n  - Sparsity30 v3: 新跑的，lambda_max=5000，sparsity=0.285，success\n- W&B: offline mode（WANDB_MODE=offline）\n- 活跃进程：**无 RUNNING 实验**，无活跃 cron\n- 运行中 Worker：\n  - `worker_eval_mistral_downstream_prep_20260515T231938` — Mistral 下游评估准备\n  - `worker_eval_sparsity70_predictor_teal_20260515T232107` — Sparsity70 predictor TEAL 评估\n\n### 3. 📊 当前状态\n**刚完成的里程碑**：plan_001-006 + plan_008 + plan_009 全部 DONE。核心 Claims 1-3 实验数据齐全。\n\n**Registry 概览**（42 实验）：成功 15 / 负向 7 / 失败 5 / killed 多个 / 其余 PREPARING 或 QUEUED（历史遗留，多数已 killed）\n\n**等待中**：\n- 2 个 Worker 运行中（Mistral 下游 eval 准备 + sparsity70 TEAL eval），等 `[WORKER DONE]` 回调\n- PREPARING 状态实验：lm_eval_kl_s42、lm_eval_dense、lm_eval_dense_test、eval_spon_supp_retry、spon_kl_s42 — 这些都在等 GPU/代码就绪\n- plan_007（full benchmark lm-eval）是 **P0 待启动**，脚本已就绪\n\n### 4. 📋 待办（条件触发式）\n- Worker `eval_mistral_downstream_prep` 完成 → 检查 Mistral lm-eval 脚本是否就绪 → 提交 Mistral benchmark 到 cuda:1\n- Worker `eval_sparsity70_predictor_teal` 完成 → 收集 sparsity70 TEAL PPL → 汇总 plan_008 sparsity sweep 完整数据（30%/50%/70% KL vs training-free）→ 更新 report.md\n- sparsity70 eval 结束 + Mistral eval 结束 → cuda:0/1 空出 → **立即启动 plan_007 lm-eval**（ARC-c、WinoGrande；已跳过 HellaSwag，D019）\n- plan_007 lm-eval 完成 → 汇总全 benchmark 表格 → 启动论文写作（D020 已批准）\n- TEAL sparsity70 PPL=136K 异常（D017）→ 如果 Worker 确认是 normalization bug → 修 evaluate.py → 重跑\n- 所有 eval 完成 → 派 Worker 写论文各 section（需先 Read red-section skill）\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D013: Claim 2 reframed — SPON orthogonal & marginal, not subsumed\n- D014: predictor effect >> SPON correction (482 vs 76)\n- D015/D016: sparsity30 接受实际收敛值 28.5%（lambda_max 不够，v3 用 5000 修复到 0.285）\n- D017: TEAL 70% PPL=136K 疑似 normalization bug，**这个数据点不可直接用**\n- D018: sparsity30 eval 数据无效（用了默认 sparsity_target）\n- D019: 跳过 HellaSwag，lm-eval 用 ARC-c + WinoGrande\n- D020: 启动论文写作 + lm-eval 优先级确认\n\n**易错点**：\n- sparsity70 TEAL PPL=136K 很可能是 `_global_topk_masks` 的 layer normalization bug（与 training-free baselines 同源），修复前不可引用\n- lm_eval 脚本里 GPU 编号必须从 0 开始（CUDA_VISIBLE_DEVICES 自动映射）\n- `setup_env.sh` 封装了 conda activate + 环境变量，优先用它而非手动 source conda\n- BCE iso-compute 对比要标注 FLOPs ratio 2.71x（KL 1000步 vs BCE 应 2700步才公平，但实际跑了 1000步）\n- Mistral 实验用 TRANSFORMERS_OFFLINE=1（模型已下载到 /root/autodl-tmp/models/mistral-7b/）\n- 多个 PREPARING 状态实验是历史遗留（如 bce_isocompute_s42_v2 已 killed），不要尝试恢复它们\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778888363.md"
+}

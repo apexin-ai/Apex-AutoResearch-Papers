@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb693f95e7ed9885e3a7",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops cuda1 hardware diagnosis",
+  "task_key": "worker_ops_cuda1_hardware_diagnosis_20260515T203544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda1_hardware_diagnosis_20260515T203544_result.json",
+    "occurrence": 1,
+    "bytes": 1411,
+    "sha256": "3b3de5291608873db52705f42f0dc07634bda8f5a5e213067fcd69e783a2a9f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `/root/distill_sparse_swiglu/results/cuda1_diagnosis_report.txt`。\n\n## 诊断结果摘要\n\n### GPU 硬件: ✅ 无异常\n- ECC 未启用（所有计数器 N/A），但 Remapped Rows = 0，无退化页\n- 无热降频、无硬件降速、PCIe 无错误\n- 温度偏高但在安全范围（GPU 0: 79°C, GPU 1: 76°C）\n\n### 系统资源: ✅ 充裕\n- 系统内存 78GB / 1TB，GPU 显存 67.5GB / 97.9GB（69%），无 OOM 压力\n\n### bce_isocompute_v2_s42: ✅ 已成功完成\n- Exit code 0，全部 5 个 checkpoint（step 250/500/750/1000 + final）完整\n\n### cuda:1 进程死亡原因: **软件问题，非硬件故障**\n- 死亡进程均无 exit file → 被外部信号杀死（SIGKILL/SIGTERM），非代码内部异常\n- checkpoint dirs 为空 → 死在 step 250 前\n- 同一硬件上 bce_isocompute_v2_s42 完整跑完 → 排除系统性硬件故障\n- 容器环境无法访问 dmesg，无法排查 cgroup 级别的 kill\n\n### 当前状态\n- GPU 0: PID 132998, `kl_sparsity70_s42` 运行 2.5 分钟, 97% SM\n- GPU 1: PID 132407, `kl_sparsity30_s42` 运行 6 分钟, 97% SM\n- 新实验已在正常训练中\n\n### 唯一异常点\n- GPU 1 的 SW Power Capping 累计 46.5s（GPU 0 仅 1.24s），但这是正常功率管理，不会杀死进程\n\n**结论: cuda:1 安全可用。** 建议观察当前 v2 实验能否跑完来最终确认稳定性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda1-hardware-diagnosis.md"
+}

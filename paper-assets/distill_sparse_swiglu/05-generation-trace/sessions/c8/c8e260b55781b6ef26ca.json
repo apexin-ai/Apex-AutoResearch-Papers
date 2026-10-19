@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8e260b55781b6ef26ca",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper ai style audit",
+  "task_key": "worker_paper_ai-style-audit_20260517T200627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_ai-style-audit_20260517T200627_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "abae9dc6c1ec82e3ed6c1344f681c233ad1b147322648faa1c00acf634616879"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部清零。\n\n## 审查总结\n\n| 检查项 | 结果 |\n|--------|------|\n| Em-dash (—) | 通过，无问题 |\n| 解释性 en-dash ( – ) | 通过，无问题 |\n| -ing 短语结尾 | **已修复 26 处**（8 文件） |\n| Furthermore/Moreover/Additionally 连用 | 通过，无问题 |\n| Notably / It is worth noting | 通过，无问题 |\n| AI 黑名单词 (delve/leverage/utilize 等) | 通过，无问题 |\n| 过度分段 | 通过，无问题 |\n\n**严重程度：中等。** -ing 短语结尾是 AI 写作第二大标志（仅次于 dash），26 处集中出现会被审稿人注意到。已全部改为独立从句、分号连接句或介词短语。其他检查项全部干净。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-ai-style-audit.md"
+}

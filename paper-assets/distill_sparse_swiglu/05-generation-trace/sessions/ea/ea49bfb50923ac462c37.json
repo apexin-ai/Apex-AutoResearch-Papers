@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "ea49bfb50923ac462c37",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "fix k4 disk cleanup reeval",
+  "task_key": "worker_fix_k4_disk_cleanup_reeval_20260522T152143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_fix_k4_disk_cleanup_reeval_20260522T152143.jsonl",
+    "occurrence": 1,
+    "bytes": 174,
+    "sha256": "18919bff716e0fa4dd7de5a088a760b517686945f578fe268548b721b6e8fba3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T15:21:53.582442+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_k4_disk_cleanup_reeval_20260522T152143"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/fix-k4-disk-cleanup-reeval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2c0080a2b795e399cf3",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval urgent collect 40pct v2",
+  "task_key": "worker_eval_urgent_collect_40pct_v2_20260520T103113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_urgent_collect_40pct_v2_20260520T103113_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "0807122de842940348ace4f771a52ea7ed18149c998cc0e6cea0159df2a932cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Uniform HS/PIQA (PID 201401) — 完成\n\n| 指标 | 值 | stderr |\n|------|-----|--------|\n| model_level_sparsity | 0.397 | — |\n| hellaswag_acc_norm | **0.6497** | ±0.0048 |\n| piqa_acc_norm | **0.7236** | ±0.0104 |\n\nallocation=uniform, sparsity_target=0.4, batch_size=8, seq_len=2048, calibration_samples=32\n\n### Global eval v2 (PID 200977) — CUDA OOM 失败\n\n在 `teal_global_masks` 计算阶段崩溃（`predictor.py:149`, `gate * up` 分配 224 MiB 时 OOM）。原因：GPU 0 上另一个进程 (PID 197977) 占用了 64.54 GiB / 94.97 GiB，剩余显存不足。\n\n**没有产出任何结果**，`results/benchmark/kl_sparsity40_s42_global_eval_v2/` 目录为空。\n\n需要重跑 v2 global eval——确保 GPU 0 上没有其他进程占用显存，或者改用 cuda:1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-urgent-collect-40pct-v2.md"
+}

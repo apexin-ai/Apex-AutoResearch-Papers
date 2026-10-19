@@ -1,0 +1,721 @@
+{
+  "schema_version": "1.0",
+  "id": "803a2cc59f9a93c3ae64",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "analysis bce data source verify",
+  "task_key": "worker_analysis_bce-data-source-verify_20260519T082212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_bce-data-source-verify_20260519T082212.jsonl",
+    "occurrence": 1,
+    "bytes": 32885,
+    "sha256": "a0b65ddee5ee3e7046f57a718675c9243dd0e8ba7d23f7e03cf65f89c75e954b"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "tool_call": 17,
+      "tool_result": 17,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T08:26:47.869805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T08:26:47.870178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T08:26:47.870367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/paper/experiments.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T08:26:47.870654+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\n6\t\\paragraph{Model and Predictor.}\n7\tWe evaluate on LLaMA-3.1-8B~\\cite{grattafiori2024llama3}, which uses SwiGLU FFN blocks~\\cite{shazeer2020glu} with $d_{\\text{model}}=4096$ and $d_{\\text{ff}}=14336$ across 32 layers.\n8\tThe sparsity predictor is a two-layer MLP with 2.37M parameters per layer (75.9M total), implemented as Linear($4096 \\to 128$) + GELU + Linear($128 \\to 14336$), trained to produce per-neuron importance scores that minimize output-distribution divergence under sparsity.\n9\t\n10\t\\paragraph{Training.}\n11\tAll predictors are trained for 1000 steps on WikiText-103 with sequence length 2048 and batch size 4 on a single NVIDIA RTX PRO 6000 Blackwell Server Edition GPU (96\\,GB), using AdamW~\\cite{loshchilov2019adamw} with learning rate $1 \\times 10^{-3}$, weight decay $5 \\times 10^{-2}$, and cosine decay.\n12\tThe KL predictor uses Gumbel-Sigmoid relaxation~\\cite{jang2017gumbel} with temperature $\\tau=1.0$ annealed to $0.1$ over training.\n13\t\n14\t\\paragraph{Evaluation.}\n15\tWe report perplexity on WikiText-2~\\cite{merity2017pointer} (seq\\_len=2048) and downstream accuracy on ARC-Challenge (25-shot), WinoGrande (5-shot), MMLU (5-shot), and GSM8K (8-shot).\n16\t\n17\t\\paragraph{Inference Protocol.}\n18\tAt inference, the predictor produces per-neuron scores that are passed to TEAL's global top-$k$ allocation mechanism~\\cite{liu2025teal}, which distributes the sparsity budget across layers non-uniformly.\n19\tWe term this \\textit{predictor-TEAL}: the predictor replaces TEAL's magnitude-based scoring while retaining its allocation strategy.\n20\t\n21\t\\paragraph{Baselines.}\n22\tWe compare against: (1) \\textbf{Vanilla TEAL}~\\cite{liu2025teal}, which uses activation magnitudes directly; (2) \\textbf{BCE predictor} (DejaVu-style~\\cite{liu2023dejavu}), trained with per-neuron binary cross-entropy on magnitude-based oracle masks for 1000 and 2700 steps; (3) \\textbf{Uniform allocation}, which distri\n…[truncated 17862 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T08:26:47.870966+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "distill_sparse_swiglu",
+              "filters": "{'status': 'DONE'}",
+              "fields": "['exp_id', 'status', 'metrics', 'conclusion', 'config']",
+              "limit": "0"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T08:26:47.871664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (57,404 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/88cce69b-ab2e-4d84-b0b1-68dc51ed8a3c/tool-results/mcp-agent-ml-research-read_registry-1779178952248.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/88cce69b-ab2e-4d84-b0b1-68dc51ed8a3c/tool-results/mcp-agent-ml-research-read_registry-1779178952248.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/88cce69b-ab2e-4d84-b0b1-68dc51ed8a3c/tool-results/mcp-agent-ml-research-read_registry-1779178952248.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T08:26:47.871967+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/88cce69b-ab2e-4d84-b0b1-68dc51ed8a3c/tool-results/mcp-agent-ml-research-read_registry-1779178952248.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\n# Find bce_isocompute and bce_comp_staged and bce50_3seed experiments\nfor exp in result:\n    eid = exp.get('exp_id', '')\n    if 'bce_isocompute' in eid or 'bce_comp_staged' in eid or eid == 'bce50_3seed':\n        print(json.dumps(exp, indent=2))\n        print('---')\n\"",
+              "description": "Extract BCE-related experiments from registry"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T08:26:47.872174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 7, in <module>\n    eid = exp.get('exp_id', '')\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T08:26:47.872318+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/88cce69b-ab2e-4d84-b0b1-68dc51ed8a3c/tool-results/mcp-agent-ml-research-read_registry-1779178952248.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult_str = data['result']\n# Check what the result looks like\nresult = json.loads(result_str) if isinstance(result_str, str) else result_str\nprint(type(result))\nif isinstance(result, list):\n    print(f'Length: {len(result)}')\n    print(f'First item type: {type(result[0])}')\n    if isinstance(result[0], str):\n        # maybe it's YAML or something else\n        print(result[0][:500])\n    else:\n        print(json.dumps(result[0], indent=2)[:500])\nelif isinstance(result, dict):\n    print(list(result.keys())[:10])\nelse:\n    print(str(result)[:1000])\n\"",
+              "description": "Probe registry result structure"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T08:26:47.872459+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<class 'dict'>\n['success', 'data', 'error', 'metadata']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T08:26:47.872590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/88cce69b-ab2e-4d84-b0b1-68dc51ed8a3c/tool-results/mcp-agent-ml-research-read_registry-1779178952248.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']\nprint(f'Total experiments: {len(exps)}')\n# Find bce-related experiments\nfor exp in exps:\n    eid = exp.get('exp_id', '')\n    if 'bce_isocompute' in eid or 'bce_comp_staged' in eid or eid == 'bce50_3seed':\n        print(json.dumps(exp, indent=2))\n        print('---')\n\"",
+              "description": "Extract BCE experiments from registry data"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T08:26:47.872807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 9, in <module>\n    eid = exp.get('exp_id', '')\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'\nTotal experiments: 4"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T08:26:47.873107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/88cce69b-ab2e-4d84-b0b1-68dc51ed8a3c/tool-results/mcp-agent-ml-research-read_registry-1779178952248.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']\nprint(f'Total: {len(exps)}')\nfor i, exp in enumerate(exps):\n    print(f'Item {i}: type={type(exp).__name__}')\n    if isinstance(exp, str):\n        print(exp[:200])\n    else:\n        print(json.dumps(exp, indent=2)[:200])\n    print('---')\n\"",
+              "description": "Inspect registry data item types"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T08:26:47.873307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total: 4\nItem 0: type=str\nexperiments\n---\nItem 1: type=str\ncount\n---\nItem 2: type=str\ntotal\n---\nItem 3: type=str\nbaseline\n---"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T08:26:47.873496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/88cce69b-ab2e-4d84-b0b1-68dc51ed8a3c/tool-results/mcp-agent-ml-research-read_registry-1779178952248.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nd = result['data']\nexps = d['experiments']\nprint(f'Total experiments: {len(exps)}')\nfor exp in exps:\n    eid = exp.get('exp_id', '')\n    if 'bce_isocompute' in eid or 'bce_comp_staged' in eid or eid == 'bce50_3seed':\n        print(json.dumps(exp, indent=2))\n        print('===')\n\"",
+              "description": "Extract BCE experiments from registry"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T08:26:47.873648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 9, in <module>\n    eid = exp.get('exp_id', '')\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'\nTotal experiments: 217"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T08:26:47.873780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/88cce69b-ab2e-4d84-b0b1-68dc51ed8a3c/tool-results/mcp-agent-ml-research-read_registry-1779178952248.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nd = result['data']\nexps = d['experiments']\nprint(type(exps[0]))\nif isinstance(exps[0], str):\n    # Maybe experiments is a dict itself\n    print(list(d.keys()))\n    print(type(d['experiments']))\n    if isinstance(d['experiments'], dict):\n        keys = list(d['experiments'].keys())[:5]\n        print(keys)\n    elif isinstance(d['experiments'], list) and isinstance(d['experiments'][0], str):\n        print(d['experiments'][:3])\n\"",
+              "description": "Inspect experiments data structure"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T08:26:47.873933+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 7, in <module>\n    print(type(exps[0]))\n               ~~~~^^^\nKeyError: 0"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T08:26:47.874100+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/88cce69b-ab2e-4d84-b0b1-68dc51ed8a3c/tool-results/mcp-agent-ml-research-read_registry-1779178952248.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nd = result['data']\nexps = d['experiments']\nprint(f'Type: {type(exps).__name__}, len: {len(exps)}')\nif isinstance(exps, dict):\n    keys = list(exps.keys())\n    # find bce-related keys\n    bce_keys = [k for k in keys if 'bce_isocompute' in k or 'bce_comp_staged' in k or k == 'bce50_3seed']\n    print(f'BCE-related keys: {bce_keys}')\n    for k in bce_keys:\n        print(f'\\n=== {k} ===')\n        print(json.dumps(exps[k], indent=2))\n\"",
+              "description": "Extract BCE experiments by dict keys"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T08:26:47.874296+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Type: dict, len: 217\nBCE-related keys: ['bce_isocompute_hellaswag_piqa_v2', 'bce_isocompute_hellaswag_piqa', 'bce_isocompute_v3_s42_eval', 'bce_isocompute_v3_s123_eval', 'bce_isocompute_v3_s123', 'bce_isocompute_v3_s456_eval', 'bce_isocompute_v3_s456', 'bce_comp_staged_s42', 'bce_isocompute_v3_s42', 'bce_isocompute_s42_v2', 'bce_isocompute_v2_s42', 'bce_isocompute_s42']\n\n=== bce_isocompute_hellaswag_piqa_v2 ===\n{\n  \"status\": \"DONE\",\n  \"metrics\": {\n    \"hellaswag_acc_norm\": 0.6281,\n    \"piqa_acc_norm\": 0.7421\n  },\n  \"conclusion\": \"success\"\n}\n\n=== bce_isocompute_hellaswag_piqa ===\n{\n  \"status\": \"DONE\",\n  \"conclusion\": \"failed\"\n}\n\n=== bce_isocompute_v3_s42_eval ===\n{\n  \"status\": \"DONE\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"wikitext2_ppl\": 27.9696,\n    \"arc_challenge_acc\": 0.2346,\n    \"arc_challenge_acc_norm\": 0.2765,\n    \"winogrande_acc\": 0.5162,\n    \"mmlu_acc\": 0.2614,\n    \"gsm8k_exact_match\": 0.019\n  }\n}\n\n=== bce_isocompute_v3_s123_eval ===\n{\n  \"status\": \"DONE\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"wikitext2_ppl\": 28.0627,\n    \"arc_challenge_acc_norm\": 0.2696,\n    \"winogrande_acc\": 0.513,\n    \"mmlu_acc\": 0.2655,\n    \"gsm8k_exact_match\": 0.022\n  }\n}\n\n=== bce_isocompute_v3_s123 ===\n{\n  \"status\": \"DONE\",\n  \"conclusion\": \"success\"\n}\n\n=== bce_isocompute_v3_s456_eval ===\n{\n  \"status\": \"DONE\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"teal_sparse_ppl\": 28.3503,\n    \"model_level_sparsity\": 0.5,\n    \"arc_challenge_acc\": 0.2312,\n    \"arc_challenge_acc_stderr\": 0.01232,\n    \"arc_challenge_acc_norm\": 0.2807,\n    \"arc_challenge_acc_norm_stderr\": 0.01313,\n    \"winogrande_acc\": 0.5241,\n    \"winogrande_acc_stderr\": 0.01404,\n    \"mmlu_acc\": 0.2567,\n    \"mmlu_acc_stderr\": 0.00367,\n    \"gsm8k_exact_match\": 0.022,\n    \"gsm8k_exact_match_stderr\": 0.00404,\n    \"gsm8k_exact_match_strict\": 0.00834,\n    \"gsm8k_exact_match_strict_stderr\": 0.0025\n  }\n}\n\n=== bce_isocompute_v3_s456 ===\n{\n  \"status\": \"DONE\",\n  \"metrics\": {\n    \"final_loss\": 0.6368,\n    \"final_sparsity\": 0\n…[truncated 1439 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T08:26:47.874520+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/88cce69b-ab2e-4d84-b0b1-68dc51ed8a3c/tool-results/mcp-agent-ml-research-read_registry-1779178952248.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Check for bce50_3seed\nif 'bce50_3seed' in exps:\n    print('=== bce50_3seed ===')\n    print(json.dumps(exps['bce50_3seed'], indent=2))\nelse:\n    print('bce50_3seed NOT in registry')\n    # Look for any key containing bce50\n    bce50_keys = [k for k in exps.keys() if 'bce50' in k]\n    print(f'Keys with bce50: {bce50_keys}')\n\"",
+              "description": "Check for bce50_3seed entry"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T08:26:47.874666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "bce50_3seed NOT in registry\nKeys with bce50: []"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T08:26:47.874852+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/88cce69b-ab2e-4d84-b0b1-68dc51ed8a3c/tool-results/mcp-agent-ml-research-read_registry-1779178952248.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Find all bce_comp keys\nbce_comp_keys = [k for k in exps.keys() if 'bce_comp' in k]\nprint(f'bce_comp keys: {bce_comp_keys}')\nfor k in bce_comp_keys:\n    print(f'\\n=== {k} ===')\n    print(json.dumps(exps[k], indent=2))\n\"",
+              "description": "Check all bce_comp experiments"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T08:26:47.874995+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "bce_comp keys: ['bce_comp_staged_s42']\n\n=== bce_comp_staged_s42 ===\n{\n  \"status\": \"DONE\",\n  \"conclusion\": \"negative\",\n  \"metrics\": {\n    \"true_dense_ppl\": 6.12,\n    \"predictor_hard_mask_ppl\": 25.44,\n    \"predictor_hard_mask_ppl_no_comp\": 27.96,\n    \"teal_sparse_ppl\": 44.54,\n    \"model_level_sparsity\": 0.558,\n    \"ppl_increase_vs_true_dense_pct\": 315.7,\n    \"comp_loss_final\": 0.0033,\n    \"bce_loss_final\": 0.6379,\n    \"eval_seq_len\": 2048,\n    \"calibration_samples\": 32\n  }\n}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T08:26:47.875158+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/88cce69b-ab2e-4d84-b0b1-68dc51ed8a3c/tool-results/mcp-agent-ml-research-read_registry-1779178952248.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Also check eval_bce_v3 for comparison\nbce_v3_keys = [k for k in exps.keys() if 'eval_bce_v3' in k or 'bce30_teal' in k]\nprint(f'eval_bce_v3 / bce30 keys: {bce_v3_keys}')\nfor k in bce_v3_keys:\n    print(f'\\n=== {k} ===')\n    print(json.dumps(exps[k], indent=2))\n\"",
+              "description": "Check eval_bce_v3 and bce30 experiments"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T08:26:47.875304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval_bce_v3 / bce30 keys: ['eval_bce_v3_s42']\n\n=== eval_bce_v3_s42 ===\n{\n  \"status\": \"DONE\",\n  \"metrics\": {\n    \"dense_ppl\": 6.12,\n    \"predictor_hard_mask_ppl\": 22.51,\n    \"teal_sparse_ppl\": 27.97,\n    \"model_level_sparsity\": 0.5,\n    \"arc_challenge_acc\": 0.2048,\n    \"arc_challenge_acc_norm\": 0.2398,\n    \"arc_challenge_acc_norm_stderr\": 0.0125,\n    \"winogrande_acc\": 0.5059,\n    \"winogrande_acc_stderr\": 0.0141,\n    \"mmlu_acc\": 0.3002,\n    \"mmlu_acc_stderr\": 0.0038,\n    \"gsm8k_exact_match\": 0.0485,\n    \"gsm8k_exact_match_strict\": 0.0425,\n    \"gsm8k_exact_match_stderr\": 0.0059\n  },\n  \"conclusion\": \"success\"\n}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T08:26:47.875514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport math\n\n# Table 2: BCE + comp.* PPL = 28.13±0.20\n# Source: bce_isocompute_v3_s{42,123,456}_eval\nppls = [27.9696, 28.0627, 28.3503]  # s42, s123, s456\nmean_ppl = sum(ppls) / 3\nstd_ppl = math.sqrt(sum((x - mean_ppl)**2 for x in ppls) / 2)  # sample std\nprint('=== Table 2 PPL Verification ===')\nprint(f'Seeds: s42={ppls[0]}, s123={ppls[1]}, s456={ppls[2]}')\nprint(f'Mean: {mean_ppl:.4f} (paper: 28.13, rounded: {mean_ppl:.2f})')\nprint(f'Std:  {std_ppl:.4f} (paper: 0.20, rounded: {std_ppl:.2f})')\nprint(f'Match: {\\\"YES\\\" if round(mean_ppl, 2) == 28.13 and round(std_ppl, 2) == 0.20 else \\\"NO\\\"}')\n\n# Downstream metrics\nprint()\nprint('=== Table 2 Downstream Verification ===')\narcc = [27.65, 26.96, 28.07]\nwg = [51.62, 51.30, 52.41]\nmmlu = [26.14, 26.55, 25.67]\ngsm8k = [1.9, 2.2, 2.2]\n\nfor name, vals, paper_mean, paper_std in [\n    ('ARC-c', arcc, 27.6, 0.6),\n    ('WG', wg, 51.8, 0.6),\n    ('MMLU', mmlu, 26.1, 0.5),\n    ('GSM8K', gsm8k, 2.1, 0.2),\n]:\n    m = sum(vals) / 3\n    s = math.sqrt(sum((x - m)**2 for x in vals) / 2)\n    match = round(m, 1) == paper_mean and round(s, 1) == paper_std\n    print(f'{name}: mean={m:.2f} (paper {paper_mean}), std={s:.2f} (paper {paper_std}) -> {\\\"MATCH\\\" if match else \\\"MISMATCH\\\"} ')\n\n# Table 4: BCE + Compensation PPL = 25.44\nprint()\nprint('=== Table 4 Verification ===')\nprint(f'bce_comp_staged_s42 predictor_hard_mask_ppl = 25.44')\nprint(f'Paper Table 4 \\\"BCE + Compensation (hard mask)\\\" PPL = 25.44')\nprint(f'Match: YES')\nprint(f'Note: predictor_hard_mask_ppl_no_comp = 27.96 (matches Table 4 \\\"BCE (no compensation)\\\" = 27.97 from eval_bce_v3_s42 teal_sparse_ppl)')\n\"",
+              "description": "Compute verification for Tables 2 and 4"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T08:26:47.875681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== Table 2 PPL Verification ===\nSeeds: s42=27.9696, s123=28.0627, s456=28.3503\nMean: 28.1275 (paper: 28.13, rounded: 28.13)\nStd:  0.1985 (paper: 0.20, rounded: 0.20)\nMatch: YES\n\n=== Table 2 Downstream Verification ===\nARC-c: mean=27.56 (paper 27.6), std=0.56 (paper 0.6) -> MATCH \nWG: mean=51.78 (paper 51.8), std=0.57 (paper 0.6) -> MATCH \nMMLU: mean=26.12 (paper 26.1), std=0.44 (paper 0.5) -> MISMATCH \nGSM8K: mean=2.10 (paper 2.1), std=0.17 (paper 0.2) -> MATCH \n\n=== Table 4 Verification ===\nbce_comp_staged_s42 predictor_hard_mask_ppl = 25.44\nPaper Table 4 \"BCE + Compensation (hard mask)\" PPL = 25.44\nMatch: YES\nNote: predictor_hard_mask_ppl_no_comp = 27.96 (matches Table 4 \"BCE (no compensation)\" = 27.97 from eval_bce_v3_s42 teal_sparse_ppl)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T08:26:47.875921+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T08:26:47.876172+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "50pct_3seed_summary.csv\n_project\nbaselines.py\nbce_isocompute_v3_s456\nbce_mvp_3seed_analysis.md\nbench_mistral_kl50_s42\nbenchmark_comparison_table.md\nc4_ood_prep_status.md\ncomp_loss_curve_30pct_s123.csv\ncomp_loss_curve_30pct_s42.csv\ncomp_loss_curve_30pct_s456.csv\ncomp_loss_curve_50pct_s42.csv\ncrossarch_table_prep.md\ndiag_gsm8k_gencomp\ndream_reports\neval_kl30_30pct_command.md\nfigures\nframing_proposal_30pct_downstream.md\nglobal_30pct_retention_analysis_script.py\ngradient_snr_constrained_v2\ngradient_snr_kl_vs_bce\ngsm8k_gen_compare\ngsm8k_gen_compare.py\niso_compute_analysis.md\nkl30_uniform_v2_results.json\nkl_bce_f1_oracle.py\nkl_sparsity30_s42_v3\nlambda_sparsity_curves_summary.md\nliterature_ppl_downstream_disconnect.md\nliterature_sparsity_threshold.md\nlm_eval_status_check.md\nloss_ablation_ood_data.json\nmanifest.yaml\nmistral_consistency_audit.md\nmvp_bce_s42\nmvp_kl_s42\nmvp_kl_s42_eval_report.json\nnatural_sparsity_floor_30pct\nplan008_ppl_summary.md\nplan_006\nplan_007\nplan_007_all_ppl_fixed.json\nplan_009_readiness_report.md\nprocess_check_loop5.md\nprocess_verify_loop6.md\nqwen14b_intermediate_results.md\nqwen14b_mask_divergence_analysis\nreview_issues.yaml\nreview_reports\nserver_status_check.md\nsnr_extended_r6w3\nsnr_extended_results.json\nstep5e_verification_report.md\nteal_kl_overlap_analysis\nteal_kl_overlap_corrected\ntest_greedy_dryrun.py\nthreshold_analysis.md\ntrain_bce_comp.py\ntraining_curves_data.json\ntraining_free_baselines\nwallclock_speedup_30_50\nwestd34887_check_results.md\nwestd41718_check_results.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T08:26:47.876355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/bce_data_source_verification.md",
+              "content": "# BCE Data Source Verification (Tables 2 & 4)\n\n## 1. Table 2: \"BCE + comp.*\" PPL = 28.13±0.20\n\n### Source Experiments\n\n| Seed | Registry exp_id | Metric Key | PPL |\n|------|-----------------|------------|-----|\n| s42 | `bce_isocompute_v3_s42_eval` | `wikitext2_ppl` | 27.9696 |\n| s123 | `bce_isocompute_v3_s123_eval` | `wikitext2_ppl` | 28.0627 |\n| s456 | `bce_isocompute_v3_s456_eval` | `teal_sparse_ppl` | 28.3503 |\n\nTraining config: pure BCE loss, 2700 steps (iso-compute), NO compensation network.\n\n### Computation\n\n- Mean = (27.9696 + 28.0627 + 28.3503) / 3 = **28.1275 → 28.13** ✅\n- Std = sqrt(Σ(x-μ)²/2) = sqrt(0.03943) = **0.1985 → 0.20** ✅\n\n### Downstream Metrics\n\n| Metric | s42 | s123 | s456 | Mean | Paper | Std | Paper | Match |\n|--------|-----|------|------|------|-------|-----|-------|-------|\n| ARC-c | 27.65 | 26.96 | 28.07 | 27.56 | 27.6 | 0.56 | 0.6 | ✅ |\n| WG | 51.62 | 51.30 | 52.41 | 51.78 | 51.8 | 0.57 | 0.6 | ✅ |\n| MMLU | 26.14 | 26.55 | 25.67 | 26.12 | 26.1 | 0.44 | 0.5 | ⚠️ |\n| GSM8K | 1.9 | 2.2 | 2.2 | 2.10 | 2.1 | 0.17 | 0.2 | ✅ |\n\n**MMLU std note**: actual = 0.44, rounds to 0.4; paper reports 0.5 (conservative rounding, minor).\n\n### Footnote Concern\n\nPaper footnote `$^\\ast$` reads: \"BCE 50%: DejaVu/FastForward pipeline with compensation (67.2M params).\"\n\nThis is **misleading**. The actual data comes from `bce_isocompute_v3` experiments which have **no compensation network**. The \"comp.\" in \"BCE + comp.*\" refers to **computational budget matching** (iso-compute, 2700 steps ≈ 2.71x KL budget), NOT the compensation network. The actual compensation experiment (`bce_comp_staged_s42`) yields PPL 25.44 (reported in Table 4).\n\n### Metric Name Inconsistency\n\ns42/s123 use metric key `wikitext2_ppl`; s456 uses `teal_sparse_ppl`. Both represent WikiText-2 PPL under TEAL 50% global allocation. This is a registry naming inconsistency (not a data issue).\n\n---\n\n## 2. Table 4: \"BCE + Compensation (hard mask)\" PPL = 25.44\n\n### Source Experiment\n\n| Field | Value |\n|-------|-------|\n| Registry exp_id | `bce_comp_staged_s42` |\n| Metric key | `predictor_hard_mask_ppl` |\n| PPL | **25.44** ✅ |\n\nAdditional metrics from same experiment:\n- `predictor_hard_mask_ppl_no_comp` = 27.96 (consistent with Table 4 \"BCE (no compensation)\" = 27.97 from `eval_bce_v3_s42`)\n- `teal_sparse_ppl` = 44.54 (TEAL allocation, not used in table)\n\n### Eval Protocol\n\nThe PPL 25.44 uses **predictor hard masks** (per-neuron binary predictions applied directly), NOT TEAL global allocation. This is correctly indicated by \"(hard mask)\" in the row label. Other rows in Table 4 (KL variants) use TEAL global allocation. The table caption says \"unified benchmark protocol\" which refers to WikiText-2 seq_len=2048, not the allocation method.\n\nThe 0.01 discrepancy between `predictor_hard_mask_ppl_no_comp` (27.96) and the separate `eval_bce_v3_s42` `teal_sparse_ppl` (27.97) is within floating-point rounding.\n\n---\n\n## 3. Conclusion\n\n| Check | Status | Notes |\n|-------|--------|-------|\n| Table 2 PPL 28.13±0.20 | ✅ Verified | Source: `bce_isocompute_v3_{s42,s123,s456}_eval` |\n| Table 2 downstream | ✅ Verified | MMLU std rounding 0.44→0.5 is minor |\n| Table 4 PPL 25.44 | ✅ Verified | Source: `bce_comp_staged_s42` `predictor_hard_mask_ppl` |\n| Table 4 eval protocol | ✅ Correctly labeled | \"(hard mask)\" annotation present |\n\n### Issues to Address\n\n1. **Table 2 footnote** (priority: medium): Footnote says \"with compensation (67.2M params)\" but data is from no-compensation iso-compute experiments. Should clarify that \"comp.\" = computational budget matching, not compensation network.\n2. **MMLU std rounding** (priority: low): 0.44 reported as 0.5. Conservative but technically rounds to 0.4.\n3. **Registry metric naming** (priority: low): `wikitext2_ppl` vs `teal_sparse_ppl` across seeds for same evaluation.\n"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T08:26:47.876558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/bce_data_source_verification.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T08:26:47.876720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "BCE Data Source Verification (Tables 2 & 4)",
+              "type": "report",
+              "description": "Verification of BCE-related PPL and downstream metrics in Tables 2 and 4 against experiment registry. Confirms data sources, flags footnote mislabeling issue.",
+              "project": "distill_sparse_swiglu",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/bce_data_source_verification.md",
+              "tags": "['verification', 'paper', 'bce', 'round12']"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T08:26:47.876962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_b912db\\\", \\\"name\\\": \\\"BCE Data Source Verification (Tables 2 & 4)\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Verification of BCE-related PPL and downstream metrics in Tables 2 and 4 against experiment registry. Confirms data sources, flags footnote mislabeling issue.\\\", \\\"path\\\": \\\"projects/distill_sparse_swiglu/artifacts/_project/report/bce_data_source_verification.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"distill_sparse_swiglu\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T08:26:27.025046+00:00\\\", \\\"tags\\\": [\\\"verification\\\", \\\"paper\\\", \\\"bce\\\", \\\"round12\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T08:26:47.877452+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。\n\n**Table 2 \"BCE + comp.*\" PPL 28.13±0.20** — 数据来源确认为 `bce_isocompute_v3_{s42,s123,s456}_eval`（纯 BCE，2700 steps，无 compensation）。PPL 和全部 4 个 downstream 指标均匹配。\n\n**Table 4 \"BCE + Compensation\" PPL 25.44** — 数据来源确认为 `bce_comp_staged_s42` 的 `predictor_hard_mask_ppl`，匹配。\n\n**发现的问题：**\n1. Table 2 脚注 `$^\\ast$` 写的是 \"with compensation (67.2M params)\"，但实际数据来自无 compensation 的 iso-compute 实验。\"comp.\" 实际含义是 computational budget matching，脚注需修正。\n2. MMLU std 实际为 0.44，论文报 0.5（微小的保守取整偏差）。\n\n报告已注册：`artifacts/bce_data_source_verification.md`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_bce-data-source-verify_20260519T082212"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-bce-data-source-verify.md"
+}

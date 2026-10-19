@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0067905b01f3b254db2",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code kl normalized",
+  "task_key": "worker_code_kl-normalized_20260515T133651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_kl-normalized_20260515T133651_result.json",
+    "occurrence": 1,
+    "bytes": 69,
+    "sha256": "f063bdcade1afc9fcd499a051e7da67c710bcbbf69d291ca0390a3b5f1b8e34d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动，等待模型加载后检查输出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-kl-normalized.md"
+}

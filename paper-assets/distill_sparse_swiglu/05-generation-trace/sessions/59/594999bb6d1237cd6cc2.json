@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "594999bb6d1237cd6cc2",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis lambda curve verify",
+  "task_key": "worker_analysis_lambda-curve-verify_20260516T210834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_lambda-curve-verify_20260516T210834_result.json",
+    "occurrence": 1,
+    "bytes": 1871,
+    "sha256": "5fa24eff0759fe7973977f06eead9a25b77685dff0befd9b358f376e07fc78be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证报告\n\n### 1. 文件状态\n- **存在**: `/root/distill_sparse_swiglu/artifacts/lambda_sparsity_curves.json`\n- **大小**: 42,037 bytes, 2,734 lines\n- **格式**: 合法 JSON，无 NaN / null / Infinity / 空数组\n\n### 2. 包含 4 个 run\n\n| Run | 数据点 | Step范围 | total_steps | target_sparsity | lambda_max |\n|-----|--------|---------|-------------|-----------------|------------|\n| kl_30pct_s42 | 109 | 1–1000 | 1000 | 0.3 | 5000 |\n| kl_40pct_s42 | 109 | 1–1000 | 1000 | 0.4 | 5000 |\n| kl_50pct_s42 | 48 | 1–200 | 200 | 0.5 | 1000 |\n| kl_70pct_s42 | 109 | 1–1000 | 1000 | 0.7 | 1000 |\n\n### 3. 每个 run 的字段\n7 个数据序列 + 1 个 config dict：\n`steps`, `loss`, `kl_raw`, `lambda`, `sparsity`, `tau`, `constraint_loss`, `config`\n\n### 4. 采样模式\n- 30/40/70% runs: steps 1-10 逐步，之后每 10 步采样到 1000\n- 50% run: steps 1-10 逐步，之后每 5 步采样到 200（较短实验）\n\n### 5. 关键数据范围\n\n**kl_30pct_s42**:\n- loss: 1.188 → 0.165\n- lambda: 0.5 → 5000 (step ~260 后饱和到 lambda_max)\n- sparsity: 0.406 → 0.285 (收敛到 target 0.3 附近)\n- tau: 0.999 → 0.1 (线性退火)\n- constraint_loss: 0.0075 → ~0\n\n**kl_70pct_s42**:\n- loss: step 20 处 spike 到 74（早期 lambda 冲击），之后恢复到 0.5–0.6\n- constraint_loss: 0.075 起，step 40 后基本为 0\n- tau: 0.999 → 0.1\n\n**kl_40pct_s42**:\n- constraint_loss 几乎全程为 0（约束满足良好）\n\n### 6. 异常检查\n- **无缺失**: 所有 run 的 7 个数据序列长度一致（与 steps 数量匹配）\n- **无 NaN/null/Infinity**\n- **无空数组**\n- **注意**: kl_50pct_s42 仅 200 步/48 点，与其他 run（1000 步/109 点）不对称，但 config 中 `total_steps=200` 明确标注，属预期行为\n\n数据完整，可直接用于绘图。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lambda-curve-verify.md"
+}

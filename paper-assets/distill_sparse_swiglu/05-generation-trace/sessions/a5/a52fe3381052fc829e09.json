@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a52fe3381052fc829e09",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops fix longbench oom resubmit",
+  "task_key": "worker_ops_fix-longbench-oom-resubmit_20260516T132914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-longbench-oom-resubmit_20260516T132914_result.json",
+    "occurrence": 1,
+    "bytes": 299,
+    "sha256": "1f266ff9cdab44a0276925766c45bb2930dc3746c49f37b4f910b6d40e673400"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n1. **flash-attn 2.8.3** 编译安装成功并验证通过\n2. **v2 实验** registry 已标记 failed + OOM 原因\n3. **v3 实验** 已提交，GPU 物理隔离（cuda:0 / cuda:1 各一个进程），两个实验均在正常运行中，无报错，无 OOM"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-longbench-oom-resubmit.md"
+}

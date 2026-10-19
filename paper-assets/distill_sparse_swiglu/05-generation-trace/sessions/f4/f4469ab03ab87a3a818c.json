@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4469ab03ab87a3a818c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper update tables latest",
+  "task_key": "worker_paper_update_tables_latest_20260517T185215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_update_tables_latest_20260517T185215_result.json",
+    "occurrence": 1,
+    "bytes": 1048,
+    "sha256": "48caa78cf6ac837aeade39d99ae997e6858339d9a77a3b9975ba73790b4de737"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits look correct. Here's the summary of changes:\n\n**Modified files:**\n\n1. **`experiments.tex`** (2 edits):\n   - Line 29: Added forward reference to extended downstream benchmarks (Appendix D)\n   - Lines 228-231: Added **Qwen-2.5-14B** paragraph with KL advantage (PPL 7.62 vs TEAL 8.76, 1.15x ratio) and BCE failure evidence (sparsity collapse to 6.4%, confirmed by 10x stronger Lagrangian)\n\n2. **`appendix.tex`** (1 edit):\n   - Lines 196-217: Added **Extended Downstream Evaluation** section (Table 8) comparing Dense, KL 30%, and TEAL 30% on HellaSwag (72.70 vs 66.70), PIQA (75.95 vs 73.61), and BoolQ (76.85 vs 68.50)\n\n3. **`references.bib`** (1 edit):\n   - Added Qwen-2.5 technical report citation\n\n**Already up to date (no changes needed):**\n- Table 2 & Table 5: 30% uniform 3-seed MMLU 40.7±1.3% verified correct (s42=40.61, s123=39.44, s456=41.98)\n- F1 oracle analysis at line 66: BCE F1=0.613 vs KL F1=0.540 already present\n- All 50% 3-seed data (28.1±0.2 global, 28.0±0.6 uniform) verified correct"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-update-tables-latest.md"
+}

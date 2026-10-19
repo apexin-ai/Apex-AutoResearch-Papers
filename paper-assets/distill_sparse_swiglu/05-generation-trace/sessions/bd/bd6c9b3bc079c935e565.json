@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd6c9b3bc079c935e565",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_4_1778903117.md",
+  "task_key": "loop_4_1778903117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778903117.md",
+    "occurrence": 1,
+    "bytes": 5719,
+    "sha256": "ed99164bcf7c4b6e8984570505888f0cb32b6f976122d00942a35b4f4b0cd239"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-16T03:44:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 westd-34887 **cuda:0 + cuda:1**，其他 GPU 编号禁用\n- D032：Mistral PPL registry 数据疑似与 Llama 30% 污染，**暂停引用 mistral_kl_s42 的 PPL 数据**，需独立验证\n- D029：现有所有 sparse-dense downstream 对比**不公平**（sparse=0-shot vs dense=few-shot），论文中禁止直接引用旧 lm_eval 结果，需 benchmark_eval.py 统一 0-shot 重跑\n- 论文 KL PPL 统一引用 **4-seed mean 12.00±0.07**，不用单 seed 最佳值 11.91\n- BCE framing 用 **\"objective mismatch\"**，禁止 \"anti-learning\"\n- SPON framing 用 **\"marginal complement\"**，禁止 \"subsumes\"\n- C002：所有长时间 GPU 实验必须 nohup，禁止裸 tmux\n- submit_training_job 不支持 shell builtin（source 等），submit_on_allocated 命令需用绝对路径激活环境\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-34887, account=root\n- **工作目录**: `/root/distill_sparse_swiglu/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- **模型**: Llama-3.1-8B（路径未在 memory 中明确，应 SSH 确认）; Mistral-7B `/root/autodl-tmp/models/mistral-7b/`\n- **Checkpoints**: 全部在 `/root/distill_sparse_swiglu/checkpoints/` 下，详见 memory.md Checkpoints 节\n- **HF cache**: 未记录，可能是默认 `~/.cache/huggingface` 或 `/root/autodl-tmp/.hf_cache`\n- **活跃进程**: \n  - `lm_eval_mistral_kl_50pct`: PID 195242, cuda:1, RUNNING（Mistral-7B KL 50% downstream eval）\n  - cuda:0 刚释放（lm_eval_teal_30pct PID 194814 已完成，DONE negative）\n- **Cron**: reconcile 返回 0 条活跃 cron — **lm_eval_mistral_kl_50pct 可能无 cron 监控**，下一个 session 需确认是否有 cron 跟踪或需手动检查\n- **W&B**: 未在 config 中显式记录 wandb project name\n\n### 3. 📊 当前状态\n**刚完成**: lm_eval_teal_30pct (negative) — TEAL 30% training-free downstream eval 完成，结果负向。这是 D030 sparsity scaling story 的数据点之一。\n\n**正在跑**: lm_eval_mistral_kl_50pct (RUNNING, cuda:1, PID 195242) — Mistral-7B KL 50% downstream eval，验证 cross-architecture generalization (plan_009)。Baseline: Mistral dense (arc 0.6024, wino 0.7869, mmlu 0.6244, gsm8k 0.3654)。\n\n**cuda:0 空闲** — TEAL 30% 完成后无新任务占用，违反\"分配 GPU 必须跑满\"红线。\n\n**Worker 池 = 0** — 无任何 running worker，违反\"Worker 池 < 2 = 失职\"红线。\n\n**等待中**:\n- lm_eval_mistral_kl_50pct cron/完成回调（但 cron 数 = 0，可能需要手动监控）\n- 7 个 PREPARING 状态实验已全部标记 killed，不会再触发\n\n**Registry 统计**: 52 实验注册，成功 18 / 负向 11 / 失败 8 / killed 若干 / RUNNING 1\n\n### 4. 📋 待办（条件触发式）\n- **立即**（cuda:0 空闲）→ 从 P0 列表选一个提交：优先 **Uniform per-layer allocation**（D030 核心验证）或 **BCE iso-compute v3**（D031, Reviewer Concern #2），需 spawn worker 写代码 + dry-run + 提交\n- **lm_eval_mistral_kl_50pct 完成** → spawn worker 分析结果，与 Mistral dense baseline 对比；若 downstream 同样崩溃（50% universal collapse 确认）→ 强化 D028 Narrative A；若 downstream 保持 → cross-architecture 是亮点，更新 paper_framing Claim 4\n- **lm_eval_teal_30pct negative 已出** → 需分析具体指标（对比 KL 30% negative），更新 report.md，判断对 D030 story 的影响：如果 TEAL 30% 也崩 → downstream collapse 不限于 KL，是 sparsity 通病；如果 TEAL 30% 部分保持 → per-layer 不均匀是 KL 特有问题\n- **D029 Benchmark 统一重跑** → 需 spawn worker 用 benchmark_eval.py 对所有条件做 0-shot 统一评估，这是论文 integrity 前提\n- **D030 Uniform per-layer allocation** → 需 spawn worker 实现 uniform allocation 逻辑（修改 global top-k → per-layer uniform budget），跑 30%/50% 消融。若 uniform 救回 downstream → Claim 3 成立；若仍崩 → pivot 为 \"PPL-downstream disconnect\" discovery paper\n\n### 5. 🎯 战略上下文\n**项目核心**: KL distillation 让 SwiGLU LLM 的 contextual sparsity predictor 不需要 error compensation（消除 67.2M 参数的 compensation network）。投 EMNLP 2026 ARR May，DDL 2026-05-25（剩 9 天）。\n\n**决策链关键节点**:\n- D028: 50% downstream collapse 是 universal（KL 和 TEAL 都崩），Narrative A 锁定\n- D030: 30% KL downstream 也崩（MMLU ≈ 随机），根因是 global top-k 把 sparsity 集中到后层（Layer 31 高达 70.3%）。**Uniform per-layer allocation 是最关键的未验证假设**\n- D031: BCE iso-compute 两次被杀，无有效数据，提升 P0 — 没有 iso-compute 数据 Reviewer Concern #2 无法防御\n- D032: Mistral PPL 数据可能被 Llama 数据污染\n\n**最容易判断错的事**:\n1. **不要以为 cuda:0 \"等一等\"没关系** — 9 天 DDL，每小时 GPU 空闲都是浪费。拿到 session 第一件事是给 cuda:0 塞任务\n2. **不要把 TEAL 30% negative 和 KL 30% negative 直接类比** — TEAL 是 training-free，KL 30% negative 的根因是 per-layer 不均匀（D030），两者机制不同，需要分别分析\n3. **Mistral PPL 数据不可信**（D032）— 在独立验证前，所有 cross-architecture PPL 对比都不能写进论文\n4. **0 个 cron + 0 个 worker = 盲区** — lm_eval_mistral_kl_50pct 可能跑完了但没人知道，需要立即确认监控状态\n5. **Uniform allocation 是 make-or-break** — 成功则 Claim 3 救回，失败则需要 pivot 整个 paper framing 为 discovery paper。在结果出来前不要提前写 Claim 3 相关的论文章节\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778903117.md"
+}

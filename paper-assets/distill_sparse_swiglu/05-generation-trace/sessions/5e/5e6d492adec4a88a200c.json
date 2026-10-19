@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e6d492adec4a88a200c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval perlayer kl 50 s42 ppl",
+  "task_key": "worker_eval_perlayer_kl_50_s42_ppl_20260522T065231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_perlayer_kl_50_s42_ppl_20260522T065231_result.json",
+    "occurrence": 1,
+    "bytes": 349,
+    "sha256": "1ff0012189ee5ffa5a822240f17abf65897fc43885e22628dcdb9ab9a1c3e5ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Started successfully.\n\n- **PID**: 374127 (GPU process 374132, 15.9GB)\n- **Log**: `/root/runs/distill_sparse_swiglu/perlayer_kl_50_s42_ppl.log`\n- **tmux**: `perlayer_kl_50_s42_ppl` on westd-41718 cuda:0\n- **Status**: Model loading (43% weights loaded)\n\nWill check sparsity calibration once the eval enters the calibration phase."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-perlayer-kl-50-s42-ppl.md"
+}

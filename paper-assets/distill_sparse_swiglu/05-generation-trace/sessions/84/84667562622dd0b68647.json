@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84667562622dd0b68647",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "exp bce isocompute v2 s42",
+  "task_key": "worker_exp_bce_isocompute_v2_s42_20260515T200230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_bce_isocompute_v2_s42_20260515T200230_result.json",
+    "occurrence": 1,
+    "bytes": 1746,
+    "sha256": "c7c034ca31e7e8a0ac41bea301cd40aafb42453d9a0a00ac43183081da8ae195"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行，GPU:0 占用 90.5GB。\n\n---\n\n## 执行报告\n\n### (1) reg_weight 变更\n\n| 参数 | 原值 | 新值 | 说明 |\n|------|------|------|------|\n| `sparsity_reg_weight` | 0.1 | **2.0** | 20x |\n| reg mask 实现 | `(pred_logits > 0).float()` under `torch.no_grad()` | **STE**: `hard_mask - soft_mask.detach() + soft_mask` | 原实现无梯度 |\n\n**关键发现**：原代码中 `SparsityRegularizer` 的 mask 在 `torch.no_grad()` 下用硬阈值计算，reg 对参数梯度为零。单纯调大 weight 无效。修复为 STE (Straight-Through Estimator)：forward 用 hard mask（准确反映真实 sparsity），backward 走 sigmoid 梯度（可微分）。\n\n### (2) Dry-run Sparsity 趋势\n\n| Step | Sparsity | Reg | BCE |\n|------|----------|------|------|\n| 25 | 0.499 | 0.0172 | 0.6892 |\n| 50 | 0.500 | 0.0163 | 0.6759 |\n| 100 | 0.502 | 0.0128 | 0.6687 |\n| 200 | **0.499** | 0.0020 | 0.6671 |\n\n全程 [0.499, 0.502]，满足 0.50±0.005，匹配 KL 的 0.498。\n\n### (3) 正式训练\n\n- **exp_id**: `bce_isocompute_v2_s42`\n- **PID**: 129187 (python) / tmux session: `bce_isocompute_v2_s42`\n- **GPU**: cuda:0 @ westd-34887\n- **1000 步**, save_every=250, log_every=100\n- **预计完成时间**: ~17.5 分钟 (1.05s/step × 1000)\n- **Log**: `~/runs/distill_sparse_swiglu/bce_isocompute_v2_s42.log`\n\n### (4) Registry\n\n- 实验 `bce_isocompute_v2_s42` → status=RUNNING, plan_id=plan_003\n- hypothesis: \"BCE 在 iso-compute (1000 steps) + iso-sparsity (STE reg_weight=2.0 使 sparsity 收敛到 ~0.50) 下是否能缩小与 KL 的 PPL 差距？消除 compute 和 sparsity 两个 confound。\"\n- spec 包含完整 command、server、model、seed、reg_weight、reg_fix 说明"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-bce-isocompute-v2-s42.md"
+}

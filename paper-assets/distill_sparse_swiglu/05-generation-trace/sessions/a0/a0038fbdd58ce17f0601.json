@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0038fbdd58ce17f0601",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "debug kl50 s123 reeval fix",
+  "task_key": "worker_debug_kl50_s123_reeval_fix_20260517T185153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_kl50_s123_reeval_fix_20260517T185153_result.json",
+    "occurrence": 1,
+    "bytes": 1327,
+    "sha256": "fc7e39114f260e12d845608c0bfbfb436fe86b17bbed1b308b958e58c856fa4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验已成功完成，无需修复。**\n\n诊断结果：\n\n1. **第一次运行失败**（`/root/runs/distill_sparse_swiglu/kl50_global_s123_reeval.log` on westd-41718）：\n   - `FileNotFoundError: '/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt'`\n   - 原因：实验提交到 westd-41718 但 checkpoint 只在 westd-34887（已记录为 M009）\n\n2. **Retry 已成功**（`/root/distill_sparse_swiglu/logs/kl50_global_s123_reeval.log` on westd-41718）：\n   - checkpoint 被 scp 过去后重跑成功\n   - 结果已保存到 `/root/distill_sparse_swiglu/results/benchmark/kl50_global_s123_reeval/results.json`\n\n3. **Registry 状态**：`status: DONE`, `conclusion: success`，metrics 已填入：\n\n| Metric | 值 |\n|---|---|\n| wikitext2_ppl | 11.7184 |\n| arc_challenge_acc_norm | 0.3635 |\n| winogrande_acc | 0.6109 |\n| mmlu_acc | 0.2834 |\n| gsm8k_exact_match | 0.0258 |\n\nRegistry 的 `failure_reason` 字段残留了第一次失败的信息（`EXIT_CODE=1`），但 `conclusion: success` 和 metrics 表明 retry 已成功。ROADMAP 中的 `kl50_global_s123_reeval 失败诊断 + 修复重跑` 任务可以标记完成——数据已可用于 Table 2 Row 6 修正。\n\n需要我清理 registry 的 failure_reason 字段或更新 ROADMAP 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-kl50-s123-reeval-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df2df068608e8b8f45b6",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra check westd41718 status",
+  "task_key": "worker_infra_check_westd41718_status_20260517T231335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check_westd41718_status_20260517T231335_result.json",
+    "occurrence": 1,
+    "bytes": 1419,
+    "sha256": "1c0ae36a6037073c1ded006be288b09bc416b33671f00a7b7029d8c6a14aa3ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-41718 服务器状态汇报\n\n### GPU 状态：完全空闲\n- 2× NVIDIA RTX PRO 6000 Blackwell (各 97.8 GB VRAM)\n- 0% utilization，0 MiB 显存占用\n- 无运行中的 GPU 进程\n\n### 磁盘空间\n- `/root` 挂载点：30G 总量，已用 2.2G，**可用 28G (92%)**\n\n### 工作目录 `/root/distill_sparse_swiglu/`：已存在\n完整项目结构就绪，包含 src/、scripts/、tests/、artifacts/、results/、wandb/ 等。\n\n### Checkpoints（3 个）\n| 目录 | 最后修改 |\n|------|----------|\n| `kl_sparsity30_s42_v3` | May 16 05:48 |\n| `mvp_kl_norm_v2_s42` | May 17 23:34 |\n| `mvp_kl_norm_v2_s123` | May 18 01:51 |\n\n### 模型权重：已就绪\n- `/root/autodl-tmp/models/qwen2.5-14b/` — 8 个 safetensors 分片，完整\n- `/root/autodl-tmp/models/llama-3.1-8b/` — 4 个 safetensors 分片，完整\n\n### C4 数据集：已缓存\n- HF cache 中有 `datasets--allenai--c4`（两个路径：`/root/autodl-tmp/.hf_cache/hub/` 和 `/root/.cache/huggingface/hub/`）\n- HF datasets cache 大小：1.8G\n- 相关评估脚本和日志已存在（`eval_c4_ood.py`、`c4_ood_ppl.json` 等）\n\n### 活跃 Python 进程：无训练进程\n仅有系统服务（jupyter-lab、tensorboard、autopanel），无用户训练进程。\n\n---\n\n**总结：westd-41718 双卡完全空闲，磁盘充足，模型/数据/checkpoints 均已就绪，可立即启动实验。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-westd41718-status.md"
+}

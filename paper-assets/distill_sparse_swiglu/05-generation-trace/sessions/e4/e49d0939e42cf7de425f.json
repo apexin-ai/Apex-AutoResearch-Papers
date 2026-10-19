@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e49d0939e42cf7de425f",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "debug eval benchmark mask logic audit",
+  "task_key": "worker_debug_eval_benchmark_mask_logic_audit_20260516T002155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_eval_benchmark_mask_logic_audit_20260516T002155.log",
+    "occurrence": 1,
+    "bytes": 696659,
+    "sha256": "9a1d1bdbd11a7ffced4be0c95536a0f4ae9200f0f431a12eb5ad9a8590bae3ac"
+  },
+  "statistics": {
+    "messages": 325,
+    "user_turns": 0,
+    "tool_calls": 136,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 136,
+      "tool_result": 136,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 325,
+      "chunks": [
+        {
+          "path": "e49d0939e42cf7de425f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e49d0939e42cf7de425f-part-0002.json",
+          "message_count": 145
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/debug-eval-benchmark-mask-logic-audit.md"
+}

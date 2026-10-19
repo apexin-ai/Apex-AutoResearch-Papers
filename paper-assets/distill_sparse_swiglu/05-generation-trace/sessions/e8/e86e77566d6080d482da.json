@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e86e77566d6080d482da",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check kl global result",
+  "task_key": "worker_ops_check_kl_global_result_20260520T025859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_kl_global_result_20260520T025859_result.json",
+    "occurrence": 1,
+    "bytes": 283,
+    "sha256": "0c84bec29194cfea36abe291397788e7acb2d488c645de9dacf42f5be57c94ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nqwen14b_kl30_global_hspiqa: [完成] HS=0.7501 PIQA=0.7737\nmse30_s42_train: [异常] wandb 未登录，报错 \"No API key configured. Use `wandb login` to log in.\" EXIT_CODE=1\n```\n\nMSE 训练需要先配置 wandb API key 才能启动。要现在修复吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-kl-global-result.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "ca9a66fb1b0130670daa",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "diag revkl 30 s42 boolq uniform",
+  "task_key": "worker_diag_revkl_30_s42_boolq_uniform_20260522T031503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_diag_revkl_30_s42_boolq_uniform_20260522T031503.jsonl",
+    "occurrence": 1,
+    "bytes": 179,
+    "sha256": "4497af5d909eb03e57234cc69991a228b1745f83333c56256019f29171b62842"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T03:15:11.181631+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_revkl_30_s42_boolq_uniform_20260522T031503"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/diag-revkl-30-s42-boolq-uniform.md"
+}

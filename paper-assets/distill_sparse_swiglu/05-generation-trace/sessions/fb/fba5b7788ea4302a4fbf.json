@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fba5b7788ea4302a4fbf",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra sync qwen14b and submit teal eval",
+  "task_key": "worker_infra_sync_qwen14b_and_submit_teal_eval_20260517T154638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_sync_qwen14b_and_submit_teal_eval_20260517T154638_result.json",
+    "occurrence": 1,
+    "bytes": 102,
+    "sha256": "e4008b58d6e4073a5613b4126cb25ee1a30eef9a1417b3ed825c7c6dcc85c7a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 超时可以忽略——rsync 早已完成，TEAL eval 也在正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-sync-qwen14b-and-submit-teal-eval.md"
+}

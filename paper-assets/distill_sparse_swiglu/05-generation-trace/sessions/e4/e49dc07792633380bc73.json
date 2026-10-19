@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e49dc07792633380bc73",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis lambda sparsity curves",
+  "task_key": "worker_analysis_lambda-sparsity-curves_20260516T193855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_lambda-sparsity-curves_20260516T193855_result.json",
+    "occurrence": 1,
+    "bytes": 990,
+    "sha256": "bd413de6b0df550ad97b90624c21cedf56101afabff1793749034bcc1c4a9843"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提取完成。\n\n**服务器产出**: `/root/distill_sparse_swiglu/artifacts/lambda_sparsity_curves.json` (42KB, 4 个 run 的完整曲线数据)\n\n**摘要**:\n\n| Run | Target | Lambda 终值 | Sparsity 终值 | 收敛 step | KL 终值 |\n|-----|--------|------------|--------------|----------|---------|\n| 30% | 0.3 | 5000 (cap) | 0.285 | ~110 | 0.165 |\n| 40% | 0.4 | 625 | 0.398 | ~1 | 0.262 |\n| 50% | 0.5 | 8 | 0.504 | ~80 | 0.641 |\n| 70% | 0.7 | 1000 (cap) | 0.688 | ~40 | 0.609 |\n\n**关键发现**:\n- Lambda 大小反映目标难度：50% 最容易（lambda=8，gate 初始值已接近），30% 最难（lambda=5000 饱和）\n- 所有 target 在 ~100 步内收敛到 ±0.03 范围\n- Tau 退火（1.0→0.1）导致后期 loss 轻微回升——mask 更 binary，KL 增大\n\n**限制**：50% run 只有 200 步（quicktest），`mvp_kl_norm_v2_s42` 的 wandb 数据不在当前服务器上。本地摘要见 `artifacts/lambda_sparsity_curves_summary.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lambda-sparsity-curves.md"
+}

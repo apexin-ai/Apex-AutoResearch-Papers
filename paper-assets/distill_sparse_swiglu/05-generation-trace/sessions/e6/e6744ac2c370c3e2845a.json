@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e6744ac2c370c3e2845a",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "eval wina greedy baseline",
+  "task_key": "worker_eval_wina_greedy_baseline_20260515T185653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_wina_greedy_baseline_20260515T185653.log",
+    "occurrence": 1,
+    "bytes": 700309,
+    "sha256": "aa5f6684dbb28f51641f129fde1e2a701f86d649dd7e0d16a6fc765dfd6a737a"
+  },
+  "statistics": {
+    "messages": 306,
+    "user_turns": 0,
+    "tool_calls": 114,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 74,
+      "tool_call": 114,
+      "tool_result": 114,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 306,
+      "chunks": [
+        {
+          "path": "e6744ac2c370c3e2845a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e6744ac2c370c3e2845a-part-0002.json",
+          "message_count": 126
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-wina-greedy-baseline.md"
+}

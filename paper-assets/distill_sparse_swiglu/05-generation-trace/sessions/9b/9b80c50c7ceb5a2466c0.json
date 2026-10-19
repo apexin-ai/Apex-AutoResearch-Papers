@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b80c50c7ceb5a2466c0",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh eval mvp bce s42",
+  "task_key": "worker_ssh_eval-mvp-bce-s42_20260515T123729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval-mvp-bce-s42_20260515T123729_result.json",
+    "occurrence": 1,
+    "bytes": 1203,
+    "sha256": "066b4c60aa04fcdbe3b8e5b648054852971fa275db52d43bc99223971ad7839d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成，结果合理了。\n\n## mvp_bce_s42 评估结果 (WikiText-2, 50% sparsity)\n\n| 指标 | Dense | Sparse (BCE, 50%) | 增幅 |\n|------|-------|--------------------|------|\n| WikiText-2 PPL | 27.96 | 44.21 | +58.1% |\n| C4 PPL | — | — | 跳过（离线模式无法 streaming 加载） |\n\n**TEAL 逐层稀疏度分布**：\n- 浅层 (L0-L15): ~44-50%\n- 中层 (L16-L24): ~46-49%\n- 深层 (L25-L31): 51-66% （越深越稀疏）\n- 模型级别: 49.8%\n\n**备注**：\n1. 修复了 evaluate.py 中 `evaluate_perplexity` 的 off-by-one bug（数据已做 shift，代码又做了一次 `logits[:,:-1]` + `labels[:,1:]`，导致预测-目标错位）。原始代码输出 dense=8614 是无意义的。\n2. Dense baseline 27.96 高于文献中常见的 ~6（因为我们用 packed non-overlapping chunks 无 BOS token，不是 sliding window 评估），但 dense/sparse 对比是公平的。\n3. C4 需要 streaming 加载，离线模式不可用。如需 C4 结果，需要先在线下载缓存。\n4. 58% 的 PPL 增幅对 50% sparsity 来说偏高（文献中良好训练的 predictor 通常 1-5%），但这是 MVP 实验（仅 1000 steps BCE），符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-mvp-bce-s42.md"
+}

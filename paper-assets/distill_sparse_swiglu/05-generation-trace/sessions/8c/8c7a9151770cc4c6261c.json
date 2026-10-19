@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c7a9151770cc4c6261c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "exp c1 ablation 30pct s456",
+  "task_key": "worker_exp_c1-ablation-30pct-s456_20260519T020814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_c1-ablation-30pct-s456_20260519T020814_result.json",
+    "occurrence": 1,
+    "bytes": 570,
+    "sha256": "8f7b29faace4d1d2a7ddc030156bf93965563ca3235a48ce582ed7422a3e1043"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成。完整汇报：\n\n## C1 Causal Ablation — 30% s456\n\n**训练 (1000 steps)**\n- Agreement: **97.8%**\n- BCE loss: **0.0551**\n- Sparsity: 0.304\n\n**Eval metrics (TEAL global 30%, uniform allocation)**\n\n| Metric | Value |\n|--------|-------|\n| WikiText-2 PPL | **8.8421** |\n| ARC-Challenge (acc_norm) | **44.28%** |\n| WinoGrande (acc) | **69.38%** |\n| MMLU (acc) | **36.70%** |\n| GSM8K (exact_match) | **7.28%** |\n\n**KL checkpoint 路径**\n`/root/distill_sparse_swiglu/checkpoints/kl_sparsity30_s456/predictor_kl_normalized.pt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-c1-ablation-30pct-s456.md"
+}

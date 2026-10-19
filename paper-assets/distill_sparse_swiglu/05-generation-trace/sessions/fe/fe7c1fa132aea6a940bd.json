@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe7c1fa132aea6a940bd",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops longbench kl30 submit",
+  "task_key": "worker_ops_longbench-kl30-submit_20260516T165540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_longbench-kl30-submit_20260516T165540_result.json",
+    "occurrence": 1,
+    "bytes": 103,
+    "sha256": "f449b3d24068e1c17eae6be1425ebf1b2ead6bbc68d8e62237eab4b1d3ee21ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台等待已完成，job 已在之前验证确认正常运行。无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-longbench-kl30-submit.md"
+}

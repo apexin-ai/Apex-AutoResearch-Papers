@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bcd2d7b2b9c0686f95a7",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_6_1778938743.md",
+  "task_key": "loop_6_1778938743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778938743.md",
+    "occurrence": 1,
+    "bytes": 4424,
+    "sha256": "bd117252f295adb635fa83c3a2e2ae19530f4e226d0fc46afe0448406be3e5a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-16T12:19:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 westd-34887 的 **cuda:0 + cuda:1**，绝不能用其他卡\n- 所有训练命令必须带 `WANDB_MODE=offline`（服务器无 wandb API key，不加直接崩）\n- KL PPL 论文引用统一用 **4-seed mean 12.00±0.07**，禁用单 seed 最佳值 11.91\n- BCE framing 禁止用 \"anti-learning\"，必须用 **\"objective mismatch\"**（per-neuron binary vs global top-k 结构性不兼容）\n- SPON framing 禁止 \"KL subsumes SPON\"，用 **\"marginal complement\"**\n- D032 曾错误\"修正\" 30% TEAL PPL 为 13.63——**8.98 才是正确值**，13.63 是 50% target 的结果\n- submit_training_job 提交时必须自带环境激活（服务器用 conda：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-34887，工作目录 `/root/distill_sparse_swiglu/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **模型**: Llama-3.1-8B（路径未显式记录，应在 `/root/autodl-tmp/` 或 `/root/` 下），Mistral-7B 在 `/root/autodl-tmp/models/mistral-7b/`\n- **Checkpoints**: 全部在 `/root/distill_sparse_swiglu/checkpoints/`（详见 memory.md Checkpoints 节）\n- **活跃进程**:\n  - bench_teal30: PID 227692, cuda:0, TEAL vanilla 30% 统一 benchmark 评测\n  - bench_teal50: PID 227770, cuda:1, TEAL vanilla 50% 统一 benchmark 评测\n- **Cron**: reconcile 返回 0 active（可能两个 bench 是新提交还没注册 cron，或已有 cron 但刚 reconcile 无变化）\n- **累计 GPU·h**: ~90h used / plan 总预算 ~196h\n\n### 3. 📊 当前状态\n**刚完成**: bench_kl50_global / bench_kl30_global / bench_kl30_uniform / d030_kl40_uniform / eval_bce_v3_s42 全部 DONE(success)。Allocation matrix（global vs uniform × 30%/40%/50%）数据收集完整。\n\n**正在跑**: bench_teal30 + bench_teal50（TEAL vanilla baseline 的统一 few-shot 评测，用于论文 Table 1 直接对比）。这两个完成后 D029 benchmark 一致性问题基本解决。\n\n**排队中**: bench_kl50_uniform (QUEUED，等 GPU 腾出)\n\n**PREPARING（7个）**: kl_lagrangian_v2, kl_norm_v3_quicktest, mvp_kl_norm_s456, spon_kl_s42, diag_30pct_downstream, diag_gsm8k_gencomp, diag_teal_downstream\n\n**等待**: bench_teal30/50 的 cron 回调。无 pending Worker。无 Director 决策阻塞。\n\n### 4. 📋 待办（条件触发式）\n- bench_teal30 完成 → 记录 TEAL 30% 统一 benchmark 数据到 registry → 与 bench_kl30_uniform 对比（TEAL PPL=8.98 vs KL PPL=8.82，看 downstream 谁强）\n- bench_teal50 完成 → 记录 TEAL 50% benchmark → 与 bench_kl50_global 对比 → 论文 Table 1 所有条件就绪\n- 两个 bench 都完成 → 提交 bench_kl50_uniform（QUEUED）→ 这是 allocation matrix 最后一格\n- bench_kl50_uniform 完成 → 论文 Table 1 完整 → 可以开始写 Results section\n- Director 分配更多 GPU 或当前 bench 完成释放卡 → 从 PREPARING 里按优先级提交（P0: BCE iso-compute 重跑优先）\n- 任何实验 negative → 按 on-experiment-done 流程出 Framing 提案，**不默跑下一个**\n\n### 5. 🎯 战略上下文\n**项目核心结论链**:\n- D028: 50% downstream collapse 是 universal（Llama + Mistral 都崩）\n- D029: 必须统一评测条件（bench_teal30/50 正在补这个数据）\n- D030: per-layer sparsity 不均匀是 downstream 崩溃根因；30% uniform 能修复 MMLU +12pp\n- D031: BCE iso-compute 确认 KL 优势来自 loss 函数本身\n- D034: Claim 3 从 \"quadratic scaling\" reframe 为 \"phase transition\"（30-40% 之间存在 cliff）\n- D036: 30% downstream-safe，40% 已崩\n\n**论文 Narrative（A+C 混合，Director 已批准）**:\n- 骨架=PPL-Downstream Disconnect（文献空白最大）\n- 血肉=Sparsity Threshold（30% 可修复，50% 不可修复）\n- DDL: EMNLP 2026 ARR May, **2026-05-25**（剩 9 天）\n\n**易踩坑**:\n1. 不要把 global top-k 和 uniform allocation 的结果混在一起比——它们是两个推理协议\n2. bench_dense 已有统一 baseline，新 bench 都要对齐它的 few-shot 设置\n3. D032 的教训：修正数据前必须复现验证，不要凭推理改数字\n4. 50% uniform MMLU=27.77% ≈ random——**allocation 救不了 50%**，不要再试\n5. Mistral registry 数据（D032 标记\"疑似污染\"）暂不引用，需进一步确认\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778938743.md"
+}

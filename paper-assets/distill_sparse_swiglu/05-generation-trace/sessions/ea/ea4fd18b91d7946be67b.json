@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea4fd18b91d7946be67b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code uniform allocation",
+  "task_key": "worker_code_uniform_allocation_20260516T034600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_uniform_allocation_20260516T034600_result.json",
+    "occurrence": 1,
+    "bytes": 2202,
+    "sha256": "de89a33f80a913c25d49035627fb0a36df26e35ea30101155f7eaa37a5467297"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完全成功。修改后的 `torch_dtype` 警告无害（transformers 新版 deprecation）。\n\n## 结果总结\n\n### 修改文件\n`/root/distill_sparse_swiglu/src/lm_eval_sparse.py` — 增加了 `_uniform_topk_masks()`、`compute_layer_scores()`、`teal_masks()` 调度函数、`print_comparison()`，新增参数 `--allocation_strategy`、`--compare`、`--device`。\n\n### Per-layer sparsity 对比 (target=30%)\n\nGlobal top-k 的分布极不均匀，正如预期：\n- **早层 (0-6)**: 17-25% sparsity（保留太多神经元）\n- **中层 (15-19)**: 12-19% sparsity（几乎不裁剪）\n- **后层 (26-31)**: 41-70% sparsity（Layer 31 高达 **70.3%**！）\n\nUniform 模式每层精确 30.1%，model-level 两者完全一致（30.0%）。\n\n### 正式 eval 命令行\n\n**30% sparsity:**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu\n# Uniform\nCUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 \\\n  nohup python -u src/lm_eval_sparse.py \\\n    --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b \\\n    --predictor_path checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt \\\n    --sparsity_target 0.3 \\\n    --allocation_strategy uniform \\\n    --compare \\\n    --tasks arc_challenge,winogrande,mmlu,gsm8k \\\n    --output_path results/uniform_30pct \\\n    > /tmp/eval_uniform_30.log 2>&1 &\n```\n\n**50% sparsity:**\n```bash\nCUDA_VISIBLE_DEVICES=0 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1 \\\n  nohup python -u src/lm_eval_sparse.py \\\n    --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b \\\n    --predictor_path checkpoints/kl_sparsity30_s42_v3/predictor_kl_normalized.pt \\\n    --sparsity_target 0.5 \\\n    --allocation_strategy uniform \\\n    --compare \\\n    --tasks arc_challenge,winogrande,mmlu,gsm8k \\\n    --output_path results/uniform_50pct \\\n    > /tmp/eval_uniform_50.log 2>&1 &\n```\n\n注意：50% 条件可能需要用对应 sparsity 的 predictor checkpoint（如果有 `kl_sparsity50_*`），用 30% 的 predictor 跑 50% target 可能不是最优的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-uniform-allocation.md"
+}

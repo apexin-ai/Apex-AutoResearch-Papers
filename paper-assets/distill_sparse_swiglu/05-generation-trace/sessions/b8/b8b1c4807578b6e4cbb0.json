@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "b8b1c4807578b6e4cbb0",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "ssh kill slow revkl pid 41718",
+  "task_key": "worker_ssh_kill_slow_revkl_pid_41718_20260520T210343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_kill_slow_revkl_pid_41718_20260520T210343.jsonl",
+    "occurrence": 1,
+    "bytes": 370,
+    "sha256": "56fa77a8515008681b6902c88add8505972eff1d9e4e4eca063b3e0dfc0c1073"
+  },
+  "statistics": {
+    "messages": 2,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T21:03:54.034332+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_kill_slow_revkl_pid_41718_20260520T210343"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T21:04:01.470216+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 5am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_kill_slow_revkl_pid_41718_20260520T210343"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-kill-slow-revkl-pid-41718.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "600d54205fd006892b5f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper figure",
+  "task_key": "worker_paper_figure_20260515T233218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_20260515T233218_result.json",
+    "occurrence": 1,
+    "bytes": 516,
+    "sha256": "11fe2662047d9d1c903fa6b692dbe60fb19f64baa1311656b826d3d7eee64f15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 2 已生成并注册。\n\n输出文件：\n- PDF: `figures/paper/fig2_sparsity_sweep.pdf` (18.8 KB)\n- PNG: `figures/paper/fig2_sparsity_sweep.png` (105.7 KB)\n\n图表内容：KL Predictor 三个数据点 (28.5%→8.76, 50%→12.00, 70%→17.91) 蓝色实线，TEAL 50% 处单点 (23.31) 橙色三角，Dense baseline 灰色虚线 (6.12)，50% 处标注 Δ=11.31。70% TEAL 点因数据 pending 未画。生成脚本保留在 `figures/paper/gen_fig2.py`，TEAL 70% 数据确认后可补上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure.md"
+}

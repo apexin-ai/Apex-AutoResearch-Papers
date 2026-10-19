@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58fb974e7a5e514e6971",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "train mistral kl30 s42",
+  "task_key": "worker_train_mistral_kl30_s42_20260517T001649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_mistral_kl30_s42_20260517T001649_result.json",
+    "occurrence": 1,
+    "bytes": 274,
+    "sha256": "7675a8264685c92d09a51d453aeeae2599d7f965aeeafe146eccd90a3a109f92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已在 GPU 0 运行（54GB 显存占用，PID 286217）。3 分钟后回来检查进度。\n\n- 日志路径: `/root/distill_sparse_swiglu/logs/train_mistral_kl30_s42.log`\n- Checkpoint 输出: `/root/distill_sparse_swiglu/checkpoints/mistral_kl30_s42/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-mistral-kl30-s42.md"
+}

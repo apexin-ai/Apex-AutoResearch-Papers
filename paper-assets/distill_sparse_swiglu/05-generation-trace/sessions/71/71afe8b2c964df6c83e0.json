@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71afe8b2c964df6c83e0",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra check all gpu processes",
+  "task_key": "worker_infra_check_all_gpu_processes_20260518T005046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check_all_gpu_processes_20260518T005046_result.json",
+    "occurrence": 1,
+    "bytes": 1747,
+    "sha256": "d50c8ddbbbe0adcf2a45011b210d4f00cda37e58344a02fa32a15ee9adcac540"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-34887\n- cuda:0: **空闲** (0MiB / 0% util)\n- cuda:1: **空闲** (0MiB / 0% util)\n- 最近 log 文件 (2h内):\n  - `qwen14b_kl30_uniform_eval_4task.log` — **失败**: `RuntimeError: Cannot send a request, as the client has been closed.` (HuggingFace Hub httpx 客户端问题)\n  - `qwen14b_teal30_uniform_eval_4task.log` — **同样失败**: 相同的 RuntimeError\n  - `qwen14b_kl30_uniform_eval.log` / `qwen14b_teal30_uniform_eval.log` — 也在最近修改列表中\n\n## westd-41718\n- cuda:0: **KL 30% 训练 seed=123** (PID 34700, 67560MiB, 100% util, 运行 23h33m)\n  - `train.py --loss_type kl_normalized --seed 123 --sparsity_target 0.3 --num_steps 1000`\n  - 进度: **Step 610/1000**, loss≈0.147, sparsity≈0.281, constraint=0\n- cuda:1: **KL 30% 训练 seed=456** (PID 35045, 67560MiB, 100% util, 运行 23h02m)\n  - `train.py --loss_type kl_normalized --seed 456 --sparsity_target 0.3 --num_steps 1000`\n  - 进度: **Step 600/1000**, loss≈0.148, sparsity≈0.293, constraint=0\n- 最近 log 文件: wandb offline logs + `download_data.log`\n\n## 发现 & 建议\n1. **westd-34887 完全空闲** — 14B 4-task eval 两个任务都因 HuggingFace Hub httpx client 关闭错误崩溃，无进程存活。需要排查 HF Hub 网络/认证问题后重跑。\n2. **westd-41718 两个训练正常运行** — seed 123 和 456 的 KL 30% 8B 训练都在 ~60% 进度，loss 已收敛到 0.14-0.18 区间，sparsity 稳定在 28-30% 附近。按当前速度（~610 steps / 23.5h），预计还需 ~15h 完成 1000 steps，之后会自动进入 Phase 2 eval。\n3. **之前报告的 PID 33894/33988 已不存在** — 当前实际 PID 为 34700 (s123) 和 35045 (s456)，是后续重新启动的进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-all-gpu-processes.md"
+}

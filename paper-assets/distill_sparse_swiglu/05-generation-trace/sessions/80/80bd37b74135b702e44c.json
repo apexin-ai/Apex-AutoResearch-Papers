@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80bd37b74135b702e44c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis bce isocompute v2 final metrics",
+  "task_key": "worker_analysis_bce_isocompute_v2_final_metrics_20260515T204429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bce_isocompute_v2_final_metrics_20260515T204429_result.json",
+    "occurrence": 1,
+    "bytes": 494,
+    "sha256": "b2b5179d34516b1485d7d44ab6a302248776c43e16fa129893108bf43ed92422"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Registry 已更新为 DONE。\n\n**最终 metrics 汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| final_loss | 0.6637 |\n| final_bce_loss | 0.6586 |\n| final_reg_loss | 0.0051 |\n| final_sparsity | 0.502 (target 0.50 ✓) |\n| training_steps | 1000 |\n| training_time | 1047.8s (1.05s/step) |\n| checkpoints | step_250, step_500, step_750, step_1000, final |\n\nSparsity 稳定收敛到 ~0.50，reg_loss 从 0.0171 降到 0.0051，BCE loss 从 0.6714 降到 0.6586。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bce-isocompute-v2-final-metrics.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de1c29d40b28ec8071d2",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh cleanup 41718 orphan",
+  "task_key": "worker_ssh_cleanup_41718_orphan_20260520T141352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cleanup_41718_orphan_20260520T141352_result.json",
+    "occurrence": 1,
+    "bytes": 307,
+    "sha256": "5c70678625408d3d87011d6e2d023db513f0ee61854ec2eb7c56f4d3d1972bb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已清理完毕。两张 GPU 均空闲：\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| cuda:0 | 0 MiB / 97887 MiB | 0% |\n| cuda:1 | 0 MiB / 97887 MiB | 0% |\n\n被 kill 的进程：PID 259022，`benchmark_eval.py --exp_id c4_ood_kl30_s123`，已运行约 25 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cleanup-41718-orphan.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b55ea1fcdbad07a2be7c",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "code sparse inference benchmark",
+  "task_key": "worker_code_sparse-inference-benchmark_20260519T113305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sparse-inference-benchmark_20260519T113305.log",
+    "occurrence": 1,
+    "bytes": 601686,
+    "sha256": "f912feba87ffee4a690a2932b4a43a3c5e9b451d2d06b31d9342bf21fd341acf"
+  },
+  "statistics": {
+    "messages": 215,
+    "user_turns": 0,
+    "tool_calls": 70,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 70,
+      "tool_call": 70,
+      "tool_result": 70,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 215,
+      "chunks": [
+        {
+          "path": "b55ea1fcdbad07a2be7c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b55ea1fcdbad07a2be7c-part-0002.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-sparse-inference-benchmark.md"
+}

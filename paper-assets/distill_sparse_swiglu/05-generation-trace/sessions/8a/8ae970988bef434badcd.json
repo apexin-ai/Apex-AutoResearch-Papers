@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ae970988bef434badcd",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops c4 data download",
+  "task_key": "worker_ops_c4_data_download_20260515T223821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_c4_data_download_20260515T223821_result.json",
+    "occurrence": 1,
+    "bytes": 878,
+    "sha256": "94cb6083c5eeb0a112e9cdd2138409cfab26fc8fa0a06c1878c9952e2587bb2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n## 报告\n\n**1. C4 validation 数据状态**\n- 路径：`/root/autodl-tmp/data/c4_val` (arrow 格式)\n- 样本数：364,608\n- 磁盘占用：783MB\n- 原始 json.gz 也缓存在 hub cache：`/root/autodl-tmp/.hf_cache/hub/datasets--allenai--c4/`（~311MB，8 个文件）\n\n**2. 离线验证结果**\n- `load_from_disk` 离线加载：通过\n- `data_utils.get_eval_dataset(\"c4\", ...)` 离线加载：通过（200 samples → 132 packed sequences）\n- 已 patch `data_utils.py`：C4 优先从本地 arrow 数据加载，不依赖网络\n\n**3. 代码改动**\n- `/root/distill_sparse_swiglu/src/data_utils.py`：\n  - 添加 `import os`\n  - `get_eval_dataset` 和 `get_calibration_loader` 的 C4 分支：优先检查 `/root/autodl-tmp/data/c4_val` 本地路径，存在则用 `load_from_disk`，否则回退到 streaming 模式"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-c4-data-download.md"
+}

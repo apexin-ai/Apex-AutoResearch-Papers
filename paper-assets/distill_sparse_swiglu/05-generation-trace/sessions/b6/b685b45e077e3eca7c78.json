@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b685b45e077e3eca7c78",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "research ppl downstream disconnect",
+  "task_key": "worker_research_ppl-downstream-disconnect_20260516T020025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ppl-downstream-disconnect_20260516T020025_result.json",
+    "occurrence": 1,
+    "bytes": 1263,
+    "sha256": "7823bafb333d3d11bae5b2afff09a37972e8791004ab4552b735178948a6f087"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已完成，保存在 `artifacts/literature_ppl_downstream_disconnect.md`，memory.md 已更新。核心发现：\n\n**PPL-downstream disconnect 是已知但未充分研究的现象，我们的工作构成文献空白。**\n\n关键文献支撑：\n- **Khanal & Capone (2024)**: 直接证明 SparseGPT/Wanda 50% sparsity 保持 PPL 但下游退化，提出 JS Divergence 替代\n- **Xu et al. (2024, EMNLP Findings)**: PPL 在 45-60% sparsity 下无法捕捉能力退化，\"normalized PPL shows poor alignment with human-aligned evaluation\"\n- **Kodathala & Vunnam (2026)**: 最极端案例——N:M pruning 25-30% sparsity 下 factual QA 崩溃 97% 但 PPL 不变\n- **Siam et al. (2026)**: 定义 Type 2 degeneration trap（推理断裂→重复循环），与我们的 GSM8K 退化完全吻合\n\n**文献空白**: 没有论文在 contextual sparsity predictor + KL distillation 设置下系统研究过此现象。我们的 PPL 1.96x 但 GSM8K -98% 是目前文献中最极端的 activation sparsity disconnect 案例。\n\n**30% vs 50% 转折点**: TEAL 原文报告 25% safe / 40% minimal / 50% degradation；多篇论文报告 50-60% \"sparsity wall\"。我们的 30% 数据如果下游保持良好，可以 claim phase transition。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ppl-downstream-disconnect-copy-2.md"
+}

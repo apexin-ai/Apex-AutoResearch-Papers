@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e82c2f300dfb5978e7a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "exp perlayer kl k8 s42",
+  "task_key": "worker_exp_perlayer_kl_k8_s42_20260523T020035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_perlayer_kl_k8_s42_20260523T020035_result.json",
+    "occurrence": 1,
+    "bytes": 588,
+    "sha256": "c9e430e6f63db0c2bc4052db5846ae86b6feaf0da70d02dd9c2569208a695ec6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已提交，registry 已更新。\n\n**总结：**\n- **PID**: 98975\n- **GPU**: westd-34887 cuda:1\n- **脚本**: `src/train_perlayer_kl_k4.py --num_masked_layers 8`\n- **参数**: seed=42, 1000 steps, sparsity=0.3, gradient_checkpointing, save_every=500\n- **日志**: `logs/perlayer_kl_k8_s42.log`\n- **Checkpoint**: `checkpoints/perlayer_kl_k8_s42/predictor_perlayer_kl_k4.pt`\n- **Registry**: `perlayer_kl_k8_s42` → RUNNING\n\n基于 K=4 s42 的训练速度（~1.86s/step），预计 1000 steps 约 31 分钟完成。Cron 会自动检测完成并触发 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-perlayer-kl-k8-s42.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a00f213f6993deb23953",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis kl35 kl45 eval teal",
+  "task_key": "worker_analysis_kl35_kl45_eval_teal_20260518T175653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_kl35_kl45_eval_teal_20260518T175653_result.json",
+    "occurrence": 1,
+    "bytes": 1541,
+    "sha256": "4d6fb36d42db821815f73ab1c10d244c4d048b0835ae5eee5c1086376836ba28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。两个实验都标记为 `conclusion=negative`。\n\n## 汇总表\n\n| Metric | kl_sparsity35_s42_eval_teal | kl_sparsity45_s42_eval_teal |\n|--------|---------------------------|---------------------------|\n| PPL | **9.31** | **10.80** |\n| ARC (acc_norm) | **38.91%** | **39.16%** |\n| WinoGrande | **67.64%** | **64.64%** |\n| MMLU | **40.41%** | **30.37%** |\n| GSM8K | **7.73%** | **2.96%** |\n| Actual Sparsity | 33.6% | 44.9% |\n| Errors | None | None |\n\n## 严重异常：Downstream 指标崩塌\n\nPPL 完全符合预期（35%→9.31，45%→10.80，与 30%/40%/50% 单调递增），**但 downstream 全部崩塌**：\n\n| Metric | KL 30% (参考) | KL 35% (本次) | KL 45% (本次) | KL 50% (参考) |\n|--------|------------|------------|------------|------------|\n| ARC | 51.19% | 38.91% | 39.16% | 46.42% |\n| WinoGrande | 71.98% | 67.64% | 64.64% | 67.40% |\n| MMLU | 62.68% | 40.41% | 30.37% | 51.05% |\n| GSM8K | 38.06% | 7.73% | 2.96% | 19.94% |\n\n35% 和 45% 的 downstream **比 50% 还差**，这在 PPL 单调递增的前提下不可能。特别是：\n- MMLU 35%=40.41% vs 50%=51.05% (低 10pp)\n- GSM8K 35%=7.73% vs 50%=19.94% (低 12pp)\n- GSM8K 45%=2.96% 接近随机\n\n**最可能的原因**：eval 脚本中 lm-eval 的 few-shot 配置或 mask 应用方式与之前 30%/50% 的 eval 不一致。PPL 用自定义 eval loop 所以正常，downstream 走 lm-eval harness 可能在 mask 传递上有 bug。建议对比本次和 30%/50% eval 的 lm-eval 调用方式差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-kl35-kl45-eval-teal.md"
+}

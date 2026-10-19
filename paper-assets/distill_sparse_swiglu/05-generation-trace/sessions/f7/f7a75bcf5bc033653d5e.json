@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7a75bcf5bc033653d5e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis v4 progress poll",
+  "task_key": "worker_analysis_v4_progress_poll_20260524T004827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v4_progress_poll_20260524T004827_result.json",
+    "occurrence": 1,
+    "bytes": 424,
+    "sha256": "536ffe205672706de61e137d4ee89d26d3bc20cf0d092ddf8040cb00cd4857c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**v4 GSM8K eval 进度：**\n\n- **generate_until**: 57/1319 (4%) — 日志最后更新于 08:47:21，进程仍在跑（PID 169182, 100% CPU, 启动于 08:42）\n- **速率**: ~3.93s/it（已稳定，初始几个 sample 较慢 ~18s/it）\n- **预计剩余**: ~80 分钟（日志中 ETA 1:22:45，考虑 2 分钟缓冲延迟实际约 ~78 min）\n- 日志输出有缓冲，实际进度估计在 ~85/1319 左右"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v4-progress-poll.md"
+}

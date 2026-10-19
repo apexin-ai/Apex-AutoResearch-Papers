@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7939e11de2722b56c3d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval submit mistral on gpu1 free",
+  "task_key": "worker_eval_submit_mistral_on_gpu1_free_20260515T232736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_submit_mistral_on_gpu1_free_20260515T232736_result.json",
+    "occurrence": 1,
+    "bytes": 82,
+    "sha256": "8d4ef4b4ad58d1342d86a528cff8c4a59dc2654f1c091a9ad54ccdb8d49bd57f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 163723 仍在运行（第 1 次检查）。2 分钟后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-submit-mistral-on-gpu1-free.md"
+}

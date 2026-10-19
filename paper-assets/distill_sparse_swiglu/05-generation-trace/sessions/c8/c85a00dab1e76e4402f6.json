@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "c85a00dab1e76e4402f6",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "eval mse30 s456 downstream",
+  "task_key": "worker_eval_mse30_s456_downstream_20260522T092602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_mse30_s456_downstream_20260522T092602.jsonl",
+    "occurrence": 1,
+    "bytes": 174,
+    "sha256": "1ea95c8eca206efb0c68ecf148f33b9531cdf249dfcc3901022000c2cdf3e5cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T09:26:11.107894+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mse30_s456_downstream_20260522T092602"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/eval-mse30-s456-downstream.md"
+}

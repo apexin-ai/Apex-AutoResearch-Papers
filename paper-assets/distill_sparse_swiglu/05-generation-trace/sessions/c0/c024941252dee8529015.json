@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c024941252dee8529015",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_11_1779063804.md",
+  "task_key": "loop_11_1779063804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1779063804.md",
+    "occurrence": 1,
+    "bytes": 4092,
+    "sha256": "fbf063ebaf2493b26001a49fdb10a83a493846e24eb1c1add1f9a8520efba7b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-18T00:12:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-34887 cuda:0,1 + westd-41718 cuda:0,1，共 4 张 RTX PRO 6000 Blackwell\n- submit_training_job 命令必须用绝对路径 `/root/miniconda3/bin/python`，不能 `conda activate`\n- Qwen-14B 模型路径：`/root/autodl-tmp/models/qwen2.5-14b/`，LLaMA-8B：`/root/autodl-tmp/models/llama-3.1-8b`\n- 14B 实验的 lambda_max 必须远大于 8B（BCE 在 14B 上 loss scale 远大于 reg term，M007 教训：qwen14b_bce30_s42 lambda_max=5000 只达到 6.4% sparsity）\n- 论文 DDL：EMNLP 2026 ARR May = 2026-05-25（剩 7 天）\n\n### 2. 🖥️ 基础设施快照\n- **westd-34887**：工作目录 `/root/distill_sparse_swiglu`，Python `/root/miniconda3/bin/python`\n  - 模型：`/root/autodl-tmp/models/qwen2.5-14b/`、`/root/autodl-tmp/models/llama-3.1-8b`\n  - HF cache：`/root/autodl-tmp/.hf_cache/datasets`\n  - 磁盘：`/usr/bin/nvidia-smi` 分区 817G/879G 可用\n- **westd-41718**：同结构，磁盘 764G/879G 可用\n- W&B：大部分 eval 实验 WANDB_MODE=disabled，训练实验用 W&B\n- 活跃进程（reconcile 时刻）：\n  - qwen14b_bce30_s42_eval: westd-34887 cuda:0, PID 59122\n  - qwen14b_teal30_eval: westd-41718 cuda:1, PID 6896\n  - qwen14b_dense_baseline: westd-41718 cuda:0, PID 18845\n\n### 3. 📊 当前状态\n**刚发生**：`qwen14b_kl30_s42_eval` 进程退出，状态 ANALYZING。已 spawn Worker (`worker_analyze_qwen14b_kl30_s42_eval_20260517T185314`) SSH 读日志提取指标，**尚未回调**。\n\n**RUNNING（3 个）**：\n- `qwen14b_bce30_s42_eval`：Qwen-14B BCE 30% downstream eval（westd-34887:cuda:0）\n- `qwen14b_teal30_eval`：Qwen-14B TEAL 30% downstream eval（westd-41718:cuda:1）\n- `qwen14b_dense_baseline`：Qwen-14B dense baseline downstream eval（westd-41718:cuda:0）\n\n**PREPARING（17 个）**：c4_download, c4_ood_kl30_s42, bce_isocompute_v3_s456/s123, wallclock_speedup_30_50, kl50_s456_train/eval, kl50_s123_eval, mag_preservation_reg, longbench_dense_v5 等\n\n**等待中**：\n- Worker 回调：`worker_analyze_qwen14b_kl30_s42_eval` → 拿到指标后 update_registry 转 DONE\n- 3 个 RUNNING 实验的 cron 回调（qwen14b_bce30/teal30/dense_baseline）\n- Round 2 review 被 Qwen-14B 全套 eval 完成 block\n\n### 4. 📋 待办\n- Worker 回调（qwen14b_kl30_s42_eval 指标）→ update_registry(metrics + conclusion + checkpoint_path + log_path) → 转 DONE\n- qwen14b_bce30_s42_eval cron 回调 → spawn worker 读日志提取指标 → 与 KL 对比\n- qwen14b_teal30_eval cron 回调 → 同上，与 KL 对比\n- qwen14b_dense_baseline cron 回调 → 提取 dense 基准指标，计算所有 sparse 方法的 degradation ratio\n- **4 个 Qwen-14B eval 全部 DONE** → 汇总跨规模对比表（LLaMA-8B vs Qwen-14B × KL/BCE/TEAL/Dense）→ 汇报 Director → 写入论文 cross-arch section\n- kl50_global_s123_reeval 已标 success 但 EXIT_CODE=1 → 需诊断是否结果可信（D051 数据修正相关）\n- 4 个 eval 完成后 westd-34887:cuda:1 释放 → 可提交 PREPARING 队列中的实验（wallclock_speedup 或 kl50 系列）\n\n### 5. 🎯 战略上下文\n- **核心 story**：KL distillation 使 SwiGLU LLM contextual sparsity prediction 不需要 error compensation / static bias correction，最简推理管线\n- **3 个 claim 状态**：Claim 1 (KL >> baselines) ✅ strong；Claim 2 (SPON orthogonal) ✅ adequate；Claim 3 (Three-regime phase transition) ✅ strong\n- **当前瓶颈**：Qwen-14B 跨规模验证是 Round 2 review 提交的最后 blocker。4 个 eval 跑完就能组表 + 提交\n- **易错点**：\n  - 14B TEAL PPL 8.76 已被标为 unverified 并从论文中移除（commit c15c79a），不要重新引用这个数字\n  - allocation narrative 已定稿为 \"variance reduction only\"（D050），不要再提 \"+15pp uniform gain\"\n  - 50% global s123 MMLU 旧值 38.07% 来自错误 checkpoint（D051），reeval 已跑但需确认\n  - BCE 14B lambda_max 不够导致 sparsity 不达标（M007），如果 bce30 eval 结果异常低要考虑这个因素\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1779063804.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1570a18290412e938d0",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops fix c1 30pct resubmit",
+  "task_key": "worker_ops_fix-c1-30pct-resubmit_20260519T000422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-c1-30pct-resubmit_20260519T000422_result.json",
+    "occurrence": 1,
+    "bytes": 688,
+    "sha256": "5f027d4193f4a1b0a5a31f6e463c53da225cbba59e19ce0cf171a0134e4a1df9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常启动并在运行中。\n\n**汇报：**\n- **正确脚本路径**：`src/train_bce_kl_targets.py`（仅存在于 westd-41718，已复制到 westd-34887）\n- **失败原因**：脚本是在 41718 上创建的，34887 的代码目录缺少此文件\n- **提交状态**：✓ 已用 nohup 提交到 westd-34887 cuda:0，PID=64486\n- **exp_id**：`c1_ablation_30pct_s42_v2`\n- **日志**：`~/runs/distill_sparse_swiglu/c1_ablation_30pct_s42_v2.log`\n- **前几行日志确认**：\n  - 模型加载成功 (llama-3.1-8b)\n  - KL oracle predictor 加载成功 (75,960,320 params, frozen)\n  - 训练已开始，Step 1/1000: bce=0.6905, sparsity=0.500, agree=0.549"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-c1-30pct-resubmit.md"
+}

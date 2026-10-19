@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89afbc348fc224f50bee",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_10_1779050341.md",
+  "task_key": "loop_10_1779050341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1779050341.md",
+    "occurrence": 1,
+    "bytes": 3254,
+    "sha256": "c0bc34e43217951f577a864f140c02b5b1bd7f3879870d226bc74bc7e6acce88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-17T19:58:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-34887 cuda:0 + cuda:1 仅此两张，禁止用其他卡\n- WANDB_MODE=disabled（离线模式），所有 metrics 来源只有 log 文件，不要尝试 fetch_wandb_metrics\n- HF_HUB_OFFLINE=1 + HF_DATASETS_OFFLINE=1，模型/数据必须用本地缓存路径\n- Qwen-2.5-14B 需要 gradient_checkpointing + batch_size=1（显存限制）\n- 论文 DDL: EMNLP 2026 ARR May, 2026-05-25（剩 8 天）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887，工作目录 /root/distill_sparse_swiglu\n- Python：/root/miniconda3/bin/python\n- 模型路径：/root/autodl-tmp/models/qwen2.5-14b/（14B）、/root/autodl-tmp/models/llama-3.1-8b（8B）\n- 数据集缓存：/root/autodl-tmp/.hf_cache/datasets\n- W&B：disabled（全离线）\n- 活跃进程：qwen14b_kl30_s42_eval (PID 52224, cuda:1, tmux, cron 监控中)\n- Worker running: worker_analysis_qwen14b_bce30_s42_20260517T155633（SSH 读 log 分析 metrics）\n\n### 3. 📊 当前状态\n刚收到 qwen14b_bce30_s42 (BCE 14B 30%) 完成回调，已派 Worker SSH 读 log 提取 metrics（尚未回调）。\n\nRegistry 关键状态：\n- **RUNNING**: qwen14b_kl30_s42_eval（14B KL 30% downstream eval, cuda:1）\n- **ANALYZING**: qwen14b_bce30_s42（等 Worker 回调提取 metrics）、kl30_s456_uniform_eval（同一 Worker 一起分析）\n- **刚推进到 DONE**: kl30_s456_train (success), kl30_s123_eval (success)\n- **QUEUED**: qwen14b_teal30_eval（等 GPU 空出）\n- cuda:0 当前空闲（qwen14b_bce30_s42 已结束），可立即提交下一个实验\n\n等待中：\n1. Worker 回调 → qwen14b_bce30_s42 + kl30_s456_uniform_eval 的 metrics\n2. Cron 回调 → qwen14b_kl30_s42_eval 完成\n3. 未向 Director 汇报本轮结果（等 metrics 到手后一并汇报）\n\n### 4. 📋 待办\n- Worker 回调到达 → 更新 registry metrics/conclusion → 判断 hypothesis 成立/证伪 → 汇报 Director\n- qwen14b_bce30_s42 如果 PPL 远高于 KL (预期类似 LLaMA-8B 的 22.51 vs 11.79) → conclusion=success，BCE-KL gap 跨规模泛化确认\n- kl30_s456_uniform_eval metrics 到手 → 完成 30% uniform 3-seed 数据（s42/s123/s456），计算 mean±std\n- cuda:0 空闲 → 立即提交 qwen14b_teal30_eval（TEAL baseline for 14B）\n- qwen14b_kl30_s42_eval 完成 → 对比 14B KL vs TEAL vs BCE 三方数据，汇报 Director\n\n### 5. 🎯 战略上下文\n- 核心 narrative: KL distillation 是最简推理管线（无需 error compensation / static bias correction）\n- Claim 1 (KL >> baselines) 已 strong；当前在补 cross-scale (14B) 证据\n- 14B 实验线目标：证明 KL >> BCE gap 和 KL >> TEAL gap 在 14B 上复现（跨规模泛化）\n- D050 定稿：allocation narrative 只讲 variance reduction（不讲 uniform 绝对优于 global）\n- 30% uniform 3-seed MMLU: s42=0.4061, s123=0.3944, s456=待 Worker 回调；global 3-seed: s42=0.2527, s123=0.3807, s456=待确认 → uniform std << global std 是 claim\n- 易错点：不要把 14B 的 PPL 和 8B 直接比绝对值（模型不同），应比 dense→sparse 的 degradation ratio\n- Round 1 审稿 3.0/5，4 critical 全 resolved，2 warning in_progress (SNR patch + λ curve)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1779050341.md"
+}

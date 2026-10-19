@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5e7b0c7b59c531757bd",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "research d032 ppl verify",
+  "task_key": "worker_research_d032_ppl_verify_20260516T050247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_d032_ppl_verify_20260516T050247_result.json",
+    "occurrence": 1,
+    "bytes": 789,
+    "sha256": "4def688d3993bf0d6f7015c1ffe6b467616dca8fa2f3d4e02e0b4533a29620a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D032 完成。\n\n**确认数据污染存在：** `kl_sparsity30_s42_v3` 的 `teal_sparse_ppl` 被 Mistral 的值错误覆盖。\n\n| 实验 | 模型 | Sparsity | Registry 旧值 | 日志真实值 | 状态 |\n|------|------|----------|-------------|-----------|------|\n| mistral_kl_s42 | Mistral-7B | 50% | 8.98 | **8.98** | 正确 |\n| kl_sparsity30_s42_v3 | Llama-3.1-8B | 28.5% | ~~8.98~~ | **13.63** | 已修正 |\n\n已执行：\n1. 从原始日志 (`eval_mistral_kl_s42.log`, `eval_kl_sparsity30_s42_v3.log`) 独立验证两个实验的真实 PPL\n2. 修正 `kl_sparsity30_s42_v3` 的顶层残留字段 `teal_sparse_ppl`: 8.98 → 13.63（`metrics.teal_sparse_ppl` 已在之前的 D032 修复中被改为 13.63）\n3. 报告已注册为 artifact `art_20260516_1aed77`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-d032-ppl-verify.md"
+}

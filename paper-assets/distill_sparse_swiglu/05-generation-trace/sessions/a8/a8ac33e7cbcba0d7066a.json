@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8ac33e7cbcba0d7066a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval spon 2048 supplementary",
+  "task_key": "worker_eval_spon_2048_supplementary_20260515T193220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_spon_2048_supplementary_20260515T193220_result.json",
+    "occurrence": 1,
+    "bytes": 1516,
+    "sha256": "c38fa9cc4317bd0ab3f10d52d953ed3d47f6d6c3c35bace54b940602fbd4e3a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。全部指标：\n\n```\n=== SPON 2048 Supplementary Evaluation ===\n\ntrue_dense_ppl:            6.1173\ndense_with_spon_ppl:       6.1823\ndense_ppl_degradation:     +0.0651\nteal_sparse_no_spon_ppl:   12.0776\nteal_sparse_with_spon_ppl: 11.7907\nspon_recovery_teal:        4.8%\nteal_sparsity:             0.4979\n```\n\n**已有指标（predictor hard mask 模式）对比：**\n- True Dense PPL: 6.12 → 确认一致（6.1173）\n- Sparse PPL (no SPON): 9.22\n- SPON Sparse PPL: 8.99 (recovery 7.3%)\n\n**本次补充指标：**\n\n| 指标 | 值 |\n|------|-----|\n| dense_with_spon_ppl | 6.1823 |\n| dense_ppl_degradation | +0.065（seq128 为 +0.08，2048 反而更小） |\n| teal_sparse_no_spon_ppl | 12.0776 |\n| teal_sparse_with_spon_ppl | 11.7907 |\n| spon_recovery_teal | 4.8%（seq128 的对应值需对比，teal_with_spon_ppl=11.93 vs 这里 11.79） |\n\n注意事项：\n- TEAL 使用的是 predictor-based 全局分配（不是 vanilla activation-magnitude TEAL，后者在 LLaMA 上分层极度不均导致 PPL 爆炸）\n- SPON biases 来自 spon_2048_s42 checkpoint（mean_norm=0.053, 确认为 2048 版本）\n- Dense degradation +0.065 比预期（seq128 的 +0.08）更小，说明 2048 版 bias 虽然 mean_norm 更大（0.053 vs 0.041），但 fold 到 down_proj 后的影响反而更收敛\n- TEAL 模式下 SPON recovery 仅 4.8%，远低于 predictor hard mask 的 7.3%——这在预期内，因为全局静态 mask 无法利用 per-token 自适应分配"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-spon-2048-supplementary.md"
+}

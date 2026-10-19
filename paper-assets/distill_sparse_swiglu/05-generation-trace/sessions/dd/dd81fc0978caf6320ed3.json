@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "dd81fc0978caf6320ed3",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "audit registry paper consistency",
+  "task_key": "worker_audit_registry_paper_consistency_20260524T035709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_registry_paper_consistency_20260524T035709.log",
+    "occurrence": 1,
+    "bytes": 1019145,
+    "sha256": "9d33456a33600de09cd05d78606a63d8858c45b889e5df6e1b00557c44c32421"
+  },
+  "statistics": {
+    "messages": 42,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 16,
+      "tool_result": 16
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 42,
+      "chunks": [
+        {
+          "path": "dd81fc0978caf6320ed3-part-0001.json",
+          "message_count": 9
+        },
+        {
+          "path": "dd81fc0978caf6320ed3-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "dd81fc0978caf6320ed3-part-0003.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-registry-paper-consistency.md"
+}

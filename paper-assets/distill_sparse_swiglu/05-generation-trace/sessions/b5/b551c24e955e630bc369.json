@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b551c24e955e630bc369",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops westd 34887 collect and fill",
+  "task_key": "worker_ops_westd-34887-collect-and-fill_20260518T084941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-34887-collect-and-fill_20260518T084941_result.json",
+    "occurrence": 1,
+    "bytes": 832,
+    "sha256": "6089fb888ac6c193edca99d33bc1cee47092203c1aa4776e0e066850ddb392eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "kl50_s42_uniform_eval 运行中（PID 13571, cuda:0, 模型已加载, allocation=uniform）。\n\ncuda:1 空闲。kl_comp_30pct_s42 在 41718 上 step 900/1000 接近完成但还没有 checkpoint。没有其他就绪的 PREPARING 任务可以立即跑在 cuda:1。\n\n**汇总：**\n\n| 任务 | 状态 | 结果 |\n|------|------|------|\n| c4_ood_kl50_s42 | DONE ✓ | c4_ppl = **23.53** |\n| c4_ood_kl50_s456 | DONE ✓ | c4_ppl = **23.99** |\n| C4 OOD 50% 均值 | — | **23.76 ± 0.23** (2-seed) |\n| kl50_s42_uniform_eval | RUNNING (westd-34887 cuda:0) | 重新提交，模型加载中 |\n| kl_comp_30pct_s42 | RUNNING (westd-41718 cuda:0) | step 900/1000 |\n| kl_comp_30pct_s123 | RUNNING (westd-41718 cuda:1) | step 300/1000 |\n| westd-34887 cuda:1 | **空闲** | 等 compensation checkpoint 或其他任务 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-34887-collect-and-fill.md"
+}

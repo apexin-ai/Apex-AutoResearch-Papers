@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d41e0ed7db104c0b015c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval plan 006 training free reeval",
+  "task_key": "worker_eval_plan_006_training_free_reeval_20260515T211513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan_006_training_free_reeval_20260515T211513_result.json",
+    "occurrence": 1,
+    "bytes": 1537,
+    "sha256": "6c50095ea78dc651a45033308e9e1643eb125bb90c7a1a1f7c7680a7d9b637cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both artifacts registered. Here's the summary:\n\n## Plan 006 Re-Evaluation Complete\n\n### Bug Fixed\n`_global_topk_masks` in `evaluate.py` lacked per-layer mean normalization. Activation magnitudes vary 50-100x across layers, causing early layers to be fully pruned and late layers to keep everything. Also added `dense_mse` normalization to the greedy error curves in both `evaluate.py` and `baselines.py`.\n\n### Corrected Results (50% sparsity, LLaMA 3.1 8B, WikiText-2)\n\n| Method | Before | After | Status |\n|--------|--------|-------|--------|\n| Dense | 6.12 | 6.12 | Reference |\n| Uniform 50% | — | 23.90 | Sanity check |\n| **Vanilla TEAL (global)** | 58,032 | **23.31** | FIXED |\n| **WINA (global)** | 82,567 | **27.93** | FIXED |\n| **TEAL Greedy (baselines.py)** | — | **33.47** | FIXED |\n| TEAL Greedy (evaluate.py) | 50,035 | 164.76 | Partial — Layer 1 over-pruned |\n| R-Sparse (global) | 74,929 | 151.20 | Mean norm insufficient for SVD scores |\n| WINA Greedy | — | 2,126 | Inverted allocation — separate bug |\n\n### Three methods are now validated and usable:\n- **Vanilla TEAL global** (23.31) — best, simplest\n- **WINA global** (27.93) — decent\n- **TEAL greedy baselines.py** (33.47) — non-uniform allocation\n\n### Remaining issues (lower priority):\n- R-Sparse needs percentile/max normalization instead of mean normalization for SVD-weighted scores\n- WINA greedy has an inverted allocation bug in its own error computation\n- evaluate.py's greedy still over-prunes Layer 1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-006-training-free-reeval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73704d78e200375a13f8",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval llama70 collect results",
+  "task_key": "worker_eval_llama70_collect_results_20260517T013118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama70_collect_results_20260517T013118_result.json",
+    "occurrence": 1,
+    "bytes": 422,
+    "sha256": "60c6812ba98b51033bb920d6fb955ba3660f0389fafa47720207feb13708c6e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态总结：**\n\n两个 LLaMA 70% sparsity eval 进程仍在运行中：\n- **PID 292902** (KL 70% teal_global): MMLU loglikelihood 14% done (~50 it/s)\n- **PID 293211** (TEAL vanilla 70%): MMLU loglikelihood 12% done (~47 it/s)\n\nWikiText-2 PPL 阶段已完成，当前都在跑 MMLU。预计还需 ~16-18 分钟完成。结果文件在全部 task 完成后才写入。已设置定时回来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama70-collect-results.md"
+}

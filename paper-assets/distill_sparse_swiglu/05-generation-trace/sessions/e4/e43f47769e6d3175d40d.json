@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e43f47769e6d3175d40d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis kl sparsity30 s42 v2",
+  "task_key": "worker_analysis_kl_sparsity30_s42_v2_20260515T211324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_kl_sparsity30_s42_v2_20260515T211324_result.json",
+    "occurrence": 1,
+    "bytes": 1541,
+    "sha256": "c43b566ac90d47bf1746faf5eeea659bd2580d9602cabb6530d837a4ed54145f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated to DONE. Here's the analysis summary:\n\n## kl_sparsity30_s42_v2 — NEGATIVE\n\n**核心问题：sparsity 仍然卡在 0.281，与 v1 完全相同，v2 修复无效。**\n\n### 关键指标\n| 指标 | 值 |\n|------|-----|\n| model_level_sparsity | **0.281** (目标 0.3) |\n| final_loss | 0.1465 |\n| kl_normalized | 0.1465 |\n| lambda_sparse | 1000 (hit cap) |\n| training_steps | 1000/1000 |\n| wall_clock | ~44 min (0.74 GPU-hr) |\n\n### Sparsity 收敛轨迹\n- Step 1: 0.406 → Step 130: 0.289 → Step 300: 0.301 (短暂接近目标) → Step 360+: 锁定在 0.281\n\n### 根因分析\nLambda multiplier 在 step 220 就已经 hit cap=1000，之后再无调节能力。Sparsity 从 0.301 滑落到 0.281 时，lambda 已经没有上升空间来施加更强的约束。**lambda_max=1000 这个上限本身就是瓶颈**——两次实验（v1、v2）都卡在同一个 sparsity 值，说明这不是随机波动而是结构性限制。\n\n### 缺失\n- **无 PPL 评估**：训练脚本不包含 eval 步骤，没有 true_dense_ppl / predictor_hard_mask_ppl / teal_sparse_ppl\n- **W&B 离线**：run 未同步到云端，无法通过 API 查询\n\n### Plan_008 影响\n30% sparsity 数据点连续两次失败（v1 killed, v2 negative），需要：\n1. 提高 lambda_max（如 5000 或 10000），或\n2. 改用更激进的 lambda 增长策略（如指数增长而非 2x），或\n3. 检查 sparsity=0.281 是否是模型结构的某种离散边界（如某层全部 on/off 导致 sparsity 量化）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-kl-sparsity30-s42-v2-copy-2.md"
+}

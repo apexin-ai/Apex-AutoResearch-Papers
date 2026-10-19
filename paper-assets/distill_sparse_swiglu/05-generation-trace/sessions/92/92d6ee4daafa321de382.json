@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92d6ee4daafa321de382",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diagnose kl50 global s123 reeval",
+  "task_key": "worker_diagnose_kl50_global_s123_reeval_20260517T174942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_kl50_global_s123_reeval_20260517T174942_result.json",
+    "occurrence": 1,
+    "bytes": 1531,
+    "sha256": "d635cb87524a1b490844399a18eb362c8e80af48e05016c8cb9d66434f22d2ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 失败根因\n\n```\nFileNotFoundError: [Errno 2] No such file or directory: \n'/root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt'\n```\n\nCheckpoint 文件只存在于 **westd-34887**（145MB），从未同步到 **westd-41718**。实验在 westd-41718 上启动，模型加载成功后尝试加载 predictor checkpoint 时因文件不存在而崩溃。\n\n### GPU 状态\n- westd-41718 cuda:0 空闲（0MiB），cuda:1 被另一进程占用（61.6GB/96%利用率）\n- 如果重跑需要用 `--gpu 0`\n\n### 修复方案\n\n先将 checkpoint 从 westd-34887 同步到 westd-41718，然后重跑：\n\n```bash\n# Step 1: 在 westd-41718 上创建目录并从 westd-34887 拷贝 checkpoint\nmkdir -p /root/distill_sparse_swiglu/checkpoints/mvp_kl_norm_v2_s123/\n# 需要 scp/rsync 从 westd-34887 复制 predictor_kl_normalized.pt\n\n# Step 2: 重跑（命令不变，用 gpu 0）\ncd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id kl50_global_s123_reeval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/mvp_kl_norm_v2_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\n```\n\n是否需要我执行 checkpoint 同步和重跑？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-kl50-global-s123-reeval.md"
+}

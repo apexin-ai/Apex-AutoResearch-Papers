@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68c9dcadf39140634f02",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops kill diag processes",
+  "task_key": "worker_ops_kill_diag_processes_20260516T003010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_diag_processes_20260516T003010_result.json",
+    "occurrence": 1,
+    "bytes": 441,
+    "sha256": "21fe829a59643553c152caecfb71da01810f6e4bae3926e8e7109c538749d019"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 `diag_hflm.py` 进程已 kill。\n\n| GPU | 显存 (kill 前) | 显存 (kill 后) | 变化 |\n|-----|---------------|---------------|------|\n| cuda:0 | 39594 MiB / 97887 MiB | 39594 MiB / 97887 MiB | 无变化 |\n| cuda:1 | 74175 MiB / 97887 MiB | 37660 MiB / 97887 MiB | **-36515 MiB** |\n\ncuda:1 释放了约 35.7 GB 显存，两个 debug 进程占用的显存已全部回收。当前两块 GPU 各约 40% 占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-diag-processes.md"
+}

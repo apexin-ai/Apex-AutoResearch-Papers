@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b73fcd0ee0c46c14d284",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code plan 005 subsumption test",
+  "task_key": "worker_code_plan_005_subsumption_test_20260515T194504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_005_subsumption_test_20260515T194504_result.json",
+    "occurrence": 1,
+    "bytes": 1330,
+    "sha256": "ab48813f7950293ce80cfb370a199ea7a499637fb5f35b373a99750456b0cb1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。所有组件加载成功：\n- 模型：32 层, hidden=4096, intermediate=14336\n- Predictor：75.96M params\n- SPON biases：458,752 params (mean_norm=0.053, max_norm=0.066 — 非常小)\n\n---\n\n**产出**\n\n1. **代码文件**: `/root/distill_sparse_swiglu/src/subsumption_test.py`\n\n2. **完整运行命令**:\n```bash\ncd /root/distill_sparse_swiglu && source setup_env.sh && \\\npython src/subsumption_test.py \\\n  --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b \\\n  --predictor_checkpoint checkpoints/mvp_kl_norm_v2_s42/predictor_kl_normalized.pt \\\n  --spon_checkpoint checkpoints/spon_2048_s42/spon_biases.pt \\\n  --num_samples 50 \\\n  --seq_len 2048 \\\n  --gpu 0 \\\n  --output_dir results/subsumption_test\n```\n\n3. **架构发现**:\n   - 现有 `SPONPatcher` 缺少 `spon_only` 模式（仅 bias 无 mask），脚本自建 `SubsumptionPatcher` 支持 4 种模式\n   - 关键数学性质：`down_proj` 是线性的 → 单层内 mask+bias 效果严格可加（interaction=0）。logit 层面的非零 linearity_ratio 完全来自跨层级联非线性\n   - SPON bias norm 极小（mean=0.053），预期 magnitude_ratio 会很低，支持 subsumption 假设\n   - Per-layer 分析使用 dense forward 捕获的 MLP input 做隔离测试，避免级联效应污染"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-005-subsumption-test.md"
+}

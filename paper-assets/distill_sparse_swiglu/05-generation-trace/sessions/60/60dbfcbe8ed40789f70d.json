@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60dbfcbe8ed40789f70d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh reverse kl 30 s42",
+  "task_key": "worker_ssh_reverse_kl_30_s42_20260520T155120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_reverse_kl_30_s42_20260520T155120_result.json",
+    "occurrence": 1,
+    "bytes": 407,
+    "sha256": "0bead977afc63da8d2f3d89b6c5c648083af025a9626d914c49b84db584bfa59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **westd-34887 cuda:1** — 两张 RTX PRO 6000 均空闲，cuda:1 已占用\n- **PID**: 226776，模型正在加载（llama-3.1-8b）\n- **日志**: `~/runs/distill_sparse_swiglu/reverse_kl_30_s42.log`\n- **Registry**: `reverse_kl_30_s42` → RUNNING\n- **Checkpoint**: 训练完成后保存为 `checkpoints/reverse_kl_30_s42/predictor_reverse_kl.pt`，自动接 7-task eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-reverse-kl-30-s42.md"
+}

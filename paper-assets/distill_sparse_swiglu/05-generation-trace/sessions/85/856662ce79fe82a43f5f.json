@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "856662ce79fe82a43f5f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ssh check 34887 and collect",
+  "task_key": "worker_ssh_check_34887_and_collect_20260520T134805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_34887_and_collect_20260520T134805_result.json",
+    "occurrence": 1,
+    "bytes": 1484,
+    "sha256": "2e97a6c285381da4d20da8b3a1a7464c1c5782136ea1acefc72b24dd104037ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 状态\n\n| GPU | 型号 | 温度 | 功耗 | 显存 | 利用率 | 进程 |\n|-----|------|------|------|------|--------|------|\n| cuda:0 | RTX PRO 6000 Black (98GB) | 82°C | 606W/600W | 45.8/97.9 GB | 100% | PID 212473 — s123 eval |\n| cuda:1 | RTX PRO 6000 Black (98GB) | 48°C | 242W/600W | 45.8/97.9 GB | 65% | PID 215424 — s456 eval |\n\n### Mistral KL30 s123 (GPU 0)\n\n- **训练**: 完成。Step 1000/1000, loss=0.0996, kl_norm=0.0996, sparsity=0.281, lambda=5000\n- **Checkpoint**: `checkpoints/mistral_kl30_s123/predictor_kl_normalized.pt` (152MB, 20:53)\n- **Eval**: 进行中 — MMLU loglikelihood **31%** (12657/40168), ~19.4 it/s\n  - arc_challenge, winogrande 已完成\n  - MMLU 剩余 ~24 min, 之后还有 gsm8k (~25 min), hellaswag, piqa\n  - **预计完成**: ~50-60 min\n\n### Mistral KL30 s456 (GPU 1)\n\n- **训练**: 完成。Step 1000/1000, loss=0.1050, kl_norm=0.1050, sparsity=0.281, lambda=5000\n- **Checkpoint**: `checkpoints/mistral_kl30_s456/predictor_kl_normalized.pt` (152MB, 21:23)\n- **Eval**: 进行中 — GSM8K generate_until **28%** (369/1319), ~1.14 s/it\n  - arc_challenge, winogrande, mmlu 已完成\n  - GSM8K 剩余 ~18 min, 之后还有 hellaswag, piqa\n  - **预计完成**: ~30 min\n\n### 结果\n\n两个 eval 目录 (`mistral_kl30_s123_eval/`, `mistral_kl30_s456_eval/`) 均为空——results.json 在全部 7 个 task 跑完后才写入。s456 预计先完成（~22:20），s123 约 22:50。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-34887-and-collect.md"
+}

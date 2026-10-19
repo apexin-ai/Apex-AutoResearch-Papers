@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6e081b2c8e8686b1df9",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra s456 eval collect and s123 launch",
+  "task_key": "worker_infra_s456_eval_collect_and_s123_launch_20260517T204520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_s456_eval_collect_and_s123_launch_20260517T204520_result.json",
+    "occurrence": 1,
+    "bytes": 836,
+    "sha256": "34b014c5745a5b3002475b6263d9ca0ab73d57f88bdbe21f142cfaa1ef67a676"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. bce_isocompute_v3_s456_eval 完整指标\n\n| 指标 | 值 |\n|---|---|\n| WikiText-2 PPL | **28.35** |\n| ARC-Challenge (acc_norm) | **28.07%** |\n| WinoGrande (acc) | **52.41%** |\n| MMLU (acc) | **25.67%** |\n| GSM8K (exact_match) | **2.20%** |\n\n配置：BCE loss, 50% global_topk sparsity, teal_global mode, seed=456\n\n### 2. bce_isocompute_v3_s123 训练状态\n\n- **PID**: 72392\n- **启动方式**: nohup（符合 C002 约束）\n- **日志**: `/root/runs/distill_sparse_swiglu/bce_isocompute_v3_s123.log`\n- **GPU**: westd-34887 cuda:1\n- **状态**: 模型已加载完成，正在训练（Trainable: 75.96M / 8.03B = 0.946%）\n- 无 tmux session（nohup 直接后台）\n\n### 3. 预估训练时间\n\n参考 s456 约 49 min，s123 配置完全相同，预计 **~49 min** 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-s456-eval-collect-and-s123-launch.md"
+}

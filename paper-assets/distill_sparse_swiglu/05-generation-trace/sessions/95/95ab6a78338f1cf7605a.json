@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95ab6a78338f1cf7605a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check d030 kl40 uniform",
+  "task_key": "worker_check_d030_kl40_uniform_20260516T080131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_d030_kl40_uniform_20260516T080131_result.json",
+    "occurrence": 1,
+    "bytes": 509,
+    "sha256": "556c2c7a399e728eff1c3425e89611ee6768beb4d2b9086fa1b7f6e9e538b94e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态：运行中**，PID 215866，已运行约 60 分钟。\n\n当前处于 **Phase 2（benchmark_eval）**，正在执行 `generate_until` 请求（GSM8K task），进度 41%（537/1319），速度约 1.5-2 it/s。\n\nPhase 1（训练 1000 步 KL predictor）已完成。按当前速度，Phase 2 剩余部分预计还需 ~10 分钟完成当前 task，后续可能还有其他 benchmark tasks（wikitext2, arc_challenge, winogrande, mmlu）。整体评估阶段预计还需 20-40 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-d030-kl40-uniform.md"
+}

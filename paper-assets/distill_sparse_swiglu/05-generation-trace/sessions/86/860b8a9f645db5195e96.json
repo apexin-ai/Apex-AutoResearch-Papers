@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "860b8a9f645db5195e96",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper research",
+  "task_key": "worker_paper_research_20260516T092303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_20260516T092303_result.json",
+    "occurrence": 1,
+    "bytes": 663,
+    "sha256": "0f71c3b24b12a7af80e571cad9879c899c90a83db8f9c8825b7936e3dd5fe62f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。新增 8 篇 foundational references 到 `literature_map.yaml` 的 Cluster 4 section：\n\n**Must-cite (4篇):**\n1. LLaMA 3 (2407.21783) — 主要评估模型\n2. Mistral 7B (2310.06825) — 评估模型\n3. Gumbel-Softmax (1611.01144) — 离散mask可微松弛\n4. GLU Variants (2002.05202) — SwiGLU架构来源\n\n**额外 (4篇):**\n5. WikiText-2/Merity (1609.07843) — 评估benchmark\n6. Knowledge Distillation/Hinton (1503.02531) — 蒸馏理论基础\n7. Straight-Through Estimator/Bengio (1308.3432) — 离散梯度传播\n8. T5/C4/Raffel (1910.10683) — 训练数据来源\n\n格式与现有条目一致，无重复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-copy-3.md"
+}

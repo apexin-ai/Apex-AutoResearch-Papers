@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e26c7ec92327fc3f743",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis sparsity floor extended",
+  "task_key": "worker_analysis_sparsity_floor_extended_20260517T044139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sparsity_floor_extended_20260517T044139_result.json",
+    "occurrence": 1,
+    "bytes": 1036,
+    "sha256": "f9e925844d71271d50a284c14b42467bed05f8027e429521de8188abf08d591e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n```\nSparsity Target | Always-Pruned % | Late-Layer Max % | Pruned Neurons\n30%             | 0.0499          | 0.4604           | 229 / 458,752\n50%             | 0.0726          | 1.2347           | 333 / 458,752\n70%             | 0.1936          | 4.3666           | 888 / 458,752\n```\n\n**关键发现**：\n- 所有 sparsity 级别的 always-pruned floor 都极低（< 0.2%），证实预测器几乎完全是上下文驱动的\n- Early/middle layers（0-23）几乎零静态剪枝，所有 always-pruned neurons 集中在 late layers（28-31）\n- Floor 从 30%→70% 增长约 4×，但即使在 70% 目标下仍仅 0.19%\n- Layer 31 在 70% 目标下有最高单层 floor（4.37%），可能因为最后一层 hidden states 对输出影响较小\n\n**产出**：\n- 脚本：`/root/distill_sparse_swiglu/scripts/sparsity_floor_extended.py`\n- 数据：`/root/distill_sparse_swiglu/artifacts/sparsity_floor_extended.json`（完整 per-layer 数据）\n- 注册：`art_20260517_29b602`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sparsity-floor-extended.md"
+}

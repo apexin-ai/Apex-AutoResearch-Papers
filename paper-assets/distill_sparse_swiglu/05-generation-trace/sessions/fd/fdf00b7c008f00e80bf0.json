@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fdf00b7c008f00e80bf0",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops w1 results collection",
+  "task_key": "worker_ops_w1-results-collection_20260516T225911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_w1-results-collection_20260516T225911_result.json",
+    "occurrence": 1,
+    "bytes": 1366,
+    "sha256": "1380301cb2464b737f73a7f9d148040ee52dbe49fd5ed76948a05cd3ec52e628"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All experiments complete. Here are the final results:\n\n---\n\n## Table 1: τ Schedule Ablation\n\n| τ Schedule | WikiText-2 PPL ↓ | Training Loss | Sparsity |\n|---|:---:|:---:|:---:|\n| linear 1.0→0.1 (baseline) | 11.963 | 0.301 | 0.488 |\n| fixed τ=0.5 | **11.861** | 0.248 | 0.484 |\n| fixed τ=0.1 | 12.072 | 0.430 | 0.484 |\n\n**Findings**: Fixed ��=0.5 gives the best PPL (11.861), beating the linear annealing baseline by 0.10. Fixed τ=0.1 hurts significantly (12.072), +0.11 over baseline. Lower temperature makes the Gumbel-sigmoid too sharp during early training, resulting in higher final loss (0.430 vs 0.248) without improved downstream quality.\n\n---\n\n## Table 2: Predictor Quality vs Training Steps (linear 1.0→0.1 schedule)\n\n| Steps | WikiText-2 PPL ↓ | Training Loss | τ (at step) | Sparsity |\n|:---:|:---:|:---:|:---:|:---:|\n| 200 | 15.158 | 0.344 | 0.820 | 0.480 |\n| 400 | 12.538 | 0.273 | 0.640 | 0.484 |\n| 600 | 12.046 | 0.273 | 0.460 | 0.488 |\n| 800 | 11.907 | 0.250 | 0.280 | 0.484 |\n| 1000 | 11.906 | 0.301 | 0.100 | 0.488 |\n\n**Findings**: Most quality is gained by step 600 (PPL drops from 15.16 → 12.05, a 20.5% reduction). Steps 800→1000 yield negligible additional improvement (11.907 → 11.906). The predictor converges rapidly, with ~95% of the gap to final quality closed by step 600."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-w1-results-collection.md"
+}

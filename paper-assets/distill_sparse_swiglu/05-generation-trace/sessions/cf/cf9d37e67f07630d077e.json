@@ -1,0 +1,662 @@
+{
+  "schema_version": "1.0",
+  "id": "cf9d37e67f07630d077e",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "monitor s456 both gpus",
+  "task_key": "worker_monitor_s456_both_gpus_20260517T115154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_s456_both_gpus_20260517T115154.log",
+    "occurrence": 1,
+    "bytes": 51656,
+    "sha256": "a4aa2261f4057862c43e39cacc108a8545ccc054000a4ef70ed82cce1056724e"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 4,
+      "tool_result": 4
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_14/projects/distill_sparse_swiglu",
+                "session_id": "836e73d5-6d55-4787-b870-0489b5c95c2b",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__submit_training_job",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "7242712d-8a18-4b74-89ea-e17bb99e7e93",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-14-projects-distill-sparse-swiglu/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779033000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "71635761-c860-403f-b47a-4bcc94db5da0",
+                "session_id": "836e73d5-6d55-4787-b870-0489b5c95c2b"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the training status on the server first.",
+              "signature": "EvABClkIDRgCKkDGveC2pBMz7hwRf1o7Oc+XZoHOXEC7DRC1ASyjfBKJd1lLT4jMyVJ3iklUrD93jq/CafY7qyI2v+ufHF78jKN4Mg9jbGF1ZGUtb3B1cy00LTY4ABIMxMLK3cretMEaPd0NGgwuOGwTisvIKNETD4IiMH8nW2WBzzW4bPZojJwOzw4PcXaPrSbOF3j/V7QCindTc/jCzjP3jpBAPb7st46CBSpFi+8+zqfBwm9A4rbH2LapFrENWhPnHs+Lej5DAgm+xPHrGwhwVn9kj5U8XiBc7LSmRiFqf7bJnGtAmxRwntk/OhiK3MOSGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "836e73d5-6d55-4787-b870-0489b5c95c2b",
+            "uuid": "df41605c-f2b8-4d41-bd29-3eb31b5cdedd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0159oUvuNHmoqwYeBguvRPxn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14133,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14133
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查两个 s456 训练进程的状态。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "836e73d5-6d55-4787-b870-0489b5c95c2b",
+            "uuid": "cf264bcc-6c48-40e2-adbd-35cfb8d91cf9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0159oUvuNHmoqwYeBguvRPxn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14133,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14133
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A9wUg9Lxbxh5K9f9ia9Xzv",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "836e73d5-6d55-4787-b870-0489b5c95c2b",
+            "uuid": "b293e5ce-087a-42aa-927e-767d112ec9ca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0159oUvuNHmoqwYeBguvRPxn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14133,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14133
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T11:52:08.293Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01A9wUg9Lxbxh5K9f9ia9Xzv",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "836e73d5-6d55-4787-b870-0489b5c95c2b",
+            "uuid": "b569b896-dc45-440b-b027-fba5ee7ece69",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 27
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the training status by running nvidia-smi and checking the processes.",
+              "signature": "Eo0CClkIDRgCKkAU7yshG3ZEcOxPqxGUMkTP1IOCPeJX1ioMVkPlgJPkw3bVswOcqo7OrWhjxlOBhyQMWVeRWTgabSMjiQvBleZPMg9jbGF1ZGUtb3B1cy00LTY4ABIMnvZdC+JLlHPLZKLCGgwRIWNs5mc71/afIZQiMLrkVE3Uq9FmYZ4/Lt56JzmElZkhm0LysVNVbJ3qPvnnpsTPyXL8CcvJyawv0wiHCipitMIhAufzD2YMnjHwXdnWGiXnCXnzY2dh50+j0r5dMa2qZ/ds5GBt/BeJd/yFmfewTIdnLJQebnHQ771YiK5gssulW6v83McnqoyF67gqoubgR16JO4vjtHz+TsEXosRh4Z0YAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "836e73d5-6d55-4787-b870-0489b5c95c2b",
+            "uuid": "baa0cdfa-f503-440b-9e57-3bb315f45761",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TRzh2nKsCpdvx14rodkcxf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 388,
+                "cache_read_input_tokens": 25974,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 388
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SKCpzgNi6nVAFQtUoXC9WK",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-34887",
+                "command": "nvidia-smi && echo \"---PROCESSES---\" && ps aux | grep -E \"35825|36749|s456\" | grep -v grep && echo \"---TMUX---\" && tmux ls 2>/dev/null",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "836e73d5-6d55-4787-b870-0489b5c95c2b",
+            "uuid": "c451e18b-a575-4c80-9943-df35e82ee6dd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TRzh2nKsCpdvx14rodkcxf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 388,
+                "cache_read_input_tokens": 25974,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 388
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T11:52:16.194Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SKCpzgNi6nVAFQtUoXC9WK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Sun May 17 19:52:15 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\\\n| N/A   77C    P0            532W /  600W |   67569MiB /  97887MiB |    100%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\\\n| N/A   79C    P0            541W /  600W |   67569MiB /  97887MiB |    100%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A           35830      C   /root/miniconda3/bin/python           67560MiB |\\\\n|    1   N/A  N/A           36754      C   /root/miniconda3/bin/python           67560MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n---PROCESSES---\\\\nroot      35825  0.0  0.0   4496  3596 pts/0    Ss+  19:44   0:00 bash -c rm -f /tmp/agent-ml-exit/kl50_s456_train.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/distill_sparse_swiglu/kl50_s456_train.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/kl50_s456_train.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/distill_sparse_swiglu/ && export CUDA_VISIBLE_DEVICES=0 && timeout 21600 env bash -c 'bash -c \\\\\\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.5 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/kl_50pct_s456 --wandb_run_name kl_50pct_s456\\\\\\\"'; } > ~/runs/distill_sparse_swiglu/kl50_s456_train.log 2>&1\\\\nroot      35829  0.0  0.0   2800   996 pts/0    S    19:44   0:00 timeout 21600 env bash -c bash -c \\\\\\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.5 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/kl_50pct_s456 --wandb_run_name kl_50pct_s456\\\\\\\"\\\\nroot      35830  103  0.2 104068508 2676716 pts/0 Rl 19:44   8:14 /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.5 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/kl_50pct_s456 --wandb_run_name kl_50pct_s456\\\\nroot      36749  0.0  0.0   4496  3580 pts/1    Ss+  19:48   0:00 bash -c rm -f /tmp/agent-ml-exit/kl30_s456_train.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/distill_sparse_swiglu/kl30_s456_train.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/kl30_s456_train.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/distill_sparse_swiglu/ && export CUDA_VISIBLE_DEVICES=1 && timeout 21600 env bash -c 'bash -c \\\\\\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.3 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/kl_30pct_s456 --wandb_run_name kl_30pct_s456\\\\\\\"'; } > ~/runs/distill_sparse_swiglu/kl30_s456_train.log 2>&1\\\\nroot      36753  0.0  0.0   2800  1024 pts/1    S    19:48   0:00 timeout 21600 env bash -c bash -c \\\\\\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.3 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/kl_30pct_s456 --wandb_run_name kl_30pct_s456\\\\\\\"\\\\nroot      36754  109  0.2 104068492 2580408 pts/1 Rl 19:48   3:35 /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.3 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/kl_30pct_s456 --wandb_run_name kl_30pct_s456\\\\n---TMUX---\\\\nkl30_s456_train: 1 windows (created Sun May 17 19:48:59 2026)\\\\nkl50_s456_train: 1 windows (created Sun May 17 19:44:18 2026)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "836e73d5-6d55-4787-b870-0489b5c95c2b",
+            "uuid": "98bf4b57-4099-46a3-9d0f-92dd2ae62f1e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Sun May 17 19:52:15 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\\\n| N/A   77C    P0            532W /  600W |   67569MiB /  97887MiB |    100%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\\\n| N/A   79C    P0            541W /  600W |   67569MiB /  97887MiB |    100%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A           35830      C   /root/miniconda3/bin/python           67560MiB |\\\\n|    1   N/A  N/A           36754      C   /root/miniconda3/bin/python           67560MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n---PROCESSES---\\\\nroot      35825  0.0  0.0   4496  3596 pts/0    Ss+  19:44   0:00 bash -c rm -f /tmp/agent-ml-exit/kl50_s456_train.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/distill_sparse_swiglu/kl50_s456_train.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/kl50_s456_train.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/distill_sparse_swiglu/ && export CUDA_VISIBLE_DEVICES=0 && timeout 21600 env bash -c 'bash -c \\\\\\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.5 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/kl_50pct_s456 --wandb_run_name kl_50pct_s456\\\\\\\"'; } > ~/runs/distill_sparse_swiglu/kl50_s456_train.log 2>&1\\\\nroot      35829  0.0  0.0   2800   996 pts/0    S    19:44   0:00 timeout 21600 env bash -c bash -c \\\\\\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.5 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/kl_50pct_s456 --wandb_run_name kl_50pct_s456\\\\\\\"\\\\nroot      35830  103  0.2 104068508 2676716 pts/0 Rl 19:44   8:14 /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.5 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/kl_50pct_s456 --wandb_run_name kl_50pct_s456\\\\nroot      36749  0.0  0.0   4496  3580 pts/1    Ss+  19:48   0:00 bash -c rm -f /tmp/agent-ml-exit/kl30_s456_train.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/distill_sparse_swiglu/kl30_s456_train.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/kl30_s456_train.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/distill_sparse_swiglu/ && export CUDA_VISIBLE_DEVICES=1 && timeout 21600 env bash -c 'bash -c \\\\\\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.3 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/kl_30pct_s456 --wandb_run_name kl_30pct_s456\\\\\\\"'; } > ~/runs/distill_sparse_swiglu/kl30_s456_train.log 2>&1\\\\nroot      36753  0.0  0.0   2800  1024 pts/1    S    19:48   0:00 timeout 21600 env bash -c bash -c \\\\\\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.3 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/kl_30pct_s456 --wandb_run_name kl_30pct_s456\\\\\\\"\\\\nroot      36754  109  0.2 104068492 2580408 pts/1 Rl 19:48   3:35 /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.3 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/kl_30pct_s456 --wandb_run_name kl_30pct_s456\\\\n---TMUX---\\\\nkl30_s456_train: 1 windows (created Sun May 17 19:48:59 2026)\\\\nkl50_s456_train: 1 windows (created Sun May 17 19:44:18 2026)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.07}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Sun May 17 19:52:15 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\n| N/A   77C    P0            532W /  600W |   67569MiB /  97887MiB |    100%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\n| N/A   79C    P0            541W /  600W |   67569MiB /  97887MiB |    100%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A           35830      C   /root/miniconda3/bin/python           67560MiB |\\n|    1   N/A  N/A           36754      C   /root/miniconda3/bin/python           67560MiB |\\n+-----------------------------------------------------------------------------------------+\\n---PROCESSES---\\nroot      35825  0.0  0.0   4496  3596 pts/0    Ss+  19:44   0:00 bash -c rm -f /tmp/agent-ml-exit/kl50_s456_train.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/distill_sparse_swiglu/kl50_s456_train.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/kl50_s456_train.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/distill_sparse_swiglu/ && export CUDA_VISIBLE_DEVICES=0 && timeout 21600 env bash -c 'bash -c \\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.5 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/kl_50pct_s456 --wandb_run_name kl_50pct_s456\\\"'; } > ~/runs/distill_sparse_swiglu/kl50_s456_train.log 2>&1\\nroot      35829  0.0  0.0   2800   996 pts/0    S    19:44   0:00 timeout 21600 env bash -c bash -c \\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.5 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/kl_50pct_s456 --wandb_run_name kl_50pct_s456\\\"\\nroot      35830  103  0.2 104068508 2676716 pts/0 Rl 19:44   8:14 /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.5 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/kl_50pct_s456 --wandb_run_name kl_50pct_s456\\nroot      36749  0.0  0.0   4496  3580 pts/1    Ss+  19:48   0:00 bash -c rm -f /tmp/agent-ml-exit/kl30_s456_train.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/distill_sparse_swiglu/kl30_s456_train.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/kl30_s456_train.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/distill_sparse_swiglu/ && export CUDA_VISIBLE_DEVICES=1 && timeout 21600 env bash -c 'bash -c \\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.3 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/kl_30pct_s456 --wandb_run_name kl_30pct_s456\\\"'; } > ~/runs/distill_sparse_swiglu/kl30_s456_train.log 2>&1\\nroot      36753  0.0  0.0   2800  1024 pts/1    S    19:48   0:00 timeout 21600 env bash -c bash -c \\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.3 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/kl_30pct_s456 --wandb_run_name kl_30pct_s456\\\"\\nroot      36754  109  0.2 104068492 2580408 pts/1 Rl 19:48   3:35 /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.3 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 10 --output_dir checkpoints/kl_30pct_s456 --wandb_run_name kl_30pct_s456\\n---TMUX---\\nkl30_s456_train: 1 windows (created Sun May 17 19:48:59 2026)\\nkl50_s456_train: 1 windows (created Sun May 17 19:44:18 2026)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.07}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练都在跑，GPU 利用率 100%。查看日志获取当前进度。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "836e73d5-6d55-4787-b870-0489b5c95c2b",
+            "uuid": "1931baf0-c08e-45d4-95a2-1628325960ab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GjfVjztpqzLRFZv5G77drS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2591,
+                "cache_read_input_tokens": 26362,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2591
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016nt4nNiCxgtvDQfeDx6vgw",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-34887",
+                "command": "tail -30 ~/runs/distill_sparse_swiglu/kl50_s456_train.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "836e73d5-6d55-4787-b870-0489b5c95c2b",
+            "uuid": "2a3c7c39-4f7b-4aeb-8e26-13d2339482e9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GjfVjztpqzLRFZv5G77drS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2591,
+                "cache_read_input_tokens": 26362,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2591
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ArbuMKirrasa5h86uDwAnz",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-34887",
+                "command": "tail -30 ~/runs/distill_sparse_swiglu/kl30_s456_train.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "836e73d5-6d55-4787-b870-0489b5c95c2b",
+            "uuid": "11b3c634-c9a7-4cdb-837c-02dd26591ab9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GjfVjztpqzLRFZv5G77drS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2591,
+                "cache_read_input_tokens": 26362,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2591
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T11:52:21.913Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016nt4nNiCxgtvDQfeDx6vgw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Gradient checkpointing enabled\\\\nKL-normalized Lagrangian: lambda=1.0, target=0.5, margin=0.02, update=every_step, growth=2.0x, decay=0.5x, cap=1000.0\\\\n[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n[Step 1/1000] loss=1.117188 kl_raw=1.1094 kl_norm=1.109375 constraint=0.005432 sparsity=0.406 lambda=2.00 tau=0.999 lr=1.00e-05\\\\n  [Lambda] 1.00 -> 2.00\\\\n[Step 10/1000] loss=3.765625 kl_raw=0.9805 kl_norm=0.980469 constraint=2.781250 sparsity=0.406 lambda=1000.00 tau=0.991 lr=1.00e-04\\\\n  [Lambda] 512.00 -> 1000.00\\\\n[Step 20/1000] loss=5.656250 kl_raw=0.7852 kl_norm=0.785156 constraint=4.875000 sparsity=0.410 lambda=1000.00 tau=0.982 lr=2.00e-04\\\\n[Step 30/1000] loss=1.671875 kl_raw=0.7227 kl_norm=0.722656 constraint=0.945312 sparsity=0.449 lambda=1000.00 tau=0.973 lr=3.00e-04\\\\n[Step 40/1000] loss=0.800781 kl_raw=0.7930 kl_norm=0.792969 constraint=0.007874 sparsity=0.531 lambda=31.25 tau=0.964 lr=4.00e-04\\\\n  [Lambda] 62.50 -> 31.25\\\\n[Step 50/1000] loss=0.640625 kl_raw=0.6406 kl_norm=0.640625 constraint=0.000000 sparsity=0.516 lambda=0.24 tau=0.955 lr=5.00e-04\\\\n[Step 60/1000] loss=0.546875 kl_raw=0.5469 kl_norm=0.546875 constraint=0.000000 sparsity=0.500 lambda=0.24 tau=0.946 lr=6.00e-04\\\\n[Step 70/1000] loss=0.515625 kl_raw=0.5156 kl_norm=0.515625 constraint=0.000000 sparsity=0.488 lambda=0.24 tau=0.937 lr=7.00e-04\\\\n[Step 80/1000] loss=0.490234 kl_raw=0.4902 kl_norm=0.490234 constraint=0.000212 sparsity=0.473 lambda=7.81 tau=0.928 lr=8.00e-04\\\\n  [Lambda] 3.91 -> 7.81\\\\n[Step 90/1000] loss=0.490234 kl_raw=0.4902 kl_norm=0.490234 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.919 lr=9.00e-04\\\\n[Step 100/1000] loss=0.478516 kl_raw=0.4785 kl_norm=0.478516 constraint=0.000000 sparsity=0.500 lambda=1000.00 tau=0.910 lr=1.00e-03\\\\n[Step 110/1000] loss=0.445312 kl_raw=0.4453 kl_norm=0.445312 constraint=0.000000 sparsity=0.484 lambda=1000.00 tau=0.901 lr=1.00e-03\\\\n[Step 120/1000] loss=0.427734 kl_raw=0.4277 kl_norm=0.427734 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.892 lr=9.99e-04\\\\n[Step 130/1000] loss=0.427734 kl_raw=0.4277 kl_norm=0.427734 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.883 lr=9.97e-04\\\\n[Step 140/1000] loss=0.441406 kl_raw=0.4414 kl_norm=0.441406 constraint=0.000000 sparsity=0.484 lambda=1000.00 tau=0.874 lr=9.95e-04\\\\n[Step 150/1000] loss=0.382812 kl_raw=0.3828 kl_norm=0.382812 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.865 lr=9.92e-04\\\\n[Step 160/1000] loss=0.349609 kl_raw=0.3496 kl_norm=0.349609 constraint=0.000000 sparsity=0.492 lambda=1000.00 tau=0.856 lr=9.89e-04\\\\n[Step 170/1000] loss=0.357422 kl_raw=0.3574 kl_norm=0.357422 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.847 lr=9.85e-04\\\\n[Step 180/1000] loss=0.320312 kl_raw=0.3203 kl_norm=0.320312 constraint=0.000000 sparsity=0.492 lambda=1000.00 tau=0.838 lr=9.81e-04\\\\n[Step 190/1000] loss=0.332031 kl_raw=0.3320 kl_norm=0.332031 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.829 lr=9.76e-04\\\\n[Step 200/1000] loss=0.423828 kl_raw=0.4238 kl_norm=0.423828 constraint=0.000000 sparsity=0.492 lambda=1000.00 tau=0.820 lr=9.70e-04\\\\n[Step 210/1000] loss=0.343750 kl_raw=0.3438 kl_norm=0.343750 constraint=0.000000 sparsity=0.484 lambda=1000.00 tau=0.811 lr=9.64e-04\\\\n[Step 220/1000] loss=0.337891 kl_raw=0.3379 kl_norm=0.337891 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.802 lr=9.57e-04\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "836e73d5-6d55-4787-b870-0489b5c95c2b",
+            "uuid": "958cb37d-4773-47cd-8a45-87d26ea62733",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Gradient checkpointing enabled\\\\nKL-normalized Lagrangian: lambda=1.0, target=0.5, margin=0.02, update=every_step, growth=2.0x, decay=0.5x, cap=1000.0\\\\n[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n[Step 1/1000] loss=1.117188 kl_raw=1.1094 kl_norm=1.109375 constraint=0.005432 sparsity=0.406 lambda=2.00 tau=0.999 lr=1.00e-05\\\\n  [Lambda] 1.00 -> 2.00\\\\n[Step 10/1000] loss=3.765625 kl_raw=0.9805 kl_norm=0.980469 constraint=2.781250 sparsity=0.406 lambda=1000.00 tau=0.991 lr=1.00e-04\\\\n  [Lambda] 512.00 -> 1000.00\\\\n[Step 20/1000] loss=5.656250 kl_raw=0.7852 kl_norm=0.785156 constraint=4.875000 sparsity=0.410 lambda=1000.00 tau=0.982 lr=2.00e-04\\\\n[Step 30/1000] loss=1.671875 kl_raw=0.7227 kl_norm=0.722656 constraint=0.945312 sparsity=0.449 lambda=1000.00 tau=0.973 lr=3.00e-04\\\\n[Step 40/1000] loss=0.800781 kl_raw=0.7930 kl_norm=0.792969 constraint=0.007874 sparsity=0.531 lambda=31.25 tau=0.964 lr=4.00e-04\\\\n  [Lambda] 62.50 -> 31.25\\\\n[Step 50/1000] loss=0.640625 kl_raw=0.6406 kl_norm=0.640625 constraint=0.000000 sparsity=0.516 lambda=0.24 tau=0.955 lr=5.00e-04\\\\n[Step 60/1000] loss=0.546875 kl_raw=0.5469 kl_norm=0.546875 constraint=0.000000 sparsity=0.500 lambda=0.24 tau=0.946 lr=6.00e-04\\\\n[Step 70/1000] loss=0.515625 kl_raw=0.5156 kl_norm=0.515625 constraint=0.000000 sparsity=0.488 lambda=0.24 tau=0.937 lr=7.00e-04\\\\n[Step 80/1000] loss=0.490234 kl_raw=0.4902 kl_norm=0.490234 constraint=0.000212 sparsity=0.473 lambda=7.81 tau=0.928 lr=8.00e-04\\\\n  [Lambda] 3.91 -> 7.81\\\\n[Step 90/1000] loss=0.490234 kl_raw=0.4902 kl_norm=0.490234 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.919 lr=9.00e-04\\\\n[Step 100/1000] loss=0.478516 kl_raw=0.4785 kl_norm=0.478516 constraint=0.000000 sparsity=0.500 lambda=1000.00 tau=0.910 lr=1.00e-03\\\\n[Step 110/1000] loss=0.445312 kl_raw=0.4453 kl_norm=0.445312 constraint=0.000000 sparsity=0.484 lambda=1000.00 tau=0.901 lr=1.00e-03\\\\n[Step 120/1000] loss=0.427734 kl_raw=0.4277 kl_norm=0.427734 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.892 lr=9.99e-04\\\\n[Step 130/1000] loss=0.427734 kl_raw=0.4277 kl_norm=0.427734 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.883 lr=9.97e-04\\\\n[Step 140/1000] loss=0.441406 kl_raw=0.4414 kl_norm=0.441406 constraint=0.000000 sparsity=0.484 lambda=1000.00 tau=0.874 lr=9.95e-04\\\\n[Step 150/1000] loss=0.382812 kl_raw=0.3828 kl_norm=0.382812 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.865 lr=9.92e-04\\\\n[Step 160/1000] loss=0.349609 kl_raw=0.3496 kl_norm=0.349609 constraint=0.000000 sparsity=0.492 lambda=1000.00 tau=0.856 lr=9.89e-04\\\\n[Step 170/1000] loss=0.357422 kl_raw=0.3574 kl_norm=0.357422 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.847 lr=9.85e-04\\\\n[Step 180/1000] loss=0.320312 kl_raw=0.3203 kl_norm=0.320312 constraint=0.000000 sparsity=0.492 lambda=1000.00 tau=0.838 lr=9.81e-04\\\\n[Step 190/1000] loss=0.332031 kl_raw=0.3320 kl_norm=0.332031 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.829 lr=9.76e-04\\\\n[Step 200/1000] loss=0.423828 kl_raw=0.4238 kl_norm=0.423828 constraint=0.000000 sparsity=0.492 lambda=1000.00 tau=0.820 lr=9.70e-04\\\\n[Step 210/1000] loss=0.343750 kl_raw=0.3438 kl_norm=0.343750 constraint=0.000000 sparsity=0.484 lambda=1000.00 tau=0.811 lr=9.64e-04\\\\n[Step 220/1000] loss=0.337891 kl_raw=0.3379 kl_norm=0.337891 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.802 lr=9.57e-04\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Gradient checkpointing enabled\\nKL-normalized Lagrangian: lambda=1.0, target=0.5, margin=0.02, update=every_step, growth=2.0x, decay=0.5x, cap=1000.0\\n[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\n[Step 1/1000] loss=1.117188 kl_raw=1.1094 kl_norm=1.109375 constraint=0.005432 sparsity=0.406 lambda=2.00 tau=0.999 lr=1.00e-05\\n  [Lambda] 1.00 -> 2.00\\n[Step 10/1000] loss=3.765625 kl_raw=0.9805 kl_norm=0.980469 constraint=2.781250 sparsity=0.406 lambda=1000.00 tau=0.991 lr=1.00e-04\\n  [Lambda] 512.00 -> 1000.00\\n[Step 20/1000] loss=5.656250 kl_raw=0.7852 kl_norm=0.785156 constraint=4.875000 sparsity=0.410 lambda=1000.00 tau=0.982 lr=2.00e-04\\n[Step 30/1000] loss=1.671875 kl_raw=0.7227 kl_norm=0.722656 constraint=0.945312 sparsity=0.449 lambda=1000.00 tau=0.973 lr=3.00e-04\\n[Step 40/1000] loss=0.800781 kl_raw=0.7930 kl_norm=0.792969 constraint=0.007874 sparsity=0.531 lambda=31.25 tau=0.964 lr=4.00e-04\\n  [Lambda] 62.50 -> 31.25\\n[Step 50/1000] loss=0.640625 kl_raw=0.6406 kl_norm=0.640625 constraint=0.000000 sparsity=0.516 lambda=0.24 tau=0.955 lr=5.00e-04\\n[Step 60/1000] loss=0.546875 kl_raw=0.5469 kl_norm=0.546875 constraint=0.000000 sparsity=0.500 lambda=0.24 tau=0.946 lr=6.00e-04\\n[Step 70/1000] loss=0.515625 kl_raw=0.5156 kl_norm=0.515625 constraint=0.000000 sparsity=0.488 lambda=0.24 tau=0.937 lr=7.00e-04\\n[Step 80/1000] loss=0.490234 kl_raw=0.4902 kl_norm=0.490234 constraint=0.000212 sparsity=0.473 lambda=7.81 tau=0.928 lr=8.00e-04\\n  [Lambda] 3.91 -> 7.81\\n[Step 90/1000] loss=0.490234 kl_raw=0.4902 kl_norm=0.490234 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.919 lr=9.00e-04\\n[Step 100/1000] loss=0.478516 kl_raw=0.4785 kl_norm=0.478516 constraint=0.000000 sparsity=0.500 lambda=1000.00 tau=0.910 lr=1.00e-03\\n[Step 110/1000] loss=0.445312 kl_raw=0.4453 kl_norm=0.445312 constraint=0.000000 sparsity=0.484 lambda=1000.00 tau=0.901 lr=1.00e-03\\n[Step 120/1000] loss=0.427734 kl_raw=0.4277 kl_norm=0.427734 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.892 lr=9.99e-04\\n[Step 130/1000] loss=0.427734 kl_raw=0.4277 kl_norm=0.427734 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.883 lr=9.97e-04\\n[Step 140/1000] loss=0.441406 kl_raw=0.4414 kl_norm=0.441406 constraint=0.000000 sparsity=0.484 lambda=1000.00 tau=0.874 lr=9.95e-04\\n[Step 150/1000] loss=0.382812 kl_raw=0.3828 kl_norm=0.382812 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.865 lr=9.92e-04\\n[Step 160/1000] loss=0.349609 kl_raw=0.3496 kl_norm=0.349609 constraint=0.000000 sparsity=0.492 lambda=1000.00 tau=0.856 lr=9.89e-04\\n[Step 170/1000] loss=0.357422 kl_raw=0.3574 kl_norm=0.357422 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.847 lr=9.85e-04\\n[Step 180/1000] loss=0.320312 kl_raw=0.3203 kl_norm=0.320312 constraint=0.000000 sparsity=0.492 lambda=1000.00 tau=0.838 lr=9.81e-04\\n[Step 190/1000] loss=0.332031 kl_raw=0.3320 kl_norm=0.332031 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.829 lr=9.76e-04\\n[Step 200/1000] loss=0.423828 kl_raw=0.4238 kl_norm=0.423828 constraint=0.000000 sparsity=0.492 lambda=1000.00 tau=0.820 lr=9.70e-04\\n[Step 210/1000] loss=0.343750 kl_raw=0.3438 kl_norm=0.343750 constraint=0.000000 sparsity=0.484 lambda=1000.00 tau=0.811 lr=9.64e-04\\n[Step 220/1000] loss=0.337891 kl_raw=0.3379 kl_norm=0.337891 constraint=0.000000 sparsity=0.480 lambda=1000.00 tau=0.802 lr=9.57e-04\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T11:52:23.900Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ArbuMKirrasa5h86uDwAnz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model from /root/autodl-tmp/models/llama-3.1-8b ...\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:46,  6.25it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:50,  5.76it/s]\\\\rLoading weights:   4%|▍         | 13/291 [00:00<00:07, 39.10it/s]\\\\rLoading weights:   8%|▊         | 23/291 [00:00<00:04, 57.13it/s]\\\\rLoading weights:  11%|█▏        | 33/291 [00:00<00:03, 69.47it/s]\\\\rLoading weights:  16%|█▌        | 47/291 [00:00<00:02, 90.14it/s]\\\\rLoading weights:  20%|█▉        | 57/291 [00:00<00:03, 76.76it/s]\\\\rLoading weights:  26%|██▋       | 77/291 [00:01<00:02, 105.59it/s]\\\\rLoading weights:  31%|███       | 90/291 [00:01<00:01, 110.96it/s]\\\\rLoading weights:  35%|███▌      | 103/291 [00:01<00:01, 112.51it/s]\\\\rLoading weights:  40%|███▉      | 115/291 [00:01<00:03, 50.47it/s] \\\\rLoading weights:  63%|██████▎   | 182/291 [00:01<00:00, 141.58it/s]\\\\rLoading weights:  72%|█���█████▏  | 209/291 [00:02<00:00, 97.77it/s] \\\\rLoading weights:  86%|████████▌ | 249/291 [00:02<00:00, 132.76it/s]\\\\rLoading weights:  94%|█████████▍| 273/291 [00:02<00:00, 143.39it/s]\\\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 103.03it/s]\\\\nInitializing predictor wrapper ...\\\\nUsing Gumbel-sigmoid relaxation\\\\nSetting up data loader ...\\\\nTrainable: 75,960,320 / 8,030,261,248 (0.946%)\\\\nGradient checkpointing enabled\\\\nKL-normalized Lagrangian: lambda=1.0, target=0.3, margin=0.02, update=every_step, growth=2.0x, decay=0.5x, cap=5000.0\\\\n[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n[Step 1/1000] loss=1.117188 kl_raw=1.1094 kl_norm=1.109375 constraint=0.007477 sparsity=0.406 lambda=0.50 tau=0.999 lr=1.00e-05\\\\n  [Lambda] 1.00 -> 0.50\\\\n[Step 10/1000] loss=0.980469 kl_raw=0.9805 kl_norm=0.980469 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.991 lr=1.00e-04\\\\n[Step 20/1000] loss=0.761719 kl_raw=0.7617 kl_norm=0.761719 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.982 lr=2.00e-04\\\\n[Step 30/1000] loss=0.539062 kl_raw=0.5391 kl_norm=0.539062 constraint=0.000068 sparsity=0.402 lambda=0.01 tau=0.973 lr=3.00e-04\\\\n[Step 40/1000] loss=0.414062 kl_raw=0.4141 kl_norm=0.414062 constraint=0.000068 sparsity=0.402 lambda=0.01 tau=0.964 lr=4.00e-04\\\\n[Step 50/1000] loss=0.410156 kl_raw=0.4102 kl_norm=0.410156 constraint=0.000062 sparsity=0.398 lambda=0.01 tau=0.955 lr=5.00e-04\\\\n[Step 60/1000] loss=0.361328 kl_raw=0.3613 kl_norm=0.361328 constraint=0.000050 sparsity=0.391 lambda=0.01 tau=0.946 lr=6.00e-04\\\\n[Step 70/1000] loss=0.349609 kl_raw=0.3496 kl_norm=0.349609 constraint=0.000040 sparsity=0.383 lambda=0.01 tau=0.937 lr=7.00e-04\\\\n[Step 80/1000] loss=0.343750 kl_raw=0.3438 kl_norm=0.343750 constraint=0.000031 sparsity=0.375 lambda=0.01 tau=0.928 lr=8.00e-04\\\\n[Step 90/1000] loss=0.324219 kl_raw=0.3242 kl_norm=0.324219 constraint=0.000019 sparsity=0.363 lambda=0.01 tau=0.919 lr=9.00e-04\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.97}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "836e73d5-6d55-4787-b870-0489b5c95c2b",
+            "uuid": "763ab59c-3ff1-4e94-aa85-e90f4f386b02",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading model from /root/autodl-tmp/models/llama-3.1-8b ...\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:46,  6.25it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:50,  5.76it/s]\\\\rLoading weights:   4%|▍         | 13/291 [00:00<00:07, 39.10it/s]\\\\rLoading weights:   8%|▊         | 23/291 [00:00<00:04, 57.13it/s]\\\\rLoading weights:  11%|█▏        | 33/291 [00:00<00:03, 69.47it/s]\\\\rLoading weights:  16%|█▌        | 47/291 [00:00<00:02, 90.14it/s]\\\\rLoading weights:  20%|█▉        | 57/291 [00:00<00:03, 76.76it/s]\\\\rLoading weights:  26%|██▋       | 77/291 [00:01<00:02, 105.59it/s]\\\\rLoading weights:  31%|███       | 90/291 [00:01<00:01, 110.96it/s]\\\\rLoading weights:  35%|███▌      | 103/291 [00:01<00:01, 112.51it/s]\\\\rLoading weights:  40%|███▉      | 115/291 [00:01<00:03, 50.47it/s] \\\\rLoading weights:  63%|██████▎   | 182/291 [00:01<00:00, 141.58it/s]\\\\rLoading weights:  72%|█���█████▏  | 209/291 [00:02<00:00, 97.77it/s] \\\\rLoading weights:  86%|████████▌ | 249/291 [00:02<00:00, 132.76it/s]\\\\rLoading weights:  94%|█████████▍| 273/291 [00:02<00:00, 143.39it/s]\\\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 103.03it/s]\\\\nInitializing predictor wrapper ...\\\\nUsing Gumbel-sigmoid relaxation\\\\nSetting up data loader ...\\\\nTrainable: 75,960,320 / 8,030,261,248 (0.946%)\\\\nGradient checkpointing enabled\\\\nKL-normalized Lagrangian: lambda=1.0, target=0.3, margin=0.02, update=every_step, growth=2.0x, decay=0.5x, cap=5000.0\\\\n[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\\\n[Step 1/1000] loss=1.117188 kl_raw=1.1094 kl_norm=1.109375 constraint=0.007477 sparsity=0.406 lambda=0.50 tau=0.999 lr=1.00e-05\\\\n  [Lambda] 1.00 -> 0.50\\\\n[Step 10/1000] loss=0.980469 kl_raw=0.9805 kl_norm=0.980469 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.991 lr=1.00e-04\\\\n[Step 20/1000] loss=0.761719 kl_raw=0.7617 kl_norm=0.761719 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.982 lr=2.00e-04\\\\n[Step 30/1000] loss=0.539062 kl_raw=0.5391 kl_norm=0.539062 constraint=0.000068 sparsity=0.402 lambda=0.01 tau=0.973 lr=3.00e-04\\\\n[Step 40/1000] loss=0.414062 kl_raw=0.4141 kl_norm=0.414062 constraint=0.000068 sparsity=0.402 lambda=0.01 tau=0.964 lr=4.00e-04\\\\n[Step 50/1000] loss=0.410156 kl_raw=0.4102 kl_norm=0.410156 constraint=0.000062 sparsity=0.398 lambda=0.01 tau=0.955 lr=5.00e-04\\\\n[Step 60/1000] loss=0.361328 kl_raw=0.3613 kl_norm=0.361328 constraint=0.000050 sparsity=0.391 lambda=0.01 tau=0.946 lr=6.00e-04\\\\n[Step 70/1000] loss=0.349609 kl_raw=0.3496 kl_norm=0.349609 constraint=0.000040 sparsity=0.383 lambda=0.01 tau=0.937 lr=7.00e-04\\\\n[Step 80/1000] loss=0.343750 kl_raw=0.3438 kl_norm=0.343750 constraint=0.000031 sparsity=0.375 lambda=0.01 tau=0.928 lr=8.00e-04\\\\n[Step 90/1000] loss=0.324219 kl_raw=0.3242 kl_norm=0.324219 constraint=0.000019 sparsity=0.363 lambda=0.01 tau=0.919 lr=9.00e-04\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.97}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading model from /root/autodl-tmp/models/llama-3.1-8b ...\\n\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/291 [00:00<00:46,  6.25it/s]\\rLoading weights:   1%|          | 2/291 [00:00<00:50,  5.76it/s]\\rLoading weights:   4%|▍         | 13/291 [00:00<00:07, 39.10it/s]\\rLoading weights:   8%|▊         | 23/291 [00:00<00:04, 57.13it/s]\\rLoading weights:  11%|█▏        | 33/291 [00:00<00:03, 69.47it/s]\\rLoading weights:  16%|█▌        | 47/291 [00:00<00:02, 90.14it/s]\\rLoading weights:  20%|█▉        | 57/291 [00:00<00:03, 76.76it/s]\\rLoading weights:  26%|██▋       | 77/291 [00:01<00:02, 105.59it/s]\\rLoading weights:  31%|███       | 90/291 [00:01<00:01, 110.96it/s]\\rLoading weights:  35%|███▌      | 103/291 [00:01<00:01, 112.51it/s]\\rLoading weights:  40%|███▉      | 115/291 [00:01<00:03, 50.47it/s] \\rLoading weights:  63%|██████▎   | 182/291 [00:01<00:00, 141.58it/s]\\rLoading weights:  72%|█���█████▏  | 209/291 [00:02<00:00, 97.77it/s] \\rLoading weights:  86%|████████▌ | 249/291 [00:02<00:00, 132.76it/s]\\rLoading weights:  94%|█████████▍| 273/291 [00:02<00:00, 143.39it/s]\\rLoading weights: 100%|██████████| 291/291 [00:02<00:00, 103.03it/s]\\nInitializing predictor wrapper ...\\nUsing Gumbel-sigmoid relaxation\\nSetting up data loader ...\\nTrainable: 75,960,320 / 8,030,261,248 (0.946%)\\nGradient checkpointing enabled\\nKL-normalized Lagrangian: lambda=1.0, target=0.3, margin=0.02, update=every_step, growth=2.0x, decay=0.5x, cap=5000.0\\n[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.\\n[Step 1/1000] loss=1.117188 kl_raw=1.1094 kl_norm=1.109375 constraint=0.007477 sparsity=0.406 lambda=0.50 tau=0.999 lr=1.00e-05\\n  [Lambda] 1.00 -> 0.50\\n[Step 10/1000] loss=0.980469 kl_raw=0.9805 kl_norm=0.980469 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.991 lr=1.00e-04\\n[Step 20/1000] loss=0.761719 kl_raw=0.7617 kl_norm=0.761719 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.982 lr=2.00e-04\\n[Step 30/1000] loss=0.539062 kl_raw=0.5391 kl_norm=0.539062 constraint=0.000068 sparsity=0.402 lambda=0.01 tau=0.973 lr=3.00e-04\\n[Step 40/1000] loss=0.414062 kl_raw=0.4141 kl_norm=0.414062 constraint=0.000068 sparsity=0.402 lambda=0.01 tau=0.964 lr=4.00e-04\\n[Step 50/1000] loss=0.410156 kl_raw=0.4102 kl_norm=0.410156 constraint=0.000062 sparsity=0.398 lambda=0.01 tau=0.955 lr=5.00e-04\\n[Step 60/1000] loss=0.361328 kl_raw=0.3613 kl_norm=0.361328 constraint=0.000050 sparsity=0.391 lambda=0.01 tau=0.946 lr=6.00e-04\\n[Step 70/1000] loss=0.349609 kl_raw=0.3496 kl_norm=0.349609 constraint=0.000040 sparsity=0.383 lambda=0.01 tau=0.937 lr=7.00e-04\\n[Step 80/1000] loss=0.343750 kl_raw=0.3438 kl_norm=0.343750 constraint=0.000031 sparsity=0.375 lambda=0.01 tau=0.928 lr=8.00e-04\\n[Step 90/1000] loss=0.324219 kl_raw=0.3242 kl_norm=0.324219 constraint=0.000019 sparsity=0.363 lambda=0.01 tau=0.919 lr=9.00e-04\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.97}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/worker-executions/monitor-s456-both-gpus.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b289d8272cae7bd08c2b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "diag westd34887 qwen14b v4",
+  "task_key": "worker_diag_westd34887_qwen14b_v4_20260524T091252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_westd34887_qwen14b_v4_20260524T091252_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "1422f2080ab6eb274c4b8be826f72f9050cecbd283a973d079e7a29ba3d1c5cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。汇总：\n\n---\n\n**Checkpoint**: 存在  \n- 路径: `/root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s123/` (224MB)  \n- 基础模型: `/root/autodl-tmp/models/qwen2.5-14b/` (28GB)\n\n**v4 结果**: **已完成** — `results.json` 存在，GSM8K exact_match = **34.72%** (timestamp 2026-05-24 08:43:05)\n\n**磁盘**:\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| / (根) | 30G | 22G | 8.7G | 72% |\n| /root/autodl-tmp (数据盘) | 250G | 70G | 181G | 28% |\n\n**网络**: \n- 直连 HuggingFace: 不可达（超时）\n- `source /etc/network_turbo` 后: **可达** (HTTP 200)\n- hf-mirror.com: 可达\n\n**GPU**: 2× NVIDIA RTX PRO 6000 Blackwell (98GB each), 0% 利用率, 0MB 显存占用\n\n**残留进程**: 无 gsm8k/lm_eval 相关进程\n\n**tmux**: 无活跃 session\n\n---\n\n**结论**: v4 实验已成功完成，无需重跑。GSM8K eval 结果 34.72%。如需重跑其他 seed/配置，环境条件具备（GPU 空闲、磁盘充足、网络需先 `source /etc/network_turbo`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-westd34887-qwen14b-v4.md"
+}

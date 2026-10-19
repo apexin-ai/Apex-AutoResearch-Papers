@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9542120ebbb2051a3e8c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code c4 eval patch",
+  "task_key": "worker_code_c4_eval_patch_20260517T173958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_c4_eval_patch_20260517T173958_result.json",
+    "occurrence": 1,
+    "bytes": 424,
+    "sha256": "5ebd4d3a7a76e47fed80b3761f603752d9c1e45c24ee381848789b99cb3c7a77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`benchmark_eval.py` 已添加 C4 PPL 支持：\n\n- 新增 `run_c4_ppl()` 函数（L247-249），调用 `get_eval_dataset(\"c4\", ...)`\n- `main()` 中新增 `do_c4` 标志（L318）和对应的 eval 执行块（L398-404）\n- unknown task 过滤已更新，`\"c4\"` 不再触发 warning\n- import 和 `--help` 验证通过\n\n使用方式：`python src/benchmark_eval.py --exp_id xxx --tasks c4 ...`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-c4-eval-patch.md"
+}

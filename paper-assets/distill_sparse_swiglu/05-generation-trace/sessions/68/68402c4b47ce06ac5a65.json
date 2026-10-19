@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68402c4b47ce06ac5a65",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops 34887 eval monitor and submit",
+  "task_key": "worker_ops_34887-eval-monitor-and-submit_20260518T174309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_34887-eval-monitor-and-submit_20260518T174309_result.json",
+    "occurrence": 1,
+    "bytes": 599,
+    "sha256": "36e0d0f93b5a75614e3ab02142047e304fd2c03392dda9d3e80d22fbd176258b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 1 完成摘要：\n\n| 项目 | 状态 |\n|------|------|\n| kl_sparsity35_s42_eval_teal (34887 cuda:0) | RUNNING, cron 已注册, GSM8K ~58% |\n| kl_sparsity45_s42_eval_teal (34887 cuda:1) | RUNNING, cron 已注册, GSM8K ~61% |\n| bce_30pct_s42_eval (41718) | 已在 41718 运行中, GSM8K ~68% |\n\nCheckpoint 可用性：\n- **34887**: kl_sparsity35_s42 ✓, kl_sparsity45_s42 ✓ (可提交 uniform)\n- **34887 缺失**: bce_30pct_s42, kl_sparsity25_s42, kl_sparsity40_s42\n- **41718 有**: bce_30pct_s42, kl_sparsity25_s42/s123\n\n~4.5 分钟后自动检查完成状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-34887-eval-monitor-and-submit.md"
+}

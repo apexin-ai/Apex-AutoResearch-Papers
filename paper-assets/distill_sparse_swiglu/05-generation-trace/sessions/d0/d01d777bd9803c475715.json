@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d01d777bd9803c475715",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops gpu status check urgent",
+  "task_key": "worker_ops_gpu-status-check-urgent_20260518T054419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-check-urgent_20260518T054419_result.json",
+    "occurrence": 1,
+    "bytes": 1296,
+    "sha256": "01ce07979c3295885be7666b6dd148e8e211fab6487d24d12233129a718a6801"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "kl50_s456_train launched successfully on cuda:1.\n\n## 状态汇报\n\n```\nwestd-34887 cuda:0: IDLE          | util 100%* | VRAM 0G  | kl50_s123_eval 已完成\nwestd-34887 cuda:1: PID 2589      | util 100%  | VRAM 66G | kl_50pct_s456 训练中 (step 10/1000) ← 刚提交\nwestd-41718 cuda:0: IDLE          | util 0%    | VRAM 0G  | c4_ood_kl30_s123 崩溃\nwestd-41718 cuda:1: IDLE          | util 0%    | VRAM 0G  | c4_ood_dense_baseline 崩溃\n```\n\n\\* cuda:0 显示 100% util 但 0MiB 无进程，driver artifact。\n\n### 崩溃原因\n\n| 实验 | 原因 |\n|---|---|\n| **kl50_s456_train** (westd-34887) | OOM，与另一进程抢同卡。已用 `WANDB_MODE=offline` 重新提交，当前正常运行 |\n| **kl30_s456_reeval** (westd-34887) | MMLU eval 进行到 ~85% 时被 kill。仅保存 PPL=8.9332，无 benchmark 结果 |\n| **c4_ood_kl30_s123** (westd-41718) | `run_c4_ppl()` 调 HF Hub 时 httpx client closed。C4 数据集在缓存中但代码仍尝试 HTTP 验证 |\n| **c4_ood_dense_baseline** (westd-41718) | 同上 |\n\n### 待决策\n\n1. **westd-34887 cuda:0** 空闲：是否重跑 kl30_s456_reeval？\n2. **westd-41718 两卡空闲**：C4 OOD eval 需加 `HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1` 重提交。需要原始启动命令来修复重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-urgent.md"
+}

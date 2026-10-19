@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.0",
+  "id": "ecca6ce938901292c42f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "writing related work",
+  "task_key": "worker_writing_related-work_20260516T022632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_related-work_20260516T022632_result.json",
+    "occurrence": 1,
+    "bytes": 3821,
+    "sha256": "9598e04d705431da718db3ff21313e9701e63fc8cc3fe8d911e25c6be0d1f78f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"artifact_id\": \"art_20260516_c10e4f\",\n  \"file\": \"artifacts/_project/paper/related_work.tex\",\n  \"sections\": 5,\n  \"structure\": [\n    {\"paragraph\": \"Training-Free Activation Sparsity\", \"papers\": [\"TEAL\", \"WINA\", \"R-Sparse\", \"CATS\", \"Amber Pruner\", \"DIP\"], \"role\": \"background\"},\n    {\"paragraph\": \"KL Distillation for Model Compression\", \"papers\": [\"Minitron\", \"Instruction-Following Pruning\", \"KL-guided hybrid attention\"], \"role\": \"method_background\"},\n    {\"paragraph\": \"Learned Contextual Sparsity Predictors\", \"papers\": [\"DejaVu\", \"ShadowLLM\", \"FastForward\"], \"role\": \"direct_comparison\"},\n    {\"paragraph\": \"Distribution-Coupled Sparsity Correction\", \"papers\": [\"SPON\"], \"role\": \"closest_prior_work\"},\n    {\"paragraph\": \"Perplexity--Downstream Disconnect\", \"papers\": [\"Khanal & Capone 2024\", \"Xu et al. 2024\", \"Siam et al. 2026\"], \"role\": \"evaluation_motivation\"}\n  ],\n  \"estimated_length_pages\": 1.2,\n  \"taxonomy_referenced\": true,\n  \"framing_constraints_applied\": {\n    \"BCE_as_objective_mismatch\": true,\n    \"SPON_as_marginal_complement\": true,\n    \"no_first_to_claim\": true\n  },\n  \"placeholder_citekeys\": [\n    \"liu2025teal\", \"wina2025\", \"zhang2025rsparse\", \"lee2024cats\",\n    \"an2025amber\", \"federici2025dip\", \"muralidharan2024minitron\",\n    \"hou2025ifp\", \"distill2025hybrid\", \"liu2023dejavu\",\n    \"akhauri2024shadowllm\", \"gautam2026fastforward\", \"xu2026spon\",\n    \"khanal2024ppl\", \"xu2024sparsity\", \"siam2026type2\"\n  ]\n}\n```\n\n5 段落，覆盖 16 篇文献，约 1.2 页。核心 framing 约束已全部遵守：BCE 用 \"objective mismatch\"，SPON 用 \"orthogonal to and substantially smaller than\"（marginal complement），无 \"first to\" 声明。Taxonomy 在开头段引用并在 SPON 段闭合（\"fills the remaining cell\"）。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "artifact_id": "art_20260516_c10e4f",
+              "file": "artifacts/_project/paper/related_work.tex",
+              "sections": 5,
+              "structure": [
+                {
+                  "paragraph": "Training-Free Activation Sparsity",
+                  "papers": [
+                    "TEAL",
+                    "WINA",
+                    "R-Sparse",
+                    "CATS",
+                    "Amber Pruner",
+                    "DIP"
+                  ],
+                  "role": "background"
+                },
+                {
+                  "paragraph": "KL Distillation for Model Compression",
+                  "papers": [
+                    "Minitron",
+                    "Instruction-Following Pruning",
+                    "KL-guided hybrid attention"
+                  ],
+                  "role": "method_background"
+                },
+                {
+                  "paragraph": "Learned Contextual Sparsity Predictors",
+                  "papers": [
+                    "DejaVu",
+                    "ShadowLLM",
+                    "FastForward"
+                  ],
+                  "role": "direct_comparison"
+                },
+                {
+                  "paragraph": "Distribution-Coupled Sparsity Correction",
+                  "papers": [
+                    "SPON"
+                  ],
+                  "role": "closest_prior_work"
+                },
+                {
+                  "paragraph": "Perplexity--Downstream Disconnect",
+                  "papers": [
+                    "Khanal & Capone 2024",
+                    "Xu et al. 2024",
+                    "Siam et al. 2026"
+                  ],
+                  "role": "evaluation_motivation"
+                }
+              ],
+              "estimated_length_pages": 1.2,
+              "taxonomy_referenced": true,
+              "framing_constraints_applied": {
+                "BCE_as_objective_mismatch": true,
+                "SPON_as_marginal_complement": true,
+                "no_first_to_claim": true
+              },
+              "placeholder_citekeys": [
+                "liu2025teal",
+                "wina2025",
+                "zhang2025rsparse",
+                "lee2024cats",
+                "an2025amber",
+                "federici2025dip",
+                "muralidharan2024minitron",
+                "hou2025ifp",
+                "distill2025hybrid",
+                "liu2023dejavu",
+                "akhauri2024shadowllm",
+                "gautam2026fastforward",
+                "xu2026spon",
+                "khanal2024ppl",
+                "xu2024sparsity",
+                "siam2026type2"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-related-work.md"
+}

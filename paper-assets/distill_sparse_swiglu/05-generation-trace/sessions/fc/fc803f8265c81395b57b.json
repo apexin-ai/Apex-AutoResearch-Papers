@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "id": "fc803f8265c81395b57b",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "research sparse kernel survey",
+  "task_key": "worker_research_sparse-kernel-survey_20260519T025318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_sparse-kernel-survey_20260519T025318.log",
+    "occurrence": 1,
+    "bytes": 675481,
+    "sha256": "d62c014279bbc55eb7538f483158bf38c24f5fcd0640af2623490f821ed3f4b0"
+  },
+  "statistics": {
+    "messages": 402,
+    "user_turns": 4,
+    "tool_calls": 127,
+    "roles": {
+      "log": 1,
+      "system": 134,
+      "assistant": 4,
+      "record": 4,
+      "tool_call": 127,
+      "user": 4,
+      "tool_result": 127,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "fc803f8265c81395b57b-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "fc803f8265c81395b57b-part-0001.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 23,
+      "chunks": [
+        {
+          "path": "fc803f8265c81395b57b-part-0001.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 48,
+      "chunks": [
+        {
+          "path": "fc803f8265c81395b57b-part-0001.json",
+          "message_count": 48
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 307,
+      "chunks": [
+        {
+          "path": "fc803f8265c81395b57b-part-0001.json",
+          "message_count": 85
+        },
+        {
+          "path": "fc803f8265c81395b57b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fc803f8265c81395b57b-part-0003.json",
+          "message_count": 42
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-sparse-kernel-survey.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95e65340a44d58afa883",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check cuda1 contention",
+  "task_key": "worker_ops_check_cuda1_contention_20260516T045521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_cuda1_contention_20260516T045521_result.json",
+    "occurrence": 1,
+    "bytes": 1116,
+    "sha256": "c1a00caf92f015bdb752c0303b03f05968be160f457f3eefe9ca46e0ac67174a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### GPU 状态\n\n| GPU | 进程 | PID | 显存占用 | GPU 利用率 |\n|-----|------|-----|---------|-----------|\n| cuda:0 | d030_kl50_uniform (benchmark_eval.py) | 203707 | 66,988 MiB / 97,887 MiB | 92% |\n| cuda:1 | bce_isocompute_v3_s42 (训练) | 205598 | 90,938 MiB / 97,887 MiB | 100% |\n\n### PID 204280 (bench_kl70_s42)\n**已自行退出**，不在进程列表中，cuda:1 上无残留。无需 kill。\n\n### BCE v3 训练进度 (cuda:1)\n- **Step 900/2700** (33.3%)，运行 942.6s (~15.7 min)\n- 速度稳定：**1.05s/step**\n- 最新指标：loss=0.6366, bce=0.6351, reg=0.0015, sparsity=0.513\n- loss 呈下降趋势（0.6660 → 0.6366），训练正常\n- 预计剩余 ~31 分钟完成\n\n### d030_kl50_uniform 评估进度 (cuda:0)\n- 正在执行 GSM8K generate_until 任务：**657/1319** (50%)\n- 之前的 loglikelihood 任务（wikitext2, arc_challenge, winogrande, mmlu）已完成\n- 速度 ~1.2 it/s，预计还需 ~8 分钟完成 GSM8K\n\n### 结论\n两张 GPU 各跑一个进程，无竞争，状态健康。bench_kl70_s42 已自行结束，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-cuda1-contention.md"
+}

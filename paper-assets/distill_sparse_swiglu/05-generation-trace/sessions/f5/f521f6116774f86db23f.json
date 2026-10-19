@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f521f6116774f86db23f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval qwen14b kl30 s123 gsm8k v5",
+  "task_key": "worker_eval_qwen14b_kl30_s123_gsm8k_v5_20260525T060102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen14b_kl30_s123_gsm8k_v5_20260525T060102_result.json",
+    "occurrence": 1,
+    "bytes": 453,
+    "sha256": "fe8953511a15bd1e3a3451755444d17a7bdbe21ffbaef445f2d3d5c184a9362a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**v5 已在运行，无需重复提交。**\n\n- **PID**: 238640（westd-34887, cuda:0）\n- **进度**: 81/1319 samples (6%), 已运行约 6 分钟\n- **预估剩余**: ~1.5-2 小时（按当前 ~5s/sample）\n- **日志**: `/root/runs/distill_sparse_swiglu/qwen14b_kl30_s123_gsm8k_v5.log`\n- **Registry**: 已更新 PID 为 238640\n\n注意：我的重复提交因 GPU 0 已被占用而 OOM 失败，已确认原进程正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen14b-kl30-s123-gsm8k-v5.md"
+}

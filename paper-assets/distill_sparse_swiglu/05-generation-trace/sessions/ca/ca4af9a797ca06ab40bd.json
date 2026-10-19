@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca4af9a797ca06ab40bd",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check mse30 multiseed checkpoints",
+  "task_key": "worker_check_mse30_multiseed_checkpoints_20260522T092442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_mse30_multiseed_checkpoints_20260522T092442_result.json",
+    "occurrence": 1,
+    "bytes": 452,
+    "sha256": "d583b87b086955037ed700b174c8cfbf51cc665c14bd74af63e24260826a005e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 checkpoint 都存在且完整：\n\n| 文件 | 大小 | 时间 |\n|------|------|------|\n| `mse30_s123/predictor_mse.pt` | 144.9 MB | May 21 09:39 |\n| `mse30_s456/predictor_mse.pt` | 144.9 MB | May 21 09:39 |\n\n两个文件大小完全一致（151,964,963 bytes），与预期的 predictor 模型大小匹配。\n\ncheckpoints 目录下 mse 相关目录共 4 个：\n- `mse30_s42`\n- `mse30_s123`\n- `mse30_s456`\n- `mse50_s42`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-mse30-multiseed-checkpoints.md"
+}

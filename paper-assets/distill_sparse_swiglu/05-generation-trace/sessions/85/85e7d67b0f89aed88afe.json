@@ -1,0 +1,2070 @@
+{
+  "schema_version": "1.0",
+  "id": "85e7d67b0f89aed88afe",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "exp mse lr sweep 30 s42",
+  "task_key": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_exp_mse_lr_sweep_30_s42_20260524T100212.jsonl",
+    "occurrence": 1,
+    "bytes": 68251,
+    "sha256": "9721efeb7bcf4e6cc501dd472e7fd7f248bd5111ac0eb06c355733db98f9e9d9"
+  },
+  "statistics": {
+    "messages": 101,
+    "user_turns": 0,
+    "tool_calls": 50,
+    "roles": {
+      "tool_call": 50,
+      "tool_result": 50,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T10:09:28.034184+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__detect_image",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T10:09:28.034502+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T10:09:28.034681+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'mse30_uniform_s42'}",
+              "project": "distill_sparse_swiglu",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T10:09:28.034826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": \\\"bench_dense\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1635}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T10:09:28.034953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "nvidia-smi --query-gpu=index,name,memory.total,memory.used --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T10:09:28.035121+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "head -100 /root/distill_sparse_swiglu/src/train.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T10:09:28.035265+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 0 MiB\\\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T10:09:28.035464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Training script for SwiGLU sparsity predictors (KL distillation, BCE, or BCE+compensation).\\\\n# Supports --relaxation gumbel (default, Gumbel-sigmoid with tau annealing) or ste (Straight-Through Estimator).\\\\n# Input: frozen Llama 3.1 8B + calibration data (wikitext-103 or c4)\\\\n# Output: predictor checkpoint in output_dir\\\\n#\\\\n# Usage:\\\\n#   python train.py --loss_type kl --num_steps 1000 --gpu 0\\\\n#   python train.py --loss_type kl --batch_size 2 --gradient_accumulation_steps 2 --num_steps 1000 --gpu 0\\\\n#   python train.py --loss_type bce --num_steps 1000 --gpu 0\\\\n#   python train.py --loss_type bce_comp --comp_mode staged --predictor_checkpoint checkpoints/mvp_bce_s42/predictor_bce.pt --num_steps 500 --gpu 0\\\\n\\\\nimport argparse\\\\nimport importlib.util\\\\nimport math\\\\nimport os\\\\nimport sys\\\\nimport time\\\\n\\\\nimport torch\\\\nimport wandb\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom data_utils import get_calibration_loader, get_random_loader\\\\nfrom losses import BCESparsityLoss, CompensationLoss, JSDDistillLoss, KLDistillLoss, ReverseKLDistillLoss, SparsityRegularizer\\\\nfrom predictor import CompensationNetwork, PredictorWrapper, STEMask\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Train SwiGLU sparsity predictor\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--model_name_or_path\\\\\\\", type=str,\\\\n                    default=\\\\\\\"/root/autodl-tmp/models/llama-3.1-8b\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--loss_type\\\\\\\", type=str, choices=[\\\\\\\"kl\\\\\\\", \\\\\\\"kl_normalized\\\\\\\", \\\\\\\"kl_ste\\\\\\\", \\\\\\\"reverse_kl\\\\\\\", \\\\\\\"jsd\\\\\\\", \\\\\\\"bce\\\\\\\", \\\\\\\"bce_comp\\\\\\\"], required=True)\\\\n    p.add_argument(\\\\\\\"--num_steps\\\\\\\", type=int, default=1000)\\\\n    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=4)\\\\n    p.add_argument(\\\\\\\"--seq_len\\\\\\\", type=int, default=2048)\\\\n    p.add_argument(\\\\\\\"--lr\\\\\\\", type=float, defaul\n…[truncated 4012 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T10:09:28.035651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "distill_sparse_swiglu",
+              "limit": "20",
+              "fields": "['exp_id', 'status', 'spec']"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T10:09:28.035994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"qwen14b_kl30_s123_eval_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/distill_sparse_swiglu && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export WANDB_MODE=disabled && export PYTHONUNBUFFERED=1 && python -u src/benchmark_eval.py --exp_id qwen14b_kl30_s123_eval_v4 --model_name_or_path /root/autodl-tmp/models/qwen2.5-14b/ --checkpoint checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform --tasks wikitext2,arc_challenge,winogrande,hellaswag,piqa,mmlu --seq_len 2048 --gpu 0 2>&1\\\\\\\"\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"100832\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/qwen14b_kl30_s123_eval_v4.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T11:25:43.987Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"results/benchmark/qwen14b_kl30_s123_eval_v4/results.json\\\", \\\"wall_clock_seconds\\\": 6008.7, \\\"gpu_hours\\\": 1.67}}, \\\"perlayer_kl_k4_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k4_s42/predictor_perlayer_kl_k4.pt\\\", \\\"log_path\\\": \\\"/root/distill_sparse_swiglu/logs/perlayer_kl_k4_s42.log\\\", \\\"metrics\\\": {\\\"final_kl\\\": 0.0547, \\\"avg_kl\\\": 0.0447, \\\"final_sparsity\\\": 0.282, \\\"final_loss\\\": 0.0913, \\\"constraint_loss\\\": 0.0366, \\\"total_steps\\\": 2700, \\\"num_active_layers\\\": 4, \\\"final_tau\\\": 0.1, \\\"wall_time_sec\\\": 5015}, \\\"command\\\": \\\"python train_perlayer_kl.py --k 4 --seed 42\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"data_path\\\": \\\"/root/distill_sparse_swiglu/data/\\\", \\\"data_count\\\": 2700, \\\"model_name\\\": \\\"predictor_perlayer_kl_k4\\\", \\\"seed\\\": 42}}, \\\"mse30_s123_downstream\\\": {\\\"status\\\": \\\"DONE\\\"\n…[truncated 16160 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T10:09:28.036193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "grep -rn \"mse\" /root/distill_sparse_swiglu/src/ --include=\"*.py\" -l",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T10:09:28.036347+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "ls /root/distill_sparse_swiglu/src/",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T10:09:28.036487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/distill_sparse_swiglu/src/losses.py\\\\n/root/distill_sparse_swiglu/src/evaluate.py\\\\n/root/distill_sparse_swiglu/src/baselines.py\\\\n/root/distill_sparse_swiglu/src/train_perlayer_mse.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T10:09:28.036632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nanalyze_mask_divergence.py\\\\nanalyze_natural_sparsity.py\\\\nanalyze_perlayer_kl_natural.py\\\\nanalyze_perlayer_sparsity.py\\\\nbaselines.py\\\\nbatch_eval.py\\\\nbenchmark_eval.py\\\\nbenchmark_flashinfer.py\\\\nbenchmark_latency.py\\\\ncompensation.py\\\\ndata_utils.py\\\\ndebug_mask_v2.py\\\\ndebug_mask_verify.py\\\\ndiag_hflm.py\\\\ndiag_hflm_direct.py\\\\ndiag_mask.py\\\\ndiag_mmlu.py\\\\neval_bce_comp.py\\\\neval_benchmark.py\\\\neval_c4_ood.py\\\\neval_c4_predictor.py\\\\neval_spon.py\\\\neval_spon_supplementary.py\\\\nevaluate.py\\\\nevaluate.py.bak\\\\nevaluate.py.v2_bak\\\\ngsm8k_gen_compare.py\\\\nlatency_benchmark.py\\\\nlm_eval_sparse.py\\\\nlm_eval_sparse_uniform.py\\\\nlm_eval_teal.py\\\\nlosses.py\\\\nlosses.py.bak\\\\npatch_vanilla_teal.py\\\\npredictor.py\\\\npredictor.py.bak\\\\nquick_eval.py\\\\nquick_eval2.py\\\\nquick_sp70.py\\\\nrun_baselines_sweep.py\\\\nrun_db_sweep.sh\\\\nspon.py\\\\nsubsumption_test.py\\\\ntest_greedy_dryrun.py\\\\ntrain.py\\\\ntrain.py.bak\\\\ntrain.py.v1_bak\\\\ntrain.py.v2_bak\\\\ntrain_bce_comp.py\\\\ntrain_bce_gumbel.py\\\\ntrain_bce_gumbel_no_penalty.py\\\\ntrain_bce_kl_targets.py\\\\ntrain_compensation.py\\\\ntrain_perlayer_kl.py\\\\ntrain_perlayer_kl.py.bak.1779371646\\\\ntrain_perlayer_kl_k4.py\\\\ntrain_perlayer_mse.py\\\\ntrain_spon.py\\\\nvisualize_mask_patterns.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T10:09:28.036784+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "head -120 /root/distill_sparse_swiglu/src/train_perlayer_mse.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T10:09:28.036970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Per-layer MSE training for SwiGLU sparsity predictors.\\\\n# \\\\\\\"Intermediate\\\\\\\" baseline between per-layer BCE (activation space) and end-to-end KL (logit space).\\\\n# Loss: sum_l ||down_proj_l(act_l * mask_l) - down_proj_l(act_l)||^2 / num_layers\\\\n# Gradient flows through Gumbel-sigmoid mask -> predictor only; model stays frozen.\\\\n#\\\\n# Input:  frozen Llama model + calibration data (wikitext-103 or c4)\\\\n# Output: predictor_mse.pt (same format as KL/BCE checkpoints for benchmark_eval.py)\\\\n#\\\\n# Usage:\\\\n#   python train_perlayer_mse.py --num_steps 1000 --sparsity_target 0.5 --gpu 0\\\\n\\\\nimport argparse\\\\nimport importlib.util\\\\nimport math\\\\nimport os\\\\nimport sys\\\\nimport time\\\\n\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nimport wandb\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom data_utils import get_calibration_loader, get_random_loader\\\\nfrom losses import PerLayerMSELoss\\\\nfrom predictor import PredictorWrapper\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Per-layer MSE training for SwiGLU sparsity predictors\\\\\\\"\\\\n    )\\\\n    p.add_argument(\\\\\\\"--model_name_or_path\\\\\\\", type=str,\\\\n                    default=\\\\\\\"/root/autodl-tmp/models/llama-3.1-8b\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--num_steps\\\\\\\", type=int, default=1000)\\\\n    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=4)\\\\n    p.add_argument(\\\\\\\"--seq_len\\\\\\\", type=int, default=2048)\\\\n    p.add_argument(\\\\\\\"--lr\\\\\\\", type=float, default=1e-3)\\\\n    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    p.add_argument(\\\\\\\"--sparsity_target\\\\\\\", type=float, default=0.5)\\\\n    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n    p.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str,\\\\n                    default=\\\\\\\"/root/distill_sparse_swiglu/checkpoints\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--wandb_project\\\\\\\n…[truncated 3575 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T10:09:28.037143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'mse30_uniform_s42'}",
+              "project": "distill_sparse_swiglu",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T10:09:28.037275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": \\\"bench_dense\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9436}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T10:09:28.037415+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "tail -80 /root/distill_sparse_swiglu/src/train_perlayer_mse.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-24T10:09:28.037534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "ls /root/autodl-tmp/models/",
+              "account": "root"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-24T10:09:28.037698+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        elif last_sparsity > target_sparsity + margin:\\\\n            lambda_sparse *= 0.5\\\\n        lambda_sparse = max(0.01, min(lambda_sparse, args.lambda_max))\\\\n\\\\n        dt = time.time() - t0\\\\n        log_dict = {\\\\n            \\\\\\\"loss\\\\\\\": accum_loss, \\\\\\\"mse_loss\\\\\\\": accum_mse,\\\\n            \\\\\\\"constraint_loss\\\\\\\": accum_constraint, \\\\\\\"sparsity\\\\\\\": last_sparsity,\\\\n            \\\\\\\"tau\\\\\\\": tau, \\\\\\\"lr\\\\\\\": scheduler.get_last_lr()[0], \\\\\\\"lambda_sparse\\\\\\\": lambda_sparse,\\\\n        }\\\\n        wandb.log(log_dict, step=opt_step)\\\\n\\\\n        if opt_step % args.log_every == 0 or opt_step == 1:\\\\n            print(\\\\n                f\\\\\\\"[Step {opt_step}/{args.num_steps}] loss={accum_loss:.6f} \\\\\\\"\\\\n                f\\\\\\\"mse={accum_mse:.6f} constraint={accum_constraint:.6f} \\\\\\\"\\\\n                f\\\\\\\"sparsity={last_sparsity:.3f} lambda={lambda_sparse:.2f} \\\\\\\"\\\\n                f\\\\\\\"tau={tau:.3f} lr={scheduler.get_last_lr()[0]:.2e} dt={dt:.1f}s\\\\\\\"\\\\n            )\\\\n            if old_lambda != lambda_sparse:\\\\n                print(f\\\\\\\"  [Lambda] {old_lambda:.2f} -> {lambda_sparse:.2f}\\\\\\\")\\\\n\\\\n        if args.save_every > 0 and (opt_step % args.save_every == 0 or opt_step == args.num_steps):\\\\n            ckpt_path = os.path.join(args.output_dir, f\\\\\\\"predictor_mse_step_{opt_step}.pt\\\\\\\")\\\\n            torch.save({\\\\\\\"predictors\\\\\\\": wrapper.predictors.state_dict(), \\\\\\\"args\\\\\\\": vars(args)}, ckpt_path)\\\\n            print(f\\\\\\\"Saved checkpoint -> {ckpt_path}\\\\\\\")\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    torch.manual_seed(args.seed)\\\\n    device = torch.device(f\\\\\\\"cuda:{args.gpu}\\\\\\\")\\\\n    os.makedirs(args.output_dir, exist_ok=True)\\\\n\\\\n    run_name = args.wandb_run_name or f\\\\\\\"mse_s{args.sparsity_target}_lr{args.lr}\\\\\\\"\\\\n    wandb.init(project=args.wandb_project, name=run_name, config=vars(args))\\\\n\\\\n    print(f\\\\\\\"Loading model from {args.model_name_or_path} ...\\\\\\\")\\\\n    toke\n…[truncated 1803 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-24T10:09:28.037857+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"llama-3.1-8b\\\\nmistral-7b\\\\nopenvla-7b-finetuned-libero-spatial\\\\nqwen2.5-14b\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-24T10:09:28.037981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "distill_sparse_swiglu",
+              "limit": "5",
+              "fields": "['exp_id', 'spec.command']"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-24T10:09:28.038130+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"qwen14b_kl30_s123_eval_v4\\\": {}, \\\"perlayer_kl_k4_s42\\\": {}, \\\"mse30_s123_downstream\\\": {}, \\\"perlayer_kl_k16_s456_eval\\\": {}, \\\"perlayer_kl_k16_s123_eval\\\": {}}, \\\"count\\\": 5, \\\"total\\\": 404, \\\"baseline\\\": \\\"bench_dense\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9582}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-24T10:09:28.038283+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__kill_job",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-24T10:09:28.038439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-24T10:09:28.038559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "df -h /root /root/autodl-tmp",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-24T10:09:28.038680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\noverlay          30G   22G  8.7G  72% /\\\\n/dev/md0        250G   70G  181G  28% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-24T10:09:28.038802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "grep -n \"gradient_checkpointing\" /root/distill_sparse_swiglu/src/train_perlayer_mse.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-24T10:09:28.038923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-24T10:09:28.039094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "submit training job",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-24T10:09:28.039233+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-24T10:09:28.039360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "+submit",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-24T10:09:28.039471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-24T10:09:28.039605+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "training submit job run",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-24T10:09:28.039724+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-24T10:09:28.039861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-24T10:09:28.039977+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-24T10:09:28.040165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "ls /root/autodl-tmp/.hf_cache/datasets/wikitext/ 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-24T10:09:28.040289+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-24T10:09:28.040420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "ls ~/runs/distill_sparse_swiglu/ 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-24T10:09:28.040537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-24T10:09:28.040657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "ls /root/autodl-tmp/.hf_cache/datasets/wikitext/",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-24T10:09:28.040771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "ls /root/runs/distill_sparse_swiglu/",
+              "account": "root"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-24T10:09:28.040888+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"wikitext-103-raw-v1\\\\nwikitext-2-raw-v1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-24T10:09:28.041063+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bce_30_s42_uniform_eval.log\\\\nbce_50pct_teal_global_unified.log\\\\nbce_gumbel_no_penalty_s42.log\\\\nbce_gumbel_no_penalty_s42_eval.log\\\\nbce_gumbel_no_penalty_s42_v2.log\\\\nbce_iso_v3_s123_30pct_uniform_eval.log\\\\nbce_iso_v3_s42_30pct_uniform_eval.log\\\\nbce_iso_v3_s456_30pct_uniform_eval.log\\\\nbce_isocompute_hellaswag_piqa_v2.log\\\\nc1_ablation_30pct_eval_34887.log\\\\nc1_ablation_30pct_s42.log\\\\nc1_ablation_30pct_s42_eval_34887.log\\\\nc1_ablation_30pct_s42_v2.log\\\\nc4_kl30_s42.log\\\\nc4_kl30_s42_eval.log\\\\nc4_ood_kl50_s123.log\\\\nc4_ood_kl50_s42.log\\\\nc4_ood_kl50_s456.log\\\\ndebug_check_bce_iso_ckpts.log\\\\ndebug_find_bce_ckpt_34887.log\\\\ndebug_list_ckpts_34887.log\\\\ndense_baseline_hellaswag_piqa.log\\\\ndiag_34887_processes.log\\\\ndiag_ckpt_34887.log\\\\ndiag_eval_env_34887.log\\\\ndiag_status_34887.log\\\\njsd_30_s123.log\\\\njsd_30_s42.log\\\\nkill_old_34887.log\\\\nkl30_s123_global_v3.log\\\\nkl30_s123_uniform_v3.log\\\\nkl30_s456_global_reeval.log\\\\nkl30_s456_global_v3.log\\\\nkl30_s456_uniform_v3.log\\\\nkl30_uniform_boolq_s456.log\\\\nkl30_uniform_hellaswag_piqa.log\\\\nkl30_uniform_hellaswag_piqa_v2.log\\\\nkl30_uniform_hspiqa_s456.log\\\\nkl50_global_hellaswag_piqa.log\\\\nkl50_s123_eval.log\\\\nkl50_s123_uniform_eval.log\\\\nkl50_s42_global_eval.log\\\\nkl50_s42_uniform_eval.log\\\\nkl50_s456_eval.log\\\\nkl50_s456_train.log\\\\nkl50_s456_uniform_eval.log\\\\nkl_comp_30pct_s123_eval.log\\\\nkl_comp_30pct_s42_eval.log\\\\nkl_sparsity35_s42.log\\\\nkl_sparsity35_s42_eval_teal.log\\\\nkl_sparsity35_s42_eval_teal_uniform.log\\\\nkl_sparsity40_s42_global_eval.log\\\\nkl_sparsity40_s42_global_eval_v2.log\\\\nkl_sparsity40_s42_retrain_uniform.log\\\\nkl_sparsity40_s42_uniform_hspiqa.log\\\\nkl_sparsity45_s42.log\\\\nkl_sparsity45_s42_eval_teal.log\\\\nkl_sparsity45_s42_eval_teal_uniform.log\\\\nmistral_kl30_downstream.log\\\\nmistral_kl30_hellaswag_piqa.log\\\\nmistral_kl30_s123.log\\\\nmistral_kl30_s456.log\\\\nmistral_teal30_downstream.log\\\\nmistral_teal50_downstream.log\\\\nmse50_s123.log\\\\nmse\n…[truncated 2323 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-24T10:09:28.041242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "grep -n \"add_argument\" /root/distill_sparse_swiglu/src/benchmark_eval.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-24T10:09:28.041389+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"95:    p.add_argument(\\\\\\\"--model_name_or_path\\\\\\\", type=str, default=DEFAULT_MODEL)\\\\n96:    p.add_argument(\\\\\\\"--checkpoint\\\\\\\", type=str, default=None,\\\\n98:    p.add_argument(\\\\\\\"--tasks\\\\\\\", type=str, default=\\\\\\\"wikitext2,arc_challenge,winogrande\\\\\\\",\\\\n100:    p.add_argument(\\\\\\\"--sparsity_mode\\\\\\\", type=str, default=\\\\\\\"per_token\\\\\\\",\\\\n103:    p.add_argument(\\\\\\\"--baseline_mode\\\\\\\", type=str, default=None,\\\\n106:    p.add_argument(\\\\\\\"--dense\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n108:    p.add_argument(\\\\\\\"--exp_id\\\\\\\", type=str, required=True,\\\\n110:    p.add_argument(\\\\\\\"--sparsity_target\\\\\\\", type=float, default=0.5)\\\\n111:    p.add_argument(\\\\\\\"--allocation\\\\\\\", type=str, default=\\\\\\\"global_topk\\\\\\\",\\\\n114:    p.add_argument(\\\\\\\"--gpu\\\\\\\", type=int, default=0)\\\\n115:    p.add_argument(\\\\\\\"--multi_gpu\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n117:    p.add_argument(\\\\\\\"--seq_len\\\\\\\", type=int, default=2048)\\\\n118:    p.add_argument(\\\\\\\"--calibration_samples\\\\\\\", type=int, default=32)\\\\n119:    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=8,\\\\n121:    p.add_argument(\\\\\\\"--bottleneck_size\\\\\\\", type=int, default=128)\\\\n122:    p.add_argument(\\\\\\\"--svd_rank\\\\\\\", type=int, default=256,\\\\n124:    p.add_argument(\\\\\\\"--max_eval_samples\\\\\\\", type=int, default=None,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-24T10:09:28.041561+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "mkdir -p /root/distill_sparse_swiglu/checkpoints/mse30_lr2e4_s42 /root/distill_sparse_swiglu/checkpoints/mse30_lr1e4_s42",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-24T10:09:28.041687+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-24T10:09:28.041820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "cat > /tmp/run_mse30_lr2e4_s42.sh << 'SCRIPT'\n#!/bin/bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/distill_sparse_swiglu\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1\nexport PYTHONUNBUFFERED=1\n\necho \"=== Training MSE LR=2e-4 ===\"\npython -u src/train_perlayer_mse.py \\\n  --lr 2e-4 --sparsity_target 0.3 --seed 42 \\\n  --num_steps 1000 --gpu 0 \\\n  --output_dir /root/distill_sparse_swiglu/checkpoints/mse30_lr2e4_s42 \\\n  --wandb_run_name mse30_lr2e4_s42 \\\n  --save_every 500\n\necho \"=== WikiText-2 Eval ===\"\nexport WANDB_MODE=disabled\npython -u src/benchmark_eval.py \\\n  --exp_id mse30_lr2e4_s42_eval \\\n  --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b \\\n  --checkpoint /root/distill_sparse_swiglu/checkpoints/mse30_lr2e4_s42/predictor_mse.pt \\\n  --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform \\\n  --tasks wikitext2 --seq_len 2048 --gpu 0\nSCRIPT\nchmod +x /tmp/run_mse30_lr2e4_s42.sh\ntmux new-session -d -s mse30_lr2e4_s42 \"bash /tmp/run_mse30_lr2e4_s42.sh 2>&1 | tee ~/runs/distill_sparse_swiglu/mse30_lr2e4_s42.log\"\necho \"tmux session mse30_lr2e4_s42 started\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-24T10:09:28.041957+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"tmux session mse30_lr2e4_s42 started\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-24T10:09:28.042101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "cat > /tmp/run_mse30_lr1e4_s42.sh << 'SCRIPT'\n#!/bin/bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/distill_sparse_swiglu\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1\nexport PYTHONUNBUFFERED=1\n\necho \"=== Training MSE LR=1e-4 ===\"\npython -u src/train_perlayer_mse.py \\\n  --lr 1e-4 --sparsity_target 0.3 --seed 42 \\\n  --num_steps 1000 --gpu 1 \\\n  --output_dir /root/distill_sparse_swiglu/checkpoints/mse30_lr1e4_s42 \\\n  --wandb_run_name mse30_lr1e4_s42 \\\n  --save_every 500\n\necho \"=== WikiText-2 Eval ===\"\nexport WANDB_MODE=disabled\npython -u src/benchmark_eval.py \\\n  --exp_id mse30_lr1e4_s42_eval \\\n  --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b \\\n  --checkpoint /root/distill_sparse_swiglu/checkpoints/mse30_lr1e4_s42/predictor_mse.pt \\\n  --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform \\\n  --tasks wikitext2 --seq_len 2048 --gpu 1\nSCRIPT\nchmod +x /tmp/run_mse30_lr1e4_s42.sh\ntmux new-session -d -s mse30_lr1e4_s42 \"bash /tmp/run_mse30_lr1e4_s42.sh 2>&1 | tee ~/runs/distill_sparse_swiglu/mse30_lr1e4_s42.log\"\necho \"tmux session mse30_lr1e4_s42 started\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-24T10:09:28.042233+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"tmux session mse30_lr1e4_s42 started\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-24T10:09:28.042361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "tmux list-sessions",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-24T10:09:28.042476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-24T10:09:28.042589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "nvidia-smi --query-gpu=index,memory.used --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-24T10:09:28.042705+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 3 MiB\\\\n1, 3 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-24T10:09:28.042847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "sleep 10 && tail -5 ~/runs/distill_sparse_swiglu/mse30_lr2e4_s42.log ~/runs/distill_sparse_swiglu/mse30_lr1e4_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-24T10:09:28.042968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'sleep 10 && tail -5 ~/runs/distill_sparse_swiglu/mse30_lr2e4_s42.log ~/runs/distill_sparse_swiglu/mse30_lr1e4_s42.log'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\ntail: option used in invalid context -- 5\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-24T10:09:28.043105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "sleep 15 && tail -n 5 ~/runs/distill_sparse_swiglu/mse30_lr2e4_s42.log && echo \"---\" && tail -n 5 ~/runs/distill_sparse_swiglu/mse30_lr1e4_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-24T10:09:28.043234+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/serialization.py\\\\\\\", line 740, in __init__\\\\n    super().__init__(open(name, mode))\\\\n                     ^^^^^^^^^^^^^^^^\\\\nFileNotFoundError: [Errno 2] No such file or directory: '/root/distill_sparse_swiglu/checkpoints/mse30_lr2e4_s42/predictor_mse.pt'\\\\n---\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/serialization.py\\\\\\\", line 740, in __init__\\\\n    super().__init__(open(name, mode))\\\\n                     ^^^^^^^^^^^^^^^^\\\\nFileNotFoundError: [Errno 2] No such file or directory: '/root/distill_sparse_swiglu/checkpoints/mse30_lr1e4_s42/predictor_mse.pt'\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 16.02}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-24T10:09:28.043377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "head -n 30 /root/runs/distill_sparse_swiglu/mse30_lr2e4_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-24T10:09:28.043491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "ls -la /root/distill_sparse_swiglu/checkpoints/mse30_lr2e4_s42/",
+              "account": "root"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-24T10:09:28.043660+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Training MSE LR=2e-4 ===\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/distill_sparse_swiglu/src/train_perlayer_mse.py\\\\\\\", line 249, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/distill_sparse_swiglu/src/train_perlayer_mse.py\\\\\\\", line 205, in main\\\\n    wandb.init(project=args.wandb_project, name=run_name, config=vars(args))\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/wandb/sdk/wandb_init.py\\\\\\\", line 1613, in init\\\\n    get_sentry().reraise(e)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/wandb/analytics/sentry.py\\\\\\\", line 191, in reraise\\\\n    raise exc.with_traceback(tb)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/wandb/sdk/wandb_init.py\\\\\\\", line 1530, in init\\\\n    wi.maybe_login(init_settings)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/wandb/sdk/wandb_init.py\\\\\\\", line 200, in maybe_login\\\\n    wandb_login._login(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/wandb/sdk/wandb_login.py\\\\\\\", line 190, in _login\\\\n    auth = _find_or_prompt_for_key(\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/wandb/sdk/wandb_login.py\\\\\\\", line 266, in _find_or_prompt_for_key\\\\n    auth = wbauth.authenticate_session(\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/wandb/sdk/lib/wbauth/authenticate.py\\\\\\\", line 139, in authenticate_session\\\\n    raise UsageError(\\\\nwandb.errors.errors.UsageError: No API key configured. Use `wandb login` to log in.\\\\n=== WikiText-2 Eval ===\\\\nLoading model: /root/autodl-tmp/models/llama-3.1-8b\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<00:34,  8.34it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<00:39,  7.33it/s]\\\\rLoading weights:   5%|▌         | 15/291 [00:00<00:0\n…[truncated 1491 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-24T10:09:28.043812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  2 root root   10 May 24 18:05 .\\\\ndrwxr-xr-x 70 root root 4096 May 24 18:05 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-24T10:09:28.043968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "cat > /tmp/run_mse30_lr2e4_s42.sh << 'SCRIPT'\n#!/bin/bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/distill_sparse_swiglu\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1\nexport PYTHONUNBUFFERED=1 WANDB_MODE=disabled\n\necho \"=== Training MSE LR=2e-4 ===\"\npython -u src/train_perlayer_mse.py \\\n  --lr 2e-4 --sparsity_target 0.3 --seed 42 \\\n  --num_steps 1000 --gpu 0 \\\n  --output_dir /root/distill_sparse_swiglu/checkpoints/mse30_lr2e4_s42 \\\n  --wandb_run_name mse30_lr2e4_s42 \\\n  --save_every 500\n\necho \"=== WikiText-2 Eval ===\"\npython -u src/benchmark_eval.py \\\n  --exp_id mse30_lr2e4_s42_eval \\\n  --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b \\\n  --checkpoint /root/distill_sparse_swiglu/checkpoints/mse30_lr2e4_s42/predictor_mse.pt \\\n  --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform \\\n  --tasks wikitext2 --seq_len 2048 --gpu 0\nSCRIPT\nchmod +x /tmp/run_mse30_lr2e4_s42.sh\ntmux kill-session -t mse30_lr2e4_s42 2>/dev/null\ntmux new-session -d -s mse30_lr2e4_s42 \"bash /tmp/run_mse30_lr2e4_s42.sh 2>&1 | tee ~/runs/distill_sparse_swiglu/mse30_lr2e4_s42.log\"\necho \"DONE: mse30_lr2e4_s42 restarted\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-24T10:09:28.044124+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DONE: mse30_lr2e4_s42 restarted\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-24T10:09:28.044257+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "cat > /tmp/run_mse30_lr1e4_s42.sh << 'SCRIPT'\n#!/bin/bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/distill_sparse_swiglu\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1\nexport PYTHONUNBUFFERED=1 WANDB_MODE=disabled\n\necho \"=== Training MSE LR=1e-4 ===\"\npython -u src/train_perlayer_mse.py \\\n  --lr 1e-4 --sparsity_target 0.3 --seed 42 \\\n  --num_steps 1000 --gpu 1 \\\n  --output_dir /root/distill_sparse_swiglu/checkpoints/mse30_lr1e4_s42 \\\n  --wandb_run_name mse30_lr1e4_s42 \\\n  --save_every 500\n\necho \"=== WikiText-2 Eval ===\"\npython -u src/benchmark_eval.py \\\n  --exp_id mse30_lr1e4_s42_eval \\\n  --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b \\\n  --checkpoint /root/distill_sparse_swiglu/checkpoints/mse30_lr1e4_s42/predictor_mse.pt \\\n  --sparsity_mode teal_global --sparsity_target 0.3 --allocation uniform \\\n  --tasks wikitext2 --seq_len 2048 --gpu 1\nSCRIPT\nchmod +x /tmp/run_mse30_lr1e4_s42.sh\ntmux kill-session -t mse30_lr1e4_s42 2>/dev/null\ntmux new-session -d -s mse30_lr1e4_s42 \"bash /tmp/run_mse30_lr1e4_s42.sh 2>&1 | tee ~/runs/distill_sparse_swiglu/mse30_lr1e4_s42.log\"\necho \"DONE: mse30_lr1e4_s42 restarted\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-24T10:09:28.044404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DONE: mse30_lr1e4_s42 restarted\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-24T10:09:28.044534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "sleep 20 && tail -n 8 ~/runs/distill_sparse_swiglu/mse30_lr2e4_s42.log && echo \"===\" && tail -n 8 ~/runs/distill_sparse_swiglu/mse30_lr1e4_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-24T10:09:28.044669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Model params: 8,030,261,248\\\\nPer-layer MSE Lagrangian: lambda=1.0, target=0.3, margin=0.02, growth=2.0x, decay=0.5x, cap=1000.0\\\\n[Step 1/1000] loss=0.015447 mse=0.007970 constraint=0.007477 sparsity=0.406 lambda=0.50 tau=0.999 lr=2.00e-06 dt=1.4s\\\\n  [Lambda] 1.00 -> 0.50\\\\n[Step 10/1000] loss=0.007923 mse=0.007848 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.991 lr=2.00e-05 dt=0.9s\\\\n[Step 20/1000] loss=0.007973 mse=0.007899 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.982 lr=4.00e-05 dt=0.9s\\\\n[Step 30/1000] loss=0.007120 mse=0.007052 constraint=0.000068 sparsity=0.402 lambda=0.01 tau=0.973 lr=6.00e-05 dt=0.9s\\\\n[Step 40/1000] loss=0.007040 mse=0.006972 constraint=0.000068 sparsity=0.402 lambda=0.01 tau=0.964 lr=8.00e-05 dt=0.9s\\\\n===\\\\nSetting up data loader ...\\\\nPredictor params: 75,960,320 (144.9 MB bf16)\\\\nModel params: 8,030,261,248\\\\nPer-layer MSE Lagrangian: lambda=1.0, target=0.3, margin=0.02, growth=2.0x, decay=0.5x, cap=1000.0\\\\n[Step 1/1000] loss=0.015447 mse=0.007970 constraint=0.007477 sparsity=0.406 lambda=0.50 tau=0.999 lr=1.00e-06 dt=1.4s\\\\n  [Lambda] 1.00 -> 0.50\\\\n[Step 10/1000] loss=0.007927 mse=0.007853 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.991 lr=1.00e-05 dt=0.9s\\\\n[Step 20/1000] loss=0.008025 mse=0.007950 constraint=0.000075 sparsity=0.406 lambda=0.01 tau=0.982 lr=2.00e-05 dt=0.9s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 20.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-24T10:09:28.044822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mse30_lr2e4_s42",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "distill_sparse_swiglu",
+              "spec": "{'command': 'python -u src/train_perlayer_mse.py --lr 2e-4 --sparsity_target 0.3 --seed 42 --num_steps 1000 --gpu 0 --output_dir checkpoints/mse30_lr2e4_s42 --save_every 500', 'server': 'westd-34887', 'gpu': ['cuda:0'], 'log_path': '~/runs/distill_sparse_swiglu/mse30_lr2e4_s42.log', 'submitted_at': '2026-05-24T18:05:00Z', 'submitted_via': 'ssh_execute+tmux', 'backend': 'tmux', 'account': 'root', 'data_path': 'wikitext-103', 'data_count': 1000, 'model_name': 'llama-3.1-8b', 'seed': 42, 'num_steps': 1000, 'sparsity_target': 0.3, 'lr': 0.0002}"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-24T10:09:28.044971+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9017}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-24T10:09:28.045122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mse30_lr1e4_s42",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "distill_sparse_swiglu",
+              "spec": "{'command': 'python -u src/train_perlayer_mse.py --lr 1e-4 --sparsity_target 0.3 --seed 42 --num_steps 1000 --gpu 1 --output_dir checkpoints/mse30_lr1e4_s42 --save_every 500', 'server': 'westd-34887', 'gpu': ['cuda:1'], 'log_path': '~/runs/distill_sparse_swiglu/mse30_lr1e4_s42.log', 'submitted_at': '2026-05-24T18:05:00Z', 'submitted_via': 'ssh_execute+tmux', 'backend': 'tmux', 'account': 'root', 'data_path': 'wikitext-103', 'data_count': 1000, 'model_name': 'llama-3.1-8b', 'seed': 42, 'num_steps': 1000, 'sparsity_target': 0.3, 'lr': 0.0001}"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-24T10:09:28.045265+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9038}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-24T10:09:28.045403+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mse30_lr2e4_s42",
+              "field": "hypothesis",
+              "value": "MSE loss has ~5x larger gradient magnitude than KL. Using LR=2e-4 (5x lower than default 1e-3) should stabilize MSE training and improve downstream performance at 30% sparsity.",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-24T10:09:28.045525+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mse30_lr1e4_s42",
+              "field": "hypothesis",
+              "value": "MSE loss has ~5x larger gradient magnitude than KL. Using LR=1e-4 (10x lower than default 1e-3) should stabilize MSE training and improve downstream performance at 30% sparsity.",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-24T10:09:28.045651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mse30_lr2e4_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T10:08:11.109Z\\\", \\\"updated_at\\\": \\\"2026-05-24T10:08:11.109Z\\\", \\\"hypothesis\\\": \\\"MSE loss has ~5x larger gradient magnitude than KL. Using LR=2e-4 (5x lower than default 1e-3) should stabilize MSE training and improve downstream performance at 30% sparsity.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6419}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-24T10:09:28.045783+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mse30_lr1e4_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T10:08:12.674Z\\\", \\\"updated_at\\\": \\\"2026-05-24T10:08:12.674Z\\\", \\\"hypothesis\\\": \\\"MSE loss has ~5x larger gradient magnitude than KL. Using LR=1e-4 (10x lower than default 1e-3) should stabilize MSE training and improve downstream performance at 30% sparsity.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5713}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-24T10:09:28.045910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mse30_lr2e4_s42",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "distill_sparse_swiglu",
+              "spec": "{'command': 'python -u src/train_perlayer_mse.py --lr 2e-4 --sparsity_target 0.3 --seed 42 --num_steps 1000 --gpu 0 --output_dir checkpoints/mse30_lr2e4_s42 --save_every 500', 'server': 'westd-34887', 'gpu': ['cuda:0'], 'log_path': '~/runs/distill_sparse_swiglu/mse30_lr2e4_s42.log', 'submitted_at': '2026-05-24T18:05:00Z', 'submitted_via': 'ssh_execute+tmux', 'backend': 'tmux', 'account': 'root', 'data_path': 'wikitext-103', 'data_count': 1000, 'model_name': 'llama-3.1-8b', 'seed': 42, 'num_steps': 1000, 'sparsity_target': 0.3, 'lr': 0.0002}"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-24T10:09:28.046069+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8962}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-24T10:09:28.046202+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mse30_lr1e4_s42",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "distill_sparse_swiglu",
+              "spec": "{'command': 'python -u src/train_perlayer_mse.py --lr 1e-4 --sparsity_target 0.3 --seed 42 --num_steps 1000 --gpu 1 --output_dir checkpoints/mse30_lr1e4_s42 --save_every 500', 'server': 'westd-34887', 'gpu': ['cuda:1'], 'log_path': '~/runs/distill_sparse_swiglu/mse30_lr1e4_s42.log', 'submitted_at': '2026-05-24T18:05:00Z', 'submitted_via': 'ssh_execute+tmux', 'backend': 'tmux', 'account': 'root', 'data_path': 'wikitext-103', 'data_count': 1000, 'model_name': 'llama-3.1-8b', 'seed': 42, 'num_steps': 1000, 'sparsity_target': 0.3, 'lr': 0.0001}"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-24T10:09:28.046340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9644}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-24T10:09:28.046482+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mse30_lr2e4_s42",
+              "field": "status",
+              "value": "PENDING",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-24T10:09:28.046602+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mse30_lr1e4_s42",
+              "field": "status",
+              "value": "PENDING",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-24T10:09:28.046727+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mse30_lr2e4_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T10:08:11.109Z\\\", \\\"updated_at\\\": \\\"2026-05-24T10:08:31.958Z\\\", \\\"hypothesis\\\": \\\"MSE loss has ~5x larger gradient magnitude than KL. Using LR=2e-4 (5x lower than default 1e-3) should stabilize MSE training and improve downstream performance at 30% sparsity.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0624}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-24T10:09:28.046851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mse30_lr1e4_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T10:08:12.674Z\\\", \\\"updated_at\\\": \\\"2026-05-24T10:08:35.009Z\\\", \\\"hypothesis\\\": \\\"MSE loss has ~5x larger gradient magnitude than KL. Using LR=1e-4 (10x lower than default 1e-3) should stabilize MSE training and improve downstream performance at 30% sparsity.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.5511}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-24T10:09:28.046973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mse30_lr2e4_s42",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "distill_sparse_swiglu",
+              "spec": "{'command': 'python -u src/train_perlayer_mse.py --lr 2e-4 --sparsity_target 0.3 --seed 42 --num_steps 1000 --gpu 0 --output_dir checkpoints/mse30_lr2e4_s42 --save_every 500', 'server': 'westd-34887', 'gpu': ['cuda:0'], 'log_path': '~/runs/distill_sparse_swiglu/mse30_lr2e4_s42.log', 'submitted_at': '2026-05-24T18:05:00Z', 'backend': 'tmux', 'account': 'root', 'data_path': 'wikitext-103', 'data_count': 1000, 'model_name': 'llama-3.1-8b', 'seed': 42}"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-24T10:09:28.047129+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9352}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-24T10:09:28.047255+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mse30_lr1e4_s42",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "distill_sparse_swiglu",
+              "spec": "{'command': 'python -u src/train_perlayer_mse.py --lr 1e-4 --sparsity_target 0.3 --seed 42 --num_steps 1000 --gpu 1 --output_dir checkpoints/mse30_lr1e4_s42 --save_every 500', 'server': 'westd-34887', 'gpu': ['cuda:1'], 'log_path': '~/runs/distill_sparse_swiglu/mse30_lr1e4_s42.log', 'submitted_at': '2026-05-24T18:05:00Z', 'backend': 'tmux', 'account': 'root', 'data_path': 'wikitext-103', 'data_count': 1000, 'model_name': 'llama-3.1-8b', 'seed': 42}"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-24T10:09:28.047393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9155}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-24T10:09:28.047514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mse30_lr2e4_s42",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-24T10:09:28.047630+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mse30_lr1e4_s42",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-24T10:09:28.047751+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mse30_lr2e4_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T10:08:11.109Z\\\", \\\"updated_at\\\": \\\"2026-05-24T10:08:57.474Z\\\", \\\"hypothesis\\\": \\\"MSE loss has ~5x larger gradient magnitude than KL. Using LR=2e-4 (5x lower than default 1e-3) should stabilize MSE training and improve downstream performance at 30% sparsity.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.1437}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-24T10:09:28.047870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mse30_lr1e4_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T10:08:12.674Z\\\", \\\"updated_at\\\": \\\"2026-05-24T10:09:00.622Z\\\", \\\"hypothesis\\\": \\\"MSE loss has ~5x larger gradient magnitude than KL. Using LR=1e-4 (10x lower than default 1e-3) should stabilize MSE training and improve downstream performance at 30% sparsity.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0472}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-24T10:09:28.047989+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mse30_lr2e4_s42",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "distill_sparse_swiglu",
+              "spec": "{'command': 'python -u src/train_perlayer_mse.py --lr 2e-4 --sparsity_target 0.3 --seed 42 --num_steps 1000 --gpu 0 --output_dir checkpoints/mse30_lr2e4_s42 --save_every 500', 'server': 'westd-34887', 'gpu': ['cuda:0'], 'log_path': '~/runs/distill_sparse_swiglu/mse30_lr2e4_s42.log', 'submitted_at': '2026-05-24T18:05:00Z', 'backend': 'tmux', 'account': 'root', 'data_path': 'wikitext-103', 'data_count': 1000, 'model_name': 'llama-3.1-8b', 'seed': 42}"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-24T10:09:28.048143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "mse30_lr1e4_s42",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "distill_sparse_swiglu",
+              "spec": "{'command': 'python -u src/train_perlayer_mse.py --lr 1e-4 --sparsity_target 0.3 --seed 42 --num_steps 1000 --gpu 1 --output_dir checkpoints/mse30_lr1e4_s42 --save_every 500', 'server': 'westd-34887', 'gpu': ['cuda:1'], 'log_path': '~/runs/distill_sparse_swiglu/mse30_lr1e4_s42.log', 'submitted_at': '2026-05-24T18:05:00Z', 'backend': 'tmux', 'account': 'root', 'data_path': 'wikitext-103', 'data_count': 1000, 'model_name': 'llama-3.1-8b', 'seed': 42}"
+            }
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-24T10:09:28.048296+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mse30_lr2e4_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T10:08:11.109Z\\\", \\\"updated_at\\\": \\\"2026-05-24T10:09:11.121Z\\\", \\\"hypothesis\\\": \\\"MSE loss has ~5x larger gradient magnitude than KL. Using LR=2e-4 (5x lower than default 1e-3) should stabilize MSE training and improve downstream performance at 30% sparsity.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/train_perlayer_mse.py --lr 2e-4 --sparsity_target 0.3 --seed 42 --num_steps 1000 --gpu 0 --output_dir checkpoints/mse30_lr2e4_s42 --save_every 500\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/mse30_lr2e4_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T18:05:00Z\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"wikitext-103\\\", \\\"data_count\\\": 1000, \\\"model_name\\\": \\\"llama-3.1-8b\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0472}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-24T10:09:28.048446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mse30_lr1e4_s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-24T10:08:12.674Z\\\", \\\"updated_at\\\": \\\"2026-05-24T10:09:14.171Z\\\", \\\"hypothesis\\\": \\\"MSE loss has ~5x larger gradient magnitude than KL. Using LR=1e-4 (10x lower than default 1e-3) should stabilize MSE training and improve downstream performance at 30% sparsity.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/train_perlayer_mse.py --lr 1e-4 --sparsity_target 0.3 --seed 42 --num_steps 1000 --gpu 1 --output_dir checkpoints/mse30_lr1e4_s42 --save_every 500\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/mse30_lr1e4_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-24T18:05:00Z\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"wikitext-103\\\", \\\"data_count\\\": 1000, \\\"model_name\\\": \\\"llama-3.1-8b\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0341}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-24T10:09:28.048606+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验已提交并在运行中：\n\n| Exp ID | LR | GPU | Status |\n|--------|-----|------|--------|\n| `mse30_lr2e4_s42` | 2e-4 | cuda:0 | RUNNING |\n| `mse30_lr1e4_s42` | 1e-4 | cuda:1 | RUNNING |\n\n**配置确认：**\n- 模型：LLaMA-3.1-8B (`/root/autodl-tmp/models/llama-3.1-8b`)\n- Loss：Per-layer MSE (FFN output)\n- Sparsity：30%, uniform, Lagrangian constraint\n- Seed：42, num_steps=1000, batch_size=4, seq_len=2048, warmup=100\n- 训练后自动链式执行 WikiText-2 eval（`benchmark_eval.py --tasks wikitext2`）\n- wandb 已禁用（服务器无 API key）\n- 日志：`~/runs/distill_sparse_swiglu/mse30_lr{2e4,1e4}_s42.log`\n\n**早期训练信号（~step 40）：**\n- LR=2e-4: mse=0.00697, sparsity=0.402\n- LR=1e-4: mse 略高（符合预期，学习更慢），sparsity=0.406\n\n每步 ~0.9s，预估 1000 步约 15 分钟完成训练 + eval。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_mse_lr_sweep_30_s42_20260524T100212"
+          },
+          "id": "event-000101"
+        }
+      ],
+      "message_count": 101
+    }
+  ],
+  "readable_path": "readable/conversations/exp-mse-lr-sweep-30-s42.md"
+}

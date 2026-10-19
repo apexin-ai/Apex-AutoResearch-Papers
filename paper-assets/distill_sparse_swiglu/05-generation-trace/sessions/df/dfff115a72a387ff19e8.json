@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfff115a72a387ff19e8",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval mistral kl30 kl70 collect",
+  "task_key": "worker_eval_mistral_kl30_kl70_collect_20260517T005645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mistral_kl30_kl70_collect_20260517T005645_result.json",
+    "occurrence": 1,
+    "bytes": 266,
+    "sha256": "d9035f108e909c4021568df875edf9896012e441c1ed9fbbe7696695b5b8c0b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进度汇总：\n- **30% eval 已完成**：KL per_token PPL=6.0480, KL teal_global PPL=6.7733, TEAL baseline PPL=8.3807\n- **50% eval 后台运行中**（PID 290048）\n- **70% 训练中**：step 570/1000，约 57% 完成\n\n等 90 秒后再检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mistral-kl30-kl70-collect.md"
+}

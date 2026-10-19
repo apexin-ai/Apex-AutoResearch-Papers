@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbb55a736be6c9991937",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check processes",
+  "task_key": "worker_ops_check_processes_20260515T185239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_processes_20260515T185239_result.json",
+    "occurrence": 1,
+    "bytes": 1204,
+    "sha256": "37882876cfb65fb6e170a3fdbd009054dfded07e324a819e0b323509f7d37ff4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态报告\n\n### 进程存活\n| 实验 | PID | 状态 | 运行时长 |\n|------|-----|------|---------|\n| spon_2048_s42 | 109601 | **存活** | 11min 10s |\n| ste_kl_s42 | 112197 | **存活** | 2min 19s |\n\n### GPU 使用\n| GPU | 利用率 | 显存占用 |\n|-----|--------|---------|\n| cuda:0 (spon_2048_s42) | 100% | 33,917 / 97,887 MiB (35%) |\n| cuda:1 (ste_kl_s42) | 100% | 75,185 / 97,887 MiB (77%) |\n\n### ste_kl_s42 — Step 40/1000 (4%)\n```\n[Step  1] loss=6.9688  sparsity=0.539  lambda=0.50\n[Step 10] loss=3.3750  sparsity=0.539  lambda=0.01\n[Step 20] loss=2.2344  sparsity=0.533  lambda=0.01\n[Step 30] loss=1.8516  sparsity=0.527  lambda=0.01\n[Step 40] loss=1.5156  sparsity=0.520  lambda=0.01  lr=4e-4\n```\nLoss 持续下降，sparsity 从 0.539 缓慢向 0.5 target 靠拢。\n\n### spon_2048_s42 — Step 300/1000 (30%)\n```\n[Step 100] loss=0.4121  mean_bias_norm=0.015928  lr=1.00e-5\n[Step 200] loss=0.3574  mean_bias_norm=0.030933  lr=9.70e-6\n[Step 300] loss=0.3516  mean_bias_norm=0.040398  lr=8.83e-6\n```\nLoss 收敛中（0.41 → 0.36 → 0.35），bias norm 稳步增长。每 100 步打一次日志。\n\n两个进程都在正常训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-processes.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81cb449bb9a474be9505",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "submit bce v3 force",
+  "task_key": "worker_submit_bce_v3_force_20260516T043540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_bce_v3_force_20260516T043540_result.json",
+    "occurrence": 1,
+    "bytes": 762,
+    "sha256": "ec9f64f0d67b795b2ac97e7899d2d00297c86c4b9d4d6bf0bc24f1533ad4d2ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**Step 1** — 找到 D029 父脚本 `run_bench_cuda1.sh`（PID 195904），顺序执行 5 个 benchmark，当前跑到第 4/5 个 bench_bce_iso50_s42（PID 204687，cuda:1 占 37GB）。已杀掉父子进程。\n\n**Step 2** — cuda:1 释放到 0 MiB。\n\n**Step 3** — 启动 BCE v3，首次因模型路径用了 HF cache snapshot 格式（已不存在）导致 `HFValidationError`。改用 `/root/autodl-tmp/models/llama-3.1-8b` 成功启动。\n\n**Step 4** — 验证通过：\n- PID 205597 运行中\n- 模型加载完成（291/291 weights），Trainable 0.946%\n- 数据集从缓存加载成功\n- cuda:1 显存 90.7GB\n\n**Step 5** — Registry 已推进到 RUNNING，cron 监控已注册（120s 间隔）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-bce-v3-force.md"
+}

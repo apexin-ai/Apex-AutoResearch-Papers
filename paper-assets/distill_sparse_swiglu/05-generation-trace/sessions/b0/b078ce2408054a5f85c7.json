@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b078ce2408054a5f85c7",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code qwen14b dryrun",
+  "task_key": "worker_code_qwen14b_dryrun_20260517T124814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen14b_dryrun_20260517T124814_result.json",
+    "occurrence": 1,
+    "bytes": 945,
+    "sha256": "e9f18e3cd174283312710694a5cde0231f9ce8b3433c1723f747e48d5e2fa278"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Qwen-2.5-14B Dry-run 结果\n\n**状态：成功**\n\n| 项目 | 结果 |\n|------|------|\n| 模型加载 | 成功，8 shard / 28GB |\n| Predictor 维度 | 正确：5120 → 128 → 13824（48 层，每层 4 个参数） |\n| 可训练参数 | 117,061,632 / 14,770,033,664 (0.793%) |\n| 峰值显存（allocated） | **45.33 GiB** |\n| 峰值显存（reserved） | **47.47 GiB**（单卡 98GB，余量充足） |\n| 单步时间 | **~1.9s**（batch_size=1, gradient_checkpointing, seq_len=2048） |\n| Loss 趋势（20步） | step1: 0.598 → step10: 2.047 → step20: 1.141 |\n| Sparsity | 0.402 → 0.383 → 0.371（向 target 0.3 收敛中） |\n\n**备注：**\n- Loss 先升后降是正常的：tau 从 0.955 退火到 0.1，mask 从软变硬，中间 KL 会先恶化再恢复\n- 随机数据不会有真正的 loss 收敛，仅验证训练流程正常\n- 单卡 47.5 GiB 占用，双卡并行或 batch_size=2 均可行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen14b-dryrun.md"
+}

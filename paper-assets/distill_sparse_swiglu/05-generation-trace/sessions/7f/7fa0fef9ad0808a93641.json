@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fa0fef9ad0808a93641",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code error compensation module",
+  "task_key": "worker_code_error-compensation-module_20260515T163847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_error-compensation-module_20260515T163847_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "3b7da16134c76fcdafaec80136b68568096f856fa12a1cd1a6cb917e6edbd641"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。新增两个文件：\n\n**`src/compensation.py`** — `ErrorCompensation` 类：\n- `calibrate(wrapper, data_loader, device, num_batches)` — 用校准数据跑 dense forward，计算每层 SwiGLU 中间激活的 channel-wise 均值\n- `compensate(intermediate, mask, layer_idx)` — 对 masked 神经元用均值替代：`out = x * mask + mean * (1 - mask)`\n- `save(path)` / `load(path)` — 序列化/反序列化\n\n**`tests/test_compensation.py`** — 12 个单元测试全部通过：\n- mask 全 1 → 输出等于原始\n- mask 全 0 → 输出等于均值\n- 部分 mask → 保留通道不变、裁剪通道等于均值\n- 不同层用不同补偿向量\n- 缺失层回退到无补偿\n- save/load 一致性\n- bfloat16 兼容、1D mask 广播、零均值边界\n\n与现有 `PredictorWrapper` 的集成点：在 `patched_forward` 的 `intermediate = intermediate * mask` 之后、`down_proj(intermediate)` 之前，调用 `compensation.compensate(intermediate, mask, layer_idx)` 替换即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-error-compensation-module.md"
+}

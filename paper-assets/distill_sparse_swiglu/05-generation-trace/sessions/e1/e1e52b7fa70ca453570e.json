@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1e52b7fa70ca453570e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis lm eval teal 50pct",
+  "task_key": "worker_analysis_lm_eval_teal_50pct_20260516T023351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_lm_eval_teal_50pct_20260516T023351_result.json",
+    "occurrence": 1,
+    "bytes": 493,
+    "sha256": "35e59f6af8b136a87568e920d50c57454a4ef6bc726f9ffc788ca109020c2edf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。实验 `lm_eval_teal_50pct` → **DONE (success)**。\n\n**结论**：TEAL 50% 也全面崩溃（MMLU=0.286, GSM8K=0.019），与 KL 50% 的崩溃程度相当。50% unstructured sparsity 对 SwiGLU FFN 的 downstream capability 破坏是方法无关的（universal），不是 KL predictor 特有问题。TEAL 在简单 task（ARC/WinoGrande）上甚至比 KL 更差，说明 learned predictor 至少在保留部分能力上优于 training-free 方法。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lm-eval-teal-50pct.md"
+}

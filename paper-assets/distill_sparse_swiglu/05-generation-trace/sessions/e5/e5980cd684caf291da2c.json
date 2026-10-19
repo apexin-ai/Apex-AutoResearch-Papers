@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0",
+  "id": "e5980cd684caf291da2c",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "ssh model data download",
+  "task_key": "worker_ssh_model-data-download_20260515T103113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_model-data-download_20260515T103113.log",
+    "occurrence": 1,
+    "bytes": 2162896,
+    "sha256": "184a7f445cf13025dc1384db055a744ad9fbf61caa82e7246ad77e4b17e9c2d4"
+  },
+  "statistics": {
+    "messages": 1797,
+    "user_turns": 1,
+    "tool_calls": 750,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 290,
+      "tool_call": 750,
+      "tool_result": 750,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 934,
+      "chunks": [
+        {
+          "path": "e5980cd684caf291da2c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e5980cd684caf291da2c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e5980cd684caf291da2c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e5980cd684caf291da2c-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "e5980cd684caf291da2c-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "e5980cd684caf291da2c-part-0006.json",
+          "message_count": 34
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 863,
+      "chunks": [
+        {
+          "path": "e5980cd684caf291da2c-part-0006.json",
+          "message_count": 146
+        },
+        {
+          "path": "e5980cd684caf291da2c-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "e5980cd684caf291da2c-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "e5980cd684caf291da2c-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "e5980cd684caf291da2c-part-0010.json",
+          "message_count": 177
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-model-data-download.md"
+}

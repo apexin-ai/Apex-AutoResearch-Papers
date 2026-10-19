@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb8d7bea1ab92d1b5b48",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval bce v3 s456 eval chain",
+  "task_key": "worker_eval_bce_v3_s456_eval_chain_20260517T200221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_bce_v3_s456_eval_chain_20260517T200221_result.json",
+    "occurrence": 1,
+    "bytes": 427,
+    "sha256": "aa1aca23272a37c1ce080a101e141d671790cf0ae1a8988a3c288139347d44bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已启动，模型正在加载中（LLaMA-3.1-8B weights loading）。\n\n总结：\n- 训练 `bce_isocompute_v3_s456` 已正常完成（2700/2700 steps, loss=0.6368, sparsity=0.510）\n- Checkpoint: `checkpoints/bce_isocompute_v3_s456/predictor_bce.pt`\n- Eval job `bce_isocompute_v3_s456_eval` 已在 cuda:1 上提交并确认启动，日志: `~/runs/distill_sparse_swiglu/bce_isocompute_v3_s456_eval.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-bce-v3-s456-eval-chain.md"
+}

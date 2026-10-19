@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "f84557606cfaef89edba",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze qwen14b kl30 s42 gsm8k uniform",
+  "task_key": "worker_analyze_qwen14b_kl30_s42_gsm8k_uniform_20260522T103235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_qwen14b_kl30_s42_gsm8k_uniform_20260522T103235_result.json",
+    "occurrence": 1,
+    "bytes": 1049,
+    "sha256": "cc2cc4b848150c6469d76de7acb3066dd925760b4baf9cd69a20a19dcecf9e44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"gsm8k_exact_match\": 0.3548,\n  \"gsm8k_exact_match_stderr\": 0.01318,\n  \"actual_sparsity\": 0.296,\n  \"wandb_run_id\": null,\n  \"success\": true,\n  \"error_msg\": null,\n  \"raw_metrics_line\": \"gsm8k: sample_len=1319, exact_match=0.3548\"\n}\n```\n\n关键发现：\n\n- **KL s42 uniform GSM8K = 0.3548**，与 KL s42 global (0.3571) 几乎无差异（Δ = -0.0023，在 stderr 范围内）\n- 两种 allocation 策略（uniform vs global）对 KL predictor 的 GSM8K 性能没有实质影响\n- 相比 TEAL@30% uniform (0.5208) 仍有显著差距（-0.166）\n- 每层 sparsity 均在 0.285–0.301 范围，均值约 0.296（接近目标 0.30）\n- 无 W&B run ID，结果已保存至 `results/benchmark/qwen14b_kl30_s42_gsm8k_uniform/results.json`"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "gsm8k_exact_match": 0.3548,
+              "gsm8k_exact_match_stderr": 0.01318,
+              "actual_sparsity": 0.296,
+              "wandb_run_id": null,
+              "success": true,
+              "error_msg": null,
+              "raw_metrics_line": "gsm8k: sample_len=1319, exact_match=0.3548"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-qwen14b-kl30-s42-gsm8k-uniform.md"
+}

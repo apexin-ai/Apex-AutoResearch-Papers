@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e249ab5dab376f39ee7f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis mse training config",
+  "task_key": "worker_analysis_mse_training_config_20260520T061551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mse_training_config_20260520T061551_result.json",
+    "occurrence": 1,
+    "bytes": 3348,
+    "sha256": "2da46b4c3940caf45ab127556b5af9f51899f78c5e8cee4d2949d7fffa116005"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已获取完整信息。以下是提取的 MSE baseline 训练配置：\n\n---\n\n## MSE Baseline 训练配置\n\n### 1. Mask 生成方式\n\n**Gumbel-Sigmoid relaxation**，与 KL 训练完全相同。\n\n`train_perlayer_mse.py` L105-107:\n```python\nlogits = wrapper.predictors[layer_idx](inp)\nmask = wrapper.gumbel_mask(logits)\n```\n\n`predictor.py` GumbelSigmoidMask:\n```python\nu = torch.rand_like(logits).clamp(1e-6, 1 - 1e-6)\ngumbel_noise = -torch.log(-torch.log(u))\ny_soft = torch.sigmoid((logits + gumbel_noise) / self.tau)\n```\n\n温度线性退火 (L103): `tau = tau_start + (tau_end - tau_start) * (step / num_steps)`，从 1.0 → 0.1。\n\n### 2. 稀疏度控制\n\n**Adaptive Lagrangian penalty controller**，与 KL 训练机制相同。\n\nL97-99 初始化:\n```python\nlambda_sparse = 1.0\ntarget_sparsity = args.sparsity_target\nmargin = 0.02\n```\n\nL150-155 约束 loss + 自适应更新:\n```python\nsparsity_error = torch.abs(actual_sparsity - target_sparsity)\nconstraint_loss = lambda_sparse * torch.clamp(sparsity_error - margin, min=0.0) ** 2\n\n# Adaptive: push lambda up when too dense, down when too sparse\nif last_sparsity < target_sparsity - margin:\n    lambda_sparse *= 2.0\nelif last_sparsity > target_sparsity + margin:\n    lambda_sparse *= 0.5\nlambda_sparse = max(0.01, min(lambda_sparse, args.lambda_max))  # cap=1000\n```\n\n与 KL 训练(`train.py`)的 Lagrangian 完全一致。\n\n### 3. 超参数\n\n实际启动命令（registry.yaml L709-714, L856-861）：\n\n| 超参 | MSE 30% | MSE 50% | KL（对照） |\n|------|---------|---------|-----------|\n| LR | 1e-3 | 1e-3 | 1e-3 |\n| Optimizer | AdamW (weight_decay=0.01) | 同左 | 同左 |\n| Batch size | 4 | 4 | 4 |\n| Steps | 1000 | 1000 | 1000 |\n| Seq len | 2048 | 2048 | 2048 |\n| Warmup | 100 | 100 | 100 |\n| Scheduler | cosine w/ warmup | 同左 | 同左 |\n| tau | 1.0 → 0.1 (linear) | 同左 | 同左 |\n| Grad clip | 1.0 | 1.0 | 1.0 |\n| Gradient checkpointing | **No** | **No** | **Yes** (auto for KL) |\n| Gradient accumulation | 1 | 1 | 1 |\n| Dataset | wikitext-103 | wikitext-103 | wikitext-103 |\n| Seed | 42 | 42 | 42 |\n| bottleneck_dim | 128 | 128 | 128 |\n| lambda_max | 1000 | 1000 | 1000 |\n\n### 4. 与 KL/BCE 的关键差异\n\n**Loss 函数**:\n- MSE: `||down_proj(act * mask) - down_proj(act)||² / num_layers`，per-layer 独立计算，梯度不穿过整个 model（L109-115）\n- KL: `KL(P_dense || P_sparse)` 在 output logit 空间，梯度需 backprop 穿过所有后续层\n- BCE: `BCE(predictor_logits, top-k_binary_target)`，无需 forward pass 生成 sparse output\n\n**梯度流差异**:\n- MSE: `mse → sparse_out → down_proj (frozen) → mask → predictor`。只穿过单层的 down_proj，**不需要 gradient checkpointing**。\n- KL: `kl → all subsequent layers → mask → predictor`。需穿过整个模型，**需要 gradient checkpointing**。\n\n**Predictor 架构**: 完全相同 — `SparsityPredictor(hidden_size, intermediate_size, bottleneck_size=128)`，GELU 激活。\n\n**数据 pipeline**: 完全相同 — `get_calibration_loader(tokenizer, batch_size=4, seq_len=2048, seed=42, \"wikitext-103\")`。\n\n**训练结果**:\n- MSE 30%: final_mse=0.0057, sparsity=0.277, lambda 到顶 1000（未收敛到目标 0.3）\n- MSE 50%: final_loss=0.0083, sparsity=0.539"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mse-training-config.md"
+}

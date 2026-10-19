@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3d47fc2e93d6abe45b2",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "sync retention chart pdf",
+  "task_key": "worker_sync_retention_chart_pdf_20260517T074941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_retention_chart_pdf_20260517T074941_result.json",
+    "occurrence": 1,
+    "bytes": 151,
+    "sha256": "977ce8297e6e8ae9258850d35bae021b052d62f22e8f8efe7268d8915a2fd030"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个文件已同步到本地：\n\n- PDF: 16,438 bytes\n- PNG: 185,637 bytes\n\n大小与远程文件一致，传输成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-retention-chart-pdf.md"
+}

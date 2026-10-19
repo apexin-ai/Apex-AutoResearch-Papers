@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce65c995e6f05dad6f82",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check 8b multiseed progress",
+  "task_key": "worker_check_8b_multiseed_progress_20260518T005723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_8b_multiseed_progress_20260518T005723_result.json",
+    "occurrence": 1,
+    "bytes": 747,
+    "sha256": "d26e986bd891728e17a9e18847e64d14768f2337496164c82dd081dabb2cf075"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练都在跑，状态健康。\n\n| 指标 | s123 (cuda:0, PID 34700) | s456 (cuda:1, PID 35045) |\n|------|--------------------------|--------------------------|\n| 进度 | **790/1000** (79%) | **780/1000** (78%) |\n| 最新 loss | 0.1592 | 0.1543 |\n| sparsity | 0.293 | 0.293 |\n| constraint | 0.000 (达标) | 0.000 (达标) |\n| GPU 利用率 | 100%, 67.6GB | 100%, 67.6GB |\n\n两个 run 的 sparsity 稳定在 0.281-0.305 范围（目标 30%），constraint=0 说明 sparsity 约束已满足。Loss 在 0.13-0.20 区间波动，收敛正常。\n\n按 ~0.5s/step 估算，剩余 ~200 steps，约 **1.5-2 分钟**完成。PID 与启动时不同（33894→34700, 33988→35045），应该是 nohup wrapper 导致的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-8b-multiseed-progress.md"
+}

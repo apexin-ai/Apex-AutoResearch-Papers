@@ -1,0 +1,1 @@
+10/10 tasks trained. Hyperparams: tau=0.8, gamma=0.99, lr=3e-4, 100K steps, batch=256. All converged except salad_dressing (early-stopped at 75K, loss spike). Total time: 2060s on cuda:1.

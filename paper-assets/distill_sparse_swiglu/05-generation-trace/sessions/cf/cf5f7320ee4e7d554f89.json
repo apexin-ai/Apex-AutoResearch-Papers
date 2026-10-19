@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf5f7320ee4e7d554f89",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check 14b 4task eval status",
+  "task_key": "worker_check_14b_4task_eval_status_20260518T004959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_14b_4task_eval_status_20260518T004959_result.json",
+    "occurrence": 1,
+    "bytes": 1438,
+    "sha256": "e46b7b98eb577aed4e770d6921245bdda204fc9707ba6a3e19047d2e2dbe37c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都已**崩溃**，状态如下：\n\n## 汇总\n\n| 实验 | 进程状态 | WikiText-2 PPL | ARC-c / WinoGrande / MMLU |\n|------|----------|----------------|---------------------------|\n| KL 30% | 已崩溃 | **7.6318** | 未完成 |\n| TEAL 30% | 已崩溃 | **8.0054** | 未完成 |\n\n## 崩溃原因\n\n两个实验的失败模式完全一致：\n\n1. WikiText-2 PPL 评估**成功完成**\n2. 进入 `lm-eval` 阶段尝试运行 `arc_challenge` 时，需要从 HuggingFace Hub 下载 `allenai/ai2_arc` 数据集\n3. 服务器**网络不可达**：`[Errno 101] Network is unreachable`\n4. 重试 1 次后，httpx client 被关闭，抛出 `RuntimeError: Cannot send a request, as the client has been closed.`\n\n**根因：westd-34887 外网访问被断开**，导致 lm-eval-harness 无法下载评测数据集。\n\n## 已获得的数据\n\n- KL 30% sparse WikiText-2 PPL = **7.6318**\n- TEAL 30% sparse WikiText-2 PPL = **8.0054**\n- 两者的 per-layer sparsity 也已打印（KL model-level 0.275, TEAL model-level 0.293）\n\n## 修复方向\n\n需要解决 lm-eval 数据集的离线可用性问题。选项：\n1. 提前在有网络时缓存数据集到本地（`HF_DATASETS_OFFLINE=1` + 预下载）\n2. 手动将 `ai2_arc`、`winogrande`、`cais/mmlu` 数据集文件传到服务器的 HF cache 目录\n3. 恢复服务器外网访问后重跑（只需重跑 lm-eval 部分，PPL 已有结果）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-14b-4task-eval-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf79901a5aff4081545e",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops check kl30 v3 status",
+  "task_key": "worker_ops_check-kl30-v3-status_20260518T211601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-kl30-v3-status_20260518T211601_result.json",
+    "occurrence": 1,
+    "bytes": 839,
+    "sha256": "42a58c8aacfca617273d7e36b48f37a0695058ab312ceebdcab064e4baca6045"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n**两个实验均已完成** (EXIT_CODE=0)，无活跃进程，GPU 空闲 (0%/0MiB)。\n\n### kl30_s123_uniform_v3\n| Metric | Value |\n|---|---|\n| WikiText-2 PPL | **8.8308** |\n| ARC-Challenge acc / acc_norm | 0.4096 / 0.4531 |\n| WinoGrande acc | 0.6938 |\n| MMLU acc | 0.3944 |\n| GSM8K exact_match | 0.0751 |\n| 耗时 | 2157.6s (~36min) |\n| 完成时间 | 2026-05-19 04:30:04 |\n\n### kl30_s456_uniform_v3\n| Metric | Value |\n|---|---|\n| WikiText-2 PPL | **8.7947** |\n| ARC-Challenge acc / acc_norm | 0.4070 / 0.4505 |\n| WinoGrande acc | 0.6875 |\n| MMLU acc | 0.4198 |\n| GSM8K exact_match | 0.0758 |\n| 耗时 | 2325.3s (~39min) |\n| 完成时间 | 2026-05-19 04:30:05 |\n\n两个 seed 的结果非常接近，s456 的 MMLU 略高 (+2.54pp)，PPL 略优；其余指标差异在 1pp 以内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-kl30-v3-status.md"
+}

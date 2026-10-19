@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f9ee8986abe3506c8207",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "code fix kl norm v3",
+  "task_key": "worker_code_fix-kl-norm-v3_20260515T145702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-kl-norm-v3_20260515T145702.log",
+    "occurrence": 1,
+    "bytes": 700676,
+    "sha256": "30aca0584c5e3429fa30fd1ed76ffb695947f9951f55814a6152ec80070ce53a"
+  },
+  "statistics": {
+    "messages": 281,
+    "user_turns": 0,
+    "tool_calls": 117,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 117,
+      "tool_result": 117,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 281,
+      "chunks": [
+        {
+          "path": "f9ee8986abe3506c8207-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f9ee8986abe3506c8207-part-0002.json",
+          "message_count": 101
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-kl-norm-v3.md"
+}

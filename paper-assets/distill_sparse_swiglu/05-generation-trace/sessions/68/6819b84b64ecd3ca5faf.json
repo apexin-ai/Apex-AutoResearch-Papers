@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "id": "6819b84b64ecd3ca5faf",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "exp mag preservation reg",
+  "task_key": "worker_exp_mag_preservation_reg_20260517T040258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_mag_preservation_reg_20260517T040258.log",
+    "occurrence": 1,
+    "bytes": 2271680,
+    "sha256": "710630c0ec0ce0303e52dae00a77a24f944dca87bbd80215bdc6c408f24c1638"
+  },
+  "statistics": {
+    "messages": 1512,
+    "user_turns": 2,
+    "tool_calls": 659,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 3,
+      "assistant": 180,
+      "tool_call": 659,
+      "tool_result": 659,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 672,
+      "chunks": [
+        {
+          "path": "6819b84b64ecd3ca5faf-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6819b84b64ecd3ca5faf-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6819b84b64ecd3ca5faf-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "6819b84b64ecd3ca5faf-part-0004.json",
+          "message_count": 132
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 753,
+      "chunks": [
+        {
+          "path": "6819b84b64ecd3ca5faf-part-0004.json",
+          "message_count": 48
+        },
+        {
+          "path": "6819b84b64ecd3ca5faf-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "6819b84b64ecd3ca5faf-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "6819b84b64ecd3ca5faf-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "6819b84b64ecd3ca5faf-part-0008.json",
+          "message_count": 165
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 87,
+      "chunks": [
+        {
+          "path": "6819b84b64ecd3ca5faf-part-0008.json",
+          "message_count": 15
+        },
+        {
+          "path": "6819b84b64ecd3ca5faf-part-0009.json",
+          "message_count": 72
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-mag-preservation-reg.md"
+}

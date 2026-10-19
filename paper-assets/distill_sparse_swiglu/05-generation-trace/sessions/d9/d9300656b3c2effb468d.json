@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9300656b3c2effb468d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis qwen14b kl30 s123 eval v4",
+  "task_key": "worker_analysis_qwen14b_kl30_s123_eval_v4_20260519T125648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen14b_kl30_s123_eval_v4_20260519T125648_result.json",
+    "occurrence": 1,
+    "bytes": 915,
+    "sha256": "aa155a01e3aa7d67b169952c8c2fbd76e9011171ed6786a308d151d5e7d1bf27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**s123 eval v4 指标：**\n- WikiText-2 PPL = **7.6607**\n- ARC-C acc_norm = **0.5606**\n- WinoGrande = **0.7293**\n- MMLU = **0.6449**\n- HellaSwag acc_norm = **0.7132**\n- PIQA acc_norm = **0.7535**\n- Model sparsity = **0.275**\n\n**三种子对比：**\n\n| Metric | s42 | s456 | s123 | Mean±Std |\n|--------|-----|------|------|----------|\n| PPL | 7.623 | 7.693 | 7.661 | 7.659±0.029 |\n| ARC_norm | 0.572 | 0.532 | 0.561 | 0.555±0.016 |\n| WinoGrande | 0.721 | 0.723 | 0.729 | 0.724±0.004 |\n| MMLU | 0.637 | 0.641 | 0.645 | 0.641±0.003 |\n\n**结论：**\n- MMLU reversal 是 **systematic**——三种子均在 0.637–0.645（std=0.003），非随机波动\n- 所有指标跨种子方差极小，训练稳定\n- 训练正常完成 1000/1000 steps，checkpoint 在 `checkpoints/qwen14b_kl30_s123/predictor_kl_normalized.pt`\n- 报告已注册：`art_20260519_810a65`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen14b-kl30-s123-eval-v4.md"
+}

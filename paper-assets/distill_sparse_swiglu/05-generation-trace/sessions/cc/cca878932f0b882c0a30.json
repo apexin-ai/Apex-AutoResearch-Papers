@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cca878932f0b882c0a30",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "research cats feasibility",
+  "task_key": "worker_research_cats_feasibility_20260517T115314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_cats_feasibility_20260517T115314_result.json",
+    "occurrence": 1,
+    "bytes": 1344,
+    "sha256": "b0014f12e9272e0ab6bb8360eb23cf6e6c6497dc53ebd0d822c3a071675cf7f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## CATS Baseline 可行性报告\n\n**代码可用性**: 有。https://github.com/ScalingIntelligence/CATS (MIT License, COLM 2024)\n\n**核心机制**: 对 SwiGLU 的 gate branch 输出 (`SiLU(x @ W_gate)`) 做对称阈值截断——绝对值低于阈值 t 的激活置零。阈值通过 ~500 样本校准确定（按 percentile 计算，per-layer）。支持任意 sparsity level（50%/70%/90% 均有评估）。\n\n**兼容性问题**:\n- 锁定 `transformers==4.36.2`，直接 import 内部类（`MistralMLP` 等），与新版不兼容\n- 有自定义 CUDA kernel（`flash_gemv`），但核心机制不依赖它\n- 已有 LLaMA-2-7B 实现，但无 LLaMA-3.1-8B\n\n**复现难度: 低（4-8 小时）**。核心 `SparseSiLU` 仅 ~10 行代码，重新实现比适配其 codebase 更快：\n1. 校准数据过模型，收集各层 `|SiLU(gate)|` 直方图\n2. 按目标 sparsity 计算 percentile 阈值\n3. 推理时低于阈值的 gate activation 置零\n\n**与我们的实验设置完全兼容**: CATS 就是在 SwiGLU gate activation 上做 sparsity，可直接集成到 `benchmark_eval.py` 评估，无需特殊推理代码。\n\n**推荐: 值得加入。** 方法简单、复现容易、与我们的 setting 高度对齐（同样利用 SwiGLU gate 的天然稀疏性），是 training-free baseline 的理想对照。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-cats-feasibility.md"
+}

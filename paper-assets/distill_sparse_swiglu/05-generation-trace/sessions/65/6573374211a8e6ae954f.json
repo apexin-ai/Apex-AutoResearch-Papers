@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6573374211a8e6ae954f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops emergency disk cleanup",
+  "task_key": "worker_ops_emergency_disk_cleanup_20260523T092620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_emergency_disk_cleanup_20260523T092620_result.json",
+    "occurrence": 1,
+    "bytes": 411,
+    "sha256": "36c12fbb739a4ed9c14b41974fce1671153684b105750a5d53ed4f1e4ff2a299"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n- **释放空间**: 30G → 22G used，**可用 9.0G**（71% 使用率）\n- **K=16 s123 (PID 128425)**: 仍在运行\n- 清理内容：K=2/K=4/K=8/K=16 中间 step checkpoint + K=16 s456 整目录 + pip cache (103MB)，共释放约 8GB\n- 所有 final checkpoint (`predictor_perlayer_kl_k4.pt`) 均保留完好\n\n9GB 剩余空间足够 step_1000 checkpoint (~435MB) 保存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-emergency-disk-cleanup.md"
+}

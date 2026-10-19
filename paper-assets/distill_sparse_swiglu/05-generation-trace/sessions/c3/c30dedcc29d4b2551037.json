@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "c30dedcc29d4b2551037",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze perlayer kl k8 s456 eval",
+  "task_key": "worker_analyze_perlayer_kl_k8_s456_eval_20260523T123708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_perlayer_kl_k8_s456_eval_20260523T123708_result.json",
+    "occurrence": 1,
+    "bytes": 1013,
+    "sha256": "7bd30b4dc59058b40fbd22a4c1661be350db12979c864bd7f10d1e9c94bc993a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"wikitext2_ppl\": 8.9515,\n  \"arc_challenge_acc_norm\": 0.3951,\n  \"winogrande_acc\": 0.6875,\n  \"mmlu_acc\": 0.4105,\n  \"gsm8k_exact_match\": 0.0811,\n  \"hellaswag_acc_norm\": 0.6783,\n  \"piqa_acc_norm\": 0.7399,\n  \"sparsity\": 0.298\n}\n```\n\n全部 7 个任务均成功完成，无错误。与同配置其他 seed 对比：\n\n| 指标 | s42 | s123 | **s456** |\n|------|-----|------|----------|\n| PPL | 8.9704 | 9.0648 | **8.9515** |\n| ARC | 0.4104 | 0.4155 | **0.3951** |\n| WG | 0.674 | 0.6993 | **0.6875** |\n| MMLU | 0.398 | 0.4042 | **0.4105** |\n| GSM8K | 0.0561 | 0.0682 | **0.0811** |\n\ns456 的 PPL 最低（最优），MMLU 和 GSM8K 也是三个 seed 中最高的。ARC 略低但在合理范围内。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "wikitext2_ppl": 8.9515,
+              "arc_challenge_acc_norm": 0.3951,
+              "winogrande_acc": 0.6875,
+              "mmlu_acc": 0.4105,
+              "gsm8k_exact_match": 0.0811,
+              "hellaswag_acc_norm": 0.6783,
+              "piqa_acc_norm": 0.7399,
+              "sparsity": 0.298
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-perlayer-kl-k8-s456-eval.md"
+}

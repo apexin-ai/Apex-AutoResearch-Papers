@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a13784746b2e66daaac8",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_3_1778907665.md",
+  "task_key": "loop_3_1778907665",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778907665.md",
+    "occurrence": 1,
+    "bytes": 4624,
+    "sha256": "111d4d26bab872b20099bc9052a3cf6f5d4c3fa6712fc737fd7f21226207a5e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_wall_time\nupdated: '2026-05-16T04:44:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-34887 cuda:0 + cuda:1，**不能用其他 GPU**\n- BCE iso-compute **必须用 nohup**，禁止 tmux（C002 约束，v1/v2 两次被 tmux killed）\n- `CUDA_VISIBLE_DEVICES=1` + `--gpu 0` = 物理 cuda:1；不要用 `--gpu 1`\n- 日志统一写 `/root/runs/distill_sparse_swiglu/`，不要写 `/root/distill_sparse_swiglu/logs/`（之前 worker 写错路径导致 Director 找不到日志）\n- d030_kl30_uniform conclusion=**success**（Director 修正过，MMLU +11.9pp 是正向结果，GSM8K 无恢复是额外发现不是失败）\n- **先不改 paper_framing.md**——等 D030 50% uniform 结果出来后 Director 确认再改\n- Registry 的 `read_registry(filters={\"exp_id\": \"xxx\"})` 经常返回空，用 `grep registry.yaml` 或 `read_registry(limit=0)` 再手动过滤\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-34887，账号 root\n- 工作目录：/root/distill_sparse_swiglu\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（conda 环境，不是 venv）\n- 模型：Llama-3.1-8B `/root/autodl-tmp/models/llama-3.1-8b`，Mistral-7B `/root/autodl-tmp/models/mistral-7b`\n- HF cache：`HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 HF_DATASETS_OFFLINE=1`\n- 活跃进程：\n  - cuda:0: d030_kl50_uniform PID 203702/203707 (benchmark_eval.py, cron 已注册, 完成 3/5 tasks, MMLU 进行中)\n  - cuda:1: **状态不确定** — BCE v3 PID 205597/205598 已死，critical retry worker (worker_submit_bce_v3_critical_retry_20260516T044236) 正在诊断+重启\n- D029 benchmark 命令批次：`artifacts/_project/intermediate/d029_remaining_batch.md`（11 条命令，每条 ~45min）\n\n### 3. 📊 当前状态\n刚完成：memory.md 写入 Narrative A 决策，d030_kl50_uniform registry 推到 RUNNING + cron 注册，向 Director 汇报 BCE v3 诊断情况。\n\nRegistry RUNNING：\n- **d030_kl50_uniform** — KL 50% uniform per-layer allocation eval，cuda:0，~25min 剩余\n- **bce_isocompute_v3_s42** — registry 显示 RUNNING 但进程已死，worker 正在重启\n\n等待中：\n- Worker 回调：worker_submit_bce_v3_critical_retry（诊断+重启 BCE v3 on cuda:1）\n- Cron 回调：d030_kl50_uniform 完成（~25min）\n- Director 决策：D030 50% 结果出来后确认是否更新 paper_framing.md\n\n### 4. 📋 待办\n- BCE v3 worker 回调 → 如果成功：注册 cron 监控（2700 步，~15-20min），更新 registry spec；如果第 4 次失败：检查 worker 日志找具体错误（OOM? import error? CUDA error?），向 Director 升级\n- d030_kl50_uniform cron 回调（进程退出）→ spawn worker 收集 results.json，与 d030_kl30_uniform 对比（MMLU 是否也 +Xpp? GSM8K 是否仍无恢复?），验证 Narrative A，汇报 Director\n- D030 50% MMLU ≥ 35% → Narrative A 成立（uniform 修复知识任务），更新 paper_framing.md（需 Director 确认）\n- D030 50% MMLU ≈ 随机 → Narrative A 弱化，50% sparsity 下 uniform 也救不了知识任务，需 Director 决策\n- BCE v3 训练完成 → spawn worker 评估 TEAL PPL，与 v2 的 54.84 对比，更新 registry，然后 cuda:1 开始跑 D029 benchmark 批次（5 条命令排队）\n- D030 50% 完成释放 cuda:0 → 开始跑 D029 cuda:0 队列（6 条命令：bench_dense, bench_teal50, bench_teal30, bench_wina50, bench_ste50_s42, bench_bce_iso50_s42）\n\n### 5. 🎯 战略上下文\n- **DDL**: EMNLP 2026 ARR May, 2026-05-25, **剩 9 天**\n- **核心发现链**: D027 downstream collapse → D028 cross-arch universal → D029 benchmark 不公平（0-shot vs few-shot）→ D030 uniform allocation 部分修复 MMLU (+11.9pp) 但 GSM8K 不动 → **Narrative A**: 任务类型决定 allocation 敏感度\n- **Director 选择 Narrative A**（Allocation-Sensitive vs Allocation-Invariant Tasks），D030 50% 是关键验证点\n- **BCE iso-compute 是唯一 Reviewer Concern #2 防御数据**（KL 优势来自 loss 函数而非计算量），至今零有效数据，4 次提交 3 次失败\n- **易错点**：\n  - Worker 声称 \"成功\" 不等于实际成功——必须验证 PID 存活 + 日志增长 + nvidia-smi 显存\n  - submit_training_job 创建的 registry 条目会卡在 PREPARING，需要手动推进状态机（PREPARING→PENDING→QUEUED→ALLOCATED→RUNNING）\n  - cuda:1 之前有自动脚本 `run_bench_cuda1.sh` 不断 spawn benchmark 进程，已被杀，但如果重现需要找父脚本 PID\n  - PPL 对比注意 pipeline：benchmark_eval.py (uniform) vs training eval (global top-k) 的 PPL 不可直接比较\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778907665.md"
+}

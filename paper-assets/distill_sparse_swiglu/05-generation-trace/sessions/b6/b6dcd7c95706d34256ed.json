@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6dcd7c95706d34256ed",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code spon reimpl",
+  "task_key": "worker_code_spon_reimpl_20260515T171100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_spon_reimpl_20260515T171100_result.json",
+    "occurrence": 1,
+    "bytes": 2844,
+    "sha256": "7088fd3a8ef608392744f85b0d38b1328b0f45fc16b82f21fb997401c306348c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 报告\n\n### 1. SPON 论文关键细节\n\n| 项目 | 细节 |\n|------|------|\n| **注入位置** | MLP down_proj 前的 intermediate 激活（ablation 表明 down_proj 效果最好） |\n| **公式** | `Y = W · S(X) + W · α`，其中 S(X) 是稀疏化激活，W 是 down_proj，α 是 learnable bias |\n| **Loss** | `L(A) = E[D_KL(σ(z(u)) ‖ σ(ž(u;A)))]` — dense vs sparse+bias 的输出分布匹配 |\n| **超参** | lr=1e-5, batch_size=8, block_size=128, epochs=10, WikiText-raw-v2 |\n| **吸收** | `b_W_l = W_l @ α_l` → 零推理开销（bias fused into FMA） |\n| **每层参数** | 1 个 spontaneous neuron（dim=intermediate_size），single vector per layer |\n| **无公开代码** | GitHub `hxu105/SPON` 搜索未找到公开仓库 |\n\n### 2. 文件清单\n\n| 文件 | 状态 | 说明 |\n|------|------|------|\n| `src/spon.py` | 已有 | `SPONBiasVectors` + `SPONPatcher`（3 模式：dense/sparse/sparse_spon）+ `fold_into_model()` |\n| `src/train_spon.py` | 已有 | 独立训练脚本，冻结模型+predictor，只训 SPON biases |\n| `src/evaluate.py` | **已修改** | 新增 `--spon_checkpoint` 参数 + `spon_biases` 支持 + TEAL+SPON 评估段 |\n| `src/compensation.py` | 已有 | Mean activation compensation（互补方法，非 SPON） |\n\n### 3. SPON 参数量\n\n- Llama-3.1-8B: 32 层 × 14,336 intermediate_size = **458,752 params**\n- 占模型总参数 0.0057%\n- 注意：任务描述中的 128K（基于 hidden_dim=4096）是误估，SPON bias 维度是 **intermediate_size** 不是 hidden_size\n\n### 4. Dry-run 结果\n\n- **Import**: `SPONBiasVectors`, `SPONPatcher` 导入正常\n- **2-step 训练**: loss=2.17→2.22, mean_bias_norm=0.0012→0.0017, checkpoint 保存正常\n- **fold_into_model**: down_proj.bias 从 None → shape [4096]，数学正确\n\n### 5. 使用方法\n\n**训练 SPON:**\n```bash\nCUDA_VISIBLE_DEVICES=0 python src/train_spon.py \\\n  --predictor_checkpoint checkpoints/predictor_kl.pt \\\n  --num_steps 1000 --batch_size 8 --seq_len 128 --lr 1e-5 \\\n  --dataset wikitext-103 --gpu 0\n```\n\n**评估（含 SPON）:**\n```bash\nCUDA_VISIBLE_DEVICES=0 python src/evaluate.py \\\n  --checkpoint checkpoints/predictor_kl.pt \\\n  --spon_checkpoint checkpoints/spon_biases.pt \\\n  --gpu 0\n```\n\n### 6. plan_005 组合接口设计\n\nSPON 提供静态偏移 `c_s = α_l`（input-independent），plan_005 的 contextual predictor 提供动态偏移 `c_θ(x)`。组合方式：\n\n```python\n# plan_005: c = c_s + c_theta(x)\nintermediate = sparse_mlp(x) + spon_bias[l] + contextual_predictor(x)\n```\n\n`SPONBiasVectors` 的 `forward(layer_idx, intermediate)` 接口已支持叠加 —— contextual predictor 只需在 SPON 之后再加一个 additive term。`SPONPatcher` 可扩展为 4 模式（增加 `sparse_spon_contextual`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-spon-reimpl.md"
+}

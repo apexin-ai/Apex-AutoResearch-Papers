@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb662f7a3c2f18c516bd",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra ssh check westd41718 urgent",
+  "task_key": "worker_infra_ssh_check_westd41718_urgent_20260517T215634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_ssh_check_westd41718_urgent_20260517T215634_result.json",
+    "occurrence": 1,
+    "bytes": 616,
+    "sha256": "5bfa3298cb523bcc8b337b784e0e482aed0d2c0bfc1a09aaf5f118b42af3b48d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都正常运行，不是挂了或异常：\n\n| 实验 | GPU | PPL | GSM8K 进度 | 预计剩余 |\n|------|-----|-----|-----------|---------|\n| qwen14b_teal30_eval | cuda:1 94% | 8.7332 | 87% (1153/1319) | ~46 min |\n| qwen14b_dense_baseline | cuda:0 97% | 5.1854 | 81% (1065/1319) | ~9 min |\n\n两个都已完成 wikitext2 PPL + ARC-c + WinoGrande + MMLU 评估，正在跑最后的 GSM8K generate_until。完整指标会在 GSM8K 跑完后由脚本统一输出。无任何错误。Cron 回调失效不影响实验本身。\n\n报告已写入 `artifacts/westd41718_check_results.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-ssh-check-westd41718-urgent.md"
+}

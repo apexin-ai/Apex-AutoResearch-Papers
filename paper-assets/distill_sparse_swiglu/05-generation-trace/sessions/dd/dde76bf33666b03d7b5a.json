@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "dde76bf33666b03d7b5a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code fix eval benchmark and evaluate",
+  "task_key": "worker_code_fix_eval_benchmark_and_evaluate_20260515T222904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_eval_benchmark_and_evaluate_20260515T222904_result.json",
+    "occurrence": 1,
+    "bytes": 3175,
+    "sha256": "cfb24a2211d2b621fd5f123303af9a95b9bbcf71a2751f1fe865157228026600"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "C4 still downloading. Here are the final deliverables:\n\n---\n\n## eval_benchmark.py Code Diff (4 Bugs Fixed)\n\n**Bug 1 — TEAL function** (`compute_static_masks`):\n```diff\n-    from evaluate import teal_activation_magnitude_masks\n-    return teal_activation_magnitude_masks(model, calib_ids, sparsity_target)\n+    from evaluate import vanilla_teal_global_masks\n+    return vanilla_teal_global_masks(model, calib_ids, sparsity_target)\n```\n`teal_activation_magnitude_masks` = greedy per-layer allocation (no cross-layer normalization). `vanilla_teal_global_masks` = global top-k with per-layer mean normalization.\n\n**Bug 2 — WINA function**:\n```diff\n-    from baselines import wina_greedy_allocation_masks\n-    device = next(model.parameters()).device\n-    return wina_greedy_allocation_masks(model, calib_ids, sparsity_target, device=device)\n+    from evaluate import wina_global_masks\n+    return wina_global_masks(model, calib_ids, sparsity_target)\n```\n\n**Bug 3 — Sample limit**:\n```diff\n-    p.add_argument(\"--max_ppl_samples\", type=int, default=200,\n+    p.add_argument(\"--max_ppl_samples\", type=int, default=0,\n```\n\n**Bug 4 — Missing uniform baseline** (added to CONDITIONS + `compute_static_masks`):\n```python\n(\"uniform_50\", {\"mode\": \"static_mask\", \"method\": \"uniform\"}),\n```\n```python\nelif method == \"uniform\":\n    from evaluate import _collect_swiglu_magnitudes\n    avg_mag = _collect_swiglu_magnitudes(model, calib_ids)\n    # per-layer topk by activation magnitude\n    ...\n```\n\n## evaluate.py Part B\n\n`_global_topk_masks` (line 125) **already has per-layer mean normalization** — no change needed.\n\n## WikiText-2 PPL Comparison Table (50% sparsity, LLaMA-3.1-8B)\n\n| Condition | Mode | Measured PPL | Registry | Match |\n|-----------|------|-------------|----------|-------|\n| Dense | — | **6.1173** | 6.12 | ✓ |\n| KL-only s42 | predictor hard_mask | **9.2142** | 9.21 | ✓ |\n| STE s42 | predictor hard_mask | **8.1762** | 8.18 | ✓ |\n| SPON s42 | spon bias | **8.9968** | 8.99 | ✓ |\n| Uniform 50% | static per-layer topk | **23.8998** | 23.90 | ✓ |\n| Vanilla TEAL | static global topk | **23.3113** | 23.31 | ✓ |\n| BCE+comp s42 | predictor+comp | **25.4384** | 25.44 | ✓ |\n| WINA | static global topk | **27.9262** | 27.93 | ✓ |\n| BCE s42 | predictor hard_mask | **27.9603** | 27.96 | ✓ |\n| R-Sparse | static global topk | **151.2021** | — | new |\n\n### Sparsity 70% (kl_sparsity70_s42_v2)\n\n| Metric | Before Fix | After Fix |\n|--------|-----------|-----------|\n| TEAL sparse PPL | **136,069.61** | **17.91** |\n| Predictor hard_mask PPL | 13.84 | 13.84 (unchanged) |\n\n## C4 Cache Status\n\nPID 169446 still downloading C4 validation split via streaming. Will save to `/root/autodl-tmp/data/c4_val/`. Check `/tmp/cache_c4.log` for completion.\n\n## Registry Updates Applied\n\n- `kl_sparsity70_s42_v2.metrics.teal_sparse_ppl`: 136069.61 → **17.91** (old value preserved as `teal_sparse_ppl_old_broken`)\n- `training_free_baselines.metrics.rsparse_global_ppl`: added **151.2**"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "mode": "static_mask",
+              "method": "uniform"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-eval-benchmark-and-evaluate.md"
+}

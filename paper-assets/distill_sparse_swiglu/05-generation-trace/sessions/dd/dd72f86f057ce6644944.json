@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd72f86f057ce6644944",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops c4 validation download",
+  "task_key": "worker_ops_c4_validation_download_20260515T223742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_c4_validation_download_20260515T223742_result.json",
+    "occurrence": 1,
+    "bytes": 119,
+    "sha256": "99dc9e13a3ff342b7433ba3ac6cd4b9d03d13cd0c494c6e98fb04319da389e3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有后台计时器已完成。C4 validation 下载和验证早已全部结束，无需任何操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-c4-validation-download.md"
+}

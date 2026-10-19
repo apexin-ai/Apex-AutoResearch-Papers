@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57b62aed792625098f27",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops collect uniform v2 final v3",
+  "task_key": "worker_ops_collect-uniform-v2-final-v3_20260518T134730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-uniform-v2-final-v3_20260518T134730_result.json",
+    "occurrence": 1,
+    "bytes": 573,
+    "sha256": "acbd0fdd5aa3202f65868c9c8e82df464db4f3ceca8b6522ea23ef5577df1ee6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n| 指标 | s123 | s456 |\n|------|------|------|\n| wikitext2_ppl | 8.8186 | 8.8284 |\n| arc_challenge_acc_norm | 0.4710 | 0.4505 |\n| winogrande_acc | 0.6961 | 0.6953 |\n| mmlu_acc | 0.3763 | 0.3727 |\n| gsm8k_exact_match | 0.0705 | 0.0705 |\n\n两个 seed 的 WikiText2 PPL 非常接近（8.82 ± 0.005），WinoGrande 和 GSM8K 几乎一致，ARC-Challenge 有约 2% 的 seed 间波动。结果已写入 `artifacts/kl30_uniform_v2_results.json`，两个实验的 registry 均已更新为 DONE/success 并录入 metrics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-uniform-v2-final-v3.md"
+}

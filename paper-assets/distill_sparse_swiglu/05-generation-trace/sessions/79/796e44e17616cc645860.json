@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "796e44e17616cc645860",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code bce compensation impl",
+  "task_key": "worker_code_bce_compensation_impl_20260515T171038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bce_compensation_impl_20260515T171038_result.json",
+    "occurrence": 1,
+    "bytes": 1680,
+    "sha256": "ab54a2a4b7fb42ec1b3f3a1643428be146e5f0b9bbeeaf7e543746d949b08b84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n### 产出报告\n\n**新增/修改文件：**\n- `src/predictor.py` — 新增 `CompensationHead`、`CompensationNetwork` 类；`PredictorWrapper` 新增 `comp_network`/`use_compensation` 属性，patched forward 支持 compensation 推理\n- `src/losses.py` — 新增 `CompensationLoss`（MSE on sparse+comp vs dense）\n- `src/train.py` — 新增 `bce_comp` loss type、`train_bce_comp()` 函数、4 个 CLI 参数（`--predictor_checkpoint`, `--comp_mode`, `--comp_bottleneck`, `--comp_loss_weight`）\n- `src/evaluate.py` — 新增 `--comp_checkpoint`/`--comp_bottleneck` 参数，自动检测主 checkpoint 中的 compensation 网络并报告 with/without compensation PPL\n\n**Compensation Network 参数量（Llama 3.1 8B, bottleneck=256）：**\n- 每层：2,101,504 params（4096→256→4096）\n- 总计：67,248,128 params（32 layers）\n- bf16 大小：128.3 MB\n\n**Dry-run 结果：**\n- Staged mode（冻结 predictor）：2 steps 通过，comp_loss 从 0.0081 降到 0.0075\n- Joint mode（联合训练）：2 steps 通过，bce_loss + comp_loss 正常记录\n\n**使用示例：**\n```bash\n# Staged: 冻结 BCE predictor，只训练 compensation\npython src/train.py --loss_type bce_comp --comp_mode staged \\\n  --predictor_checkpoint checkpoints/mvp_bce_s42/predictor_bce.pt \\\n  --num_steps 500 --batch_size 4 --gpu 0\n\n# Joint: 联合训练 predictor + compensation\npython src/train.py --loss_type bce_comp --comp_mode joint \\\n  --num_steps 1000 --batch_size 4 --gpu 0\n\n# 评估（自动检测 checkpoint 中的 compensation）\npython src/evaluate.py --checkpoint checkpoints/predictor_bce_comp.pt --gpu 0\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bce-compensation-impl.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "889dbff2ddf4b434ea7a",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "check westd 41718 full status",
+  "task_key": "worker_check_westd_41718_full_status_20260520T124443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd_41718_full_status_20260520T124443_result.json",
+    "occurrence": 1,
+    "bytes": 2125,
+    "sha256": "3321ba28a61adbbd8e721a6e23c417a4e9c112a17a3ce8169133bc406c1a44b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-41718 状态总结\n\n### 1. GPU 状态\n| GPU | 显存使用 | 显存总量 | GPU 利用率 |\n|-----|---------|---------|-----------|\n| 0 | 66,101 MiB | 97,887 MiB (67.5%) | 100% |\n| 1 | 46,199 MiB | 97,887 MiB (47.2%) | 100% |\n\n两张卡都满载运行。\n\n### 2. Python 进程\n- **PID 249688** — `benchmark_eval.py --exp_id bce_ste_s42_eval` (GPU 0)，运行 52 分钟，CPU 100%\n- **PID 254228** — `benchmark_eval.py --exp_id c4_ood_downstream_kl30` (GPU 0，但实际占用了 GPU 1 显存)，运行 3 分钟，CPU 113%\n\n### 3. tmux sessions\n`tmux ls` 被 read_only 拦截，无法检查。（两个任务都是 nohup 启动的，符合 C002 约束。）\n\n### 4. BCE+STE downstream eval (PID 249688)\n- **状态：RUNNING**\n- 日志路径：`/tmp/bce_ste_s42_eval.log`\n- 当前进度：MMLU loglikelihood 请求 **12,457 / 40,168 (31%)**，速度 ~21.2 it/s\n- 已完成任务：wikitext2 PPL、arc_challenge、winogrande、gsm8k、hellaswag、piqa（均已跑完）\n- 正在跑：**MMLU**（57 个子任务，总量大）\n- 结果文件：**尚未生成**（`results/benchmark/bce_ste_s42_eval/` 目录存在但为空）\n- 预估剩余：(40168-12457) / 21.2 / 60 ≈ **21.8 分钟**跑完 MMLU，之后写结果\n\n### 5. C4 OOD downstream (PID 254228)\n- **状态：RUNNING**\n- 当前进度：loglikelihood 请求 **2,640 / 4,687 (56.3%)**，速度 ~21.8 it/s（正在跑 6 个 downstream task）\n- Sparsity：KL30 predictor，uniform allocation，model-level 0.295\n- 结果文件：**尚未生成**\n- 预估剩余：取决于还有哪些 task 未跑，但当前 batch 约 **1.6 分钟**\n\n### 6. BCE+STE checkpoint\n```\npredictor_bce.pt  151,965,283 bytes (145 MB)  2026-05-20 19:52\n```\n\n### 7. 磁盘\n| 分区 | 大小 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| / | 30G | 7.8G | 23G | 26% |\n| /root/autodl-tmp | 250G | 47G | 204G | 19% |\n\n磁盘充裕，无风险。\n\n**总结：两个 eval 任务都在正常运行中。BCE+STE eval 的 MMLU 还需约 22 分钟；C4 OOD downstream 进度过半，预计较快完成。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-41718-full-status.md"
+}

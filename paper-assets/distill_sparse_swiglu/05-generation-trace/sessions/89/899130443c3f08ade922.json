@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "899130443c3f08ade922",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "research mistral checkpoint check",
+  "task_key": "worker_research_mistral-checkpoint-check_20260516T235806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_mistral-checkpoint-check_20260516T235806_result.json",
+    "occurrence": 1,
+    "bytes": 1076,
+    "sha256": "a5425e5ccea58567d602faedbc4273f81b7948a58ae3dbeac95feaf61d62c884"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n## 检查结果\n\n### 1. Mistral 基础模型\n**存在** — `/root/autodl-tmp/models/mistral-7b/`（Mistral-7B-v0.3，3 分片 safetensors）\n\n### 2. Mistral predictor checkpoint\n| 路径 | 说明 |\n|------|------|\n| `/root/distill_sparse_swiglu/checkpoints/mistral_kl_s42/predictor_kl_normalized.pt` | 唯一 checkpoint，~145MB |\n| `/root/distill_sparse_swiglu/checkpoints/mistral_dryrun/` | 空目录 |\n\n### 3. Sparsity target 确认\n日志 `lm_eval_mistral_kl_50pct.log` 明确显示：\n```\nComputing TEAL global masks (sparsity=0.5)\nModel-level: 0.500\n```\n**现有 checkpoint 是 50% sparsity 训练的，没有 30% sparsity 的 checkpoint。**\n\n30% cross-architecture 验证需要重新训练 predictor。\n\n### 4. GPU 状态\n| GPU | 型号 | 显存 | 占用 | 利用率 |\n|-----|------|------|------|--------|\n| cuda:0 | RTX PRO 6000 Blackwell | 97887 MiB | 0 MiB | 0% |\n| cuda:1 | RTX PRO 6000 Blackwell | 97887 MiB | 0 MiB | 0% |\n\n**双卡完全空闲**，可以立即启动 30% sparsity predictor 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-mistral-checkpoint-check.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "b588c2c658cd4dc55db1",
+  "project": "distill_sparse_swiglu",
+  "kind": "worker",
+  "title": "analysis check llama8b eval bug d075",
+  "task_key": "worker_analysis_check_llama8b_eval_bug_d075_20260519T135252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_check_llama8b_eval_bug_d075_20260519T135252.log",
+    "occurrence": 1,
+    "bytes": 975947,
+    "sha256": "c548571d052a6c64577d9ea832575a49dbd29a0e2b461b33c247d2d6e9b9aebc"
+  },
+  "statistics": {
+    "messages": 193,
+    "user_turns": 1,
+    "tool_calls": 71,
+    "roles": {
+      "log": 1,
+      "system": 21,
+      "record": 2,
+      "assistant": 25,
+      "tool_call": 71,
+      "tool_result": 71,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "b588c2c658cd4dc55db1-part-0001.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 176,
+      "chunks": [
+        {
+          "path": "b588c2c658cd4dc55db1-part-0001.json",
+          "message_count": 50
+        },
+        {
+          "path": "b588c2c658cd4dc55db1-part-0002.json",
+          "message_count": 126
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-check-llama8b-eval-bug-d075.md"
+}

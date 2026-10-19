@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75230a3064ff75537bc2",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis v3 status check",
+  "task_key": "worker_analysis_v3_status_check_20260524T004015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_v3_status_check_20260524T004015_result.json",
+    "occurrence": 1,
+    "bytes": 1225,
+    "sha256": "90e32b9ff6e65a14c242c16da1dac1015113b9df02a9a37c895dfadb53aa3f60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态：**failed**\n\n**失败原因**：`lm_eval` 加载 GSM8K 数据集时，HuggingFace Hub HTTP 客户端异常关闭。\n\n```\nRuntimeError: Cannot send a request, as the client has been closed.\n```\n\n调用链：`benchmark_eval.py:run_lm_eval_tasks` → `lm_eval.simple_evaluate` → `datasets.load_dataset(\"openai/gsm8k\")` → `hf_hub_download` → httpx client 已关闭。\n\n日志中也显示了第一次网络错误：\n```\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/main/README.md\nRetrying in 1s [Retry 1/5].\n```\n\n**时间线**：\n- 启动：2026-05-24 03:52:48 CST\n- 失败：2026-05-24 03:54:30 CST（运行约 2 分钟）\n- 模型加载成功（579 weights，~11秒），TEAL predictor mask 计算完成\n- 在尝试从 HuggingFace 下载 GSM8K 数据集时因网络问题失败\n\n**GPU 状态**：两块 GPU 空闲（0% utilization, 0 MiB used），无进程在跑。\n\n**结果文件**：无。`results/` 下没有 `*s123*gsm8k*` 相关文件。\n\n**根因**：服务器网络无法访问 huggingface.co。可能需要 `source /etc/network_turbo` 或预先缓存 GSM8K 数据集到本地。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-v3-status-check.md"
+}

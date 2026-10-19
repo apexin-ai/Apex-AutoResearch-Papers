@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9295698e17b20821374",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops urgent full status check",
+  "task_key": "worker_ops_urgent-full-status-check_20260518T163420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-full-status-check_20260518T163420_result.json",
+    "occurrence": 1,
+    "bytes": 752,
+    "sha256": "780e7111f7bb36ab7369d3fea7bb827f91913d5f8f70c64427ab292a9aa2777e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n| 实验名 | 服务器 GPU | 状态 | 关键数字 |\n|--------|-----------|------|---------|\n| c1_ablation_eval_uniform | westd-41718 GPU0 | 运行中 | MMLU loglikelihood 73% (43269/58702), 预计还需~1.5min |\n| kl_sparsity25_s123 | westd-41718 GPU1 | 运行中 | step 60/1000, kl=0.406, sparsity=0.391 |\n| kl_sparsity25_s42 | westd-41718 (已释放) | **完成** | kl=0.1582, sparsity=0.230, lambda=5000, exit_code=0 |\n| kl_sparsity35_s42 | westd-34887 GPU0 | 运行中 | step 560/1000, kl=0.194, sparsity=0.336 |\n| kl_sparsity45_s42 | westd-34887 GPU1 | 运行中 | step 570/1000, kl=0.264, sparsity=0.457 |\n\nkl_sparsity25_s42 registry 已更新为 DONE。其余 4 个实验全部存活正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-full-status-check.md"
+}

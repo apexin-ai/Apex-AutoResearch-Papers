@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d379a43c4d1be48d46c",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra c4 ood data prep",
+  "task_key": "worker_infra_c4_ood_data_prep_20260517T215246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_c4_ood_data_prep_20260517T215246_result.json",
+    "occurrence": 1,
+    "bytes": 683,
+    "sha256": "789a277c67ee427e62a0312ef5180673828517c46bca700cd84ffac31813634f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/c4_ood_prep_status.md`。\n\n**核心结论**：\n\n1. **westd-34887**: C4 数据完备 (~783M Arrow 格式)，评估脚本齐全，已有 50% sparsity 的完整对比结果 (Dense 9.21 / KL 18.40 / TEAL 38.75)\n2. **westd-41718**: 有原始 json.gz (419M hub cache) 但缺少代码直接读取的 `/root/autodl-tmp/data/c4_val/` Arrow 目录；30% sparsity 的 eval 已启动但 metrics 为空\n3. **代码支持**: `benchmark_eval.py` 已支持 `--tasks c4`，另有两个专用脚本 `eval_c4_ood.py` / `eval_c4_predictor.py`\n4. **待做**: westd-41718 需从 34887 rsync 或从本地 cache 构建 Arrow 目录，约 1 分钟即可完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-c4-ood-data-prep.md"
+}

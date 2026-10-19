@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9bc8d2cdb928fbdc2665",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_2_1778873913.md",
+  "task_key": "loop_2_1778873913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778873913.md",
+    "occurrence": 1,
+    "bytes": 4697,
+    "sha256": "b104b9b971cfa0f1c0585038e2d4579882e394d92dc02db7bcac6ff40e1ef665"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-15T19:26:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: 仅 westd-34887 的 cuda:0 和 cuda:1（C001 约束），任何其他 GPU 必须 push back Director\n- **vanilla_teal_ppl (66036) 标记为 INVALID**——实现有 bug，禁止在论文中引用此数字\n- **sparsity mismatch 必须标注**: BCE+comp model_level_sparsity=0.558 vs KL=0.498，对比时必须说明\n- **submit_training_job 命令必须自带环境激活**: `source /root/distill_sparse_swiglu/setup_env.sh && cd /root/distill_sparse_swiglu && ...`，不要假设 .venv\n- **DDL 2026-05-25**（ARR May），距今 10 天\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-34887，GPU = RTX PRO 6000 Blackwell × 2\n- **工作目录**: `/root/distill_sparse_swiglu`\n- **Python**: conda base `/root/miniconda3/bin/python`，环境激活 `source /root/distill_sparse_swiglu/setup_env.sh`\n- **模型**: `/root/autodl-tmp/models/llama-3.1-8b`\n- **Checkpoints**: `/root/distill_sparse_swiglu/checkpoints/{exp_id}/`\n- **Logs**: `~/runs/distill_sparse_swiglu/{exp_id}.log`\n- **WANDB**: offline 或 disabled（无在线 W&B）\n- **活跃进程**: ste_baseline_s42 PID 116142 on cuda:1（tmux session）\n- **活跃 Cron**: 无（reconcile 返回 0）\n\n### 3. 📊 当前状态\n**刚做完**: 杀死 ste_kl_s42 僵尸进程后重新提交 ste_baseline_s42（retry #2），STE 代码已实现（STEMask 类 + --relaxation 参数）。SPON metrics 补录完成。experiment_plan.yaml 修复完成。\n\n**Registry RUNNING/PREPARING**:\n- `ste_baseline_s42` — RUNNING cuda:1, PID 116142, STE relaxation baseline (plan_002)\n- `spon_2048_s42` — PREPARING, 第一次提交崩溃（停在 data loader），Worker 正在诊断\n- `spon_kl_s42` — PREPARING, 等 SPON 2048 结果确认 Claim 2 方向\n\n**活跃 Worker（5 个）**:\n- `worker_ops_kill-wina-greedy` — 清理 WINA greedy 相关进程\n- `worker_analysis_s456_outlier` — 调查 s456 seed 的 TEAL sparse PPL 异常 (13.58 vs 4-seed mean 12.00)\n- `worker_code_iso_compute_bce` — 编写 plan_003 iso-compute BCE 代码（2700 步 BCE 匹配 KL FLOPs）\n- `worker_analysis_spon_2048_s42` — 诊断 spon_2048 启动崩溃原因\n- `worker_eval_wina_greedy` — WINA greedy baseline 评估确认\n\n**等待中**: 无 Director 审批挂起；5 个 Worker 回调待处理。\n\n### 4. 📋 待办（条件触发式）\n- `worker_analysis_spon_2048_s42` 返回诊断结果 → 修复 → 重新提交 spon_2048_s42 到 cuda:0\n- `ste_baseline_s42` cron 回调（训练完成）→ spawn Worker 跑 eval → STE vs Gumbel PPL 对比 → 更新 registry → 汇报 Director（Concern #3 defense 数据点）\n- `spon_2048_s42` 完成 → recovery% 仍 <10% → 确认 \"KL subsumes SPON\" reframe → 更新 paper_framing.md Claim 2 → cuda:0 释放给 plan_003\n- `spon_2048_s42` 完成 → recovery% ≥10% → Claim 2 原始叙事有救，保留 composition narrative\n- `worker_code_iso_compute_bce` 完成 → 代码 review → 创建 plan_003 registry → 提交审批 → cuda:0 空闲后提交\n- `worker_analysis_s456_outlier` 完成 → 若 per-layer 分布异常可解释 → 记录 memory.md；若不可解释 → 建议 Director 是否重跑\n- plan_003 完成后 → cuda:0 接 plan_008 (30%/70% sparsity sweep，50% 复用 plan_001)\n- plan_002 需要 3 seeds，s42 完成后 → 提交 s123/s456 到 cuda:1\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D001→D007: MVP PASS，KL PPL 9.21 vs BCE 28.0，3.0x gap\n- D008: BCE+comp (25.44) 和 SPON (recovery 3.8%) 均 negative，Claim 1 极强确认\n- D009: Claim 2 tentative reframe \"KL subsumes SPON\"，等 spon_2048 最终确认\n\n**实验计划优先级排序**: plan_002 (STE, P0 running) → plan_003 (iso-compute, P0 code ready) → plan_004 retry (SPON 2048) → plan_008 (sparsity sweep, P1) → plan_009 (Mistral generalization, P1)\n\n**最容易判断错的事**:\n1. **spon_2048_s42 崩溃不是 OOM**——日志仅 9 行停在 data loader，可能是 seq_len=2048 + batch_size 组合导致 tokenizer/dataset 问题，不要盲目改 batch_size\n2. **ste_baseline_s42 是 retry #2**——第一次因僵尸进程 OOM，已杀死。如果再 OOM 需要检查是否又有残留进程\n3. **plan_003 iso-compute 步数是 2700**（1000 × 2.71 FLOPs ratio），不是简单的 2x\n4. **KL 5-seed headline 用不用 s456 是个编辑决策**——目前策略是报 5-seed (12.32±0.71) 和 4-seed (12.00±0.07) 两个数，s456 调查结论决定最终报法\n5. **Claim 2 可能需要从 paper_framing.md 删除或大幅 reframe**——如果 spon_2048 仍 negative，\"additive composition\" 整个 claim 站不住，要走 red-section framing 流程\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778873913.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c8b6bef99af04d89628",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code plan 002 ste",
+  "task_key": "worker_code_plan_002_ste_20260515T183953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_002_ste_20260515T183953_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "15860c2c1b46fee2c09e5253fb860f46dc797973e4cf5561cbb5db04dafd0986"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行：\n\n- **KL-STE Lagrangian** 正确启动（relaxation=STE）\n- **Step 1**: loss=6.97, sparsity=0.539\n- **Step 10**: loss=3.375, sparsity=0.539\n- 无 NaN/inf，数值合理，lambda 在正常调整\n\n实验 `ste_kl_s42` 已在 cuda:1 上运行（1000 步），代码改动总结：\n\n- **predictor.py**: 新增 `STEMask` 类 — 前向用 hard threshold (`sigmoid > 0.5 → 1/0`)，反向通过 `hard - sigmoid.detach() + sigmoid` 让梯度流过 sigmoid\n- **train.py**: 新增 `kl_ste` loss_type 和 `train_kl_ste()` 函数 — 与 `train_kl_normalized` 相同的 KL loss + Lagrangian 约束，仅将 GumbelSigmoidMask 替换为 STEMask，无 tau annealing"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-002-ste.md"
+}

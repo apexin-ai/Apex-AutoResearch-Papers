@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c699af2a39197e9d2db2",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code longbench support",
+  "task_key": "worker_code_longbench-support_20260516T124754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_longbench-support_20260516T124754_result.json",
+    "occurrence": 1,
+    "bytes": 231,
+    "sha256": "7c23750d96a31c6dcba986133b152b3897e2cffb88f15e459d47eb935f6bbd02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`LM_EVAL_DEFAULTS` 已添加 9 个 longbench 相关条目（全部 `num_fewshot: 0`），语法验证通过。现在 `--tasks longbench,longbench_narrativeqa,...` 等都能通过过滤逻辑传给 lm_eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-longbench-support.md"
+}

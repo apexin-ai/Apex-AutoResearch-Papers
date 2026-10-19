@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6d261e421c9c4fa46de",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops monitor lm eval progress",
+  "task_key": "worker_ops_monitor_lm_eval_progress_20260515T231946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor_lm_eval_progress_20260515T231946_result.json",
+    "occurrence": 1,
+    "bytes": 1233,
+    "sha256": "0790327ba3edf54586dec50fedb2176af7a9e05e759617d3c825f6b090c9b6b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### GPU 0 — lm_eval_kl_s42 (PID 171565, 运行 16m39s)\n- **当前阶段**: loglikelihood requests 87% (48845/56168)，速度 ~225 it/s\n- **已完成**: arc_challenge, winogrande, mmlu 的 tokenization 预处理\n- **当前**: 正在执行合并 loglikelihood 批次（arc+winogrande+mmlu），约 30s 完成\n- **待执行**: gsm8k generate_until（~1319 items，~1 it/s ≈ 22min）\n- **预估剩余**: ~22-25 分钟\n- GPU 利用率 97%，显存 29.8GB/96GB，正常\n\n### GPU 1 — lm_eval_dense (PID 163723, 运行 31m27s)\n- **已完成**: arc_challenge ✓, winogrande ✓ (acc=0.7814, 86s), mmlu ✓\n- **当前阶段**: gsm8k generate_until 32% (425/1319)，已跑 7m02s，速度 ~1.1 it/s\n- **预估剩余**: ~13-15 分钟\n- GPU 利用率 91%，显存 29.8GB/96GB，正常\n\n### 异常检查\n- 两个进程均存活（状态 Rl+/Rl），无异常\n- 无错误日志（仅有 HF_TOKEN 警告和 git repo 警告，不影响评估）\n- 两张 GPU 均满载运行\n\n### 结论\n- **GPU 1 (dense) 将在约 15 分钟后释放**，先于 GPU 0 完成\n- GPU 0 (kl_s42) 约 25 分钟后完成\n- 结果文件尚未写入 `results/lm_eval/` 目录（均在运行中，完成后才写）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-lm-eval-progress.md"
+}

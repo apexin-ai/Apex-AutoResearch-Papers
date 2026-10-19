@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d76134cd5a6e76186451",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "research sparse kernel survey",
+  "task_key": "worker_research_sparse-kernel-survey_20260519T025318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_sparse-kernel-survey_20260519T025318_result.json",
+    "occurrence": 1,
+    "bytes": 4726,
+    "sha256": "eb198d96ee287d5d11d4311df91cbd308f7c5bd66c38dc2f46450d45ea45050a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成，综合四路结果。以下是完整评估。\n\n---\n\n## Sparse Inference Kernel 方案评估\n\n### 场景约束\n- Unstructured activation sparsity, 30-50%, per-token dynamic mask\n- SwiGLU FFN (非 ReLU)\n- 模型: LLaMA-3.1-8B / Mistral-7B / Qwen-2.5-14B\n- GPU: RTX PRO 6000 Blackwell\n- DDL: 6 天\n\n---\n\n### 方案总览\n\n| 方案 | 可行性 | 实现难度 | 预期 Speedup | 硬件兼容 | 时间估计 | GitHub |\n|------|--------|---------|-------------|---------|---------|--------|\n| **TEAL (Triton GEMV)** | **直接可用** | 低 (有现成 kernel) | 1.5x@40%, 1.8x@50% | Triton 通用 | **2-3 天** | [FasterDecoding/TEAL](https://github.com/FasterDecoding/TEAL) |\n| R-Sparse | 可用 | 中 | 1.43x@50% | CUDA/Triton | 3-4 天 | [VITA-Group/R-Sparse](https://github.com/VITA-Group/R-Sparse) |\n| ProSparse CUDA | 部分 (针对 ReLU) | 中 | 2-2.4x/step | CUDA | 4-5 天 | [Raincleared-Song/sparse_gpu_operator](https://github.com/Raincleared-Song/sparse_gpu_operator) |\n| TwELL (SakanaAI) | 可用 | 中-高 | 1.2x (batch) | H100 优化 | 4-5 天 | [SakanaAI/sparser-faster-llms](https://github.com/SakanaAI/sparser-faster-llms) |\n| CATS CUDA | 可用 | 中 | 1.15x | CUDA | 3-4 天 | [ScalingIntelligence/CATS](https://github.com/ScalingIntelligence/CATS) |\n| Deja Vu (Triton) | 可用 | 中 | 2x (大模型) | Triton | 3-4 天 | [FMInference/DejaVu](https://github.com/FMInference/DejaVu) |\n| PyTorch 2:4 | **不可用** | — | — | — | — | — |\n| cuSPARSE | 不推荐 | 高 | 动态 mask 转换开销抵消收益 | — | — | — |\n| DeepSparse | **已废弃** | — | — | — | — | — |\n| PowerInfer | 不独立可用 | 高 (GPU-CPU 混合架构) | 大但不可移植 | — | — | — |\n\n---\n\n### 排除项说明\n\n1. **PyTorch 2:4 semi-structured**: 仅支持静态 2:4 weight sparsity，不支持 unstructured dynamic activation sparsity\n2. **cuSPARSE**: 每 token 需做 dense→sparse 格式转换，overhead 抵消 sparsity 收益\n3. **cuBLAS**: 无 sparse GEMM，需走 cuSPARSELt（仅 2:4）\n4. **DeepSparse**: Neural Magic 2025-06 停止维护，CPU-only\n5. **PowerInfer**: 架构绑定（GPU-CPU hybrid + llama.cpp），kernel 不可独立提取\n\n---\n\n### 推荐方案：TEAL Triton Kernel\n\n**理由：**\n1. 我们的论文已经在用 \"TEAL-style inference\" 框架（predictor → mask → sparse FFN）\n2. TEAL 的 Triton sparse GEMV kernel 直接支持 unstructured activation sparsity + dynamic per-token mask\n3. ICLR 2025 Spotlight，代码质量高，有完整 benchmark\n4. Triton kernel 跨 GPU 架构兼容（Blackwell 支持 Triton）\n5. 实现路径最短：clone kernel → 接入我们的 predictor mask → benchmark\n\n**关键文件：**\n- `kernels/sparse_gemv.py` — Triton sparse GEMV kernel\n- 支持 deterministic 和 atomic-add 两种变体\n- FP16 精度（Triton BF16 atomic_add 有限制）\n\n**预期数据：**\n- 40% sparsity → ~1.5x wall-clock speedup\n- 50% sparsity → ~1.8x wall-clock speedup\n- 单 batch decoding 场景最优\n\n---\n\n### 实现步骤（6 天计划）\n\n**Day 1-2: 集成 TEAL kernel**\n1. Clone TEAL repo，提取 `kernels/sparse_gemv.py`\n2. 适配我们的 predictor output（binary mask）→ TEAL sparse format\n3. 替换 SwiGLU FFN forward 中的 dense matmul 为 sparse GEMV\n4. 单层验证：sparse FFN output 与 dense FFN output 对齐（numerical check）\n\n**Day 3-4: Benchmark**\n5. Wall-clock latency benchmark：dense vs sparse，逐层 + 端到端\n6. 扫 sparsity level: 30%, 40%, 50%\n7. 扫模型: LLaMA-3.1-8B, Mistral-7B, Qwen-2.5-14B\n8. 记录 throughput (tokens/s) 和 per-layer latency breakdown\n\n**Day 5: 论文数据整合**\n9. 制作 speedup table/figure\n10. 写 experiments section 的 efficiency 段落\n\n**Day 6: Buffer + 备选**\n11. 如果 TEAL kernel 在 Blackwell 上有兼容问题，fallback 到手写简化版 Triton kernel（gather-based sparse matmul，~200 行）\n12. 或参考 Deja Vu 的 `gather_gemv.py` 作为替代\n\n---\n\n### 备选方案优先级\n\n如果 TEAL 遇阻：\n1. **Deja Vu Triton kernel** (`gather_gemv.py`) — 同样是 Triton，gather-based sparse GEMV\n2. **自写 Triton kernel** — 基于 scatter/gather pattern，核心逻辑 ~200 行\n3. **R-Sparse** — ICLR 2025，有 CUDA kernel，但适配成本更高\n\n### 论文可引用的 speedup 参考值\n\n即使我们自己的 kernel 实测数据还没出，论文中可以引用同类工作的数据作为 \"activation sparsity speedup 是 well-established\" 的论据：\n- TEAL: 1.53-1.8x (ICLR 2025)\n- R-Sparse: 1.43x (ICLR 2025)\n- ProSparse: 2-4.5x (COLING 2025, ReLU models)\n- TwELL: 1.2x batch / 1.2x e2e (ICML 2026)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-sparse-kernel-survey.md"
+}

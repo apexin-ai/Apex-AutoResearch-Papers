@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "f0797ffc4e148064b0a4",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "analysis perlayer sparsity distribution",
+  "task_key": "worker_analysis_perlayer_sparsity_distribution_20260522T102032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_perlayer_sparsity_distribution_20260522T102032.jsonl",
+    "occurrence": 1,
+    "bytes": 187,
+    "sha256": "a6c77a80279998a2b013774e333b78ac82573d2c1847d82eb9e12f666c19e6f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T10:20:42.937569+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 6pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_perlayer_sparsity_distribution_20260522T102032"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-perlayer-sparsity-distribution.md"
+}

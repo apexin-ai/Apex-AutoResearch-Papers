@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a727ff30773c15aee71",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops mask vis 64samples 30pct",
+  "task_key": "worker_ops_mask-vis-64samples-30pct_20260518T195918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mask-vis-64samples-30pct_20260518T195918_result.json",
+    "occurrence": 1,
+    "bytes": 1507,
+    "sha256": "e4ea8731bd09aa6deef7ebdee6b952ae2ce10aa2e49274b18485ac3cef4a0390"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结如下：\n\n---\n\n### 生成文件（westd-41718: `/root/distill_sparse_swiglu/figures/`）\n\n| 文件 | 大小 |\n|------|------|\n| `mask_divergence_heatmap_30pct_64samples.pdf` | 14.3 KB |\n| `mask_divergence_heatmap_30pct_64samples.png` | 64.1 KB |\n| `neuron_scatter_layer16_30pct_64samples.pdf` | 39.4 KB |\n| `neuron_scatter_layer16_30pct_64samples.png` | 282.7 KB |\n| `mask_comparison_30pct_64samples.pdf` | 15.9 KB |\n| `mask_comparison_30pct_64samples.png` | 52.2 KB |\n| `mask_stats_30pct_64samples.json` | 998 B |\n\n### 关键数值（64 samples, 131,072 tokens, 30% sparsity）\n\n- **Mean Jaccard similarity**: 0.5374（距离: 0.4626）\n- **Neuron scatter disagree (L16)**: 8.71%\n- **Per-layer Jaccard similarity 范围**: 0.3999 (L27, 最低) ~ 0.6386 (L31, 最高)\n- **深层（L24-L28）divergence 最大**: Jaccard distance 0.55-0.60，说明 KL predictor 在深层与 magnitude mask 分歧最大\n- **中间层（L15-L18）agreement 最高**: Jaccard similarity ~0.61-0.63\n\n### 与论文现有数据的一致性\n\n论文报告 50% sparsity 下 Jaccard similarity 平均 47%。30% sparsity 下得到 53.7%，符合预期：sparsity 越低（保留更多神经元），两种 mask 方法重叠越大。\n\n### 注意事项\n\n文件目前仅在 westd-41718 上。本地机器无法直接 scp 到该服务器（缺少 SSH key 配置）。如需将文件传到 westd-34887 或本地，需要额外配置 SSH 互信或通过其他方式传输。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mask-vis-64samples-30pct.md"
+}

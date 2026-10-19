@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6032fdad6b5a06f097f5",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "infra check allocation flag",
+  "task_key": "worker_infra_check_allocation_flag_20260517T224921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check_allocation_flag_20260517T224921_result.json",
+    "occurrence": 1,
+    "bytes": 2030,
+    "sha256": "24cf450c86a6fb315fa942d79506725fcd5be1c9ea61d22ed32194f69df7ae04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n## 1. `--allocation` 参数\n\n- 参数名：`--allocation`\n- 可选值：`global_topk`（默认）、`uniform`\n- 含义：`global_topk` = 全局单阈值分配；`uniform` = 每层独立 top-k（等比例）\n\n## 2. 模式控制\n\n通过 `--sparsity_mode` 控制：\n- `per_token`：动态 predictor mask\n- `teal_global`：静态校准 mask（使用 predictor checkpoint 计算全局 mask）\n\n通过 `--baseline_mode` 控制 training-free baseline（与 `--checkpoint` 互斥）：\n- `teal_vanilla`, `teal_greedy`, `wina`, `wina_greedy`, `rsparse`\n\n## 3. 14B KL checkpoint 位置\n\n- **westd-34887** 上存在：`/root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt`\n- **westd-41718** 上不存在（只有 8B 的 `kl_sparsity30_s42_v3`, `mvp_kl_norm_v2_s42`, `mvp_kl_norm_v2_s123`）\n\n## 4. 正确的命令格式（KL checkpoint + uniform allocation）\n\n在 **westd-34887** 上运行（因为 14B checkpoint 在那里）：\n\n```bash\ncd /root/distill_sparse_swiglu && python src/benchmark_eval.py \\\n  --model_name_or_path /root/autodl-tmp/models/Qwen2.5-14B \\\n  --checkpoint /root/distill_sparse_swiglu/checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt \\\n  --sparsity_mode teal_global \\\n  --allocation uniform \\\n  --sparsity_target 0.3 \\\n  --tasks wikitext2,arc_challenge,mmlu \\\n  --exp_id qwen14b_kl30_uniform \\\n  --gpu 0\n```\n\n关键点：\n- `--sparsity_mode teal_global`（不是 per_token）才会使用 predictor checkpoint 生成静态 mask\n- `--allocation uniform` 指定每层等比例分配\n- `--checkpoint` 指向 predictor 权重文件\n- 如果要跑 `global_topk` 对比，把 `--allocation uniform` 改为 `--allocation global_topk`（或直接省略，默认就是 global_topk）\n\n从日志看之前 8B uniform eval 的实际命令格式验证了：它打印 `Mode: TEAL global mask from predictor (allocation=uniform)`，每层 sparsity 都是 0.500（均匀分配），与上述参数组合一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-allocation-flag.md"
+}

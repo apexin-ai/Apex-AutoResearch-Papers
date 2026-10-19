@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3b39205b6035322d9b5",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops download hellaswag piqa cache",
+  "task_key": "worker_ops_download-hellaswag-piqa-cache_20260518T232040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download-hellaswag-piqa-cache_20260518T232040_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "e29d49fb031de14689e1bd81087ecaa6ea3c2a27b65f297a22741a6646894ff3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果：**\n- **hellaswag** (`Rowan/hellaswag`): 下载成功，63MB，缓存在 `/root/autodl-tmp/.hf_cache/datasets/Rowan___hellaswag/`\n  - train: 39905, test: 10003, validation: 10042\n- **piqa** (`baber/piqa`): 下载成功，5.2MB，缓存在 `/root/autodl-tmp/.hf_cache/datasets/baber___piqa/`\n  - train: 16113, validation: 1838, test: 3084\n\n注意：直连 huggingface.co 不通（Network unreachable），通过 `HF_ENDPOINT=https://hf-mirror.com` 镜像下载。lm_eval 的 piqa task 配置使用的是 `baber/piqa`（非 `ybisk/piqa`），已正确缓存。离线模式下 lm_eval 运行时应可直接命中缓存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-download-hellaswag-piqa-cache.md"
+}

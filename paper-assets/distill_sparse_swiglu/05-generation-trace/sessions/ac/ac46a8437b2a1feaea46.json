@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac46a8437b2a1feaea46",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analyze d030 kl50 uniform v2",
+  "task_key": "worker_analyze_d030_kl50_uniform_v2_20260516T050932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_d030_kl50_uniform_v2_20260516T050932_result.json",
+    "occurrence": 1,
+    "bytes": 1299,
+    "sha256": "ba7055b908eb9077976c98b19a6f7be196bee0603a61f9efc8f7a5c33fb5ba7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## d030_kl50_uniform 评测结果\n\n### 原始指标\n\n| 指标 | 值 |\n|------|------|\n| wikitext2_ppl | **11.9631** |\n| arc_challenge acc | 0.2833 |\n| arc_challenge acc_norm | **0.3276** |\n| winogrande acc | **0.6290** |\n| mmlu acc | **0.2777** |\n| gsm8k exact_match_strict | 0.0197 |\n| gsm8k exact_match_flexible | **0.0212** |\n\n### 对比表\n\n| 指标 | Dense | KL50 global top-k | KL30 uniform | **KL50 uniform** | KL50 uniform vs top-k |\n|------|-------|-------------------|--------------|-------------------|----------------------|\n| ARC-c norm | 0.5819 | 0.3771 | 0.4078 | **0.3276** | **-0.0495** |\n| WinoGrande | 0.7814 | 0.6156 | 0.6859 | **0.6290** | **+0.0134** |\n| MMLU | 0.6532 | 0.2591 | 0.4061 | **0.2777** | **+0.0186** |\n| GSM8K | 0.5004 | 0.0121 | 0.0735 | **0.0212** | **+0.0091** |\n\n### 分析\n\nKL50 uniform 相比 KL50 global top-k：\n- WinoGrande、MMLU、GSM8K 小幅提升（+1~2pp）\n- **ARC-c norm 显著下降**（-5pp，0.3771→0.3276）\n- 整体 uniform 分配在 50% 稀疏度下未带来一致性提升\n\nKL50 uniform 相比 KL30 uniform：\n- 所有指标全面大幅退化（ARC-c -8pp, WinoGrande -5.7pp, MMLU -12.8pp, GSM8K -5.2pp）\n- 50% 稀疏度对 uniform 分配冲击很大，30% uniform 明显优于 50% uniform"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-d030-kl50-uniform-v2.md"
+}

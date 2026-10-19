@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad7ba6bf21eeb1fbd890",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval qwen14b kl30 uniform",
+  "task_key": "worker_eval_qwen14b_kl30_uniform_20260517T225433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen14b_kl30_uniform_20260517T225433_result.json",
+    "occurrence": 1,
+    "bytes": 262,
+    "sha256": "9e0090d383e0511e1806d9f7276c4f3a6d176c3ea8eaa259d906b9b5bc576c2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功提交并运行中：\n\n- **PID**: 79839 (python 主进程)，状态 `Rl`（运行中）\n- **日志**: `/root/runs/distill_sparse_swiglu/qwen14b_kl30_uniform_eval.log`\n- **GPU**: westd-34887 cuda:0\n- **预计耗时**: 4-6 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen14b-kl30-uniform.md"
+}

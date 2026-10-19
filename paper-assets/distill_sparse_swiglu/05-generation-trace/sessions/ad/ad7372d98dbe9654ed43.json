@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad7372d98dbe9654ed43",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_10_1779054537.md",
+  "task_key": "loop_10_1779054537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1779054537.md",
+    "occurrence": 1,
+    "bytes": 4410,
+    "sha256": "a0c404d46bb1ed6a064a875447deb9e91e5fd83059e2b3ec15150c7cc2e900dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-17T20:42:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd-34887 cuda:0,1 + westd-41718 cuda:0,1，共 4 卡，其他设备号禁止使用\n- KL PPL 引用必须用 4-seed mean 12.00±0.07，禁用单 seed 最佳 11.91\n- TEAL 30% PPL = 8.98（曾有 D032 错误将 13.63 误标为 30%，已修正）\n- Mistral registry 数据疑似污染（D032），暂不在论文中引用 Mistral 具体数字除非重新验证\n- 训练 log 中 `sparsity` 列是 training-time diagnostic，不是推理 sparsity，不可用来判断 predictor 是否正常工作\n- 50% uniform MMLU≈random，已验证不可修复，不要再尝试\n- WANDB_MODE=offline（服务器无 wandb API key），指标从 log 文件/本地 wandb 读取\n- DDL: EMNLP 2026 ARR May = 2026-05-25（剩 8 天）\n\n### 2. 🖥️ 基础设施快照\n- **westd-34887**: 2×RTX PRO 6000 Blackwell, conda base, `/root/miniconda3/bin/python`\n- **westd-41718**: 2×RTX PRO 6000 Blackwell 97GB each, PyTorch 2.8.0+cu128, `/root/miniconda3/bin/python`\n- 工作目录: `/root/distill_sparse_swiglu/`\n- 模型路径:\n  - LLaMA-3.1-8B: `/root/autodl-tmp/models/llama-3.1-8b/`\n  - Mistral-7B: `/root/autodl-tmp/models/mistral-7b/`\n  - Qwen-2.5-14B: `/root/autodl-tmp/models/qwen2.5-14b/`\n- Checkpoints: `/root/distill_sparse_swiglu/checkpoints/` (详见 memory.md)\n- Qwen-14B KL ckpt: `checkpoints/qwen14b_kl30_s42/predictor_kl_normalized.pt`\n- Qwen-14B BCE ckpt: `checkpoints/qwen14b_bce30_s42/predictor_bce.pt`\n- 活跃进程 (cron 监控中):\n  - qwen14b_teal30_eval: PID 6896\n  - qwen14b_bce30_s42_eval: PID 59122\n  - qwen14b_dense_baseline: PID 18845\n  - bce_isocompute_v3_s456_eval: PID 69504\n- Worker 运行中: `worker_infra_collect_all_running_eval_results_20260517T204113`（SSH 收集 eval 结果）\n\n### 3. 📊 当前状态\n**刚完成**: kl50_global_s123_reeval 成功（修正了 Table 2 Row 6 数据），50% 3-seed 矩阵完整。R1-W4 SNR patch + R1-W5 λ curve 均已完成。论文 Round 1 所有 critical 已解决。\n\n**正在进行**:\n- 4 个 Qwen-14B + BCE eval 实验 RUNNING（cron 监控），预计产出 cross-arch 验证表格\n- 1 个 Worker 在收集所有 RUNNING eval 的中间结果\n- C4 OOD followup eval 在 PREPARING 状态\n\n**等待中**:\n- Qwen-14B eval 完成 → 写 cross-arch section → 提交 Round 2 review\n- bce_isocompute_v3_s456_eval 完成 → BCE 行 3-seed 验证完整\n- Worker 回调 → 汇总结果给 Director\n\n### 4. 📋 待办（条件触发式）\n- qwen14b_dense_baseline + qwen14b_bce30_s42_eval + qwen14b_teal30_eval 三个 cron 回调到达 → 汇总 cross-arch table（Dense / KL / BCE / TEAL 四行），与 8B degradation ratio 对比，写入论文 experiments.tex cross-arch subsection\n- bce_isocompute_v3_s456_eval 回调 → 合并 s42/s456 结果计算 mean±std，更新 Table 2 BCE 行，若还需 s123 则提交 bce_isocompute_v3_s123\n- worker_infra_collect_all_running_eval_results 完成 → 读产出，更新 registry metrics，向 Director 汇报\n- 所有 Qwen-14B eval 完成 + BCE 3-seed 完成 → 论文数据完整 → 提交 Round 2 review（需 Director 批准）\n- 41718:cuda:0 空闲 → 可用于 C4 OOD eval 或 bce_isocompute_v3_s123，优先填满\n\n### 5. 🎯 战略上下文\n- **核心结论**: KL distillation >> BCE/TEAL，机制是 output distribution fidelity 而非 per-neuron accuracy。30% 是安全区，50% 是 phase transition 临界点。Uniform allocation 的价值是 variance reduction（非 starvation fix）。\n- **决策链关键节点**: D047 Round 3 reframe（从 \"better method\" → \"PPL-Downstream Disconnect\" 叙事），D050 allocation narrative 定稿（variance reduction only），D051 50% s123 数据修正\n- **论文状态**: 7/10，文本已收敛。Cross-arch (Qwen-14B) 是最后一块拼图。数据到手后直接填表 + 写 1 段分析即可。\n- **易错点**:\n  - Qwen-14B BCE TEAL PPL=8.76 来自训练 log（已记入 memory.md），**downstream 结果等 eval 完成**，不要提前在论文里写 downstream 数字\n  - 14B 上 KL vs BCE gap (15%) 比 8B (91%) 小得多——论文叙事要承认 scale 效应，不能直接照搬 8B 结论\n  - bce_isocompute_v3_s456_eval 是 LLaMA-8B 50% BCE 的 multi-seed 验证（不是 Qwen-14B），别混淆\n  - 50% global 3-seed MMLU mean=27.8%±0.2% 已修正（D051），旧值 38.07% 是错误 checkpoint 的结果\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1779054537.md"
+}

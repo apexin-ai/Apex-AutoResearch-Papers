@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96a438b2e000de0f055d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code qwen14b dense hspiqa",
+  "task_key": "worker_code_qwen14b_dense_hspiqa_20260519T171436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen14b_dense_hspiqa_20260519T171436_result.json",
+    "occurrence": 1,
+    "bytes": 395,
+    "sha256": "a529517e5f23869608a2dcb484f12a7d55d9703fb84dd6408793cd7bdc67542e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "成功启动。\n\n- **PID**: 162200\n- **服务器**: westd-41718 cuda:0\n- **状态**: hellaswag 评估进行中 (~235 it/s, 10042 samples)，之后跑 piqa (1838 samples)\n- **预计总耗时**: ~1 分钟完成 hellaswag + piqa\n- **日志**: `/root/distill_sparse_swiglu/logs/qwen14b_dense_hspiqa.log`\n- **结果输出**: `results/benchmark/qwen14b_dense_hspiqa/results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen14b-dense-hspiqa.md"
+}

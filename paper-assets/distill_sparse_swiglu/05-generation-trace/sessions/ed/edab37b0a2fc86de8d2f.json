@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edab37b0a2fc86de8d2f",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis d030 kl30 uniform",
+  "task_key": "worker_analysis_d030_kl30_uniform_20260516T042810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d030_kl30_uniform_20260516T042810_result.json",
+    "occurrence": 1,
+    "bytes": 1036,
+    "sha256": "edfedaeb641208eff244ede65d57b48d996b21d1b4204eb075f931e66f63b66b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== METRICS ===\nwikitext2_ppl: 8.8157\narc_challenge_acc_norm: 0.4078\nwinogrande_acc: 0.6859\nmmlu_acc: 0.4061\ngsm8k_exact_match: 0.0735\nactual_sparsity: 0.300\n\nPer-layer sparsity: uniform 0.301 across all 32 layers\n\n=== CONCLUSION ===\nnegative (partial)\n\n=== ANALYSIS ===\nMMLU 从 global top-k 的 28.74%（近随机）恢复到 40.61%，有明显改善但仍远低于 dense baseline ~63%，说明 per-layer 不均匀是 MMLU 崩溃的一个因素但非唯一因素。GSM8K 完全没有恢复——7.35% vs global top-k 的 7.43%，差异在噪声范围内，仍处于随机水平（dense ~50%），表明 reasoning 能力的崩溃与 per-layer 分配策略无关，30% sparsity 本身对 reasoning pathway 的破坏是根本原因。WinoGrande 68.59% 和 ARC-Challenge 40.78% 相对合理但也有明显退化。结论：uniform allocation 对知识类任务（MMLU）有部分修复作用，但对推理类任务（GSM8K）无效——per-layer 不均匀不是 downstream 崩溃的唯一根因。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d030-kl30-uniform.md"
+}

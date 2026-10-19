@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d20afca1c1002b5a814d",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "ops gpu status round13",
+  "task_key": "worker_ops_gpu_status_round13_20260520T020757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_round13_20260520T020757_result.json",
+    "occurrence": 1,
+    "bytes": 915,
+    "sha256": "6eebec12909f2a9cd7c074894a08927965f07677e1b6386246a4a2445aa73ddf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态 & 实验结果\n\n### GPU 利用率\n\n| 服务器 | GPU | 利用率 | 显存 |\n|--------|-----|--------|------|\n| westd-34887 | cuda:0 | 0% | 0/98GB | \n| westd-34887 | cuda:1 | 0% | 0/98GB |\n| westd-41718 | cuda:0 | 0% | 0/98GB |\n| westd-41718 | cuda:1 | **100%** | 69/98GB |\n\n### 实验结果\n\n| 实验 | 状态 | HellaSwag acc_norm | PIQA acc_norm | GSM8K exact_match |\n|------|------|-------------------|---------------|-------------------|\n| **qwen14b_teal30_uniform_hspiqa** | 完成 | 0.6772 | 0.7470 | — |\n| **qwen14b_teal30_uniform_gsm8k** | 完成 | — | — | 0.5208 |\n| **qwen14b_kl30_uniform_hspiqa** | 完成 | 0.7266 | 0.7514 | — |\n| **qwen14b_kl30_global_hspiqa** | 运行中 (~42%, 25min/~60min ETA) | — | — | — |\n\nKL uniform 在 HellaSwag 上比 TEAL uniform 高 **+4.94pp** (0.7266 vs 0.6772)，PIQA 上高 **+0.44pp** (0.7514 vs 0.7470)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-round13.md"
+}

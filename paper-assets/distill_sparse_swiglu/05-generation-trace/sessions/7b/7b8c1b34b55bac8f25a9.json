@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b8c1b34b55bac8f25a9",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "viz gradient snr chart",
+  "task_key": "worker_viz_gradient_snr_chart_20260517T081442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_gradient_snr_chart_20260517T081442_result.json",
+    "occurrence": 1,
+    "bytes": 426,
+    "sha256": "e906c7904ebfa22ebdec571865de124b6d133404676b7a82ede521702cedf592"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表生成完成。\n\n- PDF: `figures/paper/gradient_snr_comparison.pdf` (25 KB)\n- PNG: `figures/paper/gradient_snr_comparison.png` (104 KB)\n\n关键观察：(a) Unconstrained 下 KL 和 BCE 的 SNR 差距较小（5.76x），且两者在最后几层趋于收敛；(b) Lagrangian-Constrained 下 KL 全层维持高 SNR 而 BCE 被压制到极低水平（103.2x），中间层差距可达 3-4 个数量级。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-gradient-snr-chart.md"
+}

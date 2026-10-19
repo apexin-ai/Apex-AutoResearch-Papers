@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc8030c0bfcd48d8502b",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval check 8b multiseed status",
+  "task_key": "worker_eval_check_8b_multiseed_status_20260518T002629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_check_8b_multiseed_status_20260518T002629_result.json",
+    "occurrence": 1,
+    "bytes": 592,
+    "sha256": "03362faaa4668da5026ff974f084526eabfae182b952f9cdc75ed5c45352c1e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已成功启动并正在训练：\n\n| 实验 | PID | GPU | 显存 | 状态 |\n|------|-----|-----|------|------|\n| s123 | 34700 | cuda:0 | 18284 MiB | 训练中 (model loaded) |\n| s456 | 35045 | cuda:1 | 18284 MiB | 训练中 (model loaded) |\n\n**失败原因**：原始提交时 `source /root/miniconda3/bin/activate base` 未生效，系统默认 python 没有 wandb。本次通过 `export PATH=/root/miniconda3/bin:$PATH` 前置修复。\n\n**预计时间线**：\n- 训练 ~45 min → 完成约 09:15 UTC\n- Eval ~2-3h → 全部完成约 11:30-12:30 UTC"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-check-8b-multiseed-status.md"
+}

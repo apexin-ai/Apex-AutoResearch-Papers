@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b2749f1b4811de15b86",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "code check kl30 s123 v5 result",
+  "task_key": "worker_code_check_kl30_s123_v5_result_20260519T163953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_kl30_s123_v5_result_20260519T163953_result.json",
+    "occurrence": 1,
+    "bytes": 341,
+    "sha256": "5a411824f68221b4bfb980a3a335fe5a2efb47973e8f2ed53df1c89b9e0fdd0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Conclusion: success**\n\nCron 已不存在（可能已被之前清除）。Registry 已更新为 DONE。\n\n| Metric | Value |\n|--------|-------|\n| wikitext2 PPL | 7.9367 |\n| arc_challenge acc_norm | 0.5410 |\n| winogrande acc | 0.7403 |\n| hellaswag acc_norm | 0.7287 |\n| piqa acc_norm | 0.7650 |\n| mmlu acc | 0.6234 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-kl30-s123-v5-result.md"
+}

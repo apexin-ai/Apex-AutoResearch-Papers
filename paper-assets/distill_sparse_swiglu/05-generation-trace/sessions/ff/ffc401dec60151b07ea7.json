@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffc401dec60151b07ea7",
+  "project": "distill_sparse_swiglu",
+  "kind": "history",
+  "title": "agent / loop_11_1779065113.md",
+  "task_key": "loop_11_1779065113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1779065113.md",
+    "occurrence": 1,
+    "bytes": 4749,
+    "sha256": "3860d3cd1d1285496b5d0ae8e09e87d6977cc46519f08435a34cc35998cf5085"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-18T00:24:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westd-34887 cuda:0,1（`get_project_resource_usage` 当前只显示这两张）。westd-41718 cuda:0,1 在 ROADMAP/memory 中记录但资源系统未显示分配——使用前必须确认\n- 14B KL TEAL PPL=7.62 是 global_topk 的值。report.md 中 BCE TEAL PPL=8.76 的归属已在 commit c15c79a 修正（移除了未验证的 14B TEAL 8.76 misattribution），引用时注意区分 KL/BCE/TEAL 三者\n- EMNLP ARR May DDL = 2026-05-25，剩 7 天。论文当前 7/10，Round 2 review blocked on 14B uniform eval 结果\n- 50% uniform MMLU ≈ random (27.8%)，已验证不可修复，不要再尝试 allocation 拯救 50%\n\n### 2. 🖥️ 基础设施快照\n- **westd-34887**: 2×RTX PRO 6000 Blackwell, conda base, `/root/miniconda3/bin/python`, 工作目录 `/root/distill_sparse_swiglu/`\n- **westd-41718**: 2×RTX PRO 6000 Blackwell 97GB, PyTorch 2.8.0+cu128, 同工作目录。当前无实验运行，可能已被回收——需确认\n- 模型: LLaMA-3.1-8B `/root/autodl-tmp/models/llama-3.1-8b/`, Mistral-7B `/root/autodl-tmp/models/mistral-7b/`, Qwen-2.5-14B `/root/autodl-tmp/models/qwen2.5-14b/`\n- WANDB_MODE=offline\n- **活跃进程**: qwen14b_kl30_uniform_eval (westd-34887 cuda:0) + qwen14b_teal30_uniform_eval (westd-34887 cuda:1)——**无 cron 监控**，需要手动 poll 或注册 cron\n- **活跃 Worker**: `worker_eval_extract_uniform_intermediate_20260518T001238` (running, turn 8, 正在 SSH 检查中间结果)\n\n### 3. 📊 当前状态\n**刚做完**: D052 决策——发现 14B KL global_topk 下游反常（PPL 最优 7.62 但 MMLU 最差 63.72 vs TEAL 71.83），紧急启动 uniform allocation 验证。两个 uniform eval 实验正在 westd-34887 上跑。\n\n**RUNNING (2)**:\n- `qwen14b_kl30_uniform_eval`: 测试 KL predictor + uniform per-layer allocation 能否恢复 MMLU（hypothesis: global_topk starving knowledge layers）\n- `qwen14b_teal30_uniform_eval`: TEAL uniform 对照组，隔离 allocation effect\n\n**PREPARING (16)**: kl30_8b_s456_train, kl30_8b_s123_train, c4_download, wallclock_speedup_30_50, kl50_s456_train/eval, longbench_dense_v5, 等。大部分 blocked on GPU 或等前序实验。\n\n**等待中**:\n- Worker `eval_extract_uniform_intermediate` 回调（正在检查两个 uniform eval 的中间产出）\n- 两个 RUNNING 实验无 cron——完成后不会自动回调，需要主动 poll 或注册 cron\n- Round 2 review 提交 blocked on 14B uniform eval 结果\n\n### 4. 📋 待办（条件触发式）\n- Worker `eval_extract_uniform_intermediate` 回调 → 读取中间结果判断进度，估算完成时间\n- qwen14b_kl30_uniform_eval 完成 → 对比 MMLU: 若 uniform > 70%（接近 TEAL 71.83）= allocation 是根因，论文 cross-arch narrative 安全；若仍 ~63% = KL 在 14B 上有结构性 MMLU 问题，需调整 claim 或追加实验（更多 steps / 不同 lr）\n- qwen14b_teal30_uniform_eval 完成 → 与 TEAL global (71.83) 对比，量化 uniform vs global 对 TEAL 的影响\n- 两个 eval 都完成 → 更新 14B cross-arch 表格 → 更新论文 experiments.tex → 提交 Round 2 review\n- 如果 uniform 不解决 KL MMLU 问题 → 向 Director 汇报 negative + Framing 调整提案（可能需要弱化 14B downstream claim，只报 PPL ratio 一致性）\n- **必须尽快给两个 RUNNING 实验注册 cron**，否则完成后无回调\n\n### 5. 🎯 战略上下文\n**核心叙事**: KL distillation 使 SwiGLU LLM 的 contextual sparsity prediction 不需要 error compensation，实现最简推理管线。三大 claim: (1) KL >> BCE+compensation (2) SPON orthogonal & weak (3) Three-regime phase transition (30% fixable / 40% transitional / 50% cliff)。\n\n**当前最大风险**: 14B PPL-vs-downstream 矛盾。8B 上 KL 在 PPL + downstream 都赢 TEAL，但 14B 上 KL PPL 赢（7.62 vs 8.73）MMLU 却输（63.7 vs 71.8）。如果 uniform allocation 不能修复，论文的 cross-architecture generalization claim 会被削弱。应对选项: (a) 只报 14B PPL ratio 一致性 (b) 报全部 + 调整叙事为 \"KL optimizes distribution fidelity, allocation strategy matters more at scale\" (c) 追加实验。\n\n**易错点**:\n- 不要混淆 \"KL TEAL PPL\" 和 \"TEAL baseline PPL\"——前者是 KL predictor 在 TEAL global_topk eval 下的 PPL，后者是 magnitude-based TEAL 自身的 PPL\n- 30% 数据: 3-seed mean±std 已写入论文（Table 2/5），单 seed 数字只用于内部分析\n- D050 定稿: allocation narrative = variance reduction only（不是 absolute gain），不要回退到旧 \"+15pp uniform gain\" 叙事\n- westd-41718 的 GPU 分配状态不确定，使用前必须查 `get_project_resource_usage` 确认\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1779065113.md"
+}

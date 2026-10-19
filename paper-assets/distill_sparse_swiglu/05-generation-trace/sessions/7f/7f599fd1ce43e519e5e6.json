@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f599fd1ce43e519e5e6",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "eval mse30 s456 downstream",
+  "task_key": "worker_eval_mse30_s456_downstream_20260522T092602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mse30_s456_downstream_20260522T092602_result.json",
+    "occurrence": 1,
+    "bytes": 396,
+    "sha256": "d2d2eba58982a40c8c7dc08155d23895751c843ff56beee2996cf887a02d53d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已在运行中，无需重复提交。\n\n**状态**：`mse30_s456_downstream` PID 402809，已运行 3h06m，当前正在跑 MMLU（loglikelihood 2696/4687 ≈ 57%）。前面的 ARC-c / Winogrande 应该已完成。预计 MMLU 之后还有 GSM8K / HellaSwag / PIQA / BoolQ，整体可能还需 2-3 小时。\n\nRegistry 条目已存在，parent=mse30_s456，spec 完整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mse30-s456-downstream.md"
+}

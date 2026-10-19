@@ -1,0 +1,169 @@
+- id: art_20260515_1d269f
+  name: phase0_vip_gate1c_results
+  type: data
+  description: 'VIP Gate 1(c) validation: Spearman rho for 50 LIBERO-Object trajectories.
+    Median=0.727, 100% above 0.5. PASSED.'
+  path: projects/temp-adv-distill-vla/artifacts/_project/data/phase0_vip_results_summary.txt
+  url: null
+  project: temp-adv-distill-vla
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T06:07:33.564313+00:00'
+  tags:
+  - gate1c
+  - vip
+  - phase0
+  - validation
+- id: art_20260515_f4bba4
+  name: phase0_vip_cos_sim_plot
+  type: chart
+  description: VIP cos_sim and neg-L2 vs progress for 5 representative trajectories
+  path: projects/temp-adv-distill-vla/artifacts/_project/chart/phase0_vip_cos_sim_vs_progress_ref.txt
+  url: null
+  project: temp-adv-distill-vla
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T06:07:36.395201+00:00'
+  tags:
+  - gate1c
+  - vip
+  - phase0
+- id: art_20260515_9d25f9
+  name: phase0_vip_spearman_boxplot
+  type: chart
+  description: VIP Spearman rho distribution boxplot and histogram (n=50, median=0.727)
+  path: projects/temp-adv-distill-vla/artifacts/_project/chart/phase0_vip_spearman_boxplot_ref.txt
+  url: null
+  project: temp-adv-distill-vla
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T06:07:38.222657+00:00'
+  tags:
+  - gate1c
+  - vip
+  - phase0
+- id: art_20260515_4291cb
+  name: gate1b_results
+  type: data
+  description: Gate 1(b) MLP Progress Predictor on VIP features — R²=0.9847, PASSED
+  path: projects/temp-adv-distill-vla/artifacts/_project/data/gate1b_results.json
+  url: null
+  project: temp-adv-distill-vla
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T06:14:28.557718+00:00'
+  tags:
+  - gate1b
+  - vip
+  - mlp
+  - progress-predictor
+- id: art_20260515_513c65
+  name: cross_task_mlp_validation
+  type: data
+  description: 'Cross-task MLP generalization: 7/9 FAIL. Only milk (0.94) and ketchup
+    (0.82) pass R²>0.8. MLP trained on alphabet_soup does not generalize across LIBERO-Object
+    tasks.'
+  path: projects/temp-adv-distill-vla/artifacts/_project/data/cross_task_mlp_validation.json
+  url: null
+  project: temp-adv-distill-vla
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T06:37:21.994222+00:00'
+  tags:
+  - gate1
+  - mlp
+  - cross-task
+  - validation
+- id: art_20260515_e8261f
+  name: gate1b_mlp_multitask_checkpoint
+  type: intermediate
+  description: Multi-task MLP checkpoint on server at /root/temp-adv-distill-vla/artifacts/gate1b_mlp_multitask.pt
+    (2.3MB), best epoch 11, overall R²=0.9653
+  path: projects/temp-adv-distill-vla/artifacts/_project/intermediate/gate1b_mlp_multitask_info.txt
+  url: null
+  project: temp-adv-distill-vla
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T06:56:49.822209+00:00'
+  tags:
+  - gate1b
+  - mlp
+  - multitask
+  - checkpoint
+- id: art_20260515_896d47
+  name: multitask_mlp_per_task_r2_plot
+  type: chart
+  description: 'Bar chart of per-task test R² for multi-task MLP across 10 LIBERO-Object
+    tasks. Remote: /root/temp-adv-distill-vla/artifacts/multitask_mlp_per_task_r2.png'
+  path: projects/temp-adv-distill-vla/artifacts/_project/chart/multitask_mlp_per_task_r2_plot_info.txt
+  url: null
+  project: temp-adv-distill-vla
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T06:56:52.220221+00:00'
+  tags:
+  - gate1b
+  - mlp
+  - multitask
+  - visualization
+- id: art_20260515_d1358f
+  name: multitask_mlp_results
+  type: data
+  description: 'Multi-task MLP training results: per-task R2 for all 10 LIBERO-Object
+    tasks, overall R2=0.9653, all PASS'
+  path: projects/temp-adv-distill-vla/artifacts/_project/data/multitask_mlp_results_info.txt
+  url: null
+  project: temp-adv-distill-vla
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T06:57:03.461309+00:00'
+  tags:
+  - gate1b
+  - mlp
+  - multitask
+  - vip
+- id: art_20260515_a02f24
+  name: pertask_iql_results
+  type: data
+  description: 'Per-task IQL training results: 10/10 tasks completed. salad_dressing
+    early-stopped at 75K steps. Total time 2060s. Server: /root/temp-adv-distill-vla/artifacts/pertask_iql_results.json'
+  path: projects/temp-adv-distill-vla/artifacts/_project/data/pertask_iql_summary.txt
+  url: null
+  project: temp-adv-distill-vla
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T07:37:37.329299+00:00'
+  tags:
+  - iql
+  - training
+- id: art_20260515_a72af7
+  name: gate2_results
+  type: data
+  description: 'Gate 2 evaluation: 0/10 tasks passed. mean_AUROC_IQL=0.5055. IQL advantages
+    barely separate progress from no-op actions. Server: /root/temp-adv-distill-vla/artifacts/gate2_results.json'
+  path: projects/temp-adv-distill-vla/artifacts/_project/data/gate2_results_summary.txt
+  url: null
+  project: temp-adv-distill-vla
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T07:37:44.202888+00:00'
+  tags:
+  - gate2
+  - iql
+  - evaluation
+- id: art_20260515_a18794
+  name: delta_progress_results
+  type: data
+  description: 'Delta-progress AUROC evaluation: mean dP AUROC=0.5325, TED=0.6192,
+    SAL(fixed)=0.9945. dP wins 0/10 vs TED.'
+  path: projects/temp-adv-distill-vla/artifacts/_project/data/delta_progress_results_summary.txt
+  url: null
+  project: temp-adv-distill-vla
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T09:37:33.801786+00:00'
+  tags:
+  - gate2
+  - delta-progress
+  - auroc
+  - evaluation

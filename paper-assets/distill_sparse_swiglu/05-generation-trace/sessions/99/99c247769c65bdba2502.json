@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99c247769c65bdba2502",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "paper figure fig2 sparsity sweep v3",
+  "task_key": "worker_paper_figure_fig2_sparsity_sweep_v3_20260516T000124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig2_sparsity_sweep_v3_20260516T000124_result.json",
+    "occurrence": 1,
+    "bytes": 355,
+    "sha256": "7ebe27caf260d622af22a522b1d68756483fbd0ea8119e0cd49610adba6f3a19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成，核心亮点清晰：70% sparsity 处 KL Predictor (17.9) vs WINA (137.2) 的 7.7× gap 用双箭头标注突出。\n\n产出文件：\n- `artifacts/figures/paper/fig2_sparsity_sweep.pdf`\n- `artifacts/figures/paper/fig2_sparsity_sweep.png`\n- `artifacts/figures/paper/fig2_data.json`\n- `artifacts/figures/paper/gen_fig2.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig2-sparsity-sweep-v3.md"
+}

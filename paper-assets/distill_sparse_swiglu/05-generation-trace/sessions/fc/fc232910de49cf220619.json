@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc232910de49cf220619",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "analysis kl actual sparsity",
+  "task_key": "worker_analysis_kl_actual_sparsity_20260519T203819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_kl_actual_sparsity_20260519T203819_result.json",
+    "occurrence": 1,
+    "bytes": 500,
+    "sha256": "7a28eb86d5941bff130583e11473414b5e749536ce6b5d01c4a5b0eb7e00d0c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**Qwen-14B KL 30% actual achieved sparsity：**\n\n| Seed | Experiment | Actual Sparsity |\n|---|---|---|\n| 42 | qwen14b_kl30_s42_eval_uniform_v3 | **0.296** |\n| 123 | qwen14b_kl30_s123_eval_v5 | **0.296** |\n| 456 | qwen14b_kl30_s456_eval_v3 | **0.297** |\n\n3-seed 均值 ≈ **0.2963**（target 0.30，接近但略低，与 TEAL@27.5% actual=0.268 的模式一致）。\n\nRegistry 已更新，三个实验的 metrics 中均补充了 `actual_sparsity` 字段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-kl-actual-sparsity.md"
+}

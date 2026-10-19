@@ -1,0 +1,784 @@
+{
+  "schema_version": "1.0",
+  "id": "78aefe604fa02333edbb",
+  "project": "distill_sparse_swiglu",
+  "kind": "conversation",
+  "title": "submit westd 34887 2gpu",
+  "task_key": "worker_submit_westd-34887-2gpu_20260518T042321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_submit_westd-34887-2gpu_20260518T042321.jsonl",
+    "occurrence": 1,
+    "bytes": 30138,
+    "sha256": "e7516bf7cdf8def38f39903f82ac59a2721e7af435a0c345d419b897900309c3"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 0,
+    "tool_calls": 18,
+    "roles": {
+      "tool_call": 18,
+      "tool_result": 18,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T04:25:48.359498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T04:25:48.359845+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T04:25:48.360032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "nvidia-smi",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T04:25:48.360180+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "ls -la /root/distill_sparse_swiglu/checkpoints/kl_50pct_s123/predictor_kl_normalized.pt",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T04:25:48.360345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mon May 18 12:23:46 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\\\n| N/A   30C    P8             33W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\\\n| N/A   29C    P8             35W /  600W |       3MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|  No running processes fou\n…[truncated 265 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T04:25:48.360501+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 151966687 May 17 18:56 /root/distill_sparse_swiglu/checkpoints/kl_50pct_s123/predictor_kl_normalized.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T04:25:48.360641+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__submit_training_job",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T04:25:48.360775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T04:25:48.360894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "submit training job",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T04:25:48.361074+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T04:25:48.361409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "kl50_s123_eval",
+              "field": "hypothesis",
+              "value": "KL-normalized predictor at 50% sparsity (seed 123) preserves downstream task performance comparable to dense baseline on wikitext2, arc_challenge, winogrande, mmlu, gsm8k",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T04:25:48.361567+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"kl50_s123_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:02:35.894Z\\\", \\\"updated_at\\\": \\\"2026-05-18T04:24:00.414Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export CUDA_VISIBLE_DEVICES=0 && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id kl_50pct_s123_global --checkpoint checkpoints/kl_50pct_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"25424\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/kl50_s123_eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T11:02:35.356Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"KL-normalized predictor at 50% sparsity (seed 123) preserves downstream task performance comparable to dense baseline on wikitext2, arc_challenge, winogrande, mmlu, gsm8k\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7862}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T04:25:48.361706+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "kl50_s123_eval",
+              "field": "parent",
+              "value": "kl_50pct_s123",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T04:25:48.361846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"kl50_s123_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:02:35.894Z\\\", \\\"updated_at\\\": \\\"2026-05-18T04:24:01.379Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export CUDA_VISIBLE_DEVICES=0 && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id kl_50pct_s123_global --checkpoint checkpoints/kl_50pct_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"25424\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/kl50_s123_eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T11:02:35.356Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"KL-normalized predictor at 50% sparsity (seed 123) preserves downstream task performance comparable to dense baseline on wikitext2, arc_challenge, winogrande, mmlu, gsm8k\\\", \\\"parent\\\": \\\"kl_50pct_s123\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6594}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T04:25:48.361996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "kl50_s456_train",
+              "field": "hypothesis",
+              "value": "KL-normalized distillation at 50% sparsity with seed 456 converges to similar loss as seed 123, confirming training stability across seeds",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T04:25:48.362156+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "kl50_s456_train",
+              "field": "conclusion",
+              "value": "",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T04:25:48.362299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"kl50_s456_train\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:44:19.280Z\\\", \\\"updated_at\\\": \\\"2026-05-18T04:24:03.357Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.5 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/kl_50pct_s456 --wandb_run_name kl_50pct_s456\\\\\\\"\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"35825\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/kl50_s456_train.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T11:44:18.955Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"KL-normalized distillation at 50% sparsity with seed 456 converges to similar loss as seed 123, confirming training stability across seeds\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7644}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T04:25:48.362428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion ''. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3928}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T04:25:48.362567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "mkdir -p /root/runs/distill_sparse_swiglu && nohup bash -c 'source /root/miniconda3/bin/activate base && cd /root/distill_sparse_swiglu && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export PYTHONUNBUFFERED=1 && export CUDA_VISIBLE_DEVICES=0 && python -u src/benchmark_eval.py --exp_id kl50_s123_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_50pct_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0' > /root/runs/distill_sparse_swiglu/kl50_s123_eval.log 2>&1 & echo \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T04:25:48.362702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "mkdir -p /root/runs/distill_sparse_swiglu && nohup bash -c 'source /root/miniconda3/bin/activate base && cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export PYTHONUNBUFFERED=1 && export CUDA_VISIBLE_DEVICES=1 && python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --sparsity_target 0.5 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/kl_50pct_s456 --wandb_run_name kl_50pct_s456 --gpu 0' > /root/runs/distill_sparse_swiglu/kl50_s456_train.log 2>&1 & echo \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T04:25:48.362837+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'mkdir -p /root/runs/distill_sparse_swiglu && nohup bash -c \\\\\\\\'source /root/miniconda3/bin/activate base && cd /root/distill_sparse_swiglu && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && export PYTHONUNBUFFERED=1 && export CUDA_VISIBLE_DEVICES=0 && python -u src/benchmark_eval.py --exp_id kl50_s123_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_50pct_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\\\\\\' > /root/runs/distill_sparse_swiglu/kl50_s123_eval.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=99952\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T04:25:48.362962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=100563\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 19.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T04:25:48.363120+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-34887",
+              "command": "nvidia-smi",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T04:25:48.363273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mon May 18 12:25:06 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.95.05              Driver Version: 580.95.05      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\\\n| N/A   41C    P0             87W /  600W |   41727MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\\\n| N/A   65C    P0            570W /  600W |   41727MiB /  97887MiB |     96%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          \n…[truncated 359 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T04:25:48.363443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "kl50_s123_eval",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "distill_sparse_swiglu",
+              "spec": "{'command': 'python -u src/benchmark_eval.py --exp_id kl50_s123_eval --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --checkpoint checkpoints/kl_50pct_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0', 'server': 'westd-34887', 'gpu': ['cuda:0'], 'pid': '99952', 'log_path': '/root/runs/distill_sparse_swiglu/kl50_s123_eval.log', 'checkpoint_source': 'checkpoints/kl_50pct_s123/predictor_kl_normalized.pt', 'eval_data': 'wikitext2,arc_challenge,winogrande,mmlu,gsm8k', 'model_name': 'llama-3.1-8b', 'seed': 123, 'data_path': 'N/A', 'data_count': 0}"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T04:25:48.363592+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3715}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T04:25:48.363720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "kl50_s456_train",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "distill_sparse_swiglu",
+              "spec": "{'command': 'python -u src/train.py --model_name_or_path /root/autodl-tmp/models/llama-3.1-8b --loss_type kl_normalized --sparsity_target 0.5 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/kl_50pct_s456 --wandb_run_name kl_50pct_s456 --gpu 0', 'server': 'westd-34887', 'gpu': ['cuda:1'], 'pid': '100563', 'log_path': '/root/runs/distill_sparse_swiglu/kl50_s456_train.log', 'model_name': 'llama-3.1-8b', 'seed': 456, 'data_path': 'wikitext-103', 'data_count': 0}"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T04:25:48.363865+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4048}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T04:25:48.363990+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "kl50_s123_eval",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T04:25:48.364135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "kl50_s456_train",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "distill_sparse_swiglu"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-18T04:25:48.364275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"kl50_s123_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:02:35.894Z\\\", \\\"updated_at\\\": \\\"2026-05-18T04:25:20.309Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export CUDA_VISIBLE_DEVICES=0 && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export HF_DATASETS_CACHE=/root/autodl-tmp/.hf_cache/datasets && /root/miniconda3/bin/python -u src/benchmark_eval.py --exp_id kl_50pct_s123_global --checkpoint checkpoints/kl_50pct_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"25424\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/kl50_s123_eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T11:02:35.356Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"KL-normalized predictor at 50% sparsity (seed 123) preserves downstream task performance comparable to dense baseline on wikitext2, arc_challenge, winogrande, mmlu, gsm8k\\\", \\\"parent\\\": \\\"kl_50pct_s123\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2288}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-18T04:25:48.364418+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"kl50_s456_train\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:44:19.280Z\\\", \\\"updated_at\\\": \\\"2026-05-18T04:25:21.529Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/distill_sparse_swiglu && export WANDB_MODE=disabled && export HF_HUB_OFFLINE=1 && export HF_DATASETS_OFFLINE=1 && /root/miniconda3/bin/python -u src/train.py --loss_type kl_normalized --sparsity_target 0.5 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/kl_50pct_s456 --wandb_run_name kl_50pct_s456\\\\\\\"\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"35825\\\", \\\"log_path\\\": \\\"~/runs/distill_sparse_swiglu/kl50_s456_train.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T11:44:18.955Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"KL-normalized distillation at 50% sparsity with seed 456 converges to similar loss as seed 123, confirming training stability across seeds\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1913}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-18T04:25:48.364557+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "kl50_s123_eval",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "distill_sparse_swiglu",
+              "spec": "{'command': 'python -u src/benchmark_eval.py --exp_id kl50_s123_eval --checkpoint checkpoints/kl_50pct_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0', 'server': 'westd-34887', 'gpu': ['cuda:0'], 'pid': '99952', 'log_path': '/root/runs/distill_sparse_swiglu/kl50_s123_eval.log', 'checkpoint_source': 'checkpoints/kl_50pct_s123/predictor_kl_normalized.pt', 'eval_data': 'wikitext2,arc_challenge,winogrande,mmlu,gsm8k', 'model_name': 'llama-3.1-8b', 'seed': 123, 'data_path': 'N/A', 'data_count': 0}"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-18T04:25:48.364713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"kl50_s123_eval\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:02:35.894Z\\\", \\\"updated_at\\\": \\\"2026-05-18T04:25:36.704Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/benchmark_eval.py --exp_id kl50_s123_eval --checkpoint checkpoints/kl_50pct_s123/predictor_kl_normalized.pt --sparsity_mode teal_global --sparsity_target 0.5 --tasks wikitext2,arc_challenge,winogrande,mmlu,gsm8k --gpu 0\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"99952\\\", \\\"log_path\\\": \\\"/root/runs/distill_sparse_swiglu/kl50_s123_eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T11:02:35.356Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"checkpoints/kl_50pct_s123/predictor_kl_normalized.pt\\\", \\\"eval_data\\\": \\\"wikitext2,arc_challenge,winogrande,mmlu,gsm8k\\\", \\\"model_name\\\": \\\"llama-3.1-8b\\\", \\\"seed\\\": 123, \\\"data_path\\\": \\\"N/A\\\", \\\"data_count\\\": 0}, \\\"hypothesis\\\": \\\"KL-normalized predictor at 50% sparsity (seed 123) preserves downstream task performance comparable to dense baseline on wikitext2, arc_challenge, winogrande, mmlu, gsm8k\\\", \\\"parent\\\": \\\"kl_50pct_s123\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3275}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-18T04:25:48.364845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "kl50_s456_train",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "distill_sparse_swiglu",
+              "spec": "{'command': 'python -u src/train.py --loss_type kl_normalized --sparsity_target 0.5 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/kl_50pct_s456 --wandb_run_name kl_50pct_s456 --gpu 0', 'server': 'westd-34887', 'gpu': ['cuda:1'], 'pid': '100563', 'log_path': '/root/runs/distill_sparse_swiglu/kl50_s456_train.log', 'model_name': 'llama-3.1-8b', 'seed': 456, 'data_path': 'wikitext-103', 'data_count': 0}"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-18T04:25:48.365217+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"kl50_s456_train\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:44:19.280Z\\\", \\\"updated_at\\\": \\\"2026-05-18T04:25:39.624Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/train.py --loss_type kl_normalized --sparsity_target 0.5 --num_steps 1000 --batch_size 4 --seq_len 2048 --lr 1e-3 --seed 456 --lambda_max 5000 --gradient_checkpointing --dataset wikitext-103 --log_every 100 --output_dir checkpoints/kl_50pct_s456 --wandb_run_name kl_50pct_s456 --gpu 0\\\", \\\"server\\\": \\\"westd-34887\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"100563\\\", \\\"log_path\\\": \\\"/root/runs/distill_sparse_swiglu/kl50_s456_train.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T11:44:18.955Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"llama-3.1-8b\\\", \\\"seed\\\": 456, \\\"data_path\\\": \\\"wikitext-103\\\", \\\"data_count\\\": 0}, \\\"hypothesis\\\": \\\"KL-normalized distillation at 50% sparsity with seed 456 converges to similar loss as seed 123, confirming training stability across seeds\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4604}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-18T04:25:48.365626+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 job 已提交并确认运行：\n\n| Job | GPU | PID | 显存 | GPU-Util |\n|---|---|---|---|---|\n| **kl50_s123_eval** (downstream eval) | cuda:0 | 99954 | 41718 MiB | 0% (模型加载中) |\n| **kl50_s456_train** (s456 训练) | cuda:1 | 100263 | 41718 MiB | 96% |\n\n两卡均已占用，nohup 启动，日志分别写入 `/root/runs/distill_sparse_swiglu/kl50_s123_eval.log` 和 `kl50_s456_train.log`。Registry 状态已更新为 RUNNING。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_submit_westd-34887-2gpu_20260518T042321"
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/conversations/submit-westd-34887-2gpu.md"
+}

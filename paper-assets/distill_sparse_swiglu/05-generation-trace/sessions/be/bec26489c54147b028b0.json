@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bec26489c54147b028b0",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "train perlayer kl k4 s456 fix",
+  "task_key": "worker_train_perlayer_kl_k4_s456_fix_20260522T133926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_perlayer_kl_k4_s456_fix_20260522T133926_result.json",
+    "occurrence": 1,
+    "bytes": 778,
+    "sha256": "78fec795a5ce6cc5fd3ceaf042b8ce540bfc030bdcb2fa9628f1eb4b138fafec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**无需修复，训练已经在正常运行。**\n\n两个 pipeline 都已经由 `submit_training_job` 正确启动，进程已被 reparent 到 init (PPID=1)，不会因 SSH 断连而死：\n\n| 实验 | GPU | PID | 进度 | 速度 |\n|------|-----|-----|------|------|\n| s123 | cuda:0 | 59565→59575 | Step 1/2700 | ~2.3s/step |\n| s456 | cuda:1 | 59879→59889 | Step 1/2700 | ~2.3s/step |\n\n关键事实：\n- `WANDB_MODE=disabled` 已生效，wandb 问题已修复\n- 日志重定向到 `~/runs/distill_sparse_swiglu/perlayer_kl_k4_s{123,456}.log`\n- 6 小时 timeout 保护\n- `save_every=500`，首个 checkpoint 约 19 分钟后产生\n- Phase 1 训练预计 ~1.7 小时完成（2700 steps × 2.3s）\n\n不需要任何操作，等训练跑完即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-perlayer-kl-k4-s456-fix.md"
+}

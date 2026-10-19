@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d83f55e641d7a0c4e59",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "submit k16 eval final",
+  "task_key": "worker_submit_k16_eval_final_20260523T051336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_k16_eval_final_20260523T051336_result.json",
+    "occurrence": 1,
+    "bytes": 476,
+    "sha256": "23bbf9dbd149b9fe6ce65097750b5de7af0ae6e577b81b38058c34046d3b6d21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**提交结果：**\n- **Exp ID**: `perlayer_kl_k16_s42_eval_final`\n- **Server**: westd-34887, cuda:0\n- **Checkpoint**: `/root/distill_sparse_swiglu/checkpoints/perlayer_kl_k16_s42_v3/predictor_perlayer_kl_k4.pt`\n- **PID/tmux session**: `perlayer_kl_k16_s42_eval_final`\n- **Log**: `~/runs/distill_sparse_swiglu/perlayer_kl_k16_s42_eval_final.log`\n- **Registry**: RUNNING, parent=perlayer_kl_k16_s42_v3\n- **Cron**: 已注册，120s轮询"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-k16-eval-final.md"
+}

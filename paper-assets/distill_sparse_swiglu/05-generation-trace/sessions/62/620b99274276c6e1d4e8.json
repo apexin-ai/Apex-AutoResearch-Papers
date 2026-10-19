@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "620b99274276c6e1d4e8",
+  "project": "distill_sparse_swiglu",
+  "kind": "result",
+  "title": "submit eval kl30 teal 30pct",
+  "task_key": "worker_submit_eval_kl30_teal_30pct_20260516T061535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_eval_kl30_teal_30pct_20260516T061535_result.json",
+    "occurrence": 1,
+    "bytes": 395,
+    "sha256": "32459d739416fdb0e4136a29d40be02638c3f263cb9295eb21fcd455f6089e9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并运行中：\n\n- **exp_id**: `eval_kl30_teal_30pct`\n- **PID**: 213573, cuda:0, nohup 后台\n- **sparsity_target**: 0.3（已确认 Model-level: 0.300）\n- **日志**: `~/runs/distill_sparse_swiglu/eval_kl30_teal_30pct.log`\n- **早期输出**: Dense WikiText-2 PPL = 6.12，正在跑 Predictor Hard Mask 评测\n- **Registry**: RUNNING，provenance 已填写"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-eval-kl30-teal-30pct.md"
+}
