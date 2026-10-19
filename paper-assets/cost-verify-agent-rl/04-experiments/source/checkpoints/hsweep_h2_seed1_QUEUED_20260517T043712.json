@@ -1,0 +1,16 @@
+{
+  "exp_id": "hsweep_h2_seed1",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:37:11.061Z",
+    "updated_at": "2026-05-17T04:37:12.602Z",
+    "hypothesis": "Step-independent GRPO with h=2 (minimal context window) will catastrophically collapse within 5 steps due to extreme credit assignment failure (gamma^24 ≈ 29% signal retention at first window, N=25), providing systematic evidence for the episode-level advantage",
+    "parent": "exp029_episode_level"
+  },
+  "timestamp": "2026-05-17T04:37:12.706717+00:00",
+  "trigger": "update_registry"
+}

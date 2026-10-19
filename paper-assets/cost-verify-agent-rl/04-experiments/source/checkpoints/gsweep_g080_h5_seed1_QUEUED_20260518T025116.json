@@ -1,0 +1,16 @@
+{
+  "exp_id": "gsweep_g080_h5_seed1",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:56:53.634Z",
+    "updated_at": "2026-05-18T02:51:15.913Z",
+    "hypothesis": "γ=0.8 with h=5 represents an intermediate decay rate where early windows retain γ^9 ≈ 0.8^9 ≈ 13% of terminal return, potentially showing delayed but still present collapse compared to γ=0.95 (39%).",
+    "parent": "hsweep_h2_seed1"
+  },
+  "timestamp": "2026-05-18T02:51:16.061607+00:00",
+  "trigger": "update_registry"
+}

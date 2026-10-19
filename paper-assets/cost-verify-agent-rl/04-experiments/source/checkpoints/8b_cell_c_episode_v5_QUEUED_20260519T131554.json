@@ -1,0 +1,32 @@
+{
+  "exp_id": "8b_cell_c_episode_v5",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:11:45.033Z",
+    "updated_at": "2026-05-19T13:15:53.847Z",
+    "hypothesis": "8B Cell C episode-level with use_ref=False (releasing ~8 GiB/GPU from ref model) and gpu_memory_utilization=0.20 will resolve the Catch-22 OOM: FSDP+ref baseline ~90 GiB/GPU leaves no room for VLLM. Removing ref model is the only viable fix since batch/token params were already minimized in v1-v3 and gpu_memory_utilization=0.15 was too low for VLLM init in v4.",
+    "parent": "8b_cell_c_episode_v2",
+    "spec": {
+      "command": "bash -c 'rm -rf /tmp/fast_downward_* /tmp/ray/* /tmp/tmp* 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && mkdir -p /root/autodl-tmp/checkpoints/8b-cell-c && export WANDB_PROJECT=cost-verify-agent-rl && CUDA_VISIBLE_DEVICES=0,1,2,3 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python train.py --config-name _alfworld_8b_cell_c'",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "67342",
+      "log_path": "~/runs/cost-verify-agent-rl/8b_cell_c_episode_v5.log",
+      "submitted_at": "2026-05-19T13:14:28.017Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-19T13:15:54.044906+00:00",
+  "trigger": "update_registry"
+}

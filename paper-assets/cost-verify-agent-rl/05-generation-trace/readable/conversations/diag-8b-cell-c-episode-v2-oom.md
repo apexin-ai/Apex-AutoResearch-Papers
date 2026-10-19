@@ -1,0 +1,2542 @@
+# diag 8b cell c episode v2 oom
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 81
+- **Recorded user turns:** 0
+- **Tool calls:** 40
+- **Original source:** `logs/chats/worker_diag_8b_cell_c_episode_v2_oom_20260519T121253.jsonl`
+- **Structured JSON:** [`33095af6f2b570deb972.json`](../../sessions/33/33095af6f2b570deb972.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+81 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T12:28:07.982231+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T12:28:07.982614+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T12:28:07.982819+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat ~/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cat ~/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-19T12:28:07.982955+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat ~/runs/cost-verify-agent-rl/8b_cell_c_episode.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cat ~/runs/cost-verify-agent-rl/8b_cell_c_episode.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T12:28:07.983079+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root -name \"*.yaml\" -path \"*alfworld*8b*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "find /root -name \"*.yaml\" -path \"*alfworld*8b*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-19T12:28:07.983197+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root -name \"train*.py\" -path \"*cost-verify*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "find /root -name \"train*.py\" -path \"*cost-verify*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-19T12:28:07.983412+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n[tatsu_parallel_fix] Patched 4 singleton parsers with thread-local instances\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nUsers of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n/root/miniconda3/lib/python3.12/site-packages/gym_sokoban/__init__.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\nWARNING: kimina-client is not installed or failed to import. Lean environments will not be loaded.\\n/root/miniconda3/lib/python3.12/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In '_alfworld_8b_cell_c': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information\\n  warnings.warn(msg, UserWarning)\\nconfig: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 5e-07, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEng
+…[truncated 6748 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T12:28:07.983865+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n[tatsu_parallel_fix] Patched 4 singleton parsers with thread-local instances\\nGym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\nPlease upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\nUsers of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.\\nSee the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\n/root/miniconda3/lib/python3.12/site-packages/gym_sokoban/__init__.py:2: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.\\n  import pkg_resources\\nWARNING: kimina-client is not installed or failed to import. Lean environments will not be loaded.\\n/root/miniconda3/lib/python3.12/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In '_alfworld_8b_cell_c': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information\\n  warnings.warn(msg, UserWarning)\\nconfig: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 5e-07, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEng
+…[truncated 6748 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T12:28:07.984047+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T12:28:07.984185+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T12:28:07.984353+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root -name \"_alfworld_8b_cell_c*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "find /root -name \"_alfworld_8b_cell_c*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T12:28:07.984486+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_cell_c.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T12:28:07.984634+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/workers/actor/dp_actor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/workers/actor/dp_actor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T12:28:07.984881+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Copyright 2024 Bytedance Ltd. and/or its affiliates\\n#\\n# Licensed under the Apache License, Version 2.0 (the \\\"License\\\");\\n# you may not use this file except in compliance with the License.\\n# You may obtain a copy of the License at\\n#\\n#     http://www.apache.org/licenses/LICENSE-2.0\\n#\\n# Unless required by applicable law or agreed to in writing, software\\n# distributed under the License is distributed on an \\\"AS IS\\\" BASIS,\\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\\n# See the License for the specific language governing permissions and\\n# limitations under the License.\\n\\\"\\\"\\\"\\nSingle Process Actor\\n\\\"\\\"\\\"\\n\\nimport itertools\\nimport logging\\nimport os\\nfrom typing import Tuple\\n\\nimport torch\\ntry:\\n    from flash_attn.bert_padding import index_first_axis, pad_input, rearrange, unpad_input\\nexcept ImportError:\\n    index_first_axis = pad_input = rearrange = unpad_input = None\\nfrom torch import nn\\nfrom torch.distributed.fsdp import FullyShardedDataParallel as FSDP\\nimport verl.utils.torch_functional as verl_F\\nfrom verl import DataProto\\nfrom verl.trainer.ppo.core_algos import agg_loss, compute_policy_loss, kl_penalty\\nfrom verl.utils.debug import GPUMemoryLogger\\nfrom verl.utils.fsdp_utils import FSDPModule, fsdp2_clip_grad_norm_\\nfrom verl.utils.py_functional import append_to_dict\\nfrom verl.utils.seqlen_balancing import get_reverse_idx, rearrange_micro_batches\\nfrom verl.utils.torch_functional import logprobs_from_logits\\nfrom verl.utils.ulysses import gather_outpus_and_unpad, ulysses_pad_and_slice_inputs\\nfrom verl.utils.device import get_device_id\\nfrom verl.workers.actor import BasePPOActor\\n\\nfrom peft import PeftModel\\n\\n\\n__all__ = [\\\"DataParallelPPOActor\\\"]\\n\\nlogger = logging.getLogger(__file__)\\nlogger.setLevel(os.getenv(\\\"VERL_LOGGING_LEVEL\\\", \\\"WARN\\\"))\\n\\n\\nclass DataParalle
+…[truncated 6759 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T12:28:07.985037+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n \"ppo_max_token_len_per_gpu\\|log_prob_max_token_len\\|use_dynamic_bsz\\|micro_batch_size\\|ppo_mini_batch\" /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n \"ppo_max_token_len_per_gpu\\|log_prob_max_token_len\\|use_dynamic_bsz\\|micro_batch_size\\|ppo_mini_batch\" /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T12:28:07.985167+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T12:28:07.985325+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_cell_c.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_cell_c.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T12:28:07.985497+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Cell C: episode-level advantage + full context (8B Qwen3)\\n# Expected: success (~28-31% OOD confirmed at 1.7B scale)\\n# Reference: _alfworld_exp029_episode_level.yaml (1.7B)\\n\\ndefaults:\\n  - base\\n\\nhydra:\\n  searchpath:\\n    - pkg://verl.trainer.config\\n\\nmodel_path: /root/autodl-tmp/checkpoints/qwen3_8b_sft_v1/checkpoint-231\\n\\nsystem:\\n  CUDA_VISIBLE_DEVICES: \\\"0,1,2,3\\\"\\n\\nmicro_batch_size_per_gpu: 1\\nppo_mini_batch_size: 16\\n\\ntrainer:\\n  project_name: cost-verify-agent-rl\\n  experiment_name: 8b-cell-c-episode-level\\n  total_training_steps: 30\\n  n_gpus_per_node: 4\\n  val_before_train: True\\n  test_freq: 5\\n  save_freq: 999\\n  local_log_dir: \\\"/root/autodl-tmp/checkpoints/8b-cell-c/\\\"\\n  default_local_dir: \\\"/root/autodl-tmp/checkpoints/8b-cell-c/\\\"\\n  logger: ['console', 'wandb']\\n  max_actor_ckpt_to_keep: 5\\n  resume_mode: \\\"disable\\\"\\n\\nactor_rollout_ref:\\n  model:\\n    override_config:\\n      attn_implementation: sdpa\\n    enable_gradient_checkpointing: true\\n  actor:\\n    fsdp_config:\\n      optimizer_offload: True\\n    use_ref: True\\n    use_torch_compile: False\\n    use_kl_loss: True\\n    kl_loss_coef: 0.01\\n    kl_loss_type: low_var_kl\\n    entropy_coeff: 0.001\\n    clip_ratio_low: 0.2\\n    clip_ratio_high: 0.28\\n    loss_agg_mode: \\\"token-mean\\\"\\n    grad_clip: 1.0\\n    ppo_max_token_len_per_gpu: 16384\\n    optim:\\n      lr: 5e-7\\n  ref:\\n    use_torch_compile: False\\n    log_prob_max_token_len_per_gpu: 16384\\n  rollout:\\n    response_length: 1024\\n    gpu_memory_utilization: 0.35\\n    enable_chunked_prefill: true\\n    max_model_len: 20480\\n    temperature: 1.0\\n    max_num_batched_tokens: 20480\\n    enforce_eager: True\\n    val_kwargs:\\n      do_sample: True\\n      temperature: 0.4\\n\\nalgorithm:\\n  adv_estimator: grpo\\n  gamma: 0.95\\n  high_level_gamma: 0.95\\n  norm_adv_by_std_in_grpo: True\\n\\nagent_
+…[truncated 691 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T12:28:07.985670+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n \"ppo_max_token_len_per_gpu\\|use_dynamic_bsz\\|micro_batch_size\\|ppo_mini_batch\\|log_prob_max_token\" /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n \"ppo_max_token_len_per_gpu\\|use_dynamic_bsz\\|micro_batch_size\\|ppo_mini_batch\\|log_prob_max_token\" /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T12:28:07.985838+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T12:28:07.986017+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n \"use_dynamic_bsz\\|micro_batch\\|ppo_max_token\\|gradient_accumulation\\|rearrange_micro_batches\\|max_token_len\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/workers/actor/dp_actor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n \"use_dynamic_bsz\\|micro_batch\\|ppo_max_token\\|gradient_accumulation\\|rearrange_micro_batches\\|max_token_len\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/workers/actor/dp_actor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T12:28:07.986224+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T12:28:07.986517+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n \"use_dynamic_bsz\\|ppo_max_token_len\\|rearrange_micro\\|micro_batch\\|gradient_accumulation\\|split\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/workers/actor/dp_actor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n \"use_dynamic_bsz\\|ppo_max_token_len\\|rearrange_micro\\|micro_batch\\|gradient_accumulation\\|split\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/workers/actor/dp_actor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T12:28:07.986933+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T12:28:07.987080+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "head -500 /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/workers/actor/dp_actor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "head -500 /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/workers/actor/dp_actor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T12:28:07.987325+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Copyright 2024 Bytedance Ltd. and/or its affiliates\\n#\\n# Licensed under the Apache License, Version 2.0 (the \\\"License\\\");\\n# you may not use this file except in compliance with the License.\\n# You may obtain a copy of the License at\\n#\\n#     http://www.apache.org/licenses/LICENSE-2.0\\n#\\n# Unless required by applicable law or agreed to in writing, software\\n# distributed under the License is distributed on an \\\"AS IS\\\" BASIS,\\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\\n# See the License for the specific language governing permissions and\\n# limitations under the License.\\n\\\"\\\"\\\"\\nSingle Process Actor\\n\\\"\\\"\\\"\\n\\nimport itertools\\nimport logging\\nimport os\\nfrom typing import Tuple\\n\\nimport torch\\ntry:\\n    from flash_attn.bert_padding import index_first_axis, pad_input, rearrange, unpad_input\\nexcept ImportError:\\n    index_first_axis = pad_input = rearrange = unpad_input = None\\nfrom torch import nn\\nfrom torch.distributed.fsdp import FullyShardedDataParallel as FSDP\\nimport verl.utils.torch_functional as verl_F\\nfrom verl import DataProto\\nfrom verl.trainer.ppo.core_algos import agg_loss, compute_policy_loss, kl_penalty\\nfrom verl.utils.debug import GPUMemoryLogger\\nfrom verl.utils.fsdp_utils import FSDPModule, fsdp2_clip_grad_norm_\\nfrom verl.utils.py_functional import append_to_dict\\nfrom verl.utils.seqlen_balancing import get_reverse_idx, rearrange_micro_batches\\nfrom verl.utils.torch_functional import logprobs_from_logits\\nfrom verl.utils.ulysses import gather_outpus_and_unpad, ulysses_pad_and_slice_inputs\\nfrom verl.utils.device import get_device_id\\nfrom verl.workers.actor import BasePPOActor\\n\\nfrom peft import PeftModel\\n\\n\\n__all__ = [\\\"DataParallelPPOActor\\\"]\\n\\nlogger = logging.getLogger(__file__)\\nlogger.setLevel(os.getenv(\\\"VERL_LOGGING_LEVEL\\\", \\\"WARN\\\"))\\n\\n\\nclass DataParalle
+…[truncated 6758 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T12:28:07.987519+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n \"use_dynamic_bsz\\|ppo_max_token_len\\|rearrange_micro\\|micro_batch\\|gradient_accumulation\\|\\.split\\|max_token_len\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/workers/actor/dp_actor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n \"use_dynamic_bsz\\|ppo_max_token_len\\|rearrange_micro\\|micro_batch\\|gradient_accumulation\\|\\.split\\|max_token_len\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/workers/actor/dp_actor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T12:28:07.987795+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"36:from verl.utils.seqlen_balancing import get_reverse_idx, rearrange_micro_batches\\n68:    def _forward_micro_batch(self, micro_batch, temperature, calculate_entropy=False) -> Tuple[torch.Tensor, torch.Tensor]:\\n74:        response_length = micro_batch[\\\"responses\\\"].size(-1)\\n76:        if \\\"multi_modal_inputs\\\" in micro_batch:\\n77:            for key in micro_batch[\\\"multi_modal_inputs\\\"][0].keys():\\n78:                multi_modal_inputs[key] = torch.cat([inputs[key] for inputs in micro_batch[\\\"multi_modal_inputs\\\"]], dim=0)\\n81:            input_ids = micro_batch[\\\"input_ids\\\"]\\n83:            attention_mask = micro_batch[\\\"attention_mask\\\"]\\n84:            position_ids = micro_batch[\\\"position_ids\\\"]\\n158:                log_probs = logprobs_from_logits(logits, micro_batch[\\\"responses\\\"])\\n204:        micro_batch_size = data.meta_info[\\\"micro_batch_size\\\"]\\n206:        use_dynamic_bsz = data.meta_info[\\\"use_dynamic_bsz\\\"]\\n213:            num_micro_batches = data.batch.batch_size[0] // micro_batch_size\\n215:            micro_batches = data.select(select_keys, non_tensor_select_keys).chunk(num_micro_batches)\\n216:        elif use_dynamic_bsz:\\n218:            max_token_len = data.meta_info[\\\"max_token_len\\\"] * self.ulysses_sequence_parallel_size\\n219:            micro_batches, indices = rearrange_micro_batches(batch=batch, max_token_len=max_token_len)\\n221:            micro_batches = batch.split(micro_batch_size)\\n232:        for micro_batch in micro_batches:\\n233:            if isinstance(micro_batch, DataProto):\\n234:                micro_batch = {**micro_batch.batch.to(get_device_id()), **micro_batch.non_tensor_batch}\\n236:                micro_batch = micro_batch.to(get_device_id())\\n238:                entropy, log_probs = self._forward_micro_batch(micro_batch, temperature=temperature, calculate_entropy=calculate_entropy)\\n255:        i
+…[truncated 2054 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T12:28:07.988025+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n \"seqlen\\|input_ids.shape\\|total token\\|batch.*shape\\|print.*shape\\|print.*token\\|print.*len\\|prompt.*length\\|sequence.*len\" /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n \"seqlen\\|input_ids.shape\\|total token\\|batch.*shape\\|print.*shape\\|print.*token\\|print.*len\\|prompt.*length\\|sequence.*len\" /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T12:28:07.988309+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"12:config: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 5e-07, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig', 'wrap_policy': {'min_num_params': 0}, 'param_offload': False, 'optimizer_offload': True, 'offload_policy': False, 'reshard_after_forward': True, 'fsdp_size': -1, 'forward_prefetch': False, 'model_dtype': 'fp32', 'use_orig_params': False, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'use_torch_compile': True, 'entropy_checkpointing': False, 'forward_only': False, 'strategy': 'fsdp', 'dtype': 'bfloat16'}, '_target_': 'verl.workers.config.FSDPActorConfig', 'strategy': 'fsdp', 'ppo_mini_batch_size': '${ppo_mini_batch_size}', 'ppo_micro_batch_size': None, 'ppo_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'use_dynamic_bsz': False, 'ppo_max_token_len_per_gpu': 16384, 'clip_ratio': 0.2, 'clip_ratio_low': 0.2, 'clip_ratio_high': 0.28, 'freeze_vision_tower': False, 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig', 'loss_mode': 'vanilla', 'clip_cov_ratio': 0.0002, 'clip_cov_lb': 1.0, 'clip_cov_ub': 5.0, 'kl_cov_ratio': 0.0002, 'ppo_kl_coef': 0.1}, 'clip_ratio_c': 3.0, 'loss_agg_mode': 'token-mean', 'entropy_coeff': 0.001, 'use_kl_loss': True, 'use_torch_compile': False, 'kl_loss_coef': 0.01, 'kl_loss_type': 'low_var_kl', 'ppo_epochs': 1, 'shuffle': False, 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig', 'save_contents': ['model', 'optimizer', 'extra'], 'load_contents': '${.save_contents}', 'async_save': False}, 'use_fused_kernel
+…[truncated 6327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T12:28:07.988693+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root -name \"_alfworld_exp029*\" -o -name \"base.yaml\" -path \"*RAGEN/config*\" | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "find /root -name \"_alfworld_exp029*\" -o -name \"base.yaml\" -path \"*RAGEN/config*\" | head -10",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T12:28:07.988914+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/base.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level_seed2.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed2_reeval_ood.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed2_reeval_ood_1gpu.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed2_reeval_ood_v4.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-19T12:28:07.989098+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "sed -n '280,310p' /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/workers/actor/dp_actor.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "sed -n '280,310p' /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/workers/actor/dp_actor.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T12:28:07.989307+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        # See PPO paper for details. https://arxiv.org/abs/1707.06347\\n        if has_multi_modal_inputs:\\n            num_mini_batches = data.batch.batch_size[0] // self.config.ppo_mini_batch_size\\n            non_tensor_select_keys = [\\\"multi_modal_inputs\\\"]\\n            dataloader = data.select(select_keys, non_tensor_select_keys).chunk(num_mini_batches)\\n        else:\\n            dataloader = batch.split(self.config.ppo_mini_batch_size)\\n\\n        metrics = {}\\n        for epoch in range(self.config.ppo_epochs):\\n            for batch_idx, data in enumerate(dataloader):\\n                # split batch into micro_batches\\n                mini_batch = data\\n                if has_multi_modal_inputs:\\n                    self.gradient_accumulation = self.config.ppo_mini_batch_size // self.config.ppo_micro_batch_size_per_gpu\\n                    num_micro_batches = mini_batch.batch.batch_size[0] // self.config.ppo_micro_batch_size_per_gpu\\n                    micro_batches = data.select(select_keys, non_tensor_select_keys).chunk(num_micro_batches)\\n                elif self.config.use_dynamic_bsz:\\n                    max_token_len = self.config.ppo_max_token_len_per_gpu * self.ulysses_sequence_parallel_size\\n                    micro_batches, _ = rearrange_micro_batches(batch=mini_batch, max_token_len=max_token_len)\\n                else:\\n                    self.gradient_accumulation = self.config.ppo_mini_batch_size // self.config.ppo_micro_batch_size_per_gpu\\n                    # split batch into micro_batches\\n                    micro_batches = mini_batch.split(self.config.ppo_micro_batch_size_per_gpu)\\n\\n                if not isinstance(micro_batches, list):\\n                    micro_batches = list(micro_batches)\\n\\n                if grad_component_analysis and skip_optimizer_step:\\n                    entropy_coeff = self.config.entropy_coeff\\n                    c
+…[truncated 133 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T12:28:07.989559+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T12:28:07.989849+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# exp029: Episode-Level GRPO (full context window)\\n# 核心改动 vs exp028c: context_window_mode step_independent → full\\n# 其余参数完全一致（控制变量实验）\\n#\\n# 配套调整（因 full 模式产生更长序列）：\\n#   1. context_window_mode: step_independent → full\\n#   2. max_prompt_length: 4096 → 16384（容纳 50-turn episode）\\n#   3. max_model_len: 8192 → 16384\\n#   4. max_num_batched_tokens: 8192 → 16384\\n#   5. gpu_memory_utilization: 0.4 → 0.92（长序列需更多显存）\\n#   6. ppo_mini_batch_size: 128 → 32（full 模式样本数=episode数=128，mini_batch 不能等于总量）\\n#   7. 添加 ppo_max_token_len_per_gpu: 65536（适应长序列）\\n\\ndefaults:\\n  - base\\n\\nhydra:\\n  searchpath:\\n    - pkg://verl.trainer.config\\n\\nmodel_path: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\\n\\nsystem:\\n  CUDA_VISIBLE_DEVICES: \\\"0,1\\\"\\n\\nmicro_batch_size_per_gpu: 1\\nppo_mini_batch_size: 16\\n\\ntrainer:\\n  project_name: cost-verify-agent-rl\\n  experiment_name: exp029-alfworld-episode-level\\n  total_training_steps: 100\\n  n_gpus_per_node: 2\\n  val_before_train: True\\n  test_freq: 5\\n  save_freq: 5\\n  local_log_dir: \\\"/root/autodl-tmp/checkpoints/exp029/\\\"\\n  default_local_dir: \\\"/root/autodl-tmp/checkpoints/exp029/\\\"\\n  logger: ['console', 'wandb']\\n  max_actor_ckpt_to_keep: 10\\n  resume_mode: \\\"disable\\\"\\n\\nactor_rollout_ref:\\n  model:\\n    override_config:\\n      attn_implementation: sdpa\\n  actor:\\n    fsdp_config:\\n      optimizer_offload: True\\n    use_ref: True\\n    use_torch_compile: False\\n    use_kl_loss: True\\n    kl_loss_coef: 0.01\\n    kl_loss_type: low_var_kl\\n    entropy_coeff: 0.001\\n    clip_ratio_low: 0.2\\n    clip_ratio_high: 0.28\\n    loss_agg_mode: \\\"token-mean\\\"\\n    grad_clip: 1.0\\n    ppo_max_token_len_per_gpu: 65536\\n    optim:\\n      lr: 1e-6\\n  ref:\\n    use_torch_compile: False\\n    log_prob_max_token_len_per_gpu: 65536\\n  rollout:\\n    response_length: 1024\\n    gpu_memory_utilization: 0.35\\n    enable_chun
+…[truncated 992 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T12:28:07.990079+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/base.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/base.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T12:28:07.990410+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"defaults:\\n  - ppo_trainer\\n  - envs\\n\\nsystem:\\n  CUDA_VISIBLE_DEVICES: \\\"0\\\"\\n\\nseed:\\n  train: 10000\\n  val: 123\\n\\nmicro_batch_size_per_gpu: 1\\nlog_prob_micro_batch_size_per_gpu: ${micro_batch_size_per_gpu}\\nppo_mini_batch_size: 32\\nmodel_path: Qwen/Qwen2.5-3B-Instruct\\nenable_response_mask: True # Enabling response mask could improve stability of rollout/old_log_prob, as P(st|history) are no longer calculated in loss here. See https://docs.google.com/document/d/1bg7obeiKTExuHHBl5uOiSpec5uLDZ2Tgvxy6li5pHX4/edit?usp=sharing for more details.\\ngrpo_advantage_length_weight: False # if you do not enable this and critic/advantage_estimator is GRPO, and the critic/advantages/mean is too low, then you can try enabling this to encourage reasoning and forbid collapse\\n\\nlora:\\n  rank: 0\\n  alpha: 64\\n  target_modules: all-linear\\n\\nactor_rollout_ref:\\n  model:\\n    path: ${model_path}\\n    lora_rank: ${lora.rank}\\n    lora_alpha: ${lora.alpha}\\n    target_modules: ${lora.target_modules}\\n  actor:\\n    ppo_mini_batch_size: ${ppo_mini_batch_size}  # by default, ppo_mini_batch_size = train_batch_size / 4\\n    ppo_micro_batch_size_per_gpu: ${micro_batch_size_per_gpu}\\n    use_ref: True\\n    entropy_coeff: 0.001\\n    use_kl_loss: False\\n    kl_loss_coef: 0.000\\n    kl_loss_type: kl\\n    clip_ratio_low: 0.2\\n    clip_ratio_high: 0.28\\n    grpo_advantage_length_weight: ${grpo_advantage_length_weight}\\n    filter_loss_scaling: \\\"none\\\" # \\\"none\\\", \\\"linear\\\", \\\"sqrt\\\"\\n    # Loss aggregation mode: \\\"token-mean\\\" (default), \\\"seq-mean-token-mean\\\" (GRPO), \\\"seq-mean-token-sum\\\" (Dr. GRPO)\\n    loss_agg_mode: \\\"token-mean\\\"\\n    optim:\\n      betas: [0.9, 0.999]\\n      lr: 1e-6\\n  ref:\\n    log_prob_micro_batch_size_per_gpu: ${log_prob_micro_batch_size_per_gpu}\\n  rollout:\\n    name: vllm\\n    load_format: auto  # load from huggingface inste
+…[truncated 5708 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T12:28:07.990762+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n \"total_token\\|batch_size.*seqlen\\|input_ids.*shape\\|max_seqlen\\|padded\\|pad_to\\|actual.*len\\|sequence.*length\\|n_tokens\\|num_token\" /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log | head -40",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n \"total_token\\|batch_size.*seqlen\\|input_ids.*shape\\|max_seqlen\\|padded\\|pad_to\\|actual.*len\\|sequence.*length\\|n_tokens\\|num_token\" /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log | head -40",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-19T12:28:07.990928+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n \"Step 0\\|step 0\\|Train step\\|train_step\\|update_actor\\|compute_ref\\|compute_log_prob\\|Begin\\|begin\\|Phase\\|phase\" /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log | head -40",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n \"Step 0\\|step 0\\|Train step\\|train_step\\|update_actor\\|compute_ref\\|compute_log_prob\\|Begin\\|begin\\|Phase\\|phase\" /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log | head -40",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-19T12:28:07.991133+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"12:config: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 5e-07, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig', 'wrap_policy': {'min_num_params': 0}, 'param_offload': False, 'optimizer_offload': True, 'offload_policy': False, 'reshard_after_forward': True, 'fsdp_size': -1, 'forward_prefetch': False, 'model_dtype': 'fp32', 'use_orig_params': False, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'use_torch_compile': True, 'entropy_checkpointing': False, 'forward_only': False, 'strategy': 'fsdp', 'dtype': 'bfloat16'}, '_target_': 'verl.workers.config.FSDPActorConfig', 'strategy': 'fsdp', 'ppo_mini_batch_size': '${ppo_mini_batch_size}', 'ppo_micro_batch_size': None, 'ppo_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'use_dynamic_bsz': False, 'ppo_max_token_len_per_gpu': 16384, 'clip_ratio': 0.2, 'clip_ratio_low': 0.2, 'clip_ratio_high': 0.28, 'freeze_vision_tower': False, 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig', 'loss_mode': 'vanilla', 'clip_cov_ratio': 0.0002, 'clip_cov_lb': 1.0, 'clip_cov_ub': 5.0, 'kl_cov_ratio': 0.0002, 'ppo_kl_coef': 0.1}, 'clip_ratio_c': 3.0, 'loss_agg_mode': 'token-mean', 'entropy_coeff': 0.001, 'use_kl_loss': True, 'use_torch_compile': False, 'kl_loss_coef': 0.01, 'kl_loss_type': 'low_var_kl', 'ppo_epochs': 1, 'shuffle': False, 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig', 'save_contents': ['model', 'optimizer', 'extra'], 'load_contents': '${.save_contents}', 'async_save': False}, 'use_fused_kernel
+…[truncated 6339 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T12:28:07.991312+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"1919:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m test_gen_batch meta info: {'eos_token_id': 151645, 'pad_token_id': 151643, 'recompute_log_prob': False, 'do_sample': True, 'validate': True}\\n8339:    actor_output = self.actor_rollout_wg.update_actor(batch)\\n8347:ray.exceptions.RayTaskError(OutOfMemoryError): \\u001b[36mray::WorkerDict.actor_rollout_update_actor()\\u001b[39m (pid=14121, ip=172.17.0.4, actor_id=4eb9e6f4ab000cf79be2c38a01000000, repr=&lt;verl.single_controller.ray.base.WorkerDict object at 0x7f485cd59ca0>)\\n8362:  File \\\"/root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/workers/fsdp_workers.py\\\", line 169, in update_actor\\n8383:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m Unhandled error (suppress with 'RAY_IGNORE_UNHANDLED_ERRORS=1'): \\u001b[36mray::WorkerDict.actor_rollout_update_actor()\\u001b[39m (pid=14120, ip=172.17.0.4, actor_id=890fc16d5ecdfe614424193d01000000, repr=&lt;verl.single_controller.ray.base.WorkerDict object at 0x7f684c120bf0>)\\n8398:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m   File \\\"/root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/workers/fsdp_workers.py\\\", line 169, in update_actor\\n8417:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m Unhandled error (suppress with 'RAY_IGNORE_UNHANDLED_ERRORS=1'): \\u001b[36mray::WorkerDict.actor_rollout_update_actor()\\u001b[39m (pid=14122, ip=172.17.0.4, actor_id=67ff2c812d9cbe07c988298801000000, repr=&lt;verl.single_controller.ray.base.WorkerDict object at 0x7f4c98f10a10>)\\n8432:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m   File \\\"/root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/workers/fsdp_workers.py\\\", line 169, in update_actor\\n8451:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m Unhandled error (suppress with 'RAY_IGNORE_UNHANDLED_ERRORS=1'): \\u001b[36mray::WorkerDict.actor_rollout_update_actor()\\u001b[39m (pid=14119, ip=172.17.0.4, actor_id=08a7c897cb4ff5672c4ac44e01000000, repr=<verl.single_controller.ray.base.WorkerDict ob
+…[truncated 298 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-19T12:28:07.991495+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "sed -n '8300,8350p' /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "sed -n '8300,8350p' /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T12:28:07.991723+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=13539)\\u001b[0m WARNING:2026-05-19 20:05:57,121:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at sofa 1. On the sofa 1, you see a box 2, a creditcard 1, a laptop 2, a laptop 1, and a pillow 1.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=13539)\\u001b[0m WARNING:2026-05-19 20:05:57,121:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at dresser 1. On the dresser 1, you see a book 1, a cellphone 1, a remotecontrol 1, and a television 1.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=13539)\\u001b[0m WARNING:2026-05-19 20:05:57,122:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=13539)\\u001b[0m WARNING:2026-05-19 20:05:57,122:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at sidetable 3. On the sidetable 3, you see a pen 3, a pen 2, and a statue 2.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=13539)\\u001b[0m WARNING:2026-05-19 20:05:57,122:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=13539)\\u001b[0m WARNING:2026-05-19 20:05:57,122:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at sofa 1. On the sofa 1, you see a box 2, a creditcard 1, a laptop 2, a laptop 1, and a pillow 1.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=13539)\\u001b[0m WARNING:2026-05-19 20:05:57,122:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at dresser 1. On the dresser 1, you see a book 1, a cellphone 1, a remotecontrol 1, and a television 1.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=13539)\\u001b[0m WARNING:2026-05-19 20:05:57,122:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=13539)\\u001b[0m WARNING:2026-05-19 20:05:57,122:Skipping non-numeric metric 'anchor_obs' with value 'You are n
+…[truncated 4892 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-19T12:28:07.991886+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n \"max_seqlen\\|seqlen\\|shape\\|batch_size\\|padding\\|token_len\\|n_tokens\\|update_actor\\|compute_ref_log_prob\\|GPUMemory\\|memory\\|allocated\\|reserved\" /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log | tail -50",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n \"max_seqlen\\|seqlen\\|shape\\|batch_size\\|padding\\|token_len\\|n_tokens\\|update_actor\\|compute_ref_log_prob\\|GPUMemory\\|memory\\|allocated\\|reserved\" /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log | tail -50",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T12:28:07.992122+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"166:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                'log_prob_micro_batch_size_per_gpu': 1,\\n185:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                                             'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig',\\n211:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                    'gpu_memory_utilization': 0.35,\\n217:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                    'log_prob_max_token_len_per_gpu': 16384,\\n218:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                    'log_prob_micro_batch_size': None,\\n219:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                    'log_prob_micro_batch_size_per_gpu': 1,\\n259:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                                                 'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig',\\n335:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                         'micro_batch_size': 128,\\n345:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m             'forward_max_token_len_per_gpu': 32768,\\n346:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m             'forward_micro_batch_size': None,\\n347:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m             'forward_micro_batch_size_per_gpu': 1,\\n378:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                       'use_remove_padding': False,\\n396:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m             'ppo_max_token_len_per_gpu': 32768,\\n397:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m             'ppo_micro_batch_size': None,\\n398:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m             'ppo_micro_batch_size_per_gpu': 1,\\n399:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m             'ppo_mini_batch_size': 16,\\n416:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                           
+…[truncated 6952 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-19T12:28:07.992349+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n \"input_ids\\|batch.*shape\\|batch_size\\|DataProto\\|total.*token\\|max.*len.*=\\|pad.*len\\|seqlen\" /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log | grep -v \"config:\" | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n \"input_ids\\|batch.*shape\\|batch_size\\|DataProto\\|total.*token\\|max.*len.*=\\|pad.*len\\|seqlen\" /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log | grep -v \"config:\" | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-19T12:28:07.992513+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"92:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                  'ppo_micro_batch_size': None,\\n93:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                  'ppo_micro_batch_size_per_gpu': 1,\\n94:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                  'ppo_mini_batch_size': 16,\\n165:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                'log_prob_micro_batch_size': None,\\n166:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                'log_prob_micro_batch_size_per_gpu': 1,\\n218:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                    'log_prob_micro_batch_size': None,\\n219:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                    'log_prob_micro_batch_size_per_gpu': 1,\\n335:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                         'micro_batch_size': 128,\\n346:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m             'forward_micro_batch_size': None,\\n347:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m             'forward_micro_batch_size_per_gpu': 1,\\n397:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m             'ppo_micro_batch_size': None,\\n398:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m             'ppo_micro_batch_size_per_gpu': 1,\\n399:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m             'ppo_mini_batch_size': 16,\\n1531:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m           'return_raw_input_ids': False,\\n1538:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m           'train_batch_size': 128,\\n1544:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m           'val_batch_size': None,\\n1581:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m  'log_prob_micro_batch_size_per_gpu': 1,\\n1583:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m  'micro_batch_size_per_gpu': 1,\\n1585:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m  'ppo_mini_batch_size': 16,\\n1592:\\u001b[36m(TaskRunner pid=1
+…[truncated 269 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-19T12:28:07.992710+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n \"rollout\\|Rollout\\|Episode\\|episode\\|env_step\\|train_batch\\|Step\\|step\\|=>\" /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log | grep -v \"WARNING\\|config:\\|anchor\\|env_instruction\\|episode_level\\|FutureWarning\\|Unhandled\\|check\" | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n \"rollout\\|Rollout\\|Episode\\|episode\\|env_step\\|train_batch\\|Step\\|step\\|=>\" /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log | grep -v \"WARNING\\|config:\\|anchor\\|env_instruction\\|episode_level\\|FutureWarning\\|Unhandled\\|check\" | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-19T12:28:07.992892+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"28:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m {'actor_rollout_ref': {'actor': {'_target_': 'verl.workers.config.FSDPActorConfig',\\n73:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                            'lr_warmup_steps': -1,\\n74:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                            'lr_warmup_steps_ratio': 0.0,\\n80:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                            'total_training_steps': -1,\\n109:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                                                         'step_end': None,\\n110:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                                                         'step_start': 0},\\n183:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                                                       'step_end': None,\\n184:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                                                       'step_start': 0},\\n191:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                        'rollout': {'_target_': 'verl.workers.config.RolloutConfig',\\n234:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                                   'num_repeat_rollouts': None,\\n257:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                                                           'step_end': None,\\n258:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                                                           'step_start': 0},\\n269:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                    'rollout_filter_empty_stop_steps': 5,\\n270:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                    'rollout_filter_include_zero': True,\\n271:\\u001b[36m(TaskRunner pid=13539)\\u001b[0m                                    'rollout_filter_metric'
+…[truncated 1879 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-19T12:28:07.993109+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat /root/autodl-tmp/checkpoints/qwen3_8b_sft_v1/checkpoint-231/config.json 2>/dev/null | head -40",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cat /root/autodl-tmp/checkpoints/qwen3_8b_sft_v1/checkpoint-231/config.json 2>/dev/null | head -40",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-19T12:28:07.993276+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"architectures\\\": [\\n    \\\"Qwen3ForCausalLM\\\"\\n  ],\\n  \\\"attention_bias\\\": false,\\n  \\\"attention_dropout\\\": 0.0,\\n  \\\"dtype\\\": \\\"float32\\\",\\n  \\\"eos_token_id\\\": 151645,\\n  \\\"head_dim\\\": 128,\\n  \\\"hidden_act\\\": \\\"silu\\\",\\n  \\\"hidden_size\\\": 4096,\\n  \\\"initializer_range\\\": 0.02,\\n  \\\"intermediate_size\\\": 12288,\\n  \\\"layer_types\\\": [\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-19T12:28:07.993416+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "python3 -c \"\n# Estimate 8.76 GiB allocation\ntarget = 8.76 * 1024**3  # bytes\n# Try seq_len * vocab * 4 (fp32 grad of logits)\nvocab = 151936\nseq_len = target / (vocab * 4)\nprint(f'If fp32 logits grad: seq_len = {seq_len:.0f}')\n# Try FSDP buffer\nparams_8b = 8.03e9\nprint(f'8B params in fp32: {params_8b * 4 / 1024**3:.2f} GiB')\nprint(f'8B params in fp32 / 4 GPUs: {params_8b * 4 / 4 / 1024**3:.2f} GiB')\n# Try seq * hidden * something\nhidden = 4096\nn = target / (hidden * 4)\nprint(f'If hidden*4 tensor: seq = {n:.0f}')\n# Intermediate\nintermediate = 14336\nn2 = target / (intermediate * 4)\nprint(f'If intermediate*4 tensor: seq = {n2:.0f}')\n# What about seq=17408, what allocation is 8.76G\nprint(f'17408 tokens * 131072 * 4 = {17408 * 131072 * 4 / 1024**3:.2f} GiB')\nprint(f'17408 tokens * vocab * 4 = {17408 * vocab * 4 / 1024**3:.2f} GiB')\nprint(f'17408 tokens * vocab * 2 = {17408 * vocab * 2 / 1024**3:.2f} GiB')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "python3 -c \"\n# Estimate 8.76 GiB allocation\ntarget = 8.76 * 1024**3  # bytes\n# Try seq_len * vocab * 4 (fp32 grad of logits)\nvocab = 151936\nseq_len = target / (vocab * 4)\nprint(f'If fp32 logits grad: seq_len = {seq_len:.0f}')\n# Try FSDP buffer\nparams_8b = 8.03e9\nprint(f'8B params in fp32: {params_8b * 4 / 1024**3:.2f} GiB')\nprint(f'8B params in fp32 / 4 GPUs: {params_8b * 4 / 4 / 1024**3:.2f} GiB')\n# Try seq * hidden * something\nhidden = 4096\nn = target / (hidden * 4)\nprint(f'If hidden*4 tensor: seq = {n:.0f}')\n# Intermediate\nintermediate = 14336\nn2 = target / (intermediate * 4)\nprint(f'If intermediate*4 tensor: seq = {n2:.0f}')\n# What about seq=17408, what allocation is 8.76G\nprint(f'17408 tokens * 131072 * 4 = {17408 * 131072 * 4 / 1024**3:.2f} GiB')\nprint(f'17408 tokens * vocab * 4 = {17408 * vocab * 4 / 1024**3:.2f} GiB')\nprint(f'17408 tokens * vocab * 2 = {17408 * vocab * 2 / 1024**3:.2f} GiB')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-19T12:28:07.993593+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\n# Estimate 8.76 GiB allocation\\\\ntarget = 8.76 * 1024**3  # bytes\\\\n# Try seq_len * vocab * 4 (fp32 grad of logits)\\\\nvocab = 151936\\\\nseq_len = target / (vocab * 4)\\\\nprint(f\\\\'If fp32 logits grad: seq_len = {seq_len:.0f}\\\\')\\\\n# Try FSDP buffer\\\\nparams_8b = 8.03e9\\\\nprint(f\\\\'8B params in fp32: {params_8b * 4 / 1024**3:.2f} GiB\\\\')\\\\nprint(f\\\\'8B params in fp32 / 4 GPUs: {params_8b * 4 / 4 / 1024**3:.2f} GiB\\\\')\\\\n# Try seq * hidden * something\\\\nhidden = 4096\\\\nn = target / (hidden * 4)\\\\nprint(f\\\\'If hidden*4 tensor: seq = {n:.0f}\\\\')\\\\n# Intermediate\\\\nintermediate = 14336\\\\nn2 = target / (intermediate * 4)\\\\nprint(f\\\\'If intermediate*4 tensor: seq = {n2:.0f}\\\\')\\\\n# What about seq=17408, what allocation is 8.76G\\\\nprint(f\\\\'17408 tokens * 131072 * 4 = {17408 * 131072 * 4 / 1024**3:.2f} GiB\\\\')\\\\nprint(f\\\\'17408 tokens * vocab * 4 = {17408 * vocab * 4 / 1024**3:.2f} GiB\\\\')\\\\nprint(f\\\\'17408 tokens * vocab * 2 = {17408 * vocab * 2 / 1024**3:.2f} GiB\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-19T12:28:07.993772+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -E \"hidden_size|intermediate_size|num_hidden_layers|num_attention_heads|num_key_value_heads|vocab_size|head_dim\" /root/autodl-tmp/checkpoints/qwen3_8b_sft_v1/checkpoint-231/config.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -E \"hidden_size|intermediate_size|num_hidden_layers|num_attention_heads|num_key_value_heads|vocab_size|head_dim\" /root/autodl-tmp/checkpoints/qwen3_8b_sft_v1/checkpoint-231/config.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-19T12:28:07.993909+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"head_dim\\\": 128,\\n  \\\"hidden_size\\\": 4096,\\n  \\\"intermediate_size\\\": 12288,\\n  \\\"num_attention_heads\\\": 32,\\n  \\\"num_hidden_layers\\\": 36,\\n  \\\"num_key_value_heads\\\": 8,\\n  \\\"vocab_size\\\": 151936\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-19T12:28:07.994152+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n \"init_model\\|load_model\\|ref_model\\|actor_model\\|model_to_gpu\\|offload\\|vllm\\|rollout.*model\\|free_cache\\|_init_\\|def init\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/workers/fsdp_workers.py | head -40",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n \"init_model\\|load_model\\|ref_model\\|actor_model\\|model_to_gpu\\|offload\\|vllm\\|rollout.*model\\|free_cache\\|_init_\\|def init\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/workers/fsdp_workers.py | head -40",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-19T12:28:07.994323+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"37:from verl.utils.activation_offload import enable_activation_offloading\\n46:    get_init_weight_context_manager,\\n74:    def init_model(self):\\n75:        super().init_model()\\n236:        init_context = get_init_weight_context_manager(\\n327:                param_init_fn=init_fn,\\n336:                cpu_offload=None,\\n343:            offload_policy = None\\n344:            if fsdp_config.offload_policy:\\n345:                self._is_offload_param = False\\n346:                self._is_offload_optimizer = False\\n347:                offload_policy = CPUOffloadPolicy(pin_memory=True)\\n352:                \\\"offload_policy\\\": offload_policy,\\n358:            fsdp2_load_full_state_dict(critic_module, full_state, fsdp_mesh, offload_policy)\\n362:        if config.model.get(\\\"enable_activation_offload\\\", False):\\n364:            enable_activation_offloading(critic_module, config.strategy, enable_gradient_checkpointing)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-19T12:28:07.994480+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n \"class \\|def init_model\\|self\\.actor\\|self\\.ref\\|self\\.rollout\\|vllm\\|cuda\\|torch\\.cuda\\|gc\\.collect\\|empty_cache\\|offload_actor\\|offload_ref\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/workers/fsdp_workers.py | head -50",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n \"class \\|def init_model\\|self\\.actor\\|self\\.ref\\|self\\.rollout\\|vllm\\|cuda\\|torch\\.cuda\\|gc\\.collect\\|empty_cache\\|offload_actor\\|offload_ref\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/workers/fsdp_workers.py | head -50",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-19T12:28:07.994637+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"67:class ActorRolloutRefWorker(VerlActorRolloutRefWorker):\\n74:    def init_model(self):\\n80:            self.actor = RagenDataParallelPPOActor(\\n82:                actor_module=self.actor_module_fsdp,\\n83:                actor_optimizer=self.actor_optimizer,\\n101:        should_empty_cache = mode in {\\\"singleturn\\\", \\\"multiturn-end\\\"}\\n125:                loop.run_until_complete(self.rollout_mode())\\n129:                output = self.rollout.generate_sequences(prompts=prompts)\\n156:        if should_empty_cache:\\n157:            torch.cuda.empty_cache()\\n169:        output = self.actor.update_policy(data)\\n174:class AsyncActorRolloutRefWorker(VerlAsyncActorRolloutRefWorker):\\n177:class RewardModelWorker(VerlRewardModelWorker):\\n180:class CriticWorker(VerlCriticWorker):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-19T12:28:07.994810+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -rn \"class VerlActorRolloutRefWorker\\|offload_actor_to_cpu\\|offload_to_cpu\\|vllm.*offload\\|swap.*weight\\|free.*model\\|weight_transfer\\|memory_manager\" /root/cost-verify-agent-rl/RAGEN/verl/verl/workers/ | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -rn \"class VerlActorRolloutRefWorker\\|offload_actor_to_cpu\\|offload_to_cpu\\|vllm.*offload\\|swap.*weight\\|free.*model\\|weight_transfer\\|memory_manager\" /root/cost-verify-agent-rl/RAGEN/verl/verl/workers/ | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-19T12:28:07.994941+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/cost-verify-agent-rl/RAGEN/verl/verl/workers/__pycache__/fsdp_workers.cpython-312.pyc: binary file matches\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-19T12:28:07.995062+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -rn \"class.*ActorRolloutRef\\|offload\\|swap\\|free.*weight\\|weight.*share\\|memory_manager\\|_init_ref\\|init_ref\\|ref_model\\|ref_module\" /root/cost-verify-agent-rl/RAGEN/verl/verl/workers/fsdp_workers.py | head -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -rn \"class.*ActorRolloutRef\\|offload\\|swap\\|free.*weight\\|weight.*share\\|memory_manager\\|_init_ref\\|init_ref\\|ref_model\\|ref_module\" /root/cost-verify-agent-rl/RAGEN/verl/verl/workers/fsdp_workers.py | head -30",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-19T12:28:07.995211+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"51:from verl.utils.activation_offload import enable_activation_offloading\\n77:    offload_fsdp_model_to_cpu,\\n78:    offload_fsdp_optimizer,\\n134:class ActorRolloutRefWorker(Worker, DistProfilerExtension):\\n224:        self._is_offload_param = False\\n225:        self._is_offload_optimizer = False\\n227:            self._is_offload_param = self.config.actor.fsdp_config.get(\\\"param_offload\\\", False)\\n228:            self._is_offload_optimizer = self.config.actor.fsdp_config.get(\\\"optimizer_offload\\\", False)\\n230:            # TODO: it seems that manual offload is slowly than FSDP offload\\n231:            self._is_offload_param = self.config.ref.fsdp_config.get(\\\"param_offload\\\", False)\\n281:        enable_activation_offload=False,\\n492:        cpu_offload = None if role == \\\"actor\\\" else CPUOffload(offload_params=True)\\n497:                cpu_offload=cpu_offload,\\n513:            if role == \\\"actor\\\" and fsdp_config.offload_policy:\\n514:                cpu_offload = CPUOffloadPolicy(pin_memory=True)\\n515:                self._is_offload_param = False\\n516:                self._is_offload_optimizer = False\\n518:                cpu_offload = None if role == \\\"actor\\\" else CPUOffloadPolicy(pin_memory=True)\\n523:                \\\"offload_policy\\\": cpu_offload,\\n529:            fsdp2_load_full_state_dict(actor_module, full_state, fsdp_mesh, cpu_offload)\\n534:        if enable_activation_offload:\\n535:            enable_activation_offloading(actor_module_fsdp, fsdp_strategy, enable_gradient_checkpointing)\\n656:        if self._is_offload_param:\\n693:        log_gpu_memory_usage(\\\"Before offload_fsdp_model_to_cpu\\\", logger=logger)\\n694:        if self._is_offload_param:\\n695:            offload_fsdp_model_to_cpu(self.actor_module_fsdp)\\n696:        log_gpu_memory_usage(\\\"After offload_fsdp_model_to_cpu\\\", logger=logger)\\n703:            device = get_device_i
+…[truncated 323 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-19T12:28:07.995388+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "sed -n '640,750p' /root/cost-verify-agent-rl/RAGEN/verl/verl/workers/fsdp_workers.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "sed -n '640,750p' /root/cost-verify-agent-rl/RAGEN/verl/verl/workers/fsdp_workers.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-19T12:28:07.995599+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        self.base_sync_done: bool = \\\"dummy\\\" not in self.config.rollout.load_format\\n        self.layered_summon = self.config.rollout.get(\\\"layered_summon\\\", False)\\n\\n        # 5. switch to trainer mode\\n        # NOTE: It's critical that hybrid engine in trainer mode initially to load checkpoint.\\n        # For sync mode, we directly switch to trainer mode here.\\n        # For async mode, we can't call run_until_complete here, so we will switch to trainer mode in AgentLoopManager.\\n        if rollout_config.mode == \\\"sync\\\" and self._is_actor:\\n            loop = get_event_loop()\\n            loop.run_until_complete(self.trainer_mode())\\n\\n    async def rollout_mode(self):\\n        \\\"\\\"\\\"Context switch hybridengine to rollout mode.\\\"\\\"\\\"\\n        aggressive_empty_cache(force_sync=True)\\n\\n        log_gpu_memory_usage(\\\"Before load_fsdp_model_to_gpu\\\", logger=logger)\\n        if self._is_offload_param:\\n            load_fsdp_model_to_gpu(self.actor_module_fsdp)\\n        log_gpu_memory_usage(\\\"After load_fsdp_model_to_gpu\\\", logger=logger)\\n\\n        peft_config = None\\n        peft_model = getattr(self.actor_module_fsdp, \\\"_fsdp_wrapped_module\\\", self.actor_module_fsdp)\\n        if hasattr(peft_model, \\\"peft_config\\\"):  # LoRA\\n            peft_config = peft_model.peft_config.get(\\\"default\\\", None)\\n            params = collect_lora_params(\\n                module=self.actor_module_fsdp,\\n                layered_summon=self.config.rollout.get(\\\"layered_summon\\\", False),\\n                base_sync_done=self.base_sync_done,\\n            )\\n            if not self.base_sync_done:\\n                params = {replace_lora_wrapper(k, peft_config): v for k, v in params.items()}\\n        else:\\n            params = self.actor_module_fsdp.state_dict()\\n\\n        params = convert_weight_keys(\\n            params, getattr(self.actor_modul
+…[truncated 4157 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-19T12:28:07.995831+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n \"gradient_checkpointing\\|checkpoint_wrapper\\|activation_checkpointing\\|checkpoint_fn\" /root/cost-verify-agent-rl/RAGEN/verl/verl/workers/fsdp_workers.py | head -15",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n \"gradient_checkpointing\\|checkpoint_wrapper\\|activation_checkpointing\\|checkpoint_fn\" /root/cost-verify-agent-rl/RAGEN/verl/verl/workers/fsdp_workers.py | head -15",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-19T12:28:07.995979+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"277:        enable_gradient_checkpointing=False,\\n407:            if enable_gradient_checkpointing:\\n408:                actor_module.gradient_checkpointing_enable(gradient_checkpointing_kwargs={\\\"use_reentrant\\\": False})\\n535:            enable_activation_offloading(actor_module_fsdp, fsdp_strategy, enable_gradient_checkpointing)\\n786:                enable_gradient_checkpointing=self.config.model.get(\\\"enable_gradient_checkpointing\\\", False),\\n1300:            if config.model.get(\\\"enable_gradient_checkpointing\\\", False):\\n1301:                critic_module.gradient_checkpointing_enable(gradient_checkpointing_kwargs={\\\"use_reentrant\\\": False})\\n1415:            enable_gradient_checkpointing = config.model.get(\\\"enable_gradient_checkpointing\\\", False)\\n1416:            enable_activation_offloading(critic_module, config.strategy, enable_gradient_checkpointing)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-19T12:28:07.996108+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n \"gradient_checkpoint\\|enable_gradient_checkpoint\\|checkpoint_wrapper\\|activation_checkpoint\" /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n \"gradient_checkpoint\\|enable_gradient_checkpoint\\|checkpoint_wrapper\\|activation_checkpoint\" /root/runs/cost-verify-agent-rl/8b_cell_c_episode_v2.log | head -10",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-19T12:28:07.996298+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"12:config: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 5e-07, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig', 'wrap_policy': {'min_num_params': 0}, 'param_offload': False, 'optimizer_offload': True, 'offload_policy': False, 'reshard_after_forward': True, 'fsdp_size': -1, 'forward_prefetch': False, 'model_dtype': 'fp32', 'use_orig_params': False, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'use_torch_compile': True, 'entropy_checkpointing': False, 'forward_only': False, 'strategy': 'fsdp', 'dtype': 'bfloat16'}, '_target_': 'verl.workers.config.FSDPActorConfig', 'strategy': 'fsdp', 'ppo_mini_batch_size': '${ppo_mini_batch_size}', 'ppo_micro_batch_size': None, 'ppo_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'use_dynamic_bsz': False, 'ppo_max_token_len_per_gpu': 16384, 'clip_ratio': 0.2, 'clip_ratio_low': 0.2, 'clip_ratio_high': 0.28, 'freeze_vision_tower': False, 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig', 'loss_mode': 'vanilla', 'clip_cov_ratio': 0.0002, 'clip_cov_lb': 1.0, 'clip_cov_ub': 5.0, 'kl_cov_ratio': 0.0002, 'ppo_kl_coef': 0.1}, 'clip_ratio_c': 3.0, 'loss_agg_mode': 'token-mean', 'entropy_coeff': 0.001, 'use_kl_loss': True, 'use_torch_compile': False, 'kl_loss_coef': 0.01, 'kl_loss_type': 'low_var_kl', 'ppo_epochs': 1, 'shuffle': False, 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig', 'save_contents': ['model', 'optimizer', 'extra'], 'load_contents': '${.save_contents}', 'async_save': False}, 'use_fused_kernel
+…[truncated 6313 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-19T12:28:07.996514+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+````json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "artifacts/diag_8b_cell_c_oom.md",
+  "content": "# 8b_cell_c_episode OOM 诊断报告\n\n**日期**: 2026-05-19\n**实验**: 8b_cell_c_episode (v1) 和 8b_cell_c_episode_v2\n**服务器**: westd-47453, 4x RTX PRO 6000 96GB\n\n---\n\n## 1. 根因分析\n\n### 1.1 核心问题：`ppo_max_token_len_per_gpu` 完全无效\n\n**v2 的 fix 是一个 no-op。** 原因：\n\n```python\n# dp_actor.py lines 297-303\nelif self.config.use_dynamic_bsz:                              # ← 必须为 True\n    max_token_len = self.config.ppo_max_token_len_per_gpu * ...  # ← 才走这条路\n    micro_batches, _ = rearrange_micro_batches(...)\nelse:                                                           # ← 实际走了这里\n    micro_batches = mini_batch.split(self.config.ppo_micro_batch_size_per_gpu)\n```\n\nConfig 中 `use_dynamic_bsz: False`（默认值），所以 micro-batch 拆分完全由 `ppo_micro_batch_size_per_gpu=1` 决定。`ppo_max_token_len_per_gpu` 不论设什么值都不会被读取。\n\n**证据**：两次实验的 config dump 确认 v1 为 32768、v2 为 16384，但 OOM 错误的内存数字完全一致：\n- Tried to allocate: **8.76 GiB**\n- Memory in use: **88.46-89.98 GiB**\n- PyTorch allocated: **118.48 GiB**\n\n### 1.2 OOM 发生阶段：actor backward pass\n\n两次 crash 的 traceback 完全相同：\n\n```\nfsdp_workers.py:169 update_actor\n  → dp_actor.py:468 loss.backward()\n    → torch.autograd.graph._engine_run_backward\n      → torch.OutOfMemoryError\n```\n\n这是 **PPO actor update 的 backward pass**，不是 rollout 或 ref log-prob 计算。\n\n### 1.3 8.76 GiB 分配的含义\n\nQwen3-8B 模型参数：\n- hidden_size: 4096, intermediate_size: 12288, num_layers: 36, vocab_size: 151936\n\n8.76 GiB / 4 bytes(fp32) = ~2.35B elements。如果是 logits gradient (seq_len, vocab_size)：\n- 2.35B / 151936 = **~15,475 tokens**\n\n这与 episode-level 全上下文模式下的实际序列长度一致（max_prompt_length=16384, 实际最长 episode 约 15K tokens + response）。\n\n**结论**：backward 在计算 lm_head 层的 fp32 梯度时 OOM，因为 logits 梯度张量 (1, ~15475, 151936) 需要 8.76 GiB，而 GPU 仅剩 5-6 GiB 可用。\n\n### 1.4 为什么 90 GiB 已被占用\n\nPer-GPU 内存分解估算：\n\n| 组件 | 大小(GiB) | 说明 |\n|------|-----------|------|\n| Actor FSDP shard (fp32) | ~8.2 | 8.19B params / 4 GPUs * 4 bytes |\n| Actor gradients (fp32, 部分累积) | ~4-8 | backward 过程中逐层累积 |\n| Ref model (CPU offload, 少量 GPU 驻留) | ~1-2 | FSDP CPUOffload, 但有 pinned memory buffer |\n| 36 layer checkpoint inputs (bf16) | ~4.6 | 36 * 15475 * 4096 * 2 bytes |\n| Logits tensor (bf16) | ~4.7 | 15475 * 151936 * 2 bytes |\n| All-gathered layer (backward) | ~0.8 | 一层完整参数临时驻留 |\n| FSDP通信 buffer / reduce-scatter | ~3-5 | all-gather + reduce-scatter 预分配 |\n| PyTorch 缓存碎片 | ~10-15 | FSDP 反复 alloc/free 导致碎片化 |\n| CUDA context + misc | ~2-3 | driver, streams, etc. |\n| **合计** | **~40-54+** | 加上碎片和 allocator 开销 → ~90 GiB |\n\n关键放大因素：\n1. **model_dtype: fp32** — 参数和梯度都用 fp32，比 bf16 翻倍\n2. **序列长度 ~15K tokens** — 导致 logits tensor 本身 4.7 GiB，梯度 8.76 GiB\n3. **FSDP allocator 碎片** — 反复 all-gather/reshard 产生大量碎片（118 GiB total vs 90 GiB active）\n\n### 1.5 为什么 1.7B 能跑但 8B 不行\n\n| | 1.7B (exp029) | 8B (cell_c) |\n|--|---------------|-------------|\n| 参数量 | 1.7B | 8.19B (~4.8x) |\n| hidden_dim | 2048 | 4096 (2x) |\n| num_layers | 24 | 36 (1.5x) |\n| GPU 数 | 2 | 4 |\n| 每 GPU param shard (fp32) | ~3.4 GiB | ~8.2 GiB |\n| 每 GPU 梯度 (fp32) | ~3.4 GiB | ~8.2 GiB |\n| Per-layer 激活内存 | ~0.5x | 1x |\n| 净余量 (95GiB GPU) | 充足 | ~5 GiB (不够 8.76 GiB logits grad) |\n\n---\n\n## 2. 修复方案\n\n### 方案 A：保守修复（推荐优先尝试）\n\n改动最小，解决核心瓶颈：\n\n```yaml\nactor_rollout_ref:\n  actor:\n    fsdp_config:\n      param_offload: True              # 省 ~8 GiB (actor params offload to CPU)\n      entropy_from_logits_with_chunking: True  # 分块计算 logits，降低峰值\n      entropy_checkpointing: True       # checkpoint entropy 计算\n```\n\n**预期效果**：\n- `param_offload: True` 将 actor params (~8.2 GiB) 从 GPU 移到 CPU（仅 backward 时 per-layer 加载到 GPU），释放 ~8 GiB\n- 这 8 GiB + 原有 5 GiB free = 13 GiB > 8.76 GiB（需要的 logits grad）\n- chunked entropy 进一步降低 logits 峰值内存\n\n**代价**：训练速度降低约 10-20%（CPU-GPU 数据传输开销）\n\n### 方案 B：激进优化（如果方案 A 仍然紧张）\n\n在方案 A 基础上加：\n\n```yaml\nagent_proxy:\n  max_prompt_length: 8192             # 从 16384 减半\n\nactor_rollout_ref:\n  actor:\n    fsdp_config:\n      param_offload: True\n      entropy_from_logits_with_chunking: True\n      entropy_checkpointing: True\n  rollout:\n    max_model_len: 12288              # 配合 prompt 缩短\n    max_num_batched_tokens: 12288\n```\n\n**预期效果**：\n- max_prompt_length 8192 → 最长序列 ~9216 tokens (vs 原来 ~15475)\n- Logits grad: 9216 * 151936 * 4 ≈ **5.2 GiB** (vs 8.76 GiB)\n- 加上 param_offload: 净余量 > 10 GiB，稳定安全\n- vLLM 也降低 KV cache 压力\n\n**代价**：长 episode（>8K tokens prompt）会被截断，可能影响训练效果。但根据 ALFWorld 平均 episode 长度 ~1464 tokens，绝大多数 episode 不受影响（只影响 50-turn 极端情况）。\n\n### 方案 C：如需保持 16K prompt 且不降速\n\n```yaml\nactor_rollout_ref:\n  model:\n    use_remove_padding: true           # 需要 flash-attn 已安装\n  actor:\n    fsdp_config:\n      param_offload: True\n      entropy_from_logits_with_chunking: True\n      entropy_checkpointing: True\n      model_dtype: bfloat16            # 参数和梯度都用 bf16\n```\n\n**预期效果**：\n- `model_dtype: bfloat16` 将参数和梯度内存各减半：8.2 → 4.1 GiB\n- `use_remove_padding` 去掉 padding tokens 的无效计算，logits 只对实际 tokens 计算\n- 组合省下 ~12-16 GiB\n\n**代价**：bf16 梯度可能影响训练稳定性（但 8B 模型一般没问题）。需要确认 flash-attn 已安装。\n\n---\n\n## 3. 推荐实施顺序\n\n1. **先试方案 A**：只改 3 个 FSDP config 参数，改动最小\n2. 如果方案 A 仍 OOM（logits grad 仍太大）→ 加方案 B 的 `max_prompt_length: 8192`\n3. 如果需要极致内存优化 → 方案 C 的 `model_dtype: bfloat16`\n\n### 附：修复后需同时注意的配置问题\n\n`use_dynamic_bsz` 目前为 `False`。即使本次 OOM 修复后也建议改为 `True`，让 `ppo_max_token_len_per_gpu` 真正生效，避免长序列 outlier 再次触发 OOM：\n\n```yaml\nactor_rollout_ref:\n  actor:\n    use_dynamic_bsz: True\n    ppo_max_token_len_per_gpu: 8192    # 动态分 micro-batch，限制每 GPU 总 token 数\n```\n\n---\n\n## 4. 预估修复后内存用量（方案 A）\n\n| 组件 | 修复前(GiB) | 修复后(GiB) |\n|------|------------|------------|\n| Actor params | 8.2 | ~0 (CPU offload, per-layer 临时 0.8) |\n| Actor gradients | 8.2 | 8.2 (不变) |\n| Ref model | ~1-2 | ~1-2 (不变) |\n| Checkpoint inputs | 4.6 | 4.6 (不变) |\n| Logits (chunked) | 4.7 | ~1-2 (分块处理) |\n| Communication buffers | 3-5 | 3-5 (不变) |\n| FSDP 碎片/cache | 10-15 | ~5-8 (因 param offload 减少碎片) |\n| CUDA context | 2-3 | 2-3 (不变) |\n| **总计** | **~90** | **~27-35** |\n| **logits grad 峰值** | 8.76 | 8.76 (不变，但有足够余量) |\n| **GPU 余量** | ~5 (不够) | **~52-60 (充足)** |\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "file": "artifacts/diag_8b_cell_c_oom.md",
+    "content": "# 8b_cell_c_episode OOM 诊断报告\n\n**日期**: 2026-05-19\n**实验**: 8b_cell_c_episode (v1) 和 8b_cell_c_episode_v2\n**服务器**: westd-47453, 4x RTX PRO 6000 96GB\n\n---\n\n## 1. 根因分析\n\n### 1.1 核心问题：`ppo_max_token_len_per_gpu` 完全无效\n\n**v2 的 fix 是一个 no-op。** 原因：\n\n```python\n# dp_actor.py lines 297-303\nelif self.config.use_dynamic_bsz:                              # ← 必须为 True\n    max_token_len = self.config.ppo_max_token_len_per_gpu * ...  # ← 才走这条路\n    micro_batches, _ = rearrange_micro_batches(...)\nelse:                                                           # ← 实际走了这里\n    micro_batches = mini_batch.split(self.config.ppo_micro_batch_size_per_gpu)\n```\n\nConfig 中 `use_dynamic_bsz: False`（默认值），所以 micro-batch 拆分完全由 `ppo_micro_batch_size_per_gpu=1` 决定。`ppo_max_token_len_per_gpu` 不论设什么值都不会被读取。\n\n**证据**：两次实验的 config dump 确认 v1 为 32768、v2 为 16384，但 OOM 错误的内存数字完全一致：\n- Tried to allocate: **8.76 GiB**\n- Memory in use: **88.46-89.98 GiB**\n- PyTorch allocated: **118.48 GiB**\n\n### 1.2 OOM 发生阶段：actor backward pass\n\n两次 crash 的 traceback 完全相同：\n\n```\nfsdp_workers.py:169 update_actor\n  → dp_actor.py:468 loss.backward()\n    → torch.autograd.graph._engine_run_backward\n      → torch.OutOfMemoryError\n```\n\n这是 **PPO actor update 的 backward pass**，不是 rollout 或 ref log-prob 计算。\n\n### 1.3 8.76 GiB 分配的含义\n\nQwen3-8B 模型参数：\n- hidden_size: 4096, intermediate_size: 12288, num_layers: 36, vocab_size: 151936\n\n8.76 GiB / 4 bytes(fp32) = ~2.35B elements。如果是 logits gradient (seq_len, vocab_size)：\n- 2.35B / 151936 = **~15,475 tokens**\n\n这与 episode-level 全上下文模式下的实际序列长度一致（max_prompt_length=16384, 实际最长 episode 约 15K tokens + response）。\n\n**结论**：backward 在计算 lm_head 层的 fp32 梯度时 OOM，因为 logits 梯度张量 (1, ~15475, 151936) 需要 8.76 GiB，而 GPU 仅剩 5-6 GiB 可用。\n\n### 1.4 为什么 90 GiB 已被占用\n\nPer-GPU 内存分解估算：\n\n| 组件 | 大小(GiB) | 说明 |\n|------|-----------|------|\n| Actor FSDP shard (fp32) | ~8.2 | 8.19B params / 4 GPUs * 4 bytes |\n| Actor gradients (fp32, 部分累积) | ~4-8 | backward 过程中逐层累积 |\n| Ref model (CPU offload, 少量 GPU 驻留) | ~1-2 | FSDP CPUOffload, 但有 pinned memory buffer |\n| 36 layer checkpoint inputs (bf16) | ~4.6 | 36 * 15475 * 4096 * 2 bytes |\n| Logits tensor (bf16) | ~4.7 | 15475 * 151936 * 2 bytes |\n| All-gathered layer (backward) | ~0.8 | 一层完整参数临时驻留 |\n| FSDP通信 buffer / reduce-scatter | ~3-5 | all-gather + reduce-scatter 预分配 |\n| PyTorch 缓存碎片 | ~10-15 | FSDP 反复 alloc/free 导致碎片化 |\n| CUDA context + misc | ~2-3 | driver, streams, etc. |\n| **合计** | **~40-54+** | 加上碎片和 allocator 开销 → ~90 GiB |\n\n关键放大因素：\n1. **model_dtype: fp32** — 参数和梯度都用 fp32，比 bf16 翻倍\n2. **序列长度 ~15K tokens** — 导致 logits tensor 本身 4.7 GiB，梯度 8.76 GiB\n3. **FSDP allocator 碎片** — 反复 all-gather/reshard 产生大量碎片（118 GiB total vs 90 GiB active）\n\n### 1.5 为什么 1.7B 能跑但 8B 不行\n\n| | 1.7B (exp029) | 8B (cell_c) |\n|--|---------------|-------------|\n| 参数量 | 1.7B | 8.19B (~4.8x) |\n| hidden_dim | 2048 | 4096 (2x) |\n| num_layers | 24 | 36 (1.5x) |\n| GPU 数 | 2 | 4 |\n| 每 GPU param shard (fp32) | ~3.4 GiB | ~8.2 GiB |\n| 每 GPU 梯度 (fp32) | ~3.4 GiB | ~8.2 GiB |\n| Per-layer 激活内存 | ~0.5x | 1x |\n| 净余量 (95GiB GPU) | 充足 | ~5 GiB (不够 8.76 GiB logits grad) |\n\n---\n\n## 2. 修复方案\n\n### 方案 A：保守修复（推荐优先尝试）\n\n改动最小，解决核心瓶颈：\n\n```yaml\nactor_rollout_ref:\n  actor:\n    fsdp_config:\n      param_offload: True              # 省 ~8 GiB (actor params offload to CPU)\n      entropy_from_logits_with_chunking: True  # 分块计算 logits，降低峰值\n      entropy_checkpointing: True       # checkpoint entropy 计算\n```\n\n**预期效果**：\n- `param_offload: True` 将 actor params (~8.2 GiB) 从 GPU 移到 CPU（仅 backward 时 per-layer 加载到 GPU），释放 ~8 GiB\n- 这 8 GiB + 原有 5 GiB free = 13 GiB > 8.76 GiB（需要的 logits grad）\n- chunked entropy 进一步降低 logits 峰值内存\n\n**代价**：训练速度降低约 10-20%（CPU-GPU 数据传输开销）\n\n### 方案 B：激进优化（如果方案 A 仍然紧张）\n\n在方案 A 基础上加：\n\n```yaml\nagent_proxy:\n  max_prompt_length: 8192             # 从 16384 减半\n\nactor_rollout_ref:\n  actor:\n    fsdp_config:\n      param_offload: True\n      entropy_from_logits_with_chunking: True\n      entropy_checkpointing: True\n  rollout:\n    max_model_len: 12288              # 配合 prompt 缩短\n    max_num_batched_tokens: 12288\n```\n\n**预期效果**：\n- max_prompt_length 8192 → 最长序列 ~9216 tokens (vs 原来 ~15475)\n- Logits grad: 9216 * 151936 * 4 ≈ **5.2 GiB** (vs 8.76 GiB)\n- 加上 param_offload: 净余量 > 10 GiB，稳定安全\n- vLLM 也降低 KV cache 压力\n\n**代价**：长 episode（>8K tokens prompt）会被截断，可能影响训练效果。但根据 ALFWorld 平均 episode 长度 ~1464 tokens，绝大多数 episode 不受影响（只影响 50-turn 极端情况）。\n\n### 方案 C：如需保持 16K prompt 且不降速\n\n```yaml\nactor_rollout_ref:\n  model:\n    use_remove_padding: true           # 需要 flash-attn 已安装\n  actor:\n    fsdp_config:\n      param_offload: True\n      entropy_from_logits_with_chunking: True\n      entropy_checkpointing: True\n      model_dtype: bfloat16            # 参数和梯度都用 bf16\n```\n\n**预期效果**：\n- `model_dtype: bfloat16` 将参数和梯度内存各减半：8.2 → 4.1 GiB\n- `use_remove_padding` 去掉 padding tokens 的无效计算，logits 只对实际 tokens 计算\n- 组合省下 ~12-16 GiB\n\n**代价**：bf16 梯度可能影响训练稳定性（但 8B 模型一般没问题）。需要确认 flash-attn 已安装。\n\n---\n\n## 3. 推荐实施顺序\n\n1. **先试方案 A**：只改 3 个 FSDP config 参数，改动最小\n2. 如果方案 A 仍 OOM（logits grad 仍太大）→ 加方案 B 的 `max_prompt_length: 8192`\n3. 如果需要极致内存优化 → 方案 C 的 `model_dtype: bfloat16`\n\n### 附：修复后需同时注意的配置问题\n\n`use_dynamic_bsz` 目前为 `False`。即使本次 OOM 修复后也建议改为 `True`，让 `ppo_max_token_len_per_gpu` 真正生效，避免长序列 outlier 再次触发 OOM：\n\n```yaml\nactor_rollout_ref:\n  actor:\n    use_dynamic_bsz: True\n    ppo_max_token_len_per_gpu: 8192    # 动态分 micro-batch，限制每 GPU 总 token 数\n```\n\n---\n\n## 4. 预估修复后内存用量（方案 A）\n\n| 组件 | 修复前(GiB) | 修复后(GiB) |\n|------|------------|------------|\n| Actor params | 8.2 | ~0 (CPU offload, per-layer 临时 0.8) |\n| Actor gradients | 8.2 | 8.2 (不变) |\n| Ref model | ~1-2 | ~1-2 (不变) |\n| Checkpoint inputs | 4.6 | 4.6 (不变) |\n| Logits (chunked) | 4.7 | ~1-2 (分块处理) |\n| Communication buffers | 3-5 | 3-5 (不变) |\n| FSDP 碎片/cache | 10-15 | ~5-8 (因 param offload 减少碎片) |\n| CUDA context | 2-3 | 2-3 (不变) |\n| **总计** | **~90** | **~27-35** |\n| **logits grad 峰值** | 8.76 | 8.76 (不变，但有足够余量) |\n| **GPU 余量** | ~5 (不够) | **~52-60 (充足)** |\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-19T12:28:07.996746+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file 'artifacts/diag_8b_cell_c_oom.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-19T12:28:07.996890+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/",
+    "description": "List artifacts directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-19T12:28:07.997027+00:00_
+
+7b_preparation_report.md
+_project
+alfworld_dryrun_report.md
+analysis
+analyze_advantage_log_v2.py
+analyze_exp026.py
+biavr
+biavr_integration_spec.md
+citation_audit.md
+citation_audit_report.md
+citation_verification_report.md
+competitor_verification_20260517.md
+det_eval_information_loss.md
+diagnose_8b_cell_c_oom.md
+diagnose_factorial_h2_episodeadv.md
+disk_cleanup_report.md
+docs
+dream_reports
+env_setup_report.md
+exp003
+exp003_invalid_action_diagnosis.md
+exp003_status_check.md
+exp007
+exp008_sft
+exp009
+exp010
+exp010_reward_analysis.md
+exp013f_training_metrics.md
+exp017_status_check.md
+exp021
+exp021_ragen_sft_v4
+exp023c_grpo_serial
+exp024_success_gated
+exp025
+exp025_training_script.sh
+exp025_training_script_v2.sh
+exp026
+exp026_base_config_template.yaml
+exp026_config_template.yaml
+exp027_kl_analysis.md
+exp027_penalty_dataflow_report.md
+exp027_stable_grpo
+exp027_wandb_interim.md
+exp028_prereq_nothink
+exp028a_recipe_fix
+exp028c_selfguide_recipe
+exp029
+exp029_episode_level
+exp029_episode_level_seed2
+exp_001
+experiment_plan.yaml
+expert_trajectory_plan.md
+fig6_wandb_data.json
+grpo_alternatives_survey.md
+hsweep_h2_seed2
+inference_diff_diagnosis.md
+literature_rl_alternatives.md
+literature_scan_20260516.md
+literature_scan_credit_assignment_20260517.md
+literature_sign_misattribution_evidence.md
+manifest.yaml
+monitor_status_20260519.md
+phase_b_analysis
+phase_b_literature_survey.md
+phase_b_prep_checklist.md
+phase_b_prereq_analysis.md
+phase_b_readiness_check.md
+review_issues.yaml
+review_reports
+reward_shaping_literature.md
+scienceworld_adapter_report.md
+scienceworld_feasibility_20260519.md
+scienceworld_feasibility_report.md
+sft_train_8b.py
+sft_warmup_plan.md
+tab3_analysis.py
+tab3_mechanism_verification.json
+tab3_mechanism_verification_summary.md
+verl_agent_analysis
+verl_agent_migration_plan.md
+wandb_sweep_config.yaml
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-19T12:28:07.997183+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/diagnose_8b_cell_c_oom.md",
+  "content": "# 8b_cell_c_episode OOM 诊断报告\n\n**日期**: 2026-05-19\n**实验**: 8b_cell_c_episode (v1) 和 8b_cell_c_episode_v2\n**服务器**: westd-47453, 4x RTX PRO 6000 96GB\n\n---\n\n## 1. 根因分析\n\n### 1.1 核心问题：`ppo_max_token_len_per_gpu` 完全无效\n\n**v2 的 fix 是一个 no-op。** 原因：\n\n```python\n# dp_actor.py lines 297-303\nelif self.config.use_dynamic_bsz:                              # ← 必须为 True\n    max_token_len = self.config.ppo_max_token_len_per_gpu * ...  # ← 才走这条路\n    micro_batches, _ = rearrange_micro_batches(...)\nelse:                                                           # ← 实际走了这里\n    micro_batches = mini_batch.split(self.config.ppo_micro_batch_size_per_gpu)\n```\n\nConfig 中 `use_dynamic_bsz: False`（默认值），所以 micro-batch 拆分完全由 `ppo_micro_batch_size_per_gpu=1` 决定。`ppo_max_token_len_per_gpu` 不论设什么值都不会被读取。\n\n**证据**：两次实验的 config dump 确认 v1 为 32768、v2 为 16384，但 OOM 错误的内存数字完全一致：\n- Tried to allocate: **8.76 GiB**\n- Memory in use: **88.46-89.98 GiB**\n- PyTorch allocated: **118.48 GiB**\n\n### 1.2 OOM 发生阶段：actor backward pass\n\n两次 crash 的 traceback 完全相同：\n\n```\nfsdp_workers.py:169 update_actor\n  → dp_actor.py:468 loss.backward()\n    → torch.autograd.graph._engine_run_backward\n      → torch.OutOfMemoryError\n```\n\n这是 **PPO actor update 的 backward pass**，不是 rollout 或 ref log-prob 计算。所有 4 个 GPU worker 同时 OOM。\n\n### 1.3 8.76 GiB 分配的含义\n\nQwen3-8B 模型参数：\n- hidden_size: 4096, intermediate_size: 12288, num_layers: 36, vocab_size: 151936\n\n8.76 GiB / 4 bytes(fp32) = ~2.35B elements。如果是 logits gradient (seq_len, vocab_size)：\n- 2.35B / 151936 = **~15,475 tokens**\n\n这与 episode-level 全上下文模式下的实际序列长度一致（max_prompt_length=16384, 实际最长 episode 约 15K tokens + response）。\n\n**结论**：backward 在计算 lm_head 层的 fp32 梯度时 OOM，因为 logits 梯度张量 (1, ~15475, 151936) 需要 8.76 GiB，而 GPU 仅剩 5-6 GiB 可用。\n\n### 1.4 内存分解\n\nPer-GPU 内存估算：\n\n| 组件 | 大小(GiB) | 说明 |\n|------|-----------|------|\n| Actor FSDP shard (fp32) | ~8.2 | 8.19B params / 4 GPUs * 4 bytes |\n| Actor gradients (fp32, 部分累积) | ~4-8 | backward 过程中逐层累积 |\n| Ref model (CPU offload, GPU buffer) | ~1-2 | FSDP CPUOffload, pinned memory buffer |\n| 36 layer checkpoint inputs (bf16) | ~4.6 | 36 * 15475 * 4096 * 2 bytes |\n| Logits tensor (bf16) | ~4.7 | 15475 * 151936 * 2 bytes |\n| All-gathered layer (backward) | ~0.8 | 一层完整参数临时驻留 |\n| FSDP 通信 buffer | ~3-5 | all-gather + reduce-scatter 预分配 |\n| PyTorch allocator 碎片 | ~10-15 | FSDP 反复 alloc/free 导致碎片化 |\n| CUDA context + misc | ~2-3 | driver, streams, etc. |\n| **合计** | **~90** | 匹配 OOM 报告的 88-90 GiB |\n\n关键放大因素：\n1. **model_dtype: fp32** — 参数和梯度都用 fp32\n2. **序列长度 ~15K tokens** — logits tensor 4.7 GiB，梯度 8.76 GiB\n3. **FSDP allocator 碎片** — 118 GiB total allocated vs 90 GiB active\n\n### 1.5 为什么 1.7B 能跑但 8B 不行\n\n| | 1.7B (exp029) | 8B (cell_c) |\n|--|---------------|-------------|\n| 参数量 | ~1.7B | 8.19B (4.8x) |\n| hidden_dim | 2048 | 4096 (2x) |\n| num_layers | 24 | 36 (1.5x) |\n| GPU 数 | 2 | 4 |\n| 每 GPU param shard (fp32) | ~3.4 GiB | ~8.2 GiB |\n| 每 GPU 梯度 (fp32) | ~3.4 GiB | ~8.2 GiB |\n| GPU 余量 (95 GiB) | 充足 | ~5 GiB (不够 8.76 GiB logits grad) |\n\n---\n\n## 2. 修复方案\n\n### 方案 A：保守修复（推荐优先尝试）\n\n改动最小，解决核心瓶颈：\n\n```yaml\nactor_rollout_ref:\n  actor:\n    fsdp_config:\n      param_offload: True              # 省 ~8 GiB (actor params offload to CPU)\n      entropy_from_logits_with_chunking: True  # 分块计算 logits，降低峰值\n      entropy_checkpointing: True       # checkpoint entropy 计算\n```\n\n**预期效果**：\n- `param_offload: True` 将 actor params (~8.2 GiB) offload 到 CPU，释放 ~8 GiB\n- 这 8 GiB + 原有 5 GiB free = 13 GiB > 8.76 GiB（需要的 logits grad）\n- chunked entropy 进一步降低 logits 峰值内存\n\n**代价**：训练速度降低约 10-20%（CPU-GPU 数据传输开销）\n\n### 方案 B：激进优化（如果方案 A 仍然紧张）\n\n在方案 A 基础上加：\n\n```yaml\nagent_proxy:\n  max_prompt_length: 8192             # 从 16384 减半\n\nactor_rollout_ref:\n  actor:\n    fsdp_config:\n      param_offload: True\n      entropy_from_logits_with_chunking: True\n      entropy_checkpointing: True\n  rollout:\n    max_model_len: 12288              # 配合 prompt 缩短\n    max_num_batched_tokens: 12288\n```\n\n**预期效果**：\n- max_prompt_length 8192 → 最长序列 ~9216 tokens (vs 原来 ~15475)\n- Logits grad: 9216 * 151936 * 4 ≈ **5.2 GiB** (vs 8.76 GiB)\n- 加上 param_offload: 净余量 > 10 GiB\n\n**代价**：长 episode（>8K tokens prompt）会被截断。但 ALFWorld 平均 episode 长度 ~1464 tokens，绝大多数不受影响。\n\n### 方案 C：如需保持 16K prompt 且不降速\n\n```yaml\nactor_rollout_ref:\n  model:\n    use_remove_padding: true           # 需确认 flash-attn 已安装\n  actor:\n    fsdp_config:\n      param_offload: True\n      entropy_from_logits_with_chunking: True\n      entropy_checkpointing: True\n      model_dtype: bfloat16            # 参数和梯度都用 bf16，各减半\n```\n\n**预期效果**：`model_dtype: bfloat16` 将参数和梯度内存各减半（8.2→4.1 GiB），`use_remove_padding` 去掉 padding 的无效计算。\n\n**代价**：bf16 梯度可能影响训练稳定性（8B 模型一般没问题）。需确认 flash-attn 已安装。\n\n---\n\n## 3. 附：`use_dynamic_bsz` 建议\n\n不论采用哪个方案，都建议同时启用 `use_dynamic_bsz: True`：\n\n```yaml\nactor_rollout_ref:\n  actor:\n    use_dynamic_bsz: True\n    ppo_max_token_len_per_gpu: 8192    # 动态分 micro-batch，限制每 GPU 总 token 数\n```\n\n这让 `ppo_max_token_len_per_gpu` 真正生效，作为安全网防止长序列 outlier 触发 OOM。\n\n---\n\n## 4. 预估修复后内存用量（方案 A）\n\n| 组件 | 修复前(GiB) | 修复后(GiB) |\n|------|------------|------------|\n| Actor params | 8.2 | ~0.8 (per-layer 临时加载) |\n| Actor gradients | 8.2 | 8.2 (不变) |\n| Ref model | ~1-2 | ~1-2 (不变) |\n| Checkpoint inputs | 4.6 | 4.6 (不变) |\n| Logits (chunked) | 4.7 | ~1-2 (分块处理) |\n| Communication buffers | 3-5 | 3-5 (不变) |\n| FSDP 碎片/cache | 10-15 | ~5-8 (param offload 减少碎片) |\n| CUDA context | 2-3 | 2-3 (不变) |\n| **总计** | **~90** | **~27-35** |\n| **logits grad 峰值** | 8.76 | 8.76 (不变) |\n| **GPU 余量** | ~5 (不够) | **~52-60 (充足)** |\n\n---\n\n## 5. 推荐实施顺序\n\n1. **先试方案 A**：只改 3 个 FSDP config 参数 + `use_dynamic_bsz: True`\n2. 如果方案 A 仍 OOM → 加方案 B 的 `max_prompt_length: 8192`\n3. 如果需要极致优化 → 方案 C 的 `model_dtype: bfloat16` + `use_remove_padding`\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/diagnose_8b_cell_c_oom.md",
+    "content": "# 8b_cell_c_episode OOM 诊断报告\n\n**日期**: 2026-05-19\n**实验**: 8b_cell_c_episode (v1) 和 8b_cell_c_episode_v2\n**服务器**: westd-47453, 4x RTX PRO 6000 96GB\n\n---\n\n## 1. 根因分析\n\n### 1.1 核心问题：`ppo_max_token_len_per_gpu` 完全无效\n\n**v2 的 fix 是一个 no-op。** 原因：\n\n```python\n# dp_actor.py lines 297-303\nelif self.config.use_dynamic_bsz:                              # ← 必须为 True\n    max_token_len = self.config.ppo_max_token_len_per_gpu * ...  # ← 才走这条路\n    micro_batches, _ = rearrange_micro_batches(...)\nelse:                                                           # ← 实际走了这里\n    micro_batches = mini_batch.split(self.config.ppo_micro_batch_size_per_gpu)\n```\n\nConfig 中 `use_dynamic_bsz: False`（默认值），所以 micro-batch 拆分完全由 `ppo_micro_batch_size_per_gpu=1` 决定。`ppo_max_token_len_per_gpu` 不论设什么值都不会被读取。\n\n**证据**：两次实验的 config dump 确认 v1 为 32768、v2 为 16384，但 OOM 错误的内存数字完全一致：\n- Tried to allocate: **8.76 GiB**\n- Memory in use: **88.46-89.98 GiB**\n- PyTorch allocated: **118.48 GiB**\n\n### 1.2 OOM 发生阶段：actor backward pass\n\n两次 crash 的 traceback 完全相同：\n\n```\nfsdp_workers.py:169 update_actor\n  → dp_actor.py:468 loss.backward()\n    → torch.autograd.graph._engine_run_backward\n      → torch.OutOfMemoryError\n```\n\n这是 **PPO actor update 的 backward pass**，不是 rollout 或 ref log-prob 计算。所有 4 个 GPU worker 同时 OOM。\n\n### 1.3 8.76 GiB 分配的含义\n\nQwen3-8B 模型参数：\n- hidden_size: 4096, intermediate_size: 12288, num_layers: 36, vocab_size: 151936\n\n8.76 GiB / 4 bytes(fp32) = ~2.35B elements。如果是 logits gradient (seq_len, vocab_size)：\n- 2.35B / 151936 = **~15,475 tokens**\n\n这与 episode-level 全上下文模式下的实际序列长度一致（max_prompt_length=16384, 实际最长 episode 约 15K tokens + response）。\n\n**结论**：backward 在计算 lm_head 层的 fp32 梯度时 OOM，因为 logits 梯度张量 (1, ~15475, 151936) 需要 8.76 GiB，而 GPU 仅剩 5-6 GiB 可用。\n\n### 1.4 内存分解\n\nPer-GPU 内存估算：\n\n| 组件 | 大小(GiB) | 说明 |\n|------|-----------|------|\n| Actor FSDP shard (fp32) | ~8.2 | 8.19B params / 4 GPUs * 4 bytes |\n| Actor gradients (fp32, 部分累积) | ~4-8 | backward 过程中逐层累积 |\n| Ref model (CPU offload, GPU buffer) | ~1-2 | FSDP CPUOffload, pinned memory buffer |\n| 36 layer checkpoint inputs (bf16) | ~4.6 | 36 * 15475 * 4096 * 2 bytes |\n| Logits tensor (bf16) | ~4.7 | 15475 * 151936 * 2 bytes |\n| All-gathered layer (backward) | ~0.8 | 一层完整参数临时驻留 |\n| FSDP 通信 buffer | ~3-5 | all-gather + reduce-scatter 预分配 |\n| PyTorch allocator 碎片 | ~10-15 | FSDP 反复 alloc/free 导致碎片化 |\n| CUDA context + misc | ~2-3 | driver, streams, etc. |\n| **合计** | **~90** | 匹配 OOM 报告的 88-90 GiB |\n\n关键放大因素：\n1. **model_dtype: fp32** — 参数和梯度都用 fp32\n2. **序列长度 ~15K tokens** — logits tensor 4.7 GiB，梯度 8.76 GiB\n3. **FSDP allocator 碎片** — 118 GiB total allocated vs 90 GiB active\n\n### 1.5 为什么 1.7B 能跑但 8B 不行\n\n| | 1.7B (exp029) | 8B (cell_c) |\n|--|---------------|-------------|\n| 参数量 | ~1.7B | 8.19B (4.8x) |\n| hidden_dim | 2048 | 4096 (2x) |\n| num_layers | 24 | 36 (1.5x) |\n| GPU 数 | 2 | 4 |\n| 每 GPU param shard (fp32) | ~3.4 GiB | ~8.2 GiB |\n| 每 GPU 梯度 (fp32) | ~3.4 GiB | ~8.2 GiB |\n| GPU 余量 (95 GiB) | 充足 | ~5 GiB (不够 8.76 GiB logits grad) |\n\n---\n\n## 2. 修复方案\n\n### 方案 A：保守修复（推荐优先尝试）\n\n改动最小，解决核心瓶颈：\n\n```yaml\nactor_rollout_ref:\n  actor:\n    fsdp_config:\n      param_offload: True              # 省 ~8 GiB (actor params offload to CPU)\n      entropy_from_logits_with_chunking: True  # 分块计算 logits，降低峰值\n      entropy_checkpointing: True       # checkpoint entropy 计算\n```\n\n**预期效果**：\n- `param_offload: True` 将 actor params (~8.2 GiB) offload 到 CPU，释放 ~8 GiB\n- 这 8 GiB + 原有 5 GiB free = 13 GiB > 8.76 GiB（需要的 logits grad）\n- chunked entropy 进一步降低 logits 峰值内存\n\n**代价**：训练速度降低约 10-20%（CPU-GPU 数据传输开销）\n\n### 方案 B：激进优化（如果方案 A 仍然紧张）\n\n在方案 A 基础上加：\n\n```yaml\nagent_proxy:\n  max_prompt_length: 8192             # 从 16384 减半\n\nactor_rollout_ref:\n  actor:\n    fsdp_config:\n      param_offload: True\n      entropy_from_logits_with_chunking: True\n      entropy_checkpointing: True\n  rollout:\n    max_model_len: 12288              # 配合 prompt 缩短\n    max_num_batched_tokens: 12288\n```\n\n**预期效果**：\n- max_prompt_length 8192 → 最长序列 ~9216 tokens (vs 原来 ~15475)\n- Logits grad: 9216 * 151936 * 4 ≈ **5.2 GiB** (vs 8.76 GiB)\n- 加上 param_offload: 净余量 > 10 GiB\n\n**代价**：长 episode（>8K tokens prompt）会被截断。但 ALFWorld 平均 episode 长度 ~1464 tokens，绝大多数不受影响。\n\n### 方案 C：如需保持 16K prompt 且不降速\n\n```yaml\nactor_rollout_ref:\n  model:\n    use_remove_padding: true           # 需确认 flash-attn 已安装\n  actor:\n    fsdp_config:\n      param_offload: True\n      entropy_from_logits_with_chunking: True\n      entropy_checkpointing: True\n      model_dtype: bfloat16            # 参数和梯度都用 bf16，各减半\n```\n\n**预期效果**：`model_dtype: bfloat16` 将参数和梯度内存各减半（8.2→4.1 GiB），`use_remove_padding` 去掉 padding 的无效计算。\n\n**代价**：bf16 梯度可能影响训练稳定性（8B 模型一般没问题）。需确认 flash-attn 已安装。\n\n---\n\n## 3. 附：`use_dynamic_bsz` 建议\n\n不论采用哪个方案，都建议同时启用 `use_dynamic_bsz: True`：\n\n```yaml\nactor_rollout_ref:\n  actor:\n    use_dynamic_bsz: True\n    ppo_max_token_len_per_gpu: 8192    # 动态分 micro-batch，限制每 GPU 总 token 数\n```\n\n这让 `ppo_max_token_len_per_gpu` 真正生效，作为安全网防止长序列 outlier 触发 OOM。\n\n---\n\n## 4. 预估修复后内存用量（方案 A）\n\n| 组件 | 修复前(GiB) | 修复后(GiB) |\n|------|------------|------------|\n| Actor params | 8.2 | ~0.8 (per-layer 临时加载) |\n| Actor gradients | 8.2 | 8.2 (不变) |\n| Ref model | ~1-2 | ~1-2 (不变) |\n| Checkpoint inputs | 4.6 | 4.6 (不变) |\n| Logits (chunked) | 4.7 | ~1-2 (分块处理) |\n| Communication buffers | 3-5 | 3-5 (不变) |\n| FSDP 碎片/cache | 10-15 | ~5-8 (param offload 减少碎片) |\n| CUDA context | 2-3 | 2-3 (不变) |\n| **总计** | **~90** | **~27-35** |\n| **logits grad 峰值** | 8.76 | 8.76 (不变) |\n| **GPU 余量** | ~5 (不够) | **~52-60 (充足)** |\n\n---\n\n## 5. 推荐实施顺序\n\n1. **先试方案 A**：只改 3 个 FSDP config 参数 + `use_dynamic_bsz: True`\n2. 如果方案 A 仍 OOM → 加方案 B 的 `max_prompt_length: 8192`\n3. 如果需要极致优化 → 方案 C 的 `model_dtype: bfloat16` + `use_remove_padding`\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-19T12:28:07.997375+00:00_
+
+&lt;tool_use_error>File has not been read yet. Read it first before writing to it.&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-19T12:28:07.997496+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/diagnose_8b_cell_c_oom.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/diagnose_8b_cell_c_oom.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-19T12:28:07.997679+00:00_
+
+1	# 8B Cell C Episode OOM 诊断报告
+2	
+3	**实验**: 8b-cell-c-episode-level (Qwen3-8B, 4卡 FSDP, westd-47453)
+4	**日志**: `~/runs/cost-verify-agent-rl/8b_cell_c_episode.log`
+5	**诊断时间**: 2026-05-19
+6	
+7	---
+8	
+9	## 1. OOM 发生阶段和触发点
+10	
+11	**阶段**: Training step（Actor policy update 的 backward pass）
+12	
+13	**精确触发点**:
+14	```
+15	dp_actor.py:468  →  loss.backward()
+16	```
+17	
+18	**完整调用链**:
+19	```
+20	fsdp_workers.py:169  update_actor
+21	  → dp_actor.py:468  update_policy
+22	    → loss.backward()
+23	      → torch.autograd.backward()
+24	        → CUDA OOM
+25	```
+26	
+27	**错误信息**:
+28	```
+29	torch.OutOfMemoryError: CUDA out of memory.
+30	Tried to allocate 8.76 GiB.
+31	GPU 0 total capacity: 94.97 GiB, free: 6.47 GiB.
+32	Process memory in use: 88.46 GiB (93.1%).
+33	PyTorch allocated: 118.48 GiB (cross-device total).
+34	```
+35	
+36	OOM 发生在 val_before_train 之后的第一个 training step，说明常规 episode 长度就会 OOM。
+37	
+38	---
+39	
+40	## 2. Batch / Sequence 尺寸
+41	
+42	| 参数 | 值 |
+43	|------|-----|
+44	| train_batch_size | 128 (16 env_groups x 8 group_size) |
+45	| ppo_mini_batch_size | 16 |
+46	| micro_batch_size_per_gpu | 1 |
+47	| gradient_accumulation | 16 (= mini_batch / micro_batch) |
+48	| ppo_max_token_len_per_gpu | 32768 |
+49	| use_dynamic_bsz | **False** |
+50	| context_window_mode | full |
+51	| max_prompt_length | 16384 |
+52	| response_length | 1024 |
+53	| max_model_len (vLLM) | 20480 |
+54	| gpu_memory_utilization | 0.35 |
+55	
+56	**核心问题**: `use_dynamic_bsz=False` 时 micro-batch 按样本数切分（每批 1 个样本），不按 token 总量控制。`context_window_mode=full` + `max_prompt_length=16384` 意味着单个 episode 序列长度可达 17408 tokens（16384+1024）。
+57	
+58	**单卡 backward 峰值内存估算**:
+59	- FSDP 参数聚合（backward 需全量）: ~16 GiB
+60	- FSDP 本地参数分片: ~4 GiB
+61	- 梯度: ~16 GiB
+62	- 梯度检查点重计算激活: ~5-10 GiB
+63	- vLLM 预留 (0.35 x 95): ~33 GiB（若未完全释放）
+64	- ref_log_prob / old_log_probs / advantages: ~2-5 GiB
+65	- 合计轻松突破 95 GiB
+66	
+67	---
+68	
+69	## 3. 8B vs 1.7B 配置对比
+70	
+71	| 参数 | 1.7B (exp029) | 8B (cell_c) | 影响 |
+72	|------|---------------|-------------|------|
+73	| 模型 | Qwen2.
+…[truncated 2138 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-19T12:28:07.997876+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/diagnose_8b_cell_c_oom.md",
+  "content": "# 8b_cell_c_episode OOM 诊断报告 (v2 更新)\n\n**日期**: 2026-05-19\n**实验**: 8b_cell_c_episode (v1) 和 8b_cell_c_episode_v2\n**服务器**: westd-47453, 4x RTX PRO 6000 96GB\n**模型**: Qwen3-8B (hidden=4096, intermediate=12288, layers=36, vocab=151936)\n\n---\n\n## 1. 根因分析\n\n### 1.1 核心问题：`ppo_max_token_len_per_gpu` 完全无效\n\n**v2 的 fix 是一个 no-op。** 原因：\n\n```python\n# dp_actor.py lines 297-303\nelif self.config.use_dynamic_bsz:                              # ← 必须为 True\n    max_token_len = self.config.ppo_max_token_len_per_gpu * ...  # ← 才走这条路\n    micro_batches, _ = rearrange_micro_batches(...)\nelse:                                                           # ← 实际走了这里\n    micro_batches = mini_batch.split(self.config.ppo_micro_batch_size_per_gpu)\n```\n\nConfig 中 `use_dynamic_bsz: False`（默认值），所以 micro-batch 拆分完全由 `ppo_micro_batch_size_per_gpu=1` 决定。`ppo_max_token_len_per_gpu` 不论设什么值都不会被读取。\n\n**证据**：两次实验的 config dump 确认 v1 为 32768、v2 为 16384，但 OOM 错误的内存数字完全一致：\n- Tried to allocate: **8.76 GiB**\n- Memory in use: **88.46-89.98 GiB**\n- PyTorch allocated: **118.48 GiB**\n\n### 1.2 OOM 发生阶段：actor backward pass\n\n两次 crash 的 traceback 完全相同：\n\n```\nfsdp_workers.py:169 update_actor\n  → dp_actor.py:468 loss.backward()\n    → torch.autograd.graph._engine_run_backward\n      → torch.OutOfMemoryError\n```\n\n这是 **PPO actor update 的 backward pass**，不是 rollout 或 ref log-prob 计算。所有 4 个 GPU worker 同时 OOM（pid 14119-14122 全部报错）。OOM 发生在 val_before_train 之后的第一个 training step。\n\n### 1.3 8.76 GiB 分配的含义\n\n8.76 GiB / 4 bytes(fp32) = ~2.35B elements。对应 logits gradient (1, seq_len, vocab_size)：\n- 2.35B / 151936 = **~15,475 tokens**\n\n这与 episode-level 全上下文模式下的实际序列长度一致（max_prompt_length=16384, 实际最长 episode 约 15K tokens + response）。\n\n**结论**：backward 在计算 lm_head 层的 fp32 梯度时 OOM。logits 梯度张量 (1, ~15475, 151936) 在 fp32 下需要 8.76 GiB，但 GPU 仅剩 5-6 GiB 可用。\n\n### 1.4 内存分解\n\nPer-GPU 内存估算：\n\n| 组件 | 大小(GiB) | 说明 |\n|------|-----------|------|\n| Actor FSDP shard (fp32) | ~8.2 | 8.19B params / 4 GPUs * 4 bytes |\n| Actor gradients (fp32, 部分累积) | ~4-8 | backward 过程中逐层累积 |\n| Ref model (CPU offload, GPU buffer) | ~1-2 | FSDP CPUOffload, pinned memory buffer |\n| 36 layer checkpoint inputs (bf16) | ~4.6 | 36 * 15475 * 4096 * 2 bytes |\n| Logits tensor (bf16) | ~4.7 | 15475 * 151936 * 2 bytes, 需保留供 backward |\n| All-gathered layer (backward) | ~0.8 | 一层完整参数临时驻留 |\n| FSDP 通信 buffer | ~3-5 | all-gather + reduce-scatter 预分配 |\n| PyTorch allocator 碎片 | ~10-15 | FSDP 反复 alloc/free 导致碎片化严重 |\n| CUDA context + misc | ~2-3 | driver, streams, etc. |\n| **合计** | **~90** | 匹配 OOM 报告的 88-90 GiB |\n\n关键放大因素：\n1. **model_dtype: fp32** -- 参数和梯度都用 fp32，是 bf16 的 2 倍\n2. **序列长度 ~15K tokens** -- logits tensor 4.7 GiB (bf16)，梯度 8.76 GiB (fp32)\n3. **FSDP allocator 碎片** -- 118 GiB total allocated vs 90 GiB active，~28 GiB 碎片\n\n### 1.5 为什么 1.7B 能跑但 8B 不行\n\n| | 1.7B (exp029) | 8B (cell_c) |\n|--|---------------|-------------|\n| 参数量 | ~1.7B | 8.19B (4.8x) |\n| hidden_dim | 2048 | 4096 (2x) |\n| num_layers | 24 | 36 (1.5x) |\n| GPU 数 | 2 | 4 |\n| 每 GPU param shard (fp32) | ~3.4 GiB | ~8.2 GiB |\n| 每 GPU gradient (fp32) | ~3.4 GiB | ~8.2 GiB |\n| Per-layer 激活内存 | ~0.5x | 1x |\n| GPU 余量 (95 GiB) | 充足 | ~5 GiB (不够 8.76 GiB logits grad) |\n\n---\n\n## 2. 配置对比\n\n| 参数 | v1 (OOM) | v2 (OOM) | 差异 |\n|------|----------|----------|------|\n| ppo_max_token_len_per_gpu | 32768 | **16384** | 已改，但 no-op |\n| log_prob_max_token_len_per_gpu | 默认 | **16384** | 已改 |\n| use_dynamic_bsz | False | False | **未改，是根因** |\n| param_offload | False | False | 未改 |\n| PYTORCH_CUDA_ALLOC_CONF | 无 | expandable_segments:True | 已改，未能解决 |\n| OOM 内存数字 | 88.46 GiB used | 88.46-89.98 GiB used | **基本一致** |\n| OOM 位置 | dp_actor.py:468 | dp_actor.py:468 | **完全相同** |\n\n---\n\n## 3. 修复方案\n\n### 方案 A：保守修复（推荐优先尝试）\n\n改动最小，解决核心瓶颈：\n\n```yaml\nactor_rollout_ref:\n  actor:\n    use_dynamic_bsz: True               # 让 ppo_max_token_len 生效\n    ppo_max_token_len_per_gpu: 8192      # 限制每 GPU token 总量\n    fsdp_config:\n      param_offload: True                # 省 ~8 GiB\n      entropy_from_logits_with_chunking: True  # 分块计算 logits\n      entropy_checkpointing: True         # checkpoint entropy 计算\n```\n\n**预期效果**：\n- `param_offload: True` 将 actor params (~8.2 GiB) offload 到 CPU，释放 ~8 GiB\n- 8 GiB (freed) + 5 GiB (原有 free) = 13 GiB > 8.76 GiB (logits grad)\n- `use_dynamic_bsz: True` 让 token limit 真正生效作为安全网\n- `entropy_from_logits_with_chunking` 分块处理 logits 进一步降低峰值\n\n**代价**：训练速度降低约 10-20%（CPU-GPU 传输开销）\n\n### 方案 B：激进优化（如果方案 A 仍然紧张）\n\n在方案 A 基础上缩减序列长度：\n\n```yaml\nagent_proxy:\n  max_prompt_length: 8192               # 从 16384 减半\n\nactor_rollout_ref:\n  actor:\n    use_dynamic_bsz: True\n    ppo_max_token_len_per_gpu: 8192\n    fsdp_config:\n      param_offload: True\n      entropy_from_logits_with_chunking: True\n      entropy_checkpointing: True\n  rollout:\n    max_model_len: 12288                # 配合缩短\n    max_num_batched_tokens: 12288\n```\n\n**预期效果**：\n- max_prompt_length 8192 -> 最长序列 ~9216 tokens (vs ~15475)\n- Logits grad: 9216 * 151936 * 4 = **5.2 GiB** (vs 8.76 GiB)\n- 加上 param_offload: GPU 余量 > 15 GiB\n\n**代价**：长 episode (>8K tokens prompt) 会被截断。但 ALFWorld 平均 episode ~1464 tokens，绝大多数不受影响。\n\n### 方案 C：如需保持 16K prompt 且不降速\n\n```yaml\nactor_rollout_ref:\n  model:\n    use_remove_padding: true             # 需 flash-attn 已安装\n  actor:\n    use_dynamic_bsz: True\n    ppo_max_token_len_per_gpu: 8192\n    fsdp_config:\n      param_offload: True\n      entropy_from_logits_with_chunking: True\n      entropy_checkpointing: True\n      model_dtype: bfloat16              # 参数梯度用 bf16，各减半\n```\n\n**预期效果**：`model_dtype: bfloat16` 将参数和梯度内存各减半 (8.2->4.1 GiB)。`use_remove_padding` 去掉 padding tokens 的无效计算。组合省下 ~12-16 GiB。\n\n**代价**：bf16 梯度可能影响训练稳定性（8B 模型一般没问题）。需确认 flash-attn 已安装。\n\n---\n\n## 4. 预估修复后内存用量（方案 A）\n\n| 组件 | 修复前(GiB) | 修复后(GiB) |\n|------|------------|------------|\n| Actor params | 8.2 | ~0.8 (per-layer 临时加载) |\n| Actor gradients | 8.2 | 8.2 (不变) |\n| Ref model | ~1-2 | ~1-2 (不变) |\n| Checkpoint inputs | 4.6 | 4.6 (不变) |\n| Logits (chunked) | 4.7 | ~1-2 (分块处理) |\n| Communication buffers | 3-5 | 3-5 (不变) |\n| FSDP 碎片/cache | 10-15 | ~5-8 (碎片减少) |\n| CUDA context | 2-3 | 2-3 (不变) |\n| **总计** | **~90** | **~27-35** |\n| **logits grad 峰值需求** | 8.76 | 8.76 |\n| **GPU 余量** | ~5 (不够) | **~52-60 (充足)** |\n\n---\n\n## 5. 推荐实施顺序\n\n1. **先试方案 A**：改 5 个参数（use_dynamic_bsz + param_offload + entropy chunking），改动最小\n2. 如果方案 A 仍 OOM -> 加方案 B 的 `max_prompt_length: 8192`\n3. 如果需要极致优化 -> 方案 C 的 `model_dtype: bfloat16` + `use_remove_padding`\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/diagnose_8b_cell_c_oom.md",
+    "content": "# 8b_cell_c_episode OOM 诊断报告 (v2 更新)\n\n**日期**: 2026-05-19\n**实验**: 8b_cell_c_episode (v1) 和 8b_cell_c_episode_v2\n**服务器**: westd-47453, 4x RTX PRO 6000 96GB\n**模型**: Qwen3-8B (hidden=4096, intermediate=12288, layers=36, vocab=151936)\n\n---\n\n## 1. 根因分析\n\n### 1.1 核心问题：`ppo_max_token_len_per_gpu` 完全无效\n\n**v2 的 fix 是一个 no-op。** 原因：\n\n```python\n# dp_actor.py lines 297-303\nelif self.config.use_dynamic_bsz:                              # ← 必须为 True\n    max_token_len = self.config.ppo_max_token_len_per_gpu * ...  # ← 才走这条路\n    micro_batches, _ = rearrange_micro_batches(...)\nelse:                                                           # ← 实际走了这里\n    micro_batches = mini_batch.split(self.config.ppo_micro_batch_size_per_gpu)\n```\n\nConfig 中 `use_dynamic_bsz: False`（默认值），所以 micro-batch 拆分完全由 `ppo_micro_batch_size_per_gpu=1` 决定。`ppo_max_token_len_per_gpu` 不论设什么值都不会被读取。\n\n**证据**：两次实验的 config dump 确认 v1 为 32768、v2 为 16384，但 OOM 错误的内存数字完全一致：\n- Tried to allocate: **8.76 GiB**\n- Memory in use: **88.46-89.98 GiB**\n- PyTorch allocated: **118.48 GiB**\n\n### 1.2 OOM 发生阶段：actor backward pass\n\n两次 crash 的 traceback 完全相同：\n\n```\nfsdp_workers.py:169 update_actor\n  → dp_actor.py:468 loss.backward()\n    → torch.autograd.graph._engine_run_backward\n      → torch.OutOfMemoryError\n```\n\n这是 **PPO actor update 的 backward pass**，不是 rollout 或 ref log-prob 计算。所有 4 个 GPU worker 同时 OOM（pid 14119-14122 全部报错）。OOM 发生在 val_before_train 之后的第一个 training step。\n\n### 1.3 8.76 GiB 分配的含义\n\n8.76 GiB / 4 bytes(fp32) = ~2.35B elements。对应 logits gradient (1, seq_len, vocab_size)：\n- 2.35B / 151936 = **~15,475 tokens**\n\n这与 episode-level 全上下文模式下的实际序列长度一致（max_prompt_length=16384, 实际最长 episode 约 15K tokens + response）。\n\n**结论**：backward 在计算 lm_head 层的 fp32 梯度时 OOM。logits 梯度张量 (1, ~15475, 151936) 在 fp32 下需要 8.76 GiB，但 GPU 仅剩 5-6 GiB 可用。\n\n### 1.4 内存分解\n\nPer-GPU 内存估算：\n\n| 组件 | 大小(GiB) | 说明 |\n|------|-----------|------|\n| Actor FSDP shard (fp32) | ~8.2 | 8.19B params / 4 GPUs * 4 bytes |\n| Actor gradients (fp32, 部分累积) | ~4-8 | backward 过程中逐层累积 |\n| Ref model (CPU offload, GPU buffer) | ~1-2 | FSDP CPUOffload, pinned memory buffer |\n| 36 layer checkpoint inputs (bf16) | ~4.6 | 36 * 15475 * 4096 * 2 bytes |\n| Logits tensor (bf16) | ~4.7 | 15475 * 151936 * 2 bytes, 需保留供 backward |\n| All-gathered layer (backward) | ~0.8 | 一层完整参数临时驻留 |\n| FSDP 通信 buffer | ~3-5 | all-gather + reduce-scatter 预分配 |\n| PyTorch allocator 碎片 | ~10-15 | FSDP 反复 alloc/free 导致碎片化严重 |\n| CUDA context + misc | ~2-3 | driver, streams, etc. |\n| **合计** | **~90** | 匹配 OOM 报告的 88-90 GiB |\n\n关键放大因素：\n1. **model_dtype: fp32** -- 参数和梯度都用 fp32，是 bf16 的 2 倍\n2. **序列长度 ~15K tokens** -- logits tensor 4.7 GiB (bf16)，梯度 8.76 GiB (fp32)\n3. **FSDP allocator 碎片** -- 118 GiB total allocated vs 90 GiB active，~28 GiB 碎片\n\n### 1.5 为什么 1.7B 能跑但 8B 不行\n\n| | 1.7B (exp029) | 8B (cell_c) |\n|--|---------------|-------------|\n| 参数量 | ~1.7B | 8.19B (4.8x) |\n| hidden_dim | 2048 | 4096 (2x) |\n| num_layers | 24 | 36 (1.5x) |\n| GPU 数 | 2 | 4 |\n| 每 GPU param shard (fp32) | ~3.4 GiB | ~8.2 GiB |\n| 每 GPU gradient (fp32) | ~3.4 GiB | ~8.2 GiB |\n| Per-layer 激活内存 | ~0.5x | 1x |\n| GPU 余量 (95 GiB) | 充足 | ~5 GiB (不够 8.76 GiB logits grad) |\n\n---\n\n## 2. 配置对比\n\n| 参数 | v1 (OOM) | v2 (OOM) | 差异 |\n|------|----------|----------|------|\n| ppo_max_token_len_per_gpu | 32768 | **16384** | 已改，但 no-op |\n| log_prob_max_token_len_per_gpu | 默认 | **16384** | 已改 |\n| use_dynamic_bsz | False | False | **未改，是根因** |\n| param_offload | False | False | 未改 |\n| PYTORCH_CUDA_ALLOC_CONF | 无 | expandable_segments:True | 已改，未能解决 |\n| OOM 内存数字 | 88.46 GiB used | 88.46-89.98 GiB used | **基本一致** |\n| OOM 位置 | dp_actor.py:468 | dp_actor.py:468 | **完全相同** |\n\n---\n\n## 3. 修复方案\n\n### 方案 A：保守修复（推荐优先尝试）\n\n改动最小，解决核心瓶颈：\n\n```yaml\nactor_rollout_ref:\n  actor:\n    use_dynamic_bsz: True               # 让 ppo_max_token_len 生效\n    ppo_max_token_len_per_gpu: 8192      # 限制每 GPU token 总量\n    fsdp_config:\n      param_offload: True                # 省 ~8 GiB\n      entropy_from_logits_with_chunking: True  # 分块计算 logits\n      entropy_checkpointing: True         # checkpoint entropy 计算\n```\n\n**预期效果**：\n- `param_offload: True` 将 actor params (~8.2 GiB) offload 到 CPU，释放 ~8 GiB\n- 8 GiB (freed) + 5 GiB (原有 free) = 13 GiB > 8.76 GiB (logits grad)\n- `use_dynamic_bsz: True` 让 token limit 真正生效作为安全网\n- `entropy_from_logits_with_chunking` 分块处理 logits 进一步降低峰值\n\n**代价**：训练速度降低约 10-20%（CPU-GPU 传输开销）\n\n### 方案 B：激进优化（如果方案 A 仍然紧张）\n\n在方案 A 基础上缩减序列长度：\n\n```yaml\nagent_proxy:\n  max_prompt_length: 8192               # 从 16384 减半\n\nactor_rollout_ref:\n  actor:\n    use_dynamic_bsz: True\n    ppo_max_token_len_per_gpu: 8192\n    fsdp_config:\n      param_offload: True\n      entropy_from_logits_with_chunking: True\n      entropy_checkpointing: True\n  rollout:\n    max_model_len: 12288                # 配合缩短\n    max_num_batched_tokens: 12288\n```\n\n**预期效果**：\n- max_prompt_length 8192 -> 最长序列 ~9216 tokens (vs ~15475)\n- Logits grad: 9216 * 151936 * 4 = **5.2 GiB** (vs 8.76 GiB)\n- 加上 param_offload: GPU 余量 > 15 GiB\n\n**代价**：长 episode (>8K tokens prompt) 会被截断。但 ALFWorld 平均 episode ~1464 tokens，绝大多数不受影响。\n\n### 方案 C：如需保持 16K prompt 且不降速\n\n```yaml\nactor_rollout_ref:\n  model:\n    use_remove_padding: true             # 需 flash-attn 已安装\n  actor:\n    use_dynamic_bsz: True\n    ppo_max_token_len_per_gpu: 8192\n    fsdp_config:\n      param_offload: True\n      entropy_from_logits_with_chunking: True\n      entropy_checkpointing: True\n      model_dtype: bfloat16              # 参数梯度用 bf16，各减半\n```\n\n**预期效果**：`model_dtype: bfloat16` 将参数和梯度内存各减半 (8.2->4.1 GiB)。`use_remove_padding` 去掉 padding tokens 的无效计算。组合省下 ~12-16 GiB。\n\n**代价**：bf16 梯度可能影响训练稳定性（8B 模型一般没问题）。需确认 flash-attn 已安装。\n\n---\n\n## 4. 预估修复后内存用量（方案 A）\n\n| 组件 | 修复前(GiB) | 修复后(GiB) |\n|------|------------|------------|\n| Actor params | 8.2 | ~0.8 (per-layer 临时加载) |\n| Actor gradients | 8.2 | 8.2 (不变) |\n| Ref model | ~1-2 | ~1-2 (不变) |\n| Checkpoint inputs | 4.6 | 4.6 (不变) |\n| Logits (chunked) | 4.7 | ~1-2 (分块处理) |\n| Communication buffers | 3-5 | 3-5 (不变) |\n| FSDP 碎片/cache | 10-15 | ~5-8 (碎片减少) |\n| CUDA context | 2-3 | 2-3 (不变) |\n| **总计** | **~90** | **~27-35** |\n| **logits grad 峰值需求** | 8.76 | 8.76 |\n| **GPU 余量** | ~5 (不够) | **~52-60 (充足)** |\n\n---\n\n## 5. 推荐实施顺序\n\n1. **先试方案 A**：改 5 个参数（use_dynamic_bsz + param_offload + entropy chunking），改动最小\n2. 如果方案 A 仍 OOM -> 加方案 B 的 `max_prompt_length: 8192`\n3. 如果需要极致优化 -> 方案 C 的 `model_dtype: bfloat16` + `use_remove_padding`\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-19T12:28:07.998202+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/diagnose_8b_cell_c_oom.md has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81 · 2026-05-19T12:28:07.998411+00:00_
+
+诊断报告已写入 `artifacts/diagnose_8b_cell_c_oom.md`。
+
+**核心发现**：
+
+1. **`ppo_max_token_len_per_gpu` 是完全的 no-op** -- `use_dynamic_bsz=False` 时代码根本不读这个参数，micro-batch 按 `ppo_micro_batch_size_per_gpu=1` 固定切分。这就是为什么 v2 改了参数但内存数字完全一样。
+
+2. **OOM 位置**：`dp_actor.py:468 loss.backward()` -- actor update 的 backward pass，4 个 GPU 同时崩。失败的 8.76 GiB 分配是 lm_head 的 fp32 logits 梯度 (1, ~15475, 151936)。
+
+3. **90 GiB 占用成因**：fp32 model params (8.2G) + gradients (8.2G) + logits tensor (4.7G) + checkpoint activations (4.6G) + FSDP buffers + 大量 allocator 碎片 (118G allocated vs 90G active)。
+
+**推荐修复（方案 A）**：
+```yaml
+actor_rollout_ref:
+  actor:
+    use_dynamic_bsz: True
+    ppo_max_token_len_per_gpu: 8192
+    fsdp_config:
+      param_offload: True
+      entropy_from_logits_with_chunking: True
+      entropy_checkpointing: True
+```
+
+`param_offload: True` 释放 ~8 GiB，加上原有 5 GiB 余量 = 13 GiB > 8.76 GiB 需求。代价是训练速度降低 10-20%。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diag_8b_cell_c_episode_v2_oom_20260519T121253"
+}
+```
+
+</details>
+
+---

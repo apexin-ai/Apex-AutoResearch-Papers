@@ -1,0 +1,41 @@
+paper_key: "selfbudgeter2026"
+title: "SelfBudgeter: Adaptive Token Allocation for Efficient LLM Reasoning"
+venue: "ICLR 2026 (under review)"
+full_text_available: false
+
+research:
+  baselines:
+    - "standard CoT (fixed budget)"
+    - "ThinkingLLM / o1-style full reasoning"
+    - "token-budget prompting baselines"
+    - "fixed-length truncation"
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "tokens generated (reasoning cost)", direction: "lower_better"}
+    - {name: "efficiency ratio (accuracy/tokens)", direction: "higher_better"}
+  datasets:
+    - {name: "GSM8K", size: "8.5K test"}
+    - {name: "MATH", size: "5K test"}
+    - {name: "MMLU", size: "N/A"}
+    - {name: "ARC-Challenge", size: "N/A"}
+  ablation_dimensions:
+    - "budget prediction accuracy"
+    - "budget enforcement mechanism"
+    - "training signal design"
+    - "easy vs. hard problem routing"
+  training_recipe:
+    optimizer: "N/A"
+    lr: "N/A"
+    hardware: "N/A"
+    method: "RL-based self-prediction of token budget before generating reasoning chain; model learns to predict required budget then generate accordingly"
+  method_family: "adaptive compute / token budget prediction for LLM reasoning"
+
+positioning:
+  core_claim: "LLMs can learn to predict their own required reasoning token budget before generation, enabling dynamic token allocation that reduces cost on easy problems while preserving accuracy on hard ones"
+  key_results: "N/A (paper under review, specific numbers not confirmed)"
+  limitations: ["N/A"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

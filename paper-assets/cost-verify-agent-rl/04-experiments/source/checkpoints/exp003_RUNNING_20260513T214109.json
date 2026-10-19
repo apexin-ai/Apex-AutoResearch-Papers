@@ -1,0 +1,34 @@
+{
+  "exp_id": "exp003",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T21:39:20.081Z",
+    "updated_at": "2026-05-13T21:41:09.868Z",
+    "spec": {
+      "command": "python train.py --config-name=_alfworld_exp003",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "157852",
+      "log_path": "~/runs/cost-verify-agent-rl/exp003.log",
+      "submitted_at": "2026-05-13T21:39:20.070Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "Always-on self-guidance via GRPO can achieve >=76% on ALFWorld with prompt truncation",
+      "model_name": "Qwen3-1.7B",
+      "data_path": "/root/autodl-tmp/alfworld/",
+      "data_count": 8810,
+      "seed": 42,
+      "description": "Phase A v3: prompt truncation + 128 traj/step + 100 steps + 50 max_turns"
+    }
+  },
+  "timestamp": "2026-05-13T21:41:09.882046+00:00",
+  "trigger": "update_registry"
+}

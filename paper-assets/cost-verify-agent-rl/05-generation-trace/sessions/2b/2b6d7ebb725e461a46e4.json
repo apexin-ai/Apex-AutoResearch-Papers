@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "2b6d7ebb725e461a46e4",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "ops westd checkpoint inventory and ood",
+  "task_key": "worker_ops_westd_checkpoint_inventory_and_ood_20260521T224524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_checkpoint_inventory_and_ood_20260521T224524.log",
+    "occurrence": 1,
+    "bytes": 913133,
+    "sha256": "a931012f8d83238704c0cc8be04166608054907cce1d358217befe5f0913b61c"
+  },
+  "statistics": {
+    "messages": 591,
+    "user_turns": 1,
+    "tool_calls": 228,
+    "roles": {
+      "log": 1,
+      "system": 12,
+      "record": 1,
+      "assistant": 119,
+      "tool_call": 228,
+      "tool_result": 228,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 213,
+      "chunks": [
+        {
+          "path": "2b6d7ebb725e461a46e4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2b6d7ebb725e461a46e4-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 378,
+      "chunks": [
+        {
+          "path": "2b6d7ebb725e461a46e4-part-0002.json",
+          "message_count": 147
+        },
+        {
+          "path": "2b6d7ebb725e461a46e4-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "2b6d7ebb725e461a46e4-part-0004.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-westd-checkpoint-inventory-and-ood.md"
+}

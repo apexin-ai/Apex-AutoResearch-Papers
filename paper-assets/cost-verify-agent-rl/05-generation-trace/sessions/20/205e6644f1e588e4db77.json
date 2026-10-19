@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "205e6644f1e588e4db77",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp029 quick check",
+  "task_key": "worker_monitor_exp029_quick_check_20260516T201037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp029_quick_check_20260516T201037_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "ee6f4d12a25795eab3817d91004b0f449da54ded0dca071324fdc73b9d85aebc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n```\nDEAD\n---GPU---\n0 %, 0 MiB\n0 %, 0 MiB\n---LOG---\nusage: train.py [--help] [--hydra-help] [--version] [--cfg {job,hydra,all}]\n                [--resolve] [--package PACKAGE] [--run] [--multirun]\n                [--shell-completion] [--config-path CONFIG_PATH]\n                [--config-name CONFIG_NAME] [--config-dir CONFIG_DIR]\n                [--experimental-rerun EXPERIMENTAL_RERUN]\n                [--info [{all,config,defaults,defaults-tree,plugins,searchpath}]]\n                [overrides ...]\ntrain.py: error: ambiguous option: --config could match --config-path, --config-name, --config-dir\nWARNING: kimina-client is not installed or failed to import. Lean environments will not be loaded.\nEXIT_CODE=2\n```\n\nPID 901567 已死亡。两块 GPU 空闲（0% 利用率，0 MiB 显存）。日志显示 exp029 因 Hydra 参数解析错误退出（`--config` 有歧义，需改为 `--config-name` 或 `--config-path`），exit code 2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp029-quick-check.md"
+}

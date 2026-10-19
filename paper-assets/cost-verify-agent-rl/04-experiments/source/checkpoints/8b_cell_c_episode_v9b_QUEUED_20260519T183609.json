@@ -1,0 +1,16 @@
+{
+  "exp_id": "8b_cell_c_episode_v9b",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:36:02.652Z",
+    "updated_at": "2026-05-19T18:36:09.460Z",
+    "hypothesis": "FSDP2 + CPUOffloadPolicy 解决 8B Cell C backward OOM（v7 缺口 3.7 GiB）。v9 失败于 NotImplementedError（train.py 不识别 fsdp2 strategy），已修复：train.py 接受 fsdp2 + critic.strategy=fsdp2。重试。",
+    "parent": "8b_cell_c_episode_v9"
+  },
+  "timestamp": "2026-05-19T18:36:09.649069+00:00",
+  "trigger": "update_registry"
+}

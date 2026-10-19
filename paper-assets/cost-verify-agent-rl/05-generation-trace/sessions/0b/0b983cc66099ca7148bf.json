@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b983cc66099ca7148bf",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops bjb1 v6 check and eval",
+  "task_key": "worker_ops_bjb1_v6_check_and_eval_20260522T151148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1_v6_check_and_eval_20260522T151148_result.json",
+    "occurrence": 1,
+    "bytes": 1590,
+    "sha256": "84ed91bbfd910e4739241944aac74081914c46abcd90d1b62b7147a89a4e5817"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正在 cuda:0 上加载模型（9.2GB VRAM），运行正常。\n\n---\n\n## 汇总\n\n### 1. v6 状态：已崩溃\n- **错误**：`HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/root/autodl-tmp/checkpoints/qwen3_scienceworld_sft/huggingface'`\n- SFT checkpoint `qwen3_scienceworld_sft` 已被删除，v6 config 中的 model_path 指向了一个带 `/huggingface` 后缀的路径，被 HF 误当成 repo_id 而非本地路径\n- EXIT_CODE=1\n\n### 2. 可用 checkpoint 列表\n\n| Checkpoint | 最新 Step | HF 格式 | 大小 |\n|---|---|---|---|\n| `exp029-seed4` | **15** (完成) | **有** (`global_step_15_hf`, 3.8G) | - |\n| `exp029-seed42` | 5 | 无 (FSDP only) | - |\n| `exp029-seed7-high-kl` | 7 | 无 (FSDP only) | - |\n| `exp029_intervention_c_prime` | 7 | 无 (FSDP only) | - |\n| 已有 HF 转换 | `exp029_seed42_step5_hf`, `exp029_seed7_high_kl_step5_hf`, `exp029_seed7_high_kl_step7_hf`, `c_prime_step5_hf` | - | - |\n\n**seed2 checkpoint 不存在于 bjb1 上。**\n\n### 3. Eval 已启动\n- **Config**: `_alfworld_exp029_seed4_ood_step15.yaml`\n- **Checkpoint**: `exp029-seed4/global_step_15_hf` (symlink: `qwen_exp029_seed4_step15_hf`)\n- **GPU**: cuda:0, 模型加载中 (9.2GB)\n- **设置**: seed.val=321, val_only=True, 134 OOD tasks, enable_response_mask=false\n- **日志**: `/root/autodl-tmp/logs/exp029_seed4_ood_step15.log`\n- **W&B**: `exp029-seed4-ood-step15`\n\n### 4. ScienceWorld SFT checkpoint\nbjb1 上未找到任何 `*scienceworld*sft*` 或 `*qwen3_scienceworld*` 目录。已完全删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-v6-check-and-eval.md"
+}

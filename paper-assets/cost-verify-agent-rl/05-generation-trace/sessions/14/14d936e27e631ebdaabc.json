@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14d936e27e631ebdaabc",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis failure unification table",
+  "task_key": "worker_analysis_failure_unification_table_20260517T051130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_failure_unification_table_20260517T051130_result.json",
+    "occurrence": 1,
+    "bytes": 100,
+    "sha256": "844b8a9efb1283f28bfc7aea0e77630647b991014d3237d2a95a6b843a9b7e30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `/root/cost-verify-agent-rl/analysis/failure_unification_table.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-failure-unification-table.md"
+}

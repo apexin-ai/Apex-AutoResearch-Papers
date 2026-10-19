@@ -1,0 +1,66 @@
+{
+  "exp_id": "c_prime_step5_ood_bjb1",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T00:38:37.400Z",
+    "updated_at": "2026-05-22T01:08:37.950Z",
+    "spec": {
+      "command": "python train.py --config-name _alfworld_c_prime_step5_ood_eval",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "357552",
+      "log_path": "~/runs/cost-verify-agent-rl/c_prime_step5_ood_bjb1.log",
+      "submitted_at": "2026-05-22T00:38:37.000Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "Qwen3-1.7B (C' step5 HF)",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen_c_prime_step5_hf",
+      "eval_data": "AlfworldSG_OOD (134 valid_unseen tasks)",
+      "data_count": 134,
+      "seed": 999,
+      "data_path": "AlfworldSG_OOD",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/qwen_c_prime_step5_hf",
+      "wall_clock_seconds": 1801.0,
+      "gpu_hours": 0.5
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T01:04:27.269Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T01:04:32.707139+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "ood_success_rate": 0,
+      "ood_pass_at_1": 0,
+      "ood_action_is_valid": 0.9757,
+      "ood_action_is_effective": 1,
+      "ood_num_actions": 50,
+      "ood_avg_episode_return": 0,
+      "ood_raw_reward": 0,
+      "ood_response_length": 4250.31,
+      "ood_reward_mean_at_134": 0,
+      "total_tasks": 134,
+      "successful_tasks": 0,
+      "wandb_run_id": "tf8ute5n"
+    },
+    "hypothesis": "C' (trajectory-level cap 12000) step 5 OOD eval on bjb1 — retry of westd OOM run. If C' step5 achieved 21.875% val success, OOD generalization should be comparable to other interventions (10-15%).",
+    "notes": "OOD success 0.0% (0/134 episodes) — catastrophic OOD failure. Model hit max actions (50) on every episode, action_is_valid=97.6%, action_is_effective=100% — syntactically correct but never completes any task. response_length=4250 (much shorter than val 8327). Compared to: SFT baseline 5.97%, Seed 1 23.88%, Seed 4 30.60%, Intervention C step5 10.45%, C step7 14.93%. C' step5 is the worst OOD result across all checkpoints. W&B run: tf8ute5n (entity: xiaoyucorynne-).",
+    "completed_at": "2026-05-22T01:08:37.950Z"
+  },
+  "timestamp": "2026-05-22T01:08:38.240705+00:00",
+  "trigger": "update_registry"
+}

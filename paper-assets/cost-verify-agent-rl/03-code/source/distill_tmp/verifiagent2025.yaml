@@ -1,0 +1,214 @@
+paper_key: "verifiagent2025"
+title: "VerifiAgent: a Unified Verification Agent in Language Model Reasoning"
+venue: "EMNLP 2025 Findings"
+full_text_available: true
+
+research:
+  baselines:
+    - "Vanilla Verifier (Kamoi et al., 2024)"
+    - "Deductive Verifier (Ling et al., 2023)"
+    - "Backward Verifier (Weng et al., 2023)"
+    - "Majority Vote"
+    - "Qwen2.5-Math-PRM-7B (Best-of-N)"
+    - "Qwen2.5-Math-7B-PRM800K (Best-of-N)"
+    - "DIVERSE (Li et al., 2023)"
+    - "PiVe (Han et al., 2024b)"
+    - "Math/Code-Rev (Liang et al., 2024)"
+    - "LEVER (Ni et al., 2023)"
+    - "CoVe (Dhuliawala et al., 2024)"
+    - "CSV (Zhou et al., 2024)"
+    - "CRITIC (Gou et al., 2024)"
+  metrics:
+    - {name: "Verification Accuracy", direction: "higher_better"}
+    - {name: "Verification Precision", direction: "higher_better"}
+    - {name: "Verification Recall", direction: "higher_better"}
+    - {name: "Reasoning Accuracy (after feedback)", direction: "higher_better"}
+    - {name: "Average Samples per Question", direction: "lower_better"}
+    - {name: "Average Cost per Instance ($)", direction: "lower_better"}
+  datasets:
+    - {name: "GSM8K", size: "300 (subset)", type: "mathematical reasoning"}
+    - {name: "MATH", size: "350 (subset)", type: "mathematical reasoning"}
+    - {name: "FOLIO", size: "204", type: "logical reasoning"}
+    - {name: "ProverQA", size: "300", type: "logical reasoning"}
+    - {name: "StrategyQA", size: "229", type: "commonsense reasoning"}
+    - {name: "HotpotQA", size: "200", type: "commonsense reasoning"}
+    - {name: "ReWild", size: "491", type: "hybrid reasoning"}
+  ablation_dimensions:
+    - "Meta verification (w/o meta v.)"
+    - "Tool-based verification (w/o tool v.)"
+    - "Feedback type: precaution-based vs post-editing-based"
+    - "Feedback granularity: verification result only vs +error reason vs +mitigation method"
+    - "Backbone LLM: GPT-4o vs o1-mini"
+    - "Reasoner type: CoT vs Tool-use"
+  training_recipe:
+    optimizer: "N/A (training-free, prompting-based)"
+    lr: "N/A"
+    hardware: "API-based (GPT-4o, o1-mini); no local training"
+    inference_models: "Reasoner: GPT-4o, o3-mini, Llama-3.3-70B-Instruct-Turbo; Verifier backbone: GPT-4o, o1-mini"
+    tools: "Python Interpreter, Search Engine (Google), Z3 Symbolic Solver"
+  method_family: "LLM-as-verifier / agentic verification / tool-augmented verification"
+
+positioning:
+  core_claim: "A training-free, unified verification agent with two-layer verification (meta + tool-adaptive) that generalizes across mathematical, logical, commonsense, and hybrid reasoning tasks, outperforming specialized verifiers while achieving inference scaling at lower cost than PRMs."
+  key_results: >
+    Verification accuracy: GSM8K 0.96 (vs best baseline 0.95), MATH 0.85 (vs 0.82),
+    StrategyQA 0.84 (vs 0.79), ReWild 0.78 (vs 0.76).
+    Inference scaling: GPT-4o+VerifiAgent(o1-mini) achieves 78.0% on MATH with avg 1.8 samples
+    vs Majority Vote@10 73.5% with 10 samples.
+    Cost: VerifiAgent $0.047/instance on MATH vs Majority Vote $0.175/instance (73% cheaper).
+    Feedback: precaution-based feedback improves GPT-4o reasoning from 69.4% to 74.9% on MATH.
+  limitations:
+    - "Only supports three verification tools (Python interpreter, search engine, symbolic solver)"
+    - "Heavily relies on instruction-following capabilities of backbone LLM; only strong models work"
+    - "Limited model evaluation scope due to computational costs"
+    - "Verification accuracy on tool-use outputs is lower than on CoT outputs"
+    - "When reasoner (o3-mini) surpasses verifier (GPT-4o), performance gain is limited"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "统一框架型"
+  hook: >
+    Opens with LLMs' remarkable reasoning capabilities but unreliable/incorrect responses,
+    establishing the critical trust gap. Points to existing verifiers being domain-restricted,
+    computationally expensive, and lacking scalability.
+  tension: >
+    Table 1 systematically compares prior verification methods on 4 dimensions (training-free,
+    generalised, tool-based, fine-grained feedback), showing every prior method lacks at least
+    one key property. Only VerifiAgent checks all four boxes. This creates a clear motivation
+    for a unified approach.
+  key_insight: >
+    Two-layer verification architecture: meta-verification (completeness + consistency check via
+    solution rewriting into explicit steps) acts as structural filter; tool-adaptive verification
+    (autonomous tool selection based on reasoning type) provides computational/factual grounding.
+    The layered design is complementary -- meta improves recall, tool improves accuracy/precision.
+  argument_chain: >
+    Problem (LLM outputs unreliable) -> Gap (existing verifiers domain-specific or lack tools
+    or need training) -> Solution (two-layer unified agent: meta + adaptive tool verification)
+    -> Validation across 7 datasets, 4 reasoning types -> Extension to inference scaling
+    (fewer samples, lower cost than PRMs) -> Feedback utilization (precaution > post-editing)
+  contribution_framing: >
+    Two key empirical findings framed at end of intro: (1) VerifiAgent achieves higher accuracy
+    at lower cost than Majority Vote/PRMs for inference scaling; (2) VerifiAgent capabilities
+    scale with backbone LLM improvements. Contributions are positioned as both a framework
+    contribution and empirical findings.
+  intro_structure: >
+    3 paragraphs: P1 = problem setup (LLM reasoning unreliable) + prior work landscape
+    (task-specific verifiers); P2 = proposed solution (VerifiAgent two-layer mechanism) with
+    method description; P3 = results summary + two key findings + comparison to PRMs.
+    Table 1 is embedded in intro section as feature comparison.
+  notable_technique: >
+    Embedding Table 1 (feature comparison matrix) directly in the introduction is an effective
+    positioning device -- it immediately establishes the gap that VerifiAgent fills. The
+    checkmark/cross format makes the "we are the only complete solution" argument visual
+    and undeniable. Also notable: the cost analysis in Appendix D strengthens the practical
+    value proposition beyond just accuracy.
+
+figures:
+  figure_count: 7
+  figure1:
+    type: "method_overview"
+    description: >
+      Overview diagram of VerifiAgent workflow. Shows input (Reasoning Task & Solution with
+      4 categories: Mathematical, Commonsense, Logical, Hybrid) flowing into VerifiAgent
+      with two verification stages (Meta Verification: list conditions, divide steps, check
+      completeness/consistency; Tool Verification: select tools -- Python Interpreter, Search
+      Engine, Theorem Prover). Output is Feedback box with Evaluation Result, Error Reason,
+      Revision Method, Verification Score. Feedback loops back to input.
+    narrative_role: "Provides architectural overview of the two-layer verification pipeline, making the method immediately graspable"
+    design_elements:
+      - "Two-stage pipeline layout (left to right)"
+      - "Tool selection branching"
+      - "Feedback loop arrow back to input"
+      - "Four reasoning type categories labeled"
+    visual_style: "Block diagram with labeled components, arrows showing data flow, color-coded sections for meta vs tool verification"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "Inference scaling methods on MATH: Majority Vote vs Best-of-N with two PRMs vs VerifiAgent, for GPT-4o and Qwen2.5-Math-7B-Instruct reasoners"
+      how_gain_highlighted: "VerifiAgent achieves comparable accuracy to Best-of-N@10 with only 1.5-1.6 average samples, shown as a horizontal reference point"
+      design_note: "Two subplots (a) GPT-4o and (b) Qwen2.5-Math-7B-Instruct, showing scaling curves. Key insight: PRMs show inconsistent behavior across reasoners (PRM800K better for GPT-4o, PRM-7B better for Qwen), while VerifiAgent is consistently strong."
+    - figure_id: "Figure 3"
+      viz_type: "floating_bar_chart"
+      what_compared: "V_score distributions (mean +/- std) for correct vs incorrect solutions across MATH, ProverQA, StrategyQA"
+      how_gain_highlighted: "Mean V_score for correct solutions consistently higher than incorrect, with lower variance"
+      design_note: "Floating bar chart with grey horizontal mean line; demonstrates verifier confidence calibration"
+    - figure_id: "Figure 4"
+      viz_type: "pie_chart"
+      what_compared: "Tool usage frequency across 4 reasoning task types (MATH, StrategyQA, ProverQA, ReWild)"
+      how_gain_highlighted: "Shows VerifiAgent autonomously selects appropriate tools: 98.6% Python for math, 100% Search for commonsense, 100% Symbolic Solver for logic"
+      design_note: "Four pie charts showing tool distribution per task type; demonstrates adaptive tool selection"
+    - figure_id: "Figure 7"
+      viz_type: "scatter_plot"
+      what_compared: "Average cost vs accuracy across three datasets for different methods"
+      how_gain_highlighted: "VerifiAgent achieves Pareto-optimal cost-accuracy tradeoff (upper-left position)"
+      design_note: "Cost-accuracy Pareto visualization in appendix; strong practical argument"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "horizontal_stacked_bar"
+      dimensions_varied: ["Question type/difficulty"]
+      design_note: "Shows error distribution across question types for MATH (7 categories), ProverQA (3 difficulty levels), StrategyQA (5 difficulty levels). Normalized bars for imbalanced StrategyQA."
+    - figure_id: "Figure 6"
+      viz_type: "horizontal_stacked_bar"
+      dimensions_varied: ["Question type/difficulty for reasoner errors"]
+      design_note: "Appendix figure paralleling Figure 5 but for reasoner errors rather than verification errors"
+  figure_narrative_role: >
+    Figure 1 (method overview) -> Table 2 (main verification results) -> Table 3 (inference scaling) ->
+    Figure 2 (inference scaling curves vs PRMs) -> Table 4 (feedback utilization) -> Table 5-6 (tool-use reasoner) ->
+    Table 7 (ablation) -> Figure 3 (V_score analysis) -> Figure 4 (tool usage) -> Figure 5 (error analysis).
+    Narrative flow: method -> verification quality -> practical scaling -> feedback value -> component analysis -> deep analysis.
+
+tables:
+  table_count: 10
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "datasets x metrics"
+    row_organization: "flat"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best per row (dataset)"
+    statistical_reporting: "single run, no variance reported"
+    num_baselines: 3
+    baseline_names: ["Vanilla Verifier", "Deductive Verifier", "Backward Verifier"]
+    key_numbers:
+      GSM8K: {verifiagent_acc: 0.96, best_baseline_acc: 0.95}
+      MATH: {verifiagent_acc: 0.85, best_baseline_acc: 0.82}
+      FOLIO: {verifiagent_acc: 0.76, best_baseline_acc: 0.75}
+      ProverQA: {verifiagent_acc: 0.77, best_baseline_acc: 0.75}
+      StrategyQA: {verifiagent_acc: 0.84, best_baseline_acc: 0.79}
+      HotpotQA: {verifiagent_acc: 0.61, best_baseline_acc: 0.57}
+      ReWild: {verifiagent_acc: 0.78, best_baseline_acc: 0.76}
+    design_note: >
+      Grouped by reasoning type (Mathematical, Logical, Commonsense, Hybrid) with 7 datasets.
+      Three metrics per method (Acc/Pre/Rec). Clean layout showing VerifiAgent wins on accuracy
+      across all datasets. Notable: margins are modest (1-5 points) but consistent.
+  ablation_tables:
+    - table_id: "Table 7"
+      what_varied: ["Meta verification component", "Tool verification component"]
+      variation_style: "full_numbers"
+      design_note: >
+        Shows full VerifiAgent vs w/o meta v. vs w/o tool v. alongside all baselines.
+        Key finding: removing tool verification drops performance to baseline levels;
+        removing meta verification causes moderate decline. Tool verification contributes
+        more to accuracy/precision; meta verification contributes more to recall.
+    - table_id: "Table 4"
+      what_varied: ["Feedback type (precaution vs post-editing)", "Feedback granularity (result only, +error, +mitigation)"]
+      variation_style: "full_numbers"
+      design_note: >
+        2x3 grid structure: 2 feedback types x 3 granularity levels. Shows precaution-based
+        consistently better. Richer feedback helps math but can hurt logical/commonsense
+        in post-editing mode.
+    - table_id: "Table 6"
+      what_varied: ["Reasoning method (CoT vs Tool-use)"]
+      variation_style: "full_numbers"
+      design_note: "Compares VerifiAgent verification performance on CoT vs tool-use outputs"
+  supplementary_tables:
+    in_appendix: true
+    content: >
+      Table 8: Dataset statistics (sizes). Table 9: VerifiAgent with different backbone LLMs
+      (GPT-4o vs o1-mini). Table 10: Average cost per instance for different methods across
+      3 datasets -- critical cost comparison showing VerifiAgent 73% cheaper than Majority Vote
+      on MATH.
+    reason: >
+      Dataset stats and backbone comparison are standard supplementary. Cost analysis (Table 10)
+      in appendix is surprisingly important -- it's the quantitative evidence for the "lower cost"
+      claim in the abstract. Could have been in main text.

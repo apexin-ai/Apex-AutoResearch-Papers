@@ -1,0 +1,102 @@
+{
+  "exp_id": "8b_cell_c_episode_v9d",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 2,
+    "created_at": "2026-05-19T23:13:25.570Z",
+    "updated_at": "2026-05-20T07:55:48.900Z",
+    "hypothesis": "FSDP2 + CPUOffloadPolicy 8B Cell C episode-level GRPO。v9c 证明训练有效（2步 success 40%→64%），但 step 3 因 max_prompt_length==max_model_len 溢出。v9d 修复：max_prompt_length 16384→15360，留 1024 token headroom。从头训练（无 checkpoint）。",
+    "parent": "8b_cell_c_episode_v9c",
+    "reproduce": {
+      "finished_at": "2026-05-20T07:55:47.277Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "completed_at": "2026-05-20T02:20:48.275Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T02:20:51.818939+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T05:13:00.335716+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "metrics": {
+          "step": 5,
+          "steps_total": 30,
+          "step_time_s": 1689,
+          "eta_hours": 11.7,
+          "val_before_train_success": 0.40625,
+          "train_success_step3": 0.4297,
+          "train_success_step5": 0.7734,
+          "val_success_step5": 0.8125,
+          "entropy_step5": 0.0548,
+          "kl_step5": 0.00149,
+          "pg_clipfrac_step5": 0.00268,
+          "grad_norm_step5": 0.544,
+          "action_is_valid_step5": 0.95,
+          "pass_at_8": 1,
+          "throughput_tok_s": 115,
+          "disk_available_gb": 12.4,
+          "disk_warning": "Ray reports 95% full after step 5 checkpoint save, only 12.4GB remaining. Step 10 checkpoint will crash unless space freed.",
+          "note": "val success 81.25% matches previous run. 0% GPU util was CPUOffload inter-step phase."
+        }
+      }
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && export WANDB_PROJECT=cost-verify-agent-rl && python train.py --config-name _alfworld_8b_cell_c_v9\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "549487",
+      "data_path": "/root/autodl-tmp/data/alfworld/train/",
+      "data_count": 8810,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "log_path": "/root/runs/cost-verify-agent-rl/8b_cell_c_episode_v9d.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/8b-cell-c-v9/",
+      "wandb_run_id": "4x8hludk",
+      "checkpoint_source": "Qwen3-8B base via SFT checkpoint-231 (symlink to step5 actor weights)",
+      "eval_data": "N/A - training experiment",
+      "save_contents": [
+        "model",
+        "extra"
+      ],
+      "note": "5th start: killed residual Ray workers occupying GPU, gpu_memory_utilization=0.25 unchanged"
+    },
+    "metrics": {
+      "step": 7,
+      "steps_total": 30,
+      "step_time_s": 1300,
+      "eta_hours": 8,
+      "train_success_step6": 0.852,
+      "train_success_step7": 0.914,
+      "pass_at_8": 1,
+      "entropy_step7": 0.0473,
+      "kl_step7": -0.034,
+      "grad_norm_step7": 0.573,
+      "pg_loss_step7": 0.00096,
+      "disk_available_gb": 91,
+      "disk_risk": "step 5 ckpt still 92GB (pre-config-change). step 10 ckpt must be ~33GB or disk crash. Need verification.",
+      "wandb_run_id": "4x8hludk",
+      "gpu_util": "75%/61%/82%/100%",
+      "gpu_mem_gb": "24/98 per card"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-20T07:55:49.115030+00:00",
+  "trigger": "update_registry"
+}

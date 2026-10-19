@@ -1,0 +1,50 @@
+{
+  "exp_id": "gsweep_g080_h5_seed1",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:56:53.634Z",
+    "updated_at": "2026-05-18T09:21:30.639Z",
+    "hypothesis": "γ=0.8 with h=5 represents an intermediate decay rate where early windows retain γ^9 ≈ 0.8^9 ≈ 13% of terminal return, potentially showing delayed but still present collapse compared to γ=0.95 (39%).",
+    "parent": "hsweep_h2_seed1",
+    "spec": {
+      "command": "python train.py --config-name _alfworld_gamma_sweep_g080_h5 seed.train=10000 trainer.experiment_name=gsweep-g080-h5-seed1",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": 955007,
+      "model_name": "Qwen3-1.7B",
+      "seed": 10000,
+      "data_path": "ALFWorld",
+      "data_count": "134 train tasks",
+      "log_path": "~/runs/cost-verify-agent-rl/gsweep_g080_h5_seed1.log",
+      "env": "TORCH_COMPILE_DISABLE=1",
+      "checkpoint_source": "Qwen3-1.7B base",
+      "eval_data": "ALFWorld val 32 tasks"
+    },
+    "metrics": {
+      "current_step": "3/15",
+      "train_step1": {
+        "success": 0,
+        "pass_at_8": 0,
+        "action_is_valid": 0.803,
+        "kl_loss": 0.044
+      },
+      "status_note": "WARNING: Step 1 success=0%, pass@8=0%. γ=0.80 showing complete failure at initial steps.",
+      "trend": "Zero success at step 1 is alarming. Waiting for step 2-3 metrics to confirm if persistent."
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T09:21:28.503Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-18T09:21:28.848Z"
+  },
+  "timestamp": "2026-05-18T09:21:30.953455+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "8b_cell_c_episode_v9",
+  "project": "cost-verify-agent-rl",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:12:32.644Z",
+    "updated_at": "2026-05-19T18:12:37.491Z",
+    "hypothesis": "FSDP2 + CPUOffloadPolicy 解决 8B Cell C backward OOM（v7 缺口 3.7 GiB）。CPU offload 将参数和 optimizer states 按 layer 搬运，GPU 峰值从 ~55-65GB 降至 ~26-36GB。验证 8B 模型 episode-level GRPO 训练可行性。",
+    "parent": "8b_cell_c_episode_v8"
+  },
+  "timestamp": "2026-05-19T18:12:37.694742+00:00",
+  "trigger": "update_registry"
+}

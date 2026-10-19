@@ -1,0 +1,33 @@
+_next_id: 7
+constraints:
+- id: C002
+  added: 2026-05-14 06:34 UTC
+  summary: 实验启动前必须执行 pre-flight checklist：(1) 确认入口点与最近成功实验一致 (2) df -h 检查磁盘 (3) 验证
+    config 参数与 vLLM/框架版本兼容 (4) 确认 checkpoint 路径存在。未通过不得启动。
+  scope: worker
+  reason: 18 个实验仅 1 成功，exp012 用错入口点、exp007 磁盘满、exp003 格式不兼容——均为 pre-flight 可拦截的问题。
+  decision_id: D009
+- id: C003
+  added: 2026-05-15 03:21 UTC
+  summary: 所有实验的 val/eval 必须使用 ≥16 episodes，禁止基于 4-episode 结果做 pass/fail 判定
+  scope: all
+  reason: 'exp021 两次 eval 矛盾（4-ep: 25% vs 16-ep: 6.25%）证明 4 episodes 方差过大，基于此做决策导致
+    exp022 在不可靠前提下启动。Reviewer 已三次警告此问题。'
+- id: C004
+  added: 2026-05-17 12:39 UTC
+  summary: Worker 禁止覆盖 memory.md，文献调研输出写 artifacts/literature_*.md
+  scope: worker
+  reason: 2026-05-17 deep-read-turn-ppo-v2 worker 覆盖了 memory.md 全部原有内容（Citation Audit、Adaptive
+    KL 分析、Ray raylet 记录等丢失）。literature 类 worker 输出一律写 artifacts/ 目录。
+- id: C005
+  added: 2026-05-17 13:53 UTC
+  summary: 实验提交前必须完成环境验证：代码同步 + 依赖安装 + 数据模型就位 + dry-run 通过，确保 GPU 分配后零等待启动
+  scope: all
+  reason: 用户反馈效率问题：GPU 到位后还要等环境准备是浪费。所有准备工作必须在 GPU 分配前并行完成，实现无缝衔接。
+- id: C006
+  added: 2026-05-17 14:24 UTC
+  summary: GPU 白名单：bjb1-17606 cuda:0,1（共享服务器，仅限这 2 张）；westd-47453 cuda:0,1,2,3（项目独占，全部
+    4 张可用）。禁止使用白名单外的 GPU。
+  scope: all
+  reason: 替代原 C001（仅覆盖 bjb1）。westd-47453 由 Manager 于 2026-05-17 专门分配给本项目，4 张 RTX PRO
+    6000 96GB 全部归属。项目配置 execution.gpu_ids 已同步更新。

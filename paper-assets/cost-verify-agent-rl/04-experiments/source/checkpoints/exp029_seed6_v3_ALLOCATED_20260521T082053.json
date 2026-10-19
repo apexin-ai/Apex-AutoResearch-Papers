@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp029_seed6_v3",
+  "project": "cost-verify-agent-rl",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:08:09.482Z",
+    "updated_at": "2026-05-21T08:20:52.763Z",
+    "hypothesis": "Episode-level GRPO (seed=789) avoids collapse and learns consistently. Full retrain after M040 checkpoint loss. CUDA_VISIBLE_DEVICES=2,3 enforced.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=2,3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed6_episode\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "901199",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_seed6_v3.log",
+      "submitted_at": "2026-05-21T08:16:18.991Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-21T08:20:53.022810+00:00",
+  "trigger": "update_registry"
+}

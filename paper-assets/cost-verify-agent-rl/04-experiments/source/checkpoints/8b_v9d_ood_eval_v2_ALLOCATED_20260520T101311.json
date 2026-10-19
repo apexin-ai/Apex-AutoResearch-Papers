@@ -1,0 +1,33 @@
+{
+  "exp_id": "8b_v9d_ood_eval_v2",
+  "project": "cost-verify-agent-rl",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:12:05.992Z",
+    "updated_at": "2026-05-20T10:13:11.709Z",
+    "hypothesis": "Evaluate 8B Cell C episode-level GRPO model (v9d step 10, val_before_train 96.875%) on 134 OOD ALFWorld tasks (valid_unseen). Step 10 is effective final model (reward saturated at step 12, zero gradients). This is the paper's key data point: 8B model OOD generalization under episode-level GRPO. Retry of 8b_v9d_ood_eval with fixed config (ppo_mini_batch_size=4, env_groups=2, n_groups=[2]).",
+    "parent": "8b_cell_c_episode_v9d",
+    "spec": {
+      "command": "bash -c \"cat > /tmp/fix_ood.py <<'PYEOF'\nimport re\npath = '/root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_v9d_ood_eval.yaml'\ntext = open(path).read()\ntext = re.sub(r'ppo_mini_batch_size:\\s*\\d+', 'ppo_mini_batch_size: 4', text)\ntext = re.sub(r'env_groups:\\s*\\d+', 'env_groups: 2', text, count=1)\nnew = re.sub(r'(n_groups:\\s*\\[)\\d+(\\])', lambda m: m.group(1) + '2' + m.group(2), text, count=1)\nif new == text:\n    new = re.sub(r'(n_groups:[^\\n]*\\n\\s*-\\s*)\\d+', lambda m: m.group(1) + '2', text, count=1)\ntext = new\nopen(path, 'w').write(text)\nprint('FIXED')\nPYEOF\npython3 /tmp/fix_ood.py && grep -n -E 'ppo_mini_batch_size|env_groups|group_size|n_groups' /root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_v9d_ood_eval.yaml && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && export WANDB_PROJECT=cost-verify-agent-rl && python train.py --config-name _alfworld_8b_v9d_ood_eval\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/cost-verify-agent-rl/8b_v9d_ood_eval_v2.log",
+      "submitted_at": "2026-05-20T10:12:41.132Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-20T10:13:11.907204+00:00",
+  "trigger": "update_registry"
+}

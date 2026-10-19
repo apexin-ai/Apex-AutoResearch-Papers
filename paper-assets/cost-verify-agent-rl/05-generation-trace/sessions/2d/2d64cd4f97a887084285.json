@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d64cd4f97a887084285",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code fsdp to hf converter",
+  "task_key": "worker_code_fsdp_to_hf_converter_20260514T112114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fsdp_to_hf_converter_20260514T112114_result.json",
+    "occurrence": 1,
+    "bytes": 1251,
+    "sha256": "d950bd7001d33fc43fb2a48955e7410e3aa0ce6b6fda41632ddf9caebcc100e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### Checkpoint 格式\n- **verl FSDP v2 DTensor shards**（非 DeepSpeed ZeRO，非原生 PyTorch FSDP state_dict）\n- 每个 rank 保存一个 `model_world_size_2_rank_{i}.pt`，内含 DTensor 对象，placement 为 `Shard(dim=0)`\n- `huggingface/` 子目录存放 config.json + tokenizer 文件\n- `fsdp_config.json` 记录 world_size=2\n\n### 转换方法\n脚本加载所有 rank 的 DTensor shards → 提取 `_local_tensor` → 沿 shard 维度 `torch.cat` 合并 → 转 bf16 → 通过 `model.save_pretrained()` 输出 safetensors 格式。\n\n### 转换脚本\n已部署到 `/root/cost-verify-agent-rl/scripts/convert_fsdp_to_hf.py`\n\n用法：\n```bash\npython scripts/convert_fsdp_to_hf.py \\\n    --input-dir /root/autodl-tmp/checkpoints/exp008_grpo/global_step_5/actor \\\n    --output-dir /root/autodl-tmp/models/phase_a_hf \\\n    --dtype bf16\n```\n\nShell 封装 `scripts/convert_fsdp_to_hf.sh` 也可用（调用 `verl.model_merger` CLI）。\n\n### Dry-run 结果\n- 311 个参数，2,031,739,904 总参数量（1720.6M 可训练）\n- embed_tokens.weight shape [151936, 2048] 与 config 一致\n- `AutoModelForCausalLM.from_pretrained()` 加载成功，dtype=bf16\n- 全流程耗时 ~17s（CPU-only）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fsdp-to-hf-converter-copy-2.md"
+}

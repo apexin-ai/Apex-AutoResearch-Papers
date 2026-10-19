@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "341fd457e7079a66fd55",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp014c success gated bonus",
+  "task_key": "worker_code_exp014c-success-gated-bonus_20260514T124628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp014c-success-gated-bonus_20260514T124628_result.json",
+    "occurrence": 1,
+    "bytes": 1777,
+    "sha256": "a72ad6febbb60bca91b7237a17c4df426f0f25918591dd7a10ad9185a1503ec0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出总结\n\n### 1. 修改的文件\n\n**`ragen/env/alfworld/config.py`** — 添加 `success_gated_bonus: bool = False` 字段\n\n**`ragen/env/alfworld/env.py`** — 3 处修改:\n- `__init__`: 添加 `self.valid_action_count = 0`\n- `reset()`: 添加 `self.valid_action_count = 0`（每 episode 重置）\n- `step()`: 重写 reward 逻辑：\n  - 每步追踪 `valid_action_count`（不论 gating 模式，metrics 不受影响）\n  - `success_gated_bonus=True` 时：仅在 `done and won` 时发放 `valid_action_count * valid_action_bonus`\n  - `success_gated_bonus=False` 时：保持原逻辑（每步 unconditional bonus）\n\n**`config/envs.yaml`** — 新增 `AlfworldSG_SuccessGated` 环境定义（`valid_action_bonus: 0.15`, `success_gated_bonus: true`）\n\n### 2. 新 config 文件\n`/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp014c_success_gated.yaml`\n\n### 3. 注意事项\n**resume 路径不存在**: `/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5/` 在磁盘上找不到，仅有 `qwen3_sft_final` 和 `exp008_sft/final`。已将 config 设为 `resume_mode: \"disable\"` 从 SFT 模型开始。如需从 GRPO checkpoint 恢复，需提供正确路径。\n\n### 4. Dry-run 验证\n- Import OK\n- Hydra config 解析 OK，所有关键参数正确\n\n### 5. 提交命令（不执行）\n```bash\nexport TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR\nexport ALFWORLD_DATA=/root/autodl-tmp/alfworld\nexport RAY_memory_monitor_refresh_ms=0\nexport RAY_SYSTEM_MEMORY=210000000000\nexport HYDRA_FULL_ERROR=1\nexport CUDA_VISIBLE_DEVICES=0,1\ncd /root/cost-verify-agent-rl/RAGEN/\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython train.py --config-name=_alfworld_exp014c_success_gated\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp014c-success-gated-bonus.md"
+}

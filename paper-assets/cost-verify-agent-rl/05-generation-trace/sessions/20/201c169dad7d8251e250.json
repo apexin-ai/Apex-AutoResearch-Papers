@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "201c169dad7d8251e250",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research sft warmup data",
+  "task_key": "worker_research_sft-warmup-data_20260514T001108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_sft-warmup-data_20260514T001108_result.json",
+    "occurrence": 1,
+    "bytes": 1333,
+    "sha256": "3d4c7697cda86e12ec926d55e374a13e6148b8474b459eefef113ad13d9649ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "方案文档已写入 `artifacts/sft_warmup_plan.md`。核心结论：\n\n---\n\n### RAGEN 代码现状\n\nRAGEN **无内置 SFT 训练功能**，只有 RL 训练流程。需要用外部工具（TRL SFTTrainer / ms-swift / LLaMA-Factory）做 SFT。\n\n### 文献调研要点\n\n| 论文 | SFT 数据量 | 数据来源 | Epochs |\n|------|-----------|---------|--------|\n| Warm Up Before You Train | warmup ~1000 CoT + target 50-100 条 | 强模型生成 CoT | 1-3 |\n| SkillRL | 未明确 | 成功轨迹 + LLaMA-Factory | 2-3 |\n| RAGEN | 不做 SFT（用 Instruct 模型） | - | - |\n\n### 现成数据集\n\nHuggingFace 上有 **现成 ALFWorld SFT 轨迹数据集**：[u-10bei/sft_alfworld_trajectory_dataset](https://huggingface.co/datasets/u-10bei/sft_alfworld_trajectory_dataset)（v1-v5），已是 chat messages 格式，支持 6 种任务类型。\n\n### 推荐方案\n\n**方案 C（混合）**：\n1. 下载公开数据集 → 转换为 RAGEN 的 `<think>...</think><answer>...</answer>` 格式 + AlfworldSG system prompt\n2. 用 TRL SFTTrainer 训练 Qwen3-1.7B，200-500 条数据，2-3 epochs\n3. 训练时间约 20-30 分钟（单卡 RTX PRO 6000 足够）\n\n### 下一步\n\n可以立即开始执行——先下载数据集检查格式，然后写转换脚本和训练脚本。是否现在开始？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-sft-warmup-data.md"
+}

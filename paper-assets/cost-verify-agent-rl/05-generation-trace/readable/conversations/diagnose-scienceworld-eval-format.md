@@ -1,0 +1,2792 @@
+# diagnose scienceworld eval format
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 95
+- **Recorded user turns:** 0
+- **Tool calls:** 47
+- **Original source:** `logs/chats/worker_diagnose_scienceworld_eval_format_20260519T181348.jsonl`
+- **Structured JSON:** [`4e84c47b953ea06a83ff.json`](../../sessions/4e/4e84c47b953ea06a83ff.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+95 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T18:25:21.354505+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T18:25:21.354845+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T18:25:21.355031+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "head -2 /root/autodl-tmp/expert_sft/scienceworld_sft_train.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "head -2 /root/autodl-tmp/expert_sft/scienceworld_sft_train.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-19T18:25:21.355170+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /root/cost-verify-agent-rl/eval_scienceworld.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat /root/cost-verify-agent-rl/eval_scienceworld.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-19T18:25:21.355404+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"messages\\\": [{\\\"role\\\": \\\"system\\\", \\\"content\\\": \\\"You're a helpful assistant. You are a science student performing experiments in a virtual science lab.\\\\nComplete the given task by navigating rooms and interacting with objects.\\\\n\\\\nYour reasoning MUST be enclosed within &lt;think> &lt;/think> tags.\\\\nAfter the closing &lt;/think> tag, output EXACTLY ONE action command directly.\\\\nThe action must be from the admissible actions list.\\\\nDo NOT wrap the action in any tags. Do NOT output anything after the action.\\\\n\\\\nExample: &lt;think>I need to boil water. I should go to the kitchen first.&lt;/think>open door to kitchen\\\\n\\\"}, {\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"\\\\nTurn 1:\\\\nTask: Task Description:\\\\nYour task is to boil water. For compounds without a boiling point, combusting the substance is also acceptable. First, focus on the substance. Then, take actions that will cause it to change its state of matter.\\\\n\\\\nState:\\\\nThis room is called the hallway. In it, you see: \\\\n\\\\tthe agent\\\\n\\\\ta substance called air\\\\n\\\\ta picture\\\\nYou also see:\\\\n\\\\tA door to the art studio (that is closed)\\\\n\\\\tA door to the bedroom (that is closed)\\\\n\\\\tA door to the greenhouse (that is closed)\\\\n\\\\tA door to the kitchen (that is closed)\\\\n\\\\tA door to the living room (that is closed)\\\\n\\\\tA door to the workshop (that is closed)\\\\n\\\\nAdmissible actions: [connect agent to air, connect agent to art studio, connect agent to art studio door, connect agent to bedroom, connect agent to bedroom door, connect agent to door to greenhouse, connect agent to door to kitchen, connect agent to door to living room, connect agent to door to workshop, connect agent to greenhouse, connect agent to hallway, connect agent to inventory, connect agent to kitchen, connect agent to living room, connect agent to orange, connect agent to picture, connect agen
+…[truncated 6634 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T18:25:21.355757+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nScienceWorld eval script for SFT/RL models using vLLM.\\nEvaluates on dev/test splits with per-task-type breakdown.\\n\\nInput:  --checkpoint (HF model path), --temperature, --eval_split\\nOutput: JSON file with per-task-type success rates and episode details.\\n\\nDependencies: scienceworld (+ Java runtime), vllm, transformers\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom collections import defaultdict\\n\\nos.environ[\\\"VLLM_WORKER_MULTIPROC_METHOD\\\"] = \\\"spawn\\\"\\n\\nimport scienceworld\\nfrom vllm import LLM, SamplingParams\\nfrom transformers import AutoTokenizer\\n\\n# Must match the SFT training system prompt exactly.\\nSYSTEM_PROMPT = (\\n    \\\"You're a helpful assistant. You are a science student performing experiments \\\"\\n    \\\"in a virtual science lab.\\\\nComplete the given task by navigating rooms and \\\"\\n    \\\"interacting with objects.\\\\n\\\\n\\\"\\n    \\\"Your reasoning MUST be enclosed within &lt;think> &lt;/think> tags.\\\\n\\\"\\n    \\\"After the closing &lt;/think> tag, output EXACTLY ONE action command directly.\\\\n\\\"\\n    \\\"The action must be from the admissible actions list.\\\\n\\\"\\n    \\\"Do NOT wrap the action in any tags. Do NOT output anything after the action.\\\\n\\\\n\\\"\\n    \\\"Example: &lt;think>I need to boil water. I should go to the kitchen first.&lt;/think>\\\"\\n    \\\"open door to kitchen\\\\n\\\"\\n)\\n\\nMAX_VALID_ACTIONS = 50\\nMAX_PROMPT_TOKENS = 30000\\n\\n\\ndef parse_action(response):\\n    \\\"\\\"\\\"Parse action from model response. Returns (action, has_think, has_answer).\\\"\\\"\\\"\\n    has_think = bool(re.search(r\\\"&lt;think>.*?&lt;/think>\\\", response, re.DOTALL))\\n\\n    m = re.search(r\\\"&lt;think>.*?&lt;/think>\\\\s*&lt;answer>(.*?)&lt;/answer>\\\", response, re.DOTALL)\\n    if m:\\n        return m.group(1).strip(), has_think, True\\n\\n    m = 
+…[truncated 7532 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T18:25:21.355991+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep -n \"valid\" /root/cost-verify-agent-rl/eval_scienceworld.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "grep -n \"valid\" /root/cost-verify-agent-rl/eval_scienceworld.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T18:25:21.356151+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"62:def format_user_turn(obs, task_desc, step_idx, max_steps, valid_actions, cumulative_score):\\n64:    shown = valid_actions[:MAX_VALID_ACTIONS]\\n123:    valid_actions = env.get_valid_action_object_combinations()\\n127:        {\\\"role\\\": \\\"user\\\", \\\"content\\\": format_user_turn(obs, task_desc, 0, max_steps, valid_actions, 0)},\\n132:    valid_count = 0\\n144:        shown = valid_actions[:MAX_VALID_ACTIONS]\\n145:        action_is_valid = action in shown\\n148:        if action_is_valid:\\n149:            valid_count += 1\\n155:        valid_actions = env.get_valid_action_object_combinations()\\n162:            obs, task_desc, step_i + 1, max_steps, valid_actions, cumulative_score\\n171:        \\\"valid_action_rate\\\": valid_count / max(num_steps, 1),\\n241:            f\\\"({result['num_steps']} steps, valid={result['valid_action_rate']:.0%}, \\\"\\n251:                                       \\\"total_steps\\\": 0, \\\"total_valid\\\": 0, \\\"total_format\\\": 0})\\n258:        s[\\\"total_valid\\\"] += r[\\\"valid_action_rate\\\"]\\n315:            \\\"avg_valid_rate\\\": round(s[\\\"total_valid\\\"] / s[\\\"count\\\"], 4),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-19T18:25:21.356294+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "head -170 /root/cost-verify-agent-rl/eval_scienceworld.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "head -170 /root/cost-verify-agent-rl/eval_scienceworld.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T18:25:21.356522+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nScienceWorld eval script for SFT/RL models using vLLM.\\nEvaluates on dev/test splits with per-task-type breakdown.\\n\\nInput:  --checkpoint (HF model path), --temperature, --eval_split\\nOutput: JSON file with per-task-type success rates and episode details.\\n\\nDependencies: scienceworld (+ Java runtime), vllm, transformers\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom collections import defaultdict\\n\\nos.environ[\\\"VLLM_WORKER_MULTIPROC_METHOD\\\"] = \\\"spawn\\\"\\n\\nimport scienceworld\\nfrom vllm import LLM, SamplingParams\\nfrom transformers import AutoTokenizer\\n\\n# Must match the SFT training system prompt exactly.\\nSYSTEM_PROMPT = (\\n    \\\"You're a helpful assistant. You are a science student performing experiments \\\"\\n    \\\"in a virtual science lab.\\\\nComplete the given task by navigating rooms and \\\"\\n    \\\"interacting with objects.\\\\n\\\\n\\\"\\n    \\\"Your reasoning MUST be enclosed within &lt;think> &lt;/think> tags.\\\\n\\\"\\n    \\\"After the closing &lt;/think> tag, output EXACTLY ONE action command directly.\\\\n\\\"\\n    \\\"The action must be from the admissible actions list.\\\\n\\\"\\n    \\\"Do NOT wrap the action in any tags. Do NOT output anything after the action.\\\\n\\\\n\\\"\\n    \\\"Example: &lt;think>I need to boil water. I should go to the kitchen first.&lt;/think>\\\"\\n    \\\"open door to kitchen\\\\n\\\"\\n)\\n\\nMAX_VALID_ACTIONS = 50\\nMAX_PROMPT_TOKENS = 30000\\n\\n\\ndef parse_action(response):\\n    \\\"\\\"\\\"Parse action from model response. Returns (action, has_think, has_answer).\\\"\\\"\\\"\\n    has_think = bool(re.search(r\\\"&lt;think>.*?&lt;/think>\\\", response, re.DOTALL))\\n\\n    m = re.search(r\\\"&lt;think>.*?&lt;/think>\\\\s*&lt;answer>(.*?)&lt;/answer>\\\", response, re.DOTALL)\\n    if m:\\n        return m.group(1).strip(), has_think, True\\n\\n    m = 
+…[truncated 4886 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T18:25:21.356703+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "ls -lt /root/cost-verify-agent-rl/eval_results/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "ls -lt /root/cost-verify-agent-rl/eval_results/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T18:25:21.356833+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T18:25:21.357003+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/cost-verify-agent-rl -name \"*.json\" -path \"*eval*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "find /root/cost-verify-agent-rl -name \"*.json\" -path \"*eval*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T18:25:21.357142+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/cost-verify-agent-rl/artifacts/eval_exp017_fast.json\\n/root/cost-verify-agent-rl/artifacts/eval_exp019b_fast.json\\n/root/cost-verify-agent-rl/artifacts/eval_exp021_sft_fast.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T18:25:21.357265+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/cost-verify-agent-rl -name \"*.json\" -path \"*scienceworld*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "find /root/cost-verify-agent-rl -name \"*.json\" -path \"*scienceworld*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T18:25:21.357386+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T18:25:21.357501+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "python3 -c \"import json; d=json.load(open('/root/cost-verify-agent-rl/artifacts/eval_exp021_sft_fast.json')); ep=d['episodes'][0]; print(json.dumps({k:v for k,v in ep.items() if k!='steps'}, indent=2))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "python3 -c \"import json; d=json.load(open('/root/cost-verify-agent-rl/artifacts/eval_exp021_sft_fast.json')); ep=d['episodes'][0]; print(json.dumps({k:v for k,v in ep.items() if k!='steps'}, indent=2))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T18:25:21.357640+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T18:25:21.357761+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "python3 -c \"import json; d=json.load(open('/root/cost-verify-agent-rl/artifacts/eval_exp021_sft_fast.json')); print(d.get('overall_success_rate'), d.get('overall_avg_score'))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "python3 -c \"import json; d=json.load(open('/root/cost-verify-agent-rl/artifacts/eval_exp021_sft_fast.json')); print(d.get('overall_success_rate'), d.get('overall_avg_score'))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T18:25:21.357879+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T18:25:21.357993+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "head -100 /root/cost-verify-agent-rl/artifacts/eval_exp021_sft_fast.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "head -100 /root/cost-verify-agent-rl/artifacts/eval_exp021_sft_fast.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T18:25:21.358185+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final\\\",\\n  \\\"num_episodes\\\": 20,\\n  \\\"temperature\\\": 0.4,\\n  \\\"max_steps\\\": 30,\\n  \\\"success_rate\\\": 0.0,\\n  \\\"action_is_valid_rate\\\": 0.71,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"avg_steps\\\": 30.0,\\n  \\\"eval_time_seconds\\\": 180.1,\\n  \\\"total_time_seconds\\\": 204.8,\\n  \\\"episodes\\\": [\\n    {\\n      \\\"episode\\\": 0,\\n      \\\"task_type\\\": \\\"put\\\",\\n      \\\"total_steps\\\": 30,\\n      \\\"valid_actions\\\": 17,\\n      \\\"format_ok\\\": 30,\\n      \\\"success\\\": false,\\n      \\\"time\\\": 8.1\\n    },\\n    {\\n      \\\"episode\\\": 1,\\n      \\\"task_type\\\": \\\"heat\\\",\\n      \\\"total_steps\\\": 30,\\n      \\\"valid_actions\\\": 14,\\n      \\\"format_ok\\\": 30,\\n      \\\"success\\\": false,\\n      \\\"time\\\": 10.0\\n    },\\n    {\\n      \\\"episode\\\": 2,\\n      \\\"task_type\\\": \\\"put\\\",\\n      \\\"total_steps\\\": 30,\\n      \\\"valid_actions\\\": 22,\\n      \\\"format_ok\\\": 30,\\n      \\\"success\\\": false,\\n      \\\"time\\\": 6.9\\n    },\\n    {\\n      \\\"episode\\\": 3,\\n      \\\"task_type\\\": \\\"clean\\\",\\n      \\\"total_steps\\\": 30,\\n      \\\"valid_actions\\\": 29,\\n      \\\"format_ok\\\": 30,\\n      \\\"success\\\": false,\\n      \\\"time\\\": 8.2\\n    },\\n    {\\n      \\\"episode\\\": 4,\\n      \\\"task_type\\\": \\\"put\\\",\\n      \\\"total_steps\\\": 30,\\n      \\\"valid_actions\\\": 21,\\n      \\\"format_ok\\\": 30,\\n      \\\"success\\\": false,\\n      \\\"time\\\": 8.2\\n    },\\n    {\\n      \\\"episode\\\": 5,\\n      \\\"task_type\\\": \\\"put\\\",\\n      \\\"total_steps\\\": 30,\\n      \\\"valid_actions\\\": 27,\\n      \\\"format_ok\\\": 30,\\n      \\\"success\\\": false,\\n      \\\"time\\\": 7.1\\n    },\\n    {\\n      \\\"episode\\\": 6,\\n      \\\"task_type\\\": \\\"put\\\",\\
+…[truncated 967 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T18:25:21.358385+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root -name \"*.json\" -path \"*scienceworld_sft*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "find /root -name \"*.json\" -path \"*scienceworld_sft*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T18:25:21.358524+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/generation_config.json\\n/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/config.json\\n/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/tokenizer_config.json\\n/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/special_tokens_map.json\\n/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/added_tokens.json\\n/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/vocab.json\\n/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/tokenizer.json\\n/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/model.safetensors.index.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T18:25:21.358681+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root -name \"nohup*\" -newer /root/cost-verify-agent-rl/eval_scienceworld.py -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "find /root -name \"nohup*\" -newer /root/cost-verify-agent-rl/eval_scienceworld.py -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-19T18:25:21.358805+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root -name \"*.log\" -newer /root/cost-verify-agent-rl/eval_scienceworld.py -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "find /root -name \"*.log\" -newer /root/cost-verify-agent-rl/eval_scienceworld.py -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T18:25:21.358925+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T18:25:21.359047+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/disk_monitor.log\\n/root/autodl-tmp/tmp/sw_dryrun.log\\n/root/autodl-tmp/tmp/wandb_list_runs.log\\n/root/autodl-tmp/tmp/check_keys.log\\n/root/autodl-tmp/tmp/scp_transfer.log\\n/root/autodl-tmp/tmp/eval_scienceworld.log\\n/root/autodl-tmp/paper_figures/export.log\\n/root/autodl-tmp/paper_figures/export_v2.log\\n/root/autodl-tmp/paper_figures/export_v3.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T18:25:21.359181+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "tail -80 /root/autodl-tmp/tmp/eval_scienceworld.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "tail -80 /root/autodl-tmp/tmp/eval_scienceworld.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T18:25:21.359371+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model from /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/...\\nThe tokenizer you are loading from '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\nINFO 05-20 02:08:05 [utils.py:233] non-default args: {'max_model_len': 32768, 'tensor_parallel_size': 2, 'gpu_memory_utilization': 0.85, 'disable_log_stats': True, 'enforce_eager': True, 'enable_chunked_prefill': True, 'model': '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/'}\\nINFO 05-20 02:08:05 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\nINFO 05-20 02:08:05 [model.py:1582] Using max model len 32768\\nINFO 05-20 02:08:05 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=16384.\\nINFO 05-20 02:08:05 [vllm.py:775] Asynchronous scheduling is enabled.\\nWARNING 05-20 02:08:05 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\nWARNING 05-20 02:08:05 [vllm.py:820] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\\nINFO 05-20 02:08:06 [vllm.py:985] Cudagraph is disabled under eager mode\\nINFO 05-20 02:08:06 [compilation.py:289] Enabled custom fusions: norm_quant, act_quant\\nThe tokenizer you are loading from '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix
+…[truncated 6301 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T18:25:21.359524+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "head -50 /root/autodl-tmp/tmp/eval_scienceworld.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "head -50 /root/autodl-tmp/tmp/eval_scienceworld.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T18:25:21.359747+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model from /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/...\\nThe tokenizer you are loading from '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\nINFO 05-20 02:08:05 [utils.py:233] non-default args: {'max_model_len': 32768, 'tensor_parallel_size': 2, 'gpu_memory_utilization': 0.85, 'disable_log_stats': True, 'enforce_eager': True, 'enable_chunked_prefill': True, 'model': '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/'}\\nINFO 05-20 02:08:05 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\nINFO 05-20 02:08:05 [model.py:1582] Using max model len 32768\\nINFO 05-20 02:08:05 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=16384.\\nINFO 05-20 02:08:05 [vllm.py:775] Asynchronous scheduling is enabled.\\nWARNING 05-20 02:08:05 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\nWARNING 05-20 02:08:05 [vllm.py:820] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\\nINFO 05-20 02:08:06 [vllm.py:985] Cudagraph is disabled under eager mode\\nINFO 05-20 02:08:06 [compilation.py:289] Enabled custom fusions: norm_quant, act_quant\\nThe tokenizer you are loading from '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix
+…[truncated 6295 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-19T18:25:21.359954+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /root/autodl-tmp/tmp/sw_dryrun.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat /root/autodl-tmp/tmp/sw_dryrun.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T18:25:21.360133+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading model from /root/cost-verify-agent-rl/models/Qwen3-1.7B...\\nINFO 05-19 23:22:23 [utils.py:233] non-default args: {'max_model_len': 8192, 'gpu_memory_utilization': 0.4, 'disable_log_stats': True, 'enforce_eager': True, 'enable_chunked_prefill': True, 'model': '/root/cost-verify-agent-rl/models/Qwen3-1.7B'}\\nINFO 05-19 23:22:23 [model.py:533] Resolved architecture: Qwen3ForCausalLM\\nINFO 05-19 23:22:23 [model.py:1582] Using max model len 8192\\nINFO 05-19 23:22:23 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=16384.\\nINFO 05-19 23:22:23 [vllm.py:775] Asynchronous scheduling is enabled.\\nWARNING 05-19 23:22:23 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\nWARNING 05-19 23:22:23 [vllm.py:820] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\\nINFO 05-19 23:22:23 [vllm.py:985] Cudagraph is disabled under eager mode\\nINFO 05-19 23:22:23 [compilation.py:289] Enabled custom fusions: norm_quant, act_quant\\n(EngineCore pid=177275) INFO 05-19 23:22:30 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='/root/cost-verify-agent-rl/models/Qwen3-1.7B', speculative_config=None, tokenizer='/root/cost-verify-agent-rl/models/Qwen3-1.7B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=True, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespac
+…[truncated 5753 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T18:25:21.360284+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep -n \"enable_thinking\\|think\\|/no_think\\|chat_template\" /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/tokenizer_config.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "grep -n \"enable_thinking\\|think\\|/no_think\\|chat_template\" /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/tokenizer_config.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T18:25:21.360411+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T18:25:21.360546+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /tmp/sw_dryrun.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat /tmp/sw_dryrun.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-19T18:25:21.360689+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "head -200 /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/tokenizer_config.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "head -200 /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/tokenizer_config.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-19T18:25:21.360832+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint\\\": \\\"/root/cost-verify-agent-rl/models/Qwen3-1.7B\\\",\\n  \\\"eval_split\\\": \\\"dev\\\",\\n  \\\"temperature\\\": 0.0,\\n  \\\"max_steps\\\": 10,\\n  \\\"total_episodes\\\": 1,\\n  \\\"total_success\\\": 0,\\n  \\\"overall_success_rate\\\": 0.0,\\n  \\\"overall_avg_score\\\": 0.0,\\n  \\\"total_time_seconds\\\": 29.8,\\n  \\\"per_task_type\\\": {\\n    \\\"boil\\\": {\\n      \\\"count\\\": 1,\\n      \\\"success\\\": 0,\\n      \\\"success_rate\\\": 0.0,\\n      \\\"avg_score\\\": 0.0,\\n      \\\"avg_steps\\\": 10.0,\\n      \\\"avg_valid_rate\\\": 0.0,\\n      \\\"avg_format_rate\\\": 0.0\\n    }\\n  },\\n  \\\"episodes\\\": [\\n    {\\n      \\\"task\\\": \\\"boil\\\",\\n      \\\"variation\\\": 14,\\n      \\\"success\\\": false,\\n      \\\"final_score\\\": 0,\\n      \\\"num_steps\\\": 10,\\n      \\\"valid_action_rate\\\": 0.0,\\n      \\\"format_rate\\\": 0.0\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T18:25:21.361077+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"add_bos_token\\\": false,\\n  \\\"add_prefix_space\\\": false,\\n  \\\"added_tokens_decoder\\\": {\\n    \\\"151643\\\": {\\n      \\\"content\\\": \\\"<|endoftext|>\\\",\\n      \\\"lstrip\\\": false,\\n      \\\"normalized\\\": false,\\n      \\\"rstrip\\\": false,\\n      \\\"single_word\\\": false,\\n      \\\"special\\\": true\\n    },\\n    \\\"151644\\\": {\\n      \\\"content\\\": \\\"<|im_start|>\\\",\\n      \\\"lstrip\\\": false,\\n      \\\"normalized\\\": false,\\n      \\\"rstrip\\\": false,\\n      \\\"single_word\\\": false,\\n      \\\"special\\\": true\\n    },\\n    \\\"151645\\\": {\\n      \\\"content\\\": \\\"<|im_end|>\\\",\\n      \\\"lstrip\\\": false,\\n      \\\"normalized\\\": false,\\n      \\\"rstrip\\\": false,\\n      \\\"single_word\\\": false,\\n      \\\"special\\\": true\\n    },\\n    \\\"151646\\\": {\\n      \\\"content\\\": \\\"<|object_ref_start|>\\\",\\n      \\\"lstrip\\\": false,\\n      \\\"normalized\\\": false,\\n      \\\"rstrip\\\": false,\\n      \\\"single_word\\\": false,\\n      \\\"special\\\": true\\n    },\\n    \\\"151647\\\": {\\n      \\\"content\\\": \\\"<|object_ref_end|>\\\",\\n      \\\"lstrip\\\": false,\\n      \\\"normalized\\\": false,\\n      \\\"rstrip\\\": false,\\n      \\\"single_word\\\": false,\\n      \\\"special\\\": true\\n    },\\n    \\\"151648\\\": {\\n      \\\"content\\\": \\\"<|box_start|>\\\",\\n      \\\"lstrip\\\": false,\\n      \\\"normalized\\\": false,\\n      \\\"rstrip\\\": false,\\n      \\\"single_word\\\": false,\\n      \\\"special\\\": true\\n    },\\n    \\\"151649\\\": {\\n      \\\"content\\\": \\\"<|box_end|>\\\",\\n      \\\"lstrip\\\": false,\\n      \\\"normalized\\\": false,\\n      \\\"rstrip\\\": false,\\n      \\\"single_word\\\": false,\\n      \\\"special\\\": true\\n    },\\n    \\\"151650\\\": {\\n      \\\"content\\\": \\\"<|quad_start|>\\\",\\n      \\\"lstrip\\\": false,\\n      \\\"norma
+…[truncated 4282 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T18:25:21.361248+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep \"chat_template\" /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/tokenizer_config.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "grep \"chat_template\" /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/tokenizer_config.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T18:25:21.361382+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-19T18:25:21.361504+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "tail -50 /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/tokenizer_config.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "tail -50 /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/tokenizer_config.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T18:25:21.361679+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      \\\"content\\\": \\\"&lt;/tool_response>\\\",\\n      \\\"lstrip\\\": false,\\n      \\\"normalized\\\": false,\\n      \\\"rstrip\\\": false,\\n      \\\"single_word\\\": false,\\n      \\\"special\\\": false\\n    },\\n    \\\"151667\\\": {\\n      \\\"content\\\": \\\"&lt;think>\\\",\\n      \\\"lstrip\\\": false,\\n      \\\"normalized\\\": false,\\n      \\\"rstrip\\\": false,\\n      \\\"single_word\\\": false,\\n      \\\"special\\\": false\\n    },\\n    \\\"151668\\\": {\\n      \\\"content\\\": \\\"&lt;/think>\\\",\\n      \\\"lstrip\\\": false,\\n      \\\"normalized\\\": false,\\n      \\\"rstrip\\\": false,\\n      \\\"single_word\\\": false,\\n      \\\"special\\\": false\\n    }\\n  },\\n  \\\"additional_special_tokens\\\": [\\n    \\\"<|im_start|>\\\",\\n    \\\"<|im_end|>\\\",\\n    \\\"<|object_ref_start|>\\\",\\n    \\\"<|object_ref_end|>\\\",\\n    \\\"<|box_start|>\\\",\\n    \\\"<|box_end|>\\\",\\n    \\\"<|quad_start|>\\\",\\n    \\\"<|quad_end|>\\\",\\n    \\\"<|vision_start|>\\\",\\n    \\\"<|vision_end|>\\\",\\n    \\\"<|vision_pad|>\\\",\\n    \\\"<|image_pad|>\\\",\\n    \\\"<|video_pad|>\\\"\\n  ],\\n  \\\"bos_token\\\": null,\\n  \\\"clean_up_tokenization_spaces\\\": false,\\n  \\\"eos_token\\\": \\\"<|im_end|>\\\",\\n  \\\"errors\\\": \\\"replace\\\",\\n  \\\"extra_special_tokens\\\": {},\\n  \\\"model_max_length\\\": 131072,\\n  \\\"pad_token\\\": \\\"<|endoftext|>\\\",\\n  \\\"split_special_tokens\\\": false,\\n  \\\"tokenizer_class\\\": \\\"Qwen2Tokenizer\\\",\\n  \\\"unk_token\\\": null\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-19T18:25:21.361858+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/cost-verify-agent-rl -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "find /root/cost-verify-agent-rl -name \"*.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T18:25:21.362077+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/client/kimina_client/__init__.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/client/kimina_client/async_client.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/client/kimina_client/base.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/client/kimina_client/client_old.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/client/kimina_client/import json.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/client/kimina_client/infotree.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/client/kimina_client/models.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/client/kimina_client/proof_utils.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/client/kimina_client/sync_client.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/client/kimina_client/utils.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/examples/batch_verify.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/server/__init__.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/server/__main__.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/server/__version__.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/server/auth.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/server/db.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/server/errors.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/server/logger.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/server/main.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/server/manager.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/server/models.py\\n/root/cost-verify-agent-rl/RAGEN/external/kimina-lean-server/server/prisma_client.py\\n/
+…[truncated 6426 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-19T18:25:21.362240+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root/cost-verify-agent-rl -name \"*.py\" -path \"*sft*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "find /root/cost-verify-agent-rl -name \"*.py\" -path \"*sft*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-19T18:25:21.362369+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-19T18:25:21.362487+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root/cost-verify-agent-rl -name \"*.yaml\" -o -name \"*.yml\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "find /root/cost-verify-agent-rl -name \"*.yaml\" -o -name \"*.yml\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-19T18:25:21.362625+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-19T18:25:21.362762+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /root/cost-verify-agent-rl/scripts/sft_train_v2.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat /root/cost-verify-agent-rl/scripts/sft_train_v2.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-19T18:25:21.362955+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nexp019_expert_sft_v2: second-stage SFT on format-fixed expert trajectories.\\n\\nInput:  train.jsonl / val.jsonl (messages array per line, same format as sft_train.py)\\nBase:   exp008_sft checkpoint (format_ok=100%, action_is_valid=90%)\\nOutput: checkpoint at /root/autodl-tmp/checkpoints/exp019_expert_sft_v2/final/\\nKey:    LR=5e-6 (4x lower than exp017), epochs=2, to preserve format quality.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom trl import SFTTrainer, SFTConfig\\nfrom datasets import load_dataset\\n\\nMODEL_PATH = \\\"/root/autodl-tmp/checkpoints/exp008_sft/final\\\"\\nDEFAULT_TRAIN_PATH = \\\"/root/autodl-tmp/expert_sft_v3/expert_sft_train.jsonl\\\"\\nDEFAULT_VAL_PATH = \\\"/root/autodl-tmp/expert_sft_v3/expert_sft_val.jsonl\\\"\\nDEFAULT_OUTPUT_DIR = \\\"/root/autodl-tmp/checkpoints/exp019b_expert_sft_v3\\\"\\n\\nSIMPLE_CHATML = (\\n    \\\"{% for message in messages %}\\\"\\n    \\\"{{'<|im_start|>' + message['role'] + '\\\\\\\\n' + message['content'] + '<|im_end|>' + '\\\\\\\\n'}}\\\"\\n    \\\"{% endfor %}\\\"\\n    \\\"{% if add_generation_prompt %}\\\"\\n    \\\"{{'<|im_start|>assistant\\\\\\\\n'}}\\\"\\n    \\\"{% endif %}\\\"\\n)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"exp019: second-stage SFT from exp008_sft checkpoint\\\")\\n    parser.add_argument(\\\"--model_path\\\", type=str, default=MODEL_PATH)\\n    parser.add_argument(\\\"--max_steps\\\", type=int, default=-1)\\n    parser.add_argument(\\\"--num_train_epochs\\\", type=int, default=2)\\n    parser.add_argument(\\\"--per_device_train_batch_size\\\", type=int, default=4)\\n    parser.add_argument(\\\"--gradient_accumulation_steps\\\", type=int, default=4)\\n    parser.add_argument(\\\"--learning_rate\\\", type=float, default=5e-6)\\n    parser.add_argument(\\\"--max_seq_length\\\", type=
+…[truncated 3196 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-19T18:25:21.363103+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /root/cost-verify-agent-rl/scripts/prepare_expert_sft_data.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat /root/cost-verify-agent-rl/scripts/prepare_expert_sft_data.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-19T18:25:21.363341+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Validate and filter expert trajectories for SFT training.\\n\\nInput  : /root/autodl-tmp/expert_trajectories/expert_trajectories.jsonl\\nOutput : /root/autodl-tmp/expert_sft/expert_sft_data.jsonl\\n\\nThe expert collector already emits the same {\\\"messages\\\": [...]} format used\\nby exp008_sft (Qwen3 conversation, identical system prompt), so this script\\nonly performs validation, filtering, and statistics — no structural\\nconversion.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport re\\nimport random\\nfrom collections import Counter\\n\\nVALID_ACTION_PREFIXES = (\\n    \\\"go to \\\", \\\"open \\\", \\\"close \\\", \\\"take \\\", \\\"put \\\", \\\"use \\\",\\n    \\\"look\\\", \\\"inventory\\\", \\\"examine \\\", \\\"clean \\\", \\\"heat \\\", \\\"cool \\\",\\n    \\\"move \\\", \\\"slice \\\",\\n)\\n\\nANSWER_RE = re.compile(r\\\"&lt;answer>(.*?)&lt;/answer>\\\", re.DOTALL)\\nTHINK_RE = re.compile(r\\\"&lt;think>.*?&lt;/think>\\\", re.DOTALL)\\n\\n\\ndef is_valid_action(action: str) -> bool:\\n    a = action.strip().lower()\\n    return any(a.startswith(p) or a == p.strip() for p in VALID_ACTION_PREFIXES)\\n\\n\\ndef validate_example(ex, min_turns: int, max_turns: int):\\n    \\\"\\\"\\\"Return (ok, reason, n_assistant_turns, actions).\\\"\\\"\\\"\\n    if not isinstance(ex, dict) or \\\"messages\\\" not in ex:\\n        return False, \\\"no_messages\\\", 0, []\\n    msgs = ex[\\\"messages\\\"]\\n    if not msgs or msgs[0][\\\"role\\\"] != \\\"system\\\":\\n        return False, \\\"no_system\\\", 0, []\\n    if len(msgs) < 3 or msgs[1][\\\"role\\\"] != \\\"user\\\":\\n        return False, \\\"no_user_task\\\", 0, []\\n\\n    actions = []\\n    assistant_turns = 0\\n    for m in msgs[2:]:\\n        role = m.get(\\\"role\\\")\\n        content = m.get(\\\"content\\\", \\\"\\\")\\n        if role == \\\"assistant\\\":\\n            assistant_turns += 1\\n  
+…[truncated 5832 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-19T18:25:21.363557+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /root/cost-verify-agent-rl/scripts/sft_train.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat /root/cost-verify-agent-rl/scripts/sft_train.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-19T18:25:21.363775+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"SFT training for ALFWorld RAGEN format on Qwen3-1.7B.\\\"\\\"\\\"\\n\\nimport argparse\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom trl import SFTTrainer, SFTConfig\\nfrom datasets import load_dataset\\n\\nMODEL_PATH = \\\"/root/cost-verify-agent-rl/models/Qwen3-1.7B\\\"\\nDEFAULT_DATA_PATH = \\\"/root/autodl-tmp/expert_sft/expert_sft_train.jsonl\\\"\\nDEFAULT_OUTPUT_DIR = \\\"/root/autodl-tmp/checkpoints/exp017_expert_sft\\\"\\n\\nSIMPLE_CHATML = (\\n    \\\"{% for message in messages %}\\\"\\n    \\\"{{'<|im_start|>' + message['role'] + '\\\\\\\\n' + message['content'] + '<|im_end|>' + '\\\\\\\\n'}}\\\"\\n    \\\"{% endfor %}\\\"\\n    \\\"{% if add_generation_prompt %}\\\"\\n    \\\"{{'<|im_start|>assistant\\\\\\\\n'}}\\\"\\n    \\\"{% endif %}\\\"\\n)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--max_steps\\\", type=int, default=-1)\\n    parser.add_argument(\\\"--num_train_epochs\\\", type=int, default=3)\\n    parser.add_argument(\\\"--per_device_train_batch_size\\\", type=int, default=4)\\n    parser.add_argument(\\\"--gradient_accumulation_steps\\\", type=int, default=4)\\n    parser.add_argument(\\\"--learning_rate\\\", type=float, default=2e-5)\\n    parser.add_argument(\\\"--max_seq_length\\\", type=int, default=4096)\\n    parser.add_argument(\\\"--data_path\\\", type=str, default=DEFAULT_DATA_PATH)\\n    parser.add_argument(\\\"--output_dir\\\", type=str, default=DEFAULT_OUTPUT_DIR)\\n    args = parser.parse_args()\\n\\n    print(\\\"Loading tokenizer...\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)\\n    tokenizer.chat_template = SIMPLE_CHATML\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    print(\\\"Loading model...\\\")\\n    model = AutoModelForCausalLM.from_pretrained(\\n        MODEL_PATH,\\n        dt
+…[truncated 1869 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-19T18:25:21.363934+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/config.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/config.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-19T18:25:21.364102+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"architectures\\\": [\\n    \\\"Qwen3ForCausalLM\\\"\\n  ],\\n  \\\"attention_bias\\\": false,\\n  \\\"attention_dropout\\\": 0.0,\\n  \\\"bos_token_id\\\": 151643,\\n  \\\"dtype\\\": \\\"bfloat16\\\",\\n  \\\"eos_token_id\\\": 151645,\\n  \\\"head_dim\\\": 128,\\n  \\\"hidden_act\\\": \\\"silu\\\",\\n  \\\"hidden_size\\\": 2048,\\n  \\\"initializer_range\\\": 0.02,\\n  \\\"intermediate_size\\\": 6144,\\n  \\\"layer_types\\\": [\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\",\\n    \\\"full_attention\\\"\\n  ],\\n  \\\"max_position_embeddings\\\": 40960,\\n  \\\"max_window_layers\\\": 28,\\n  \\\"model_type\\\": \\\"qwen3\\\",\\n  \\\"num_attention_heads\\\": 16,\\n  \\\"num_hidden_layers\\\": 28,\\n  \\\"num_key_value_heads\\\": 8,\\n  \\\"rms_norm_eps\\\": 1e-06,\\n  \\\"rope_scaling\\\": null,\\n  \\\"rope_theta\\\": 1000000,\\n  \\\"sliding_window\\\": null,\\n  \\\"tie_word_embeddings\\\": true,\\n  \\\"transformers_version\\\": \\\"4.57.6\\\",\\n  \\\"use_cache\\\": true,\\n  \\\"use_sliding_window\\\": false,\\n  \\\"vocab_size\\\": 151936\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-19T18:25:21.364280+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/autodl-tmp/checkpoints/scienceworld_sft -type f -name \"*.json\" -o -name \"*.txt\" -o -name \"*.md\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "find /root/autodl-tmp/checkpoints/scienceworld_sft -type f -name \"*.json\" -o -name \"*.txt\" -o -name \"*.md\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-19T18:25:21.364419+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/generation_config.json\\n/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/config.json\\n/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/tokenizer_config.json\\n/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/special_tokens_map.json\\n/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/added_tokens.json\\n/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/vocab.json\\n/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/merges.txt\\n/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/tokenizer.json\\n/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/model.safetensors.index.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-19T18:25:21.364554+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/autodl-tmp/checkpoints/scienceworld_sft -name \"training_args*\" -o -name \"trainer_state*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "find /root/autodl-tmp/checkpoints/scienceworld_sft -name \"training_args*\" -o -name \"trainer_state*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-19T18:25:21.364706+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-19T18:25:21.364842+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "python3 -c \"from transformers import AutoTokenizer; t = AutoTokenizer.from_pretrained('/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/'); msgs = [{'role':'system','content':'test'},{'role':'user','content':'hello'}]; print(t.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "python3 -c \"from transformers import AutoTokenizer; t = AutoTokenizer.from_pretrained('/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/'); msgs = [{'role':'system','content':'test'},{'role':'user','content':'hello'}]; print(t.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-19T18:25:21.364965+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-19T18:25:21.365084+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom transformers import AutoTokenizer\nt = AutoTokenizer.from_pretrained('/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/')\nmsgs = [{'role':'system','content':'test sys'}, {'role':'user','content':'hello user'}]\nresult = t.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)\nprint('=== DEFAULT TEMPLATE OUTPUT ===')\nprint(repr(result))\nprint()\nprint(result)\nprint('=== END ===')\nprint()\nprint('chat_template attr:', repr(t.chat_template)[:200] if t.chat_template else 'NONE')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nfrom transformers import AutoTokenizer\nt = AutoTokenizer.from_pretrained('/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/')\nmsgs = [{'role':'system','content':'test sys'}, {'role':'user','content':'hello user'}]\nresult = t.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)\nprint('=== DEFAULT TEMPLATE OUTPUT ===')\nprint(repr(result))\nprint()\nprint(result)\nprint('=== END ===')\nprint()\nprint('chat_template attr:', repr(t.chat_template)[:200] if t.chat_template else 'NONE')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-19T18:25:21.365221+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== DEFAULT TEMPLATE OUTPUT ===\\n'<|im_start|>system\\\\ntest sys<|im_end|>\\\\n<|im_start|>user\\\\nhello user<|im_end|>\\\\n<|im_start|>assistant\\\\n'\\n\\n<|im_start|>system\\ntest sys<|im_end|>\\n<|im_start|>user\\nhello user<|im_end|>\\n<|im_start|>assistant\\n\\n=== END ===\\n\\nchat_template attr: '{%- if tools %}\\\\n    {{- \\\\'<|im_start|>system\\\\\\\\n\\\\' }}\\\\n    {%- if messages[0].role == \\\\'system\\\\' %}\\\\n        {{- messages[0].content + \\\\'\\\\\\\\n\\\\\\\\n\\\\' }}\\\\n    {%- endif %}\\\\n    {{- \\\"# Tools\\\\\\\\n\\\\\\\\nYou may c\\n\", \"stderr\": \"The tokenizer you are loading from '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-19T18:25:21.365408+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport re, json\nimport scienceworld\nfrom vllm import LLM, SamplingParams\nfrom transformers import AutoTokenizer\nimport os\nos.environ['VLLM_WORKER_MULTIPROC_METHOD'] = 'spawn'\nos.environ['CUDA_VISIBLE_DEVICES'] = '0,1'\n\nCKPT = '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/'\n\nSYSTEM_PROMPT = (\n    \\\"You're a helpful assistant. You are a science student performing experiments \\\"\n    \\\"in a virtual science lab.\\nComplete the given task by navigating rooms and \\\"\n    \\\"interacting with objects.\\n\\n\\\"\n    \\\"Your reasoning MUST be enclosed within &lt;think> &lt;/think> tags.\\n\\\"\n    \\\"After the closing &lt;/think> tag, output EXACTLY ONE action command directly.\\n\\\"\n    \\\"The action must be from the admissible actions list.\\n\\\"\n    \\\"Do NOT wrap the action in any tags. Do NOT output anything after the action.\\n\\n\\\"\n    \\\"Example: &lt;think>I need to boil water. I should go to the kitchen first.&lt;/think>\\\"\n    \\\"open door to kitchen\\n\\\"\n)\n\ntokenizer = AutoTokenizer.from_pretrained(CKPT)\nllm = LLM(CKPT, tensor_parallel_size=2, gpu_memory_utilization=0.85, enforce_eager=True, enable_chunked_prefill=True, max_model_len=32768, disable_log_stats=True)\nsp = SamplingParams(temperature=0.4, max_tokens=512)\n\nenv = scienceworld.ScienceWorldEnv('')\nenv.load('boil', 14)\nobs, info = env.reset()\ntask_desc = info.get('taskDesc', 'boil')\nvalid_actions = env.get_valid_action_object_combinations()\n\nshown = valid_actions[:50]\nactions_str = ', '.join(shown)\nuser_content = (\n    f'\\nTurn 1:\\nTask: {task_desc}\\n\\n'\n    f'State:\\n{obs.strip()}\\n\\n'\n    f'Admissible actions: [{actions_str}]\\n'\n    f'You have 100 actions left. '\n    'Always output: &lt;think> [Your thoughts] &lt;/think> &lt;answer> [your answer] &lt;/answer> '\n    'with no extra text. Strictly follow this format. '\n    'Max response length: 512 words (tokens).\\n'\n)\n\nmsgs = [\n    {'role': 'system', 'content': SYSTEM_PROMPT},\n    {'role': 'user', 'content': user_content},\n]\n\ntext = tokenizer.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)\nprint('=== PROMPT TAIL (last 200 chars) ===')\nprint(repr(text[-200:]))\nprint()\n\noutputs = llm.generate([text], sp, use_tqdm=False)\nresponse = outputs[0].outputs[0].text\nclean = response.replace('<|im_end|>', '').replace('<|endoftext|>', '').strip()\n\nprint('=== RAW RESPONSE ===')\nprint(repr(response[:1000]))\nprint()\nprint('=== CLEAN RESPONSE ===')\nprint(clean[:500])\nprint()\n\n# parse\nhas_think = bool(re.search(r'&lt;think>.*?&lt;/think>', clean, re.DOTALL))\nm1 = re.search(r'&lt;think>.*?&lt;/think>\\s*&lt;answer>(.*?)&lt;/answer>', clean, re.DOTALL)\nm2 = re.search(r'&lt;/think>\\s*(.*)', clean, re.DOTALL)\nif m1:\n    action = m1.group(1).strip()\n    parse_method = 'answer_tag'\nelif m2:\n    action = m2.group(1).strip().split('\\n')[0].strip()\n    for tok in ['<|im_end|>', '<|endoftext|>', '&lt;answer>', '&lt;/answer>']:\n        action = action.replace(tok, '').strip()\n    parse_method = 'fallback'\nelse:\n    action = ''\n    parse_method = 'none'\n\nprint(f'=== PARSED ACTION ===')\nprint(f'method: {parse_method}')\nprint(f'action: [{action}]')\nprint(f'has_think: {has_think}')\nprint(f'action in shown: {action in shown}')\nprint()\nprint(f'=== FIRST 10 VALID ACTIONS ===')\nfor a in shown[:10]:\n    print(f'  [{a}]')\nprint(f'total shown: {len(shown)}, total valid: {len(valid_actions)}')\n\nenv.close()\n\" 2>&1 | tail -60\n",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport re, json\nimport scienceworld\nfrom vllm import LLM, SamplingParams\nfrom transformers import AutoTokenizer\nimport os\nos.environ['VLLM_WORKER_MULTIPROC_METHOD'] = 'spawn'\nos.environ['CUDA_VISIBLE_DEVICES'] = '0,1'\n\nCKPT = '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/'\n\nSYSTEM_PROMPT = (\n    \\\"You're a helpful assistant. You are a science student performing experiments \\\"\n    \\\"in a virtual science lab.\\nComplete the given task by navigating rooms and \\\"\n    \\\"interacting with objects.\\n\\n\\\"\n    \\\"Your reasoning MUST be enclosed within &lt;think> &lt;/think> tags.\\n\\\"\n    \\\"After the closing &lt;/think> tag, output EXACTLY ONE action command directly.\\n\\\"\n    \\\"The action must be from the admissible actions list.\\n\\\"\n    \\\"Do NOT wrap the action in any tags. Do NOT output anything after the action.\\n\\n\\\"\n    \\\"Example: &lt;think>I need to boil water. I should go to the kitchen first.&lt;/think>\\\"\n    \\\"open door to kitchen\\n\\\"\n)\n\ntokenizer = AutoTokenizer.from_pretrained(CKPT)\nllm = LLM(CKPT, tensor_parallel_size=2, gpu_memory_utilization=0.85, enforce_eager=True, enable_chunked_prefill=True, max_model_len=32768, disable_log_stats=True)\nsp = SamplingParams(temperature=0.4, max_tokens=512)\n\nenv = scienceworld.ScienceWorldEnv('')\nenv.load('boil', 14)\nobs, info = env.reset()\ntask_desc = info.get('taskDesc', 'boil')\nvalid_actions = env.get_valid_action_object_combinations()\n\nshown = valid_actions[:50]\nactions_str = ', '.join(shown)\nuser_content = (\n    f'\\nTurn 1:\\nTask: {task_desc}\\n\\n'\n    f'State:\\n{obs.strip()}\\n\\n'\n    f'Admissible actions: [{actions_str}]\\n'\n    f'You have 100 actions left. '\n    'Always output: &lt;think> [Your thoughts] &lt;/think> &lt;answer> [your answer] &lt;/answer> '\n    'with no extra text. Strictly follow this format. '\n    'Max response length: 512 words (tokens).\\n'\n)\n\nmsgs = [\n    {'role': 'system', 'content': SYSTEM_PROMPT},\n    {'role': 'user', 'content': user_content},\n]\n\ntext = tokenizer.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)\nprint('=== PROMPT TAIL (last 200 chars) ===')\nprint(repr(text[-200:]))\nprint()\n\noutputs = llm.generate([text], sp, use_tqdm=False)\nresponse = outputs[0].outputs[0].text\nclean = response.replace('<|im_end|>', '').replace('<|endoftext|>', '').strip()\n\nprint('=== RAW RESPONSE ===')\nprint(repr(response[:1000]))\nprint()\nprint('=== CLEAN RESPONSE ===')\nprint(clean[:500])\nprint()\n\n# parse\nhas_think = bool(re.search(r'&lt;think>.*?&lt;/think>', clean, re.DOTALL))\nm1 = re.search(r'&lt;think>.*?&lt;/think>\\s*&lt;answer>(.*?)&lt;/answer>', clean, re.DOTALL)\nm2 = re.search(r'&lt;/think>\\s*(.*)', clean, re.DOTALL)\nif m1:\n    action = m1.group(1).strip()\n    parse_method = 'answer_tag'\nelif m2:\n    action = m2.group(1).strip().split('\\n')[0].strip()\n    for tok in ['<|im_end|>', '<|endoftext|>', '&lt;answer>', '&lt;/answer>']:\n        action = action.replace(tok, '').strip()\n    parse_method = 'fallback'\nelse:\n    action = ''\n    parse_method = 'none'\n\nprint(f'=== PARSED ACTION ===')\nprint(f'method: {parse_method}')\nprint(f'action: [{action}]')\nprint(f'has_think: {has_think}')\nprint(f'action in shown: {action in shown}')\nprint()\nprint(f'=== FIRST 10 VALID ACTIONS ===')\nfor a in shown[:10]:\n    print(f'  [{a}]')\nprint(f'total shown: {len(shown)}, total valid: {len(valid_actions)}')\n\nenv.close()\n\" 2>&1 | tail -60\n",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-19T18:25:21.365638+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=185342)   File \\\"/root/miniconda3/lib/python3.12/multiprocessing/process.py\\\", line 314, in _bootstrap\\n(EngineCore pid=185342)     self.run()\\n(EngineCore pid=185342)   File \\\"/root/miniconda3/lib/python3.12/multiprocessing/process.py\\\", line 108, in run\\n(EngineCore pid=185342)     self._target(*self._args, **self._kwargs)\\n(EngineCore pid=185342)   File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/core.py\\\", line 1103, in run_engine_core\\n(EngineCore pid=185342)     raise e\\n(EngineCore pid=185342)   File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/core.py\\\", line 1073, in run_engine_core\\n(EngineCore pid=185342)     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)\\n(EngineCore pid=185342)                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n(EngineCore pid=185342)   File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/tracing/otel.py\\\", line 178, in sync_wrapper\\n(EngineCore pid=185342)     return func(*args, **kwargs)\\n(EngineCore pid=185342)            ^^^^^^^^^^^^^^^^^^^^^\\n(EngineCore pid=185342)   File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/core.py\\\", line 839, in __init__\\n(EngineCore pid=185342)     super().__init__(\\n(EngineCore pid=185342)   File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/core.py\\\", line 112, in __init__\\n(EngineCore pid=185342)     self.model_executor = executor_class(vllm_config)\\n(EngineCore pid=185342)                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n(EngineCore pid=185342)   File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/executor/multiproc_executor.py\\\", line 101, in __init__\\n(EngineCore pid=185342)     super().__init__(vllm_config)\\n(EngineCore pid=185342)   File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/tracing/otel.py\\\", line 178, in sync_wrapper\\n(
+…[truncated 3245 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-19T18:25:21.365827+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "ps aux",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "ps aux",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-19T18:25:21.365986+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot          1  0.0  0.0   4476  3136 ?        Ss   May13   0:01 bash /init/boot/boot.sh\\nroot        891  2.2  0.0 722848 21232 ?        Sl   May13 215:20 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        909  0.0  0.0  15444  9356 ?        S    May13   0:16 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        910  0.2  0.0 3609324 20292 ?       Sl   May13  20:16 proxy -c /init/proxy/proxy.ini\\nroot        911  0.0  0.0 3328348 67064 ?       Sl   May13   4:34 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        912  0.2  0.0 6896372 105840 ?      Sl   May13  23:09 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        914  0.0  0.0 191548 97816 ?        S    May13   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        915  0.0  0.0 3386656 18272 ?       Sl   May13   2:17 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        997  0.0  0.0 28341192 7164 ?       Sl   May13   9:12 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_42t4m6mv/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_42t4m6mv/startup_error\\nroot      96081  0.0  0.0   4364  2188 ?        S    May19   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/expert_sft && nohup python -m http.server 18923 > /dev/null 2>&1 & echo \\\"HTTP_PID: $!\\\"\\nroot      96086  0.0  0.0  25564 19292 ?        S    May19   0:05 python -m http.server 18923\\nroot     181641  0.0  0.0  16692 10748 ?        Ss   01:38   0:00 sshd: root@notty\\nroot     181673  0.0  0.0
+…[truncated 2058 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-19T18:25:21.366268+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "tail -20 /tmp/eval_scienceworld.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "tail -20 /tmp/eval_scienceworld.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-19T18:25:21.366434+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=183987) INFO 05-20 02:08:25 [core.py:281] init engine (profile, create kv cache, warmup model) took 1.97 seconds\\n(EngineCore pid=183987) The tokenizer you are loading from '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\n(EngineCore pid=183987) INFO 05-20 02:08:27 [vllm.py:775] Asynchronous scheduling is enabled.\\n(EngineCore pid=183987) WARNING 05-20 02:08:27 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\n(EngineCore pid=183987) WARNING 05-20 02:08:27 [vllm.py:820] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\\n(EngineCore pid=183987) INFO 05-20 02:08:27 [vllm.py:985] Cudagraph is disabled under eager mode\\n(EngineCore pid=183987) INFO 05-20 02:08:27 [compilation.py:289] Enabled custom fusions: norm_quant, act_quant\\nINFO 05-20 02:08:27 [llm.py:391] Supported tasks: ['generate']\\nInitializing ScienceWorld...\\nEval plan: 1796 episodes across 30 task types (split=dev, T=0.4)\\n[1/1796] FAIL(3) boil v14 (100 steps, valid=1%, fmt=61%, 63.4s)\\n[2/1796] FAIL(70) boil v15 (100 steps, valid=0%, fmt=69%, 62.2s)\\n[3/1796] FAIL(3) boil v16 (100 steps, valid=2%, fmt=53%, 75.5s)\\n[4/1796] FAIL(38) boil v17 (100 steps, valid=4%, fmt=74%, 56.1s)\\n[5/1796] FAIL(38) boil v18 (100 steps, valid=1%, fmt=72%, 88.8s)\\n[6/1796] FAIL(-100) boil v19 (20 steps, valid=0%, fmt=100%, 8.9s)\\n[7/1796] FAIL(42) boil v20 (100 steps, valid=1%, fmt=67%, 64.6s)\\n[8/1796] FAIL(71) change-the-state-of-matter-of v14 (100 steps, valid=0%, fmt
+…[truncated 304 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-19T18:25:21.366620+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python3 -c \"\nimport re, json\nimport scienceworld\nfrom vllm import LLM, SamplingParams\nfrom transformers import AutoTokenizer\nimport os\nos.environ['VLLM_WORKER_MULTIPROC_METHOD'] = 'spawn'\n\nCKPT = '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/'\n\nSYSTEM_PROMPT = (\n    \\\"You're a helpful assistant. You are a science student performing experiments \\\"\n    \\\"in a virtual science lab.\\nComplete the given task by navigating rooms and \\\"\n    \\\"interacting with objects.\\n\\n\\\"\n    \\\"Your reasoning MUST be enclosed within &lt;think> &lt;/think> tags.\\n\\\"\n    \\\"After the closing &lt;/think> tag, output EXACTLY ONE action command directly.\\n\\\"\n    \\\"The action must be from the admissible actions list.\\n\\\"\n    \\\"Do NOT wrap the action in any tags. Do NOT output anything after the action.\\n\\n\\\"\n    \\\"Example: &lt;think>I need to boil water. I should go to the kitchen first.&lt;/think>\\\"\n    \\\"open door to kitchen\\n\\\"\n)\n\ntokenizer = AutoTokenizer.from_pretrained(CKPT)\nllm = LLM(CKPT, gpu_memory_utilization=0.4, enforce_eager=True, enable_chunked_prefill=True, max_model_len=8192, disable_log_stats=True)\nsp = SamplingParams(temperature=0.4, max_tokens=512)\n\nenv = scienceworld.ScienceWorldEnv('')\nenv.load('boil', 14)\nobs, info = env.reset()\ntask_desc = info.get('taskDesc', 'boil')\nvalid_actions = env.get_valid_action_object_combinations()\n\nshown = valid_actions[:50]\nactions_str = ', '.join(shown)\nuser_content = (\n    f'\\nTurn 1:\\nTask: {task_desc}\\n\\n'\n    f'State:\\n{obs.strip()}\\n\\n'\n    f'Admissible actions: [{actions_str}]\\n'\n    f'You have 100 actions left. '\n    'Always output: &lt;think> [Your thoughts] &lt;/think> &lt;answer> [your answer] &lt;/answer> '\n    'with no extra text. Strictly follow this format. '\n    'Max response length: 512 words (tokens).\\n'\n)\n\nmsgs = [\n    {'role': 'system', 'content': SYSTEM_PROMPT},\n    {'role': 'user', 'content': user_content},\n]\n\ntext = tokenizer.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)\n\noutputs = llm.generate([text], sp, use_tqdm=False)\nresponse = outputs[0].outputs[0].text\nclean = response.replace('<|im_end|>', '').replace('<|endoftext|>', '').strip()\n\nprint('=== RAW MODEL OUTPUT (first 800 chars) ===')\nprint(repr(clean[:800]))\nprint()\nprint('=== READABLE OUTPUT ===')\nprint(clean[:500])\nprint()\n\n# parse\nm1 = re.search(r'&lt;think>.*?&lt;/think>\\s*&lt;answer>(.*?)&lt;/answer>', clean, re.DOTALL)\nm2 = re.search(r'&lt;/think>\\s*(.*)', clean, re.DOTALL)\nif m1:\n    action = m1.group(1).strip()\n    method = 'answer_tag'\nelif m2:\n    action = m2.group(1).strip().split('\\n')[0].strip()\n    for tok in ['<|im_end|>', '<|endoftext|>', '&lt;answer>', '&lt;/answer>']:\n        action = action.replace(tok, '').strip()\n    method = 'fallback'\nelse:\n    action = ''\n    method = 'none'\n\nprint(f'Parse method: {method}')\nprint(f'Parsed action: [{action}]')\nprint(f'Action in shown[:50]: {action in shown}')\nprint(f'Action in ALL valid: {action in valid_actions}')\nprint()\nprint(f'=== FIRST 10 SHOWN ACTIONS ===')\nfor a in shown[:10]:\n    print(f'  [{a}]')\nprint(f'=== TOTAL: {len(shown)} shown, {len(valid_actions)} total ===')\n\n# Check if action is a valid ScienceWorld command\n# Try stepping\nstep_result = env.step(action)\nobs2, reward, done, step_info = step_result\nprint(f'\\n=== ENV STEP RESULT ===')\nprint(f'Reward: {reward}, Score: {step_info.get(\\\"score\\\", \\\"?\\\")}, Done: {done}')\nprint(f'Obs: {obs2[:200]}')\n\nenv.close()\n\" 2>&1 | tail -40\n",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python3 -c \"\nimport re, json\nimport scienceworld\nfrom vllm import LLM, SamplingParams\nfrom transformers import AutoTokenizer\nimport os\nos.environ['VLLM_WORKER_MULTIPROC_METHOD'] = 'spawn'\n\nCKPT = '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/'\n\nSYSTEM_PROMPT = (\n    \\\"You're a helpful assistant. You are a science student performing experiments \\\"\n    \\\"in a virtual science lab.\\nComplete the given task by navigating rooms and \\\"\n    \\\"interacting with objects.\\n\\n\\\"\n    \\\"Your reasoning MUST be enclosed within &lt;think> &lt;/think> tags.\\n\\\"\n    \\\"After the closing &lt;/think> tag, output EXACTLY ONE action command directly.\\n\\\"\n    \\\"The action must be from the admissible actions list.\\n\\\"\n    \\\"Do NOT wrap the action in any tags. Do NOT output anything after the action.\\n\\n\\\"\n    \\\"Example: &lt;think>I need to boil water. I should go to the kitchen first.&lt;/think>\\\"\n    \\\"open door to kitchen\\n\\\"\n)\n\ntokenizer = AutoTokenizer.from_pretrained(CKPT)\nllm = LLM(CKPT, gpu_memory_utilization=0.4, enforce_eager=True, enable_chunked_prefill=True, max_model_len=8192, disable_log_stats=True)\nsp = SamplingParams(temperature=0.4, max_tokens=512)\n\nenv = scienceworld.ScienceWorldEnv('')\nenv.load('boil', 14)\nobs, info = env.reset()\ntask_desc = info.get('taskDesc', 'boil')\nvalid_actions = env.get_valid_action_object_combinations()\n\nshown = valid_actions[:50]\nactions_str = ', '.join(shown)\nuser_content = (\n    f'\\nTurn 1:\\nTask: {task_desc}\\n\\n'\n    f'State:\\n{obs.strip()}\\n\\n'\n    f'Admissible actions: [{actions_str}]\\n'\n    f'You have 100 actions left. '\n    'Always output: &lt;think> [Your thoughts] &lt;/think> &lt;answer> [your answer] &lt;/answer> '\n    'with no extra text. Strictly follow this format. '\n    'Max response length: 512 words (tokens).\\n'\n)\n\nmsgs = [\n    {'role': 'system', 'content': SYSTEM_PROMPT},\n    {'role': 'user', 'content': user_content},\n]\n\ntext = tokenizer.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)\n\noutputs = llm.generate([text], sp, use_tqdm=False)\nresponse = outputs[0].outputs[0].text\nclean = response.replace('<|im_end|>', '').replace('<|endoftext|>', '').strip()\n\nprint('=== RAW MODEL OUTPUT (first 800 chars) ===')\nprint(repr(clean[:800]))\nprint()\nprint('=== READABLE OUTPUT ===')\nprint(clean[:500])\nprint()\n\n# parse\nm1 = re.search(r'&lt;think>.*?&lt;/think>\\s*&lt;answer>(.*?)&lt;/answer>', clean, re.DOTALL)\nm2 = re.search(r'&lt;/think>\\s*(.*)', clean, re.DOTALL)\nif m1:\n    action = m1.group(1).strip()\n    method = 'answer_tag'\nelif m2:\n    action = m2.group(1).strip().split('\\n')[0].strip()\n    for tok in ['<|im_end|>', '<|endoftext|>', '&lt;answer>', '&lt;/answer>']:\n        action = action.replace(tok, '').strip()\n    method = 'fallback'\nelse:\n    action = ''\n    method = 'none'\n\nprint(f'Parse method: {method}')\nprint(f'Parsed action: [{action}]')\nprint(f'Action in shown[:50]: {action in shown}')\nprint(f'Action in ALL valid: {action in valid_actions}')\nprint()\nprint(f'=== FIRST 10 SHOWN ACTIONS ===')\nfor a in shown[:10]:\n    print(f'  [{a}]')\nprint(f'=== TOTAL: {len(shown)} shown, {len(valid_actions)} total ===')\n\n# Check if action is a valid ScienceWorld command\n# Try stepping\nstep_result = env.step(action)\nobs2, reward, done, step_info = step_result\nprint(f'\\n=== ENV STEP RESULT ===')\nprint(f'Reward: {reward}, Score: {step_info.get(\\\"score\\\", \\\"?\\\")}, Done: {done}')\nprint(f'Obs: {obs2[:200]}')\n\nenv.close()\n\" 2>&1 | tail -40\n",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-19T18:25:21.366824+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Traceback (most recent call last):\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\", line 479, in cached_files\\n    hf_hub_download(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 106, in _inner_fn\\n    validate_repo_id(arg_value)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 154, in validate_repo_id\\n    raise HFValidationError(\\nhuggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/'. Use `repo_type` argument if needed.\\n\\nDuring handling of the above exception, another exception occurred:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 23, in &lt;module>\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/tokenization_auto.py\\\", line 1089, in from_pretrained\\n    tokenizer_config = get_tokenizer_config(pretrained_model_name_or_path, **kwargs)\\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/tokenization_auto.py\\\", line 921, in get_tokenizer_config\\n    resolved_config_file = cached_file(\\n                           ^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\", line 322, in cached_file\\n    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\", line 532, in cached_files\\n    _get_cache_file_to_return(path_or_repo_id, filename, cache_dir, revision, repo_type)\\n  File \\\"/root/miniconda3/lib/p
+…[truncated 936 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-19T18:25:21.367008+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /root/cost-verify-agent-rl/scripts/collect_expert_trajectories.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat /root/cost-verify-agent-rl/scripts/collect_expert_trajectories.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-19T18:25:21.367290+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Collect expert trajectories from ALFWorld using HandCodedTWAgent.\\n\\nPlays all train games with the built-in expert agent, records\\n(observation, expert_action) pairs, converts to SFT format matching\\nexisting data in alfworld_sft_ragen.jsonl, and saves only successful\\ntrajectories.\\n\\\"\\\"\\\"\\n\\nimport os\\nimport json\\nimport random\\nimport traceback\\nimport argparse\\nfrom collections import Counter\\n\\nimport textworld\\nfrom alfworld.agents.expert import HandCodedTWAgent, HandCodedAgentTimeout, HandCodedAgentFailed\\nfrom alfworld.agents.environment.alfred_tw_env import AlfredDemangler, AlfredInfos\\n\\n\\nSYSTEM_PROMPT = (\\n    \\\"You're a helpful assistant. You are an expert agent in the ALFRED Embodied Environment.\\\\n\\\"\\n    \\\"Complete household tasks by navigating and interacting with objects.\\\\n\\\\n\\\"\\n    \\\"Before each action, you MUST first produce a self-guidance assessment:\\\\n\\\"\\n    \\\"[Assessment: positive/neutral/negative] - evaluate your current progress.\\\\n\\\"\\n    \\\"[Reasoning: one sentence analyzing what has been accomplished and what remains.]\\\\n\\\"\\n    \\\"[Suggestion: the best next action from admissible actions.]\\\\n\\\\n\\\"\\n    \\\"Your reasoning with self-guidance MUST be enclosed within &lt;think> &lt;/think> tags.\\\\n\\\"\\n    \\\"Then choose an admissible action and present it within &lt;answer>...&lt;/answer> tags.\\\"\\n)\\n\\nSUPPORTED_TASK_TYPES = {\\n    \\\"pick_and_place_simple\\\",\\n    \\\"look_at_obj_in_light\\\",\\n    \\\"pick_clean_then_place_in_recep\\\",\\n    \\\"pick_heat_then_place_in_recep\\\",\\n    \\\"pick_cool_then_place_in_recep\\\",\\n    \\\"pick_two_obj_and_place\\\",\\n}\\n\\nALL_KNOWN_TASK_TYPES = SUPPORTED_TASK_TYPES | {\\\"pick_and_place_with_movable_recep\\\"}\\n\\n\\ndef find_game_files(data_dir, split=\\\"train\\\"):\\n    split_dir = os.path.join(data_dir, split)\\n 
+…[truncated 7326 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-19T18:25:21.367514+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /root/cost-verify-agent-rl/scripts/augment_admissible_v2.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat /root/cost-verify-agent-rl/scripts/augment_admissible_v2.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-19T18:25:21.367822+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Re-collect expert trajectories WITH admissible actions for exp019b.\\n\\nRe-runs HandCodedTWAgent on all train games, recording admissible_commands\\nat each step. Outputs SFT data with admissible actions in RAGEN format:\\n  \\\"{obs}\\\\n\\\\nAdmissible actions: [{action1}, {action2}, ...]\\\"\\n\\nOutput: /root/autodl-tmp/expert_sft_v3/expert_sft_{train,val}.jsonl\\n\\\"\\\"\\\"\\n\\nimport os\\nimport json\\nimport random\\nimport re\\nimport argparse\\nfrom collections import Counter\\n\\nos.environ[\\\"ALFWORLD_DATA\\\"] = \\\"/root/autodl-tmp/alfworld\\\"\\n\\nimport textworld\\nfrom alfworld.agents.expert import HandCodedTWAgent, HandCodedAgentTimeout, HandCodedAgentFailed\\nfrom alfworld.agents.environment.alfred_tw_env import AlfredDemangler, AlfredInfos\\n\\n\\nSYSTEM_PROMPT = (\\n    \\\"You're a helpful assistant. You are an expert agent in the ALFRED Embodied Environment.\\\\n\\\"\\n    \\\"Complete household tasks by navigating and interacting with objects.\\\\n\\\\n\\\"\\n    \\\"Before each action, you MUST first produce a self-guidance assessment:\\\\n\\\"\\n    \\\"[Assessment: positive/neutral/negative] - evaluate your current progress.\\\\n\\\"\\n    \\\"[Reasoning: one sentence analyzing what has been accomplished and what remains.]\\\\n\\\"\\n    \\\"[Suggestion: the best next action from admissible actions.]\\\\n\\\\n\\\"\\n    \\\"Your reasoning with self-guidance MUST be enclosed within &lt;think> &lt;/think> tags.\\\\n\\\"\\n    \\\"Then choose an admissible action and present it within &lt;answer>...&lt;/answer> tags.\\\"\\n)\\n\\nSUPPORTED_TASK_TYPES = {\\n    \\\"pick_and_place_simple\\\",\\n    \\\"look_at_obj_in_light\\\",\\n    \\\"pick_clean_then_place_in_recep\\\",\\n    \\\"pick_heat_then_place_in_recep\\\",\\n    \\\"pick_cool_then_place_in_recep\\\",\\n    \\\"pick_two_obj_and_place\\\",\\n}\\n\\nALL_KNOWN_TASK_TYPES = SUPPORTED_TASK_TYPES | {\\\"pi
+…[truncated 7327 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-19T18:25:21.367988+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /root/cost-verify-agent-rl/scripts/fix_expert_sft_format.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat /root/cost-verify-agent-rl/scripts/fix_expert_sft_format.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-19T18:25:21.368252+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Fix expert SFT data: replace 'move X to Y' with 'put X in/on Y'.\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport re\\nimport sys\\nfrom collections import Counter\\n\\n\\ndef fix_move_action(text: str) -> str:\\n    \\\"\\\"\\\"Replace 'move OBJ to RECEP' with 'put OBJ in/on RECEP'.\\\"\\\"\\\"\\n    return re.sub(r'\\\\bmove (\\\\S+ \\\\d+) to (\\\\S+ \\\\d+)\\\\b', r'put \\\\1 in/on \\\\2', text)\\n\\n\\ndef fix_message(content: str) -> tuple[str, dict]:\\n    \\\"\\\"\\\"Fix a single assistant message. Returns (fixed_content, stats).\\\"\\\"\\\"\\n    stats = {\\\"answer_fixed\\\": 0, \\\"think_fixed\\\": 0}\\n    \\n    # Fix &lt;answer> content\\n    def fix_answer(m):\\n        old = m.group(1)\\n        new = fix_move_action(old)\\n        if old != new:\\n            stats[\\\"answer_fixed\\\"] += 1\\n        return f\\\"&lt;answer>{new}&lt;/answer>\\\"\\n    \\n    content = re.sub(r'&lt;answer>(.*?)&lt;/answer>', fix_answer, content, flags=re.DOTALL)\\n    \\n    # Fix &lt;think> content (Suggestion field)\\n    def fix_think(m):\\n        old = m.group(1)\\n        new = fix_move_action(old)\\n        if old != new:\\n            stats[\\\"think_fixed\\\"] += 1\\n        return f\\\"&lt;think>{new}&lt;/think>\\\"\\n    \\n    content = re.sub(r'&lt;think>(.*?)&lt;/think>', fix_think, content, flags=re.DOTALL)\\n    \\n    return content, stats\\n\\n\\ndef validate_format(content: str) -> dict:\\n    \\\"\\\"\\\"Validate a single assistant message matches RAGEN format.\\\"\\\"\\\"\\n    has_think = bool(re.search(r'&lt;think>.*?&lt;/think>', content, re.DOTALL))\\n    has_answer = bool(re.search(r'&lt;answer>.*?&lt;/answer>', content, re.DOTALL))\\n    full_match = bool(re.search(r'&lt;think>.*?&lt;/think>\\\\s*&lt;answer>.*?&lt;/answer>', content, re.DOTALL))\\n    \\n    action = \\\"\\\"\\n    m = re.search(r'&lt;answer>(.*?)&lt;/answer>', content, re.DOTALL)\\n    if m:\\n        action = m.group(1).strip()\\n    \\n 
+…[truncated 4851 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-19T18:25:21.368450+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n\nwith open('/root/autodl-tmp/expert_sft/scienceworld_sft_train.jsonl') as f:\n    line = f.readline()\n    ex = json.loads(line)\n\nmsgs = ex['messages']\n\n# Get admissible actions from first user turn\nuser1 = msgs[1]['content']\nimport re\nm = re.search(r'Admissible actions: \\[(.*?)\\]\\n', user1, re.DOTALL)\nif m:\n    admissible_str = m.group(1)\n    admissible = [a.strip() for a in admissible_str.split(', ')]\n    print(f'Total admissible actions in Turn 1: {len(admissible)}')\n    \n    # Check first 10 and last 10\n    print('First 5:')\n    for a in admissible[:5]:\n        print(f'  [{a}]')\n    print('Last 5:')\n    for a in admissible[-5:]:\n        print(f'  [{a}]')\n    \n    # Check if expert action is in list\n    assistant1 = msgs[2]['content']\n    am = re.search(r'&lt;answer>(.*?)&lt;/answer>', assistant1)\n    if am:\n        action = am.group(1).strip()\n        print(f'\\nExpert action: [{action}]')\n        print(f'Action in admissible: {action in admissible}')\n        \n        # Find closest match\n        if action not in admissible:\n            for a in admissible:\n                if action.lower() in a.lower() or a.lower() in action.lower():\n                    print(f'  Partial match: [{a}]')\n    \n    # Count action types\n    from collections import Counter\n    prefixes = Counter()\n    for a in admissible:\n        prefix = a.split(' ')[0]\n        prefixes[prefix] += 1\n    print(f'\\nAction type distribution:')\n    for p, c in prefixes.most_common():\n        print(f'  {p}: {c}')\nelse:\n    print('Could not parse admissible actions')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n\nwith open('/root/autodl-tmp/expert_sft/scienceworld_sft_train.jsonl') as f:\n    line = f.readline()\n    ex = json.loads(line)\n\nmsgs = ex['messages']\n\n# Get admissible actions from first user turn\nuser1 = msgs[1]['content']\nimport re\nm = re.search(r'Admissible actions: \\[(.*?)\\]\\n', user1, re.DOTALL)\nif m:\n    admissible_str = m.group(1)\n    admissible = [a.strip() for a in admissible_str.split(', ')]\n    print(f'Total admissible actions in Turn 1: {len(admissible)}')\n    \n    # Check first 10 and last 10\n    print('First 5:')\n    for a in admissible[:5]:\n        print(f'  [{a}]')\n    print('Last 5:')\n    for a in admissible[-5:]:\n        print(f'  [{a}]')\n    \n    # Check if expert action is in list\n    assistant1 = msgs[2]['content']\n    am = re.search(r'&lt;answer>(.*?)&lt;/answer>', assistant1)\n    if am:\n        action = am.group(1).strip()\n        print(f'\\nExpert action: [{action}]')\n        print(f'Action in admissible: {action in admissible}')\n        \n        # Find closest match\n        if action not in admissible:\n            for a in admissible:\n                if action.lower() in a.lower() or a.lower() in action.lower():\n                    print(f'  Partial match: [{a}]')\n    \n    # Count action types\n    from collections import Counter\n    prefixes = Counter()\n    for a in admissible:\n        prefix = a.split(' ')[0]\n        prefixes[prefix] += 1\n    print(f'\\nAction type distribution:')\n    for p, c in prefixes.most_common():\n        print(f'  {p}: {c}')\nelse:\n    print('Could not parse admissible actions')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-19T18:25:21.368632+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total admissible actions in Turn 1: 50\\nFirst 5:\\n  [connect agent to air]\\n  [connect agent to art studio]\\n  [connect agent to art studio door]\\n  [connect agent to bedroom]\\n  [connect agent to bedroom door]\\nLast 5:\\n  [connect art studio door to inventory]\\n  [connect art studio door to kitchen]\\n  [connect art studio door to living room]\\n  [connect art studio door to orange]\\n  [connect art studio door to picture]\\n\\nExpert action: [open door to kitchen]\\nAction in admissible: False\\n\\nAction type distribution:\\n  connect: 50\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-19T18:25:21.368839+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport scienceworld\nenv = scienceworld.ScienceWorldEnv('')\nenv.load('boil', 14)\nobs, info = env.reset()\n\n# Check available action methods\nmethods = [m for m in dir(env) if 'action' in m.lower() or 'valid' in m.lower() or 'possible' in m.lower()]\nprint('Action-related methods:', methods)\n\n# get_valid_action_object_combinations\ncombos = env.get_valid_action_object_combinations()\nprint(f'\\nget_valid_action_object_combinations(): {len(combos)} total')\n\n# Count by prefix\nfrom collections import Counter\nprefixes = Counter()\nfor a in combos:\n    prefixes[a.split(' ')[0]] += 1\nprint('By prefix:')\nfor p, c in prefixes.most_common():\n    print(f'  {p}: {c}')\n\n# Show non-connect actions\nnon_connect = [a for a in combos if not a.startswith('connect ')]\nprint(f'\\nNon-connect actions ({len(non_connect)}):')\nfor a in non_connect[:30]:\n    print(f'  [{a}]')\n\n# Check if 'open door to kitchen' is in the full list\nprint(f'\\n\\\"open door to kitchen\\\" in combos: {\\\"open door to kitchen\\\" in combos}')\nprint(f'\\\"open art studio door\\\" in combos: {\\\"open art studio door\\\" in combos}')\n\n# Try other API methods\ntry:\n    va = env.getValidActionObjectCombinations()\n    print(f'\\ngetValidActionObjectCombinations(): {len(va)} actions')\nexcept:\n    pass\n\ntry:\n    va = env.getPossibleActions()\n    print(f'\\ngetPossibleActions(): {len(va)} actions')\n    for a in va[:20]:\n        print(f'  [{a}]')\nexcept Exception as e:\n    print(f'\\ngetPossibleActions() error: {e}')\n\nenv.close()\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport scienceworld\nenv = scienceworld.ScienceWorldEnv('')\nenv.load('boil', 14)\nobs, info = env.reset()\n\n# Check available action methods\nmethods = [m for m in dir(env) if 'action' in m.lower() or 'valid' in m.lower() or 'possible' in m.lower()]\nprint('Action-related methods:', methods)\n\n# get_valid_action_object_combinations\ncombos = env.get_valid_action_object_combinations()\nprint(f'\\nget_valid_action_object_combinations(): {len(combos)} total')\n\n# Count by prefix\nfrom collections import Counter\nprefixes = Counter()\nfor a in combos:\n    prefixes[a.split(' ')[0]] += 1\nprint('By prefix:')\nfor p, c in prefixes.most_common():\n    print(f'  {p}: {c}')\n\n# Show non-connect actions\nnon_connect = [a for a in combos if not a.startswith('connect ')]\nprint(f'\\nNon-connect actions ({len(non_connect)}):')\nfor a in non_connect[:30]:\n    print(f'  [{a}]')\n\n# Check if 'open door to kitchen' is in the full list\nprint(f'\\n\\\"open door to kitchen\\\" in combos: {\\\"open door to kitchen\\\" in combos}')\nprint(f'\\\"open art studio door\\\" in combos: {\\\"open art studio door\\\" in combos}')\n\n# Try other API methods\ntry:\n    va = env.getValidActionObjectCombinations()\n    print(f'\\ngetValidActionObjectCombinations(): {len(va)} actions')\nexcept:\n    pass\n\ntry:\n    va = env.getPossibleActions()\n    print(f'\\ngetPossibleActions(): {len(va)} actions')\n    for a in va[:20]:\n        print(f'  [{a}]')\nexcept Exception as e:\n    print(f'\\ngetPossibleActions() error: {e}')\n\nenv.close()\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-19T18:25:21.369026+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Action-related methods: ['getGoldActionSequence', 'getPossibleActionObjectCombinations', 'getPossibleActions', 'getPossibleActionsWithIDs', 'getPossibleObjectReferentLUT', 'getPossibleObjectReferentTypesLUT', 'getPossibleObjects', 'getPossibleSimplifications', 'getValidActionObjectCombinations', 'getValidActionObjectCombinationsWithTemplates', 'get_gold_action_sequence', 'get_possible_action_object_combinations', 'get_possible_actions', 'get_possible_actions_with_IDs', 'get_possible_object_referent_LUT', 'get_possible_object_referent_types_LUT', 'get_possible_objects', 'get_possible_simplifications', 'get_valid_action_object_combinations', 'get_valid_action_object_combinations_with_templates']\\n\\nget_valid_action_object_combinations(): 939 total\\nBy prefix:\\n  connect: 506\\n  pour: 154\\n  move: 113\\n  dunk: 42\\n  look: 35\\n  disconnect: 23\\n  focus: 23\\n  mix: 23\\n  pick: 10\\n  open: 3\\n  eat: 1\\n  inventory: 1\\n  put: 1\\n  reset: 1\\n  task: 1\\n  wait: 1\\n  wait1: 1\\n\\nNon-connect actions (433):\\n  [disconnect agent]\\n  [disconnect air]\\n  [disconnect art studio]\\n  [disconnect blue paint in wood cup]\\n  [disconnect cup containing blue paint in art studio]\\n  [disconnect cup containing blue paint in cupboard]\\n  [disconnect cup containing red paint in art studio]\\n  [disconnect cup containing red paint in cupboard]\\n  [disconnect cup containing yellow paint in art studio]\\n  [disconnect cup containing yellow paint in cupboard]\\n  [disconnect cupboard]\\n  [disconnect door]\\n  [disconnect drawer]\\n  [disconnect hallway]\\n  [disconnect inventory]\\n  [disconnect jug]\\n  [disconnect orange]\\n  [disconnect paint in cup]\\n  [disconnect paint on cup]\\n  [disconnect paint on wood cup containing blue paint]\\n  [disconnect red paint in wood cup]\\n  [disconnect table]\\n  [disconnect yellow paint on cup]\\n  [dunk cup containing blue paint in art studio into cup containing blue p
+…[truncated 1604 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-19T18:25:21.369218+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport scienceworld\nenv = scienceworld.ScienceWorldEnv('')\nenv.load('boil', 14)\nobs, info = env.reset()\n\n# Try 'open door to kitchen'\nobs2, reward, done, step_info = env.step('open door to kitchen')\nprint('Step 1: open door to kitchen')\nprint(f'  Reward: {reward}, Score: {step_info.get(\\\"score\\\", \\\"?\\\")}, Done: {done}')\nprint(f'  Obs: {obs2[:200]}')\n\n# Now check valid actions after this step\ncombos2 = env.get_valid_action_object_combinations()\nnon_connect2 = [a for a in combos2 if not a.startswith('connect ') and not a.startswith('pour ') and not a.startswith('move ') and not a.startswith('dunk ')]\nprint(f'\\nAfter step: {len(combos2)} total combos, {len(non_connect2)} non-connect/pour/move/dunk')\nfor a in non_connect2[:20]:\n    print(f'  [{a}]')\n\n# Check gold action sequence\ngold = env.get_gold_action_sequence()\nprint(f'\\nGold action sequence ({len(gold)} steps):')\nfor i, a in enumerate(gold[:10]):\n    print(f'  Step {i}: [{a}]')\n    # Check if this gold action is in combos\n    in_combos = a in combos2 if i > 0 else a in env.get_valid_action_object_combinations()\n\nenv.close()\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport scienceworld\nenv = scienceworld.ScienceWorldEnv('')\nenv.load('boil', 14)\nobs, info = env.reset()\n\n# Try 'open door to kitchen'\nobs2, reward, done, step_info = env.step('open door to kitchen')\nprint('Step 1: open door to kitchen')\nprint(f'  Reward: {reward}, Score: {step_info.get(\\\"score\\\", \\\"?\\\")}, Done: {done}')\nprint(f'  Obs: {obs2[:200]}')\n\n# Now check valid actions after this step\ncombos2 = env.get_valid_action_object_combinations()\nnon_connect2 = [a for a in combos2 if not a.startswith('connect ') and not a.startswith('pour ') and not a.startswith('move ') and not a.startswith('dunk ')]\nprint(f'\\nAfter step: {len(combos2)} total combos, {len(non_connect2)} non-connect/pour/move/dunk')\nfor a in non_connect2[:20]:\n    print(f'  [{a}]')\n\n# Check gold action sequence\ngold = env.get_gold_action_sequence()\nprint(f'\\nGold action sequence ({len(gold)} steps):')\nfor i, a in enumerate(gold[:10]):\n    print(f'  Step {i}: [{a}]')\n    # Check if this gold action is in combos\n    in_combos = a in combos2 if i > 0 else a in env.get_valid_action_object_combinations()\n\nenv.close()\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-19T18:25:21.369374+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Step 1: open door to kitchen\\n  Reward: 0, Score: 0, Done: False\\n  Obs: No known action matches that input.\\n\\nAfter step: 939 total combos, 124 non-connect/pour/move/dunk\\n  [disconnect agent]\\n  [disconnect air]\\n  [disconnect art studio]\\n  [disconnect blue paint in wood cup]\\n  [disconnect blue paint on wood cup]\\n  [disconnect cup containing blue paint in art studio]\\n  [disconnect cup containing blue paint in cupboard]\\n  [disconnect cup containing red paint in art studio]\\n  [disconnect cup containing red paint in cupboard]\\n  [disconnect cup containing yellow paint in art studio]\\n  [disconnect cup containing yellow paint in cupboard]\\n  [disconnect cupboard]\\n  [disconnect door]\\n  [disconnect drawer]\\n  [disconnect hallway]\\n  [disconnect inventory]\\n  [disconnect jug]\\n  [disconnect orange]\\n  [disconnect paint in wood cup containing red paint]\\n  [disconnect red paint in wood cup]\\n\\nGold action sequence (1 steps):\\n  Step 0: [ERROR: Gold path was not generated.  Set `generateGoldPath` flag to true when calling load().]\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.61}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-19T18:25:21.369562+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport scienceworld\nenv = scienceworld.ScienceWorldEnv('')\nenv.load('boil', 14)\nobs, info = env.reset()\n\ncombos = env.get_valid_action_object_combinations()\n\n# Show ALL 'open' actions\nopen_actions = [a for a in combos if a.startswith('open')]\nprint(f'Open actions ({len(open_actions)}):')\nfor a in open_actions:\n    print(f'  [{a}]')\n\n# Show ALL 'go' actions\ngo_actions = [a for a in combos if a.startswith('go')]\nprint(f'\\nGo actions ({len(go_actions)}):')\nfor a in go_actions:\n    print(f'  [{a}]')\n\n# Show 'look' actions\nlook_actions = [a for a in combos if a.startswith('look')]\nprint(f'\\nLook actions ({len(look_actions)}):')\nfor a in look_actions:\n    print(f'  [{a}]')\n\n# Try the correct 'open' action\nif open_actions:\n    test_action = open_actions[0]\n    obs2, reward, done, step_info = env.step(test_action)\n    print(f'\\nStep with [{test_action}]:')\n    print(f'  Obs: {obs2[:200]}')\n    print(f'  Score: {step_info.get(\\\"score\\\", \\\"?\\\")}')\n\n# Also check how training data was generated\n# Load with gold path\nenv.close()\nenv2 = scienceworld.ScienceWorldEnv('')\nenv2.load('boil', 14, generateGoldPath=True)\nobs3, info2 = env2.reset()\ngold = env2.get_gold_action_sequence()\nprint(f'\\nGold action sequence ({len(gold)} steps):')\nfor i, a in enumerate(gold[:15]):\n    print(f'  {i}: [{a}]')\n\nenv2.close()\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport scienceworld\nenv = scienceworld.ScienceWorldEnv('')\nenv.load('boil', 14)\nobs, info = env.reset()\n\ncombos = env.get_valid_action_object_combinations()\n\n# Show ALL 'open' actions\nopen_actions = [a for a in combos if a.startswith('open')]\nprint(f'Open actions ({len(open_actions)}):')\nfor a in open_actions:\n    print(f'  [{a}]')\n\n# Show ALL 'go' actions\ngo_actions = [a for a in combos if a.startswith('go')]\nprint(f'\\nGo actions ({len(go_actions)}):')\nfor a in go_actions:\n    print(f'  [{a}]')\n\n# Show 'look' actions\nlook_actions = [a for a in combos if a.startswith('look')]\nprint(f'\\nLook actions ({len(look_actions)}):')\nfor a in look_actions:\n    print(f'  [{a}]')\n\n# Try the correct 'open' action\nif open_actions:\n    test_action = open_actions[0]\n    obs2, reward, done, step_info = env.step(test_action)\n    print(f'\\nStep with [{test_action}]:')\n    print(f'  Obs: {obs2[:200]}')\n    print(f'  Score: {step_info.get(\\\"score\\\", \\\"?\\\")}')\n\n# Also check how training data was generated\n# Load with gold path\nenv.close()\nenv2 = scienceworld.ScienceWorldEnv('')\nenv2.load('boil', 14, generateGoldPath=True)\nobs3, info2 = env2.reset()\ngold = env2.get_gold_action_sequence()\nprint(f'\\nGold action sequence ({len(gold)} steps):')\nfor i, a in enumerate(gold[:15]):\n    print(f'  {i}: [{a}]')\n\nenv2.close()\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-19T18:25:21.369758+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Open actions (3):\\n  [open cupboard]\\n  [open door]\\n  [open drawer]\\n\\nGo actions (0):\\n\\nLook actions (35):\\n  [look around]\\n  [look at agent]\\n  [look at air]\\n  [look at art studio]\\n  [look at blue paint in wood cup]\\n  [look at cup containing blue paint in art studio]\\n  [look at cup containing blue paint in cupboard]\\n  [look at cup containing red paint in art studio]\\n  [look at cup containing red paint in cupboard]\\n  [look at cup containing yellow paint in art studio]\\n  [look at cup containing yellow paint in cupboard]\\n  [look at cupboard]\\n  [look at door]\\n  [look at drawer]\\n  [look at hallway]\\n  [look at inventory]\\n  [look at jug]\\n  [look at orange]\\n  [look at paint in cup]\\n  [look at paint on cup]\\n  [look at paint on wood cup containing blue paint]\\n  [look at red paint in wood cup]\\n  [look at table]\\n  [look at yellow paint on cup]\\n  [look in art studio]\\n  [look in cup containing blue paint in art studio]\\n  [look in cup containing blue paint in cupboard]\\n  [look in cup containing red paint in art studio]\\n  [look in cup containing red paint in cupboard]\\n  [look in cup containing yellow paint in art studio]\\n  [look in cup containing yellow paint in cupboard]\\n  [look in hallway]\\n  [look in inventory]\\n  [look in jug]\\n  [look in table]\\n\\nStep with [open cupboard]:\\n  Obs: The large cupboard is now open.\\n  Score: 0\\n\\nGold action sequence (41 steps):\\n  0: [open door to hallway]\\n  1: [go to hallway]\\n  2: [open door to kitchen]\\n  3: [go to kitchen]\\n  4: [look around]\\n  5: [pick up thermometer]\\n  6: [open cupboard]\\n  7: [pick up metal pot]\\n  8: [look around]\\n  9: [open oven]\\n  10: [open freezer]\\n  11: [focus on ice cream]\\n  12: [move ice cream to metal pot]\\n  13: [pick up metal pot]\\n  14: [move metal pot to stove]\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'li
+…[truncated 130 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-19T18:25:21.369986+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport scienceworld\nenv = scienceworld.ScienceWorldEnv('')\n\n# Load boil v1 (the training data example)\nenv.load('boil', 1, generateGoldPath=True)\nobs, info = env.reset()\n\nprint('Starting room:', obs[:100])\n\ngold = env.get_gold_action_sequence()\nprint(f'Gold actions ({len(gold)} steps):')\nfor i, a in enumerate(gold[:10]):\n    print(f'  {i}: [{a}]')\n\n# Check what valid actions look like in boil v1\ncombos = env.get_valid_action_object_combinations()\nopen_acts = [a for a in combos if a.startswith('open')]\nprint(f'\\nValid open actions: {open_acts}')\n\n# Check if gold action 'open door to kitchen' is accepted\nobs2, reward, done, si = env.step('open door to kitchen')\nprint(f'\\nStep \\\"open door to kitchen\\\": obs={obs2[:100]}')\n\n# Check correct action\nobs3, reward2, done2, si2 = env.step('open door')\nprint(f'Step \\\"open door\\\": obs={obs3[:100]}')\n\nenv.close()\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport scienceworld\nenv = scienceworld.ScienceWorldEnv('')\n\n# Load boil v1 (the training data example)\nenv.load('boil', 1, generateGoldPath=True)\nobs, info = env.reset()\n\nprint('Starting room:', obs[:100])\n\ngold = env.get_gold_action_sequence()\nprint(f'Gold actions ({len(gold)} steps):')\nfor i, a in enumerate(gold[:10]):\n    print(f'  {i}: [{a}]')\n\n# Check what valid actions look like in boil v1\ncombos = env.get_valid_action_object_combinations()\nopen_acts = [a for a in combos if a.startswith('open')]\nprint(f'\\nValid open actions: {open_acts}')\n\n# Check if gold action 'open door to kitchen' is accepted\nobs2, reward, done, si = env.step('open door to kitchen')\nprint(f'\\nStep \\\"open door to kitchen\\\": obs={obs2[:100]}')\n\n# Check correct action\nobs3, reward2, done2, si2 = env.step('open door')\nprint(f'Step \\\"open door\\\": obs={obs3[:100]}')\n\nenv.close()\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-19T18:25:21.370155+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Starting room: This room is called the art studio. In it, you see: \\n\\tthe agent\\n\\ta substance called air\\n\\ta large cup\\nGold actions (31 steps):\\n  0: [open door to hallway]\\n  1: [go to hallway]\\n  2: [open door to kitchen]\\n  3: [go to kitchen]\\n  4: [look around]\\n  5: [pick up thermometer]\\n  6: [open cupboard]\\n  7: [pick up metal pot]\\n  8: [look around]\\n  9: [move metal pot to sink]\\n\\nValid open actions: ['open cupboard', 'open door', 'open drawer']\\n\\nStep \\\"open door to kitchen\\\": obs=No known action matches that input.\\nStep \\\"open door\\\": obs=The door is now open.\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.17}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-19T18:25:21.370379+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_sft_eval_diagnosis.md",
+  "content": "# ScienceWorld SFT Eval 诊断报告\n\n**日期**: 2026-05-19\n**问题**: SFT eval valid action rate 0-2%, 训练 loss 0.003\n\n## 根因\n\n### 1. 训练数据用了 gold action（环境不接受）\n\n训练数据来自 ScienceWorld 内部 gold action sequence，格式与环境 player parser 不兼容：\n\n| Gold action (训练数据) | 环境响应 | 正确 action |\n|---|---|---|\n| `open door to kitchen` | \"No known action matches\" | `open door` |\n| `go to kitchen` | \"No known action matches\" | — (需先 open door 再用别的命令) |\n\n验证：\n```python\nenv.step(\"open door to kitchen\")  # → \"No known action matches that input.\"\nenv.step(\"open door\")             # → \"The door is now open.\"  ✓\n```\n\n### 2. Admissible actions 被 \"connect\" 淹没\n\n`get_valid_action_object_combinations()` 对 boil v14 返回 939 个 action：\n\n| Action type | Count | % |\n|---|---|---|\n| connect X to Y | 506 | 54% |\n| pour | 154 | 16% |\n| move | 113 | 12% |\n| dunk | 42 | 4% |\n| look | 35 | 4% |\n| disconnect | 23 | 2% |\n| **open** | **3** | **0.3%** |\n| pick up | 10 | 1% |\n| 其他 | ~53 | 6% |\n\nEval 只展示前 50 个（全是 connect），模型从不在 prompt 中看到有用 action。\n\n### 3. valid_action_rate metric 误导\n\n```python\nshown = valid_actions[:50]          # 全是 connect\naction_is_valid = action in shown   # 模型生成 \"open cupboard\" → False\n```\n\n模型生成的 action 可能在全量 939 个中存在，但不在 shown[:50] 中 → metric 报 0%。\n\n### 4. fmt rate 53-74%\n\n约 30-40% 的步骤格式解析失败，`env.step(\"\")` 浪费回合。\n\n## 修复方案\n\n### A. Eval 修复（无需重训）\n\n1. **过滤/排序 admissible actions**：useful verbs 优先，connect 限量\n2. **valid_action_rate 用全量 list**\n3. **增大 MAX_VALID_ACTIONS**\n\n### B. 重新生成数据 + 重训（根治）\n\n1. 用 `get_valid_action_object_combinations()` 中的 action（非 gold path）\n2. 过滤 connect flood\n3. 确保 expert action ∈ shown admissible list\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_sft_eval_diagnosis.md",
+    "content": "# ScienceWorld SFT Eval 诊断报告\n\n**日期**: 2026-05-19\n**问题**: SFT eval valid action rate 0-2%, 训练 loss 0.003\n\n## 根因\n\n### 1. 训练数据用了 gold action（环境不接受）\n\n训练数据来自 ScienceWorld 内部 gold action sequence，格式与环境 player parser 不兼容：\n\n| Gold action (训练数据) | 环境响应 | 正确 action |\n|---|---|---|\n| `open door to kitchen` | \"No known action matches\" | `open door` |\n| `go to kitchen` | \"No known action matches\" | — (需先 open door 再用别的命令) |\n\n验证：\n```python\nenv.step(\"open door to kitchen\")  # → \"No known action matches that input.\"\nenv.step(\"open door\")             # → \"The door is now open.\"  ✓\n```\n\n### 2. Admissible actions 被 \"connect\" 淹没\n\n`get_valid_action_object_combinations()` 对 boil v14 返回 939 个 action：\n\n| Action type | Count | % |\n|---|---|---|\n| connect X to Y | 506 | 54% |\n| pour | 154 | 16% |\n| move | 113 | 12% |\n| dunk | 42 | 4% |\n| look | 35 | 4% |\n| disconnect | 23 | 2% |\n| **open** | **3** | **0.3%** |\n| pick up | 10 | 1% |\n| 其他 | ~53 | 6% |\n\nEval 只展示前 50 个（全是 connect），模型从不在 prompt 中看到有用 action。\n\n### 3. valid_action_rate metric 误导\n\n```python\nshown = valid_actions[:50]          # 全是 connect\naction_is_valid = action in shown   # 模型生成 \"open cupboard\" → False\n```\n\n模型生成的 action 可能在全量 939 个中存在，但不在 shown[:50] 中 → metric 报 0%。\n\n### 4. fmt rate 53-74%\n\n约 30-40% 的步骤格式解析失败，`env.step(\"\")` 浪费回合。\n\n## 修复方案\n\n### A. Eval 修复（无需重训）\n\n1. **过滤/排序 admissible actions**：useful verbs 优先，connect 限量\n2. **valid_action_rate 用全量 list**\n3. **增大 MAX_VALID_ACTIONS**\n\n### B. 重新生成数据 + 重训（根治）\n\n1. 用 `get_valid_action_object_combinations()` 中的 action（非 gold path）\n2. 过滤 connect flood\n3. 确保 expert action ∈ shown admissible list\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-19T18:25:21.370603+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_sft_eval_diagnosis.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-19T18:25:21.370752+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-19T18:25:21.370875+00:00_
+
+No matching deferred tools found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95 · 2026-05-19T18:25:21.371031+00:00_
+
+诊断完成。核心发现：
+
+1. **训练数据 action 格式错误**：SFT 数据用的是 ScienceWorld 内部 gold action sequence（如 "open door to kitchen"），但环境 player parser 不接受这种格式，只接受 "open door" 这种泛化格式。
+2. **Admissible actions 被 connect 淹没**：939 个 valid action 中 506 个是 "connect X to Y" 排列组合，eval 只展示前 50 个全是 connect，有用 action（open/pick up/look 等）模型看不到。
+3. **valid_action_rate metric 误报**：只检查 shown[:50]（全是 connect），即使模型生成了环境接受的 action 也报 0%。
+4. **fmt rate 53-74%**：约 1/3 步骤格式解析失败，浪费回合。
+
+**推荐路径**：先修 eval（过滤 connect、排序 useful verbs 优先、metric 用全量 list），确认 metric 准确后再决定是否需要重新生成训练数据重训。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diagnose_scienceworld_eval_format_20260519T181348"
+}
+```
+
+</details>
+
+---

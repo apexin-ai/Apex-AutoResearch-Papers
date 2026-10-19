@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3008a5053bed496c4068",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops info loss eval monitor",
+  "task_key": "worker_ops_info-loss-eval-monitor_20260520T143222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_info-loss-eval-monitor_20260520T143222_result.json",
+    "occurrence": 1,
+    "bytes": 1150,
+    "sha256": "b7f2bd8d4e2b4fe5927ca3f4810af49b280a1fb44a1fa15e4f5e9bc791c491e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程状态**: 存活，PID **875971**\n\n| 项目 | 值 |\n|------|-----|\n| PID | 875971 |\n| 启动时间 | 22:23 (约 10 分钟前) |\n| CPU 占用 | 74.5% |\n| 命令 | `eval_scienceworld_info_loss.py --checkpoint qwen3_scienceworld_sft --temperature 0 --history_length -1 --tensor_parallel_size 2 --max_model_len 16384` |\n| 进度 | **5/89 episodes** 完成 |\n| 输出文件 | `/root/autodl-tmp/eval_info_loss/scienceworld_full_t0.jsonl` (743 bytes) |\n\n**最新 5 episodes 结果**:\n- `[1/89] FAIL(37)` boil v14 — 100 steps, valid=15%, fmt=19%, 121.4s\n- `[2/89] FAIL(3)` boil v15 — 100 steps, valid=14%, fmt=18%, 121.9s\n- `[3/89] FAIL(3)` boil v16 — 100 steps, valid=50%, fmt=92%, 142.1s\n- `[4/89] FAIL(3)` change-the-state-of-matter-of v14 — 100 steps, valid=14%, fmt=18%, 123.3s\n- `[5/89] OK` change-the-state-of-matter-of v15 — 22 steps, valid=77%, fmt=100%, 9.8s\n\n按每 episode ~120s 估算，剩余 84 episodes 约需 **~2.8 小时**完成。\n\n另外注意：同一服务器上还有一个 ScienceWorld GRPO 训练进程在跑（PID 766825, `train.py --config-name _scienceworld_cell_c_grpo`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-info-loss-eval-monitor.md"
+}

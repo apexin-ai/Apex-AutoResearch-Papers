@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03b30d252c0d6b37d1e6",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp026 step5 val wait then kill and launch",
+  "task_key": "worker_ops_exp026_step5_val_wait_then_kill_and_launch_20260515T142616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp026_step5_val_wait_then_kill_and_launch_20260515T142616_result.json",
+    "occurrence": 1,
+    "bytes": 143,
+    "sha256": "4c04d0ace46e35631cf938267803a2b1c06712c6963a3009bddee314b49898e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Step 5 val 生成阶段刚启动，基于 step 0 的 ~8.5 分钟耗时，预计还需 5-8 分钟。3 分钟后第一次轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp026-step5-val-wait-then-kill-and-launch.md"
+}

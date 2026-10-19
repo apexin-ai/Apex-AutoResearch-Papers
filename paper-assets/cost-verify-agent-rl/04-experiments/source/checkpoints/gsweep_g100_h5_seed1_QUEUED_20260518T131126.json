@@ -1,0 +1,16 @@
+{
+  "exp_id": "gsweep_g100_h5_seed1",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:56:58.033Z",
+    "updated_at": "2026-05-18T13:11:26.468Z",
+    "hypothesis": "γ=1.0 with h=5 means no discount (all windows receive full terminal return). If collapse is driven by sign misattribution from discounting, γ=1.0 should show least collapse. But uniform return may reduce temporal credit assignment sharpness.",
+    "parent": "gsweep_g095_h5_seed1"
+  },
+  "timestamp": "2026-05-18T13:11:26.610384+00:00",
+  "trigger": "update_registry"
+}

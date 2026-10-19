@@ -1,0 +1,32 @@
+{
+  "exp_id": "8b_cell_c_v3",
+  "project": "cost-verify-agent-rl",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T12:14:42.678Z",
+    "updated_at": "2026-05-19T12:47:16.052Z",
+    "spec": {
+      "command": "bash -c 'export TMPDIR=/root/autodl-tmp/tmp && mkdir -p /root/autodl-tmp/tmp && export RAY_TMPDIR=/root/autodl-tmp/ray_tmp && mkdir -p /root/autodl-tmp/ray_tmp && export TMUX_TMPDIR=/root/autodl-tmp/tmux && mkdir -p /root/autodl-tmp/tmux && export TORCH_COMPILE_DISABLE=1 && export PYTHONUNBUFFERED=1 && export CUDA_VISIBLE_DEVICES=0,1,2,3 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_8b_cell_c'",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "36872",
+      "log_path": "~/runs/cost-verify-agent-rl/8b_cell_c_v3.log",
+      "submitted_at": "2026-05-19T12:19:12.602Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "8B Cell C (episode-level, full context) with ppo_mini_batch_size=4 can pass backward without OOM. Positive control for scale analysis: if 8B Cell C maintains/improves from SFT baseline while Cell A collapses, confirms scale-invariant information loss mechanism.",
+    "parent": "8b_cell_c_episode_v2"
+  },
+  "timestamp": "2026-05-19T12:47:16.215853+00:00",
+  "trigger": "update_registry"
+}

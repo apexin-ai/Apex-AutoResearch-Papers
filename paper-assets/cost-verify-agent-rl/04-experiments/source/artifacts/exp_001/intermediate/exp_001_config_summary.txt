@@ -1,0 +1,12 @@
+Config file: /root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp001.yaml
+Env tag: AlfworldSG (added to envs.yaml)
+
+Key params:
+- Model: Qwen3-1.7B, full finetune (lora_rank=0)
+- Algorithm: GRPO, lr=1e-6
+- 50 training steps, eval every 10 steps, save every 10 steps
+- Train: 4 env_groups x 4 group_size = 16 episodes/step
+- Val: 8 env_groups x 1 group_size = 8 episodes
+- Self-guidance: always-on (prompt-level, in env_instruction)
+- Checkpoint: /root/autodl-tmp/checkpoints/exp_001/
+- Logger: console only

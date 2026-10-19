@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fda04a2c5f2f87b4626",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops westd urgent process check",
+  "task_key": "worker_ops_westd_urgent_process_check_20260522T160944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_urgent_process_check_20260522T160944_result.json",
+    "occurrence": 1,
+    "bytes": 994,
+    "sha256": "81006bdc7a6ddde0b9834adac3c1e2c9e14aa04e59d1f62cea481ec14e95604a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-47453 训练状态\n\n### seed100: **存活，正常训练中**\n- 进程: PID 883370 `python train.py --config-name _alfworld_exp029_seed100_episode` (启动于 May22)\n- Ray workers 活跃: TaskRunner (PID 896114), 2x WorkerDict, wandb 上报正常\n- 日志最后更新: `2026-05-22 23:48:34` — **Training Progress: 60% (3/5 steps)**, 预计剩余 ~42 min\n\n### seed200: **已崩溃**\n- **无进程存活**（ps 中无 seed200 相关进程）\n- 崩溃原因: `OSError: [Errno 28] No space left on device` — 磁盘满\n\n### GPU 占用\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 44777 MiB | 56% |\n| 1 | 45061 MiB | 100% |\n| 2 | 0 MiB | 0% |\n| 3 | 0 MiB | 0% |\n\nGPU 0,1 被 seed100 占用。GPU 2,3 空闲（seed200 崩溃后已释放）。\n\n**结论**: seed100 在跑、占 2 卡，seed200 磁盘满挂了。如果 Manager 要收卡，GPU 2,3 当前空闲可收；GPU 0,1 需等 seed100 完成（~42 min）或主动终止。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-urgent-process-check.md"
+}

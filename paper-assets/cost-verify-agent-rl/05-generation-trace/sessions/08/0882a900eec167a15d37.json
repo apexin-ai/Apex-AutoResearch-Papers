@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0882a900eec167a15d37",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_10_1778870680.md",
+  "task_key": "loop_10_1778870680",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778870680.md",
+    "occurrence": 1,
+    "bytes": 4220,
+    "sha256": "1811993421882231be76c221cf0b537e21f9d21aed23318f83d4a31d4398b70c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T17:40:46+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**bjb1-17606 cuda:0, cuda:1** 仅此两张，禁止用其他 GPU\n- exp027 是 MVP 判定实验（D037）：**不得在 exp027 出结果前启动新训练实验占用 GPU**\n- 服务器环境用 **conda**（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不存在 .venv，禁止创建 venv\n- SFT checkpoint 路径：`/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4`，勿删勿移\n- 论文 framing 已锁定 **cost-efficiency story**（D039），禁止走 performance story\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：bjb1-17606，account=root\n- **工作目录**：`/root/cost-verify-agent-rl`\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境）\n- **模型**：Qwen3-1.7B SFT checkpoint @ `/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4`\n- **框架**：RAGEN + verl-agent GRPO（step-independent rollout）\n- **W&B**：run ID `y7jiibqk`（exp027）\n- **活跃进程**：exp027_stable_grpo, PID=789790, tmux=`exp027_stable_grpo`, cuda:0+cuda:1\n- **Cron**：1 个 active cron 监控 exp027（reconcile 确认 pid 789790 存活）\n- **日志**：`~/runs/cost-verify-agent-rl/exp027_stable_grpo.log`\n- **Worker 池**：0（全部已完成）\n\n### 3. 📊 当前状态\n**刚完成**：本 session 完成了大量并行工作——文献调研（21 篇 related_work_survey.md）、失败分类（failure_taxonomy.md，51 个实验覆盖 4 类失败模式）、引用审计（27 篇论文，7 篇需修正）、framing 方向锁定（D039 cost-efficiency story）、Reviewer claim 强度评估。\n\n**正在跑**：\n- `exp027_stable_grpo` — RUNNING，50 步 GRPO，128 rollouts/step，双卡满载。step 0 val: success=6.25%（=SFT baseline）。预估总 wall time 42-58h（从 ~14:33 UTC 05-15 开始），save_freq=5，test_freq=5。\n\n**等待中**：\n- exp027 cron 回调（进程结束时自动触发）\n- 无运行中 Worker\n\n### 4. 📋 待办（条件触发式）\n- **exp027 cron 回调到达** → 按 on-experiment-done skill 处理：读 W&B metrics（run y7jiibqk），判定 MVP 阈值（D037: <20% fail / 20-25% weak / 30%+ strong pass），更新 registry+report.md，汇报 Director\n- **exp027 success ≥ 20%** → complete_mvp()，启动 Phase B（B-IAVR selective verification），向 Director 申请更多 GPU（预估 600+ GPU-h）\n- **exp027 success < 20%** → 按 red-section 规范产出 Framing 调整提案，禁止默默跑下一个。24h deadline 后决策\n- **exp027 中间 checkpoint（step 5/10/15…）有异常信号（KL spike / entropy collapse / 连续 2 步零 success）** → 立即汇报 Director，考虑 early stop\n- **exp025c** 仍在等人工审批（低优先级，不影响 MVP）\n\n### 5. 🎯 战略上下文\n**项目核心**：训练 interactive agent 的 selective self-verification（B-IAVR），用 action-change 作为 verification informativeness 的 RL reward。基于 Self-Guide 框架，Qwen3-1.7B + ALFWorld + GRPO。\n\n**当前瓶颈**：还在 Phase A（always-on baseline），exp027 是第 27 次实验、也是 MVP 判定关口。历史：成功 3 / 负向 4 / 失败 17 / 共 32。SFT baseline 仅 6.25% success，GRPO 反复遇到死亡螺旋（零奖励 → 梯度消失 → collapse）。exp026 前 2 步冲到 32.81% 但 step 4 归零。exp027 加了 128 rollouts + entropy bonus 试图稳定。\n\n**关键决策链**：D034（两级阈值 MVP=20%/论文=50%）→ D036（确认死亡螺旋根因）→ D037（exp027 判定阈值）→ D038（Reviewer 评估论文可行性）→ D039（framing 锁定 cost-efficiency）\n\n**易错点**：\n- exp027 wall time 长（42-58h），不要急于 SSH 打扰，等 cron 回调即可\n- W&B run y7jiibqk 初期可能 0 条数据（step 完成后才上报），不要误判为 W&B 断连\n- 6.25% 是 SFT baseline（step 0 val_before_train），不是 GRPO 训练后的成绩\n- 竞争者 ARES 是最近的对手（SFT router, 52.7% token 减少），但我们走 RL-trained + action-change reward 差异化\n- citation audit 发现 7 篇引用有问题（AgentPRM 最严重：ID/作者/标题全错），写论文前必须修正\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778870680.md"
+}

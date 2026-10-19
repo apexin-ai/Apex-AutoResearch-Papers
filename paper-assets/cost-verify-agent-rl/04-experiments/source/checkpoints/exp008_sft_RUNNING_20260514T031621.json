@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp008_sft",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T03:04:47.496Z",
+    "updated_at": "2026-05-14T03:16:21.905Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python /root/cost-verify-agent-rl/scripts/sft_train.py",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "191263",
+      "log_path": "/root/autodl-tmp/exp008_sft.log",
+      "submitted_at": "2026-05-14T03:15:12.537Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "SFT warmup on ALFWorld trajectory data teaches Qwen3-1.7B valid command format + semantics, achieving action_is_valid > 50%",
+      "model_name": "Qwen3-1.7B",
+      "description": "SFT phase of D006: TRL SFTTrainer full finetune, 1200 examples, 3 epochs, lr=2e-5, 225 steps, ~8min",
+      "decision": "D006",
+      "data_path": "/root/autodl-tmp/sft_data/alfworld_sft_ragen.jsonl",
+      "data_count": 1200,
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp008_sft/"
+    }
+  },
+  "timestamp": "2026-05-14T03:16:21.927701+00:00",
+  "trigger": "update_registry"
+}

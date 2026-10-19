@@ -1,0 +1,26 @@
+paper_key: "agentic-rl-survey-2025"
+title: "The Landscape of Agentic Reinforcement Learning for LLMs: A Survey"
+venue: "TMLR 2026"
+full_text_available: false
+
+research:
+  baselines: []
+  metrics: []
+  datasets: []
+  ablation_dimensions: []
+  training_recipe:
+    optimizer: "N/A"
+    lr: "N/A"
+    hardware: "N/A"
+    method: "Survey paper — two-part taxonomy: (1) core agentic capabilities (planning, tool use, memory, reasoning, self-improvement, perception), (2) applications across task domains; distinguishes single-step LLM-RL (degenerate MDP) from temporally-extended agentic RL (POMDP)"
+  method_family: "survey / taxonomy"
+
+positioning:
+  core_claim: "A comprehensive taxonomy distinguishing conventional single-step LLM-RL from temporally-extended agentic RL (POMDP), synthesizing 500+ papers across core capabilities and application domains."
+  key_results: "Consolidates open-source environments, benchmarks, and frameworks for agentic RL research"
+  limitations: ["N/A"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

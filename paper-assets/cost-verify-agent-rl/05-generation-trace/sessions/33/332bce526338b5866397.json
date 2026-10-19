@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "332bce526338b5866397",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops fix eval history length and verify",
+  "task_key": "worker_ops_fix_eval_history_length_and_verify_20260522T084642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_eval_history_length_and_verify_20260522T084642_result.json",
+    "occurrence": 1,
+    "bytes": 2080,
+    "sha256": "adc7890ede1597757a58393d7ce421cf5f8c6557674a39c5e914b203240f9dae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 半程（10/20 ep），进程继续在后台运行。当前足以给出中间结论。\n\n## 产出总结\n\n### 1. HISTORY_LENGTH 修改\n- **文件**: `/root/cost-verify-agent-rl/scripts/eval_checkpoint.py`（bjb1-17606）\n- **第 52 行**: `HISTORY_LENGTH = 5` → `HISTORY_LENGTH = 50`\n- **截断逻辑**: 第 119 行 `history_start = max(0, len(history) - HISTORY_LENGTH)` 自动跟随，无需额外修改\n\n### 2. Checkpoint 路径\n`/root/autodl-tmp/checkpoints/exp029-seed4/global_step_15_hf`\n\n### 3. 验证 eval 状态\nPID 400921，cuda:1，20 episodes OOD eval 正在运行。前 10 个 episode 结果：\n\n| EP | Status | Steps | fmt | type | Time |\n|----|--------|-------|-----|------|------|\n| 1 | FAIL | 1 | 0/1 | cool | 2.2s |\n| 2 | FAIL | 1 | 0/1 | cool | 1.8s |\n| 3 | FAIL | 14 | 13/14 | cool | 39.0s |\n| 4 | FAIL | 1 | 0/1 | clean | 1.8s |\n| 5 | FAIL | 1 | 0/1 | clean | 1.8s |\n| 6 | FAIL | 1 | 0/1 | clean | 1.7s |\n| **7** | **SUCCESS** | **37** | **37/37** | **put** | **209.6s** |\n| 8 | FAIL | 27 | 26/27 | put | 96.9s |\n| 9 | FAIL | 50 | 50/50 | put | 245.4s |\n| 10 | FAIL | 20 | 19/20 | clean | 73.9s |\n\n**当前：1/10 = 10%**（HISTORY_LENGTH=5 时全量 134ep 为 6.72%）\n\n### 4. 关键发现——HISTORY_LENGTH 不是主要瓶颈\n\n**主要问题是 step-1 format failure**：5/10 episodes 在第 1 步就 fmt=0 导致立即终止。第 1 步没有历史，HISTORY_LENGTH 完全不影响。这个 step-1 failure 是 eval_checkpoint.py 与 RAGEN eval 的另一个差异。\n\n能正常运行多步的 5 个 episode 中：format 基本正确（avg fmt ~95%），1/5 成功。这部分可能受益于 HISTORY_LENGTH 修复（EP 7 在 37 步中保留了完整历史并成功）。\n\n**建议排查 step-1 format failure 的根因**——这才是 eval_checkpoint.py 6.72% vs RAGEN 30.60% 差距的主要来源。可以用 `grep -c \"fmt=0/1\" eval_gpu1_verify.log` 确认最终比例。\n\nEval 预计还需 ~20 分钟完成。查看最终结果：\n```bash\ntail -30 /root/autodl-tmp/eval_gpu1_verify.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-eval-history-length-and-verify.md"
+}

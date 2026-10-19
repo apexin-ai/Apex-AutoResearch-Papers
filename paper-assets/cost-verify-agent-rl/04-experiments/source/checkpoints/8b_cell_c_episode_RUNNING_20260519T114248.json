@@ -1,0 +1,53 @@
+{
+  "exp_id": "8b_cell_c_episode",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T10:08:01.438Z",
+    "updated_at": "2026-05-19T11:42:48.289Z",
+    "hypothesis": "8B Cell C: episode-level RL with full context from 80.6% SFT baseline. Positive control for scale analysis. At 1.7B Cell C reached ~28-31% OOD. If 8B Cell C maintains/improves from 80.6%, confirms episode-level advantage is robust across model scales. Core comparison vs Cell A: Cell A collapse (28.1%→12.5% step 1) + Cell C stability = scale-invariant mechanism confirmation. lr=5e-7.",
+    "parent": "7b_sft_v1",
+    "spec": {
+      "command": "python train.py --config-name _alfworld_8b_cell_c",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "977400",
+      "log_path": "~/runs/cost-verify-agent-rl/8b_cell_c_episode.log",
+      "submitted_at": "2026-05-19T11:19:34.673Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "Qwen3-8B-SFT (checkpoint-231)",
+      "data_path": "ALFWorld train 140 games",
+      "data_count": 140,
+      "seed": 42,
+      "checkpoint_source": "7b_sft_v1",
+      "eval_data": "ALFWorld train 140 + val 32 (in-training eval)",
+      "hyperparams": {
+        "lr": 5e-07,
+        "context_window_mode": "episode_level",
+        "total_training_steps": 30,
+        "n_gpus": 4,
+        "gradient_checkpointing": true,
+        "optimizer_offload": true,
+        "enable_think": false,
+        "save_freq": 999
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T11:42:46.841Z"
+    },
+    "failure_reason": "CUDA OOM: CUDA out of memory. Tried to allocate 8.76 GiB. GPU 0 has a total capacity of 94.97 GiB of which 4.94 GiB is free. Including non-PyTorch memory, this process has 89.98 GiB memory in use. Of the allocated memory 118.48 GiB is allocated by PyTorch, wit",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-19T11:42:48.452634+00:00",
+  "trigger": "update_registry"
+}

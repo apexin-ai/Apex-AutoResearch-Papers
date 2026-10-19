@@ -1,0 +1,52 @@
+{
+  "exp_id": "7b_sft_eval_ood",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:39:26.088Z",
+    "updated_at": "2026-05-19T07:43:55.586Z",
+    "hypothesis": "Evaluate Qwen3-8B SFT checkpoint (7b_sft_v1, loss=0.0355, acc=98.56%) on ALFWorld OOD 134 tasks. Establishes 8B SFT baseline for subsequent RL experiments (Cell A vs Cell C). If success rate significantly higher than 1.7B SFT baseline (~6.25%), confirms model scale advantage for SFT; if similar, the 1.7B findings generalize.",
+    "parent": "7b_sft_v1",
+    "spec": {
+      "command": "RAGEN eval val_only=true on ALFWorld OOD 134 tasks, Qwen3-8B SFT checkpoint-231",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:2",
+        "cuda:3"
+      ],
+      "model_name": "Qwen3-8B-SFT (checkpoint-231)",
+      "data_path": "ALFWorld valid_unseen 134 tasks",
+      "data_count": 134,
+      "seed": 42,
+      "checkpoint_source": "7b_sft_v1",
+      "eval_data": "ALFWorld valid_unseen OOD 134 tasks",
+      "wandb_run": "8v6iysv3",
+      "pid": 807986,
+      "log_path": "/root/autodl-tmp/logs/7b_sft_eval_ood.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.806,
+      "pass_at_1": 0.806,
+      "num_actions": 20.18,
+      "action_is_valid": 0.963,
+      "action_is_effective": 1,
+      "reward_mean_at_134": 8.06,
+      "response_length": 1987.9,
+      "best_at_2_mean": 9.53,
+      "best_at_4_mean": 9.98,
+      "best_at_8_mean": 10,
+      "worst_at_2_mean": 6.55,
+      "worst_at_4_mean": 4.11,
+      "worst_at_8_mean": 1.93
+    },
+    "notes": "Eval completed successfully. OOD 134 tasks success rate 80.6%. W&B data missing due to BrokenPipeError during wandb teardown (asyncio stream close), but all metrics logged to file. GPU cuda:2,3 released.",
+    "checkpoint_path": "N/A (eval-only, source checkpoint from 7b_sft_v1)",
+    "completed_at": "2026-05-19T07:43:55.586Z"
+  },
+  "timestamp": "2026-05-19T07:43:55.739376+00:00",
+  "trigger": "update_registry"
+}

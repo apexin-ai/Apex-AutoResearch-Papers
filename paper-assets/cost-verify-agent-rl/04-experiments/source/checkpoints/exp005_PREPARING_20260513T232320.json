@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp005",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T23:23:20.655Z",
+    "updated_at": "2026-05-13T23:23:20.655Z",
+    "spec": {
+      "hypothesis": "Fast config (30 steps, 64 traj/step, 30 max_turns) can show learning trend in ~12-20h",
+      "model_name": "Qwen3-1.7B",
+      "server": "bjb1-17606",
+      "data_path": "/root/autodl-tmp/alfworld/",
+      "data_count": "3553 (train split)",
+      "seed": {
+        "train": 10000,
+        "val": 123
+      },
+      "parent": "exp003",
+      "description": "Phase A fast: reduced config for quicker iteration"
+    }
+  },
+  "timestamp": "2026-05-13T23:23:20.670064+00:00",
+  "trigger": "update_registry"
+}

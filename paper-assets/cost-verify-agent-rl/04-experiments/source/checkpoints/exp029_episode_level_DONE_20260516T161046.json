@@ -1,0 +1,70 @@
+{
+  "exp_id": "exp029_episode_level",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T08:49:53.280Z",
+    "updated_at": "2026-05-16T16:10:46.393Z",
+    "hypothesis": "Episode-level 训练（context_window_mode: full）解决 step_independent h=2 的信用分配缺陷，模型能学到跨步规划策略，val success 不再停滞于 baseline。",
+    "parent": "exp028c_selfguide_recipe",
+    "notes": "第4次启动 (PID 872859, TaskRunner 876099)。val env_groups 从 140 降为 32（Director D决策：已知 baseline=10.7%，不需要高精度 val_before_train）。/tmp 清理至 17G 可用。预计 val_before_train ~5-10min（32 games 串行），之后每个 train step ~30min。Entropy 0.027 已确认非 collapse（量纲效应）。",
+    "server": "bjb1-17606",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-17606",
+      "gpu": "cuda:0,cuda:1",
+      "started_at": "2026-05-16T09:49:15.902Z",
+      "finished_at": "2026-05-16T16:10:45.655Z",
+      "training_hours": 6.36
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && export WANDB_PROJECT=cost-verify-agent-rl && python train.py --config-name _alfworld_exp029_episode_level\"",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "868459",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_episode_level.log",
+      "submitted_at": "2026-05-16T15:03:28.357Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 4038.0,
+      "gpu_hours": 2.24
+    },
+    "wandb_run_id": "7hz8rhxg",
+    "metrics": {
+      "step_0_val": {
+        "success": 12.5,
+        "action_is_valid": 78.3,
+        "episodes": 32,
+        "note": "第4次启动(W&B 7hz8rhxg)的 val_before_train。与前次 run 的 10.7%/140ep 在采样噪声范围内一致"
+      },
+      "step_1_train": {
+        "success": 17.19,
+        "pass_at_8": 50,
+        "action_is_valid": 68.78,
+        "action_is_effective": 96.06,
+        "num_actions": 41.72,
+        "entropy": 0.0265,
+        "kl_loss": 0.0008,
+        "pg_loss": 0,
+        "grad_norm": 0.994,
+        "score_mean": 1.72,
+        "time_s": 1857,
+        "response_length": 7888,
+        "note": "来自第2次 run (W&B x4bbiddh)，非当前 run"
+      }
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T16:10:46.393Z"
+  },
+  "timestamp": "2026-05-16T16:10:46.506195+00:00",
+  "trigger": "update_registry"
+}

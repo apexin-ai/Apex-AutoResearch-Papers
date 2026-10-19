@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "047bf5a16f24e40f6d90",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp020b status check",
+  "task_key": "worker_diagnose_exp020b-status-check_20260514T223629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp020b-status-check_20260514T223629_result.json",
+    "occurrence": 1,
+    "bytes": 1919,
+    "sha256": "5022c85b509787c37df8826f74bae8e465285270a58ef0bff440b9de1f8f3d21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. PID 389434 & 389435 — 存活\n```\n389434 386605 SNl  23:49 ray::WorkerDict\n389435 386605 SNl  23:49 ray::WorkerDict\n```\n\n### 2. tmux — 命令被 read_only 拦截\n（tmux 不在白名单中）\n\n### 3. train.py 进程 — exp020b 主进程存活\n```\nPID 385982 (uptime 24:18): python train.py --config-name _alfworld_exp018_sft_grpo \n    model_path=.../qwen3_exp019b_sft \n    trainer.experiment_name=exp020b-alfworld-sft-grpo\n```\n另有大量 Ray worker 进程在运行，包括两个 Ray session：\n- Session 06:12:58 (exp020b): workers 389434, 389435\n- Session 06:19:56 (exp020d): workers 394054, 394055, 393854 等\n\n### 4. GPU 使用\n```\nGPU 0: 100%, 51432 MiB / 97887 MiB\nGPU 1: 100%, 51492 MiB / 97887 MiB\n```\n\nGPU 上的计算进程：\n```\nPID 389434 @ GPU-0: 20500 MiB  (exp020b WorkerDict)\nPID 394054 @ GPU-0: 40084 MiB  (exp020d actor_rollout_update_actor)\nPID 389435 @ GPU-1: 20500 MiB  (exp020b WorkerDict)\nPID 394055 @ GPU-1: 40144 MiB  (exp020d actor_rollout_update_actor)\n```\n\n### 5. exp020b 日志（最后 30 行）\n训练正在推进：\n```\nTraining Progress: 7% | 2/30 [15:51<3:58:41, 511.48s/it]\n```\n- Step 0 val: success=0.0, pass@1=0.0\n- Step 1 train: success=0.1875, pass@16=0.75, entropy=0.107\n- 每步约 275-511s，预计剩余约 4 小时\n\n关键训练指标（Step 1）：\n- `actor/pg_loss`: 6.39e-05\n- `actor/ppo_kl`: 9.30e-05\n- `actor/entropy`: 0.107\n- `actor/grad_norm`: 2.777\n- `critic/score/mean`: 1.875\n- `perf/throughput`: 414.9 tokens/s\n\n### 6. exp020d 日志 — **也在运行，未停止**\n```\nTraining Progress: 3% | 1/30 [05:18<2:34:10, 318.98s/it]\n```\nexp020d 也在运行中（PIDs 393854, 394054, 394055），正在执行 Step 1 的 actor update。\n\n**总结：exp020b 和 exp020d 都在运行，两个实验共享 GPU 0 和 GPU 1（各占约 60GB/98GB）。GPU 利用率均 100%。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp020b-status-check.md"
+}

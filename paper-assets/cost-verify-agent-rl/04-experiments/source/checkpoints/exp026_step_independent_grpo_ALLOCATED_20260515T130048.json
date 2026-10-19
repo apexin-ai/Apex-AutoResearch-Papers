@@ -1,0 +1,66 @@
+{
+  "exp_id": "exp026_step_independent_grpo",
+  "project": "cost-verify-agent-rl",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 1,
+    "created_at": "2026-05-15T09:34:33.675Z",
+    "updated_at": "2026-05-15T13:00:48.023Z",
+    "server": "bjb1-17606",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-17606",
+      "gpu": "cuda:0,cuda:1",
+      "started_at": "2026-05-15T09:35:34.249Z",
+      "finished_at": "2026-05-15T11:07:27.171Z",
+      "training_hours": 1.53
+    },
+    "notes": "⚠️ D029: CRON 误判 DONE(failed)，进程实际仍在运行。Train step 1-2 指标突破性：success 6.25% → 21.88% → 32.81%（已超 MVP 20%），entropy 0.267→0.317（无 collapse），grad_norm 14-16（稳定）。指标来源：Ray worker stdout logs。Step 5 val 是首个正式验证点。早停标准维持。后续实验硬规则：禁止 WANDB_MODE=disabled。",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-15T11:07:28.010Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T11:07:29.450586+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "metrics": {
+          "val_before_train_success": 0.0625,
+          "val_before_train_action_is_valid": 0.631,
+          "val_before_train_action_is_effective": 0.879,
+          "val_before_train_episodes": 16,
+          "val_before_train_pass_at_1": 0.0625,
+          "truncation_count_val": 25,
+          "train_step1_success": 0.2188,
+          "train_step1_action_is_valid": 0.686,
+          "train_step1_entropy": 0.2672,
+          "train_step1_pg_loss": 0.00732,
+          "train_step1_kl_loss": 0.1797,
+          "train_step1_ppo_kl": 0.067,
+          "train_step1_grad_norm": 14.43,
+          "train_step1_reward_mean": 1.218,
+          "train_step1_pass_at_16": 1,
+          "train_step2_success": 0.3281,
+          "train_step2_action_is_valid": 0.603,
+          "train_step2_entropy": 0.317,
+          "train_step2_pg_loss": 0.00571,
+          "train_step2_kl_loss": 0.0974,
+          "train_step2_ppo_kl": 0.0267,
+          "train_step2_grad_norm": 15.62,
+          "train_step2_reward_mean": 1.62,
+          "train_step2_pass_at_16": 1
+        },
+        "notes": "⚠️ D029: CRON 误判 DONE(failed)，进程实际仍在运行。Train step 1-2 指标突破性：success 6.25% → 21.88% → 32.81%（已超 MVP 20%），entropy 0.267→0.317（无 collapse），grad_norm 14-16（稳定）。指标来源：Ray worker stdout logs。Step 5 val 是首个正式验证点。早停标准维持。后续实验硬规则：禁止 WANDB_MODE=disabled。"
+      }
+    }
+  },
+  "timestamp": "2026-05-15T13:00:48.125125+00:00",
+  "trigger": "update_registry"
+}

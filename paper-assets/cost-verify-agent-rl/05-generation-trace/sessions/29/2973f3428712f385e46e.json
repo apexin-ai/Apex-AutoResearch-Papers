@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "2973f3428712f385e46e",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "eval per task type breakdown",
+  "task_key": "worker_eval_per-task-type-breakdown_20260519T112501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_per-task-type-breakdown_20260519T112501.log",
+    "occurrence": 1,
+    "bytes": 929257,
+    "sha256": "d6dd152a09104de7cfd9235ec22abb756a1d30691d188068188b89a4e943847b"
+  },
+  "statistics": {
+    "messages": 343,
+    "user_turns": 0,
+    "tool_calls": 128,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 84,
+      "tool_call": 128,
+      "tool_result": 128
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 343,
+      "chunks": [
+        {
+          "path": "2973f3428712f385e46e-part-0001.json",
+          "message_count": 167
+        },
+        {
+          "path": "2973f3428712f385e46e-part-0002.json",
+          "message_count": 176
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-per-task-type-breakdown.md"
+}

@@ -1,0 +1,621 @@
+# paper 8b scale results
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 17
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/chats/worker_paper_8b-scale-results_20260520T131942.jsonl`
+- **Structured JSON:** [`de95c92dd98367b7a88c.json`](../../sessions/de/de95c92dd98367b7a88c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+17 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T13:22:35.718158+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_8b-scale-results_20260520T131942",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T13:22:35.718772+00:00_
+
+1	---
+2	name: paper-writing-norms
+3	description: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。
+4	allowed-tools: [Read, Write, Edit, Glob, Grep]
+5	scope: global
+6	version: 2
+7	priority: 9
+8	tags:
+9	  - writing
+10	  - paper
+11	  - style
+12	  - norms
+13	roles:
+14	  - agent
+15	  - worker
+16	  - paper_agent
+17	---
+18	
+19	# 论文写作风格规范
+20	
+21	> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。
+22	
+23	---
+24	
+25	## 一、总体写作哲学
+26	
+27	### 1.1 故事驱动，不是数据堆砌
+28	
+29	- 论文必须以"故事线"为核心展开：问题 → 洞察 → 方法 → 验证
+30	- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进
+31	- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌
+32	- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing
+33	
+34	### 1.2 主线统一性
+35	
+36	- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**
+37	- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C
+38	- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机
+39	- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线
+40	
+41	### 1.3 专有名词必须有定义
+42	
+43	- 首次出现的专有名词/缩写必须给出完整定义和解释
+44	- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）
+45	- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用
+46	- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug
+47	
+48	### 1.4 写作前必读同类优秀论文
+49	
+50	- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可
+51	- 重点学：
+52	  - Abstract 怎么用最少篇幅讲完故事
+53	  - Introduction 怎么从大问题切入到具体贡献
+54	  - Related Work 怎么 positioning 自己（不是 survey）
+55	  - Table/Figure 怎么压缩信息密度
+56	- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大
+57	- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文
+58	
+59	---
+60	
+61	## 二、Abstract 写作规范
+62	
+63	### 2.1 四个必答问题（150-250 words）
+64	
+65	Abstract 必须在很短的篇幅内清楚回答：
+66	1. **研究什么问题** — 1-2 句话交代背景和痛点
+67	2. **为什么重要** — 现有方法的不足（不用写太多）
+68	3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）
+69	4. **结果说明什么** — 用具体实验结论支撑贡献
+70	
+71	### 2.2 禁忌
+72	
+73	- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim
+74	- **
+…[truncated 5709 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_8b-scale-results_20260520T131942",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T13:22:35.718974+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/experiments.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_8b-scale-results_20260520T131942",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/experiments.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-20T13:22:35.719117+00:00_
+
+docs/paper/experiments.tex
+artifacts/_project/paper/experiments.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_8b-scale-results_20260520T131942",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T13:22:35.719268+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_8b-scale-results_20260520T131942",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/paper/experiments.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T13:22:35.719498+00:00_
+
+1	\newcommand{\placeholder}[1]{\textcolor{red}{[#1]}}
+2	
+3	\section{Experiments}
+4	\label{sec:experiments}
+5	
+6	We design experiments to answer three questions. First, does step-independent training collapse as predicted by our dual mechanism analysis, and does episode-level training avoid this collapse? Second, how does the window size $h$ modulate the severity of failure, and is there a credit assignment cliff below some critical threshold? Third, can we directly measure advantage sign misattribution during training to validate the theoretical predictions of Section~\ref{sec:m2_sign_misattribution}?
+7	
+8	\subsection{Experimental Setup}
+9	\label{sec:experimental_setup}
+10	
+11	\paragraph{Environment.}
+12	We evaluate on ALFWorld~\cite{shridhar2021alfworld}, a text-based household environment where an agent interacts with a simulated kitchen, bedroom, and living room through natural language commands. % TODO: add shridhar2021alfworld to .bib
+13	ALFWorld provides six task types (pick, clean, heat, cool, examine, pick two) that require sequential reasoning over multiple interaction steps. The agent issues text commands (e.g., ``go to countertop 1'', ``take knife 2 from drawer 3'') and receives textual observations describing the environment state. Episodes terminate after task completion or a maximum of 50 interaction steps. The reward is binary: $R = 1$ for successful task completion and $R = 0$ for failure. This binary reward structure makes ALFWorld a particularly challenging testbed for credit assignment: the only learning signal arrives at episode termination, and intermediate steps receive no direct feedback.
+14	
+15	ALFWorld is well-suited for studying the step-independent failure because its tasks exhibit strong sequential dependencies. A typical task requires the agent to locate an object (steps 1--5), pick it up (step 6), navigate to a target receptacle (steps 7--10), and place the object (step 11). With step-independent windowing at $h = 2$, the window contain
+…[truncated 17352 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_8b-scale-results_20260520T131942",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T13:22:35.719676+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_8b-scale-results_20260520T131942",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T13:22:35.719856+00:00_
+
+1	\newcommand{\placeholder}[1]{\textcolor{red}{[#1]}}
+2	
+3	\section{Experiments}
+4	\label{sec:experiments}
+5	
+6	We design experiments to test three predictions of the dual-mechanism analysis. First, does step-independent training collapse while episode-level training avoids collapse? Second, can we separate the individual contributions of information loss (M1) and sign misattribution (M2) through factorial manipulation? Third, how does window size $h$ modulate the severity of both mechanisms?
+7	
+8	\subsection{Environment}
+9	\label{sec:environment}
+10	
+11	We evaluate on ALFWorld~\cite{shridhar2021alfworld}, a text-based household environment in which an agent interacts with simulated rooms through natural language commands. ALFWorld defines six task types (pick, clean, heat, cool, examine, pick two) that require sequential reasoning over multiple interaction steps. The agent issues text commands (e.g., \texttt{go to countertop 1}, \texttt{take knife 2 from drawer 3}) and receives textual observations of the environment state. Episodes terminate after task completion or a maximum of 50 steps. The reward is binary: $R \in \{0, r_+\}$, with $r_+$ awarded only upon successful task completion.
+12	
+13	ALFWorld tasks exhibit strong sequential dependencies. A typical task requires the agent to locate an object (steps 1--5), pick it up (step 6), navigate to a target receptacle (steps 7--10), and place it (step 11). Under step-independent windowing with $h = 2$, the window containing the placement action has no access to the exploration steps that determined the target object. Context truncation therefore directly impairs the policy's ability to condition late actions on early observations.
+14	
+15	\subsection{Base Model and Supervised Fine-Tuning}
+16	\label{sec:base_model}
+17	
+18	We use Qwen3-1.7B (instruct variant) as the base policy. Before RL training, we perform supervised fine-tuning (SFT) on 2{,}546 expert demonstrations from ALFWorld for 2 epochs with learning rate $5 \
+…[truncated 7516 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_8b-scale-results_20260520T131942",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T13:22:35.720044+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/paper/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_8b-scale-results_20260520T131942",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/paper/*.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T13:22:35.720172+00:00_
+
+docs/paper/discussion.tex
+docs/paper/theoretical_analysis.tex
+docs/paper/introduction.tex
+docs/paper/conclusion.tex
+docs/paper/method.tex
+docs/paper/related_work.tex
+docs/paper/experiments.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_8b-scale-results_20260520T131942",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T13:22:35.720290+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/paper/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_8b-scale-results_20260520T131942",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/paper/*.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T13:22:35.720406+00:00_
+
+artifacts/_project/paper/theoretical_analysis.tex
+artifacts/_project/paper/introduction.tex
+artifacts/_project/paper/related_work.tex
+artifacts/_project/paper/experiments_aa43d8.tex
+artifacts/_project/paper/discussion.tex
+artifacts/_project/paper/conclusion.tex
+artifacts/_project/paper/experiments.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_8b-scale-results_20260520T131942",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T13:22:35.720653+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex",
+  "old_string": "Results are organized around three comparisons: (1)~episode-level vs.\\ step-independent training dynamics (Section~\\ref{sec:results_main}), (2)~factorial mechanism separation (Section~\\ref{sec:results_factorial}), and (3)~window-size ablation (Section~\\ref{sec:results_hsweep}). \\placeholder{Results sections to follow.}",
+  "new_string": "Results are organized around three comparisons: (1)~episode-level vs.\\ step-independent training dynamics (Section~\\ref{sec:results_main}), (2)~factorial mechanism separation (Section~\\ref{sec:results_factorial}), and (3)~window-size ablation (Section~\\ref{sec:results_hsweep}). \\placeholder{Results sections to follow.}\n\n\\subsection{Cross-Scale Verification}\n\\label{sec:cross_scale}\n\nThe 1.7B experiments establish that step-independent training collapses while episode-level training succeeds. Both mechanisms could in principle be scale-dependent: a larger model might compensate for information loss through greater capacity, or resist sign misattribution through more stable optimization. We test scale invariance by replicating the key factorial conditions on Qwen3-8B.\n\n\\paragraph{Setup.}\nThe 8B SFT baseline uses the same training protocol (2{,}546 demonstrations, 2 epochs, learning rate $5 \\times 10^{-6}$). It achieves 68.75\\% in-distribution and 80.6\\% OOD success ($T{=}0$), far above the 1.7B baseline of 12.5\\%.% exp_id: 8b_sft_baseline\nThis higher starting point provides a stronger test: improvement over an already-competent baseline would confirm that episode-level RL adds value beyond what scale alone provides.\n\n\\paragraph{Information loss.}\nRestricting the 8B model's observation window to $h{=}2$ at inference time drops in-distribution success from 68.75\\% to 31.25\\%, a 37.5 percentage point gap.% exp_id: 8b_info_loss_eval\nThe relative magnitude is comparable to the 1.7B case. Larger models do not implicitly reconstruct missing context from a 2-step window.\n\n\\paragraph{Cell A collapse.}\nStep-independent training on the 8B model collapses within two gradient steps: in-distribution success drops from 28.1\\% (before training) to 12.5\\% (step~1) to 1.5\\% (step~2).% exp_id: 8b_cell_a_episode\nThe collapse trajectory matches the 1.7B pattern, consistent with the sign misattribution rate predicted by Proposition~\\ref{prop:correct_sign}.\n\n\\paragraph{Cell C: episode-level training.}\nEpisode-level GRPO reaches 96.9\\% in-distribution success at step~10 and 90.3\\% OOD success (134 tasks, $T{=}0.4$), a 9.7 percentage point improvement over the SFT baseline on OOD tasks.% exp_id: 8b_cell_c_episode_v9d, 8b_v9d_ood_eval_v5\nTraining reward saturates to 100\\% at step~12. The gain over an 80.6\\% SFT baseline confirms that correct credit assignment enables RL to improve beyond supervised learning even from a strong initialization.\n\nTable~\\ref{tab:8b_results} summarizes the 8B conditions.\n\n\\begin{table}[t]\n\\centering\n\\caption{8B model results on ALFWorld. In-Dist: 32-task validation set; OOD: 134-task held-out test set. Cell~A reports the value at step~2 (immediately before complete collapse). Cell~C reports the best checkpoint (step~10).}\n\\label{tab:8b_results}\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Method} & \\textbf{In-Dist (\\%)} & \\textbf{OOD (\\%)} \\\\\n\\midrule\nSFT baseline ($T{=}0$) & 68.75 & 80.60 \\\\  % exp_id: 8b_sft_baseline\nSFT $h{=}2$ ($T{=}0$) & 31.25 & --- \\\\  % exp_id: 8b_info_loss_eval\nCell A: step-indep.\\ ($h{=}2$) & 28.1 $\\to$ 1.5 & --- \\\\  % exp_id: 8b_cell_a_episode\nCell C: episode-level & \\textbf{96.88} & \\textbf{90.30} \\\\  % exp_id: 8b_cell_c_episode_v9d, 8b_v9d_ood_eval_v5\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nBoth the failure and the fix are scale-invariant. Step-independent training collapses at 8B with the same speed as at 1.7B; episode-level training not only avoids collapse but exceeds the SFT ceiling by a substantial margin."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_8b-scale-results_20260520T131942",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex",
+    "old_string": "Results are organized around three comparisons: (1)~episode-level vs.\\ step-independent training dynamics (Section~\\ref{sec:results_main}), (2)~factorial mechanism separation (Section~\\ref{sec:results_factorial}), and (3)~window-size ablation (Section~\\ref{sec:results_hsweep}). \\placeholder{Results sections to follow.}",
+    "new_string": "Results are organized around three comparisons: (1)~episode-level vs.\\ step-independent training dynamics (Section~\\ref{sec:results_main}), (2)~factorial mechanism separation (Section~\\ref{sec:results_factorial}), and (3)~window-size ablation (Section~\\ref{sec:results_hsweep}). \\placeholder{Results sections to follow.}\n\n\\subsection{Cross-Scale Verification}\n\\label{sec:cross_scale}\n\nThe 1.7B experiments establish that step-independent training collapses while episode-level training succeeds. Both mechanisms could in principle be scale-dependent: a larger model might compensate for information loss through greater capacity, or resist sign misattribution through more stable optimization. We test scale invariance by replicating the key factorial conditions on Qwen3-8B.\n\n\\paragraph{Setup.}\nThe 8B SFT baseline uses the same training protocol (2{,}546 demonstrations, 2 epochs, learning rate $5 \\times 10^{-6}$). It achieves 68.75\\% in-distribution and 80.6\\% OOD success ($T{=}0$), far above the 1.7B baseline of 12.5\\%.% exp_id: 8b_sft_baseline\nThis higher starting point provides a stronger test: improvement over an already-competent baseline would confirm that episode-level RL adds value beyond what scale alone provides.\n\n\\paragraph{Information loss.}\nRestricting the 8B model's observation window to $h{=}2$ at inference time drops in-distribution success from 68.75\\% to 31.25\\%, a 37.5 percentage point gap.% exp_id: 8b_info_loss_eval\nThe relative magnitude is comparable to the 1.7B case. Larger models do not implicitly reconstruct missing context from a 2-step window.\n\n\\paragraph{Cell A collapse.}\nStep-independent training on the 8B model collapses within two gradient steps: in-distribution success drops from 28.1\\% (before training) to 12.5\\% (step~1) to 1.5\\% (step~2).% exp_id: 8b_cell_a_episode\nThe collapse trajectory matches the 1.7B pattern, consistent with the sign misattribution rate predicted by Proposition~\\ref{prop:correct_sign}.\n\n\\paragraph{Cell C: episode-level training.}\nEpisode-level GRPO reaches 96.9\\% in-distribution success at step~10 and 90.3\\% OOD success (134 tasks, $T{=}0.4$), a 9.7 percentage point improvement over the SFT baseline on OOD tasks.% exp_id: 8b_cell_c_episode_v9d, 8b_v9d_ood_eval_v5\nTraining reward saturates to 100\\% at step~12. The gain over an 80.6\\% SFT baseline confirms that correct credit assignment enables RL to improve beyond supervised learning even from a strong initialization.\n\nTable~\\ref{tab:8b_results} summarizes the 8B conditions.\n\n\\begin{table}[t]\n\\centering\n\\caption{8B model results on ALFWorld. In-Dist: 32-task validation set; OOD: 134-task held-out test set. Cell~A reports the value at step~2 (immediately before complete collapse). Cell~C reports the best checkpoint (step~10).}\n\\label{tab:8b_results}\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Method} & \\textbf{In-Dist (\\%)} & \\textbf{OOD (\\%)} \\\\\n\\midrule\nSFT baseline ($T{=}0$) & 68.75 & 80.60 \\\\  % exp_id: 8b_sft_baseline\nSFT $h{=}2$ ($T{=}0$) & 31.25 & --- \\\\  % exp_id: 8b_info_loss_eval\nCell A: step-indep.\\ ($h{=}2$) & 28.1 $\\to$ 1.5 & --- \\\\  % exp_id: 8b_cell_a_episode\nCell C: episode-level & \\textbf{96.88} & \\textbf{90.30} \\\\  % exp_id: 8b_cell_c_episode_v9d, 8b_v9d_ood_eval_v5\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nBoth the failure and the fix are scale-invariant. Step-independent training collapses at 8B with the same speed as at 1.7B; episode-level training not only avoids collapse but exceeds the SFT ceiling by a substantial margin."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T13:22:35.720896+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/experiments.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_8b-scale-results_20260520T131942",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T13:22:35.721045+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/paper/experiments.tex",
+  "old_string": "\\paragraph{Selective verification.}\nBuilding on the episode-level trained agent (Section~\\ref{sec:selective_verification}), we train a selective verification policy that decides when self-checking is informative. This component is orthogonal to the credit assignment analysis and demonstrates a downstream application of the competent base agent produced by episode-level training. \\placeholder{tab4\\_selective\\_comparison: Selective verification results. Columns: Method (Always-Verify, Never-Verify, Selective), Success (\\%), Verify Rate (\\%), Cost Reduction (\\%). Pending Phase B experiments.}",
+  "new_string": "\\paragraph{Selective verification.}\nBuilding on the episode-level trained agent (Section~\\ref{sec:selective_verification}), we train a selective verification policy that decides when self-checking is informative. This component is orthogonal to the credit assignment analysis and demonstrates a downstream application of the competent base agent produced by episode-level training. \\placeholder{tab4\\_selective\\_comparison: Selective verification results. Columns: Method (Always-Verify, Never-Verify, Selective), Success (\\%), Verify Rate (\\%), Cost Reduction (\\%). Pending Phase B experiments.}\n\n\\subsection{Cross-Scale Verification}\n\\label{sec:cross_scale}\n\nThe 1.7B experiments establish that step-independent training collapses while episode-level training succeeds. Both mechanisms could in principle be scale-dependent: a larger model might compensate for information loss through greater capacity, or resist sign misattribution through more stable optimization. We test scale invariance by replicating the key factorial conditions on Qwen3-8B.\n\n\\paragraph{Setup.}\nThe 8B SFT baseline uses the same training protocol (2{,}546 demonstrations, 2 epochs, learning rate $5 \\times 10^{-6}$). It achieves 68.75\\% in-distribution and 80.6\\% OOD success ($T{=}0$), far above the 1.7B baseline of 12.5\\%.% exp_id: 8b_sft_baseline\nThis higher starting point provides a stronger test: improvement over an already-competent baseline would confirm that episode-level RL adds value beyond what scale alone provides.\n\n\\paragraph{Information loss.}\nRestricting the 8B model's observation window to $h{=}2$ at inference time drops in-distribution success from 68.75\\% to 31.25\\%, a 37.5 percentage point gap.% exp_id: 8b_info_loss_eval\nThe relative magnitude is comparable to the 1.7B case. Larger models do not implicitly reconstruct missing context from a 2-step window.\n\n\\paragraph{Cell A collapse.}\nStep-independent training on the 8B model collapses within two gradient steps: in-distribution success drops from 28.1\\% (before training) to 12.5\\% (step~1) to 1.5\\% (step~2).% exp_id: 8b_cell_a_episode\nThe collapse trajectory matches the 1.7B pattern, consistent with the sign misattribution rate predicted by Proposition~\\ref{prop:correct_sign}.\n\n\\paragraph{Cell C: episode-level training.}\nEpisode-level GRPO reaches 96.9\\% in-distribution success at step~10 and 90.3\\% OOD success (134 tasks, $T{=}0.4$), a 9.7 percentage point improvement over the SFT baseline on OOD tasks.% exp_id: 8b_cell_c_episode_v9d, 8b_v9d_ood_eval_v5\nTraining reward saturates to 100\\% at step~12. The gain over an 80.6\\% SFT baseline confirms that correct credit assignment enables RL to improve beyond supervised learning even from a strong initialization.\n\nTable~\\ref{tab:8b_results} summarizes the 8B conditions.\n\n\\begin{table}[t]\n\\centering\n\\caption{8B model results on ALFWorld. In-Dist: 32-task validation set; OOD: 134-task held-out test set. Cell~A reports the value at step~2 (immediately before complete collapse). Cell~C reports the best checkpoint (step~10).}\n\\label{tab:8b_results}\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Method} & \\textbf{In-Dist (\\%)} & \\textbf{OOD (\\%)} \\\\\n\\midrule\nSFT baseline ($T{=}0$) & 68.75 & 80.60 \\\\  % exp_id: 8b_sft_baseline\nSFT $h{=}2$ ($T{=}0$) & 31.25 & --- \\\\  % exp_id: 8b_info_loss_eval\nCell A: step-indep.\\ ($h{=}2$) & 28.1 $\\to$ 1.5 & --- \\\\  % exp_id: 8b_cell_a_episode\nCell C: episode-level & \\textbf{96.88} & \\textbf{90.30} \\\\  % exp_id: 8b_cell_c_episode_v9d, 8b_v9d_ood_eval_v5\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nBoth the failure and the fix are scale-invariant. Step-independent training collapses at 8B with the same speed as at 1.7B; episode-level training not only avoids collapse but exceeds the SFT ceiling by a substantial margin."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_8b-scale-results_20260520T131942",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/paper/experiments.tex",
+    "old_string": "\\paragraph{Selective verification.}\nBuilding on the episode-level trained agent (Section~\\ref{sec:selective_verification}), we train a selective verification policy that decides when self-checking is informative. This component is orthogonal to the credit assignment analysis and demonstrates a downstream application of the competent base agent produced by episode-level training. \\placeholder{tab4\\_selective\\_comparison: Selective verification results. Columns: Method (Always-Verify, Never-Verify, Selective), Success (\\%), Verify Rate (\\%), Cost Reduction (\\%). Pending Phase B experiments.}",
+    "new_string": "\\paragraph{Selective verification.}\nBuilding on the episode-level trained agent (Section~\\ref{sec:selective_verification}), we train a selective verification policy that decides when self-checking is informative. This component is orthogonal to the credit assignment analysis and demonstrates a downstream application of the competent base agent produced by episode-level training. \\placeholder{tab4\\_selective\\_comparison: Selective verification results. Columns: Method (Always-Verify, Never-Verify, Selective), Success (\\%), Verify Rate (\\%), Cost Reduction (\\%). Pending Phase B experiments.}\n\n\\subsection{Cross-Scale Verification}\n\\label{sec:cross_scale}\n\nThe 1.7B experiments establish that step-independent training collapses while episode-level training succeeds. Both mechanisms could in principle be scale-dependent: a larger model might compensate for information loss through greater capacity, or resist sign misattribution through more stable optimization. We test scale invariance by replicating the key factorial conditions on Qwen3-8B.\n\n\\paragraph{Setup.}\nThe 8B SFT baseline uses the same training protocol (2{,}546 demonstrations, 2 epochs, learning rate $5 \\times 10^{-6}$). It achieves 68.75\\% in-distribution and 80.6\\% OOD success ($T{=}0$), far above the 1.7B baseline of 12.5\\%.% exp_id: 8b_sft_baseline\nThis higher starting point provides a stronger test: improvement over an already-competent baseline would confirm that episode-level RL adds value beyond what scale alone provides.\n\n\\paragraph{Information loss.}\nRestricting the 8B model's observation window to $h{=}2$ at inference time drops in-distribution success from 68.75\\% to 31.25\\%, a 37.5 percentage point gap.% exp_id: 8b_info_loss_eval\nThe relative magnitude is comparable to the 1.7B case. Larger models do not implicitly reconstruct missing context from a 2-step window.\n\n\\paragraph{Cell A collapse.}\nStep-independent training on the 8B model collapses within two gradient steps: in-distribution success drops from 28.1\\% (before training) to 12.5\\% (step~1) to 1.5\\% (step~2).% exp_id: 8b_cell_a_episode\nThe collapse trajectory matches the 1.7B pattern, consistent with the sign misattribution rate predicted by Proposition~\\ref{prop:correct_sign}.\n\n\\paragraph{Cell C: episode-level training.}\nEpisode-level GRPO reaches 96.9\\% in-distribution success at step~10 and 90.3\\% OOD success (134 tasks, $T{=}0.4$), a 9.7 percentage point improvement over the SFT baseline on OOD tasks.% exp_id: 8b_cell_c_episode_v9d, 8b_v9d_ood_eval_v5\nTraining reward saturates to 100\\% at step~12. The gain over an 80.6\\% SFT baseline confirms that correct credit assignment enables RL to improve beyond supervised learning even from a strong initialization.\n\nTable~\\ref{tab:8b_results} summarizes the 8B conditions.\n\n\\begin{table}[t]\n\\centering\n\\caption{8B model results on ALFWorld. In-Dist: 32-task validation set; OOD: 134-task held-out test set. Cell~A reports the value at step~2 (immediately before complete collapse). Cell~C reports the best checkpoint (step~10).}\n\\label{tab:8b_results}\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Method} & \\textbf{In-Dist (\\%)} & \\textbf{OOD (\\%)} \\\\\n\\midrule\nSFT baseline ($T{=}0$) & 68.75 & 80.60 \\\\  % exp_id: 8b_sft_baseline\nSFT $h{=}2$ ($T{=}0$) & 31.25 & --- \\\\  % exp_id: 8b_info_loss_eval\nCell A: step-indep.\\ ($h{=}2$) & 28.1 $\\to$ 1.5 & --- \\\\  % exp_id: 8b_cell_a_episode\nCell C: episode-level & \\textbf{96.88} & \\textbf{90.30} \\\\  % exp_id: 8b_cell_c_episode_v9d, 8b_v9d_ood_eval_v5\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nBoth the failure and the fix are scale-invariant. Step-independent training collapses at 8B with the same speed as at 1.7B; episode-level training not only avoids collapse but exceeds the SFT ceiling by a substantial margin."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T13:22:35.721293+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/_project/paper/experiments.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_8b-scale-results_20260520T131942",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-20T13:22:35.721463+00:00_
+
+已在两个文件中添加 `\subsection{Cross-Scale Verification}` (`\label{sec:cross_scale}`)：
+
+- `docs/paper/experiments.tex` — 添加在 §5.7 Results 之后
+- `artifacts/_project/paper/experiments.tex` — 添加在 §5.5 Additional Baselines 之后
+
+内容结构：
+- 开头段：动机（scale invariance 测试）
+- 4 个 `\paragraph{}`：Setup / Information loss / Cell A collapse / Cell C episode-level
+- `Table 5`（`tab:8b_results`）：4 行汇总 SFT baseline / SFT h=2 / Cell A / Cell C
+- 结尾段：scale-invariant 结论
+
+所有数字附 `% exp_id:` 注释，无 em-dash，无 -ing 短语结尾，booktabs 表格格式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_8b-scale-results_20260520T131942"
+}
+```
+
+</details>
+
+---

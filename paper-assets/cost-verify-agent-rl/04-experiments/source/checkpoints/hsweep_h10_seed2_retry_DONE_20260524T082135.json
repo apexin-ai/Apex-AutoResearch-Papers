@@ -1,0 +1,33 @@
+{
+  "exp_id": "hsweep_h10_seed2_retry",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:36:42.696Z",
+    "updated_at": "2026-05-24T08:21:35.256Z",
+    "hypothesis": "h=10 with seed2 tests cross-seed robustness of the window size cliff. If h=10 seed2 also collapses (≈0% like seed1=6.25%), confirms the h=5→full threshold is not seed1-specific. Retry after SIGTERM hang.",
+    "parent": "hsweep_h10_seed2",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && TORCH_COMPILE_DISABLE=1 ALFWORLD_DATA=/root/autodl-tmp/alfworld CUDA_VISIBLE_DEVICES=0 python train.py --config-name _alfworld_hsweep_h10_1gpu seed.train=20000 trainer.experiment_name=hsweep-h10-seed2-retry",
+      "server": "bjb1-17606",
+      "gpu_ids": [
+        "cuda:0"
+      ],
+      "pid": 119440,
+      "tmux_session": "hsweep_h10_seed2_retry",
+      "model_name": "Qwen3-1.7B",
+      "seed": 20000,
+      "data_path": "ALFWorld",
+      "data_count": 134,
+      "checkpoint_source": "qwen3_exp021_ragen_sft_v4",
+      "eval_data": "ALFWorld-SG-32-val"
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-24T08:21:35.256Z"
+  },
+  "timestamp": "2026-05-24T08:21:35.590033+00:00",
+  "trigger": "update_registry"
+}

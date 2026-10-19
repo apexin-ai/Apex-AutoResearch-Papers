@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2669acabe892fea45005",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops westd fix eval kill and serial plan",
+  "task_key": "worker_ops_westd_fix_eval_kill_and_serial_plan_20260522T092525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_fix_eval_kill_and_serial_plan_20260522T092525_result.json",
+    "occurrence": 1,
+    "bytes": 2055,
+    "sha256": "d3614cc057c23457dd548f822e455e84e2df7e6e8ae7b1bd7d3f6a465a9acf94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集完毕。\n\n---\n\n## 产出报告\n\n### 1. GPU 清理结果\n\n| GPU | 进程 | 状态 | 显存 |\n|-----|------|------|------|\n| 0 | SFT baseline (PID 621890) | **运行中，已保留** | 90467 MiB |\n| 1 | seed8 deadlock (PID 647219) | **已 kill** | 3 MiB ✓ |\n| 2 | seed2048 残留 Ray worker (PID 691531) | **已 kill** | 3 MiB ✓ |\n| 3 | intervention_c | 已自行退出 | 3 MiB ✓ |\n\nGPU 1/2/3 全部释放，可用于串行 eval。\n\n### 2. SFT Baseline Eval 进度\n\n- W&B: `n6e4ylj1` (\"sft-baseline-ood-eval-v2\")\n- 启动时间: 17:10 CST\n- 当前状态: 刚完成 env 初始化（\"134 games in eval_out_of_distribution\"），进入首轮 rollout\n- 进度: 极早期，尚未产出 episode 结果\n- **ETA: 134 tasks × 最多 50 turns/task，单 GPU 预计 3-6 小时 → ~20:00-23:00 CST**\n\n### 3. Val Seed 调查结论\n\n| Config | val seed |\n|--------|---------|\n| SFT baseline | **123** |\n| seed5 | **789** |\n| seed6 / seed8 / seed2048 / intervention_c | **321** |\n\n三个不同的 val seed 存在。但 **seed 差异不影响 eval 公平性**，原因：\n\n1. ALFWorld OOD split 恰好有 **134 game files**\n2. 所有 config 都用 `env_groups: 134, group_size: 1`\n3. `es_manager.reset()` 中 seed 展开为 `[base_seed, base_seed+1, ..., base_seed+133]`\n4. Game 选择: `game_files[seed % 134]` — 134 个连续整数 mod 134 **必然覆盖全部 0-133 索引**\n5. **不同 val seed 只改变 group_id → game 的映射顺序，不改变评估的 task 集合**\n6. 聚合 success rate 不受影响\n\n### 4. 建议统一 seed\n\n**不需要因为 seed 差异重跑任何 eval** — 数学上保证了结果等价。\n\n为了代码一致性，后续新 eval config 统一用 `val: 42`。已完成和正在运行的结果无需修改。\n\n### 串行 Eval 规划\n\nSFT baseline 占 GPU 0。GPU 1/2/3 立即可用。建议：\n- 在 GPU 1/2/3 上串行启动失败的 3 个 eval（seed8、seed2048、intervention_c）\n- 或等 SFT baseline 完成后 4 GPU 串行跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-fix-eval-kill-and-serial-plan.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "298686e24c5689a6072b",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "code phase b integration",
+  "task_key": "worker_code_phase_b_integration_20260513T210014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase_b_integration_20260513T210014.log",
+    "occurrence": 1,
+    "bytes": 1143583,
+    "sha256": "e494749c9f16d6191fc257f6468643e62803e0ad2cb62bd5cbf965a70f8a79db"
+  },
+  "statistics": {
+    "messages": 207,
+    "user_turns": 1,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 48,
+      "tool_call": 75,
+      "tool_result": 75,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 190,
+      "chunks": [
+        {
+          "path": "298686e24c5689a6072b-part-0001.json",
+          "message_count": 102
+        },
+        {
+          "path": "298686e24c5689a6072b-part-0002.json",
+          "message_count": 88
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "298686e24c5689a6072b-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-phase-b-integration.md"
+}

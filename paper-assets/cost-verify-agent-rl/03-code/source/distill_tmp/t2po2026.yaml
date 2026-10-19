@@ -1,0 +1,187 @@
+paper_key: "t2po2026"
+title: "T2PO: Uncertainty-Guided Exploration Control for Stable Multi-Turn Agentic Reinforcement Learning"
+venue: "ICML 2026 Spotlight"
+full_text_available: true
+
+research:
+  baselines:
+    - "GPT-4o (Achiam et al., 2023) — prompting"
+    - "Gemini-2.5-Pro (Comanici et al., 2025) — prompting"
+    - "Claude Sonnet 4 (Anthropic, 2025) — prompting"
+    - "Qwen3-32B (Team, 2025) — prompting"
+    - "Qwen3-4B + SFT — instruction tuning"
+    - "PPO (Schulman et al., 2017) — single-turn RL"
+    - "GRPO (Shao et al., 2024) — group-based critic-free RL"
+    - "GiGPO (Feng et al., 2025) — group-in-group policy optimization for multi-turn"
+    - "GiGPO + DAPO (Yu et al., 2025) — GiGPO with dynamic sampling from DAPO"
+    - "Search-R1 (Jin et al., 2025) — search-augmented RL"
+    - "ZeroSearch (Sun et al., 2025) — search RL"
+    - "StepSearch (Wang et al., 2025c) — step-wise search RL"
+    - "R1-Instruct — instruction-tuned RL baseline for search QA"
+    - "Lengthy reward (Liu et al., 2025b) — thinking control via length reward"
+    - "Short CoT cold-start (Cai et al., 2025) — thinking control via short CoT SFT init"
+    - "Hard thinking budget (Comanici et al., 2025) — static max thinking tokens"
+    - "Void turn filtering (Xue et al., 2025) — filtering invalid turns"
+  metrics:
+    - {name: "Task Score (10 x avg reward)", direction: "higher_better"}
+    - {name: "Success Rate (%)", direction: "higher_better"}
+    - {name: "Title Score", direction: "higher_better"}
+    - {name: "reward_type", direction: "higher_better"}
+    - {name: "reward_attribute", direction: "higher_better"}
+    - {name: "reward_option", direction: "higher_better"}
+    - {name: "Exact Match (EM) for Search QA", direction: "higher_better"}
+  datasets:
+    - {name: "WebShop", size: "1.1M products, 12k user instructions"}
+    - {name: "ALFWorld", size: "3,827 task instances across 6 categories"}
+    - {name: "NaturalQuestions (NQ)", size: "standard split"}
+    - {name: "TriviaQA", size: "standard split"}
+    - {name: "PopQA", size: "standard split"}
+    - {name: "HotpotQA", size: "standard split"}
+    - {name: "2Wiki", size: "standard split"}
+    - {name: "MuSiQue", size: "standard split"}
+    - {name: "Bamboogle", size: "standard split"}
+  ablation_dimensions:
+    - "RFT cold-start (w/o Rejective Fine-tuning)"
+    - "TTI token-level thinking intervention (w/o TTI)"
+    - "TDS turn-level dynamical sampling (w/o TDS)"
+    - "Alternative thinking control methods (lengthy reward, short CoT, hard budget, void turn filtering)"
+    - "Fusion coefficient alpha in uncertainty signal (0.2, 0.4, 0.6, 0.8)"
+    - "Token-level tolerance epsilon"
+    - "Turn-level tolerance eta"
+    - "Monitoring window size N"
+    - "Maximum response length (300, 500, 700)"
+    - "Off-policy staleness (rollout batch size x group size variations)"
+    - "Policy optimization algorithm (GiGPO vs GSPO)"
+    - "Base model scale (Qwen3-4B vs Qwen3-8B)"
+  training_recipe:
+    base_model: "Qwen3-4B/8B with RFT initialization"
+    optimizer: "AdamW (implied by GRPO/GiGPO framework)"
+    lr: "1e-6"
+    hardware: "8 x NVIDIA H100 GPUs, 1 node"
+    framework: "verl (HybridFlow) with vLLM 0.8.5 rollout engine"
+    group_rollout_size: "8 (WebShop/ALFWorld), 5 (Search QA)"
+    max_interaction_steps: "15 (WebShop), 50 (ALFWorld), 4 (Search QA)"
+    memory_context_window: "2 turns"
+    turn_discount_beta: "0.99"
+    kl_coefficient: "0.01"
+    format_penalty: "0.1"
+    max_prompt_length: "4096 (WebShop/Search), 2048 (ALFWorld)"
+    max_response_length: "500"
+    thinking_budget: "450"
+    token_tolerance_epsilon: "1e-4"
+    turn_tolerance_eta: "1e-3"
+    monitoring_window_N: "20 (WebShop/Search), 15 (ALFWorld)"
+    total_epochs: "200 (WebShop), 150 (ALFWorld), 250 (Search QA)"
+    train_batch_size: "128 (WebShop/ALFWorld), 256 (Search)"
+    group_normalization: "mean_norm"
+    rollout_engine: "vLLM synchronous"
+    temperature_validation: "0.6"
+    rft_epochs: "<=5"
+    fusion_alpha: "0.4"
+  method_family: "uncertainty-aware exploration control for multi-turn agentic RL (token+turn level intervention)"
+
+positioning:
+  core_claim: "Training instability in multi-turn agentic RL stems from inefficient exploration ('hesitation'), where policies generate low-information tokens and repetitive turns; T2PO addresses this by monitoring uncertainty dynamics at token and turn levels to explicitly control exploration, achieving stable training without reward shaping"
+  key_results: "WebShop: 81.64% success (Qwen3-4B), 82.42% (Qwen3-8B) vs GiGPO+DAPO 81.64 vs 74.02; ALFWorld: 90.23% avg success vs GiGPO 80.47%; Search QA avg EM: 54.93 vs GiGPO 52.97, MuSiQue 16.64 vs 13.40 (>2x prior best); ~20% fewer tokens per trajectory, ~25% fewer interaction turns; substantially reduced variance across seeds"
+  limitations:
+    - "Off-policy staleness from trajectory decomposition into individual turns (though empirically manageable, quantified by staleness ratio)"
+    - "Requires uncertainty monitoring infrastructure during decoding (per-token entropy + confidence computation)"
+    - "Hyperparameter sensitivity (alpha, epsilon, eta, N) may require task-specific tuning"
+    - "Computational overhead of per-token uncertainty tracking"
+    - "Method validated only on Qwen3-4B/8B; generalization to other model families not tested"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Training instability and collapse are pervasive in multi-turn RL despite advances in credit assignment and trajectory filtering — opens with the observation that the community still lacks a stable training paradigm"
+  tension: "Existing solutions operate at coarse trajectory level or through implicit reward shaping, making training dynamics highly sensitive to hyperparameters. The paper identifies 'hesitation' (inefficient exploration) as the root cause: at token level, LLMs over-think with saturating information gain; at turn level, agents repeat semantically similar but failed reasoning across turns. Both inject substantial noise into credit assignment."
+  key_insight: "Section 'OUR KEY INSIGHT' in intro: inefficient exploration is the underlying cause, termed 'hesitation'. Training effectiveness and efficiency need not be at odds — they can be jointly optimized once the root cause is properly identified. The key is to control exploration through intrinsic uncertainty signals before exploration becomes inefficient."
+  argument_chain: "instability remains pervasive → root cause is inefficient exploration (hesitation) → hesitation manifests at two levels (token over-thinking, turn repetition) → propose self-calibrated uncertainty signal fusing entropy+confidence → token-level TTI monitors uncertainty dynamics and triggers thinking cutoff → turn-level TDS detects stagnant turns and resamples → combined with RFT cold-start + format penalty + hierarchical advantage → evaluation on 3 diverse environments shows stability + performance + efficiency gains"
+  contribution_framing: "Three explicit contributions: (1) self-calibrated uncertainty signal combining entropy and confidence for non-degenerate exploration monitoring, (2) token-level thinking intervention (TTI) that adaptively terminates reasoning when information gain saturates, (3) turn-level dynamical sampling (TDS) that resamples redundant interactions. Framed as a unified framework (T2PO) that explicitly controls exploration at fine-grained levels."
+  intro_structure: "6 paragraphs — P1: multi-turn RL progress + remaining instability problem; P2: existing stabilization attempts (credit assignment, filtering) and their limitations → training collapse; P3: 'OUR KEY INSIGHT' — inefficient exploration as root cause, hesitation at token and turn levels; P4: propose T2PO with uncertainty-based control at both levels; P5: additional techniques (RFT, memory window, format penalty, SOTA policy updates); P6: experimental claim"
+  notable_technique: "Naming the failure mode 'hesitation' gives the problem a memorable identity. The two-level (token + turn) decomposition creates a clean narrative symmetry. Figure 1 is a powerful motivational figure showing training collapse across multiple seeds with KL divergence and gradient norm explosions — immediately convinces the reader that instability is real and severe. The contour geometry argument (Figure 3) for why entropy and confidence individually fail is visually elegant and mathematically grounded."
+
+figures:
+  figure_count: 7
+  figure1:
+    type: "motivation"
+    description: "Three-panel plot showing training instability of SOTA baselines (GiGPO, GRPO) under different environment initialization seeds on WebShop: (left) success rate drops over training, (center) gradient norms explode, (right) KL divergence spikes. Orange background highlights collapse regions."
+    narrative_role: "Establishes the severity of training collapse — the central problem. Shows that instability is not anecdotal but systematic across seeds and methods. Directly motivates the need for the proposed solution."
+    design_elements: ["multi-seed overlay (6 seeds per method)", "orange background highlighting collapse", "three complementary diagnostic metrics side by side", "clear color coding GiGPO=blue/red vs GRPO=green/purple"]
+    visual_style: "Clean line plots with consistent x-axis (RL Training Steps). Orange shaded regions mark collapse. Legend at top. Each subplot shows a different diagnostic signal. Professional matplotlib style with readable font sizes."
+  figure2:
+    type: "method_overview"
+    description: "Two-part diagram: (left) multi-turn rollout loop showing agent-environment interaction across turns k and k+1; (right-top) Token-level Thinking Intervention showing uncertainty signal dynamics, sliding window threshold, and thinking cutoff mechanism; (right-bottom) Turn-level Dynamical Sampling showing stability signal comparison and regeneration decision."
+    narrative_role: "Provides the complete method overview — readers can grasp the full T2PO framework from this single figure"
+    design_elements: ["color-coded blocks (green for input, yellow for output, red for TTI cutoff)", "mathematical formulas embedded in diagram", "flowchart-style decision logic for TDS", "clear separation of token-level and turn-level components"]
+  figure3:
+    type: "problem_illustration"
+    description: "Contour plots showing limitations of entropy H_t (left) and confidence C_t (center) as standalone uncertainty measures, and how the proposed signal M_t (right) produces non-degenerate contour geometry distinguishing distributions with identical top-k probability but different residual mass."
+    narrative_role: "Justifies the design choice of fusing entropy and confidence — shows that each alone has blind regions"
+    design_elements: ["2D contour plots on probability simplex", "triangular probability space visualization", "color gradient for signal magnitude"]
+  figure4:
+    type: "motivation"
+    description: "Three-panel: (a) uncertainty dynamics M_t over generated tokens showing piecewise decrease then plateau, (b) word cloud of most uncertain tokens (product attributes, criteria), (c) colormap showing TTI truncation point where uncertainty stabilizes."
+    narrative_role: "Empirically validates the TTI mechanism — shows that uncertainty dynamics follow predictable patterns and the truncation point is meaningful"
+    design_elements: ["time series with annotations", "word cloud visualization", "colormap with token-level detail", "annotated arrows showing key transitions"]
+  result_figures:
+    - figure_id: "Figure 5"
+      viz_type: "composite (line_plot + bar_chart + line_plot)"
+      what_compared: "(a) Training curves T2PO vs GiGPO w. RFT on WebShop across 3 seeds; (b) Token-level exploration efficiency — bar chart of token consumption distribution + line plot of successful trajectory ratio; (c) Turn-level exploration efficiency — average turns to complete tasks over training"
+      how_gain_highlighted: "T2PO shows monotonic improvement vs baseline collapse; bar chart shows T2PO uses fewer tokens; line plot shows consistently higher exploration efficiency; turn-level shows ~25% fewer turns"
+      design_note: "Three complementary views (stability, token efficiency, turn efficiency) in one figure. Combines multiple chart types. Highly informative composite figure."
+    - figure_id: "Figure 7"
+      viz_type: "composite (bar_chart + line_plot)"
+      what_compared: "ALFWorld exploration efficiency: (left) token consumption distribution with exploration efficiency overlay; (right) average turns to success over training steps"
+      how_gain_highlighted: "Same pattern as Figure 5 but on ALFWorld — T2PO uses fewer tokens, higher successful trajectory ratio, ~16% fewer turns"
+      design_note: "Mirrors Figure 5's structure for ALFWorld, showing consistency across environments"
+  ablation_figures:
+    - figure_id: "Figure 6"
+      viz_type: "line_plot (4 panels)"
+      dimensions_varied: ["maximum response length (300, 500, 700) for GiGPO vs T2PO"]
+      design_note: "Four panels: (a,b) average output length evolution during training for GiGPO vs T2PO; (c,d) clip ratio (proportion truncated) for each. Shows T2PO achieves higher token efficiency — 20% fewer tokens under same budget, and rarely triggers max-length clipping."
+  figure_narrative_role: "Figure 1 (instability is real) → Figure 2 (here is our solution) → Figure 3 (why we need both entropy+confidence) → Figure 4 (empirical validation of uncertainty dynamics) → Figure 5 (performance + efficiency gains on WebShop) → Figure 6 (response length analysis) → Figure 7 (efficiency gains on ALFWorld)"
+
+tables:
+  table_count: 8
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "environments x metrics (WebShop: Task Score + Success Rate; ALFWorld: 6 task categories)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "mean +/- std across 3 environment seeds"
+    num_baselines: 12
+    categories: ["Prompting (4 models)", "Instruction Tuning (1)", "RL Training Qwen3-4B-RFT (5 methods)", "RL Training Qwen3-8B-RFT (4 methods)"]
+    design_note: "Comprehensive comparison spanning prompting, SFT, single-turn RL, and multi-turn RL. Two model scales shown. ALFWorld broken into 6 subcategories (Pick, Look, Clean, Heat, Cool, Pick2) showing T2PO wins across all. Mean+/-std shows T2PO has dramatically lower variance than baselines."
+  secondary_result_table:
+    table_id: "Table 2"
+    description: "Search-augmented QA results: single-hop (NQ, TriviaQA, PopQA) and multi-hop (HotpotQA, 2Wiki, MuSiQue, Bamboogle)"
+    row_axis: "methods"
+    col_axis: "datasets grouped by single-hop vs multi-hop + average"
+    row_organization: "by_category (Prompting, RL Training Qwen2.5-7B, RL Training Qwen3-4B)"
+    highlight_strategy: "bold_best, dagger for in-domain, star for out-of-domain"
+    num_baselines: 8
+    design_note: "Includes both open-source and closed-source comparisons. Shows particularly strong OOD generalization on MuSiQue (16.64 vs prior best 13.40). Uses symbols to distinguish in-domain vs out-of-domain datasets."
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["RFT", "TTI", "TDS"]
+      variation_style: "full_numbers (w/o each component)"
+      design_note: "Clean 4-row ablation on WebShop showing contribution of each module. Full T2PO: 93.84/81.64. w/o RFT: 79.28/61.32 (biggest drop). w/o TTI: 81.28/73.27. w/o TDS: 72.40/63.67 (second biggest). Shows TDS is most important novel component, RFT is critical for cold-start."
+    - table_id: "Table 4"
+      what_varied: ["Alternative thinking control methods: lengthy reward, short CoT cold-start, hard thinking budget, void turn filtering vs T2PO (TTI+TDS)"]
+      variation_style: "full_numbers"
+      design_note: "Positions T2PO against 4 existing thinking control strategies. T2PO: 93.84/81.64 vs best alternative (void turn filtering): 85.17/76.20. Shows clear advantage of uncertainty-driven over heuristic approaches."
+    - table_id: "Table 6"
+      what_varied: ["Rollout batch size B_rollout (8, 16) and prompt group size n (8, 16)"]
+      variation_style: "full_numbers"
+      design_note: "Tests robustness to off-policy staleness. Performance varies only slightly (80.97-81.64 success rate), confirming trajectory decomposition is practical."
+    - table_id: "Table 7"
+      what_varied: ["Fusion coefficient alpha (0.2, 0.4, 0.6, 0.8)"]
+      variation_style: "full_numbers"
+      design_note: "Sensitivity analysis of the entropy-confidence fusion weight. alpha=0.4 is optimal (94.15/82.77). Performance degrades at extremes but remains competitive (90.73-93.76), showing moderate sensitivity."
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 5: Complete hyperparameter settings for all three environments (model config, optimization, rollout, training schedule, hardware). Table 6: Off-policy staleness analysis. Table 7: Alpha sensitivity. Table 8: Reward decomposition on WebShop (Title Score, reward_type, reward_attribute, reward_option) for all methods under both 4B and 8B backbones."
+    reason: "Main paper keeps Tables 1-4 for core results and ablations. Appendix tables provide reproducibility details (Table 5), robustness analysis (Table 6-7), and fine-grained reward analysis (Table 8)."

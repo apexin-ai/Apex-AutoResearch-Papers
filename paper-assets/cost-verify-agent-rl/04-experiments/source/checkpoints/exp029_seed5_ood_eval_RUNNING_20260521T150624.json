@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp029_seed5_ood_eval",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T14:00:13.239Z",
+    "updated_at": "2026-05-21T15:06:23.748Z",
+    "hypothesis": "Evaluate exp029_seed5_v2 partial checkpoint (global_step_10, episode-level GRPO seed=456, training OOM at step 12) on 134 OOD tasks (valid_unseen, τ=0.4). Supplementary cross-seed variance data point despite incomplete training.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed5_ood_eval\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "375913",
+      "data_path": "AlfworldSG_OOD (134 valid_unseen tasks)",
+      "data_count": 134,
+      "model_name": "Qwen2.5-1.5B-Instruct (episode GRPO seed=456, step 10, partial training)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen_exp029_seed5_step10_hf (symlink to global_step_10_hf)",
+      "eval_data": "AlfworldSG_OOD 134 tasks, τ=0.4",
+      "log_path": "/tmp/exp029_seed5_ood_eval.log",
+      "wandb_run_id": "u4zste0d",
+      "note": "Started via ssh_execute before submit_training_job mandate, no cron monitoring"
+    },
+    "metrics": {
+      "ood_success_rate": 0.291,
+      "ood_pass_at_1": 0.291,
+      "ood_num_actions": 38.54,
+      "ood_action_is_effective": 0.9999,
+      "ood_action_is_valid": 0.7266,
+      "ood_response_length": 6632,
+      "ood_tasks": 134,
+      "temperature": 0.4,
+      "checkpoint": "qwen_exp029_seed5_step10_hf",
+      "verification_status": "UNDER_INVESTIGATION - identical to seed6 result"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T15:06:24.031794+00:00",
+  "trigger": "update_registry"
+}

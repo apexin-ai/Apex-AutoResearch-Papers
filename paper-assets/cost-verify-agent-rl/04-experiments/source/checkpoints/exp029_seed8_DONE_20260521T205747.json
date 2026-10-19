@@ -1,0 +1,65 @@
+{
+  "exp_id": "exp029_seed8",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T15:49:23.647Z",
+    "updated_at": "2026-05-21T20:57:47.131Z",
+    "hypothesis": "Episode-level GRPO (seed=1024) avoids collapse and learns consistently. 6th seed for cross-seed robustness evidence. RAY_ADDRESS=local isolation enforced. Runs on westd cuda:2,3, isolated from Seed 7 on cuda:0,1.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=2,3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed8_episode\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "462991",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_seed8.log",
+      "submitted_at": "2026-05-21T15:53:08.498Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "ALFWorld episode-level",
+      "data_count": "134 tasks",
+      "model_name": "Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)",
+      "seed": 1024,
+      "wandb_run_id": "c0l6e7vd",
+      "wall_clock_seconds": 18181.2,
+      "gpu_hours": 10.1
+    },
+    "metrics": {
+      "val_success_step0": 0.3125,
+      "val_success_step5": 0.2813,
+      "val_resp_len_step0": 2469,
+      "val_resp_len_step5": 3162,
+      "train_success_step1": 0.359,
+      "train_success_step9": 0.109,
+      "train_resp_len_step1": 1784,
+      "train_resp_len_step9": 11569,
+      "rollout_resp_len_step9": 14869,
+      "collapse_type": "response_inflation",
+      "collapse_detected_at_step": 9,
+      "steps_completed_so_far": 9
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T20:56:07.072Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "negative",
+    "completed_at": "2026-05-21T20:56:09.668Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T20:56:13.212077+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-21T20:57:47.420920+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09d6d4b8f9d10d543033",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "cleanup bjb1 disk",
+  "task_key": "worker_cleanup_bjb1_disk_20260521T074043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_bjb1_disk_20260521T074043_result.json",
+    "occurrence": 1,
+    "bytes": 1515,
+    "sha256": "705fe4bc60efbfed37a87974104535a47da3ce236dc832591a13a21ced0ed972"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 安全清理完成\n\n| 清理项 | 释放空间 | 所在分区 |\n|--------|---------|---------|\n| pip cache (973 files) | ~5.4G | 根分区 |\n| conda cache (373 MB) | ~0.4G | 根分区 |\n| /root/autodl-tmp/tmp/ | ~467M | 数据盘 |\n| /tmp/ ray/pymp 临时文件 | ~467M | 根分区 |\n\n- **根分区**: 48% → **28%** (释放 ~6.7G)\n- **数据盘**: 仍为 **93%** (231G/250G)，几乎没变\n\n### 数据盘仍需释放 ~31G\n\n安全清理不足以达标。以下是 >1GB 的候选项，需要你决定删哪些：\n\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| `checkpoints/hsweep-h2/` | **41G** | 超参搜索 |\n| `checkpoints/qwen3_8b_sft_v1/` | **31G** | 旧版 SFT |\n| `checkpoints/hsweep-h20/` | **21G** | 超参搜索 |\n| `checkpoints/exp029/` | **21G** | seed1 训练 |\n| `checkpoints/exp029-seed3/` | **21G** | seed3 训练 |\n| `checkpoints/exp029-seed4/` | **21G** | seed4 训练（step 8 崩溃的） |\n| `checkpoints/scienceworld_sft/` | **7.6G** | ScienceWorld SFT |\n| `checkpoints/exp029_hf/` | **3.8G** | HF 格式导出 |\n| `.hf_cache/` | **23G** | HuggingFace 缓存 |\n| `conda-envs/` | **12G** | conda 环境 |\n| `models/` | **6.7G** | 模型文件 |\n\n**不能删**: `checkpoints/exp021_ragen_sft_v4/` (23G, SFT 基线)\n\n请告诉我删哪些。删任意两个超参搜索目录（hsweep-h2 + hsweep-h20 = 62G）就能降到 <70%。\n\n### Seed 4 配置确认\n\n- **save_freq: 5** ✅\n- **optimizer_offload: false** ✅"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-bjb1-disk.md"
+}

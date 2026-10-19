@@ -1,0 +1,14 @@
+{
+  "exp_id": "seed7_high_kl_step5_ood_v2",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:56:31.101Z",
+    "updated_at": "2026-05-21T23:56:31.101Z"
+  },
+  "timestamp": "2026-05-21T23:56:31.461929+00:00",
+  "trigger": "update_registry"
+}

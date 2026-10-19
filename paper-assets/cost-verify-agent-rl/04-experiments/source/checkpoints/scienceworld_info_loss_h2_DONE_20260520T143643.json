@@ -1,0 +1,18 @@
+{
+  "exp_id": "scienceworld_info_loss_h2",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:21:16.640Z",
+    "updated_at": "2026-05-20T14:36:43.490Z",
+    "hypothesis": "ScienceWorld SFT model with h=2 sliding window at T=0 shows degraded performance vs full context, confirming information loss generalizes beyond ALFWorld",
+    "parent": "8b_det_eval_h2",
+    "conclusion": "killed",
+    "completed_at": "2026-05-20T14:36:43.490Z"
+  },
+  "timestamp": "2026-05-20T14:36:43.709327+00:00",
+  "trigger": "update_registry"
+}

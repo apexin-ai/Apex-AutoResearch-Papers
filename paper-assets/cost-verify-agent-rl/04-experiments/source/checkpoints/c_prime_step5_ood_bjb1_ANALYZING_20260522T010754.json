@@ -1,0 +1,46 @@
+{
+  "exp_id": "c_prime_step5_ood_bjb1",
+  "project": "cost-verify-agent-rl",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T00:38:37.400Z",
+    "updated_at": "2026-05-22T01:07:54.413Z",
+    "spec": {
+      "command": "python train.py --config-name _alfworld_c_prime_step5_ood_eval",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "357552",
+      "log_path": "~/runs/cost-verify-agent-rl/c_prime_step5_ood_bjb1.log",
+      "submitted_at": "2026-05-22T00:38:37.000Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "Qwen3-1.7B (C' step5 HF)",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen_c_prime_step5_hf",
+      "eval_data": "AlfworldSG_OOD (134 valid_unseen tasks)",
+      "data_count": 134,
+      "seed": 999,
+      "data_path": "AlfworldSG_OOD"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T01:04:27.269Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T01:04:32.707139+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T01:07:54.754991+00:00",
+  "trigger": "update_registry"
+}

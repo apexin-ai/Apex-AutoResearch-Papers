@@ -1,0 +1,53 @@
+# code exp 002 v2
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_code_exp_002_v2_20260513T193410_result.json`
+- **Structured JSON:** [`63605606c4ca8722752c.json`](../../sessions/63/63605606c4ca8722752c.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+Now I have the full picture. Here's the status report.
+
+---
+
+## exp_002 状态报告
+
+### 已完成
+1. **exp_001b 进程已清理** — PID 93789/97228/97229 已 kill，GPU 已释放
+2. **exp_002 配置已创建** — 128 traj/step (16×8), 100 steps, 50 max_turns, Qwen3-1.7B, 完全匹配 Self-Guide 论文参数
+3. **Dry-run 验证通过** — 峰值 43.7GB/98GB，无 OOM，validation 完成 (699.2s)
+4. **发现并修复 RAGEN 框架 bug** — `ctx_manager.py:602` 的 `_fit_single_turn_history_start_to_max_len` 使用 `max_model_len` 作为 prompt 截断上限，未减去 `response_length`，导致 prompt 填满整个 context window 后无法生成输出。已 patch 为 `max_length = max_model_len - response_length`
+
+### 未完成
+5. **exp_002 正式训练被 exp_003 抢占** — 另一个 agent 在 05:39 提交了 `exp_003`（config: `_alfworld_exp003`），使用相同 GPU，导致 exp_002 进程被杀
+
+### exp_003 vs exp_002 对比
+
+| 参数 | exp_002 | exp_003 |
+|------|---------|---------|
+| max_model_len | 32768 | 8192 |
+| max_prompt_length | 未设置（自动=31744） | 4096（硬截断） |
+| context 策略 | 保留完整对话历史 | 只保留最近 ~3-4 轮 |
+| 初始 invalid_action | 73.75% | 95% |
+| 状态 | 被杀 | 正在运行 (step 0 rollout) |
+
+exp_003 通过激进的 prompt 截断（4096 tokens）规避了 context 过长问题，代价是模型无法看到早期历史。我的 ctx_manager.py patch 已在 codebase 中，exp_003 也会受益。
+
+### 后续建议
+exp_002 配置和 bug fix 都已就绪。等 exp_003 完成或 GPU 空出后可以直接重新提交 exp_002。
+
+---

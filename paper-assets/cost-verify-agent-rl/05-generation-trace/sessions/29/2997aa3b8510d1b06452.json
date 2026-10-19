@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2997aa3b8510d1b06452",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp027 config revision",
+  "task_key": "worker_code_exp027_config_revision_20260515T140745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp027_config_revision_20260515T140745_result.json",
+    "occurrence": 1,
+    "bytes": 606,
+    "sha256": "2ea4fa7c492e3afd0997512b2d8c3b1d4ad1114f2149c6d1f36c17978bd35b60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry run 通过。修改汇总：\n\n| 参数 | 修改前 | 修改后 |\n|------|--------|--------|\n| kl_loss_coef | 0.04 | **0.005** |\n| train env_groups | 4 | **8** |\n| train n_groups | [4] | **[8]** |\n| LR | 5e-7 | 5e-7 (不变) |\n| entropy_coeff | 0.01 | 0.01 (不变) |\n| total_steps | 50 | 50 (不变) |\n| save_freq | 5 | 5 (不变) |\n| val env_groups | 16 | 16 (不变) |\n| W&B | enabled | enabled (不变) |\n\ntrain env_groups=8 × group_size=16 = **128 rollouts/step**（之前 64）。配置文件顶部注释和启动脚本注释均已更新为 Reviewer-revised 版本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp027-config-revision.md"
+}

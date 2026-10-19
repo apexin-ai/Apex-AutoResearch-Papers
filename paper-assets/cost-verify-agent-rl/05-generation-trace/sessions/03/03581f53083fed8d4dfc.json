@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03581f53083fed8d4dfc",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp019 config",
+  "task_key": "worker_code_exp019-config_20260514T163841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp019-config_20260514T163841_result.json",
+    "occurrence": 1,
+    "bytes": 825,
+    "sha256": "afc3792df952a3743e77598355b0524e5a90e8ffa708341613fff04043192022"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **`sft_train_v2.py`** — 语法验证通过（`--help` 正常输出）\n- **`run_exp019.sh`** — 已创建并设置可执行权限\n- **exp008_sft checkpoint** — 完整（config.json, model.safetensors 3.2GB, tokenizer 等均在）\n\n与 `sft_train.py` 的关键差异：\n| 参数 | exp017 (sft_train.py) | exp019 (sft_train_v2.py) |\n|------|----------------------|--------------------------|\n| base model | Qwen3-1.7B 原始 | exp008_sft/final |\n| LR | 2e-5 | 5e-6 |\n| epochs | 3 | 2 |\n| data | expert_sft_train.jsonl | sft_data_v2/train.jsonl |\n| eval | 无 | val.jsonl (per epoch) |\n| model_path | 硬编码 | CLI 可覆盖 |\n\n数据文件 `sft_data_v2/` 尚未就绪，脚本启动时 pre-flight 会拦截。等数据准备好即可执行 `bash scripts/run_exp019.sh`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp019-config.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24b26250c3d17e48a1ed",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp006 config",
+  "task_key": "worker_code_exp006_config_20260513T232524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp006_config_20260513T232524_result.json",
+    "occurrence": 1,
+    "bytes": 633,
+    "sha256": "5fc4bf28433daa5352a5d3f122f9d7b8fabc8dcd7110aae54781882c712dc9c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "YAML 验证通过。Diff 确认只有 3 处差异：\n\n```diff\n< model_path: /root/cost-verify-agent-rl/models/Qwen3-1.7B\n> model_path: /root/cost-verify-agent-rl/models/Qwen3-1.7B-Instruct\n\n<   experiment_name: exp005-alfworld-fast\n>   experiment_name: exp006-alfworld-instruct-fast\n\n<   local_log_dir: \"/root/autodl-tmp/checkpoints/exp_005/\"\n>   local_log_dir: \"/root/autodl-tmp/checkpoints/exp_006/\"\n```\n\n`_alfworld_exp006_instruct_fast.yaml` 已创建，保留 exp005 全部快速参数（30 steps, max_turn 30, 8 env_groups, group_size 8, 4096/1024/8192），模型切换为 Qwen3-1.7B-Instruct。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp006-config.md"
+}

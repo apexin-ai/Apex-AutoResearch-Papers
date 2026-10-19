@@ -1,0 +1,16 @@
+{
+  "exp_id": "scienceworld_info_loss_full",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:21:15.269Z",
+    "updated_at": "2026-05-20T14:21:29.694Z",
+    "hypothesis": "ScienceWorld SFT model with full context at T=0 achieves significantly higher success rate than h=2, quantifying information loss (Mechanism 1) in a second environment beyond ALFWorld",
+    "parent": "8b_det_eval_full"
+  },
+  "timestamp": "2026-05-20T14:21:29.945430+00:00",
+  "trigger": "update_registry"
+}

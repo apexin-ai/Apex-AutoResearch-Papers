@@ -1,0 +1,67 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RL for Language Agents.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-Verification in Agents.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Adaptive Computation and Verification Routing.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setting}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Episode-Level GRPO}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Selective Verification via B-IAVR}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Action-Change Reward.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Training Procedure.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Episode-Level vs.\ Step-Independent Training}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Context Window Ablation.}{4}{section*.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Success rate by context window size $h$ on ALFWorld (Qwen3-1.7B, 30 GRPO steps).}}{4}{table.caption.7}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:h_sweep}{{1}{4}{Success rate by context window size $h$ on ALFWorld (Qwen3-1.7B, 30 GRPO steps)}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Multi-Seed Replication.}{4}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Episode-level GRPO across three random seeds (ALFWorld, Qwen3-1.7B).}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:multi_seed}{{2}{4}{Episode-level GRPO across three random seeds (ALFWorld, Qwen3-1.7B)}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Gradient Signal Mechanism.}{4}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Gradient signal analysis by context window size.}}{4}{table.caption.11}\protected@file@percent }
+\newlabel{tab:gradient}{{3}{4}{Gradient signal analysis by context window size}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Action-Change Analysis}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verification Statistics.}{5}{section*.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Action-change statistics by ALFWorld task type from always-on verification.}}{5}{table.caption.13}\protected@file@percent }
+\newlabel{tab:action_change}{{4}{5}{Action-change statistics by ALFWorld task type from always-on verification}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{Entropy-Controlled Validation.}{5}{section*.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Stratified correlation between action-change and success, controlling for policy entropy.}}{5}{table.caption.15}\protected@file@percent }
+\newlabel{tab:entropy}{{5}{5}{Stratified correlation between action-change and success, controlling for policy entropy}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {paragraph}{Causal Intervention.}{5}{section*.16}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Causal intervention: verification-triggered vs.\ random action changes at matched rate.}}{5}{table.caption.17}\protected@file@percent }
+\newlabel{tab:causal}{{6}{5}{Causal intervention: verification-triggered vs.\ random action changes at matched rate}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Selective Verification Results}{6}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{B-IAVR Training.}{6}{section*.18}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces B-IAVR training progression from always-on checkpoint.}}{6}{table.caption.19}\protected@file@percent }
+\newlabel{tab:biavr_training}{{7}{6}{B-IAVR training progression from always-on checkpoint}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {paragraph}{Full Comparison.}{6}{section*.20}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Full comparison of verification strategies on ALFWorld.}}{6}{table.caption.21}\protected@file@percent }
+\newlabel{tab:full_comparison}{{8}{6}{Full comparison of verification strategies on ALFWorld}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {paragraph}{Per-Task Breakdown.}{6}{section*.22}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Per-task success breakdown across verification strategies.}}{6}{table.caption.23}\protected@file@percent }
+\newlabel{tab:per_task}{{9}{6}{Per-task success breakdown across verification strategies}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Reward Signal Ablation}{7}{subsection.4.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Reward signal ablation for selective verification training.}}{7}{table.caption.24}\protected@file@percent }
+\newlabel{tab:reward_ablation}{{10}{7}{Reward signal ablation for selective verification training}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Comparison with ARES}{7}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces B-IAVR vs.\ reproduced ARES on ALFWorld.}}{7}{table.caption.25}\protected@file@percent }
+\newlabel{tab:ares}{{11}{7}{B-IAVR vs.\ reproduced ARES on ALFWorld}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Generalization}{7}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-Environment.}{7}{section*.26}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model Scale.}{7}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Per-Task Analysis}{7}{subsection.4.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Generalization across environments and model scales.}}{8}{table.caption.28}\protected@file@percent }
+\newlabel{tab:generalization}{{12}{8}{Generalization across environments and model scales}{table.caption.28}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Per-task performance with episode length and relative advantage over step-independent.}}{8}{table.caption.29}\protected@file@percent }
+\newlabel{tab:per_task_detail}{{13}{8}{Per-task performance with episode length and relative advantage over step-independent}{table.caption.29}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}No-Verify Ablation}{8}{subsection.4.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces No-verify ablation: episode-level agent with and without verification.}}{8}{table.caption.30}\protected@file@percent }
+\newlabel{tab:no_verify}{{14}{8}{No-verify ablation: episode-level agent with and without verification}{table.caption.30}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.31}\protected@file@percent }
+\gdef \@abspage@last{9}

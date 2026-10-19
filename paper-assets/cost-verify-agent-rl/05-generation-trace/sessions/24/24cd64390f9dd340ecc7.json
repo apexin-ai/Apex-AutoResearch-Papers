@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24cd64390f9dd340ecc7",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp026 step3 check",
+  "task_key": "worker_ops_exp026_step3_check_20260515T125557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp026_step3_check_20260515T125557_result.json",
+    "occurrence": 1,
+    "bytes": 1356,
+    "sha256": "51eace712e9fb7b021abd54d3228fbe9bd88d5cbb1cdc0728e901b4067306776"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp026 训练进度报告\n\n### 状态\n- **进程**：PID 778562 存活，状态正常\n- **GPU**：双卡 100% 利用率，各 ~49GB/97GB — 正常满载\n- **当前位置**：Step 3 训练中（actor update 阶段），尚未完成\n\n### 已完成指标汇总\n\n| Step | 阶段 | success | entropy | grad_norm | kl_loss | ppo_kl | action_is_valid |\n|------|------|---------|---------|-----------|---------|--------|-----------------|\n| 0 | val | 6.25% | - | - | - | - | 63.1% |\n| 1 | train | 21.88% | 0.267 | 14.43 | 0.18 | - | - |\n| 2 | train | 32.81% | 0.317 | 15.62 | 0.097 | 0.027 | 60.3% |\n\nWorker log 文件 1496 行，最后一条是 step 2 完整指标。Step 3 尚无输出行。\n\n### 异常监控（三项均无异常）\n1. **Entropy 突降 >30%**：Step 1→2 从 0.267 升至 0.317（+18.7%），趋势健康，无突降\n2. **Success 连续 2 步下降**：0→1→2 为 6.25%→21.88%→32.81%，持续上升\n3. **GPU 利用率骤降**：双卡均 100%，正常\n\n### 时间估算\n- Step 2 耗时 ~2561s（42.7 min），stderr 最后时间戳 20:21:39\n- Step 3 预计完成时间：**~21:05**（约 8 分钟后）\n- Step 4 预计完成：~21:47\n- **Step 5 val 预计出结果：~21:55**（约 1 小时后）\n\n### Checkpoint\nexp026 目录为空（save_freq=25，test_freq=5，还没到保存点）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp026-step3-check.md"
+}

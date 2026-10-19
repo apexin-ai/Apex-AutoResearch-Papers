@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "280a6fe6d164df98268a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research scienceworld feasibility",
+  "task_key": "worker_research_scienceworld-feasibility_20260519T031322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_scienceworld-feasibility_20260519T031322_result.json",
+    "occurrence": 1,
+    "bytes": 1009,
+    "sha256": "9058b085483193d20eb6985e40edb96558f03a216b5418564c63492d0646e77c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/scienceworld_feasibility_report.md`。\n\n**核心结论**：ScienceWorld 接入 RAGEN **高度可行**。\n\n关键发现：\n- **API 完全兼容**：text-based reset/step 接口与 ALFWorld 同构，可直接继承 `BaseLanguageBasedEnv`，参照 ALFWorld 实现 wrapper\n- **无需从零适配**：RAGEN 已有 12 个环境模板，ALFWorld 实现可直接复用，预估 **12-22 Worker-hours**\n- **Expert data 充足**：ScienceWorld 内置 `get_gold_action_sequence()` 可批量生成 gold trajectories，加上 ETO 已发布的 HuggingFace SFT 数据集\n- **研究价值高**：EMPO2 (2026.02) 证明 GRPO 在 ScienceWorld 上 baseline 仅 33.2 分（满分 100），有大量改进空间。30 个子任务 + 中间 reward (0-100) 比 ALFWorld 的 binary reward 更适合分析 step-level sign misattribution\n- **主要工程风险**：Java/JVM 依赖（py4j）和 JVM 实例内存开销，但与 ALFWorld 的并行化限制类似，可用相同策略处理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-scienceworld-feasibility.md"
+}

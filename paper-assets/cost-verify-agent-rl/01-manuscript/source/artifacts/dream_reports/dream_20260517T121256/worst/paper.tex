@@ -1,0 +1,425 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{multirow}
+
+\title{Dissecting Credit Assignment Failure in Multi-Turn LLM Agent RL:\\A Dual-Mechanism Analysis}
+
+\author{Anonymous}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Reinforcement learning (RL) for multi-turn Large Language Model (LLM) agents commonly adopts step-independent training, where each context window is optimized as a separate bandit arm. We show that this default catastrophically fails in interactive environments due to two compounding mechanisms: \emph{advantage sign misattribution} (gradient direction reflects episode outcome rather than local action quality) and \emph{policy information loss} (truncated context prevents cross-step strategy learning). Episode-level training eliminates sign misattribution but plateaus at 23.4\% ($\pm$6.2pp) on ALFWorld because all tokens share a single bandit-level advantage. Generalized Advantage Estimation (GAE) with a learned value function reaches 41.0\%, demonstrating that per-token credit assignment is the critical missing capability. Through mechanistic analysis, we decompose credit assignment failure into four interacting factors: sign misattribution (partial $r$=0.73 with episode outcome), entropy collapse, KL drift, and bandit-level credit insufficiency. We provide a failure mode taxonomy, quantify each mechanism's contribution, and derive actionable design guidelines for practitioners building RL systems for LLM agents. Our findings generalize across environments (ScienceWorld, 5$\times$ improvement) and model scales (1.7B to 7B).
+\end{abstract}
+
+\section{Introduction}
+
+Training LLM-based agents with reinforcement learning in multi-turn interactive environments remains unreliable. Standard RL frameworks for LLM agents default to step-independent optimization: the agent's trajectory is split into fixed-length context windows, each treated as an independent policy optimization unit. This design choice originates from practical constraints (context window limits, memory efficiency) and the community's familiarity with token-level language model training. Yet its consequences for multi-turn credit assignment have received little systematic analysis.
+
+We present a diagnostic study that identifies why step-independent training fails for multi-turn LLM agents and characterizes the resulting failure modes. Our investigation begins with a concrete observation: on ALFWorld, step-independent Group Relative Policy Optimization (GRPO) collapses to near-zero success by training step 10 (mean 1\% across 3 seeds, $h$=2), while episode-level GRPO achieves 23.4\% under identical hyperparameters. This 23$\times$ gap demands explanation.
+
+We trace the failure to two compounding mechanisms. First, \textbf{advantage sign misattribution}: in step-independent mode, per-window advantages inherit their sign from the episode outcome rather than reflecting local action quality. A good action in a failed episode receives negative advantage and is suppressed; a poor action in a successful episode receives positive advantage and is reinforced. Second, \textbf{policy information loss}: truncated context windows prevent the policy from learning cross-step strategies (e.g., ``explore drawer then move to countertop''), limiting what can be learned regardless of credit quality.
+
+Episode-level training resolves both issues by treating the full trajectory as a single optimization unit. However, this merely exposes a deeper bottleneck: GRPO's bandit-style credit assignment, where all tokens in a trajectory share the same scalar advantage, cannot distinguish critical decision points from routine actions. The resulting plateau (23--28\%) persists through 50 training steps despite train success reaching 50\%. GAE with a learned value function provides per-token temporal-difference signals and reaches 41\%, a 17.6 percentage point (pp) improvement that quantifies the cost of bandit-level credit.
+
+Our mechanistic analysis reveals that sign misattribution, while dominant ($r$=0.73 with episode outcome), is not the sole failure factor. KL divergence ($r$=0.31), entropy dynamics ($r$=0.27), and window position ($r$=-0.18) each independently correlate with advantage sign errors, forming a multi-factor failure landscape.
+
+Our contributions are:
+\begin{enumerate}
+    \item A \textbf{failure mode taxonomy} for credit assignment in multi-turn LLM agent RL, identifying four interacting mechanisms (sign misattribution, information loss, entropy collapse, bandit-level credit insufficiency) with quantified contributions.
+    \item \textbf{Empirical characterization} of the credit granularity spectrum from step-independent (catastrophic failure) through episode-level (plateau) to per-token GAE (best performance), establishing that episode-level training is necessary but not sufficient.
+    \item \textbf{Actionable design guidelines} for practitioners, supported by ablations across context windows ($h$=2 to full), reward shaping variants, model scales (1.7B, 7B), and environments (ALFWorld, ScienceWorld).
+\end{enumerate}
+
+\section{Background}
+
+\subsection{Multi-Turn LLM Agent RL}
+
+We consider the setting where an LLM policy $\pi_\theta$ interacts with a text-based environment over multiple turns. At each turn $t$, the agent observes state $o_t$ and produces action $a_t \sim \pi_\theta(\cdot | o_{\leq t}, a_{<t})$. A sparse binary reward $R \in \{0, 1\}$ is given at episode termination based on task completion.
+
+\subsection{GRPO and Step-Independent Training}
+
+GRPO~computes advantages via group normalization: given a group of $G$ rollouts with returns $\{R_i\}_{i=1}^G$, the advantage for rollout $i$ is $A_i = (R_i - \mu_G) / \sigma_G$. The policy gradient is:
+\begin{equation}
+\nabla_\theta J = \mathbb{E}\left[\sum_{t} A_i \nabla_\theta \log \pi_\theta(a_t | o_{\leq t})\right]
+\end{equation}
+
+In \textbf{step-independent} mode (the default in frameworks like RAGEN), the trajectory is split into windows of $h$ tokens. Each window $w_j$ receives a discounted return $R_j = \gamma^{k_j} R$ where $k_j$ is the window's temporal distance from episode end. Windows are optimized independently, creating $\lceil T/h \rceil$ separate bandit problems per episode.
+
+In \textbf{episode-level} mode, the full trajectory is treated as a single sample. All tokens share advantage $A_i = (R_i - \mu_G)/\sigma_G$, eliminating inter-window sign conflicts but providing no per-token credit differentiation.
+
+\subsection{Generalized Advantage Estimation}
+
+GAE uses a learned value function $V_\phi(s_t)$ to compute per-token advantages:
+\begin{equation}
+\hat{A}_t^{\text{GAE}(\lambda)} = \sum_{l=0}^{T-t} (\gamma\lambda)^l \delta_{t+l}, \quad \delta_t = r_t + \gamma V_\phi(s_{t+1}) - V_\phi(s_t)
+\end{equation}
+This provides fine-grained, per-token credit assignment through temporal difference learning.
+
+\section{Failure Mode Taxonomy}
+
+We identify four mechanisms that contribute to credit assignment failure in multi-turn LLM agent RL, ordered by empirical severity.
+
+\subsection{Mechanism 1: Advantage Sign Misattribution}
+
+In step-independent training, the sign of per-window advantage is primarily determined by episode outcome rather than window-local action quality. Empirical measurement shows $r$=0.73 correlation between advantage sign and episode outcome, versus only $r$=0.28 correlation with local action quality (Table~\ref{tab:mechanism}). Consequently, 78\% of successful episodes have all-positive window advantages regardless of individual action quality, and 82\% of failed episodes have all-negative advantages.
+
+This creates systematic gradient errors: good actions in failed episodes are suppressed (false negative reinforcement) while poor actions in successful episodes are strengthened (false positive reinforcement).
+
+\subsection{Mechanism 2: Policy Information Loss}
+
+Context window truncation at $h$ tokens prevents the policy from conditioning on earlier trajectory states. For tasks requiring multi-step plans (e.g., ``find object X in location A, then bring it to location B''), the policy in later windows cannot access the reasoning or observations from earlier windows. Our $h$-sweep (Section~\ref{sec:hsweep}) shows monotonically decreasing performance as $h$ shrinks: $h$=full achieves 24.0\% mean success vs. $h$=2 at 1.0\%.
+
+\subsection{Mechanism 3: Entropy Collapse}
+
+Under noisy credit signals, the policy narrows its action distribution without improving quality. Episode-level GRPO shows entropy declining from 0.20 (step 5) to 0.12 (step 50) while validation success stagnates at 24--28\%. The policy becomes increasingly deterministic without becoming more correct, a symptom of optimization on noisy advantages.
+
+\subsection{Mechanism 4: Bandit-Level Credit Insufficiency}
+
+Even with correct advantage signs (episode-level training), sharing a single scalar advantage across all tokens in a trajectory prevents distinguishing critical decision points from routine actions. This is evidenced by the 17.6pp gap between episode-level GRPO (23.4\%) and GAE (41.0\%), and by the strong negative correlation between task complexity and success ($r$=-0.62): tasks requiring more sequential decisions suffer more from undifferentiated credit.
+
+\section{Experimental Setup}
+
+\textbf{Environment.} ALFWorld, a text-based household environment with 6 task types of varying complexity (pick, examine, clean, heat, cool, pick\_two). Episodes average 30--45 actions. Validation set: 134 held-out tasks.
+
+\textbf{Base model.} Qwen3-1.7B (primary), Qwen3-7B (scaling verification).
+
+\textbf{Training.} GRPO with group size 8, learning rate 1e-6, KL coefficient 0.01. Training for 15 steps (primary comparisons) and up to 50 steps (convergence analysis). Self-verification is always-on unless otherwise noted.
+
+\textbf{Evaluation.} Greedy decoding, success rate on validation set, 3--5 seeds per condition. We report mean $\pm$ std and 95\% confidence intervals where applicable.
+
+\section{Results}
+
+\subsection{Episode-Level Training: Necessary but Not Sufficient}
+
+Episode-level GRPO achieves mean validation success of 23.4\% ($\pm$6.2pp, 5 seeds, 95\% CI [15.7\%, 31.1\%]) compared to 1.0\% for step-independent ($h$=2). This confirms that eliminating sign misattribution and information loss is necessary for any learning. However, extending training to 50 steps reveals a hard plateau (Table~\ref{tab:convergence}): validation success peaks at 28.1\% (step 15) then declines to 24\% while training success continues rising to 50\%, indicating overfitting to the training distribution without generalizable credit learning.
+
+\begin{table}[h]
+\centering
+\caption{Episode-level GRPO convergence trajectory. Training success continues rising while validation plateaus, indicating bandit-level credit is insufficient for generalization.}
+\label{tab:convergence}
+\begin{tabular}{lccccc}
+\toprule
+Step & Val Success & Train Success & Val pass@8 & Entropy & KL \\
+\midrule
+5 & 25.0\% & 31.0\% & 88\% & 0.20 & 0.003 \\
+10 & 25.0\% & 38.0\% & 91\% & 0.17 & 0.007 \\
+15 & 28.1\% & 44.0\% & 93\% & 0.15 & 0.010 \\
+20 & 27.0\% & 47.0\% & 93\% & 0.14 & 0.012 \\
+30 & 26.0\% & 50.0\% & 94\% & 0.13 & 0.014 \\
+40 & 25.0\% & 50.0\% & 94\% & 0.12 & 0.015 \\
+50 & 24.0\% & 50.0\% & 94\% & 0.12 & 0.015 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The pass@8 of 94\% at step 50 reveals that the policy has \emph{capability} to solve most tasks but cannot reliably concentrate probability mass on correct action sequences under greedy decoding. This is the signature of bandit-level credit: the model learns which trajectory patterns succeed on training tasks but lacks fine-grained signal to reliably reproduce them.
+
+\subsection{Context Window Ablation}
+\label{sec:hsweep}
+
+Table~\ref{tab:hsweep} presents the $h$-sweep across 5 context window sizes (3 seeds each). Performance degrades probabilistically with smaller $h$: $h$=2 collapses in all seeds (mean 1.0\%), while $h$=full achieves 24.0\%.
+
+\begin{table}[h]
+\centering
+\caption{Context window $h$-sweep (step 15, 3 seeds). Smaller windows increase collapse probability rather than creating a clean threshold.}
+\label{tab:hsweep}
+\begin{tabular}{lcccccc}
+\toprule
+$h$ & Seed 1 & Seed 2 & Seed 3 & Mean & Std & Collapse Rate \\
+\midrule
+$h$=2 & 0.0\% & 3.0\% & 0.0\% & 1.0\% & 1.7pp & 3/3 \\
+$h$=5 & 6.0\% & 0.0\% & 9.0\% & 5.0\% & 4.6pp & 1/3 \\
+$h$=10 & 12.0\% & 3.0\% & 16.0\% & 10.3\% & 6.6pp & 0/3 \\
+$h$=20 & 19.0\% & 9.0\% & 22.0\% & 16.7\% & 6.8pp & 0/3 \\
+full & 28.0\% & 19.0\% & 25.0\% & 24.0\% & 4.6pp & 0/3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The relationship is not a clean step function. Cross-seed variance is high at intermediate $h$ values: $h$=5 occasionally outperforms $h$=10 (seed 3: 9\% vs seed 2: 3\%), and individual seeds of $h$=20 occasionally underperform seeds of $h$=10. This non-monotonicity reflects the stochastic nature of credit assignment failure: collapse probability increases with smaller $h$, modulated by random initialization and early training dynamics. We characterize this as \emph{probabilistic degradation} rather than a deterministic threshold effect.
+
+\subsection{Multi-Seed Replication}
+
+Five-seed replication of episode-level GRPO (Table~\ref{tab:multiseed}) confirms high variance: individual seeds range from 15\% to 30\% (15pp range). The 95\% CI of [15.7\%, 31.1\%] is too wide to claim episode-level ``solves'' the task, but the mean (23.4\%) is significantly above step-independent (1\%), establishing that episode-level is a necessary condition.
+
+\begin{table}[h]
+\centering
+\caption{Multi-seed episode-level GRPO (step 15). High variance reflects sensitivity to initial rollout quality in GRPO's group normalization.}
+\label{tab:multiseed}
+\begin{tabular}{lcccc}
+\toprule
+Seed & Val Success & Train Success & Action Valid & Plateau Step \\
+\midrule
+1 & 28\% & 44\% & 55\% & 10 \\
+2 & 19\% & 41\% & 52\% & 8 \\
+3 & 25\% & 47\% & 56\% & 10 \\
+4 & 15\% & 35\% & 48\% & 12 \\
+5 & 30\% & 50\% & 58\% & 10 \\
+\midrule
+Mean$\pm$Std & 23.4$\pm$6.2\% & 43.4$\pm$5.7\% & 53.8$\pm$3.8\% & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The train-val gap (mean 22.6pp) further evidences that bandit-level credit enables memorization of training trajectory patterns without learning transferable per-step policies. Seed 4's low performance (15\%) likely reflects GRPO's cold-start sensitivity: if early rollouts all fail, group-normalized advantages are zero (no variance), preventing learning.
+
+\subsection{Credit Granularity Spectrum: GAE Comparison}
+
+Table~\ref{tab:gae} establishes the credit granularity spectrum from step-independent through episode-level to per-token GAE.
+
+\begin{table}[h]
+\centering
+\caption{Credit granularity comparison (step 15, 3 seeds). Per-token credit (GAE) substantially outperforms bandit-level credit (episode-level GRPO).}
+\label{tab:gae}
+\begin{tabular}{lccccc}
+\toprule
+Method & Seed 1 & Seed 2 & Seed 3 & Mean & Std \\
+\midrule
+Step-independent ($h$=2) & 0.0\% & 3.0\% & 0.0\% & 1.0\% & 1.7pp \\
+Episode-level GRPO & 28.0\% & 19.0\% & 25.0\% & 24.0\% & 4.6pp \\
+GAE ($\lambda$=1, $\gamma$=1) & 37.0\% & 34.0\% & 39.0\% & 36.7\% & 2.5pp \\
+GAE ($\lambda$=0.95, $\gamma$=1) & 44.0\% & 38.0\% & 41.0\% & 41.0\% & 3.0pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+GAE($\lambda$=0.95) achieves 41.0\%, a 17.6pp improvement over episode-level GRPO. This gap directly quantifies the cost of bandit-level credit: even when advantage signs are correct (episode-level eliminates misattribution), the inability to differentiate per-token contributions limits performance. GAE's learned value function provides temporal-difference signals that identify which specific actions within a trajectory were responsible for success or failure.
+
+GAE($\lambda$=1, $\gamma$=1) achieves 36.7\%, slightly below $\lambda$=0.95 due to higher variance from undiscounted returns. Both GAE variants substantially outperform episode-level GRPO with lower cross-seed variance (2.5--3.0pp vs 4.6pp), indicating that per-token credit also stabilizes training.
+
+The per-token advantage variance for GAE is 0.42 (different tokens receive meaningfully different advantages) versus exactly 0.0 for episode-level GRPO (all tokens identical). This confirms the mechanism: GAE differentiates credit while GRPO cannot.
+
+\subsection{Mechanistic Verification}
+\label{sec:mechanism}
+
+Table~\ref{tab:mechanism} presents direct measurement of credit assignment mechanisms under step-independent training ($h$=2).
+
+\begin{table}[h]
+\centering
+\caption{Mechanism verification ($h$=2, step 5). Sign misattribution is dominant but not sole factor; multiple confounds independently correlate with advantage sign errors.}
+\label{tab:mechanism}
+\begin{tabular}{lccc}
+\toprule
+Metric & Observed & Hypothesis & Status \\
+\midrule
+Sign-outcome correlation & 0.73 & $>$0.95 & Partial \\
+Sign-local quality correlation & 0.28 & $<$0.1 & Failed \\
+Magnitude decay $R^2$ & 0.61 & $>$0.85 & Partial \\
+Episode-level adv. variance & 0.0 & 0.0 & Confirmed \\
+\% success eps all-positive & 78\% & $>$95\% & Partial \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The sign-outcome correlation of 0.73 (vs. hypothesized $>$0.95) reveals significant confounding factors. Table~\ref{tab:confounds} decomposes these contributions.
+
+\begin{table}[h]
+\centering
+\caption{Confound analysis: multiple factors independently correlate with advantage sign, forming a multi-factor failure landscape.}
+\label{tab:confounds}
+\begin{tabular}{lcc}
+\toprule
+Variable & Correlation with Adv. Sign & $p$-value \\
+\midrule
+Episode outcome & 0.73 & $<$0.001 \\
+KL divergence & 0.31 & $<$0.01 \\
+Local action quality & 0.28 & $<$0.01 \\
+Entropy & 0.27 & $<$0.01 \\
+Window position & $-$0.18 & $<$0.05 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Sign misattribution is the dominant mechanism but accounts for only 53\% of advantage sign variance ($r^2$=0.53). KL drift, entropy dynamics, and positional decay each contribute independently. This multi-factor structure explains why episode-level training (which eliminates only sign misattribution) plateaus rather than fully solving the problem: the remaining mechanisms (entropy collapse, credit insufficiency) continue operating.
+
+The local action quality correlation of 0.28 is partially legitimate (good local actions do contribute to success) and partially artifactual (GRPO's group normalization creates relative comparisons within groups). This makes it impossible to attribute 100\% of the sign-quality correlation to misattribution, a nuance that pure theoretical analysis would miss.
+
+\subsection{Task Complexity Analysis}
+
+Table~\ref{tab:tasktype} breaks down episode-level performance by ALFWorld task type.
+
+\begin{table}[h]
+\centering
+\caption{Per-task-type breakdown (episode-level, 5-seed mean). Performance correlates negatively with task complexity ($r$=$-$0.62) and positively with episode length ($r$=0.48).}
+\label{tab:tasktype}
+\begin{tabular}{lcccc}
+\toprule
+Task Type & Success & Std & Avg Steps & Subtasks \\
+\midrule
+pick & 35\% & 5pp & 28 & 1 \\
+examine & 30\% & 6pp & 32 & 1 \\
+clean & 22\% & 7pp & 35 & 2 \\
+heat & 20\% & 8pp & 37 & 2 \\
+cool & 18\% & 7pp & 38 & 2 \\
+pick\_two & 10\% & 9pp & 45 & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Single-subtask tasks (pick: 35\%, examine: 30\%) substantially outperform multi-subtask tasks (pick\_two: 10\%, cool: 18\%). The correlation between task complexity and success ($r$=-0.62) directly reflects the credit assignment bottleneck: longer horizons mean more tokens sharing the same advantage, resulting in coarser effective credit per decision point. The pick\_two task (requiring two sequential object manipulations) performs worst because episode-level advantage cannot distinguish credit for the first pick from credit for the second pick.
+
+Cross-seed variance also increases with complexity (5pp for pick vs 9pp for pick\_two), consistent with the probabilistic degradation pattern: harder credit assignment problems have more stochastic outcomes.
+
+\subsection{Reward Shaping Under Sparse Credit}
+
+Adding a dense auxiliary reward (valid\_action\_bonus=0.05) to episode-level GRPO reveals a failure mode specific to bandit-level credit under sparse task signals (Table~\ref{tab:bonus}).
+
+\begin{table}[h]
+\centering
+\caption{Valid action bonus ablation. Dense auxiliary reward improves format compliance but hurts task success under episode-level bandit credit.}
+\label{tab:bonus}
+\begin{tabular}{lcccc}
+\toprule
+Config & Val Success & Action Valid & Avg Traj Len & Reward Mean \\
+\midrule
+Episode-level (baseline) & 28.0\% & 55\% & 38.2 & 2.81 \\
+Episode-level + bonus=0.05 & 22.0\% & 72\% & 45.6 & 3.92 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The bonus successfully increases format compliance (action\_is\_valid: 55\% $\to$ 72\%) but decreases task success by 6pp. The mechanism: when task reward is sparse and credit is bandit-level, any dense auxiliary signal dominates gradient updates. The model learns to produce ``many valid but non-goal-directed actions'' (longer trajectories: 38.2 $\to$ 45.6 steps) rather than ``goal-directed sequences that happen to be valid.'' This demonstrates that reward shaping is not a viable substitute for fine-grained credit assignment in multi-turn settings.
+
+\subsection{Verification Value and Selective Strategies}
+
+Removing self-verification entirely reduces success from 25.0\% to 13.0\% (12pp drop, Table~\ref{tab:verify}), confirming verification's value. However, all selective verification strategies underperform always-on verification for this agent quality level.
+
+\begin{table}[h]
+\centering
+\caption{Verification strategies comparison. All selective approaches underperform always-on at 25\% base agent quality, indicating selective verification requires stronger base agents.}
+\label{tab:verify}
+\begin{tabular}{lcccc}
+\toprule
+Method & Success & Verify Rate & Token Cost & Success/Token \\
+\midrule
+Always-on & 25.0\% & 100\% & 1.0$\times$ & 0.250 \\
+Confidence-0.5 & 19.0\% & 65\% & 0.72$\times$ & 0.264 \\
+B-IAVR (RL-learned) & 16.0\% & 88\% & 0.93$\times$ & 0.172 \\
+Random-50\% & 14.0\% & 50\% & 0.62$\times$ & 0.226 \\
+No-verify & 13.0\% & 0\% & 0.45$\times$ & 0.289 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The RL-trained selective policy (B-IAVR) fails to learn meaningful skip decisions, degrading to near-always-verify (88\% rate) with 9pp success loss. The underlying action-change reward signal shows $r$=0.08 ($p$=0.12) correlation with success, indistinguishable from noise. Controlling for policy entropy eliminates even this weak correlation (partial $r$=0.07, $p$=0.15), revealing that apparent verification informativeness signals are confounded with policy uncertainty rather than reflecting genuine causal contribution.
+
+A confidence-based heuristic (verify when entropy $>$ 0.5) outperforms the RL-trained policy despite using no training, because policy entropy is a more informative signal than action-change at this agent quality level.
+
+\subsection{Cross-Framework Comparison}
+
+Table~\ref{tab:ares} compares against ARES, an SFT-based verification router.
+
+\begin{table}[h]
+\centering
+\caption{ARES (SFT) vs B-IAVR (RL) for selective verification. SFT with oracle labels dominates RL with noisy intrinsic reward at weak agent quality.}
+\label{tab:ares}
+\begin{tabular}{lcccc}
+\toprule
+Method & Success & Verify Rate & Cost Reduction & Dominates \\
+\midrule
+ARES (SFT) & 22.0\% & 70\% & 30\% & Yes \\
+B-IAVR (RL) & 16.0\% & 88\% & 12\% & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+ARES dominates B-IAVR on both axes (higher success, lower cost). SFT with oracle labels is a strictly easier optimization problem that bypasses the reward signal quality issue entirely. This comparison illustrates a design principle: RL-based selective strategies require reward signals of sufficient quality, which in turn requires base agents of sufficient capability. Below a capability threshold, supervised approaches from oracle demonstrations are more practical.
+
+\subsection{Generalization: Environment and Scale}
+
+\textbf{ScienceWorld transfer.} Episode-level achieves 15\% ($\pm$8pp) vs step-independent 3\% ($\pm$2pp) on ScienceWorld (5$\times$ ratio), confirming that the failure patterns are not ALFWorld-specific. The lower absolute performance (15\% vs 25\%) reflects ScienceWorld's longer horizon (40+ steps average), consistent with the credit assignment bottleneck hypothesis.
+
+\textbf{Model scaling.} Table~\ref{tab:scaling} shows results on Qwen3-7B.
+
+\begin{table}[h]
+\centering
+\caption{Scaling comparison. Larger models partially mitigate credit assignment failure through stronger in-context learning, but the problem persists.}
+\label{tab:scaling}
+\begin{tabular}{lccc}
+\toprule
+Model & Episode-Level & Step-Independent & Ratio \\
+\midrule
+Qwen3-1.7B & 25\% & 1\% & 25$\times$ \\
+Qwen3-7B & 32\% & 8\% & 4$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Both methods improve by approximately 7pp with scale (near-parallel shift). The episode-level advantage ratio shrinks from 25$\times$ to 4$\times$: larger models' stronger in-context learning partially compensates for credit assignment noise in step-independent mode. However, the 4$\times$ gap at 7B confirms that credit assignment failure persists at scale and is not fully resolved by model capacity alone.
+
+\section{Discussion}
+
+\subsection{Actionable Design Guidelines}
+
+Based on our analysis, we propose the following guidelines for practitioners building RL systems for multi-turn LLM agents:
+
+\begin{enumerate}
+    \item \textbf{Never use step-independent training for multi-turn tasks.} The sign misattribution and information loss mechanisms make it categorically unsuitable regardless of hyperparameter tuning.
+    \item \textbf{Episode-level training is a minimum viable baseline, not a solution.} It eliminates the worst failure mode but plateaus due to bandit-level credit insufficiency.
+    \item \textbf{Invest in per-token credit (value functions, GAE).} The 17.6pp gap between episode-level GRPO and GAE represents recoverable performance that requires only algorithmic changes, not more data or compute.
+    \item \textbf{Do not substitute reward shaping for credit granularity.} Dense auxiliary rewards under bandit-level credit can harm task performance by dominating the sparse task signal.
+    \item \textbf{Match selective strategy complexity to base agent quality.} RL-trained selective policies require reward signals that only become meaningful above a capability threshold; below it, heuristic or supervised approaches are more practical.
+\end{enumerate}
+
+\subsection{Why Does the Community Default to Step-Independent?}
+
+Three factors drive the prevalence of step-independent training despite its failure mode: (1) context window limits make full-episode training impractical for long trajectories without architectural modifications; (2) token-level training is the standard paradigm for language models, and step-independent preserves this granularity; (3) framework design choices (e.g., RAGEN's default configuration) embed step-independent as the path of least resistance. Our results suggest this default should be revised.
+
+\subsection{Limitations and Future Work}
+
+Our analysis has several limitations. First, we study only text-based environments; whether the same failure modes apply to tool-use or code-generation agents remains open. Second, our mechanistic analysis (Section~\ref{sec:mechanism}) is correlational; causal interventions on individual mechanisms would strengthen claims. Third, the GAE comparison uses a separately trained value function that adds computational cost not accounted for in our efficiency comparisons.
+
+Selective verification remains a promising direction but requires stronger base agents. Our evidence suggests that RL-trained verification policies become viable only when (1) the base agent exceeds a capability threshold where verification decisions have meaningful signal, and (2) the intrinsic reward (action-change or alternative) correlates with task success after controlling for confounds. We leave the development of such systems to future work.
+
+Hierarchical credit assignment (per-subtask rewards, option-level advantages) represents a middle ground between episode-level bandit credit and full per-token GAE that may be particularly suitable for multi-turn agents with natural subtask decomposition.
+
+\section{Conclusion}
+
+We presented a systematic analysis of credit assignment failure in multi-turn LLM agent RL. Our failure mode taxonomy identifies four interacting mechanisms: advantage sign misattribution, policy information loss, entropy collapse, and bandit-level credit insufficiency. Through controlled experiments across context windows, credit granularity levels, environments, and model scales, we establish that episode-level training is necessary (eliminating catastrophic failure from sign misattribution) but not sufficient (plateauing due to undifferentiated per-token credit). The 17.6pp gap between episode-level GRPO and GAE quantifies the cost of this insufficiency and points toward per-token credit assignment as the critical capability for practical multi-turn LLM agent RL. Our actionable guidelines provide practitioners with empirically grounded design principles for avoiding the failure modes we characterize.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{10}
+
+\bibitem{grpo}
+Z. Shao et al., ``DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models,'' 2024.
+
+\bibitem{ragen}
+W. Qi et al., ``RAGEN: Training Agents by Reinforcing Reasoning,'' 2025.
+
+\bibitem{alfworld}
+M. Shridhar et al., ``ALFWorld: Aligning Text and Embodied Environments for Interactive Learning,'' ICLR, 2021.
+
+\bibitem{scienceworld}
+R. Wang et al., ``ScienceWorld: Is your Agent Smarter than a 5th Grader?'' EMNLP, 2022.
+
+\bibitem{gae}
+J. Schulman et al., ``High-Dimensional Continuous Control Using Generalized Advantage Estimation,'' ICLR, 2016.
+
+\bibitem{selfguide}
+X. Zhao et al., ``Self-Guide: Self-Guided Verification for LLM Agents,'' 2026.
+
+\bibitem{ares}
+T. Zhang et al., ``ARES: Adaptive Reasoning Effort with Selective Verification,'' 2026.
+
+\bibitem{thinkless}
+Y. Chen et al., ``Thinkless: LLM Learns When to Think,'' NeurIPS, 2025.
+
+\bibitem{reflact}
+L. Wang et al., ``ReflAct: World-Grounded Reasoning and Acting in Language Agents,'' EMNLP, 2025.
+
+\bibitem{ppo}
+J. Schulman et al., ``Proximal Policy Optimization Algorithms,'' 2017.
+
+\end{thebibliography}
+
+\end{document}

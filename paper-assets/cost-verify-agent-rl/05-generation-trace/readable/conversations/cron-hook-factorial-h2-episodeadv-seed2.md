@@ -1,0 +1,1174 @@
+# cron hook factorial h2 episodeadv seed2
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 38
+- **Recorded user turns:** 1
+- **Tool calls:** 18
+- **Original source:** `logs/chats/cron_hook_factorial_h2_episodeadv_seed2.jsonl`
+- **Structured JSON:** [`41224a39ae6937be1109.json`](../../sessions/41/41224a39ae6937be1109.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+38 recorded events
+
+### User
+
+_source line 1 · 2026-05-18T10:52:22.228909+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: factorial_h2_episodeadv_seed2
+- project: cost-verify-agent-rl
+- server: westd-47453
+- wandb_run_id: d3irreww
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-18T10:52:33.152758+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-18T10:52:33.253644+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T10:52:36.365437+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T10:52:36.869036+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T10:52:37.327042+00:00_
+
+&lt;persisted-output>
+Output too large (51.3KB). Full output saved to: /home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-fb1ddd66/0a8f74c3-d572-4df5-b752-b46e71579add/tool-results/toolu_01SET2Z8vooGL1pooKCksbP6.txt
+
+Preview (first 2KB):
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"factorial_h2_episodeadv_seed2\": {\"status\": \"DONE\", \"created_at\": \"2026-05-18T04:48:02.228Z\", \"updated_at\": \"2026-05-18T10:52:19.155Z\", \"hypothesis\": \"Replicate factorial experiment (step-independent + episode-level advantage) with different seed to confirm that sign misattribution elimination is robust, not single-seed artifact. Same config, different seed, 15 steps.\", \"parent\": \"factorial_h2_episodeadv_seed1\", \"conclusion\": \"failed\"}, \"exp029_episode_level_seed2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-18T04:48:01.826Z\", \"updated_at\": \"2026-05-18T10:34:45.819Z\", \"hypothesis\": \"Replicate exp029 episode-level result (23.88% OOD) with different seed to confirm statistical robustness. P0 priority: core positive claim built on single seed is desk-reject risk. Same SFT checkpoint, same config, seed=43, 15 steps, AlfworldSG_OOD 134 tasks eval.\", \"parent\": \"exp029_episode_level\"}, \"factorial_h2_episodeadv_seed1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-17T18:17:23.327Z\", \"updated_at\": \"2026-05-18T10:22:36.071Z\", \"hypothesis\": \"Step_independent generation (h=2) with episode-level advantage eliminates sign misattribution while preserving truncated-context inference. If success >> h=2 step-level (0%), information loss alone does not cause collapse — sign misattribution is the primary driver. If success ≈ 0%, information loss is sufficient to cause collapse regardless of advantage computation. This is the key factorial experiment separating the two mechanisms.\", \"parent\": \"hsweep_h2_seed1\", \"metrics\": {\"completed_steps
+…[truncated 349 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 961
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T10:52:37.327386+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-18T10:52:37.327563+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "cost-verify-agent-rl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-18T10:52:41.606894+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"gsweep_g095_h5_seed1\", \"success\": true, \"actions\": [\"Job still running (pid=416289)\"]}, {\"exp_id\": \"exp029_episode_level_seed2\", \"success\": true, \"actions\": [\"Job still running (pid=30131)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 4737
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T10:52:41.607672+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-18T10:52:20Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 66 个实验 — DONE 46, PREPARING 18, RUNNING 2\\n**DONE 分布**: failed 19, killed 13, negative 6, success 8\\n\\n### GPU 占用\\n- **实际运行**: 4 张 — westd-47453:cuda:2(gsweep_g095_h5_seed1), westd-47453:cuda:3(gsweep_g095_h5_seed1), bjb1-17606:cuda:0(exp029_episode_level_seed2), bjb1-17606:1(exp029_episode_level_seed2)\\n\\n### 💾 磁盘余量\\n- **bjb1-17606**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\n- **westd-47453**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 1%）\\n  - `/usr/bin/nvidia-smi`: 813G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `gsweep_g095_h5_seed1` | westd-47453 | cuda:2,cuda:3 | 416289 | `—` |\\n| `exp029_episode_level_seed2` | bjb1-17606 | cuda:0,1 | 30131 | `—` |\\n\\n### 📌 最近完成 (top 5)\\n- `factorial_h2_episodeadv_seed2` [failed] — 2026-05-18T10:52:19 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `factorial_h2_episodeadv_seed1` [success] — 2026-05-18T10:22:36 — False positive: W&B atexit BrokenPipeError during cleanup. Training completed al\\n- `gsweep_g080_h5_seed1` [negative] — 2026-05-18T09:35:23 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `hsweep_h2_seed2_reeval_ood` [success] — 2026-05-18T05:13:33 — N/A - completed successfully. OOD success=3.73%. Process exit was expected (eval\\n- `exp029_episode_level` [success] — 2026-05-18T04:11:39\\n\\n### 🔴 最近失败原因 (top 3)\\n- `factorial_h2_episodeadv_seed2`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\
+…[truncated 5572 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 4280
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T10:52:41.658438+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\", \"content\": \"# cost-verify-agent-rl — Research Dashboard\\n\\n> 最后更新: 2026-05-18 10:37 UTC | 更新原因: 修正 Reviewer 指出的两个问题：(1) exp029 seed2 config 差异明确标注 (2) Cell A 表述从\\\"单调坍缩到 0%\\\"修正为\\\"高坍缩风险（seed1=0%, seed2=3.73%）\\\"\\n\\n## 核心方向\\n诊断 LLM agent step-independent RL 训练失败的两个独立机制：information loss（truncated context 限制泛化能力）+ sign misattribution（advantage 噪声破坏训练稳定性）。详见 paper_framing.md。\\n\\n**Framing (D073)**：放弃定量加法分解（checkpoint-dependent, cherry-picking 风险），转向定性双机制诊断：\\n- Sign misattribution 破坏训练稳定性：Cell A 高坍缩风险（seed1=0%, seed2=3.73% OOD），学习极不稳定\\n- Information loss 杀死泛化能力：Cell B 训练中能学（peak 25.8%）但 OOD 崩溃（step 15 val=0.75%）\\n- 两者都解决后稳定学习：Cell C 23.88%\\n\\n## 当前进展\\n- **阶段**: Research (Phase A+) + 审稿进行中 (Group C)\\n- **Factorial seed1 完成 (D073)**: 3-cell 定量分解在 step 15 失效（Cell B=0.75% < Cell A=3.73%），但定性发现更丰富——振荡 vs 高 variance 坍缩 vs 稳定学习的三种训练动态\\n- **γ-sweep**: g050 坍缩 + g080 坍缩确认，γ-cliff 在 0.80-0.95 之间，g095 running\\n- **P0 统计 power**: factorial seed2（config 与 seed1 完全一致 ✅）是主要 P0 验证；exp029 seed2 有 config 差异（见下）\\n- **机制证据**: 52% sign-outcome agreement（随机噪声），ADV 分析，γ-sweep 系统性坍缩\\n- **文献佐证**: 15 篇独立证据，0 hallucinated，4 处措辞已修正\\n\\n## Running 实验\\n| exp_id | server | GPU | 进度 | 预估完成 | 备注 |\\n|--------|--------|-----|------|---------|------|\\n| exp029_episode_level_seed2 | bjb1 | 0,1 | val_before_train | ~24h | ⚠️ 3 个内存参数与 seed1 不同（见下） |\\n| factorial_h2_episodeadv_seed2 | westd | 0,1 | val_before_train | ~12h | config 与 seed1 完全一致 ✅ |\\n| gsweep_g095_h5_seed1 | westd | 2,3 | step 0-1/15 | ~18h | |\\n\\n**exp029 seed2 config 差异说明**：因 seed=43 生成更长 episode 导致连续 3 次 OOM，必须降低内存参数：env_groups 16→8, mini_batch 16→8, token_len 65536→16384。group_size=8 和 total_training_steps=100 与 seed1 一致。GRPO advantage 计算不受影响，但 batch 动态不同。论文需注明此限制。P0 统计 power 主要依赖 factorial seed2（config 完全一致）。\\n\\n## 近期任务\\n- [ ] 监控 3 个 running 实验，结果出来后立即分析\\n- [ 
+…[truncated 3262 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 4330
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-18T10:52:52.706745+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "filters": "{'exp_id': 'factorial_h2_episodeadv_seed2'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "filters": "{'exp_id': 'factorial_h2_episodeadv_seed2'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-18T10:52:53.259323+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1929}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 552
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-18T10:52:53.259682+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-18T10:52:53.812196+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_fb1ddd66.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "Read",
+  "elapsed_ms": 552
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-18T10:52:53.862866+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-18T10:52:53.913762+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_fb1ddd66.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-18T10:52:58.632731+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "filters": "{'status': 'DONE', 'conclusion': 'failed'}",
+  "fields": "['*']",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "filters": "{'status': 'DONE', 'conclusion': 'failed'}",
+    "fields": "['*']",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-18T10:52:59.085167+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"factorial_h2_episodeadv_seed2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T04:48:02.228Z\", \"updated_at\": \"2026-05-18T10:52:19.155Z\", \"hypothesis\": \"Replicate factorial experiment (step-independent + episode-level advantage) with different seed to confirm that sign misattribution elimination is robust, not single-seed artifact. Same config, different seed, 15 steps.\", \"parent\": \"factorial_h2_episodeadv_seed1\", \"spec\": {\"command\": \"cd /root/cost-verify-agent-rl/RAGEN && ALFWORLD_DATA=/root/autodl-tmp/alfworld CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_factorial_h2_episode_adv_seed2\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": 505305, \"data_path\": \"ALFWorld valid_unseen\", \"data_count\": \"3553 train + 134 OOD eval\", \"model_name\": \"Qwen3-1.7B-SFT (exp021)\", \"seed\": 43, \"wandb_run_id\": \"d3irreww\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/factorial-h2-episodeadv-seed2/\", \"checkpoint_source\": \"Qwen3-1.7B-SFT exp021\", \"eval_data\": \"ALFWorld valid_unseen 134 tasks (OOD)\", \"notes\": \"Config identical to seed1 (kl_loss_coef=0.01, same hyperparams), only seed.train=43 differs.\"}, \"conclusion\": \"failed\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"reproduce\": {\"finished_at\": \"2026-05-18T10:52:18.239Z\"}, \"completed_at\": \"2026-05-18T10:52:19.155Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T10:52:21.813105+00:00\"}]}}, \"exp028c_selfguide_recipe\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T21:38:48.089Z\", \"updated_at\": \"2026-05-16T08:29:53.723Z\", \"wandb_run_id\": \"4yu6qz1m\", \"spec\": {\"command\": \"bash scripts/run_exp028c_selfguide_recipe.sh\", \"server\": \"bjb1-17606\", \"data_path\": \"AlfworldSG (env_configs)\", \"data_coun
+…[truncated 10300 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-18T10:52:59.135753+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T10:52:59.537674+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "Glob",
+  "elapsed_ms": 401
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-18T10:52:59.588249+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-18T10:52:59.588740+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-18T10:53:12.158325+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/on-experiment-failed*",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/on-experiment-failed*",
+    "path": "/home/ubuntu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-18T10:53:12.460145+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "Glob",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-18T10:53:15.326749+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-18T10:53:15.327596+00:00_
+
+1	---
+2	name: on-experiment-failed
+3	description: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。
+4	scope: global
+5	tags:
+6	- workflow
+7	- diagnosis
+8	- cron-hook
+9	tools:
+10	- read_registry
+11	- tail_training_logs
+12	- update_registry
+13	- append_idea
+14	- feishu_send_result_card
+15	- spawn_worker
+16	- check_job_status
+17	version: 4
+18	heavy: true
+19	roles:
+20	- agent
+21	---
+22	
+23	# 实验失败诊断工作流
+24	
+25	## 触发方式
+26	由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。
+27	
+28	## 步骤
+29	
+30	### Step 0: 读取项目上下文（诊断前必须执行）
+31	先读文档，再看日志——否则诊断方向可能完全错误：
+32	
+33	- `read_project_file("memory.md")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案
+34	- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构
+35	
+36	读完后检查：
+37	- memory.md 里有没有"此类实验曾失败，原因是 X"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程
+38	- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）
+39	
+40	### Step 1: 了解失败背景
+41	- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path
+42	
+43	### Step 2: 浅层日志诊断
+44	有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)
+45	- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback
+46	- 没找到 → 增加行数再查
+47	
+48	### Step 2.5: 深查（满足以下任一条件时 spawn_worker）
+49	- 运行时长 < 5 分钟（初始化阶段崩溃）
+50	- tail 日志中未见明确 Traceback 或错误行
+51	- 同类实验连续失败 ≥ 2 次
+52	
+53	```python
+54	spawn_worker(
+55	    task_type="diagnose:{exp_id}",
+56	    task_prompt="""SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。
+57	
+58	项目路径：{project_path}（绝对路径）
+59	日志路径：{log_path}（可能为空）
+60	
+61	执行步骤（按顺序，有结论就停）：
+62	
+63	1. 如果有日志路径：
+64	   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）
+65	   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）
+66	   - 日志文件不存在：说明任务启动即失败，跳到步骤 2
+67	
+68	2. 日志无错误或无日志时，检查基础设施：
+69	   - 入口文件是否存在
+70	   - 激活环境并验证 import
+71	   - 检查 configs/ 目录
+72	
+73	3. 检查磁盘/内存（OOM 类）
+74	
+75	最后输出一行 JSON：
+76	{"root_cause":"<引用具体报错行>","error_type":"infrastructure|hyperparameter|resource|data","fix_steps":["步骤1","步骤2"],"can_auto_fix":true}""",
+77	    tool_groups=["ssh"],
+78	)
+79	```
+80	
+81	Worker 返回后，以其结论作为 Step 3 的诊断依据。
+82	
+83	### 
+…[truncated 1766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-18T10:53:22.656037+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-18T10:53:23.258793+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\", \"content\": \"# Project Memory\\n\\n## ADV Sign Analysis 直接证据 (2026-05-18)\\n\\nhsweep_h2_seed2 (LOG_PER_SAMPLE_ADV=1) 收集的 per-window advantage 数据分析：\\n- sign-outcome agreement: 52.07% (≈ random 50%)\\n- point biserial r = 0.068 (negligible correlation)\\n- P(adv>0|success) = 37.06%, P(adv>0|failure) = 30.6% (几乎无差异)\\n- magnitude decay γ_effective = 0.9426\\n- distribution overlap = 87.8%\\n**结论**：advantage sign 对 episode outcome 几乎无信息量，直接实证确认 sign misattribution。\\n\\n## Factorial 稳定性问题 (2026-05-18)\\n\\nfactorial_h2_episodeadv_seed1 已 3 次崩溃：\\n1. 第1次：vLLM/PyTorch 不兼容（TORCH_COMPILE_DISABLE=1 修复）\\n2. 第2次：EXIT_CODE=1，未详细诊断\\n3. 第3次：step 9/15 崩溃，KL 0.24→1.77 膨胀，疑 NaN/OOM\\n**已收集数据**: val_step5 OOD = 5.97% (非零, vs step-level 0%)，train peak 25.8% (step 6)\\n**教训**：episode-level advantage + step-independent generation 组合的 KL 不稳定，可能需要更强 KL 惩罚或 gradient clipping\\n\\n## γ-sweep 经验 (2026-05-18)\\n\\n- γ=0.50 (h=5): 从 step 1 完全 collapse, train 0%, KL spike 20x at step 8\\n- γ=0.80 (h=5): step 5 collapse (3.125%), 后续 0%\\n- γ=0.95 (h=5): running (控制组)\\n- **规律**: γ 越低, 崩溃越早越彻底, 支持 sign misattribution 随折扣加剧的理论\\n\\n## OOM 经验教训 (M007, 2026-05-18)\\n\\n**问题**：exp029_episode_level full context 模式在 bjb1 (2x A6000 48GB) 上 OOM。\\n- 根因：`enable_gradient_checkpointing=False` + `ppo_max_token_len_per_gpu=65536`，backward 时峰值显存超出\\n- seed 1 也在 step 16 OOM（但 15 步已完成）\\n- seed 2 在 step 1 即 OOM（seed-dependent batch 长度不同）\\n\\n**修复路径（按顺序）**：\\n1. gradient_checkpointing=True + ppo_max_token_len_per_gpu 32768 → 仍 OOM\\n2. ppo_mini_batch_size 16→8 + ppo_max_token_len_per_gpu 16384 → 待验证\\n3. 如仍 OOM → 换 seed（统计 power 只需\\\"不同 seed\\\"，不必是特定值）\\n\\n**教训**：full context episode-level 训练显存需求远高于 step-independent。未来类似实验在 bjb1 上必须预开 gradient_checkpointing + 保守 token_len。westd (4x A100 80GB) 更安全。\\n\\n## 引用验证结果 (2026-05-18)\\n\\n文献调研 15 篇论文中 8 篇关键引用已验证：0 篇 hal
+…[truncated 1287 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 602
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-18T10:53:23.309413+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__get_project_resource_usage",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__get_project_resource_usage",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-18T10:53:23.360097+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-18T10:53:33.839336+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "exp_id": "factorial_h2_episodeadv_seed2",
+  "project": "cost-verify-agent-rl",
+  "n": "100"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "westd-47453",
+    "exp_id": "factorial_h2_episodeadv_seed2",
+    "project": "cost-verify-agent-rl",
+    "n": "100"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T10:53:33.990371+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "cost-verify-agent-rl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T10:53:34.292945+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m     \\\"full_attention\\\"\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m   ],\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m   \\\"max_position_embeddings\\\": 40960,\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m   \\\"max_window_layers\\\": 28,\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m   \\\"model_type\\\": \\\"qwen3\\\",\", \"\\u001b[36m(WorkerDict pid=546976)\\u001b[0m   \\\"num_attention_hea
+…[truncated 8014 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-18T10:53:34.544230+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [], \"actually_running_gpus\": [{\"server\": \"westd-47453\", \"gpu_id\": \"cuda:2\", \"exp_id\": \"gsweep_g095_h5_seed1\"}, {\"server\": \"westd-47453\", \"gpu_id\": \"cuda:3\", \"exp_id\": \"gsweep_g095_h5_seed1\"}, {\"server\": \"bjb1-17606\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"exp029_episode_level_seed2\"}, {\"server\": \"bjb1-17606\", \"gpu_id\": \"1\", \"exp_id\": \"exp029_episode_level_seed2\"}], \"allocated_but_idle\": [], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"gsweep_g095_h5_seed1\", \"gpus\": [\"cuda:2\", \"cuda:3\"], \"util_avg\": null}, {\"exp_id\": \"exp029_episode_level_seed2\", \"gpus\": [\"cuda:0\", \"1\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 0 张, 实际跑 4 张 | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 553
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-18T10:54:17.065469+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "diagnose:factorial_h2_episodeadv_seed2",
+  "project": "cost-verify-agent-rl",
+  "task_prompt": "SSH 到服务器 westd-47453，诊断实验 factorial_h2_episodeadv_seed2 的失败原因。\n\n## 背景\n- 实验是 factorial 设计的 seed2 复制（seed1 已成功完成）\n- config 与 seed1 完全一致，只有 seed.train=43 不同\n- 服务器：westd-47453，GPU cuda:0,1（A100 80GB）\n- 进程 PID 505305 已死亡\n- 失败原因：\"process dead 5× with no sentinel/W&B — auto-resolved as failed\"\n- 日志路径：~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed2.log\n- 日志末尾显示在初始化阶段（模型加载+数据加载完成，W&B run 6rqnrlr7 创建），但没有任何 training output 就终止了。无可见 Traceback。\n- 训练命令：cd /root/cost-verify-agent-rl/RAGEN && ALFWORLD_DATA=/root/autodl-tmp/alfworld CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_factorial_h2_episode_adv_seed2\n- W&B run ID（registry 记录的是 d3irreww，但日志显示最后一次启动的 run 是 6rqnrlr7——可能有多次重启）\n- 项目路径：/root/cost-verify-agent-rl/RAGEN\n\n## 已知：westd-47453 硬规则\n1. `export TMPDIR=/root/autodl-tmp/tmp && mkdir -p $TMPDIR`\n2. `export TORCH_COMPILE_DISABLE=1`\n\n## 已知：seed1 稳定性问题\nseed1 曾 3 次崩溃才最终完成。第1次 vLLM/PyTorch 不兼容，第3次 KL 膨胀导致崩溃。\n\n## 诊断步骤（按顺序，有结论就停）\n\n1. **检查完整日志**：\n   - `wc -l ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed2.log` 看总行数\n   - 看日志开头 50 行（确认启动时间和命令）\n   - 搜索 `grep -i \"error\\|traceback\\|oom\\|killed\\|signal\\|nan\\|cuda\" ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed2.log`\n   - 如果有多次启动，找每次的起止位置\n\n2. **检查系统层**：\n   - `dmesg -T | grep -i \"oom\\|kill\\|out of memory\" | tail -20`（看是否被 OOM killer 杀掉）\n   - `journalctl --since \"2026-05-18 04:00\" --until \"2026-05-18 11:00\" | grep -i \"oom\\|kill\" | tail -20`\n\n3. **检查 GPU 状态**：\n   - `nvidia-smi`（当前 GPU 0,1 是否空闲 — 注意 cuda:2,3 正在跑 gsweep_g095，不要误杀）\n   - 检查 GPU 0,1 显存是否有残留进程\n\n4. **检查 tmux session**：\n   - `tmux ls` 看是否有残留 session\n   - 如果有 factorial 相关 session，看其输出\n\n5. **检查 config 文件**：\n   - `cat /root/cost-verify-agent-rl/RAGEN/configs/_alfworld_factorial_h2_episode_adv_seed2.yaml`（确认配置正确）\n   - 与 seed1 config 对比：`diff /root/cost-verify-agent-rl/RAGEN/configs/_alfworld_factorial_h2_episode_adv_seed2.yaml /root/cost-verify-agent-rl/RAGEN/configs/_alfworld_factorial_h2_episode_adv_seed1.yaml`\n\n6. **检查 checkpoint 目录**：\n   - `ls -la /root/autodl-tmp/checkpoints/factorial-h2-episodeadv-seed2/`（是否有部分 checkpoint 保存下来）\n\n最后输出一行 JSON：\n{\"root_cause\":\"<引用具体报错行或系统日志>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true,\"wandb_runs_found\":[\"run_id1\",\"run_id2\"]}",
+  "tool_groups": "['ssh']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "diagnose:factorial_h2_episodeadv_seed2",
+    "project": "cost-verify-agent-rl",
+    "task_prompt": "SSH 到服务器 westd-47453，诊断实验 factorial_h2_episodeadv_seed2 的失败原因。\n\n## 背景\n- 实验是 factorial 设计的 seed2 复制（seed1 已成功完成）\n- config 与 seed1 完全一致，只有 seed.train=43 不同\n- 服务器：westd-47453，GPU cuda:0,1（A100 80GB）\n- 进程 PID 505305 已死亡\n- 失败原因：\"process dead 5× with no sentinel/W&B — auto-resolved as failed\"\n- 日志路径：~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed2.log\n- 日志末尾显示在初始化阶段（模型加载+数据加载完成，W&B run 6rqnrlr7 创建），但没有任何 training output 就终止了。无可见 Traceback。\n- 训练命令：cd /root/cost-verify-agent-rl/RAGEN && ALFWORLD_DATA=/root/autodl-tmp/alfworld CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_factorial_h2_episode_adv_seed2\n- W&B run ID（registry 记录的是 d3irreww，但日志显示最后一次启动的 run 是 6rqnrlr7——可能有多次重启）\n- 项目路径：/root/cost-verify-agent-rl/RAGEN\n\n## 已知：westd-47453 硬规则\n1. `export TMPDIR=/root/autodl-tmp/tmp && mkdir -p $TMPDIR`\n2. `export TORCH_COMPILE_DISABLE=1`\n\n## 已知：seed1 稳定性问题\nseed1 曾 3 次崩溃才最终完成。第1次 vLLM/PyTorch 不兼容，第3次 KL 膨胀导致崩溃。\n\n## 诊断步骤（按顺序，有结论就停）\n\n1. **检查完整日志**：\n   - `wc -l ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed2.log` 看总行数\n   - 看日志开头 50 行（确认启动时间和命令）\n   - 搜索 `grep -i \"error\\|traceback\\|oom\\|killed\\|signal\\|nan\\|cuda\" ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed2.log`\n   - 如果有多次启动，找每次的起止位置\n\n2. **检查系统层**：\n   - `dmesg -T | grep -i \"oom\\|kill\\|out of memory\" | tail -20`（看是否被 OOM killer 杀掉）\n   - `journalctl --since \"2026-05-18 04:00\" --until \"2026-05-18 11:00\" | grep -i \"oom\\|kill\" | tail -20`\n\n3. **检查 GPU 状态**：\n   - `nvidia-smi`（当前 GPU 0,1 是否空闲 — 注意 cuda:2,3 正在跑 gsweep_g095，不要误杀）\n   - 检查 GPU 0,1 显存是否有残留进程\n\n4. **检查 tmux session**：\n   - `tmux ls` 看是否有残留 session\n   - 如果有 factorial 相关 session，看其输出\n\n5. **检查 config 文件**：\n   - `cat /root/cost-verify-agent-rl/RAGEN/configs/_alfworld_factorial_h2_episode_adv_seed2.yaml`（确认配置正确）\n   - 与 seed1 config 对比：`diff /root/cost-verify-agent-rl/RAGEN/configs/_alfworld_factorial_h2_episode_adv_seed2.yaml /root/cost-verify-agent-rl/RAGEN/configs/_alfworld_factorial_h2_episode_adv_seed1.yaml`\n\n6. **检查 checkpoint 目录**：\n   - `ls -la /root/autodl-tmp/checkpoints/factorial-h2-episodeadv-seed2/`（是否有部分 checkpoint 保存下来）\n\n最后输出一行 JSON：\n{\"root_cause\":\"<引用具体报错行或系统日志>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true,\"wandb_runs_found\":[\"run_id1\",\"run_id2\"]}",
+    "tool_groups": "['ssh']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-18T10:54:20.026154+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_factorial_h2_episodeadv_seed2_20260518T105417\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/logs/workers/worker_diagnose_factorial_h2_episodeadv_seed2_20260518T105417.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnose_factorial_h2_episodeadv_seed2_20260518T105417 started. Use get_worker_status('worker_diagnose_factorial_h2_episodeadv_seed2_20260518T105417') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2960
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-18T10:54:37.003070+00:00_
+
+诊断 Worker 已派出（worker_diagnose_factorial_h2_episodeadv_seed2_20260518T105417）。
+
+当前状态：
+- **westd cuda:0,1 空闲** — factorial_h2_episodeadv_seed2 失败后释放
+- **westd cuda:2,3** — gsweep_g095_h5_seed1 运行中
+- **bjb1 cuda:0,1** — exp029_episode_level_seed2 运行中
+- **Worker 池**: 1（诊断中）
+
+等待 Worker 回调后更新 registry 并向 Director 汇报诊断结果和修复方案。这是 P0 实验（seed2 复制验证统计 power），需尽快恢复。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:factorial_h2_episodeadv_seed2"
+}
+```
+
+</details>
+
+---

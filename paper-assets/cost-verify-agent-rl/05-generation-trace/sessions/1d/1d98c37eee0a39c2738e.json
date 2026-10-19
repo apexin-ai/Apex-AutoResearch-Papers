@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d98c37eee0a39c2738e",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_17_1779184940.md",
+  "task_key": "loop_17_1779184940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1779184940.md",
+    "occurrence": 1,
+    "bytes": 4388,
+    "sha256": "39919286650fa9de0734687305181119e542fd8448955f7ce7f877be8606f9ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-18T01:59:47+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **westd-47453 启动命令必须带双前缀**: `export TMPDIR=/root/autodl-tmp/tmp && mkdir -p $TMPDIR && export TORCH_COMPILE_DISABLE=1`（根 FS 仅 30GB + RTX PRO 6000 inductor bug）\n- **GPU 白名单**: westd cuda:0,1,2,3 / bjb1 cuda:0,1。超出范围必须 push back Director\n- **Eval 标准 (D064)**: 所有新实验 eval 必须用 `valid_unseen(134)` + tag `AlfworldSG_OOD`。factorial 当前用的 `AlfworldOOD` 不一致，完成后需 re-eval\n- **磁盘清理前必须检查 RUNNING 实验的 model_path 和 data_path 依赖**（之前删 exp021_ragen_sft_v4 导致 factorial 启动失败）\n- **factorial 第 4 次启动成功**——绝对不能再 kill 它（Director 决策 D064: 不 kill 即使 eval tag 不匹配）\n\n### 2. 🖥️ 基础设施快照\n- **westd-47453** (4x RTX PRO 6000):\n  - 工作目录: `/root/cost-verify-agent-rl/`\n  - Python: `/root/miniconda3/bin/python`（需 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n  - 数据: `/root/autodl-tmp/alfworld/`\n  - 模型: `/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/`（factorial 依赖）\n  - W&B: enabled（WANDB_MODE=disabled 会导致 cron 误判失败）\n- **bjb1-17606** (2x A6000):\n  - 工作目录: `/root/cost-verify-agent-rl/`\n  - Python: 同 westd 结构\n  - 已就绪脚本: `run_exp029_reeval.sh`（等 GPU 释放）\n- **活跃进程**:\n  - factorial_h2_episodeadv_seed1: PID 475745, westd cuda:0,1, cron 监控中\n  - gsweep_g050_h5_seed1: PID 85798, westd cuda:2,3, cron 监控中\n  - hsweep_h2_seed2: PID 945877, bjb1 cuda:0,1, cron 监控中\n- **Cron**: 3 个 active（对应上述 3 实验）\n\n### 3. 📊 当前状态\n**刚完成**: Session 初始化 + reconcile crons（全部 still running）。上一 session 完成了 D065 gae_baseline kill、D066 factorial step 5 反弹确认、fig6 + fig_theoretical 图表生成。\n\n**RUNNING 实验**:\n| exp_id | 位置 | 进度 | 状态 | 关键 metric |\n|--------|------|------|------|-------------|\n| factorial_h2_episodeadv_seed1 | westd:0,1 | 4/15 | HEALTHY | train_s1=20.3%, pass@8=68.75% |\n| gsweep_g050_h5_seed1 | westd:2,3 | 10/15 | COLLAPSED | step 4 onset, entropy→0, 98% invalid |\n| hsweep_h2_seed2 | bjb1:0,1 | 11/15 | COLLAPSED | val=0% (step 5,10) |\n\n**等待中**: 无 Worker running，无 pending Director 决策。Cron 回调会在各实验完成时触发。\n\n### 4. 📋 待办（条件触发式）\n- **hsweep_h2_seed2 完成回调 →** (a) spawn Worker 跑 `analyze_advantage_log_v2.py` on ADV sign data (b) 释放 bjb1 cuda:0,1 → 启动 exp029 re-eval on valid_unseen(134)（脚本已就绪）\n- **gsweep_g050 完成回调 →** 释放 westd cuda:2,3 → 提交 gsweep_g080_h5_seed1（PREPARING，链式 sweep）\n- **factorial 完成回调 →** 核心实验！(a) 分析最终 success rate (b) re-eval with AlfworldSG_OOD config (c) 确定 mechanism contribution ratio → 汇报 Director\n- **bjb1 GPU 释放后 →** 除 exp029 re-eval 外，考虑启动 hsweep_h10_seed1\n- **westd cuda:2,3 释放后（gsweep chain 完成）→** gsweep_g095 / g100 继续链式\n- **Agent 未回复的 Q1-Q4 诊断 →** r=0.640 分析已有结论（D063: 分析伪影），需据此精化 sign misattribution claim\n\n### 5. 🎯 战略上下文\n- **核心 narrative (D062)**: \"Mechanistic diagnosis + factorial causal attribution\"——不是 \"coarser is better\"，而是诊断 WHY step-independent fails\n- **Core Claim 1 ESTABLISHED**: exp029 episode-level 28.1% vs exp028c step-level 0%\n- **关键缺口**: factorial 是论文最重要的实验——它分离 sign misattribution 的贡献。train success 20.3% 已是强信号\n- **决策链关键节点**: D058 theory correction（γ-attenuate 替代 flat advantage）、D061 selective verification 降级为 future work、D062 framing pivot\n- **易错点**:\n  - 不要把 factorial 的 AlfworldOOD eval 和 exp029 的 AlfworldSG eval 直接对比——eval tag 不一致，需 re-eval 后才能放 paper\n  - gsweep_g050 虽然 collapsed 但让它跑完——数据本身就是 evidence（γ=0.5 加速 collapse）\n  - r=0.640 是分析伪影（advantage = f(step_return)），不要再用这个数字做 claim\n  - GAGPO 93.5% 是竞品最强结果——我们不 claim \"episode-level 最好\"，我们 claim \"诊断 WHY step-level fails\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779184940.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ece90f8c0efe6b58714",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix exp029 tmp cleanup loop",
+  "task_key": "worker_fix_exp029_tmp_cleanup_loop_20260516T153910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp029_tmp_cleanup_loop_20260516T153910_result.json",
+    "occurrence": 1,
+    "bytes": 304,
+    "sha256": "8dd8da57533bf55eb111da0feae731ec5ca62c6b83f5ecf3e0aa3cae0dfe19c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n| 项目 | 结果 |\n|------|------|\n| /tmp 可用空间 | **12G** (64% used, overlay 30G) |\n| Cleanup loop PID | **878071**（每 5 分钟自动清理 `*.sas*`, `libdownward*`, `downward*`, 过期 `tmp*`） |\n| 训练进程 (872859) | **ALIVE**，已运行 14 分 31 秒 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp029-tmp-cleanup-loop.md"
+}

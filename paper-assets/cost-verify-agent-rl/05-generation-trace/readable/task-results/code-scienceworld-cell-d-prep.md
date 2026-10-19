@@ -1,0 +1,83 @@
+# code scienceworld cell d prep
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_code_scienceworld_cell_d_prep_20260524T061058_result.json`
+- **Structured JSON:** [`2c4b7a32129ff0170eb8.json`](../../sessions/2c/2c4b7a32129ff0170eb8.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+所有脚本语法检查通过。以下是完整报告：
+
+---
+
+## 报告
+
+### 现有文件（无需新建）
+
+所有需要的脚本和配置已存在，结构完整：
+
+| 文件 | 用途 |
+|------|------|
+| `/root/cost-verify-agent-rl/scripts/run_scienceworld_sft_v2.sh` | SFT 训练启动脚本 |
+| `/root/cost-verify-agent-rl/scripts/sft_train_v2.py` | SFT 训练主逻辑 |
+| `/root/cost-verify-agent-rl/RAGEN/config/_scienceworld_cell_d_grpo.yaml` | GRPO Cell D 配置 |
+| `/root/cost-verify-agent-rl/scripts/run_scienceworld_cell_d.sh` | GRPO 训练启动脚本 |
+
+### SFT 训练配置（`run_scienceworld_sft_v2.sh`）
+
+- **Base model**: `/root/autodl-tmp/models/Qwen/Qwen3-1___7B` (已存在)
+- **数据**: `/root/autodl-tmp/expert_sft/scienceworld_sft_train.jsonl` + `val.jsonl`
+- **输出**: `/root/autodl-tmp/checkpoints/scienceworld_sft_v2/final/`
+- **超参**: lr=2e-5, batch=2×8=16 effective, epochs=3, max_seq_length=16384, warmup=0.05
+- **GPU**: CUDA_VISIBLE_DEVICES=0（单卡）
+
+### GRPO Cell D 配置验证
+
+| 项目 | 状态 |
+|------|------|
+| SFT checkpoint 路径 | `/root/autodl-tmp/checkpoints/scienceworld_sft_v2/final` — 与 SFT 输出匹配 |
+| episode-level 设置 | `context_window_mode: "full"` — 正确（非 step-independent） |
+| 单 GPU | `n_gpus_per_node: 1`, `CUDA_VISIBLE_DEVICES: "0"` |
+| save_freq | **5** — 符合硬约束 |
+| test_freq | 5 |
+| val episodes | 32 — 符合 ≥16 要求 |
+| KL loss | `use_kl_loss: True`, `kl_loss_coef: 0.01`, `low_var_kl` |
+
+### 训练命令
+
+**Step 1 — SFT 训练：**
+```bash
+nohup bash /root/cost-verify-agent-rl/scripts/run_scienceworld_sft_v2.sh > /root/runs/cost-verify-agent-rl/scienceworld_sft_v2.log 2>&1 &
+```
+
+**Step 2 — GRPO 训练（SFT 完成后）：**
+```bash
+nohup bash /root/cost-verify-agent-rl/scripts/run_scienceworld_cell_d.sh > /root/runs/cost-verify-agent-rl/scienceworld_cell_d.log 2>&1 &
+```
+
+### 前置条件
+
+1. **SFT 数据尚未生成** — `scienceworld_sft_train.jsonl` 和 `scienceworld_sft_val.jsonl` 不存在于 `/root/autodl-tmp/expert_sft/`。需要先生成 ScienceWorld expert trajectories 并转换为 messages 格式（每行一个 `{"messages": [{"role": "system", ...}, {"role": "user", ...}, {"role": "assistant", ...}, ...]}` 的 JSONL）。
+2. 磁盘空间充足：88GB 可用（/root/autodl-tmp）。
+
+### 需要注意
+
+- `sft_train_v2.py` 的 `save_strategy="epoch"`，3 epochs 会保存 3 个 checkpoint + 最终 `final/`。Qwen3-1.7B bf16 约 3.4GB/checkpoint，总计约 14GB，空间足够。
+- SFT 脚本已内置 GPU 占用检查和磁盘检查（pre-flight）。
+- GRPO 启动脚本已内置 SFT checkpoint 存在性检查，SFT 未完成时会自动拦截。
+
+---

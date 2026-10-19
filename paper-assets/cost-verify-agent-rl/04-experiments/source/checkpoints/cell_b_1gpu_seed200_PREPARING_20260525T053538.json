@@ -1,0 +1,17 @@
+{
+  "exp_id": "cell_b_1gpu_seed200",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-25T00:02:45.878Z",
+    "updated_at": "2026-05-25T05:35:38.520Z",
+    "hypothesis": "R6-N2: Cell B 多种子验证 OOD 5.97% 可靠性，plan_id 关联 factorial design claim。Cell B (h=2, episode-level advantage, M1 only) 在不同 seed 下应保持 OOD 性能近 SFT baseline（~5-7%），验证 M1 alone bounds but does not collapse。",
+    "parent": "factorial_h2_episodeadv_seed1",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-25T05:35:38.863233+00:00",
+  "trigger": "update_registry"
+}

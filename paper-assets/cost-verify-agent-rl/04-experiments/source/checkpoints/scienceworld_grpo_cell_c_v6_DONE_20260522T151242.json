@@ -1,0 +1,47 @@
+{
+  "exp_id": "scienceworld_grpo_cell_c_v6",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:48:25.454Z",
+    "updated_at": "2026-05-22T15:12:42.520Z",
+    "hypothesis": "ScienceWorld episode-level GRPO (Cell C) v6: minimal viable config — top-5 easiest tasks (SFT>30%), group_size=4, lr=1e-6, max_turn=30, response_length=512, kl_coef=0.05, early stop at resp_len>5000. Tests whether episode-level RL can learn anything on ScienceWorld with maximum simplification. v4b/v5 both collapsed at step 2.",
+    "server": "bjb1-17606",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-17606",
+      "gpu": "cuda:0,cuda:1",
+      "started_at": "2026-05-22T15:10:08.674Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 VLLM_WORKER_MULTIPROC_METHOD=spawn python train.py --config-name _scienceworld_cell_c_grpo_v6\"",
+      "finished_at": "2026-05-22T15:12:39.591Z",
+      "training_hours": 0.04
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 VLLM_WORKER_MULTIPROC_METHOD=spawn python train.py --config-name _scienceworld_cell_c_grpo_v6\"",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "423563",
+      "log_path": "~/runs/cost-verify-agent-rl/scienceworld_grpo_cell_c_v6.log",
+      "submitted_at": "2026-05-22T15:10:11.260Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 151.3,
+      "gpu_hours": 0.08
+    },
+    "pid": "423563",
+    "log_path": "~/runs/cost-verify-agent-rl/scienceworld_grpo_cell_c_v6.log",
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-22T15:12:42.520Z"
+  },
+  "timestamp": "2026-05-22T15:12:42.823052+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,37 @@
+{
+  "exp_id": "8b_v9d_ood_eval_v4",
+  "project": "cost-verify-agent-rl",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:14:46.445Z",
+    "updated_at": "2026-05-20T10:17:44.939Z",
+    "hypothesis": "Evaluate 8B Cell C episode-level GRPO model (v9d step 10, val_before_train 96.875%) on 134 OOD ALFWorld tasks. Paper's key data point. Config fix: ppo_mini_batch_size=4, env_groups=2, n_groups=[2].",
+    "parent": "8b_cell_c_episode_v9d",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && echo aW1wb3J0IHJlCnBhdGggPSAnL3Jvb3QvY29zdC12ZXJpZnktYWdlbnQtcmwvUkFHRU4vY29uZmlnL19hbGZ3b3JsZF84Yl92OWRfb29kX2V2YWwueWFtbCcKdGV4dCA9IG9wZW4ocGF0aCkucmVhZCgpCnRleHQgPSByZS5zdWIocidwcG9fbWluaV9iYXRjaF9zaXplOlxzKlxkKycsICdwcG9fbWluaV9iYXRjaF9zaXplOiA0JywgdGV4dCkKdGV4dCA9IHJlLnN1YihyJ2Vudl9ncm91cHM6XHMqXGQrJywgJ2Vudl9ncm91cHM6IDInLCB0ZXh0LCBjb3VudD0xKQpuZXcgPSByZS5zdWIocicobl9ncm91cHM6XHMqXFspXGQrKFxdKScsIGxhbWJkYSBtOiBtLmdyb3VwKDEpICsgJzInICsgbS5ncm91cCgyKSwgdGV4dCwgY291bnQ9MSkKaWYgbmV3ID09IHRleHQ6CiAgICBuZXcgPSByZS5zdWIocicobl9ncm91cHM6W15cbl0qXG5ccyotXHMqKVxkKycsIGxhbWJkYSBtOiBtLmdyb3VwKDEpICsgJzInLCB0ZXh0LCBjb3VudD0xKQp0ZXh0ID0gbmV3Cm9wZW4ocGF0aCwgJ3cnKS53cml0ZSh0ZXh0KQpwcmludCgnRklYRUQnKQo= | base64 -d > /tmp/fix_ood.py && python3 /tmp/fix_ood.py && grep -n -E 'ppo_mini_batch_size|env_groups|group_size|n_groups' /root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_v9d_ood_eval.yaml && cd /root/cost-verify-agent-rl/RAGEN && export WANDB_PROJECT=cost-verify-agent-rl && python train.py --config-name _alfworld_8b_v9d_ood_eval\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "728499",
+      "log_path": "~/runs/cost-verify-agent-rl/8b_v9d_ood_eval_v4.log",
+      "submitted_at": "2026-05-20T10:15:20.931Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T10:17:43.415Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-20T10:17:45.246049+00:00",
+  "trigger": "update_registry"
+}

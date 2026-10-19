@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp029_seed6_episode",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:52:52.029Z",
+    "updated_at": "2026-05-21T07:39:33.682Z",
+    "hypothesis": "Episode-level GRPO (seed=789) avoids collapse and learns consistently, providing fifth seed for cross-seed robustness. Existing: Seed 1 OOD=23.88%, Seed 3 OOD=10.45%, Seeds 4/5 training.",
+    "parent": null,
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config config/_alfworld_exp029_seed6_episode.yaml",
+      "server": "westd-47453",
+      "gpu_ids": [
+        2,
+        3
+      ],
+      "pid": 697721,
+      "data_path": "ALFWorld train split (3553 games)",
+      "data_count": 3553,
+      "model_name": "qwen3-1.7B (exp021 SFT v4)",
+      "seed": "train=789, val=321",
+      "wandb_run_id": "nagp1pi4",
+      "tmux_session": "exp029_seed6"
+    },
+    "metrics": {
+      "val_success_step0": 0.09375,
+      "val_success_step10": 0.40625,
+      "train_success_step14": 0.789,
+      "steps_completed": 15,
+      "failure_reason": "disk full during step 15 checkpoint save"
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/exp029-seed6/exp029-seed6-episode-level/global_step_10 (intact); global_step_15 model weights possibly usable but optimizer corrupted",
+    "log_path": "~/runs/cost-verify-agent-rl/exp029_seed6_episode.log",
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T07:36:47.026Z"
+  },
+  "timestamp": "2026-05-21T07:39:33.966353+00:00",
+  "trigger": "update_registry"
+}

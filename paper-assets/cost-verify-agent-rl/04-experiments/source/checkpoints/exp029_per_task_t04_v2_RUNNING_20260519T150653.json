@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp029_per_task_t04_v2",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:40:00.807Z",
+    "updated_at": "2026-05-19T15:06:53.125Z",
+    "hypothesis": "Per-task-type OOD eval with T=0.4 (paper protocol D092) will show similar task-type ranking pattern as T=0.0 but with higher overall success rate (~23.88% vs 16.4%). Multi-step tasks (heat/cool/two_obj) expected to remain worst. Rerun after v1 vLLM crash.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0,1 python eval_per_task_type.py 2>&1 | tee /root/autodl-tmp/tmp/exp029_per_task_t04.log",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "171794",
+      "data_path": "ALFWorld valid_unseen 134 OOD tasks",
+      "data_count": 134,
+      "model_name": "exp029_seed1_global_step_15",
+      "seed": 1,
+      "checkpoint_source": "exp029_episode_level global_step_15",
+      "eval_data": "ALFWorld valid_unseen 134 OOD tasks, T=0.4, do_sample=True",
+      "log_path": "/root/autodl-tmp/tmp/exp029_per_task_t04.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T15:06:52.270Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-19T15:06:53.303124+00:00",
+  "trigger": "update_registry"
+}

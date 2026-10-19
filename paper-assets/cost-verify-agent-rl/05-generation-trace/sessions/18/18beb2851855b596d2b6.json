@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18beb2851855b596d2b6",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "eval scienceworld sft eval",
+  "task_key": "worker_eval_scienceworld_sft_eval_20260519T175037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_scienceworld_sft_eval_20260519T175037_result.json",
+    "occurrence": 1,
+    "bytes": 1094,
+    "sha256": "8185b1962852ba7d0c6a46c6274749c71ed7e8de53422325a3cede890eb30833"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "每个 episode 约 63s，第 2 个正在进行中。1796 episodes x 63s = ~31 小时。这是一个很长的 eval。\n\n当前状态总结：\n\n**已完成**：\n- Checkpoint 传输：westd → bjb1 完成，所有 13 个文件大小完全一致\n- Eval 已启动：PID=183712，bjb1 上运行中\n\n**Eval 详情**：\n- 模型：Qwen3ForCausalLM（config 显示 hidden_size=2048, 28 layers）\n- 设置：dev split, 1796 episodes, 30 task types, T=0.4, TP=2, max_model_len=32768\n- 第 1 个 episode：FAIL(score=3), valid=1%, fmt=61%, 100 steps, 63.4s\n- 预计运行时间：~31 小时（每 episode ~63s）\n\n**注意事项**：\n- valid=1% 和 fmt=61% 比较低，说明模型生成的动作大多不在有效动作列表中。需要更多 episodes 才能判断整体表现\n- tokenizer 有个 Mistral regex 警告，但不影响 Qwen3 模型\n- 建议后续用 `tail -20 /tmp/eval_scienceworld.log` 查看进度\n- 结果 JSON 将保存在 `/root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev.json`\n\n要继续监控还是等运行完毕后再查看结果？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-scienceworld-sft-eval.md"
+}

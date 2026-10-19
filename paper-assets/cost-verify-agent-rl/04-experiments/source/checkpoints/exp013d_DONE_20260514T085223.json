@@ -1,0 +1,61 @@
+{
+  "exp_id": "exp013d",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:34:37.036Z",
+    "updated_at": "2026-05-14T08:52:23.071Z",
+    "hypothesis": "exp013b/c 内存修复重试。Dense reward shaping (valid_action_bonus=0.15) 已验证有效 (reward_std=1.608>0)。修复: env_groups 8→4 (64并发, 峰值~158GB < 220GB cgroup限制) + RAY_object_store_memory=30GB。",
+    "parent": "exp013c",
+    "notes": "内存修复: env_groups 8→4 (并发128→64), RAY_object_store_memory=30GB。峰值内存~158GB，220GB cgroup安全。其余同exp013b: valid_action_bonus=0.15, kl=0.01, format_penalty=0, group_size=16, resume step 5。",
+    "server": "bjb1-17606",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "spec": {
+      "command": "python train.py --config-name _alfworld_exp013b_dense_reward",
+      "server": "bjb1-17606",
+      "gpu": "cuda:0,cuda:1",
+      "data_path": "/root/autodl-tmp/alfworld/",
+      "data_count": 3553,
+      "model_name": "Qwen3-1.7B (SFT warmup, resumed from GRPO step 5)",
+      "seed": 10000,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5/",
+      "log_path": "~/runs/cost-verify-agent-rl/exp013d.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp013b_grpo/",
+      "config": "_alfworld_exp013b_dense_reward.yaml",
+      "hyperparams": {
+        "valid_action_bonus": 0.15,
+        "success_reward": 10,
+        "format_penalty": 0,
+        "kl_loss_coef": 0.01,
+        "lr": 1e-06,
+        "group_size": 16,
+        "train_env_groups": 4,
+        "RAY_object_store_memory": "30GB"
+      }
+    },
+    "pid": "272157",
+    "log_path": "~/runs/cost-verify-agent-rl/exp013d.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p \\$TMPDIR && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_object_store_memory=30000000000 && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp013b_dense_reward\"",
+      "finished_at": "2026-05-14T08:37:22.538Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-14T08:37:23.463Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T08:37:24.501932+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-14T08:52:23.112886+00:00",
+  "trigger": "update_registry"
+}

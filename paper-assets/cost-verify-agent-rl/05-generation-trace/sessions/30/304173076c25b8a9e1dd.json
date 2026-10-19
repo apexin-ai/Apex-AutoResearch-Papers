@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "304173076c25b8a9e1dd",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "data collect expert trajectories 20260514T130957 retry1",
+  "task_key": "worker_data_collect-expert-trajectories_20260514T130957_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_collect-expert-trajectories_20260514T130957_retry1.log",
+    "occurrence": 1,
+    "bytes": 647407,
+    "sha256": "d2c6a6e4eb552c0ca3d1dba3c36220f052923e55e399150639d586d72a11d407"
+  },
+  "statistics": {
+    "messages": 191,
+    "user_turns": 0,
+    "tool_calls": 71,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 71,
+      "tool_result": 71,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 191,
+      "chunks": [
+        {
+          "path": "304173076c25b8a9e1dd-part-0001.json",
+          "message_count": 146
+        },
+        {
+          "path": "304173076c25b8a9e1dd-part-0002.json",
+          "message_count": 45
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/data-collect-expert-trajectories-20260514t130957-retry1.md"
+}

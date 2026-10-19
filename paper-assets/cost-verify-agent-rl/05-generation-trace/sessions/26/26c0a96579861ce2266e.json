@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26c0a96579861ce2266e",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_12_1778889704.md",
+  "task_key": "loop_12_1778889704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778889704.md",
+    "occurrence": 1,
+    "bytes": 4307,
+    "sha256": "61bf75e1d01ab0c7d36faeb9ef73a8599efc39ea86c5413064bbdd204bbd6631"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-15T23:46:53+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 bjb1-17606 cuda:0 和 cuda:1（2× RTX PRO 6000 Blackwell 98GB）。任何其他 GPU 编号必须 push back Director\n- 服务器用 conda 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不要创建 venv，不要假设 .venv 存在\n- submit_on_allocated / submit_training_job 的命令必须自带环境激活，GPU 编号从 0 开始（框架自动映射物理 GPU）\n- exp027 MVP 已判定失败（D045），不要再尝试同配置重跑，必须走 exp028 新方案\n- WANDB_MODE 必须 enabled（exp026 教训：disabled 导致 cron 误判）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606，SSH account: root\n- 工作目录：/root/cost-verify-agent-rl/RAGEN/\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 模型 checkpoint：/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4（exp021 SFT，GRPO 的起点）\n- SFT 基础 checkpoint：/root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final/\n- 数据：RAGEN expert data（train 16 envs, val 16 envs）\n- W&B project: cost-verify-agent-rl，exp027 run_id: y7jiibqk\n- 日志路径：~/runs/cost-verify-agent-rl/\n- 活跃进程：无（exp027 已退出，GPU 双卡空闲）\n- 活跃 Worker（5个）：exp028_penalty_mechanism 代码、exp028a_director_corrections、gpu_cleanup_and_launch、download_qwen25_instruct、citation_audit\n\n### 3. 📊 当前状态\n刚处理完 exp027_stable_grpo 的 CRON 失败回调。退出原因：Ray raylet 异常终止（ActorUnavailableError RPC Socket closed），step 4 完成后 step 5 过渡时崩溃。但这是 post-mortem——D045 已在 step 4 判定 MVP 未通过（success 13.28% < 20%）。\n\nRegistry 关键状态：\n- 全部 DONE/failed/negative/killed，无 RUNNING 实验\n- exp025c: PENDING（等审批，但 D028 已判定 verl-agent 不可行，实质废弃）\n- 多个 PREPARING 态的旧实验（exp020c/d, exp019b/c, exp018 等）已被决策废弃但未清理\n\n5 个 Worker 正在为 exp028 做准备——等这些 Worker 回调后可以推进下一步实验。\n\n已汇报 Director：exp027 退出确认 + 资源状态（2 GPU 空闲）。Director 无需额外决策。\n\n### 4. 📋 待办\n- Worker `code:exp028_penalty_mechanism` 回调 → 审查代码，合并到 exp028 配置\n- Worker `code:exp028a_director_corrections` 回调 → 审查 Director 修正项，整合\n- Worker `ops:gpu_cleanup_and_launch` 回调 → 确认 GPU 清理完成（Ray 残留进程），准备提交 exp028\n- Worker `setup:download_qwen25_instruct` 回调 → 确认 Qwen2.5 模型下载完成（exp028 可能需要新 base model）\n- Worker `research:citation_audit` 回调 → 审查结果，更新 literature_map\n- exp028 全部 Worker 就绪 → 创建 registry 条目 + 提交审批（PENDING）→ Director 批准后 submit_training_job\n- 2 张 GPU 空闲超过 30min → 必须向 Director 汇报并推动 exp028 尽快上线\n\n### 5. 🎯 战略上下文\n**核心决策链**：D039（framing 锁定 cost-efficiency story）→ D044（Recipe Gap 三大根因：SFT 起点反效果 + binary reward 零梯度 + mini-batch 过小）→ D045（MVP 未通过）。\n\n**项目走向**：Phase A MVP 验证已失败（exp027 是最后一次尝试）。exp028 是 Recipe Gap 修复方案——具体内容由 D044 驱动，5 个 Worker 正在准备代码和配置。下一个\"你\"的首要任务是接收这些 Worker 回调并尽快让 exp028 上 GPU。\n\n**易错点**：\n1. 不要把 exp027 的 step 1 success=35.94% 当成\"接近成功\"——这是训练第一步的虚高，后续持续退化到 10-13%，说明 GRPO 无法在当前 reward 信号下稳定学习\n2. 不要回退到旧的 exp020/exp023 系列方案——这些已被 D022/D026 等决策废弃，根因是 RAGEN 格式不兼容或 GRPO collapse\n3. Ray raylet 崩溃是反复出现的基础设施问题（exp013e, exp027），exp028 提交前确保 Ray 残留进程已清理、object_store_memory 显式设置\n4. 论文 framing 是 cost-efficiency 不是 performance（D039），baseline 性能 gap 是已知风险（当前 6.25% vs 需要 ≥50%）\n5. literature_map 中 7 篇引用有问题（AgentPRM 最严重），写论文前必须修正\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778889704.md"
+}

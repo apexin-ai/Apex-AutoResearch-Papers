@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2dd28b9a6601483adabe",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_4_1778762570.md",
+  "task_key": "loop_4_1778762570",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778762570.md",
+    "occurrence": 1,
+    "bytes": 4554,
+    "sha256": "3e18dc6ef6f6e889139bffa9919dc3cef3924ae52a6fa16082113ee705d91ea7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T12:42:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 bjb1-17606 磁盘告警：`/root/autodl-tmp` 已 95% full（仅剩 4.1GB）。**下次提交实验前必须清理旧 checkpoint**（exp012_grpo/、exp013b_grpo/、exp013e/ 等），否则训练会写满磁盘崩溃\n- exp013f 是 **negative 结论**（dense reward gaming），按 red-section 规范必须先产出 Framing 调整提案交 Director 审批，**禁止直接跑下一个实验**\n- Ray 启动必须带完整环境变量集（见基础设施快照），缺任何一个都会复现历史崩溃\n- 训练入口是 `python train.py`，**不是** `python -m ragen.llm_agent.agent_proxy`（exp012 踩过）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: bjb1-17606, 2× RTX PRO 6000 Blackwell 94GB (cuda:0, cuda:1)\n- **工作目录**: `/root/cost-verify-agent-rl/RAGEN/`\n- **Python**: `/root/miniconda3/bin/python` (conda base)，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: SFT checkpoint `/root/autodl-tmp/checkpoints/exp008_sft/final`，symlink `/root/autodl-tmp/checkpoints/qwen3_sft_final`\n- **GRPO checkpoints**: `/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5`（恢复点），`/root/autodl-tmp/checkpoints/exp013f/global_step_30`（最新但 negative）\n- **数据**: `/root/autodl-tmp/alfworld/`（3553 train games），SFT 数据 `/root/autodl-tmp/sft_data/alfworld_sft_ragen.jsonl`（1200 条）\n- **必需环境变量**:\n  ```\n  TMPDIR=/root/autodl-tmp/tmp/\n  ALFWORLD_DATA=/root/autodl-tmp/alfworld\n  RAY_memory_monitor_refresh_ms=0\n  RAY_SYSTEM_MEMORY=210000000000\n  HYDRA_FULL_ERROR=1\n  ```\n- **代码硬编码**: `train.py:203` object_store_memory=30GB，`es_manager.py:65` 要求 sum(n_groups)==env_groups\n- **活跃进程**: 无（exp013f 已完成，无 running worker，无 active cron）\n\n### 3. 📊 当前状态\n**刚完成**: exp013f 30/30 步训练完成（首次完整跑完），结论 **negative**——dense reward gaming。模型最大化 valid_action_bonus（action_is_valid 60%→97.5%）但 success 始终 0%。Reward 比例 1:2.2 太高，GRPO 选择确定性高的密集奖励而非追求稀疏终局奖励。\n\n**Registry 状态**:\n- 0 个 RUNNING / PREPARING（除历史遗留的 stale PREPARING 条目）\n- exp013f: DONE/negative — dense reward gaming\n- exp008_sft: DONE/success — 唯一成功实验（SFT warmup，action_is_valid 8%→90%）\n- 其余全部 DONE（failed/killed/negative）\n\n**等待中**: 无 Worker / 无 Cron / **需要向 Director 汇报 exp013f negative 结果 + Framing 调整提案**（上一个 session 可能未完成此步）\n\n### 4. 📋 待办（条件触发式）\n- **立即** → 检查 exp013f 的 Framing 调整提案是否已提交给 Director（D012 存在但可能未汇报完整提案）。若未提交：按 red-section 产出提案 → `main_agent_post_to_director`\n- **Director 审批 Framing 后** → Read `framing-reaudit` skill → 执行全文 re-audit\n- **Director 决定下一步方案后** → 清理 bjb1-17606 磁盘（删旧 checkpoint 腾空间）→ 编码新 reward 方案 → 提交\n- **若 Director 选 success-gated reward** → 修改 reward function：valid_action_bonus 仅在最终 success 时回溯发放（或极低比例如 0.001/step）\n- **若 Director 选强化 SFT warmup** → 用更多 expert trajectory 做第二轮 SFT（目标 success 5-10%），再接 GRPO\n\n### 5. 🎯 战略上下文\n**项目核心链路**: Qwen3-1.7B → SFT warmup（解决格式，✅ exp008_sft）→ GRPO（学策略，❌ 5 轮全失败）→ Phase B B-IAVR（被阻塞）\n\n**决策链关键节点**:\n- D006: 放弃纯 GRPO，加 SFT warmup\n- D010: 确认 sparse reward 冷启动死锁，引入 dense reward shaping\n- D012: exp013f negative — dense reward gaming，需要新 reward 设计\n\n**核心教训（易判断错的事）**:\n- **Dense reward 不能被独立最大化**。如果 agent 不完成任务也能拿到大部分 reward，它会 game。下一个方案必须是条件式的（success-gated shaping）或极低比例（1:1000）\n- GRPO 本身能学（action_is_valid 60%→97.5% 证明了），问题纯粹在 reward 设计\n- **不要在没有 Director 审批的情况下跑新实验**——exp013f 是 negative，必须走 Framing 流程\n- Phase A 判定标准已下调到 success ≥ 20%（D010），但目前最好成绩只有 8.6%（exp012b step 6，随后 collapse）\n- 磁盘快满了（4.1GB），这是最容易被忽略导致下次训练崩溃的坑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778762570.md"
+}

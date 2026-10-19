@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17c0fb7b1a276541b3a9",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp021 ragen sft v4",
+  "task_key": "worker_code_exp021-ragen-sft-v4_20260515T020209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp021-ragen-sft-v4_20260515T020209_result.json",
+    "occurrence": 1,
+    "bytes": 1614,
+    "sha256": "f895a0b1790c70ad641c8fc87ee4a4742eb3d00ba854a7cd8e39f87fc969b8a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练稳定运行，~9.3s/step，预计总时长 ~50 分钟。\n\n## 产出总结\n\n### 1. RAGEN 精确格式文档\n\n| 组件 | RAGEN 运行时格式 |\n|------|-----------------|\n| **System** | `\"You're a helpful assistant. \"` + AlfworldSG env_instruction (含 \"Do NOT wrap\" + 示例) |\n| **User Turn 1** | `\\nTurn 1:\\nState:\\n{obs}\\nYou have 50 actions left. Always output: <think>...</think> <answer>...</answer> with no extra text. Strictly follow this format. Max response length: 512 words (tokens).\\n` |\n| **User Turn 2+** | `Reward:\\n0.0\\n` + Turn N state content (同上) |\n| **Assistant** | `<think>[Assessment]...[Suggestion]</think><answer>action</answer>` |\n| **Action 解析** | `_parse_response`: 先匹配 `<answer>` 标签，fallback 匹配 `</think>` 后裸文本 |\n\n源码位置：`ctx_manager.py:_build_system_content` (L577), `_build_turn_state_content` (L656), `_parse_response` (L201)\n\n### 2. 转换脚本\n`/root/autodl-tmp/expert_sft_v4/convert_sft_to_ragen_format.py`\n\n### 3. v4 数据\n- Train: 2546 samples (3-40 turns), val: 133 samples\n- 路径: `/root/autodl-tmp/expert_sft_v4/expert_sft_{train,val}.jsonl`\n\n### 4. exp021 训练\n- PID: 406279, tmux session: `exp021_ragen_sft_v4`\n- Base: exp008_sft/final → LR=5e-6, 2 epochs, 320 steps\n- 输出: `/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/`\n- 预计 ~50 分钟完成\n- 日志: `/root/runs/cost-verify-agent-rl/exp021_ragen_sft_v4.log`\n\n训练完成后需要用 RAGEN `val_before_train` 验证（非 eval_sft_fast）。Pass 条件：success >= 10%, action_is_valid >= 85%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp021-ragen-sft-v4.md"
+}

@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_001",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T18:26:40.715Z",
+    "updated_at": "2026-05-13T18:26:40.715Z",
+    "spec": {
+      "hypothesis": "Always-on self-guidance via GRPO can achieve ≥76% success rate on ALFWorld (Self-Guide reproduction)",
+      "model_name": "Qwen3-1.7B",
+      "server": "bjb1-17606",
+      "data_path": "/root/autodl-tmp/alfworld/",
+      "data_count": 8810,
+      "seed": 42,
+      "description": "Phase A: always-on self-guidance baseline, 50 GRPO steps, ALFWorld"
+    }
+  },
+  "timestamp": "2026-05-13T18:26:40.726317+00:00",
+  "trigger": "update_registry"
+}

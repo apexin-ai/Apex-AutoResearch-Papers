@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "002a195640827ae86c5b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "urgent bjb1 disk cleanup v2",
+  "task_key": "worker_urgent_bjb1_disk_cleanup_v2_20260522T185726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_bjb1_disk_cleanup_v2_20260522T185726_result.json",
+    "occurrence": 1,
+    "bytes": 865,
+    "sha256": "39825cd70675d82ed6b132b2f343e975357c5cf208ab9a2b7954388b781a16b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**清理前后对比：**\n\n| | Used | Free | Use% |\n|---|---|---|---|\n| 清理前 | 222G | 29G | 89% |\n| 清理后 | 120G | 131G | **48%** |\n\n**删除内容（共释放 ~102G）：**\n- `exp029-seed7-high-kl/` — 41G（FSDP checkpoint，HF 导出 `step5_hf` + `step7_hf` 独立保留）\n- `exp029_intervention_c_prime/` — 41G（FSDP checkpoint，HF 导出 `c_prime_step5_hf` 独立保留）\n- `exp029-seed42/` — 21G（FSDP checkpoint，HF 导出 `exp029_seed42_step5_hf` 独立保留）\n\n**未动的文件：**\n- `exp029_seed300_step5_hf` + symlink `qwen_exp029_seed300_step5_hf` ✓（eval 正在用）\n- `exp029-seed4/`（`qwen_exp029_seed4_step15_hf` symlink 指向其内部 HF checkpoint）\n- 所有独立 HF checkpoint 目录（`c_prime_step5_hf`, `*_step5_hf`, `*_step7_hf`）\n- eval 日志和运行进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-bjb1-disk-cleanup-v2.md"
+}

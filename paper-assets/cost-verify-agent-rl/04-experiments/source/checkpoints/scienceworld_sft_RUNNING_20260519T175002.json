@@ -1,0 +1,42 @@
+{
+  "exp_id": "scienceworld_sft",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:35:00.255Z",
+    "updated_at": "2026-05-19T17:50:02.236Z",
+    "hypothesis": "ScienceWorld 1.7B SFT 训练，为后续 GRPO 实验提供 base checkpoint。验证 SFT 训练 pipeline 可泛化到第二个交互环境（ALFWorld 之外），支撑跨环境 RL 训练失败机制对比（Cell A vs Cell C）。数据：3592 train / 1796 val expert trajectories。",
+    "spec": {
+      "command": "bash /root/cost-verify-agent-rl/RAGEN/scripts/run_scienceworld_sft.sh",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "120838",
+      "data_path": "/root/autodl-tmp/expert_sft/scienceworld_sft_train.jsonl",
+      "data_count": 3592,
+      "model_name": "Qwen3-1.7B",
+      "seed": 42,
+      "log_path": "/root/autodl-tmp/wandb/",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/scienceworld_sft/",
+      "hyperparams": {
+        "lr": "5e-6",
+        "epochs": 2,
+        "batch_size": 16,
+        "max_length": 16384,
+        "fsdp": "fsdp2"
+      },
+      "wandb_run_id": "dqoxg94e",
+      "notes": "原始 wrapper PID 120827 已退出，实际 torchrun PID 120838，workers 120904-120907"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T17:50:02.436683+00:00",
+  "trigger": "update_registry"
+}

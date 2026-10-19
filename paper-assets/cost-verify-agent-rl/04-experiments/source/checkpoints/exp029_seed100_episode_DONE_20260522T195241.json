@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp029_seed100_episode",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:48:20.558Z",
+    "updated_at": "2026-05-22T19:52:41.255Z",
+    "hypothesis": "Episode-level GRPO (seed=100) 5-step training for Table 1 data supplement (D122). Same config as exp029 but seed=100, total_steps=5. Expands to N=9 seeds for collapse rate analysis.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 RAY_ADDRESS='' RAY_TMPDIR=/tmp/ray_seed100 VLLM_WORKER_MULTIPROC_METHOD=spawn python train.py --config-name _alfworld_exp029_seed100_episode\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "78400",
+      "log_path": "/root/autodl-tmp/logs/seed100_episode_grpo.log",
+      "data_path": "AlfworldSG",
+      "data_count": 134,
+      "model_name": "Qwen/Qwen2.5-3B-Instruct",
+      "seed": 100,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp029-seed100/global_step_5/"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "train_step2_success": 0.164,
+      "train_step2_pass_at_8": 0.688,
+      "val_reward_best_at_32": 9.98,
+      "val_reward_mean_at_32": 0.625,
+      "total_steps": 5,
+      "checkpoint": "/root/autodl-tmp/checkpoints/exp029-seed100/global_step_5/"
+    },
+    "completed_at": "2026-05-22T19:52:41.255Z"
+  },
+  "timestamp": "2026-05-22T19:52:41.571064+00:00",
+  "trigger": "update_registry"
+}

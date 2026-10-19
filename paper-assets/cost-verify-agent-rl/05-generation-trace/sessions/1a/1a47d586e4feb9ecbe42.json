@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a47d586e4feb9ecbe42",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp028c step5 val",
+  "task_key": "worker_monitor_exp028c_step5_val_20260516T030007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp028c_step5_val_20260516T030007_result.json",
+    "occurrence": 1,
+    "bytes": 2614,
+    "sha256": "d74ef45a82d923ca05be682ee5228a46e7790067055d20e8bdaee2e4882fcfbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是结构化报告。\n\n---\n\n## exp028c_selfguide_recipe 训练进度报告\n\n### 基本状态\n- **PID 824675**: 运行中，已运行 5h22m\n- **当前步数**: Step 6/100（正在训练 step 6）\n- **进度**: 6%\n- **无 NaN / 无 OOM / 无异常错误** — 训练技术上完全健康\n\n### 逐步 Metrics\n\n| Step | Type | Success | Action Valid | Pass@8/1 | KL Loss | Entropy | Step 耗时 |\n|------|------|---------|-------------|----------|---------|---------|-----------|\n| 0 | **VAL** | **6.25%** | 74.49% | pass@1: 6.25% | — | — | — |\n| 1 | train | 13.28% | 76.43% | 37.5% | 0.013 | 0.263 | 54.2 min |\n| 2 | train | 6.25% | 83.20% | 25.0% | 0.171 | 0.247 | 52.0 min |\n| 3 | train | 15.63% | 85.95% | 68.75% | 0.112 | 0.249 | 45.6 min |\n| 4 | train | 18.75% | 87.94% | 62.5% | 0.031 | 0.234 | 46.1 min |\n| 5 | train | 9.375% | 89.60% | 37.5% | **0.824** ⚠️ | 0.236 | 60.2 min |\n| 5 | **VAL** | **6.25%** | **96.5%** | pass@1: 6.25% | — | — | (含 eval) |\n\n### 重点：Step 5 Val 结果\n\n**val success = 6.25%** — 与 step 0 baseline 持平，无提升。\n\nvs MVP 阈值：\n- **< 20% = FAIL**\n- **20-25% = weak pass**\n- **30%+ = strong pass**\n- 当前 6.25% 远低于 20% fail 线\n\n### 积极信号\n- **val action_is_valid**: 74.49% → **96.5%**（+22pp），模型学会了生成合法动作\n- **val reward mean**: 0.1186 → **0.5183**（+4.4x），整体 reward 在上升\n- **val action_is_effective**: 95% → **100%**\n- **Entropy 稳定** 在 0.234-0.263 区间，无 collapse 迹象\n\n### 警告信号\n1. **KL loss 在 step 5 飙升 27x**（0.031 → 0.824），可能是瞬态，需观察 step 6-7 是否回落\n2. **Train success 高方差**: 13.28% → 6.25% → 15.63% → 18.75% → 9.375%，不稳定\n3. **Val success 完全没动**，尽管行为质量指标（valid, effective）大幅改善\n\n### 时间预估\n- 平均 ~51.7 min/step（非 eval step ~49 min，eval step ~60 min）\n- 已完成 5 个 train step + 进入 step 6\n- **剩余 ~94 步 ≈ 81 小时（~3.4 天）**\n- 下一个 val checkpoint: **step 10**（预计 ~4 小时后）\n\n### 判断\nStep 5 val 结果令人失望（success 未动），但只看过 1 个 val 点（step 0 → step 5），还太早下结论。action_is_valid 和 reward mean 的改善说明模型在学有用的行为，但还不足以完成完整任务。**建议至少等到 step 10 的 val 结果再做 pass/fail 判定。** 如果 step 10 val success 仍然 ≤ 6.25%，在已过 10% 训练进程的情况下 success 零增长，MVP 前景堪忧。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp028c-step5-val.md"
+}

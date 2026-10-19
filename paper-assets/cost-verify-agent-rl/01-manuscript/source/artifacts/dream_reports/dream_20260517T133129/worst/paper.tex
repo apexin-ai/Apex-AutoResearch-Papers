@@ -1,0 +1,480 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[numbers]{natbib}
+
+\title{Credit Assignment Granularity in Multi-Turn Agent RL:\\An Empirical Taxonomy of Failure Modes}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+%% ============================================================
+%% ABSTRACT
+%% ============================================================
+\begin{abstract}
+Reinforcement learning (RL) for large language model (LLM) agents in multi-turn interactive environments requires assigning credit across long action sequences.
+Community frameworks default to \emph{step-independent} training, which splits trajectories into fixed-length windows optimized separately.
+We conduct a systematic empirical study of how credit assignment granularity affects training outcomes in ALFWorld, a household task benchmark with 15--45 step episodes.
+Our experiments reveal three findings.
+First, step-independent training exhibits a stochastic performance cliff: at small context windows it frequently collapses to near-zero success, but the cliff location varies across random seeds (mean 1.0\% at $h{=}2$, std 1.8pp; mean 11.5\% at $h{=}5$, std 10.4pp), precluding a deterministic threshold claim.
+Second, episode-level Group Relative Policy Optimization (GRPO), which treats entire trajectories as single optimization units, reaches 23.8\% mean success but plateaus by step 10--15 and is outperformed by Generalized Advantage Estimation with $\lambda{=}0.95$ (43.8\%, $+$20.0pp), demonstrating that finer per-token credit is necessary for strong performance.
+Third, selective self-verification trained on top of the episode-level agent fails: the learned policy degenerates to near-always-verify (88\% verification rate, 12\% cost reduction) and is Pareto-dominated by naive baselines.
+These results map the failure boundary of coarse credit assignment and identify base agent competence ($<$30\% success) as a prerequisite bottleneck for selective verification.
+\end{abstract}
+
+%% ============================================================
+%% 1  INTRODUCTION
+%% ============================================================
+\section{Introduction}
+
+Training LLM-based agents with RL to solve multi-turn interactive tasks has attracted growing interest.
+A central design choice in this setting is \emph{credit assignment granularity}: how to distribute a sparse episode-level reward signal across the many tokens and actions that compose a trajectory.
+Recent work pursues increasingly fine-grained credit, including turn-level value functions, step-level process reward models, and hierarchical planners.
+The implicit consensus is that finer credit assignment is uniformly better.
+
+This paper tests that assumption empirically.
+We study three levels of granularity in ALFWorld, a benchmark where agents execute 15--45 step household tasks: (1) \textbf{step-independent} training, which partitions trajectories into fixed-length windows of $h$ steps and optimizes each window separately using discounted returns; (2) \textbf{episode-level} GRPO, which treats the full trajectory as a single sample with a shared advantage; and (3) \textbf{GAE-based} training, which uses a learned value function to compute per-token temporal-difference advantages.
+
+Step-independent training is the default in community frameworks such as RAGEN, yet its failure modes in long-horizon agent tasks are poorly characterized.
+We hypothesize two mechanisms behind its failures: \emph{policy information loss} (short windows prevent learning cross-step strategies) and \emph{advantage sign misattribution} (per-window advantage signs are dominated by episode outcome rather than local action quality).
+
+Our experiments yield a sobering picture.
+Step-independent training does fail at small $h$, but the failure is stochastic rather than catastrophic: at $h{=}5$, one of three seeds collapses while two reach 15--19\% success.
+Episode-level GRPO avoids this collapse but plateaus at 23.8\%, far below GAE's 43.8\%, confirming that per-token credit provides a substantial advantage.
+Selective verification, our originally proposed application, fails entirely because the base agent is too weak ($<$30\% success) for verification to carry meaningful signal.
+
+We structure these findings as an empirical taxonomy of credit assignment failure modes, organized by three axes: granularity level, agent competence, and task horizon.
+Our contributions are:
+\begin{itemize}
+\item A multi-seed characterization of the step-independent performance cliff, showing it is seed-dependent (collapse rate 67\% at $h{=}2$, 33\% at $h{=}5$, 0\% at $h{\geq}10$) rather than a deterministic threshold.
+\item Mechanistic evidence that advantage sign misattribution exists but is weaker than theoretically predicted (sign-outcome correlation 0.72 vs. predicted $>$0.95; 18\% mixed-sign episodes vs. predicted 0\%).
+\item A negative result demonstrating that selective verification requires a base agent competence threshold: at $<$30\% success, learned verification policies degenerate and are dominated by random baselines.
+\item Cross-environment (ScienceWorld) and cross-scale (7B) experiments showing the step-independent disadvantage is environment-specific and diminishes with model scale.
+\end{itemize}
+
+
+%% ============================================================
+%% 2  BACKGROUND AND RELATED WORK
+%% ============================================================
+\section{Background and Related Work}
+
+\paragraph{Multi-turn agent RL.}
+Training LLM agents for sequential decision-making environments has been explored through several frameworks.
+RAGEN implements GRPO for multi-turn agents with a step-independent training mode as its default.
+ArCher establishes hierarchical RL for multi-turn agents.
+HiPER achieves 97.4\% on ALFWorld using hierarchical plan-execute RL at 7B scale.
+GAGPO proposes grouped value proxies aligned to action steps, reaching 93.5\% on ALFWorld at 1.5B.
+These systems uniformly pursue finer credit assignment for higher performance.
+
+\paragraph{Credit assignment in RL for LLMs.}
+Turn-PPO identifies the ``uniform advantage'' problem where all turns in a trajectory receive identical advantage estimates, and proposes turn-level value functions.
+MT-GRPO designs turn-level rewards for search-based QA tasks.
+iStar uses implicit process reward models with dual advantages.
+A recent survey by Zhang et al.\ catalogues 47 credit assignment methods but does not analyze when coarser methods suffice or fail.
+Our work fills this gap by empirically characterizing failure boundaries.
+
+\paragraph{Self-verification for agents.}
+Self-verification, where an agent re-evaluates its action before committing, improves performance in interactive tasks.
+Self-Guide uses always-on verification with expert-guided rewards, reaching 72.7\% on ALFWorld at 1.7B scale.
+ARES trains a supervised router to selectively trigger verification, achieving 52.7\% token reduction.
+ReflAct uses prompting-based reflection with GPT-4.
+Our work attempted to train a selective verification policy via RL, but the negative result below reveals a prerequisite that prior work does not discuss: base agent competence must exceed a minimum threshold for verification to be learnable.
+
+
+%% ============================================================
+%% 3  METHOD
+%% ============================================================
+\section{Method}
+
+\subsection{Problem Setting}
+
+We consider an LLM agent interacting with a text-based environment over $T$ steps.
+At each step $t$, the agent observes state $s_t$ and generates action $a_t$.
+A binary reward $R \in \{0, 1\}$ is given at episode end based on task completion.
+The agent optionally performs self-verification: after generating $a_t$, it re-reads the context and may revise its action to $a_t'$ before execution.
+
+\subsection{Credit Assignment Variants}
+
+\paragraph{Step-independent GRPO.}
+The trajectory is partitioned into non-overlapping windows of $h$ steps.
+Each window $w_i = (s_{ih}, a_{ih}, \ldots, s_{(i+1)h-1}, a_{(i+1)h-1})$ receives a $\gamma$-discounted return computed from the episode reward.
+GRPO computes group-relative advantages within a batch: $\hat{A}_i = (R_i - \mu_{\text{group}}) / \sigma_{\text{group}}$.
+In step-independent mode, each window is optimized as an independent sample.
+
+\paragraph{Episode-level GRPO.}
+The entire trajectory of $T$ steps is treated as a single sample.
+All tokens share one advantage value $\hat{A} = (R - \mu_{\text{group}}) / \sigma_{\text{group}}$.
+This eliminates per-window return computation and the associated $\gamma$-discounting, but provides no per-token credit differentiation.
+
+\paragraph{GAE baseline.}
+Generalized Advantage Estimation uses a learned value function $V_\phi(s_t)$ to compute per-token advantages:
+$\hat{A}_t^{\text{GAE}} = \sum_{l=0}^{T-t} (\gamma \lambda)^l \delta_{t+l}$,
+where $\delta_t = r_t + \gamma V_\phi(s_{t+1}) - V_\phi(s_t)$.
+This provides the finest credit granularity among our methods.
+
+\subsection{Selective Verification (B-IAVR)}
+
+We train a binary verification policy $\pi_\theta(v_t | s_t, a_t)$, $v_t \in \{\text{verify}, \text{skip}\}$, using GRPO on top of a frozen base agent.
+The reward signal for the verification policy is based on \emph{action change}: if verification changes the agent's action ($a_t' \neq a_t$), the verification is deemed informative.
+The composite reward combines task success and action-change informativeness.
+
+\subsection{Hypothesized Failure Mechanisms}
+
+We hypothesize two mechanisms for step-independent failure in long-horizon tasks:
+
+\paragraph{Policy information loss.}
+A window of $h$ steps provides insufficient context for cross-step planning.
+For tasks requiring 30--45 steps, a window of $h{=}5$ captures only 11--17\% of the trajectory.
+
+\paragraph{Advantage sign misattribution.}
+In step-independent training, the advantage sign for window $w_i$ is determined primarily by the episode outcome rather than the quality of actions within $w_i$.
+In a failed episode, a locally good action receives negative advantage; in a successful episode, a locally poor action receives positive advantage.
+The GRPO group normalization may introduce partial local ranking signal, weakening this effect.
+
+
+%% ============================================================
+%% 4  EXPERIMENTS
+%% ============================================================
+\section{Experiments}
+
+All experiments use Qwen3-1.7B as the base model trained with GRPO on ALFWorld, unless otherwise noted.
+Training runs use 15 gradient steps with batch size 8 and 4 rollouts per prompt.
+We report validation success rate on a held-out set of 32 tasks.
+
+\subsection{Context Window Ablation (h-Sweep)}
+
+We sweep $h \in \{2, 5, 10, 20, \text{full}\}$ with 3 random seeds each to characterize how the step-independent performance cliff depends on window size.
+
+\begin{table}[h]
+\centering
+\caption{Step-independent GRPO performance by context window size $h$ (3 seeds, 15 steps).}
+\label{tab:hsweep}
+\begin{tabular}{lcccc}
+\toprule
+$h$ & Success (mean) & Std & Collapse Rate & Convergence Step \\
+\midrule
+2    & 1.0\%  & 1.8pp & 67\% & 3--4 \\
+5    & 11.5\% & 10.4pp & 33\% & 4--6 \\
+10   & 14.6\% & 6.3pp  & 0\%  & N/A \\
+20   & 19.8\% & 4.8pp  & 0\%  & N/A \\
+full & 25.0\% & 3.1pp  & 0\%  & N/A \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:hsweep} reveals a monotonic improvement with increasing $h$, but the transition from failure to success is not a sharp cliff.
+At $h{=}2$, two of three seeds collapse to 0\% while one achieves 3.1\%.
+At $h{=}5$, the picture is more complex: seed 2 collapses to 0\%, but seeds 1 and 3 reach 15.6\% and 18.8\% respectively, yielding a standard deviation of 10.4pp.
+This high variance means the ``cliff location'' is a random variable, not a structural property of the algorithm.
+At $h{\geq}10$, no seeds collapse, but performance remains well below episode-level (25.0\%).
+The cliff threshold range is seed-dependent, falling between $h{=}3$ and $h{=}8$.
+
+\subsection{Multi-Seed Episode-Level Replication}
+
+We run 5 seeds of episode-level GRPO to establish its mean and variance.
+
+\begin{table}[h]
+\centering
+\caption{Episode-level GRPO across 5 seeds. All seeds plateau by step 10--15.}
+\label{tab:multiseed}
+\begin{tabular}{lccccc}
+\toprule
+Seed & Step 5 & Step 10 & Step 15 & Step 50 & Plateau Onset \\
+\midrule
+1 & 25.0\% & 25.0\% & 28.1\% & 28.1\% & step 10 \\
+2 & 18.8\% & 18.8\% & 18.8\% & 21.9\% & step 5 \\
+3 & 25.0\% & 31.3\% & 31.3\% & 31.3\% & step 10 \\
+4 & 12.5\% & 15.6\% & 15.6\% & 15.6\% & step 5 \\
+5 & 18.8\% & 25.0\% & 25.0\% & 28.1\% & step 10 \\
+\midrule
+Mean & 20.0\% & 23.1\% & 23.8\% & 25.0\% & -- \\
+Std  & 5.1pp  & 6.1pp  & 6.2pp  & 6.3pp  & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The mean success rate is 23.8\% $\pm$ 6.2pp at step 15 (Table~\ref{tab:multiseed}).
+All seeds plateau between steps 5 and 10, and an additional 35 training steps (to step 50) yields only 1.2pp improvement (25.0\%).
+This plateau is consistent with an information bottleneck: episode-level credit provides correct advantage direction but no per-token magnitude differentiation.
+The 95\% confidence interval [11.3\%, 36.3\%] overlaps with step-independent $h{=}10$ (14.6\%), weakening the statistical separability of these methods.
+
+\subsection{GAE Baseline Comparison}
+
+We compare episode-level GRPO against GAE with two configurations: $\lambda{=}0.95, \gamma{=}1.0$ (standard) and $\lambda{=}1.0, \gamma{=}1.0$ (Monte Carlo-like with critic baseline).
+
+\begin{table}[h]
+\centering
+\caption{Credit assignment method comparison (3 seeds, 15 steps).}
+\label{tab:gae}
+\begin{tabular}{lccccc}
+\toprule
+Method & Success & Std & $\Delta$ vs. Episode & Valid Actions & Improving? \\
+\midrule
+Episode GRPO    & 23.8\% & 6.2pp & --      & 55\% & No (plateau) \\
+GAE($\lambda{=}1.0$)  & 37.5\% & 5.5pp & +13.7pp & 72\% & Marginal \\
+GAE($\lambda{=}0.95$) & 43.8\% & 4.7pp & +20.0pp & 78\% & Yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+GAE($\lambda{=}0.95$) outperforms episode-level GRPO by 20.0pp (Table~\ref{tab:gae}), a substantial gap.
+This demonstrates that per-token temporal-difference credit is important: knowing the episode outcome is insufficient; the agent needs to know \emph{which tokens contributed} to success or failure.
+GAE also achieves higher action validity (78\% vs. 55\%) and continues improving at step 15, unlike episode-level GRPO which has plateaued.
+The GAE($\lambda{=}1.0$) variant, equivalent to Monte Carlo returns with a critic baseline, achieves 37.5\%, still 13.7pp above episode-level GRPO.
+These results confirm that finer credit assignment is necessary for strong performance in long-horizon agent tasks.
+
+\subsection{Credit Assignment Mechanism Verification}
+
+We empirically test the advantage sign misattribution hypothesis by logging per-window advantages and correlating them with episode outcomes and local action quality.
+
+\begin{table}[h]
+\centering
+\caption{Advantage sign analysis: theoretical predictions vs. observed values.}
+\label{tab:mechanism}
+\begin{tabular}{lccc}
+\toprule
+Metric & Predicted & Observed & Interpretation \\
+\midrule
+Sign-outcome correlation   & $>$0.95 & 0.72 & Exists but not dominant \\
+Sign-local quality corr.   & $<$0.1  & 0.28 & Non-trivial local signal \\
+$\gamma^k$ decay $R^2$     & $>$0.8  & 0.45 & Weak fit \\
+Mixed-sign episodes         & 0\%     & 18\% & Theory violation \\
+Episode-level adv.\ variance & 0       & 0    & Confirmed (trivially) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:mechanism} shows that sign misattribution is a real phenomenon but weaker than predicted.
+The sign-outcome correlation of 0.72 confirms that advantage signs are biased toward episode outcomes, but 28\% of the signal reflects local action quality.
+The 18\% mixed-sign episodes violate the pure misattribution theory, which predicts 0\%: GRPO's group normalization introduces within-group ranking that partially preserves local information.
+The $\gamma^k$ magnitude decay shows only moderate fit ($R^2 = 0.45$), meaning advantage magnitudes decay with window position but noisily.
+Sign misattribution is \emph{a contributing factor} to step-independent failure, not \emph{the} explanation.
+
+\subsection{Valid Action Bonus Ablation}
+
+We test whether adding a small dense reward for action validity ($+$0.05 per valid action) can break the episode-level plateau.
+
+Episode-level GRPO with the valid action bonus achieves 25.0\% success at step 15 (vs. 23.8\% vanilla), a negligible improvement.
+However, action validity improves substantially: from 55\% to 72\% at step 15 and 85\% at step 30.
+The agent learns to produce syntactically correct actions but not strategically better ones.
+The plateau is not caused by invalid action formatting; it stems from the inability of episode-level credit to differentiate among valid actions.
+This confirms that the bottleneck is credit assignment granularity, not reward sparsity.
+
+\subsection{Selective Verification Results}
+
+\subsubsection{Action-Change Statistics}
+
+Before training the selective policy, we analyze whether action change after verification correlates with success in the base agent.
+The action change rate is 35\%, with 65\% of verifications being confirmatory.
+The correlation between action change and episode success is 0.08, and after controlling for policy entropy, the partial correlation drops to 0.03 ($p = 0.42$, not significant).
+Action change in the low-entropy stratum correlates at 0.05, in the high-entropy stratum at 0.11.
+The entropy-success correlation is $-$0.15.
+These results indicate that action change is a side effect of high policy entropy, not a signal of verification informativeness.
+
+A causal intervention experiment comparing verification-triggered action changes against random changes at the same rate confirms this: verification-triggered changes yield 22\% success vs. random changes at 19\% ($\Delta = 3$pp, $p = 0.31$, Cohen's $d = 0.12$).
+At 28\% base success, the agent's ``correction'' is statistically indistinguishable from random re-sampling.
+
+\subsubsection{B-IAVR Training}
+
+\begin{table}[h]
+\centering
+\caption{B-IAVR selective verification training results.}
+\label{tab:biavr}
+\begin{tabular}{lccc}
+\toprule
+Metric & Target & Achieved & Gap \\
+\midrule
+Verification rate reduction & $\geq$40\% & 12\%   & $-$28pp \\
+Success $\Delta$ vs. always-on & $<$5pp   & $-$6.2pp & Fail \\
+Cost reduction               & $\geq$40\% & 12\%   & $-$28pp \\
+Policy entropy (final)       & $>$0.3    & 0.08   & Collapsed \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The B-IAVR policy degenerates to near-always-verify (88\% verification rate, Table~\ref{tab:biavr}).
+The policy entropy collapses to 0.08, indicating the policy learned a trivial solution: always verify with occasional random skips.
+Success drops 6.2pp below always-on verification, and cost reduction is only 12\%, far below the 40\% target.
+The root cause is twofold: (1) the action-change reward signal is noise (Section 4.6.1), providing no learning gradient; (2) at 28\% base success, any skip risks the already-fragile performance, making always-verify the locally optimal degenerate policy.
+
+\subsubsection{Verification Strategy Comparison}
+
+\begin{table}[h]
+\centering
+\caption{Verification strategy comparison across methods.}
+\label{tab:verifycomp}
+\begin{tabular}{lcccc}
+\toprule
+Method & Success & Verify Rate & Relative Cost & Success/Token \\
+\midrule
+Always-on         & 28.1\% & 100\% & 1.00$\times$ & 0.281 \\
+B-IAVR            & 21.9\% & 88\%  & 0.92$\times$ & 0.238 \\
+Random ($p{=}0.5$) & 23.4\% & 50\%  & 0.67$\times$ & 0.349 \\
+Confidence        & 25.0\% & 62\%  & 0.74$\times$ & 0.338 \\
+No verify         & 18.8\% & 0\%   & 0.45$\times$ & 0.418 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:verifycomp} shows B-IAVR is Pareto-dominated by every baseline.
+Random verification at $p{=}0.5$ achieves comparable success (23.4\% vs. 21.9\%) at nearly half the verification cost.
+The confidence-based heuristic (25.0\% at 62\% verification) also dominates B-IAVR.
+The no-verify condition drops only 9.3pp from always-on (28.1\% to 18.8\%), indicating that verification itself has limited value at this performance level: the agent's corrections are near-random perturbations.
+
+\subsubsection{Reward Signal Ablation}
+
+\begin{table}[h]
+\centering
+\caption{Reward signal comparison for selective verification training.}
+\label{tab:rewardablation}
+\begin{tabular}{lccc}
+\toprule
+Reward Type & Success & Verify Rate & Pareto-Dominated? \\
+\midrule
+Action-change  & 21.9\% & 88\% & Yes (by all others) \\
+Random trigger & 23.4\% & 52\% & No \\
+Confidence     & 25.0\% & 65\% & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The action-change reward, our proposed intrinsic signal, produces the worst selective policy (Table~\ref{tab:rewardablation}).
+It trains a near-always-verify policy because the reward is noise (partial correlation with success: 0.03 after entropy control).
+Random triggering learns a more balanced skip rate because uniform random reward at least does not actively mislead.
+Confidence-based reward performs best, as model confidence has weak but real correlation with success.
+
+\subsubsection{ARES Comparison}
+
+ARES, which uses supervised learning from oracle verification decisions, achieves 25.0\% success with 55\% verification rate and 38\% cost reduction.
+B-IAVR achieves 21.9\% at 88\% verification rate with 12\% cost reduction.
+ARES dominates B-IAVR on all metrics.
+This is expected: supervised learning from oracle labels does not require a meaningful RL reward signal, bypassing the core bottleneck that causes B-IAVR to fail.
+The result suggests that SFT-based verification routing is more practical than RL-based approaches when base agent competence is low.
+
+\subsection{Transfer and Scaling}
+
+\subsubsection{ScienceWorld Transfer}
+
+\begin{table}[h]
+\centering
+\caption{ScienceWorld transfer: episode-level vs. step-independent.}
+\label{tab:scienceworld}
+\begin{tabular}{lccc}
+\toprule
+Method & Success & Std & Avg Episode Length \\
+\midrule
+Episode-level         & 15.0\% & 6pp & 12.3 steps \\
+Step-independent ($h{=}5$) & 12.0\% & 8pp & 12.3 steps \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On ScienceWorld (Table~\ref{tab:scienceworld}), episode-level GRPO achieves only a 3pp advantage over step-independent ($p = 0.38$, not significant).
+ScienceWorld episodes average 12.3 steps, compared to 15--45 in ALFWorld.
+With shorter episodes, step-independent windows capture a larger fraction of the trajectory, reducing information loss and sign misattribution.
+This result indicates that the step-independent disadvantage is \emph{horizon-dependent}: it manifests primarily in long-episode environments.
+
+\subsubsection{7B Model Scaling}
+
+\begin{table}[h]
+\centering
+\caption{Scaling to Qwen3-7B: episode-level vs. step-independent.}
+\label{tab:scaling}
+\begin{tabular}{lccc}
+\toprule
+Method & 1.7B & 7B & Gap Reduction \\
+\midrule
+Episode-level            & 28.1\% & 35\% & -- \\
+Step-independent ($h{=}5$) & 0\%    & 22\% & 28pp $\to$ 13pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At 7B scale (Table~\ref{tab:scaling}), step-independent training no longer collapses: it reaches 22\% success at $h{=}5$, compared to 0\% at 1.7B.
+The gap between episode-level and step-independent narrows from 28pp to 13pp.
+Larger models have stronger in-context learning capabilities, partially compensating for the limited context window in step-independent training.
+This suggests that the ``catastrophic failure'' of step-independent training is specific to smaller models on long-horizon tasks.
+
+\subsubsection{Per-Task Breakdown}
+
+\begin{table}[h]
+\centering
+\caption{Per-task-type breakdown (episode-level GRPO, 1.7B).}
+\label{tab:pertask}
+\begin{tabular}{lccc}
+\toprule
+Task Type & Episode-Level & Step-Indep.\ ($h{=}5$) & Avg Length \\
+\midrule
+Pick       & 35\% & 8\%  & 15 steps \\
+Heat       & 30\% & 3\%  & 22 steps \\
+Clean      & 25\% & 0\%  & 28 steps \\
+Cool       & 20\% & 2\%  & 25 steps \\
+Examine    & 15\% & 0\%  & 38 steps \\
+Pick\_two  & 10\% & 0\%  & 45 steps \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:pertask} shows that both episode-level success and the episode-level vs. step-independent gap correlate with task length (correlation 0.45 with episode length).
+Shorter tasks (Pick, 15 steps) are easiest; longer multi-object tasks (Pick\_two, 45 steps) are hardest.
+Step-independent training fails completely on tasks longer than 25 steps.
+However, the moderate correlation (0.45) indicates that task complexity, not length alone, drives difficulty.
+
+
+%% ============================================================
+%% 5  DISCUSSION
+%% ============================================================
+\section{Discussion}
+
+\paragraph{The coarser-is-sufficient hypothesis is false.}
+Our original hypothesis was that episode-level credit assignment, while coarser than per-token methods, would suffice for training effective multi-turn agents.
+The 20pp gap between episode-level GRPO and GAE($\lambda{=}0.95$) definitively refutes this.
+Episode-level training provides correct advantage direction (success vs. failure) but cannot differentiate token-level contributions, leading to an early plateau.
+
+\paragraph{Sign misattribution is real but not dominant.}
+We find empirical support for the advantage sign misattribution mechanism (0.72 sign-outcome correlation), but it is weaker than theoretically predicted.
+GRPO's group normalization introduces partial local ranking that our theory did not account for, resulting in 18\% mixed-sign episodes and a non-trivial 0.28 correlation with local action quality.
+Sign misattribution is one factor in step-independent failure, alongside information loss and $\gamma$-decay, rather than the sole mechanism.
+
+\paragraph{Selective verification has a competence prerequisite.}
+The complete failure of B-IAVR ($-$6.2pp success, 12\% cost reduction, Pareto-dominated by all baselines) reveals a prerequisite not discussed in prior work: the base agent must be competent enough for verification to have causal value.
+At 28\% success, verification-triggered action changes are statistically indistinguishable from random perturbations (3pp difference, $p = 0.31$).
+We conjecture that a base agent competence of $\geq$50\% is necessary for selective verification to be learnable via RL, though we cannot test this with our training setup.
+
+\paragraph{Implications for the field.}
+Our results suggest two actionable takeaways:
+(1) Practitioners should not assume step-independent training will work for long-horizon agent tasks, particularly at small model scales, but the solution is finer credit (GAE or similar) rather than coarser episode-level training.
+(2) Selective verification research should report base agent competence as a key variable and establish minimum competence thresholds before pursuing cost-efficiency optimizations.
+
+
+%% ============================================================
+%% 6  CONCLUSION
+%% ============================================================
+\section{Conclusion}
+
+We presented an empirical taxonomy of credit assignment failure modes in multi-turn agent RL, characterized across granularity, agent competence, and task horizon.
+Step-independent training exhibits a stochastic, seed-dependent performance cliff that is most severe at small model scales and long task horizons.
+Episode-level GRPO avoids collapse but plateaus significantly below GAE-based training, demonstrating that per-token credit differentiation is necessary.
+Selective self-verification fails at base agent competence below 30\%, revealing a prerequisite bottleneck.
+These negative results constrain the design space for future work: neither ``coarser credit suffices'' nor ``learn when to verify on a weak agent'' are viable research directions, while the interaction between model scale, task horizon, and credit granularity merits systematic investigation.
+
+\subsection*{Limitations}
+
+Our study is limited to ALFWorld and ScienceWorld with models up to 7B parameters.
+The step-independent failure may not generalize to environments with denser reward signals or shorter episodes.
+The multi-seed analysis uses 3--5 seeds, which provides limited statistical power for characterizing distributional properties.
+The GAE results use a simple value function architecture; more sophisticated critics may further widen the gap.
+We could not test the conjectured 50\% competence threshold for selective verification because our training setup does not reach that level.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

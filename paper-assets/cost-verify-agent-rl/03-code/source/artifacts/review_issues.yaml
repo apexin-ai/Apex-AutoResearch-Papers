@@ -1,0 +1,646 @@
+- id: W2
+  summary: "Theory (binary reward) vs experiment (ternary reward) gap 未充分桥接"
+  category: method
+  severity: critical
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 7
+  mentions:
+    - {round: 1, reviewers: [R1, R2], note: "Prop 2 predicts 19.1%, measured 52.07%. Intro/Conclusion use 80.9% but experiments show 52%"}
+    - {round: 1, action_taken: "Penalty reward analysis added to appendix"}
+    - {round: 2, reviewers: [R1, R2], note: "Round 1 修复不充分。缺乏 penalty reward 下的理论修正公式或 pure binary 实验验证。"}
+    - {round: 2, action_taken: "在主文 Section 3/4.4 讨论 binary vs penalty reward 差异"}
+    - {round: 3, reviewers: [R1, R2], note: "Section 4.1 称 binary reward 但实验实际含 -0.1 步罚。theory-experiment disconnect。"}
+    - {round: 3, action_taken: "Reward 改为 ternary，三指标区分，binary 28% credit agreement 纳入"}
+    - {round: 4, reviewers: [R1, R2], note: "Round 4 fresh review 再次独立识别：19.1% vs 52% gap 仅有定性桥接（penalty introduces variance），缺乏 ternary reward 下的形式化上界推导。两位 Reviewer 共识。"}
+    - {round: 5, reviewers: [R1, R2], note: "R1 列为 Critical (C1)。R2 交叉回应 AGREE。建议补充纯 binary reward 对照实验或推导 ternary bound。"}
+    - {round: 6, reviewers: [R1, R2], note: "R1 Should-Fix (W1), R2 AGREE。two calibers 分析提供定性解释框架但缺形式化 ternary bound。连续 6 轮。"}
+    - {round: 7, reviewers: [R1, R2], note: "R1-W4 Should-Fix, R2-W5 Should-Fix。两位共识：52.1% vs 19.1% 反映质的不同失败模式（deterministic misattribution vs near-random noise），理论对实验 regime 的解释力有限。连续 7 轮。"}
+  action_items:
+    - {round: 2, action: "在主文 Section 3/4.4 讨论 binary vs penalty reward 差异", assigned_to: main_agent, status: done}
+    - {round: 2, action: "跑纯 binary reward 实验验证 Proposition 2", assigned_to: main_agent, status: done}
+    - {round: 3, action: "Section 4.1 改为 ternary reward；三指标区分；binary 28% credit agreement 纳入", assigned_to: main_agent, status: done}
+    - {round: 5, action: "增加 Ternary Reward Corollary（定性论证+已有统计检验），不追求闭合式", assigned_to: paper_agent, status: in_progress}
+  resolution: ""
+  resolution_round: null
+
+- id: W5
+  summary: "h-sweep cliff claim 仍基于 single seed"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 7
+  mentions:
+    - {round: 1, reviewers: [R1, R2], note: "High seed variability makes single-seed cliff claim unreliable"}
+    - {round: 1, action_taken: "Caveat added"}
+    - {round: 2, reviewers: [R1], note: "Caveat 已加但 cliff 强措辞不匹配"}
+    - {round: 2, action_taken: "cliff → threshold，加 single seed caveat"}
+    - {round: 3, reviewers: [R1, R2], note: "两位 Reviewer 均 AGREE 单 seed 的 threshold claim 缺乏统计支撑。"}
+    - {round: 4, reviewers: [R1], note: "R1 再次指出 window-size sweep 基于 single seed。"}
+    - {round: 5, reviewers: [R1, R2], note: "连续 5 轮未解决。"}
+    - {round: 6, reviewers: [R1, R2], note: "R1-W4 single-seed 结果与论文 11-seed variability 分析自相矛盾。R2 AGREE。连续 6 轮。"}
+    - {round: 7, reviewers: [R2], note: "R2-M2: h=10 两 seed 差异巨大(6.25% vs 21.9%)，仅报告均值 14.1% 掩盖不确定性。R1 AGREE 应报告单 seed 值。"}
+  action_items:
+    - {round: 5, action: "Figure 3(b) caption + 正文使用 single-seed observation suggests 非 definitive 措辞", assigned_to: paper_agent, status: in_progress}
+  resolution: ""
+  resolution_round: null
+
+- id: W6
+  summary: "Limited novelty — 与同期工作的增量知识贡献"
+  category: framing
+  severity: critical
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 7
+  mentions:
+    - {round: 1, reviewers: [R1, R2], note: "R1 Major (Excitement 3.5), R2 Critical (Excitement 2.5)"}
+    - {round: 1, action_taken: "Intro P3: Our primary contribution is diagnostic"}
+    - {round: 2, reviewers: [R2], note: "36% seed 泛化率使 Fix 表述 overclaiming"}
+    - {round: 2, action_taken: "Title Fix → Correction; Abstract resolves → addresses"}
+    - {round: 3, reviewers: [R1, R2], note: "Episode-level GRPO 无方法论新颖性，Contribution 3 膨胀。"}
+    - {round: 3, action_taken: "Contributions 合并为 2 个"}
+    - {round: 4, reviewers: [R2], note: "IRC/MC-GRPO 等已独立发现类似问题。"}
+    - {round: 5, reviewers: [R1, R2], note: "R2=Critical, R1=Major。Solution=原版 GRPO 回退。论文天花板。"}
+    - {round: 6, reviewers: [R1, R2], note: "R2 Excitement 2.5/5。R1 Excitement 3/5，AGREE 是天花板但 diagnostic paper 有先例。"}
+    - {round: 7, reviewers: [R1, R2], note: "R2-W1 Critical: 标题含 Episode-Level Correction 暗示方法论贡献但实为设计回退。R1 AGREE 但建议降为 Should-Fix（诊断论文的修复简洁性反而是优势）。R2 Excitement 2.5，R1 Excitement 3.0。连续 7 轮。"}
+  action_items:
+    - {round: 5, action: "Conclusion 中 solution claim 弱化为 validates the diagnosis", assigned_to: paper_agent, status: in_progress}
+  resolution: ""
+  resolution_round: null
+
+- id: W8
+  summary: "Cell C 缺失使 factorial 不完整"
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 7
+  mentions:
+    - {round: 1, reviewers: [R1, R2], note: "Cell C would isolate M2 without M1"}
+    - {round: 1, action_taken: "Cell C prediction in experiments.tex, crash record in appendix"}
+    - {round: 2, reviewers: [R1, R2], note: "Cell C crash 本身说明 step-level advantage 在 full context 下行为可能质性不同。"}
+    - {round: 2, action_taken: "Discussion 中更显著讨论 Cell C 缺失"}
+    - {round: 3, reviewers: [R1, R2], note: "Cell C NaN instability vs Cell A gradual collapse，暗示非加性交互。"}
+    - {round: 3, action_taken: "Non-additive mechanism interaction 段落添加"}
+    - {round: 4, reviewers: [R1, R2], note: "Round 4 再次独立识别为 Critical。"}
+    - {round: 5, reviewers: [R1, R2], note: "R1=Critical, R2=Major。应停止称 factorial design。"}
+    - {round: 6, reviewers: [R1, R2], note: "R1 Must-Fix (N1) Critical, R2 AGREE Critical。框架应从 independent 改为 co-symbiotic mechanisms。R2 补充 Appendix D 未尝试 gradient clipping per window position。连续 6 轮。"}
+    - {round: 7, reviewers: [R1, R2], note: "R1-W1 Critical Must-Fix。R2 初审列为 W3 Should-Fix，交叉后升级为 Critical AGREE。Cell C NaN 暗示 M1 通过限制梯度方差稳定训练（M1 同时是 failure mechanism 和 stabilizer），M1/M2 非加性交互使 A→B→D 因果链不成立。R1 建议弱化为 dual mechanism hypothesis。连续 7 轮。"}
+  action_items:
+    - {round: 5, action: "全文 factorial → partial factorial / 3-of-4 factorial", assigned_to: paper_agent, status: in_progress}
+  resolution: ""
+  resolution_round: null
+
+- id: W9
+  summary: "REINFORCE++ 仅 15 步，对比可能不公平"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 7
+  mentions:
+    - {round: 1, reviewers: [R1, R2], note: "REINFORCE++ 12.5% may be undertrained"}
+    - {round: 1, action_taken: "Appendix: REINFORCE++ caveat added"}
+    - {round: 2, reviewers: [R1], note: "REINFORCE++ 是 episode-level，15 步不足。"}
+    - {round: 2, action_taken: "Appendix 中标注为 initial comparison"}
+    - {round: 3, reviewers: [R1, R2], note: "两位 Reviewer 均 AGREE 对比不公平。"}
+    - {round: 4, reviewers: [R1, R2], note: "持续未解决。"}
+    - {round: 5, reviewers: [R1, R2], note: "代表性不足，无法支撑 standard remedies fail 的 claim。"}
+    - {round: 6, reviewers: [R1, R2], note: "R1 Should-Fix (W5), R2 REBUT 降级 Minor——详细 caveats 在 Appendix D，主文仅简要提及。分歧仅在严重性。"}
+    - {round: 7, reviewers: [R2], note: "R2-Q6: REINFORCE++ 失败原因未充分分析（per-token baseline 质量 vs normalization vs variance），且无 OOD 评估。R1 AGREE 解释推测性。"}
+  action_items:
+    - {round: 5, action: "改为 preliminary comparison，删除 standard remedies fail claim", assigned_to: paper_agent, status: in_progress}
+  resolution: ""
+  resolution_round: null
+
+- id: W11
+  summary: "Eq.6 累积发散论证依赖 comparable magnitude 假设——单点测量不足"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 7
+  mentions:
+    - {round: 1, reviewers: [R1, R2], note: "Simple conditional probability, lacks formal connection to divergence"}
+    - {round: 1, action_taken: "Cumulative divergence sketch added"}
+    - {round: 2, reviewers: [R1], note: "Round 1 加了 Eq.6 但假设 comparable magnitude 过强。"}
+    - {round: 2, action_taken: "从训练日志提取 advantage 分布，实测 1.32"}
+    - {round: 3, reviewers: [R1, R2], note: "1.32 是单点测量，不足以支撑一般性声明。"}
+    - {round: 3, action_taken: "Single-snapshot caveat 添加"}
+    - {round: 4, reviewers: [R1, R2], note: "仅 1 个训练快照测量不足。"}
+    - {round: 5, reviewers: [R1, R2], note: "R1=Critical, R2=Major。需跨时间验证或删除表述。"}
+    - {round: 6, reviewers: [R1, R2], note: "R1 Should-Fix (W2), R2 AGREE。建议至少 step 1/5/10/15 四点测量。连续 6 轮。"}
+    - {round: 7, reviewers: [R1, R2], note: "R1-M3: Eq.6 假设 g+/g- 对称但实测非对称(ratio=2.6)。break-even 分析已补充但 Eq.6 本身表述应注明对称假设局限。R2 AGREE。严重性降至 Minor。"}
+  action_items:
+    - {round: 5, action: "降级 claim：改为 at observed step-5 snapshot + argument holds whenever ratio is finite", assigned_to: paper_agent, status: in_progress}
+    - {round: 6, action: "从训练日志提取 step 1/5/10/15 四点的 |Â_correct|/|Â_wrong| ratio", assigned_to: main_agent, status: done}
+    - {round: 6, action: "论文加入 ratio=2.6 + break-even 分析 (旧 1.32 已修正)", assigned_to: director, status: done}
+  resolution: ""
+  resolution_round: null
+
+- id: W12
+  summary: "Table 1/2 报告标准不一致"
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 1
+  last_seen_round: 7
+  mentions:
+    - {round: 1, reviewers: [R1, R2], note: "best seed / best checkpoint / mean mixed"}
+    - {round: 1, action_taken: "Table 1 caption unified"}
+    - {round: 2, reviewers: [R1], note: "Caption 改了但实际数据仍混用"}
+    - {round: 2, action_taken: "Table 1 caption 逐 condition 标注报告标准"}
+    - {round: 3, reviewers: [R1, R2], note: "Cell A=best seed, Cell B=best checkpoint, Cell D=mean of 2 seeds。不一致。"}
+    - {round: 3, action_taken: "Table 1 caption 标注 seed counts + 交叉引用 Table 2"}
+    - {round: 4, reviewers: [R1, R2], note: "根本问题是数据本身应统一标准。"}
+    - {round: 5, reviewers: [R1, R2], note: "连续 5 轮。标注修复不够——需统一底层数据报告标准。"}
+    - {round: 6, reviewers: [R1, R2], note: "R1-Minor-3: Table 2 seed100 出现两次(step5=11.19% + step10=12.69%)，与 caption best checkpoint per seed 声明不一致。"}
+    - {round: 7, reviewers: [R1], note: "R1-M1: Cell A 缺 OOD 评估，Cell B OOD 仅 1 seed。主表关键条件缺失 OOD 数据不理想。"}
+  action_items:
+    - {round: 5, action: "统一为 best checkpoint per seed + 更清晰 caption 逐 Cell 说明 seed 数和方式", assigned_to: paper_agent, status: in_progress}
+  resolution: ""
+  resolution_round: null
+
+- id: R2-N1
+  summary: "缺少与同期方法的直接实验对比"
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 7
+  mentions:
+    - {round: 2, reviewers: [R2], note: "Introduction 声称同期方法 address symptoms 但无实验支撑。"}
+    - {round: 2, action_taken: "Reframe: HCAPO 的成功验证诊断"}
+    - {round: 3, reviewers: [R1, R2], note: "15+ 方法在 Related Work 讨论但实验零对比。"}
+    - {round: 3, action_taken: "Discussion 用诊断框架分析 HCAPO/GiGPO，引用其 ALFWorld 数据"}
+    - {round: 4, reviewers: [R1, R2], note: "仍无直接实验对比。Discussion 间接引用不足。"}
+    - {round: 5, reviewers: [R1, R2], note: "两位共识 Critical。连续 4 轮。"}
+    - {round: 6, reviewers: [R1, R2], note: "R2 仍视为 Excitement 降低主因。Limitations 已声明不复现但框架预测性分析不足以替代实验。连续 5 轮。"}
+    - {round: 7, reviewers: [R1, R2], note: "R1-W6 Warning, R2-W6 Warning。Section 6 声称 unified explanation 纯属声明（post-hoc rationalization），不是预测能力验证。两位共识至少复现一个 concurrent method。连续 6 轮。"}
+  action_items:
+    - {round: 5, action: "Discussion 增加 predictive analysis 段落（HCAPO/GiGPO consistent explanation）+ Limitations 声明", assigned_to: paper_agent, status: in_progress}
+  resolution: ""
+  resolution_round: null
+
+- id: R4-W1
+  summary: "单一主实验环境不支撑 fundamental pathology 的普遍性声称"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 4
+  last_seen_round: 7
+  mentions:
+    - {round: 4, reviewers: [R1, R2], note: "主实验仅在 ALFWorld 完成，ScienceWorld/8B 均为 single-seed preliminary。"}
+    - {round: 5, reviewers: [R1, R2], note: "R2 Major (W3)。R1 部分 REBUT。"}
+    - {round: 6, reviewers: [R1, R2], note: "R1-W4 ScienceWorld/8B single-seed 与论文 seed variability 分析自相矛盾。R2 AGREE。"}
+    - {round: 7, reviewers: [R1, R2], note: "R1-W5: ScienceWorld 单 seed 且存在 scale confound。R2 AGREE: ScienceWorld 仅展示 collapse 不令人惊讶，验证贡献有限。"}
+  action_items:
+    - {round: 5, action: "Limitations 中明确 ScienceWorld 仅验证 failure 未验证 fix", assigned_to: paper_agent, status: in_progress}
+  resolution: ""
+  resolution_round: null
+
+- id: R4-W2
+  summary: "36% 种子成功率无原因分析，诊断→修复叙事断裂"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 4
+  last_seen_round: 7
+  mentions:
+    - {round: 4, reviewers: [R1, R2], note: "episode-level GRPO 仅 36% 种子泛化，无成功/失败差异分析。"}
+    - {round: 5, reviewers: [R1, R2], note: "R2 Major (W1)。真正问题是 overclaiming 而非样本量。"}
+    - {round: 6, reviewers: [R1, R2], note: "R1-W3: addresses both failure modes 措辞与 36% 不匹配。R2 AGREE。建议 structurally eliminates...but remains seed-dependent。"}
+    - {round: 7, reviewers: [R1, R2], note: "R2-W2 Critical overclaiming: structurally eliminates vs 36% 矛盾。R1 强烈 AGREE 并补充中位数 12.69% 远低于 mean 17.7%。R1-Q2: 27% collapsed seeds 失败模式需解释。"}
+  action_items:
+    - {round: 5, action: "全文校准 36% 相关 claim：不暗示可靠方法，明确是验证诊断的工具", assigned_to: paper_agent, status: in_progress}
+  resolution: ""
+  resolution_round: null
+
+- id: R4-W3
+  summary: "ScienceWorld 验证不完整——仅验证 failure 未验证 fix"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 4
+  last_seen_round: 7
+  mentions:
+    - {round: 4, reviewers: [R1, R2], note: "ScienceWorld 仅报告 Cell A 崩溃，未报告 Cell D 结果。"}
+    - {round: 5, reviewers: [R1, R2], note: "连续两轮。"}
+    - {round: 6, reviewers: [R1, R2], note: "R1-W4 ScienceWorld single-seed 再次提及。连续 3 轮。"}
+    - {round: 7, reviewers: [R1, R2], note: "R1-W5 + R2 AGREE: ScienceWorld 仅展示 collapse 不令人惊讶，验证贡献有限。连续 4 轮。"}
+  action_items:
+    - {round: 5, action: "合并到 R4-W1 Limitations 声明处理", assigned_to: paper_agent, status: in_progress}
+  resolution: ""
+  resolution_round: null
+
+- id: R4-W4
+  summary: "Discussion/Conclusion 泛化声称超出实验验证范围"
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 4
+  last_seen_round: 7
+  mentions:
+    - {round: 4, reviewers: [R1, R2], note: "Section 6 声称三条件触发但仅在 GRPO 内验证。"}
+    - {round: 5, reviewers: [R1, R2], note: "Conclusion line 586-588 any method 无 qualifier。"}
+    - {round: 6, reviewers: [R1, R2], note: "R1-W3 Abstract/Conclusion addresses both failure modes 与 36% 泛化率不匹配。overclaiming 仍在。"}
+    - {round: 7, reviewers: [R1, R2], note: "R2-W2 Critical: structurally eliminates 技术正确但误导。R1 强烈 AGREE。与 R4-W2 合并追踪 overclaiming 问题。"}
+  action_items:
+    - {round: 5, action: "Conclusion any method → GRPO-style group-relative methods + 实验范围限定", assigned_to: paper_agent, status: in_progress}
+  resolution: ""
+  resolution_round: null
+
+- id: R5-W1
+  summary: "Missing references: ArCHer (Zhou 2024) 和 VinePPO (Kazemnejad 2024)"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 5
+  last_seen_round: 7
+  mentions:
+    - {round: 5, reviewers: [R1, R2], note: "ArCHer hierarchical RL 与 M1 相关；VinePPO step-level credit 若避免 sign misattribution 则说明问题在组归一化而非 step-level 本身。R1 额外建议 Lightman et al. 2023。"}
+    - {round: 6, reviewers: [R1, R2], note: "ArCHer/VinePPO/Lightman 2023 仍缺失。连续 2 轮。"}
+    - {round: 7, note: "Round 7 确认 references.bib 包含 zhou2024archer (ArCHer), kazemnejad2024vineppo (VinePPO), lightman2024lets。Related Work Section 2 已引用。"}
+  action_items:
+    - {round: 5, action: "添加 ArCHer + VinePPO + Lightman 2023 到 Related Work", assigned_to: paper_agent, status: done}
+  resolution: "Round 7 确认全部已引用。references.bib 包含 ArCHer/VinePPO/Lightman。"
+  resolution_round: 7
+
+- id: R5-W3
+  summary: "Proposition 2 upper bound vs equality 措辞不一致"
+  category: method
+  severity: info
+  status: in_progress
+  first_raised_round: 5
+  last_seen_round: 7
+  mentions:
+    - {round: 5, reviewers: [R1, R2], note: "Proposition 2 给出 ≤ 但正文某些地方作 = 使用。不改变结论方向但影响理论陈述精确性。"}
+    - {round: 6, note: "本轮 R1-Minor-2 关注 Prop 1 vs Prop 2 关系（非 ≤/= 问题）。upper bound 措辞可能已修复，待确认。"}
+    - {round: 7, reviewers: [R1], note: "R1-W7: Prop 1 中 p 的条件化不够精确——locally correct actions 应提高 episode success probability，P(correct sign) 应为 p_w > p。独立性假设未明确。R2 PARTIALLY AGREE（技术正确但低 p regime 下不改变定性结论）。"}
+  action_items:
+    - {round: 5, action: "通检所有引用 Prop 2 的位置统一为 ≤ / at most / upper bound", assigned_to: paper_agent, status: in_progress}
+  resolution: ""
+  resolution_round: null
+
+- id: R6-N2
+  summary: "Factorial cells 仅 2 seeds，统计效力严重不足"
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 6
+  last_seen_round: 7
+  mentions:
+    - {round: 6, reviewers: [R1, R2], note: "R1 Must-Fix。论文自身 11 seeds 展示三种结果类型(27% collapsed, 36% stagnant, 36% generalized)，证明 2 seeds 无法可靠代表。Cell B(M1 only) OOD 5.97% 基于 2 seeds，是因果链关键中间节点。R2 强烈 AGREE，建议 Cell B 至少 5+ seeds。"}
+    - {round: 7, reviewers: [R1, R2], note: "R1-W2 Critical Must-Fix。Cell B OOD 实际仅 1 seed (Table 1 脚注)。R2 AGREE：n=1 OOD + 高 seed 变异性 = 无统计证据。与 W8 (Cell C 缺失) 叠加使因果声明显著削弱。连续 2 轮。"}
+  action_items:
+    - {round: 6, action: "Cell B 增加到 5+ seeds 验证 OOD 5.97% 可靠性", assigned_to: main_agent, status: in_progress}
+  resolution: ""
+  resolution_round: null
+
+- id: R6-M2
+  summary: "Proposition 1 与 Proposition 2 关系需更明确阐述"
+  category: method
+  severity: info
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 7
+  mentions:
+    - {round: 6, reviewers: [R1, R2], note: "R1-Minor-2: Prop 1 渐近结果 vs Prop 2 有限 K 上界的关系（Prop 2 是 Prop 1 的有限样本细化）应在正文更明确阐述。R2 AGREE。"}
+    - {round: 7, note: "Section 4 Prop 2 后已有明确表述: Proposition 2 provides a finite-sample refinement of Proposition 1's asymptotic result. Round 7 未再提及此关系问题。"}
+  action_items:
+    - {round: 6, action: "理论 Section 中 Prop 2 后添加 1 句话阐明 Prop 2 是 Prop 1 的有限样本细化", assigned_to: paper_agent, status: done}
+  resolution: "Section 4 已含明确表述。Round 7 未再提及。"
+  resolution_round: 7
+
+- id: R6-M5
+  summary: "'原始 GRPO' 表述不精确——原版 GRPO 是 single-turn 数学推理"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 6
+  last_seen_round: 7
+  mentions:
+    - {round: 6, reviewers: [R1, R2], note: "R1-Q4: original GRPO (DeepSeekMath) 是 single-turn 数学推理，从未在多轮 agent 场景使用。Episode-level multi-turn GRPO ≠ original design。R2 AGREE。更准确表述：restoring GRPO's original per-sample granularity to the episode level。"}
+    - {round: 7, note: "Section 3.4 已修改为: This restores GRPO's original per-sample granularity to the episode level; step-independent windowing is the deviation. Round 7 未再提及。"}
+  action_items:
+    - {round: 6, action: "全文 original GRPO design → restoring GRPO's original per-sample granularity to the episode level", assigned_to: paper_agent, status: done}
+  resolution: "Section 3.4 已修改。Round 7 未再提及。"
+  resolution_round: 7
+
+- id: R6-M1
+  summary: "Definition 1 操作化存在代理偏差——valid ≠ strategically correct"
+  category: method
+  severity: info
+  status: in_progress
+  first_raised_round: 6
+  last_seen_round: 7
+  mentions:
+    - {round: 6, reviewers: [R1, R2], note: "R1-Minor-1: action validity proxy 包含形式正确但策略无用的 action。论文承认 conservative proxy 但未充分讨论代理引入的偏差。R2 AGREE。"}
+    - {round: 7, reviewers: [R1, R2], note: "R1-Q3: 若 >80% actions valid 则 credit agreement 指标 discriminative power 低。R2 PARTIALLY AGREE: 即使 proxy 保守也检测到问题，但应报告 action validity 基线比例。Section 5.4 已含上界说明但未报告基线比例。"}
+  action_items:
+    - {round: 6, action: "Section 4.4 Definition 1 proxy 讨论后加 1 句明确上界性质", assigned_to: paper_agent, status: in_progress}
+  resolution: ""
+  resolution_round: null
+
+- id: R6-M4
+  summary: "Footnote 5 等价性条件——policy drift 假设适用范围未显式限定"
+  category: method
+  severity: info
+  status: in_progress
+  first_raised_round: 6
+  last_seen_round: 7
+  mentions:
+    - {round: 6, reviewers: [R1, R2], note: "R1-Minor-4: mild assumption that policy drift remains small 在训练后期不成立。分析聚焦 p≈12.5% 场景下近似合理，但应显式限定。R2 AGREE。"}
+    - {round: 7, note: "Footnote 2 (原 Footnote 5) 已添加适用范围限定: This approximation is most accurate when the policy has not yet diverged significantly from initialization (here, p ≈ 12.5%); at higher success rates, the bound may loosen. Round 7 未直接提及此脚注，但 R1-W7 涉及相关的条件化精确性。"}
+  action_items:
+    - {round: 6, action: "Footnote 5 加显式适用范围限定", assigned_to: paper_agent, status: done}
+  resolution: ""
+  resolution_round: null
+
+- id: R7-W1
+  summary: "Cell A vs Cell B 操作差异不精确——advantage sign 可能近似相同，消除 M2 声称需更严格论证"
+  category: method
+  severity: critical
+  status: open
+  first_raised_round: 7
+  last_seen_round: 7
+  mentions:
+    - {round: 7, reviewers: [R1, R2], note: "R1-W3 Critical Must-Fix（新发现）: R_w = γ^(N-w)·R_episode 导致 Cell A per-window 归一化后 advantage sign 与 Cell B episode-level 近似相同（折扣因子在分子分母中抵消）。因此 A→B 改善可能来自其他操作差异（per-window vs per-episode KL penalty, effective batch size, ε 缩放），而非 M2 消除。R2 交叉后强烈 AGREE 并进一步论证：Cell B 使用 episode-level advantage 时失败 episode 所有 token 仍获负 advantage——这正是 M2 的定义。Cell B 并未消除 M2，只是改变了传播方式（N 次独立错误→1 次错误）。R2 据此将 Soundness 从 3.0 下调至 2.5。"}
+  action_items:
+    - {round: 7, action: "提供 Cell A 和 Cell B 中实际 advantage 值的统计比较（sign 分布、magnitude 分布），精确说明 Cell B 实现与 Cell A 的所有操作差异", assigned_to: main_agent, status: open}
+  resolution: ""
+  resolution_round: null
+
+- id: R7-W2
+  summary: "Abstract/Intro overclaiming: structurally eliminates vs 36% seed 泛化率，mean vs median"
+  category: writing
+  severity: critical
+  status: open
+  first_raised_round: 7
+  last_seen_round: 7
+  mentions:
+    - {round: 7, reviewers: [R1, R2], note: "R2-W2 Critical + R1 强烈 AGREE。(1) structurally eliminates both failure modes 技术正确但在 36% seed 泛化语境下误导；(2) 11 seed OOD 中位数 12.69% 远低于 mean 17.7%，分布右偏；(3) 单 seed 8B (90.3%) 证据弱——8B SFT baseline 已 80.6%，增量贡献 ~10pp 与 1.7B ~11pp 相似。建议 abstract 报告 median、将 structurally eliminates 改为更谨慎表述、8B 标注 preliminary single-seed。"}
+  action_items:
+    - {round: 7, action: "Abstract 报告 median 而非仅 mean；structurally eliminates → structurally removes the conditions for 或类似表述；8B 结果标注 preliminary single-seed evidence", assigned_to: paper_agent, status: open}
+  resolution: ""
+  resolution_round: null
+
+# Round 1-3 已解决的 issues（保留原状）
+- id: W1
+  summary: '"Locally correct actions" 定义操作化存在逻辑循环'
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 3
+  mentions:
+    - {round: 1, reviewers: [R1, R2], note: "Entire theoretical framework depends on this undefined concept"}
+    - {round: 1, action_taken: "Definition 1 added in theoretical_analysis.tex; operationalized in experiments.tex Section 4.4"}
+    - {round: 2, reviewers: [R1], note: "定义已添加但操作化存在循环"}
+    - {round: 2, action_taken: "在 Section 4.4 讨论操作化的近似性质（上界估计）"}
+    - {round: 3, reviewers: [R1, R2], note: "19.1% 应标注为上界而非精确值。"}
+    - {round: 4, note: "Round 4 未被任何 Reviewer 提及。视为基本解决。"}
+  action_items:
+    - {round: 2, action: "在 Section 4.4 讨论操作化的近似性质（上界估计）", assigned_to: main_agent, status: done}
+    - {round: 3, action: "Proposition 2 中 19.1% 改为 upper bound 表述", assigned_to: main_agent, status: done}
+  resolution: "Proposition 2 改为 ≤ upper bound，4 处 = → ≤ 一致替换。Round 4-7 未再质疑循环性。"
+  resolution_round: 3
+
+- id: W3
+  summary: "10/20 citations use Anonymous authors — ARR compliance violation"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, reviewers: [R1, R2], note: "irc2026, grpolambda2025, oar2026 etc."}
+    - {round: 1, action_taken: "All 10 entries updated with real authors. Total 33 citations."}
+  resolution: "All citations now have real authors"
+  resolution_round: 1
+
+- id: W4
+  summary: "8B 和 ScienceWorld 跨规模/跨环境证据仍然不足"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 3
+  mentions:
+    - {round: 1, reviewers: [R1, R2], note: "Confirmatory language vs actual statistical power mismatch"}
+    - {round: 1, action_taken: "All 8B/ScienceWorld claims use preliminary/single-seed qualifiers"}
+    - {round: 2, reviewers: [R2], note: "措辞已降级为 preliminary，但 abstract 中仍给人强印象。"}
+    - {round: 3, reviewers: [R1, R2], note: "Introduction Contribution 3 中缺乏 preliminary 修饰。"}
+    - {round: 3, action_taken: "8B 全文统一使用 preliminary/single-seed 修饰"}
+    - {round: 4, note: "原 W4 措辞修复已解决，实验覆盖问题由 R4-W1/R4-W3 继续追踪。"}
+  resolution: "8B 全文统一使用 preliminary/single-seed 修饰。实验覆盖问题由 R4-W1/R4-W3 继续追踪。"
+  resolution_round: 3
+
+- id: W7
+  summary: "重要相关工作遗漏（5 篇直接竞争/高度相关论文）"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 3
+  mentions:
+    - {round: 2, reviewers: [R2], note: "HCAPO, RC-GRPO, iStar, survey, EDGE-GRPO 未引用"}
+    - {round: 2, action_taken: "引用并讨论 5 篇论文"}
+    - {round: 3, reviewers: [R2], note: "新增缺失：Harutyunyan 2019, RUDDER 2019, POMDP。"}
+    - {round: 3, action_taken: "3 篇新引用全部添加"}
+    - {round: 4, note: "Round 4 未再指出 Round 2-3 遗漏的论文。新遗漏由 R4-W5 追踪。"}
+  resolution: "Round 2-3 遗漏已全部补充。新遗漏由 R4-W5 / R5-W1 追踪。"
+  resolution_round: 3
+
+- id: W10
+  summary: "Conclusion drops 'locally correct actions' qualifier on 80.9%"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, action_taken: "Conclusion now uses correct qualifiers"}
+  resolution: "Merged with W2 fix"
+  resolution_round: 1
+
+- id: AUDIT-1
+  summary: "Seed count inconsistency: 27% vs 36%"
+  category: writing
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, reviewers: [audit], note: "5 locations had 27%"}
+    - {round: 1, action_taken: "All 5 locations updated to 36%"}
+  resolution: "All locations updated to 36%"
+  resolution_round: 1
+
+- id: AUDIT-2
+  summary: "Cell C described as 'degenerate' — incorrect"
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, reviewers: [audit], note: "method.tex claimed Cell C degenerate but was actually attempted"}
+    - {round: 1, action_taken: "degenerate removed"}
+  resolution: "Corrected in all files"
+  resolution_round: 1
+
+- id: R-add1
+  summary: "Contribution 2 overclaim for single-seed evidence"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, action_taken: "Downgraded to preliminary evidence"}
+  resolution: "Contribution 2 downgraded"
+  resolution_round: 1
+
+- id: R-add2
+  summary: "Table 2 needs anti-cherry-picking defense"
+  category: experiment
+  severity: info
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, action_taken: "Table 7 in appendix with all seeds at step 5"}
+  resolution: "Appendix table added"
+  resolution_round: 1
+
+- id: R-add3
+  summary: "seed2 classification boundary justification"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  mentions:
+    - {round: 1, action_taken: "Table 2 caption: seed2 p=0.03"}
+  resolution: "Caption updated with p=0.03"
+  resolution_round: 1
+
+- id: DATA-P0-1
+  summary: "seed5 step10 数据错误：论文 25.37% vs Registry 29.10%"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - {round: 2, reviewers: [audit], note: "数据审计发现 seed5 step10 论文写 25.37% 但 Registry 有 29.10%"}
+    - {round: 2, action_taken: "Table 2, Table 7, discussion.tex 中 seed5 值修正为 29.10%"}
+  resolution: "All seed5 values corrected to 29.10%"
+  resolution_round: 3
+
+- id: DATA-P0-2
+  summary: "Window sweep 混用 ID/OOD 评测集未标注"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - {round: 2, reviewers: [audit], note: "h=10/h=20 on 32-task ID set, episode-level on 134-task OOD set, same figure without annotation"}
+    - {round: 2, action_taken: "Figure 2(b) caption 和正文标注 ID vs OOD 评测集差异"}
+  resolution: "Figure caption annotated with ID vs OOD distinction"
+  resolution_round: 3
+
+- id: R1-W5
+  summary: "52.07% credit agreement rate 统计显著性有误导性"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 4
+  mentions:
+    - {round: 2, reviewers: [R1], note: "称 52.07% 与 50% 无异但未报告 binomial test p-value"}
+    - {round: 2, action_taken: "报告 n=3000, p=0.025, Wilson CI [50.3%, 53.9%]"}
+    - {round: 3, reviewers: [R1, R2], note: "52% vs 50% marginal significance，confirms causal driver 措辞过强。"}
+    - {round: 3, action_taken: "causal driver → consistent with primary contributor"}
+    - {round: 4, reviewers: [R1, R2], note: "p=0.025 统计显著但 effect size 极小，可能误导。"}
+    - {round: 6, note: "Round 6 未提及。当前表述含 Cohen's h=0.041 + substantively small (+2pp)，措辞已校准。"}
+  action_items:
+    - {round: 5, action: "弱化措辞：marginally above chance (Cohen's h=0.041) / substantively small (+2pp)", assigned_to: paper_agent, status: done}
+  resolution: "Section 5.4 已含 Cohen's h=0.041 和 substantively small (+2pp) 表述。Round 5-7 未再提及。"
+  resolution_round: 5
+
+- id: R1-W6
+  summary: "SFT baseline 训练细节缺失"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - {round: 2, reviewers: [R1], note: "2,546 demonstrations 来源未说明，SFT 超参数未提供"}
+    - {round: 2, action_taken: "Appendix 补充 SFT 训练细节"}
+    - {round: 3, note: "本轮未被任何 Reviewer 提及，确认已修复"}
+  resolution: "SFT training details added to appendix, not flagged in Round 3-7"
+  resolution_round: 3
+
+- id: R3-W1
+  summary: "缺乏与同期方法（HCAPO/Turn-PPO 等）的任何实验对比"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 3
+  last_seen_round: 3
+  mentions:
+    - {round: 3, reviewers: [R1, R2], note: "Related Work 讨论 15+ 方法但实验零对比。"}
+    - {round: 3, action_taken: "合并到 R2-N1 处理"}
+  resolution: "合并到 R2-N1。Round 4-7 中 R2-N1 持续 open。"
+  resolution_round: 3
+
+- id: R3-W6
+  summary: "Conclusion 泛化声明超出实验证据"
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 3
+  last_seen_round: 7
+  mentions:
+    - {round: 3, reviewers: [R1, R2], note: "applies to any agent RL method 远超实验范围。"}
+    - {round: 3, action_taken: "缩窄到 methods combining step-level windowing, sparse reward, and group-relative normalization"}
+    - {round: 5, reviewers: [R1, R2], note: "Discussion 有 qualifier 但 Conclusion line 586-588 仍写 any method 无 qualifier。与 R4-W4 合并追踪。"}
+    - {round: 6, note: "合并至 R4-W4 追踪。R1-W3 再次指出 overclaiming。"}
+    - {round: 7, note: "合并至 R4-W4 和 R7-W2 追踪。"}
+  action_items:
+    - {round: 5, action: "合并到 R4-W4 处理", assigned_to: paper_agent, status: in_progress}
+  resolution: ""
+  resolution_round: null
+
+- id: R4-W5
+  summary: "Missing references: DAPO, VAPO, PRIME → Round 5 已确认引用"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 4
+  last_seen_round: 5
+  mentions:
+    - {round: 4, reviewers: [R1, R2], note: "R2 提出 3 篇缺失引用。R1 全部 AGREE。"}
+    - {round: 5, reviewers: [R1, R2], note: "Round 5 确认 DAPO/VAPO/PRIME/Ahmadian et al. 2024 均已在 Section 5 引用。"}
+  resolution: "Round 5 确认全部已引用。"
+  resolution_round: 5
+
+- id: R5-W2
+  summary: "Conclusion 正文溢出 page 9（约 4 行），轻微违反 EMNLP 2026 8 页限制"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 5
+  last_seen_round: 5
+  mentions:
+    - {round: 5, reviewers: [R1, R2], note: "Section 7 Conclusion 约 4 行溢出到 page 9。修复容易。"}
+    - {round: 6, note: "Round 6 未提及。Conclusion 已压缩 + float spacing 调整后正文 8 页达标。"}
+  action_items:
+    - {round: 5, action: "压缩 Related Work 或 Discussion 腾出空间", assigned_to: paper_agent, status: done}
+  resolution: "Conclusion 压缩 + Discussion concurrent methods 段落缩短 + float spacing 调整。Round 6-7 视觉确认正文 8 页。"
+  resolution_round: 6

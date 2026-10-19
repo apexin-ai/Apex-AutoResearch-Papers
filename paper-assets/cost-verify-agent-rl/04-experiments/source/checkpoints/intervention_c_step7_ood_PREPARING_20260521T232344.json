@@ -1,0 +1,54 @@
+{
+  "exp_id": "intervention_c_step7_ood",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T22:54:26.515Z",
+    "updated_at": "2026-05-21T23:23:44.027Z",
+    "spec": {
+      "command": "bash -c \"rm -rf /tmp/fast_downward_* /tmp/ray/session_latest* 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && export WANDB_PROJECT=cost-verify-agent-rl && export RAY_ADDRESS=local && export CUDA_VISIBLE_DEVICES=0 && python train.py --config-name _alfworld_intervention_c_ood_eval\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "895615",
+      "log_path": "~/runs/cost-verify-agent-rl/intervention_c_step7_ood.log",
+      "submitted_at": "2026-05-21T22:54:26.154Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Intervention-C (hard cap: 512 tokens/turn + 20 turns) step 7 (final, collapsed) achieves low OOD generalization, consistent with other collapsed seeds showing low OOD despite some train success.",
+    "parent": "intervention-c-hard-cap",
+    "reproduce": {
+      "finished_at": "2026-05-21T23:18:29.604Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T23:18:32.894345+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ood_pass_at_1": 0.1493,
+      "ood_action_is_valid": 0.663,
+      "ood_num_actions": 43.67,
+      "ood_response_length": 6365.6,
+      "ood_action_is_effective": 1,
+      "ood_reward_mean": 1.493,
+      "eval_tasks": 134,
+      "eval_time_seconds": 1370
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/qwen_intervention_c_hard_cap_step7_hf",
+    "log_path": "/root/runs/cost-verify-agent-rl/intervention_c_step7_ood.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T23:23:44.323839+00:00",
+  "trigger": "update_registry"
+}

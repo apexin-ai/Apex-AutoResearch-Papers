@@ -1,0 +1,16 @@
+{
+  "exp_id": "scienceworld_grpo_cell_c_v4b",
+  "project": "cost-verify-agent-rl",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:11:39.662Z",
+    "updated_at": "2026-05-22T04:12:02.890Z",
+    "hypothesis": "ScienceWorld episode-level GRPO (Cell C) with task filtering (21/30 tasks with SFT success >10%), group_size=16, JVM -Xmx8g. Retry of v4 which failed due to model_path missing 'qwen' (symlink fix applied). Cross-environment validation of episode-level RL.",
+    "parent": "scienceworld_grpo_cell_c_v4"
+  },
+  "timestamp": "2026-05-22T04:12:03.193636+00:00",
+  "trigger": "update_registry"
+}

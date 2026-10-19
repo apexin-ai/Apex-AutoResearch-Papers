@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15be7d0999ea09ad9e89",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diag scienceworld sft eval v2",
+  "task_key": "worker_diag_scienceworld_sft_eval_v2_20260520T000103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_scienceworld_sft_eval_v2_20260520T000103_result.json",
+    "occurrence": 1,
+    "bytes": 883,
+    "sha256": "add3ab7d76443b022106512616fb7b20a7dd61468b34601e2a0f8259eb2e4a83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/scienceworld_sft_eval_v2/report/diag_eval_v2.md`。\n\n**诊断结论**：\n\n- **根因**：原始脚本（`.bak`，325行）无 per-episode timeout、无 resume、无 error recovery。ScienceWorld Py4J gateway deadlock 时，Python 阻塞在 socket read 上无限 hang，不是 crash 而是 hang，所以日志无错误信息。\n- **修复已到位**：当前脚本（421行）已加入 `signal.alarm(300)` timeout + `--resume` + gateway kill/rebuild 机制，进程稳定运行中（PID 195853，episode 465/1796）。\n- **数据可用**：465 条 JSONL 记录全部有效（0 error，0 timeout，0 重复），35.9% success rate，无需从头跑。\n- **剩余风险**：env 重建 (`ScienceWorldEnv(\"\")`) 本身不在 alarm 保护范围内，如果 init 也 deadlock 会再次 hang。预计还需 ~18h 完成全部 1796 episodes。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-scienceworld-sft-eval-v2.md"
+}

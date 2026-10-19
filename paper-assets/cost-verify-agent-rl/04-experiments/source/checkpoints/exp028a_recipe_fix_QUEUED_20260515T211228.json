@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp028a_recipe_fix",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:08:53.131Z",
+    "updated_at": "2026-05-15T21:12:28.170Z",
+    "hypothesis": "invalid_action_penalty (-0.1) 为全失败 GRPO group 提供非零方差梯度信号。从 exp021 SFT checkpoint (6.25% success) 出发，仅增加 invalid_action_penalty_coef=0.1，其余参数与 exp027 完全一致。预期：penalty 让失败 trajectory 间有区分（invalid action 多=reward更低），解决 ~43% group 零梯度问题。Pass: success ≥20%（稳定，非瞬时 peak）。",
+    "parent": "exp027_stable_grpo",
+    "wandb_run_id": "lu42su82"
+  },
+  "timestamp": "2026-05-15T21:12:28.284765+00:00",
+  "trigger": "update_registry"
+}

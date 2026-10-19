@@ -1,0 +1,36 @@
+{
+  "exp_id": "gsweep_g095_h5_seed1",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:56:55.994Z",
+    "updated_at": "2026-05-18T13:09:34.521Z",
+    "hypothesis": "γ=0.95 with h=5 is the control condition matching hsweep_h5. Early windows retain γ^9 ≈ 0.95^9 ≈ 63% of terminal return. Expected to reproduce h5 behavior from h-sweep.",
+    "parent": "hsweep_h2_seed1",
+    "spec": {
+      "command": "bash launch_gsweep.sh g095 \"2,3\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": 416289,
+      "data_path": "ALFWorld",
+      "data_count": "134 train tasks",
+      "model_name": "Qwen3-1.7B",
+      "seed": 10000,
+      "wandb_run_id": "d3irreww",
+      "checkpoint_source": "Qwen3-1.7B base",
+      "eval_data": "ALFWorld val 32 tasks",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/gsweep-g095-h5-seed1/",
+      "log_path": "/root/autodl-tmp/cost-verify-agent-rl/RAGEN/outputs/"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-18T13:09:34.521Z"
+  },
+  "timestamp": "2026-05-18T13:09:34.669351+00:00",
+  "trigger": "update_registry"
+}

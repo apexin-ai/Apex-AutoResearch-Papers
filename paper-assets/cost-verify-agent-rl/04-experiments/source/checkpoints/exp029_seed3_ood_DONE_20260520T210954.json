@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp029_seed3_ood",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T19:57:11.789Z",
+    "updated_at": "2026-05-20T21:09:53.849Z",
+    "spec": {
+      "command": "bash -c \"... python train.py --config-name _alfworld_exp029_seed3_ood\"",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "265901",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_seed3_ood.log",
+      "submitted_at": "2026-05-20T19:57:11.483Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "qwen3_exp021_ragen_sft_v4",
+      "seed": 3,
+      "data_path": "AlfworldSG_OOD (134 valid_unseen)",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/exp029-seed3/global_step_5",
+      "eval_data": "AlfworldSG_OOD (134 valid_unseen tasks)",
+      "data_count": 134,
+      "checkpoint_path": "N/A (eval failed)",
+      "failure_reason": "RuntimeError: FSDP checkpoint device mismatch - optimizer step found tensors on cuda:0 and cpu. RAGEN train.py runs optimizer step during eval flow, incompatible with FSDP 2-GPU checkpoint loaded on different topology.",
+      "wall_clock_seconds": 4362.4,
+      "gpu_hours": 2.42
+    },
+    "hypothesis": "Evaluate exp029_seed3_v2 checkpoint (global_step_5) on 134 OOD tasks (valid_unseen) to provide cross-seed OOD generalization evidence. Seed 1 OOD=23.88% at step 15.",
+    "parent": "exp029_seed3_v2",
+    "conclusion": "failed",
+    "completed_at": "2026-05-20T21:09:53.850Z"
+  },
+  "timestamp": "2026-05-20T21:09:54.087628+00:00",
+  "trigger": "update_registry"
+}

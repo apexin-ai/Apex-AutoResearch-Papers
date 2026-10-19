@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp029_seed2_ood_reeval",
+  "project": "cost-verify-agent-rl",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T02:38:28.552Z",
+    "updated_at": "2026-05-19T02:38:43.863Z",
+    "hypothesis": "Evaluate exp029_seed2 step 30 checkpoint (val peak 31.25%) on 134 OOD tasks (valid_unseen) to get cross-seed OOD comparison with seed1 (23.88%). Paper table requires both seeds.",
+    "parent": "exp029_seed2_westd_resume"
+  },
+  "timestamp": "2026-05-19T02:38:44.015222+00:00",
+  "trigger": "update_registry"
+}

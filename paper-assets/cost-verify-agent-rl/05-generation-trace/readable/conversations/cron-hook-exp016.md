@@ -1,0 +1,1573 @@
+# cron hook exp016
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 50
+- **Recorded user turns:** 1
+- **Tool calls:** 24
+- **Original source:** `logs/chats/cron_hook_exp016.jsonl`
+- **Structured JSON:** [`264b66830834ea0d32ac.json`](../../sessions/26/264b66830834ea0d32ac.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+50 recorded events
+
+### User
+
+_source line 1 · 2026-05-14T15:04:06.058367+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: exp016
+- project: cost-verify-agent-rl
+- server: bjb1-17606
+- log_path: ~/runs/cost-verify-agent-rl/exp016.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp016",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-14T15:04:19.282042+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__get_project_resource_usage",
+  "max_results": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__get_project_resource_usage",
+    "max_results": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-14T15:04:19.284059+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "ToolSearch",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T15:04:22.446405+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T15:04:22.998517+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T15:04:23.051057+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp016\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:44:58.883Z\", \"updated_at\": \"2026-05-14T15:04:04.809Z\", \"hypothesis\": \"LR 折中方案：LR=5e-7（exp012b 1e-6 collapse vs exp015 1e-7 零梯度的中间值）。kl_loss_coef=0.1, max_grad_norm=1.0 保持。纯 sparse reward（won=10.0，无 bonus，无 format_penalty）。从 exp015/global_step_5 checkpoint 恢复，GRPO 30 步。\", \"parent\": \"exp015\", \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"started_at\": \"2026-05-14T13:52:42.492Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/cost-verify-agent-rl/scripts/run_exp016.sh\\\"\", \"finished_at\": \"2026-05-14T15:04:04.459Z\", \"training_hours\": 1.19}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/cost-verify-agent-rl/scripts/run_exp016.sh\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"343927\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp016.log\", \"submitted_at\": \"2026-05-14T13:53:45.002Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 4219.8, \"gpu_hours\": 2.34}, \"pid\": \"343927\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp016.log\", \"metrics\": {\"step\": 12, \"total_steps\": 30, \"elapsed_min\": 51, \"step6_success\": 0, \"step6_action_is_valid\": 0.521, \"step6_pg_loss\": 0, \"step6_grad_norm\": 0.841, \"step7_success\": 0.047, \"step7_pass_at16\": 0.5, \"step7_action_is_valid\": 0.655, \"step10_success\": 0, \"step10_action_is_valid\": 0.664, \"step10_pg_loss\": 0, \"step10_grad_norm\": 0.856, \"step10_entropy\": 0.1046, \"step10_ppo_kl\": -9.1e-05, \"all_raw_rewards\": 0, \"all_advantages\": 0, \"all_returns\": 0, \"reward_signal\": \"BROKEN — succe
+…[truncated 39150 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 604
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T15:04:23.051578+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 53
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-14T15:04:23.353179+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T15:04:23.905927+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-14T15:04:05Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 28 个实验 — DONE 18, PREPARING 10\\n**DONE 分布**: failed 11, killed 5, negative 1, success 1\\n\\n### GPU 占用\\n- **分配**: 2 张 — bjb1-17606:cuda:0, bjb1-17606:cuda:1\\n- **空闲（分配了没跑）**: bjb1-17606:cuda:0, bjb1-17606:cuda:1\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `exp016` [failed] — 2026-05-14T15:04:04 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp015` [killed] — 2026-05-14T13:44:57\\n- `exp013f` [negative] — 2026-05-14T12:33:43\\n- `exp013e` [failed] — 2026-05-14T09:21:08\\n- `exp013d` [failed] — 2026-05-14T08:52:25 — EXIT_CODE=1 (generic error — check log tail)\\n\\n### 🔴 最近失败原因 (top 3)\\n- `exp016`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp015`: _(no failure_reason — pre-2026-04-24 entry)_\\n- `exp013e`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp014b: 极低 Dense Reward: valid_action_bonus=0.01（1:1000 比例），测试极弱 bonus 能否防 collapse 又不引发 gaming。如果 bonus 弱到不影响 GRPO reward ranking，模型不会被诱导走捷径。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。（准备中）\\n- exp014a: Success-Gated Dense Reward: valid_action_bonus=0.15 只在 group 内至少一条 trajectory success 时才给。消除 reward gaming 的独立最大化路径——没有 success 就没有 bonus，模型必须探索 success。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。（准备中）\\n- exp014c: Success-gated valid_action_bonus：bonus 仅在 episode 成功时累加到 reward，消除独立最大化路径。valid_action_bonus=0.15, success_reward=10.0。解决 exp013f reward gaming（unconditional bonus 导致 agent 放弃 success 追求 valid action）。从 step 5 che
+…[truncated 1816 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 552
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T15:04:24.008535+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "cost-verify-agent-rl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T15:04:24.009009+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\", \"content\": \"# cost-verify-agent-rl — Research Dashboard\\n\\n> 最后更新: 2026-05-14 13:51 UTC | 更新原因: D014: kill exp015, exp016 准备中, expert trajectory 收集 65%\\n\\n## 核心方向\\n训练 agent 学会\\\"何时验证\\\"：B-IAVR 用 action 是否因 self-guidance 而改变作为行为信号，结合 Lagrangian 预算控制。基于 Self-Guide（always-on self-guidance via GRPO）扩展。\\n\\n## 阶段\\n**MVP 验证中** — Phase A LR 寻优，exp016 准备中\\n\\n## GPU 速率（实测）\\n- 硬件：2× RTX PRO 6000 Blackwell 94GB @ bjb1-17606\\n- GRPO 30 步：~5.6 min/step ≈ 2.8h\\n- SFT：~30 min 单卡\\n\\n## MVP 状态\\n\\n### Phase A: Always-On Self-Guidance 基线\\n\\n**LR 搜索区间已确定**：\\n- LR=1e-6（exp012b）：有信号（success 8.6%），但 step 7 catastrophic collapse（grad_norm 1.48→0.09）\\n- LR=1e-7（exp015）：无 collapse（grad_norm 稳定），但无有效学习（step 3-5 连续零梯度）\\n- **LR=5e-7（exp016）**：折中方案，保留 KL=0.1 + grad_clip=1.0 稳定措施\\n\\n**实验历程**：\\n- exp008_sft → ✅ SFT warmup（action_is_valid 8%→90%）\\n- exp010 → ❌ format_penalty 劫持梯度\\n- exp012b → ❌ sparse reward, LR=1e-6, collapse at step 7\\n- exp013f → ❌ dense reward gaming（action_is_valid→97.5%, success→0%）。验证了 GRPO 学习能力 + 基础设施修复\\n- exp015 → ❌ sparse reward, LR=1e-7, 无有效学习（3/5 步零梯度）。验证了 collapse 修复有效\\n- **exp016 → 准备中** — sparse reward, LR=5e-7, 从 exp015 step 5 恢复\\n\\n**并行进行**：\\n- Expert trajectory 收集：ALFWorld PDDL expert, ~1146/1759 条（65%），CPU-only\\n- 文献调研完成：SPEAR/DAPO/Dr.GRPO/AR3PO 备选方案已评估\\n\\n### Phase A 判定标准\\n- **PASS**: ALFWorld success ≥ 20%\\n\\n### Phase B: B-IAVR（被 Phase A 阻塞）\\n- 代码就绪（68 tests passed）\\n- FSDP→HF 转换脚本就绪\\n- 等 Phase A checkpoint\\n\\n## 近期任务\\n- [ ] 清理 exp015 Ray 残留进程 → 启动 exp016\\n- [ ] 监控 exp016 step 6-7 kill/go\\n- [ ] Expert trajectory 收集完成后验证数据质量\\n- [ ] 如 exp016 失败：(a) expert SFT 强化 warmup → sparse GRPO 或 (b) DAPO+AR3PO 方案\\n\\n## GPU 预算\\n- 分配：bjb1-17606 cuda:0, cuda:1\\n- 已消耗：~22h（exp003-015 系列）\\n- exp016 预估：~3h\\n- 全项目上限：200h H100-equivalent\\n\\n## 关键风险\\n1. **LR 微调可能是死胡同**：5e-7 不一定
+…[truncated 1313 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T15:04:24.060792+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "cost-verify-agent-rl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T15:04:24.211988+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"bjb1-17606\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"bjb1-17606\", \"gpu_id\": \"cuda:1\"}], \"actually_running_gpus\": [], \"allocated_but_idle\": [{\"server\": \"bjb1-17606\", \"gpu_id\": \"cuda:0\", \"idle_min\": null}, {\"server\": \"bjb1-17606\", \"gpu_id\": \"cuda:1\", \"idle_min\": null}], \"running_experiments\": [], \"worker_pool\": {\"total\": 1, \"gpu_tasks\": 0, \"cpu_tasks\": 1, \"details\": [{\"worker_id\": \"worker_diagnose_reward-function-bug_20260514T145624\", \"task\": \"diagnose:reward-function-bug\"}]}, \"summary\": \"分配 2 张, 实际跑 0 张 ⚠️ | Worker 1 (GPU 0 / CPU 1)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T15:04:54.773904+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T15:04:54.874764+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_e319ac11.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "Read",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T15:04:54.925275+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T15:04:54.976209+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_e319ac11.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T15:04:58.246189+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*on-experiment-failed*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*on-experiment-failed*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T15:04:58.647946+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "Glob",
+  "elapsed_ms": 401
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-14T15:04:58.648410+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T15:04:58.698804+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T15:05:01.414801+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/*.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T15:05:01.516536+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "Glob",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T15:05:04.530920+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T15:05:04.682723+00:00_
+
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/resources/beta/skills/__init__.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/resources/beta/skills/skills.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/resources/beta/skills/versions.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_create_response.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_create_params.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/__init__.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_list_params.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_retrieve_response.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_list_response.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_delete_response.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/dependencies.md
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/SKILL.md
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/other-tools.md
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/streaming.md
+/home/ubuntu/agent-ml-research/core/skills/evolution.py
+/home/ubuntu/agent-ml-research/core/skills/__init__.py
+/home/ubuntu/agent-ml-research/core/skills/tracker.py
+/home/ubuntu/agent-ml-research/core/skills/loader.py
+/home/ubuntu/agent-ml-research/core/skills/plugin_loader.py
+/home/ubuntu/agent-ml-research/skills/global/code-survey.skill.md
+/home/ubuntu/agent-ml-resear
+…[truncated 5730 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "Glob",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T15:05:07.950711+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T15:05:07.951486+00:00_
+
+1	---
+2	name: on-experiment-failed
+3	description: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。
+4	scope: global
+5	tags:
+6	- workflow
+7	- diagnosis
+8	- cron-hook
+9	tools:
+10	- read_registry
+11	- tail_training_logs
+12	- update_registry
+13	- append_idea
+14	- feishu_send_result_card
+15	- spawn_worker
+16	- check_job_status
+17	version: 4
+18	heavy: true
+19	roles:
+20	- agent
+21	---
+22	
+23	# 实验失败诊断工作流
+24	
+25	## 触发方式
+26	由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。
+27	
+28	## 步骤
+29	
+30	### Step 0: 读取项目上下文（诊断前必须执行）
+31	先读文档，再看日志——否则诊断方向可能完全错误：
+32	
+33	- `read_project_file("memory.md")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案
+34	- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构
+35	
+36	读完后检查：
+37	- memory.md 里有没有"此类实验曾失败，原因是 X"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程
+38	- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）
+39	
+40	### Step 1: 了解失败背景
+41	- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path
+42	
+43	### Step 2: 浅层日志诊断
+44	有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)
+45	- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback
+46	- 没找到 → 增加行数再查
+47	
+48	### Step 2.5: 深查（满足以下任一条件时 spawn_worker）
+49	- 运行时长 < 5 分钟（初始化阶段崩溃）
+50	- tail 日志中未见明确 Traceback 或错误行
+51	- 同类实验连续失败 ≥ 2 次
+52	
+53	```python
+54	spawn_worker(
+55	    task_type="diagnose:{exp_id}",
+56	    task_prompt="""SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。
+57	
+58	项目路径：{project_path}（绝对路径）
+59	日志路径：{log_path}（可能为空）
+60	
+61	执行步骤（按顺序，有结论就停）：
+62	
+63	1. 如果有日志路径：
+64	   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）
+65	   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）
+66	   - 日志文件不存在：说明任务启动即失败，跳到步骤 2
+67	
+68	2. 日志无错误或无日志时，检查基础设施：
+69	   - 入口文件是否存在
+70	   - 激活环境并验证 import
+71	   - 检查 configs/ 目录
+72	
+73	3. 检查磁盘/内存（OOM 类）
+74	
+75	最后输出一行 JSON：
+76	{"root_cause":"<引用具体报错行>","error_type":"infrastructure|hyperparameter|resource|data","fix_steps":["步骤1","步骤2"],"can_auto_fix":true}""",
+77	    tool_groups=["ssh"],
+78	)
+79	```
+80	
+81	Worker 返回后，以其结论作为 Step 3 的诊断依据。
+82	
+83	### 
+…[truncated 1766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-14T15:05:07.951814+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T15:05:08.002674+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-14T15:05:26.348713+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T15:05:27.353587+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\", \"content\": \"# Project Memory\\n\\n## 2026-05-14: ALFWorld 训练入口点（踩坑）\\n\\n### 正确入口\\n- **训练**: `python train.py --config-name=&lt;config_name>`\\n- **评估**: `python -m ragen.llm_agent.agent_proxy --config-name=&lt;config_name>`\\n\\nexp012 误用 agent_proxy 入口启动训练，导致 vLLM 参数不兼容崩溃（agent_proxy.py:58 的 `disable_mm_preprocessor_cache=True` 在 vLLM 0.18.1 不支持）。后续训练实验一律用 `train.py`。\\n\\n## 2026-05-14: ALFWorld score 是纯二值 0/1\\n\\n### 关键发现\\n- ALFWorld `infos[\\\"score\\\"]` 等价于 `won`，不提供连续进度信号\\n- 根源：ALFWorld 用 PddlEnv，goal 是 conjunction，所有 predicates 同时满足才 won=1\\n- TextWorld 的 `intermediate_reward` 仅在 tw.py（标准 TextWorld env）中实现，PddlEnv 不支持\\n- 实测全部 6 种任务类型 walkthrough，score 序列都是 [0,0,...,0,1]\\n\\n### 影响\\nD008 的 A1（进度奖励）前提不成立。替代方案需自行设计 reward shaping（walkthrough 匹配 / PDDL facts 子目标），但引入鼓励模仿/局部最优风险。\\n\\n## 2026-05-14: SFT Warmup 调研完成\\n\\n### 核心问题\\nQwen3-1.7B base 模型不输出 `&lt;think>...&lt;/think>&lt;answer>...&lt;/answer>` 标签，导致 RAGEN action 解析 100% 失败。需要 SFT warmup 教模型输出正确格式后再接 GRPO。\\n\\n### RAGEN 代码现状\\n- **RAGEN 无内置 SFT 训练脚本**，只有 RL 训练流程（GRPO/PPO）\\n- 需要外部工具（如 LLaMA-Factory、ms-swift）做 SFT\\n- RAGEN 的 ALFWorld 配置使用 `AlfworldSG` tag，system prompt 包含 self-guidance assessment 要求\\n- 格式: `&lt;think> [reasoning] &lt;/think> &lt;answer> [action] &lt;/answer>`\\n\\n### 可用公开数据集\\n- `u-10bei/sft_alfworld_trajectory_dataset` (v1-v5): 模板合成轨迹\\n- `yijunyang/alfworld-sft-dataset`: ALFWorld SFT 数据\\n- `agent-eto/eto-sft-trajectory`: Agent 轨迹 SFT 数据\\n\\n### 文献参考\\n- \\\"Warm Up Before You Train\\\" (EMNLP 2025): 50-100 条 target domain 数据 + domain-agnostic warmup\\n- SkillRL (ICLR 2026): 用 LLaMA-Factory 做 SFT，已开源 SFT 数据生成代码\\n- AgentGym-RL: SFT + progressive horizon RL pipeline\\n\\n## 2026-05-14: /tmp 磁盘满 — 两次崩溃的完整修复\\n\\n### 失败模式（两次触发路径不同）\\n| 实验 | 触发路径 | Step |\\n|------|---------|------|\\n| exp007 | Ray session files 写入 /tmp/ray | Step 10 |\\n| exp010 | fast_downwa
+…[truncated 10909 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1004
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-14T15:05:27.454482+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__feishu_send_result_card,mcp__agent-ml-research__list_workers",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__feishu_send_result_card,mcp__agent-ml-research__list_workers",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T15:05:27.505088+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-14T15:05:34.642016+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "exp_id": "exp016",
+  "project": "cost-verify-agent-rl",
+  "n": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "exp_id": "exp016",
+    "project": "cost-verify-agent-rl",
+    "n": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T15:05:34.692644+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T15:05:35.697710+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"\\u001b[36m(TaskRunner pid=347187)\\u001b[0m Training with 3553 games\", \"\\u001b[36m(TaskRunner pid=347187)\\u001b[0m Checkpoint tracker file does not exist: /root/autodl-tmp/checkpoints/exp016/latest_checkpointed_iteration.txt\", \"\\u001b[36m(TaskRunner pid=347187)\\u001b[0m Load from checkpoint folder: /root/autodl-tmp/checkpoints/exp015/global_step_5\", \"\\u001b[36m(TaskRunner pid=347187)\\u001b[0m Setting global step to 5\", \"\\u001b[36m(TaskRunner pid=347187)\\u001b[0m Resuming from /root/autodl-tmp/checkpoints/exp015/global_step_5\", \"\\u001b[36m(TaskRunner pid=347187)\\u001b[0m Warning: No dataloader state found at /root/autodl-tmp/checkpoints/exp015/global_step_5/data.pt, will start from scratch\", \"\\u001b[36m(TaskRunner pid=347187)\\u001b[0m test_gen_batch meta info: {'eos_token_id': 151645, 'pad_token_id': 151643, 'recompute_log_prob': False, 'do_sample': True, 'validate': True}\", \"\\u001b[36m(TaskRunner pid=347187)\\u001b[0m Initializing AlfredTWEnv...\", \"\\u001b[36m(WorkerDict pid=347388)\\u001b[0m kwargs: {'n': 1, 'logprobs': 0, 'max_tokens': 1024, 'repetition_penalty': 1.0, 'detokenize': False, 'temperature': 1.0, 'top_k': -1, 'top_p': 1, 'ignore_eos': False}\", \"\\u001b[36m(WorkerDict pid=347388)\\u001b[0m Actor use_remove_padding=False\", \"\\u001b[36m(TaskRunner pid=347187)\\u001b[0m Overall we have 140 games in split=eval_in_distribution\", \"\\u001b[36m(TaskRunner pid=347187)\\u001b[0m Evaluating with 140 games\", \"\\u001b[36m(TaskRunner pid=347187)\\u001b[0m validation generation time: 42.19774055480957 seconds\", \"\\u001b[36m(TaskRunner pid=347187)\\u001b[0m (\\\"Initial validation metrics: {'val-env/AlfworldSG/success': np.float64(0.0), \\\"\", \"\\u001b[36m(TaskRunner pid=347187)\\u001b[0m  \\\"'val-env/AlfworldSG/num_actions': np.float64(30.0), \\\"\", \"\\u001b[36m(TaskRunner pid=347187)\\u001b[0m  \\\"'val-env/AlfworldSG/episodic_return': np.float64(0.0), \\\"\", \"\\u00
+…[truncated 7076 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 1055
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T15:05:35.698311+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_diagnose_reward-function-bug_20260514T145624\", \"task_type\": \"diagnose:reward-function-bug\", \"project\": \"cost-verify-agent-rl\", \"status\": \"running\", \"started_at\": \"2026-05-14T14:56:24.303079+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 1005
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-14T15:06:15.177350+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp016",
+  "field": "notes",
+  "value": "D015 kill。进程被 SIGKILL (OOM 或手动 kill)，step 13/30。**Reward function bug 确认**：step 7 success=4.7% 但 reward=0（应为 10.0）。13 步全部 rewards/advantages/returns=0，pg_loss=0。action_is_valid 趋势 52.1%→66.9%（模型在学有效命令但无 RL 信号）。Worker `worker_diagnose_reward-function-bug_20260514T145624` 正在诊断代码 bug。LR=5e-7 + KL=0.1 + grad_clip=1.0 的稳定性措施未得到验证（无 reward 信号无法判断）。",
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp016",
+    "field": "notes",
+    "value": "D015 kill。进程被 SIGKILL (OOM 或手动 kill)，step 13/30。**Reward function bug 确认**：step 7 success=4.7% 但 reward=0（应为 10.0）。13 步全部 rewards/advantages/returns=0，pg_loss=0。action_is_valid 趋势 52.1%→66.9%（模型在学有效命令但无 RL 信号）。Worker `worker_diagnose_reward-function-bug_20260514T145624` 正在诊断代码 bug。LR=5e-7 + KL=0.1 + grad_clip=1.0 的稳定性措施未得到验证（无 reward 信号无法判断）。",
+    "project": "cost-verify-agent-rl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T15:06:15.730068+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp016\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:44:58.883Z\", \"updated_at\": \"2026-05-14T15:06:15.247Z\", \"hypothesis\": \"LR 折中方案：LR=5e-7（exp012b 1e-6 collapse vs exp015 1e-7 零梯度的中间值）。kl_loss_coef=0.1, max_grad_norm=1.0 保持。纯 sparse reward（won=10.0，无 bonus，无 format_penalty）。从 exp015/global_step_5 checkpoint 恢复，GRPO 30 步。\", \"parent\": \"exp015\", \"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"bjb1-17606\", \"gpu\": \"cuda:0,cuda:1\", \"started_at\": \"2026-05-14T13:52:42.492Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/cost-verify-agent-rl/scripts/run_exp016.sh\\\"\", \"finished_at\": \"2026-05-14T15:04:04.459Z\", \"training_hours\": 1.19}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/cost-verify-agent-rl/scripts/run_exp016.sh\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"343927\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp016.log\", \"submitted_at\": \"2026-05-14T13:53:45.002Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 4219.8, \"gpu_hours\": 2.34}, \"pid\": \"343927\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp016.log\", \"metrics\": {\"step\": 12, \"total_steps\": 30, \"elapsed_min\": 51, \"step6_success\": 0, \"step6_action_is_valid\": 0.521, \"step6_pg_loss\": 0, \"step6_grad_norm\": 0.841, \"step7_success\": 0.047, \"step7_pass_at16\": 0.5, \"step7_action_is_valid\": 0.655, \"step10_success\": 0, \"step10_action_is_valid\": 0.664, \"step10_pg_loss\": 0, \"step10_grad_norm\": 0.856, \"step10_entropy\": 0.1046, \"step10_ppo_kl\": -9.1e-05, \"all_raw_rewards\": 0, \"all_advantages\": 0, \"all_returns\": 0, \"reward_signal\": \"BROK
+…[truncated 864 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 552
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-14T15:06:18.741683+00:00_
+
+called mcp__agent-ml-research__feishu_send_result_card
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__feishu_send_result_card</summary>
+
+```json
+{
+  "exp_id": "exp016",
+  "conclusion": "failed",
+  "key_metrics": "{'steps_completed': '13/30', 'success': '0% (all steps)', 'step7_success': '4.7% but reward=0', 'action_is_valid': '52.1%→66.9%', 'pg_loss': 0, 'all_rewards': 0, 'crash': 'SIGKILL'}",
+  "baseline_comparison": "Reward function bug: 成功 episode 获得 reward=0 而非 10.0。13 步零 RL 信号。LR=5e-7 稳定性未验证。Worker 正在诊断 reward function 代码 bug。D016 决策: Pivot to Expert SFT warmup。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__feishu_send_result_card",
+  "tool_args": {
+    "exp_id": "exp016",
+    "conclusion": "failed",
+    "key_metrics": "{'steps_completed': '13/30', 'success': '0% (all steps)', 'step7_success': '4.7% but reward=0', 'action_is_valid': '52.1%→66.9%', 'pg_loss': 0, 'all_rewards': 0, 'crash': 'SIGKILL'}",
+    "baseline_comparison": "Reward function bug: 成功 episode 获得 reward=0 而非 10.0。13 步零 RL 信号。LR=5e-7 稳定性未验证。Worker 正在诊断 reward function 代码 bug。D016 决策: Pivot to Expert SFT warmup。"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T15:06:21.860480+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6f6a001590a8b4c6c9729a42eca\", \"chat_id\": \"oc_4ebf0fb2d0159caa355a1a855f5ac59f\", \"msg_type\": \"interactive\", \"next_required_steps\": \"飞书卡片已发出。请立即完成剩余步骤（不可跳过）： (1) 如有跨实验价值的教训/约定 → save_project_file(file='memory.md', ...) 追加一行； (2) move_idea — 将实验从 IN_PROGRESS 移到对应区块。\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__feishu_send_result_card",
+  "elapsed_ms": 3118
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-14T15:06:47.124206+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际跑 0 ⚠️ | Worker 池 1 (GPU 0 / CPU 1)\n\n## exp016 失败诊断\n\n**崩溃原因**: 进程被 SIGKILL，step 13/30（D015 kill 或 cgroup OOM）。\n\n**核心问题 — Reward function bug**:\n- step 7 出现 success=4.7% (pass@16=50%)，但 reward 仍为 0（应为 10.0）\n- 13 步全部 rewards/advantages/returns = 0，pg_loss = 0\n- action_is_valid 持续上升 52.1%→66.9%，但无 RL 信号驱动\n\n**诊断**: 纯 sparse reward 配置下（won=10.0, 无 bonus），成功 episode 的 reward 未正确传递。Worker `worker_diagnose_reward-function-bug` 正在定位代码 bug。\n\n**实验系列总结 (exp012b→exp015→exp016)**:\n- exp012b: LR=1e-6 有信号(8.6%) 但 step 7 collapse\n- exp015: LR=1e-7 无 collapse 但零梯度\n- exp016: LR=5e-7 reward function bug，**LR 搜索本身未得到验证**\n\n**对比 exp013f**: exp013f dense reward 能正确传递(action_is_valid→97.5%)，说明 reward 传递链路在 dense 模式下正常，但 sparse 模式（纯 won=10.0）下存在 bug。\n\n**建议**:\n1. 等 Worker 定位 reward bug 并修复后，**LR=5e-7 值得重跑**（稳定性指标正常：grad_norm~0.85 无 collapse）\n2. 同时推进 D016 Expert SFT warmup：expert trajectory 已收集 65%，完成后可做 SFT 强化 base success\n3. 两条路径可并行：(a) 修 reward bug + 重跑 sparse GRPO (b) Expert SFT → 提升 base success 后再接 GRPO\n\n**⚠️ 2 张 GPU 当前空闲。** 等 reward bug 修复后可立即重启实验。请确认是否按上述并行方案推进。",
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 2 / 实际跑 0 ⚠️ | Worker 池 1 (GPU 0 / CPU 1)\n\n## exp016 失败诊断\n\n**崩溃原因**: 进程被 SIGKILL，step 13/30（D015 kill 或 cgroup OOM）。\n\n**核心问题 — Reward function bug**:\n- step 7 出现 success=4.7% (pass@16=50%)，但 reward 仍为 0（应为 10.0）\n- 13 步全部 rewards/advantages/returns = 0，pg_loss = 0\n- action_is_valid 持续上升 52.1%→66.9%，但无 RL 信号驱动\n\n**诊断**: 纯 sparse reward 配置下（won=10.0, 无 bonus），成功 episode 的 reward 未正确传递。Worker `worker_diagnose_reward-function-bug` 正在定位代码 bug。\n\n**实验系列总结 (exp012b→exp015→exp016)**:\n- exp012b: LR=1e-6 有信号(8.6%) 但 step 7 collapse\n- exp015: LR=1e-7 无 collapse 但零梯度\n- exp016: LR=5e-7 reward function bug，**LR 搜索本身未得到验证**\n\n**对比 exp013f**: exp013f dense reward 能正确传递(action_is_valid→97.5%)，说明 reward 传递链路在 dense 模式下正常，但 sparse 模式（纯 won=10.0）下存在 bug。\n\n**建议**:\n1. 等 Worker 定位 reward bug 并修复后，**LR=5e-7 值得重跑**（稳定性指标正常：grad_norm~0.85 无 collapse）\n2. 同时推进 D016 Expert SFT warmup：expert trajectory 已收集 65%，完成后可做 SFT 强化 base success\n3. 两条路径可并行：(a) 修 reward bug + 重跑 sparse GRPO (b) Expert SFT → 提升 base success 后再接 GRPO\n\n**⚠️ 2 张 GPU 当前空闲。** 等 reward bug 修复后可立即重启实验。请确认是否按上述并行方案推进。",
+    "project": "cost-verify-agent-rl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T15:06:48.429916+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 1305
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-14T15:06:53.713158+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-14T15:06:53.813897+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-14T15:06:57.076020+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-14T15:06:57.128452+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\", \"content\": \"# Project Memory\\n\\n## 2026-05-14: ALFWorld 训练入口点（踩坑）\\n\\n### 正确入口\\n- **训练**: `python train.py --config-name=&lt;config_name>`\\n- **评估**: `python -m ragen.llm_agent.agent_proxy --config-name=&lt;config_name>`\\n\\nexp012 误用 agent_proxy 入口启动训练，导致 vLLM 参数不兼容崩溃（agent_proxy.py:58 的 `disable_mm_preprocessor_cache=True` 在 vLLM 0.18.1 不支持）。后续训练实验一律用 `train.py`。\\n\\n## 2026-05-14: ALFWorld score 是纯二值 0/1\\n\\n### 关键发现\\n- ALFWorld `infos[\\\"score\\\"]` 等价于 `won`，不提供连续进度信号\\n- 根源：ALFWorld 用 PddlEnv，goal 是 conjunction，所有 predicates 同时满足才 won=1\\n- TextWorld 的 `intermediate_reward` 仅在 tw.py（标准 TextWorld env）中实现，PddlEnv 不支持\\n- 实测全部 6 种任务类型 walkthrough，score 序列都是 [0,0,...,0,1]\\n\\n### 影响\\nD008 的 A1（进度奖励）前提不成立。替代方案需自行设计 reward shaping（walkthrough 匹配 / PDDL facts 子目标），但引入鼓励模仿/局部最优风险。\\n\\n## 2026-05-14: SFT Warmup 调研完成\\n\\n### 核心问题\\nQwen3-1.7B base 模型不输出 `&lt;think>...&lt;/think>&lt;answer>...&lt;/answer>` 标签，导致 RAGEN action 解析 100% 失败。需要 SFT warmup 教模型输出正确格式后再接 GRPO。\\n\\n### RAGEN 代码现状\\n- **RAGEN 无内置 SFT 训练脚本**，只有 RL 训练流程（GRPO/PPO）\\n- 需要外部工具（如 LLaMA-Factory、ms-swift）做 SFT\\n- RAGEN 的 ALFWorld 配置使用 `AlfworldSG` tag，system prompt 包含 self-guidance assessment 要求\\n- 格式: `&lt;think> [reasoning] &lt;/think> &lt;answer> [action] &lt;/answer>`\\n\\n### 可用公开数据集\\n- `u-10bei/sft_alfworld_trajectory_dataset` (v1-v5): 模板合成轨迹\\n- `yijunyang/alfworld-sft-dataset`: ALFWorld SFT 数据\\n- `agent-eto/eto-sft-trajectory`: Agent 轨迹 SFT 数据\\n\\n### 文献参考\\n- \\\"Warm Up Before You Train\\\" (EMNLP 2025): 50-100 条 target domain 数据 + domain-agnostic warmup\\n- SkillRL (ICLR 2026): 用 LLaMA-Factory 做 SFT，已开源 SFT 数据生成代码\\n- AgentGym-RL: SFT + progressive horizon RL pipeline\\n\\n## 2026-05-14: /tmp 磁盘满 — 两次崩溃的完整修复\\n\\n### 失败模式（两次触发路径不同）\\n| 实验 | 触发路径 | Step |\\n|------|---------|------|\\n| exp007 | Ray session files 写入 /tmp/ray | Step 10 |\\n| exp010 | fast_downwa
+…[truncated 14256 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-14T15:10:34.168522+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+````json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "memory.md",
+  "content": "# Project Memory\n\n## 2026-05-14: ALFWorld 训练入口点（踩坑）\n\n### 正确入口\n- **训练**: `python train.py --config-name=&lt;config_name>`\n- **评估**: `python -m ragen.llm_agent.agent_proxy --config-name=&lt;config_name>`\n\nexp012 误用 agent_proxy 入口启动训练，导致 vLLM 参数不兼容崩溃（agent_proxy.py:58 的 `disable_mm_preprocessor_cache=True` 在 vLLM 0.18.1 不支持）。后续训练实验一律用 `train.py`。\n\n## 2026-05-14: ALFWorld score 是纯二值 0/1\n\n### 关键发现\n- ALFWorld `infos[\"score\"]` 等价于 `won`，不提供连续进度信号\n- 根源：ALFWorld 用 PddlEnv，goal 是 conjunction，所有 predicates 同时满足才 won=1\n- TextWorld 的 `intermediate_reward` 仅在 tw.py（标准 TextWorld env）中实现，PddlEnv 不支持\n- 实测全部 6 种任务类型 walkthrough，score 序列都是 [0,0,...,0,1]\n\n### 影响\nD008 的 A1（进度奖励）前提不成立。替代方案需自行设计 reward shaping（walkthrough 匹配 / PDDL facts 子目标），但引入鼓励模仿/局部最优风险。\n\n## 2026-05-14: SFT Warmup 调研完成\n\n### 核心问题\nQwen3-1.7B base 模型不输出 `&lt;think>...&lt;/think>&lt;answer>...&lt;/answer>` 标签，导致 RAGEN action 解析 100% 失败。需要 SFT warmup 教模型输出正确格式后再接 GRPO。\n\n### RAGEN 代码现状\n- **RAGEN 无内置 SFT 训练脚本**，只有 RL 训练流程（GRPO/PPO）\n- 需要外部工具（如 LLaMA-Factory、ms-swift）做 SFT\n- RAGEN 的 ALFWorld 配置使用 `AlfworldSG` tag，system prompt 包含 self-guidance assessment 要求\n- 格式: `&lt;think> [reasoning] &lt;/think> &lt;answer> [action] &lt;/answer>`\n\n### 可用公开数据集\n- `u-10bei/sft_alfworld_trajectory_dataset` (v1-v5): 模板合成轨迹\n- `yijunyang/alfworld-sft-dataset`: ALFWorld SFT 数据\n- `agent-eto/eto-sft-trajectory`: Agent 轨迹 SFT 数据\n\n### 文献参考\n- \"Warm Up Before You Train\" (EMNLP 2025): 50-100 条 target domain 数据 + domain-agnostic warmup\n- SkillRL (ICLR 2026): 用 LLaMA-Factory 做 SFT，已开源 SFT 数据生成代码\n- AgentGym-RL: SFT + progressive horizon RL pipeline\n\n## 2026-05-14: /tmp 磁盘满 — 两次崩溃的完整修复\n\n### 失败模式（两次触发路径不同）\n| 实验 | 触发路径 | Step |\n|------|---------|------|\n| exp007 | Ray session files 写入 /tmp/ray | Step 10 |\n| exp010 | fast_downward 复制 libdownward.so 到 /tmp | Step 11 |\n\n### 根因\nbjb1-17606 根分区只有 30GB，/tmp 在根分区上。ALFWorld 依赖的 fast_downward planner 和 Ray 都会向 /tmp 写大量临时文件。\n\n### 完整修复（两个环境变量缺一不可）\n```bash\nexport RAY_TMPDIR=/root/autodl-tmp/ray_tmp   # 修复 Ray session files\nexport TMPDIR=/root/autodl-tmp/tmp/            # 修复 fast_downward + Python tempfile\n```\n\n## 2026-05-14: exp009 资源冲突教训\n\n### 失败模式: 双 GRPO 训练同时跑在相同 GPU\n- **现象**: exp009 和 exp010 都提交到 cuda:0+1，同时写同一 checkpoint 目录\n- **预防**: 提交新实验前必须检查是否有同 GPU 的 RUNNING 实验\n\n## 2026-05-14: SFT warmup 验证结果\n\n### exp008_sft 产出\n- action_is_valid: 8.4% → 90%（独立 eval 4 episodes）\n- format_ok: 100%\n- success_rate: 0%（符合预期，SFT 教语义不教策略）\n- 训练: 1200 条数据, 3 epochs, 225 steps, ~8 min, final_loss=0.069\n\n## 2026-05-14: Phase B (B-IAVR) 就绪状态\n\n### 代码状态\n- 68/68 测试通过（含 7 个新 a_pre wiring 测试）\n- a_pre 链路已修复（原 bug: biavr_changed hardcoded False）\n\n### 启动前准备清单\n1. FSDP → HF 格式转换（脚本就绪: `scripts/convert_fsdp_to_hf.py`，dry-run 通过）\n2. 更新 `_alfworld_phase_b.yaml` 的 model_path、experiment_name、local_log_dir\n3. 确认 vLLM 在 gpu_memory_utilization=0.4 下能容纳 max_model_len=32768\n\n### 文献对标\n- 最接近: \"Learning When to Plan\" (Paglieri 2025) — 无 action change 信号、无 budget 约束\n- Lagrangian 实现建议: PID Lagrangian (Stooke 2020) 避免验证率振荡\n- 训练解耦参考: DeGRPO / Thinkless (Fang 2025)\n\n## 2026-05-14: bjb1-17606 Ray 基础设施完整修复清单\n\n### 必需环境变量（启动脚本模板）\n```bash\nexport TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR\nexport ALFWORLD_DATA=/root/autodl-tmp/alfworld\nexport RAY_memory_monitor_refresh_ms=0     # 禁用 MemoryMonitor（阈值 224GB > cgroup 220GB）\nexport RAY_SYSTEM_MEMORY=210000000000       # 限制 Ray 可见内存 210GB（cgroup 220GB - 10GB 余量）\nexport HYDRA_FULL_ERROR=1\nexport CUDA_VISIBLE_DEVICES=0,1\n```\n\n### 代码修复\n- `train.py:203`: `ray_init_kwargs[\"object_store_memory\"] = 30 * 1024**3` 硬编码\n- val env_groups: 通过 Hydra override `es_manager.val.env_groups=4 'es_manager.val.env_configs.n_groups=[4]'`\n- 约束: `es_manager.py:65` 断言 `sum(n_groups) == env_groups`\n\n### 崩溃根因确认\nexp013b-e 5 次崩溃的根因是 **Ray MemoryMonitor 阈值错误**（224GB > cgroup 220GB），导致 Ray 在 val→train 过渡时误判内存充足，实际超出 cgroup 限制。`RAY_memory_monitor_refresh_ms=0` 禁用后 exp013f 首次成功通过。\n\n## 2026-05-14: exp013f Dense Reward Gaming（核心教训）\n\n### 现象\n- action_is_valid: 60% → 97.5% ✅ (模型学会合法命令)\n- success: 0-8% → 0% ✗ (未学会完成任务)\n- score_max: 10+ → 4.5 (后期放弃 success 轨迹探索)\n- reward/mean: 2.6 → 4.39 (几乎全来自 valid_action_bonus)\n\n### 根因\nvalid_action_bonus=0.15/step 提供了比 success_reward=10.0 更稳定的梯度信号。30 步累计上限 4.5 vs 终局 10.0，比例 1:2.2。模型发现最大化密集奖励（确定性高）比追求稀疏终局奖励（不确定性高）更优。这是经典的 reward hacking / reward gaming。\n\n### 关键 insight\n- Dense reward 不能被\"独立最大化\"——如果 agent 可以不完成任务也能获得大部分 reward，它就会 game\n- 需要条件式 reward（success-gated）或极低比例的 shaping（1:1000 而非 1:2）\n- GRPO 的 group 相对排序机制在所有 trajectory 都 game 时无法产生差异化信号\n\n### 积极面\n- catastrophic collapse 完全解决（grad_norm 稳定 1.7-8.15）\n- GRPO 学习能力验证（action_is_valid 60%→97.5%）\n- 基础设施全部修复，首次完成 30 步训练\n\n## 2026-05-14: Sparse Reward Function Bug (exp016)\n\n### 失败模式\n纯 sparse reward 配置下（won=10.0, 无 valid_action_bonus, 无 format_penalty），成功 episode 的 reward 未正确传递到 GRPO trainer。\n\n### 证据\n- exp016 step 7: success=4.7%, pass@16=50%，但 rewards/mean=0, rewards/max=0\n- 13 步全部 rewards/advantages/returns=0, pg_loss=0\n- 对比 exp013f（dense reward）reward 正常传递 → bug 只在 sparse 模式触发\n- 日志最后一行确认 step 13 的 critic/rewards/mean=0, max=0, min=0\n\n### 影响\nexp015 和 exp016 的 LR 搜索实验（LR=1e-7 和 5e-7）结果无效——零 reward 信号不代表 LR 不合适，而是 reward 根本没传过来。修复此 bug 后需重跑 LR 搜索。\n\n### 状态\nWorker 正在诊断代码层面 bug。可能涉及 reward function 中 `won` 信号到 GRPO reward 的映射逻辑，或 exp015/exp016 config 中 reward 相关字段配置错误。\n\n## 备选 RL 方案调研（2026-05-14）\n\n针对项目三大痛点：(P1) sparse reward 冷启动（success=0% 无信号）、(P2) dense reward gaming（valid_action_bonus 被 game）、(P3) catastrophic policy collapse。\n\n### SPEAR（最高优先级，与本项目场景对齐）\n- **论文**: \"Learn the Ropes, Then Trust the Wins: Self-imitation with Progressive Exploration for Agentic Reinforcement Learning\"，Tencent Youtu Research，arXiv:2509.22601（2025-09），**ICLR 2026 accepted**\n- **代码**: github.com/TencentYoutuResearch/SPEAR；模型 yolay/SPEAR-ALFWorld-DrBoT-GRPO-1.5B / 7B 已开源\n- **核心思路**: GRPO + 自模仿学习（SIL）+ 课程调度。replay buffer 存好 trajectory 做 off-policy update；早期用 tool-use intrinsic reward 鼓励 skill-level exploration，后期切换到 self-imitation 强化成功轨迹利用\n- **三项关键技术**:\n  1. Curriculum reward shaping：阶段性调整 intrinsic reward 权重和 self-imitation 权重，前期 explore 后期 exploit\n  2. Advantage recalibration：避免 off-policy 重新计算 advantage 的成本\n  3. Entropy 正则化更新：稳定 policy entropy 防止 reward hacking\n- **适用性**:\n  - P1 ✅ 直接为 sparse + long-horizon agentic task 设计；ALFWorld 是论文主要 benchmark\n  - P2 ✅ \"regularizing policy updates to stabilize entropy and mitigate reward hacking\" 明确提到，与我们的 dense reward gaming 同源\n  - P3 ✅ 课程式策略平滑过渡，避免单步过激\n- **实测**: ALFWorld 上 GRPO success rate +16.1%、GiGPO +5.1%、Dr.BoT +8.6%\n- **实现难度**: 中。需加 replay buffer 存储 + 采样、intrinsic reward 计算（tool-use 频率）、advantage recalibration。RAGEN 没有现成接口，参考其 verl 实现移植\n- **关键超参**: replay buffer size、SIL 起始 step、intrinsic reward decay schedule、entropy reg λ\n\n### DAPO（成熟工程方案，稳定性导向）\n- **论文**: \"DAPO: An Open-Source LLM Reinforcement Learning System at Scale\"，ByteDance Seed + Tsinghua AIR，arXiv:2503.14476（2025-03）\n- **代码**: github.com/BytedTsinghua-SIA/DAPO（基于 verl）；RAGEN 也基于 verl，可直接借鉴\n- **核心思路**: GRPO 的工程化改进集合，**不改 group-relative advantage 主干**，加四个独立组件：\n  1. **Clip-Higher**: 解耦 ε_low=0.2 / ε_high=0.28，允许低概率 token 上升空间，避免 entropy collapse\n  2. **Dynamic Sampling**: 跳过全 0 或全 1 reward 的 prompt 组（zero gradient），动态采样直到 batch 装满有效样本\n  3. **Token-Level Policy Gradient Loss**: 替换 sequence-mean 为 token-mean，长 trajectory 不被稀释\n  4. **Overlong Reward Shaping**: 超长输出 reward 平滑衰减而非硬截断\n- **适用性**:\n  - P1 ⚠️ **直击痛点**：Dynamic Sampling 正是处理 \"all 0 success → zero gradient\" 的方法；可解决冷启动期的样本浪费但不解决无成功样本的根本问题\n  - P2 ⚠️ 部分相关：Clip-Higher 防 entropy collapse 间接对抗 gaming，但不直接抑制 reward hacking\n  - P3 ✅ Clip-Higher + token-level loss 是稳定性最强组合\n- **实现难度**: 低-中。Clip-Higher 改 1 行；Dynamic Sampling 需改 rollout loop（拒绝采样直到 batch 满）；token-level loss 改 advantage normalization 1 行\n- **关键超参**: ε_high=0.28（vs GRPO 默认 0.2）、token-level vs sequence-level、超长惩罚阈值\n\n### Dr. GRPO（最低改动，立即可上）\n- **论文**: \"Understanding R1-Zero-Like Training: A Critical Perspective\"，Liu et al., SAIL，arXiv:2503.20783（2025-03），COLM 2025\n- **代码**: github.com/sail-sg/understand-r1-zero\n- **核心思路**: 删除 GRPO advantage 中的两个 bias 来源：\n  1. **去除 length normalization**：原 GRPO 把 advantage 平均到每个 token，长 trajectory 每 token 梯度被稀释，导致模型偏好产出更长的错误回答（length hacking）\n  2. **去除 std normalization**：原 GRPO 用组内 reward std 归一化，方差小的组（如全失败）会放大噪声 advantage\n- **适用性**:\n  - P1 ⚠️ 部分相关：去除 std 归一化避免全 0 success 组的噪声放大，但仍需有信号\n  - P2 ❌ 不直接解决 reward gaming\n  - P3 ✅ 去 std 归一化降低梯度爆炸风险（exp013f 后期 score_max 暴跌的可能成因之一）\n- **实现难度**: **极低**。改 advantage 公式 2 行代码。可作为对所有方案的 baseline 切换\n- **关键超参**: 无新增超参；保留 group-mean 作为 baseline\n\n### GiGPO（步级 credit assignment，结构性改进）\n- **论文**: \"Group-in-Group Policy Optimization for LLM Agent Training\"，Lang Feng et al., arXiv:2505.10978（NeurIPS 2025 poster）\n- **代码**: github.com/langfengq/verl-agent（也是 RAGEN/verl-agent 系列）\n- **核心思路**: 双层 group structure\n  1. **Episode 级**: 完整 trajectory 间相对 advantage（同 GRPO）\n  2. **Step 级**: anchor state grouping — 跨 trajectory 找重复出现的 state，把它们后续 step 的 reward 分组比较，得到 step-wise advantage\n- **适用性**:\n  - P1 ⚠️ 间接：步级 credit 让 reward 信号更密；但 anchor state 在 ALFWorld 这种状态空间大的环境出现频率可能低\n  - P2 ❌ 不直接解决；如果 valid_action_bonus 是 dense reward，gaming 仍存在\n  - P3 ⚠️ 中性\n- **实测**: ALFWorld 上 +12% vs GRPO（Qwen2.5-1.5B/3B/7B-Instruct）\n- **实现难度**: 中。需在 rollout 后做 state hashing + anchor matching。verl-agent 已有参考实现\n- **关键超参**: anchor state hash 粒度、step-level 与 episode-level advantage 权重\n\n### EPO（entropy 正则化，最针对 P3）\n- **论文**: \"EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning\"，arXiv:2509.22576（2025-09）\n- **核心思路**: 三机制组合\n  1. Multi-turn entropy regularization\n  2. Entropy smoothing regularizer（policy entropy 在历史均值附近波动，禁止突变）\n  3. Adaptive phase-based weighting（exploration vs exploitation 自适应）\n- **适用性**:\n  - P1 ⚠️ 通过保持 exploration 间接帮助\n  - P2 ⚠️ 部分\n  - P3 ✅ **直击 collapse 问题**，entropy smoothing 防止单步 policy update 过激\n- **实测**: ALFWorld +19.8%、ScienceWorld +152%\n- **实现难度**: 中。三个 regularizer 需调参；smoothing 需维护 entropy history buffer\n\n### GDPO（多 reward 独立归一化 — 重新评估）\n- **论文**: \"GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization\"，NVIDIA，arXiv:2601.05242（2026-01）\n- **代码**: github.com/NVlabs/GDPO（基于 verl + TRL，drop-in 替换 GRPO）\n- **核心思路**: GRPO 在多 reward 场景下把 rewards 求和后再做 group normalization，导致不同 reward 组合映射到相同 advantage，信号分辨率损失。GDPO 改为**先对每个 reward 独立做 group normalization，再聚合 advantage**\n- **适用性重新评估**: 我们确实有双 reward（success_reward=10.0 + valid_action_bonus=0.15/step）。exp013f 的 gaming 根因之一就是两个 reward 混合归一化后，valid_action_bonus 的稳定梯度压倒了 success_reward 的稀疏信号。GDPO 的 decoupled normalization 可能让 success_reward 在归一化后保持独立的区分度\n  - P1 ⚠️ 不直接解决无信号问题，但在有少量 success 时保护其信号不被淹没\n  - P2 ✅ **直接相关**：独立归一化防止 dense reward 压倒 sparse reward 的 advantage\n  - P3 ⚠️ 中性\n- **实现难度**: **低**。verl/TRL drop-in 替换，改 advantage 计算部分\n- **关键超参**: 每个 reward channel 的权重\n- **注意**: 另有两个同名 GDPO 方法（arXiv:2412.20299 DPO 变体；arXiv:2510.08554 扩散模型），与本项目无关\n\n### 补充调研：新发现的 GRPO 变体（2026-05-14 深度搜索）\n\n#### Scaf-GRPO（P1 冷启动专项）\n- **论文**: \"Scaf-GRPO: Scaffolded Group Relative Policy Optimization for Enhancing LLM Reasoning\"，Zhang et al.，arXiv:2510.19807（2025）\n- **核心思路**: 解决 \"learning cliff\"——问题超出模型能力时产生持续 zero-reward。在学习停滞时注入分层 in-prompt hints（从抽象概念到具体步骤），类似教学脚手架\n- **适用性**: P1 ✅ 直击冷启动。但 ALFWorld 的 hint 需要自行设计（论文只测了 math reasoning）\n- **实测**: Qwen2.5-Math-7B AIME24 +44.3% vs vanilla GRPO\n- **实现难度**: 中。需设计 ALFWorld 专属 hint 层级 + 停滞检测逻辑\n\n#### AR3PO（P1 冷启动 + 效率）\n- **论文**: \"Improving Sampling Efficiency in RLVR through Adaptive Rollout and Response Reuse\"，Zhang et al.，arXiv:2509.25808（2025）\n- **核心思路**: (1) adaptive rollout 按难度动态分配样本数，(2) **response reuse** 缓存历史正确回答，全部新 rollout 失败时用缓存提供训练信号\n- **适用性**: P1 ✅ response reuse 直接解决 \"batch 全失败无信号\" 问题。与 SPEAR 的 replay buffer 思路相似但更轻量\n- **实测**: rollout cost 降 4.2x，性能 ≥ DAPO\n- **实现难度**: 低-中。response cache + fallback 逻辑\n\n#### POPO（P1 正样本-only 训练）\n- **论文**: \"POPO: Positive-Only Policy Optimization\"，arXiv:2605.06650（2026-05，最新）\n- **核心思路**: 只从正确 rollout 学习，通过 rollout redistribution 产生隐式负梯度。核心 insight：难题上的失败 rollout 不含有意义的推理信号\n- **适用性**: P1 ✅ 在全负 batch 时自动 skip（不产生有害梯度），有正样本时充分利用。Siamese policy network + momentum 稳定训练\n- **实测**: AIME 2025 Qwen-Math-7B 36.67% vs GRPO 30.00%\n- **实现难度**: 中。需实现 siamese policy network + momentum 更新\n\n#### GTPO（P3 collapse 专项）\n- **论文**: \"GTPO: Stabilizing Group Relative Policy Optimization via Gradient and Entropy Control\"，Simoni et al.，arXiv:2508.03772（2025）\n- **核心思路**: 识别 conflict tokens（跨 completion 收到矛盾梯度的 tokens），跳过其负更新、放大正更新。加 entropy 阈值过滤不稳定的 completions。**消除 KL 正则化和 reference model 的需求**\n- **适用性**: P3 ✅ 直击 conflict token 导致的 collapse；消除 KL 正则化意味着不需要我们目前的 KL ↑10x hack\n- **实现难度**: 中。需在 loss 计算中加 conflict detection + entropy filtering\n\n#### GSPO（P3 collapse 理论修复）\n- **论文**: \"GSPO: Group Sequence Policy Optimization\"，arXiv:2507.18071（2025）\n- **核心思路**: 指出 GRPO 对 importance sampling 权重的误用——token-level IS 随 response length 累积高方差噪声。GSPO 改为 sequence-level likelihood ratio + sequence-level clipping\n- **适用性**: P3 ✅ 理论上最正确的 GRPO 修复；P1 间接帮助（方差降低 → 稀疏信号更稳定）\n- **实现难度**: 中。改 IS ratio 计算和 clipping 机制\n\n#### PRIME（P2 reward gaming 反制）\n- **论文**: \"PRIME: Process Reinforcement through Implicit Rewards\"，arXiv:2502.01456（2025）\n- **核心思路**: 仅用 outcome-level labels 训练 dense process reward model（隐式）。避免显式 PRM 训练的 reward hacking 漏洞\n- **适用性**: P2 ✅ 提供 dense 但不可 game 的 process reward。但需要额外训练 PRM\n- **实测**: Eurus-2-7B-PRIME 超越 Qwen2.5-Math-7B-Instruct，仅用 10% 训练数据\n- **实现难度**: 高。需训练单独的 PRM 模型\n\n#### E2H Reasoner（P1 课程学习）\n- **论文**: \"E2H Reasoner: Curriculum RL from Easy to Hard\"，arXiv:2506.06632（2025）\n- **核心思路**: 按难度调度训练任务，保证模型始终有非零 reward 信号。cosine/Gaussian scheduling 平衡稀疏 vs 过拟合\n- **适用性**: P1 ✅ 思路清晰，但 ALFWorld 的任务难度定义不像 math 那样直观（6 种任务类型 × 变体）\n- **实现难度**: 低-中。需定义 ALFWorld 任务难度排序 + curriculum scheduler\n\n#### 其他值得关注\n- **CPPO** (arXiv:2503.22342, NeurIPS 2025): 剪枝低 advantage completions 加速训练，最高 7.98x speedup\n- **GRPO-LEAD** (arXiv:2504.09696, EMNLP 2025): difficulty-aware advantage reweighting + length penalty\n- **DRA-GRPO** (arXiv:2505.09655): submodular diversity-aware reward 鼓励多样性探索\n- **SCAR** (arXiv:2402.00782, EMNLP 2024): Shapley value 做 token-level credit assignment，sparse → dense reward\n- **GPRS** (EMNLP 2025): preference-based group reward shaping，无需额外模型\n\n### 更新后推荐排序（2026-05-14 深度搜索后）\n\n**Tier 1 — 主线备选（高 ROI，直击核心痛点）**\n1. **SPEAR** — ALFWorld benchmark 直接验证，三项技术对应三大痛点，开源代码 + checkpoint。**主线方案不变**\n2. **DAPO + AR3PO 组合** — DAPO 四件套稳定性 + AR3PO response reuse 解决全失败 batch。两者都是 verl 生态，组合实现成本可控。**短期首选**\n\n**Tier 2 — 最小代价验证（1-2 行代码改动）**\n3. **Dr. GRPO** — 去 length/std norm，2 行代码 ablation\n4. **GDPO**（重新评估为相关）— 双 reward 独立归一化，drop-in 替换。直接对抗 exp013f 的 reward gaming 根因\n\n**Tier 3 — 针对性补强**\n5. **GTPO** — 如果 KL ↑10x 仍无法稳住 collapse，用 conflict token 过滤替代 KL hack\n6. **EPO** — entropy smoothing 防 collapse 的备选\n7. **E2H Reasoner** — 如果 ALFWorld 能定义合理的难度梯度，课程学习是冷启动的自然解\n\n**Tier 4 — 长期参考**\n8. **GiGPO** — SPEAR 已验证 > GiGPO，除非 SPEAR 实现受阻\n9. **POPO** — 正样本-only 思路新颖但实现较复杂\n10. **PRIME** — 需要额外训练 PRM，成本高\n\n### 修订后落地建议\n- **exp016**: Dr. GRPO 去 length/std norm（2 行代码） + GDPO 双 reward 独立归一化（如果有双 reward）\n- **exp017**: DAPO 四件套 + AR3PO response reuse\n- **exp018**: SPEAR 完整实现\n\n### 来源\n- SPEAR: https://arxiv.org/abs/2509.22601 ; https://github.com/TencentYoutuResearch/SPEAR\n- DAPO: https://arxiv.org/abs/2503.14476 ; https://github.com/BytedTsinghua-SIA/DAPO\n- Dr. GRPO: https://arxiv.org/abs/2503.20783 ; https://github.com/sail-sg/understand-r1-zero\n- GiGPO: https://arxiv.org/abs/2505.10978 ; https://github.com/langfengq/verl-agent\n- EPO: https://arxiv.org/abs/2509.22576\n- PRS: https://arxiv.org/abs/2512.07478\n- GDPO: https://arxiv.org/abs/2601.05242 ; https://github.com/NVlabs/GDPO\n- Scaf-GRPO: https://arxiv.org/abs/2510.19807\n- AR3PO: https://arxiv.org/abs/2509.25808\n- POPO: https://arxiv.org/abs/2605.06650\n- GTPO: https://arxiv.org/abs/2508.03772\n- GSPO: https://arxiv.org/abs/2507.18071\n- PRIME: https://arxiv.org/abs/2502.01456\n- E2H Reasoner: https://arxiv.org/abs/2506.06632\n- CPPO: https://arxiv.org/abs/2503.22342\n- GRPO-LEAD: https://arxiv.org/abs/2504.09696\n- DRA-GRPO: https://arxiv.org/abs/2505.09655\n- SCAR: https://arxiv.org/abs/2402.00782\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "file": "memory.md",
+    "content": "# Project Memory\n\n## 2026-05-14: ALFWorld 训练入口点（踩坑）\n\n### 正确入口\n- **训练**: `python train.py --config-name=&lt;config_name>`\n- **评估**: `python -m ragen.llm_agent.agent_proxy --config-name=&lt;config_name>`\n\nexp012 误用 agent_proxy 入口启动训练，导致 vLLM 参数不兼容崩溃（agent_proxy.py:58 的 `disable_mm_preprocessor_cache=True` 在 vLLM 0.18.1 不支持）。后续训练实验一律用 `train.py`。\n\n## 2026-05-14: ALFWorld score 是纯二值 0/1\n\n### 关键发现\n- ALFWorld `infos[\"score\"]` 等价于 `won`，不提供连续进度信号\n- 根源：ALFWorld 用 PddlEnv，goal 是 conjunction，所有 predicates 同时满足才 won=1\n- TextWorld 的 `intermediate_reward` 仅在 tw.py（标准 TextWorld env）中实现，PddlEnv 不支持\n- 实测全部 6 种任务类型 walkthrough，score 序列都是 [0,0,...,0,1]\n\n### 影响\nD008 的 A1（进度奖励）前提不成立。替代方案需自行设计 reward shaping（walkthrough 匹配 / PDDL facts 子目标），但引入鼓励模仿/局部最优风险。\n\n## 2026-05-14: SFT Warmup 调研完成\n\n### 核心问题\nQwen3-1.7B base 模型不输出 `&lt;think>...&lt;/think>&lt;answer>...&lt;/answer>` 标签，导致 RAGEN action 解析 100% 失败。需要 SFT warmup 教模型输出正确格式后再接 GRPO。\n\n### RAGEN 代码现状\n- **RAGEN 无内置 SFT 训练脚本**，只有 RL 训练流程（GRPO/PPO）\n- 需要外部工具（如 LLaMA-Factory、ms-swift）做 SFT\n- RAGEN 的 ALFWorld 配置使用 `AlfworldSG` tag，system prompt 包含 self-guidance assessment 要求\n- 格式: `&lt;think> [reasoning] &lt;/think> &lt;answer> [action] &lt;/answer>`\n\n### 可用公开数据集\n- `u-10bei/sft_alfworld_trajectory_dataset` (v1-v5): 模板合成轨迹\n- `yijunyang/alfworld-sft-dataset`: ALFWorld SFT 数据\n- `agent-eto/eto-sft-trajectory`: Agent 轨迹 SFT 数据\n\n### 文献参考\n- \"Warm Up Before You Train\" (EMNLP 2025): 50-100 条 target domain 数据 + domain-agnostic warmup\n- SkillRL (ICLR 2026): 用 LLaMA-Factory 做 SFT，已开源 SFT 数据生成代码\n- AgentGym-RL: SFT + progressive horizon RL pipeline\n\n## 2026-05-14: /tmp 磁盘满 — 两次崩溃的完整修复\n\n### 失败模式（两次触发路径不同）\n| 实验 | 触发路径 | Step |\n|------|---------|------|\n| exp007 | Ray session files 写入 /tmp/ray | Step 10 |\n| exp010 | fast_downward 复制 libdownward.so 到 /tmp | Step 11 |\n\n### 根因\nbjb1-17606 根分区只有 30GB，/tmp 在根分区上。ALFWorld 依赖的 fast_downward planner 和 Ray 都会向 /tmp 写大量临时文件。\n\n### 完整修复（两个环境变量缺一不可）\n```bash\nexport RAY_TMPDIR=/root/autodl-tmp/ray_tmp   # 修复 Ray session files\nexport TMPDIR=/root/autodl-tmp/tmp/            # 修复 fast_downward + Python tempfile\n```\n\n## 2026-05-14: exp009 资源冲突教训\n\n### 失败模式: 双 GRPO 训练同时跑在相同 GPU\n- **现象**: exp009 和 exp010 都提交到 cuda:0+1，同时写同一 checkpoint 目录\n- **预防**: 提交新实验前必须检查是否有同 GPU 的 RUNNING 实验\n\n## 2026-05-14: SFT warmup 验证结果\n\n### exp008_sft 产出\n- action_is_valid: 8.4% → 90%（独立 eval 4 episodes）\n- format_ok: 100%\n- success_rate: 0%（符合预期，SFT 教语义不教策略）\n- 训练: 1200 条数据, 3 epochs, 225 steps, ~8 min, final_loss=0.069\n\n## 2026-05-14: Phase B (B-IAVR) 就绪状态\n\n### 代码状态\n- 68/68 测试通过（含 7 个新 a_pre wiring 测试）\n- a_pre 链路已修复（原 bug: biavr_changed hardcoded False）\n\n### 启动前准备清单\n1. FSDP → HF 格式转换（脚本就绪: `scripts/convert_fsdp_to_hf.py`，dry-run 通过）\n2. 更新 `_alfworld_phase_b.yaml` 的 model_path、experiment_name、local_log_dir\n3. 确认 vLLM 在 gpu_memory_utilization=0.4 下能容纳 max_model_len=32768\n\n### 文献对标\n- 最接近: \"Learning When to Plan\" (Paglieri 2025) — 无 action change 信号、无 budget 约束\n- Lagrangian 实现建议: PID Lagrangian (Stooke 2020) 避免验证率振荡\n- 训练解耦参考: DeGRPO / Thinkless (Fang 2025)\n\n## 2026-05-14: bjb1-17606 Ray 基础设施完整修复清单\n\n### 必需环境变量（启动脚本模板）\n```bash\nexport TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR\nexport ALFWORLD_DATA=/root/autodl-tmp/alfworld\nexport RAY_memory_monitor_refresh_ms=0     # 禁用 MemoryMonitor（阈值 224GB > cgroup 220GB）\nexport RAY_SYSTEM_MEMORY=210000000000       # 限制 Ray 可见内存 210GB（cgroup 220GB - 10GB 余量）\nexport HYDRA_FULL_ERROR=1\nexport CUDA_VISIBLE_DEVICES=0,1\n```\n\n### 代码修复\n- `train.py:203`: `ray_init_kwargs[\"object_store_memory\"] = 30 * 1024**3` 硬编码\n- val env_groups: 通过 Hydra override `es_manager.val.env_groups=4 'es_manager.val.env_configs.n_groups=[4]'`\n- 约束: `es_manager.py:65` 断言 `sum(n_groups) == env_groups`\n\n### 崩溃根因确认\nexp013b-e 5 次崩溃的根因是 **Ray MemoryMonitor 阈值错误**（224GB > cgroup 220GB），导致 Ray 在 val→train 过渡时误判内存充足，实际超出 cgroup 限制。`RAY_memory_monitor_refresh_ms=0` 禁用后 exp013f 首次成功通过。\n\n## 2026-05-14: exp013f Dense Reward Gaming（核心教训）\n\n### 现象\n- action_is_valid: 60% → 97.5% ✅ (模型学会合法命令)\n- success: 0-8% → 0% ✗ (未学会完成任务)\n- score_max: 10+ → 4.5 (后期放弃 success 轨迹探索)\n- reward/mean: 2.6 → 4.39 (几乎全来自 valid_action_bonus)\n\n### 根因\nvalid_action_bonus=0.15/step 提供了比 success_reward=10.0 更稳定的梯度信号。30 步累计上限 4.5 vs 终局 10.0，比例 1:2.2。模型发现最大化密集奖励（确定性高）比追求稀疏终局奖励（不确定性高）更优。这是经典的 reward hacking / reward gaming。\n\n### 关键 insight\n- Dense reward 不能被\"独立最大化\"——如果 agent 可以不完成任务也能获得大部分 reward，它就会 game\n- 需要条件式 reward（success-gated）或极低比例的 shaping（1:1000 而非 1:2）\n- GRPO 的 group 相对排序机制在所有 trajectory 都 game 时无法产生差异化信号\n\n### 积极面\n- catastrophic collapse 完全解决（grad_norm 稳定 1.7-8.15）\n- GRPO 学习能力验证（action_is_valid 60%→97.5%）\n- 基础设施全部修复，首次完成 30 步训练\n\n## 2026-05-14: Sparse Reward Function Bug (exp016)\n\n### 失败模式\n纯 sparse reward 配置下（won=10.0, 无 valid_action_bonus, 无 format_penalty），成功 episode 的 reward 未正确传递到 GRPO trainer。\n\n### 证据\n- exp016 step 7: success=4.7%, pass@16=50%，但 rewards/mean=0, rewards/max=0\n- 13 步全部 rewards/advantages/returns=0, pg_loss=0\n- 对比 exp013f（dense reward）reward 正常传递 → bug 只在 sparse 模式触发\n- 日志最后一行确认 step 13 的 critic/rewards/mean=0, max=0, min=0\n\n### 影响\nexp015 和 exp016 的 LR 搜索实验（LR=1e-7 和 5e-7）结果无效——零 reward 信号不代表 LR 不合适，而是 reward 根本没传过来。修复此 bug 后需重跑 LR 搜索。\n\n### 状态\nWorker 正在诊断代码层面 bug。可能涉及 reward function 中 `won` 信号到 GRPO reward 的映射逻辑，或 exp015/exp016 config 中 reward 相关字段配置错误。\n\n## 备选 RL 方案调研（2026-05-14）\n\n针对项目三大痛点：(P1) sparse reward 冷启动（success=0% 无信号）、(P2) dense reward gaming（valid_action_bonus 被 game）、(P3) catastrophic policy collapse。\n\n### SPEAR（最高优先级，与本项目场景对齐）\n- **论文**: \"Learn the Ropes, Then Trust the Wins: Self-imitation with Progressive Exploration for Agentic Reinforcement Learning\"，Tencent Youtu Research，arXiv:2509.22601（2025-09），**ICLR 2026 accepted**\n- **代码**: github.com/TencentYoutuResearch/SPEAR；模型 yolay/SPEAR-ALFWorld-DrBoT-GRPO-1.5B / 7B 已开源\n- **核心思路**: GRPO + 自模仿学习（SIL）+ 课程调度。replay buffer 存好 trajectory 做 off-policy update；早期用 tool-use intrinsic reward 鼓励 skill-level exploration，后期切换到 self-imitation 强化成功轨迹利用\n- **三项关键技术**:\n  1. Curriculum reward shaping：阶段性调整 intrinsic reward 权重和 self-imitation 权重，前期 explore 后期 exploit\n  2. Advantage recalibration：避免 off-policy 重新计算 advantage 的成本\n  3. Entropy 正则化更新：稳定 policy entropy 防止 reward hacking\n- **适用性**:\n  - P1 ✅ 直接为 sparse + long-horizon agentic task 设计；ALFWorld 是论文主要 benchmark\n  - P2 ✅ \"regularizing policy updates to stabilize entropy and mitigate reward hacking\" 明确提到，与我们的 dense reward gaming 同源\n  - P3 ✅ 课程式策略平滑过渡，避免单步过激\n- **实测**: ALFWorld 上 GRPO success rate +16.1%、GiGPO +5.1%、Dr.BoT +8.6%\n- **实现难度**: 中。需加 replay buffer 存储 + 采样、intrinsic reward 计算（tool-use 频率）、advantage recalibration。RAGEN 没有现成接口，参考其 verl 实现移植\n- **关键超参**: replay buffer size、SIL 起始 step、intrinsic reward decay schedule、entropy reg λ\n\n### DAPO（成熟工程方案，稳定性导向）\n- **论文**: \"DAPO: An Open-Source LLM Reinforcement Learning System at Scale\"，ByteDance Seed + Tsinghua AIR，arXiv:2503.14476（2025-03）\n- **代码**: github.com/BytedTsinghua-SIA/DAPO（基于 verl）；RAGEN 也基于 verl，可直接借鉴\n- **核心思路**: GRPO 的工程化改进集合，**不改 group-relative advantage 主干**，加四个独立组件：\n  1. **Clip-Higher**: 解耦 ε_low=0.2 / ε_high=0.28，允许低概率 token 上升空间，避免 entropy collapse\n  2. **Dynamic Sampling**: 跳过全 0 或全 1 reward 的 prompt 组（zero gradient），动态采样直到 batch 装满有效样本\n  3. **Token-Level Policy Gradient Loss**: 替换 sequence-mean 为 token-mean，长 trajectory 不被稀释\n  4. **Overlong Reward Shaping**: 超长输出 reward 平滑衰减而非硬截断\n- **适用性**:\n  - P1 ⚠️ **直击痛点**：Dynamic Sampling 正是处理 \"all 0 success → zero gradient\" 的方法；可解决冷启动期的样本浪费但不解决无成功样本的根本问题\n  - P2 ⚠️ 部分相关：Clip-Higher 防 entropy collapse 间接对抗 gaming，但不直接抑制 reward hacking\n  - P3 ✅ Clip-Higher + token-level loss 是稳定性最强组合\n- **实现难度**: 低-中。Clip-Higher 改 1 行；Dynamic Sampling 需改 rollout loop（拒绝采样直到 batch 满）；token-level loss 改 advantage normalization 1 行\n- **关键超参**: ε_high=0.28（vs GRPO 默认 0.2）、token-level vs sequence-level、超长惩罚阈值\n\n### Dr. GRPO（最低改动，立即可上）\n- **论文**: \"Understanding R1-Zero-Like Training: A Critical Perspective\"，Liu et al., SAIL，arXiv:2503.20783（2025-03），COLM 2025\n- **代码**: github.com/sail-sg/understand-r1-zero\n- **核心思路**: 删除 GRPO advantage 中的两个 bias 来源：\n  1. **去除 length normalization**：原 GRPO 把 advantage 平均到每个 token，长 trajectory 每 token 梯度被稀释，导致模型偏好产出更长的错误回答（length hacking）\n  2. **去除 std normalization**：原 GRPO 用组内 reward std 归一化，方差小的组（如全失败）会放大噪声 advantage\n- **适用性**:\n  - P1 ⚠️ 部分相关：去除 std 归一化避免全 0 success 组的噪声放大，但仍需有信号\n  - P2 ❌ 不直接解决 reward gaming\n  - P3 ✅ 去 std 归一化降低梯度爆炸风险（exp013f 后期 score_max 暴跌的可能成因之一）\n- **实现难度**: **极低**。改 advantage 公式 2 行代码。可作为对所有方案的 baseline 切换\n- **关键超参**: 无新增超参；保留 group-mean 作为 baseline\n\n### GiGPO（步级 credit assignment，结构性改进）\n- **论文**: \"Group-in-Group Policy Optimization for LLM Agent Training\"，Lang Feng et al., arXiv:2505.10978（NeurIPS 2025 poster）\n- **代码**: github.com/langfengq/verl-agent（也是 RAGEN/verl-agent 系列）\n- **核心思路**: 双层 group structure\n  1. **Episode 级**: 完整 trajectory 间相对 advantage（同 GRPO）\n  2. **Step 级**: anchor state grouping — 跨 trajectory 找重复出现的 state，把它们后续 step 的 reward 分组比较，得到 step-wise advantage\n- **适用性**:\n  - P1 ⚠️ 间接：步级 credit 让 reward 信号更密；但 anchor state 在 ALFWorld 这种状态空间大的环境出现频率可能低\n  - P2 ❌ 不直接解决；如果 valid_action_bonus 是 dense reward，gaming 仍存在\n  - P3 ⚠️ 中性\n- **实测**: ALFWorld 上 +12% vs GRPO（Qwen2.5-1.5B/3B/7B-Instruct）\n- **实现难度**: 中。需在 rollout 后做 state hashing + anchor matching。verl-agent 已有参考实现\n- **关键超参**: anchor state hash 粒度、step-level 与 episode-level advantage 权重\n\n### EPO（entropy 正则化，最针对 P3）\n- **论文**: \"EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning\"，arXiv:2509.22576（2025-09）\n- **核心思路**: 三机制组合\n  1. Multi-turn entropy regularization\n  2. Entropy smoothing regularizer（policy entropy 在历史均值附近波动，禁止突变）\n  3. Adaptive phase-based weighting（exploration vs exploitation 自适应）\n- **适用性**:\n  - P1 ⚠️ 通过保持 exploration 间接帮助\n  - P2 ⚠️ 部分\n  - P3 ✅ **直击 collapse 问题**，entropy smoothing 防止单步 policy update 过激\n- **实测**: ALFWorld +19.8%、ScienceWorld +152%\n- **实现难度**: 中。三个 regularizer 需调参；smoothing 需维护 entropy history buffer\n\n### GDPO（多 reward 独立归一化 — 重新评估）\n- **论文**: \"GDPO: Group reward-Decoupled Normalization Policy Optimization for Multi-reward RL Optimization\"，NVIDIA，arXiv:2601.05242（2026-01）\n- **代码**: github.com/NVlabs/GDPO（基于 verl + TRL，drop-in 替换 GRPO）\n- **核心思路**: GRPO 在多 reward 场景下把 rewards 求和后再做 group normalization，导致不同 reward 组合映射到相同 advantage，信号分辨率损失。GDPO 改为**先对每个 reward 独立做 group normalization，再聚合 advantage**\n- **适用性重新评估**: 我们确实有双 reward（success_reward=10.0 + valid_action_bonus=0.15/step）。exp013f 的 gaming 根因之一就是两个 reward 混合归一化后，valid_action_bonus 的稳定梯度压倒了 success_reward 的稀疏信号。GDPO 的 decoupled normalization 可能让 success_reward 在归一化后保持独立的区分度\n  - P1 ⚠️ 不直接解决无信号问题，但在有少量 success 时保护其信号不被淹没\n  - P2 ✅ **直接相关**：独立归一化防止 dense reward 压倒 sparse reward 的 advantage\n  - P3 ⚠️ 中性\n- **实现难度**: **低**。verl/TRL drop-in 替换，改 advantage 计算部分\n- **关键超参**: 每个 reward channel 的权重\n- **注意**: 另有两个同名 GDPO 方法（arXiv:2412.20299 DPO 变体；arXiv:2510.08554 扩散模型），与本项目无关\n\n### 补充调研：新发现的 GRPO 变体（2026-05-14 深度搜索）\n\n#### Scaf-GRPO（P1 冷启动专项）\n- **论文**: \"Scaf-GRPO: Scaffolded Group Relative Policy Optimization for Enhancing LLM Reasoning\"，Zhang et al.，arXiv:2510.19807（2025）\n- **核心思路**: 解决 \"learning cliff\"——问题超出模型能力时产生持续 zero-reward。在学习停滞时注入分层 in-prompt hints（从抽象概念到具体步骤），类似教学脚手架\n- **适用性**: P1 ✅ 直击冷启动。但 ALFWorld 的 hint 需要自行设计（论文只测了 math reasoning）\n- **实测**: Qwen2.5-Math-7B AIME24 +44.3% vs vanilla GRPO\n- **实现难度**: 中。需设计 ALFWorld 专属 hint 层级 + 停滞检测逻辑\n\n#### AR3PO（P1 冷启动 + 效率）\n- **论文**: \"Improving Sampling Efficiency in RLVR through Adaptive Rollout and Response Reuse\"，Zhang et al.，arXiv:2509.25808（2025）\n- **核心思路**: (1) adaptive rollout 按难度动态分配样本数，(2) **response reuse** 缓存历史正确回答，全部新 rollout 失败时用缓存提供训练信号\n- **适用性**: P1 ✅ response reuse 直接解决 \"batch 全失败无信号\" 问题。与 SPEAR 的 replay buffer 思路相似但更轻量\n- **实测**: rollout cost 降 4.2x，性能 ≥ DAPO\n- **实现难度**: 低-中。response cache + fallback 逻辑\n\n#### POPO（P1 正样本-only 训练）\n- **论文**: \"POPO: Positive-Only Policy Optimization\"，arXiv:2605.06650（2026-05，最新）\n- **核心思路**: 只从正确 rollout 学习，通过 rollout redistribution 产生隐式负梯度。核心 insight：难题上的失败 rollout 不含有意义的推理信号\n- **适用性**: P1 ✅ 在全负 batch 时自动 skip（不产生有害梯度），有正样本时充分利用。Siamese policy network + momentum 稳定训练\n- **实测**: AIME 2025 Qwen-Math-7B 36.67% vs GRPO 30.00%\n- **实现难度**: 中。需实现 siamese policy network + momentum 更新\n\n#### GTPO（P3 collapse 专项）\n- **论文**: \"GTPO: Stabilizing Group Relative Policy Optimization via Gradient and Entropy Control\"，Simoni et al.，arXiv:2508.03772（2025）\n- **核心思路**: 识别 conflict tokens（跨 completion 收到矛盾梯度的 tokens），跳过其负更新、放大正更新。加 entropy 阈值过滤不稳定的 completions。**消除 KL 正则化和 reference model 的需求**\n- **适用性**: P3 ✅ 直击 conflict token 导致的 collapse；消除 KL 正则化意味着不需要我们目前的 KL ↑10x hack\n- **实现难度**: 中。需在 loss 计算中加 conflict detection + entropy filtering\n\n#### GSPO（P3 collapse 理论修复）\n- **论文**: \"GSPO: Group Sequence Policy Optimization\"，arXiv:2507.18071（2025）\n- **核心思路**: 指出 GRPO 对 importance sampling 权重的误用——token-level IS 随 response length 累积高方差噪声。GSPO 改为 sequence-level likelihood ratio + sequence-level clipping\n- **适用性**: P3 ✅ 理论上最正确的 GRPO 修复；P1 间接帮助（方差降低 → 稀疏信号更稳定）\n- **实现难度**: 中。改 IS ratio 计算和 clipping 机制\n\n#### PRIME（P2 reward gaming 反制）\n- **论文**: \"PRIME: Process Reinforcement through Implicit Rewards\"，arXiv:2502.01456（2025）\n- **核心思路**: 仅用 outcome-level labels 训练 dense process reward model（隐式）。避免显式 PRM 训练的 reward hacking 漏洞\n- **适用性**: P2 ✅ 提供 dense 但不可 game 的 process reward。但需要额外训练 PRM\n- **实测**: Eurus-2-7B-PRIME 超越 Qwen2.5-Math-7B-Instruct，仅用 10% 训练数据\n- **实现难度**: 高。需训练单独的 PRM 模型\n\n#### E2H Reasoner（P1 课程学习）\n- **论文**: \"E2H Reasoner: Curriculum RL from Easy to Hard\"，arXiv:2506.06632（2025）\n- **核心思路**: 按难度调度训练任务，保证模型始终有非零 reward 信号。cosine/Gaussian scheduling 平衡稀疏 vs 过拟合\n- **适用性**: P1 ✅ 思路清晰，但 ALFWorld 的任务难度定义不像 math 那样直观（6 种任务类型 × 变体）\n- **实现难度**: 低-中。需定义 ALFWorld 任务难度排序 + curriculum scheduler\n\n#### 其他值得关注\n- **CPPO** (arXiv:2503.22342, NeurIPS 2025): 剪枝低 advantage completions 加速训练，最高 7.98x speedup\n- **GRPO-LEAD** (arXiv:2504.09696, EMNLP 2025): difficulty-aware advantage reweighting + length penalty\n- **DRA-GRPO** (arXiv:2505.09655): submodular diversity-aware reward 鼓励多样性探索\n- **SCAR** (arXiv:2402.00782, EMNLP 2024): Shapley value 做 token-level credit assignment，sparse → dense reward\n- **GPRS** (EMNLP 2025): preference-based group reward shaping，无需额外模型\n\n### 更新后推荐排序（2026-05-14 深度搜索后）\n\n**Tier 1 — 主线备选（高 ROI，直击核心痛点）**\n1. **SPEAR** — ALFWorld benchmark 直接验证，三项技术对应三大痛点，开源代码 + checkpoint。**主线方案不变**\n2. **DAPO + AR3PO 组合** — DAPO 四件套稳定性 + AR3PO response reuse 解决全失败 batch。两者都是 verl 生态，组合实现成本可控。**短期首选**\n\n**Tier 2 — 最小代价验证（1-2 行代码改动）**\n3. **Dr. GRPO** — 去 length/std norm，2 行代码 ablation\n4. **GDPO**（重新评估为相关）— 双 reward 独立归一化，drop-in 替换。直接对抗 exp013f 的 reward gaming 根因\n\n**Tier 3 — 针对性补强**\n5. **GTPO** — 如果 KL ↑10x 仍无法稳住 collapse，用 conflict token 过滤替代 KL hack\n6. **EPO** — entropy smoothing 防 collapse 的备选\n7. **E2H Reasoner** — 如果 ALFWorld 能定义合理的难度梯度，课程学习是冷启动的自然解\n\n**Tier 4 — 长期参考**\n8. **GiGPO** — SPEAR 已验证 > GiGPO，除非 SPEAR 实现受阻\n9. **POPO** — 正样本-only 思路新颖但实现较复杂\n10. **PRIME** — 需要额外训练 PRM，成本高\n\n### 修订后落地建议\n- **exp016**: Dr. GRPO 去 length/std norm（2 行代码） + GDPO 双 reward 独立归一化（如果有双 reward）\n- **exp017**: DAPO 四件套 + AR3PO response reuse\n- **exp018**: SPEAR 完整实现\n\n### 来源\n- SPEAR: https://arxiv.org/abs/2509.22601 ; https://github.com/TencentYoutuResearch/SPEAR\n- DAPO: https://arxiv.org/abs/2503.14476 ; https://github.com/BytedTsinghua-SIA/DAPO\n- Dr. GRPO: https://arxiv.org/abs/2503.20783 ; https://github.com/sail-sg/understand-r1-zero\n- GiGPO: https://arxiv.org/abs/2505.10978 ; https://github.com/langfengq/verl-agent\n- EPO: https://arxiv.org/abs/2509.22576\n- PRS: https://arxiv.org/abs/2512.07478\n- GDPO: https://arxiv.org/abs/2601.05242 ; https://github.com/NVlabs/GDPO\n- Scaf-GRPO: https://arxiv.org/abs/2510.19807\n- AR3PO: https://arxiv.org/abs/2509.25808\n- POPO: https://arxiv.org/abs/2605.06650\n- GTPO: https://arxiv.org/abs/2508.03772\n- GSPO: https://arxiv.org/abs/2507.18071\n- PRIME: https://arxiv.org/abs/2502.01456\n- E2H Reasoner: https://arxiv.org/abs/2506.06632\n- CPPO: https://arxiv.org/abs/2503.22342\n- GRPO-LEAD: https://arxiv.org/abs/2504.09696\n- DRA-GRPO: https://arxiv.org/abs/2505.09655\n- SCAR: https://arxiv.org/abs/2402.00782\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T15:10:34.169297+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp016",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-14T15:10:46.751616+00:00_
+
+exp016 失败诊断完成。
+
+**总结**：
+- **崩溃原因**：进程被 SIGKILL（step 13/30），日志确认 `343940 Killed`
+- **根本原因**：Reward function bug — 纯 sparse reward 模式下，成功 episode 获得 reward=0 而非 10.0。13 步零 RL 信号。这意味着 exp015 和 exp016 的 LR 搜索结果无效
+- **已完成**：registry 已更新、飞书结果卡片已发送、memory.md 已记录新失败模式、已向 Director 汇报
+- **待处理**：Worker `worker_diagnose_reward-function-bug` 正在定位代码 bug；2 张 GPU 空闲，等 bug 修复后可立即重启实验；D016 决策方向为 Expert SFT warmup
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp016"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp009",
+  "project": "cost-verify-agent-rl",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 1,
+    "created_at": "2026-05-14T03:35:13.150Z",
+    "updated_at": "2026-05-14T03:44:37.815Z",
+    "reproduce": {
+      "finished_at": "2026-05-14T03:39:35.514Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T03:39:36.501130+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "metrics": {
+          "status": "training_never_started",
+          "completed_steps": 0,
+          "total_steps": 30,
+          "error": "AssertionError: enable_response_mask path check failed for SFT checkpoint path"
+        },
+        "notes": "第1次启动即失败: AssertionError response mask only supported for qwen/llama-3 — SFT checkpoint 路径 .../exp008_sft/final 不含 \"qwen\"。修复: 创建 symlink /root/autodl-tmp/checkpoints/qwen3_sft_final → final，保留 response_mask。"
+      }
+    },
+    "notes": "第1次启动即失败: AssertionError response mask only supported for qwen/llama-3 — SFT checkpoint 路径 .../exp008_sft/final 不含 \"qwen\"。修复: 创建 symlink /root/autodl-tmp/checkpoints/qwen3_sft_final → final，保留 response_mask。",
+    "completed_at": "2026-05-14T03:42:46.557Z"
+  },
+  "timestamp": "2026-05-14T03:44:37.838181+00:00",
+  "trigger": "update_registry"
+}

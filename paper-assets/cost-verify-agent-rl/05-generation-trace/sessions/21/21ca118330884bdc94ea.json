@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21ca118330884bdc94ea",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose scienceworld sft bjb1 v2",
+  "task_key": "worker_diagnose_scienceworld_sft_bjb1_v2_20260525T015705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_scienceworld_sft_bjb1_v2_20260525T015705_result.json",
+    "occurrence": 1,
+    "bytes": 673,
+    "sha256": "96268ad13d3b41bbcd2ff3fe08b6c85f370d7b93527d5fe19343da6324d94a13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**scienceworld_sft_bjb1_v2 训练成功完成。**\n\n| 指标 | 值 |\n|------|-----|\n| 总步数 | 450/450 (2 epochs) |\n| Train loss | 0.5945 → 0.0587 |\n| Eval loss | 0.0725 (step 448) |\n| Token accuracy | 98.18% (eval) / 98.28% (train) |\n| Checkpoints | 112, 224, 336, 448, 450 + final |\n| Final 模型 | `/root/autodl-tmp/checkpoints/scienceworld_sft_bjb1/final/` (3.4GB) |\n\nEval loss 在 epoch 1.5 后基本收敛（0.0728→0.0725），无过拟合。\n\n**GPU cuda:0 已完全释放**（0% 利用率，0 MiB 显存），可以启动 Cell B seed 100。\n\nRegistry 已更新为 DONE/success，报告已注册为 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-scienceworld-sft-bjb1-v2.md"
+}

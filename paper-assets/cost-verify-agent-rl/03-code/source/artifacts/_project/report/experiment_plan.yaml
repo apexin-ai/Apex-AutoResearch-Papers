@@ -1,0 +1,425 @@
+# Experiment Plan — B-IAVR: Selective Self-Verification via RL
+# Generated: 2026-05-15
+# Based on: paper_framing.md (D039), ROADMAP.md, registry data
+#
+# Phases:
+#   A — Always-on Self-Guidance baseline (prerequisite for all claims)
+#   B — B-IAVR selective verification training
+#   C — Ablation matrix & causal analysis
+#   D — ARES baseline comparison
+#
+# GPU budget: 2× RTX PRO 6000 96GB (cuda:0, cuda:1) @ bjb1-17606
+# Total estimate: ~900-1400 GPU-h
+
+experiments:
+
+  # ============================================================
+  # Phase A: Always-On Self-Guidance Baseline
+  # ============================================================
+
+  - plan_id: "plan_001"
+    title: "Stabilized GRPO always-on baseline (exp027)"
+    claim: "Claim 1"
+    phase: "A"
+    priority: "P0"
+    depends_on: []
+    registry_id: "exp027_stable_grpo"
+    status: "running"
+    description: >
+      128 rollouts + entropy 0.01 + LR 5e-7 + KL 0.005 GRPO training
+      on Qwen3-1.7B with always-on self-verification in ALFWorld.
+      50 steps, dual-GPU. Fixes exp026 death spiral via larger rollout
+      buffer and conservative hyperparams.
+    hypothesis: >
+      Stabilized GRPO avoids reward collapse and reaches ≥20% success (MVP).
+    metrics: ["success_rate", "action_is_valid", "kl_divergence", "entropy"]
+    gpu_hours_estimate: 84
+    framing_ref: "reviewer_concern_1"
+    nine_dim: [1, 3]
+
+  - plan_id: "plan_002"
+    title: "Extended GRPO training (100 steps / higher LR)"
+    claim: "Claim 1"
+    phase: "A"
+    priority: "P0"
+    depends_on: ["plan_001"]
+    registry_id: null
+    status: "planned"
+    description: >
+      If exp027 reaches 20-30% but not 50%, extend training: either continue
+      from best checkpoint with 50 more steps, or restart with higher LR
+      (1e-6) and/or larger rollout buffer (256). Target: success ≥50% for
+      credible cost-efficiency story.
+    hypothesis: >
+      Longer training or modestly higher LR pushes baseline past 50% threshold
+      needed for paper's cost-efficiency claim.
+    metrics: ["success_rate", "action_is_valid", "kl_divergence"]
+    gpu_hours_estimate: 168
+    framing_ref: "reviewer_concern_1"
+    nine_dim: [1, 5]
+
+  - plan_id: "plan_003"
+    title: "Multi-seed baseline replication (3 seeds)"
+    claim: "Claim 1"
+    phase: "A"
+    priority: "P1"
+    depends_on: ["plan_002"]
+    registry_id: null
+    status: "planned"
+    description: >
+      Replicate best Phase A config across 3 random seeds to report
+      mean ± std success rate. Required for statistical credibility
+      of all downstream comparisons.
+    hypothesis: >
+      Baseline success rate is reproducible (std < 5pp across seeds).
+    metrics: ["success_rate_mean", "success_rate_std"]
+    gpu_hours_estimate: 252
+    framing_ref: null
+    nine_dim: [3]
+
+  # ============================================================
+  # Phase B: B-IAVR Selective Verification
+  # ============================================================
+
+  - plan_id: "plan_004"
+    title: "Action-change reward signal analysis"
+    claim: "Claim 2"
+    phase: "B"
+    priority: "P0"
+    depends_on: ["plan_001"]
+    registry_id: null
+    status: "planned"
+    description: >
+      Before training B-IAVR policy, collect action-change statistics from
+      Phase A always-on runs: (1) what fraction of verifications trigger
+      action change, (2) correlation between action change and episode
+      success, (3) per-task-type breakdown. This informs reward design
+      and provides empirical grounding for Claim 2.
+    hypothesis: >
+      Action change after verification positively correlates with episode
+      success (r > 0.2), and most verifications are confirmatory (>60%
+      produce no action change).
+    metrics: ["action_change_rate", "action_change_success_correlation", "confirmatory_rate"]
+    gpu_hours_estimate: 4
+    framing_ref: "reviewer_concern_3"
+    nine_dim: [1, 4]
+
+  - plan_id: "plan_005"
+    title: "B-IAVR binary verify/skip policy (GRPO)"
+    claim: "Claim 1"
+    phase: "B"
+    priority: "P0"
+    depends_on: ["plan_002", "plan_004"]
+    registry_id: null
+    status: "planned"
+    description: >
+      Train selective verification policy via GRPO. Agent learns a binary
+      decision (verify / skip) at each step. Reward = task_success +
+      alpha * action_change_when_verified - beta * verification_cost.
+      Initialize from Phase A best checkpoint. Action-change component
+      encourages verification only when it would change the agent's action.
+    hypothesis: >
+      B-IAVR achieves verification rate ↓40%+ compared to always-on
+      while maintaining success within 5pp of baseline.
+    metrics: ["success_rate", "verification_rate", "cost_reduction", "action_change_rate"]
+    gpu_hours_estimate: 168
+    framing_ref: "reviewer_concern_1"
+    nine_dim: [1, 4]
+
+  - plan_id: "plan_006"
+    title: "B-IAVR multi-seed replication (3 seeds)"
+    claim: "Claim 1"
+    phase: "B"
+    priority: "P1"
+    depends_on: ["plan_005"]
+    registry_id: null
+    status: "planned"
+    description: >
+      Replicate best B-IAVR config across 3 seeds. Report mean ± std for
+      success rate, verification rate, and cost reduction.
+    hypothesis: >
+      B-IAVR cost reduction is reproducible (std < 5pp across seeds).
+    metrics: ["success_rate_mean", "success_rate_std", "verification_rate_mean", "cost_reduction_mean"]
+    gpu_hours_estimate: 252
+    framing_ref: null
+    nine_dim: [3]
+
+  # ============================================================
+  # Phase C: Ablation Matrix & Causal Analysis
+  # ============================================================
+
+  - plan_id: "plan_007"
+    title: "No-verify ablation"
+    claim: "Claim 3"
+    phase: "C"
+    priority: "P0"
+    depends_on: ["plan_002"]
+    registry_id: null
+    status: "planned"
+    description: >
+      Train agent with verification completely disabled. Same GRPO config
+      as Phase A but no self-verification step. Lower bound for ablation
+      matrix — demonstrates verification value.
+    hypothesis: >
+      Removing verification drops success by ≥10pp vs always-on baseline,
+      confirming verification contributes to task performance.
+    metrics: ["success_rate", "action_is_valid"]
+    gpu_hours_estimate: 84
+    framing_ref: null
+    nine_dim: [4]
+
+  - plan_id: "plan_008"
+    title: "Random-p verification ablation (p=0.3, 0.5, 0.7)"
+    claim: "Claim 3"
+    phase: "C"
+    priority: "P0"
+    depends_on: ["plan_002"]
+    registry_id: null
+    status: "planned"
+    description: >
+      Verify at random with probability p ∈ {0.3, 0.5, 0.7}. No learning —
+      just stochastic verification on top of Phase A checkpoint. Heuristic
+      baseline for Claim 3 (learned > heuristic).
+    hypothesis: >
+      Random verification underperforms B-IAVR at same verification budget:
+      either lower success or higher verification rate for same success.
+    metrics: ["success_rate", "verification_rate", "cost_reduction"]
+    gpu_hours_estimate: 6
+    framing_ref: null
+    nine_dim: [2, 4]
+
+  - plan_id: "plan_009"
+    title: "Confidence-threshold verification ablation"
+    claim: "Claim 3"
+    phase: "C"
+    priority: "P0"
+    depends_on: ["plan_002"]
+    registry_id: null
+    status: "planned"
+    description: >
+      Verify only when model's next-token entropy exceeds threshold τ.
+      Sweep τ ∈ {0.5, 1.0, 1.5, 2.0}. Heuristic baseline representing
+      "verify when uncertain" strategy.
+    hypothesis: >
+      Confidence-threshold achieves some cost reduction but is suboptimal
+      vs learned B-IAVR policy because entropy doesn't capture verification
+      informativeness.
+    metrics: ["success_rate", "verification_rate", "cost_reduction"]
+    gpu_hours_estimate: 8
+    framing_ref: null
+    nine_dim: [2, 4]
+
+  - plan_id: "plan_010"
+    title: "Entropy-controlled action-change analysis"
+    claim: "Claim 2"
+    phase: "C"
+    priority: "P0"
+    depends_on: ["plan_004"]
+    registry_id: null
+    status: "planned"
+    description: >
+      Key defense for Reviewer Concern 3 (action change = noise vs signal).
+      Stratify episodes by policy entropy. Within each entropy stratum,
+      test whether action change after verification still correlates with
+      task success. If correlation holds after controlling for entropy,
+      action change reflects genuine informativeness, not random noise
+      from high-entropy policies.
+    hypothesis: >
+      Partial correlation between action change and success remains
+      significant (p < 0.05) after controlling for policy entropy.
+    metrics: ["partial_correlation", "p_value", "per_stratum_effect_size"]
+    gpu_hours_estimate: 4
+    framing_ref: "reviewer_concern_3"
+    nine_dim: [4]
+
+  - plan_id: "plan_011"
+    title: "Causal intervention: random vs verification-triggered action change"
+    claim: "Claim 2"
+    phase: "C"
+    priority: "P0"
+    depends_on: ["plan_002"]
+    registry_id: null
+    status: "planned"
+    description: >
+      Causal experiment for Reviewer Concern 3. Two conditions on Phase A
+      checkpoint: (1) inject random action changes at same rate as
+      verification-triggered changes, (2) allow only verification-triggered
+      changes. Compare task success between conditions. If (2) >> (1),
+      verification-triggered changes have causal efficacy beyond noise.
+    hypothesis: >
+      Verification-triggered action changes yield ≥10pp higher success
+      than random action changes at same change rate.
+    metrics: ["success_rate_verification_triggered", "success_rate_random_change", "delta"]
+    gpu_hours_estimate: 8
+    framing_ref: "reviewer_concern_3"
+    nine_dim: [4]
+
+  - plan_id: "plan_012"
+    title: "Reward signal comparison: action-change vs random-trigger vs confidence"
+    claim: "Claim 2"
+    phase: "C"
+    priority: "P1"
+    depends_on: ["plan_005"]
+    registry_id: null
+    status: "planned"
+    description: >
+      Train B-IAVR with 3 alternative reward signals: (a) action-change
+      (ours), (b) random trigger reward, (c) confidence-based reward.
+      Same GRPO setup, same budget. Demonstrates action-change is the
+      best verification informativeness signal.
+    hypothesis: >
+      Action-change reward produces best cost-performance tradeoff
+      (highest success at lowest verification rate).
+    metrics: ["success_rate", "verification_rate", "cost_reduction", "training_convergence_step"]
+    gpu_hours_estimate: 336
+    framing_ref: "reviewer_concern_3"
+    nine_dim: [4, 5]
+
+  - plan_id: "plan_013"
+    title: "Verification cost weight sensitivity (alpha/beta sweep)"
+    claim: "Claim 1"
+    phase: "C"
+    priority: "P2"
+    depends_on: ["plan_005"]
+    registry_id: null
+    status: "planned"
+    description: >
+      Sweep alpha (action-change weight) and beta (verification cost
+      weight) in B-IAVR reward: alpha ∈ {0.1, 0.3, 0.5}, beta ∈
+      {0.01, 0.05, 0.1}. 9 configs, short training (20 steps each).
+      Maps the cost-performance Pareto frontier.
+    hypothesis: >
+      Pareto frontier shows smooth tradeoff; optimal beta ≈ 0.05
+      achieves ≥40% cost reduction with <3pp success drop.
+    metrics: ["success_rate", "verification_rate", "cost_reduction"]
+    gpu_hours_estimate: 120
+    framing_ref: null
+    nine_dim: [5]
+
+  # ============================================================
+  # Phase D: ARES Baseline Comparison
+  # ============================================================
+
+  - plan_id: "plan_014"
+    title: "ARES reproduction on ALFWorld (SFT router)"
+    claim: "Claim 3"
+    phase: "D"
+    priority: "P1"
+    depends_on: ["plan_002"]
+    registry_id: null
+    status: "planned"
+    description: >
+      Reproduce ARES (arXiv 2603.07915) approach on ALFWorld: train
+      SFT-based router that allocates verification effort based on
+      pre-defined quality metrics. Adapt their continuous effort
+      allocation to our binary verify/skip for fair comparison.
+      Use same base model (Qwen3-1.7B) and training data.
+    hypothesis: >
+      ARES SFT router achieves moderate cost reduction but with
+      lower ceiling than RL-based B-IAVR because SFT cannot explore
+      beyond training distribution.
+    metrics: ["success_rate", "verification_rate", "cost_reduction"]
+    gpu_hours_estimate: 24
+    framing_ref: "reviewer_concern_5"
+    nine_dim: [2]
+
+  - plan_id: "plan_015"
+    title: "B-IAVR vs ARES head-to-head comparison"
+    claim: "Claim 3"
+    phase: "D"
+    priority: "P1"
+    depends_on: ["plan_005", "plan_014"]
+    registry_id: null
+    status: "planned"
+    description: >
+      Controlled comparison: B-IAVR (RL, action-change reward) vs
+      ARES (SFT, quality metrics) on identical eval episodes.
+      Report success rate, verification rate, cost reduction, and
+      per-task-type breakdown. Addresses Reviewer Concern 5
+      (ARES differentiation).
+    hypothesis: >
+      B-IAVR achieves ≥10pp better cost reduction than ARES at
+      matched success level, due to RL exploration advantage and
+      action-change signal superiority.
+    metrics: ["success_rate", "verification_rate", "cost_reduction", "per_task_type_breakdown"]
+    gpu_hours_estimate: 4
+    framing_ref: "reviewer_concern_5"
+    nine_dim: [2, 4]
+
+  # ============================================================
+  # Auxiliary Analyses
+  # ============================================================
+
+  - plan_id: "plan_016"
+    title: "Per-task-type performance breakdown"
+    claim: "Claim 1"
+    phase: "A"
+    priority: "P1"
+    depends_on: ["plan_002"]
+    registry_id: null
+    status: "planned"
+    description: >
+      Breakdown always-on baseline and B-IAVR results by ALFWorld
+      task type (pick, clean, heat, cool, examine, pick_two).
+      Identifies where verification helps most and addresses
+      Reviewer Concern 2 (single environment) by showing within-
+      environment diversity.
+    hypothesis: >
+      Verification benefit varies across task types; manipulation-
+      heavy tasks (pick_two, clean) benefit most from verification.
+    metrics: ["per_task_success", "per_task_verification_benefit"]
+    gpu_hours_estimate: 2
+    framing_ref: "reviewer_concern_2"
+    nine_dim: [1]
+
+  - plan_id: "plan_017"
+    title: "Scale analysis: model size framing"
+    claim: "Claim 1"
+    phase: "C"
+    priority: "P2"
+    depends_on: ["plan_005"]
+    registry_id: null
+    status: "planned"
+    description: >
+      Analytical defense for Reviewer Concern 4 (small model).
+      Compare verification patterns at 1.7B: how often does the
+      model "need" verification (action change rate), and how does
+      this relate to model uncertainty? Frame 1.7B as the regime
+      where selective verification is most valuable (weaker models
+      have more room for improvement from verification, but also
+      more noise — B-IAVR navigates this tradeoff).
+    hypothesis: >
+      1.7B model has high confirmatory verification rate (>60%),
+      making selective verification especially cost-effective at
+      this scale.
+    metrics: ["confirmatory_rate", "action_change_rate", "model_uncertainty"]
+    gpu_hours_estimate: 2
+    framing_ref: "reviewer_concern_4"
+    nine_dim: [1, 4]
+
+# ============================================================
+# Summary
+# ============================================================
+# Total experiments: 17
+# Phase A: 3 (plan_001-003) — ~504 GPU-h
+# Phase B: 3 (plan_004-006) — ~424 GPU-h
+# Phase C: 7 (plan_007-013) — ~566 GPU-h
+# Phase D: 2 (plan_014-015) — ~28 GPU-h
+# Aux:     2 (plan_016-017) — ~4 GPU-h
+# Total estimated: ~1526 GPU-h
+#
+# Critical path: plan_001 → plan_002 → plan_005 → plan_006/012/015
+# Minimum viable paper: plan_001-002 + plan_004-005 + plan_007-009 + plan_010-011
+#   (~11 experiments, ~534 GPU-h)
+#
+# Claim coverage:
+#   Claim 1: plan_001,002,003,005,006,013,016 (7 experiments)
+#   Claim 2: plan_004,010,011,012 (4 experiments)
+#   Claim 3: plan_007,008,009,014,015 (5 experiments)
+#
+# Reviewer concern coverage:
+#   RC1 (baseline performance): plan_001,002,005
+#   RC2 (single environment):   plan_008,016
+#   RC3 (action change noise):  plan_004,010,011,012
+#   RC4 (small model):          plan_017
+#   RC5 (ARES differentiation): plan_014,015

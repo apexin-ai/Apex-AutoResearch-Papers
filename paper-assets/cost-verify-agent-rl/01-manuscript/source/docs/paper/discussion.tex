@@ -1,0 +1,9 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Generality and mechanism interaction.}
+Sign misattribution arises whenever step-level windowing, sparse binary reward, and group-relative normalization co-occur (Section~\ref{sec:theory}), though verified only on GRPO with ALFWorld and ScienceWorld. Cell~C's NaN divergence (full trajectory + step-level advantage) prevents empirical isolation of M2; our factorial interpretation assumes approximate separability, which the remaining three cells are consistent with but cannot definitively confirm. Cell~C's qualitatively different failure mode suggests M1 may unintentionally stabilize training by limiting gradient variance (Appendix~\ref{app:why_defaults}). Multi-seed evaluation reveals bimodal OOD transfer pointing to initialization sensitivity (Appendix~\ref{app:early_signal}).
+
+\paragraph{Concurrent methods.}
+HCAPO~\citep{hcapo2026} and GiGPO~\citep{feng2025gigpo} succeed with $h{=}2$ by eliminating M2 through finer-grained credit, consistent with our framework's prediction (see Limitations). We provide a practical decision guide for selecting among episode-level and step-level methods based on which mechanisms are active in a given setting (Appendix~\ref{app:method_selection}).
+

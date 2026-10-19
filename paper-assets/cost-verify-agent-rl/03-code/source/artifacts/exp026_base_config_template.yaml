@@ -1,0 +1,111 @@
+# Phase B Base Config Template
+# Derived from exp026 (step-independent GRPO, verified working)
+# Fields marked [PHASE_B_TUNE] are candidates for sweep / manual adjustment
+
+defaults:
+  - base
+
+hydra:
+  searchpath:
+    - pkg://verl.trainer.config
+
+# [PHASE_B_TUNE] Update to exp026 best checkpoint after MVP passes
+model_path: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4
+
+system:
+  CUDA_VISIBLE_DEVICES: "0,1"
+
+micro_batch_size_per_gpu: 1
+ppo_mini_batch_size: 32
+
+trainer:
+  project_name: cost-verify-agent-rl
+  # [PHASE_B_TUNE] Update experiment name per run
+  experiment_name: phase-b-biavr-sweep
+  total_training_steps: 150
+  n_gpus_per_node: 2
+  val_before_train: True
+  test_freq: 5
+  save_freq: 25
+  # [PHASE_B_TUNE] Update checkpoint dir per run
+  local_log_dir: "/root/autodl-tmp/checkpoints/phase_b/"
+  default_local_dir: "/root/autodl-tmp/checkpoints/phase_b/"
+  logger: ['console', 'wandb']  # wandb enabled (was console-only in some prior exps)
+  max_actor_ckpt_to_keep: 3
+  resume_mode: "disable"
+
+actor_rollout_ref:
+  model:
+    override_config:
+      attn_implementation: sdpa
+  actor:
+    use_ref: True
+    use_torch_compile: False
+    use_kl_loss: True
+    # [PHASE_B_TUNE] sweep range: [0.005, 0.01, 0.02]
+    kl_loss_coef: 0.01
+    kl_loss_type: low_var_kl
+    clip_ratio_low: 0.2
+    clip_ratio_high: 0.28
+    loss_agg_mode: "seq-mean-token-mean"
+    grad_clip: 1.0
+    optim:
+      # [PHASE_B_TUNE] sweep range: [5e-7, 1e-6, 2e-6]
+      lr: 1e-6
+  ref:
+    use_torch_compile: False
+  rollout:
+    response_length: 1024
+    gpu_memory_utilization: 0.4
+    max_model_len: 8192
+    temperature: 1.0
+    max_num_batched_tokens: 8192
+    enforce_eager: True
+    val_kwargs:
+      do_sample: True
+      temperature: 0.4
+
+algorithm:
+  adv_estimator: grpo
+  # [PHASE_B_TUNE] sweep range: [0.9, 0.95, 0.99]
+  gamma: 0.95
+  high_level_gamma: 0.95
+  norm_adv_by_std_in_grpo: True
+
+agent_proxy:
+  context_window_mode: "step_independent"
+  max_context_window: 5
+  # [PHASE_B_TUNE] sweep range: [3, 5, 8]
+  step_independent_history_length: 5
+  max_turn: 50
+  max_actions_per_turn: 1
+  max_prompt_length: 4096
+  use_turn_scores: True
+
+collapse_detection:
+  multi_turn_enabled: false
+
+es_manager:
+  format_penalty: 0
+  train:
+    env_groups: 4
+    group_size: 16
+    env_configs:
+      # [PHASE_B_TUNE] May need AlfworldBIAVR tag if B-IAVR requires different env wrapper
+      tags: ["AlfworldSG"]
+      n_groups: [4]
+  val:
+    env_groups: 16     # C003: >=16 episodes for eval
+    group_size: 1
+    env_configs:
+      tags: ["AlfworldSG"]
+      n_groups: [16]
+
+# --- B-IAVR Selective Verification (Phase B addition) ---
+# [PHASE_B_TUNE] All biavr params are candidates for tuning after initial sweep
+biavr:
+  beta: 0.3           # target verification rate
+  alpha: 1.0           # action_changed reward weight
+  lambda_init: 0.0     # initial Lagrangian multiplier (starts at 0, grows adaptively)
+  eta: 0.01            # dual variable learning rate
+  enable_a_pre: true   # compute a_pre greedy decode for informativeness signal

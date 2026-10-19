@@ -1,0 +1,87 @@
+{
+  "exp_id": "exp029_per_task_breakdown",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T12:22:29.035Z",
+    "updated_at": "2026-05-19T14:15:04.649Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python eval_per_task_type.py\"",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "169264",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_per_task_breakdown.log",
+      "submitted_at": "2026-05-19T13:22:17.722Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "ALFWorld valid_unseen 134 tasks grouped by task type",
+      "data_count": 134,
+      "model_name": "exp029_seed1_global_step_15",
+      "seed": 1,
+      "checkpoint_source": "exp029_episode_level global_step_15",
+      "eval_data": "ALFWorld valid_unseen 134 OOD tasks",
+      "checkpoint_path": "/root/autodl-tmp/tmp/exp029_per_task_type_breakdown.json",
+      "wall_clock_seconds": 3166.9,
+      "gpu_hours": 1.76
+    },
+    "hypothesis": "Per-task-type OOD eval of exp029 seed1 (Cell C, episode-level + full context) will reveal which ALFWorld task types benefit most from RL training, providing granular analysis for paper Results section. Checkpoint: global_step_15, 134 OOD tasks grouped by task type.",
+    "parent": "exp029_episode_level",
+    "reproduce": {
+      "finished_at": "2026-05-19T14:06:22.115Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T14:06:24.846177+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "temperature": 0,
+      "total_success_rate": 0.164,
+      "pick_and_place_simple": {
+        "count": 24,
+        "success": 5,
+        "rate": 0.208
+      },
+      "pick_clean_then_place_in_recep": {
+        "count": 31,
+        "success": 8,
+        "rate": 0.258
+      },
+      "pick_heat_then_place_in_recep": {
+        "count": 23,
+        "success": 1,
+        "rate": 0.043
+      },
+      "pick_cool_then_place_in_recep": {
+        "count": 21,
+        "success": 2,
+        "rate": 0.095
+      },
+      "look_at_obj_in_light": {
+        "count": 18,
+        "success": 5,
+        "rate": 0.278
+      },
+      "pick_two_obj_and_place": {
+        "count": 17,
+        "success": 1,
+        "rate": 0.059
+      }
+    },
+    "completed_at": "2026-05-19T14:15:04.649Z"
+  },
+  "timestamp": "2026-05-19T14:15:04.821551+00:00",
+  "trigger": "update_registry"
+}

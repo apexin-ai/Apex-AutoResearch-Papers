@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp029_seed7_high_kl_step5_ood_v2",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T22:36:15.521Z",
+    "updated_at": "2026-05-23T00:28:55.731Z",
+    "hypothesis": "D134 协议 re-eval: high_kl step5 checkpoint (KL 10x intervention) OOD eval with enable_think=true, enable_response_mask=false, full context, T=0.4. v1 在 bjb1 crash (checkpoint 目录名缺 qwen_ 前缀). 原始 eval 得 8.21% (11/134). 验证 D134 协议下是否一致。",
+    "parent": "exp029_seed7_ood_precollapse",
+    "spec": {
+      "command": "OOM crashed during init",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "217542",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_seed7_high_kl_step5_ood_v2.log",
+      "submitted_at": "2026-05-22T22:36:38.766Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "N/A",
+      "data_count": 134,
+      "model_name": "Qwen2.5-7B",
+      "seed": 7,
+      "checkpoint_source": "exp029_seed7_high_kl_step5_hf",
+      "eval_data": "ALFWorld OOD val seed=321",
+      "wall_clock_seconds": 6737.0,
+      "gpu_hours": 1.87
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-23T00:28:55.731Z"
+  },
+  "timestamp": "2026-05-23T00:28:56.060541+00:00",
+  "trigger": "update_registry"
+}

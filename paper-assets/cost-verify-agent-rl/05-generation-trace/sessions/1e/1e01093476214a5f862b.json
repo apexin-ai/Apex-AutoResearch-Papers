@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e01093476214a5f862b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose c prime cap verification",
+  "task_key": "worker_diagnose_c_prime_cap_verification_20260521T231203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_c_prime_cap_verification_20260521T231203_result.json",
+    "occurrence": 1,
+    "bytes": 2376,
+    "sha256": "7ac334d29336e026b2c142773d4f6ebe2d026c28d0296828f9f57d18594c14a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全，给出结论。\n\n---\n\n## 最终判断：**A — Cap 正常生效**\n\n### 1. Cap 核心逻辑（agent_proxy.py L295-338）\n\n```python\n# 每轮计数（L295-304）\nif max_response_length is not None and not val:\n    cap_ids = lm_outputs.non_tensor_batch['env_ids']\n    # 计数 per-turn model response 的非 pad tokens\n    turn_toks = (lm_outputs.batch['responses'] != pad_id).sum(dim=-1).cpu().numpy()\n    cumulative_response_tokens[cap_ids] += turn_toks\n\n# 截断判断（L336-338）\nif not val and max_response_length is not None:\n    active_ids = [eo['env_id'] for eo in env_outputs]\n    if np.max(cumulative_response_tokens[active_ids]) >= max_response_length:\n        break\n```\n\nCap 累计的是**纯模型生成 tokens**（每轮 LLM output 中的非 pad tokens），不含 env observation。`not val` 守卫正确。\n\n### 2. `response_length/max` metric 定义（metric_utils.py L65-71, L190）\n\n```python\nresponse_length_dim = batch.batch[\"responses\"].shape[-1]   # 张量维度\nresponse_mask = batch.batch[\"attention_mask\"][:, -response_length_dim:]\nresponse_length = response_mask.sum(-1).float()  # 每个样本的非 pad token 数\n# L190:\n\"response_length/max\": torch.max(response_length).detach().item()\n```\n\n而 ctx_manager.py L413 中 `\"responses\": input_ids[:, 1:]`，即 **responses = 整条序列去掉第一个 token**。因此：\n\n> **response_length/max = 整条 trajectory 的所有非 pad tokens - 1**\n\n这包括 system prompt + 所有 user messages（含 env observation）+ 所有 assistant responses + 所有 special tokens（`<|im_start|>`, `<|im_end|>` 等）。\n\n### 3. 数值验证\n\nC' Step 1 log：\n- `response_length/max = 15713` — 全序列（含 env obs）\n- `max_response_length = 12000` — 仅限 model tokens\n- `num_actions ≈ 23 turns`，每 turn 的 env observation 约 100-200 tokens → 23 turns × ~160 tokens ≈ **3700 tokens**\n- 15713 - 3700 ≈ **12000** — 正好被 cap 截断\n\n`clip_ratio = 0.0078125 = 1/128`：1 条 trajectory 达到了 response tensor 的最大填充长度（16384-1=16383），确认 cap 代码路径是活跃的。\n\n### 结论\n\n**metric 定义域 ≠ cap 定义域**。metric 包含 env tokens + system tokens，cap 只计 model tokens。15713 > 12000 是两个不同统计口径的正常差异，不是 bug。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-c-prime-cap-verification.md"
+}

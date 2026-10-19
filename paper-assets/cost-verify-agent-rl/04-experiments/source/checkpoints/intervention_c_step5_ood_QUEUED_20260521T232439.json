@@ -1,0 +1,57 @@
+{
+  "exp_id": "intervention_c_step5_ood",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T22:55:42.545Z",
+    "updated_at": "2026-05-21T23:24:39.548Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && export WANDB_PROJECT=cost-verify-agent-rl && export CUDA_VISIBLE_DEVICES=1 && python train.py --config-name _alfworld_intervention_c_step5_ood_eval\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "903154",
+      "log_path": "~/runs/cost-verify-agent-rl/intervention_c_step5_ood.log",
+      "submitted_at": "2026-05-21T22:55:41.851Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Intervention-C (hard cap) step 5 (pre-collapse, train_success~38%) OOD eval provides a pre-collapse data point for bimodal analysis comparison.",
+    "parent": "intervention-c-hard-cap",
+    "reproduce": {
+      "finished_at": "2026-05-21T23:20:59.937Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T23:21:03.338466+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ood_success_rate": 0.1045,
+      "ood_pass_at_1": 0.1045,
+      "val_reward_mean": 1.045,
+      "val_response_length": 6266.3,
+      "val_num_actions": 45.02,
+      "val_action_is_valid": 0.637,
+      "val_action_is_effective": 0.99,
+      "ood_episodes": 134,
+      "wandb_run_id": "fxodsn98",
+      "wandb_run_name": "intervention-c-step5-ood-eval"
+    },
+    "log_path": "~/runs/cost-verify-agent-rl/intervention_c_step5_ood.log",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/qwen_intervention_c_hard_cap_step5_hf",
+    "conclusion": "negative",
+    "notes": "OOD success 10.45% (14/134 episodes) — below 15% threshold. Response length 6266 tokens (already inflated vs base). action_is_valid only 63.7% indicating format degradation. This pre-collapse step 5 checkpoint (train_success~38%) already shows poor OOD generalization, consistent with intervention-c-hard-cap being negative overall — hard cap did not prevent response inflation or preserve OOD transfer."
+  },
+  "timestamp": "2026-05-21T23:24:39.814948+00:00",
+  "trigger": "update_registry"
+}

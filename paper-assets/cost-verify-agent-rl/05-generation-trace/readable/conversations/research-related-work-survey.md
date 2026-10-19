@@ -1,0 +1,2280 @@
+# research related work survey
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 71
+- **Recorded user turns:** 0
+- **Tool calls:** 35
+- **Original source:** `logs/chats/worker_research_related_work_survey_20260515T120839.jsonl`
+- **Structured JSON:** [`b1c0f69a1f30c21fd36c.json`](../../sessions/b1/b1c0f69a1f30c21fd36c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+71 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T12:14:21.008060+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T12:14:21.008403+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T12:14:21.008581+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "self-verification self-correction LLM agents 2024 2025 arXiv survey"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "self-verification self-correction LLM agents 2024 2025 arXiv survey"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T12:14:21.008777+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "GRPO PPO reinforcement learning language agent training 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "GRPO PPO reinforcement learning language agent training 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T12:14:21.008911+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "selective verification adaptive computation LLM agent efficiency 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "selective verification adaptive computation LLM agent efficiency 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T12:14:21.009032+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "ALFWorld SOTA 2024 2025 text-based game agent benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "ALFWorld SOTA 2024 2025 text-based game agent benchmark"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T12:14:21.009195+00:00_
+
+Web search results for query: "selective verification adaptive computation LLM agent efficiency 2024 2025"
+
+Links: [{"title":"Sherlock: RELIABLE AND EFFICIENT AGENTIC WORKFLOW EXECUTION","url":"https://arxiv.org/pdf/2511.00330"},{"title":"ACL 2025: 5 Trends Shaping the Future of LLMs | Appen","url":"https://www.appen.com/blog/acl-2025"},{"title":"Derailer-Rerailer: Adaptive Verification for Efficient and ...","url":"https://aclanthology.org/2025.findings-acl.18.pdf"},{"title":"Evaluation and Benchmarking of LLM Agents: A Survey","url":"https://arxiv.org/html/2507.21504v1"},{"title":"A Survey of Efficient LLM Inference Serving","url":"https://aclanthology.org/2025.inlg-main.32.pdf"},{"title":"LLM Research Papers: The 2025 List (July to December)","url":"https://magazine.sebastianraschka.com/p/llm-research-papers-2025-part2"},{"title":"[2509.14289] From Capabilities to Performance: Evaluating Key Functional Properties of LLM Architectures in Penetration Testing","url":"https://arxiv.org/abs/2509.14289"},{"title":"A Survey on Evaluation of LLM-based Agents","url":"https://arxiv.org/pdf/2503.16416"},{"title":"Efficient Agents: Building Effective Agents While Reducing Cost","url":"https://arxiv.org/pdf/2508.02694"},{"title":"Empowering AI-assisted Decision Making with Adaptive ...","url":"https://mingyin.org/paper/CHI-25/LLMAnalysis.pdf"}]
+
+Based on the search results, here's what I found about selective verification, adaptive computation, and LLM agent efficiency in 2024-2025:
+
+## Key Research Areas
+
+### Sherlock Framework (2025)
+Sherlock is the first framework that holistically explores the trade-offs between cost, accuracy, and latency by exploiting speculative execution opportunities with intelligent verifier selection. Overall, Sherlock delivers up to 48.7% execution latency reduction and 26.0% cost reduction over baselines.
+
+The framework uses selective speculative execution and rollback, overlapping verification with downstream computation while controlling rollba
+…[truncated 1034 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T12:14:21.009371+00:00_
+
+Web search results for query: "self-verification self-correction LLM agents 2024 2025 arXiv survey"
+
+Links: [{"title":"Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs","url":"https://arxiv.org/html/2510.16062v1"},{"title":"A Survey on Evaluation of LLM-based Agents","url":"https://arxiv.org/html/2503.16416"},{"title":"Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning","url":"https://arxiv.org/html/2602.03485v1"},{"title":"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs","url":"https://www.researchgate.net/publication/385650033_When_Can_LLMs_Actually_Correct_Their_Own_Mistakes_A_Critical_Survey_of_Self-Correction_of_LLMs"},{"title":"Survey on Evaluation of LLM-based Agents","url":"https://arxiv.org/html/2503.16416v1"},{"title":"Incentivizing LLMs to Self-Verify Their Answers","url":"https://arxiv.org/html/2506.01369v1"},{"title":"Towards Scientific Intelligence: A Survey of LLM-based Scientific Agents","url":"https://arxiv.org/html/2503.24047v3"},{"title":"[2310.01798] Large Language Models Cannot Self-Correct Reasoning Yet","url":"https://arxiv.org/abs/2310.01798"},{"title":"SSR: Socratic Self-Refine for Large Language Model Reasoning","url":"https://arxiv.org/html/2511.10621v1"},{"title":"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs","url":"https://arxiv.org/html/2406.01297v3"}]
+
+Based on the web search results, I found several highly relevant papers and findings on self-verification and self-correction in LLM agents from 2024-2025:
+
+## Key Survey and Benchmark Papers
+
+CorrectBench presents a systematic benchmark for investigating how self-correction methods affect LLMs performance across multiple tasks, which was published in October 2025. Building on a recent survey of self-correction approaches, this work categorizes methods into three primary categories: intrinsic correction, external correction and 
+…[truncated 1458 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T12:14:21.009569+00:00_
+
+Web search results for query: "ALFWorld SOTA 2024 2025 text-based game agent benchmark"
+
+Links: [{"title":"agentquest/agentquest/benchmarks/alfworld/README.md at main · nec-research/agentquest","url":"https://github.com/nec-research/agentquest/blob/main/agentquest/benchmarks/alfworld/README.md"},{"title":"[2311.16714] Embodied Multi-Modal Agent trained by an LLM from a Parallel TextWorld","url":"https://arxiv.org/abs/2311.16714"},{"title":"A collection of benchmarks for emboided robotic agent based on LLMs | by Yanan Chen | Medium","url":"https://medium.com/@yananchen1116/a-collection-of-benchmarks-for-emboided-robotic-agent-based-on-llms-40482ecef189"},{"title":"ALFWorld Benchmark","url":"https://www.emergentmind.com/topics/alfworld-benchmark"},{"title":"ALFWorld: Textual and Embodied Agent Benchmark","url":"https://www.emergentmind.com/topics/alfworld"},{"title":"GitHub - stevenyangyj/Emma-Alfworld: Official code for the paper: Embodied Multi-Modal Agent trained by an LLM from a Parallel TextWorld · GitHub","url":"https://github.com/stevenyangyj/Emma-Alfworld"},{"title":"[PDF] ALFWorld: Aligning Text and Embodied Environments for Interactive Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/ALFWorld:-Aligning-Text-and-Embodied-Environments-Shridhar-Yuan/398a0625e8707a0b41ac58eaec51e8feb87dd7cb"},{"title":"Embodied Multi-Modal Agent trained by an LLM from a Parallel TextWorld","url":"https://openaccess.thecvf.com/content/CVPR2024/papers/Yang_Embodied_Multi-Modal_Agent_trained_by_an_LLM_from_a_Parallel_CVPR_2024_paper.pdf"},{"title":"A Hierarchical Multi-Agent Framework for Strategic ...","url":"https://openreview.net/pdf?id=VYdbeSoXWD"},{"title":"GitHub - alfworld/alfworld: ALFWorld: Aligning Text and Embodied Environments for Interactive Learning · GitHub","url":"https://github.com/alfworld/alfworld"}]
+
+Based on the search results, here's what I found about ALFWorld and the state-of-the-art (SOTA) performance in 2024-2025:
+
+## About ALFWorl
+…[truncated 1370 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T12:14:21.009810+00:00_
+
+Web search results for query: "GRPO PPO reinforcement learning language agent training 2024 2025"
+
+Links: [{"title":"Group Relative Policy Optimization (GRPO)","url":"https://cameronrwolfe.substack.com/p/grpo"},{"title":"Post-Training in 2026: GRPO, DAPO, RLVR & Beyond","url":"https://llm-stats.com/blog/research/post-training-techniques-2026"},{"title":"PPO for LLMs: A Guide for Normal People","url":"https://cameronrwolfe.substack.com/p/ppo-llm"},{"title":"PPO, DPO & GRPO: Reinforcement Learning Techniques for Training LLMs | by Mandeep Singh | Medium","url":"https://medium.com/@mandeep0405/ppo-dpo-grpo-reinforcement-learning-techniques-for-training-llms-193459ffc14e"},{"title":"The State of Reinforcement Learning for LLM Reasoning","url":"https://magazine.sebastianraschka.com/p/the-state-of-llm-reasoning-model-training"},{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"},{"title":"A Guide to Reinforcement Learning Post-Training for LLMs: PPO, DPO, GRPO, and Beyond","url":"https://huggingface.co/blog/karina-zadorozhny/guide-to-llm-post-training-algorithms"},{"title":"Reinforcement Learning for Large Language Models via ...","url":"http://faculty.ist.psu.edu/vhonavar/Papers/emnlp2025.pdf"},{"title":"Reinforcement Learning (RL) Guide | Unsloth Documentation","url":"https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide"},{"title":"[2511.20718] Stabilizing Off-Policy Training for Long-Horizon LLM Agent via Turn-Level Importance Sampling and Clipping-Triggered Normalization","url":"https://arxiv.org/abs/2511.20718"}]
+
+Based on the search results, here's what I found about GRPO and PPO in reinforcement learning for language agent training:
+
+## Overview of GRPO vs PPO
+
+Most early work on RL for LLMs used Proximal Policy Optimization (PPO) as the default RL optimizer, but recent reasoning researc
+…[truncated 1856 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T12:14:21.010000+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Self-Refine Reflexion self-correction LLM agent follow-up work 2024 2025 ICLR NeurIPS"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Self-Refine Reflexion self-correction LLM agent follow-up work 2024 2025 ICLR NeurIPS"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T12:14:21.010155+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "GiGPO Self-Guide agent reinforcement learning arXiv 2604.03098"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "GiGPO Self-Guide agent reinforcement learning arXiv 2604.03098"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T12:14:21.010283+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "DAPO reinforcement learning reasoning 2025 ByteDance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "DAPO reinforcement learning reasoning 2025 ByteDance"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T12:14:21.010401+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Derailer-Rerailer adaptive verification agent 2025 ACL"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Derailer-Rerailer adaptive verification agent 2025 ACL"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T12:14:21.010514+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "AgentPRM process reward model agent training ALFWorld 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "AgentPRM process reward model agent training ALFWorld 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T12:14:21.010684+00:00_
+
+Web search results for query: "GiGPO Self-Guide agent reinforcement learning arXiv 2604.03098"
+
+Links: [{"title":"Co-Evolution of Policy and Internal Reward for Language Agents","url":"https://arxiv.org/html/2604.03098"},{"title":"[2604.03098] Co-Evolution of Policy and Internal Reward for Language Agents","url":"https://arxiv.org/abs/2604.03098"},{"title":"[2505.10978] Group-in-Group Policy Optimization for LLM Agent Training","url":"https://arxiv.org/abs/2505.10978"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training | OpenReview","url":"https://openreview.net/forum?id=QXEhBMNrCW"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training","url":"https://arxiv.org/html/2505.10978v1"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training | alphaXiv","url":"https://www.alphaxiv.org/overview/2505.10978v1"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training Lang Feng1","url":"https://personal.ntu.edu.sg/boan/papers/NeurIPS25_GiGPO.pdf"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training | Request PDF","url":"https://www.researchgate.net/publication/391857132_Group-in-Group_Policy_Optimization_for_LLM_Agent_Training"},{"title":"Graph-Enhanced Policy Optimization in LLM Agent Training","url":"https://arxiv.org/html/2510.26270v1"},{"title":"GitHub - TencentYoutuResearch/SPEAR: An RL Recipe for Building Agentic LLMs via Self-Imitation on Long-Horizon Agentic Tasks · GitHub","url":"https://github.com/TencentYoutuResearch/SPEAR"}]
+
+Based on the search results, I found information about your query:
+
+Self-Guide is a self-generated internal reward for language agents that supports both inference-time guidance and training-time supervision. The paper with arXiv ID 2604.03098 is titled "Co-Evolution of Policy and Internal Reward for Language Agents."
+
+The search results show that the WebShop actor prompt follows the template introduced in GiGPO (Feng et al., 2025b), and admissible actions and the self-gui
+…[truncated 741 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T12:14:21.010885+00:00_
+
+Web search results for query: "Derailer-Rerailer adaptive verification agent 2025 ACL"
+
+Links: [{"title":"Derailer-Rerailer: Adaptive Verification for Efficient and Reliable Language Model Reasoning","url":"https://arxiv.org/html/2408.13940"},{"title":"Accepted Findings Papers - ACL 2025","url":"https://2025.aclweb.org/program/find_papers/"},{"title":"Derailer-Rerailer: Adaptive Verification for Efficient and ...","url":"https://aclanthology.org/2025.findings-acl.18.pdf"},{"title":"[2408.13940] Derailer-Rerailer: Adaptive Verification for Efficient and Reliable Language Model Reasoning","url":"https://arxiv.org/abs/2408.13940"},{"title":"ACL 2025: 5 Trends Shaping the Future of LLMs | Appen","url":"https://www.appen.com/blog/acl-2025"},{"title":"AI 趨勢 2025：計算語言學協會（ACL）大會揭示 LLM 五大發展方向","url":"https://tw.appendata.com/blogs/acl-2025"},{"title":"Yuqi Wu - KeyLinkAI (奇灵智愈） | LinkedIn","url":"https://www.linkedin.com/in/yuqi-wu-71657614a/"},{"title":"FACT-AUDIT: An Adaptive Multi-Agent Framework for ...","url":"https://aclanthology.org/2025.acl-long.17.pdf"},{"title":"AGrail: A Lifelong Agent Guardrail with Effective and Adaptive Safety Detection - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.399/"},{"title":"Nolan Derails and Rerailers","url":"https://nolancompany.com/product-category/derails-rerailers/"}]
+
+Based on the search results, here's what I found about Derailer-Rerailer:
+
+## Overview
+
+Derailer-Rerailer is a novel framework that adaptively balances reasoning accuracy and computational efficiency, employing a lightweight Derailer mechanism to assess reasoning stability and selectively triggering an advanced Rerailer verification process only when necessary.
+
+## Problem It Addresses
+
+Large Language Models face a critical trade-off: simple approaches often struggle with complex tasks and reasoning stability, while more sophisticated methods require multiple inferences and substantial computational resources, limiting their practical deployment.
+
+## 
+…[truncated 809 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T12:14:21.011067+00:00_
+
+Web search results for query: "DAPO reinforcement learning reasoning 2025 ByteDance"
+
+Links: [{"title":"GitHub - BytedTsinghua-SIA/DAPO: An Open-source RL System from ByteDance Seed and Tsinghua AIR · GitHub","url":"https://github.com/BytedTsinghua-SIA/DAPO"},{"title":"DAPO: An Open-Source LLM Reinforcement Learning System at Scale","url":"https://arxiv.org/html/2503.14476v1"},{"title":"DAPO: An Open-Source LLM Reinforcement Learning System at Scale 1ByteDance Seed","url":"https://arxiv.org/pdf/2503.14476"},{"title":"DAPO: An Open Source LLM Reinforcement Learning System at Scale","url":"https://self-supervised.cs.jhu.edu/fa2025/files/presentations/Why-RL-Sep16-AdvancesNLP.pdf"},{"title":"DAPO","url":"https://dapo-sia.github.io/"},{"title":"DAPO: An Open-Source LLM Reinforcement Learning System at Scale - Publications - ByteDance Seed Team","url":"https://seed.bytedance.com/en/public_papers/dapo-an-open-source-llm-reinforcement-learning-system-at-scale"},{"title":"[2503.14476] DAPO: An Open-Source LLM Reinforcement Learning System at Scale","url":"https://arxiv.org/abs/2503.14476"},{"title":"DAPO: An Open-Source LLM Reinforcement Learning System at Scale | OpenReview","url":"https://openreview.net/forum?id=2a36EMSSTp"},{"title":"Post-Training in 2026: GRPO, DAPO, RLVR & Beyond","url":"https://llm-stats.com/blog/research/post-training-techniques-2026"},{"title":"VAPO: Efficient and Reliable Reinforcement Learning for ...","url":"https://arxiv.org/pdf/2504.05118"}]
+
+Based on the search results, here's what I found about DAPO:
+
+## Overview
+
+DAPO (Decoupled Clip and Dynamic sAmpling Policy Optimization) is a state-of-the-art large-scale RL system developed by ByteDance and Tsinghua that achieves 50 points on AIME 2024 using Qwen2.5-32B base model.
+
+## Background and Motivation
+
+Inference scaling empowers LLMs with unprecedented reasoning ability, with reinforcement learning as the core technique to elicit complex reasoning. However, key technical details of state-of-the
+…[truncated 1005 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T12:14:21.011241+00:00_
+
+Web search results for query: "AgentPRM process reward model agent training ALFWorld 2024 2025"
+
+Links: [{"title":"Process Reward Models for LLM Agents: Practical Framework and Directions","url":"https://arxiv.org/html/2502.10325v1"},{"title":"[2502.10325] Process Reward Models for LLM Agents: Practical Framework and Directions","url":"https://arxiv.org/abs/2502.10325"},{"title":"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress | Proceedings of the ACM Web Conference 2026","url":"https://dl.acm.org/doi/10.1145/3774904.3792551"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=Agent+Process+Reward+Models"},{"title":"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress","url":"https://arxiv.org/html/2511.08325v1"},{"title":"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress | Request PDF","url":"https://www.researchgate.net/publication/403735553_AgentPRM_Process_Reward_Models_for_LLM_Agents_via_Step-Wise_Promise_and_Progress"},{"title":"Process Reward Models for LLM Agents","url":"https://www.emergentmind.com/papers/2502.10325"},{"title":"GitHub - RyanLiu112/Awesome-Process-Reward-Models: A comprehensive collection of process reward models. · GitHub","url":"https://github.com/RyanLiu112/Awesome-Process-Reward-Models"},{"title":"AgentRM: Enhancing Agent Generalization with Reward ...","url":"https://aclanthology.org/2025.acl-long.945.pdf"},{"title":"Agent Process Reward Models","url":"https://www.emergentmind.com/topics/agent-process-reward-models-agentprm"}]
+
+Based on the search results, here's a comprehensive overview of AgentPRM and related research:
+
+## AgentPRM Overview
+
+AgentPRM is a simple and scalable framework for training LLM agents using process reward models, introduced in research published in February 2025. It is a framework for training LLM agents to continually improve through interactions, following a lightweight actor-critic paradi
+…[truncated 1272 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T12:14:21.011420+00:00_
+
+Web search results for query: "Self-Refine Reflexion self-correction LLM agent follow-up work 2024 2025 ICLR NeurIPS"
+
+Links: [{"title":"Self-reflection enhances large language models towards substantial academic response | npj Artificial Intelligence","url":"https://www.nature.com/articles/s44387-025-00045-3"},{"title":"LLM Agent Studies Chapter 2 – Self Reflection - Sherman Wong","url":"https://shermwong.com/2025/01/03/llm-agent-studies-chapter-2-self-reflection/"},{"title":"Self-Reflection in LLM Agents: Effects on Problem-Solving Performance","url":"https://arxiv.org/pdf/2405.06682"},{"title":"[2405.06682] Self-Reflection in LLM Agents: Effects on Problem-Solving Performance","url":"https://arxiv.org/abs/2405.06682"},{"title":"Reflective LLM-based Agent","url":"https://www.emergentmind.com/topics/reflective-llm-based-agent"},{"title":"Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs","url":"https://arxiv.org/html/2510.16062v1"},{"title":"Better Ways to Build Self-Improving AI Agents – Yohei Nakajima","url":"https://yoheinakajima.com/better-ways-to-build-self-improving-ai-agents/"},{"title":"Reflection Analysis in Reasoning Models","url":"https://www.emergentmind.com/topics/reflection-analysis-in-reasoning-models"},{"title":"MAR: Multi-Agent Reflexion Improves Reasoning Abilities in LLMs","url":"https://arxiv.org/html/2512.20845v1"},{"title":"Building a Self-Correcting AI: A Deep Dive into the Reflexion Agent with LangChain and LangGraph | by Vi Q. Ha | Medium","url":"https://medium.com/@vi.ha.engr/building-a-self-correcting-ai-a-deep-dive-into-the-reflexion-agent-with-langchain-and-langgraph-ae2b1ddb8c3b"}]
+
+Based on the search results, here's what I found regarding Self-Refine, Reflexion, and self-correction LLM agent follow-up work in 2024-2025:
+
+## Key Foundational Works
+
+Self-Refine and Reflexion are foundational methods that enable LLMs to re-evaluate prior reasoning steps and resolve inconsistencies based on internal knowledge. Self-Refi
+…[truncated 1950 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T12:14:21.011594+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "SPEAR self-imitation reinforcement learning agentic LLM 2025 Tencent"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "SPEAR self-imitation reinforcement learning agentic LLM 2025 Tencent"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T12:14:21.011768+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"when to verify\" \"when to think\" adaptive reasoning LLM 2024 2025 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"when to verify\" \"when to think\" adaptive reasoning LLM 2024 2025 arXiv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T12:14:21.011898+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "ReSpAct ALFWorld reasoning agent 2024 success rate"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "ReSpAct ALFWorld reasoning agent 2024 success rate"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T12:14:21.012019+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Sherlock speculative execution agent workflow verification cost 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Sherlock speculative execution agent workflow verification cost 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T12:14:21.012140+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "CorrectBench self-correction benchmark LLM 2025 arXiv 2510.16062"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "CorrectBench self-correction benchmark LLM 2025 arXiv 2510.16062"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T12:14:21.012279+00:00_
+
+Web search results for query: "ReSpAct ALFWorld reasoning agent 2024 success rate"
+
+Links: [{"title":"ReSpAct: Harmonizing Reasoning, Speaking, and Acting","url":"https://arxiv.org/pdf/2411.00927"},{"title":"ReSpAct: Harmonizing Reasoning, Speaking, and Acting ...","url":"https://aclanthology.org/2025.iwsds-1.7.pdf"},{"title":"[2411.00927] ReSpAct: Harmonizing Reasoning, Speaking, and Acting Towards Building Large Language Model-Based Conversational AI Agents","url":"https://arxiv.org/abs/2411.00927"},{"title":"ALFWorld Benchmark","url":"https://www.emergentmind.com/topics/alfworld-benchmark"},{"title":"ReSpAct: Harmonizing Reasoning, Speaking, and Acting Towards Building Large Language Model-Based Conversational AI Agents","url":"https://arxiv.org/html/2411.00927v1"},{"title":"ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection","url":"https://arxiv.org/html/2505.15182v2"},{"title":"ReSpAct: Harmonizing Reasoning, Speaking, and Acting Towards Building Large Language Model-Based Conversational AI Agents - ACL Anthology","url":"https://aclanthology.org/2025.iwsds-1.7/"},{"title":"Retrospex: Language Agent Meets Offline Reinforcement Learning Critic","url":"https://arxiv.org/html/2505.11807v1"},{"title":"Results on the six tasks of the ALFWorld benchmark, using success rate... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Results-on-the-six-tasks-of-the-ALFWorld-benchmark-using-success-rate-as-evaluation_tbl1_394121762"},{"title":"Language Agent Meets Offline Reinforcement Learning Critic","url":"https://aclanthology.org/2024.emnlp-main.268.pdf"}]
+
+Based on the search results, here's what I found about ReSpAct's performance on ALFWorld:
+
+ReSpAct outperforms ReAct with an absolute success rate improvement of 6% in ALFWorld. More specifically, ReSpAct reduces invalid action frequency from 13% to 3% compared to ReAct.
+
+ReSpAct is an LLM-based agent designed to integrate reasoning, decision-making, and dynamic dialog
+…[truncated 544 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T12:14:21.012443+00:00_
+
+Web search results for query: ""when to verify" "when to think" adaptive reasoning LLM 2024 2025 arXiv"
+
+Links: [{"title":"[2504.01005] When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning","url":"https://arxiv.org/abs/2504.01005"},{"title":"arXiv:2507.02076v1 [cs.AI] 2 Jul 2025","url":"https://arxiv.org/pdf/2507.02076"},{"title":"When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning","url":"https://arxiv.org/html/2504.01005v2"},{"title":"Computation and Language 2025","url":"https://arxiv.org/list/cs.CL/2025?skip=4200&show=25"},{"title":"Towards Concise and Adaptive Thinking in Large Reasoning Models: A Survey","url":"https://arxiv.org/html/2507.09662v1"},{"title":"From Efficiency to Adaptivity: A Deeper Look at Adaptive Reasoning in Large Language Models","url":"https://arxiv.org/html/2511.10788v2"},{"title":"e1: Learning Adaptive Control of Reasoning Effort","url":"https://arxiv.org/html/2510.27042v1"},{"title":"Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL","url":"https://arxiv.org/html/2505.10832v3"},{"title":"Trust but Verify! A Survey on Verification Design for Test-time Scaling","url":"https://arxiv.org/html/2508.16665v3"},{"title":"Self-Reflective Generation at Test Time","url":"https://arxiv.org/html/2510.02919v1"}]
+
+I found several highly relevant research papers on adaptive reasoning and test-time compute in LLMs. Here are the key results:
+
+## Primary Papers Found
+
+1. **"When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning"** (arXiv:2504.01005, April 2025)
+   - This paper addresses scaling test-time compute as a key strategy for enhancing the reasoning capabilities of LLMs, particularly in mathematical problem-solving. It tackles the fundamental trade-off of whether to spend a limited inference budget on scaling solutions or allocating compute to v
+…[truncated 1389 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T12:14:21.012646+00:00_
+
+Web search results for query: "SPEAR self-imitation reinforcement learning agentic LLM 2025 Tencent"
+
+Links: [{"title":"GitHub - TencentYoutuResearch/SPEAR: An RL Recipe for Building Agentic LLMs via Self-Imitation on Long-Horizon Agentic Tasks · GitHub","url":"https://github.com/TencentYoutuResearch/SPEAR"},{"title":"[2509.22601] Learn the Ropes, Then Trust the Wins: Self-imitation with Progressive Exploration for Agentic Reinforcement Learning","url":"https://arxiv.org/abs/2509.22601"},{"title":"The Landscape of Agentic Reinforcement Learning for LLMs","url":"https://www.facebook.com/groups/DeepNetGroup/posts/2585398601853006/"},{"title":"[2509.02547] The Landscape of Agentic Reinforcement Learning for LLMs: A Survey","url":"https://arxiv.org/abs/2509.02547"},{"title":"The Landscape of Agentic Reinforcement Learning for LLMs: A Survey","url":"https://arxiv.org/html/2509.02547v5"},{"title":"GitHub - CharlesQ9/Self-Evolving-Agents · GitHub","url":"https://github.com/CharlesQ9/Self-Evolving-Agents"},{"title":"GitHub - XMUDeepLIT/Awesome-Self-Evolving-Agents: A Survey of Self-Evolving Agents | A curated list of resources (surveys, papers, benchmarks, and opensource projects) on Self-Evolving Agents. · GitHub","url":"https://github.com/XMUDeepLIT/Awesome-Self-Evolving-Agents"},{"title":"tencent (Tencent)","url":"https://huggingface.co/tencent/papers"},{"title":"Guided Self-Evolving LLMs with Minimal Human Supervision","url":"https://arxiv.org/html/2512.02472v1"},{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"}]
+
+I found comprehensive information about SPEAR. Here's what the search results show:
+
+## SPEAR Overview
+
+SPEAR is a curriculum-based self-imitation learning (SIL) framework for training agentic LLMs on long-horizon, sparse-reward tasks.
+
+## Key Approach
+
+It balances exploration and exploitation b
+…[truncated 1319 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T12:14:21.012875+00:00_
+
+Web search results for query: "Sherlock speculative execution agent workflow verification cost 2025"
+
+Links: [{"title":"Sherlock: RELIABLE AND EFFICIENT AGENTIC WORKFLOW EXECUTION","url":"https://arxiv.org/pdf/2511.00330"},{"title":"[2511.00330] Sherlock: Reliable and Efficient Agentic Workflow Execution","url":"https://arxiv.org/abs/2511.00330"},{"title":"(PDF) Sherlock: Reliable and Efficient Agentic Workflow Execution","url":"https://www.researchgate.net/publication/397232527_Sherlock_Reliable_and_Efficient_Agentic_Workflow_Execution"},{"title":"Sherlock: Reliable and efficient workflow execution - Microsoft Research","url":"https://www.microsoft.com/en-us/research/publication/sherlock-reliable-and-efficient-workflow-execution/"},{"title":"Sherlock: Reliable and Efficient Agentic Workflow Execution | Haoran Qiu | Microsoft AzRS","url":"https://haoran-qiu.com/publication/sherlock-2025/"},{"title":"1 Introduction","url":"https://arxiv.org/html/2511.00330"},{"title":"Sherlock: Reliable and Efficient Agentic Workflow Execution | alphaXiv","url":"https://www.alphaxiv.org/overview/2511.00330v1"},{"title":"The Rise of Agentic AI: From Sherlock to Iron Man's ...","url":"https://www.linkedin.com/pulse/rise-agentic-ai-from-sherlock-iron-mans-jarvis-beyond-saadullah-6zkzf"},{"title":"Sherlock | Web3 Security and Smart Contract Auditing","url":"https://sherlock.xyz/"},{"title":"AI-Driven Smart Contract Security: Sherlock's Beta Launch and the Future of DeFi Infrastructure","url":"https://www.ainvest.com/news/ai-driven-smart-contract-security-sherlock-beta-launch-future-defi-infrastructure-2509/"}]
+
+Based on the search results, I found information about Sherlock related to agentic workflow execution with speculative execution and verification:
+
+## Overview
+
+Sherlock is an agent-serving framework that achieves cost-efficient and reliable execution of agentic workflows through selective verification and speculative execution.
+
+## Key Performance Metrics (2025)
+
+Sherlock deliver
+…[truncated 973 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T12:14:21.013103+00:00_
+
+Web search results for query: "CorrectBench self-correction benchmark LLM 2025 arXiv 2510.16062"
+
+Links: [{"title":"[2510.16062] Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs","url":"https://arxiv.org/abs/2510.16062"},{"title":"Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs","url":"https://www.arxiv.org/pdf/2510.16062"},{"title":"Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs","url":"https://arxiv.org/html/2510.16062v1"},{"title":"Paper page - Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs","url":"https://huggingface.co/papers/2510.16062"},{"title":"(PDF) Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs","url":"https://www.researchgate.net/publication/396714832_Can_LLMs_Correct_Themselves_A_Benchmark_of_Self-Correction_in_LLMs"},{"title":"CorrectBench: A Benchmark of Self-Correction in LLMs","url":"https://correctbench.github.io/"},{"title":"Solver-in-the-Loop: MDP-Based Benchmarks for Self-Correction and Behavioral Rationality in Operations Research","url":"https://arxiv.org/html/2601.21008v2"},{"title":"GitHub - HCR050806/CorrectBench · GitHub","url":"https://github.com/HCR050806/CorrectBench"},{"title":"NeurIPS Poster Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs","url":"https://neurips.cc/virtual/2025/poster/121806"},{"title":"CorrectBench: Self-Correcting LLM Benchmark","url":"https://www.emergentmind.com/topics/correctbench"}]
+
+## Results for CorrectBench (arXiv 2510.16062)
+
+I found comprehensive information about the CorrectBench paper. Here are the key details:
+
+### Overview
+CorrectBench is a benchmark developed to evaluate the effectiveness of self-correction strategies, including intrinsic, external, and fine-tuned approaches, across three tasks: commonsense reasoning, mathematical reasoning, and code generation.
+
+### Main Findings
+The findings reveal that: 1) Self-correction methods can improve accuracy, especially for complex reas
+…[truncated 1288 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T12:14:21.013283+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"When To Solve When To Verify\" compute-optimal verification LLM reasoning arXiv 2504.01005"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"When To Solve When To Verify\" compute-optimal verification LLM reasoning arXiv 2504.01005"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T12:14:21.013408+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "agent reinforcement learning DPO RLHF web agent training 2024 2025 NeurIPS ICLR"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "agent reinforcement learning DPO RLHF web agent training 2024 2025 NeurIPS ICLR"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T12:14:21.013571+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Efficient Agents adaptive complexity cost reduction LLM 2025 arXiv 2508.02694"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Efficient Agents adaptive complexity cost reduction LLM 2025 arXiv 2508.02694"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T12:14:21.013888+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "ALFWorld leaderboard best success rate 2025 2026 ReAct reflexion"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "ALFWorld leaderboard best success rate 2025 2026 ReAct reflexion"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T12:14:21.014027+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "self-verification dilemma overused checking LLM reasoning 2026 arXiv 2602.03485"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "self-verification dilemma overused checking LLM reasoning 2026 arXiv 2602.03485"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T12:14:21.014201+00:00_
+
+Web search results for query: ""When To Solve When To Verify" compute-optimal verification LLM reasoning arXiv 2504.01005"
+
+Links: [{"title":"[2504.01005] When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning","url":"https://arxiv.org/abs/2504.01005"},{"title":"When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250401005S/abstract"},{"title":"Paper page - When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning","url":"https://huggingface.co/papers/2504.01005"},{"title":"[PDF] When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/When-To-Solve,-When-To-Verify:-Compute-Optimal-and-Singhi-Bansal/d170e69de7519e926bee6af648c9ffd625689600"},{"title":"GitHub - nishadsinghi/sc-genrm-scaling: Official code for \"When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning\"","url":"https://github.com/nishadsinghi/sc-genrm-scaling"},{"title":"When To Solve, When To Verify: Compute-Optimal Problem Solving and Generative Verification for LLM Reasoning","url":"https://arxiv.org/html/2504.01005v2"},{"title":"When To Solve, When To Verify: Compute-Optimal ...","url":"https://arxiv.org/pdf/2504.01005"},{"title":"When To Solve, When To Verify: Compute-Optimal Problem Solving and","url":"https://www.arxiv.org/pdf/2504.01005v1"},{"title":"Variation in Verification: Understanding Verification Dynamics in Large Language Models","url":"https://arxiv.org/html/2509.17995v1"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar?q=When+To+Solve,+When+To+Verify:+Compute-Optimal+Problem+Solving+and+Generative+Verification+for+LLM+Reasoning."}]
+
+I found the paper you're searching for. Here's what
+…[truncated 1512 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T12:14:21.014374+00:00_
+
+Web search results for query: "Efficient Agents adaptive complexity cost reduction LLM 2025 arXiv 2508.02694"
+
+Links: [{"title":"[2508.02694] Efficient Agents: Building Effective Agents While Reducing Cost","url":"https://arxiv.org/abs/2508.02694"},{"title":"Efficient Agents: Building Effective Agents While Reducing Cost","url":"https://arxiv.org/pdf/2508.02694"},{"title":"Paper page - Efficient Agents: Building Effective Agents While Reducing Cost","url":"https://huggingface.co/papers/2508.02694"},{"title":"Efficient Agents: Building Effective Agents While Reducing Cost | alphaXiv","url":"https://www.alphaxiv.org/overview/2508.02694v1"},{"title":"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents","url":"https://arxiv.org/pdf/2603.07915"},{"title":"Agentic Plan Caching: Test-Time Memory for Fast and Cost-Efficient LLM Agents","url":"https://arxiv.org/pdf/2506.14852"},{"title":"[2508.03345] Adaptive AI Agent Placement and Migration in Edge Intelligence Systems","url":"https://arxiv.org/abs/2508.03345"},{"title":"When AIs Judge AIs: The Rise of Agent-as-a-Judge Evaluation for LLMs Fangyi Yu","url":"https://arxiv.org/pdf/2508.02994"},{"title":"1 Introduction","url":"https://arxiv.org/html/2508.14544v1"},{"title":"Efficient Benchmarking of AI Agents","url":"https://arxiv.org/html/2603.23749v1"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## Efficient Agents: Building Effective Agents While Reducing Cost
+
+The paper "Efficient Agents: Building Effective Agents While Reducing Cost" (arXiv:2508.02694) was submitted on July 24, 2025, with authors including Ningning Wang, Xavier Hu, Pai Liu, and others.
+
+**Key Overview:**
+
+This work presents the first systematic study of the efficiency-effectiveness trade-off in modern agent systems, addressing the critical need for cost-effective designs without sacrificing performance. The research addresses how the remarkable capabilities of Large Language Model (LLM)-driven agents have enabled so
+…[truncated 960 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T12:14:21.014545+00:00_
+
+Web search results for query: "self-verification dilemma overused checking LLM reasoning 2026 arXiv 2602.03485"
+
+Links: [{"title":"[2602.03485] Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning","url":"https://arxiv.org/abs/2602.03485"},{"title":"Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning","url":"https://arxiv.org/html/2602.03485"},{"title":"Incentivizing LLMs to Self-Verify Their Answers","url":"https://arxiv.org/html/2506.01369v1"},{"title":"Large Language Models are Better Reasoners with Self-Verification | OpenReview","url":"https://openreview.net/forum?id=s4xIeYimGQ"},{"title":"Beyond Correctness: Exposing LLM-generated Logical Flaws in Reasoning via Multi-step Automated Theorem Proving","url":"https://arxiv.org/html/2512.23511v1"},{"title":"On the self-verification limitations of large language models on reasoning and planning tasks | OpenReview","url":"https://openreview.net/forum?id=4O0v4s3IzY"},{"title":"[2212.09561] Large Language Models are Better Reasoners with Self-Verification","url":"https://arxiv.org/abs/2212.09561"},{"title":"A Closer Look at the Self-Verification Abilities of Large Language Models in Logical Reasoning","url":"https://arxiv.org/html/2311.07954v2"},{"title":"[2311.07954] A Closer Look at the Self-Verification Abilities of Large Language Models in Logical Reasoning","url":"https://arxiv.org/abs/2311.07954"},{"title":"Learning to Self-Verify Makes Language Models Better Reasoners","url":"https://arxiv.org/html/2602.07594v1"}]
+
+Based on the search results, I found the paper you're looking for:
+
+"Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning" (arXiv:2602.03485) studies how Large Reasoning Models achieve strong performance by generating long reasoning traces with reflection.
+
+The key findings are:
+
+A substantial fraction of reflective steps consist of self-verification (recheck) that repeatedly 
+…[truncated 912 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T12:14:21.014738+00:00_
+
+Web search results for query: "agent reinforcement learning DPO RLHF web agent training 2024 2025 NeurIPS ICLR"
+
+Links: [{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/9d46574e5baae5121180228223a11836-Paper-Conference.pdf"},{"title":"Papers | LAMDA RL LAB","url":"https://lamda-rl.nju.edu.cn/papers.html"},{"title":"Reinforcement Learning from Human Feedback","url":"https://arxiv.org/html/2504.12501v3"},{"title":"GitHub - FoundationAgents/awesome-foundation-agents: About Awesome things towards foundation agents. Papers / Repos / Blogs / ... · GitHub","url":"https://github.com/FoundationAgents/awesome-foundation-agents"},{"title":"Online Iterative Reinforcement Learning from Human ...","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/94d13c2401fe119e57ba325b6fe526e0-Paper-Conference.pdf"},{"title":"The Landscape of Agentic Reinforcement Learning for LLMs","url":"https://openreview.net/pdf/e9289574e24a3a2ff62a3af86cec1fa2f189ce54.pdf"},{"title":"Tree Search for LLM Agent Reinforcement Learning","url":"https://arxiv.org/pdf/2509.21240"},{"title":"Accepted papers | FoRLM @ NeurIPS'25","url":"https://reasoning-workshop.github.io/accepted/"},{"title":"Reinforcement Learning Meets Large Language Models: A Survey of","url":"https://arxiv.org/pdf/2509.16679"},{"title":"ICLR 2025 Papers","url":"https://iclr.cc/virtual/2025/papers.html"}]
+
+Based on the web search results, I found several relevant papers and research directions in agent reinforcement learning, DPO, and RLHF from the 2024-2025 period at top conferences. Here are the key findings:
+
+## Recent Research on Agent RL and DPO/RLHF (2024-2025)
+
+### ICLR 2025
+Recent work at ICLR 2025 has addressed distribution shift problems to improve DPO training, followed by list-wise alignment and online iterative training frameworks. One approach significantly enhances DPO-aligned policies, improving MT-Bench scores from 7.27 to 8.31 and length-co
+…[truncated 1486 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T12:14:21.014923+00:00_
+
+Web search results for query: "ALFWorld leaderboard best success rate 2025 2026 ReAct reflexion"
+
+Links: [{"title":"Results on the six tasks of the ALFWorld benchmark, using success rate... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Results-on-the-six-tasks-of-the-ALFWorld-benchmark-using-success-rate-as-evaluation_tbl1_394121762"},{"title":"ALFRED Leaderboard","url":"https://askforalfred.com/leaderboard/leaderboard.html"},{"title":"Under review as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2510.09577"},{"title":"arXiv:2505.00234v3 [cs.LG] 16 May 2025","url":"https://arxiv.org/pdf/2505.00234"},{"title":"Updated ALFWorld Model Performance Metrics Model Success Rate Reward... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Updated-ALFWorld-Model-Performance-Metrics-Model-Success-Rate-Reward-Precision-Completion_tbl2_371311588"},{"title":"Open LLM Leaderboard 2026 - Compare Open Source LLM Rankings","url":"https://llm-stats.com/leaderboards/open-llm-leaderboard"},{"title":"ALFWorld Benchmark","url":"https://www.emergentmind.com/topics/alfworld-benchmark"},{"title":"LLM Leaderboard 2026: Compare 300+ Top AI Models by Intelligence, Speed & Price","url":"https://llm-stats.com/"},{"title":"Full LLM Leaderboard 2026 — Advanced Explorer for 300+ AI Models","url":"https://llm-stats.com/leaderboards/llm-leaderboard"},{"title":"LLM Leaderboard - Comparison of over 100 AI models from OpenAI, Google, DeepSeek & others","url":"https://artificialanalysis.ai/leaderboards/models"}]
+
+Based on the search results, here are the key findings about ALFWorld leaderboard performance for 2025-2026:
+
+## Best Success Rates on ALFWorld
+
+A method achieved 93% success on ALFWorld—surpassing approaches that use more powerful LLMs and hand-crafted components. This appears to be one of the highest reported success rates in recent benchmarking.
+
+Another approach using reward modeling shows strong performance: AgentPRM and Inve
+…[truncated 879 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T12:14:21.015101+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Dr.GRPO DigiRL agent online RL training web navigation 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Dr.GRPO DigiRL agent online RL training web navigation 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T12:14:21.015226+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "ReflAct world-grounded reflection LLM agent ALFWorld 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "ReflAct world-grounded reflection LLM agent ALFWorld 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T12:14:21.015504+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Retrospex language agent offline reinforcement learning critic 2024 EMNLP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Retrospex language agent offline reinforcement learning critic 2024 EMNLP"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-15T12:14:21.015689+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"agentic reinforcement learning\" survey landscape LLM 2025 arXiv 2509.02547"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"agentic reinforcement learning\" survey landscape LLM 2025 arXiv 2509.02547"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T12:14:21.015815+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "ARES adaptive reasoning effort selection efficient LLM agents 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "ARES adaptive reasoning effort selection efficient LLM agents 2026"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T12:14:21.015970+00:00_
+
+Web search results for query: "Dr.GRPO DigiRL agent online RL training web navigation 2024 2025"
+
+Links: [{"title":"DigiRL: Training In-The-Wild Device-Control Agents with ...","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/1704ddd0bb89f159dfe609b32c889995-Paper-Conference.pdf"},{"title":"WEBAGENT-R1: Training Web Agents via End-to-End Multi ...","url":"https://aclanthology.org/2025.emnlp-main.401.pdf"},{"title":"NeurIPS Poster DigiRL: Training In-The-Wild Device-Control Agents with Autonomous Reinforcement Learning","url":"https://neurips.cc/virtual/2024/poster/96658"},{"title":"GUI-Agents-Paper-List/paper_by_env/paper_mobile.md at main · OSU-NLP-Group/GUI-Agents-Paper-List","url":"https://github.com/OSU-NLP-Group/GUI-Agents-Paper-List/blob/main/paper_by_env/paper_mobile.md"},{"title":"Tree Search for LLM Agent Reinforcement Learning","url":"https://arxiv.org/pdf/2509.21240"},{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"},{"title":"[Quick Review] DigiRL: Training In-The-Wild Device-Control Agents with Autonomous Reinforcement Learning","url":"https://liner.com/review/digirl-training-inthewild-devicecontrol-agents-with-autonomous-reinforcement-learning"},{"title":"Mano Technical Report Tianyu Fu ∗ Anyang Su ∗ Chenxu Zhao ∗† Hanning Wang ∗","url":"https://www.mininglamp.com/wp-content/uploads/2025/09/%E6%98%8E%E7%95%A5%E7%A7%91%E6%8A%80-Mano-Technical-Report.pdf"},{"title":"WEBAGENT-R1: Training Web Agents via End-to-End Multi-Turn","url":"https://arxiv.org/pdf/2505.16421"},{"title":"WebAgent-R1: Training Web Agents via End-to-End Multi-Turn Reinforcement Learning","url":"https://arxiv.org/html/2505.16421v1"}]
+
+Based on the search results, I found relevant information about DigiRL, GRPO, and online RL training for web agents. Here's what the search revealed:
+
+## DigiRL: Device Con
+…[truncated 1269 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T12:14:21.016153+00:00_
+
+Web search results for query: "ReflAct world-grounded reflection LLM agent ALFWorld 2025"
+
+Links: [{"title":"ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.1697/"},{"title":"[2505.15182] ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection","url":"https://arxiv.org/abs/2505.15182"},{"title":"ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection","url":"https://arxiv.org/html/2505.15182v2"},{"title":"[Literature Review] ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection","url":"https://www.themoonlight.io/en/review/reflact-world-grounded-decision-making-in-llm-agents-via-goal-state-reflection"},{"title":"ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/reflact-world-grounded-decision-making-llm-agents"},{"title":"ReflAct: World-Grounded Decision Making in LLM Agents ...","url":"https://aclanthology.org/2025.emnlp-main.1697.pdf"},{"title":"ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection (Prof. Sung, Youngchul’s Lab) - KAIST 전기 및 전자공학부","url":"https://ee.kaist.ac.kr/en/ai-in-communication/reflact-world-grounded-decision-making-in-llm-agents-via-goal-state-reflection/"},{"title":"Paper page - ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection","url":"https://huggingface.co/papers/2505.15182"},{"title":"ReflAct: World-Grounded Decision Making in LLM Agents ...","url":"https://www.semanticscholar.org/paper/ReflAct:-World-Grounded-Decision-Making-in-LLM-via-Kim-Rhee/0a9360850ff398ca0bfd4ddecf6b59b0b0ac0b4a"},{"title":"TAPE: Tool-Guided Adaptive Planning and Constrained Execution in Language Model Agents","url":"https://arxiv.org/html/2602.19633v1"}]
+
+I found comprehensive information about ReflAct. Here's what the search revealed:
+
+#
+…[truncated 1436 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T12:14:21.016471+00:00_
+
+Web search results for query: "Retrospex language agent offline reinforcement learning critic 2024 EMNLP"
+
+Links: [{"title":"Retrospex: Language Agent Meets Offline Reinforcement Learning Critic - ACL Anthology","url":"https://aclanthology.org/2024.emnlp-main.268/"},{"title":"[2505.11807] Retrospex: Language Agent Meets Offline Reinforcement Learning Critic","url":"https://arxiv.org/abs/2505.11807"},{"title":"Language Agent Meets Offline Reinforcement Learning Critic","url":"https://aclanthology.org/2024.emnlp-main.268.pdf"},{"title":"Retrospex: Language Agent Meets Offline Reinforcement Learning Critic","url":"https://arxiv.org/html/2505.11807v1"},{"title":"Retrospex: Language Agent Meets Offline Reinforcement Learning Critic | alphaXiv","url":"https://www.alphaxiv.org/overview/2505.11807v2"},{"title":"Language Agent Meets Offline Reinforcement Learning Critic","url":"https://www.researchgate.net/publication/391878824_Retrospex_Language_Agent_Meets_Offline_Reinforcement_Learning_Critic"},{"title":"GitHub - Yufei-Xiang/Retrospex: The official code for Retrospex","url":"https://github.com/Yufei-Xiang/Retrospex"},{"title":"dblp: Yeqin Zhang","url":"https://dblp.org/pid/160/9920.html"},{"title":"Yeqin Zhang - ACL Anthology","url":"https://aclanthology.org/people/yeqin-zhang/"},{"title":"GitHub - YoungDubbyDu/Awesome-LLM-Agent-Optimization-Papers: This is the reading list for the survey \"A Survey on the Optimization of LLM-based Agents \". We will keep adding papers and improving the list. Any suggestions and PRs are welcome! · GitHub","url":"https://github.com/YoungDubbyDu/LLM-Agent-Optimization"}]
+
+Based on the search results, I found detailed information about Retrospex. Here's what I discovered:
+
+## Retrospex: Language Agent Meets Offline Reinforcement Learning Critic
+
+Retrospex was presented at the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP) in Miami, Florida, USA by Yufei Xiang, Yiqun Shen, Yeqin Zhang, and Cam-Tu Nguyen.
+
+### Over
+…[truncated 992 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T12:14:21.016707+00:00_
+
+Web search results for query: ""agentic reinforcement learning" survey landscape LLM 2025 arXiv 2509.02547"
+
+Links: [{"title":"[2509.02547] The Landscape of Agentic Reinforcement Learning for LLMs: A Survey","url":"https://arxiv.org/abs/2509.02547"},{"title":"Paper page - The Landscape of Agentic Reinforcement Learning for LLMs: A Survey","url":"https://huggingface.co/papers/2509.02547"},{"title":"The Landscape of Agentic Reinforcement Learning for LLMs: A Survey","url":"https://arxiv.org/html/2509.02547v5"},{"title":"The Landscape of Agentic Reinforcement Learning for LLMs: A Survey | alphaXiv","url":"https://www.alphaxiv.org/resources/2509.02547"},{"title":"Published in Transactions on Machine Learning Research (01/2026)","url":"https://arxiv.org/pdf/2509.02547"},{"title":"GitHub - xhyumiracle/Awesome-AgenticLLM-RL-Papers · GitHub","url":"https://github.com/xhyumiracle/Awesome-AgenticLLM-RL-Papers"},{"title":"The Landscape of Agentic Reinforcement Learning for LLMs: A Survey | OpenReview","url":"https://openreview.net/forum?id=RY19y2RI1O"},{"title":"The Landscape of Agentic Reinforcement Learning for LLMs: A Survey | Request PDF","url":"https://www.researchgate.net/publication/395214373_The_Landscape_of_Agentic_Reinforcement_Learning_for_LLMs_A_Survey"},{"title":"Rohan Paul on X: \"Paper – https://t.co/60kHvggABO Paper Title: \"The Landscape of Agentic Reinforcement Learning for LLMs: A Survey\"\" / X","url":"https://x.com/rohanpaul_ai/status/1964570143595647266"},{"title":"The Landscape of Agentic Reinforcement Learning for LLMs","url":"https://www.facebook.com/groups/DeepNetGroup/posts/2585398601853006/"}]
+
+I found the paper you're looking for! Here's the information about arXiv 2509.02547:
+
+## "The Landscape of Agentic Reinforcement Learning for LLMs: A Survey"
+
+The paper marks a paradigm shift from conventional reinforcement learning applied to large language models (LLM RL), reframing LLMs from passive sequence generators into autonomous, decision-making agen
+…[truncated 1132 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T12:14:21.016905+00:00_
+
+Web search results for query: "ARES adaptive reasoning effort selection efficient LLM agents 2026"
+
+Links: [{"title":"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents","url":"https://arxiv.org/pdf/2603.07915"},{"title":"[2603.07915] Ares: Adaptive Reasoning Effort Selection for Efficient LLM Agents","url":"https://arxiv.org/abs/2603.07915"},{"title":"GitHub - UCSB-NLP-Chang/Ares: Official implementation for \"Ares: Adaptive Reasoning Effort Selection for Efficient LLM Agents\" · GitHub","url":"https://github.com/UCSB-NLP-Chang/Ares"},{"title":"From Efficiency to Adaptivity: A Deeper Look at Adaptive Reasoning in Large Language Models","url":"https://arxiv.org/html/2511.10788v3"},{"title":"AI Papers | Explore Latest Research","url":"https://www.aimodels.fyi/papers/arxiv/ares-adaptive-reasoning-effort-selection-efficient-llm"},{"title":"AE-LLM: Adaptive Efficiency Optimization for Large Language Models","url":"https://arxiv.org/html/2603.20492"},{"title":"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub","url":"https://github.com/tmgthb/Autonomous-Agents"},{"title":"Task-Aware LLM Council with Adaptive Decision Pathways for Decision Support","url":"https://arxiv.org/html/2601.22662v1"},{"title":"e1: Learning Adaptive Control of Reasoning Effort","url":"https://arxiv.org/html/2510.27042v1"},{"title":"A Survey on Evaluation of LLM-based Agents","url":"https://arxiv.org/html/2503.16416v2"}]
+
+Based on the search results, here's what I found about ARES:
+
+## ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents
+
+ARES is a framework for per-step dynamic reasoning effort selection tailored for multi-step agent tasks. The research was published in March 2026 by Yang, Hou, Wei, Bao, and Chang from UCSB.
+
+### Key Concept
+
+ARES employs a lightweight router to predict the lowest appropriate reasoning level for each step based on the interaction history, using a data generation pipeline that identifi
+…[truncated 1229 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T12:14:21.017085+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "WebAgent-R1 multi-turn reinforcement learning web agent GRPO 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "WebAgent-R1 multi-turn reinforcement learning web agent GRPO 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-15T12:14:21.017238+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"learning when to think\" adaptive reasoning R1 multi-stage RL 2025 arXiv 2505.10832"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"learning when to think\" adaptive reasoning R1 multi-stage RL 2025 arXiv 2505.10832"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T12:14:21.017369+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"incentivizing LLMs to self-verify\" 2025 arXiv 2506.01369"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"incentivizing LLMs to self-verify\" 2025 arXiv 2506.01369"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-15T12:14:21.017487+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "ScienceWorld WebShop interactive benchmark LLM agent 2024 2025 SOTA results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "ScienceWorld WebShop interactive benchmark LLM agent 2024 2025 SOTA results"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-15T12:14:21.017626+00:00_
+
+Web search results for query: ""learning when to think" adaptive reasoning R1 multi-stage RL 2025 arXiv 2505.10832"
+
+Links: [{"title":"[2505.10832] Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL","url":"https://arxiv.org/abs/2505.10832"},{"title":"Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL","url":"https://arxiv.org/html/2505.10832v3"},{"title":"(PDF) Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL","url":"https://www.researchgate.net/publication/391856570_Learning_When_to_Think_Shaping_Adaptive_Reasoning_in_R1-Style_Models_via_Multi-Stage_RL"},{"title":"Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL | alphaXiv","url":"https://www.alphaxiv.org/overview/2505.10832"},{"title":"Paper page - Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL","url":"https://huggingface.co/papers/2505.10832"},{"title":"Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250510832T/abstract"},{"title":"Learning When to Think: Shaping Adaptive Reasoning in ...","url":"https://www.summarizepaper.com/en/arxiv-id/2505.10832v1/"},{"title":"NeurIPS Poster Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL","url":"https://neurips.cc/virtual/2025/poster/118864"},{"title":"Paper page - AdaptThink: Reasoning Models Can Learn When to Think","url":"https://huggingface.co/papers/2505.13417"},{"title":"Songjun Tu","url":"https://www.catalyzex.com/author/Songjun%20Tu"}]
+
+I found the paper! Here's information about the research:
+
+## Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL
+
+This is arXiv paper 2505.10832 titled "Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL".
+
+### Overview
+
+Large r
+…[truncated 1363 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T12:14:21.017830+00:00_
+
+Web search results for query: "WebAgent-R1 multi-turn reinforcement learning web agent GRPO 2025"
+
+Links: [{"title":"[2505.16421] WebAgent-R1: Training Web Agents via End-to-End Multi-Turn Reinforcement Learning","url":"https://arxiv.org/abs/2505.16421"},{"title":"WebAgent-R1: Training Web Agents via End-to-End Multi-Turn Reinforcement Learning","url":"https://arxiv.org/html/2505.16421v1"},{"title":"GitHub - weizhepei/WebAgent-R1: [EMNLP 2025] WebAgent-R1: Training Web Agents via End-to-End Multi-Turn Reinforcement Learning · GitHub","url":"https://github.com/weizhepei/WebAgent-R1"},{"title":"WEBAGENT-R1: Training Web Agents via End-to-End Multi-Turn","url":"https://arxiv.org/pdf/2505.16421"},{"title":"[Literature Review] WebAgent-R1: Training Web Agents via End-to-End Multi-Turn Reinforcement Learning","url":"https://www.themoonlight.io/en/review/webagent-r1-training-web-agents-via-end-to-end-multi-turn-reinforcement-learning"},{"title":"WEBAGENT-R1: Training Web Agents via End-to-End Multi ...","url":"https://aclanthology.org/2025.emnlp-main.401.pdf"},{"title":"WebAgent-R1: Training Web Agents via End-to-End Multi-Turn Reinforcement Learning - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-main.401/"},{"title":"WebAgent-R1: Training Web Agents via End-to-End Multi-Turn Reinforcement Learning | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/webagent-r1-training-web-agents-via-end"},{"title":"Multi-Turn Reinforcement Learning for Tool-Calling Agents with Iterative Reward Calibration","url":"https://arxiv.org/html/2604.02869v1"},{"title":"WEBAGENT-R1: Training Web Agents via End-to-End Multi-Turn","url":"https://openreview.net/pdf/e70fdd1a05bb11c3404050b7770f0c6df2867983.pdf"}]
+
+Based on the search results, here's what I found about WebAgent-R1:
+
+## Overview
+
+WebAgent-R1 is a simple yet effective end-to-end multi-turn RL framework for training web agents. Training effective web agents for multi-turn interactions remains challenging
+…[truncated 1427 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-15T12:14:21.018002+00:00_
+
+Web search results for query: ""incentivizing LLMs to self-verify" 2025 arXiv 2506.01369"
+
+Links: [{"title":"[2506.01369] Incentivizing LLMs to Self-Verify Their Answers","url":"https://arxiv.org/abs/2506.01369"},{"title":"Incentivizing LLMs to Self-Verify Their Answers","url":"https://arxiv.org/html/2506.01369v1"},{"title":"iGRPO: Self‑Feedback–Driven LLM Reasoning","url":"https://arxiv.org/html/2602.09000v1"},{"title":"(PDF) Incentivizing LLMs to Self-Verify Their Answers","url":"https://www.researchgate.net/publication/392335459_Incentivizing_LLMs_to_Self-Verify_Their_Answers"},{"title":"Learning to Self-Verify Makes Language Models Better Reasoners","url":"https://arxiv.org/pdf/2602.07594"},{"title":"Computer Science Jun 2025","url":"https://arxiv.org/list/cs/2025-06?skip=700&show=100"},{"title":"Prepare Reasoning Language Models for Multi-Agent Debate","url":"https://www.arxiv.org/pdf/2601.22297"},{"title":"Machine Learning Jun 2025","url":"https://www.arxiv.org/list/cs.LG/2025-06?skip=75&show=100"},{"title":"Machine Learning Jun 2025","url":"https://arxiv.org/list/cs.LG/2025-06?skip=25&show=2000"},{"title":"arXiv:2506.14245v1 [cs.AI] 17 Jun 2025 Preprint.","url":"https://arxiv.org/pdf/2506.14245v1"}]
+
+I found the paper! Here's what I discovered about arXiv 2506.01369:
+
+## "Incentivizing LLMs to Self-Verify Their Answers"
+
+This paper was submitted on June 2, 2025 by authors Fuxiang Zhang, Jiacheng Xu, Chaojie Wang, Ce Cui, Yang Liu, and Bo An.
+
+**Main Contribution:**
+The paper identifies that while test-time scaling approaches using external reward models show promise, they only acquire marginal gains when scaling models post-trained on specific reasoning tasks, with limited improvement stemming from distribution discrepancies between the specific post-trained generator and the general reward model.
+
+**Proposed Solution:**
+The authors propose a framework that incentivizes LLMs to self-verify their own answers by unifying answer generation and verification withi
+…[truncated 624 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T12:14:21.018227+00:00_
+
+Web search results for query: "ScienceWorld WebShop interactive benchmark LLM agent 2024 2025 SOTA results"
+
+Links: [{"title":"AgentGym: Evolving Large Language Model-based Agents ...","url":"https://arxiv.org/pdf/2406.04151"},{"title":"ScienceWorld Benchmark","url":"https://www.emergentmind.com/topics/scienceworld-benchmark"},{"title":"Coarse-to-Fine Grounded Memory for LLM Agent Planning","url":"https://arxiv.org/html/2508.15305"},{"title":"10 AI agent benchmarks","url":"https://www.evidentlyai.com/blog/ai-agent-benchmarks"},{"title":"GitHub - hkust-nlp/AgentBoard: An Analytical Evaluation Board of Multi-turn LLM Agents [NeurIPS 2024 Oral] · GitHub","url":"https://github.com/hkust-nlp/AgentBoard"},{"title":"LLM Benchmark Leaderboard 2026: Coding, Math, Reasoning and Agents | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/llm"},{"title":"AgentBench: Evaluating LLMs as Agents | OpenReview","url":"https://openreview.net/forum?id=zAdUB0aCTQ"},{"title":"ScienceWorld","url":"https://sciworld.apps.allenai.org/"},{"title":"Survey on Evaluation of LLM-based Agents","url":"https://arxiv.org/html/2503.16416v1"},{"title":"LLM Leaderboard 2026 — Compare Top AI Models - Vellum","url":"https://www.vellum.ai/llm-leaderboard"}]
+
+Based on the web search results, here's what I found about ScienceWorld and WebShop interactive benchmarks for LLM agents with recent SOTA results:
+
+## Overview
+
+ScienceWorld is a benchmark for testing agents' scientific reasoning abilities in a new interactive text environment at the standard elementary science curriculum level. WebShop is an interactive environment simulating online shopping, where the agent needs to find and purchase a product matching specific criteria by interacting with a website.
+
+## Recent SOTA Results (2024-2025)
+
+**ReasonPlanner (2024):** Models such as ReasonPlanner use a temporal knowledge graph (TKG) world model and LLM-based SARSA planning with a natural language actor-critic execution module, achieving 1.8x the score o
+…[truncated 1114 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-15T12:14:21.018412+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Co-Evolution of Policy and Internal Reward\" Self-Guide language agent ALFWorld WebShop results 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Co-Evolution of Policy and Internal Reward\" Self-Guide language agent ALFWorld WebShop results 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-15T12:14:21.018540+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "stabilizing off-policy training long-horizon LLM agent turn-level importance sampling 2025 arXiv 2511.20718"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "stabilizing off-policy training long-horizon LLM agent turn-level importance sampling 2025 arXiv 2511.20718"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-15T12:14:21.018677+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"trust but verify\" survey verification test-time scaling 2025 arXiv 2508.16665"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"trust but verify\" survey verification test-time scaling 2025 arXiv 2508.16665"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T12:14:21.018832+00:00_
+
+Web search results for query: ""Co-Evolution of Policy and Internal Reward" Self-Guide language agent ALFWorld WebShop results 2025"
+
+Links: [{"title":"Co-Evolution of Policy and Internal Reward for Language Agents","url":"https://arxiv.org/html/2604.03098"},{"title":"Co-Evolution of Policy and Internal Reward for Language ...","url":"https://arxiv.org/pdf/2604.03098"},{"title":"[2604.03098] Co-Evolution of Policy and Internal Reward for Language Agents","url":"https://arxiv.org/abs/2604.03098"},{"title":"EPO: Explicit Policy Optimization for Strategic Reasoning in ...","url":"https://aclanthology.org/2025.acl-long.747.pdf"},{"title":"SkillRL: Evolving Agents via Recursive Skill-Augmented Reinforcement Learning","url":"https://arxiv.org/html/2602.08234v1"},{"title":"AgentRM: Enhancing Agent Generalization with Reward ...","url":"https://aclanthology.org/2025.acl-long.945.pdf"},{"title":"Co-Evolution of Policy and Internal Reward for Language Agents | alphaXiv","url":"https://www.alphaxiv.org/overview/2604.03098v1"},{"title":"SELAUR: Self Evolving LLM Agent via Uncertainty-aware Rewards","url":"https://arxiv.org/html/2602.21158"},{"title":"GitHub - thunlp/AgentRM: [ACL 2025 main] AgentRM: Enhancing Agent Generalization with Reward Modeling · GitHub","url":"https://github.com/thunlp/AgentRM"},{"title":"[2602.05842] Reinforcement World Model Learning for LLM-based Agents","url":"https://arxiv.org/abs/2602.05842"}]
+
+I found relevant research on the topic you searched for. Here are the key findings:
+
+## Co-Evolution of Policy and Internal Reward for Language Agents
+
+The research proposes Self-Guide, a self-generated internal reward for language agents that supports both inference-time guidance and training-time supervision. Specifically, the agent uses Self-Guide as a short self-guidance signal to steer the next action during inference, and converts the same signal into step-level internal reward for denser policy optimization during training.
+
+### Core Mechanism
+
+This c
+…[truncated 1114 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-15T12:14:21.019001+00:00_
+
+Web search results for query: ""trust but verify" survey verification test-time scaling 2025 arXiv 2508.16665"
+
+Links: [{"title":"[2508.16665] Trust but Verify! A Survey on Verification Design for Test-time Scaling","url":"https://arxiv.org/abs/2508.16665"},{"title":"Trust but Verify! A Survey on Verification Design for Test-time Scaling","url":"https://arxiv.org/pdf/2508.16665"},{"title":"Think Right, Not More: Test-Time Scaling for Numerical Claim Verification","url":"https://www.arxiv.org/pdf/2509.22101"},{"title":"Trust but Verify! A Survey on Verification Design for Test-time Scaling","url":"https://openreview.net/pdf?id=sytEeAZYvf"},{"title":"Trust but Verify: Programmatic VLM Evaluation in the Wild Viraj Prabhu1*","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Prabhu_Trust_but_Verify_Programmatic_VLM_Evaluation_in_the_Wild_ICCV_2025_paper.pdf"},{"title":"Inference-Time Scaling of Verification: Self-Evolving Deep Research Agents via Test-Time Rubric-Guided Verification","url":"https://arxiv.org/html/2601.15808v1"},{"title":"What, How, Where, and How Well? A Survey on Test-Time Scaling in Large Language Models","url":"https://testtimescaling.github.io/"},{"title":"[2509.23152] Critique to Verify: Accurate and Honest Test-Time Scaling with RL-Trained Verifiers","url":"https://arxiv.org/abs/2509.23152"},{"title":"[PDF] A Survey on Test-Time Scaling in Large Language Models: What, How, Where, and How Well? | Semantic Scholar","url":"https://www.semanticscholar.org/paper/A-Survey-on-Test-Time-Scaling-in-Large-Language-and-Zhang-Lyu/f26fcc2b9fc8944e054425d19c12b9d5cca64fcb"},{"title":"Step-level Verifier-guided Hybrid Test-Time Scaling for ...","url":"https://aclanthology.org/2025.emnlp-main.931.pdf"}]
+
+I found the paper you requested! Here are the search results for "Trust but Verify! A Survey on Verification Design for Test-time Scaling" (arXiv 2508.16665):
+
+## Overview
+
+The paper is titled "Trust but Verify! A Survey on Verification Design for Test-
+…[truncated 936 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T12:14:21.019191+00:00_
+
+Web search results for query: "stabilizing off-policy training long-horizon LLM agent turn-level importance sampling 2025 arXiv 2511.20718"
+
+Links: [{"title":"[2511.20718] Stabilizing Off-Policy Training for Long-Horizon LLM Agent via Turn-Level Importance Sampling and Clipping-Triggered Normalization","url":"https://arxiv.org/abs/2511.20718"},{"title":"Stabilizing Off-Policy Training for Long-Horizon LLM Agent via Turn-Level Importance Sampling and Clipping-Triggered Normalization","url":"https://arxiv.org/html/2511.20718"},{"title":"Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved Multi-Turn RL in Agentic LLMs","url":"https://arxiv.org/html/2512.17008"},{"title":"1 Long-context, tool-integrated multi-turn RL comparing synchronous training (𝑘=0) to a two-step policy lag (𝑘=2) with VCPO versus sequence-level truncated importance sampling (TIS). Top: AIME-2025 validation accuracy vs. cumulative wall-clock time. VCPO matches the best synchronous accuracy 2.5× faster (≈42h vs. ≈105h) and continues to improve thereafter. Bottom: Gradient norm vs. training steps. The TIS run shows an instability characterized by a brief gradient-norm spike followed by rapid coll","url":"https://arxiv.org/html/2602.17616v1"},{"title":"Stabilizing Reinforcement Learning with LLMs: Formulation and Practices","url":"https://arxiv.org/html/2512.01374v3"},{"title":"2025-12-04 Stabilizing Reinforcement Learning with LLMs:","url":"https://arxiv.org/pdf/2512.01374"},{"title":"RAPO: Expanding Exploration for LLM Agents via Retrieval-Augmented Policy Optimization","url":"https://arxiv.org/html/2603.03078"},{"title":"LLM Research Papers: The 2025 List (July to December)","url":"https://magazine.sebastianraschka.com/p/llm-research-papers-2025-part2"},{"title":"Trust Region Masking for Long-Horizon LLM Reinforcement LearningFirst version: December 10, 2025","url":"https://arxiv.org/html/2512.23075v1"},{"title":"Paper page - Agentic Reinforced Policy Optimization","url":"https://huggingf
+…[truncated 1739 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-15T12:14:21.019394+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs",
+  "description": "Create docs directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs",
+    "description": "Create docs directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T12:14:21.019559+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-15T12:14:21.019803+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/related_work_survey.md",
+  "content": "# B-IAVR Related Work Survey\n\n> Survey date: 2026-05-15. Covers 2024-2026 publications across four directions.\n\n---\n\n## Direction 1: Self-Verification / Self-Correction in LLM Agents\n\n### [When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs] (Huang et al., 2024)\n- **Venue**: arXiv 2406.01297 (highly cited survey)\n- **Core contribution**: First comprehensive critical survey of LLM self-correction, establishing taxonomy of intrinsic/external/fine-tuned correction.\n- **Method**: Categorizes self-correction into three paradigms: (1) intrinsic correction via prompted self-feedback, (2) external correction via tool/verifier feedback, (3) fine-tuned correction via training. Systematically evaluates when each works.\n- **Results**: No prior work demonstrates successful intrinsic self-correction from prompted LLMs alone, except for tasks exceptionally suited to self-correction. External feedback and large-scale fine-tuning enable reliable correction.\n- **Relation to B-IAVR**: Foundational framing. B-IAVR's verification is closer to \"external correction\" (environment re-observation), not pure intrinsic self-correction. This survey validates that verification with grounded feedback is the viable path.\n- **Key insight**: Pure self-correction is unreliable; grounded verification signals (like B-IAVR's action-change detection) are necessary.\n\n### [CorrectBench: Can LLMs Correct Themselves?] (He et al., 2025)\n- **Venue**: NeurIPS 2025 Datasets & Benchmarks\n- **Core contribution**: Systematic benchmark for evaluating self-correction strategies across commonsense reasoning, math, and code.\n- **Method**: Curates 3,825 QA pairs across 7 subdatasets. Evaluates intrinsic, external, and fine-tuned correction methods. Tests mixing strategies.\n- **Results**: Self-correction improves accuracy for complex reasoning; mixing strategies helps but reduces efficiency. Reasoning LLMs (DeepSeek-R1) show limited gain from additional correction and high cost. Simple CoT is competitive.\n- **Relation to B-IAVR**: Complementary benchmark. Validates that self-correction has diminishing returns when applied uniformly — supports B-IAVR's selective verification design.\n- **Key insight**: Cost-accuracy tradeoff of self-correction is real; selective application (as in B-IAVR) is more efficient than blanket correction.\n\n### [Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning] (2026)\n- **Venue**: arXiv 2602.03485\n- **Core contribution**: Identifies that LLM reasoning models massively overuse self-verification — most rechecks are confirmatory (>90%), not corrective (~2%).\n- **Method**: Analyzes verification behavior across models/benchmarks. Proposes experience-driven test-time framework: detects recheck activation, consults offline experience pool of past verification outcomes, estimates whether recheck is unnecessary.\n- **Results**: Vast majority of self-verification steps are wasted computation. Framework reduces unnecessary verification while preserving accuracy.\n- **Relation to B-IAVR**: Directly supports B-IAVR's core thesis — verification should be selective, not universal. Their \"experience pool\" approach is complementary to B-IAVR's action-change signal.\n- **Key insight**: The verification-overuse problem is empirically validated here. B-IAVR's signal-based triggering addresses the same inefficiency from a different angle.\n\n### [Incentivizing LLMs to Self-Verify Their Answers] (Zhang et al., 2025)\n- **Venue**: arXiv 2506.01369\n- **Core contribution**: Unifies answer generation and verification in a single RL training process, eliminating external verifiers.\n- **Method**: Trains LLMs with RL to jointly generate answers and verify them. The model learns to assess correctness of its own solutions during training. At inference, scales performance by self-verifying without external reward models.\n- **Results**: Overcomes distribution mismatch between generator and external reward model. Achieves test-time scaling via self-verification.\n- **Relation to B-IAVR**: Complementary approach. They train verification into the generation process; B-IAVR trains when to trigger a separate verification step. Could potentially be combined.\n- **Key insight**: RL can train internal verification capability, paralleling B-IAVR's RL-trained verification policy.\n\n### [MAR: Multi-Agent Reflexion] (2025)\n- **Venue**: arXiv 2512.20845\n- **Core contribution**: Extends Reflexion to multi-agent setting with diverse critic personas for more robust self-correction.\n- **Method**: Uses Society-of-Mind framework: intentionally diverse critic personas provide structured disagreement. Reduces shared blind spots of single-agent reflection.\n- **Results**: More stable and transferable improvements across tasks compared to single-agent Reflexion.\n- **Relation to B-IAVR**: Complementary. MAR improves correction quality when verification is triggered; B-IAVR decides when to trigger it.\n- **Key insight**: Multi-perspective verification is more effective than single-pass checking.\n\n### [SSR: Socratic Self-Refine] (2025)\n- **Venue**: arXiv 2511.10621\n- **Core contribution**: Guides self-refinement through Socratic questioning rather than direct correction prompts.\n- **Method**: Decomposes self-refinement into structured questioning steps. The model evaluates its own output by answering diagnostic questions about potential errors, then revises based on answers.\n- **Results**: Improves over standard Self-Refine on reasoning tasks by making the critique step more structured.\n- **Relation to B-IAVR**: Complementary. Improves the quality of the correction step itself; B-IAVR focuses on when to invoke correction.\n- **Key insight**: Structured verification prompts yield better corrections than \"is this correct?\" style prompts.\n\n---\n\n## Direction 2: Agent RL Training\n\n### [GiGPO: Group-in-Group Policy Optimization for LLM Agent Training] (Feng et al., 2025)\n- **Venue**: NeurIPS 2025\n- **Core contribution**: Fine-grained credit assignment for multi-step agent tasks while staying critic-free and memory-efficient.\n- **Method**: Extends GRPO with nested group structure: outer group samples trajectories per task, inner group compares actions within each step. This decomposes trajectory-level reward into step-level advantages without a learned critic.\n- **Results**: >12% improvement on ALFWorld, >9% on WebShop over GRPO. Preserves GRPO's low-memory properties.\n- **Relation to B-IAVR**: Building block. B-IAVR uses GRPO/GiGPO for policy optimization. GiGPO's step-level credit assignment is especially relevant for training the verification trigger policy.\n- **Key insight**: Step-level credit in agent RL is critical; GiGPO's approach directly benefits B-IAVR's reward attribution for verification decisions.\n\n### [Co-Evolution of Policy and Internal Reward for Language Agents (Self-Guide)] (2026)\n- **Venue**: arXiv 2604.03098\n- **Core contribution**: Self-generated internal reward (Self-Guide) that co-evolves with the agent policy for both inference-time guidance and training-time supervision.\n- **Method**: Agent generates a short self-guidance signal to steer next action at inference; same signal is converted to step-level internal reward for GRPO training. Creates a co-evolving loop: better policy → better guidance → better reward.\n- **Results**: 8% improvement over environment-reward-only baselines across ALFWorld, ScienceWorld, WebShop. Tested on Qwen3-1.7B/4B and Qwen2.5-7B.\n- **Relation to B-IAVR**: Direct predecessor. B-IAVR builds on Self-Guide — the self-guidance signal is the foundation for the action-change detection that triggers verification.\n- **Key insight**: Internal reward enables dense supervision for sparse-reward agent tasks; B-IAVR extends this by using the signal to decide when verification is needed.\n\n### [SPEAR: Self-Imitation with Progressive Exploration for Agentic RL] (Tencent, 2025)\n- **Venue**: ICLR 2026\n- **Core contribution**: Curriculum-based self-imitation learning for long-horizon, sparse-reward agent tasks.\n- **Method**: Two-phase curriculum: (1) early stage uses auxiliary tool-use rewards for broad exploration, (2) later stage strengthens self-imitation from successful trajectory replay. Uses advantage recalibration and regularization.\n- **Results**: Increases success rates of GRPO/GiGPO/Dr.BoT by up to 16.1%/5.1%/8.6% on ALFWorld, 20.7%/11.8%/13.9% on WebShop.\n- **Relation to B-IAVR**: Complementary training recipe. SPEAR's curriculum could be applied to B-IAVR's verification policy training to improve exploration of when-to-verify decisions.\n- **Key insight**: Self-imitation from successful trajectories is powerful for sparse-reward agent RL; applicable to B-IAVR's training pipeline.\n\n### [WebAgent-R1: Training Web Agents via End-to-End Multi-Turn RL] (Pei et al., 2025)\n- **Venue**: EMNLP 2025\n- **Core contribution**: Extends GRPO to multi-turn agent settings (M-GRPO) with dynamic context compression.\n- **Method**: Asynchronous trajectory generation guided by binary success rewards. M-GRPO handles multi-turn credit assignment. Dynamic context compression reduces memory. Behavior cloning warm-up before RL.\n- **Results**: Qwen-2.5-3B: 6.1% → 33.9% on WebArena-Lite. LLaMA-3.1-8B: 8.5% → 44.8%. Outperforms OpenAI o3.\n- **Relation to B-IAVR**: Parallel work on agent RL. M-GRPO's multi-turn extension is directly relevant to B-IAVR's sequential decision process.\n- **Key insight**: Multi-turn GRPO with warm-up is effective for agent training; B-IAVR could adopt similar context compression techniques.\n\n### [DAPO: Decoupled Clip and Dynamic Sampling Policy Optimization] (ByteDance/Tsinghua, 2025)\n- **Venue**: arXiv 2503.14476 (open-source system)\n- **Core contribution**: Open-source large-scale RL system solving key instabilities in reasoning model training.\n- **Method**: Four techniques: Clip-Higher (prevents entropy collapse), Dynamic Sampling (filters batches for consistent gradients), Token-level Policy Gradient Loss (for long CoT), Overlong Reward Shaping (reduces length-limit reward noise).\n- **Results**: 50 points on AIME 2024 with Qwen2.5-32B, outperforming DeepSeek-R1-Zero with 50% training steps.\n- **Relation to B-IAVR**: Infrastructure. DAPO's stabilization techniques (especially Clip-Higher and Dynamic Sampling) are applicable to B-IAVR's RL training to prevent collapse.\n- **Key insight**: RL training stability techniques from reasoning domain transfer to agent RL.\n\n### [DigiRL: Training In-The-Wild Device-Control Agents with Autonomous RL] (2024)\n- **Venue**: NeurIPS 2024\n- **Core contribution**: Online RL for device control agents interacting with real GUI environments.\n- **Method**: Two-stage: offline RL from demonstrations, then offline-to-online RL with autonomous performance evaluation. Agent learns from real interactions with graphical interfaces.\n- **Results**: 49.5% absolute improvement (17.7% → 67.2%) over SFT on device control tasks.\n- **Relation to B-IAVR**: Parallel approach. DigiRL demonstrates online RL viability for interactive agents; B-IAVR applies similar principles to text-based environments with selective verification.\n- **Key insight**: Online RL with real environment interaction dramatically outperforms imitation learning for agents.\n\n### [SORL: Stabilizing Off-Policy RL for Long-Horizon Agent Training] (Li et al., 2025)\n- **Venue**: arXiv 2511.20718\n- **Core contribution**: Addresses instability in off-policy PPO/GRPO for multi-turn agent tasks.\n- **Method**: Turn-level importance sampling (aligns optimization granularity with turn-structured interactions) + clipping-triggered normalization (suppresses unreliable off-policy updates).\n- **Results**: Prevents training collapse observed in standard PPO/GRPO. Maintains lower clipping ratios and stable optimization.\n- **Relation to B-IAVR**: Infrastructure. B-IAVR's RL training on multi-turn ALFWorld episodes faces the same off-policy stability challenges. SORL's techniques are directly applicable.\n- **Key insight**: Turn-level (not token-level) optimization is key for stable multi-turn agent RL.\n\n### [The Landscape of Agentic RL for LLMs: A Survey] (2025)\n- **Venue**: TMLR 2026 (arXiv 2509.02547)\n- **Core contribution**: Comprehensive survey formalizing the shift from single-step LLM-RL to temporally extended agentic RL.\n- **Method**: Distinguishes degenerate single-step MDPs (standard LLM-RL) from POMDPs (agentic RL). Proposes taxonomy around capabilities (planning, tool use, memory, reasoning, self-improvement) and task domains.\n- **Results**: N/A (survey). Identifies RL as the critical mechanism for transforming static capabilities into adaptive agentic behavior.\n- **Relation to B-IAVR**: Contextualizes B-IAVR within the broader agentic RL landscape. B-IAVR's selective verification is a form of adaptive self-improvement trained via RL.\n- **Key insight**: The survey frames B-IAVR's contribution as part of the agentic RL paradigm — training agents to make meta-decisions (like when to verify) via RL.\n\n---\n\n## Direction 3: Selective Verification / Adaptive Computation in Agents\n\n### [Derailer-Rerailer: Adaptive Verification for Efficient and Reliable LM Reasoning] (Wan et al., 2025)\n- **Venue**: ACL 2025 Findings\n- **Core contribution**: Lightweight mechanism to detect reasoning instability and selectively trigger deep verification only when needed.\n- **Method**: Derailer assesses reasoning stability via a lightweight check. Only when instability is detected does the expensive Rerailer verification process engage. Binary gate: cheap check → selective deep verification.\n- **Results**: 8-11% accuracy improvements across reasoning tasks. 2-3x efficiency over uniform verification methods. Strong on math and symbolic reasoning.\n- **Relation to B-IAVR**: Most directly related competitor. Both do selective verification with a binary trigger. Key difference: Derailer-Rerailer operates on reasoning chains (single-turn); B-IAVR operates on agent action trajectories (multi-turn). Derailer uses reasoning instability signal; B-IAVR uses action-change signal.\n- **Key insight**: Binary selective verification is validated as effective. B-IAVR extends this paradigm from reasoning to interactive agent settings.\n\n### [Sherlock: Reliable and Efficient Agentic Workflow Execution] (Microsoft, 2025)\n- **Venue**: arXiv 2511.00330\n- **Core contribution**: Framework for cost-efficient selective verification in agentic workflows via counterfactual analysis + speculative execution.\n- **Method**: Counterfactual analysis identifies error-prone nodes in workflows. Cost-optimal verifiers attached only where necessary. Runtime: speculative execution of downstream tasks while verification runs in background; rollback on failure.\n- **Results**: 18.3% accuracy gain over non-verifying baseline. 26% cost reduction over Monte Carlo verification. 48.7% latency reduction via speculative execution.\n- **Relation to B-IAVR**: Complementary but different scope. Sherlock selects verification points via offline counterfactual analysis of workflow DAGs; B-IAVR learns verification points via online RL in interactive environments. Sherlock is workflow-level; B-IAVR is step-level.\n- **Key insight**: Selective verification is also studied in structured workflow settings. B-IAVR's contribution is applying this idea to interactive, sequential agent decisions via learned policy.\n\n### [When To Solve, When To Verify: Compute-Optimal Verification for LLM Reasoning] (Singhi et al., 2025)\n- **Venue**: arXiv 2504.01005\n- **Core contribution**: Derives inference scaling laws for the tradeoff between generating more solutions vs. verifying existing ones under fixed compute budget.\n- **Method**: Compares Self-Consistency (majority voting over solutions) vs. Generative Reward Models (GenRM: generate verification chains to score solutions). Analyzes compute-optimal allocation.\n- **Results**: Compute-optimal inference favors scaling solution generation more aggressively than scaling verification. Over-verifying is wasteful under budget constraints.\n- **Relation to B-IAVR**: Strong conceptual alignment. Both address \"when to verify\" as a resource allocation problem. Their finding that over-verification is suboptimal directly supports B-IAVR's selective approach.\n- **Key insight**: The optimal compute allocation between solving and verifying is non-trivial — B-IAVR learns this allocation via RL rather than deriving it analytically.\n\n### [ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents] (Yang et al., 2026)\n- **Venue**: arXiv 2603.07915\n- **Core contribution**: Per-step dynamic reasoning effort selection for multi-step agent tasks via lightweight router.\n- **Method**: Trains a router to predict minimum sufficient reasoning effort (low/medium/high) per step. Pipeline: trajectory collection → effort annotation via sampling → rationale generation → SFT on router. Router receives same context as agent.\n- **Results**: Reduces reasoning token usage by up to 52.7% with minimal accuracy degradation on agent tasks.\n- **Relation to B-IAVR**: Closest competitor in the agent domain. Both train a learned policy for per-step compute allocation. Key difference: ARES selects reasoning effort level (continuous); B-IAVR selects binary verify/not-verify. ARES uses SFT-trained router; B-IAVR uses RL-trained policy.\n- **Key insight**: Per-step adaptive computation for agents is a validated direction. B-IAVR's RL training and binary signal provide a simpler, more interpretable mechanism than ARES's multi-level effort.\n\n### [AutoThink: Learning When to Think via Multi-Stage RL] (Tu et al., 2025)\n- **Venue**: NeurIPS 2025\n- **Core contribution**: RL framework teaching reasoning models to invoke explicit reasoning only when necessary.\n- **Method**: Multi-stage RL with stage-wise reward shaping. Exploits discovery that R1-style models have latent controllability of thinking mode. Progressively optimizes reasoning policy.\n- **Results**: +6.4% relative accuracy, -52% token usage on DeepSeek-R1-Distill-Qwen-1.5B across 5 math benchmarks.\n- **Relation to B-IAVR**: Analogous idea in reasoning domain. AutoThink: \"when to think deeply\"; B-IAVR: \"when to verify actions.\" Both use RL to learn the adaptive trigger. AutoThink operates on single-turn reasoning; B-IAVR on multi-turn agent trajectories.\n- **Key insight**: RL-trained adaptive computation is proven effective for reasoning; B-IAVR extends this principle to agent verification.\n\n### [Efficient Agents: Building Effective Agents While Reducing Cost] (Wang et al., 2025)\n- **Venue**: arXiv 2508.02694\n- **Core contribution**: First systematic study of efficiency-effectiveness tradeoff in modern agent systems.\n- **Method**: Empirical analysis on GAIA benchmark evaluating LLM backbone selection, framework design, and test-time scaling. Uses cost-of-pass metric for efficiency-performance tradeoff.\n- **Results**: Retains 96.7% performance of OWL framework while reducing cost from $0.398 to $0.228 (28.4% improvement in cost-of-pass).\n- **Relation to B-IAVR**: Complementary. Provides framework-level efficiency; B-IAVR provides step-level verification efficiency. Both address agent cost reduction.\n- **Key insight**: Agent cost is a first-class research concern. B-IAVR addresses it at the algorithmic (verification policy) level rather than the systems level.\n\n### [Trust but Verify! A Survey on Verification Design for Test-time Scaling] (Venktesh et al., 2025)\n- **Venue**: arXiv 2508.16665\n- **Core contribution**: Survey of verification approaches for test-time compute scaling in LLMs.\n- **Method**: Categorizes verification methods (outcome reward models, process reward models, generative verifiers). Analyzes when and how to verify during test-time inference.\n- **Results**: N/A (survey). Maps the verification design space including when to verify, what to verify, and how to verify.\n- **Relation to B-IAVR**: Provides theoretical context. B-IAVR's \"when to verify\" question is a central theme in this survey, but applied to agent trajectories rather than reasoning chains.\n- **Key insight**: Verification timing is identified as a key open problem across the field — B-IAVR provides a concrete solution for the agent setting.\n\n---\n\n## Direction 4: ALFWorld / Interactive Environment Benchmarks\n\n### [ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection] (Kim et al., 2025)\n- **Venue**: EMNLP 2025\n- **Core contribution**: New reasoning backbone that grounds agent decisions in continuous state-goal reflection rather than next-action planning.\n- **Method**: Replaces ReAct's \"think about next action\" with \"reflect on current state relative to goal.\" Enforces ongoing goal alignment, preventing the compounding errors from ungrounded reasoning.\n- **Results**: **93.3% success rate on ALFWorld** (+27.7% over ReAct). Outperforms ReAct + Reflexion, ReAct + WKM, and other enhancement modules.\n- **Relation to B-IAVR**: Strong baseline / complementary. ReflAct achieves near-ceiling performance via prompting alone. B-IAVR addresses a different axis: cost-efficiency of verification, not peak accuracy. ReflAct always reflects; B-IAVR selectively verifies.\n- **Key insight**: ALFWorld performance is approaching saturation via prompting methods. B-IAVR's value proposition is efficiency, not raw success rate.\n\n### [AgentPRM: Process Reward Models for LLM Agents] (Chatterjee et al., 2025)\n- **Venue**: ACM Web Conference 2026 (arXiv 2502.10325)\n- **Core contribution**: Lightweight actor-critic framework using Monte Carlo rollouts for step-level reward in agent training.\n- **Method**: Trains process reward model via Monte Carlo rollouts to provide dense step-level supervision. InversePRM extension learns process rewards from demonstrations without outcome supervision.\n- **Results**: 3B models with AgentPRM/InversePRM achieve **88-91% success on ALFWorld**, exceeding GPT-4o prompting baselines.\n- **Relation to B-IAVR**: Complementary. AgentPRM provides dense reward shaping for training; B-IAVR's Self-Guide provides internal reward. AgentPRM could potentially serve as the reward model for B-IAVR's verification policy.\n- **Key insight**: Process reward models enable small models to match large prompted models on agent tasks — validates the RL training approach B-IAVR uses.\n\n### [Retrospex: Language Agent Meets Offline RL Critic] (Xiang et al., 2024)\n- **Venue**: EMNLP 2024\n- **Core contribution**: Combines LLM action likelihood with offline RL critic trained on past experiences.\n- **Method**: Instead of injecting experiences into LLM context, trains a separate RL Critic offline on past trajectories. Dynamic rescoring mechanism adjusts importance of experience-based values based on task interaction requirements.\n- **Results**: Demonstrates advantages over baselines on ScienceWorld, ALFWorld, and WebShop. Dynamic rescoring adapts to task difficulty.\n- **Relation to B-IAVR**: Complementary approach to experience utilization. Retrospex uses past experience for action selection; B-IAVR uses action-change signal for verification triggering. Both leverage learned value functions.\n- **Key insight**: Offline RL Critic can effectively augment LLM agents; similar architecture could inform B-IAVR's verification value estimation.\n\n### [CFGM: Coarse-to-Fine Grounded Memory for LLM Agent Planning] (2026)\n- **Venue**: arXiv (February 2026)\n- **Core contribution**: Memory-augmented agent planning with episodic and environmental knowledge grounding.\n- **Method**: Coarse-to-fine retrieval of grounded memories. Fine-tunes a compact knowledge-embedding model to bridge retrieved experience and current context.\n- **Results**: ALFWorld SR +10.40%, WebShop SR +20%, ScienceWorld SR +31% over ReAct baseline.\n- **Relation to B-IAVR**: Complementary memory approach. CFGM improves action quality via memory; B-IAVR improves efficiency via selective verification. Could be combined.\n- **Key insight**: Grounded memory significantly helps agent planning in interactive environments.\n\n### [Self-Guide on ALFWorld/ScienceWorld/WebShop] (2026)\n- **Venue**: arXiv 2604.03098 (see Direction 2)\n- **Core contribution**: Internal reward co-evolving with policy. Directly evaluated on ALFWorld.\n- **Results**: 8% improvement over environment-reward-only baselines on ALFWorld with Qwen3-1.7B/4B. B-IAVR builds directly on this.\n- **Relation to B-IAVR**: Direct predecessor. B-IAVR's codebase extends Self-Guide.\n- **Key insight**: Self-guidance signal is effective for ALFWorld; B-IAVR extends it to trigger selective verification.\n\n### [GiGPO on ALFWorld/WebShop] (Feng et al., 2025)\n- **Venue**: NeurIPS 2025 (see Direction 2)\n- **Results**: >12% over GRPO on ALFWorld, >9% on WebShop.\n- **Relation to B-IAVR**: Core training algorithm. B-IAVR uses GiGPO as the policy optimizer.\n\n### [SPEAR on ALFWorld/WebShop] (2025)\n- **Venue**: ICLR 2026 (see Direction 2)\n- **Results**: Up to +16.1% on ALFWorld, +20.7% on WebShop over GRPO baseline.\n- **Relation to B-IAVR**: Complementary training recipe. SPEAR's self-imitation curriculum could augment B-IAVR's training.\n\n### [ReSpAct: Harmonizing Reasoning, Speaking, and Acting] (2024)\n- **Venue**: arXiv 2411.00927\n- **Core contribution**: Integrates dialogue/reasoning/acting for conversational agent tasks.\n- **Method**: Agent uses active dialogue to interpret instructions, clarify goals, resolve failures. Reduces invalid actions from 13% to 3%.\n- **Results**: +6% over ReAct on ALFWorld. With ideal user input, approaches human expert (85.3% vs 88.8%).\n- **Relation to B-IAVR**: Different axis (dialogue vs. verification). But invalid action reduction is relevant — B-IAVR's verification also prevents error propagation from bad actions.\n- **Key insight**: Reducing invalid actions is a key lever for ALFWorld performance; B-IAVR's verification achieves this differently.\n\n---\n\n## ALFWorld SOTA Summary Table (2024-2026)\n\n| Method | Model | Success Rate | Year | Note |\n|--------|-------|-------------|------|------|\n| ReAct (baseline) | GPT-4 | ~65% | 2023 | Prompting baseline |\n| Reflexion | GPT-4 | ~75% | 2023 | +trial-level reflection |\n| ReSpAct | GPT-4 | ~71% | 2024 | +dialogue integration |\n| AgentPRM/InversePRM | 3B trained | 88-91% | 2025 | Process reward RL |\n| GiGPO | 7B trained | ~77%+ | 2025 | +12% over GRPO |\n| SPEAR + GiGPO | 7B trained | ~82%+ | 2025 | +5.1% over GiGPO |\n| Self-Guide (co-evolve) | Qwen3-4B | ~83%+ | 2026 | +8% over env-reward |\n| ReflAct | GPT-4 | **93.3%** | 2025 | Prompting SOTA |\n| ReAct-Finetune | Trained | **96%** | 2025 | Finetuned upper bound |\n\n---\n\n## Gap Analysis\n\n### Shared Limitations of Existing Work\n\n1. **Verification is all-or-nothing**: Most self-correction methods (Reflexion, Self-Refine, MAR) apply verification uniformly to every step or every trial. None learn *when* verification adds value vs. wastes compute.\n\n2. **Adaptive computation focuses on reasoning, not agents**: AutoThink, ARES, and \"When to Solve, When to Verify\" all address adaptive computation in single-turn reasoning settings. Multi-turn interactive agent settings are underexplored.\n\n3. **Selective verification studied at workflow level, not step level**: Sherlock operates on DAG workflows with offline counterfactual analysis. No prior work learns step-level verification decisions *online* via RL in interactive environments.\n\n4. **Self-verification overuse is identified but not solved in agents**: The Self-Verification Dilemma paper documents the problem in reasoning models. The equivalent problem in agents (unnecessary re-planning/re-observing) has not been formally studied.\n\n5. **Agent RL training ignores verification cost**: GiGPO, SPEAR, WebAgent-R1, and SORL all optimize for task success. None account for the additional cost of verification steps in their reward design.\n\n### B-IAVR's Differentiated Position\n\nB-IAVR uniquely combines:\n\n1. **Action-change signal as verification trigger**: Uses the discrepancy between self-guided expected action and actual observation as a learned signal for when verification is needed. No prior work uses this specific signal.\n\n2. **RL-trained binary verification policy**: Unlike Derailer-Rerailer (heuristic stability check) or Sherlock (offline counterfactual analysis), B-IAVR trains the verification trigger end-to-end via RL, allowing it to adapt to environment dynamics.\n\n3. **Multi-turn interactive agent setting**: Extends the adaptive computation paradigm from single-turn reasoning (AutoThink, ARES) to multi-turn agent trajectories with environment interaction.\n\n4. **Cost-aware reward design**: Explicitly penalizes unnecessary verification in the RL reward, unlike prior agent RL work that only rewards task success.\n\n5. **Builds on Self-Guide internal reward**: Leverages the co-evolving policy-reward framework, extending it with a principled mechanism for selective verification rather than universal self-guidance.\n\n### Novelty Claim Assessment\n\n**The claim is strong.** The intersection of \"selective verification\" + \"RL-trained trigger\" + \"interactive agent setting\" + \"action-change signal\" is novel. The closest competitors are:\n\n- **Derailer-Rerailer** (ACL 2025): Selective verification but for reasoning chains, not agents. Uses heuristic trigger, not RL-trained.\n- **ARES** (2026): Adaptive computation for agents but adjusts reasoning effort level, not verification decisions. Uses SFT, not RL.\n- **Sherlock** (2025): Selective verification for workflows but offline/static, not learned online.\n- **Self-Verification Dilemma** (2026): Identifies the overuse problem but proposes experience-pool solution for reasoning, not RL-trained policy for agents.\n\nNo existing work trains an RL policy to decide when to verify in interactive agent environments using action-change signals. B-IAVR occupies a clear gap.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/related_work_survey.md",
+    "content": "# B-IAVR Related Work Survey\n\n> Survey date: 2026-05-15. Covers 2024-2026 publications across four directions.\n\n---\n\n## Direction 1: Self-Verification / Self-Correction in LLM Agents\n\n### [When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs] (Huang et al., 2024)\n- **Venue**: arXiv 2406.01297 (highly cited survey)\n- **Core contribution**: First comprehensive critical survey of LLM self-correction, establishing taxonomy of intrinsic/external/fine-tuned correction.\n- **Method**: Categorizes self-correction into three paradigms: (1) intrinsic correction via prompted self-feedback, (2) external correction via tool/verifier feedback, (3) fine-tuned correction via training. Systematically evaluates when each works.\n- **Results**: No prior work demonstrates successful intrinsic self-correction from prompted LLMs alone, except for tasks exceptionally suited to self-correction. External feedback and large-scale fine-tuning enable reliable correction.\n- **Relation to B-IAVR**: Foundational framing. B-IAVR's verification is closer to \"external correction\" (environment re-observation), not pure intrinsic self-correction. This survey validates that verification with grounded feedback is the viable path.\n- **Key insight**: Pure self-correction is unreliable; grounded verification signals (like B-IAVR's action-change detection) are necessary.\n\n### [CorrectBench: Can LLMs Correct Themselves?] (He et al., 2025)\n- **Venue**: NeurIPS 2025 Datasets & Benchmarks\n- **Core contribution**: Systematic benchmark for evaluating self-correction strategies across commonsense reasoning, math, and code.\n- **Method**: Curates 3,825 QA pairs across 7 subdatasets. Evaluates intrinsic, external, and fine-tuned correction methods. Tests mixing strategies.\n- **Results**: Self-correction improves accuracy for complex reasoning; mixing strategies helps but reduces efficiency. Reasoning LLMs (DeepSeek-R1) show limited gain from additional correction and high cost. Simple CoT is competitive.\n- **Relation to B-IAVR**: Complementary benchmark. Validates that self-correction has diminishing returns when applied uniformly — supports B-IAVR's selective verification design.\n- **Key insight**: Cost-accuracy tradeoff of self-correction is real; selective application (as in B-IAVR) is more efficient than blanket correction.\n\n### [Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning] (2026)\n- **Venue**: arXiv 2602.03485\n- **Core contribution**: Identifies that LLM reasoning models massively overuse self-verification — most rechecks are confirmatory (>90%), not corrective (~2%).\n- **Method**: Analyzes verification behavior across models/benchmarks. Proposes experience-driven test-time framework: detects recheck activation, consults offline experience pool of past verification outcomes, estimates whether recheck is unnecessary.\n- **Results**: Vast majority of self-verification steps are wasted computation. Framework reduces unnecessary verification while preserving accuracy.\n- **Relation to B-IAVR**: Directly supports B-IAVR's core thesis — verification should be selective, not universal. Their \"experience pool\" approach is complementary to B-IAVR's action-change signal.\n- **Key insight**: The verification-overuse problem is empirically validated here. B-IAVR's signal-based triggering addresses the same inefficiency from a different angle.\n\n### [Incentivizing LLMs to Self-Verify Their Answers] (Zhang et al., 2025)\n- **Venue**: arXiv 2506.01369\n- **Core contribution**: Unifies answer generation and verification in a single RL training process, eliminating external verifiers.\n- **Method**: Trains LLMs with RL to jointly generate answers and verify them. The model learns to assess correctness of its own solutions during training. At inference, scales performance by self-verifying without external reward models.\n- **Results**: Overcomes distribution mismatch between generator and external reward model. Achieves test-time scaling via self-verification.\n- **Relation to B-IAVR**: Complementary approach. They train verification into the generation process; B-IAVR trains when to trigger a separate verification step. Could potentially be combined.\n- **Key insight**: RL can train internal verification capability, paralleling B-IAVR's RL-trained verification policy.\n\n### [MAR: Multi-Agent Reflexion] (2025)\n- **Venue**: arXiv 2512.20845\n- **Core contribution**: Extends Reflexion to multi-agent setting with diverse critic personas for more robust self-correction.\n- **Method**: Uses Society-of-Mind framework: intentionally diverse critic personas provide structured disagreement. Reduces shared blind spots of single-agent reflection.\n- **Results**: More stable and transferable improvements across tasks compared to single-agent Reflexion.\n- **Relation to B-IAVR**: Complementary. MAR improves correction quality when verification is triggered; B-IAVR decides when to trigger it.\n- **Key insight**: Multi-perspective verification is more effective than single-pass checking.\n\n### [SSR: Socratic Self-Refine] (2025)\n- **Venue**: arXiv 2511.10621\n- **Core contribution**: Guides self-refinement through Socratic questioning rather than direct correction prompts.\n- **Method**: Decomposes self-refinement into structured questioning steps. The model evaluates its own output by answering diagnostic questions about potential errors, then revises based on answers.\n- **Results**: Improves over standard Self-Refine on reasoning tasks by making the critique step more structured.\n- **Relation to B-IAVR**: Complementary. Improves the quality of the correction step itself; B-IAVR focuses on when to invoke correction.\n- **Key insight**: Structured verification prompts yield better corrections than \"is this correct?\" style prompts.\n\n---\n\n## Direction 2: Agent RL Training\n\n### [GiGPO: Group-in-Group Policy Optimization for LLM Agent Training] (Feng et al., 2025)\n- **Venue**: NeurIPS 2025\n- **Core contribution**: Fine-grained credit assignment for multi-step agent tasks while staying critic-free and memory-efficient.\n- **Method**: Extends GRPO with nested group structure: outer group samples trajectories per task, inner group compares actions within each step. This decomposes trajectory-level reward into step-level advantages without a learned critic.\n- **Results**: >12% improvement on ALFWorld, >9% on WebShop over GRPO. Preserves GRPO's low-memory properties.\n- **Relation to B-IAVR**: Building block. B-IAVR uses GRPO/GiGPO for policy optimization. GiGPO's step-level credit assignment is especially relevant for training the verification trigger policy.\n- **Key insight**: Step-level credit in agent RL is critical; GiGPO's approach directly benefits B-IAVR's reward attribution for verification decisions.\n\n### [Co-Evolution of Policy and Internal Reward for Language Agents (Self-Guide)] (2026)\n- **Venue**: arXiv 2604.03098\n- **Core contribution**: Self-generated internal reward (Self-Guide) that co-evolves with the agent policy for both inference-time guidance and training-time supervision.\n- **Method**: Agent generates a short self-guidance signal to steer next action at inference; same signal is converted to step-level internal reward for GRPO training. Creates a co-evolving loop: better policy → better guidance → better reward.\n- **Results**: 8% improvement over environment-reward-only baselines across ALFWorld, ScienceWorld, WebShop. Tested on Qwen3-1.7B/4B and Qwen2.5-7B.\n- **Relation to B-IAVR**: Direct predecessor. B-IAVR builds on Self-Guide — the self-guidance signal is the foundation for the action-change detection that triggers verification.\n- **Key insight**: Internal reward enables dense supervision for sparse-reward agent tasks; B-IAVR extends this by using the signal to decide when verification is needed.\n\n### [SPEAR: Self-Imitation with Progressive Exploration for Agentic RL] (Tencent, 2025)\n- **Venue**: ICLR 2026\n- **Core contribution**: Curriculum-based self-imitation learning for long-horizon, sparse-reward agent tasks.\n- **Method**: Two-phase curriculum: (1) early stage uses auxiliary tool-use rewards for broad exploration, (2) later stage strengthens self-imitation from successful trajectory replay. Uses advantage recalibration and regularization.\n- **Results**: Increases success rates of GRPO/GiGPO/Dr.BoT by up to 16.1%/5.1%/8.6% on ALFWorld, 20.7%/11.8%/13.9% on WebShop.\n- **Relation to B-IAVR**: Complementary training recipe. SPEAR's curriculum could be applied to B-IAVR's verification policy training to improve exploration of when-to-verify decisions.\n- **Key insight**: Self-imitation from successful trajectories is powerful for sparse-reward agent RL; applicable to B-IAVR's training pipeline.\n\n### [WebAgent-R1: Training Web Agents via End-to-End Multi-Turn RL] (Pei et al., 2025)\n- **Venue**: EMNLP 2025\n- **Core contribution**: Extends GRPO to multi-turn agent settings (M-GRPO) with dynamic context compression.\n- **Method**: Asynchronous trajectory generation guided by binary success rewards. M-GRPO handles multi-turn credit assignment. Dynamic context compression reduces memory. Behavior cloning warm-up before RL.\n- **Results**: Qwen-2.5-3B: 6.1% → 33.9% on WebArena-Lite. LLaMA-3.1-8B: 8.5% → 44.8%. Outperforms OpenAI o3.\n- **Relation to B-IAVR**: Parallel work on agent RL. M-GRPO's multi-turn extension is directly relevant to B-IAVR's sequential decision process.\n- **Key insight**: Multi-turn GRPO with warm-up is effective for agent training; B-IAVR could adopt similar context compression techniques.\n\n### [DAPO: Decoupled Clip and Dynamic Sampling Policy Optimization] (ByteDance/Tsinghua, 2025)\n- **Venue**: arXiv 2503.14476 (open-source system)\n- **Core contribution**: Open-source large-scale RL system solving key instabilities in reasoning model training.\n- **Method**: Four techniques: Clip-Higher (prevents entropy collapse), Dynamic Sampling (filters batches for consistent gradients), Token-level Policy Gradient Loss (for long CoT), Overlong Reward Shaping (reduces length-limit reward noise).\n- **Results**: 50 points on AIME 2024 with Qwen2.5-32B, outperforming DeepSeek-R1-Zero with 50% training steps.\n- **Relation to B-IAVR**: Infrastructure. DAPO's stabilization techniques (especially Clip-Higher and Dynamic Sampling) are applicable to B-IAVR's RL training to prevent collapse.\n- **Key insight**: RL training stability techniques from reasoning domain transfer to agent RL.\n\n### [DigiRL: Training In-The-Wild Device-Control Agents with Autonomous RL] (2024)\n- **Venue**: NeurIPS 2024\n- **Core contribution**: Online RL for device control agents interacting with real GUI environments.\n- **Method**: Two-stage: offline RL from demonstrations, then offline-to-online RL with autonomous performance evaluation. Agent learns from real interactions with graphical interfaces.\n- **Results**: 49.5% absolute improvement (17.7% → 67.2%) over SFT on device control tasks.\n- **Relation to B-IAVR**: Parallel approach. DigiRL demonstrates online RL viability for interactive agents; B-IAVR applies similar principles to text-based environments with selective verification.\n- **Key insight**: Online RL with real environment interaction dramatically outperforms imitation learning for agents.\n\n### [SORL: Stabilizing Off-Policy RL for Long-Horizon Agent Training] (Li et al., 2025)\n- **Venue**: arXiv 2511.20718\n- **Core contribution**: Addresses instability in off-policy PPO/GRPO for multi-turn agent tasks.\n- **Method**: Turn-level importance sampling (aligns optimization granularity with turn-structured interactions) + clipping-triggered normalization (suppresses unreliable off-policy updates).\n- **Results**: Prevents training collapse observed in standard PPO/GRPO. Maintains lower clipping ratios and stable optimization.\n- **Relation to B-IAVR**: Infrastructure. B-IAVR's RL training on multi-turn ALFWorld episodes faces the same off-policy stability challenges. SORL's techniques are directly applicable.\n- **Key insight**: Turn-level (not token-level) optimization is key for stable multi-turn agent RL.\n\n### [The Landscape of Agentic RL for LLMs: A Survey] (2025)\n- **Venue**: TMLR 2026 (arXiv 2509.02547)\n- **Core contribution**: Comprehensive survey formalizing the shift from single-step LLM-RL to temporally extended agentic RL.\n- **Method**: Distinguishes degenerate single-step MDPs (standard LLM-RL) from POMDPs (agentic RL). Proposes taxonomy around capabilities (planning, tool use, memory, reasoning, self-improvement) and task domains.\n- **Results**: N/A (survey). Identifies RL as the critical mechanism for transforming static capabilities into adaptive agentic behavior.\n- **Relation to B-IAVR**: Contextualizes B-IAVR within the broader agentic RL landscape. B-IAVR's selective verification is a form of adaptive self-improvement trained via RL.\n- **Key insight**: The survey frames B-IAVR's contribution as part of the agentic RL paradigm — training agents to make meta-decisions (like when to verify) via RL.\n\n---\n\n## Direction 3: Selective Verification / Adaptive Computation in Agents\n\n### [Derailer-Rerailer: Adaptive Verification for Efficient and Reliable LM Reasoning] (Wan et al., 2025)\n- **Venue**: ACL 2025 Findings\n- **Core contribution**: Lightweight mechanism to detect reasoning instability and selectively trigger deep verification only when needed.\n- **Method**: Derailer assesses reasoning stability via a lightweight check. Only when instability is detected does the expensive Rerailer verification process engage. Binary gate: cheap check → selective deep verification.\n- **Results**: 8-11% accuracy improvements across reasoning tasks. 2-3x efficiency over uniform verification methods. Strong on math and symbolic reasoning.\n- **Relation to B-IAVR**: Most directly related competitor. Both do selective verification with a binary trigger. Key difference: Derailer-Rerailer operates on reasoning chains (single-turn); B-IAVR operates on agent action trajectories (multi-turn). Derailer uses reasoning instability signal; B-IAVR uses action-change signal.\n- **Key insight**: Binary selective verification is validated as effective. B-IAVR extends this paradigm from reasoning to interactive agent settings.\n\n### [Sherlock: Reliable and Efficient Agentic Workflow Execution] (Microsoft, 2025)\n- **Venue**: arXiv 2511.00330\n- **Core contribution**: Framework for cost-efficient selective verification in agentic workflows via counterfactual analysis + speculative execution.\n- **Method**: Counterfactual analysis identifies error-prone nodes in workflows. Cost-optimal verifiers attached only where necessary. Runtime: speculative execution of downstream tasks while verification runs in background; rollback on failure.\n- **Results**: 18.3% accuracy gain over non-verifying baseline. 26% cost reduction over Monte Carlo verification. 48.7% latency reduction via speculative execution.\n- **Relation to B-IAVR**: Complementary but different scope. Sherlock selects verification points via offline counterfactual analysis of workflow DAGs; B-IAVR learns verification points via online RL in interactive environments. Sherlock is workflow-level; B-IAVR is step-level.\n- **Key insight**: Selective verification is also studied in structured workflow settings. B-IAVR's contribution is applying this idea to interactive, sequential agent decisions via learned policy.\n\n### [When To Solve, When To Verify: Compute-Optimal Verification for LLM Reasoning] (Singhi et al., 2025)\n- **Venue**: arXiv 2504.01005\n- **Core contribution**: Derives inference scaling laws for the tradeoff between generating more solutions vs. verifying existing ones under fixed compute budget.\n- **Method**: Compares Self-Consistency (majority voting over solutions) vs. Generative Reward Models (GenRM: generate verification chains to score solutions). Analyzes compute-optimal allocation.\n- **Results**: Compute-optimal inference favors scaling solution generation more aggressively than scaling verification. Over-verifying is wasteful under budget constraints.\n- **Relation to B-IAVR**: Strong conceptual alignment. Both address \"when to verify\" as a resource allocation problem. Their finding that over-verification is suboptimal directly supports B-IAVR's selective approach.\n- **Key insight**: The optimal compute allocation between solving and verifying is non-trivial — B-IAVR learns this allocation via RL rather than deriving it analytically.\n\n### [ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents] (Yang et al., 2026)\n- **Venue**: arXiv 2603.07915\n- **Core contribution**: Per-step dynamic reasoning effort selection for multi-step agent tasks via lightweight router.\n- **Method**: Trains a router to predict minimum sufficient reasoning effort (low/medium/high) per step. Pipeline: trajectory collection → effort annotation via sampling → rationale generation → SFT on router. Router receives same context as agent.\n- **Results**: Reduces reasoning token usage by up to 52.7% with minimal accuracy degradation on agent tasks.\n- **Relation to B-IAVR**: Closest competitor in the agent domain. Both train a learned policy for per-step compute allocation. Key difference: ARES selects reasoning effort level (continuous); B-IAVR selects binary verify/not-verify. ARES uses SFT-trained router; B-IAVR uses RL-trained policy.\n- **Key insight**: Per-step adaptive computation for agents is a validated direction. B-IAVR's RL training and binary signal provide a simpler, more interpretable mechanism than ARES's multi-level effort.\n\n### [AutoThink: Learning When to Think via Multi-Stage RL] (Tu et al., 2025)\n- **Venue**: NeurIPS 2025\n- **Core contribution**: RL framework teaching reasoning models to invoke explicit reasoning only when necessary.\n- **Method**: Multi-stage RL with stage-wise reward shaping. Exploits discovery that R1-style models have latent controllability of thinking mode. Progressively optimizes reasoning policy.\n- **Results**: +6.4% relative accuracy, -52% token usage on DeepSeek-R1-Distill-Qwen-1.5B across 5 math benchmarks.\n- **Relation to B-IAVR**: Analogous idea in reasoning domain. AutoThink: \"when to think deeply\"; B-IAVR: \"when to verify actions.\" Both use RL to learn the adaptive trigger. AutoThink operates on single-turn reasoning; B-IAVR on multi-turn agent trajectories.\n- **Key insight**: RL-trained adaptive computation is proven effective for reasoning; B-IAVR extends this principle to agent verification.\n\n### [Efficient Agents: Building Effective Agents While Reducing Cost] (Wang et al., 2025)\n- **Venue**: arXiv 2508.02694\n- **Core contribution**: First systematic study of efficiency-effectiveness tradeoff in modern agent systems.\n- **Method**: Empirical analysis on GAIA benchmark evaluating LLM backbone selection, framework design, and test-time scaling. Uses cost-of-pass metric for efficiency-performance tradeoff.\n- **Results**: Retains 96.7% performance of OWL framework while reducing cost from $0.398 to $0.228 (28.4% improvement in cost-of-pass).\n- **Relation to B-IAVR**: Complementary. Provides framework-level efficiency; B-IAVR provides step-level verification efficiency. Both address agent cost reduction.\n- **Key insight**: Agent cost is a first-class research concern. B-IAVR addresses it at the algorithmic (verification policy) level rather than the systems level.\n\n### [Trust but Verify! A Survey on Verification Design for Test-time Scaling] (Venktesh et al., 2025)\n- **Venue**: arXiv 2508.16665\n- **Core contribution**: Survey of verification approaches for test-time compute scaling in LLMs.\n- **Method**: Categorizes verification methods (outcome reward models, process reward models, generative verifiers). Analyzes when and how to verify during test-time inference.\n- **Results**: N/A (survey). Maps the verification design space including when to verify, what to verify, and how to verify.\n- **Relation to B-IAVR**: Provides theoretical context. B-IAVR's \"when to verify\" question is a central theme in this survey, but applied to agent trajectories rather than reasoning chains.\n- **Key insight**: Verification timing is identified as a key open problem across the field — B-IAVR provides a concrete solution for the agent setting.\n\n---\n\n## Direction 4: ALFWorld / Interactive Environment Benchmarks\n\n### [ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection] (Kim et al., 2025)\n- **Venue**: EMNLP 2025\n- **Core contribution**: New reasoning backbone that grounds agent decisions in continuous state-goal reflection rather than next-action planning.\n- **Method**: Replaces ReAct's \"think about next action\" with \"reflect on current state relative to goal.\" Enforces ongoing goal alignment, preventing the compounding errors from ungrounded reasoning.\n- **Results**: **93.3% success rate on ALFWorld** (+27.7% over ReAct). Outperforms ReAct + Reflexion, ReAct + WKM, and other enhancement modules.\n- **Relation to B-IAVR**: Strong baseline / complementary. ReflAct achieves near-ceiling performance via prompting alone. B-IAVR addresses a different axis: cost-efficiency of verification, not peak accuracy. ReflAct always reflects; B-IAVR selectively verifies.\n- **Key insight**: ALFWorld performance is approaching saturation via prompting methods. B-IAVR's value proposition is efficiency, not raw success rate.\n\n### [AgentPRM: Process Reward Models for LLM Agents] (Chatterjee et al., 2025)\n- **Venue**: ACM Web Conference 2026 (arXiv 2502.10325)\n- **Core contribution**: Lightweight actor-critic framework using Monte Carlo rollouts for step-level reward in agent training.\n- **Method**: Trains process reward model via Monte Carlo rollouts to provide dense step-level supervision. InversePRM extension learns process rewards from demonstrations without outcome supervision.\n- **Results**: 3B models with AgentPRM/InversePRM achieve **88-91% success on ALFWorld**, exceeding GPT-4o prompting baselines.\n- **Relation to B-IAVR**: Complementary. AgentPRM provides dense reward shaping for training; B-IAVR's Self-Guide provides internal reward. AgentPRM could potentially serve as the reward model for B-IAVR's verification policy.\n- **Key insight**: Process reward models enable small models to match large prompted models on agent tasks — validates the RL training approach B-IAVR uses.\n\n### [Retrospex: Language Agent Meets Offline RL Critic] (Xiang et al., 2024)\n- **Venue**: EMNLP 2024\n- **Core contribution**: Combines LLM action likelihood with offline RL critic trained on past experiences.\n- **Method**: Instead of injecting experiences into LLM context, trains a separate RL Critic offline on past trajectories. Dynamic rescoring mechanism adjusts importance of experience-based values based on task interaction requirements.\n- **Results**: Demonstrates advantages over baselines on ScienceWorld, ALFWorld, and WebShop. Dynamic rescoring adapts to task difficulty.\n- **Relation to B-IAVR**: Complementary approach to experience utilization. Retrospex uses past experience for action selection; B-IAVR uses action-change signal for verification triggering. Both leverage learned value functions.\n- **Key insight**: Offline RL Critic can effectively augment LLM agents; similar architecture could inform B-IAVR's verification value estimation.\n\n### [CFGM: Coarse-to-Fine Grounded Memory for LLM Agent Planning] (2026)\n- **Venue**: arXiv (February 2026)\n- **Core contribution**: Memory-augmented agent planning with episodic and environmental knowledge grounding.\n- **Method**: Coarse-to-fine retrieval of grounded memories. Fine-tunes a compact knowledge-embedding model to bridge retrieved experience and current context.\n- **Results**: ALFWorld SR +10.40%, WebShop SR +20%, ScienceWorld SR +31% over ReAct baseline.\n- **Relation to B-IAVR**: Complementary memory approach. CFGM improves action quality via memory; B-IAVR improves efficiency via selective verification. Could be combined.\n- **Key insight**: Grounded memory significantly helps agent planning in interactive environments.\n\n### [Self-Guide on ALFWorld/ScienceWorld/WebShop] (2026)\n- **Venue**: arXiv 2604.03098 (see Direction 2)\n- **Core contribution**: Internal reward co-evolving with policy. Directly evaluated on ALFWorld.\n- **Results**: 8% improvement over environment-reward-only baselines on ALFWorld with Qwen3-1.7B/4B. B-IAVR builds directly on this.\n- **Relation to B-IAVR**: Direct predecessor. B-IAVR's codebase extends Self-Guide.\n- **Key insight**: Self-guidance signal is effective for ALFWorld; B-IAVR extends it to trigger selective verification.\n\n### [GiGPO on ALFWorld/WebShop] (Feng et al., 2025)\n- **Venue**: NeurIPS 2025 (see Direction 2)\n- **Results**: >12% over GRPO on ALFWorld, >9% on WebShop.\n- **Relation to B-IAVR**: Core training algorithm. B-IAVR uses GiGPO as the policy optimizer.\n\n### [SPEAR on ALFWorld/WebShop] (2025)\n- **Venue**: ICLR 2026 (see Direction 2)\n- **Results**: Up to +16.1% on ALFWorld, +20.7% on WebShop over GRPO baseline.\n- **Relation to B-IAVR**: Complementary training recipe. SPEAR's self-imitation curriculum could augment B-IAVR's training.\n\n### [ReSpAct: Harmonizing Reasoning, Speaking, and Acting] (2024)\n- **Venue**: arXiv 2411.00927\n- **Core contribution**: Integrates dialogue/reasoning/acting for conversational agent tasks.\n- **Method**: Agent uses active dialogue to interpret instructions, clarify goals, resolve failures. Reduces invalid actions from 13% to 3%.\n- **Results**: +6% over ReAct on ALFWorld. With ideal user input, approaches human expert (85.3% vs 88.8%).\n- **Relation to B-IAVR**: Different axis (dialogue vs. verification). But invalid action reduction is relevant — B-IAVR's verification also prevents error propagation from bad actions.\n- **Key insight**: Reducing invalid actions is a key lever for ALFWorld performance; B-IAVR's verification achieves this differently.\n\n---\n\n## ALFWorld SOTA Summary Table (2024-2026)\n\n| Method | Model | Success Rate | Year | Note |\n|--------|-------|-------------|------|------|\n| ReAct (baseline) | GPT-4 | ~65% | 2023 | Prompting baseline |\n| Reflexion | GPT-4 | ~75% | 2023 | +trial-level reflection |\n| ReSpAct | GPT-4 | ~71% | 2024 | +dialogue integration |\n| AgentPRM/InversePRM | 3B trained | 88-91% | 2025 | Process reward RL |\n| GiGPO | 7B trained | ~77%+ | 2025 | +12% over GRPO |\n| SPEAR + GiGPO | 7B trained | ~82%+ | 2025 | +5.1% over GiGPO |\n| Self-Guide (co-evolve) | Qwen3-4B | ~83%+ | 2026 | +8% over env-reward |\n| ReflAct | GPT-4 | **93.3%** | 2025 | Prompting SOTA |\n| ReAct-Finetune | Trained | **96%** | 2025 | Finetuned upper bound |\n\n---\n\n## Gap Analysis\n\n### Shared Limitations of Existing Work\n\n1. **Verification is all-or-nothing**: Most self-correction methods (Reflexion, Self-Refine, MAR) apply verification uniformly to every step or every trial. None learn *when* verification adds value vs. wastes compute.\n\n2. **Adaptive computation focuses on reasoning, not agents**: AutoThink, ARES, and \"When to Solve, When to Verify\" all address adaptive computation in single-turn reasoning settings. Multi-turn interactive agent settings are underexplored.\n\n3. **Selective verification studied at workflow level, not step level**: Sherlock operates on DAG workflows with offline counterfactual analysis. No prior work learns step-level verification decisions *online* via RL in interactive environments.\n\n4. **Self-verification overuse is identified but not solved in agents**: The Self-Verification Dilemma paper documents the problem in reasoning models. The equivalent problem in agents (unnecessary re-planning/re-observing) has not been formally studied.\n\n5. **Agent RL training ignores verification cost**: GiGPO, SPEAR, WebAgent-R1, and SORL all optimize for task success. None account for the additional cost of verification steps in their reward design.\n\n### B-IAVR's Differentiated Position\n\nB-IAVR uniquely combines:\n\n1. **Action-change signal as verification trigger**: Uses the discrepancy between self-guided expected action and actual observation as a learned signal for when verification is needed. No prior work uses this specific signal.\n\n2. **RL-trained binary verification policy**: Unlike Derailer-Rerailer (heuristic stability check) or Sherlock (offline counterfactual analysis), B-IAVR trains the verification trigger end-to-end via RL, allowing it to adapt to environment dynamics.\n\n3. **Multi-turn interactive agent setting**: Extends the adaptive computation paradigm from single-turn reasoning (AutoThink, ARES) to multi-turn agent trajectories with environment interaction.\n\n4. **Cost-aware reward design**: Explicitly penalizes unnecessary verification in the RL reward, unlike prior agent RL work that only rewards task success.\n\n5. **Builds on Self-Guide internal reward**: Leverages the co-evolving policy-reward framework, extending it with a principled mechanism for selective verification rather than universal self-guidance.\n\n### Novelty Claim Assessment\n\n**The claim is strong.** The intersection of \"selective verification\" + \"RL-trained trigger\" + \"interactive agent setting\" + \"action-change signal\" is novel. The closest competitors are:\n\n- **Derailer-Rerailer** (ACL 2025): Selective verification but for reasoning chains, not agents. Uses heuristic trigger, not RL-trained.\n- **ARES** (2026): Adaptive computation for agents but adjusts reasoning effort level, not verification decisions. Uses SFT, not RL.\n- **Sherlock** (2025): Selective verification for workflows but offline/static, not learned online.\n- **Self-Verification Dilemma** (2026): Identifies the overuse problem but proposes experience-pool solution for reasoning, not RL-trained policy for agents.\n\nNo existing work trains an RL policy to decide when to verify in interactive agent environments using action-change signals. B-IAVR occupies a clear gap.\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-15T12:14:21.020306+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/related_work_survey.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-15T12:14:21.020470+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "B-IAVR Related Work Survey",
+  "type": "report",
+  "description": "4-direction literature survey (self-verification, agent RL, selective verification, ALFWorld benchmarks) covering 25+ papers from 2024-2026, with gap analysis and novelty assessment for B-IAVR",
+  "project": "cost-verify-agent-rl",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/related_work_survey.md",
+  "tags": "['related-work', 'survey', 'literature-review', 'B-IAVR']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "B-IAVR Related Work Survey",
+    "type": "report",
+    "description": "4-direction literature survey (self-verification, agent RL, selective verification, ALFWorld benchmarks) covering 25+ papers from 2024-2026, with gap analysis and novelty assessment for B-IAVR",
+    "project": "cost-verify-agent-rl",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/related_work_survey.md",
+    "tags": "['related-work', 'survey', 'literature-review', 'B-IAVR']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-15T12:14:21.020622+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_673806\", \"name\": \"B-IAVR Related Work Survey\", \"type\": \"report\", \"description\": \"4-direction literature survey (self-verification, agent RL, selective verification, ALFWorld benchmarks) covering 25+ papers from 2024-2026, with gap analysis and novelty assessment for B-IAVR\", \"path\": \"projects/cost-verify-agent-rl/artifacts/_project/report/related_work_survey.md\", \"url\": null, \"project\": \"cost-verify-agent-rl\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T12:14:08.888750+00:00\", \"tags\": [\"related-work\", \"survey\", \"literature-review\", \"B-IAVR\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_related_work_survey_20260515T120839",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-15T12:14:21.020812+00:00_
+
+文献调研完成，写入 `docs/related_work_survey.md` 并已注册。
+
+覆盖 25+ 篇论文，4 个方向的核心发现：
+
+**方向 1 (Self-Verification)**: 纯 intrinsic self-correction 不可靠（Huang et al. survey），>90% self-verification 是冗余确认（Self-Verification Dilemma, 2026）。支持 B-IAVR 的 selective verification 设计。
+
+**方向 2 (Agent RL)**: GiGPO (NeurIPS 2025)、SPEAR (ICLR 2026)、WebAgent-R1 (EMNLP 2025) 是主要 agent RL 训练方法。Self-Guide (2604.03098) 是 B-IAVR 的直接前驱。所有方法只优化任务成功率，不考虑 verification cost。
+
+**方向 3 (Selective Verification)**: 最近的竞争者是 Derailer-Rerailer (ACL 2025, 但限于 reasoning chains)、ARES (2026, SFT-trained effort router)、Sherlock (Microsoft, workflow-level offline analysis)。没有工作在 interactive agent 设定下用 RL 训练 verification trigger。
+
+**方向 4 (ALFWorld)**: 当前 SOTA 是 ReflAct 93.3% (prompting) 和 ReAct-Finetune 96% (finetuned)。ALFWorld 成功率接近饱和，B-IAVR 的价值在 cost-efficiency 而非 peak accuracy。
+
+**Novelty claim 成立**：selective verification + RL-trained trigger + interactive agent + action-change signal 的交叉点是全新的。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_related_work_survey_20260515T120839"
+}
+```
+
+</details>
+
+---

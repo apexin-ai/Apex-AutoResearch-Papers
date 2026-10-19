@@ -1,0 +1,225 @@
+paper_key: "digiRL2024"
+title: "DigiRL: Training In-The-Wild Device-Control Agents with Autonomous Reinforcement Learning"
+venue: "NeurIPS 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "GPT-4V (zero-shot)"
+    - "GPT-4V (Set-of-Marks)"
+    - "Gemini 1.5 Pro (zero-shot)"
+    - "Gemini 1.5 Pro (Set-of-Marks)"
+    - "AppAgent + GPT-4V"
+    - "CogAgent (18B)"
+    - "AutoUI-Base (1.3B)"
+    - "Filtered Behavior Cloning (offline)"
+    - "Filtered Behavior Cloning (offline-to-online)"
+  metrics:
+    - {name: "success_rate", direction: "higher_better", unit: "%"}
+    - {name: "avg_trajectory_length", direction: "lower_better", unit: "steps"}
+    - {name: "evaluator_human_correlation", direction: "higher_better", unit: "error_%"}
+  datasets:
+    - name: "Android-in-the-Wild (AitW) General"
+      train_tasks: 545
+      test_tasks: 96
+      offline_trajectories: 1552
+      online_trajectories: 1000
+      max_steps_per_episode: 10
+    - name: "Android-in-the-Wild (AitW) Web Shopping"
+      train_tasks: 438
+      test_tasks: 96
+      offline_trajectories: 1296
+      online_trajectories: 1000
+      max_steps_per_episode: 20
+  ablation_dimensions:
+    - "cross-entropy vs regression loss for value function (~12% improvement)"
+    - "step-level advantage estimation (~12% improvement)"
+    - "instruction-level automatic curriculum (~25% learning speed improvement)"
+    - "doubly-robust advantage estimator vs vanilla AWR"
+    - "hard filtering vs exponential AWR weighting (comparable, hard filtering simpler)"
+  training_recipe:
+    base_model: "AutoUI-Base (1.3B params, frozen visual encoder)"
+    visual_encoder: "frozen image encoder + RoBERTa for instruction embeddings"
+    value_head: "two-layer MLP"
+    optimizer: "not specified in main text (Appendix I referenced but not fully available)"
+    lr: "not specified in main text"
+    hardware: "128 CPUs for 64 parallel Android emulators; GPU details not specified"
+    reward: "binary (1=success, 0=failure) via Gemini 1.5 Pro autonomous evaluator"
+    loss_actor: "MLE (maximum likelihood estimation) on filtered state-action pairs"
+    loss_value: "binary cross-entropy on Monte Carlo trajectory returns"
+    step_filter_threshold: "A^step > 1/H"
+    instruction_filter: "top-p by A^instruct values"
+    offline_data_scale: "~1500 trajectories"
+    online_data_scale: "~1000 trajectories"
+    throughput: "1.74 trajs/min with 64 CPUs"
+  method_family: "Advantage-Weighted Regression (AWR) with doubly-robust advantage estimation, offline-to-online RL"
+
+positioning:
+  core_claim: "Autonomous RL with in-the-wild environment interaction and VLM-based self-evaluation enables small (1.3B) device-control agents to dramatically outperform both large proprietary VLMs and supervised approaches, achieving 49.5% absolute improvement on Android device control."
+  key_results: >
+    Web Shopping test: 67.2% (+49.5pp over AutoUI 17.7%, +28.7pp over CogAgent 38.5%);
+    General test: 71.9% (+10.4pp over Filtered BC online 61.5%);
+    GPT-4V only 8.3-13.5%; Gemini 1.5 Pro only 11.5-16.7%;
+    1000x more sample-efficient than prior web RL (1e3 vs 1e6 trajectories);
+    autonomous evaluator 2.8% avg error vs human judgment
+  limitations:
+    - "Limited to AitW dataset tasks due to computational constraints, not trained on all possible device tasks"
+    - "Offline data becomes stale over time, creating additional offline-to-online distribution shift challenges"
+    - "Algorithm designed for maximal simplicity rather than sophistication — intended as foundation for future work"
+    - "Evaluated on only 96 test instructions per subset"
+    - "Hyperparameter details (lr, optimizer, batch size) not fully disclosed in main text"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: >
+    Opens with the tantalizing promise of VLMs as autonomous digital assistants,
+    then immediately deflates it: despite remarkable reasoning and generalization,
+    VLMs lack decision-centric training data and fail catastrophically at actual device control
+    (GPT-4V: 8-13% success rate).
+  tension: >
+    Two-sided tension: (1) large proprietary VLMs have knowledge but cannot learn from interaction
+    (wrapper-based approaches are inherently limited without weight updates);
+    (2) small trainable models lack the data — human demonstrations are expensive, stale,
+    and cannot cover the non-stationary real-world environment. The key blocker is that
+    interactive learning in device control is uniquely hard: multi-turn episodes,
+    delayed sparse rewards, failure-rich data, and real-world non-stationarity.
+  key_insight: >
+    Revealed in paragraph 3-4 of intro: the solution is to let the agent learn autonomously
+    by interacting with real devices and evaluating itself using a VLM judge (Gemini 1.5 Pro).
+    This creates a self-improving loop: offline RL bootstraps basic competence, then
+    online RL with autonomous evaluation enables continuous improvement despite environment
+    non-stationarity. The doubly-robust advantage estimator and instruction-level curriculum
+    are the algorithmic keys that make this practically work.
+  argument_chain: >
+    VLMs promise autonomous agents → off-the-shelf VLMs fail at device control (evidence: GPT-4V 8%)
+    → supervised learning on static demos is limited by distribution shift and staleness
+    → need interactive learning, but environment is non-stationary and rewards are sparse
+    → propose autonomous RL: offline bootstrap + online fine-tuning with VLM self-evaluation
+    → key algorithmic innovations: doubly-robust advantages, instruction-level curriculum, CE loss
+    → scalable infrastructure: 64 parallel emulators + autonomous evaluator (2.8% error)
+    → SOTA results: 67.2% success rate, 49.5% absolute improvement
+    → ablations validate each component → failure analysis shows RL specifically fixes recovery failures
+  contribution_framing: >
+    Four contributions explicitly stated: (1) novel autonomous RL approach combining offline and
+    offline-to-online phases; (2) scalable parallel Android environment with VLM-based evaluator;
+    (3) AWR algorithm enhanced with instruction-level curriculum, step-level filtering, and CE loss;
+    (4) SOTA results with 49.5% absolute improvement.
+  intro_structure: >
+    4 paragraphs: P1 = VLM promise + reality gap (hook + problem);
+    P2 = why existing approaches fail (wrapper vs fine-tuning dilemma);
+    P3 = solution motivation (need interactive learning + autonomous evaluation);
+    P4 = DigiRL contribution summary (two-phase approach + key results + contribution bullets).
+  notable_technique: >
+    The "deflation" narrative technique: opens with an exciting vision (autonomous digital assistant),
+    immediately shows how badly current SOTA fails (GPT-4V at 8%), creating a dramatic gap
+    that the paper then fills. Also notable: using failure mode analysis (Figure 7) to explain
+    WHY RL works — not just that it works, but specifically that it fixes "failure to recover
+    from mistakes," giving mechanistic insight.
+
+figures:
+  figure_count: 14
+  figure1:
+    type: "method_overview"
+    description: >
+      Three-stage pipeline: (1) Pre-trained VLM foundation with common knowledge/reasoning/visual grounding,
+      (2) Offline RL fine-tuning using stale task-specific data to elicit goal-oriented behaviors,
+      (3) Online RL with real-world GUI interaction and autonomous performance evaluation for
+      continuous improvement. Shows the progression from pre-training → offline → online with
+      arrows and representative screenshots.
+    narrative_role: >
+      Serves as the roadmap for the entire paper. Establishes the two-phase training paradigm
+      (offline → online) that is the paper's core contribution. Placed at the top of the paper
+      to give readers immediate intuition about the approach before technical details.
+    design_elements:
+      - "Three-stage left-to-right progression"
+      - "Representative device screenshots at each stage"
+      - "Clear phase labels (pre-training, offline RL, online RL)"
+      - "Arrow-based flow indicating training progression"
+    visual_style: "Clean pipeline diagram with device screenshot examples, three colored stages flowing left-to-right"
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Frozen checkpoint degradation vs online training improvement over time on Web Shopping"
+      how_gain_highlighted: "Two curves diverge: frozen (black+blue) degrades while online DigiRL (black+red) improves, visually showing the value of online adaptation"
+      design_note: "Demonstrates non-stationarity argument — environment changes cause frozen models to degrade, making the case for online RL"
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      what_compared: "Offline-to-online training curves for Filtered BC vs DigiRL on both subsets"
+      how_gain_highlighted: "DigiRL curve rises faster and higher; two runs started on different dates show robustness; curves smoothed with exponential weighting"
+      design_note: "Dual-panel (General left, Web Shopping right) with multiple runs showing reproducibility; x-axis directly reflects wall-clock time"
+    - figure_id: "Figure 7"
+      viz_type: "bar_chart"
+      what_compared: "Failure mode decomposition across approaches (fail to recover, get stuck, wrong goal)"
+      how_gain_highlighted: "Shows DigiRL most effectively reduces 'failure to recover from mistakes' compared to supervised baselines — mechanistic explanation of WHY RL helps"
+      design_note: "Failure mode analysis is rare and compelling — goes beyond 'we beat baseline' to explain the mechanism of improvement"
+  ablation_figures:
+    - figure_id: "Figure 9 (left)"
+      viz_type: "bar_chart"
+      dimensions_varied:
+        - "cross-entropy vs regression loss"
+        - "step-level advantages on/off"
+        - "instruction-level curriculum on/off"
+        - "doubly-robust vs vanilla AWR"
+        - "hard filtering vs exponential weighting"
+      design_note: "Ablation as bar chart rather than table — each component shown as additive contribution, making relative importance visually clear"
+    - figure_id: "Figure 9 (right)"
+      viz_type: "line_plot"
+      dimensions_varied:
+        - "number of CPUs vs emulation throughput"
+      design_note: "Infrastructure scalability plot showing near-linear speedup, supporting the 'scalable' claim"
+  figure_narrative_role: >
+    Figure 1 (method overview) → Figure 2 (qualitative motivation: what goes wrong without RL)
+    → Figure 3 (environment details + non-stationarity examples) → Figure 4 (non-stationarity
+    evidence: frozen models degrade) → Figure 5 (algorithm visualization) → Figure 6 (main
+    training curves) → Figure 7 (failure mode analysis: WHY RL helps) → Figure 8 (evaluator
+    validation) → Figure 9 (ablations + scalability). Narrative flow: overview → motivation →
+    environment → evidence for online learning → method → results → analysis → validation → ablation.
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "subsets (General, Web Shopping) × splits (Train, Test)"
+    row_organization: "by_category"
+    categories:
+      - "Prompting (GPT-4V, Gemini 1.5 Pro, AppAgent)"
+      - "Learning-Supervised (CogAgent, AutoUI)"
+      - "Offline RL (Filtered BC, DigiRL)"
+      - "Offline-to-Online RL (Filtered BC, DigiRL)"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best per column"
+    statistical_reporting: "mean ± std across 3 runs (offline) or 2 runs (online)"
+    num_baselines: 8
+    key_numbers:
+      digiRL_online_general_test: "71.9% ± 1.1%"
+      digiRL_online_webshopping_test: "67.2% ± 1.5%"
+      best_prompting_general: "17.7% (AppAgent)"
+      best_supervised_webshopping: "38.5% (CogAgent)"
+      filteredBC_online_webshopping_test: "57.8% ± 2.6%"
+    design_note: >
+      Four-category row grouping (prompting → supervised → offline → online) tells a clear
+      progression story. Each category represents a different paradigm, and the monotonic
+      improvement down the table makes the case for RL. Mean ± std reported for RL methods
+      shows reproducibility awareness.
+  ablation_tables: []
+  supplementary_tables:
+    - table_id: "Table 2"
+      content: "Examples of task descriptions in AitW General subset"
+      reason: "Gives readers concrete understanding of task difficulty and diversity"
+    - table_id: "Table 3"
+      content: "Examples of task descriptions in AitW Web Shopping subset by difficulty level"
+      reason: "Shows task difficulty spectrum, supports the curriculum learning motivation"
+    - table_id: "Table 4"
+      content: "Average rollout length comparison: DigiRL vs Filtered BC on both subsets"
+      what_shown: "DigiRL produces shorter trajectories (6.3-6.6 steps General, 10.9-11.4 Web Shopping) vs Filtered BC"
+      reason: "Efficiency evidence — RL agents not only succeed more but also act more efficiently"
+  figure_table_division: >
+    Main results in Table 1 (standard for comprehensive baseline comparison);
+    ablation results in Figure 9 bar chart (visual emphasis on component contributions);
+    training dynamics in Figure 6 line plots (temporal progression needs curves);
+    failure analysis in Figure 7 bar chart (categorical comparison);
+    task examples in Tables 2-3 (text content needs tabular format);
+    trajectory length in Table 4 (numerical comparison).
+    Pattern: quantitative comparisons → tables; temporal dynamics and component analysis → figures.

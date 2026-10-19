@@ -1,0 +1,16 @@
+{
+  "exp_id": "hsweep_h2_seed2",
+  "project": "cost-verify-agent-rl",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:37:14.817Z",
+    "updated_at": "2026-05-17T14:37:34.239Z",
+    "hypothesis": "h=2 seed 2 replicates seed 1 catastrophic collapse (step 3-4 onset, 0% by step 9+), confirming collapse is robust not single-run artifact. Additionally LOG_PER_SAMPLE_ADV=1 collects per-window advantage data for plan_004 sign misattribution empirical verification.",
+    "parent": "hsweep_h2_seed1"
+  },
+  "timestamp": "2026-05-17T14:37:34.355866+00:00",
+  "trigger": "update_registry"
+}

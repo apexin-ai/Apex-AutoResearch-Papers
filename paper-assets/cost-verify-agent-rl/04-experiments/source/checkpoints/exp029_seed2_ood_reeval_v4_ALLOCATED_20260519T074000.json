@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp029_seed2_ood_reeval_v4",
+  "project": "cost-verify-agent-rl",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:39:29.323Z",
+    "updated_at": "2026-05-19T07:39:59.990Z",
+    "hypothesis": "Evaluate exp029_seed2 step 30 checkpoint (val peak 31.25%) on 134 OOD tasks (valid_unseen) for cross-seed OOD comparison. Paper table requires seed2 OOD number (seed1=23.88%). Previous v1/v2/v3 all crashed due to root partition overflow (M017), now fixed with TMPDIR redirect.",
+    "parent": "exp029_seed2_westd_resume"
+  },
+  "timestamp": "2026-05-19T07:40:00.159560+00:00",
+  "trigger": "update_registry"
+}

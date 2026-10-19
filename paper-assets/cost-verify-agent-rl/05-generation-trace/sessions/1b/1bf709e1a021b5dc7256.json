@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bf709e1a021b5dc7256",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check scienceworld datagen final",
+  "task_key": "worker_check_scienceworld_datagen_final_20260524T220510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_scienceworld_datagen_final_20260524T220510_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "61b5577c2ab93bd5deec1d63db98f7e33e80b47a8379755c421e0eb5083df2e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n**数据生成已完成**。tmux session `sw_datagen` 已停止，数据文件时间戳为 May 25 02:13/02:17。\n\n**数据规模**：\n- Train: **3,586 条**（336MB）\n- Val: **1,791 条**（159MB）\n- 成功轨迹: 2,988 / 失败轨迹: 598（成功率 83.3%）\n\n**Task 覆盖**：**30 个 unique tasks**，分布不均匀：\n- 头部：inclined-plane-friction-named-surfaces (691), test-conductivity (449), test-conductivity-of-unknown-substances (299), use-thermometer (269)\n- 中部：mendelian-genetics (239), measure-melting-point (217/150), find-* 系列 (各150)\n- 尾部：power-component (10), identify-life-stages (6/4)\n\n**GPU 状态**：cuda:0 完全空闲（0 MiB / 97887 MiB，0% 利用率），可直接启动 SFT 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-scienceworld-datagen-final.md"
+}

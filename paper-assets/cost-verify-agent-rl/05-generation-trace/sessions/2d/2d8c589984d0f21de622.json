@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d8c589984d0f21de622",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops kill g100 start h10",
+  "task_key": "worker_ops_kill-g100-start-h10_20260518T173406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-g100-start-h10_20260518T173406_result.json",
+    "occurrence": 1,
+    "bytes": 885,
+    "sha256": "489ad582a97ddfd934f4c4fd55fe23aaf79f83e74f44e12598dad37004086377"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**g100 kill 确认**\n- PID 714093 已 force kill，GPU 2,3 完全释放（0MiB → 验证通过）\n- tmux session 已清理\n- Registry: `gsweep_g100_h5_seed1` → DONE, conclusion=negative, metrics 已更新\n\n**hsweep_h10_seed1 启动确认**\n- **PID: 34193**\n- **W&B run ID: x09p5xd0**\n- tmux session: `hsweep_h10`\n- GPU 2: 4.7GB, GPU 3: 4.7GB（模型加载中，vLLM 完全启动后会增加至 ~35GB）\n- 日志: `/root/autodl-tmp/cost-verify-agent-rl/logs/hsweep_h10_seed1.log`\n\n**factorial_seed2 不受影响** ✓\n- PID 576727 正常运行\n- GPU 0: 43.6GB, GPU 1: 43.9GB（正在 generate_sequences）\n\n**Registry 更新** ✓\n- `gsweep_g100_h5_seed1`: DONE / negative\n- `hsweep_h10_seed1`: RUNNING，spec 含完整 provenance\n\n**Cron 监控** ✓\n- Job b489d217，每小时 :23 检查 h10 + factorial_seed2 状态"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-g100-start-h10.md"
+}

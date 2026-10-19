@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04a17d04debaaf2c784a",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "reviewer / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_6.md",
+    "occurrence": 1,
+    "bytes": 3772,
+    "sha256": "894042d8ec65349fb2357f50e711f83cce2461b80393f8926f20e66c57745f0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_wall_time\nupdated: '2026-05-15T05:19:02+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 cuda:0, cuda:1（bjb1-17606 服务器，C001 约束）。每次审查训练实验必须核对 CUDA_VISIBLE_DEVICES。\n- 数据盘 `/root/autodl-tmp/` 刚清理到 39%（153G 可用），大文件必须放这里不能放根分区。\n- exp021 SFT baseline 的真实 success rate 是 **6.25%**（16ep），不是 registry/ROADMAP 中写的 25%（4ep 噪声）。任何引用 25% 的结论都需纠正。\n- ssh_read_only 不支持管道符 `|`，grep 的 `\\|`（正则 OR）也会被拦截。用多次单独 grep 代替。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606 (root)，2× 97GB GPU\n- 工作目录：`/root/cost-verify-agent-rl/RAGEN/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- SFT checkpoint：`/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final/`\n- exp023c checkpoint：`/root/autodl-tmp/checkpoints/exp023c/global_step_5/`（8步退化后崩溃，仅供分析）\n- 训练数据：`/root/autodl-tmp/expert_sft_v4/`（2546 train / 133 val）\n- 日志：`/root/runs/cost-verify-agent-rl/`（标准）+ `/root/autodl-tmp/checkpoints/exp023c/train.log`（非标准）\n- 活跃进程：**无**。两张 GPU 空闲（0 MiB）。无 tmux session / cron。\n- 磁盘：`/root/autodl-tmp/` 98G/250G used (39%)\n\n### 3. 📊 当前状态\n**刚完成**：exp023c 崩溃后的全面审查 + ROADMAP D026 pivot 审查。\n\n**registry 状态**：44 个实验，全部 DONE。无 RUNNING/PREPARING。exp023c 未注册 registry（已多次提醒 Agent 补注册）。\n\n**等待中**：\n- Agent 正在执行 D026 pivot：verl-agent GiGPO cherry-pick 实现（Plan C, 3-5天预估）\n- 可能会有 worker_code 类 Worker 开始 verl-agent 整合代码\n\n### 4. 📋 待办（条件触发式）\n- verl-agent 整合代码 Worker 完成 → 核实 GiGPO 算法实现是否正确引入 step-independent rollout，检查是否复用了 exp021 SFT checkpoint\n- 新实验启动（exp024/025 等）→ 核实 GPU C001 合规、val env_groups ≥ 16、registry 已注册\n- 任何训练 Worker 完成 → 独立 `nvidia-smi` 核对 GPU 使用，`tail_training_logs` 交叉验证指标\n- Agent 引用 exp021 success=25% → 立即纠正为 6.25%（16ep baseline）\n- Agent 声称 \"格式分布偏移\" 是性能低的原因 → 已核实 SFT v4 数据与 RAGEN 格式一致，此归因不成立\n\n### 5. 🎯 战略上下文\n**核心决策链**：D021（SFT-RAGEN 格式对齐）→ D023（exp021 SFT 通过）→ D025/D026（GRPO 3/3 失败，终止 RAGEN GRPO，pivot verl-agent GiGPO）\n\n**关键结论**：\n- RAGEN + GRPO + 稀疏 reward 在 ALFWorld 上 3 次均退化（exp020b/022/023c），路线已终止\n- verl-agent 论文报告同模型(Qwen3-1.7B) + GRPO 达 72.7% success，差异在于 step-independent rollout + GiGPO\n- MVP 目标 success ≥ 20%，真实 baseline 6.25%，需要 ~3x 提升\n\n**易错点**：\n1. **不要信 exp021 的 25% success**——那是 4-episode 噪声。16ep 基线是 6.25%。Agent/ROADMAP 可能仍引用旧数字。\n2. **不要把 action_is_valid 跨评估的波动当系统性问题**——4ep=87.5%, 8ep=48.75%, 16ep=68.75%，这是小样本方差不是 OOD。\n3. **两个诊断 Worker 声称 \"SFT 训练格式与 RAGEN 推理格式不一致\" 是错误的**——我独立核实 SFT v4 数据包含完整 RAGEN 格式元素（Turn/State/Reward/FORMAT_PROMPT）。\n4. **env.py 已有两把锁**：`_RAW_ENV_LOCK`（cache保护）+ `_TW_LOAD_LOCK`（tatsu 解析器保护）。若后续重新开启并行（parallel_friendly=true），这两把锁必须保留。\n5. **config.py `score` 当前为 10.0**（已从 1.0 回退）。verl-agent 整合时注意 reward scale 是否需要调整。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-copy-3.md"
+}

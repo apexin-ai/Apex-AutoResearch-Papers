@@ -1,0 +1,743 @@
+# monitor exp 002 step1
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 13
+- **Recorded user turns:** 0
+- **Tool calls:** 3
+- **Original source:** `logs/workers/worker_monitor_exp_002_step1_20260513T205927.log`
+- **Structured JSON:** [`c4f56bd46250e4e0b607.json`](../../sessions/c4/c4f56bd46250e4e0b607.json)
+
+## Before a recorded user message
+
+13 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "session_id": "5aeab14c-2c9e-405a-b0cc-923e1bac0a65",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "822c09dc-649b-454d-86c1-7f355ecf5dc9",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1778821200,
+    "rateLimitType": "seven_day",
+    "utilization": 0.84,
+    "isUsingOverage": false,
+    "surpassedThreshold": 0.75
+  },
+  "uuid": "f546b6db-5ab3-4b8c-aeb5-a70b217a8ccf",
+  "session_id": "5aeab14c-2c9e-405a-b0cc-923e1bac0a65"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the training logs and GPU status for exp_002.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aeab14c-2c9e-405a-b0cc-923e1bac0a65",
+  "uuid": "55788fc9-b287-40d2-b96a-c5aa774b1c22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FnV37P9iCwq1cvdZLF4svZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11405,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11405
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019Txoc45AkpMWkuA1WWdyaN`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aeab14c-2c9e-405a-b0cc-923e1bac0a65",
+  "uuid": "b1d0262c-f7cc-4301-880a-589270890a56",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FnV37P9iCwq1cvdZLF4svZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11405,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11405
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-13T20:59:41.213Z_
+
+<details><summary>↩ Tool result · `toolu_019Txoc45AkpMWkuA1WWdyaN`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aeab14c-2c9e-405a-b0cc-923e1bac0a65",
+  "uuid": "dc662f4e-dcfe-412a-b769-17f5def5ce2a",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015ELivMNnLx2px8berccUVw`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "tail -150 ~/runs/cost-verify-agent-rl/exp_002.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aeab14c-2c9e-405a-b0cc-923e1bac0a65",
+  "uuid": "604e1ec4-2040-4a14-89f2-1c864952dfb8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VrhkAQ222fqBWVoN47rg6J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 454,
+      "cache_read_input_tokens": 23246,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 454
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EaBqUkZEnMc2KvXbvYgbFM`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total,temperature.gpu --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aeab14c-2c9e-405a-b0cc-923e1bac0a65",
+  "uuid": "8c40e01b-a725-4d7c-bafc-4046e4ef7cd9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VrhkAQ222fqBWVoN47rg6J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 454,
+      "cache_read_input_tokens": 23246,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 454
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-13T20:59:45.099Z_
+
+<details><summary>↩ Tool result · `toolu_015ELivMNnLx2px8berccUVw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(WorkerDict pid=120321)\\u001b[0m kwargs: {'n': 1, 'logprobs': 0, 'max_tokens': 1024, 'repetition_penalty': 1.0, 'detokenize': False, 'temperature': 1.0, 'top_k': -1, 'top_p': 1, 'ignore_eos': False}\\n\\u001b[36m(WorkerDict pid=120322)\\u001b[0m Skipping monkey patch for Qwen3ForCausalLM as use_fused_kernels is False or fused_kernels_backend is torch\\n\\u001b[36m(WorkerDict pid=120322)\\u001b[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0\\u001b[32m [repeated 2x across cluster]\\u001b[0m\\n\\u001b[36m(WorkerDict pid=120322)\\u001b[0m WARNING 05-14 04:01:16 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\n\\u001b[36m(WorkerDict pid=120322)\\u001b[0m WARNING 05-14 04:01:16 [vllm.py:820] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\\n\\u001b[36m(WorkerDict pid=120321)\\u001b[0m Actor use_remove_padding=False\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m Initializing AlfredTWEnv...\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m Overall we have 3553 games in split=train\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m Training with 3553 games\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m Checkpoint tracker file does not exist: /root/cost-verify-agent-rl/RAGEN/checkpoints/cost-verify-agent-rl/exp002-alfworld-selfguide-128traj/latest_checkpointed_iteration.txt\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m Training from scratch\\n\\u001b[36m(WorkerDict pid=120322)\\u001b[0m kwargs: {'n': 1, 'logprobs': 0, 'max_tokens': 1024, 'repetition_penalty': 1.0, 'detokenize': False, 'temperature': 1.0, 'top_k': -1, 'top_p': 1, 'ignore_eos': False}\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m test_gen_batch meta info: {'eos_token_id': 151645, 'pad_token_id': 151643, 'recompute_log_prob': False, 'do_sample': True, 'validate': True}\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m Initializing AlfredTWEnv...\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m Overall we have 140 games in split=eval_in_distribution\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m Evaluating with 140 games\\n\\u001b[36m(WorkerDict pid=120322)\\u001b[0m Actor use_remove_padding=False\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m validation generation time: 699.1902918815613 seconds\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m (\\\"Initial validation metrics: {'val-env/AlfworldSG/success': np.float64(0.0), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/num_actions': np.float64(13.125), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/episodic_return': np.float64(0.0), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/raw_reward': np.float64(0.0), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/manager_invalid_action': np.float64(0.7375), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/action_is_effective': np.float64(0.2625), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/action_is_valid': np.float64(0.15125), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/pass@1': np.float64(0.0), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/charts/avg_episode_return': np.float64(0.0), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/non-zero/num_actions': np.float64(26.25), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m \\rTraining Progress:   0%|          | 0/100 [00:00<?, ?it/s]\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/non-zero/manager_invalid_action': np.float64(0.7375), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/non-zero/action_is_effective': np.float64(0.525), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/non-zero/action_is_valid': \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"np.float64(0.3457142857142857), 'val-env/response_length': \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"np.float64(9378.0625), 'val-core/unknown/reward/mean@16': \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"np.float64(-3.6875000074505806), 'val-aux/unknown/reward/std@16': \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"np.float64(1.5276104731366726), 'val-aux/unknown/reward/best@2/mean': \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"np.float64(-2.804100012898445), 'val-aux/unknown/rewar\\n\\n... [截断: 输出过长，省略 6309 字符] ...\\n\\nunc\\n    return getattr(self.worker_dict[key], name)(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/base/decorator.py\\\", line 442, in inner\\n    return func(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/transferqueue_utils.py\\\", line 199, in dummy_inner\\n    return func(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/profile.py\\\", line 256, in wrapper\\n    return func(self_instance, *args, **kwargs_inner)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/ragen/workers/fsdp_workers.py\\\", line 129, in generate_sequences\\n    output = self.rollout.generate_sequences(prompts=prompts)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/performance.py\\\", line 105, in f\\n    return self.log(decorated_function, *args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/performance.py\\\", line 118, in log\\n    output = func(*args, **kwargs)\\n             ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/utils/_contextlib.py\\\", line 124, in decorate_context\\n    return func(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/workers/rollout/vllm_rollout/vllm_rollout_spmd.py\\\", line 383, in generate_sequences\\n    outputs = self.inference_engine.generate(\\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\", line 492, in generate\\n    return self._run_completion(\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\", line 1818, in _run_completion\\n    self._add_completion_requests(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\", line 1791, in _add_completion_requests\\n    return self._render_and_add_requests(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\", line 1931, in _render_and_add_requests\\n    raise e\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\", line 1918, in _render_and_add_requests\\n    request_id = self._add_request(\\n                 ^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\", line 1948, in _add_request\\n    return self.llm_engine.add_request(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/llm_engine.py\\\", line 248, in add_request\\n    request = self.input_processor.process_inputs(\\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/input_processor.py\\\", line 244, in process_inputs\\n    self._validate_model_inputs(encoder_inputs, decoder_inputs)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/input_processor.py\\\", line 438, in _validate_model_inputs\\n    self._validate_model_input(decoder_inputs, prompt_type=\\\"decoder\\\")\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/input_processor.py\\\", line 396, in _validate_model_input\\n    self._validate_prompt_len(prompt_len, prompt_type)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/input_processor.py\\\", line 370, in _validate_prompt_len\\n    raise ValueError(\\nValueError: The decoder prompt (length 32768) plus the number of requested output tokens (at least 1) is longer than the maximum model length of 32768. Make sure that `max_model_len` is no smaller than the number of text tokens (prompt + requested output tokens).\\n\\nSet the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.\\nEXIT_CODE=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aeab14c-2c9e-405a-b0cc-923e1bac0a65",
+  "uuid": "e49f9d81-f191-41da-b0b6-93e655b1ce82",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\u001b[36m(WorkerDict pid=120321)\\\\u001b[0m kwargs: {'n': 1, 'logprobs': 0, 'max_tokens': 1024, 'repetition_penalty': 1.0, 'detokenize': False, 'temperature': 1.0, 'top_k': -1, 'top_p': 1, 'ignore_eos': False}\\\\n\\\\u001b[36m(WorkerDict pid=120322)\\\\u001b[0m Skipping monkey patch for Qwen3ForCausalLM as use_fused_kernels is False or fused_kernels_backend is torch\\\\n\\\\u001b[36m(WorkerDict pid=120322)\\\\u001b[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0\\\\u001b[32m [repeated 2x across cluster]\\\\u001b[0m\\\\n\\\\u001b[36m(WorkerDict pid=120322)\\\\u001b[0m WARNING 05-14 04:01:16 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\\\n\\\\u001b[36m(WorkerDict pid=120322)\\\\u001b[0m WARNING 05-14 04:01:16 [vllm.py:820] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\\\\n\\\\u001b[36m(WorkerDict pid=120321)\\\\u001b[0m Actor use_remove_padding=False\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m Initializing AlfredTWEnv...\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m Overall we have 3553 games in split=train\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m Training with 3553 games\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m Checkpoint tracker file does not exist: /root/cost-verify-agent-rl/RAGEN/checkpoints/cost-verify-agent-rl/exp002-alfworld-selfguide-128traj/latest_checkpointed_iteration.txt\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m Training from scratch\\\\n\\\\u001b[36m(WorkerDict pid=120322)\\\\u001b[0m kwargs: {'n': 1, 'logprobs': 0, 'max_tokens': 1024, 'repetition_penalty': 1.0, 'detokenize': False, 'temperature': 1.0, 'top_k': -1, 'top_p': 1, 'ignore_eos': False}\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m test_gen_batch meta info: {'eos_token_id': 151645, 'pad_token_id': 151643, 'recompute_log_prob': False, 'do_sample': True, 'validate': True}\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m Initializing AlfredTWEnv...\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m Overall we have 140 games in split=eval_in_distribution\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m Evaluating with 140 games\\\\n\\\\u001b[36m(WorkerDict pid=120322)\\\\u001b[0m Actor use_remove_padding=False\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m validation generation time: 699.1902918815613 seconds\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m (\\\\\\\"Initial validation metrics: {'val-env/AlfworldSG/success': np.float64(0.0), \\\\\\\"\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m  \\\\\\\"'val-env/AlfworldSG/num_actions': np.float64(13.125), \\\\\\\"\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m  \\\\\\\"'val-env/AlfworldSG/episodic_return': np.float64(0.0), \\\\\\\"\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m  \\\\\\\"'val-env/AlfworldSG/raw_reward': np.float64(0.0), \\\\\\\"\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m  \\\\\\\"'val-env/AlfworldSG/manager_invalid_action': np.float64(0.7375), \\\\\\\"\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m  \\\\\\\"'val-env/AlfworldSG/action_is_effective': np.float64(0.2625), \\\\\\\"\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m  \\\\\\\"'val-env/AlfworldSG/action_is_valid': np.float64(0.15125), \\\\\\\"\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m  \\\\\\\"'val-env/AlfworldSG/pass@1': np.float64(0.0), \\\\\\\"\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m  \\\\\\\"'val-env/charts/avg_episode_return': np.float64(0.0), \\\\\\\"\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m  \\\\\\\"'val-env/AlfworldSG/non-zero/num_actions': np.float64(26.25), \\\\\\\"\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m \\\\rTraining Progress:   0%|          | 0/100 [00:00<?, ?it/s]\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m  \\\\\\\"'val-env/AlfworldSG/non-zero/manager_invalid_action': np.float64(0.7375), \\\\\\\"\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m  \\\\\\\"'val-env/AlfworldSG/non-zero/action_is_effective': np.float64(0.525), \\\\\\\"\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m  \\\\\\\"'val-env/AlfworldSG/non-zero/action_is_valid': \\\\\\\"\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m  \\\\\\\"np.float64(0.3457142857142857), 'val-env/response_length': \\\\\\\"\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m  \\\\\\\"np.float64(9378.0625), 'val-core/unknown/reward/mean@16': \\\\\\\"\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m  \\\\\\\"np.float64(-3.6875000074505806), 'val-aux/unknown/reward/std@16': \\\\\\\"\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m  \\\\\\\"np.float64(1.5276104731366726), 'val-aux/unknown/reward/best@2/mean': \\\\\\\"\\\\n\\\\u001b[36m(TaskRunner pid=120129)\\\\u001b[0m  \\\\\\\"np.float64(-2.804100012898445), 'val-aux/unknown/rewar\\\\n\\\\n... [截断: 输出过长，省略 6309 字符] ...\\\\n\\\\nunc\\\\n    return getattr(self.worker_dict[key], name)(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/base/decorator.py\\\\\\\", line 442, in inner\\\\n    return func(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/transferqueue_utils.py\\\\\\\", line 199, in dummy_inner\\\\n    return func(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/profile.py\\\\\\\", line 256, in wrapper\\\\n    return func(self_instance, *args, **kwargs_inner)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/ragen/workers/fsdp_workers.py\\\\\\\", line 129, in generate_sequences\\\\n    output = self.rollout.generate_sequences(prompts=prompts)\\\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/performance.py\\\\\\\", line 105, in f\\\\n    return self.log(decorated_function, *args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/performance.py\\\\\\\", line 118, in log\\\\n    output = func(*args, **kwargs)\\\\n             ^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/utils/_contextlib.py\\\\\\\", line 124, in decorate_context\\\\n    return func(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/workers/rollout/vllm_rollout/vllm_rollout_spmd.py\\\\\\\", line 383, in generate_sequences\\\\n    outputs = self.inference_engine.generate(\\\\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\\\\\", line 492, in generate\\\\n    return self._run_completion(\\\\n           ^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\\\\\", line 1818, in _run_completion\\\\n    self._add_completion_requests(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\\\\\", line 1791, in _add_completion_requests\\\\n    return self._render_and_add_requests(\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\\\\\", line 1931, in _render_and_add_requests\\\\n    raise e\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\\\\\", line 1918, in _render_and_add_requests\\\\n    request_id = self._add_request(\\\\n                 ^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\\\\\", line 1948, in _add_request\\\\n    return self.llm_engine.add_request(\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/llm_engine.py\\\\\\\", line 248, in add_request\\\\n    request = self.input_processor.process_inputs(\\\\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/input_processor.py\\\\\\\", line 244, in process_inputs\\\\n    self._validate_model_inputs(encoder_inputs, decoder_inputs)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/input_processor.py\\\\\\\", line 438, in _validate_model_inputs\\\\n    self._validate_model_input(decoder_inputs, prompt_type=\\\\\\\"decoder\\\\\\\")\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/input_processor.py\\\\\\\", line 396, in _validate_model_input\\\\n    self._validate_prompt_len(prompt_len, prompt_type)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/input_processor.py\\\\\\\", line 370, in _validate_prompt_len\\\\n    raise ValueError(\\\\nValueError: The decoder prompt (length 32768) plus the number of requested output tokens (at least 1) is longer than the maximum model length of 32768. Make sure that `max_model_len` is no smaller than the number of text tokens (prompt + requested output tokens).\\\\n\\\\nSet the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.\\\\nEXIT_CODE=1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(WorkerDict pid=120321)\\u001b[0m kwargs: {'n': 1, 'logprobs': 0, 'max_tokens': 1024, 'repetition_penalty': 1.0, 'detokenize': False, 'temperature': 1.0, 'top_k': -1, 'top_p': 1, 'ignore_eos': False}\\n\\u001b[36m(WorkerDict pid=120322)\\u001b[0m Skipping monkey patch for Qwen3ForCausalLM as use_fused_kernels is False or fused_kernels_backend is torch\\n\\u001b[36m(WorkerDict pid=120322)\\u001b[0m [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0\\u001b[32m [repeated 2x across cluster]\\u001b[0m\\n\\u001b[36m(WorkerDict pid=120322)\\u001b[0m WARNING 05-14 04:01:16 [vllm.py:809] Enforce eager set, disabling torch.compile and CUDAGraphs. This is equivalent to setting -cc.mode=none -cc.cudagraph_mode=none\\n\\u001b[36m(WorkerDict pid=120322)\\u001b[0m WARNING 05-14 04:01:16 [vllm.py:820] Inductor compilation was disabled by user settings, optimizations settings that are only active during inductor compilation will be ignored.\\n\\u001b[36m(WorkerDict pid=120321)\\u001b[0m Actor use_remove_padding=False\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m Initializing AlfredTWEnv...\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m Overall we have 3553 games in split=train\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m Training with 3553 games\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m Checkpoint tracker file does not exist: /root/cost-verify-agent-rl/RAGEN/checkpoints/cost-verify-agent-rl/exp002-alfworld-selfguide-128traj/latest_checkpointed_iteration.txt\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m Training from scratch\\n\\u001b[36m(WorkerDict pid=120322)\\u001b[0m kwargs: {'n': 1, 'logprobs': 0, 'max_tokens': 1024, 'repetition_penalty': 1.0, 'detokenize': False, 'temperature': 1.0, 'top_k': -1, 'top_p': 1, 'ignore_eos': False}\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m test_gen_batch meta info: {'eos_token_id': 151645, 'pad_token_id': 151643, 'recompute_log_prob': False, 'do_sample': True, 'validate': True}\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m Initializing AlfredTWEnv...\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m Overall we have 140 games in split=eval_in_distribution\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m Evaluating with 140 games\\n\\u001b[36m(WorkerDict pid=120322)\\u001b[0m Actor use_remove_padding=False\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m validation generation time: 699.1902918815613 seconds\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m (\\\"Initial validation metrics: {'val-env/AlfworldSG/success': np.float64(0.0), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/num_actions': np.float64(13.125), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/episodic_return': np.float64(0.0), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/raw_reward': np.float64(0.0), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/manager_invalid_action': np.float64(0.7375), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/action_is_effective': np.float64(0.2625), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/action_is_valid': np.float64(0.15125), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/pass@1': np.float64(0.0), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/charts/avg_episode_return': np.float64(0.0), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/non-zero/num_actions': np.float64(26.25), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m \\rTraining Progress:   0%|          | 0/100 [00:00<?, ?it/s]\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/non-zero/manager_invalid_action': np.float64(0.7375), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/non-zero/action_is_effective': np.float64(0.525), \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"'val-env/AlfworldSG/non-zero/action_is_valid': \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"np.float64(0.3457142857142857), 'val-env/response_length': \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"np.float64(9378.0625), 'val-core/unknown/reward/mean@16': \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"np.float64(-3.6875000074505806), 'val-aux/unknown/reward/std@16': \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"np.float64(1.5276104731366726), 'val-aux/unknown/reward/best@2/mean': \\\"\\n\\u001b[36m(TaskRunner pid=120129)\\u001b[0m  \\\"np.float64(-2.804100012898445), 'val-aux/unknown/rewar\\n\\n... [截断: 输出过长，省略 6309 字符] ...\\n\\nunc\\n    return getattr(self.worker_dict[key], name)(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/base/decorator.py\\\", line 442, in inner\\n    return func(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/transferqueue_utils.py\\\", line 199, in dummy_inner\\n    return func(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/profile.py\\\", line 256, in wrapper\\n    return func(self_instance, *args, **kwargs_inner)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/ragen/workers/fsdp_workers.py\\\", line 129, in generate_sequences\\n    output = self.rollout.generate_sequences(prompts=prompts)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/performance.py\\\", line 105, in f\\n    return self.log(decorated_function, *args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/performance.py\\\", line 118, in log\\n    output = func(*args, **kwargs)\\n             ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/utils/_contextlib.py\\\", line 124, in decorate_context\\n    return func(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/workers/rollout/vllm_rollout/vllm_rollout_spmd.py\\\", line 383, in generate_sequences\\n    outputs = self.inference_engine.generate(\\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\", line 492, in generate\\n    return self._run_completion(\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\", line 1818, in _run_completion\\n    self._add_completion_requests(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\", line 1791, in _add_completion_requests\\n    return self._render_and_add_requests(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\", line 1931, in _render_and_add_requests\\n    raise e\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\", line 1918, in _render_and_add_requests\\n    request_id = self._add_request(\\n                 ^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\", line 1948, in _add_request\\n    return self.llm_engine.add_request(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/llm_engine.py\\\", line 248, in add_request\\n    request = self.input_processor.process_inputs(\\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/input_processor.py\\\", line 244, in process_inputs\\n    self._validate_model_inputs(encoder_inputs, decoder_inputs)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/input_processor.py\\\", line 438, in _validate_model_inputs\\n    self._validate_model_input(decoder_inputs, prompt_type=\\\"decoder\\\")\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/input_processor.py\\\", line 396, in _validate_model_input\\n    self._validate_prompt_len(prompt_len, prompt_type)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/input_processor.py\\\", line 370, in _validate_prompt_len\\n    raise ValueError(\\nValueError: The decoder prompt (length 32768) plus the number of requested output tokens (at least 1) is longer than the maximum model length of 32768. Make sure that `max_model_len` is no smaller than the number of text tokens (prompt + requested output tokens).\\n\\nSet the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.\\nEXIT_CODE=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-13T20:59:45.608Z_
+
+<details><summary>↩ Tool result · `toolu_01EaBqUkZEnMc2KvXbvYgbFM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0 %, 0 MiB, 97887 MiB, 28\\n100 %, 0 MiB, 97887 MiB, 35\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5aeab14c-2c9e-405a-b0cc-923e1bac0a65",
+  "uuid": "edebf28e-24ff-4b86-85f4-ac9de26a6baf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0 %, 0 MiB, 97887 MiB, 28\\\\n100 %, 0 MiB, 97887 MiB, 35\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0 %, 0 MiB, 97887 MiB, 28\\n100 %, 0 MiB, 97887 MiB, 35\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+The training crashed with an error. Let me analyze:
+
+The error is:
+```
+ValueError: The decoder prompt (length 32768) plus the number of requested output tokens (at least 1) is longer than the maximum model length of 32768. Make sure that `max_model_len` is no smaller than the number of text tokens (prompt + requested output tokens).
+```
+
+So step 1 failed during rollout generation - a prompt hit the max_model_len limit of 32768 tokens.
+
+Let me check the initial validation results that were logged:
+- Initial validation: success=0.0, invalid_action=0.7375, reward/mean=-3.6875
+
+
+- Training crashed immediately at step 1 during sequence generation when the prompt consumed the entire context window, leaving no space for the model to generate output tokens.
+
+Looking at the GPU metrics, GPU 1 shows 100% utilization despite reporting zero memory usage, which suggests the process may have just started or there's a monitoring lag.
+
+The core problem is that ALFWorld's multi-turn interactions are accumulating tokens too quickly—the prompt hit exactly 32768 tokens with no buffer. I need to either increase the context limit, implement prompt truncation, or reduce the number of interaction turns before reporting this back.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aeab14c-2c9e-405a-b0cc-923e1bac0a65",
+  "uuid": "6df2ae7d-aa5b-4ac9-ab9b-169e842d5e55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NYD6wpiiFbjMgid6NfP2iW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4076,
+      "cache_read_input_tokens": 23700,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4076
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+**exp_002 已崩溃。** Step 1 在 rollout generation 阶段报错退出（EXIT_CODE=1）。
+
+### 错误原因
+
+```
+ValueError: The decoder prompt (length 32768) plus the number of requested output tokens (at least 1) 
+is longer than the maximum model length of 32768.
+```
+
+某条 trajectory 的 prompt 在多轮交互中累积到了 32768 tokens，恰好等于 `max_model_len`，导致 vLLM 无法生成任何 output token。
+
+### 初始验证结果（崩溃前完成的）
+
+| 指标 | 值 |
+|------|-----|
+| success | 0.0% |
+| invalid_action | 73.75% |
+| reward/mean | -3.6875 |
+| action_is_valid | 15.1% |
+| action_is_effective | 26.25% |
+| response_length | 9378 tokens |
+
+### GPU 状态（进程已死）
+
+| GPU | 利用率 | 显存 | 温度 |
+|-----|--------|------|------|
+| cuda:0 | 0% | 0 MiB / 97887 MiB | 28°C |
+| cuda:1 | 100%* | 0 MiB / 97887 MiB | 35°C |
+
+*GPU 1 显示 100% 利用率但 0 显存，是进程崩溃后 GPU 计数器未清零。
+
+### 修复方向
+
+需要防止 prompt 超长。几个选项：
+1. **增大 `max_model_len`**（如 33792 或 36864），给 output 留余量——但会增加显存占用
+2. **限制交互轮数或截断 prompt**，在 prompt 接近上限时提前终止 episode
+3. **减小 `max_tokens`（generation）** 并在 rollout 前检查 prompt_len + max_tokens ≤ max_model_len
+
+选项 2 最稳健——即使增大 max_model_len，长 episode 仍可能再次触顶。需要查看配置中是否有 `max_turns` 或 prompt truncation 相关参数。要我去查配置并修复吗？
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5aeab14c-2c9e-405a-b0cc-923e1bac0a65",
+  "uuid": "69ad39ef-3ba1-4e58-b70f-32ecd4ce27df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NYD6wpiiFbjMgid6NfP2iW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4076,
+      "cache_read_input_tokens": 23700,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4076
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 13_
+
+**exp_002 已崩溃。** Step 1 在 rollout generation 阶段报错退出（EXIT_CODE=1）。
+
+### 错误原因
+
+```
+ValueError: The decoder prompt (length 32768) plus the number of requested output tokens (at least 1) 
+is longer than the maximum model length of 32768.
+```
+
+某条 trajectory 的 prompt 在多轮交互中累积到了 32768 tokens，恰好等于 `max_model_len`，导致 vLLM 无法生成任何 output token。
+
+### 初始验证结果（崩溃前完成的）
+
+| 指标 | 值 |
+|------|-----|
+| success | 0.0% |
+| invalid_action | 73.75% |
+| reward/mean | -3.6875 |
+| action_is_valid | 15.1% |
+| action_is_effective | 26.25% |
+| response_length | 9378 tokens |
+
+### GPU 状态（进程已死）
+
+| GPU | 利用率 | 显存 | 温度 |
+|-----|--------|------|------|
+| cuda:0 | 0% | 0 MiB / 97887 MiB | 28°C |
+| cuda:1 | 100%* | 0 MiB / 97887 MiB | 35°C |
+
+*GPU 1 显示 100% 利用率但 0 显存，是进程崩溃后 GPU 计数器未清零。
+
+### 修复方向
+
+需要防止 prompt 超长。几个选项：
+1. **增大 `max_model_len`**（如 33792 或 36864），给 output 留余量——但会增加显存占用
+2. **限制交互轮数或截断 prompt**，在 prompt 接近上限时提前终止 episode
+3. **减小 `max_tokens`（generation）** 并在 rollout 前检查 prompt_len + max_tokens ≤ max_model_len
+
+选项 2 最稳健——即使增大 max_model_len，长 episode 仍可能再次触顶。需要查看配置中是否有 `max_turns` 或 prompt truncation 相关参数。要我去查配置并修复吗？
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 34408,
+  "duration_api_ms": 34542,
+  "num_turns": 4,
+  "stop_reason": "end_turn",
+  "session_id": "5aeab14c-2c9e-405a-b0cc-923e1bac0a65",
+  "total_cost_usd": 0.16760025,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 15935,
+    "cache_read_input_tokens": 58787,
+    "output_tokens": 1489,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 15935,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1130,
+        "cache_read_input_tokens": 23700,
+        "cache_creation_input_tokens": 4076,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4076
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1243,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001358,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 6,
+      "outputTokens": 1489,
+      "cacheReadInputTokens": 58787,
+      "cacheCreationInputTokens": 15935,
+      "webSearchRequests": 0,
+      "costUSD": 0.16624225,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "8ff9e388-9a9c-4442-9f15-3e5e6401bfa8"
+}
+```
+
+</details>
+
+---

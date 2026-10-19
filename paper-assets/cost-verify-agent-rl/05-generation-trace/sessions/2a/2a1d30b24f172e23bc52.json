@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "2a1d30b24f172e23bc52",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "fix copy checkpoint restart",
+  "task_key": "worker_fix_copy-checkpoint-restart_20260517T193025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_copy-checkpoint-restart_20260517T193025.log",
+    "occurrence": 1,
+    "bytes": 927476,
+    "sha256": "a612dc1e2811537cc5bc198939ab4fe382ca84dea94aef6b76d40d742753b879"
+  },
+  "statistics": {
+    "messages": 585,
+    "user_turns": 1,
+    "tool_calls": 216,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 140,
+      "tool_call": 216,
+      "tool_result": 216,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 39,
+      "chunks": [
+        {
+          "path": "2a1d30b24f172e23bc52-part-0001.json",
+          "message_count": 39
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 546,
+      "chunks": [
+        {
+          "path": "2a1d30b24f172e23bc52-part-0001.json",
+          "message_count": 141
+        },
+        {
+          "path": "2a1d30b24f172e23bc52-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2a1d30b24f172e23bc52-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "2a1d30b24f172e23bc52-part-0004.json",
+          "message_count": 45
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-copy-checkpoint-restart.md"
+}

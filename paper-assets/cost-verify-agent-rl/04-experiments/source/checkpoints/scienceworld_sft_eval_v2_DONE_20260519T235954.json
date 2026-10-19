@@ -1,0 +1,46 @@
+{
+  "exp_id": "scienceworld_sft_eval_v2",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:50:45.230Z",
+    "updated_at": "2026-05-19T23:59:54.217Z",
+    "hypothesis": "Evaluate ScienceWorld SFT checkpoint (global_step_448) on dev split with fixed valid_action_rate metric. v1 eval had bug: action_is_valid checked against truncated shown[:50] (mostly 'connect' format), now checks full valid_actions list. Establishes true SFT baseline success rate for ScienceWorld.",
+    "parent": "scienceworld_sft_eval",
+    "spec": {
+      "command": "python /root/cost-verify-agent-rl/eval_scienceworld.py --temperature 0.4",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "187796",
+      "data_path": "scienceworld dev split",
+      "data_count": 1796,
+      "model_name": "Qwen3-1.7B (ScienceWorld SFT)",
+      "seed": 42,
+      "log_path": "/tmp/eval_scienceworld_v2.log",
+      "checkpoint_source": "scienceworld_sft/global_step_448",
+      "eval_data": "ScienceWorld dev split, 1796 episodes, 30 task types"
+    },
+    "metrics": {
+      "episodes_completed": 409,
+      "episodes_total": 1796,
+      "progress_pct": 22.8,
+      "success_count": 158,
+      "success_rate": 0.386,
+      "speed_ep_per_min": 1.56
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T23:59:52.638Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T23:59:54.217Z"
+  },
+  "timestamp": "2026-05-19T23:59:54.415976+00:00",
+  "trigger": "update_registry"
+}

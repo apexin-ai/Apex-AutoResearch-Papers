@@ -1,0 +1,35 @@
+{
+  "exp_id": "binary_credit_agreement",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:17:59.737Z",
+    "updated_at": "2026-05-24T08:23:27.316Z",
+    "hypothesis": "Under binary reward (penalty=0), GRPO advantage sign is near-deterministically determined by episode outcome (sign-episode correlation ~100%), confirming M2 mechanism. Credit agreement with local action quality should be well below 50%.",
+    "spec": {
+      "command": "Retroactive registry entry for binary credit agreement analysis (iter0-2). Analysis performed on Cell A h=2 rollout data with penalty=0.",
+      "server": "bjb1-17606",
+      "data_path": "ALFWorld Cell A h=2 rollouts (binary reward)",
+      "data_count": 271,
+      "model_name": "Qwen3-1.7B",
+      "seed": 10000,
+      "checkpoint_source": "qwen3_exp021_ragen_sft_v4"
+    },
+    "metrics": {
+      "sign_episode_correlation": 0.996,
+      "concordant_windows": 270,
+      "total_windows": 271,
+      "credit_agreement_rate": 0.28,
+      "notes": "99.6% sign-episode correlation (270/271 non-zero windows across 3 eval iterations). Credit agreement 28% under binary reward, below chance."
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A (analysis-only, no checkpoint)",
+    "log_path": "N/A (analysis-only, data in paper Section 5.4)",
+    "completed_at": "2026-05-24T08:23:27.316Z"
+  },
+  "timestamp": "2026-05-24T08:23:27.669512+00:00",
+  "trigger": "update_registry"
+}

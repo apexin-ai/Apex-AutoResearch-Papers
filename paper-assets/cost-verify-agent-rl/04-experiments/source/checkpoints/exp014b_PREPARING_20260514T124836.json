@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp014b",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:45:27.876Z",
+    "updated_at": "2026-05-14T12:48:36.044Z",
+    "hypothesis": "极低 Dense Reward: valid_action_bonus=0.01（1:1000 比例），测试极弱 bonus 能否防 collapse 又不引发 gaming。如果 bonus 弱到不影响 GRPO reward ranking，模型不会被诱导走捷径。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。",
+    "parent": "exp013f",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-14T12:48:36.090998+00:00",
+  "trigger": "update_registry"
+}

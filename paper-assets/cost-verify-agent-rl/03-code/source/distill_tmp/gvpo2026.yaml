@@ -1,0 +1,273 @@
+paper_key: "gvpo2026"
+title: "Group Verification-based Policy Optimization for Interactive Coding Agents"
+venue: "ICLR 2026"
+authors: "Silong Dai, Changzhi Sun, Haolun Wu, Huanran Zheng, Tao Ji, Junchi Yan, Yuanbin Wu, Dell Zhang, Xiaoling Wang, Xuelong Li"
+affiliations:
+  - "East China Normal University"
+  - "TeleAI, China Telecom"
+  - "Fudan University"
+  - "Shanghai Jiao Tong University"
+openreview_id: "RY47Tq0VsV"
+full_text_available: true
+
+research:
+  baselines:
+    - "GPT-4o (zero-shot prompting)"
+    - "GPT-4 Turbo (zero-shot prompting)"
+    - "OpenAI o1 (zero-shot prompting)"
+    - "LLaMA-3 70B (zero-shot prompting)"
+    - "Qwen2.5-32B-Instruct (zero-shot prompting)"
+    - "RLOO (Ahmadian et al., 2024)"
+    - "GRPO (Shao et al., 2024)"
+    - "GSPO (Group Sequence Policy Optimization)"
+    - "DAPO (Yu et al., 2025)"
+    - "Dr.GRPO (Liu et al., 2025)"
+    - "LOOP (Chen et al., 2025b)"
+    - "Gemini-2.5-Pro (ALFWorld/WebShop)"
+  metrics:
+    - name: "TGC (Task Goal Completion)"
+      direction: "higher_better"
+      description: "percentage of tasks where agent passes all evaluation tests"
+    - name: "SGC (Scenario Goal Completion)"
+      direction: "higher_better"
+      description: "percentage of scenarios where agent succeeds on every associated task"
+    - name: "Success Rate"
+      direction: "higher_better"
+      description: "used for ALFWorld and WebShop"
+    - name: "Score"
+      direction: "higher_better"
+      description: "WebShop score metric"
+  datasets:
+    - name: "AppWorld"
+      size: "750 tasks from 250 scenarios; 9 simulated consumer apps, 457 APIs"
+      splits: "train (35/105), dev (20/60), test-normal (56/168), test-challenge (139/417)"
+      description: "Multi-turn planning and executable code generation in stateful Python environment"
+    - name: "ALFWorld"
+      size: "6 task categories (Pick, Look, Clean, Heat, Cool, Pick2)"
+      description: "Embodied text-based interactive environment"
+    - name: "WebShop"
+      size: "Web-based shopping interaction benchmark"
+      description: "Sparse and noisy feedback, shopping interactions"
+  ablation_dimensions:
+    - "Shaping coefficient b (0.1, 0.2, 0.4)"
+    - "Loss aggregation scheme (smtm vs tm vs smts)"
+    - "Clipping strategy (symmetric vs asymmetric)"
+    - "Std normalization (with vs without)"
+    - "Micro-batch/group size matching (mbs=gs vs mbs≠gs)"
+    - "Shaping type (multiplicative vs additive-only)"
+  training_recipe:
+    base_model: "Qwen2.5-32B-Instruct"
+    framework: "veRL + FSDP2 + vLLM (batched inference)"
+    optimizer: "AdamW"
+    lr: "1e-5 (constant)"
+    hardware: "8x NVIDIA H100 GPUs (single machine)"
+    training_steps: 144
+    batch_size: "4 × 8"
+    micro_batchsize: 8
+    group_size_G: 8
+    rollouts_per_sample: 8
+    clipping_range: "(epsilon_low=0.2, epsilon_high=0.28)"
+    max_seq_length_per_turn: "512 tokens"
+    max_interaction_turns_train: 40
+    max_interaction_turns_eval: 50
+    temperature_train: 1.0
+    temperature_eval: 0.0
+    entropy_coefficient: 0.0
+    shaping_penalty_b: 0.2
+    training_tasks: "AppWorld difficulty-1/2 (72 samples, 24 scenarios)"
+    appworld_backends: "32 independent backends via Redis message queue"
+    early_stopping: "rollout generation terminated once ≥6 rollouts per task and 90% total collected"
+    generalization_model: "Qwen2.5-7B-Instruct (for ALFWorld/WebShop experiments, 100 training steps)"
+  method_family: "RLVR (Reinforcement Learning from Verifiable Rewards) with advantage shaping"
+
+positioning:
+  core_claim: >
+    Current RLVR methods (GRPO and variants) rely exclusively on outcome-verifiable rewards,
+    causing inaccurate credit assignment at intermediate steps. GVPO introduces an advantage
+    shaping framework that integrates both outcome-verifiable and process-verifiable signals
+    (execution traces like syntax errors, runtime exceptions) for step-level credit correction,
+    achieving more stable optimization, faster convergence, and stronger generalization.
+  key_results: >
+    AppWorld Test-N: 72.6 TGC / 55.4 SGC (new SOTA); Test-C: 49.4 TGC / 28.8 SGC
+    (+3.7 TGC / +2.2 SGC over LOOP, the strongest 32B RL baseline);
+    +12.7% over OpenAI o1 on Test-C TGC (49.4 vs 36.7);
+    Dev: 84.2 TGC / 73.7 SGC (+7.0 TGC / +5.3 SGC over Dr.GRPO);
+    ALFWorld: 84.4 overall success rate (vs GRPO 70.3, GPT-4o 48, Gemini-2.5-Pro 60.3);
+    WebShop: 90.2 score / 80.5 success rate (vs GRPO 79.7/70.3).
+  limitations:
+    - "Relies on deterministic environments with well-defined process signals; effectiveness on tasks with ambiguous or noisy feedback is underexplored"
+    - "Extending GVPO to broader domains and integrating with richer supervision sources remains future work"
+    - "Process-verifiable signals are rule-based (execution trace parsing); no learned process reward model"
+  relation_to_us: "competitor"
+  relation_detail: >
+    GVPO uses verification signals (outcome + process) for credit assignment during RL training;
+    B-IAVR learns when to invoke verification at deployment time. Both address verification
+    in agent RL but at different phases: GVPO = training-time advantage shaping with verification,
+    B-IAVR = deployment-time adaptive verification invocation. GVPO's process-verifiable
+    signal integration is complementary — could potentially be combined with B-IAVR's
+    adaptive verification trigger.
+
+narrative:
+  story_type: "突破局限型"
+  hook: >
+    Opens with the promise of RLVR/GRPO for interactive coding agents, then immediately
+    identifies a critical blind spot: these methods overlook process-verifiable environment
+    feedback (code execution failures), leading to inaccurate advantage estimation.
+  tension: >
+    Outcome-verifiable rewards are sparse and delayed — they only fire at trajectory end.
+    This causes credit assignment failures: early-stage errors still get positive reinforcement
+    if the final outcome succeeds, while partially correct reasoning is discarded if the
+    trajectory ultimately fails. Result: unstable optimization, slow convergence,
+    underutilization of valuable environment feedback.
+  key_insight: >
+    Process-verifiable signals (syntax errors, runtime exceptions, partial unit test outcomes)
+    are dense, fine-grained, and deterministic. By integrating them as corrective shaping terms
+    in the advantage function — not replacing outcome rewards but modulating them — GVPO
+    achieves step-level credit assignment while preserving long-term outcome alignment.
+    The key design: multiplicative shaping for failed tokens with negative advantage (amplifying
+    the penalty), fixed penalty for failed tokens with zero advantage, and unchanged advantage
+    for successful tokens.
+  argument_chain: >
+    Problem (RLVR ignores process feedback) → Formalization (index sets for success/fail tokens,
+    process-verifiable bonus B_{i,t}) → Advantage shaping framework f(A_hat, B) →
+    Asymmetric clipping for exploration preservation → AppWorld experiments showing SOTA →
+    Behavioral analysis (query-before-act strategy emerges) → Cross-domain generalization
+    (ALFWorld, WebShop)
+  contribution_framing: >
+    Three contributions: (1) identify limitation of outcome-only RLVR, (2) propose GVPO
+    algorithm unifying outcome + process signals via advantage shaping, (3) demonstrate
+    substantial improvements on AppWorld outperforming both open-source and closed-source baselines.
+  intro_structure: >
+    ~5 paragraphs: P1 = LLM agents + RLVR context; P2 = limitation of outcome-only rewards
+    (credit assignment problem); P3 = process-verifiable signals as underexplored direction;
+    P4 = GVPO introduction + key results; P5 = contribution bullet points (3 items).
+    Includes Table 1 comparison of RLVR methods in the intro section.
+  notable_technique: >
+    Embedding a method comparison table (Table 1) directly in the introduction to visually
+    differentiate GVPO from 5 existing RLVR methods across 7 dimensions. This immediately
+    positions the contribution before the method section. Also notable: the behavioral analysis
+    (Figure 2b) showing emergent "query-before-act" strategy as evidence that process-level
+    penalties reshape agent behavior, not just improve metrics.
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "method_overview"
+    description: >
+      Overview of GVPO pipeline: for each question q, multiple trajectories are sampled
+      and interact with environment yielding outcome rewards R_i. Left: trajectories with
+      step-by-step interactions (reasoning → code → env feedback). Middle: outcome-verifiable
+      advantages A_hat_{i,t} are derived from group rewards, process-verifiable feedback B_{i,t}
+      captures step-level successes (checkmarks) and failures (X marks). A shaping function
+      f(·) integrates both. Right: final shaped advantages A_{i,t} with asymmetric clipping
+      visualization showing different epsilon values per trajectory.
+    narrative_role: "Provides complete algorithmic overview in one figure — the reader understands the full pipeline before reading Section 3"
+    design_elements:
+      - "Left-to-right flow: trajectories → dual signals → shaped advantages"
+      - "Color-coded success/failure markers (green checkmarks, red X)"
+      - "Mathematical notation overlaid on visual flow"
+      - "Three-panel layout: sampling → shaping → optimization"
+    visual_style: "Clean schematic with colored icons, mathematical annotations, arrow-based flow"
+  figure2:
+    figure_id: "Figure 2"
+    description: "Two-panel figure: (a) Entropy trajectories during training for GRPO/DAPO/GSPO/GVPO; (b) Four bar charts comparing agent behaviors"
+    subfigures:
+      - id: "Figure 2a"
+        viz_type: "line_plot"
+        what_compared: "Entropy trajectories of GRPO, DAPO, GSPO, GVPO over 80 training steps"
+        how_gain_highlighted: "GVPO maintains highest and most stable entropy, avoiding collapse"
+        design_note: "Shows GSPO collapsing to near-deterministic policy; GVPO's stability is visually obvious"
+      - id: "Figure 2b"
+        viz_type: "grouped_bar"
+        what_compared: "4 behavioral metrics across GRPO, Dr.GRPO, GVPO: avg interactions per task, exec failures per step, show_api_docs freq, show_api_descriptions freq"
+        how_gain_highlighted: "GVPO has lowest failure rate and highest documentation-query frequency"
+        design_note: "Four small bar charts in 2×2 grid; reveals emergent 'query-before-act' behavior unique to GVPO"
+  figure3:
+    figure_id: "Figure 3"
+    type: "qualitative_comparison"
+    description: "Case study on Gmail labeling task comparing GRPO, Dr.GRPO, and GVPO agent trajectories side by side"
+    narrative_role: "Qualitative evidence that GVPO agents adopt cautious, documentation-first strategy"
+    design_elements:
+      - "Three-column layout showing parallel agent trajectories"
+      - "Color-coded step outcomes: red X for failures, green checkmarks for successes"
+      - "Red text highlighting specific errors (fake password, wrong api, wrong para)"
+    visual_style: "Step-by-step trajectory comparison with success/failure icons and error annotations"
+  figure4:
+    figure_id: "Figure 4"
+    type: "example_trajectory"
+    description: "Example trajectory from AppWorld's Spotify task showing multi-step reasoning with API interactions"
+    narrative_role: "Appendix illustration of how GVPO agent uses intermediate execution feedback to guide subsequent actions"
+    design_elements:
+      - "Chat-style layout with user instruction, agent reasoning, code blocks, API responses"
+      - "Color-coded: yellow for reasoning, blue for code, green for success"
+    visual_style: "Chat bubble UI mockup with syntax-highlighted code blocks"
+  result_figures:
+    - figure_id: "Figure 2a"
+      viz_type: "line_plot"
+      what_compared: "Training entropy stability across 4 RL methods"
+      how_gain_highlighted: "GVPO line stays highest and most stable"
+      design_note: "Entropy as proxy for exploration health — avoids policy collapse"
+    - figure_id: "Figure 2b"
+      viz_type: "bar_chart"
+      what_compared: "Agent behavioral metrics (interactions, failures, API doc queries)"
+      how_gain_highlighted: "GVPO lowest failure rate + highest doc-query frequency"
+      design_note: "Behavioral analysis as evidence of learned strategy, not just metric improvement"
+  ablation_figures: []
+  figure_narrative_role: >
+    Figure 1 (method overview) → Figure 2 (training dynamics + behavioral analysis) →
+    Figure 3 (qualitative case study) → Figure 4 (appendix example trajectory).
+    Progression: what is GVPO → how does training differ → what does the agent actually do differently → concrete example.
+
+tables:
+  table_count: 8
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "splits (Test-N, Test-C) × metrics (TGC, SGC)"
+    row_organization: "by_category"
+    row_categories:
+      - "Prompting with LLM (GPT-4o, GPT-4 Trb, OpenAI o1, LLaMA3, Qwen2.5)"
+      - "Fine-tuning with RL (GRPO_w/kl, GRPO, GSPO, DAPO, Dr.GRPO, RLOO_w/kl, LOOP, GVPO)"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best + underline_second"
+    statistical_reporting: "single run (no std reported for main results)"
+    num_baselines: 12
+    additional_columns: "Para. (parameter scale), Std. (std normalization), Aggr. (loss aggregation), Out. (outcome-verifiable), Proc. (process-verifiable)"
+    design_note: >
+      Includes method configuration columns (Para/Std/Aggr/Out/Proc) alongside performance,
+      allowing readers to see which design choices each method uses. Checkmark/X notation
+      for boolean features. Two-tier header grouping by test split.
+  comparison_table:
+    table_id: "Table 1"
+    location: "Introduction"
+    description: "Comparison of RLVR methods across 7 dimensions: Clip, Aggr, Calcu, Traj, Step, Unbias, Out, Proc"
+    design_note: "Placed in intro to immediately differentiate GVPO; GVPO is the only method with all checkmarks in key columns"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["shaping coefficient b (0.1, 0.2, 0.4)"]
+      variation_style: "full_numbers"
+      design_note: "Simple 3-row table; b=0.2 achieves best balanced performance"
+    - table_id: "Table 4"
+      what_varied: ["loss aggregation (tm, smts)", "clipping (symmetric)", "std normalization", "micro-batch/group mismatch", "additive shaping only"]
+      variation_style: "full_numbers"
+      design_note: "Ablation on Dev/Test-N/Test-C splits simultaneously; full GVPO as first row baseline"
+  supplementary_tables:
+    - table_id: "Table 5"
+      content: "Complete hyperparameter listing for GVPO training"
+      location: "Appendix A.1"
+    - table_id: "Table 6"
+      content: "Dev set comparison of all RL fine-tuning methods"
+      location: "Appendix A.3"
+    - table_id: "Table 7"
+      content: "ALFWorld results by task category (Pick, Look, Clean, Heat, Cool, Pick2)"
+      location: "Appendix A.4"
+    - table_id: "Table 8"
+      content: "WebShop results (Score and Success Rate)"
+      location: "Appendix A.4"
+  in_appendix: true
+  reason: >
+    Main paper has Tables 1-4 (intro comparison, main results, shaping coefficient sensitivity,
+    full ablation). Appendix has Tables 5-8 (hyperparameters, dev results, cross-domain
+    generalization on ALFWorld and WebShop). Separation logic: main paper covers the core
+    AppWorld results and ablations; appendix covers reproducibility details and cross-domain
+    generalization evidence.

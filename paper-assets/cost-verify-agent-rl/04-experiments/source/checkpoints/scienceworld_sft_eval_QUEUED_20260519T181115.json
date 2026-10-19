@@ -1,0 +1,16 @@
+{
+  "exp_id": "scienceworld_sft_eval",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:11:10.597Z",
+    "updated_at": "2026-05-19T18:11:14.991Z",
+    "hypothesis": "Evaluate ScienceWorld SFT checkpoint on dev split (1796 episodes, 30 task types). Establishes SFT baseline success rate for ScienceWorld before GRPO experiments.",
+    "parent": "scienceworld_sft"
+  },
+  "timestamp": "2026-05-19T18:11:15.199813+00:00",
+  "trigger": "update_registry"
+}

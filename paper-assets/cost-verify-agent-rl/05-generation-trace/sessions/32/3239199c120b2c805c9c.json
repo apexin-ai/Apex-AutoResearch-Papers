@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3239199c120b2c805c9c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "eval sft baseline ood submit",
+  "task_key": "worker_eval_sft_baseline_ood_submit_20260521T113518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_sft_baseline_ood_submit_20260521T113518_result.json",
+    "occurrence": 1,
+    "bytes": 208,
+    "sha256": "19ce399b986864bb4a476718b653ca89d31e0121d29248604908e709f83e22d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正常运行中。W&B run `sft-1.7b-baseline-ood-eval` 已连接并开始同步，val 数据加载完成 (341/341)，正在进入 inference rollout 阶段。无 OOM，训练未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-sft-baseline-ood-submit.md"
+}

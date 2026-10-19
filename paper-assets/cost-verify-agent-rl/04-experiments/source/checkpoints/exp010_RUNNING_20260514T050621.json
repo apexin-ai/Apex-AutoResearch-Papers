@@ -1,0 +1,61 @@
+{
+  "exp_id": "exp010",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T03:45:56.628Z",
+    "updated_at": "2026-05-14T05:06:21.776Z",
+    "spec": {
+      "command": "python train.py --config-name=_alfworld_exp008_sft_grpo",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "199389",
+      "log_path": "/root/autodl-tmp/exp010_grpo.log",
+      "submitted_at": "2026-05-14T03:45:56.604Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "GRPO with SFT-warmed Qwen3-1.7B can learn ALFWorld task-solving strategy from environment reward, achieving success_rate >= 76%",
+      "model_name": "Qwen3-1.7B (SFT warmup)",
+      "description": "Phase A GRPO with SFT checkpoint. Config: _alfworld_exp008_sft_grpo.yaml, symlink qwen3_sft_final, save_freq=5, RAY_TMPDIR explicit.",
+      "decision": "D006",
+      "data_path": "/root/autodl-tmp/alfworld/",
+      "data_count": 3553,
+      "seed": 10000,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp008_grpo/"
+    },
+    "metrics": {
+      "step": 5,
+      "total_steps": 30,
+      "initial_val_action_is_valid": 0.652,
+      "initial_val_success": 0,
+      "initial_val_action_is_effective": 0.931,
+      "initial_val_manager_invalid_action": 0.069,
+      "step5_ppo_kl": 0.00158,
+      "step5_entropy": 0.1,
+      "step5_pg_loss": -0.000157,
+      "step5_score_mean": -0.436,
+      "step5_grad_norm": 1.054,
+      "step5_response_length_mean": 3896,
+      "ppo_kl_trend": "0.0005→0.0007→0.0016 (healthy)",
+      "entropy_trend": "0.092→0.088→0.101 (stable)",
+      "checkpoint_saved": "global_step_5",
+      "step_time_s": 417,
+      "estimated_remaining_h": 2.9
+    },
+    "notes": "前5步监控通过: ppo_kl 0.0005→0.0016 (远低于0.1阈值), entropy 0.092→0.101 (远高于0.01阈值)。初始val action_is_valid=65.2% (exp007仅8.4%, SFT warmup效果显著)。Checkpoint global_step_5已保存。~7min/step, 预计剩余~2.9h。",
+    "reproduce": {
+      "finished_at": "2026-05-14T05:06:20.766Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-14T05:06:21.812477+00:00",
+  "trigger": "update_registry"
+}

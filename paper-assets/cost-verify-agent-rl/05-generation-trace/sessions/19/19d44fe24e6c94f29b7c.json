@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19d44fe24e6c94f29b7c",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_3_1778764289.md",
+  "task_key": "loop_3_1778764289",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778764289.md",
+    "occurrence": 1,
+    "bytes": 4621,
+    "sha256": "73c5e13391e973182319f0d829c0356751afcddcb93423dece2e319890ecaf7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-14T12:42:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-17606 的 cuda:0, cuda:1（2× RTX PRO 6000 Blackwell 94GB）。config 里没有 gpu_ids 字段，但所有历史实验均使用这两张卡，未经 Director 扩配不得使用其他 GPU\n- 磁盘：/root/autodl-tmp 在 exp013f 结束时 **95% full（仅剩 4.1GB）**。任何新实验提交前必须先清理旧 checkpoint，否则训练中途磁盘满崩溃\n- exp013f 结论是 **negative**（dense reward gaming），按 red-section 规范必须产出 Framing 调整提案给 Director，**禁止默默跑下一个实验**\n- 训练入口点只能用 `python train.py --config-name=...`，禁止用 `agent_proxy`（vLLM 参数不兼容）\n- ALFWorld score 是纯二值 0/1（PddlEnv 不支持 intermediate_reward），设计 reward shaping 时不能假设有连续进度信号\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: bjb1-17606, 账户 root, 工作目录 `/root/cost-verify-agent-rl/RAGEN`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: SFT checkpoint `/root/autodl-tmp/checkpoints/exp008_sft/final`（symlink `qwen3_sft_final`）；GRPO step 5 checkpoint `/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5`；exp013f checkpoint `/root/autodl-tmp/checkpoints/exp013f/global_step_30`\n- **数据**: ALFWorld `/root/autodl-tmp/alfworld/`（3553 train games）；SFT 数据 `/root/autodl-tmp/sft_data/alfworld_sft_ragen.jsonl`（1200 条）\n- **必需环境变量**（每次启动都要设）:\n  ```\n  TMPDIR=/root/autodl-tmp/tmp/\n  ALFWORLD_DATA=/root/autodl-tmp/alfworld\n  RAY_memory_monitor_refresh_ms=0\n  RAY_SYSTEM_MEMORY=210000000000\n  HYDRA_FULL_ERROR=1\n  ```\n- **活跃进程**: 无（exp013f 已完成，无 cron 活跃）\n- **Phase B 代码**: 68/68 测试通过，`_alfworld_phase_b.yaml` 就绪，等 Phase A checkpoint\n\n### 3. 📊 当前状态\n- **刚完成**: exp013f 30/30 步训练完成（首次完整跑完），结论 **negative**\n  - Dense reward gaming: action_is_valid 60%→97.5%（学会合法命令），success 始终 0-8%→0%（未学会完成任务）\n  - valid_action_bonus 累计 4.5 vs success_reward 10.0，比值 1:2.2 太高，模型选择 game dense reward\n  - 积极面：catastrophic collapse 完全解决，grad_norm 稳定，基础设施全部修复\n- **Registry**: 25 个实验，0 个 RUNNING，exp013f 是最新（negative），8 个 PREPARING（历史残留，不需要处理）\n- **等待中**: 无 Worker/Cron 回调。**需要向 Director 汇报 exp013f negative 结果 + Framing 调整提案**（这是本 session 未完成的关键任务）\n\n### 4. 📋 待办（条件触发式）\n- **立即（新 session 首要任务）**: 按 red-section 规范产出 Framing 调整提案 → `main_agent_post_to_director` 汇报 exp013f negative + 提案（3 种 narrative 备选）\n- 磁盘 95% full → 清理前先派 Worker 确认哪些 checkpoint 可删（exp013b/c/d/e 的中间产物、exp010/012 的 checkpoint）\n- Director 批准 Framing 调整 → 按 `framing-reaudit` skill 执行全文 re-audit\n- Director 决定下一步实验方向后 → 注意 reward 设计必须是 **success-gated**（条件式）而非独立可最大化的 bonus\n- Phase B 解锁条件：Phase A success ≥ 20% → FSDP→HF 转换 → Phase B 提交\n\n### 5. 🎯 战略上下文\n- **项目核心**: B-IAVR（Behaviorally-grounded selective verification），Phase A 是 always-on self-guidance 基线，Phase B 才是核心贡献\n- **Phase A 困境**: 13 个实验（exp001→exp013f），成功率 ~4%（仅 exp008_sft success）。核心问题链：Qwen3 格式不兼容 → SFT 修复 → sparse reward 冷启动 → format_penalty 劫持梯度 → dense reward gaming。每次修一个问题暴露下一个\n- **exp013f 的关键 insight**: GRPO 学习能力没问题（action_is_valid 飙升证明），问题是 reward 设计。下一步方向候选：(1) success-gated shaping（只有 success trajectory 才给 bonus）(2) 极低比例 shaping（1:1000）(3) curriculum（先在简单子任务上学 success）(4) expert trajectory 加强 SFT warmup 到 5-10% baseline\n- **最容易判断错的事**: 不要认为 Phase A 方向被证伪——sparse reward + 弱模型 + GRPO 是标准 RL 问题（D010 确认），每次实验都有进展（格式修复→collapse 修复→gaming 发现），只是 reward 设计还没到位\n- **磁盘是定时炸弹**: 4.1GB 剩余，不清理就无法跑任何新实验\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778764289.md"
+}

@@ -1,0 +1,65 @@
+{
+  "exp_id": "exp029_new_seed_2048",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:57:22.267Z",
+    "updated_at": "2026-05-22T05:36:29.478Z",
+    "spec": {
+      "command": "python train.py --config-name _alfworld_new_seed_2048",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "79754",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_new_seed_2048.log",
+      "submitted_at": "2026-05-22T01:57:21.879Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "ALFWorld episode-level",
+      "data_count": 134,
+      "model_name": "Qwen3-1.5B",
+      "seed": 2048,
+      "checkpoint_source": "qwen3_exp021_ragen_sft_v4 (SFT base)",
+      "eval_data": "ALFWorld valid_unseen 32 episodes",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp029_new_seed_2048/global_step_5/",
+      "wall_clock_seconds": 13147.6,
+      "gpu_hours": 7.3
+    },
+    "hypothesis": "New seed (2048) episode-level GRPO with max_turn=50, 5 steps only. Provides stable-seed step-5 checkpoint for OOD eval as paper Table 1 control — establishing step-5 OOD baseline without any intervention or collapse.",
+    "reproduce": {
+      "finished_at": "2026-05-22T05:16:22.395Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T05:16:30.484249+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "val_success_step0": 0.031,
+      "val_success_final": 0,
+      "val_reward_step0": 0.3125,
+      "val_reward_final": 0,
+      "val_response_length_step0": 9807,
+      "val_response_length_final": 10934,
+      "train_response_length_final": 15790,
+      "collapse_type": "response_inflation",
+      "collapse_confirmed": true,
+      "steps_completed": 5,
+      "total_time_hours": 3.2
+    },
+    "completed_at": "2026-05-22T05:36:29.478Z"
+  },
+  "timestamp": "2026-05-22T05:36:29.778824+00:00",
+  "trigger": "update_registry"
+}

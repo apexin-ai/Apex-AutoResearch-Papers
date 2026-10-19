@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "219a6bf7e0d3794eee34",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose seed4 seed5 failures",
+  "task_key": "worker_diagnose_seed4_seed5_failures_20260521T073747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_seed4_seed5_failures_20260521T073747_result.json",
+    "occurrence": 1,
+    "bytes": 2358,
+    "sha256": "3ffda87165a5b9ab0f29c0817bbd7aeb3573c072ff65543300d94c1cfa891256"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### Seed 4 (bjb1-17606)\n\n| 项目 | 状态 |\n|------|------|\n| **训练进度** | 完成 8 个 training step（step 0 val + step 1-8 train），在 step 9 rollout 阶段崩溃 |\n| **崩溃点** | `env.reset()` → `fast_downward.load_lib()` → 复制 `libdownward.so` 到 `/root/autodl-tmp/tmp/` 时 ENOSPC |\n| **Checkpoint** | `global_step_5` 存在（21GB），包含完整的 actor model + optimizer（2 ranks），**可用于恢复** |\n| **磁盘** | 250G 总量，231G 已用，**仅剩 20G（93%）** |\n\nbjb1 磁盘明细（checkpoints 共 187G）：\n\n| 目录 | 大小 | 备注 |\n|------|------|------|\n| hsweep-h2 | 41G | 旧实验 |\n| qwen3_8b_sft_v1 | 31G | SFT 模型 |\n| exp021_ragen_sft_v4 | 23G | 旧实验 |\n| exp029 | 21G | Seed 1 |\n| exp029-seed3 | 21G | Seed 3 |\n| exp029-seed4 | 21G | 本次（仅 1 个 ckpt） |\n| hsweep-h20 | 21G | 旧实验 |\n| exp029_hf | 3.8G | HF 格式 |\n| scienceworld_sft | 7.6G | 旧实验 |\n\n---\n\n### Seed 5 (westd-47453)\n\n| 项目 | 状态 |\n|------|------|\n| **训练进度** | 仅完成 step 0（validation eval），**未完成任何 training step** |\n| **崩溃点** | 第 1 个 training step 的 `loss.backward()`（`update_actor` 阶段），尝试分配 9.25 GiB 时 OOM |\n| **OOM 原因** | Seed 6 进程（PID 704924/704925）泄漏到 GPU 0，占用 37.7 GiB；Seed 5 自身占 49 GiB；GPU 0 总共 95 GiB，仅剩 8.25 GiB |\n| **Checkpoint** | **无**。`exp029-seed5` 目录不存在 |\n| **GPU 当前状态** | 4 张 GPU 全部空闲（0 MiB），无运行进程 |\n| **磁盘** | 250G 总量，184G 已用，67G 可用（74%） |\n\nwestd 磁盘明细（checkpoints 共 131G）：\n\n| 目录 | 大小 |\n|------|------|\n| exp029-seed3 | 66G |\n| exp029-seed6 | 55G |\n| qwen3_scienceworld_sft | 7.6G |\n| qwen3_exp021_ragen_sft_v4 | 3.3G |\n| 其余（空目录） | 0 |\n\n---\n\n### 可恢复性总结\n\n- **Seed 4**: 可从 `global_step_5` 恢复，但需先清理 bjb1 磁盘。可回收候选：`hsweep-h2`（41G）、`hsweep-h20`（21G）、`qwen3_8b_sft_v1`（31G）、`exp021_ragen_sft_v4`（23G）= 最多回收 ~116G。\n- **Seed 5**: 不可恢复，必须从头重跑。GPU 冲突问题（Seed 6 泄漏到 GPU 0）已自行解决（当前无进程），但重跑时需确保 `CUDA_VISIBLE_DEVICES` 隔离正确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-seed4-seed5-failures.md"
+}

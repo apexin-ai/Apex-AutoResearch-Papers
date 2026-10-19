@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp020d_grpo_from_sft",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:19:30.993Z",
+    "updated_at": "2026-05-15T02:00:57.639Z",
+    "hypothesis": "GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.",
+    "parent": "exp019b_expert_sft_v3",
+    "spec": {
+      "command": "bash -c \"ray stop --force 2>/dev/null; sleep 5; ln -sfn /root/autodl-tmp/checkpoints/exp019b_expert_sft_v3/final /root/autodl-tmp/checkpoints/qwen3_exp019b_sft && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p /root/autodl-tmp/tmp/ && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_memory_monitor_refresh_ms=0 && export RAY_SYSTEM_MEMORY=210000000000 && export HYDRA_FULL_ERROR=1 && mkdir -p /root/autodl-tmp/checkpoints/exp020d/ && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp018_sft_grpo model_path=/root/autodl-tmp/checkpoints/qwen3_exp019b_sft trainer.experiment_name=exp020d-alfworld-sft-grpo trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp020d/ trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp020d/ es_manager.val.env_groups=4 'es_manager.val.env_configs.n_groups=[4]'\"",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "390605",
+      "log_path": "~/runs/cost-verify-agent-rl/exp020d_grpo_from_sft.log",
+      "submitted_at": "2026-05-14T22:19:42.442Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-15T02:00:57.719383+00:00",
+  "trigger": "update_registry"
+}

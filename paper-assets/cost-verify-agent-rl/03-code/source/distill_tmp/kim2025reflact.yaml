@@ -1,0 +1,43 @@
+paper_key: "kim2025reflact"
+title: "ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection"
+venue: "EMNLP 2025"
+full_text_available: false
+
+research:
+  baselines:
+    - "ReAct"
+    - "Reflexion"
+    - "standard CoT agent"
+    - "chain-of-thought prompting agent"
+    - "BUTLER / ALFAgent"
+  metrics:
+    - {name: "task success rate", direction: "higher_better"}
+    - {name: "average steps to success", direction: "lower_better"}
+    - {name: "reflection quality score", direction: "higher_better"}
+    - {name: "goal achievement rate", direction: "higher_better"}
+  datasets:
+    - {name: "ALFWorld", size: "N/A"}
+    - {name: "WebShop", size: "N/A"}
+    - {name: "HotpotQA", size: "N/A"}
+    - {name: "ScienceWorld", size: "N/A"}
+  ablation_dimensions:
+    - "goal-state representation design"
+    - "reflection grounding (world state vs. no grounding)"
+    - "reflection frequency"
+    - "state tracking accuracy"
+  training_recipe:
+    optimizer: "N/A"
+    lr: "N/A"
+    hardware: "N/A"
+    method: "Prompting-based approach; agent maintains explicit goal-state representation grounded in world observations; at each step reflects on current state vs. goal state to determine next action; no additional training required, works with frozen LLMs via structured prompting"
+  method_family: "LLM agent / goal-conditioned decision making with world-grounded reflection"
+
+positioning:
+  core_claim: "Grounding agent reflection in explicit world-state representations (current state vs. goal state) rather than abstract reasoning improves decision-making quality and reduces unnecessary steps in multi-step agent tasks"
+  key_results: "Improves task success rate over ReAct and Reflexion baselines on ALFWorld and WebShop; reduces average steps to goal by grounding reflection in observable world state"
+  limitations: ["N/A"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

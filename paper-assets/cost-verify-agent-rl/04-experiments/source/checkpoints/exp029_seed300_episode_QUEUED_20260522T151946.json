@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp029_seed300_episode",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:16:16.094Z",
+    "updated_at": "2026-05-22T15:19:46.244Z",
+    "hypothesis": "Episode-level GRPO (seed=300) 5-step training for Table 1 data supplement (D122). Same config as exp029 but seed=300, total_steps=5. Expands to N=11 seeds for collapse rate analysis."
+  },
+  "timestamp": "2026-05-22T15:19:46.561621+00:00",
+  "trigger": "update_registry"
+}

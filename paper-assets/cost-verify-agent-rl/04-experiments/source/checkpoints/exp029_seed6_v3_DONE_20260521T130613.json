@@ -1,0 +1,65 @@
+{
+  "exp_id": "exp029_seed6_v3",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-21T08:08:09.482Z",
+    "updated_at": "2026-05-21T13:06:12.850Z",
+    "hypothesis": "Episode-level GRPO (seed=789) avoids collapse and learns consistently. Full retrain after M040 checkpoint loss. CUDA_VISIBLE_DEVICES=2,3 enforced.",
+    "reproduce": {
+      "finished_at": "2026-05-21T12:58:52.192Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-21T08:22:34.606Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T08:22:38.791277+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T12:58:56.169629+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=2,3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed6_episode\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "920749",
+      "wandb_run_id": "2bbyvsdr",
+      "data_path": "ALFWorld episode-level",
+      "data_count": "134 tasks",
+      "model_name": "Qwen2.5-1.5B-Instruct",
+      "seed": 789
+    },
+    "metrics": {
+      "val_success_step0": 0.094,
+      "val_success_step5": 0.219,
+      "val_success_step10": 0.281,
+      "val_success_step15": 0.281,
+      "train_reward_final": 8.91,
+      "response_length_initial": 14910,
+      "response_length_final": 3329,
+      "kl_max": 0.008,
+      "steps_completed": 15
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/exp029-seed6/global_step_15/actor/",
+    "log_path": "~/runs/cost-verify-agent-rl/exp029_seed6_v3.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T13:06:13.107934+00:00",
+  "trigger": "update_registry"
+}

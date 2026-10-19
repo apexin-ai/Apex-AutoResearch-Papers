@@ -1,0 +1,16 @@
+{
+  "exp_id": "hsweep_h10_seed1",
+  "project": "cost-verify-agent-rl",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T17:30:46.964Z",
+    "updated_at": "2026-05-18T02:58:13.085Z",
+    "hypothesis": "h=10 step_independent GRPO (N=5 windows per episode) will show intermediate performance between h=2 (catastrophic collapse) and h=full (28.1% success). With fewer windows than h=2, magnitude decay is reduced (γ^4≈0.81 vs γ^24≈0.29) and information loss is partially mitigated. Key data point for cliff figure (fig5).",
+    "parent": "hsweep_h2_seed1"
+  },
+  "timestamp": "2026-05-18T02:58:13.249060+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,32 @@
+{
+  "exp_id": "scienceworld_sft_bjb1_v2",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T22:59:19.201Z",
+    "updated_at": "2026-05-24T22:59:43.510Z",
+    "hypothesis": "SFT on ScienceWorld expert trajectories (3586 samples) teaches Qwen3-1.7B environment interaction format. Retry of scienceworld_sft_bjb1 with per_device_eval_batch_size=1 fix (v1 OOM at step 112 eval).",
+    "parent": "scienceworld_sft_bjb1",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl && CUDA_VISIBLE_DEVICES=0 python scripts/sft_train_v3.py --model_path /root/autodl-tmp/models/Qwen/Qwen3-1___7B --data_path data/scienceworld_sft_train.jsonl --val_path data/scienceworld_sft_val.jsonl --output_dir /root/autodl-tmp/checkpoints/scienceworld_sft_bjb1 --num_train_epochs 2 --per_device_train_batch_size 1 --gradient_accumulation_steps 16 --learning_rate 5e-6 --lr_scheduler_type cosine --max_seq_length 16384 --warmup_ratio 0.05 --save_steps 112 --seed 42",
+      "server": "bjb1-17606",
+      "gpu_ids": [
+        "cuda:0"
+      ],
+      "pid": 171362,
+      "tmux_session": "scienceworld_sft_bjb1",
+      "model_name": "Qwen3-1.7B",
+      "seed": 42,
+      "data_path": "/root/cost-verify-agent-rl/data/scienceworld_sft_train.jsonl",
+      "data_count": 3586,
+      "checkpoint_source": "Qwen3-1.7B base",
+      "eval_data": "scienceworld_sft_val.jsonl (1791 samples)",
+      "fix_applied": "per_device_eval_batch_size=1 (OOM fix)"
+    }
+  },
+  "timestamp": "2026-05-24T22:59:44.414290+00:00",
+  "trigger": "update_registry"
+}

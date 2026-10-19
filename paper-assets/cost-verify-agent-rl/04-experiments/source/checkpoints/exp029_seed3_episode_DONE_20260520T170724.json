@@ -1,0 +1,44 @@
+{
+  "exp_id": "exp029_seed3_episode",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:52:11.263Z",
+    "updated_at": "2026-05-20T17:07:24.724Z",
+    "hypothesis": "Episode-level GRPO avoids collapse and learns consistently across seeds, confirming robustness of the credit assignment fix (seed 3 replication of exp029)",
+    "parent": "exp029_episode_level",
+    "spec": {
+      "command": "python train.py --config-name _alfworld_exp029_episode_level seed=42 trainer.total_training_steps=15",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "980051",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_seed3_episode.log",
+      "submitted_at": "2026-05-20T17:03:22.094Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "AlfworldSG (16 train groups x 8, 32 val groups x 1)",
+      "data_count": 128,
+      "model_name": "Qwen3-1.7B SFT (qwen3_exp021_ragen_sft_v4)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4",
+      "eval_data": "AlfworldSG 32 val episodes",
+      "wall_clock_seconds": 242.6,
+      "gpu_hours": 0.13
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T17:07:21.936Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-20T17:07:24.724Z"
+  },
+  "timestamp": "2026-05-20T17:07:24.940134+00:00",
+  "trigger": "update_registry"
+}

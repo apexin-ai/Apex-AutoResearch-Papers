@@ -1,0 +1,143 @@
+paper_key: "spear2025"
+title: "Learn the Ropes, Then Trust the Wins: Self-imitation with Progressive Exploration for Agentic Reinforcement Learning"
+venue: "ICLR 2026"
+full_text_available: true
+
+research:
+  baselines:
+    - GRPO
+    - GiGPO (w/ and w/o std)
+    - PPO
+    - RLOO
+    - ReAct
+    - Reflexion
+    - ReTool
+    - SimpleTIR
+    - ZeroTIR
+    - AFM
+    - Search-R1
+    - "Dr.BoT (bag-of-tricks baseline combining 7 GRPO modifications)"
+  metrics:
+    - {name: "Success Rate (ALFWorld)", direction: "higher_better"}
+    - {name: "Success Rate (WebShop)", direction: "higher_better"}
+    - {name: "Score (WebShop)", direction: "higher_better"}
+    - {name: "Accuracy (AIME 2024)", direction: "higher_better"}
+    - {name: "Accuracy (AIME 2025)", direction: "higher_better"}
+    - {name: "Success Rate (Sokoban)", direction: "higher_better"}
+    - {name: "EM / F1 (Search-augmented QA)", direction: "higher_better"}
+  datasets:
+    - {name: "ALFWorld", size: "6 subtask types (Pick, Look, Clean, Heat, Cool, Pick2)", domain: "interactive household simulation"}
+    - {name: "WebShop", size: "e-commerce web navigation", domain: "web agent"}
+    - {name: "AIME 2024", size: "30 problems", domain: "mathematical reasoning with code interpreter"}
+    - {name: "AIME 2025", size: "30 problems", domain: "mathematical reasoning with code interpreter"}
+    - {name: "Sokoban", size: "6x6 grid puzzles", domain: "vision-language agent"}
+    - {name: "NQ (Natural Questions)", size: "single-hop QA", domain: "search-augmented QA"}
+    - {name: "TriviaQA", size: "single-hop QA", domain: "search-augmented QA"}
+    - {name: "PopQA", size: "single-hop QA", domain: "search-augmented QA"}
+    - {name: "HotpotQA", size: "multi-hop QA", domain: "search-augmented QA"}
+    - {name: "2WikiMultiHopQA", size: "multi-hop QA", domain: "search-augmented QA"}
+    - {name: "MuSiQue", size: "multi-hop QA", domain: "search-augmented QA"}
+    - {name: "Bamboogle", size: "multi-hop QA", domain: "search-augmented QA"}
+  ablation_dimensions:
+    - "Self-Imitation (SI) alone vs Full SPEAR"
+    - "Intrinsic Reward (IR) alone vs Full SPEAR"
+    - "Replay buffer size N_D"
+    - "Baseline buffer size N_D_R"
+    - "Covariance-based clipping ratio lambda"
+    - "Warm-up steps T_warmup"
+    - "Decay steps T_decay"
+    - "Dr.BoT individual trick contribution"
+  training_recipe:
+    optimizer: "Policy gradient (GRPO/GiGPO-based)"
+    lr: "detailed in Appendix A.12.1 (not fully visible in HTML)"
+    hardware: "detailed in Appendix A.12.2 (not fully visible in HTML)"
+    models: "Qwen2.5-1.5B/7B/32B-Instruct, Qwen3-32B-Instruct, Qwen2.5-VL-3B-Instruct"
+    context_lengths: "16K or 32K tokens depending on task"
+    overhead: "10-25% theoretical complexity overhead, comparable runtime per iteration in practice"
+    kl_penalty: "removed entirely"
+    advantage_estimation: "50th percentile of recent intra-group baselines (not full value function)"
+    replay_buffer: "FIFO with positive-advantage-only trajectories"
+    curriculum: "gamma warm-up (progressive SIL contribution) + mu decay (tool-call reward decay)"
+  method_family: "Self-Imitation Learning + Curriculum-Scheduled Exploration for Agentic RL"
+
+positioning:
+  core_claim: "Curriculum-scheduled self-imitation learning with intrinsic reward shaping can progressively balance exploration and exploitation in agentic RL, avoiding both entropy collapse and runaway divergence, achieving large gains across diverse agent tasks with minimal overhead."
+  key_results: |
+    ALFWorld (Qwen2.5-1.5B): 88.9% (+16.1% over GRPO), 77.5% WebShop SR (+20.7%)
+    ALFWorld (Qwen2.5-7B): 94.1% (+3.9% over GiGPO), 84.8% WebShop SR (+4.3%)
+    AIME24 (Qwen2.5-32B, 32K): 71.0% (+3.8%), AIME25: 61.0% (+5.9%)
+    AIME24 (Qwen3-32B, 32K): 85.6% (+3.1%), AIME25: 80.5% (+3.2%)
+    Sokoban (Qwen2.5-VL-3B): 86.7% (+19.6% over GRPO)
+    Search-QA (Qwen2.5-7B): 45.4% avg across 7 benchmarks
+    Overhead: only 10-25% theoretical complexity increase
+  limitations:
+    - "Vague definition of good experiences under highly complex, stochastic environments with unreliable tools -- proposes stepwise process rewards as future solution"
+    - "Rigidity of entropy control which relies on prior-based scheduling -- suggests adaptive alternatives using policy self-confidence or token-level dynamic reweighting"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "RL has driven reasoning capabilities of LLMs, but faces fundamental exploration-exploitation trade-off in agentic applications -- mechanical entropy maximization is prone to instability due to multi-turn distribution shifting"
+  tension: "Existing entropy-based exploration methods are fragile: SFT cold-starts or hybrid RL-SFT schemes compromise policy discovery beyond training data patterns. Vanilla self-imitation causes entropy collapse (shown empirically in Figure 3). Tool-call reward is a double-edged sword causing optimization oscillation (shown in Figure 4)."
+  key_insight: "Two-phase learning: early stages emphasize broad skill exploration with high entropy (intrinsic reward encourages tool interaction), later stages shift toward exploitation of successful tactics with controlled entropy (self-imitation strengthens winning strategies). The curriculum schedule gamma/mu harmonizes these two forces."
+  argument_chain: "RL for agents faces exploration-exploitation dilemma -> entropy-based control is fragile due to multi-turn distribution shift -> self-imitation can replay good experiences but naive replay causes entropy collapse -> curriculum scheduling (gamma warm-up + mu decay) progressively transitions from exploration to exploitation -> validated across 5 diverse agent domains (text, math, vision, search) with consistent gains"
+  contribution_framing: "Three contributions: (1) SPEAR recipe extending vanilla SIL with curriculum scheduling for agentic LLMs, (2) intrinsic reward shaping harmonized with SIL via progressive modulation, (3) Dr.BoT baseline combining 7 industrial RL tricks as a strong open-source foundation"
+  intro_structure: "5-6 paragraphs: (1) RL's role in LLM reasoning + agentic challenge motivation, (2) exploration-exploitation problem definition in agent context, (3) existing entropy-based approaches and their limitations, (4) core hypothesis of progressive two-phase learning, (5) SPEAR methodology overview, (6) contribution summary"
+  notable_technique: "Empirical demonstration as argumentation: Figures 3 and 4 serve as mini-experiments within the method section, showing entropy collapse (vanilla SIL) and reward oscillation (unconstrained tool reward) as visual proof of why each design choice is necessary. This 'show the failure mode, then show the fix' pattern is highly persuasive."
+
+figures:
+  figure_count: 14  # 5 main + 9 appendix (45-page paper)
+  figure1:
+    type: "method_overview"
+    description: "Conceptual framework diagram showing SPEAR harmonizing curriculum-scheduled self-imitation learning with intrinsic reward shaping, overlaid with a benchmark results grid across multiple task environments (ALFWorld, WebShop, AIME, Sokoban)"
+    narrative_role: "Serves dual purpose: communicates the method concept AND teases the breadth of experimental validation in a single glance. Establishes SPEAR as a general-purpose agentic RL recipe."
+    design_elements: ["conceptual framework diagram", "multi-benchmark results overlay", "progressive exploration visualization"]
+    visual_style: "Framework concept + results teaser hybrid; likely uses color-coded task domains and arrows showing curriculum progression"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Entropy dynamics and AIME25 accuracy across training steps: vanilla replay buffer vs SPEAR"
+      how_gain_highlighted: "Shows vanilla SIL causing entropy collapse (flat line after drop) while SPEAR maintains steady entropy growth; paired with accuracy plot showing SPEAR's continued improvement vs vanilla's stagnation"
+      design_note: "Two-subplot layout pairing a diagnostic metric (entropy) with outcome metric (accuracy) -- makes the causal mechanism visible. 'Before/after' comparison of the same training run with different configs."
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Tool-call turns and AIME25 accuracy under different reward configurations: unconstrained vs progressive modulation"
+      how_gain_highlighted: "Shows oscillation pattern under unconstrained tool reward, smooth convergence under progressive mu decay"
+      design_note: "Demonstrates the 'double-edged sword' concept visually -- makes abstract reward competition tangible through oscillation patterns"
+    - figure_id: "Figure 5"
+      viz_type: "qualitative_comparison"
+      what_compared: "Visual agent progression in Sokoban: early training (step 15, aimless exploration) vs late training (step 125, strategic box-pushing)"
+      how_gain_highlighted: "Side-by-side grid screenshots showing qualitative skill development over training"
+      design_note: "Provides intuitive visual proof of learned behavior for vision-language agent domain; humanizes the learning process"
+  ablation_figures:
+    - figure_id: "Figure 6 (Appendix)"
+      viz_type: "line_plot"
+      dimensions_varied: ["gamma curriculum schedule", "mu curriculum schedule"]
+      design_note: "Visualizes the two curriculum coefficients over training steps; makes the schedule design transparent and reproducible"
+  figure_narrative_role: "Figure 1 (method concept + results teaser) -> Figure 2 (detailed system architecture) -> Figure 3 (entropy collapse problem + SPEAR solution) -> Figure 4 (reward competition problem + progressive modulation solution) -> Figure 5 (qualitative skill development in vision domain). Narrative arc: overview -> architecture -> problem diagnosis -> solution validation -> qualitative insight."
+
+tables:
+  table_count: 6  # main paper; additional tables in appendix
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "ALFWorld subtasks (Pick, Look, Clean, Heat, Cool, Pick2, All) + WebShop (SR, Score)"
+    row_organization: "by_category"  # grouped by base algorithm (GRPO, Dr.BoT, GiGPO), each with +SPEAR variant
+    col_organization: "grouped_by_dataset"  # ALFWorld subtasks grouped, then WebShop metrics
+    highlight_strategy: "percentage improvement shown as (+X.X%) for SPEAR rows"
+    statistical_reporting: "point estimates (no std reported in main results)"
+    num_baselines: 6  # 3 base methods x 2 model sizes
+    design_note: "Paired row structure (baseline / baseline+SPEAR) makes gain attribution immediate. Six ALFWorld subtasks shown individually reveals where gains come from (biggest on Look, Cool, Pick2 -- the hardest subtasks). Two model sizes (1.5B, 7B) show scaling behavior."
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["Self-Imitation (SI)", "Intrinsic Reward (IR)"]
+      variation_style: "full_numbers"  # shows absolute numbers for each ablation condition
+      design_note: "Additive ablation: baseline -> +SI -> +SI+IR (full SPEAR). Shows each component's marginal contribution. SI provides large gains on WebShop (+17.4%), IR adds further on ALFWorld (+11.6% on top of SI)."
+    - table_id: "Table 4"
+      what_varied: ["Self-Imitation (SI)", "Intrinsic Reward (IR)", "context length (16K vs 32K)"]
+      variation_style: "full_numbers"
+      design_note: "Same additive ablation structure for AIME. Reveals interesting finding: SI alone slightly hurts AIME24 (-0.9% to -1.2%) but helps AIME25 (+2.9% to +5.4%), suggesting SI's value depends on task difficulty."
+  supplementary_tables:
+    in_appendix: true
+    content: "Hyperparameter sensitivity analysis (buffer sizes, clipping ratios, curriculum step choices), per-subtask breakdowns, Dr.BoT individual trick ablations, training cost comparisons"
+    reason: "Main paper keeps only the most impactful ablations (SI vs IR decomposition); extensive hyperparameter sweeps and engineering details moved to appendix to maintain narrative flow in 8-page main text"

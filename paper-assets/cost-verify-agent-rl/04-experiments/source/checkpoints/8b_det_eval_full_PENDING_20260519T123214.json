@@ -1,0 +1,40 @@
+{
+  "exp_id": "8b_det_eval_full",
+  "project": "cost-verify-agent-rl",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:49:48.132Z",
+    "updated_at": "2026-05-19T12:32:14.386Z",
+    "spec": {
+      "command": "bash -c 'export TMPDIR=/root/autodl-tmp/tmp && mkdir -p /root/autodl-tmp/tmp && export RAY_TMPDIR=/root/autodl-tmp/ray_tmp && mkdir -p /root/autodl-tmp/ray_tmp && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_8b_det_eval_full'",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "155887",
+      "log_path": "~/runs/cost-verify-agent-rl/8b_det_eval_full.log",
+      "submitted_at": "2026-05-19T11:49:47.504Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Full-context deterministic eval (T=0) of 8B SFT checkpoint provides the true baseline success rate on 32 in-dist tasks, eliminating sampling variance. Expected ~70-80% given 80.6% OOD performance. This number is the denominator for quantifying information loss from h=2 windowing.",
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.6875,
+      "num_actions": 24.22,
+      "action_is_valid": 0.926,
+      "pass_at_1": 0.6875,
+      "eval_tasks": 32,
+      "temperature": 0,
+      "do_sample": false,
+      "wandb_run": "mb005ir1"
+    }
+  },
+  "timestamp": "2026-05-19T12:32:14.584750+00:00",
+  "trigger": "update_registry"
+}

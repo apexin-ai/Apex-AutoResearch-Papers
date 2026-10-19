@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp029_seed8_ood_precollapse",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T21:12:56.344Z",
+    "updated_at": "2026-05-21T21:48:34.209Z",
+    "hypothesis": "Seed 8 (collapse seed) pre-collapse checkpoint (step 5) retains OOD generalization ability before response_length explosion, testing whether early GRPO training generalizes to unseen ALFWorld tasks",
+    "parent": "exp029_seed8",
+    "spec": {
+      "checkpoint_path": "N/A (eval-only experiment, no checkpoint produced)",
+      "log_path": "/root/autodl-tmp/ray_tmp/ray/session_2026-05-22_05-18-18_722190_801623/logs/worker-343a9768a58fc9783e78784154b6596ece79d3591fd07873619f72cb-01000000-808429.out"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "ood_success_rate": 0.1194,
+      "ood_pass_at_1": 0.1194,
+      "ood_num_actions": 44.92,
+      "ood_action_is_valid": 0.5754,
+      "ood_action_is_effective": 1,
+      "ood_response_length": 6503.04,
+      "eval_tasks": 134,
+      "eval_time_seconds": 1430.88
+    },
+    "notes": "Seed 8 pre-collapse (step 5) OOD eval completed. OOD success rate: 11.94% (134 tasks). Log found in Ray worker output (worker-343a9768...808429.out), not in dedicated log file. Wandb run: bpmk7i8r. No tmux session remaining.",
+    "completed_at": "2026-05-21T21:48:34.209Z"
+  },
+  "timestamp": "2026-05-21T21:48:34.472880+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c36bed0a67ce8e3a959",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code prepare exp018 grpo",
+  "task_key": "worker_code_prepare-exp018-grpo_20260514T154338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-exp018-grpo_20260514T154338_result.json",
+    "occurrence": 1,
+    "bytes": 737,
+    "sha256": "c1bc44d6157cc00d3b5e6fd7c0f0b9e866e74258d857904fb786bd8284600a8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp018 配置报告\n\n- **配置文件**: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp018_sft_grpo.yaml`\n- **启动脚本**: `/root/cost-verify-agent-rl/scripts/run_exp018.sh`\n- **SFT checkpoint 预期路径**: `/root/autodl-tmp/checkpoints/exp017_expert_sft/final/`\n\n关键参数确认：\n| 参数 | 值 |\n|------|-----|\n| model_path | exp017 SFT checkpoint |\n| LR | 5e-7 |\n| kl_loss_coef | 0.1 |\n| grad_clip | 1.0 |\n| resume_mode | disable |\n| total_steps | 30 |\n| env_groups | 4, group_size 16 |\n| format_penalty | 0 |\n\n**待完成**: exp017 训练结束后确认 `/root/autodl-tmp/checkpoints/exp017_expert_sft/final/` 存在，然后可直接 `nohup bash scripts/run_exp018.sh` 启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-exp018-grpo.md"
+}

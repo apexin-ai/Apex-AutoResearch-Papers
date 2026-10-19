@@ -1,0 +1,75 @@
+\section{Theoretical Analysis}
+\label{sec:theory}
+
+Section~\ref{sec:dual_mechanism} identified two failure mechanisms of step-independent training: policy information loss and advantage sign misattribution. We now formalize why sign misattribution is the more fundamental failure, derive the probability of incorrect gradient direction as a function of task success rate, examine why the community has defaulted to step-independent training, and connect our findings to the classical credit assignment literature.
+
+\subsection{Why Sign Misattribution is Fundamental}
+\label{sec:sign_fundamental}
+
+The two mechanisms identified in Section~\ref{sec:dual_mechanism} produce qualitatively different optimization errors. Policy information loss (Mechanism 1) reduces the information available to each window's policy, producing suboptimal but directionally reasonable gradient updates. Sign misattribution (Mechanism 2) corrupts the gradient direction itself. We formalize this distinction below.
+
+\textbf{Proposition 1.} \textit{Under step-independent training with binary episode reward $R_{\text{episode}} \in \{0, r_+\}$, the probability that window $k$'s advantage $\hat{A}_k$ has the correct sign (aligned with local action quality) approaches the base success rate $p$ as the number of rollouts $K$ per group increases.}
+
+\textit{Argument.} Define ``correct sign'' as follows: for a window containing locally beneficial actions, the correct sign of $\hat{A}_k$ is positive (reinforcement); for a window containing locally detrimental actions, the correct sign is negative (suppression). Under binary reward, the return for window $k$ is $R_k = \gamma^{(N-k)} \cdot R_{\text{episode}}$ (Equation~\ref{eq:step_return}). In a failed episode ($R_{\text{episode}} = 0$), all windows receive $R_k = 0$ regardless of their local action quality. If the group contains at least one successful rollout, the group mean $\mu > 0$, and all windows in the failed episode receive negative advantages after normalization via Equation~\ref{eq:grpo_advantage}. This includes windows where the agent took locally correct actions, such as correctly identifying a target object in an exploration step. Now consider a window with good local actions. In a successful episode (probability $p$), the window receives positive $\hat{A}_k$, which is the correct sign. In a failed episode (probability $1 - p$), the window receives negative $\hat{A}_k$ whenever $\mu > 0$, which is the wrong sign. The probability that $\mu = 0$ (all $K$ rollouts in the group failed) is $(1-p)^K$, which shrinks exponentially with $K$. As $K$ grows, nearly every failed episode produces a non-zero group mean, and the window receives the wrong sign with probability approaching $1-p$. The probability of correct sign therefore approaches $p$. \qed
+
+The distinction between sign error and magnitude error clarifies why Mechanism 2 is catastrophic while Mechanism 1 is merely suboptimal. The discount factor $\gamma^{(N-k)}$ in Equation~\ref{eq:step_return} introduces magnitude decay across window positions: for an episode with $T=50$ steps and $h=2$, the first window ($k=1$) retains $\gamma^{N-1} = 0.95^{24} \approx 0.29$ of the terminal window's return. This attenuation reduces the gradient magnitude for early windows but preserves the gradient direction. A gradient with correct sign and reduced magnitude produces slow convergence, a condition recoverable through longer training. A gradient with wrong sign produces active divergence: the optimization pushes the policy away from good behaviors and toward bad ones. Consider a navigation analogy. Magnitude error corresponds to a compass that points correctly but displays a dimmed needle; the traveler moves slowly toward the destination. Sign error corresponds to a compass pointing in the opposite direction; the traveler walks away from the destination with full confidence. The first error is correctable by patience. The second is correctable only by replacing the compass.
+
+\subsection{Formal Probability Analysis}
+\label{sec:formal_probability}
+
+We derive a tighter bound on the probability of correct gradient direction as a function of task difficulty and group size.
+
+\textbf{Proposition 2.} \textit{Let $p$ denote the episode success rate and $K$ the number of rollouts per group. Under step-independent training with binary episode reward, the probability that a gradient update for a window with locally good actions has the correct sign satisfies:}
+\begin{equation}
+P(\text{correct sign or no update}) = p + (1-p)^{K}
+\label{eq:correct_bound}
+\end{equation}
+\textit{Among gradient updates that occur (non-zero advantage), the fraction with correct sign is:}
+\begin{equation}
+P(\text{correct} \mid \text{update}) = \frac{p}{1 - (1-p)^{K}}
+\label{eq:correct_conditional}
+\end{equation}
+
+\textit{Derivation.} For a window with locally good actions, the gradient direction depends on $\text{sign}(\hat{A}_k)$, which depends on whether the episode succeeded and whether the group contains any successful rollouts. Three mutually exclusive cases arise.
+
+\textit{Case 1: Episode succeeded} (probability $p$). The window receives $R_k = \gamma^{(N-k)} \cdot r_+ > 0$. With at least one failed rollout in the group, $R_k > \mu$ after normalization, producing $\hat{A}_k > 0$. The gradient reinforces the window's actions. For a window with good local actions, this is the correct direction.
+
+\textit{Case 2: Episode failed, group contains at least one success} (probability $(1-p)[1 - (1-p)^{K-1}]$). The window receives $R_k = 0 < \mu$, producing $\hat{A}_k < 0$. The gradient suppresses the window's actions. For a window with good local actions, this is the wrong direction.
+
+\textit{Case 3: Episode failed, entire group failed} (probability $(1-p) \cdot (1-p)^{K-1} = (1-p)^{K}$). All returns are zero, so $\mu = 0$ and $\sigma = 0$. The advantage is zero, producing no gradient update.
+
+Summing Cases~1 and~3 yields Equation~\ref{eq:correct_bound}. Since only Cases~1 and~2 produce non-zero gradients, the conditional probability follows as Equation~\ref{eq:correct_conditional}.
+
+We evaluate these expressions at the empirical baseline of our experiments. At $p = 6.25\%$ (the pre-training success rate) and $K = 4$: $(1-p)^K = 0.9375^4 \approx 0.77$, giving $P(\text{correct or no update}) \approx 0.83$. Of the 23\% of cases that produce a gradient update, only $P(\text{correct} \mid \text{update}) = 0.0625 / 0.23 \approx 27\%$ have the correct sign. As $K$ increases to 16, $(1-p)^{K} \approx 0.36$, and $P(\text{correct} \mid \text{update}) \approx 9.8\%$. In the large-$K$ limit, $P(\text{correct} \mid \text{update}) \to p$, so approximately $1 - p \approx 94\%$ of all gradient updates for locally good windows point in the wrong direction. This is consistent with the empirical observation that step-independent training collapses to 0\% task success (exp026, exp028c) while episode-level training achieves stable improvement (exp029, 28.125\% validation success at step 15).
+
+\subsection{Why the Community Defaults to Step-Independent Training}
+\label{sec:why_defaults}
+
+If step-independent training is fundamentally flawed for multi-turn agents, why has it become the default? We identify six contributing factors.
+
+\textbf{1. Context window constraints.} Smaller language models (1B to 4B parameters) typically support context windows of 2048 to 4096 tokens. Multi-turn episodes spanning 50 or more interaction steps easily exceed these limits. Step-independent windowing is a pragmatic response to a hardware constraint, not a deliberate algorithmic choice.
+
+\textbf{2. Token-level training inertia.} Language model training is organized around predicting the next token over fixed-length sequences. When multi-turn RL inherits this paradigm, the natural unit of optimization becomes a fixed-length window rather than a variable-length episode. The mismatch between token-level optimization and episode-level credit assignment goes unquestioned because it aligns with existing training infrastructure.
+
+\textbf{3. Framework design accident.} The RAGEN framework~\cite{ragen2025} implements step-independent mode as its default configuration, not as one option among alternatives. Users inherit this choice without an explicit decision point, and default configurations propagate silently through downstream projects.
+
+\textbf{4. Memory and compute constraints.} Episode-level training requires processing $O(T)$ tokens per sequence, incurring $O(T^2)$ attention cost with full self-attention. Step-independent training reduces this to $O(h)$ tokens and $O(h^2)$ attention cost per window. The computational savings are immediate and measurable, while the credit assignment failure is subtle and deferred until training collapse occurs.
+
+\textbf{5. Reward shaping as apparent fix.} Dense reward shaping (per-step bonuses for intermediate goals) appears to address sparse reward problems and has theoretical support in the single-agent RL literature. Our experiment with dense rewards under step-independent training (exp013f) reveals a different failure mode: the agent learns to maximize format-level rewards (action validity rises from 60\% to 97.5\%) while task success remains at 0\%. Reward shaping does not resolve sign misattribution; it creates new optimization targets that the agent can game without solving the underlying task.
+
+\textbf{6. Absence of negative results.} When step-independent training fails, practitioners attribute the failure to insufficient hyperparameter tuning or the inherent difficulty of sparse rewards. Without published analyses that isolate the credit assignment mechanism as the root cause, the community cannot distinguish between ``this problem is hard'' and ``this training paradigm is broken for this class of problems.''
+
+\subsection{Connection to Classical Credit Assignment}
+\label{sec:classical_connection}
+
+Our findings connect to a long line of work on temporal credit assignment in reinforcement learning. We position the step-independent failure mode within this literature and clarify the contribution of our analysis.
+
+\textbf{Temporal difference learning and eligibility traces.} Sutton's TD($\lambda$)~\cite{sutton1988td} provides a spectrum of credit assignment strategies parameterized by $\lambda \in [0,1]$. At $\lambda = 0$, credit is assigned via one-step bootstrapped returns. At $\lambda = 1$, TD($\lambda$) reduces to Monte Carlo returns, where each state receives the full episode return. Step-independent training falls below this spectrum: windows are disconnected from each other, so temporal propagation of credit does not occur. Each window receives an independently computed advantage with no mechanism for information to flow across windows within the same episode.
+
+\textbf{Generalized Advantage Estimation.} GAE($\lambda, \gamma$)~\cite{schulman2016gae} extends TD($\lambda$) with a separate discount factor for the advantage estimator. GAE(0, $\gamma$) produces per-step advantages through a learned value function. GAE(1, 1) produces undiscounted Monte Carlo returns, and is equivalent to episode-level GRPO without a critic. The key difference is that GAE uses value function subtraction as the baseline for variance reduction, while GRPO uses group normalization. Episode-level GRPO can be viewed as GAE(1, 1) with a group-relative baseline replacing the learned value function. This substitution is effective when the group provides a representative reference distribution, but it does not address per-step credit assignment within an episode.
+
+\textbf{REINFORCE.} Williams' REINFORCE algorithm~\cite{williams1992reinforce} computes policy gradients from complete episode returns with a learned baseline $b(s)$. Episode-level GRPO is equivalent to REINFORCE where the group mean $\mu$ replaces $b(s)$ and the group standard deviation $\sigma$ provides normalization. The algorithmic structure is not new. Our contribution is the diagnosis: the community's standard adaptation of this algorithm for multi-turn LLM agents (step-independent windowing) silently breaks the credit assignment structure that REINFORCE assumes.
+
+\textbf{Multi-agent credit assignment analogy.} Step-independent windows can be understood through cooperative multi-agent games. Each window acts as an independent ``agent'' sharing a team reward (the episode outcome) but optimized without knowledge of other windows' actions. The sign misattribution problem parallels team reward credit assignment in cooperative multi-agent RL: when the team fails, all agents receive identical penalties regardless of individual contribution. In multi-agent RL, this is a recognized problem with known solutions such as counterfactual baselines. In multi-turn LLM agent training, the same structural problem arises from an implementation choice and has not been recognized as a credit assignment failure.
+
+To summarize our positioning: we do not propose a new credit assignment algorithm. Episode-level training is the standard approach, and GRPO was designed as an episode-level method. What we identify is that the community's adaptation of GRPO to multi-turn settings introduces a systematic sign error in gradient computation. This error is not a gradual performance degradation but a catastrophic failure mode, as confirmed by the contrast between step-independent collapse (exp026, exp028c: 0\% success) and episode-level stability (exp029: 28.125\% validation success from a 12.5\% baseline).

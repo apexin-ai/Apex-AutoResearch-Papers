@@ -1,0 +1,60 @@
+{
+  "exp_id": "scienceworld_grpo_cell_a",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:24:49.171Z",
+    "updated_at": "2026-05-20T13:54:57.116Z",
+    "hypothesis": "ScienceWorld 环境下 step-independent GRPO (h=2) 也会出现 policy collapse，验证 ALFWorld 观察到的 collapse 是 step-independent credit assignment 的固有问题而非环境特异性",
+    "parent": "scienceworld_sft",
+    "spec": {
+      "command": "cd /root/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _scienceworld_cell_a_grpo",
+      "server": "westd-47453",
+      "gpu": "cuda:0,1",
+      "pid": 759987,
+      "wandb_run_id": "f1c4g6dk",
+      "data_path": "ScienceWorldSG",
+      "data_count": 30,
+      "model_name": "Qwen3-1.7B (ScienceWorld SFT checkpoint)",
+      "seed": 42,
+      "checkpoint_source": "scienceworld_sft",
+      "eval_data": "ScienceWorldSG 30 task types (dev split)",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/scienceworld-cell-a/global_step_15",
+      "log_path": "/root/cost-verify-agent-rl/RAGEN/wandb/run-20260520_204440-f1c4g6dk/files/output.log",
+      "hyperparams": {
+        "total_training_steps": 15,
+        "context_window_mode": "step_independent",
+        "step_independent_history_length": 2,
+        "env_groups": 16,
+        "group_size": 8,
+        "ppo_mini_batch_size": 8,
+        "ppo_max_token_len_per_gpu": 16384,
+        "optimizer_offload": true,
+        "lr": 1e-06,
+        "n_gpus_per_node": 2
+      },
+      "notes": "ScienceWorld Cell A: step-independent h=2. Expected to show collapse, proving it generalizes beyond ALFWorld."
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "steps_completed": 14,
+      "success_rate": 0,
+      "final_score_train": -100,
+      "final_score_val": 1,
+      "reward_mean_start": 0.6,
+      "reward_mean_end": 0.1,
+      "entropy_start": 0.283,
+      "entropy_end": 0.52,
+      "kl_start": 1.606,
+      "kl_end": 0.03,
+      "exit_mode": "abnormal (log truncated at step 15 start)",
+      "note": "collapse confirmed - success rate 0% throughout, matches ALFWorld Cell A pattern"
+    },
+    "completed_at": "2026-05-20T13:54:57.117Z"
+  },
+  "timestamp": "2026-05-20T13:54:57.336430+00:00",
+  "trigger": "update_registry"
+}

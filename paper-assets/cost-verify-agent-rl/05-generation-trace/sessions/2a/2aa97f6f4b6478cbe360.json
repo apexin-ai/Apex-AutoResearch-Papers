@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2aa97f6f4b6478cbe360",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "eval seed1 step5 ood",
+  "task_key": "worker_eval_seed1_step5_ood_20260521T222538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_seed1_step5_ood_20260521T222538_result.json",
+    "occurrence": 1,
+    "bytes": 1129,
+    "sha256": "faacf168832a01fc8c2e9660acf0496a5a27cd6254c35308ac61f040611cad43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Seed 1 step 5 checkpoint 不存在。**\n\n搜索结果：\n\n| 服务器 | 路径搜索范围 | global_step_5 |\n|--------|-------------|---------------|\n| westd-47453 | `/root/autodl-tmp/` 全盘 | exp029-seed8, intervention-c-hard-cap |\n| bjb1-17606 | `/root/autodl-tmp/` + `/root/` | exp029-seed7-high-kl |\n\n`exp029_episode_level`（seed 1）在两台服务器上均无任何 checkpoint 残留。`exp029_seed3` 目录在 westd 上存在但为空。registry 中也无该实验条目。\n\n**可用的 step 5 checkpoint（可替代做同期对照）：**\n- **Seed 8 step 5**（westd）— 已有 OOD eval 结果 11.94%（这是崩溃 seed，已完成）\n- **Seed 7 (high-kl) step 5**（bjb1）— 另一个崩溃 seed\n- **Intervention-C step 5**（westd）— hard-cap 干预实验\n\n没有任何 stable seed 的 step 5 checkpoint 可用。Stable seeds（3/5/6）的最早 checkpoint 分别是 step 15、step 10、step 15。\n\n**阻塞原因：Seed 1 checkpoint 不存在，无法执行此 eval。** 如需 stable seed 早期对照，最接近的选项是 Seed 5 step 10（westd 上有 HF 格式）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-seed1-step5-ood.md"
+}

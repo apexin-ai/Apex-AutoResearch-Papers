@@ -1,0 +1,16 @@
+{
+  "exp_id": "hsweep_h10_seed2_retry",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:36:42.696Z",
+    "updated_at": "2026-05-24T07:36:54.297Z",
+    "hypothesis": "h=10 with seed2 tests cross-seed robustness of the window size cliff. If h=10 seed2 also collapses (≈0% like seed1=6.25%), confirms the h=5→full threshold is not seed1-specific. Retry after SIGTERM hang.",
+    "parent": "hsweep_h10_seed2"
+  },
+  "timestamp": "2026-05-24T07:36:54.671548+00:00",
+  "trigger": "update_registry"
+}

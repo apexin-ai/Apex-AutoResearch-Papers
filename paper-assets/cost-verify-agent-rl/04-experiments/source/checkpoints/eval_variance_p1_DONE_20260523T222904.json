@@ -1,0 +1,47 @@
+{
+  "exp_id": "eval_variance_p1",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T20:00:38.799Z",
+    "updated_at": "2026-05-23T22:29:03.671Z",
+    "hypothesis": "Quantify eval variance at τ=0.4 by running 3 independent OOD evals per checkpoint. If variance is large (>5pp), it explains part of the seed-dependent generalization gap and strengthens the Limitations discussion.",
+    "spec": {
+      "command": "bash /root/cost-verify-agent-rl/run_eval_variance.sh",
+      "server": "bjb1-17606",
+      "gpu": "0",
+      "pid": "46190",
+      "data_path": "/root/cost-verify-agent-rl/data/alfworld",
+      "data_count": 134,
+      "model_name": "Qwen3-1.7B episode-level GRPO (seed200, seed7hk, seed300)",
+      "seed": "multiple",
+      "checkpoint_path": "N/A (eval-only experiment)",
+      "log_path": "/root/cost-verify-agent-rl/eval_variance_summary.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "seed300_s0": 0,
+      "seed300_s1": 0,
+      "seed300_s2": 0,
+      "seed300_note": "invalid: enable_think=False",
+      "seed7hk_s0": null,
+      "seed7hk_s1": null,
+      "seed7hk_s2": null,
+      "seed7hk_note": "crashed: ValueError in get_special_tokens() - local checkpoint path not recognized",
+      "seed200_s0": 0.1119,
+      "seed200_s1": 0.1119,
+      "seed200_s2": 0.1343,
+      "seed200_mean": 0.1194,
+      "seed200_std_pp": 1.29,
+      "seed200_counts": "15/134, 15/134, 18/134",
+      "valid_checkpoints": 1,
+      "conclusion_summary": "seed200 std=1.29pp (moderate, not large); seed7hk crashed; seed300 invalid config"
+    },
+    "completed_at": "2026-05-23T22:29:03.671Z"
+  },
+  "timestamp": "2026-05-23T22:29:04.007728+00:00",
+  "trigger": "update_registry"
+}

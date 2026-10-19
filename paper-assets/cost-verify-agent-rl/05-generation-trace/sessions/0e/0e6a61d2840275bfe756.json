@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e6a61d2840275bfe756",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code add window action valid to adv log",
+  "task_key": "worker_code_add-window-action-valid-to-adv-log_20260517T162230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_add-window-action-valid-to-adv-log_20260517T162230_result.json",
+    "occurrence": 1,
+    "bytes": 1193,
+    "sha256": "2d4dc029f9b8588ac428c743a25eca92949476f540acf0b7d767502b1dd635e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出总结\n\n### 1. 修改文件\n`ragen/trainer/agent_trainer.py` (两台服务器: bjb1-17606, westd-47453)\n\n**新增行**（line 354-364, 375-376 — 修改后行号）：\n- 在 logging block 内增加 per-episode cumulative valid ratio 计算逻辑\n- 在 `_record` dict 中增加两个字段：\n  - `window_action_valid`: 当前 window 的 action validity（0.0 或 1.0，不可用时为 null）\n  - `window_action_valid_ratio`: 当前 episode 截至该 window 的 cumulative valid action ratio\n\n**数据来源**: `is_valid` 变量（line 279），从 `data.non_tensor_batch[\"is_action_valid\"]` 获取，在 logging 代码执行时已在作用域内。\n\n### 2. Hot-patch 不可行\nPID 945877 (hsweep_h2_seed2) 是 Python 训练进程，`agent_trainer.py` 模块在启动时已加载到内存。磁盘修改不影响运行中进程。修改会在 seed2 完成后的下一次实验中自动生效。\n\n### 3. 启用方式\n无需额外配置。只要实验启动时设置 `LOG_PER_SAMPLE_ADV=1`（已有机制），新字段就会自动写入 `advantage_log.jsonl`。向后兼容：如果 `is_action_valid` 数据不可用，两个新字段输出 `null`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-add-window-action-valid-to-adv-log.md"
+}

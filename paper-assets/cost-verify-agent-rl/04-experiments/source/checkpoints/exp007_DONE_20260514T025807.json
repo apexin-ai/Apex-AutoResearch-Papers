@@ -1,0 +1,57 @@
+{
+  "exp_id": "exp007",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:12:06.008Z",
+    "updated_at": "2026-05-14T02:58:07.012Z",
+    "spec": {
+      "hypothesis": "Parser fix + prompt enhancement + speed optimization (collapse_detection off) enables GRPO learning signal with <50% invalid_action",
+      "model_name": "Qwen3-1.7B",
+      "server": "bjb1-17606",
+      "data_path": "ALFWorld train split (3553 games)",
+      "data_count": 3553,
+      "seed": 10000,
+      "description": "Phase A fixed: parser adapts Qwen3 format (fallback regex) + prompt enhancement (direct ALFWorld commands) + collapse_detection off + 30 steps + 64 traj/step + 30 max_turns",
+      "parent": "exp003",
+      "command": "python train.py (GRPO, Qwen3-1.7B, ALFWorld)",
+      "checkpoint_path": "N/A (no checkpoint saved)",
+      "log_path": "/root/autodl-tmp/exp007_formal.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T02:51:31.895Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T02:51:33.256865+00:00"
+        }
+      ]
+    },
+    "conclusion": "failed",
+    "metrics": {
+      "steps_completed": 10,
+      "steps_planned": 30,
+      "crash_reason": "OSError: No space left on device (/tmp)",
+      "final_success_rate": 0.0625,
+      "final_action_is_valid": 0.0835,
+      "final_manager_invalid_action": 0.0156,
+      "final_pass_at_8": 0.375,
+      "final_pg_loss": 0.00117,
+      "final_ppo_kl": 0.00127,
+      "final_entropy": 0.057,
+      "final_score_mean": 0.578,
+      "dryrun_action_is_valid": 0.054,
+      "dryrun_invalid_action": 0.065,
+      "training_time_s": 6739
+    },
+    "completed_at": "2026-05-14T02:58:07.012Z"
+  },
+  "timestamp": "2026-05-14T02:58:07.031282+00:00",
+  "trigger": "update_registry"
+}

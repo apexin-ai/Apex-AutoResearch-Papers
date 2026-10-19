@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3394fe30b412305d4b5c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp024 success gated reward",
+  "task_key": "worker_code_exp024-success-gated-reward_20260515T051557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp024-success-gated-reward_20260515T051557_result.json",
+    "occurrence": 1,
+    "bytes": 1026,
+    "sha256": "a3a7d860ff64308173c60caf909006bfe233457218ca09144269f423bd0c0462"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n### 1. Reward function 代码确认\n**已存在**，无需新增。`env.py` 的 `step()` 方法中已有完整的 success-gated 逻辑：\n```python\nif self.config.success_gated_bonus:\n    if done and won:\n        reward += self.valid_action_count * self.config.valid_action_bonus\n```\n失败 episode reward = 0，成功 episode reward = 10.0 + valid_action_count × 0.15。\n\n### 2. Config 参数确认\n- `valid_action_bonus = 0.15` ✓（通过 `AlfworldSG_SuccessGated` tag 在 envs.yaml 中设定）\n- `success_gated_bonus = True` ✓\n- `score = 10.0` ✓\n- `kl_loss_coef = 0.5`, `lr = 5e-7`, `30 steps`, serial mode, val `env_groups=16` — 全部与 exp023 一致\n\n### 3. exp024 启动状态\n- **tmux session**: `exp024`\n- **PID**: 455719 (train.py), TaskRunner 458971, WorkerDict 459173/459174\n- **GPU**: 双卡均在加载模型 checkpoint（7.9 GB/卡，持续增长中）\n- **状态**: 正常初始化中，safetensors 加载中，预计几分钟后进入 val_before_train"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp024-success-gated-reward.md"
+}

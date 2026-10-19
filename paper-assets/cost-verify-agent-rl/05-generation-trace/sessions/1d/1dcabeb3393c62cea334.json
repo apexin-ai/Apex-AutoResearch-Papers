@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1dcabeb3393c62cea334",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "experiment scienceworld grpo westd setup",
+  "task_key": "worker_experiment_scienceworld-grpo-westd-setup_20260520T111947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_scienceworld-grpo-westd-setup_20260520T111947_result.json",
+    "occurrence": 1,
+    "bytes": 993,
+    "sha256": "70001257c8533a80f071d3d31164b427dd3130de3c8258886b88ef0c898186a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both processes stable and running (Cell A: 2m14s, Cell C: 1m43s). Still in initialization phase (FSDP sharding + vLLM engine startup). ScienceWorld environments take longer to init than ALFWorld.\n\n**Launch summary:**\n\n| Experiment | GPU | PID | W&B Run | Status |\n|---|---|---|---|---|\n| `scienceworld_grpo_cell_a` (step-independent h=2) | cuda:0,1 | 759987 | `f1c4g6dk` | RUNNING — initializing |\n| `scienceworld_grpo_cell_c` (episode-level full) | cuda:2,3 | 766820 | `sx7h864t` | RUNNING — initializing |\n\n**Issues fixed during launch:**\n- `enable_response_mask` assertion failed because model path didn't contain \"qwen\" — created symlink `qwen3_scienceworld_sft → scienceworld_sft` and updated both configs\n- `submit_training_job` tool doesn't exist in available toolset — used `ssh_execute` with nohup instead\n\n**Pending cleanup:** bjb1 authorized_keys still has westd's SSH key from the SCP transfer. Low priority but should be removed eventually."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-scienceworld-grpo-westd-setup.md"
+}

@@ -1,0 +1,58 @@
+{
+  "exp_id": "8b_cell_c_episode_v9d",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 2,
+    "created_at": "2026-05-19T23:13:25.570Z",
+    "updated_at": "2026-05-20T05:22:25.669Z",
+    "hypothesis": "FSDP2 + CPUOffloadPolicy 8B Cell C episode-level GRPO。v9c 证明训练有效（2步 success 40%→64%），但 step 3 因 max_prompt_length==max_model_len 溢出。v9d 修复：max_prompt_length 16384→15360，留 1024 token headroom。从头训练（无 checkpoint）。",
+    "parent": "8b_cell_c_episode_v9c",
+    "reproduce": {
+      "finished_at": "2026-05-20T05:12:55.027Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-20T02:20:48.275Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T02:20:51.818939+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T05:13:00.335716+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "metrics": {
+          "step": 5,
+          "steps_total": 30,
+          "step_time_s": 1689,
+          "eta_hours": 11.7,
+          "val_before_train_success": 0.40625,
+          "train_success_step3": 0.4297,
+          "train_success_step5": 0.7734,
+          "val_success_step5": 0.8125,
+          "entropy_step5": 0.0548,
+          "kl_step5": 0.00149,
+          "pg_clipfrac_step5": 0.00268,
+          "grad_norm_step5": 0.544,
+          "action_is_valid_step5": 0.95,
+          "pass_at_8": 1,
+          "throughput_tok_s": 115,
+          "disk_available_gb": 12.4,
+          "disk_warning": "Ray reports 95% full after step 5 checkpoint save, only 12.4GB remaining. Step 10 checkpoint will crash unless space freed.",
+          "note": "val success 81.25% matches previous run. 0% GPU util was CPUOffload inter-step phase."
+        }
+      }
+    }
+  },
+  "timestamp": "2026-05-20T05:22:25.865959+00:00",
+  "trigger": "update_registry"
+}

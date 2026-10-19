@@ -1,0 +1,16 @@
+{
+  "exp_id": "hsweep_h10_seed2_retry2",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T08:18:25.614Z",
+    "updated_at": "2026-05-24T08:18:31.740Z",
+    "hypothesis": "h=10 with seed2 tests cross-seed robustness of the window size cliff. Retry #2 after accidental kill of healthy retry #1.",
+    "parent": "hsweep_h10_seed2_retry"
+  },
+  "timestamp": "2026-05-24T08:18:32.103192+00:00",
+  "trigger": "update_registry"
+}

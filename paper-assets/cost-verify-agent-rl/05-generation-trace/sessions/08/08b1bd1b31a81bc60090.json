@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08b1bd1b31a81bc60090",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops westd kill eval and setup ragen eval",
+  "task_key": "worker_ops_westd_kill_eval_and_setup_ragen_eval_20260522T090351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_kill_eval_and_setup_ragen_eval_20260522T090351_result.json",
+    "occurrence": 1,
+    "bytes": 1583,
+    "sha256": "a9d5bfa179c5cca4660281fbf28d496045ebe7719b6b8cdc16b10573a4d4c6b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 = 89.7 GB, 61% 利用率！Eval 正在积极运行。vLLM 生成中。测试成功启动！\n\n总结：\n\n### 产出\n\n1. **所有 eval_checkpoint.py 进程已 kill** - 已杀掉 3 个 eval_checkpoint.py 进程 + 2 个孤立 vLLM::EngineCore (PID 478013, 489674)\n\n2. **4 GPU 全部空闲后重新分配** - GPU 0 现在被 RAGEN eval 使用 (89.7 GB, 61%)，GPU 1/2/3 空闲\n\n3. **RAGEN eval 启动方式**:\n   ```bash\n   cd /root/cost-verify-agent-rl/RAGEN && \\\n   python train.py --config-name <config_name> [overrides...]\n   ```\n   关键点：\n   - 使用 `train.py`（非 `ragen/eval.py`）作为入口，配合 `trainer.val_only: True` + `trainer.val_before_train: True`\n   - 已有 OOD eval 专用配置文件（如 `_alfworld_sft_baseline_ood_eval_v2.yaml`、`_alfworld_exp029_seed5_ood_eval.yaml`）\n   - GPU 可通过 hydra override 切换：`system.CUDA_VISIBLE_DEVICES=\"0\"`\n\n4. **先前 seed5/seed6 eval 参数**（从 config 文件确认一致）:\n   - `agent_proxy.context_window_mode: full`\n   - `agent_proxy.max_turn: 50`\n   - `rollout.val_kwargs.temperature: 0.4, do_sample: True`\n   - `es_manager.val.env_groups: 134` (134 OOD tasks, group_size=1)\n   - `es_manager.val.env_configs.tags: [\"AlfworldSG_OOD\"]`\n\n5. **测试 eval 成功启动**:\n   - tmux session: `ragen_eval`\n   - wandb run: `n6e4ylj1` (sft-baseline-ood-eval-v2)\n   - Model: `qwen3_exp021_ragen_sft_v4` (1.72B params, Qwen3)\n   - GPU 0, 89.7 GB, 61% 利用率，正在生成序列\n   - 日志: `/root/autodl-tmp/logs/ragen_sft_ood_eval_test2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-kill-eval-and-setup-ragen-eval.md"
+}

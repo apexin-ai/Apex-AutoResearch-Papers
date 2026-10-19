@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34f3b179f444f56dba38",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp029 gpu check",
+  "task_key": "worker_monitor_exp029_gpu_check_20260516T192410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp029_gpu_check_20260516T192410_result.json",
+    "occurrence": 1,
+    "bytes": 1170,
+    "sha256": "ac635c52e124e0d9bf951b930d92b1644a4df9fde5891b1d82ab5ec90b86dd95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp029_episode_level 状态报告\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | PID 896477 存活，运行 2h58m，状态 Ss+ |\n| **GPU 0** | 36683/97887 MiB (37%), util 0% |\n| **GPU 1** | 36679/97887 MiB (37%), util 0% |\n| **GPU 占用进程** | PID 899940 (GPU0, 36674 MiB), PID 899941 (GPU1, 36670 MiB) — 均为本实验 worker，无抢占 |\n| **W&B run** | `exp029-alfworld-episode-level` / `ugkd8ys1` |\n\n**当前阶段**: 初始化完毕，正在进入第一轮 rollout。日志显示：\n- 模型加载完成（checkpoint shards 100%）\n- FSDP worker 已初始化（2 GPU）\n- W&B 连接成功\n- 训练数据集 tokenize 完成（8810/8810 + 494/494）\n- **尚未出现 step/train metrics 或 val_before_train 输出**\n\nGPU 利用率 0% + 显存已占 37% 表明模型已加载到显存，当前可能正在执行 val_before_train 的 environment rollout（CPU-bound ALFWorld 交互阶段，GPU 空闲是正常的）。日志文件仍在增长中（200KB, timestamp 更新中），进程树正常。\n\n**结论**: 正常运行，处于首轮 evaluation/rollout 阶段，预计产出第一条 metrics 还需一段时间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp029-gpu-check.md"
+}

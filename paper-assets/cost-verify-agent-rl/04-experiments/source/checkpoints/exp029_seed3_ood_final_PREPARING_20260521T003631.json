@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp029_seed3_ood_final",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T23:00:23.413Z",
+    "updated_at": "2026-05-21T00:36:31.725Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed3_ood_final\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "417862",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_seed3_ood_final.log",
+      "submitted_at": "2026-05-20T23:00:23.049Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Evaluate exp029_seed3_v2 final checkpoint (global_step_15, episode-level GRPO seed=42) on 134 OOD tasks. Cross-seed OOD evidence. Seed 1 OOD=23.88%.",
+    "parent": "exp029_seed3_v2",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-21T00:36:31.971223+00:00",
+  "trigger": "update_registry"
+}

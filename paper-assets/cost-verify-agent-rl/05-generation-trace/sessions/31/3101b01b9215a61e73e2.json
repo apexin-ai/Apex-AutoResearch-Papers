@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3101b01b9215a61e73e2",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code fsdp to hf script",
+  "task_key": "worker_code_fsdp_to_hf_script_20260514T090354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fsdp_to_hf_script_20260514T090354_result.json",
+    "occurrence": 1,
+    "bytes": 721,
+    "sha256": "15ca34936a722e560ec3b3c2c4b6ee8fff2a5ccb977f46bd03447138e7ca88f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 产出\n\n**脚本**：`/root/cost-verify-agent-rl/RAGEN/scripts/convert_fsdp_to_hf.py` 已就绪（服务器 + 本地同步）\n\n**验证结果**：\n- dry-run 通过，311 参数全部正确重建，shape 匹配 Qwen3-1.7B config\n- 完整转换测试通过：`AutoModelForCausalLM.from_pretrained()` 加载成功，forward pass 正常\n- 转换耗时 **~14 秒**（CPU-only，无需 GPU）\n- 输出大小 **~4 GB**（bf16）\n\n**用法**（Phase A checkpoint 出来后）：\n```bash\npython scripts/convert_fsdp_to_hf.py \\\n    --input-dir /root/autodl-tmp/checkpoints/<exp>/global_step_N/actor \\\n    --output-dir /root/autodl-tmp/models/qwen3-1.7b-grpo \\\n    --dtype bf16\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fsdp-to-hf-script.md"
+}

@@ -1,0 +1,21 @@
+{
+  "exp_id": "exp008",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T03:01:53.741Z",
+    "updated_at": "2026-05-14T03:04:39.337Z",
+    "spec": {
+      "hypothesis": "SFT warmup on ALFWorld trajectories teaches Qwen3-1.7B valid command semantics, enabling GRPO to bootstrap from non-sparse reward",
+      "parent": "exp007",
+      "model_name": "Qwen3-1.7B",
+      "description": "Phase A retry: SFT warmup (public dataset, format conversion) → GRPO training. Two stages: (1) SFT on ALFWorld trajectories to learn command format+semantics, (2) GRPO with SFT checkpoint"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-14T03:04:39.387779+00:00",
+  "trigger": "update_registry"
+}

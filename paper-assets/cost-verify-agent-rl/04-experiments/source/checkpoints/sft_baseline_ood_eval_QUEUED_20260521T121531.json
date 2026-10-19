@@ -1,0 +1,28 @@
+{
+  "exp_id": "sft_baseline_ood_eval",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:55:22.862Z",
+    "updated_at": "2026-05-21T12:15:31.120Z",
+    "hypothesis": "1.7B SFT baseline (qwen3_exp021_ragen_sft_v4) OOD performance on 134 valid_unseen tasks. Fills Table 1 '---' cell. Expected low OOD (~5-10%) as SFT lacks GRPO generalization.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=1 python train.py --config-name _alfworld_sft_baseline_ood_eval system.CUDA_VISIBLE_DEVICES=1 actor_rollout_ref.rollout.gpu_memory_utilization=0.10\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "189083",
+      "log_path": "~/runs/cost-verify-agent-rl/sft_baseline_ood_eval.log",
+      "submitted_at": "2026-05-21T11:57:07.885Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-21T12:15:31.389995+00:00",
+  "trigger": "update_registry"
+}

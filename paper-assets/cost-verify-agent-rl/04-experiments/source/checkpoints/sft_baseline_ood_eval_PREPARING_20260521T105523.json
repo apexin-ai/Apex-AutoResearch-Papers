@@ -1,0 +1,14 @@
+{
+  "exp_id": "sft_baseline_ood_eval",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:55:22.862Z",
+    "updated_at": "2026-05-21T10:55:22.863Z"
+  },
+  "timestamp": "2026-05-21T10:55:23.106963+00:00",
+  "trigger": "update_registry"
+}

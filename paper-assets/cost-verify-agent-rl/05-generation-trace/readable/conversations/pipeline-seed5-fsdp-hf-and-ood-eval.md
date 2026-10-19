@@ -1,0 +1,1098 @@
+# pipeline seed5 fsdp hf and ood eval
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/chats/worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048.jsonl`
+- **Structured JSON:** [`9371cc8f72d222bd56ac.json`](../../sessions/93/9371cc8f72d222bd56ac.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+37 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T14:03:33.620754+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T14:03:33.621093+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T14:03:33.621288+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "ls /root/autodl-tmp/checkpoints/exp029-seed5/global_step_10/actor/fsdp_config.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "ls /root/autodl-tmp/checkpoints/exp029-seed5/global_step_10/actor/fsdp_config.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T14:03:33.621427+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "du -sh /root/autodl-tmp/checkpoints/exp029-seed5/global_step_10/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "du -sh /root/autodl-tmp/checkpoints/exp029-seed5/global_step_10/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-21T14:03:33.621586+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints/exp029-seed5/global_step_10/actor/fsdp_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T14:03:33.621742+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"21G\\t/root/autodl-tmp/checkpoints/exp029-seed5/global_step_10/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T14:03:33.621889+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl && python scripts/convert_fsdp_to_hf.py --input-dir /root/autodl-tmp/checkpoints/exp029-seed5/global_step_10/actor --output-dir /root/autodl-tmp/checkpoints/exp029-seed5/global_step_10_hf --dtype bf16",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl && python scripts/convert_fsdp_to_hf.py --input-dir /root/autodl-tmp/checkpoints/exp029-seed5/global_step_10/actor --output-dir /root/autodl-tmp/checkpoints/exp029-seed5/global_step_10_hf --dtype bf16",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T14:03:33.622031+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"FSDP config: version=1, world_size=2\\nStep 1: Loading and reconstructing state dict...\\n  Loading rank 0: /root/autodl-tmp/checkpoints/exp029-seed5/global_step_10/actor/model_world_size_2_rank_0.pt\\n  Loading rank 1: /root/autodl-tmp/checkpoints/exp029-seed5/global_step_10/actor/model_world_size_2_rank_1.pt\\n  Reconstructing 311 parameters from 2 shards...\\n  Done in 5.9s. Parameters: 311\\n  Total parameters: 2,031,739,904 (4.06 GB in bf16)\\nStep 2: Saving HuggingFace model...\\n  Architecture: Qwen3ForCausalLM\\n  Saved model in 9.2s\\nStep 3: Copying tokenizer files...\\n  Copied chat_template.jinja\\n  Copied tokenizer_config.json\\n  Copied special_tokens_map.json\\n  Copied added_tokens.json\\n  Copied vocab.json\\n  Copied merges.txt\\n  Copied tokenizer.json\\n\\nDone! Total time: 15.1s\\nOutput: /root/autodl-tmp/checkpoints/exp029-seed5/global_step_10_hf\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 17.81}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T14:03:33.622193+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "ls /root/autodl-tmp/checkpoints/exp029-seed5/global_step_10_hf/*.safetensors",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "ls /root/autodl-tmp/checkpoints/exp029-seed5/global_step_10_hf/*.safetensors",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T14:03:33.622324+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints/exp029-seed5/global_step_10_hf/model.safetensors\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T14:03:33.622461+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "ln -sfn /root/autodl-tmp/checkpoints/exp029-seed5/global_step_10_hf /root/autodl-tmp/checkpoints/qwen_exp029_seed5_step10_hf",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "ln -sfn /root/autodl-tmp/checkpoints/exp029-seed5/global_step_10_hf /root/autodl-tmp/checkpoints/qwen_exp029_seed5_step10_hf",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T14:03:33.622605+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T14:03:33.622764+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed6_ood_eval.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed6_ood_eval.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T14:03:33.622985+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# exp029 Seed 6 OOD eval (134 tasks) - westd single GPU\\n# FSDP->HF conversion required before running\\n\\ndefaults:\\n  - base\\n\\nhydra:\\n  searchpath:\\n    - pkg://verl.trainer.config\\n\\nseed:\\n  train: 789\\n  val: 321\\n\\nmodel_path: /root/autodl-tmp/checkpoints/qwen_exp029_seed6_step15_hf\\n\\nsystem:\\n  CUDA_VISIBLE_DEVICES: \\\"2\\\"\\n\\nmicro_batch_size_per_gpu: 1\\nppo_mini_batch_size: 1\\n\\ntrainer:\\n  project_name: cost-verify-agent-rl\\n  experiment_name: exp029-seed6-ood-eval\\n  total_training_steps: 1\\n  n_gpus_per_node: 1\\n  val_before_train: True\\n  val_only: True\\n  test_freq: 999\\n  save_freq: 999\\n  local_log_dir: \\\"/root/autodl-tmp/checkpoints/exp029_seed6_ood_eval/\\\"\\n  default_local_dir: \\\"/root/autodl-tmp/checkpoints/exp029_seed6_ood_eval/\\\"\\n  logger: ['console', 'wandb']\\n  max_actor_ckpt_to_keep: 1\\n  resume_mode: \\\"disable\\\"\\n\\nactor_rollout_ref:\\n  model:\\n    override_config:\\n      attn_implementation: sdpa\\n  actor:\\n    use_ref: False\\n    use_torch_compile: False\\n    use_kl_loss: False\\n    kl_loss_coef: 0.0\\n    entropy_coeff: 0.0\\n    clip_ratio_low: 0.2\\n    clip_ratio_high: 0.28\\n    loss_agg_mode: \\\"token-mean\\\"\\n    optim:\\n      lr: 1e-7\\n  ref:\\n    use_torch_compile: False\\n  rollout:\\n    response_length: 1024\\n    gpu_memory_utilization: 0.85\\n    enable_chunked_prefill: true\\n    max_model_len: 20480\\n    temperature: 1.0\\n    max_num_batched_tokens: 20480\\n    enforce_eager: True\\n    val_kwargs:\\n      do_sample: True\\n      temperature: 0.4\\n\\nalgorithm:\\n  adv_estimator: grpo\\n  gamma: 0.95\\n  high_level_gamma: 0.95\\n  norm_adv_by_std_in_grpo: True\\n\\nagent_proxy:\\n  context_window_mode: full\\n  max_context_window: -1\\n  step_independent_history_length: 2\\n  max_turn: 50\\n  max_actions_per_turn: 1\\n  max_prompt_length: 16384\\n  use_turn_scores: True\\n\\ncollapse_detection:\\n  
+…[truncated 468 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T14:03:33.623196+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cp /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed6_ood_eval.yaml /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml && sed -i 's|qwen_exp029_seed6_step15_hf|qwen_exp029_seed5_step10_hf|g' /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml && sed -i 's|CUDA_VISIBLE_DEVICES: \"2\"|CUDA_VISIBLE_DEVICES: \"3\"|g' /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml && sed -i 's|exp029-seed6-ood-eval|exp029-seed5-step10-ood-eval|g' /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml && sed -i 's|exp029_seed6_ood_eval|exp029_seed5_ood_eval|g' /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml && sed -i 's|train: 789|train: 456|g' /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml && sed -i 's|val: 321|val: 789|g' /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml && sed -i '1s|.*|# exp029 Seed 5 step 10 OOD eval (134 tasks) - westd cuda:3|' /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cp /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed6_ood_eval.yaml /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml && sed -i 's|qwen_exp029_seed6_step15_hf|qwen_exp029_seed5_step10_hf|g' /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml && sed -i 's|CUDA_VISIBLE_DEVICES: \"2\"|CUDA_VISIBLE_DEVICES: \"3\"|g' /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml && sed -i 's|exp029-seed6-ood-eval|exp029-seed5-step10-ood-eval|g' /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml && sed -i 's|exp029_seed6_ood_eval|exp029_seed5_ood_eval|g' /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml && sed -i 's|train: 789|train: 456|g' /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml && sed -i 's|val: 321|val: 789|g' /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml && sed -i '1s|.*|# exp029 Seed 5 step 10 OOD eval (134 tasks) - westd cuda:3|' /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T14:03:33.623361+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T14:03:33.623513+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T14:03:33.623714+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# exp029 Seed 5 step 10 OOD eval (134 tasks) - westd cuda:3\\n# FSDP->HF conversion required before running\\n\\ndefaults:\\n  - base\\n\\nhydra:\\n  searchpath:\\n    - pkg://verl.trainer.config\\n\\nseed:\\n  train: 456\\n  val: 789\\n\\nmodel_path: /root/autodl-tmp/checkpoints/qwen_exp029_seed5_step10_hf\\n\\nsystem:\\n  CUDA_VISIBLE_DEVICES: \\\"3\\\"\\n\\nmicro_batch_size_per_gpu: 1\\nppo_mini_batch_size: 1\\n\\ntrainer:\\n  project_name: cost-verify-agent-rl\\n  experiment_name: exp029-seed5-step10-ood-eval\\n  total_training_steps: 1\\n  n_gpus_per_node: 1\\n  val_before_train: True\\n  val_only: True\\n  test_freq: 999\\n  save_freq: 999\\n  local_log_dir: \\\"/root/autodl-tmp/checkpoints/exp029_seed5_ood_eval/\\\"\\n  default_local_dir: \\\"/root/autodl-tmp/checkpoints/exp029_seed5_ood_eval/\\\"\\n  logger: ['console', 'wandb']\\n  max_actor_ckpt_to_keep: 1\\n  resume_mode: \\\"disable\\\"\\n\\nactor_rollout_ref:\\n  model:\\n    override_config:\\n      attn_implementation: sdpa\\n  actor:\\n    use_ref: False\\n    use_torch_compile: False\\n    use_kl_loss: False\\n    kl_loss_coef: 0.0\\n    entropy_coeff: 0.0\\n    clip_ratio_low: 0.2\\n    clip_ratio_high: 0.28\\n    loss_agg_mode: \\\"token-mean\\\"\\n    optim:\\n      lr: 1e-7\\n  ref:\\n    use_torch_compile: False\\n  rollout:\\n    response_length: 1024\\n    gpu_memory_utilization: 0.85\\n    enable_chunked_prefill: true\\n    max_model_len: 20480\\n    temperature: 1.0\\n    max_num_batched_tokens: 20480\\n    enforce_eager: True\\n    val_kwargs:\\n      do_sample: True\\n      temperature: 0.4\\n\\nalgorithm:\\n  adv_estimator: grpo\\n  gamma: 0.95\\n  high_level_gamma: 0.95\\n  norm_adv_by_std_in_grpo: True\\n\\nagent_proxy:\\n  context_window_mode: full\\n  max_context_window: -1\\n  step_independent_history_length: 2\\n  max_turn: 50\\n  max_actions_per_turn: 1\\n  max_prompt_length: 16384\\n  use_turn_scores: True\\n\\ncollapse_dete
+…[truncated 479 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T14:03:33.623897+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "python3 -c \"import yaml; yaml.safe_load(open('/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml')); print('YAML OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "python3 -c \"import yaml; yaml.safe_load(open('/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml')); print('YAML OK')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T14:03:33.624031+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T14:03:33.624156+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "python3 -c \"import yaml; yaml.safe_load(open('/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml')); print('YAML OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "python3 -c \"import yaml; yaml.safe_load(open('/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml')); print('YAML OK')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T14:03:33.624286+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"import yaml; yaml.safe_load(open(\\\\'/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml\\\\')); print(\\\\'YAML OK\\\\')\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-21T14:03:33.624426+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"import yaml; yaml.safe_load(open('/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml')); print('YAML OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"import yaml; yaml.safe_load(open('/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml')); print('YAML OK')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T14:03:33.624561+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"YAML OK\\n\", \"stderr\": \"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-21T14:03:33.624726+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && nohup bash -c \"RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed5_ood_eval\" > /tmp/exp029_seed5_ood_eval.log 2>&1 &  echo \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && nohup bash -c \"RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed5_ood_eval\" > /tmp/exp029_seed5_ood_eval.log 2>&1 &  echo \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T14:03:33.624862+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && nohup bash -c \\\"RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed5_ood_eval\\\" > /tmp/exp029_seed5_ood_eval.log 2>&1 &  echo \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=375913\\n\\nStderr:\\n\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T14:03:33.625014+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "tail -20 /tmp/exp029_seed5_ood_eval.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "tail -20 /tmp/exp029_seed5_ood_eval.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-21T14:03:33.625137+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "ps -p 375913 -o pid,stat,etime,cmd",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "ps -p 375913 -o pid,stat,etime,cmd",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T14:03:33.625290+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=382535)\\u001b[0m                                'tool_config': {'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig',\\n\\u001b[36m(TaskRunner pid=382535)\\u001b[0m                                                        'analysis': True,\\n\\u001b[36m(TaskRunner pid=382535)\\u001b[0m                                                        'contents': [],\\n\\u001b[36m(TaskRunner pid=382535)\\u001b[0m                                                        'discrete': False,\\n\\u001b[36m(TaskRunner pid=382535)\\u001b[0m                                                        'level': 'level1'},\\n\\u001b[36m(TaskRunner pid=382535)\\u001b[0m                                                'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig',\\n\\u001b[36m(TaskRunner pid=382535)\\u001b[0m                                                         'discrete': False},\\n\\u001b[36m(TaskRunner pid=382535)\\u001b[0m                                                'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig',\\n\\u001b[36m(TaskRunner pid=382535)\\u001b[0m                                                          'step_end': None,\\n\\u001b[36m(TaskRunner pid=382535)\\u001b[0m                                                          'step_start': 0},\\n\\u001b[36m(TaskRunner pid=382535)\\u001b[0m                                                'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig',\\n\\u001b[36m(TaskRunner pid=382535)\\u001b[0m                                                                 'stack_depth': 32,\\n\\u001b[36m(TaskRunner pid=382535)\\u001b[0m                                                                 'trace_alloc_max_entries': 100000}}},\\n\\u001b[36m(TaskRunner pid=382535)\\u001b[0m                   'reward_manager': 'naive',\\n\\u001b[36m(TaskRunner pid=382535)\\u001b[0m                
+…[truncated 1529 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T14:03:33.625446+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID STAT     ELAPSED CMD\\n375913 S          00:36 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && nohup bash -c \\\"RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed5_ood_eval\\\" > /tmp/exp029_seed5_ood_eval.log 2>&1 &  echo \\\"PID=$!\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-21T14:03:33.625610+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T14:03:33.625744+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 97167 MiB, 97887 MiB\\n1, 97167 MiB, 97887 MiB\\n2, 0 MiB, 97887 MiB\\n3, 3 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T14:03:33.625894+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "tail -5 /tmp/exp029_seed5_ood_eval.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "tail -5 /tmp/exp029_seed5_ood_eval.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T14:03:33.626028+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(WorkerDict pid=383150)\\u001b[0m `torch_dtype` is deprecated! Use `dtype` instead!\\n\\u001b[36m(WorkerDict pid=383150)\\u001b[0m /root/miniconda3/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:479: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.\\n\\u001b[36m(WorkerDict pid=383150)\\u001b[0m   _init_core_state(\\n\\u001b[36m(WorkerDict pid=383150)\\u001b[0m /root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.\\n\\u001b[36m(WorkerDict pid=383150)\\u001b[0m   warnings.warn(\\\"Torch profiler tool config is not fully supported now.\\\", stacklevel=1)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-21T14:03:33.626177+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T14:03:33.626304+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 97167 MiB, 97887 MiB\\n1, 97167 MiB, 97887 MiB\\n2, 0 MiB, 97887 MiB\\n3, 8779 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-21T14:03:33.626461+00:00_
+
+GPU 3 已加载 8.8GB，模型正在加载中（vLLM 还会继续分配）。
+
+### 产出汇总
+
+| 项目 | 结果 |
+|------|------|
+| FSDP→HF 转换 | 成功，311 params, 2.03B, bf16, `/root/autodl-tmp/checkpoints/exp029-seed5/global_step_10_hf/` |
+| 符号链接 | `qwen_exp029_seed5_step10_hf` → `global_step_10_hf` |
+| Eval 配置 | `_alfworld_exp029_seed5_ood_eval.yaml`，YAML 验证通过 |
+| Eval PID | 375913（子进程 TaskRunner=382535, WorkerDict=383150） |
+| GPU 使用 | 0,1: Seed 7 训练 (97GB) / 2: Seed 6 eval 已完成或空闲 / 3: Seed 5 eval 加载中 (8.8GB↑) |
+| 日志 | `/tmp/exp029_seed5_ood_eval.log` |
+
+GPU 2 (Seed 6 eval) 显示 0 MiB——可能已经跑完了，建议确认一下 PID 342378 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_pipeline_seed5_fsdp_hf_and_ood_eval_20260521T140048"
+}
+```
+
+</details>
+
+---

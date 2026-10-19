@@ -1,0 +1,37 @@
+{
+  "exp_id": "8b_cell_c_episode_v8",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:10:15.655Z",
+    "updated_at": "2026-05-19T14:13:45.227Z",
+    "hypothesis": "Reducing ppo_mini_batch_size 4→2 halves backward activation memory (~3.7 GiB freed), and lowering gpu_memory_utilization 0.25→0.22 returns ~2.88 GiB/GPU to PyTorch allocator. Together these resolve the backward OOM that killed v7 (needed 3.7 GiB, had 0). D094 final attempt — if fails, 8B Cell C abandoned.",
+    "parent": "8b_cell_c_episode_v7",
+    "spec": {
+      "command": "bash -c 'cd /root/cost-verify-agent-rl/RAGEN/config && sed -i \"s/ppo_mini_batch_size: 4/ppo_mini_batch_size: 2/g; s/gpu_memory_utilization: 0.25/gpu_memory_utilization: 0.22/g\" _alfworld_8b_cell_c.yaml && echo \"=== Config verification ===\" && grep -E \"ppo_mini_batch_size|gpu_memory_utilization|use_ref|use_kl_loss|max_model_len\" _alfworld_8b_cell_c.yaml && echo \"=== Starting training ===\" && cd /root/cost-verify-agent-rl/RAGEN && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/autodl-tmp/checkpoints/8b-cell-c /root/autodl-tmp/tmp /root/autodl-tmp/ray_tmp && export TMPDIR=/root/autodl-tmp/tmp && export RAY_TMPDIR=/root/autodl-tmp/ray_tmp && export WANDB_PROJECT=cost-verify-agent-rl && CUDA_VISIBLE_DEVICES=0,1,2,3 python train.py --config-name _alfworld_8b_cell_c'",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "113992",
+      "log_path": "~/runs/cost-verify-agent-rl/8b_cell_c_episode_v8.log",
+      "submitted_at": "2026-05-19T14:13:14.349Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T14:13:43.897Z"
+    },
+    "failure_reason": "Traceback → h_size, \\ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ AssertionError: actor ppo_micro_batch_size_per_gpu * n_gpus_per_node (4) must be less than or equal to ppo_mini_batch_size (2)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-19T14:13:45.432360+00:00",
+  "trigger": "update_registry"
+}

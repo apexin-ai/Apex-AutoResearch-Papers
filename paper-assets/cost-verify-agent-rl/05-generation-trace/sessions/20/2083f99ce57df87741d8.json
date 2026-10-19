@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2083f99ce57df87741d8",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research literature scan",
+  "task_key": "worker_research_literature-scan_20260516T000327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-scan_20260516T000327_result.json",
+    "occurrence": 1,
+    "bytes": 1403,
+    "sha256": "16a006d960985359c5cb5234a4e4d65d783a52e7e7496c48d6a5e67e1b7782df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "扫描完成。以下是结果摘要：\n\n## 新增 9 篇论文到 literature_map.yaml\n\n**ALFWorld 新 baseline（4 篇）：**\n- **PA-MoE** (2602.17038) — 93.8% ALFWorld，1.5B 小模型新 SOTA，超过 ReflAct prompting (93.3%)\n- **SDAR** (2605.15155) — +9.4% over GRPO，May 2026 刚出\n- **HCAPO** (2603.08754) — +13.8% over GRPO (7B)，hindsight credit assignment\n- **SKILL0** (2604.02268) — +9.7% over GRPO，skill internalization\n\n**方法相关（3 篇）：** ACT (2603.08706), RWML (2602.05842), Fission-GRPO (2601.15625)\n\n**背景（2 篇）：** SelfBudgeter (2505.11274), CoVe (2603.01940)\n\n## 竞争格局判断\n\n**核心 novelty 安全。** 未发现新的直接竞争者。没有论文同时做到 RL-trained binary verify decision + interactive agent + action-change reward signal。ARES 仍是最近的竞争者，但区分点清晰（SFT router + token efficiency reward vs pure RL + action-change signal）。\n\n**ALFWorld 格局大变。** 准确率已饱和至 93.8%（PA-MoE），进一步支持 B-IAVR 聚焦 cost-efficiency 的定位。论文中需更新 baseline 表格。\n\n## 行动项\n1. 论文 ALFWorld baseline 表加入 PA-MoE (93.8%)\n2. Related Work 加入 SDAR、HCAPO、SKILL0\n3. 可选：探索 HCAPO credit assignment 改善 verification reward signal\n\n详细简报已保存到 `artifacts/literature_scan_20260516.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-scan-copy-2.md"
+}

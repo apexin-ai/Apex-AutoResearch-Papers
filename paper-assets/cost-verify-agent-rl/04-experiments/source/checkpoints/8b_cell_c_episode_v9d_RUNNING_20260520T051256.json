@@ -1,0 +1,79 @@
+{
+  "exp_id": "8b_cell_c_episode_v9d",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-19T23:13:25.570Z",
+    "updated_at": "2026-05-20T05:12:56.660Z",
+    "hypothesis": "FSDP2 + CPUOffloadPolicy 8B Cell C episode-level GRPO。v9c 证明训练有效（2步 success 40%→64%），但 step 3 因 max_prompt_length==max_model_len 溢出。v9d 修复：max_prompt_length 16384→15360，留 1024 token headroom。从头训练（无 checkpoint）。",
+    "parent": "8b_cell_c_episode_v9c",
+    "reproduce": {
+      "finished_at": "2026-05-20T05:12:55.027Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-20T02:20:48.275Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T02:20:51.818939+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "metrics": {
+          "step": 5,
+          "val_before_train_success": 0.40625,
+          "val_success_step5": 0.8125,
+          "success_trend": "40.6% → 81.25% (5 steps, excellent)",
+          "crash_reason": "disk full during torch.save optimizer state at step 5 checkpoint (autodl-tmp 91% full, 23GB remaining)",
+          "crash_is_algorithmic": false,
+          "note": "max_prompt_length fix worked (no v9c prompt overflow). Crash purely operational."
+        }
+      }
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && export WANDB_PROJECT=cost-verify-agent-rl && python train.py --config-name _alfworld_8b_cell_c_v9\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "511498",
+      "log_path": "~/runs/cost-verify-agent-rl/8b_cell_c_episode_v9d.log",
+      "submitted_at": "2026-05-20T05:11:34.969Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "metrics": {
+      "step": 5,
+      "steps_total": 30,
+      "step_time_s": 1689,
+      "eta_hours": 11.7,
+      "val_before_train_success": 0.40625,
+      "train_success_step3": 0.4297,
+      "train_success_step5": 0.7734,
+      "val_success_step5": 0.8125,
+      "entropy_step5": 0.0548,
+      "kl_step5": 0.00149,
+      "pg_clipfrac_step5": 0.00268,
+      "grad_norm_step5": 0.544,
+      "action_is_valid_step5": 0.95,
+      "pass_at_8": 1,
+      "throughput_tok_s": 115,
+      "disk_available_gb": 12.4,
+      "disk_warning": "Ray reports 95% full after step 5 checkpoint save, only 12.4GB remaining. Step 10 checkpoint will crash unless space freed.",
+      "note": "val success 81.25% matches previous run. 0% GPU util was CPUOffload inter-step phase."
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-20T05:12:56.873870+00:00",
+  "trigger": "update_registry"
+}

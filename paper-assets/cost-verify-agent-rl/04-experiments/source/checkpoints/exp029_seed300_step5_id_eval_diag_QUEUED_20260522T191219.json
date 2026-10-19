@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp029_seed300_step5_id_eval_diag",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T19:08:01.169Z",
+    "updated_at": "2026-05-22T19:12:19.685Z",
+    "hypothesis": "Diagnostic: in-distribution eval of seed300 step5 checkpoint to verify if OOD 0.0% is due to checkpoint conversion error or true OOD generalization failure. Same checkpoint (qwen_exp029_seed300_step5_hf), same pipeline, but ID tasks instead of OOD. If ID≈0% → checkpoint bug; if ID≈25% → real OOD failure.",
+    "parent": "exp029_seed300_step5_ood_eval_v2"
+  },
+  "timestamp": "2026-05-22T19:12:19.999148+00:00",
+  "trigger": "update_registry"
+}

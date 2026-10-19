@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "050749d5ad85f65f5354",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops westd cleanup restart ood eval",
+  "task_key": "worker_ops_westd-cleanup-restart-ood-eval_20260519T024512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-cleanup-restart-ood-eval_20260519T024512_result.json",
+    "occurrence": 1,
+    "bytes": 909,
+    "sha256": "353f45c98fd0f8f3a59219b5b096e735c0504a8b68b0e7d5b4dab1fbcd538975"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OOD eval 已启动，正在评估 **134 个 AlfworldSG_OOD tasks (eval_out_of_distribution)**。\n\n汇总：\n\n| 项目 | 状态 |\n|------|------|\n| GPU 清理 | 4 张 GPU 全部释放（182 个 Ray 进程已清理） |\n| hsweep_h10_seed1 | 已终止（PID 34193 + 所有 Ray worker） |\n| 旧 OOD eval | 已终止（PID 691244） |\n| 新 OOD eval PID | **719394**（bash wrapper），实际 train.py PID **725711** |\n| W&B run | **l0zohzt5** — `exp029-seed2-ood-reeval` |\n| GPU 使用 | cuda:0 (11102MiB) + cuda:1 (11102MiB)，cuda:2,3 空闲 |\n| Checkpoint | global_step_30 加载成功（world_size=2 需要 2 卡） |\n| Config | `_alfworld_exp029_seed2_reeval_ood`（原始 2GPU config） |\n\n注意：因 checkpoint 是 world_size=2 保存的，必须用 2 卡加载，无法单卡运行。已通过 `CUDA_VISIBLE_DEVICES=0,1` 限制只用 cuda:0,1，cuda:2,3 保持空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-cleanup-restart-ood-eval.md"
+}

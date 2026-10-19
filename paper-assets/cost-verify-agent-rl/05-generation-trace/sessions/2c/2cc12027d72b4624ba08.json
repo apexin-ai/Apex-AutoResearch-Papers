@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cc12027d72b4624ba08",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "paper figure fig theoretical sign probability",
+  "task_key": "worker_paper_figure_fig-theoretical-sign-probability_20260518T212424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig-theoretical-sign-probability_20260518T212424_result.json",
+    "occurrence": 1,
+    "bytes": 740,
+    "sha256": "42ab342359a1ac81ec45ee3e9ee7a7287b7b095c98bbfe282a46387e1a433b56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成，PDF 和 PNG 均已保存。\n\n**输出文件：**\n- PDF: `figures/paper/fig_theoretical_sign_probability.pdf`\n- PNG: `figures/paper/fig_theoretical_sign_probability.png`\n\n**关键读数：**\n\n| p | K=2 | K=4 | K=8 | K=16 |\n|---|-----|-----|-----|------|\n| 0.05 | 51.3% | 27.0% | 14.9% | 8.9% |\n| 0.10 | 52.6% | 29.1% | 17.6% | 12.3% |\n| **0.125** | 53.3% | 30.2% | **19.0%** | 14.2% |\n| 0.20 | 55.6% | 33.9% | 24.0% | 20.6% |\n| 0.50 | 66.7% | 53.3% | 50.2% | 50.0% |\n\n核心结论可视化验证：K=8, p=12.5% 时只有 19% 的 gradient update 方向正确；K 越大，低 success rate 区域的 sign accuracy 越差，趋近 y=p 对角线。K=16 在 p=0.05 时仅 8.9%，几乎是纯噪声。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-theoretical-sign-probability.md"
+}

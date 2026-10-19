@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "189ae580257630a35186",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp013e early steps",
+  "task_key": "worker_monitor_exp013e-early-steps_20260514T091535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp013e-early-steps_20260514T091535_result.json",
+    "occurrence": 1,
+    "bytes": 1826,
+    "sha256": "b6456cf5b2bee82f48c7e8859639482ba7eb3d55516f56696f36dabc3a4bac39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp013e 状态报告\n\n### 进程状态：**已死**\n\n| 项目 | 值 |\n|------|-----|\n| PID 298696 | 不存在 |\n| 启动时间 | 2026-05-14 17:07:58 |\n| 恢复 checkpoint | exp008_grpo/global_step_5 |\n| Ray object_store_memory | 30 GB (32212254720) ✅ 正确设置 |\n| CUDA_VISIBLE_DEVICES | 0,1 ✅ |\n| env_groups | 4, group_size=16 ✅ |\n\n### 内存门：**未到达**\n\nexp013e **从未执行任何训练步**。流程是：\n1. 加载 checkpoint (step 5)\n2. 初始 validation (step 5)\n3. **崩溃** — 在第一个 training rollout 之前就死了\n\n这与 exp013b/c/d 的崩溃模式**不同**。b/c/d 是 step 6 rollout 时 Plasma OOM；exp013e 连 step 6 都没开始。\n\n### 死因\n\n```\nray.exceptions.ActorUnavailableError: RPC error: Socket closed rpc_code: 14\n```\n\n**不是 Plasma OOM**。Ray actor 进程意外死亡导致 RPC socket 断开。可能原因：\n- Worker 进程被 cgroup OOM killer 杀掉（系统级，不是 Plasma 层）\n- vLLM worker 初始化 training rollout 时崩溃\n- 日志中无 `KILLED`/`OOM`/`raylet` 关键词，Ray session logs 也已清理，无法确认根因\n\n### Validation 指标 (step 5, checkpoint 基线)\n\n| 指标 | 值 |\n|------|-----|\n| success | 0.0 |\n| action_is_valid | 0.656 |\n| action_is_effective | 0.973 |\n| reward/mean@16 | 2.953 |\n| reward/std@16 | 1.608 |\n| reward/best@16 | 4.497 |\n| reward/worst@16 | 0.416 |\n\n无训练指标（pg_loss, grad_norm 等），因为训练循环从未启动。\n\n### 结论\n\nexp013e 在 validation → training 过渡阶段因 Ray actor 死亡而崩溃。30GB object_store 设置正确但未经受训练 rollout 的考验。需要排查 worker 死亡的根因（建议下次加 `HYDRA_FULL_ERROR=1` 并检查 `dmesg` 中的 OOM killer 记录），然后重新启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp013e-early-steps.md"
+}

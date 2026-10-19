@@ -1,0 +1,101 @@
+{
+  "exp_id": "exp027_stable_grpo",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:04:13.123Z",
+    "updated_at": "2026-05-15T20:42:42.920Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl && bash scripts/run_exp027_stable_grpo.sh\"",
+      "server": "bjb1-17606",
+      "gpu": "cuda:0,cuda:1",
+      "pid": 789790,
+      "log_path": "~/runs/cost-verify-agent-rl/exp027_stable_grpo.log",
+      "submitted_at": "2026-05-15T14:33:03.633Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "RAGEN expert data (same as exp021/026)",
+      "data_count": "16 train / 128 val per epoch, env_groups=8: 128 rollouts per train step",
+      "model_name": "Qwen3-1.7B (SFT checkpoint: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4)",
+      "seed": 0,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4",
+      "eval_data": "ALFWorld train+val environments (RAGEN format, val env_groups=16, C003-compliant)",
+      "framework": "RAGEN + cherry-picked step-independent rollout",
+      "algorithm": "GRPO + step-independent rollout + discounted returns",
+      "key_params": {
+        "lr": 5e-07,
+        "kl_loss_coef": 0.005,
+        "entropy_coeff": 0.01,
+        "save_freq": 5,
+        "total_training_steps": 50,
+        "test_freq": 5,
+        "env_groups_train": 8,
+        "env_groups_val": 16,
+        "max_actor_ckpt_to_keep": 10,
+        "context_window_mode": "step_independent",
+        "step_independent_history_length": 5,
+        "gamma": 0.95,
+        "group_size": 16,
+        "invalid_action_penalty_coef": 0.1,
+        "max_turn": 50,
+        "WANDB_MODE": "enabled"
+      },
+      "wall_clock_seconds": 22179.3,
+      "gpu_hours": 6.16
+    },
+    "notes": "运行中。PID=789790, cuda:0+cuda:1。早停条件已更新(Director指令): step 5 完成后立即终止（不再等 step 10）。Step 4 进行中(预计还需~30min)。趋势：success 35.94%→10.16%, KL 0.058→0.248。Recipe Gap 诊断完成：62pp gap 三大根因——(1) SFT起点反效果, (2) Binary reward零梯度, (3) Mini-batch 8×过小。exp028 配置准备中(2个Worker)。",
+    "hypothesis": "Stabilized step-independent GRPO: 针对 exp026 死亡螺旋根因（sparse reward + 小 env_groups 导致全零 batch），增加 rollouts（env_groups 4→8, 128 trajectories）、降低 LR（1e-6→5e-7）、降低 KL（0.01→0.005）、新增 entropy bonus（0.01）、save_freq 5 捕获峰值。50 步快速验证。Pass: success ≥20% 且无连续 2 步归零。",
+    "parent": "exp026_step_independent_grpo",
+    "wandb_run_id": "y7jiibqk",
+    "metrics": {
+      "step_0_val_before_train": {
+        "success": 6.25,
+        "action_is_valid": 63.125,
+        "action_is_effective": 87.875,
+        "num_actions": 42.375,
+        "response_length": 114.67,
+        "reward_mean": 0.3226,
+        "val_generation_time_s": 502.57
+      },
+      "step_1_train": {
+        "success": 35.94,
+        "kl_loss": 0.058,
+        "batch_size": 5152,
+        "training_time_s": 4342
+      },
+      "step_2_train": {
+        "success": 10.16,
+        "kl_loss": 0.413,
+        "batch_size": 6144,
+        "training_time_s": 5886
+      },
+      "step_3_train": {
+        "success": 10.16,
+        "kl_loss": 0.248,
+        "entropy": 0.385,
+        "pass_at_16": 0.5,
+        "grad_norm": 21.31,
+        "reward_mean": 0.483,
+        "batch_size": 6048,
+        "training_time_s": 4689
+      },
+      "step_4_train": {
+        "success": 13.28,
+        "pass_at_16": 0.375,
+        "note": "Director判定: 趋势确认, MVP未通过"
+      }
+    },
+    "conclusion": "failed",
+    "reproduce": {
+      "finished_at": "2026-05-15T20:42:41.686Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-15T20:42:42.920Z"
+  },
+  "timestamp": "2026-05-15T20:42:43.034281+00:00",
+  "trigger": "update_registry"
+}

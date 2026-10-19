@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02656f3b399251801d52",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp013f early health",
+  "task_key": "worker_monitor_exp013f-early-health_20260514T093311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp013f-early-health_20260514T093311_result.json",
+    "occurrence": 1,
+    "bytes": 1373,
+    "sha256": "bba347270d7a80ecb9f08861e7ca65b41b03e5441a3fd2c6b976bc5cb5fd5455"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练正在健康运行！**\n\n- 进程存活：2:48 elapsed\n- GPU 0: 44% 利用率, 191W, 48.2GB VRAM\n- GPU 1: **100% 利用率**, 103W, 48.2GB VRAM\n- 仍在 `actor_rollout_generate_sequences`（vLLM 推理生成 rollout）\n- 显存从 10.9GB→48.2GB，vLLM KV-cache 已分配\n\n日志文件 tail 仍显示同样内容（1599 行），说明 stdout 输出被 Ray 缓冲。这正常——generation 阶段通常是安静的。\n\n---\n\n## exp013f 早期健康报告\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | ALIVE, PID 313810, 运行 ~3 分钟 |\n| **环境变量** | ✅ `RAY_memory_monitor_refresh_ms=0`, `RAY_SYSTEM_MEMORY=210GB`, `HYDRA_FULL_ERROR=1` 均已在脚本中设置 |\n| **GPU 利用率** | ✅ GPU0 44%/191W, GPU1 100%/103W |\n| **GPU 显存** | 48.2GB/97.9GB per card（vLLM KV-cache 已激活） |\n| **训练进度** | Step 5/30 → rollout generation 进行中 |\n| **val→train 过渡** | ✅ **已成功通过**（此前 5 次崩溃点） |\n| **错误** | 无错误，仅有 FutureWarning（不影响运行） |\n| **val env_groups** | 4（已从 16 降低） |\n\n**结论：exp013f 已成功通过历史崩溃点，正在执行第 6 步（从 step 5 恢复）的 rollout generation。MemoryMonitor 修复有效。建议 5-10 分钟后再次检查，确认 generation→gradient update 循环正常完成。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp013f-early-health.md"
+}

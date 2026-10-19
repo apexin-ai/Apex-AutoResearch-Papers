@@ -1,0 +1,68 @@
+# investigate advantage logging feasibility
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_investigate_advantage_logging_feasibility_20260517T061749_result.json`
+- **Structured JSON:** [`b678d5120fff7e306a92.json`](../../sessions/b6/b678d5120fff7e306a92.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+现在完全清楚了。让我总结核心发现。
+
+## 方案 1 可行性
+
+- **W&B 是否记录 per-sample advantages**: **N**。W&B 只记录聚合统计：`critic/advantages/mean`, `max`, `min`（来自 `metric_utils.py:164-166`）。无 per-sample breakdown。
+- **日志中是否有 per-sample data**: **N**。stdout 日志无 per-sample advantage 数据。
+- **方案 1 不可行**。
+
+## GRPO Advantage 计算逻辑
+
+**文件**: `ragen/trainer/agent_trainer.py:271-340` + `ragen/trainer/core_algos.py:194-246` + `ragen/trainer/step_rewards.py`
+
+**step_independent 模式下的完整流程**:
+
+1. `assign_step_rewards()`: 终端 step 获得 episode_reward，非终端 step 获得 0（或 invalid penalty）
+2. `compute_step_discounted_returns()`: 按 episode 内 step 倒序计算 `R_t = r_t + γ·R_{t+1}`
+3. `compute_grpo_step_advantage()`: 按 `uid`（= `group_ids` = task/prompt）分组，组内标准化 `(return - mean) / (std + eps)`
+
+**关键发现：同一 episode 的不同 windows 获得不同的 advantage**。
+
+原因：`step_returns` 是 per-window 的（每个 window/step 有不同的 discounted return，因为它们处于 episode 中不同位置），然后这些 per-step returns 被送入 GRPO 组内标准化。所以同一 episode 的 window 0（return 高，因为包含从 step 0 开始的全部未来回报）和 window 4（return 低，只有最后几步的回报）会获得不同 advantage。
+
+**这与 "同一 episode 所有 windows 获得相同 GRPO advantage" 的假设不一致。** dual mechanism claim 需要修正——step_independent 不是简单地将 episode-level reward 平摊给所有 windows，而是先做 step-level return 分配再做 group normalization。
+
+## 方案 2 改动评估
+
+**修改文件**: `ragen/trainer/agent_trainer.py` (line ~340 附近，`compute_grpo_step_advantage` 返回后)
+
+**改动 ~10 行**:
+
+```python
+# 在 line 340 (data.batch["advantages"] = advantages) 之后加:
+if os.environ.get("LOG_PER_SAMPLE_ADV", "0") == "1":
+    _step_ind_logger.info(
+        "[PER_SAMPLE_ADV] episode_ids=%s step_returns=%s advantages_scalar=%s",
+        episode_ids.tolist()[:50],
+        step_returns[:50].tolist(),
+        advantages[:50, 0].tolist(),  # 第一个 token 的 advantage = scalar broadcast 值
+    )
+```
+
+**是否影响正在跑的 h=2 seed 1**: 不影响（默认 env var 不设置则不 log）
+
+**建议**: 在下一个 h-sweep run（h=3 或 h=2 seed 2）中设置 `LOG_PER_SAMPLE_ADV=1` 启用。但更重要的是——从代码逻辑已经可以明确结论：**同一 episode 的 windows 获得不同 advantage（按 discounted return 位置衰减）**，不需要实验验证即可得出此结论。论文中的 dual mechanism claim 需要对应调整表述。
+
+---

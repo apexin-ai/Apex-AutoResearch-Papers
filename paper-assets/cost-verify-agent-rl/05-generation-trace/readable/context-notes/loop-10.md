@@ -1,0 +1,64 @@
+# director / loop_10.md
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/director/loop_10.md`
+- **Structured JSON:** [`491d35e4f6ec0e8bf58f.json`](../../sessions/49/491d35e4f6ec0e8bf58f.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 10
+reason: max_messages
+updated: '2026-05-15T23:26:44+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 只能用 bjb1-17606 的 cuda:0 + cuda:1（C001 白名单）
+- 模型路径：SFT checkpoint 在 `/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4`，**不要用** `/root/cost-verify-agent-rl/models/Qwen3-1.7B-Instruct`（已删除，之前是误导性 symlink）
+- `invalid_action_penalty_coef` 代码默认值已经是 0.1（`agent_trainer.py:921 getattr(..., 0.1)`），显式设 0.1 等于没改——不要再把 penalty 当作实验变量
+- HF 上 Qwen3-1.7B 和 Qwen3-1.7B-Instruct 是**两个独立模型**，registry notes 中"Qwen3-1.7B 就是 instruct 模型"的声明待修正
+
+### 2. 🖥️ 基础设施快照
+- 服务器：bjb1-17606 (connect.bjb1.seetacloud.com)，账号 root
+- 工作目录：`/root/cost-verify-agent-rl`
+- 模型：`/root/autodl-tmp/models/Qwen/Qwen3-1.7B`（base 模型 symlink），SFT checkpoint 见上
+- W&B：exp028c run_id=4yu6qz1m，run name=exp028c-selfguide-recipe
+- 活跃进程：exp028c PID=824675（Ray workers 828110/828111），cuda:0+1，双卡 ~41GB VRAM
+- Cron 监控：已注册，120s 轮询 exp028c
+
+### 3. 📊 当前状态
+exp028c（Self-Guide recipe 全面对齐）已启动约 3h，等待 Step 1 首次 metrics。预估每步 ~150min，100 步总计 ~10 天。
+- Registry: exp028c RUNNING；exp028a DONE（功能等价 exp027，已 kill）；其余历史实验全 DONE
+- 等待：exp028c Step 1 metrics（首个信号点），cron 自动回调
+
+### 4. 📋 待办
+- exp028c Step 1 metrics 回来 → 看 train success 和 reward 趋势，与 exp027 Step 1（35.9% peak）对比
+- exp028c Step 5 val 出来（~12h）→ 第一个正式 val 评估点，success ≥20% = MVP 有望
+- exp028c 如果 OOM → fallback 降 prompt_length 到 2048、response 到 512，或降 gpu_memory_utilization 从 0.4 升到 0.7
+- exp028c 如果复现 exp027 collapse（peak 后跌）→ 问题不在 recipe 参数，需要重新审视训练算法本身
+- val=16 episodes 噪声大（±6.25%），如果 val 在 20-30% 区间 → 要求 Agent 跑 128 episode full eval 确认
+
+### 5. 🎯 战略上下文
+- 项目处于 **MVP 阶段**，目标：ALFWorld success ≥20%（GRPO 训练后）
+- 关键决策链：D044（recipe gap 分析）→ D047（SFT 有益非有害）→ D048（保留 SFT checkpoint）→ D050（停 exp028a、根因 #1/#2 均否定、转 recipe 全面对齐）
+- **三大根因已排除两个**：❌ #1 SFT毒药、❌ #2 零梯度/penalty → ✅ #3 Recipe 参数组合（mini-batch/steps/LR）是唯一剩余假设
+- exp028c 是 9 项参数同时对齐 Self-Guide（mini_batch 32→128、steps 50→100、LR 5e-7→1e-6 等），唯一未完全对齐的是 mini_batch（128 vs Self-Guide 256，受框架断言限制）
+- **易错点**：exp027 的 collapse（35.9%→10%）发生在 step 20-30 左右。exp028c 如果也 peak 后跌，不要急着停——先看是否跌幅更小或恢复更快（recipe 改进可能表现为更稳定而非更高 peak）
+- Self-Guide 论文报告 72.7%，我们从 SFT 起点（6.25%）出发理论上应该更快收敛。如果 100 步后仍 <20%，recipe 参数可能不是根因，需要审视 RAGEN 框架与 Self-Guide 框架的算法差异
+
+
+---

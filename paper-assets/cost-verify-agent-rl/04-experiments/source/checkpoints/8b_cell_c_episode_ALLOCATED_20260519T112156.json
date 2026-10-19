@@ -1,0 +1,32 @@
+{
+  "exp_id": "8b_cell_c_episode",
+  "project": "cost-verify-agent-rl",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T10:08:01.438Z",
+    "updated_at": "2026-05-19T11:21:56.767Z",
+    "hypothesis": "8B Cell C: episode-level RL with full context from 80.6% SFT baseline. Positive control for scale analysis. At 1.7B Cell C reached ~28-31% OOD. If 8B Cell C maintains/improves from 80.6%, confirms episode-level advantage is robust across model scales. Core comparison vs Cell A: Cell A collapse (28.1%→12.5% step 1) + Cell C stability = scale-invariant mechanism confirmation. lr=5e-7.",
+    "parent": "7b_sft_v1",
+    "spec": {
+      "command": "bash -c 'export TMPDIR=/root/autodl-tmp/tmp && mkdir -p /root/autodl-tmp/tmp && export RAY_TMPDIR=/root/autodl-tmp/ray_tmp && mkdir -p /root/autodl-tmp/ray_tmp && export TMUX_TMPDIR=/root/autodl-tmp/tmux && mkdir -p /root/autodl-tmp/tmux && export TORCH_COMPILE_DISABLE=1 && export PYTHONUNBUFFERED=1 && export CUDA_VISIBLE_DEVICES=0,1,2,3 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_8b_cell_c'",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "977400",
+      "log_path": "~/runs/cost-verify-agent-rl/8b_cell_c_episode.log",
+      "submitted_at": "2026-05-19T11:19:34.673Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-19T11:21:56.927610+00:00",
+  "trigger": "update_registry"
+}

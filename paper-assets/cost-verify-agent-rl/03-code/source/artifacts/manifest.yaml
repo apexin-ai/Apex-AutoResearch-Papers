@@ -1,0 +1,1742 @@
+- id: art_20260513_663139
+  name: exp_001 training config
+  type: intermediate
+  description: ALFWorld always-on self-guidance GRPO training config (50 steps, Qwen3-1.7B
+    full finetune)
+  path: projects/cost-verify-agent-rl/artifacts/exp_001/intermediate/exp_001_config_summary.txt
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp_001
+  skill: ''
+  created_at: '2026-05-13T18:37:32.515913+00:00'
+  tags: []
+- id: art_20260513_78258f
+  name: exp003-launch-report
+  type: report
+  description: 'exp_003 training launch report: sliding window prompt truncation verification
+    + formal training submission'
+  path: projects/cost-verify-agent-rl/artifacts/exp003/report/exp003_launch_report.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp003
+  skill: ''
+  created_at: '2026-05-13T21:39:47.001143+00:00'
+  tags:
+  - exp003
+  - prompt-truncation
+  - training-launch
+- id: art_20260514_a44993
+  name: exp003 Invalid Action 根因诊断报告
+  type: report
+  description: exp003 ALFWorld GRPO 训练中 95.3% invalid action 的根因诊断：Qwen3-1.7B base
+    模型不生成 RAGEN 期望的 <answer> 标签
+  path: projects/cost-verify-agent-rl/artifacts/exp003/report/exp003_invalid_action_diagnosis.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp003
+  skill: ''
+  created_at: '2026-05-14T00:06:25.980844+00:00'
+  tags:
+  - diagnosis
+  - alfworld
+  - invalid-action
+  - qwen3
+- id: art_20260514_dc01a1
+  name: disk-cleanup-report
+  type: report
+  description: bjb1-17606 根分区磁盘清理 + Ray 临时文件重定向到数据盘 + 磁盘监控脚本部署
+  path: projects/cost-verify-agent-rl/artifacts/disk_cleanup_report.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp007
+  skill: ''
+  created_at: '2026-05-14T09:00:00.000000+00:00'
+  tags:
+  - disk-cleanup
+  - ray-redirect
+  - monitoring
+- id: art_20260514_475afa
+  name: exp007_analysis_report
+  type: report
+  description: 'exp007 training analysis - FAILED: crashed at step 10/30 (disk full)
+    + no learning signal'
+  path: projects/cost-verify-agent-rl/artifacts/exp007/report/exp007_analysis_475afa.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp007
+  skill: ''
+  created_at: '2026-05-14T02:58:03.637341+00:00'
+  tags:
+  - analysis
+  - failed
+  - grpo
+  - alfworld
+- id: art_20260514_fe2930
+  name: convert_sft_data.py
+  type: intermediate
+  description: SFT数据格式转换脚本：将u-10bei/sft_alfworld_trajectory_dataset转为RAGEN格式（think+answer）
+  path: projects/cost-verify-agent-rl/artifacts/exp008_sft/intermediate/convert_sft_data_info.txt
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp008_sft
+  skill: ''
+  created_at: '2026-05-14T03:13:49.313978+00:00'
+  tags:
+  - sft
+  - data
+  - alfworld
+- id: art_20260514_74c966
+  name: sft_train.py
+  type: intermediate
+  description: SFT训练脚本：Qwen3-1.7B + TRL SFTTrainer，简化ChatML模板保留think标签
+  path: projects/cost-verify-agent-rl/artifacts/exp008_sft/intermediate/sft_train_info.txt
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp008_sft
+  skill: ''
+  created_at: '2026-05-14T03:13:53.256226+00:00'
+  tags:
+  - sft
+  - training
+  - qwen3
+- id: art_20260514_955f15
+  name: exp009_analysis
+  type: report
+  description: exp009 GRPO 训练分析报告 — 训练启动即失败，根因为 enable_response_mask 路径检查 bug
+  path: projects/cost-verify-agent-rl/artifacts/exp009/report/exp009_analysis_955f15.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp009
+  skill: ''
+  created_at: '2026-05-14T03:42:54.691460+00:00'
+  tags:
+  - analysis
+  - failed
+  - grpo
+- id: art_20260514_5cbffb
+  name: Phase B Literature Survey
+  type: report
+  description: B-IAVR 相关文献调研：覆盖 selective verification、Lagrangian budget control、self-correction
+    in LLM agents、behavioral change as intrinsic signal 四个方向，共 12 篇论文，含 novelty 定位和
+    Phase B 实现对标建议
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/phase_b_literature_survey.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T04:37:53.174698+00:00'
+  tags:
+  - literature-survey
+  - phase-b
+  - biavr
+- id: art_20260514_0f0de4
+  name: Phase B (B-IAVR) Code Readiness Check
+  type: report
+  description: Code review of B-IAVR selective verification module readiness for Phase
+    B training. 61/61 tests pass. Identifies checkpoint conversion requirement and
+    config fixups needed before launch.
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/phase_b_readiness_check.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T04:38:59.980516+00:00'
+  tags:
+  - phase-b
+  - biavr
+  - code-review
+  - readiness
+- id: art_20260514_695305
+  name: exp010_reward_analysis
+  type: report
+  description: Exp010 GRPO reward shaping 根因分析：format penalty 在零成功 group 中主导 GRPO
+    advantage，导致模型学习"生成合法命令"而非"完成任务"，success 从 4.7% 降至 0%
+  path: projects/cost-verify-agent-rl/artifacts/exp010/report/exp010_reward_analysis.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp010
+  skill: ''
+  created_at: '2026-05-14T05:37:47.629217+00:00'
+  tags:
+  - reward-shaping
+  - grpo
+  - alfworld
+  - training-collapse
+- id: art_20260514_6d1418
+  name: literature_rl_alternatives
+  type: report
+  description: 备选 RL 方案调研：SPEAR/DAPO/GiGPO/EPO 等 13 个算法的论文、超参、适用性分析。SPEAR 在 ALFWorld
+    同设置 +16.1%。
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/literature_rl_alternatives.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T13:34:58.820238+00:00'
+  tags:
+  - literature
+  - rl-algorithms
+  - spear
+  - dapo
+  - gigpo
+- id: art_20260514_d3c5a2
+  name: GRPO Alternatives Survey
+  type: report
+  description: GRPO 替代算法调研：SPEAR/GiGPO/SPA-RL/DAPO/EPO/Dr.GRPO/GDPO 对比分析，针对 sparse
+    reward collapse、dense reward gaming、catastrophic collapse 三大痛点的适用性评估
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/grpo_alternatives_survey.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T13:42:19.632593+00:00'
+  tags:
+  - literature
+  - rl-algorithms
+  - plan-b
+- id: art_20260515_e43261
+  name: convert_sft_to_ragen_format_v4
+  type: data
+  description: 'Conversion script: v3 expert SFT data → RAGEN runtime format (v4).
+    Adds Turn/State/Reward wrapping, AlfworldSG system prompt. Input: expert_sft_v3/*.jsonl,
+    Output: expert_sft_v4/*.jsonl'
+  path: projects/cost-verify-agent-rl/artifacts/exp021_ragen_sft_v4/data/v4_data_conversion_notes.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp021_ragen_sft_v4
+  skill: ''
+  created_at: '2026-05-15T02:10:34.549924+00:00'
+  tags:
+  - sft
+  - data
+  - ragen-format
+  - alfworld
+- id: art_20260515_c8a551
+  name: exp021_ragen_sft_v4_analysis
+  type: report
+  description: exp021 RAGEN-format SFT v4 训练结果分析与评估报告
+  path: projects/cost-verify-agent-rl/artifacts/exp021_ragen_sft_v4/report/exp021_analysis_report.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp021_ragen_sft_v4
+  skill: ''
+  created_at: '2026-05-15T03:14:22.946599+00:00'
+  tags:
+  - eval
+  - sft
+  - ragen
+  - exp021
+- id: art_20260515_dc1679
+  name: exp021_val_before_train_report
+  type: report
+  description: 'RAGEN val_before_train results for exp021 SFT checkpoint (Qwen3 1.72B).
+    FAIL: success=6.25% (<10%), action_is_valid=68.75% (<85%). 16 ALFWorld episodes.'
+  path: projects/cost-verify-agent-rl/artifacts/exp021/report/exp021_val_report.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp021
+  skill: ''
+  created_at: '2026-05-15T03:18:05.050956+00:00'
+  tags:
+  - val
+  - exp021
+  - sft
+  - alfworld
+  - fail
+- id: art_20260515_e32a34
+  name: verl_agent_migration_plan
+  type: report
+  description: verl-agent 迁移可行性分析：verl-agent 是独立项目(langfengQ/verl-agent)，提供 step-independent
+    rollout + GiGPO 算法。三种迁移方案对比，推荐方案 C (cherry-pick GiGPO, 3-5天, 低风险)。
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/verl_agent_migration_plan.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:19:43.775525+00:00'
+  tags:
+  - verl-agent
+  - migration
+  - GiGPO
+  - framework
+- id: art_20260515_f9d675
+  name: inference_diff_diagnosis
+  type: report
+  description: SFT eval vs RAGEN GRPO rollout 推理差异诊断：system prompt 自相矛盾（tag 指令冲突）、user
+    content 格式 OOD（Turn/Reward 模板未在 SFT 中见过）、top_p 1.0 vs 0.95。导致 action_is_valid
+    从 87.5% 降至 68.75%。
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/inference_diff_diagnosis.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:33:54.616104+00:00'
+  tags:
+  - inference
+  - diagnosis
+  - action_is_valid
+  - vLLM
+  - prompt
+- id: art_20260515_c40511
+  name: grpo_val_degradation_diagnosis
+  type: report
+  description: GRPO val action_is_valid 退化深度诊断：prompt 格式分布偏移（SFT 简化 ChatML vs RAGEN
+    ctx_manager 格式）+ system prompt 矛盾 + val temp=0.4 放大错误偏好。与 inference_diff_diagnosis
+    互补，增加了 temperature 影响分析。
+  path: projects/cost-verify-agent-rl/artifacts/exp023c_grpo_serial/report/grpo_val_degradation_diagnosis.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp023c_grpo_serial
+  skill: ''
+  created_at: '2026-05-15T04:40:04.858015+00:00'
+  tags:
+  - diagnosis
+  - action_is_valid
+  - prompt-format
+  - temperature
+- id: art_20260515_dce25a
+  name: exp024_config
+  type: intermediate
+  description: exp024 success-gated dense reward config YAML (valid_action_bonus=0.15,
+    success_gated_bonus=true, kl=0.5, lr=5e-7, 30 steps)
+  path: projects/cost-verify-agent-rl/artifacts/exp024_success_gated/intermediate/exp024_launch_summary.txt
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp024_success_gated
+  skill: ''
+  created_at: '2026-05-15T05:18:53.855616+00:00'
+  tags: []
+- id: art_20260515_26efec
+  name: GiGPO Cherry-pick Analysis
+  type: report
+  description: 深度分析 verl-agent GiGPO 算法实现、step-independent rollout 机制、与 RAGEN GRPO
+    对比、cherry-pick 整合方案（模块清单+工程量+风险）
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/gigpo_cherry_pick_plan.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T07:03:23.576664+00:00'
+  tags:
+  - gigpo
+  - verl-agent
+  - cherry-pick
+  - algorithm-analysis
+- id: art_20260515_2f886b
+  name: exp025_training_script_v2
+  type: intermediate
+  description: 'Updated exp025 training script with all dry-run fixes: FLASH_ATTN
+    backend, ray_init CPU/GPU caps, resource_per_worker.num_cpus=1.0, TORCHINDUCTOR_DISABLE,
+    stale session cleanup'
+  path: projects/cost-verify-agent-rl/artifacts/exp025/intermediate/exp025_training_script_v2.sh
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp025
+  skill: ''
+  created_at: '2026-05-15T08:02:29.068053+00:00'
+  tags:
+  - training-script
+  - verl-agent
+  - alfworld
+  - grpo
+- id: art_20260515_fd1ede
+  name: experiment_failure_analysis
+  type: report
+  description: 50个实验的系统性失败模式分析：按6类分类（Infrastructure/Format/Hyperparameters/Algorithm/Evaluation/Framework），含已证伪路线、仍成立假设、exp026后续建议
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/experiment_failure_analysis.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T11:52:35.463995+00:00'
+  tags:
+  - analysis
+  - failure-modes
+  - lessons-learned
+  - all-experiments
+- id: art_20260515_d6c8cc
+  name: analyze_exp026
+  type: data
+  description: exp026 training log analysis script — parses RAGEN console output,
+    plots 6 training curves, computes collapse/KL/pg_loss diagnostics, outputs summary
+    JSON
+  path: projects/cost-verify-agent-rl/artifacts/exp026/data/analyze_exp026.py
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp026
+  skill: ''
+  created_at: '2026-05-15T12:10:48.839877+00:00'
+  tags:
+  - analysis
+  - exp026
+  - training-curves
+  - diagnostics
+- id: art_20260515_673806
+  name: B-IAVR Related Work Survey
+  type: report
+  description: 4-direction literature survey (self-verification, agent RL, selective
+    verification, ALFWorld benchmarks) covering 25+ papers from 2024-2026, with gap
+    analysis and novelty assessment for B-IAVR
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/related_work_survey.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T12:14:08.888750+00:00'
+  tags:
+  - related-work
+  - survey
+  - literature-review
+  - B-IAVR
+- id: art_20260515_e10456
+  name: related_work_survey
+  type: report
+  description: B-IAVR 相关工作调研报告：25+ 篇论文，覆盖 Self-Verification / Agent RL / Selective
+    Verification / ALFWorld 4 个方向。结论：novelty claim 成立，selective verification + RL-trained
+    trigger + interactive agent + action-change signal 交叉点全新。
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/related_work_survey_e10456.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T12:32:19.875887+00:00'
+  tags:
+  - literature
+  - novelty
+  - B-IAVR
+- id: art_20260515_1d02c2
+  name: B-IAVR Integration Spec
+  type: intermediate
+  description: B-IAVR 核心接口文档：4 个接口签名（VERIFY token 解析、a_pre counterfactual、动作 canonicalization、reward+Lagrangian
+    更新），3 个待验证项
+  path: projects/cost-verify-agent-rl/artifacts/_project/intermediate/biavr_integration_spec.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:59:32.831852+00:00'
+  tags:
+  - phase-b
+  - biavr
+  - integration
+- id: art_20260515_08dca0
+  name: W&B Sweep Config (Phase B)
+  type: intermediate
+  description: Phase B W&B Bayes sweep config：13 参数维度（RL + B-IAVR + step-independent），Hyperband
+    early termination，C003 约束 16-episode eval
+  path: projects/cost-verify-agent-rl/artifacts/_project/intermediate/wandb_sweep_config.yaml
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:59:36.255427+00:00'
+  tags:
+  - phase-b
+  - wandb
+  - sweep
+- id: art_20260515_037bc2
+  name: exp026 Config Template
+  type: intermediate
+  description: exp026 可复用训练配置模板：标注 [SET]/[TUNE] 参数，预留 biavr 配置块，强制 wandb logger
+  path: projects/cost-verify-agent-rl/artifacts/_project/intermediate/exp026_config_template.yaml
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:59:38.891545+00:00'
+  tags:
+  - phase-b
+  - config
+  - template
+- id: art_20260515_b2261b
+  name: biavr_integration_spec
+  type: report
+  description: 'B-IAVR integration spec: function signatures, data flow, RAGEN integration
+    points, risk analysis'
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/biavr_integration_spec.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:59:53.917145+00:00'
+  tags:
+  - phase-b
+  - biavr
+  - integration
+- id: art_20260515_b37efc
+  name: wandb_sweep_config
+  type: data
+  description: 'W&B Bayesian sweep config for Phase B: kl_loss_coef, lr, gamma, history_length'
+  path: projects/cost-verify-agent-rl/artifacts/_project/data/wandb_sweep_config.yaml
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:59:55.788110+00:00'
+  tags:
+  - phase-b
+  - wandb
+  - sweep
+- id: art_20260515_6903f5
+  name: exp026_base_config_template
+  type: data
+  description: Phase B base training config derived from exp026, with biavr section
+    and PHASE_B_TUNE markers
+  path: projects/cost-verify-agent-rl/artifacts/_project/data/exp026_base_config_template.yaml
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T13:59:57.974214+00:00'
+  tags:
+  - phase-b
+  - config
+  - exp026
+- id: art_20260515_b33831
+  name: B-IAVR D031 warning fixes
+  type: intermediate
+  description: D031 两个 warning 修复：(1) register_verify_special_token 注册 <VERIFY> 为
+    special token 避免子 token 拆分 (2) PreActionProfiler 量化 a_pre 推理开销
+  path: projects/cost-verify-agent-rl/artifacts/_project/intermediate/verify_mechanism.py
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T15:21:20.485267+00:00'
+  tags:
+  - biavr
+  - D031
+  - phase-b-prereq
+- id: art_20260515_5d3d32
+  name: failure_taxonomy
+  type: report
+  description: 51个实验的系统性失败模式分类分析，含工程类/GRPO不稳定/SFT格式/奖励设计四大类，附跨实验pattern和exp027风险评估。论文appendix素材。
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/failure_taxonomy.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:14:45.893115+00:00'
+  tags:
+  - analysis
+  - failure-mode
+  - appendix
+  - taxonomy
+- id: art_20260515_05e46e
+  name: related_work_survey
+  type: report
+  description: B-IAVR 项目 related work 文献调研（3 条线，22 篇论文，2024-2026），含 gap 分析和综合定位
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/related_work_survey_05e46e.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:22:31.406556+00:00'
+  tags:
+  - related-work
+  - literature-survey
+  - B-IAVR
+- id: art_20260515_ff7034
+  name: framing_draft
+  type: report
+  description: 'B-IAVR paper framing draft: core insight, 3 claims with evidence requirements,
+    4 reviewer concerns with defense strategies, ARES/Thinkless differentiation, narrative
+    skeleton'
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/framing_draft.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:44:54.199253+00:00'
+  tags:
+  - paper
+  - framing
+  - draft
+- id: art_20260515_daec05
+  name: Adaptive KL 实现可行性评估
+  type: report
+  description: 评估在 RAGEN/verl GRPO 训练中实现 adaptive KL coefficient 的成本、方案和风险。结论：verl
+    已内置 AdaptiveKLController，推荐纯配置修改即可启用。
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/adaptive_kl_assessment.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:47:36.633081+00:00'
+  tags:
+  - adaptive-kl
+  - grpo
+  - feasibility
+  - exp026
+  - exp027
+- id: art_20260515_791274
+  name: ARES Method Analysis
+  type: report
+  description: ARES (2603.07915) 方法细节调研：训练流程、度量方式、ALFWorld 适用性、复现工作量评估、与 B-IAVR 差异化分析
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/ares_analysis.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:58:06.025835+00:00'
+  tags:
+  - literature
+  - ares
+  - phase-d
+  - competitive-analysis
+- id: art_20260515_80eacb
+  name: experiment_plan
+  type: report
+  description: Complete experiment plan (17 entries) covering 4 phases (A-D), 3 claims,
+    5 reviewer concerns. ~1526 GPU-h total, ~534 GPU-h minimum viable paper.
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/experiment_plan.yaml
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:52:44.981027+00:00'
+  tags:
+  - planning
+  - experiment_design
+  - paper_framing
+- id: art_20260515_c0a3d8
+  name: 'Plan D Assessment: GiGPO + Step-level Credit Assignment'
+  type: report
+  description: Feasibility assessment of GiGPO, Self-Guide, and step-level credit
+    assignment for overcoming sparse reward bottleneck in ALFWorld GRPO training
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/plan_d_assessment.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:57:03.361178+00:00'
+  tags:
+  - plan-d
+  - gigpo
+  - self-guide
+  - credit-assignment
+  - feasibility
+- id: art_20260515_6bc766
+  name: Method Section Draft v1
+  type: paper
+  description: B-IAVR Method section 初稿骨架：3.1 Problem Formulation (POMDP + verification
+    decision + action-change signal + cost model)、3.2 B-IAVR Method (selective verification
+    policy + reward design + GRPO/GiGPO training + Self-Guide integration)、3.3 Comparison
+    with Related Methods (vs ARES/Thinkless/Derailer-Rerailer/Sherlock)
+  path: projects/cost-verify-agent-rl/artifacts/_project/paper/method_draft.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T20:11:26.039228+00:00'
+  tags:
+  - paper
+  - method
+  - draft-v1
+- id: art_20260515_295352
+  name: 'Recipe Gap Analysis: exp027 vs GiGPO vs Self-Guide'
+  type: report
+  description: 6维系统对比 exp027/GiGPO/Self-Guide 训练配置，识别 62pp gap 根因：SFT起点质量差 + binary
+    reward零梯度 + mini-batch过小。附 exp028 具体参数建议。
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/recipe_gap_analysis.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T20:24:50.711573+00:00'
+  tags:
+  - recipe-gap
+  - exp027
+  - gigpo
+  - self-guide
+  - diagnosis
+- id: art_20260515_b95919
+  name: recipe_gap_analysis
+  type: report
+  description: Recipe Gap 系统对比分析：exp027 (10.16%) vs GiGPO/Self-Guide (72.7%) 的 62pp
+    gap 根因诊断。三大根因：SFT起点反效果、Binary reward零梯度、Mini-batch过小。含 exp028 具体修复建议。
+  path: projects/cost-verify-agent-rl/artifacts/exp027_stable_grpo/report/recipe_gap_analysis.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp027_stable_grpo
+  skill: ''
+  created_at: '2026-05-15T20:26:24.000546+00:00'
+  tags:
+  - recipe_gap
+  - D042
+  - diagnosis
+  - exp028
+- id: art_20260515_f96de8
+  name: citation_audit_report
+  type: report
+  description: 引用审计报告：验证 18/28 篇论文 arXiv ID，无编造。发现 8 处错误——4处作者名错误(Thinkless/CorrectBench/Self-Correction
+    Survey/WebAgent-R1)、4处标题/格式问题。
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/citation_audit_report.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T21:02:03.159369+00:00'
+  tags:
+  - citation
+  - audit
+  - literature
+- id: art_20260515_a8a62d
+  name: exp028a_config_diff
+  type: intermediate
+  description: exp028a vs exp027 config diff — only invalid_action_penalty_coef=0.1
+    added (plus experiment name/path changes)
+  path: projects/cost-verify-agent-rl/artifacts/exp028a_recipe_fix/intermediate/exp028a_config_diff.txt
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp028a_recipe_fix
+  skill: ''
+  created_at: '2026-05-15T21:12:53.559710+00:00'
+  tags: []
+- id: art_20260515_756ac8
+  name: exp028_prereq_nothink_report
+  type: report
+  description: Qwen3-1.7B zero-shot eval with enable_thinking=False - comparison with
+    thinking=True baseline
+  path: projects/cost-verify-agent-rl/artifacts/exp028_prereq_nothink/report/exp028_prereq_nothink_report.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp028_prereq_nothink
+  skill: ''
+  created_at: '2026-05-15T21:17:48.182372+00:00'
+  tags: []
+- id: art_20260515_0ac021
+  name: selfguide_grpo_recipe
+  type: report
+  description: Self-Guide ALFWorld GRPO 完整 recipe 提取：47 个参数对照表（Self-Guide vs GiGPO
+    vs exp027），11 项关键差异，硬件适配说明，exp028c 配置建议。
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/selfguide_grpo_recipe.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T21:31:46.546331+00:00'
+  tags:
+  - recipe
+  - self-guide
+  - exp028c
+  - D048
+- id: art_20260515_339680
+  name: Phase B BIAVR Prerequisites Analysis
+  type: report
+  description: Phase B 前置条件分析：(1) VERIFY token 添加可行性（Qwen3-1.7B embedding 有余量，无需 resize）(2)
+    a_pre 开销量化方案。总工作量 4-6 Worker-hours，可与 Phase A 并行。
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/phase_b_prereq_analysis.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T23:47:51.606369+00:00'
+  tags:
+  - phase-b
+  - biavr
+  - verify-token
+  - prerequisites
+- id: art_20260515_5ac956
+  name: Literature Scan 2026-05-15
+  type: report
+  description: 文献增量扫描：新增 10 篇论文（Agent-Omit, AVA, T2PO, SkillMaster, GVPO, AgentV-RL,
+    VerifiAgent, CAST, Marginal Token Allocators, Argos）。B-IAVR novelty 定位不受影响。T2PO
+    和 SkillMaster DualAdv-GRPO 值得关注。
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/literature_map.yaml
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T23:48:15.294430+00:00'
+  tags:
+  - literature
+  - scan
+  - competitors
+  - novelty
+- id: art_20260516_2da9c1
+  name: Literature Scan 2026-05-16
+  type: report
+  description: 文献增量扫描：新增 9 篇。ALFWorld 格局大变——PA-MoE 1.5B 达 93.8% 新 SOTA。SDAR/HCAPO/SKILL0
+    均超 vanilla GRPO。B-IAVR novelty 安全，cost-efficiency 定位更强。
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/literature_scan_20260516.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T00:16:28.139148+00:00'
+  tags:
+  - literature
+  - scan
+  - alfworld-baselines
+  - PA-MoE
+- id: art_20260516_phb_code
+  name: Phase B Code Readiness Report
+  type: report
+  description: B-IAVR Phase B 前置代码分析——代码结构摘要、改动清单、VERIFY token 方案、action-change reward
+    实现、预估改动量、风险评估。代码就绪度 ~85%。
+  path: projects/cost-verify-agent-rl/artifacts/phase_b_analysis/code_readiness_report.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:00:00.000000+00:00'
+  tags:
+  - phase-b
+  - biavr
+  - code-analysis
+  - readiness
+- id: art_20260516_db86f6
+  name: exp029_episode_level_diagnose_attempt4
+  type: report
+  description: exp029 episode-level GRPO 训练失败诊断：CUDA OOM during loss.backward() at
+    step 2, caused by Ray worker co-located on GPU 0
+  path: projects/cost-verify-agent-rl/artifacts/exp029_episode_level/report/diagnose_attempt4.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp029_episode_level
+  skill: ''
+  created_at: '2026-05-16T19:23:45.685583+00:00'
+  tags:
+  - diagnosis
+  - OOM
+  - exp029
+- id: art_20260516_d20351
+  name: tatsu_patch_deploy_plan
+  type: intermediate
+  description: Tatsu parallel patch 部署步骤清单——下次重启时启用并行 rollout (val 10min→2.5min)
+  path: projects/cost-verify-agent-rl/artifacts/exp029_episode_level/intermediate/tatsu_patch_deploy_plan.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp029_episode_level
+  skill: ''
+  created_at: '2026-05-16T23:57:10.704036+00:00'
+  tags:
+  - tatsu
+  - parallel
+  - deployment
+- id: art_20260517_c6f5fa
+  name: credit_assignment_analysis
+  type: chart
+  description: Context window size vs credit assignment 可视化：effective discount + visible
+    reward fraction，标注 exp028c (h=2) 和 exp029 (full)
+  path: projects/cost-verify-agent-rl/artifacts/exp029_episode_level/chart/credit_assignment_analysis_info.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp029_episode_level
+  skill: ''
+  created_at: '2026-05-17T01:09:25.765178+00:00'
+  tags:
+  - credit-assignment
+  - ablation
+  - paper-figure
+- id: art_20260517_779f9f
+  name: theoretical_analysis_section
+  type: paper
+  description: '§4 Theoretical Analysis: Propositions on sign misattribution probability,
+    numerical evaluation, 6 root causes for community default, connections to TD(λ)/GAE/REINFORCE.
+    1803 words, passed all AI-style checks.'
+  path: projects/cost-verify-agent-rl/artifacts/_project/paper/theoretical_analysis.tex
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T07:37:27.402444+00:00'
+  tags:
+  - paper
+  - section-4
+  - theoretical-analysis
+- id: art_20260517_8a8297
+  name: introduction_section
+  type: paper
+  description: '§1 Introduction: 5 paragraphs + contribution list, ~850 words. Notation
+    consistent with method.tex and theoretical_analysis.tex. Passed all AI-style checks
+    (no em-dashes, no participial endings, no banned phrases).'
+  path: projects/cost-verify-agent-rl/artifacts/_project/paper/introduction.tex
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T07:55:18.555956+00:00'
+  tags:
+  - paper
+  - section-1
+  - introduction
+- id: art_20260517_47b3ed
+  name: related_work_section
+  type: paper
+  description: '§2 Related Work: 4 paragraphs, ~740 prose words, 27 citations across
+    clusters. Clear positioning per cluster. Passed AI-style checks.'
+  path: projects/cost-verify-agent-rl/artifacts/_project/paper/related_work.tex
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T08:14:25.106824+00:00'
+  tags:
+  - paper
+  - section-2
+  - related-work
+- id: art_20260517_c0f3ea
+  name: references_bib
+  type: paper
+  description: 'references.bib: 29 entries (23 from literature_map + 6 foundational).
+    All citation keys verified against paper sections. Full author lists via arXiv.'
+  path: projects/cost-verify-agent-rl/artifacts/_project/paper/references.bib
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T08:45:23.973243+00:00'
+  tags:
+  - paper
+  - references
+  - bib
+- id: art_20260517_23b742
+  name: experiments-tex-skeleton
+  type: paper
+  description: Experiments section (§5) skeleton with complete setup, ablation design,
+    results narrative structure, and placeholder markers for pending data
+  path: projects/cost-verify-agent-rl/artifacts/_project/paper/experiments.tex
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T09:26:29.492103+00:00'
+  tags:
+  - paper
+  - experiments
+  - skeleton
+  - latex
+- id: art_20260517_aa43d8
+  name: experiments_section
+  type: paper
+  description: '§5 Experiments: Setup + Window-Size Ablation + Results + Sign Misattribution
+    Verification + Additional Baselines. ~2400 words, 6 placeholders for pending data.
+    Passed AI-style checks.'
+  path: projects/cost-verify-agent-rl/artifacts/_project/paper/experiments_aa43d8.tex
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T09:27:25.888889+00:00'
+  tags:
+  - paper
+  - section-5
+  - experiments
+- id: art_20260517_181829
+  name: discussion_limitations_section
+  type: paper
+  description: '§6 Discussion + Limitations: 4 discussion subsections (~1000 words)
+    + 5 limitations (~400 words). Covers generality, trade-offs, classical positioning,
+    dual mechanism interaction.'
+  path: projects/cost-verify-agent-rl/artifacts/_project/paper/discussion.tex
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T10:09:07.820028+00:00'
+  tags:
+  - paper
+  - section-6
+  - discussion
+  - limitations
+- id: art_20260517_139261
+  name: conclusion_section
+  type: paper
+  description: '§7 Conclusion: 4 paragraphs, ~305 words. Problem restatement, dual
+    mechanism contributions, sign-vs-magnitude takeaway, future directions.'
+  path: projects/cost-verify-agent-rl/artifacts/_project/paper/conclusion.tex
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T10:19:37.075327+00:00'
+  tags:
+  - paper
+  - section-7
+  - conclusion
+- id: art_20260517_fd0802
+  name: literature_deep_read_turnppo
+  type: report
+  description: Turn-level PPO / Per-step credit assignment 文献深度调研（2026-05-17），覆盖 Turn-PPO,
+    MT-GRPO, GiGPO, GAGPO, HCAPO, iStar, SPA-RL, ArCHer, RAGEN, VAGEN, HiPER, WebRL,
+    WebAgent-R1, StepAgent, Planner-R1, CA Survey 等
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/memory.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T12:35:47.568856+00:00'
+  tags:
+  - literature
+  - credit-assignment
+  - turn-ppo
+  - competitors
+- id: art_20260517_e3bac0
+  name: westd-47453 Deployment Report
+  type: report
+  description: Training environment deployment report for westd-47453 server (4x RTX
+    PRO 6000 96GB)
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/westd-47453-deployment-report.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T12:55:14.506793+00:00'
+  tags:
+  - deployment
+  - westd-47453
+  - environment
+- id: art_20260518_fab42f
+  name: advantage_analysis_v2
+  type: chart
+  description: '4-panel ADV sign analysis for hsweep_h2_seed2: sign-outcome agreement
+    52%, magnitude decay gamma=0.94, distribution overlap 0.878. Remote: bjb1:/root/cost-verify-agent-rl/artifacts/advantage_analysis.{pdf,png,json}'
+  path: projects/cost-verify-agent-rl/artifacts/hsweep_h2_seed2/chart/advantage_analysis_v2_summary.txt
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: hsweep_h2_seed2
+  skill: ''
+  created_at: '2026-05-18T02:57:42.375188+00:00'
+  tags:
+  - adv_analysis
+  - sign_misattribution
+  - paper_figure
+- id: art_20260518_0f8486
+  name: literature_sign_misattribution_evidence
+  type: report
+  description: Sign misattribution 泛化性文献佐证：6篇直接佐证 + 6篇GRPO collapse系统性证据 + 3篇理论基础
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/literature_sign_misattribution_evidence.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T03:40:34.465423+00:00'
+  tags:
+  - literature
+  - sign_misattribution
+  - generalizability
+- id: art_20260518_3e6619
+  name: citation_verification_report
+  type: report
+  description: 8篇关键引用的真实性验证报告：WebSearch+WebFetch逐篇核实arXiv ID、标题、关键发现。结果：0篇hallucinated，4篇完全准确，4篇需修正措辞。
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/citation_verification_report.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T03:52:59.866836+00:00'
+  tags:
+  - citation
+  - verification
+  - literature
+- id: art_20260518_bba443
+  name: exp029_seed2_diagnose_persistent_failure
+  type: report
+  description: exp029_episode_level_seed2 持续失败的根因诊断：非 OOM，真正原因是磁盘空间耗尽导致 checkpoint
+    保存失败
+  path: projects/cost-verify-agent-rl/artifacts/exp029/report/diagnose_persistent_failure.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp029
+  skill: ''
+  created_at: '2026-05-18T17:32:23.265727+00:00'
+  tags:
+  - diagnosis
+  - exp029
+  - seed2
+  - disk-space
+  - checkpoint
+- id: art_20260518_27a9e3
+  name: fig6_training_curves
+  type: chart
+  description: '2-panel figure showing 3 qualitatively distinct training dynamics:
+    Cell A monotonic collapse, Cell B oscillation, Cell D stable learning. Panel (a)
+    train success rate, Panel (b) action validity rate. Data from W&B runs 7o9bjszm,
+    6liw7fm1, 6d4oml60, jhwyg4tc.'
+  path: projects/cost-verify-agent-rl/artifacts/_project/chart/fig6_training_curves.pdf
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T20:54:25.608863+00:00'
+  tags:
+  - paper
+  - figure
+  - training-curves
+  - experiments-section
+- id: art_20260518_b5259f
+  name: exp029_episode_level_wandb_complete
+  type: data
+  description: Complete W&B data for exp029_episode_level from run 7a59sudo (16 rows,
+    steps 0-15). Includes train/val success, actor/critic metrics, rollout rewards.
+    Previously known run 6d4oml60 only had 1 step.
+  path: projects/cost-verify-agent-rl/artifacts/exp029/data/wandb_data_7a59sudo.json
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp029
+  skill: ''
+  created_at: '2026-05-18T21:00:17.284106+00:00'
+  tags:
+  - exp029
+  - episode-level
+  - wandb
+  - 7a59sudo
+  - complete
+- id: art_20260519_b6099e
+  name: tab3_mechanism_verification
+  type: data
+  description: Empirical vs theoretical sign misattribution analysis from hsweep_h2_seed2
+    advantage logs. Per-sample sign agreement 52.07% (near random), group majority
+    81.25% vs theoretical ~80%. Supports D075 mechanism claim.
+  path: projects/cost-verify-agent-rl/artifacts/hsweep_h2_seed2/data/tab3_mechanism_verification.json
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: hsweep_h2_seed2
+  skill: ''
+  created_at: '2026-05-19T02:37:33.151236+00:00'
+  tags:
+  - paper
+  - tab3
+  - sign-misattribution
+  - mechanism-verification
+- id: art_20260519_7c914b
+  name: tab3_mechanism_verification_summary
+  type: report
+  description: Human-readable summary of sign misattribution empirical vs theoretical
+    analysis for paper Table 3.
+  path: projects/cost-verify-agent-rl/artifacts/hsweep_h2_seed2/report/tab3_mechanism_verification_summary.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: hsweep_h2_seed2
+  skill: ''
+  created_at: '2026-05-19T02:37:35.260081+00:00'
+  tags:
+  - paper
+  - tab3
+  - sign-misattribution
+- id: art_20260519_627273
+  name: 7b_preparation_report
+  type: report
+  description: '7B model (Qwen3-8B) preparation report: GPU feasibility (4x RTX PRO
+    6000 96GB), model selection, config changes, SFT plan.'
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/7b_preparation_report.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T03:33:02.303074+00:00'
+  tags:
+  - 7b
+  - preparation
+  - model-agnostic
+- id: art_20260519_9d187a
+  name: scienceworld_feasibility_report
+  type: report
+  description: 'ScienceWorld environment feasibility report: API compatibility, RAGEN
+    adaptation estimate (12-22 Worker-hours), expert data availability, related work.'
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/scienceworld_feasibility_report.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T03:33:03.869587+00:00'
+  tags:
+  - scienceworld
+  - feasibility
+  - second-environment
+- id: art_20260519_41f955
+  name: scienceworld_adapter_report
+  type: report
+  description: 'ScienceWorld RAGEN adapter implementation report: env adapter (config.py/env.py),
+    registration in envs.yaml (Boil/Melt/Freeze/Mixed configs), functional test results,
+    SFT data generation status (16/30 tasks, ~1750 trajectories)'
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/scienceworld_adapter_report.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T06:08:02.999159+00:00'
+  tags:
+  - scienceworld
+  - adapter
+  - D081
+- id: art_20260519_cf3da9
+  name: monitor_status_20260519
+  type: report
+  description: 'Status report for hsweep_h20_seed1 (step 4 done, step 5 in progress,
+    no val yet) and 7b_cell_a_h2 (step 1 done with strong collapse signals: success
+    28.1%→12.5%, KL=1.92)'
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/monitor_status_20260519.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T10:09:36.003930+00:00'
+  tags:
+  - monitoring
+  - hsweep_h20
+  - 7b_cell_a
+  - collapse
+- id: art_20260519_6e4902
+  name: ScienceWorld 可行性调研报告
+  type: report
+  description: ScienceWorld 作为第二实验环境的可行性评估：环境概述、RAGEN 适配性（已有适配器）、LLM baseline 汇总、风险评估、工期估算
+    5-6 天
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/scienceworld_feasibility_20260519.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T10:09:46.548383+00:00'
+  tags:
+  - scienceworld
+  - feasibility
+  - second-environment
+  - survey
+- id: art_20260519_212f9e
+  name: scienceworld_sft_training_report
+  type: report
+  description: ScienceWorld SFT training setup and launch report on westd-47453
+  path: projects/cost-verify-agent-rl/artifacts/scienceworld_sft/report/scienceworld_sft_training_report.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: scienceworld_sft
+  skill: ''
+  created_at: '2026-05-19T14:52:16.836499+00:00'
+  tags: []
+- id: art_20260519_2e381d
+  name: diag_exp029_per_task_t04_v2
+  type: report
+  description: Diagnosis of exp029_per_task_t04_v2 cron failure — false positive,
+    eval completed successfully (19.4% on 134 OOD games at T=0.4)
+  path: projects/cost-verify-agent-rl/artifacts/exp029/report/diag_exp029_per_task_t04_v2.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp029
+  skill: ''
+  created_at: '2026-05-19T15:09:43.332957+00:00'
+  tags:
+  - diagnosis
+  - eval
+  - false-positive
+- id: art_20260519_9f04e8
+  name: diag_v9b
+  type: report
+  description: v9b 失败诊断：dp_actor.py:223 访问 FSDP1 专属属性 _fsdp_wrapped_module，FSDP2 不兼容
+  path: projects/cost-verify-agent-rl/artifacts/8b_cell_c_episode_v9b/report/diag_v9b.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: 8b_cell_c_episode_v9b
+  skill: ''
+  created_at: '2026-05-19T19:00:23.432930+00:00'
+  tags: []
+- id: art_20260519_449a8a
+  name: d098_fsdp2_full_audit_report
+  type: report
+  description: FSDP1→FSDP2 全量兼容性审计：5文件10处修复清单 + 已兼容文件确认 + 修复策略说明
+  path: projects/cost-verify-agent-rl/artifacts/8b_cell_c_episode_v9c/report/d098_fsdp2_full_audit_report.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: 8b_cell_c_episode_v9c
+  skill: ''
+  created_at: '2026-05-19T19:08:18.501330+00:00'
+  tags: []
+- id: art_20260520_sw_cell_a
+  name: scienceworld_grpo_cell_a_preparation
+  type: report
+  description: ScienceWorld GRPO Cell A preparation report — config files, env setup,
+    pre-flight checklist, risk analysis
+  path: projects/cost-verify-agent-rl/artifacts/scienceworld_grpo_cell_a_prep.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: scienceworld_cell_a
+  skill: ''
+  created_at: '2026-05-20T12:00:00.000000+00:00'
+  tags:
+  - scienceworld
+  - cell-a
+  - grpo
+  - preparation
+- id: art_20260520_af7415
+  name: v9d Step 7-8 Training Analysis
+  type: report
+  description: 'Analysis of 8B Cell C episode-level GRPO (v9d) at step 7-8/30: 91.4%
+    train success, comparison with 1.7B experiments, training dynamics assessment,
+    entropy concern, OOD eval pending at step 10'
+  path: projects/cost-verify-agent-rl/artifacts/8b_cell_c_episode_v9d/report/v9d_step8_analysis.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: 8b_cell_c_episode_v9d
+  skill: ''
+  created_at: '2026-05-20T06:34:13.380485+00:00'
+  tags:
+  - v9d
+  - 8B
+  - GRPO
+  - training-analysis
+  - scaling
+- id: art_20260520_c7e223
+  name: diag_v9d_crash_analysis
+  type: report
+  description: v9d 崩溃诊断：无 SIGHUP，所有崩溃均为 EXIT_CODE=1。v9c 根因是 vLLM prompt 长度 16384 =
+    max_model_len。v9d 已从 step 10 恢复运行。
+  path: projects/cost-verify-agent-rl/artifacts/8b_cell_c_episode_v9d/report/diag_v9d_sighup.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: 8b_cell_c_episode_v9d
+  skill: ''
+  created_at: '2026-05-20T08:01:07.557436+00:00'
+  tags:
+  - diagnosis
+  - v9d
+  - crash-analysis
+- id: art_20260520_60a24d
+  name: diag_failure
+  type: report
+  description: 8b_v9d_ood_eval 失败诊断：train batch size assertion 与 val-only 模式冲突
+  path: projects/cost-verify-agent-rl/artifacts/8b_v9d_ood_eval/report/diag_failure.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: 8b_v9d_ood_eval
+  skill: ''
+  created_at: '2026-05-20T09:58:33.974342+00:00'
+  tags:
+  - diagnosis
+  - config-bug
+  - ood-eval
+- id: art_20260520_f40d5d
+  name: exp029_seed3_v2_analysis
+  type: report
+  description: exp029_seed3_v2 完整训练 metrics 分析 (15/15 steps, seed=42, episode-level
+    GRPO)
+  path: projects/cost-verify-agent-rl/artifacts/exp029_seed3_v2/report/exp029_seed3_v2_analysis.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp029_seed3_v2
+  skill: ''
+  created_at: '2026-05-20T23:01:17.880042+00:00'
+  tags:
+  - exp029
+  - seed3
+  - metrics
+  - episode-grpo
+- id: art_20260521_b56525
+  name: exp029_seed6_v3_analysis
+  type: report
+  description: exp029_seed6_v3 训练结果分析：episode-level GRPO seed=789，val 28.125%，conclusion=success
+  path: projects/cost-verify-agent-rl/artifacts/exp029/report/exp029_seed6_v3_analysis.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp029
+  skill: ''
+  created_at: '2026-05-21T13:04:27.079200+00:00'
+  tags:
+  - exp029
+  - seed6
+  - episode-level
+  - grpo
+  - analysis
+- id: art_20260521_bfbb12
+  name: exp029_seed6_ood_eval_v2_fix
+  type: intermediate
+  description: 'Seed 6 OOD eval v2: fixed model path recognition by creating symlink
+    with "qwen" in name. PID=342378 on westd-47453 cuda:2. 134 OOD tasks.'
+  path: projects/cost-verify-agent-rl/artifacts/exp029_seed6_ood_eval_v2/intermediate/exp029_seed6_ood_eval_v2.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp029_seed6_ood_eval_v2
+  skill: ''
+  created_at: '2026-05-21T13:40:09.754580+00:00'
+  tags:
+  - eval
+  - seed6
+  - ood
+  - exp029
+- id: art_20260521_12a10a
+  name: exp029_seed6_ood_eval_v2 diagnosis
+  type: report
+  description: 诊断 exp029_seed6_ood_eval_v2 失败原因：评估实际已完成(29.1% OOD success)，wandb teardown
+    BrokenPipeError 导致非零退出被 cron 误判为失败
+  path: projects/cost-verify-agent-rl/artifacts/exp029_seed6_ood_eval_v2/report/diagnosis.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp029_seed6_ood_eval_v2
+  skill: ''
+  created_at: '2026-05-21T14:13:11.424470+00:00'
+  tags:
+  - diagnosis
+  - ood-eval
+  - exp029
+- id: art_20260521_55841d
+  name: exp029_seed4_ood_eval_v2_analysis
+  type: report
+  description: 'OOD evaluation analysis for collapse seed 4 step15: 30.60% success
+    rate (highest across all seeds), hypothesis confirmed'
+  path: projects/cost-verify-agent-rl/artifacts/exp029_seed4_ood_eval_v2/report/exp029_seed4_ood_eval_v2_analysis.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp029_seed4_ood_eval_v2
+  skill: ''
+  created_at: '2026-05-21T22:19:17.809918+00:00'
+  tags:
+  - ood-eval
+  - collapse-seed
+  - exp029
+  - seed4
+- id: art_20260521_c3e110
+  name: intervention_c_hard_cap_analysis
+  type: report
+  description: 'Analysis of Intervention C (generation hard cap) experiment: hard
+    cap prevents response inflation but training still degrades via KL spike — response
+    inflation is symptom not root cause'
+  path: projects/cost-verify-agent-rl/artifacts/intervention-c-hard-cap/report/intervention_c_hard_cap_analysis.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: intervention-c-hard-cap
+  skill: ''
+  created_at: '2026-05-21T22:31:11.602552+00:00'
+  tags:
+  - intervention
+  - hard-cap
+  - response-inflation
+  - ablation
+- id: art_20260521_d7dc77
+  name: intervention_c_step7_ood_analysis
+  type: report
+  description: OOD evaluation analysis for Intervention C step7 collapsed checkpoint
+    (pass@1=14.93%, hypothesis confirmed)
+  path: projects/cost-verify-agent-rl/artifacts/intervention_c_step7_ood/report/analysis_d7dc77.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: intervention_c_step7_ood
+  skill: ''
+  created_at: '2026-05-21T23:24:25.592460+00:00'
+  tags:
+  - ood-eval
+  - intervention-c
+  - collapse
+- id: art_20260521_986e8d
+  name: seed7_high_kl_step7_ood analysis
+  type: report
+  description: OOD eval analysis for seed7_high_kl step7 final checkpoint — 13.43%
+    success, confirms intervention cluster at 10-15%
+  path: projects/cost-verify-agent-rl/artifacts/seed7_high_kl_step7_ood/report/analysis.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: seed7_high_kl_step7_ood
+  skill: ''
+  created_at: '2026-05-21T23:38:44.780414+00:00'
+  tags:
+  - ood-eval
+  - intervention
+  - high-kl
+  - seed7
+- id: art_20260522_c7700c
+  name: Table 1 OOD Generalization Summary
+  type: report
+  description: Aggregated OOD evaluation results across all seeds, interventions,
+    baselines, and scale-up experiments for paper Table 1. Covers 6 natural seeds,
+    3 interventions (A/B/C), SFT baselines, and 8B scale-up.
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/table1_ood_summary.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T00:20:55.324298+00:00'
+  tags:
+  - paper
+  - table1
+  - ood
+  - generalization
+  - evaluation
+- id: art_20260522_5d201f
+  name: diag_sw_v6
+  type: report
+  description: Diagnosis report for scienceworld_grpo_cell_c_v6 crash - model path
+    not found
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/diag_sw_v6.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T15:33:53.330970+00:00'
+  tags:
+  - diagnosis
+  - scienceworld
+  - v6
+- id: art_20260522_f5b780
+  name: learning_curve_data
+  type: data
+  description: Training curve data for 7 seeds (3 collapsed + 4 healthy) from exp029
+    episode-level GRPO. Contains per-step success rate, response length, KL, pass@8,
+    action validity for paper learning curve figure.
+  path: projects/cost-verify-agent-rl/artifacts/exp029/data/learning_curve_data.json
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp029
+  skill: ''
+  created_at: '2026-05-22T22:18:53.778457+00:00'
+  tags:
+  - paper
+  - figure
+  - learning-curve
+  - collapse
+- id: art_20260522_93bc88
+  name: learning_curve_data
+  type: data
+  description: W&B 提取的 collapsed vs healthy seed 训练曲线数据 (seed2048/42/8/4/5/6/100)。含
+    val success rate、response_length、KL 等逐 step 指标。用于论文 learning curve figure。
+  path: projects/cost-verify-agent-rl/artifacts/_project/data/learning_curve_data.json
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T22:33:16.220053+00:00'
+  tags:
+  - table1
+  - figure
+  - training_curves
+  - collapsed_vs_healthy
+- id: art_20260523_6666f5
+  name: learning_curves_d137
+  type: chart
+  description: D137 三层分类学习曲线：2-panel (ID Success Rate + Response Length) x 9 seeds,
+    展示 collapsed/stagnant/generalized/delayed 四种训练模式分化
+  path: projects/cost-verify-agent-rl/artifacts/exp029/chart/learning_curves_d137.pdf
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: exp029
+  skill: draw-paper-figure
+  created_at: '2026-05-23T03:24:43.340342+00:00'
+  tags:
+  - figure
+  - learning-curve
+  - d137
+  - seed-divergence
+- id: art_20260523_cf1ba5
+  name: binomial_test_results
+  type: report
+  description: 'Binomial test on 52.07% credit agreement (H0=0.5: p=0.025; H0=0.191:
+    p≈0) + advantage magnitude analysis (|mean_fail|/|mean_success|=7.41 vs K-1=7)'
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/binomial_test_results.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T09:54:26.052040+00:00'
+  tags:
+  - section-4.4
+  - statistical-test
+  - credit-agreement
+  - advantage-magnitude
+- id: art_20260523_2bd86c
+  name: data_provenance_audit
+  type: report
+  description: 论文实验数据正确性与可追溯性全面核查报告。覆盖 experiments.tex 和 appendix.tex 中所有数据点，交叉验证
+    registry、服务器日志、统计计算。发现 8 个关键问题（含数值错配、不可追溯数据点、标签错误），11 个中等问题，28 个数据点完全可追溯。
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/data_provenance_audit.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T11:16:04.153181+00:00'
+  tags:
+  - audit
+  - data-integrity
+  - paper
+- id: art_20260523_17de9e
+  name: data_provenance_audit
+  type: report
+  description: 论文全部定量 claim 的数据正确性与可追溯性审计报告（8 区域，60+ 数据点，含 Wilson CI/Fisher/binomial
+    重新计算验证）
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/data_provenance_audit_17de9e.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T11:35:40.880055+00:00'
+  tags:
+  - audit
+  - data-provenance
+  - paper-integrity
+- id: art_20260523_1d71f6
+  name: hsweep_h10_multiseed_status
+  type: report
+  description: 'h-sweep h=10 multi-seed experiment status: config, seed2 PID/log,
+    seed3 launch command'
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/hsweep_h10_multiseed_status.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T18:18:17.971044+00:00'
+  tags:
+  - hsweep
+  - h10
+  - multiseed
+  - experiment
+- id: art_20260523_5860d1
+  name: eval_variance_status
+  type: report
+  description: 'P1 Eval Variance Experiment status: h-sweep killed, 3×3 OOD eval design
+    (seed300/seed7hk/seed200 × 3 eval seeds), launched on bjb1-17606'
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/eval_variance_status.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T18:49:27.642934+00:00'
+  tags:
+  - eval-variance
+  - p1
+  - ood-eval
+- id: art_20260523_4b2dfb
+  name: data_correctness_audit
+  type: report
+  description: ARR 提交前论文数据正确性全面自查报告：覆盖 60+ 数据点，修复 2 处错误（p=5% 计算错误 5.1%→14.9%、Table
+    1 caption 归属歧义），列出 8 处待确认疑点
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T19:31:23.682223+00:00'
+  tags: []
+- id: art_20260523_3b36db
+  name: data_correctness_audit
+  type: report
+  description: ARR 提交前论文全量数据正确性自查报告：60+ 数据点核对，2 处错误已修复（p=5% K=8 理论值 5.1%→14.9%、Table
+    1 caption 17.2% 归属歧义），8 处低严重度待确认项
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/data_correctness_audit_3b36db.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T19:33:02.406889+00:00'
+  tags:
+  - paper
+  - audit
+  - data-integrity
+  - arr-submission
+- id: art_20260524_8b7cef
+  name: round4_track_a_main_changes
+  type: intermediate
+  description: Before/after diffs for all Round 4 Track A-Main paper edits (Items
+    1,2,3,4,7, M1, Q2) across experiments.tex, method.tex, theoretical_analysis.tex
+  path: projects/cost-verify-agent-rl/artifacts/_project/intermediate/round4_track_a_main_changes.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T02:17:49.603256+00:00'
+  tags:
+  - paper
+  - round4
+  - revision
+- id: art_20260524_af5328
+  name: round4_track_a_aux_changes
+  type: report
+  description: 'Before/after changelog for Round 4 Track A-Aux paper modifications:
+    discussion.tex, appendix.tex, related_work.tex, references.bib'
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/round4_track_a_aux_changes.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T02:20:30.783986+00:00'
+  tags:
+  - paper
+  - round4
+  - review-response
+- id: art_20260524_13c22a
+  name: seed_early_signal_analysis
+  type: report
+  description: 'Track B: Early training signal analysis across 12 seeds (Generalized/Stagnant/Collapsed).
+    No robust step 1-3 predictor found; MI diversity shows weak trend (d=1.11, p=0.23).
+    Collapsed seeds can appear healthy early.'
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/seed_early_signal_analysis.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T02:26:24.358938+00:00'
+  tags:
+  - exp029
+  - seed-analysis
+  - early-signal
+  - paper-discussion
+- id: art_20260525_541d19
+  name: cell_b_1gpu_config_analysis
+  type: report
+  description: Cell B (h=2, episode-level advantage) 从 2-GPU 到 1-GPU 等效配置分析：参数对照、effective
+    batch size 计算、启动命令、validation 关闭方法、时间预估
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/cell_b_1gpu_config_analysis.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T00:00:28.980926+00:00'
+  tags:
+  - cell-b
+  - 1gpu
+  - config
+  - analysis
+- id: art_20260525_7039a8
+  name: Cell B 1-GPU Launch Ready Report
+  type: report
+  description: Cell B (h=2, episode-level advantage) 1-GPU multi-seed training config
+    and launch script readiness report
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/cell_b_1gpu_launch_ready.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T00:07:52.554132+00:00'
+  tags:
+  - cell-b
+  - 1gpu
+  - multi-seed
+  - config
+- id: art_20260525_fb0316
+  name: scienceworld_sft_v2_diagnosis
+  type: report
+  description: 'Diagnosis report for scienceworld_sft_bjb1_v2: training completed
+    successfully (450 steps, eval_loss=0.0725)'
+  path: projects/cost-verify-agent-rl/artifacts/scienceworld_sft_bjb1_v2/report/scienceworld_sft_v2_diagnosis.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: scienceworld_sft_bjb1_v2
+  skill: ''
+  created_at: '2026-05-25T01:59:05.866001+00:00'
+  tags: []
+- id: art_20260525_9e18dd
+  name: audit_gpu_info
+  type: report
+  description: bjb1-17606 GPU 型号、显存、驱动版本审计报告 (2026-05-25)
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/audit_gpu_info.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:29:06.056856+00:00'
+  tags:
+  - gpu
+  - audit
+  - bjb1-17606
+- id: art_20260526_bebcce
+  name: ref_cross_validation_report
+  type: report
+  description: '3-Worker independent reference cross-validation report: 48/48 real,
+    7 issues fixed, VinePPO venue conflict resolved (NeurIPS 2024)'
+  path: projects/cost-verify-agent-rl/artifacts/_project/report/ref_cross_validation_report.md
+  url: null
+  project: cost-verify-agent-rl
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-26T11:21:34.254548+00:00'
+  tags:
+  - reference-audit
+  - bib
+  - cross-validation

@@ -1,0 +1,31 @@
+{
+  "exp_id": "intervention-c-hard-cap",
+  "project": "cost-verify-agent-rl",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T21:12:57.442Z",
+    "updated_at": "2026-05-21T21:34:04.633Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_intervention_c_hard_cap\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "788147",
+      "log_path": "~/runs/cost-verify-agent-rl/intervention-c-hard-cap.log",
+      "submitted_at": "2026-05-21T21:12:56.719Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Generation hard cap (per-turn 512 tokens + max 20 turns) physically prevents response_length explosion that caused 50% seed collapse. Same seed=999 as Seed 7 which collapsed at step 7. If step 7 resp_len < 2000 and success > 30%, hard cap is effective mitigation.",
+    "parent": "exp029_seed7",
+    "notes": "Val metrics under 512 cap (val config shares response_length=512). Baseline exp029 uses response_length=1024. Val numbers not directly comparable with baseline val. Intervention A (len_penalty) and B (high_kl 10x) both negative. This is the 3rd and final intervention type (generation constraint)."
+  },
+  "timestamp": "2026-05-21T21:34:04.885365+00:00",
+  "trigger": "update_registry"
+}

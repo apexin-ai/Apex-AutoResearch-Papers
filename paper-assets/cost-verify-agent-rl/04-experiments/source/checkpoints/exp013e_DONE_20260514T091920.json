@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp013e",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:02:52.837Z",
+    "updated_at": "2026-05-14T09:19:20.818Z",
+    "hypothesis": "exp013d 基础设施修复重试。Ray object_store_memory 改用 Hydra config override (ray_kwargs.ray_init.object_store_memory=32212254720) 替代无效的环境变量。其余同 exp013d: dense reward shaping (valid_action_bonus=0.15, kl_loss_coef=0.01, success_reward=10.0), env_groups=4, 从 step 5 checkpoint 恢复。",
+    "parent": "exp013d",
+    "spec": {
+      "command": "python train.py --config-name _alfworld_exp013b_dense_reward trainer.experiment_name=exp013e-alfworld-dense-reward trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp013e/ trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp013e/",
+      "server": "bjb1-17606",
+      "data_path": "AlfworldSG_Dense (3553 train games)",
+      "data_count": 3553,
+      "model_name": "Qwen3-1.7B SFT (exp008_sft/final)",
+      "seed": 10000,
+      "pid": 298696,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp013e/",
+      "log_path": "/tmp/exp013e.log",
+      "description": "Dense reward GRPO with Ray object_store_memory fix (30GB). Resume from exp008_grpo step 5. valid_action_bonus=0.15, kl_loss_coef=0.01, format_penalty=0, env_groups=4.",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5",
+      "eval_data": "N/A - training experiment"
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-14T09:19:20.818Z"
+  },
+  "timestamp": "2026-05-14T09:19:20.855852+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1aeb8298ee8606d6e205",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research trace paper numbers",
+  "task_key": "worker_research_trace-paper-numbers_20260517T162155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_trace-paper-numbers_20260517T162155_result.json",
+    "occurrence": 1,
+    "bytes": 1025,
+    "sha256": "0bfaf0cb4e2952832d79df376cb57ff2f794c46c0827e381a40ddf4ad0349e7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了精确来源。两个数字都来自 **W&B run 7o9bjszm (hsweep-h2-seed1)** 的 `train/AlfworldSG/action_is_valid`：\n\n| 数字 | W&B Step | Metric Key | 精确值 | 四舍五入 |\n|------|----------|------------|--------|----------|\n| **89.3%** | Step 2 | `train/AlfworldSG/action_is_valid` | 0.89316233 | 89.3% |\n| **43.1%** | Step 4 | `train/AlfworldSG/action_is_valid` | 0.43055209 | 43.1% |\n\n论文描述完全一致（experiments.tex:79）：\"Action validity at step 2 is 89.3%, dropping to 43.1% by step 4\"。\n\n补充说明：\n- 这是 **train** 指标而非 val 指标。hsweep-h2-seed1 的 **val** step 0 = 0.88125（registry 里的 0.881）\n- `paper_provenance.yaml` 里把这个 claim (C028) 错误关联到了 exp028c，实际来源是 hsweep-h2-seed1\n- 完整训练轨迹验证了论文的 \"two-phase collapse\" 叙事：Step 0→2 validity 从 0.835 升到 0.893（Phase 1 保持高位），Step 4 骤降到 0.431（Phase 2 崩溃），之后继续降到 step 14 的 0.063"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-trace-paper-numbers.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fa0466d140915d97ee9",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose 8b cell c episode v9b",
+  "task_key": "worker_diagnose_8b_cell_c_episode_v9b_20260519T185743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_8b_cell_c_episode_v9b_20260519T185743_result.json",
+    "occurrence": 1,
+    "bytes": 580,
+    "sha256": "5640a71bc0c558daba63dc06f160c43e02954a681579895927e9198b812fef6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告已保存到 `artifacts/diag_v9b.md`。\n\n**结论：** v9b 不是 OOM，是代码 bug。`dp_actor.py:223` 访问了 FSDP1 专属属性 `_fsdp_wrapped_module`，但 FSDP2 的 `FSDPQwen3ForCausalLM` 没有这个属性。val_before_train 通过是因为它只做 generation 不走 `compute_log_prob`，训练第一步就崩了。\n\n**修复：** 将 line 223 改为 `hasattr` 检查兼容 FSDP1/FSDP2（方案 A），或同时处理后续的 `FSDP.summon_full_params` 调用（方案 B）。本实验不用 LoRA，方案 A 即可解除阻塞。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-8b-cell-c-episode-v9b.md"
+}

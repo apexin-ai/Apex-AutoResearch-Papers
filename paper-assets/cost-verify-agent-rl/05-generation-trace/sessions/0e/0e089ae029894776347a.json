@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e089ae029894776347a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "audit data provenance full v2",
+  "task_key": "worker_audit_data_provenance_full_v2_20260523T112056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data_provenance_full_v2_20260523T112056_result.json",
+    "occurrence": 1,
+    "bytes": 979,
+    "sha256": "dc686068bf9ae0e7d225dfe9cfdd9a67f61dbc6452047c9906ab5dad448ec5f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/data_provenance_audit.md`。\n\n**核心发现**:\n\n- **52/63 数据点验证通过** — Table 1 核心数字、全部 12 个 Wilson CI、Fisher 显著性方向、Proposition 2 预测、binomial test、ScienceWorld、Abstract/Intro/Conclusion 引用均正确。\n\n**需修复的 2 个 P0 问题**:\n1. **seed5 step10**: 论文写 25.37% (34/134)，但 registry 记录 29.10% (39/134)，差 5 tasks。Registry 有 verification note 确认 29.10% 正确。\n2. **Window sweep 混用评估集**: 图标题写 \"OOD success\"，但 h=10 (6.25%=2/32) 和 h=20 (15.6%=5/32) 来自 32-task ID 集，episode (23.88%=32/134) 来自 134-task OOD 集。\n\n**3 个 P1 问题**: seed8 OOD 差 2 tasks (11.94% vs 13.43%)；seed2048/seed42/seed2 共 3 个 seed 的 OOD eval 在 registry 中无可追溯条目。\n\n**2 个 P2 问题**: seed2 的 p=0.02 实为 chi-squared 值而非 Fisher exact；8B Cell A \"1.5%\" 实为 1.5625%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-data-provenance-full-v2.md"
+}

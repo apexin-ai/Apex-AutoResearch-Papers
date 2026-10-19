@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28c7db7c71aba70b2fef",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code prepare expert sft",
+  "task_key": "worker_code_prepare-expert-sft_20260514T133359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-expert-sft_20260514T133359_result.json",
+    "occurrence": 1,
+    "bytes": 1486,
+    "sha256": "022b04bc9c09fa45bca5361693237e3b4af99f0559ee961e3daa522d7ee4e979"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇总报告：\n\n---\n\n## 状态汇总\n\n### Expert Trajectory 收集\n- **进度**：828/~3553 条，PID 340587 仍在运行\n- **任务类型**：put (517), examine (302)。heat/cool/clean 类型尚未出现，等收集完应会覆盖\n- **Token 长度**：median 605, p95 1647, max 2927。全部 < 4096\n\n### 数据质量（dry-run 828 条）\n- 接受 782，拒绝 27（全部因 >40 turns 被过滤）\n- 轨迹长度：min 3 / median 7 / max 40, mean 10.2\n\n### 代码清单（全部已在服务器上）\n\n| 文件 | 用途 |\n|------|------|\n| `scripts/prepare_expert_sft_data.py` | 验证/过滤/train-val分割，支持 `--dry-run` |\n| `scripts/sft_train.py` | TRL SFTTrainer，Qwen3-1.7B + 自定义 ChatML 模板 |\n| `scripts/run_expert_sft.sh` | 一键流程：pre-flight → 数据准备 → 训练 |\n| `scripts/eval_sft_model.py` | 评估脚本 |\n\n### 与 exp008_sft 的配置差异\n\n| 参数 | exp008_sft | Expert SFT |\n|------|-----------|------------|\n| 数据来源 | HF u-10bei 1200条 | PDDL expert ~3000+条 |\n| max_seq_length | 4096 | 2048（数据更短，省显存） |\n| learning_rate | 2e-5 | 5e-5（数据更干净） |\n| output_dir | `/root/autodl-tmp/checkpoints/exp008_sft` | `/root/autodl-tmp/expert_sft/checkpoints` |\n\n### 启动方式\n```bash\n# 等 exp015 结束 + 收集完成后：\nbash scripts/run_expert_sft.sh\n\n# 只看数据统计不训练：\nbash scripts/run_expert_sft.sh --dry-run\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-expert-sft.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03287a06887dc5df6856",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code phase b fsdp converter",
+  "task_key": "worker_code_phase-b-fsdp-converter_20260514T074000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase-b-fsdp-converter_20260514T074000_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "b58015c1d3a70f0444f12c036257b5de609fc49fe2ea9e4ca5554d240e02605f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出\n\n### Task A: 转换脚本\n\n- **路径**: `/root/cost-verify-agent-rl/scripts/convert_fsdp_to_hf.sh`\n- **verl.model_merger**: 可用，位于 `/root/cost-verify-agent-rl/RAGEN/verl/verl/__init__.py`\n- **注意**: merge 子命令的输出目录参数是 `--target_dir`（不是原计划的 `--output_dir`），脚本已修正\n- **用法**: `./scripts/convert_fsdp_to_hf.sh <fsdp_checkpoint_dir> <output_hf_dir>`\n\n### Task B: vLLM 显存估算 (Qwen3-1.7B, max_model_len=32768)\n\n| 项目 | 大小 |\n|------|------|\n| 模型权重 (FP16) | ~3.4 GB |\n| KV cache (32K tokens/seq) | ~7.5 GB/seq |\n| 单序列总需求 | ~11.0 GB |\n\n| gpu_memory_utilization | 可用预算 | 是否足够 | 最大并发序列数 |\n|------------------------|----------|----------|----------------|\n| 0.4 | 38 GB | YES | ~4 |\n| 0.5 | 47 GB | YES | ~5 |\n| 0.6 | 56 GB | YES | ~6+ |\n\n**结论**: `gpu_memory_utilization=0.4` 即可满足需求，单 GPU 可容纳 ~4 条并发序列。当前配置无需调整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase-b-fsdp-converter.md"
+}

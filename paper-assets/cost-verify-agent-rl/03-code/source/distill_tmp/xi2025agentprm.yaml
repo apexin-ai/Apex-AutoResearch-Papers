@@ -1,0 +1,30 @@
+paper_key: "xi2025agentprm"
+title: "AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress"
+venue: "ACM Web Conference 2026"
+full_text_available: false
+
+research:
+  baselines: ["prompt engineering approaches", "expert trajectory fine-tuning"]
+  metrics:
+    - {name: "compute efficiency", direction: "higher_better"}
+    - {name: "task success rate", direction: "higher_better"}
+  datasets:
+    - {name: "web shopping tasks", size: "N/A"}
+    - {name: "browser navigation tasks", size: "N/A"}
+  ablation_dimensions: ["TD-based estimation", "GAE", "promise vs progress components"]
+  training_recipe:
+    optimizer: "N/A"
+    lr: "N/A"
+    hardware: "N/A"
+    method: "Process Reward Model trained with TD-based estimation and GAE for multi-turn agent tasks; evaluates actions by proximity to goal (promise) and progress made"
+  method_family: "process reward models for agentic tasks"
+
+positioning:
+  core_claim: "Redefines process reward models for agent tasks by scoring actions on goal proximity (promise) and progress rather than step correctness, achieving 8x compute efficiency over baselines with robust test-time scaling"
+  key_results: "8x more compute-efficient than baselines; robust improvement when scaling test-time compute"
+  limitations: ["N/A"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

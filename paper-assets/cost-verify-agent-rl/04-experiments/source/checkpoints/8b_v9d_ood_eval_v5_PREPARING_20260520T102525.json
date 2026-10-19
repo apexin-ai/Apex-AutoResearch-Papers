@@ -1,0 +1,14 @@
+{
+  "exp_id": "8b_v9d_ood_eval_v5",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:25:24.932Z",
+    "updated_at": "2026-05-20T10:25:24.932Z"
+  },
+  "timestamp": "2026-05-20T10:25:25.136008+00:00",
+  "trigger": "update_registry"
+}

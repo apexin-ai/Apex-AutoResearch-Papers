@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "244015d51874210ca146",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops bjb1 seed300 check",
+  "task_key": "worker_ops_bjb1_seed300_check_20260522T170826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1_seed300_check_20260522T170826_result.json",
+    "occurrence": 1,
+    "bytes": 765,
+    "sha256": "b7190cc63ac570e049272acfa1618ee6ab6b3d079ad5793104b560fbcdf14cd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**seed300 进程存活，正在训练。**\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | `exp029_seed300_episode` 在 tmux session 中运行，PID 433097 (`ray::TaskRunner.run`, CPU 80.1%)，两个 `ray::WorkerDict` (PID 433306/433307, 各 ~58% CPU) |\n| **GPU** | cuda:0 — 45179 MiB used, 0% util; cuda:1 — 45351 MiB used, 0% util（显存占满，GPU util 瞬时为 0 说明当前在 CPU-bound 阶段如 rollout 收集） |\n| **训练进度** | **3/5 steps (60%)**, 已跑 1h26m, 预估剩余 ~57min |\n| **日志** | 最新时间戳 `2026-05-23 00:41:17`，大量 `Skipping non-numeric metric 'anchor_obs'` 警告（正常，ALFWorld 环境的文本观测被 metric logger 跳过） |\n| **wandb** | wandb-core (PID 433602) 在线 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-seed300-check.md"
+}

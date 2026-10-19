@@ -1,0 +1,156 @@
+# Task result records
+
+Open a Markdown transcript for a human-readable view, or the JSON file for the structured export.
+
+| Record | Events | User turns | Markdown | JSON |
+|---|---:|---:|---|---|
+| fix exp029 config minibatch | 1 | 0 | [Read transcript](fix-exp029-config-minibatch.md) | [JSON](../../sessions/88/88721388a7029457b17a.json) |
+| fix exp029 config optimizer offload | 1 | 0 | [Read transcript](fix-exp029-config-optimizer-offload.md) | [JSON](../../sessions/00/000e1de3e9ccd230c5c7.json) |
+| fix exp029 disk cleanup | 1 | 0 | [Read transcript](fix-exp029-disk-cleanup.md) | [JSON](../../sessions/56/565cddf48184ae74390b.json) |
+| fix exp029 kill all cleanup restart | 1 | 0 | [Read transcript](fix-exp029-kill-all-cleanup-restart.md) | [JSON](../../sessions/85/85813b3399aaa6b5b0a4.json) |
+| fix exp029 restart | 1 | 0 | [Read transcript](fix-exp029-restart.md) | [JSON](../../sessions/75/7528e7c484105e681bd8.json) |
+| fix exp029 tmp cleanup loop | 1 | 0 | [Read transcript](fix-exp029-tmp-cleanup-loop.md) | [JSON](../../sessions/0e/0ece90f8c0efe6b58714.json) |
+| fix exp029 tmp restart | 1 | 0 | [Read transcript](fix-exp029-tmp-restart.md) | [JSON](../../sessions/41/41c30dee0e2e576fe352.json) |
+| fix exp029 tmpdir restart | 1 | 0 | [Read transcript](fix-exp029-tmpdir-restart.md) | [JSON](../../sessions/83/837b61d07f1074ce421f.json) |
+| fix exp029 val restart | 1 | 0 | [Read transcript](fix-exp029-val-restart.md) | [JSON](../../sessions/72/722daabd37796007c7d5.json) |
+| fix exp029 vllm oom | 1 | 0 | [Read transcript](fix-exp029-vllm-oom.md) | [JSON](../../sessions/04/04ebc6c8850340883952.json) |
+| fix exp029 yaml fix | 1 | 0 | [Read transcript](fix-exp029-yaml-fix.md) | [JSON](../../sessions/eb/eb0ba7a05844a43c895a.json) |
+| fix factorial tmpdir restart | 1 | 0 | [Read transcript](fix-factorial-tmpdir-restart.md) | [JSON](../../sessions/c0/c0c72d225e93234e7de2.json) |
+| fix gsweep g100 adv log | 1 | 0 | [Read transcript](fix-gsweep-g100-adv-log.md) | [JSON](../../sessions/04/049f3057940ee97914cc.json) |
+| fix gsweep watchdog restart | 1 | 0 | [Read transcript](fix-gsweep-watchdog-restart.md) | [JSON](../../sessions/13/13b24e2f433bda053444.json) |
+| fix hsweep val size and h10 config | 1 | 0 | [Read transcript](fix-hsweep-val-size-and-h10-config.md) | [JSON](../../sessions/5a/5a823bc19c1d63ed60be.json) |
+| fix hsweep configs correct | 1 | 0 | [Read transcript](fix-hsweep-configs-correct.md) | [JSON](../../sessions/bf/bfe3f269d15bc026151e.json) |
+| fix kill cleanup loop | 1 | 0 | [Read transcript](fix-kill-cleanup-loop.md) | [JSON](../../sessions/15/15e25414b9d634c4c004.json) |
+| fix literature map authors batch2 | 1 | 0 | [Read transcript](fix-literature-map-authors-batch2.md) | [JSON](../../sessions/40/40ea4e8a7ad252fa1be6.json) |
+| fix literature map citations | 1 | 0 | [Read transcript](fix-literature-map-citations.md) | [JSON](../../sessions/55/55504a4a6e77578b6d5b.json) |
+| fix m041 ray isolation seed6 v3 | 1 | 0 | [Read transcript](fix-m041-ray-isolation-seed6-v3.md) | [JSON](../../sessions/20/204143d655257a3500be.json) |
+| fix method tex eq3 critical | 1 | 0 | [Read transcript](fix-method-tex-eq3-critical.md) | [JSON](../../sessions/78/782c346de8a45aff29e7.json) |
+| fix recreate checkpoint dir | 1 | 0 | [Read transcript](fix-recreate-checkpoint-dir.md) | [JSON](../../sessions/45/45693cd7a9bde02933ec.json) |
+| fix registry spec commands | 1 | 0 | [Read transcript](fix-registry-spec-commands.md) | [JSON](../../sessions/50/50c9ec380c021c3c4eb6.json) |
+| fix registry model name batch | 1 | 0 | [Read transcript](fix-registry-model-name-batch.md) | [JSON](../../sessions/ca/ca06efe7bd9228691113.json) |
+| fix scienceworld sft oom | 1 | 0 | [Read transcript](fix-scienceworld-sft-oom.md) | [JSON](../../sessions/0d/0ddaa9c2b79b809f0664.json) |
+| fix seed200 orphan westd | 1 | 0 | [Read transcript](fix-seed200-orphan-westd.md) | [JSON](../../sessions/ac/ac9a073c2429127395d8.json) |
+| fix seed6 ood eval model path | 1 | 0 | [Read transcript](fix-seed6-ood-eval-model-path.md) | [JSON](../../sessions/2b/2b2c69b8f49902639e62.json) |
+| fix seed6 v3 config | 1 | 0 | [Read transcript](fix-seed6-v3-config.md) | [JSON](../../sessions/25/25e4fc5cc94314fa657e.json) |
+| fix westd vllm compat | 1 | 0 | [Read transcript](fix-westd-vllm-compat.md) | [JSON](../../sessions/c1/c1237f6ea01a5c416b51.json) |
+| fix westd cleanup and watchdog | 1 | 0 | [Read transcript](fix-westd-cleanup-and-watchdog.md) | [JSON](../../sessions/93/934e360c0407a0eb43d1.json) |
+| fix westd disk ghost space | 1 | 0 | [Read transcript](fix-westd-disk-ghost-space.md) | [JSON](../../sessions/9b/9bef761569cc9b557b84.json) |
+| infra bjb1 exploration | 1 | 0 | [Read transcript](infra-bjb1-exploration.md) | [JSON](../../sessions/47/4704bd027366df21d473.json) |
+| infra check watchdog bjb1 | 1 | 0 | [Read transcript](infra-check-watchdog-bjb1.md) | [JSON](../../sessions/3c/3c8f8884f6379e759d46.json) |
+| infra cleanup exp020b | 1 | 0 | [Read transcript](infra-cleanup-exp020b.md) | [JSON](../../sessions/ce/ce5de1e1a6866858994e.json) |
+| infra cleanup optim files | 1 | 0 | [Read transcript](infra-cleanup-optim-files.md) | [JSON](../../sessions/fd/fd81ac34e691ef8cb3b1.json) |
+| infra d022 cleanup gpu | 1 | 0 | [Read transcript](infra-d022-cleanup-gpu.md) | [JSON](../../sessions/f1/f1b2333531663a7aab0e.json) |
+| infra deploy westd 47453 v2 | 1 | 0 | [Read transcript](infra-deploy-westd-47453-v2.md) | [JSON](../../sessions/21/21cf69289e3c6de416ab.json) |
+| infra diagnose hsweep h2 exit | 1 | 0 | [Read transcript](infra-diagnose-hsweep-h2-exit.md) | [JSON](../../sessions/52/52c7d8521dc8624335e9.json) |
+| infra disk cleanup bjb1 | 1 | 0 | [Read transcript](infra-disk-cleanup-bjb1.md) | [JSON](../../sessions/93/93cd6424f4ee87651c56.json) |
+| infra disk cleanup investigation | 1 | 0 | [Read transcript](infra-disk-cleanup-investigation.md) | [JSON](../../sessions/8d/8d26de776c8b242f9f88.json) |
+| infra disk cleanup trajectory check | 1 | 0 | [Read transcript](infra-disk-cleanup-trajectory-check.md) | [JSON](../../sessions/7b/7bbbebf6f10dd1db368a.json) |
+| infra disk cleanup | 1 | 0 | [Read transcript](infra-disk-cleanup.md) | [JSON](../../sessions/3e/3e62f296481c3e1171b6.json) |
+| infra disk cleanup | 1 | 0 | [Read transcript](infra-disk-cleanup-copy-2.md) | [JSON](../../sessions/5b/5b689c37bd2475f32c68.json) |
+| infra download qwen3 instruct | 1 | 0 | [Read transcript](infra-download-qwen3-instruct.md) | [JSON](../../sessions/3d/3dfa7f96cb4b56864a71.json) |
+| infra dry run v2 | 1 | 0 | [Read transcript](infra-dry-run-v2.md) | [JSON](../../sessions/ca/ca5b67e2338c7d00f854.json) |
+| infra dry run | 1 | 0 | [Read transcript](infra-dry-run.md) | [JSON](../../sessions/41/41dda53b5e113bd67112.json) |
+| infra env setup | 1 | 0 | [Read transcript](infra-env-setup.md) | [JSON](../../sessions/54/54f1379469587a378221.json) |
+| infra eval script dryrun | 1 | 0 | [Read transcript](infra-eval-script-dryrun.md) | [JSON](../../sessions/9d/9de78551cfd8fae20f3d.json) |
+| infra gae baseline westd | 1 | 0 | [Read transcript](infra-gae-baseline-westd.md) | [JSON](../../sessions/4d/4d5bf91302a19427da13.json) |
+| infra gamma sweep westd | 1 | 0 | [Read transcript](infra-gamma-sweep-westd.md) | [JSON](../../sessions/54/54401d5e75c5cacf8033.json) |
+| infra hsweep status check | 1 | 0 | [Read transcript](infra-hsweep-status-check.md) | [JSON](../../sessions/37/3735b59add8b2e007c5d.json) |
+| infra kill exp022 | 1 | 0 | [Read transcript](infra-kill-exp022.md) | [JSON](../../sessions/e7/e701bd69285f6d93651f.json) |
+| infra westd disk cleanup | 1 | 0 | [Read transcript](infra-westd-disk-cleanup.md) | [JSON](../../sessions/ee/eeedc585006490e5b3dc.json) |
+| investigate advantage logging feasibility | 1 | 0 | [Read transcript](investigate-advantage-logging-feasibility.md) | [JSON](../../sessions/b6/b678d5120fff7e306a92.json) |
+| investigate exp028a duplicate check | 1 | 0 | [Read transcript](investigate-exp028a-duplicate-check.md) | [JSON](../../sessions/dc/dc22228158ab63b276f9.json) |
+| investigate ragen reward and kl config | 1 | 0 | [Read transcript](investigate-ragen-reward-and-kl-config.md) | [JSON](../../sessions/42/42cb0c8880abc3bacf72.json) |
+| investigate seed5 vs seed6 ood identical | 1 | 0 | [Read transcript](investigate-seed5-vs-seed6-ood-identical.md) | [JSON](../../sessions/6c/6c43eabb6258466bc588.json) |
+| investigate val metric granularity | 1 | 0 | [Read transcript](investigate-val-metric-granularity.md) | [JSON](../../sessions/e0/e099550679896c76691a.json) |
+| kill exp028c emergency | 1 | 0 | [Read transcript](kill-exp028c-emergency.md) | [JSON](../../sessions/28/280dde5c3b63e103b46b.json) |
+| knowledge literature map update | 1 | 0 | [Read transcript](knowledge-literature-map-update.md) | [JSON](../../sessions/91/910e5d12fbaa2a9558c7.json) |
+| knowledge v9d success memory | 1 | 0 | [Read transcript](knowledge-v9d-success-memory.md) | [JSON](../../sessions/42/42d4f2f7bcf6460975a7.json) |
+| monitor all experiments status | 1 | 0 | [Read transcript](monitor-all-experiments-status.md) | [JSON](../../sessions/d7/d7d6ba4af5f10ea20940.json) |
+| monitor bjb1 eval v2 status | 1 | 0 | [Read transcript](monitor-bjb1-eval-v2-status.md) | [JSON](../../sessions/94/9441982b22966adec657.json) |
+| monitor comprehensive status check | 1 | 0 | [Read transcript](monitor-comprehensive-status-check.md) | [JSON](../../sessions/04/04d018cf0a9df1c8d495.json) |
+| monitor eval v2 final check v2 | 1 | 0 | [Read transcript](monitor-eval-v2-final-check-v2.md) | [JSON](../../sessions/e0/e05c4548c881bd113bde.json) |
+| monitor eval v2 progress | 1 | 0 | [Read transcript](monitor-eval-v2-progress.md) | [JSON](../../sessions/d4/d4f3fc1914028a8e8c04.json) |
+| monitor eval v2 progress urgent | 1 | 0 | [Read transcript](monitor-eval-v2-progress-urgent.md) | [JSON](../../sessions/1b/1b7c121c114931ee9b5d.json) |
+| monitor exp003 continuous | 1 | 0 | [Read transcript](monitor-exp003-continuous.md) | [JSON](../../sessions/da/da7f194c0faf59a67ce3.json) |
+| monitor exp003 health | 1 | 0 | [Read transcript](monitor-exp003-health.md) | [JSON](../../sessions/09/09abaab727512d4e5335.json) |
+| monitor exp003 progress | 1 | 0 | [Read transcript](monitor-exp003-progress.md) | [JSON](../../sessions/01/011dbef9d0a8ea79287d.json) |
+| monitor exp003 status | 1 | 0 | [Read transcript](monitor-exp003-status.md) | [JSON](../../sessions/5f/5f8c5529100ef7815071.json) |
+| monitor exp003 step0 v2 | 1 | 0 | [Read transcript](monitor-exp003-step0-v2.md) | [JSON](../../sessions/75/75472c718bc8364ad42b.json) |
+| monitor exp003 step0 watch | 1 | 0 | [Read transcript](monitor-exp003-step0-watch.md) | [JSON](../../sessions/6f/6f2ffa087555c7f71538.json) |
+| monitor exp003 step check | 1 | 0 | [Read transcript](monitor-exp003-step-check.md) | [JSON](../../sessions/5f/5fe552cfa852af3bfc1a.json) |
+| monitor exp007 progress and pid | 1 | 0 | [Read transcript](monitor-exp007-progress-and-pid.md) | [JSON](../../sessions/ac/ac438e39ed8568ad7eb4.json) |
+| monitor exp007 step10 check | 1 | 0 | [Read transcript](monitor-exp007-step10-check.md) | [JSON](../../sessions/5c/5cb1fadfa0b2fd788b74.json) |
+| monitor exp009 early steps | 1 | 0 | [Read transcript](monitor-exp009-early-steps.md) | [JSON](../../sessions/cb/cb938bb35c64d805d48a.json) |
+| monitor exp009 early steps v2 | 1 | 0 | [Read transcript](monitor-exp009-early-steps-v2.md) | [JSON](../../sessions/e5/e568c17cd262a522f0fd.json) |
+| monitor exp010 early steps | 1 | 0 | [Read transcript](monitor-exp010-early-steps.md) | [JSON](../../sessions/0e/0e83628bd405893097be.json) |
+| monitor exp010 gpu confirm | 1 | 0 | [Read transcript](monitor-exp010-gpu-confirm.md) | [JSON](../../sessions/a2/a206308b67a5c77fe6cd.json) |
+| monitor exp010 steps 3to5 | 1 | 0 | [Read transcript](monitor-exp010-steps-3to5.md) | [JSON](../../sessions/ff/ff4edbcd4bc539fcc3a1.json) |
+| monitor exp012 early steps | 1 | 0 | [Read transcript](monitor-exp012-early-steps.md) | [JSON](../../sessions/3e/3e23c3736add7a44f66c.json) |
+| monitor exp012b early health | 1 | 0 | [Read transcript](monitor-exp012b-early-health.md) | [JSON](../../sessions/41/4125bce1f7da5134bfb2.json) |
+| monitor exp012b early steps | 1 | 0 | [Read transcript](monitor-exp012b-early-steps.md) | [JSON](../../sessions/20/2002714376a3cfaeef3e.json) |
+| monitor exp012b step6 | 1 | 0 | [Read transcript](monitor-exp012b-step6.md) | [JSON](../../sessions/cb/cbb697deb363bfa97e90.json) |
+| monitor exp012b urgent status | 1 | 0 | [Read transcript](monitor-exp012b-urgent-status.md) | [JSON](../../sessions/bc/bc7368fe8ce47f12d94f.json) |
+| monitor exp013b early steps | 1 | 0 | [Read transcript](monitor-exp013b-early-steps.md) | [JSON](../../sessions/19/19c5aed8e418873af544.json) |
+| monitor exp013b step6 check | 1 | 0 | [Read transcript](monitor-exp013b-step6-check.md) | [JSON](../../sessions/ce/cedf910e62f6fff00ebd.json) |
+| monitor exp013b initial check | 1 | 0 | [Read transcript](monitor-exp013b-initial-check.md) | [JSON](../../sessions/ea/ea333f94f76d1265e85b.json) |
+| monitor exp013c early steps | 1 | 0 | [Read transcript](monitor-exp013c-early-steps.md) | [JSON](../../sessions/a6/a64c783eb6294aaf2828.json) |
+| monitor exp013d early steps | 1 | 0 | [Read transcript](monitor-exp013d-early-steps.md) | [JSON](../../sessions/ab/ab80d2a897c04e0e9803.json) |
+| monitor exp013e early steps | 1 | 0 | [Read transcript](monitor-exp013e-early-steps.md) | [JSON](../../sessions/18/189ae580257630a35186.json) |
+| monitor exp013f early health | 1 | 0 | [Read transcript](monitor-exp013f-early-health.md) | [JSON](../../sessions/02/02656f3b399251801d52.json) |
+| monitor exp013f grep metrics | 1 | 0 | [Read transcript](monitor-exp013f-grep-metrics.md) | [JSON](../../sessions/f1/f16c7f50eac48b2c3463.json) |
+| monitor exp013f ray worker logs | 1 | 0 | [Read transcript](monitor-exp013f-ray-worker-logs.md) | [JSON](../../sessions/12/12113bd3ba71839c61c6.json) |
+| monitor exp013f step6 7 | 1 | 0 | [Read transcript](monitor-exp013f-step6-7.md) | [JSON](../../sessions/3c/3c700cb1e2306673f611.json) |
+| monitor exp013f step6 metrics | 1 | 0 | [Read transcript](monitor-exp013f-step6-metrics.md) | [JSON](../../sessions/80/80c379d00832e666f96a.json) |
+| monitor exp013f step8 10 | 1 | 0 | [Read transcript](monitor-exp013f-step8-10.md) | [JSON](../../sessions/f8/f8d46542e9f3ba2be719.json) |
+| monitor exp013f wandb check | 1 | 0 | [Read transcript](monitor-exp013f-wandb-check.md) | [JSON](../../sessions/57/5715d9e01b36ab00bab6.json) |
+| monitor exp015 early health | 1 | 0 | [Read transcript](monitor-exp015-early-health.md) | [JSON](../../sessions/7d/7dde0aa42fdeef33c567.json) |
+| monitor exp015 progress | 1 | 0 | [Read transcript](monitor-exp015-progress.md) | [JSON](../../sessions/aa/aa983bcb72cfd3d478c7.json) |
+| monitor exp015 step1 check | 1 | 0 | [Read transcript](monitor-exp015-step1-check.md) | [JSON](../../sessions/f7/f7f13e8d00d673e7192a.json) |
+| monitor exp015 step6 killgo | 1 | 0 | [Read transcript](monitor-exp015-step6-killgo.md) | [JSON](../../sessions/82/8253b79c5f8da88201d7.json) |
+| monitor exp015 val train transition | 1 | 0 | [Read transcript](monitor-exp015-val-train-transition.md) | [JSON](../../sessions/51/51ef963b4702f11855a5.json) |
+| monitor exp016 status check | 1 | 0 | [Read transcript](monitor-exp016-status-check.md) | [JSON](../../sessions/4f/4f88a15b02ed19cea37b.json) |
+| monitor exp017 completion check | 1 | 0 | [Read transcript](monitor-exp017-completion-check.md) | [JSON](../../sessions/5c/5c1ac848a1fce7c40797.json) |
+| monitor exp019b augment status | 1 | 0 | [Read transcript](monitor-exp019b-augment-status.md) | [JSON](../../sessions/f5/f54046104f64d7afa459.json) |
+| monitor exp026 progress check | 1 | 0 | [Read transcript](monitor-exp026-progress-check.md) | [JSON](../../sessions/c2/c28bdad11bdec104e5ea.json) |
+| monitor exp027 step3 check | 1 | 0 | [Read transcript](monitor-exp027-step3-check.md) | [JSON](../../sessions/4a/4ac5043434a452e74ab5.json) |
+| monitor exp027 step3 metrics | 1 | 0 | [Read transcript](monitor-exp027-step3-metrics.md) | [JSON](../../sessions/eb/ebf95d2ef49f665ffefa.json) |
+| monitor exp027 step4 check | 1 | 0 | [Read transcript](monitor-exp027-step4-check.md) | [JSON](../../sessions/69/697f5257c5520fd791c7.json) |
+| monitor exp027 step5 earlystop | 1 | 0 | [Read transcript](monitor-exp027-step5-earlystop.md) | [JSON](../../sessions/82/82362a79fa1cff0b8fc2.json) |
+| monitor exp027 wandb check | 1 | 0 | [Read transcript](monitor-exp027-wandb-check.md) | [JSON](../../sessions/5c/5c6bca34ddc52b8403e8.json) |
+| monitor exp028c metrics | 1 | 0 | [Read transcript](monitor-exp028c-metrics.md) | [JSON](../../sessions/33/33b0866492c5f0d356d2.json) |
+| monitor exp028c step5 val | 1 | 0 | [Read transcript](monitor-exp028c-step5-val.md) | [JSON](../../sessions/1a/1a47d586e4feb9ecbe42.json) |
+| monitor exp028c step6plus | 1 | 0 | [Read transcript](monitor-exp028c-step6plus.md) | [JSON](../../sessions/4c/4ca8301be9a1ec231e9c.json) |
+| monitor exp029 seed2 step30 val | 1 | 0 | [Read transcript](monitor-exp029-seed2-step30-val.md) | [JSON](../../sessions/da/dae74d05547595ad5039.json) |
+| monitor exp029 seed2 step40 final | 1 | 0 | [Read transcript](monitor-exp029-seed2-step40-final.md) | [JSON](../../sessions/6c/6cfe365c4c277626d865.json) |
+| monitor exp029 continuous | 1 | 0 | [Read transcript](monitor-exp029-continuous.md) | [JSON](../../sessions/8e/8e720c732cd11d0069d1.json) |
+| monitor exp029 extract metrics | 1 | 0 | [Read transcript](monitor-exp029-extract-metrics.md) | [JSON](../../sessions/84/84ba28b2e6cb412f15e4.json) |
+| monitor exp029 gpu check | 1 | 0 | [Read transcript](monitor-exp029-gpu-check.md) | [JSON](../../sessions/34/34f3b179f444f56dba38.json) |
+| monitor exp029 mvp metrics | 1 | 0 | [Read transcript](monitor-exp029-mvp-metrics.md) | [JSON](../../sessions/46/46ce9c55d2c7bc9e260a.json) |
+| monitor exp029 quick check | 1 | 0 | [Read transcript](monitor-exp029-quick-check.md) | [JSON](../../sessions/20/205e6644f1e588e4db77.json) |
+| monitor exp029 status check | 1 | 0 | [Read transcript](monitor-exp029-status-check.md) | [JSON](../../sessions/b4/b479eab72e726bc041c9.json) |
+| monitor exp029 step5 val | 1 | 0 | [Read transcript](monitor-exp029-step5-val.md) | [JSON](../../sessions/60/606362294578d35f59f3.json) |
+| monitor exp029 urgent check | 1 | 0 | [Read transcript](monitor-exp029-urgent-check.md) | [JSON](../../sessions/fb/fb99f361cece0ba3df5e.json) |
+| monitor exp 001 check | 1 | 0 | [Read transcript](monitor-exp-001-check.md) | [JSON](../../sessions/32/327ca6495cf0764533ef.json) |
+| monitor exp 001b urgent | 1 | 0 | [Read transcript](monitor-exp-001b-urgent.md) | [JSON](../../sessions/e3/e3dd8798418967e041be.json) |
+| monitor exp 002 step1 | 1 | 0 | [Read transcript](monitor-exp-002-step1.md) | [JSON](../../sessions/d1/d11499fe72ef61826c60.json) |
+| monitor factorial progress check | 1 | 0 | [Read transcript](monitor-factorial-progress-check.md) | [JSON](../../sessions/45/459b63151a88c173da0f.json) |
+| monitor factorial step10 watch r1 | 1 | 0 | [Read transcript](monitor-factorial-step10-watch-r1.md) | [JSON](../../sessions/8e/8e30e9ce5e9a77006725.json) |
+| monitor factorial step3plus | 1 | 0 | [Read transcript](monitor-factorial-step3plus.md) | [JSON](../../sessions/9b/9b2f746564529d3b81a2.json) |
+| monitor factorial step5plus | 1 | 0 | [Read transcript](monitor-factorial-step5plus.md) | [JSON](../../sessions/47/47ba148cd014a899203e.json) |
+| monitor factorial step6 metrics | 1 | 0 | [Read transcript](monitor-factorial-step6-metrics.md) | [JSON](../../sessions/ab/aba0ec0471cf37b9cb98.json) |
+| monitor gae baseline step10 alert | 1 | 0 | [Read transcript](monitor-gae-baseline-step10-alert.md) | [JSON](../../sessions/f7/f7245afc52e67b980fa4.json) |
+| monitor gae baseline step10 | 1 | 0 | [Read transcript](monitor-gae-baseline-step10.md) | [JSON](../../sessions/55/55ec421a9cffe7d77a18.json) |
+| monitor gae step10 blocking | 1 | 0 | [Read transcript](monitor-gae-step10-blocking.md) | [JSON](../../sessions/cd/cd15554a3fbfff5a53f4.json) |
+| monitor gae step10 check | 1 | 0 | [Read transcript](monitor-gae-step10-check.md) | [JSON](../../sessions/0d/0d2788450d5e44fcfd0c.json) |
+| monitor gae step10 extract | 1 | 0 | [Read transcript](monitor-gae-step10-extract.md) | [JSON](../../sessions/b8/b8ac565c24a6b90677ec.json) |
+| monitor gae step10 final | 1 | 0 | [Read transcript](monitor-gae-step10-final.md) | [JSON](../../sessions/c9/c946c1fa3e18e87037c2.json) |
+| monitor gae step10 now | 1 | 0 | [Read transcript](monitor-gae-step10-now.md) | [JSON](../../sessions/77/7701306266324151f6e6.json) |
+| monitor gae step10 poll | 1 | 0 | [Read transcript](monitor-gae-step10-poll.md) | [JSON](../../sessions/cc/cc3de04c86edaf44d7d9.json) |
+| monitor gpu2 eval safety | 1 | 0 | [Read transcript](monitor-gpu2-eval-safety.md) | [JSON](../../sessions/a8/a8e25deecf336f0997b4.json) |
+| monitor gpu quick | 1 | 0 | [Read transcript](monitor-gpu-quick.md) | [JSON](../../sessions/c0/c0301916cacc3099044c.json) |
+| monitor gsweep watchdog | 1 | 0 | [Read transcript](monitor-gsweep-watchdog.md) | [JSON](../../sessions/7d/7dd12db8a17dc1a09c82.json) |
+| monitor hsweep h10 progress | 1 | 0 | [Read transcript](monitor-hsweep-h10-progress.md) | [JSON](../../sessions/e6/e6a6096b84089300da30.json) |
+| monitor hsweep h20 and 7b status | 1 | 0 | [Read transcript](monitor-hsweep-h20-and-7b-status.md) | [JSON](../../sessions/ff/ffb3ff025a6c69d8766c.json) |
+| monitor hsweep h2 seed2 completion | 1 | 0 | [Read transcript](monitor-hsweep-h2-seed2-completion.md) | [JSON](../../sessions/c4/c465a772e0c17809ddf5.json) |
+| monitor hsweep retry health | 1 | 0 | [Read transcript](monitor-hsweep-retry-health.md) | [JSON](../../sessions/55/55a8ccc4c2b378534e96.json) |
+| monitor scienceworld eval v2 progress | 1 | 0 | [Read transcript](monitor-scienceworld-eval-v2-progress.md) | [JSON](../../sessions/04/04ce81037eeb10ba7124.json) |

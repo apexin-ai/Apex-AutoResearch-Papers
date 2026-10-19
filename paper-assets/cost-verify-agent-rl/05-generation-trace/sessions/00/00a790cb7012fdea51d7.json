@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00a790cb7012fdea51d7",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp013f kill cleanup",
+  "task_key": "worker_ops_exp013f-kill-cleanup_20260514T093053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp013f-kill-cleanup_20260514T093053_result.json",
+    "occurrence": 1,
+    "bytes": 383,
+    "sha256": "9e2c6f78921d09d90eef3f086e5bd6780da2c16e5abadf7307f6386886d565e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成：\n\n- **PID 309633**: 已杀死\n- **Ray/训练进程**: 无残留（ps 无匹配）\n- **Ray session 目录**: 已删除\n- **GPU 0**: 0MiB 占用，0% 利用率\n- **GPU 1**: 0MiB 占用，100% 利用率显示但无进程（短暂状态，会自动回落）\n- **内存**: 79Gi used / 920Gi available\n\n环境已就绪，可以重新提交 exp013f。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp013f-kill-cleanup.md"
+}

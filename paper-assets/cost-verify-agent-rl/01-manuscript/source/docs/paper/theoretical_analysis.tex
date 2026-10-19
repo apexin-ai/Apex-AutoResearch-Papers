@@ -1,0 +1,35 @@
+\section{Theoretical Analysis}
+\label{sec:theory}
+
+Sign misattribution is the more fundamental failure mechanism because it causes active divergence, not merely slow convergence. We derive the probability of incorrect gradient direction below; full proofs appear in Appendix~\ref{app:theory_full}.
+
+\textbf{Definition 1} (Locally correct action). \textit{An action $a_t$ is \textbf{locally correct} if it would receive positive advantage under an oracle that observes the full episode history $h_t$ and has access to the true action-value function. Equivalently,\footnote{This equivalence is approximate; it holds exactly when all trajectories within an episode are equally likely under the reference policy, and approximately under the mild assumption that policy drift remains small during early training. This approximation is most accurate when the policy has not yet diverged significantly from initialization (here, $p \approx 12.5\%$); at higher success rates, the bound may loosen.} window $w$ contains locally correct actions if replacing them (holding all other windows fixed) would decrease the probability of episode success.}
+
+\textbf{Proposition 1.} \textit{Under step-independent training with binary episode reward $R_{\text{episode}} \in \{0, r_+\}$, the probability that window $w$'s advantage $\hat{A}_w$ has the correct sign (aligned with local action quality) approaches the base success rate $p$ as the number of rollouts $K$ per group increases.}
+
+\textit{Proof sketch.} In a failed episode ($R_{\text{episode}} = 0$), all windows receive $R_w = 0$. If any rollout in the group succeeded, $\mu > 0$, so every window in the failed episode receives $\hat{A}_w < 0$, including windows with locally correct actions. The probability of receiving the wrong sign in a failed episode is $1 - (1-p)^{K-1}$ (at least one group member succeeded). As $K$ grows, this approaches $1-p$, and the overall probability of correct sign approaches $p$. \hfill$\square$
+
+The key distinction is temporal. Information loss (M1) imposes a constant ceiling determined by $h$; sign misattribution (M2) is cumulative: each wrong-sign gradient step erodes policy competence below that ceiling. A wrong-sign gradient moves the optimizer \textit{away} from good policies; a reduced-magnitude gradient from discounting ($\gamma^{(N-w)}$) still points toward good policies. Sign errors produce active divergence; magnitude errors merely slow convergence (Appendix~\ref{app:sign_fundamental}).
+
+\textbf{Proposition 2.}\label{prop:correct_sign} \textit{Let $p$ denote the episode success rate and $K$ the number of rollouts per group. Under step-independent training with binary episode reward, the fraction of gradient updates with correct sign is upper bounded by:}
+\begin{equation}
+P(\text{correct} \mid \text{update}) \leq \frac{p}{1 - (1-p)^{K}}
+\label{eq:correct_conditional}
+\end{equation}
+
+\textit{Derivation.} Three mutually exclusive cases determine gradient direction for a window with locally correct actions: (1)~episode succeeded (probability $p$): correct sign; (2)~episode failed but group contains a success (probability $(1{-}p)[1{-}(1{-}p)^{K-1}]$): wrong sign; (3)~entire group failed (probability $(1{-}p)^K$): zero gradient. Conditioning on non-zero gradient (Cases 1 and 2) yields Equation~\ref{eq:correct_conditional}. The bound is tight when episode success implies all constituent windows are locally correct; in practice, successful episodes may contain suboptimal windows, so the true fraction of correctly signed updates may be lower.
+
+Proposition~2 provides a finite-sample refinement of Proposition~1's asymptotic result: while Proposition~1 establishes that the probability of correct sign converges to $p$ as $K \to \infty$, Proposition~2 gives an explicit upper bound for any finite group size $K$. At $p{=}12.5\%$, $K{=}8$, this yields an upper bound of 19.1\% on correctly signed gradient updates (Figure~\ref{fig:theory_curve}). In the large-$K$ limit, $P(\text{correct} \mid \text{update}) \to p$: ${\sim}87.5\%$ of updates for locally correct windows point in the wrong direction.
+
+\paragraph{Severity scales with task difficulty.} Sign misattribution becomes \textit{more} severe as the task gets harder (Equation~\ref{eq:correct_conditional}): at $p{=}50\%$, $P(\text{correct} \mid \text{update}) \leq 50.2\%$; at $p{=}5\%$, at most 14.9\% of updates are correct. Multi-turn agent tasks with low baseline success rates are precisely where credit assignment matters most, yet where step-independent training produces the worst gradient signal. Increasing $K$ does not help: more updates occur (fewer all-fail groups), but each remains equally likely to carry the wrong sign.
+
+\paragraph{Reward saturation.} When all $K$ rollouts receive the same binary reward, $\sigma = 0$ and $\hat{A}_w = 0$, producing zero gradient. At $p{=}12.5\%$, $K{=}8$, roughly one-third of batches yield no gradient ($(1{-}p)^K \approx 34.4\%$). This compounds sign misattribution: of the ${\sim}66\%$ that produce a gradient, at most 19.1\% have the correct sign.
+
+\paragraph{Cumulative divergence.} Sign misattribution produces a systematic gradient bias. Let $\theta^*$ denote an optimal policy parameterization. At each update, the expected gradient under step-independent training is:
+\begin{equation}
+\mathbb{E}[\nabla_\theta \mathcal{L}] = P_c \cdot g_+ + (1 - P_c) \cdot g_-
+\label{eq:biased_gradient}
+\end{equation}
+where $P_c = P(\text{correct} \mid \text{update})$, $g_+$ points toward $\theta^*$, and $g_-$ points away. When $P_c < 0.5$ (which holds for $p < 0.5$; Equation~\ref{eq:correct_conditional}), the expected gradient points away from good policies even if correct-sign updates carry larger magnitude: the break-even ratio is $|g_+|/|g_-| \geq (1{-}P_c)/P_c \approx 4.2$ at $p{=}12.5\%$, while the empirically measured ratio is ${\approx}2.6$ (Section~\ref{sec:sign_verification}), confirming that sign frequency dominates magnitude compensation. Amplified by the M1--M2 feedback loop (Section~\ref{sec:dual_mechanism}), this drives progressive degradation: M1 caps $p$; lower $p$ increases wrong-sign frequency under M2, further depressing $p$.
+
+\paragraph{Extension to ternary reward.} Our experimental setting uses ternary reward ($r \in \{-0.1, 0, 1\}$) rather than binary. Under ternary reward with penalty rate $\alpha$ (fraction of actions receiving $r_-$), binary reward ($\alpha{=}0$) yields the tightest bound on sign misattribution. Increasing $\alpha$ introduces within-group variance among failed episodes that partially breaks the sign-outcome coupling: windows with valid actions in failed episodes may obtain positive advantage when penalty-induced variance shifts the group mean downward. The measured 52\% credit agreement at $\alpha{\approx}0.3$ is consistent with this monotonic relaxation from the binary worst case. A binomial test confirms that the binary upper bound (19.1\%) and the empirical rate (52.1\%) measure different quantities ($z = 45.9$, $p < 10^{-100}$); both are far below the level required for reliable policy improvement (Appendix~\ref{app:nonbinary_extension}).

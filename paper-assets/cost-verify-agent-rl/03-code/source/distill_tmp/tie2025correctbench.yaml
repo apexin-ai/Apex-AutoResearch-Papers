@@ -1,0 +1,133 @@
+paper_key: "tie2025correctbench"
+title: "Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs"
+venue: "NeurIPS 2025 Datasets & Benchmarks"
+full_text_available: true
+
+research:
+  baselines:
+    - "Base (direct prompting, no correction)"
+    - "CoT (chain-of-thought)"
+    - "RCI (intrinsic, S1)"
+    - "CoVe (Chain-of-Verification, intrinsic, S1)"
+    - "Self-Refine (intrinsic, S1)"
+    - "Reflexion-v1 (intrinsic, S1)"
+    - "Reflexion-v2 (external, S2)"
+    - "RARR (Retrofit Attribution with Research and Revision, external, S2)"
+    - "RATT (external, S2)"
+    - "CRITIC (external, S2)"
+    - "DCoT (fine-tuned, S3, LLaMA2-7B)"
+    - "SCORE (fine-tuned, S3, Gemma-7B / LLaMA2-13B)"
+    - "SuperCorrect (fine-tuned, S3, Qwen2.5-Math-7B)"
+  metrics:
+    - {name: "Accuracy (ACC)", direction: "higher_better", note: "ACC = 1/N sum I(y_hat_i = y_i), used for commonsense reasoning T1"}
+    - {name: "Solve Rate", direction: "higher_better", note: "percentage of correctly solved problems, used for math reasoning T2"}
+    - {name: "Pass@k", direction: "higher_better", note: "percentage of generated solutions passing all test cases, used for code generation T3"}
+    - {name: "Correction Rate (CR)", direction: "higher_better", note: "percentage of initially wrong answers corrected"}
+    - {name: "Misjudgment Rate (MR)", direction: "lower_better", note: "percentage of initially correct answers wrongly changed"}
+    - {name: "Efficiency Rank", direction: "higher_better", note: "Accuracy / (Token Count x API Calls)"}
+  datasets:
+    - {name: "HotpotQA", size: "part of 3825 QA pairs", task: "commonsense reasoning (T1)"}
+    - {name: "CommonsenseQA (CS-QA)", size: "part of 3825 QA pairs", task: "commonsense reasoning (T1)"}
+    - {name: "GPQA", size: "part of 3825 QA pairs", task: "commonsense reasoning (T1)"}
+    - {name: "GSM8K", size: "part of 3825 QA pairs", task: "mathematical reasoning (T2)"}
+    - {name: "AQUA", size: "part of 3825 QA pairs", task: "mathematical reasoning (T2)"}
+    - {name: "MATH", size: "part of 3825 QA pairs", task: "mathematical reasoning (T2)"}
+    - {name: "HumanEval", size: "part of 3825 QA pairs", task: "code generation (T3)"}
+  ablation_dimensions:
+    - "correction strategy type (S1 intrinsic vs S2 external vs S3 fine-tuned)"
+    - "LLM type (M1 instruction-based vs M2 reasoning)"
+    - "task type (T1 commonsense vs T2 math vs T3 code)"
+    - "model scale (7B/8B vs 70B/72B vs closed-source)"
+    - "mixture ordering (Base→S1→S2 vs Base→S2→S1)"
+    - "correction rate vs misjudgment rate tradeoff"
+    - "computational cost (tokens, API calls, search tokens, response time)"
+    - "failure mode distribution"
+  training_recipe:
+    optimizer: "N/A (benchmark paper, no new model training)"
+    lr: "N/A"
+    hardware: "N/A (inference-only evaluation)"
+    method: "Benchmark evaluation framework; constructs CorrectBench-base (3825 QA pairs from 7 subdatasets) and CorrectBench-test; evaluates 11 self-correction methods across 9 instruction-based LLMs and 4 reasoning LLMs; uses 100-sample subsets per dataset after outlier filtering"
+  method_family: "self-correction benchmark / evaluation framework"
+
+positioning:
+  core_claim: "First systematic benchmark evaluating self-correction's impact on LLM inference across three correction types (intrinsic/external/fine-tuned), three task types, and two model categories — revealing that correction helps complex reasoning but yields diminishing returns for reasoning-native LLMs, and that cost-aware adaptive correction is the key open direction"
+  key_results: "S2 external methods generally outperform S1 intrinsic; CoVe +18.85% on GPQA, Self-Refine +22.13% on GPQA; RARR achieves best efficiency (76.3% acc with only 533 tokens, 2 API calls on MATH); SuperCorrect +28.45% on MATH; reasoning LLMs (DeepSeek-V3: 89.29% HotpotQA, 91.67% HumanEval) show marginal gains from additional correction; failure mode: Logical Oversight 32.9%, Factual Inaccuracy 22.0%"
+  limitations:
+    - "Reasoning LLM ceiling effect: advanced models embed correction internally, limiting additional gains"
+    - "Fine-tuned methods are inconsistent and dataset-narrow, restricting generalizability"
+    - "Mixture methods improve accuracy but at significant computational overhead"
+    - "Evaluation uses only 100-sample subsets per dataset after filtering outliers"
+    - "Only covers 3 task types; does not include open-ended generation, multi-turn dialogue, etc."
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "尽管LLM在各领域取得突破，但输出的可靠性和准确性——特别是推理密集型任务——仍是巨大挑战。自纠正策略百花齐放但缺乏统一评估，引出核心问题：Can LLMs truly correct themselves?"
+  tension: "现有自纠正方法（RARR, Refiner, CRITIC等）在不同任务上表现参差不齐(inconsistent gains)，缺乏横向可比的系统性评估。nobody knows which correction type works best for which scenario。"
+  key_insight: "Section 4.8和Table 5的推理型LLM实验揭示核心洞察：reasoning LLMs已内嵌错误检测和纠正机制，额外的self-correction方法只带来边际收益(marginal gains)。这暗示self-correction的未来不在于更复杂的correction pipeline，而在于adaptive、cost-aware的correction策略选择。"
+  argument_chain: "LLM进步但推理仍不可靠 → 自纠正策略涌现但缺系统评估 → 构建CorrectBench三维框架(correction type × task × model) → 11种方法在7个数据集上系统实验 → 发现S2优于S1但代价大、reasoning LLM有天花板效应 → 提出adaptive cost-aware correction方向"
+  contribution_framing: "三个贡献按重要性递减排列：(1) 首个系统性自纠正基准CorrectBench; (2) 两个精心构建的数据集CorrectBench-base和CorrectBench-test; (3) 实证洞察——自纠正显著提升推理密集型任务表现，但需要在效率和推理深度间权衡"
+  intro_structure: "4段：P1 背景(LLM进步+CoT) → P2 问题与核心问题(纠正方法不一致→Can LLMs truly correct themselves?) → P3 方案介绍(CorrectBench框架+11方法分类) → P4 数据集与实验范围(3825 QA pairs, 7 subdatasets, 两类LLM)"
+  notable_technique: "用修辞设问'Can LLMs truly correct themselves?'作为论文标题和intro的核心锚点，将benchmark论文包装成一个开放科学问题的回答。Introduction结尾不是简单列贡献，而是先给出实验设计的完整scope(数据集规模、覆盖任务、模型类型)再列贡献，让读者对benchmark的comprehensiveness产生信心。"
+
+figures:
+  figure_count: 7
+  figure1:
+    type: "teaser_result"
+    description: "三组雷达图(radar charts)并排展示：Base(Baseline), S1(Intrinsic Correction), S2(External Correction)三种条件下，不同LLM在多个数据集上的表现。每组雷达图的轴对应不同数据集(HotpotQA, CS-QA, GPQA, GSM8K, AQUA, MATH, HumanEval)，不同颜色线条对应不同LLM(LLaMA3.1-8B/70B, Qwen2.5-7B/72B, Claude3.5, GPT-3.5/4o, QWQ-32B, DeepSeek-V3)。"
+    narrative_role: "在论文开头用一张图给出全局结论：S2整体优于S1，reasoning LLMs(如DeepSeek-V3)的雷达面积最大且correction带来的形状变化最小——视觉上直接传达天花板效应"
+    design_elements: ["三组并排雷达图对比correction类型", "多色线条区分模型", "雷达面积直观反映综合表现", "轴标签为数据集名"]
+    visual_style: "浅色背景，每个LLM一条折线，颜色较淡柔和。三组雷达图水平排列，左Base中S1右S2，方便横向对比。图下方标注模型名+颜色图例。"
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "S1(intrinsic)方法在9个LLM上的平均performance improvement，按数据集分组"
+      how_gain_highlighted: "线的上升幅度直接表示S1带来的增益，低于0则表示退化"
+      design_note: "按LLM分线条，直观看出哪些LLM从S1获益最多"
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "S2(external)方法在9个LLM上的平均performance improvement，按数据集分组"
+      how_gain_highlighted: "与Figure 4对称设计，S2线条整体更高更稳定——视觉上强化S2>S1结论"
+      design_note: "Figure 4和Figure 5构成对称pair，设计一致便于直接比较S1 vs S2"
+    - figure_id: "Figure 6"
+      viz_type: "bar_chart"
+      what_compared: "mixture方法两种ordering(Base→S1→S2 vs Base→S2→S1)在GPQA和MATH上的表现"
+      how_gain_highlighted: "分组柱状图，mixture组合的柱子高于单方法"
+      design_note: "仅选GPQA(最难commonsense)和MATH(最难math)两个数据集展示，聚焦最有说服力的case"
+    - figure_id: "Figure 7"
+      viz_type: "bar_chart"
+      what_compared: "不同correction方法的平均响应时间(秒)，按3个代表性LLM(LLaMA3.1-70B, GPT-4o, DeepSeek-V3)分组"
+      how_gain_highlighted: "RATT和RARR柱子最高，视觉上直接揭示computational cost trade-off；Base和CoT柱子矮得几乎看不见，形成鲜明对比"
+      design_note: "选三个不同类型LLM(开源大模型、闭源商业、reasoning)做代表，避免信息过载。柱状图用浅色系(mint绿/珊瑚红/天蓝)区分模型，视觉清晰。RATT的400+秒柱子 vs Base的~5秒形成80倍差距的视觉冲击"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1(teaser雷达图全局概览) → Figure 2(框架overview) → Figure 3(mixture方法流程) → Figure 4-5(S1/S2对称performance图) → Figure 6(mixture实验) → Figure 7(cost分析)。叙事流：全景→方法→细节结果→成本分析"
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "datasets (7 datasets spanning 3 task types)"
+    row_organization: "by_category"
+    col_organization: "flat (每个数据集一列，无子分组)"
+    highlight_strategy: "数值后括号标变化量；蓝色表示提升、橙色表示下降；颜色深浅反映变化幅度"
+    statistical_reporting: "average across multiple LLMs (9 instruction-based models)"
+    num_baselines: 10
+    design_note: "行按correction类型分块(Baseline, S1, S2)，底部有Average汇总行。变化量的颜色深浅编码是该表最大亮点——读者扫一眼颜色分布就能看出哪种方法在哪类任务上最有效。Table 1只展示S1和S2的average across LLMs，fine-tuned方法(S3)单独放Table 2因为用不同base model不可直接比较。"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["correction method (CoVe vs RARR)", "dataset (GPQA, AQUA, HotpotQA)"]
+      variation_style: "full_numbers"
+      design_note: "引入Correction Rate和Misjudgment Rate两个新指标，揭示self-correction的双刃剑效应：RARR correction rate 47.1%但misjudgment rate仅4.5%，CoVe correction rate 40.8%但misjudgment rate 7.5%——外部方法更精准"
+    - table_id: "Table 4"
+      what_varied: ["correction method", "resource dimensions (tokens, API calls, search tokens, accuracy)"]
+      variation_style: "full_numbers"
+      design_note: "Cost-efficiency分析的核心表。引入Efficiency Rank = Accuracy/(Tokens×API_Calls)。RARR以533 tokens+2 API calls达76.3%准确率成为效率标杆。绿色/红色标注最优/最差trade-off。这张表直接支撑论文'cost-aware correction'的倡议。"
+    - table_id: "Table 6"
+      what_varied: ["failure mode type"]
+      variation_style: "full_numbers"
+      design_note: "Error taxonomy表，6种failure mode按占比排列(Logical Oversight 32.9% > Factual Inaccuracy 22.0% > Over-Reliance on Tools 14.6% > ...)。每种failure配corrective suggestion(S1 or S2)，将分析结果转化为可操作建议。"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 5(所有LLM的baseline performance完整对比，含instruction-based和reasoning LLMs在7个数据集上的raw numbers)；Table 2(fine-tuned methods S3的详细结果)；Figure 8(appendix中各correction方法在每个LLM上的详细性能热图)"
+    reason: "主表(Table 1)只展示average across LLMs的概览，per-model细节放附录避免主文信息过载。Fine-tuned方法因base model不同无法与S1/S2直接比较故分表。"

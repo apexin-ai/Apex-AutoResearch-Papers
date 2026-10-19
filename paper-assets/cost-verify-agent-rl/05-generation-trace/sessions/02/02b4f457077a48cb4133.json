@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02b4f457077a48cb4133",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops prepare exp029 seed2 westd deployment",
+  "task_key": "worker_ops_prepare-exp029-seed2-westd-deployment_20260518T212259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prepare-exp029-seed2-westd-deployment_20260518T212259_result.json",
+    "occurrence": 1,
+    "bytes": 4370,
+    "sha256": "1334ffc970c82436d0fba63a3a266b8d781d6e34aeb63a838a246a1e8dce994f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。以下是完整验证报告。\n\n---\n\n## 1. Checkpoint 完整性 ✅ 通过\n\n路径：`/root/cost-verify-agent-rl/backups/exp029-seed2-bjb1/exp029-seed2/global_step_15/actor/`\n\n| 文件 | 大小 | 状态 |\n|------|------|------|\n| model_world_size_2_rank_0.pt | 3.8G | ✓ |\n| model_world_size_2_rank_1.pt | 3.8G | ✓ |\n| optim_world_size_2_rank_0.pt | 6.5G | ✓ |\n| optim_world_size_2_rank_1.pt | 6.5G | ✓ |\n| extra_state_world_size_2_rank_0.pt | 15K | ✓ |\n| extra_state_world_size_2_rank_1.pt | 15K | ✓ |\n| fsdp_config.json | 46B | ✓ (world_size=2) |\n| huggingface/ (tokenizer, 9 files) | ~16M | ✓ |\n| latest_checkpointed_iteration.txt | \"15\" | ✓ |\n\n总计 ~21G，所有关键组件完整。FSDP world_size=2 匹配目标 2-GPU 配置。\n\n## 2. SFT 模型 ✅ 通过（路径不同）\n\n- 预期路径 `/root/cost-verify-agent-rl/qwen3_exp021_ragen_sft_v4/` **不存在**\n- 实际位置：`/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4/`（11 files, 3.3G）\n- bjb1 config 中 `model_path` 已指向此路径，无需修改\n\n## 3. Config 文件 ❌ 需从 bjb1 传输\n\nwestd 上不存在 `_alfworld_exp029_episode_level_seed2.yaml`。bjb1 上有现成可用版本：\n\n**关键参数确认：**\n- `seed: {train: 43, val: 123}` ✓\n- `optimizer_offload: false` ✓（FSDP resume 必须）\n- `max_actor_ckpt_to_keep: 3` ✓\n- `resume_mode: auto` ✓\n- `model_path: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4` ✓\n- `CUDA_VISIBLE_DEVICES: 0,1` ✓\n- `default_local_dir: /root/autodl-tmp/checkpoints/exp029-seed2/` ✓\n\n**需要执行：** scp config 从 bjb1 到 westd\n\n## 4. 磁盘空间 ⚠️ 紧张但可行\n\n| 分区 | 总量 | 已用 | 可用 | 用途 |\n|------|------|------|------|------|\n| overlay (/) | 30G | 24G | 6.2G | 系统 + 备份 checkpoint (21G 在此) |\n| /root/autodl-tmp | 250G | 228G | **23G** | checkpoints + 代码 |\n\n**autodl-tmp 主要占用：**\n- `factorial-h2-episode-adv/`: 62G\n- `factorial-h2-episodeadv-seed2/`: 41G（运行中，完成后可释放）\n- `qwen3_exp021_ragen_sft_v4/`: 3.3G\n- `cost-verify-agent-rl/` (代码): 21G\n\n**空间规划：**\n- exp029_seed2 需要：3 checkpoints × 21G = **63G**\n- factorial_seed2 完成后释放 41G → 可用 64G → **刚好够，无余量**\n- 建议：同时清理 `factorial-h2-episode-adv/`（62G，如已完成）以获得充足余量\n- 备份 checkpoint 在 overlay，用 **symlink** 到 autodl-tmp 避免额外复制\n\n## 5. 部署准备命令（不执行）\n\n### Step A: 传输 config（现在可做）\n\n```bash\n# 在 westd 上执行，从 bjb1 scp config\nscp connect.bjb1.seetacloud.com:/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level_seed2.yaml \\\n    /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/\n```\n\n### Step B: 建立 checkpoint symlink（factorial_seed2 完成后）\n\n```bash\n# 清理 factorial_seed2 checkpoints 释放空间\nrm -rf /root/autodl-tmp/checkpoints/factorial-h2-episodeadv-seed2/\n\n# symlink 备份 checkpoint 到训练期望路径\nln -s /root/cost-verify-agent-rl/backups/exp029-seed2-bjb1/exp029-seed2/global_step_15 \\\n      /root/autodl-tmp/checkpoints/exp029-seed2/global_step_15\ncp /root/cost-verify-agent-rl/backups/exp029-seed2-bjb1/exp029-seed2/latest_checkpointed_iteration.txt \\\n   /root/autodl-tmp/checkpoints/exp029-seed2/\n```\n\n### Step C: 启动训练\n\n```bash\ncd /root/autodl-tmp/cost-verify-agent-rl/RAGEN\n\n# 清理 /tmp 防磁盘满\nrm -rf /tmp/fast_downward_* /tmp/ray/* /tmp/tmp* 2>/dev/null\n\nexport TMPDIR=/root/autodl-tmp/tmp\nexport TORCH_COMPILE_DISABLE=1\nexport PYTHONUNBUFFERED=1\nexport WANDB_PROJECT=cost-verify-agent-rl\nexport CUDA_VISIBLE_DEVICES=0,1\n\npython train.py --config-name _alfworld_exp029_episode_level_seed2\n```\n\n### 关键风险\n\n1. **磁盘紧张**：即使释放 factorial_seed2 的 41G，也只有 64G 对 63G 需求，几乎零余量。强烈建议确认 `factorial-h2-episode-adv/`（62G）是否可清理。\n2. **Symlink resume**：需确认 RAGEN 的 checkpoint loader 能通过 symlink 读取。如果不行，需要实际 move（但 overlay → autodl-tmp 跨分区只能 copy，会吃 21G 空间）。\n3. **Step B 的 `mkdir -p`**：symlink 前需先 `mkdir -p /root/autodl-tmp/checkpoints/exp029-seed2/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prepare-exp029-seed2-westd-deployment.md"
+}

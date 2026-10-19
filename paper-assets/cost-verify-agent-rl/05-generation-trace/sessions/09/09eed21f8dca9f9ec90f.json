@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09eed21f8dca9f9ec90f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh inventory bjb1 data",
+  "task_key": "worker_ssh_inventory_bjb1_data_20260523T040136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_inventory_bjb1_data_20260523T040136_result.json",
+    "occurrence": 1,
+    "bytes": 2223,
+    "sha256": "a6deeec8729b2a753a5944311ddd248efa5ee40522ac95d61615db5968ba3935"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## bjb1-17606 数据盘点\n\n### 1. 总大小\n\n| 路径 | 大小 |\n|------|------|\n| `/root/cost-verify-agent-rl/` | **525 MB** |\n| `/root/autodl-tmp/` | **117 GB** |\n\n### 2. 磁盘使用率\n\n| 分区 | 容量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| `/`（根分区） | 30G | 8.5G | 22G | 29% |\n| `/dev/sda2`（数据盘，含 autodl-tmp） | 879G | 17G | 817G | 3% |\n\n### 3. Checkpoints（/root/autodl-tmp/checkpoints/，共 90 GB，19 个条目）\n\n| Checkpoint | 大小 |\n|------------|------|\n| exp029-seed4 | 25G |\n| exp021_ragen_sft_v4 | 23G |\n| exp029-seed200 | 21G |\n| c_prime_step5_hf | 3.8G |\n| exp029_seed300_step5_hf | 3.8G |\n| exp029_seed42_step5_hf | 3.8G |\n| exp029_seed7_high_kl_step5_hf | 3.8G |\n| qwen_c_prime_step5_hf | 3.8G |\n| qwen_exp029_seed200_step5_hf | 3.8G |\n| qwen_exp029_seed300_step5_hf | 3.8G |\n| qwen_exp029_seed4_step15_hf | 3.8G |\n| qwen_exp029_seed7_high_kl_step5_hf | 3.8G |\n| qwen_exp029_seed7_high_kl_step7_hf | 3.8G |\n| qwen3_exp021_ragen_sft_v4 | 3.3G |\n| qwen3-1.7b-exp019b-sft-v3 | symlink → 已删目录 |\n| qwen3_sft_final | symlink → 已删目录 |\n| qwen3_exp019b_sft | 不存在 |\n| exp029-seed4-ood | 0 (空) |\n| seed7-step5-mask-check | 0 (空) |\n\n### 4. 其他大目录（/root/autodl-tmp/）\n\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| conda-envs | 12G | conda 环境 |\n| models | 6.7G | 基座模型 |\n| alfworld | 2.2G | 环境数据 |\n| wandb + wandb_tmp | 174M | 实验日志 |\n| pgpf | 78M | — |\n| verl-agent | 95M | 框架 |\n| expert_sft* (v1-v4) + sft_data | ~105M | SFT 训练数据 |\n| ray_tmp + ray_seed200 + ray_1 | 88M | Ray 临时数据 |\n| logs + eval_logs | 18M | 日志 |\n| tmp | 43M | 临时 |\n\n### 5. 项目代码目录（/root/cost-verify-agent-rl/，525 MB）\n\n几乎全部被 `RAGEN/` 子模块占据（523 MB）。其余 `analysis/`、`artifacts/`、`models/` 均 < 1 MB。\n\n### 注意\n\n- 2 个 symlink（`qwen3-1.7b-exp019b-sft-v3`、`qwen3_sft_final`）指向的目标已不存在，可清理\n- 2 个空目录（`exp029-seed4-ood`、`seed7-step5-mask-check`）可清理\n- 数据盘 879G 仅用 17G（3%），空间充裕"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-inventory-bjb1-data.md"
+}

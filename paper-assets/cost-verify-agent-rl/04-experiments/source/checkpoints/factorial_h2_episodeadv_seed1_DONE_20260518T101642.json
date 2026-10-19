@@ -1,0 +1,126 @@
+{
+  "exp_id": "factorial_h2_episodeadv_seed1",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 2,
+    "created_at": "2026-05-17T18:17:23.327Z",
+    "updated_at": "2026-05-18T10:16:42.336Z",
+    "hypothesis": "Step_independent generation (h=2) with episode-level advantage eliminates sign misattribution while preserving truncated-context inference. If success >> h=2 step-level (0%), information loss alone does not cause collapse — sign misattribution is the primary driver. If success ≈ 0%, information loss is sufficient to cause collapse regardless of advantage computation. This is the key factorial experiment separating the two mechanisms.",
+    "parent": "hsweep_h2_seed1",
+    "server": "westd-47453",
+    "gpu": "cuda:0,cuda:1",
+    "reproduce": {
+      "command": "bash -c \"export TORCH_COMPILE_DISABLE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && ALFWORLD_DATA=/root/autodl-tmp/alfworld CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_factorial_h2_episode_adv\"",
+      "finished_at": "2026-05-18T10:16:37.005Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-17T19:23:42.236Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T19:23:44.970401+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-17T20:06:00.076942+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"export TMPDIR=/root/autodl-tmp/tmp && mkdir -p $TMPDIR && export TORCH_COMPILE_DISABLE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && ALFWORLD_DATA=/root/autodl-tmp/alfworld CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_factorial_h2_episode_adv\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": 475745,
+      "wandb_run_id": "jsrvwcfd",
+      "model_name": "Qwen3-1.7B-SFT (exp021)",
+      "seed": 42,
+      "data_path": "ALFWorld valid_unseen",
+      "data_count": "3553 train + 134 OOD eval",
+      "log_path": "~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log",
+      "env": "TMPDIR=/root/autodl-tmp/tmp TORCH_COMPILE_DISABLE=1",
+      "checkpoint_source": "Qwen3-1.7B-SFT exp021",
+      "eval_data": "ALFWorld valid_unseen 134 tasks (OOD)"
+    },
+    "metrics": {
+      "wandb_run_id": "6liw7fm1",
+      "pid": 482241,
+      "current_step": "9/15 (step 10 generating)",
+      "val_step0": {
+        "success": 0.0224,
+        "action_is_valid": 0.378
+      },
+      "train_step1": {
+        "success": 0.203,
+        "pass_at_8": 0.688,
+        "action_is_valid": 0.856,
+        "kl_loss": 0.238,
+        "entropy": 0.359
+      },
+      "train_step2": {
+        "success": 0.0625,
+        "pass_at_8": 0.313,
+        "action_is_valid": 0.84,
+        "kl_loss": 0.208,
+        "entropy": 0.569
+      },
+      "train_step3": {
+        "success": 0.0547,
+        "pass_at_8": 0.313,
+        "action_is_valid": 0.795,
+        "entropy": 0.617
+      },
+      "train_step4": {
+        "success": 0.0313,
+        "pass_at_8": 0.188,
+        "action_is_valid": 0.837,
+        "kl_loss": 0.638,
+        "entropy": 0.617
+      },
+      "train_step5": {
+        "success": 0.156,
+        "pass_at_8": 0.625,
+        "action_is_valid": 0.799,
+        "kl_loss": 0.735,
+        "entropy": 0.699
+      },
+      "train_step6": {
+        "success": 0.258,
+        "pass_at_8": 0.813,
+        "action_is_valid": 0.815,
+        "kl_loss": 0.789,
+        "entropy": 0.719
+      },
+      "train_step7": {
+        "success": 0.172,
+        "pass_at_8": 0.438,
+        "action_is_valid": 0.772,
+        "kl_loss": 1.774,
+        "entropy": 0.621
+      },
+      "val_step5": {
+        "success": 0.0597,
+        "action_is_valid": 0.576,
+        "dataset": "AlfworldOOD_134tasks"
+      },
+      "eta": "step 10 val in ~1-2h",
+      "trend": "V-shaped but KL ballooning (0.24→1.77). Step 10 val is the critical inflection point.",
+      "status_note": "Step 9/15. Step 10 val pending - most critical data point for factorial claim."
+    },
+    "notes": "W&B 深度分析确认：sign misattribution 是 collapse 的 primary driver。关键证据：step 3→4 hsweep action_valid 91.3%→43.1% (catastrophic collapse) vs factorial 保�� 79-85% (无崩溃)。V-shaped recovery (20.3%→3.1%→15.63%) 是探索期波动非不可逆退化。3-cell 贡献：sign misattribution ~6pp (0%→5.97% val), information loss ~22pp (5.97%→28.1% val)。Sign misattribution pp 贡献较小但是 catastrophic collapse 的质变 trigger。",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-18T10:16:42.465883+00:00",
+  "trigger": "update_registry"
+}

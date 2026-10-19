@@ -1,0 +1,40 @@
+{
+  "exp_id": "factorial_h2_episodeadv_seed2",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T04:48:02.228Z",
+    "updated_at": "2026-05-18T10:52:19.155Z",
+    "hypothesis": "Replicate factorial experiment (step-independent + episode-level advantage) with different seed to confirm that sign misattribution elimination is robust, not single-seed artifact. Same config, different seed, 15 steps.",
+    "parent": "factorial_h2_episodeadv_seed1",
+    "spec": {
+      "command": "cd /root/cost-verify-agent-rl/RAGEN && ALFWORLD_DATA=/root/autodl-tmp/alfworld CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_factorial_h2_episode_adv_seed2",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": 505305,
+      "data_path": "ALFWorld valid_unseen",
+      "data_count": "3553 train + 134 OOD eval",
+      "model_name": "Qwen3-1.7B-SFT (exp021)",
+      "seed": 43,
+      "wandb_run_id": "d3irreww",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/factorial-h2-episodeadv-seed2/",
+      "checkpoint_source": "Qwen3-1.7B-SFT exp021",
+      "eval_data": "ALFWorld valid_unseen 134 tasks (OOD)",
+      "notes": "Config identical to seed1 (kl_loss_coef=0.01, same hyperparams), only seed.train=43 differs."
+    },
+    "conclusion": "failed",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "reproduce": {
+      "finished_at": "2026-05-18T10:52:18.239Z"
+    },
+    "completed_at": "2026-05-18T10:52:19.155Z"
+  },
+  "timestamp": "2026-05-18T10:52:19.287843+00:00",
+  "trigger": "update_registry"
+}

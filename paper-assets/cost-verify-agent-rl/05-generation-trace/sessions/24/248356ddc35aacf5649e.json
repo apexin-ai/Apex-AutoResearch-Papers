@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "248356ddc35aacf5649e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "urgent restart hsweep and check sft",
+  "task_key": "worker_urgent_restart_hsweep_and_check_sft_20260524T081550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_restart_hsweep_and_check_sft_20260524T081550_result.json",
+    "occurrence": 1,
+    "bytes": 790,
+    "sha256": "4681bcfdc1543893b37ef7d6d771d15e137b3ff9571ba14d7cd2a64f677f5695"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并开始运行。\n\n## 报告\n\n**1. hsweep 重启状态**\n- tmux session: `hsweep_h10_seed2_retry2`\n- PID: 124827 (train.py), TaskRunner pid 126894\n- GPU 0: 14757 MiB 已占用，模型加载完成\n- W&B run: `hsweep-h10-seed2-retry2` (run ID: `33j24s39`)\n- 链接: https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/33j24s39\n\n**2. SFT 数据状态**\n- 存在文件（均为 ALFWorld 数据，非 ScienceWorld）：\n  - `expert_sft_train.jsonl` — 2460 条，11.5 MB\n  - `expert_sft_val.jsonl` — 129 条，0.6 MB\n- **不存在**：`scienceworld_sft_train.jsonl`、`scienceworld_sft_val.jsonl`\n- 数据内容：ALFWorld ALFRED 环境的 expert trajectory，包含 `<think>` self-guidance + `<answer>` action 格式的多轮对话"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-restart-hsweep-and-check-sft.md"
+}

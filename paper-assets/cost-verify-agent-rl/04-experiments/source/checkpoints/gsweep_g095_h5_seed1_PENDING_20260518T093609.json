@@ -1,0 +1,16 @@
+{
+  "exp_id": "gsweep_g095_h5_seed1",
+  "project": "cost-verify-agent-rl",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:56:55.994Z",
+    "updated_at": "2026-05-18T09:36:09.527Z",
+    "hypothesis": "γ=0.95 with h=5 is the control condition matching hsweep_h5. Early windows retain γ^9 ≈ 0.95^9 ≈ 63% of terminal return. Expected to reproduce h5 behavior from h-sweep.",
+    "parent": "hsweep_h2_seed1"
+  },
+  "timestamp": "2026-05-18T09:36:09.692335+00:00",
+  "trigger": "update_registry"
+}

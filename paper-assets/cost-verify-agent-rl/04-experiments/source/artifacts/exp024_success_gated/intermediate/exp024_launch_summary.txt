@@ -1,0 +1,15 @@
+Config: _alfworld_exp024_success_gated.yaml
+Base: exp023 config with AlfworldSG_SuccessGated tag
+Key changes from exp023:
+  - es_manager tags: AlfworldSG_SuccessGated (was AlfworldSG)
+  - env_config: valid_action_bonus=0.15, success_gated_bonus=true
+Preserved from exp023:
+  - model_path: qwen3_exp021_ragen_sft_v4
+  - kl_loss_coef: 0.5, lr: 5e-7
+  - total_training_steps: 30
+  - serial mode (parallel_friendly=false, max_workers=1)
+  - val env_groups=16
+  - score=10.0
+Reward logic: reward = 10.0*won + (valid_action_count * 0.15 if won else 0)
+tmux session: exp024
+PID: 455719 (train.py), TaskRunner: 458971

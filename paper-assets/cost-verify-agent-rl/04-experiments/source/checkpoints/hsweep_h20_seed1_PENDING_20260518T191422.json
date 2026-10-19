@@ -1,0 +1,49 @@
+{
+  "exp_id": "hsweep_h20_seed1",
+  "project": "cost-verify-agent-rl",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 1,
+    "created_at": "2026-05-18T18:04:42.684Z",
+    "updated_at": "2026-05-18T19:14:21.872Z",
+    "hypothesis": "h=20 with step_independent generation provides 20-step observation windows. Key data point for fig5 cliff figure: with h=10 and h=5 both collapsing, h=20 tests whether 20 steps of context is sufficient for recovery. If h=20 recovers (val > 0% at step 5+), the cliff is between h=10 and h=20. If still collapsed, the minimum viable context window is larger than 20 steps.",
+    "parent": "hsweep_h10_seed1",
+    "reproduce": {
+      "finished_at": "2026-05-18T18:38:42.494Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-18T18:38:43.732Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T18:38:46.246660+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "诊断中: worker_diagnose_hsweep_h20_seed1_20260518T184044 正在 SSH 深查失败原因。日志尾部无 Traceback，疑似系统级 kill (OOM/磁盘)。"
+      }
+    },
+    "notes": "诊断中: worker_diagnose_hsweep_h20_seed1_20260518T184044 正在 SSH 深查失败原因。日志尾部无 Traceback，疑似系统级 kill (OOM/磁盘)。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/cost-verify-agent-rl/RAGEN && export RAY_OBJECT_STORE_MEMORY=16000000000 && PYTHONUNBUFFERED=1 python train.py --config-name _alfworld_hsweep_h20 seed.train=10000 trainer.experiment_name=hsweep-h20-seed1\"",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "77613",
+      "log_path": "~/runs/cost-verify-agent-rl/hsweep_h20_seed1.log",
+      "submitted_at": "2026-05-18T19:10:38.966Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T19:14:22.030964+00:00",
+  "trigger": "update_registry"
+}

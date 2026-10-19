@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp011",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:16:54.748Z",
+    "updated_at": "2026-05-14T05:16:54.748Z",
+    "spec": {
+      "command": "python train.py --config-name=_alfworld_exp008_sft_grpo trainer.resume_mode=resume_path trainer.resume_from_path=/root/autodl-tmp/checkpoints/exp008_grpo/global_step_10 trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp011_grpo/ trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp011_grpo/ trainer.experiment_name=exp011-alfworld-sft-grpo-resume",
+      "server": "bjb1-17606",
+      "data_path": "/root/autodl-tmp/alfworld/",
+      "data_count": 3553,
+      "model_name": "Qwen3-1.7B (SFT warmup, resumed from step 10)",
+      "seed": 10000,
+      "hypothesis": "Resume GRPO from step 10 checkpoint with /tmp fix. Same hypothesis as exp010: GRPO with SFT-warmed Qwen3-1.7B achieves success_rate >= 76% on ALFWorld",
+      "parent": "exp010",
+      "log_path": "/root/autodl-tmp/exp011_grpo.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp011_grpo/",
+      "gpu": "cuda:0, cuda:1"
+    }
+  },
+  "timestamp": "2026-05-14T05:16:54.826554+00:00",
+  "trigger": "update_registry"
+}

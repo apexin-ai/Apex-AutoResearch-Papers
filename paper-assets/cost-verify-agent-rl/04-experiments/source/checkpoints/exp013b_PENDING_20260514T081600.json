@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp013b",
+  "project": "cost-verify-agent-rl",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:15:44.247Z",
+    "updated_at": "2026-05-14T08:16:00.622Z",
+    "hypothesis": "Dense reward shaping (valid_action_bonus=0.15 per step + success_reward=10.0) 解决 sparse binary reward 冷启动死锁。每步有效动作获得 0.15 奖励提供持续梯度信号，30步累计上限 4.5 vs 终局 10.0 (比值合理)。",
+    "parent": "exp012b",
+    "notes": "Dense reward shaping 实现。代码改动: env.py 加 valid_action_bonus 逻辑(有效动作+0.15, 无效动作+0), config.py 加字段(默认0), envs.yaml 新 AlfworldSG_Dense tag。验证通过: 有效动作=0.15, 无效=0, reward方差>0。kl_loss_coef=0.01, lr=1e-6, format_penalty=0, group_size=16。Resume from step 5。"
+  },
+  "timestamp": "2026-05-14T08:16:00.659878+00:00",
+  "trigger": "update_registry"
+}

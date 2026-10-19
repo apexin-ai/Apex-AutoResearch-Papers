@@ -1,0 +1,2126 @@
+{
+  "schema_version": "1.0",
+  "id": "201708b36b507d3bc55c",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "cron hook 8b v9d ood eval v4 20260521T210807 222366",
+  "task_key": "cron_hook_8b_v9d_ood_eval_v4_20260521T210807_222366",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_8b_v9d_ood_eval_v4_20260521T210807_222366.jsonl",
+    "occurrence": 1,
+    "bytes": 109113,
+    "sha256": "fd56f4d329473432d03a1d5e2e367cf14acfb69cc1c84ae29f37e020fbdf39af"
+  },
+  "statistics": {
+    "messages": 107,
+    "user_turns": 2,
+    "tool_calls": 52,
+    "roles": {
+      "user": 2,
+      "tool_call": 52,
+      "tool_result": 51,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T02:36:59.023257+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #20。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- westd-47453 GPU 白名单：cuda:0-3（4×RTX PRO 6000 96GB）。bjb1-17606 白名单：cuda:0,1\n- 8B 模型 FSDP2+CPUOffload 训练时 GPU 占用 ~83/95.6GB (87%)，不要增加 batch size 或 max_model_len\n- v9d checkpoint 已合并为 HF 格式（15.4GB），FSDP2 原始 shards 不能直接用于 eval\n- OOD eval 已连续失败4次（v1-v4），**不要盲目重试**——必须等诊断 Worker 回调拿到 root cause 后才能提交 v5\n- 8b_cell_c_episode_v9d 是 success（step 10 val=96.875%），不要动它的 registry 状态\n\n### 2. 🖥️ 基础设施快照\n- **westd-47453**：工作目录 /root/projects/cost-verify-agent-rl（或 /root/autodl-tmp/ 下，Worker 会确认）\n  - Python：aml-train 镜像，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n  - HF checkpoint（v9d step 10 合并后）：具体路径待 Worker 确认（合并脚本输出到 /root/autodl-tmp/ 附近）\n  - 4×RTX PRO 6000 96GB，当前 OOD eval 进程已退出（PID 已死）\n- **bjb1-17606**：scienceworld_sft_eval_v2 运行中，PID 195853，cuda:0,1\n  - 日志：/tmp/eval_scienceworld_v2_resumed.log\n  - 进度：1415/1796 (78.8%)，成功率 32.2%，预计还需 ~3.5h\n- **活跃 cron**：scienceworld_sft_eval_v2（reconcile 确认 still running）\n- **活跃 Worker**：worker_diagnose_8b_v9d_ood_eval_v4_20260520T101923（正在诊断 westd 上的失败）\n\n### 3. 📊 当前状态\n刚收到 8b_v9d_ood_eval_v4 失败的 CRON 回调，已完成 session-start 初始化并派出诊断 Worker。\n\n**RUNNING**: scienceworld_sft_eval_v2（bjb1，ScienceWorld SFT baseline eval）\n**等待中**:\n- Worker `worker_diagnose_8b_v9d_ood_eval_v4_20260520T101923` 回调 → 拿到 root cause 后决定修复方案\n- scienceworld_sft_eval_v2 cron 回调 → 完成后 bjb1 空出接 ScienceWorld GRPO Cell A (P1)\n\n**PREPARING（关键）**: exp029_seed2_ood_step15, 8b_cell_c_episode_v4, exp028_prereq_zeroshot_instruct 等 ~19 个\n\n### 4. 📋 待办\n- 诊断 Worker 回调到达 → 读 root_cause，更新 registry notes，按 fix_steps 派修复 Worker 或调整 config 后提交 v5，向 Director 汇报（带 [资源] 行）\n- scienceworld_sft_eval_v2 完成 → on-experiment-done 流程，记录 ScienceWorld SFT baseline 指标，bjb1 GPU 释放后向 Director 申请排 ScienceWorld GRPO Cell A\n- OOD eval 修复成功 → 这是论文最关键数据点，立即更新 report.md + 向 Director 汇报 + 推进 paper writing\n- OOD eval 如果是 infrastructure 问题且 can_auto_fix → Worker 直接修 + 重提交；如果是 resource/config 根本问题 → 向 Director 汇报并等决策\n\n### 5. 🎯 战略上下文\n- **核心 story**：诊断 LLM agent step-independent RL 训练失败的两个独立机制——information loss + sign misattribution。Cell A = collapse，Cell B = hard ceiling，Cell C = episode-level fix（success）\n- **v9d 是核心正控制组**：step 10 val=96.875% 证明 episode-level GRPO 在 8B 规模有效。OOD eval 是 claim \"跨尺度泛化\" 的最后一个数据点，拿不到这个数字论文 claim 强度降级\n- **4次 eval 失败模式未知**：v1 无 config fix，v2-v4 改了 ppo_mini_batch_size/env_groups/n_groups。可能是 RAGEN eval 框架与 8B 模型 + 4GPU 的兼容性问题，也可能是 checkpoint 路径/格式问题。**不要假设原因，等诊断结果**\n- **易踩坑**：FSDP2 checkpoint 是 rank shards 不是 HF 格式——eval 必须用合并后的 HF checkpoint；max_prompt_length 必须 < max_model_len（预留 generation headroom）；save_contents yaml 路径必须在 actor_rollout_ref.actor.checkpoint 下\n- **决策链关键节点**：D102（v9d 暂停训练转 OOD eval）→ D103（step 15 后停训，step 10 为 effective final）\n\n## 项目硬约束 (memory.md 节选)\n\n## 约束\n\n### westd GPU 内存紧张 (2026-05-19)\n8B FSDP2+CPUOffload 训练时 GPU 占用 ~83/95.6 GB (87%)。不要增加 batch size 或 max_model_len，无余量。\n\n## 可查的历史\n前 56 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T02:37:11.903874+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T02:37:11.904291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T02:37:14.715702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "limit": "0"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T02:37:15.169759+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T02:37:15.622812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (88,506 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/918f0844-5d00-4bc0-8f94-733c586314be/tool-results/mcp-agent-ml-research-read_registry-1779331035356.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/918f0844-5d00-4bc0-8f94-733c586314be/tool-results/mcp-agent-ml-research-read_registry-1779331035356.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/918f0844-5d00-4bc0-8f94-733c586314be/tool-results/mcp-agent-ml-research-read_registry-1779331035356.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 907
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T02:37:15.623271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T02:37:15.673738+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T02:37:17.982965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"scienceworld_grpo_cell_c_v3\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=88226)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 2813
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T02:37:17.983603+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-21\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp029_seed3_ood_v2 | — | — | — | — |\\\\n| scienceworld_grpo_cell_c_v3 | ScienceWorld 环境下 episode-level GRPO 能避免 collapse 并学到有效策略，验证 episode-level credit 作为 fix 的跨环境泛化性（v3: 磁盘清理后重启） | — | — | — |\\\\n\\\\n## 待处理\\\\n- exp029_seed3_ood_final: Evaluate exp029_seed3_v2 final checkpoint (global_step_15, episode-level GRPO seed=42) on 134 OOD tasks. Cross-seed OOD evidence. Seed 1 OOD=23.88%.（准备中）\\\\n- exp029_seed2_ood_step15: Evaluate exp029_seed2 global_step_15 checkpoint on 134 OOD tasks (valid_unseen). Step 15 is the bjb1 checkpoint before westd resume (step 30 checkpoint lost in disk cleanup M019). Provides cross-seed OOD number for paper table (seed1 OOD=23.88%). Step 15 val was near peak (~25-28%), OOD number expected similar to seed1.（准备中）\\\\n- 8b_cell_c_episode_v4（准备中）\\\\n- exp028_prereq_zeroshot_instruct: Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\\\\\"SFT是毒药\\\\\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。（准备中）\\\\n- exp021_sft_ragen_format: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent <answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.（准备中）\\\\n- exp020d_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.（准备中）\\\\n- exp020c_grpo_from_sft: GRPO from exp019b SFT checkpoint (20%\n…[truncated 4245 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 2360
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T02:37:18.034291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\\\", \\\"content\\\": \\\"# cost-verify-agent-rl — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-21 01:53 UTC | 更新原因: Reviewer 建议 claim 强度细化：诊断 VERY STRONG / 修复 STRONG；Cell C v3 止损阈值设定；Seed 2 确认不可恢复\\\\n\\\\n## 核心方向\\\\n诊断 step-independent RL 训练的 systematic failure mechanism (dual: information loss + sign misattribution)。Episode-level credit 是 necessary minimum fix。详见 paper_framing.md。\\\\n\\\\n**诊断 claim: VERY STRONG** (D104, ALFWorld factorial + γ-sweep + 8B + ScienceWorld 全验证)\\\\n**修复 claim: STRONG** (ALFWorld-specific, seed-variant; OOD 13.4pp gap, ScienceWorld fix 待确认)\\\\n\\\\n## 当前阶段：论文数据整合完成，等 Cell C v3 step 5\\\\n\\\\nSeed 3 OOD eval 完成 (10.45%)，多 seed 数据已整合到论文 (D108)。Cell C v3 出现坍塌信号，等 step 5 决定是否终止。\\\\n\\\\n## Running / Active\\\\n| 任务 | server | GPU | 状态 | 进度 |\\\\n|------|--------|-----|------|------|\\\\n| Cell C v3 (SW episode GRPO) | westd | 2,3 | ⚠️ RUNNING | 3/15, 坍塌信号 |\\\\n\\\\n**止损阈值**：step 5 success=0% + action_is_valid<20% → 终止释放 GPU\\\\n\\\\n## GPU 状态\\\\n- westd cuda:0,1: **空闲**\\\\n- westd cuda:2,3: Cell C v3 RUNNING\\\\n- bjb1 cuda:0,1: **空闲**\\\\n- **2/6 活跃**\\\\n\\\\n## 论文状态（D108 完成）\\\\n- 全部数字更新为 multi-seed mean: 17.2% OOD [10.4-23.9%]\\\\n- Table 1: Cell D mean [range], caption 更新\\\\n- Limitations: +seed variance +fix generality\\\\n- Consistency check: 0 critical, 2 orphan bib (appendix 引用，非正文)\\\\n- 编译通过，正文 8 页\\\\n- **待 Reviewer D108 一致性审查完成后可提交**\\\\n\\\\n## 实验证据完成度\\\\n- ✅ ALFWorld 全 factorial + h-sweep + γ-sweep + sign verification + dense reward + REINFORCE++\\\\n- ✅ 8B cross-scale: Cell A collapse + Cell D 90.3% OOD (single seed)\\\\n- ✅ ScienceWorld Cell A collapse + Info Loss 30.3pp\\\\n- ✅ Multi-seed: Seed 1 OOD 23.88%, Seed 3 OOD 10.45%, mean 17.2%\\\\n- ❌ Seed 2: checkpoint 在磁盘清理中丢失，无法恢复\\\\n- ⚠️ Cell C v3: step 2 坍塌信号，等 step 5 决定\\\\n\\\\n## 近期任务\\\\n- [x] Seed 3 OOD eval + 数据整合 (D108)\\\\n- [x] 论文数字全面更新 + Limitations 补充\\\\n- [ ] Reviewer D108 一致性审查 → 修复任何问题\\\\n- [ ] Cell C v3 s\n…[truncated 1457 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 2360
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T02:37:33.272752+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "cost-verify-agent-rl",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T02:37:33.726015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp029_seed3_ood_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T00:39:28.222Z\\\", \\\"updated_at\\\": \\\"2026-05-21T00:40:16.565Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed3_ood_final'\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": \\\"530289\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/exp029_seed3_ood_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T00:39:27.902Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"AlfworldSG_OOD (134 valid_unseen tasks)\\\", \\\"data_count\\\": 134, \\\"model_name\\\": \\\"qwen3_exp021_ragen_sft_v4\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/exp029-seed3/global_step_15\\\", \\\"eval_data\\\": \\\"AlfworldSG_OOD\\\"}}, \\\"scienceworld_grpo_cell_c_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T18:23:30.854Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:19:30.777Z\\\", \\\"hypothesis\\\": \\\"ScienceWorld 环境下 episode-level GRPO 能避免 collapse 并学到有效策略，验证 episode-level credit 作为 fix 的跨环境泛化性（v3: 磁盘清理后重启）\\\", \\\"parent\\\": \\\"scienceworld_grpo_cell_c_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _scienceworld_cell_c_grpo\\\\\\\"\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"pid\\\": \\\"88226\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/scienceworld_grpo_cell_c_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T18:23:38.661Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"ScienceWorl\n…[truncated 350 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 453
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T02:37:34.127859+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "limit": "10",
+              "fields": "['exp_id', 'status', 'conclusion', 'updated_at', 'hypothesis', 'metrics']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T02:37:34.479537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp029_seed3_ood_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-21T00:40:16.565Z\\\"}, \\\"exp029_seed3_ood_final\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-21T00:36:31.725Z\\\", \\\"hypothesis\\\": \\\"Evaluate exp029_seed3_v2 final checkpoint (global_step_15, episode-level GRPO seed=42) on 134 OOD tasks. Cross-seed OOD evidence. Seed 1 OOD=23.88%.\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp029_seed3_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T23:01:27.840Z\\\", \\\"hypothesis\\\": \\\"Episode-level GRPO avoids collapse and learns consistently across seeds, confirming robustness of the credit assignment fix (seed 3 replication of exp029)\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp029_seed3_ood\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T21:09:53.849Z\\\", \\\"hypothesis\\\": \\\"Evaluate exp029_seed3_v2 checkpoint (global_step_5) on 134 OOD tasks (valid_unseen) to provide cross-seed OOD generalization evidence. Seed 1 OOD=23.88% at step 15.\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"scienceworld_grpo_cell_c_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T19:19:30.777Z\\\", \\\"hypothesis\\\": \\\"ScienceWorld 环境下 episode-level GRPO 能避免 collapse 并学到有效策略，验证 episode-level credit 作为 fix 的跨环境泛化性（v3: 磁盘清理后重启）\\\"}, \\\"exp029_seed2_ood_step15\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-20T19:14:37.390Z\\\", \\\"hypothesis\\\": \\\"Evaluate exp029_seed2 global_step_15 checkpoint on 134 OOD tasks (valid_unseen). Step 15 is the bjb1 checkpoint before westd resume (step 30 checkpoint lost in disk cleanup M019). Provides cross-seed OOD number for paper table (seed1 OOD=23.88%). Step 15 val was near peak (~25-28%), OOD number expected similar to seed1.\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"sw_info_loss_bjb1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T19:10:24.938Z\\\", \\\"hypothesis\\\": \\\"ScienceWorld SFT model under h=2 windowing shows significant performance degradation vs full context (T=0 deterministi\n…[truncated 1813 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 351
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T02:37:53.175017+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'scienceworld_sft_eval_v2'}",
+              "project": "cost-verify-agent-rl",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T02:37:54.539201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3963}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1364
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T02:37:54.690741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T02:37:54.691176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T02:38:03.007535+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "status": "running"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T02:38:03.234802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_experiment_seed4-bjb1-train_20260521T023639\\\", \\\"task_type\\\": \\\"experiment:seed4-bjb1-train\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-21T02:36:39.716688+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_ops_cellc-v3-progress-check_20260521T023645\\\", \\\"task_type\\\": \\\"ops:cellc-v3-progress-check\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-21T02:36:45.557839+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 2}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 227
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T02:38:03.306767+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T02:38:03.834537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"title\\\": \\\"Episode-level GRPO convergence (exp029 continuation)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [], \\\"registry_id\\\": \\\"exp029_episode_level\\\", \\\"status\\\": \\\"DONE\\\", \\\"description\\\": \\\"Episode-level GRPO (context_window_mode: full) on Qwen3-1.7B + ALFWorld. 50 steps, dual-GPU. MVP passed at step 5 (val=25%, 2x baseline 12.5%). Continue to convergence (step 20+) with tatsu parallel patch for 4x val speedup.\\\\n\\\", \\\"hypothesis\\\": \\\"Episode-level training enables stable RL for multi-turn agents, reaching ≥40% success by convergence.\\\\n\\\", \\\"metrics\\\": {\\\"reeval_ood_134tasks\\\": {\\\"success\\\": 0.2388, \\\"action_is_valid\\\": 0.5683, \\\"action_is_effective\\\": 0.916, \\\"manager_invalid_action\\\": 0.0839, \\\"reward_mean\\\": 2.388, \\\"best_at_8\\\": 8.88, \\\"dataset\\\": \\\"AlfworldSG_OOD_134tasks\\\", \\\"date\\\": \\\"2026-05-18\\\"}}, \\\"gpu_hours_estimate\\\": 48, \\\"framing_ref\\\": \\\"claim_1\\\", \\\"conclusion\\\": \\\"success\\\"}, {\\\"id\\\": \\\"plan_002\\\", \\\"title\\\": \\\"Context window h-sweep ablation (3 seeds each)\\\", \\\"claim\\\": \\\"Claim 1\\\", \\\"phase\\\": \\\"A+\\\", \\\"priority\\\": \\\"P0\\\", \\\"depends_on\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"hsweep_h2_seed1\\\", \\\"status\\\": \\\"DONE\\\", \\\"description\\\": \\\"Sweep context_window h={2, 5, 10, 20, full} on same GRPO config. Config: context_window_mode=step_independent + step_independent_history_length={h} (h=full uses context_window_mode=full). 15 steps per run, 3 seeds each. KEY paper figure: shows credit assignment cliff is robust across seeds. Addresses Reviewer Concern #1 + Dream C3 (statistical power).\\\\n\\\", \\\"hypothesis\\\": \\\"Performance degrades monotonically with smaller h, with sharp cliff below h=10. Cliff is robust across seeds (not single-run artifact).\\\\n\\\", \\\"metrics\\\": {\\\"train_step\\\": 15, \\\"total_steps\\\": 15, \\\"wandb_run_id\\\": \\\"7o9bjszm\\\", \\\"step1\\\": {\\\"success\\\": 0.1875, \\\"pass_at_8\\\": 0.4375, \\\"invalid_action\\\": 0.027}, \\\"step2\\\n…[truncated 38835 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 527
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T02:38:51.300761+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "status": "done",
+              "limit": "5"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T02:38:51.803054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_analyze_exp029_seed3_v2_20260520T225903\\\", \\\"task_type\\\": \\\"analyze:exp029_seed3_v2\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-20T22:59:03.328813+00:00\\\", \\\"ended_at\\\": \\\"2026-05-20T23:01:26.458177+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_experiment_seed3-ood-final-launch-urgent_20260520T225947\\\", \\\"task_type\\\": \\\"experiment:seed3-ood-final-launch-urgent\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-20T22:59:47.450785+00:00\\\", \\\"ended_at\\\": \\\"2026-05-20T23:01:14.577090+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_urgent-westd-full-status_20260521T003404\\\", \\\"task_type\\\": \\\"ops:urgent-westd-full-status\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T00:34:04.598993+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T00:35:58.013713+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_experiment_seed3-ood-fix-optA_20260521T003850\\\", \\\"task_type\\\": \\\"experiment:seed3-ood-fix-optA\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T00:38:50.898405+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T00:40:29.061699+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_cellc-v3-progress-check_20260521T023645\\\", \\\"task_type\\\": \\\"ops:cellc-v3-progress-check\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T02:36:45.557839+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T02:38:03.012691+00:00\\\"}], \\\"count\\\": 5}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 502
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T02:38:51.954735+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': '8b_v9d_ood_eval_v4'}",
+              "project": "cost-verify-agent-rl",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T02:38:52.306285+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3363}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 351
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T02:39:02.012727+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_ops_cellc-v3-progress-check_20260521T023645",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T02:39:02.516962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_cellc-v3-progress-check_20260521T023645\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"ops:cellc-v3-progress-check\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"started_at\\\": \\\"2026-05-21T02:36:45.557839+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T02:38:03.012691+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"## Cell C v3 状态\\\\n\\\\n| 指标 | 值 |\\\\n|------|-----|\\\\n| **进程** | PID 88226，运行中，已运行 8h13m |\\\\n| **当前步数** | **3/15 (20%)** |\\\\n| **每步耗时** | step 1: 39m, step 2: 3h46m, step 3: 2h11m（平均 ~2h20m/step，step 1 是 warmup） |\\\\n| **预估剩余** | ~28h（进度条显示 28:08:26） |\\\\n| **预估完成** | 约 5月22日 下午 |\\\\n\\\\n### Val 结果\\\\n\\\\n仅有 **step 0**（baseline）的 val：\\\\n- success: **0.0**\\\\n- score: **2.71**\\\\n- pass@1: **0.0**\\\\n- reward/mean@32: **0.5**\\\\n- final_score: **5.0**\\\\n\\\\n**Step 5 val 尚未产生**，当前才到 step 3。\\\\n\\\\n### Train 指标（step 3）\\\\n\\\\n- train success: 0.0，train score: 0.96\\\\n- reward mean: 0.153，KL loss: 0.613\\\\n- manager_invalid_action: **67.6%**（大量无效动作）\\\\n- action_is_valid: 9.4%\\\\n- throughput: 90.5 tokens/s\\\\n\\\\n训练信号偏弱（success 仍为 0，reward 低），需关注后续 step 5 val 是否出现改善。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 504
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T02:39:02.517436+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_experiment_seed4-bjb1-train_20260521T023639",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T02:39:06.764260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_experiment_seed4-bjb1-train_20260521T023639\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"experiment:seed4-bjb1-train\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"started_at\\\": \\\"2026-05-21T02:36:39.716688+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [], \\\"last_text\\\": \\\"\\\", \\\"turn_count\\\": 0}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 4246
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T02:39:07.017810+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/918f0844-5d00-4bc0-8f94-733c586314be/tool-results/mcp-agent-ml-research-read_registry-1779331035356.txt | python3 -c \"import sys,json; data=json.loads(json.loads(sys.stdin.read())['result']); exps=data['data']['experiments']; [print(f'{k}: status={v.get(\\\"status\\\")}, conclusion={v.get(\\\"conclusion\\\")}') for k,v in exps.items() if '8b_v9d' in k or 'ood_eval' in k.lower()]\"",
+              "description": "Search registry dump for 8B OOD eval entries"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T02:39:07.319940+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8b_v9d_ood_eval_v5: status=DONE, conclusion=success\n8b_v9d_ood_eval_v4: status=DONE, conclusion=failed\n8b_v9d_ood_eval_v3: status=DONE, conclusion=failed\n8b_v9d_ood_eval_v2: status=DONE, conclusion=failed\n8b_v9d_ood_eval: status=DONE, conclusion=failed"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "elapsed_ms": 302
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T02:39:18.792893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/918f0844-5d00-4bc0-8f94-733c586314be/tool-results/mcp-agent-ml-research-read_registry-1779331035356.txt | python3 -c \"\nimport sys,json\ndata=json.loads(json.loads(sys.stdin.read())['result'])\nexp = data['data']['experiments'].get('8b_v9d_ood_eval_v5', {})\nprint(json.dumps(exp, indent=2, ensure_ascii=False))\n\"",
+              "description": "Get full details of 8b_v9d_ood_eval_v5"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T02:39:19.098261+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"status\": \"DONE\",\n  \"created_at\": \"2026-05-20T10:25:24.932Z\",\n  \"updated_at\": \"2026-05-20T11:20:18.763Z\",\n  \"hypothesis\": \"Evaluate 8B Cell C episode-level GRPO model (v9d step 10, val_before_train 96.875%) on 134 OOD ALFWorld tasks. Paper's key data point: 8B model OOD generalization under episode-level GRPO. Fix: val.env_groups 234→134 to match val.n_groups=[134].\",\n  \"parent\": \"8b_cell_c_episode_v9d\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"pass_at_1\": 90.3,\n    \"action_valid_rate\": 98.7,\n    \"n_tasks\": 134,\n    \"temperature\": 0.4,\n    \"model\": \"8B Cell C v9d step 10\"\n  }\n}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "elapsed_ms": 305
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T02:39:58.956911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T02:39:59.007704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_21fabf40."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T02:40:04.150759+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T02:40:04.201354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T02:40:07.061341+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu/agent-ml-research"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T02:40:07.212348+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Glob",
+            "elapsed_ms": 151
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T02:40:09.559270+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T02:40:09.559886+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T02:41:02.763884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/918f0844-5d00-4bc0-8f94-733c586314be/tool-results/mcp-agent-ml-research-read_registry-1779331035356.txt | python3 -c \"\nimport sys,json\ndata=json.loads(json.loads(sys.stdin.read())['result'])\nexps=data['data']['experiments']\n# Find all seed3 OOD related\nfor k,v in exps.items():\n    if 'seed3' in k and 'ood' in k.lower():\n        print(f'=== {k} ===')\n        print(f'  status: {v.get(\\\"status\\\")}')\n        print(f'  conclusion: {v.get(\\\"conclusion\\\")}')\n        print(f'  metrics: {json.dumps(v.get(\\\"metrics\\\",{}), indent=4)}')\n        print(f'  spec checkpoint: {v.get(\\\"spec\\\",{}).get(\\\"checkpoint_source\\\",\\\"N/A\\\")}')\n        print()\n\"",
+              "description": "Find seed3 OOD experiment details"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-21T02:41:02.864752+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== exp029_seed3_ood_v2 ===\n  status: RUNNING\n  conclusion: None\n  metrics: {}\n  spec checkpoint: N/A\n\n=== exp029_seed3_ood_final ===\n  status: PREPARING\n  conclusion: failed\n  metrics: {}\n  spec checkpoint: N/A\n\n=== exp029_seed3_ood ===\n  status: DONE\n  conclusion: failed\n  metrics: {}\n  spec checkpoint: N/A"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-21T02:41:08.175543+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/918f0844-5d00-4bc0-8f94-733c586314be/tool-results/mcp-agent-ml-research-read_registry-1779331035356.txt | python3 -c \"\nimport sys,json\ndata=json.loads(json.loads(sys.stdin.read())['result'])\nexp = data['data']['experiments'].get('exp029_seed3_v2', {})\nprint(json.dumps(exp, indent=2, ensure_ascii=False))\n\" 2>&1 | head -60",
+              "description": "Get exp029_seed3_v2 details for OOD context"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-21T02:41:08.327052+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"status\": \"DONE\",\n  \"created_at\": \"2026-05-20T17:09:19.834Z\",\n  \"updated_at\": \"2026-05-20T23:01:27.840Z\",\n  \"hypothesis\": \"Episode-level GRPO avoids collapse and learns consistently across seeds, confirming robustness of the credit assignment fix (seed 3 replication of exp029)\",\n  \"parent\": \"exp029_seed3_episode\",\n  \"conclusion\": \"success\",\n  \"notes\": \"训练实际完成 15/15 步。EXIT_CODE=129 是 W&B teardown BrokenPipeError 导致的误报。Checkpoint 已保存至 /root/autodl-tmp/checkpoints/exp029-seed3/global_step_15/。初步 metrics: val-core/reward/mean@32=4.0625 (~40.6% success), first_turn_valid_rate=0.977, pass@1(non-zero)=1.0, best@4=8.49, best@8=9.72\"\n}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-21T02:41:47.307255+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 6分配 / 4在跑(westd 4/4) + 2部署中(bjb1 seed4) | Worker 2 (GPU 1 / CPU 1) | 磁盘: 待查\n\n## Session #20 启动状态\n\n**RUNNING (westd)**:\n1. exp029_seed3_ood_v2 — cuda:0,1, seed 3 step15 checkpoint OOD eval (134 tasks), 已运行 ~2h\n2. scienceworld_grpo_cell_c_v3 — cuda:2,3, step 3/15, 已运行 8h13m\n\n**DEPLOYING (bjb1)**:\n- Seed 4 episode-level GRPO 训练 — Worker 已派出，正在配置环境\n\n**⚠️ Cell C v3 止损预警**:\n- Step 3: success=0.0, action_is_valid=9.4%, manager_invalid_action=67.6%\n- Step 5 val 尚未产生（预计 ~5h 后）\n- 止损阈值：step 5 success=0% + action_is_valid<20% → 终止\n- 按当前趋势（action_is_valid 从 step 0 到 step 3 持续为 0-9%），极大概率触发止损\n- 预估完成剩余 12 步需 ~28h，如果止损则 ~5h 后释放 westd cuda:2,3\n\n**已完成关键里程碑**:\n- 8b_v9d_ood_eval_v5: SUCCESS, 90.3% pass@1 (134 tasks) — 8B 跨尺度 OOD 数据点已到手\n- scienceworld_sft_eval_v2: SUCCESS, 30.1% baseline (1796 episodes) — ScienceWorld SFT baseline 建立\n\n**待处理**:\n1. exp029_seed3_ood_v2 完成 → 更新 multi-seed OOD 数据（当前 ROADMAP 记录 seed3=10.45%，本次用 step15 checkpoint 可能更优）\n2. Cell C v3 step 5 → 止损决策\n3. Reviewer D108 一致性审查 → 论文提交\n4. Seed 4 训练启动 → 额外 seed 数据",
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-21T02:41:52.082439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4775
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-21T02:42:06.211380+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ops:seed3-ood-v2-progress",
+              "project": "cost-verify-agent-rl",
+              "task_prompt": "## 任务：检查 exp029_seed3_ood_v2 eval 进度\n\n**服务器**: westd-47453\n**环境**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n**进程**: PID 530289, tmux session, cuda:0,1\n**日志**: ~/runs/cost-verify-agent-rl/exp029_seed3_ood_v2.log\n\n### 步骤\n\n1. SSH 到 westd-47453，用 ssh_read_only 检查：\n   - `ps -p 530289 -o pid,etime,rss,pcpu --no-headers` 确认进程存活\n   - `nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader -i 0,1` 查看 GPU 利用率\n   - `tail -100 ~/runs/cost-verify-agent-rl/exp029_seed3_ood_v2.log` 看最近日志\n   - `wc -l ~/runs/cost-verify-agent-rl/exp029_seed3_ood_v2.log` 看日志总行数\n\n2. 从日志中判断：\n   - 当前完成了多少 tasks（目标 134）\n   - 是否有 error/warning\n   - 预计还需多久完成\n\n3. 如果有 W&B 输出，记录 run_id\n\n4. 汇报格式：\n```\n## exp029_seed3_ood_v2 进度\n- 进程状态: (alive/dead)\n- GPU 利用率: cuda:0 X%, cuda:1 Y%\n- 已完成: N/134 tasks\n- 预估剩余: Xh\n- 异常: (有/无)\n```",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-21T02:42:09.682085+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_seed3-ood-v2-progress_20260521T024207\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/logs/workers/worker_ops_seed3-ood-v2-progress_20260521T024207.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ops_seed3-ood-v2-progress_20260521T024207 started. Use get_worker_status('worker_ops_seed3-ood-v2-progress_20260521T024207') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3470
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-21T02:42:33.238645+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-21T02:42:33.289218+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-21T02:42:45.209208+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_experiment_seed4-bjb1-train_20260521T023639",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-21T02:42:45.311739+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_experiment_seed4-bjb1-train_20260521T023639\\\", \\\"status\\\": \\\"cancelled\\\", \\\"task_type\\\": \\\"experiment:seed4-bjb1-train\\\", \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"started_at\\\": \\\"2026-05-21T02:36:39.716688+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T02:41:24.100957+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 102
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-21T02:43:17.759122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/918f0844-5d00-4bc0-8f94-733c586314be/tool-results/mcp-agent-ml-research-read_registry-1779331035356.txt | python3 -c \"\nimport sys,json\ndata=json.loads(json.loads(sys.stdin.read())['result'])\nexps=data['data']['experiments']\nfor k,v in exps.items():\n    if 'seed4' in k or 'seed_4' in k:\n        print(f'{k}: status={v.get(\\\"status\\\")}, conclusion={v.get(\\\"conclusion\\\")}')\n# Also check what's in PREPARING state\nprint('\\n--- PREPARING ---')\nfor k,v in exps.items():\n    if v.get('status') == 'PREPARING':\n        print(f'{k}: {v.get(\\\"hypothesis\\\",\\\"N/A\\\")[:80]}')\n\"",
+              "description": "Check seed4 registry entries and PREPARING experiments"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-21T02:43:17.860053+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "--- PREPARING ---\nexp029_seed3_ood_final: Evaluate exp029_seed3_v2 final checkpoint (global_step_15, episode-level GRPO se\nexp029_seed2_ood_step15: Evaluate exp029_seed2 global_step_15 checkpoint on 134 OOD tasks (valid_unseen).\n8b_cell_c_episode_v4: N/A\nexp028_prereq_zeroshot_instruct: Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\"SFT是毒药\"假设。如果 Instruct ≥15% success（vs S\nexp021_sft_ragen_format: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune\nexp020d_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won\nexp020c_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won\nexp019c_expert_sft_v3: Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions +\nexp019b_expert_sft_v2: N/A\nexp018_sft_grpo: Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 basel\nexp014b: 极低 Dense Reward: valid_action_bonus=0.01（1:1000 比例），测试极弱 bonus 能否防 collapse 又不引发\nexp014a: Success-Gated Dense Reward: valid_action_bonus=0.15 只在 group 内至少一条 trajectory su\nexp014c: Success-gated valid_action_bonus：bonus 仅在 episode 成功时累加到 reward，消除独立最大化路径。valid_\nexp008: N/A\nexp007_dryrun: N/A\nexp005: N/A\nexp_003: N/A\nexp_003_dryrun: N/A\nexp_003_dryrun2: N/A\nexp003_dryrun3: N/A\nexp_003_dryrun3: N/A"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-21T02:44:12.855984+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "experiment:seed4-bjb1-setup-v2",
+              "project": "cost-verify-agent-rl",
+              "task_prompt": "## 任务：在 bjb1 上部署并启动 Seed 4 Episode-level GRPO 训练\n\n**目标**: 在 bjb1-17606 的 cuda:0,1 上训练 episode-level GRPO (ALFWorld)，seed=4，15 steps。这提供额外的 multi-seed 数据点。\n\n### 背景\n- exp029 系列是 episode-level GRPO 训练（full context window mode），已有 seed 1 (OOD 23.88%), seed 3 (训练 success)\n- 基于 Qwen3-1.7B SFT checkpoint 训练\n- 配置参考 `_alfworld_exp029` 系列（RAGEN config）\n\n### 环境\n- **服务器**: bjb1-17606\n- **GPU**: cuda:0,1（2× RTX PRO 6000 96GB）\n- **Python 环境**: aml-train 镜像，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 步骤\n\n1. **环境检查** (ssh_read_only):\n   ```\n   # 检查代码存在\n   ls /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ 2>/dev/null || ls /root/projects/cost-verify-agent-rl/RAGEN/ 2>/dev/null\n   \n   # 检查 SFT checkpoint\n   ls /root/autodl-tmp/checkpoints/ 2>/dev/null\n   \n   # 检查磁盘空间\n   df -h /root/autodl-tmp/ 2>/dev/null || df -h /root/\n   \n   # 检查 GPU 状态\n   nvidia-smi --query-gpu=name,memory.total,memory.used,utilization.gpu --format=csv,noheader\n   ```\n\n2. **确认 RAGEN 代码和配置**:\n   - 找到 RAGEN 目录下的 exp029 相关配置文件\n   - `ls RAGEN/configs/ | grep -i alfworld`\n   - 找到 episode-level GRPO 配置（context_window_mode: full）\n   - 确认 SFT checkpoint 路径\n\n3. **创建 Seed 4 配置**:\n   - 复制现有的 exp029 episode-level 配置\n   - 修改 seed 值为 4（或 777，确保与 seed 1/2/3/42 不同）\n   - 保存为 `_alfworld_exp029_seed4.yaml`（或类似命名）\n   - 确保配置中的 checkpoint 路径指向 bjb1 上可用的 SFT checkpoint\n\n4. **如果 SFT checkpoint 不在 bjb1**:\n   - 检查 westd-47453 上的 checkpoint 位置\n   - 使用 scp 或其他方式传输（如果需要且可行）\n   - 或者直接从 HuggingFace 下载基础模型（如果 SFT checkpoint 不可用）\n\n5. **Dry-run 验证**:\n   ```\n   cd RAGEN && python train.py --config-name _alfworld_exp029_seed4 --cfg job 2>&1 | head -20\n   ```\n   确认配置解析正确、checkpoint 路径有效。\n\n6. **提交训练** (用 submit_training_job):\n   - exp_id: `exp029_seed4_episode`\n   - command: `bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed4'`（根据实际路径调整）\n   - server: bjb1-17606\n   - gpu: cuda:0, cuda:1\n   - 提交后用 update_registry 补充 spec（data_path, data_count, model_name, seed）\n   - hypothesis: \"Episode-level GRPO seed 4 replication, providing additional multi-seed OOD generalization evidence. Seed 1 OOD=23.88%, Seed 3 training success.\"\n   - parent: exp029_episode_level\n\n### 重要注意事项\n- GPU 编号从 0 开始（CUDA_VISIBLE_DEVICES 由框架注入）\n- 如果遇到磁盘空间不足，先清理不需要的文件再继续\n- 如果 SFT checkpoint 不可用，报告问题而不是猜测路径\n- 配置中 context_window_mode 必须是 \"full\"（episode-level），不是 \"step_independent\"\n- 训练完成后系统会通过 cron 自动监控并回调",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-21T02:56:59.273901+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "bjb1 空闲且无 seed4 实验在 registry。需要重新部署。同时我的 seed3 ood 进度检查 Worker 已在跑。让我派一个新 Worker 在 bjb1 上启动 seed 4 训练。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4"
+          },
+          "id": "event-000059"
+        }
+      ],
+      "message_count": 59
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-21T21:03:10.221957+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-21T21:03:20.745749+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-21T21:03:20.846535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-21T21:03:23.957412+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-21T21:03:23.957858+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-21T21:03:24.923139+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (241,324 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/66a5d62f-94bc-480f-8fa9-5751d3063f92/tool-results/mcp-agent-ml-research-read_registry-1779397404767.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/66a5d62f-94bc-480f-8fa9-5751d3063f92/tool-results/mcp-agent-ml-research-read_registry-1779397404767.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/66a5d62f-94bc-480f-8fa9-5751d3063f92/tool-results/mcp-agent-ml-research-read_registry-1779397404767.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 965
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-21T21:03:24.925747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-21T21:03:24.926079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-21T21:03:24.976520+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 1018
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-21T21:03:24.977208+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-21\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- exp029_seed4_ood_eval（准备中）\\\\n- exp029_seed6_v2: Episode-level GRPO (seed=789) avoids collapse and learns consistently. Retry of seed6 with correct CUDA_VISIBLE_DEVICES isolation and save_freq=5.（准备中）\\\\n- exp029_seed3_ood_final: Evaluate exp029_seed3_v2 final checkpoint (global_step_15, episode-level GRPO seed=42) on 134 OOD tasks. Cross-seed OOD evidence. Seed 1 OOD=23.88%.（准备中）\\\\n- exp029_seed2_ood_step15: Evaluate exp029_seed2 global_step_15 checkpoint on 134 OOD tasks (valid_unseen). Step 15 is the bjb1 checkpoint before westd resume (step 30 checkpoint lost in disk cleanup M019). Provides cross-seed OOD number for paper table (seed1 OOD=23.88%). Step 15 val was near peak (~25-28%), OOD number expected similar to seed1.（准备中）\\\\n- 8b_cell_c_episode_v4（准备中）\\\\n- exp028_prereq_zeroshot_instruct: Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\\\\\"SFT是毒药\\\\\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。（准备中）\\\\n- exp021_sft_ragen_format: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent <answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.（准备中）\\\\n- exp020d_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.（准备中）\\\\n- exp020c_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_\n…[truncated 4285 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 51
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-21T21:03:24.977612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\\\", \\\"content\\\": \\\"# cost-verify-agent-rl — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-21 21:02 UTC | 更新原因: 全面状态同步：两个干预实验确认 negative，50% 崩溃率确认，ROADMAP 从 08:27 UTC 严重过期\\\\n\\\\n## 核心方向\\\\nStep-independent agent RL 的双机制信用分配病理诊断（信息丢失 M1 + 符号错误归因 M2）+ episode-level 修复。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research + 审稿进行中（Group C 独立审稿）\\\\n- **论文**: v16 已编译，主文 8 页\\\\n- **核心 claim**: 1.7B 多 seed + 8B 单 seed (90.3%) + ScienceWorld 崩溃验证 ✅\\\\n- **跨 seed 崩溃率**: 3/6 = **50%** 确认（Seeds 4,7,8 collapse; Seeds 1,3,6 success; Seed 5 外部 OOM 排除）\\\\n- **崩溃机制**: Response length inflation（非 entropy→0 collapse），seed-dependent 双峰分布\\\\n- **干预实验**:\\\\n  - Intervention A (len_penalty, reward 层面): ❌ negative — gradient 惩罚不影响 inference\\\\n  - Intervention B (high_kl 10x, KL 正则化): ❌ negative — actual KL 极低(0.003)，inflation 非策略偏移所致\\\\n  - **Intervention C (generation hard cap, D115)**: 🔧 准备中 — per-turn 512 + max_turn 20，物理阻断 inflation\\\\n- **OOD 数据**:\\\\n  - SFT baseline: 5.97% ✅ | Seed 1: 23.88% ✅ | Seed 3: 10.45% ✅ | Seed 5 (step10): 29.10% ✅ | Seed 6: 29.10% ✅\\\\n  - Seed 4: ❌ eval 因 westd 磁盘满失败，重做中\\\\n  - 4-seed mean OOD ≈ 23.1% vs SFT 5.97% (+17.1pp)\\\\n\\\\n## 近期任务\\\\n- [ ] westd 磁盘清理 + 僵死进程 kill（Agent 执行中）\\\\n- [ ] Registry 修复: high_kl → DONE(negative), seed4 OOD → failed\\\\n- [ ] Intervention C 启动（westd cuda:0,1, seed=999, 7 步, ~2h）\\\\n- [ ] Seed 4 OOD eval 重做（westd cuda:2 或 3）\\\\n- [ ] 崩溃 seed OOD eval: Seed 7/8 step 5 checkpoint（如有）\\\\n- [ ] 论文 Table 1 更新为 mean±std（等 OOD 数据齐备）\\\\n- [ ] Intervention C 结果决策点: 成功→用修复方法重跑崩溃 seed / 失败→三种干预全败，与用户讨论 framing 调整\\\\n\\\\n## 关键决策点\\\\n**Intervention C 是最后一种干预类型**。结果决定论文走向：\\\\n- C 成功 → claim \\\\\\\"episode-level + generation constraint enables robust learning\\\\\\\"\\\\n- C 失败 → 三种正交干预（reward/regularization/generation）全败 → 满足 method→analysis 切换前提 → 与用户讨论调整 claim 为 \\\\\\\"characterizes collapse + standard mitigations insufficient\\\\\\\"\\\\n\\\\n## GPU \n…[truncated 1784 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 51
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-21T21:03:38.584893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Parse registry for handoff",
+              "prompt": "Read the file /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/66a5d62f-94bc-480f-8fa9-5751d3063f92/tool-results/mcp-agent-ml-research-read_registry-1779397404767.txt\n\nThis is JSON with schema: {result: string}. The inner result is also a JSON string that needs to be parsed.\n\nExtract and report:\n1. All experiments with status RUNNING or PREPARING — list exp_id, status, hypothesis, server, gpu_ids, pid\n2. All experiments with status DONE and conclusion=success or conclusion=negative from the last 10 updated — list exp_id, conclusion, key metrics, hypothesis\n3. Any experiments with active cron monitoring\n4. The servers mentioned (server field) and their GPU assignments\n5. Total count of experiments by status\n\nBe thorough — I need this for a handoff document.",
+              "subagent_type": "general-purpose"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-21T21:03:39.137075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-21T21:03:42.501078+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/66a5d62f-94bc-480f-8fa9-5751d3063f92/tool-results/mcp-agent-ml-research-read_registry-1779397404767.txt"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-21T21:03:43.155299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (103906 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Read",
+            "elapsed_ms": 654
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-21T21:03:50.283229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/66a5d62f-94bc-480f-8fa9-5751d3063f92/tool-results/mcp-agent-ml-research-read_registry-1779397404767.txt",
+              "limit": "200"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-21T21:03:50.634911+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (103906 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Read",
+            "elapsed_ms": 351
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-21T21:03:53.546745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/66a5d62f-94bc-480f-8fa9-5751d3063f92/tool-results/mcp-agent-ml-research-read_registry-1779397404767.txt",
+              "limit": "100"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-21T21:03:53.898909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (103906 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Read",
+            "elapsed_ms": 352
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-21T21:03:56.610191+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/66a5d62f-94bc-480f-8fa9-5751d3063f92/tool-results/mcp-agent-ml-research-read_registry-1779397404767.txt",
+              "limit": "50"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-21T21:03:56.961450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (103906 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Read",
+            "elapsed_ms": 351
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-21T21:04:01.121176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/66a5d62f-94bc-480f-8fa9-5751d3063f92/tool-results/mcp-agent-ml-research-read_registry-1779397404767.txt",
+              "description": "Check file line count"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-21T21:04:02.175996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0 /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/66a5d62f-94bc-480f-8fa9-5751d3063f92/tool-results/mcp-agent-ml-research-read_registry-1779397404767.txt"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "elapsed_ms": 1054
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-21T21:04:02.477255+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -c 500 /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/66a5d62f-94bc-480f-8fa9-5751d3063f92/tool-results/mcp-agent-ml-research-read_registry-1779397404767.txt",
+              "description": "Peek at file structure"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-21T21:04:02.527988+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp029_seed7_high_kl\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T16:15:26.386Z\\\", \\\"updated_at\\\": \\\"2026-05-21T21:01:59.701Z\\\", \\\"hypothesis\\\": \\\"Higher KL coefficient (0.1 vs 0.01, 10x increase) constrains policy drift enough to prevent response_length explosion that caused ~43% seed collapse. Same seed=999 as original Seed 7. No code change, config-only intervention. If step 7 response_length < 2000 an"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-21T21:04:13.229194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/66a5d62f-94bc-480f-8fa9-5751d3063f92/tool-results/mcp-agent-ml-research-read_registry-1779397404767.txt\"\npython3 -c \"\nimport json, sys\n\nwith open('$FILE', 'r') as f:\n    outer = json.load(f)\n\ninner = json.loads(outer['result'])\nexperiments = inner['data']['experiments']\n\nprint(f'Total experiments: {len(experiments)}')\nprint()\n\n# Count by status\nfrom collections import Counter\nstatus_counts = Counter()\nfor eid, e in experiments.items():\n    status_counts[e.get('status', 'UNKNOWN')] += 1\n\nprint('=== STATUS COUNTS ===')\nfor s, c in sorted(status_counts.items()):\n    print(f'  {s}: {c}')\nprint()\n\n# RUNNING and PREPARING\nprint('=== RUNNING / PREPARING EXPERIMENTS ===')\nfor eid, e in experiments.items():\n    if e.get('status') in ('RUNNING', 'PREPARING'):\n        print(f'  exp_id: {eid}')\n        print(f'    status: {e.get(\\\"status\\\")}')\n        print(f'    hypothesis: {(e.get(\\\"hypothesis\\\",\\\"\\\") or \\\"\\\")[:200]}')\n        print(f'    server: {e.get(\\\"server\\\", e.get(\\\"spec\\\", {}).get(\\\"server\\\", \\\"N/A\\\") if isinstance(e.get(\\\"spec\\\"), dict) else \\\"N/A\\\")}')\n        spec = e.get('spec', {}) if isinstance(e.get('spec'), dict) else {}\n        print(f'    gpu_ids: {e.get(\\\"gpu_ids\\\", spec.get(\\\"gpu_ids\\\", \\\"N/A\\\"))}')\n        print(f'    pid: {e.get(\\\"pid\\\", spec.get(\\\"pid\\\", \\\"N/A\\\"))}')\n        print()\n\"\n",
+              "description": "Parse registry JSON - status counts and RUNNING/PREPARING experiments",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-21T21:04:13.332821+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total experiments: 135\n\n=== STATUS COUNTS ===\n  DONE: 112\n  PREPARING: 23\n\n=== RUNNING / PREPARING EXPERIMENTS ===\n  exp_id: exp029_seed4_ood_eval\n    status: PREPARING\n    hypothesis: \n    server: westd-47453\n    gpu_ids: N/A\n    pid: 762273\n\n  exp_id: exp029_seed6_v2\n    status: PREPARING\n    hypothesis: Episode-level GRPO (seed=789) avoids collapse and learns consistently. Retry of seed6 with correct CUDA_VISIBLE_DEVICES isolation and save_freq=5.\n    server: N/A\n    gpu_ids: N/A\n    pid: N/A\n\n  exp_id: exp029_seed3_ood_final\n    status: PREPARING\n    hypothesis: Evaluate exp029_seed3_v2 final checkpoint (global_step_15, episode-level GRPO seed=42) on 134 OOD tasks. Cross-seed OOD evidence. Seed 1 OOD=23.88%.\n    server: westd-47453\n    gpu_ids: N/A\n    pid: 417862\n\n  exp_id: exp029_seed2_ood_step15\n    status: PREPARING\n    hypothesis: Evaluate exp029_seed2 global_step_15 checkpoint on 134 OOD tasks (valid_unseen). Step 15 is the bjb1 checkpoint before westd resume (step 30 checkpoint lost in disk cleanup M019). Provides cross-seed \n    server: bjb1-17606\n    gpu_ids: N/A\n    pid: 259263\n\n  exp_id: 8b_cell_c_episode_v4\n    status: PREPARING\n    hypothesis: \n    server: westd-47453\n    gpu_ids: N/A\n    pid: 58153\n\n  exp_id: exp028_prereq_zeroshot_instruct\n    status: PREPARING\n    hypothesis: Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\"SFT是毒药\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。\n    server: N/A\n    gpu_ids: N/A\n    pid: N/A\n\n  exp_id: exp021_sft_ragen_format\n    status: PREPARING\n    hypothesis: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent <answer> tag instruction). LR=5e-6\n    server: N/A\n    gpu_ids: N/A\n    pid: N/A\n\n  exp_id: exp020d_grpo_from_sft\n    status: PREPARING\n    hypothesis: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_co\n…[truncated 3078 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "elapsed_ms": 103
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-21T21:04:27.336553+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/66a5d62f-94bc-480f-8fa9-5751d3063f92/tool-results/mcp-agent-ml-research-read_registry-1779397404767.txt\"\npython3 -c \"\nimport json\n\nwith open('$FILE', 'r') as f:\n    outer = json.load(f)\n\ninner = json.loads(outer['result'])\nexperiments = inner['data']['experiments']\n\n# DONE experiments - sort by updated_at, get last 10\ndone_exps = [(eid, e) for eid, e in experiments.items() if e.get('status') == 'DONE']\ndone_exps.sort(key=lambda x: x[1].get('updated_at', ''), reverse=True)\n\nprint('=== LAST 10 DONE EXPERIMENTS (success or negative) ===')\ncount = 0\nfor eid, e in done_exps:\n    conclusion = e.get('conclusion', '')\n    if conclusion not in ('success', 'negative'):\n        continue\n    count += 1\n    if count > 10:\n        break\n    metrics = e.get('metrics', {})\n    if not isinstance(metrics, dict):\n        metrics = {}\n    print(f'  exp_id: {eid}')\n    print(f'    conclusion: {conclusion}')\n    print(f'    updated_at: {e.get(\\\"updated_at\\\", \\\"N/A\\\")}')\n    print(f'    hypothesis: {(e.get(\\\"hypothesis\\\",\\\"\\\") or \\\"\\\")[:250]}')\n    # Print key metrics\n    if metrics:\n        metric_str = ', '.join(f'{k}={v}' for k,v in list(metrics.items())[:8])\n        print(f'    metrics: {metric_str}')\n    else:\n        print(f'    metrics: (none recorded)')\n    print()\n\"\n",
+              "description": "Parse registry - last 10 DONE experiments with success/negative conclusion",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-21T21:04:27.889090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== LAST 10 DONE EXPERIMENTS (success or negative) ===\n  exp_id: exp029_seed7_high_kl\n    conclusion: negative\n    updated_at: 2026-05-21T21:01:59.701Z\n    hypothesis: Higher KL coefficient (0.1 vs 0.01, 10x increase) constrains policy drift enough to prevent response_length explosion that caused ~43% seed collapse. Same seed=999 as original Seed 7. No code change, config-only intervention. If step 7 response_lengt\n    metrics: val_success_step0=0.15625, val_success_final=0.3125, val_response_length_step0=5575.47, val_response_length_final=6045.84, val_reward_mean_step0=1.5625, val_reward_mean_final=3.125, train_response_length_step1=5601.36, train_response_length_final=12849.99\n\n  exp_id: exp029_seed8\n    conclusion: negative\n    updated_at: 2026-05-21T20:57:49.435Z\n    hypothesis: Episode-level GRPO (seed=1024) avoids collapse and learns consistently. 6th seed for cross-seed robustness evidence. RAY_ADDRESS=local isolation enforced. Runs on westd cuda:2,3, isolated from Seed 7 on cuda:0,1.\n    metrics: val_success_step0=0.3125, val_success_step5=0.2813, val_resp_len_step0=2469, val_resp_len_step5=3162, train_success_step1=0.359, train_success_step9=0.109, train_resp_len_step1=1784, train_resp_len_step9=11569\n\n  exp_id: exp029_seed7_len_penalty\n    conclusion: negative\n    updated_at: 2026-05-21T20:40:18.140Z\n    hypothesis: Response length penalty (threshold=1000, coef=0.5) prevents response_length explosion that caused ~43% seed collapse in episode-level GRPO. Same seed=999 as original Seed 7 which collapsed at step 7. If step 7 response_length < 2000 and success > 30%\n    metrics: val_success_step0=0.0625, val_success_step7=0.2813, val_resp_len_step0=8600, val_resp_len_step7=7598, train_success_step1=0.3125, train_resp_len_step1=1992, rollout_resp_len_step1=10319, rollout_resp_len_step7=14284\n\n  exp_id: exp029_seed4_v2\n    conclusion: negative\n    updated_at: 2026-05-21T16:34:48.956Z\n    hypothesis: Episode-level GRPO (seed=123) avoids collapse and learns consis\n…[truncated 2946 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "elapsed_ms": 552
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-21T21:04:45.096915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/66a5d62f-94bc-480f-8fa9-5751d3063f92/tool-results/mcp-agent-ml-research-read_registry-1779397404767.txt\"\npython3 -c \"\nimport json\n\nwith open('$FILE', 'r') as f:\n    outer = json.load(f)\n\ninner = json.loads(outer['result'])\nexperiments = inner['data']['experiments']\n\n# Cron monitoring - look for cron-related fields\nprint('=== EXPERIMENTS WITH CRON MONITORING ===')\nfor eid, e in experiments.items():\n    cron_id = e.get('cron_id') or e.get('cron') or e.get('monitor_cron')\n    if cron_id:\n        print(f'  exp_id: {eid}, status: {e.get(\\\"status\\\")}, cron_id: {cron_id}')\n\n# Also check for any cron-related keys at experiment level\nprint()\nprint('=== CHECKING ALL CRON-RELATED FIELDS ===')\ncron_keys = set()\nfor eid, e in experiments.items():\n    for k in e.keys():\n        if 'cron' in k.lower():\n            cron_keys.add(k)\nif cron_keys:\n    print(f'  Found cron-related keys: {cron_keys}')\n    for eid, e in experiments.items():\n        for k in cron_keys:\n            if e.get(k):\n                print(f'  exp_id: {eid}, {k}: {e.get(k)}, status: {e.get(\\\"status\\\")}')\nelse:\n    print('  No cron-related keys found in experiment records')\n\n# Check top-level data for crons\nprint()\nprint('=== TOP-LEVEL DATA KEYS ===')\nprint(f'  Keys in data: {list(inner[\\\"data\\\"].keys())}')\nif 'crons' in inner['data']:\n    crons = inner['data']['crons']\n    print(f'  Found {len(crons)} cron entries')\n    for cid, c in (crons.items() if isinstance(crons, dict) else enumerate(crons)):\n        print(f'    cron_id: {cid}, data: {json.dumps(c)[:300]}')\n\"\n",
+              "description": "Parse registry - cron monitoring info",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-21T21:04:45.147593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== EXPERIMENTS WITH CRON MONITORING ===\n\n=== CHECKING ALL CRON-RELATED FIELDS ===\n  No cron-related keys found in experiment records\n\n=== TOP-LEVEL DATA KEYS ===\n  Keys in data: ['experiments', 'count', 'total', 'baseline']"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-21T21:04:57.349809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/66a5d62f-94bc-480f-8fa9-5751d3063f92/tool-results/mcp-agent-ml-research-read_registry-1779397404767.txt\"\npython3 -c \"\nimport json\nfrom collections import defaultdict, Counter\n\nwith open('$FILE', 'r') as f:\n    outer = json.load(f)\n\ninner = json.loads(outer['result'])\nexperiments = inner['data']['experiments']\n\n# Servers and GPU assignments\nprint('=== SERVERS AND GPU ASSIGNMENTS ===')\nserver_map = defaultdict(list)\nfor eid, e in experiments.items():\n    server = e.get('server')\n    if not server:\n        spec = e.get('spec', {})\n        if isinstance(spec, dict):\n            server = spec.get('server')\n    if server:\n        gpu_ids = e.get('gpu_ids')\n        if not gpu_ids:\n            spec = e.get('spec', {})\n            if isinstance(spec, dict):\n                gpu_ids = spec.get('gpu_ids')\n        server_map[server].append((eid, e.get('status'), gpu_ids))\n\nfor server, exps in sorted(server_map.items()):\n    print(f'  Server: {server}')\n    # Show unique GPU assignments\n    gpu_set = set()\n    for eid, status, gpu_ids in exps:\n        if gpu_ids:\n            if isinstance(gpu_ids, list):\n                for g in gpu_ids:\n                    gpu_set.add(str(g))\n            else:\n                gpu_set.add(str(gpu_ids))\n    print(f'    GPU IDs used: {sorted(gpu_set) if gpu_set else \\\"N/A\\\"}')\n    # Show active experiments on this server\n    active = [(eid, status, gpu_ids) for eid, status, gpu_ids in exps if status in ('RUNNING', 'PREPARING', 'QUEUED', 'ALLOCATED')]\n    if active:\n        print(f'    Active experiments ({len(active)}):')\n        for eid, status, gpu_ids in active:\n            print(f'      {eid}: {status}, gpu_ids={gpu_ids}')\n    print()\n\n# Conclusion breakdown for DONE\nprint('=== DONE EXPERIMENTS BY CONCLUSION ===')\nconclusion_counts = Counter()\nfor eid, e in experiments.items():\n    if e.get('status') == 'DONE':\n        conclusion_counts[e.get('conclusion', 'unknown')] += 1\nfor c, n in sorted(conclusion_counts.items()):\n    print(f'  {c}: {n}')\n\n# Baseline data\nprint()\nprint('=== BASELINE DATA ===')\nbaseline = inner['data'].get('baseline', {})\nif baseline:\n    print(f'  {json.dumps(baseline, indent=2)[:500]}')\nelse:\n    print('  No baseline data')\n\"\n",
+              "description": "Parse registry - servers, GPU assignments, conclusion breakdown, baseline",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-21T21:04:57.450834+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== SERVERS AND GPU ASSIGNMENTS ===\n  Server: bjb1-17606\n    GPU IDs used: N/A\n    Active experiments (11):\n      exp029_seed2_ood_step15: PREPARING, gpu_ids=None\n      exp020d_grpo_from_sft: PREPARING, gpu_ids=None\n      exp020c_grpo_from_sft: PREPARING, gpu_ids=None\n      exp019c_expert_sft_v3: PREPARING, gpu_ids=None\n      exp007_dryrun: PREPARING, gpu_ids=None\n      exp005: PREPARING, gpu_ids=None\n      exp_003: PREPARING, gpu_ids=None\n      exp_003_dryrun: PREPARING, gpu_ids=None\n      exp_003_dryrun2: PREPARING, gpu_ids=None\n      exp003_dryrun3: PREPARING, gpu_ids=None\n      exp_003_dryrun3: PREPARING, gpu_ids=None\n\n  Server: westd-47453\n    GPU IDs used: ['0', '1', 'cuda:2', 'cuda:3']\n    Active experiments (3):\n      exp029_seed4_ood_eval: PREPARING, gpu_ids=None\n      exp029_seed3_ood_final: PREPARING, gpu_ids=None\n      8b_cell_c_episode_v4: PREPARING, gpu_ids=None\n\n=== DONE EXPERIMENTS BY CONCLUSION ===\n  failed: 51\n  killed: 18\n  negative: 15\n  success: 28\n\n=== BASELINE DATA ===\n  No baseline data"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-21T21:05:13.140754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/66a5d62f-94bc-480f-8fa9-5751d3063f92/tool-results/mcp-agent-ml-research-read_registry-1779397404767.txt\"\npython3 -c \"\nimport json\n\nwith open('$FILE', 'r') as f:\n    outer = json.load(f)\n\ninner = json.loads(outer['result'])\nexperiments = inner['data']['experiments']\n\n# Get more detail on the PREPARING experiments that have PIDs (might be stale)\nprint('=== PREPARING EXPERIMENTS WITH PIDs (potentially stale) ===')\nfor eid, e in experiments.items():\n    if e.get('status') == 'PREPARING':\n        pid = e.get('pid')\n        if pid and pid != 'N/A' and pid != 'unknown':\n            print(f'  {eid}: server={e.get(\\\"server\\\",\\\"N/A\\\")}, pid={pid}, updated_at={e.get(\\\"updated_at\\\",\\\"N/A\\\")}')\n\n# Look for experiments with spec field that has more detail\nprint()\nprint('=== DONE/SUCCESS EXPERIMENTS - ALL 28 ===')\nsuccess_exps = [(eid, e) for eid, e in experiments.items() if e.get('status') == 'DONE' and e.get('conclusion') == 'success']\nsuccess_exps.sort(key=lambda x: x[1].get('updated_at', ''), reverse=True)\nfor eid, e in success_exps:\n    metrics = e.get('metrics', {})\n    if not isinstance(metrics, dict):\n        metrics = {}\n    key_m = {k: v for k, v in list(metrics.items())[:5]}\n    print(f'  {eid}: updated={e.get(\\\"updated_at\\\",\\\"?\\\")[:10]}, metrics={key_m}')\n    hyp = (e.get('hypothesis', '') or '')[:150]\n    if hyp:\n        print(f'    hypothesis: {hyp}')\n    print()\n\"\n",
+              "description": "Parse registry - PREPARING with PIDs and all success experiments",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-21T21:05:13.241775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== PREPARING EXPERIMENTS WITH PIDs (potentially stale) ===\n\n=== DONE/SUCCESS EXPERIMENTS - ALL 28 ===\n  sft_baseline_ood_eval_v2: updated=2026-05-21, metrics={'ood_success_rate': 0.0597, 'pass_at_1': 0.0597, 'response_length': 7640.93, 'tasks_evaluated': 134, 'temperature': 0.4}\n    hypothesis: 1.7B SFT baseline (qwen3_exp021_ragen_sft_v4) OOD performance on 134 valid_unseen tasks (τ=0.4). Fills Table 1 SFT baseline row. Retry of failed sft_b\n\n  exp029_seed5_ood_eval: updated=2026-05-21, metrics={'ood_success_rate': 0.291, 'ood_pass_at_1': 0.291, 'ood_num_actions': 38.54, 'ood_action_is_effective': 0.9999, 'ood_action_is_valid': 0.7266}\n    hypothesis: Evaluate exp029_seed5_v2 partial checkpoint (global_step_10, episode-level GRPO seed=456, training OOM at step 12) on 134 OOD tasks (valid_unseen, τ=0\n\n  exp029_seed6_ood_eval_v2: updated=2026-05-21, metrics={'ood_success_rate': 0.291, 'ood_pass_at_1': 0.291, 'ood_num_actions': 36.57, 'ood_action_is_effective': 0.973, 'ood_action_is_valid': 0.632}\n    hypothesis: Evaluate exp029_seed6_v3 final checkpoint (global_step_15, episode-level GRPO seed=789, val=28.1%) on 134 OOD tasks (valid_unseen, τ=0.4). Retry after\n\n  exp029_seed6_v3: updated=2026-05-21, metrics={'val_success_step0': 0.094, 'val_success_step5': 0.219, 'val_success_step10': 0.281, 'val_success_step15': 0.281, 'train_reward_final': 8.91}\n    hypothesis: Episode-level GRPO (seed=789) avoids collapse and learns consistently. Full retrain after M040 checkpoint loss. CUDA_VISIBLE_DEVICES=2,3 enforced.\n\n  exp029_seed3_ood_v2: updated=2026-05-21, metrics={'ood_success_rate': 0.1045, 'ood_tasks': 134, 'temperature': 0.4, 'checkpoint': 'global_step_15', 'seed': '42/123'}\n    hypothesis: Evaluate exp029_seed3_v2 final checkpoint (global_step_15, episode-level GRPO seed=42) on 134 OOD tasks (valid_unseen). Cross-seed OOD evidence for pa\n\n  exp029_seed3_v2: updated=2026-05-20, metrics={}\n    hypothesis: Episode-level GRPO avoids collapse and learns consistently acros\n…[truncated 7876 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-21T21:05:30.872731+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/66a5d62f-94bc-480f-8fa9-5751d3063f92/tool-results/mcp-agent-ml-research-read_registry-1779397404767.txt\"\npython3 -c \"\nimport json\nfrom collections import Counter\n\nwith open('$FILE', 'r') as f:\n    outer = json.load(f)\n\ninner = json.loads(outer['result'])\nexperiments = inner['data']['experiments']\n\n# All DONE negative experiments\nprint('=== ALL DONE/NEGATIVE EXPERIMENTS (15 total) ===')\nneg_exps = [(eid, e) for eid, e in experiments.items() if e.get('status') == 'DONE' and e.get('conclusion') == 'negative']\nneg_exps.sort(key=lambda x: x[1].get('updated_at', ''), reverse=True)\nfor eid, e in neg_exps:\n    metrics = e.get('metrics', {})\n    if not isinstance(metrics, dict):\n        metrics = {}\n    key_m = {k: v for k, v in list(metrics.items())[:4]}\n    print(f'  {eid}: updated={e.get(\\\"updated_at\\\",\\\"?\\\")[:10]}, metrics={key_m}')\n    hyp = (e.get('hypothesis', '') or '')[:150]\n    if hyp:\n        print(f'    hypothesis: {hyp}')\n    print()\n\n# Full status summary including meta\nprint('=== FULL STATUS SUMMARY ===')\nstatus_counts = Counter()\nfor eid, e in experiments.items():\n    status_counts[e.get('status', 'UNKNOWN')] += 1\nfor s, c in sorted(status_counts.items()):\n    print(f'  {s}: {c}')\nprint(f'  TOTAL: {sum(status_counts.values())}')\nprint()\nprint(f'  DONE breakdown: success={sum(1 for _,e in experiments.items() if e.get(\\\"conclusion\\\")==\\\"success\\\")}, negative={sum(1 for _,e in experiments.items() if e.get(\\\"conclusion\\\")==\\\"negative\\\")}, failed={sum(1 for _,e in experiments.items() if e.get(\\\"conclusion\\\")==\\\"failed\\\")}, killed={sum(1 for _,e in experiments.items() if e.get(\\\"conclusion\\\")==\\\"killed\\\")}')\n\"\n",
+              "description": "Parse registry - all negative experiments and full status summary",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-21T21:05:30.977066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== ALL DONE/NEGATIVE EXPERIMENTS (15 total) ===\n  exp029_seed7_high_kl: updated=2026-05-21, metrics={'val_success_step0': 0.15625, 'val_success_final': 0.3125, 'val_response_length_step0': 5575.47, 'val_response_length_final': 6045.84}\n    hypothesis: Higher KL coefficient (0.1 vs 0.01, 10x increase) constrains policy drift enough to prevent response_length explosion that caused ~43% seed collapse. \n\n  exp029_seed8: updated=2026-05-21, metrics={'val_success_step0': 0.3125, 'val_success_step5': 0.2813, 'val_resp_len_step0': 2469, 'val_resp_len_step5': 3162}\n    hypothesis: Episode-level GRPO (seed=1024) avoids collapse and learns consistently. 6th seed for cross-seed robustness evidence. RAY_ADDRESS=local isolation enfor\n\n  exp029_seed7_len_penalty: updated=2026-05-21, metrics={'val_success_step0': 0.0625, 'val_success_step7': 0.2813, 'val_resp_len_step0': 8600, 'val_resp_len_step7': 7598}\n    hypothesis: Response length penalty (threshold=1000, coef=0.5) prevents response_length explosion that caused ~43% seed collapse in episode-level GRPO. Same seed=\n\n  exp029_seed4_v2: updated=2026-05-21, metrics={'val_pass_at_1': 0.4375, 'val_pass_at_8': 0.988, 'train_success_step13': 0.3828, 'response_length': 4850}\n    hypothesis: Episode-level GRPO (seed=123) avoids collapse and learns consistently. Retry of seed4 with disk cleaned and save_freq=5.\n\n  exp029_seed7: updated=2026-05-21, metrics={'response_length_step7': 8803, 'train_success_step6': 0.523, 'collapse_type': 'response_length_explosion', 'steps_completed': 7}\n    hypothesis: Episode-level GRPO (seed=999) avoids collapse and learns consistently. Sixth seed for cross-seed robustness evidence. Replaces Seed 5 v2 (lost to M043\n\n  scienceworld_grpo_cell_c_v3: updated=2026-05-21, metrics={}\n    hypothesis: ScienceWorld 环境下 episode-level GRPO 能避免 collapse 并学到有效策略，验证 episode-level credit 作为 fix 的跨环境泛化性（v3: 磁盘清理后重启）\n\n  scienceworld_grpo_cell_a: updated=2026-05-20, metrics={'steps_completed': 14, 'success_rate': 0, 'final_s\n…[truncated 2900 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "elapsed_ms": 104
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-21T21:05:46.793492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-21fabf40/66a5d62f-94bc-480f-8fa9-5751d3063f92/tool-results/mcp-agent-ml-research-read_registry-1779397404767.txt\"\npython3 -c \"\nimport json\nfrom collections import Counter\n\nwith open('$FILE', 'r') as f:\n    outer = json.load(f)\n\ninner = json.loads(outer['result'])\nexperiments = inner['data']['experiments']\n\n# Precise counts\nstatus_conclusion = Counter()\nfor eid, e in experiments.items():\n    s = e.get('status', 'UNKNOWN')\n    c = e.get('conclusion', '')\n    if s == 'DONE':\n        status_conclusion[f'DONE/{c}'] += 1\n    else:\n        status_conclusion[s] += 1\n\nprint('=== PRECISE STATUS/CONCLUSION COUNTS ===')\nfor k, v in sorted(status_conclusion.items()):\n    print(f'  {k}: {v}')\nprint(f'  TOTAL: {sum(status_conclusion.values())}')\n\n# Also check: are there experiments with conclusion but NOT DONE?\nprint()\nprint('=== EXPERIMENTS WITH CONCLUSION BUT NOT DONE ===')\nfor eid, e in experiments.items():\n    if e.get('conclusion') and e.get('status') != 'DONE':\n        print(f'  {eid}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\")}')\n\"\n",
+              "description": "Verify precise status/conclusion counts",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-21T21:05:46.894331+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== PRECISE STATUS/CONCLUSION COUNTS ===\n  DONE/failed: 51\n  DONE/killed: 18\n  DONE/negative: 15\n  DONE/success: 28\n  PREPARING: 23\n  TOTAL: 135\n\n=== EXPERIMENTS WITH CONCLUSION BUT NOT DONE ===\n  exp029_seed3_ood_final: status=PREPARING, conclusion=failed\n  exp029_seed2_ood_step15: status=PREPARING, conclusion=killed\n  exp021_sft_ragen_format: status=PREPARING, conclusion=killed\n  exp020d_grpo_from_sft: status=PREPARING, conclusion=failed\n  exp020c_grpo_from_sft: status=PREPARING, conclusion=failed\n  exp019c_expert_sft_v3: status=PREPARING, conclusion=killed\n  exp018_sft_grpo: status=PREPARING, conclusion=killed\n  exp014b: status=PREPARING, conclusion=killed\n  exp014a: status=PREPARING, conclusion=killed\n  exp008: status=PREPARING, conclusion=killed\n  exp_003: status=PREPARING, conclusion=failed\n  exp_003_dryrun: status=PREPARING, conclusion=failed\n  exp_003_dryrun2: status=PREPARING, conclusion=failed\n  exp003_dryrun3: status=PREPARING, conclusion=failed\n  exp_003_dryrun3: status=PREPARING, conclusion=failed"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-21T21:06:37.500545+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the complete picture. Here is the full extraction:\n\n---\n\n## 1. RUNNING / PREPARING Experiments\n\n**There are ZERO experiments with status=RUNNING.** All non-DONE experiments are in PREPARING (23 total). Many of these are stale/historical -- they have conclusion fields set (failed/killed) but status was never advanced to DONE, indicating registry inconsistency.\n\n### PREPARING experiments (23):\n\n| exp_id | hypothesis (truncated) | server | gpu_ids | pid | stale conclusion |\n|--------|----------------------|--------|---------|-----|-----------------|\n| exp029_seed4_ood_eval | (none) | westd-47453 | N/A | 762273 | - |\n| exp029_seed6_v2 | Episode-level GRPO (seed=789) avoids collapse... | N/A | N/A | N/A | - |\n| exp029_seed3_ood_final | Evaluate exp029_seed3_v2 final checkpoint on 134 OOD tasks... | westd-47453 | N/A | 417862 | failed |\n| exp029_seed2_ood_step15 | Evaluate exp029_seed2 global_step_15 checkpoint on 134 OOD tasks... | bjb1-17606 | N/A | 259263 | killed |\n| 8b_cell_c_episode_v4 | (none) | westd-47453 | N/A | 58153 | - |\n| exp028_prereq_zeroshot_instruct | Qwen3-1.7B-Instruct zero-shot ALFWorld eval... | N/A | N/A | N/A | - |\n| exp021_sft_ragen_format | Two-stage SFT with RAGEN-format data (v4)... | N/A | N/A | N/A | killed |\n| exp020d_grpo_from_sft | GRPO from exp019b SFT checkpoint... | bjb1-17606 | N/A | 390605 | failed |\n| exp020c_grpo_from_sft | GRPO from exp019b SFT checkpoint... | bjb1-17606 | N/A | 389983 | failed |\n| exp019c_expert_sft_v3 | Two-stage Expert SFT (retry)... | bjb1-17606 | N/A | unknown | killed |\n| exp019b_expert_sft_v2 | (none) | N/A | N/A | N/A | - |\n| exp018_sft_grpo | Expert SFT then Sparse GRPO... | N/A | N/A | N/A | killed |\n| exp014b | Ultra-low Dense Reward test... | N/A | N/A | N/A | killed |\n| exp014a | Success-Gated Dense Reward... | N/A | N/A | N/A | killed |\n| exp014c | Success-gated valid_action_bonus... | N/A | N/A | N/A | - |\n| exp008 | (none) | N/A | N/A | N/A | killed |\n| exp007_dryrun | (none) | bjb1-17606\n…[truncated 3937 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "Agent",
+            "elapsed_ms": 178915
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-21T21:06:37.501180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\\\", \\\"content\\\": \\\"# Project Memory — cost-verify-agent-rl\\\\n\\\\n## 经验教训\\\\n\\\\n### max_prompt_length 必须严格小于 max_model_len (2026-05-19)\\\\nv9c 在 step 3/30 崩溃：`max_prompt_length: 16384 == max_model_len: 16384`，prompt 填满后 vLLM 报 \\\\\\\"prompt + requested output tokens > max_model_len\\\\\\\"。修复：`max_prompt_length = max_model_len - response_length`（15360 = 16384 - 1024）。写 config 时永远预留 generation headroom。\\\\n\\\\n### save_freq 不应设为 999 (2026-05-19)\\\\nv9c 崩溃后无 checkpoint 可恢复（save_freq: 999 = 实际不保存）。30 步训练建议 save_freq: 5~10，代价是少量磁盘但能从中间恢复。\\\\n\\\\n### FSDP2 兼容性修复模式 (2026-05-19)\\\\n- `_fsdp_wrapped_module` → `getattr(model, \\\\\\\"_fsdp_wrapped_module\\\\\\\", model)`\\\\n- `FSDP.summon_full_params(model)` → `FSDP.summon_full_params(model) if isinstance(model, FSDP) else nullcontext()`\\\\n- FSDP2 用 `fully_shard` composable API，不 wrap 模型，不存在 `_fsdp_wrapped_module`\\\\n\\\\n### save_contents 的 yaml 路径必须正确 (2026-05-20)\\\\nverl checkpoint 的 `save_contents` 必须放在 `actor_rollout_ref.actor.checkpoint` 下，不是 `trainer` 下。错误路径导致保存完整 optimizer state（92GB），正确路径只保存 actor weights（33GB）。\\\\n\\\\n### FSDP2 checkpoint 是 rank shards 不是 HF 格式 (2026-05-20)\\\\nFSDP2 保存的 checkpoint 是 `world_size_N` 目录下的 per-rank shards（`__0_0.distcp` 等），不是 HF safetensors。部署/评估前必须用 `convert_fsdp_to_hf.py` 合并为标准 HF 格式。\\\\n\\\\n### NCCL deadlock hang 的模式识别 (2026-05-20)\\\\nv9d step 15 出现 NCCL deadlock：GPU utilization 0% 但显存仍占 ~60GB，进程不退出也不报错。这是典型的 collective 通信死锁（某 rank 未到达同步点）。发现后应直接 kill 进程，不要等待恢复。长训练建议设 `NCCL_TIMEOUT`。\\\\n\\\\n### 8B episode-level GRPO reward 饱和极快 (2026-05-20)\\\\nv9d 训练曲线：40.6%(baseline) → 81.25%(step 5) → 96.875%(step 10) → 100%(step 12)。Step 12 后 advantage=0, pg_loss=0, grad_norm→0，完全无学习信号。教训：8B 模型在简单任务上 episode-level GRPO ≤15 steps 即可饱和，必须提前规划 OOD eval 和 early stopping，否则后续 steps 浪费算力且有 hang 风险。\\\\n\\\\n### ScienceWorld eval valid_action_rate bug (2026-05-19)\\\\n`action_is_valid` 必须对比完整 `valid_actions` \n…[truncated 735 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 178364
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-21T21:06:43.876011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__list_workers",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-21T21:06:43.926608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-21T21:06:49.904297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "cost-verify-agent-rl",
+              "section": "execution"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-21T21:06:49.904763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_ids\\\": {\\\"bjb1-17606\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"westd-47453\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"]}, \\\"project_path\\\": \\\"/root/cost-verify-agent-rl\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"bjb1-17606\\\"}, {\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"westd-47453\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-21T21:06:50.155865+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "status": "running"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-21T21:06:50.206542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 50
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-21T21:08:07.217216+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-17606 只能用 cuda:0,1；westd-47453 只能用 cuda:0,1,2,3。共 6 卡，不可越界\n- westd-47453 磁盘紧张：上一轮 Seed 4 OOD eval 因磁盘满失败，启动任何实验前必须先清理/检查磁盘\n- 8B 模型训练 GPU 占用 ~83/95.6 GB (87%)，不要增加 batch size 或 max_model_len\n- FSDP2 checkpoint 是 per-rank shards，eval 前必须用 `convert_fsdp_to_hf.py` 合并为 HF 格式\n- `save_contents` 必须放 `actor_rollout_ref.actor.checkpoint` 下，放错会保存完整 optimizer state (92GB)\n- `max_prompt_length` 必须严格小于 `max_model_len`，否则 vLLM 崩溃（v9c 教训）\n- 15 个 PREPARING 状态实验是僵尸（已有 conclusion 但 status 未推进到 DONE），不要当成活跃实验处理\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-17606**: root@bjb1-17606, 工作目录 `/root/cost-verify-agent-rl`, 2×GPU (cuda:0,1)\n- **westd-47453**: root@westd-47453, 工作目录 `/root/cost-verify-agent-rl`, 4×GPU (cuda:0,1,2,3)\n- Python 环境：两台服务器均为 aml-train 镜像，用 conda (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)，不要创建 venv\n- W&B: 项目已配置，实验自动上报\n- 模型：Qwen3-1.7B 为主力模型（多 seed 实验），8B 实验用 Qwen3-8B (FSDP2+CPUOffload)\n- 活跃进程：**无**。0 个 RUNNING 实验，0 个活跃 Worker，0 个活跃 Cron。所有 6 卡空闲\n\n### 3. 📊 当前状态\n**刚完成**：两个干预实验确认 negative，全项目暂停状态\n- Intervention A (exp029_seed7_len_penalty): ❌ reward 层面 length penalty 无效，response_length 仍高 (7598-14284)\n- Intervention B (exp029_seed7_high_kl): ❌ KL 正则化无效，actual KL 仅 0.003，inflation 非策略偏移\n- 跨 seed 崩溃率确认 50%: Seeds 4,7,8 collapse (response_length inflation); Seeds 1,3,6 success; Seed 5 外部 OOM 排除\n\n**OOD 数据已收集**（Paper Table 1 用）：\n| Seed | OOD Success | 状态 |\n|------|------------|------|\n| SFT baseline | 5.97% | ✅ |\n| Seed 1 | 23.88% | ✅ |\n| Seed 3 | 10.45% | ✅ |\n| Seed 5 (step10) | 29.10% | ✅ |\n| Seed 6 | 29.10% | ✅ |\n| Seed 4 | ❌ | westd 磁盘满失败，需重做 |\n\n**等待中**：无 Worker/Cron 回调。无 Director 待决策项（D115 已批准 Intervention C 但未执行）\n\n### 4. 📋 待办（条件触发式）\n- 立即 → westd 磁盘清理 + 僵死进程 kill（之前 eval 失败的根因）\n- 磁盘清理完成 → 启动 Intervention C（westd cuda:0,1, seed=999, per-turn 512 + max_turn 20 generation hard cap, 7 步, ~2h）\n- 磁盘清理完成 → 同时启动 Seed 4 OOD eval 重做（westd cuda:2 或 3）\n- Intervention C 成功（step 7 response_length < 2000 且 success > 30%）→ claim \"episode-level + generation constraint enables robust learning\"，用修复方法重跑崩溃 seed\n- Intervention C 失败 → 三种正交干预（reward/regularization/generation）全败 → 与 Director 讨论 framing 调整为 \"characterizes collapse + standard mitigations insufficient\"\n- Seed 4 OOD eval 完成 → 更新 Table 1 为 mean±std（当前 4-seed mean ≈ 23.1%）\n- 崩溃 seed (7/8) 如有 step 5 checkpoint → 跑 OOD eval 补充崩溃 seed 的 partial performance 数据\n- Registry 清理：15 个 PREPARING 僵尸实验需推进到 DONE\n\n### 5. 🎯 战略上下文\n**项目核心**：Step-independent agent RL 的信用分配病理诊断（信息丢失 M1 + 符号错误归因 M2）+ episode-level 修复。论文 v16 已 8 页，EMNLP 2026 投稿目标。\n\n**关键决策链**：\n- D113: 跨 seed 崩溃率 43-50%，论文 claim 从 \"avoids collapse\" 调整为描述双峰分布\n- D114: Intervention A 失败\n- D115: Kill Seed 8 + 启动 Intervention C（generation hard cap 是最后一种干预类型）\n\n**最易判断错的事**：\n- Intervention C 是 **最后机会**。不要把它当成\"又一个实验\"——它的结果直接决定论文是 method paper 还是 analysis paper\n- 崩溃机制是 response length inflation（回复越来越长），**不是** entropy→0 的经典 policy collapse。不要用经典 collapse 的直觉来设计干预\n- OOD 数据中 Seed 3 (10.45%) 显著低于其他 seed (23-29%)，Table 1 用 mean±std 会有较大 std，这是真实的 seed variance 不是 bug\n- 6 卡全空闲是 **失职状态**——接手后第一件事是清磁盘然后把 Intervention C + Seed 4 OOD 同时铺上去\n- bjb1 的 2 卡也空着，可以并行做崩溃 seed OOD eval 或其他不依赖 westd 的任务\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:8b_v9d_ood_eval_v4"
+          },
+          "id": "event-000107"
+        }
+      ],
+      "message_count": 48
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-8b-v9d-ood-eval-v4-20260521t210807-222366.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03dc9fe14c965e4262f0",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis eval v2 results",
+  "task_key": "worker_analysis_eval_v2_results_20260520T085112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_v2_results_20260520T085112_result.json",
+    "occurrence": 1,
+    "bytes": 1510,
+    "sha256": "c82c7a867864b44685dbbbc3922f0b455fe108d43d1cce4d3856d22cdacbe350"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## eval_v2 中间报告（仍在运行）\n\n**进度**: 1345/1796 episodes（74.9%），进程 195853 运行中\n\n**当前总 success rate**: 442/1345 = **32.9%**\n\n**GPU 状态**: cuda:0 和 cuda:1 均在使用（各 ~84GB/98GB），eval 占用中\n\n**磁盘**: /root/autodl-tmp 190G/250G (76%)，空间充足\n\n### 按任务类型分解（已完成部分）\n\n| 任务 | 成功/总数 | 成功率 |\n|------|----------|--------|\n| lifespan-longest-lived | 28/31 | 90.3% |\n| lifespan-longest-lived-then-shortest-lived | 28/31 | 90.3% |\n| find-non-living-thing | 58/75 | 77.3% |\n| lifespan-shortest-lived | 21/31 | 67.7% |\n| find-living-thing | 49/75 | 65.3% |\n| power-component | 3/5 | 60.0% |\n| find-animal | 37/75 | 49.3% |\n| measure-melting-point-unknown | 27/75 | 36.0% |\n| mendelian-genetics-unknown | 35/120 | 29.2% |\n| mendelian-genetics-known | 8/30 | 26.7% |\n| inclined-plane-friction-unnamed | 10/40 | 25.0% |\n| inclined-plane-friction-named | 83/346 | 24.0% |\n| measure-melting-point-known | 25/109 | 22.9% |\n| chemistry-mix-paint-secondary | 2/9 | 22.2% |\n| inclined-plane-determine-angle | 7/42 | 16.7% |\n| change-state-of-matter / melt | 1/7 each | 14.3% |\n| test-conductivity | 8/59 | 13.6% |\n| find-plant | 9/75 | 12.0% |\n| grow-fruit | 2/31 | 6.5% |\n| boil/chemistry-mix/freeze/grow-plant/identify-life-stages/power-renewable | 0% | 0.0% |\n\n还剩 ~451 episodes，当前在跑 test-conductivity 系列。按日志节奏预计还需数小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-v2-results.md"
+}

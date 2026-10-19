@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp_001b",
+  "project": "cost-verify-agent-rl",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T19:14:10.718Z",
+    "updated_at": "2026-05-13T19:15:33.086Z",
+    "spec": {
+      "hypothesis": "Always-on self-guidance via GRPO can achieve ≥76% success rate on ALFWorld (Self-Guide reproduction)",
+      "model_name": "Qwen3-1.7B",
+      "server": "bjb1-17606",
+      "data_path": "/root/autodl-tmp/alfworld",
+      "data_count": 8810,
+      "seed": null,
+      "parent": "exp_001",
+      "description": "Phase A retry: fix max_model_len 4096->8192+ for multi-turn rollout",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && ALFWORLD_DATA=/root/autodl-tmp/alfworld CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_exp001b\"",
+      "note": "exp_001 rerun with max_model_len 4096->8192 to fix prompt overflow at step 7"
+    }
+  },
+  "timestamp": "2026-05-13T19:15:33.136991+00:00",
+  "trigger": "update_registry"
+}

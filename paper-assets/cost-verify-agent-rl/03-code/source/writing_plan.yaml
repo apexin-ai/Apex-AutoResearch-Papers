@@ -1,0 +1,320 @@
+# Writing Plan — Sign Misattribution in Step-Independent Agent RL
+# Updated: 2026-05-23 (venue confirmed EMNLP 2026, post D138 compression)
+# Scope: Full draft complete — all sections written
+
+meta:
+  venue: "EMNLP 2026 via ARR"
+  track: main
+  template: "acl"
+  template_note: "Using ACL review template (\\usepackage[review]{acl})"
+  page_limit: 8
+  deadline: null  # TBD by Director
+  core_claim: >
+    Step-independent GRPO catastrophically fails in multi-turn agent RL due to
+    dual mechanism failure (policy information loss + advantage sign misattribution).
+    The failure manifests as three qualitatively distinct training dynamics:
+    monotonic collapse, oscillation-then-degradation, and stable learning.
+    Episode-level GRPO eliminates both mechanisms.
+  created_at: "2026-05-18T12:00:00Z"
+  narrative_version: "D073"
+  narrative_strategy: >
+    Training dynamics contrast (3 modes) as core argument, NOT quantitative
+    percentage decomposition. Checkpoint-dependent numbers are fragile;
+    qualitative training regime differences are robust.
+
+paper_outline:
+  - section: abstract
+    word_budget: 220
+    status: DEFERRED
+    core_bullets:
+      - "Problem: step-independent GRPO silently fails in multi-turn agent tasks"
+      - "Diagnosis: dual mechanism (information loss + sign misattribution)"
+      - "Evidence: 3 training regimes + factorial mechanism separation"
+      - "Fix: episode-level GRPO"
+    dependencies: [experiments, method]
+
+  - section: introduction
+    word_budget: 1400
+    status: EXISTS (needs D073 rewrite later)
+    core_bullets:
+      - "Hook: community default (step-independent) produces 3 failure modes, not gradual degradation"
+      - "Gap: no published diagnosis of WHY step-independent fails"
+      - "Insight: sign error > magnitude error; dual mechanism at different layers"
+      - "Evidence: factorial 2x2 separates mechanisms; 3 training dynamics"
+      - "Contributions: [C1: dual mechanism diagnosis, C2: formal analysis, C3: episode-level fix]"
+    dependencies: [experiments, method]
+    figures: [fig1_overview]
+    registry_refs: [exp029_episode_level, hsweep_h2_seed1]
+
+  - section: related_work
+    word_budget: 900
+    status: WRITE_NOW
+    core_bullets:
+      - "Cluster 1: RL for Multi-Turn LLM Agents — RAGEN/GiGPO/SPEAR/DigiRL; step-independent is default; we diagnose WHY it fails"
+      - "Cluster 2: Credit Assignment — REINFORCE/GAE/TD(lambda) classics + GRPO-lambda/MC-GRPO/IRC; position sign misattribution as agent-specific instance"
+      - "Cluster 3: Multi-Turn Agent Credit — Turn-PPO/GAGPO/GiGPO/iStar/MT-GRPO/SWEET-RL; they propose fixes, we provide mechanistic diagnosis"
+      - "Cluster 4: GRPO Collapse — RAGEN-2/GRPO-Collapse/Gradient-Coupling; corroborating evidence from independent groups"
+      - "Drop old Cluster: Selective Verification (降级 future work, 不需要独立 cluster)"
+    dependencies: [introduction]
+    citation_hints:
+      - "15 verified citations from literature_sign_misattribution_evidence.md"
+      - "Tier 1 (direct sign evidence): IRC, MC-GRPO, G-RA, GRPO-lambda, OAR, Decoupled-CA"
+      - "Tier 2 (GRPO collapse): RAGEN, RAGEN-2, Turn-PPO, GRPO-Collapse, Gradient-Coupling"
+      - "Tier 3 (step vs episode): GiGPO, GAGPO, iStar, SWEET-RL, MT-GRPO"
+      - "Classics: REINFORCE, PPO, GAE, TD(lambda), RUDDER"
+
+  - section: method
+    word_budget: 2200
+    status: WRITE_NOW
+    core_bullets:
+      - "3.1 Problem Formulation: POMDP; define trajectory, windowing, episode"
+      - "3.2 GRPO for Language Agents: bandit-style, advantage=(R-mu)/sigma, episode-level by design"
+      - "3.3 Step-Independent Implementation: RAGEN's windowing; R_k=gamma^(N-k)*R_episode; how it deviates from GRPO's design"
+      - "3.4 Dual Mechanism Analysis: (M1) Policy Information Loss — inference layer, constant ceiling; (M2) Advantage Sign Misattribution — training layer, cumulative; predict two-phase collapse"
+      - "3.5 Episode-Level Training: resolves both; full history + single advantage; trade-off (coarse credit but correct direction)"
+      - "3.6 Factorial Experiment Design: 2x2 (truncated-obs x episode-advantage) to separate mechanisms causally"
+      - "3.7 Selective Verification (future work): brief proposed design, action-change reward"
+    dependencies: []
+    notation_table:
+      h: "window size (number of agent turns per window)"
+      T: "episode length (total interaction steps)"
+      N: "number of windows per episode (ceil(T/h))"
+      gamma: "discount factor in step-independent return computation"
+      R_k: "return assigned to window k"
+      A_k_hat: "group-normalized advantage of window k"
+      p: "episode success rate"
+      K: "group size (rollouts per task instance)"
+    registry_refs: [exp029_episode_level, hsweep_h2_seed1, factorial_h2_episodeadv_seed1]
+    figures: [fig2_mechanism]
+
+  - section: theoretical_analysis
+    word_budget: 1800
+    status: EXISTS (minor D073 adjustments later)
+    core_bullets:
+      - "4.1 Why Sign Misattribution is Fundamental: Prop 1 — P(correct sign) → p as K grows"
+      - "4.2 Formal Probability: Prop 2 — P(correct|update) = p/(1-(1-p)^K); at p=12.5% K=8 → 19.1%"
+      - "4.3 Why Community Defaults to Step-Independent: 6 factors"
+      - "4.4 Connection to Classical Credit Assignment: GAE(1,1), REINFORCE, multi-agent analogy"
+    dependencies: [method]
+
+  - section: experiments
+    word_budget: 2500
+    status: WRITE_SETUP_NOW (setup only; results deferred)
+    core_bullets:
+      - "5.1 Environment: ALFWorld — 6 task types, binary reward, 50-step episodes, sequential dependencies"
+      - "5.2 Base Model: Qwen3-1.7B, SFT on 2546 expert demos, baseline 12.5% (32 tasks) / TBD% (134 OOD)"
+      - "5.3 RL Training: RAGEN + GRPO, K=8, lr=1e-6, beta=0.01, gamma=0.95, 15 steps"
+      - "5.4 Evaluation Protocol: 134 OOD tasks (expanded from 32), pass@1/2/4/8, action validity"
+      - "5.5 Experimental Conditions: episode-level / step-independent h=2 / factorial h=2+episode-adv / dense reward / REINFORCE++"
+      - "[DEFERRED] 5.6 Results: training dynamics contrast (3 modes)"
+      - "[DEFERRED] 5.7 Sign Misattribution Verification"
+      - "[DEFERRED] 5.8 H-Sweep Ablation"
+    dependencies: [method]
+    registry_refs:
+      - exp029_episode_level
+      - hsweep_h2_seed1
+      - hsweep_h2_seed2
+      - factorial_h2_episodeadv_seed1
+      - exp013f
+      - gae_baseline_seed1
+      - exp029_episode_level_seed2  # RUNNING
+    tables: [tab1_main_results, tab2_h_sweep, tab3_mechanism_verification, tab_hyperparams]
+    figures: [fig5_h_sweep_curve, fig6_training_curves]
+
+  - section: discussion
+    word_budget: 1200
+    status: EXISTS (D073 rewrite later)
+    dependencies: [experiments, theoretical_analysis]
+
+  - section: conclusion
+    word_budget: 350
+    status: EXISTS (D073 rewrite later)
+    dependencies: [experiments]
+
+visualization_plan:
+  - fig_id: fig1_overview
+    type: conceptual
+    tool: paperbanana
+    description: "System overview: step-independent failure mechanism (left) vs episode-level solution (right)"
+    narrative_intent: "Step-independent windowing breaks credit assignment at two layers; episode-level training restores both"
+    design_notes: []
+    placement: introduction
+    aspect_ratio: "16:9"
+    data_source: null
+    status: DEFERRED
+
+  - fig_id: fig2_mechanism
+    type: conceptual
+    tool: paperbanana
+    description: "Dual mechanism illustration: M1 (information loss, inference layer) and M2 (sign misattribution, training layer)"
+    narrative_intent: "Two qualitatively different failure modes operate at different layers and compound"
+    design_notes:
+      - "Top: h-step window vs full trajectory — show what's visible/invisible"
+      - "Bottom: failed episode → all windows get negative advantage regardless of local quality"
+    placement: method
+    aspect_ratio: "4:3"
+    data_source: null
+    status: DEFERRED
+
+  - fig_id: fig6_training_curves
+    type: statistical
+    tool: matplotlib
+    description: "Training dynamics: 3 modes — monotonic collapse (h=2 seed1) vs oscillation (h=2 seed2 / factorial) vs stable (episode-level). Dual y-axis: success + action validity."
+    narrative_intent: "Three qualitatively distinct training regimes demonstrate that step-independent failure is structural, not hyperparameter-dependent"
+    design_notes:
+      - "Pattern A: regime bands (collapse / unstable / stable) with shaded backgrounds"
+      - "3-4 curves with distinct colors/markers"
+      - "Annotate collapse onset (step 3-4 for seed1)"
+    placement: experiments
+    aspect_ratio: "3:2"
+    data_source: "registry: exp029_episode_level, hsweep_h2_seed1, hsweep_h2_seed2, factorial_h2_episodeadv_seed1"
+    status: CAN_START (all data DONE)
+
+  - fig_id: fig5_h_sweep_curve
+    type: statistical
+    tool: matplotlib
+    description: "H-sweep: val success vs h-value, showing credit assignment cliff"
+    narrative_intent: "Performance collapses below a critical window size, not gradually"
+    design_notes:
+      - "Pattern E: error bars when multi-seed available"
+      - "Horizontal dashed line at SFT baseline"
+    placement: experiments
+    aspect_ratio: "4:3"
+    data_source: "registry: hsweep_h2_seed1, hsweep_h2_seed2, [PENDING h=5/10/20], exp029_episode_level"
+    status: BLOCKED (needs h=5/10/20 data)
+
+  - fig_id: fig_theoretical
+    type: statistical
+    tool: matplotlib
+    description: "P(correct sign | update) vs success rate p, for K=2,4,8,16"
+    narrative_intent: "At low success rates typical of early training, the vast majority of gradient updates point in the wrong direction"
+    design_notes:
+      - "Mark experimental operating point (p=12.5%, K=8 → 19.1%)"
+      - "Show large-K limit approaching p"
+    placement: theoretical_analysis
+    aspect_ratio: "4:3"
+    data_source: "computed from Eq.8"
+    status: CAN_START (pure theory, no experiment data needed)
+
+  - fig_id: fig_dense_dissociation
+    type: statistical
+    tool: matplotlib
+    description: "Dense reward baseline: action validity ↑ while success stays 0%"
+    narrative_intent: "Dense reward shapes formatting behavior but cannot fix sign misattribution for task completion"
+    design_notes:
+      - "Dual y-axis: validity (left, rising) vs success (right, flat at 0%)"
+      - "Scissors effect visualization"
+    placement: experiments
+    aspect_ratio: "4:3"
+    data_source: "registry: exp013f"
+    status: CAN_START (data DONE)
+
+table_plan:
+  - table_id: tab_hyperparams
+    caption: "Shared GRPO hyperparameters across all training conditions"
+    placement: experiments
+    type: configuration
+    columns: [Parameter, Value]
+    data_source: "manual"
+
+  - table_id: tab1_main_results
+    caption: "Training dynamics comparison across conditions (OOD 134 tasks)"
+    placement: experiments
+    type: comparison
+    columns: [Condition, Observation, Advantage, Val Success (%), Training Regime]
+    data_source: "registry: exp029, hsweep_h2_seed1, hsweep_h2_seed2, factorial_h2_episodeadv, exp013f, gae_baseline"
+    notes: "D073: emphasize qualitative training regime, not just final numbers"
+    status: DEFERRED (wait seed2 data)
+
+  - table_id: tab2_h_sweep
+    caption: "Window-size ablation"
+    placement: experiments
+    type: ablation
+    columns: [h, Val Success (%), Collapse Step, Training Regime]
+    data_source: "registry: plan_002"
+    status: BLOCKED (h=5/10/20 pending)
+
+  - table_id: tab3_mechanism_verification
+    caption: "Empirical verification of advantage sign misattribution"
+    placement: experiments
+    type: statistics
+    columns: [Metric, Measured, Predicted, Agreement]
+    data_source: "registry: hsweep_h2_seed2 adv_analysis"
+    notes: "52% sign-outcome agreement, r=0.068"
+    status: CAN_START (data from seed2 adv_log)
+
+literature_strategy:
+  citation_budget: 45
+  source: "artifacts/literature_sign_misattribution_evidence.md + artifacts/citation_verification_report.md"
+  verified_count: 8
+  partially_verified_count: 4
+  macro_context:
+    - "RL training for LLM agents (multi-turn, sparse reward)"
+    - "Credit assignment in long-horizon RL"
+    - "GRPO collapse and sign misattribution"
+  micro_clusters:
+    - cluster_name: "Agent RL Training"
+      must_cite:
+        - "GRPO/DeepSeekMath (Shao et al. 2024)"
+        - "RAGEN (2025)"
+        - "GiGPO (Feng et al. NeurIPS 2025)"
+        - "DigiRL (2024)"
+        - "SPEAR (2025)"
+      target_count: 10
+
+    - cluster_name: "Sign Misattribution Evidence"
+      must_cite:
+        - "IRC (2604.02869) — direct sign disagreement report"
+        - "MC-GRPO (2601.22582) — 5% sign-flip → 4% accuracy drop"
+        - "G-RA (2508.10548) — sign divergence visualization"
+        - "GRPO-lambda (2510.00194) — value estimation bias"
+        - "OAR (2601.07408) — reward aliasing"
+      target_count: 6
+      notes: "Use verified terminology from citation_verification_report.md"
+
+    - cluster_name: "Multi-Turn Credit Assignment"
+      must_cite:
+        - "Turn-PPO (2512.17008)"
+        - "GAGPO (2605.13217)"
+        - "iStar (NeurIPS 2025)"
+        - "MT-GRPO (2505.11821)"
+        - "SWEET-RL (2503.15478)"
+      target_count: 8
+
+    - cluster_name: "GRPO Collapse"
+      must_cite:
+        - "RAGEN-2 (2604.06268)"
+        - "GRPO Collapse/Search-R1 (2512.04220)"
+        - "Gradient Coupling (2509.23870)"
+      target_count: 4
+      notes: "Acknowledge Gradient Coupling反面观点 per citation verification"
+
+    - cluster_name: "Credit Assignment Classics"
+      must_cite:
+        - "REINFORCE (Williams 1992)"
+        - "PPO (Schulman 2017)"
+        - "GAE (Schulman 2016)"
+        - "TD(lambda) (Sutton 1988)"
+        - "RUDDER (NeurIPS 2019)"
+        - "COMA (Foerster 2018)"
+        - "QMIX (Rashid 2018)"
+      target_count: 7
+
+    - cluster_name: "Environments"
+      must_cite:
+        - "ALFWorld (Shridhar et al. 2021)"
+        - "ScienceWorld (Wang et al. 2022)"
+        - "WebShop (Yao et al. 2022)"
+      target_count: 3
+
+writing_order:
+  # Phase 1 (NOW — does not depend on seed2/h-sweep results)
+  - method              # GRPO formalization + dual mechanism + factorial design
+  - related_work        # literature positioning with verified citations
+  - experiments_setup   # 5.1-5.5 (setup + conditions only, no results)
+  # Phase 2 (AFTER seed2 + h-sweep data arrives, 12-24h)
+  - experiments_results # 5.6-5.8 (results with D073 3-mode dynamics)
+  - introduction        # rewrite with D073 narrative
+  - discussion          # rewrite with factorial results
+  - conclusion          # rewrite with final story
+  - abstract            # last, after all data

@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp010",
+  "project": "cost-verify-agent-rl",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T03:45:56.628Z",
+    "updated_at": "2026-05-14T03:46:43.393Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_TMPDIR=/root/autodl-tmp/ray_tmp && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name=_alfworld_exp008_sft_grpo 2>&1 | tee /root/autodl-tmp/exp010_grpo.log\"",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "199389",
+      "log_path": "~/runs/cost-verify-agent-rl/exp010.log",
+      "submitted_at": "2026-05-14T03:45:56.604Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "GRPO with SFT-warmed Qwen3-1.7B can learn ALFWorld task-solving strategy from environment reward, achieving success_rate >= 76%",
+      "model_name": "Qwen3-1.7B (SFT warmup)",
+      "description": "Phase A GRPO with SFT checkpoint. Config: _alfworld_exp008_sft_grpo.yaml, symlink qwen3_sft_final, save_freq=5, RAY_TMPDIR explicit.",
+      "decision": "D006"
+    }
+  },
+  "timestamp": "2026-05-14T03:46:43.416203+00:00",
+  "trigger": "update_registry"
+}

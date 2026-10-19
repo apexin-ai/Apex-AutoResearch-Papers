@@ -1,0 +1,508 @@
+# B-IAVR Literature Map
+# Updated: 2026-05-15
+# Categories: direct-competitor, method-component, background, evaluation
+# Roles: predecessor, competitor, baseline, evaluation, background
+
+papers:
+
+  # ============================================================
+  # Direction 1: Self-Verification / Self-Correction in LLM Agents
+  # ============================================================
+
+  - id: kamoi2024self-correction-survey
+    title: "When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs"
+    authors: "Kamoi et al."
+    venue: "arXiv"
+    year: 2024
+    arxiv_id: "2406.01297"
+    category: background
+    role: background
+    relevance_note: >
+      Foundational survey establishing that pure intrinsic self-correction is unreliable.
+      Validates B-IAVR's use of grounded verification (environment re-observation) over prompted self-feedback.
+
+  - id: tie2025correctbench
+    title: "Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs"
+    authors: "Tie et al."
+    venue: "NeurIPS 2025 Datasets & Benchmarks"
+    year: 2025
+    arxiv_id: "2510.16062"
+    category: background
+    role: background
+    relevance_note: >
+      Benchmark showing self-correction has diminishing returns when applied uniformly.
+      Supports B-IAVR's selective verification design over blanket correction.
+
+  - id: self-verification-dilemma-2026
+    title: "Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning"
+    authors: "Long et al."
+    venue: "arXiv"
+    year: 2026
+    arxiv_id: "2602.03485"
+    category: background
+    role: background
+    relevance_note: >
+      Empirically validates that >90% of self-verification is confirmatory, ~2% corrective.
+      Directly supports B-IAVR's core thesis that verification should be selective.
+      Their experience-pool approach is complementary to B-IAVR's action-change signal.
+
+  - id: zhang2025incentivize-self-verify
+    title: "Incentivizing LLMs to Self-Verify Their Answers"
+    authors: "Zhang et al."
+    venue: "arXiv"
+    year: 2025
+    arxiv_id: "2506.01369"
+    category: background
+    role: background
+    relevance_note: >
+      Unifies answer generation and verification via single RL training process.
+      Parallel to B-IAVR: they train verification into generation; B-IAVR trains when to trigger separate verification.
+
+  - id: mar2025
+    title: "MAR: Multi-Agent Reflexion Improves Reasoning Abilities in LLMs"
+    authors: "Ozer et al."
+    venue: "arXiv"
+    year: 2025
+    arxiv_id: "2512.20845"
+    category: background
+    role: background
+    relevance_note: >
+      Multi-agent self-correction with diverse critic personas.
+      Complementary: MAR improves correction quality; B-IAVR decides when to trigger correction.
+
+  - id: ssr2025
+    title: "SSR: Socratic Self-Refine for Large Language Model Reasoning"
+    authors: "Shi et al."
+    venue: "arXiv"
+    year: 2025
+    arxiv_id: "2511.10621"
+    category: background
+    role: background
+    relevance_note: >
+      Structured Socratic questioning for self-refinement.
+      Complementary: improves correction step quality; B-IAVR focuses on when to invoke correction.
+
+  - id: verifiagent2025
+    title: "VerifiAgent: a Unified Verification Agent in Language Model Reasoning"
+    authors: "Han et al."
+    venue: "EMNLP 2025 Findings"
+    year: 2025
+    arxiv_id: "2504.00406"
+    category: background
+    role: background
+    relevance_note: >
+      [NEW] Unified verification agent with meta-verification + tool-based adaptive verification.
+      Focuses on how to verify (tool selection); B-IAVR focuses on when to verify (policy learning).
+      Complementary: VerifiAgent's verification quality could enhance B-IAVR's verification step.
+
+  # ============================================================
+  # Direction 2: Agent RL Training
+  # ============================================================
+
+  - id: feng2025gigpo
+    title: "GiGPO: Group-in-Group Policy Optimization for LLM Agent Training"
+    authors: "Feng et al."
+    venue: "NeurIPS 2025"
+    year: 2025
+    arxiv_id: "2505.10978"
+    category: method-component
+    role: predecessor
+    relevance_note: >
+      Core training algorithm for B-IAVR. Nested group structure provides step-level credit
+      assignment without learned critic. >12% over GRPO on ALFWorld, >9% on WebShop.
+
+  - id: selfguide2026
+    title: "Co-Evolution of Policy and Internal Reward for Language Agents (Self-Guide)"
+    authors: "Wang et al."
+    venue: "arXiv"
+    year: 2026
+    arxiv_id: "2604.03098"
+    category: method-component
+    role: predecessor
+    relevance_note: >
+      Direct predecessor. B-IAVR extends Self-Guide's co-evolving internal reward.
+      The self-guidance signal is the foundation for action-change detection triggering verification.
+      8% improvement over env-reward-only on ALFWorld with Qwen3-1.7B/4B.
+
+  - id: spear2025
+    title: "SPEAR: Self-Imitation with Progressive Exploration for Agentic RL"
+    authors: "Qin et al."
+    venue: "ICLR 2026"
+    year: 2025
+    arxiv_id: "2509.22601"
+    category: method-component
+    role: background
+    relevance_note: >
+      Curriculum-based self-imitation for sparse-reward agent tasks.
+      Up to +16.1% on ALFWorld over GRPO. Self-imitation curriculum could augment B-IAVR training.
+
+  - id: wei2025webagent-r1
+    title: "WebAgent-R1: Training Web Agents via End-to-End Multi-Turn RL"
+    authors: "Wei et al."
+    venue: "EMNLP 2025"
+    year: 2025
+    arxiv_id: "2505.16421"
+    category: background
+    role: background
+    relevance_note: >
+      Extends GRPO to multi-turn (M-GRPO) with dynamic context compression.
+      Qwen-2.5-3B: 6.1% to 33.9% on WebArena-Lite. M-GRPO multi-turn extension relevant to B-IAVR.
+
+  - id: dapo2025
+    title: "DAPO: An Open-Source LLM Reinforcement Learning System at Scale"
+    authors: "Yu et al."
+    venue: "arXiv"
+    year: 2025
+    arxiv_id: "2503.14476"
+    category: method-component
+    role: background
+    relevance_note: >
+      RL training stabilization techniques (Clip-Higher, Dynamic Sampling).
+      Applicable to B-IAVR's RL training to prevent entropy collapse.
+
+  - id: digiRL2024
+    title: "DigiRL: Training In-The-Wild Device-Control Agents with Autonomous RL"
+    authors: "Bai et al."
+    venue: "NeurIPS 2024"
+    year: 2024
+    arxiv_id: "2406.11896"
+    category: background
+    role: background
+    relevance_note: >
+      Online RL for device control agents. Demonstrates online RL viability for interactive agents.
+      49.5% absolute improvement over SFT. Parallel approach to B-IAVR in text-based setting.
+
+  - id: li2025sorl
+    title: "SORL: Stabilizing Off-Policy RL for Long-Horizon Agent Training"
+    authors: "Li et al."
+    venue: "arXiv"
+    year: 2025
+    arxiv_id: "2511.20718"
+    category: method-component
+    role: background
+    relevance_note: >
+      Turn-level importance sampling + clipping-triggered normalization for stable multi-turn agent RL.
+      Directly applicable to B-IAVR's multi-turn ALFWorld training stability.
+
+  - id: agentic-rl-survey-2025
+    title: "The Landscape of Agentic Reinforcement Learning for LLMs: A Survey"
+    authors: "Zhang et al."
+    venue: "TMLR 2026"
+    year: 2025
+    arxiv_id: "2509.02547"
+    category: background
+    role: background
+    relevance_note: >
+      Comprehensive survey formalizing agentic RL. Contextualizes B-IAVR as training agents
+      to make meta-decisions (when to verify) via RL within the POMDP framework.
+
+  - id: skillmaster2026
+    title: "SkillMaster: Toward Autonomous Skill Mastery in LLM Agents"
+    authors: "Yang et al."
+    venue: "arXiv"
+    year: 2026
+    arxiv_id: "2605.08693"
+    category: method-component
+    role: background
+    relevance_note: >
+      [NEW] DualAdv-GRPO: separately estimates advantages for task-solving and skill-editing decisions.
+      +8.8% on ALFWorld, +9.3% on WebShop. DualAdv structure could inform B-IAVR's
+      separation of action and verification advantages.
+
+  - id: t2po2026
+    title: "T2PO: Uncertainty-Guided Exploration Control for Stable Multi-Turn Agentic RL"
+    authors: "Wang et al."
+    venue: "ICML 2026 Spotlight"
+    year: 2026
+    arxiv_id: "2605.02178"
+    category: method-component
+    role: background
+    relevance_note: >
+      [NEW] Token- and turn-level uncertainty monitoring for stable multi-turn agent RL.
+      Triggers thinking intervention when marginal uncertainty change drops below threshold.
+      Evaluated on ALFWorld and WebShop. Conceptually related: uncertainty-based trigger vs
+      B-IAVR's action-change trigger, but T2PO targets training stability, not deployment verification.
+
+  - id: gvpo2026
+    title: "GVPO: Group Verification-based Policy Optimization for Interactive Coding Agents"
+    authors: "Dai et al."
+    venue: "ICLR 2026"
+    year: 2026
+    arxiv_id: null
+    category: method-component
+    role: background
+    relevance_note: >
+      [NEW] Advantage shaping with outcome-verifiable + process-verifiable signals.
+      +12.7% over o1 on AppWorld. Integrates intermediate execution feedback as step-level
+      verification signals. Different focus: uses verification for credit assignment during
+      training; B-IAVR learns when to invoke verification at deployment.
+
+  - id: agentv-rl2026
+    title: "AgentV-RL: Scaling Reward Modeling with Agentic Verifier"
+    authors: "Zhang et al."
+    venue: "arXiv"
+    year: 2026
+    arxiv_id: "2604.16004"
+    category: method-component
+    role: background
+    relevance_note: >
+      [NEW] Bidirectional forward/backward agentic verifier for reward modeling in RL.
+      4B model surpasses SOTA ORMs by 25.2%. Addresses verification quality in reward modeling;
+      B-IAVR addresses verification timing in agent deployment. Complementary.
+
+  # ============================================================
+  # Direction 3: Selective Verification / Adaptive Computation
+  # ============================================================
+
+  - id: wan2025derailer-rerailer
+    title: "Derailer-Rerailer: Adaptive Verification for Efficient and Reliable LM Reasoning"
+    authors: "Wan et al."
+    venue: "ACL 2025 Findings"
+    year: 2025
+    arxiv_id: "2408.13940"
+    category: direct-competitor
+    role: competitor
+    relevance_note: >
+      Most directly related competitor. Both do selective verification with binary trigger.
+      Key difference: operates on reasoning chains (single-turn); B-IAVR on agent trajectories (multi-turn).
+      Uses heuristic instability signal; B-IAVR uses RL-trained action-change signal.
+      8-11% accuracy gain, 2-3x efficiency over uniform verification.
+
+  - id: sherlock2025
+    title: "Sherlock: Reliable and Efficient Agentic Workflow Execution"
+    authors: "Microsoft"
+    venue: "arXiv"
+    year: 2025
+    arxiv_id: "2511.00330"
+    category: direct-competitor
+    role: competitor
+    relevance_note: >
+      Selective verification for agentic workflows via offline counterfactual analysis + speculative execution.
+      Different scope: workflow DAG level (offline); B-IAVR is step-level (online RL).
+      18.3% accuracy gain, 26% cost reduction, 48.7% latency reduction.
+
+  - id: singhi2025when-to-verify
+    title: "When To Solve, When To Verify: Compute-Optimal Verification for LLM Reasoning"
+    authors: "Singhi et al."
+    venue: "arXiv"
+    year: 2025
+    arxiv_id: "2504.01005"
+    category: background
+    role: background
+    relevance_note: >
+      Derives inference scaling laws for solve-vs-verify tradeoff.
+      Finding that over-verification is suboptimal directly supports B-IAVR's selective approach.
+      B-IAVR learns this allocation via RL rather than analytically.
+
+  - id: yang2026ares
+    title: "ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents"
+    authors: "Yang et al."
+    venue: "arXiv"
+    year: 2026
+    arxiv_id: "2603.07915"
+    category: direct-competitor
+    role: competitor
+    relevance_note: >
+      Closest competitor in agent domain. Both train learned per-step compute allocation.
+      ARES uses SFT-initialized router further refined via GRPO with outcome + token efficiency reward;
+      B-IAVR trains binary verify/not-verify via RL with action-change signal.
+      Key differences: (1) reward signal — ARES optimizes token efficiency, B-IAVR uses action-change
+      as verification trigger; (2) data requirement — ARES needs difficulty-annotated training data
+      to bootstrap the router, B-IAVR learns from environment interaction alone.
+      Reduces reasoning tokens by up to 52.7%.
+
+  - id: tu2025autothink
+    title: "Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL"
+    authors: "Tu et al."
+    venue: "NeurIPS 2025"
+    year: 2025
+    arxiv_id: "2505.10832"
+    category: direct-competitor
+    role: competitor
+    relevance_note: >
+      Analogous idea in reasoning domain: RL-trained adaptive computation trigger.
+      Operates on single-turn reasoning; B-IAVR on multi-turn agent trajectories.
+      +6.4% accuracy, -52% tokens on DeepSeek-R1-Distill-Qwen-1.5B.
+
+  - id: du2025thinkless
+    title: "Thinkless: LLM Learns When to Think"
+    authors: "Du et al."
+    venue: "NeurIPS 2025"
+    year: 2025
+    arxiv_id: "2505.13379"
+    category: direct-competitor
+    role: competitor
+    relevance_note: >
+      RL-trained control token to decide when to invoke extended thinking.
+      Methodologically closest to B-IAVR in reasoning domain; B-IAVR applies to interactive agent trajectories.
+
+  - id: wang2025efficient-agents
+    title: "Efficient Agents: Building Effective Agents While Reducing Cost"
+    authors: "Wang et al."
+    venue: "arXiv"
+    year: 2025
+    arxiv_id: "2508.02694"
+    category: background
+    role: background
+    relevance_note: >
+      First systematic study of agent efficiency-effectiveness tradeoff.
+      Framework-level cost reduction; B-IAVR addresses cost at verification-policy level.
+      Retains 96.7% performance with 28.4% cost-of-pass improvement.
+
+  - id: venktesh2025trust-but-verify
+    title: "Trust but Verify! A Survey on Verification Design for Test-time Scaling"
+    authors: "Venktesh et al."
+    venue: "arXiv"
+    year: 2025
+    arxiv_id: "2508.16665"
+    category: background
+    role: background
+    relevance_note: >
+      Survey of verification approaches for test-time compute scaling.
+      Identifies verification timing as key open problem. B-IAVR provides concrete solution for agent setting.
+
+  - id: agent-omit2026
+    title: "Agent-Omit: Training Efficient LLM Agents for Adaptive Thought and Observation Omission via Agentic RL"
+    authors: "Ning et al."
+    venue: "ICML 2026"
+    year: 2026
+    arxiv_id: "2602.04284"
+    category: direct-competitor
+    role: competitor
+    relevance_note: >
+      [NEW] RL-trained policy for adaptive omission of redundant thoughts and observations.
+      Agent-Omit-8B matches frontier agents with best efficiency tradeoff on 5 benchmarks.
+      Both use RL to learn cost-efficient agent behavior. Key difference: Agent-Omit subtracts
+      (omits unnecessary context); B-IAVR selectively adds (verification steps).
+      Opposite but complementary approaches to cost-efficiency. Potentially combinable.
+
+  - id: ava2026
+    title: "Anytime Verified Agents: Adaptive Compute Allocation for Reliable LLM Reasoning under Budget Constraints"
+    authors: "Patel"
+    venue: "TMLR 2026"
+    year: 2026
+    arxiv_id: null
+    category: direct-competitor
+    role: competitor
+    relevance_note: >
+      [NEW] Dynamic compute allocation across search, sampling, and verification under budget.
+      Uses calibrated uncertainty + value-of-information for selective verification cascades.
+      Evaluated on GSM8K/MATH/HotpotQA/HumanEval (reasoning), not interactive agents.
+      Key difference: analytical/heuristic allocation vs B-IAVR's RL-learned policy;
+      single-turn reasoning vs multi-turn agent trajectories.
+
+  - id: cast2026
+    title: "CAST: Case-Based Calibration of Adaptive Reasoning and Execution for LLM Tool Use"
+    authors: "Pang et al."
+    venue: "arXiv"
+    year: 2026
+    arxiv_id: "2605.15041"
+    category: background
+    role: background
+    relevance_note: >
+      [NEW] Historical execution cases calibrate reasoning depth for tool use.
+      Reduces reasoning length 26% with +5.85% accuracy on BFCLv2/ToolBench.
+      Related: adaptive reasoning depth; different: case-based calibration vs RL-learned policy.
+
+  - id: marginal-token-allocators2026
+    title: "Agentic AI Systems Should Be Designed as Marginal Token Allocators"
+    authors: "Zhu"
+    venue: "arXiv"
+    year: 2026
+    arxiv_id: "2605.01214"
+    category: background
+    role: background
+    relevance_note: >
+      [NEW] Position paper framing agent cost-efficiency as marginal token allocation economics.
+      Identifies under-verification as systematic failure mode. Supports B-IAVR's framing
+      that verification decisions should reflect marginal cost-benefit analysis.
+
+  - id: argos2025
+    title: "Argos: Multimodal RL with Adaptive Verifier for AI Agents"
+    authors: "Tan et al."
+    venue: "arXiv (revised April 2026)"
+    year: 2025
+    arxiv_id: "2512.03438"
+    category: background
+    role: background
+    relevance_note: >
+      [NEW] Agentic verifier that adaptively selects scoring functions for multimodal RL training.
+      Different domain (multimodal/robotics). The adaptive verifier selection concept is
+      complementary: Argos adapts how to verify; B-IAVR adapts when to verify.
+
+  # ============================================================
+  # Direction 4: ALFWorld / Interactive Environment Benchmarks
+  # ============================================================
+
+  - id: kim2025reflact
+    title: "ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection"
+    authors: "Kim et al."
+    venue: "EMNLP 2025"
+    year: 2025
+    arxiv_id: "2505.15182"
+    category: evaluation
+    role: baseline
+    relevance_note: >
+      Prompting SOTA on ALFWorld at 93.3%. Replaces ReAct's next-action thinking with state-goal reflection.
+      B-IAVR addresses different axis (cost-efficiency) since ALFWorld accuracy is near saturation.
+
+  - id: choudhury2025agentprm
+    title: "AgentPRM: Process Reward Models for LLM Agents"
+    authors: "Choudhury et al."
+    venue: "arXiv"
+    year: 2025
+    arxiv_id: "2502.10325"
+    category: evaluation
+    role: baseline
+    relevance_note: >
+      Monte Carlo rollout-based process reward for agent training. 3B models achieve 91% on ALFWorld.
+      Validates RL training approach; AgentPRM could serve as reward model for B-IAVR.
+
+  - id: xi2025agentprm
+    title: "AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress"
+    authors: "Xi et al."
+    venue: "ACM Web Conference 2026"
+    year: 2025
+    arxiv_id: "2511.08325"
+    category: evaluation
+    role: baseline
+    relevance_note: >
+      Independent work from Choudhury et al., using TD-based estimation with GAE for scalable
+      PRM data labeling. 8x more compute-efficient than baselines with robust test-time scaling.
+      Different approach: Choudhury uses MC rollouts; Xi uses TD+GAE for step-wise promise and progress.
+
+  - id: xiang2024retrospex
+    title: "Retrospex: Language Agent Meets Offline RL Critic"
+    authors: "Xiang et al."
+    venue: "EMNLP 2024"
+    year: 2024
+    arxiv_id: "2505.11807"
+    category: background
+    role: background
+    relevance_note: >
+      Offline RL Critic augments LLM agent action selection via dynamic rescoring.
+      Similar architecture could inform B-IAVR's verification value estimation.
+
+  - id: cfgm2025
+    title: "CFGM: Coarse-to-Fine Grounded Memory for LLM Agent Planning"
+    authors: "Yang et al."
+    venue: "EMNLP 2025"
+    year: 2025
+    arxiv_id: "2508.15305"
+    category: background
+    role: background
+    relevance_note: >
+      Memory-augmented agent planning with episodic grounding.
+      ALFWorld +10.40%, WebShop +20%. Complementary to B-IAVR's verification approach.
+
+  - id: respact2024
+    title: "ReSpAct: Harmonizing Reasoning, Speaking, and Acting"
+    authors: "Dongre et al."
+    venue: "arXiv"
+    year: 2024
+    arxiv_id: "2411.00927"
+    category: evaluation
+    role: baseline
+    relevance_note: >
+      Integrates dialogue/reasoning/acting. +6% over ReAct on ALFWorld.
+      Reduces invalid actions from 13% to 3%; B-IAVR's verification achieves error prevention differently.

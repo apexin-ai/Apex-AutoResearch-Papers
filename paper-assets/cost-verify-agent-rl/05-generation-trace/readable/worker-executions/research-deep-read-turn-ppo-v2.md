@@ -1,0 +1,6135 @@
+# research deep read turn ppo v2
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 97
+- **Recorded user turns:** 0
+- **Tool calls:** 38
+- **Original source:** `logs/workers/worker_research_deep-read-turn-ppo-v2_20260517T121530.log`
+- **Structured JSON:** [`7f972706a32a4fe7bc33.json`](../../sessions/7f/7f972706a32a4fe7bc33.json)
+
+## Before a recorded user message
+
+97 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "4e85afe5-c100-4470-8c1f-76bc1cab5dc2",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779037200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "e05968b5-d821-4578-8208-a9c9ef69ace7",
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll search for and deeply read papers on turn-level PPO, per-step credit assignment, and related topics in multi-turn agent RL. Let me start with multiple parallel searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "329ea638-1dec-423b-a008-74ea02835478",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UGo39u7dFx6cnViJukaVLz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13163,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13163
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01GxJLUP9EYVUNm4Vi7DbwUA`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "1d8be6ca-647c-4277-82bb-18a7d05a60cd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UGo39u7dFx6cnViJukaVLz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13163,
+      "cache_read_input_tokens": 11701,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13163
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T12:15:43.083Z_
+
+<details><summary>↩ Tool result · `toolu_01GxJLUP9EYVUNm4Vi7DbwUA`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "7711527f-e655-43f5-af2d-41751c380408",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me load the MCP tools for saving project files, and start multiple parallel web searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "a6ec64c1-e7b5-48ce-957c-b74ebb9c25f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D8AKFWBLAEPP3XbMCaomds",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1140,
+      "cache_read_input_tokens": 24864,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1140
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+Let me start searching for papers across multiple directions in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "2b778a73-d3e7-46a1-a645-8d34c1324c8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D8AKFWBLAEPP3XbMCaomds",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1140,
+      "cache_read_input_tokens": 24864,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1140
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RTDiaWxhsLtcsb3qBoxLCF`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "df834f7f-925a-4f0a-bd26-c307ea458caf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D8AKFWBLAEPP3XbMCaomds",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1140,
+      "cache_read_input_tokens": 24864,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1140
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T12:15:52.664Z_
+
+<details><summary>↩ Tool result · `toolu_01RTDiaWxhsLtcsb3qBoxLCF`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "f305fe5d-6a8c-4caf-a0cc-c2c5a7373494",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FZ2AqeKsJH6WFhcGcBi3nQ`</summary>
+
+```json
+{
+  "query": "turn-level PPO per-turn credit assignment multi-turn agent reinforcement learning 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "7f4d2790-a24e-42b7-a413-eb7fa7e66d0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D8AKFWBLAEPP3XbMCaomds",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1140,
+      "cache_read_input_tokens": 24864,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1140
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LypTC8Rbh8S21ins29yiue`</summary>
+
+```json
+{
+  "query": "GRPO group relative policy optimization multi-step agent training credit assignment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "8ab003fb-f9c5-4353-bc77-19c4cd4551bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D8AKFWBLAEPP3XbMCaomds",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1140,
+      "cache_read_input_tokens": 24864,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1140
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014MwCpaGBkCkzCY31CPnDuB`</summary>
+
+```json
+{
+  "query": "step-level reward stepwise optimization language model agent RL sparse reward"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "f06e2288-7b5c-4098-9452-298baa004121",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D8AKFWBLAEPP3XbMCaomds",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1140,
+      "cache_read_input_tokens": 24864,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1140
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VWtXMBBVSta7yg3D9CKRjS`</summary>
+
+```json
+{
+  "query": "RAGEN reinforcement learning agent multi-turn credit assignment 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "d5f253a5-b8a1-47e2-8aa3-fdca137b8539",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D8AKFWBLAEPP3XbMCaomds",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1140,
+      "cache_read_input_tokens": 24864,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1140
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SkMv2NpLd77jUwntHVjUrD`</summary>
+
+```json
+{
+  "query": "temporal credit assignment large language model reinforcement learning multi-step"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "45760885-281a-47cc-90aa-a61ca771228b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D8AKFWBLAEPP3XbMCaomds",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1140,
+      "cache_read_input_tokens": 24864,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1140
+      },
+      "output_tokens": 19,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T12:16:02.981Z_
+
+<details><summary>↩ Tool result · `toolu_01FZ2AqeKsJH6WFhcGcBi3nQ`</summary>
+
+```text
+Web search results for query: "turn-level PPO per-turn credit assignment multi-turn agent reinforcement learning 2024 2025"
+
+Links: [{"title":"NeurIPS Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design and Credit Assignment","url":"https://neurips.cc/virtual/2025/133311"},{"title":"[Quick Review] Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Credit\\n Assignment","url":"https://liner.com/review/reinforcing-multiturn-reasoning-in-llm-agents-via-turnlevel-credit-assignment"},{"title":"ICML Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Credit Assignment","url":"https://icml.cc/virtual/2025/49783"},{"title":"Multi-Turn Reinforcement Learning for Tool-Calling Agents with Iterative Reward Calibration","url":"https://arxiv.org/html/2604.02869v1"},{"title":"NeurIPS 2025 Workshop on Multi-Turn Interactions in Large Language Models","url":"https://workshop-multi-turn-interaction.github.io/"},{"title":"Turn-Aware PPO for Multi-Turn RL","url":"https://www.emergentmind.com/topics/turn-aware-ppo-ta-ppo"},{"title":"GitHub - SiliangZeng/Multi-Turn-RL-Agent · GitHub","url":"https://github.com/SiliangZeng/Multi-Turn-RL-Agent"},{"title":"[2505.11821] Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design","url":"https://arxiv.org/abs/2505.11821"},{"title":"Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved Multi-Turn RL in Agentic LLMs","url":"https://arxiv.org/html/2512.17008v1"},{"title":"[2512.17008] Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved Multi-Turn RL in Agentic LLMs","url":"https://arxiv.org/abs/2512.17008"}]
+
+I found several highly relevant papers and research on turn-level PPO and per-turn credit assignment in multi-turn agent reinforcement learning from 2024-2025. Here are the key findings:
+
+## Primary Research Papers
+
+A major work introduces fine-grained turn-level credit assignment strategy and extends GRPO and PPO to their multi-turn variants by incorporating well-designed turn-level rewards. This represents the first systematic study of turn-level reward design for multi-turn RL algorithms, extending GRPO and PPO to their respective multi-turn variants with fine-grained credit assignment.
+
+## Key Challenges Addressed
+
+Popular RL algorithms such as GRPO and PPO have been widely applied to train multi-turn LLM agents, but typically rely only on sparse final rewards and lack dense intermediate signals across multiple decision steps, limiting their performance on complex reasoning tasks. Existing RL approaches for multi-turn LLM agents primarily rely on sparse outcome rewards, with single-turn formulations inadequately treating multi-turn interactions and neglecting granular intermediate signals.
+
+## Turn-PPO Approach
+
+Turn-PPO is a variant that operates on a turn-level MDP formulation, as opposed to the commonly used token-level MDP. Turn-Aware PPO (TA-PPO) is designed to address instability and misaligned credit assignment when training LLM agents in multi-turn, interactive task environments.
+
+## Performance Results
+
+The method achieves greater stability, faster convergence, and higher accuracy, with numerical results across diverse question-answering datasets showing consistently highest answer correctness and 100% format correctness. MT-PPO consistently outperforms baseline PPO methods across diverse question-answering datasets, with particularly notable gains in multi-hop tasks like HotpotQA.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "80e4ba72-eb9d-49c5-8e3f-03301ddb5faf",
+  "tool_use_result": {
+    "query": "turn-level PPO per-turn credit assignment multi-turn agent reinforcement learning 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TwMin4PMXyX8PsJcNRBBsm",
+        "content": [
+          {
+            "title": "NeurIPS Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design and Credit Assignment",
+            "url": "https://neurips.cc/virtual/2025/133311"
+          },
+          {
+            "title": "[Quick Review] Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Credit\\n Assignment",
+            "url": "https://liner.com/review/reinforcing-multiturn-reasoning-in-llm-agents-via-turnlevel-credit-assignment"
+          },
+          {
+            "title": "ICML Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Credit Assignment",
+            "url": "https://icml.cc/virtual/2025/49783"
+          },
+          {
+            "title": "Multi-Turn Reinforcement Learning for Tool-Calling Agents with Iterative Reward Calibration",
+            "url": "https://arxiv.org/html/2604.02869v1"
+          },
+          {
+            "title": "NeurIPS 2025 Workshop on Multi-Turn Interactions in Large Language Models",
+            "url": "https://workshop-multi-turn-interaction.github.io/"
+          },
+          {
+            "title": "Turn-Aware PPO for Multi-Turn RL",
+            "url": "https://www.emergentmind.com/topics/turn-aware-ppo-ta-ppo"
+          },
+          {
+            "title": "GitHub - SiliangZeng/Multi-Turn-RL-Agent · GitHub",
+            "url": "https://github.com/SiliangZeng/Multi-Turn-RL-Agent"
+          },
+          {
+            "title": "[2505.11821] Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design",
+            "url": "https://arxiv.org/abs/2505.11821"
+          },
+          {
+            "title": "Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved Multi-Turn RL in Agentic LLMs",
+            "url": "https://arxiv.org/html/2512.17008v1"
+          },
+          {
+            "title": "[2512.17008] Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved Multi-Turn RL in Agentic LLMs",
+            "url": "https://arxiv.org/abs/2512.17008"
+          }
+        ]
+      },
+      "I found several highly relevant papers and research on turn-level PPO and per-turn credit assignment in multi-turn agent reinforcement learning from 2024-2025. Here are the key findings:\n\n## Primary Research Papers\n\nA major work introduces fine-grained turn-level credit assignment strategy and extends GRPO and PPO to their multi-turn variants by incorporating well-designed turn-level rewards. This represents the first systematic study of turn-level reward design for multi-turn RL algorithms, extending GRPO and PPO to their respective multi-turn variants with fine-grained credit assignment.\n\n## Key Challenges Addressed\n\nPopular RL algorithms such as GRPO and PPO have been widely applied to train multi-turn LLM agents, but typically rely only on sparse final rewards and lack dense intermediate signals across multiple decision steps, limiting their performance on complex reasoning tasks. Existing RL approaches for multi-turn LLM agents primarily rely on sparse outcome rewards, with single-turn formulations inadequately treating multi-turn interactions and neglecting granular intermediate signals.\n\n## Turn-PPO Approach\n\nTurn-PPO is a variant that operates on a turn-level MDP formulation, as opposed to the commonly used token-level MDP. Turn-Aware PPO (TA-PPO) is designed to address instability and misaligned credit assignment when training LLM agents in multi-turn, interactive task environments.\n\n## Performance Results\n\nThe method achieves greater stability, faster convergence, and higher accuracy, with numerical results across diverse question-answering datasets showing consistently highest answer correctness and 100% format correctness. MT-PPO consistently outperforms baseline PPO methods across diverse question-answering datasets, with particularly notable gains in multi-hop tasks like HotpotQA."
+    ],
+    "durationSeconds": 9.314513580000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T12:16:05.151Z_
+
+<details><summary>↩ Tool result · `toolu_01LypTC8Rbh8S21ins29yiue`</summary>
+
+```text
+Web search results for query: "GRPO group relative policy optimization multi-step agent training credit assignment"
+
+Links: [{"title":"M-GRPO: Multi-Agent Group Relative Policy Optimization","url":"https://www.emergentmind.com/topics/multi-agent-group-relative-policy-optimization-m-grpo"},{"title":"Group Relative Policy Optimization (GRPO)","url":"https://cameronrwolfe.substack.com/p/grpo"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training","url":"https://arxiv.org/html/2505.10978v3"},{"title":"[2505.10978] Group-in-Group Policy Optimization for LLM Agent Training","url":"https://arxiv.org/abs/2505.10978"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training Lang Feng1","url":"https://personal.ntu.edu.sg/boan/papers/NeurIPS25_GiGPO.pdf"},{"title":"Group-Based Relative Policy Optimization","url":"https://www.emergentmind.com/topics/group-based-relative-policy-optimization-grpo"},{"title":"Tree-GRPO: Group Relative Policy Optimization","url":"https://www.emergentmind.com/topics/tree-based-group-relative-policy-optimization-tree-grpo"},{"title":"GRPO: Group Relative Policy Optimization","url":"https://www.emergentmind.com/topics/grpo"},{"title":"What is GRPO? Group Relative Policy Optimization Explained | DataCamp","url":"https://www.datacamp.com/blog/what-is-grpo-group-relative-policy-optimization"},{"title":"GitHub - kechirojp/sb3-grpo: GRPO (Group Relative Policy Optimization) implementation for Stable Baselines3. Drop-in PPO replacement with instant action comparison. Easy pip install, full API compatibility. Used by DeepSeek for LLM training. · GitHub","url":"https://github.com/kechirojp/sb3-grpo"}]
+
+Based on the search results, here's comprehensive information about GRPO and its application to multi-step agent training with credit assignment:
+
+## Group Relative Policy Optimization (GRPO)
+
+Group-based Relative Policy Optimization (GRPO) is a reinforcement learning algorithm rooted in group-wise advantage estimation and policy optimization that replaces traditional baseline-based or critic-dependent strategies with intra-group normalization, emphasizing contrastive, relative comparison among candidate outputs for a given input.
+
+### Core Mechanism
+
+GRPO foregoes the critic and estimates advantage by averaging rewards for multiple completions to the same prompt, sampling multiple completions—or a "group" of completions—for each prompt and using the rewards of these completions to form a baseline. In GRPO, completions to the same prompt form a group, and the advantage is calculated by first subtracting the mean reward over the group from the reward, then dividing this difference by the standard deviation of rewards over the group.
+
+### Multi-Step Agent Training Challenges
+
+For multi-step agent environments, GRPO faces significant credit assignment challenges. Rewards are typically sparse (sometimes arriving only at the end of an episode), and the impact of any individual action may only manifest much later in the trajectory, which substantially complicates the credit assignment for individual steps. Naively applying existing group-based RL algorithms in such settings collapses step-level distinctions, undermining their effectiveness.
+
+### Advanced Extensions
+
+**Group-in-Group Policy Optimization (GiGPO)** addresses this limitation. GiGPO is a novel RL algorithm that achieves fine-grained credit assignment for LLM agents while preserving the appealing properties of group-based RL: critic-free, low memory, and stable convergence. It introduces a two-level structure for estimating relative advantage: at the episode-level, GiGPO computes macro relative advantages based on groups of complete trajectories; at the step-level, it introduces an anchor state grouping mechanism that retroactively constructs step-level groups by identifying repeated environment states across trajectories.
+
+GiGPO achieves performance gains of > 12% on ALFWorld and > 9% on WebShop over GRPO.
+
+**Tree-GRPO** offers another approach. Group relative advantages are computed over sibling nodes at each tree level, enabling direct comparison of local decisions while advantage signals propagate either bottom-up or via explicit temporal-difference mechanisms.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "20c3cb0e-77cf-46dc-b5b5-9de7ffd01001",
+  "tool_use_result": {
+    "query": "GRPO group relative policy optimization multi-step agent training credit assignment",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GW8GkUPLjBVGDSyTRuXVYy",
+        "content": [
+          {
+            "title": "M-GRPO: Multi-Agent Group Relative Policy Optimization",
+            "url": "https://www.emergentmind.com/topics/multi-agent-group-relative-policy-optimization-m-grpo"
+          },
+          {
+            "title": "Group Relative Policy Optimization (GRPO)",
+            "url": "https://cameronrwolfe.substack.com/p/grpo"
+          },
+          {
+            "title": "Group-in-Group Policy Optimization for LLM Agent Training",
+            "url": "https://arxiv.org/html/2505.10978v3"
+          },
+          {
+            "title": "[2505.10978] Group-in-Group Policy Optimization for LLM Agent Training",
+            "url": "https://arxiv.org/abs/2505.10978"
+          },
+          {
+            "title": "Group-in-Group Policy Optimization for LLM Agent Training Lang Feng1",
+            "url": "https://personal.ntu.edu.sg/boan/papers/NeurIPS25_GiGPO.pdf"
+          },
+          {
+            "title": "Group-Based Relative Policy Optimization",
+            "url": "https://www.emergentmind.com/topics/group-based-relative-policy-optimization-grpo"
+          },
+          {
+            "title": "Tree-GRPO: Group Relative Policy Optimization",
+            "url": "https://www.emergentmind.com/topics/tree-based-group-relative-policy-optimization-tree-grpo"
+          },
+          {
+            "title": "GRPO: Group Relative Policy Optimization",
+            "url": "https://www.emergentmind.com/topics/grpo"
+          },
+          {
+            "title": "What is GRPO? Group Relative Policy Optimization Explained | DataCamp",
+            "url": "https://www.datacamp.com/blog/what-is-grpo-group-relative-policy-optimization"
+          },
+          {
+            "title": "GitHub - kechirojp/sb3-grpo: GRPO (Group Relative Policy Optimization) implementation for Stable Baselines3. Drop-in PPO replacement with instant action comparison. Easy pip install, full API compatibility. Used by DeepSeek for LLM training. · GitHub",
+            "url": "https://github.com/kechirojp/sb3-grpo"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about GRPO and its application to multi-step agent training with credit assignment:\n\n## Group Relative Policy Optimization (GRPO)\n\nGroup-based Relative Policy Optimization (GRPO) is a reinforcement learning algorithm rooted in group-wise advantage estimation and policy optimization that replaces traditional baseline-based or critic-dependent strategies with intra-group normalization, emphasizing contrastive, relative comparison among candidate outputs for a given input.\n\n### Core Mechanism\n\nGRPO foregoes the critic and estimates advantage by averaging rewards for multiple completions to the same prompt, sampling multiple completions—or a \"group\" of completions—for each prompt and using the rewards of these completions to form a baseline. In GRPO, completions to the same prompt form a group, and the advantage is calculated by first subtracting the mean reward over the group from the reward, then dividing this difference by the standard deviation of rewards over the group.\n\n### Multi-Step Agent Training Challenges\n\nFor multi-step agent environments, GRPO faces significant credit assignment challenges. Rewards are typically sparse (sometimes arriving only at the end of an episode), and the impact of any individual action may only manifest much later in the trajectory, which substantially complicates the credit assignment for individual steps. Naively applying existing group-based RL algorithms in such settings collapses step-level distinctions, undermining their effectiveness.\n\n### Advanced Extensions\n\n**Group-in-Group Policy Optimization (GiGPO)** addresses this limitation. GiGPO is a novel RL algorithm that achieves fine-grained credit assignment for LLM agents while preserving the appealing properties of group-based RL: critic-free, low memory, and stable convergence. It introduces a two-level structure for estimating relative advantage: at the episode-level, GiGPO computes macro relative advantages based on groups of complete trajectories; at the step-level, it introduces an anchor state grouping mechanism that retroactively constructs step-level groups by identifying repeated environment states across trajectories.\n\nGiGPO achieves performance gains of > 12% on ALFWorld and > 9% on WebShop over GRPO.\n\n**Tree-GRPO** offers another approach. Group relative advantages are computed over sibling nodes at each tree level, enabling direct comparison of local decisions while advantage signals propagate either bottom-up or via explicit temporal-difference mechanisms."
+    ],
+    "durationSeconds": 11.012315479000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T12:16:07.846Z_
+
+<details><summary>↩ Tool result · `toolu_014MwCpaGBkCkzCY31CPnDuB`</summary>
+
+```text
+Web search results for query: "step-level reward stepwise optimization language model agent RL sparse reward"
+
+Links: [{"title":"[2509.19199] Agentic Reinforcement Learning with Implicit Step Rewards","url":"https://arxiv.org/abs/2509.19199"},{"title":"SPA-RL: Reinforcing LLM Agents via Stepwise Progress Attribution","url":"https://arxiv.org/html/2505.20732v1"},{"title":"R1-VL: Learning to Reason with Multimodal Large Language Models via","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Zhang_R1-VL_Learning_to_Reason_with_Multimodal_Large_Language_Models_via_ICCV_2025_paper.pdf"},{"title":"[2411.03817] From Novice to Expert: LLM Agent Policy Optimization via Step-wise Reinforcement Learning","url":"https://arxiv.org/abs/2411.03817"},{"title":"Alleviating Sparse Rewards by Modeling Step-Wise and Long-Term Sampling Effects in Flow-Based GRPO","url":"https://arxiv.org/html/2602.06422"},{"title":"Agentic Reinforcement Learning with Implicit Step Rewards | OpenReview","url":"https://openreview.net/forum?id=ooROvpmxMV"},{"title":"Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs","url":"https://arxiv.org/html/2509.25779v2"},{"title":"STEP-LLM: Fine-Grained LLM Optimization","url":"https://www.emergentmind.com/topics/step-llm"},{"title":"[Literature Review] SPA-RL: Reinforcing LLM Agents via Stepwise Progress Attribution","url":"https://www.themoonlight.io/en/review/spa-rl-reinforcing-llm-agents-via-stepwise-progress-attribution"},{"title":"Agentic Reinforcement Learning with Implicit Step Rewards","url":"https://arxiv.org/html/2509.19199v3"}]
+
+I found several relevant research papers and resources on step-level reward optimization for language model agents using reinforcement learning with sparse rewards. Here are the key findings:
+
+## Main Research Areas
+
+Sparse and sometimes unverifiable rewards make it extremely challenging to assign credit when training LLM agents that serve as a policy.
+
+### Key Approaches
+
+1. **Implicit Step Rewards (iStar)**: A general credit-assignment strategy that integrates seamlessly with standard RL algorithms without relying on additional rollouts or explicit step labels. This approach alternatively optimizes an implicit process reward model (PRM) with the policy model to generate implicit step rewards via a trajectory-based DPO objective.
+
+2. **Stepwise Progress Attribution (SPA-RL)**: A novel framework designed to tackle the challenge of sparse and delayed rewards in reinforcement learning. It measures the progress of stepwise actions toward overall task completion as intermediate rewards, offering a more goal-oriented signal for RL.
+
+3. **StepAgent**: Utilizes step-wise reward to optimize the agent's reinforcement learning process by comparing the actions of the expert and the agent to automatically generate intermediate rewards for fine-grained optimization.
+
+4. **STEP-LLM**: Stepwise reward design enables fine-grained policy learning and rapid error identification, while full-trajectory policy optimization captures the compositional dependencies among tool actions in realistic, open-ended environments.
+
+### Core Challenge
+
+Agentic tasks are often long-horizon with sparse and delayed rewards, where reward sparsity and delay makes it difficult to propagate the final reward signal back to the intermediate actions taken in earlier steps of the trajectory. Without such intermediate feedback, agents often struggle to distinguish which specific actions contribute positively or negatively to the final outcome.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "4eeed67f-b481-45bb-b974-6b739b66b5e2",
+  "tool_use_result": {
+    "query": "step-level reward stepwise optimization language model agent RL sparse reward",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01C9gKGRxTnTRyKYmdi574AQ",
+        "content": [
+          {
+            "title": "[2509.19199] Agentic Reinforcement Learning with Implicit Step Rewards",
+            "url": "https://arxiv.org/abs/2509.19199"
+          },
+          {
+            "title": "SPA-RL: Reinforcing LLM Agents via Stepwise Progress Attribution",
+            "url": "https://arxiv.org/html/2505.20732v1"
+          },
+          {
+            "title": "R1-VL: Learning to Reason with Multimodal Large Language Models via",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Zhang_R1-VL_Learning_to_Reason_with_Multimodal_Large_Language_Models_via_ICCV_2025_paper.pdf"
+          },
+          {
+            "title": "[2411.03817] From Novice to Expert: LLM Agent Policy Optimization via Step-wise Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2411.03817"
+          },
+          {
+            "title": "Alleviating Sparse Rewards by Modeling Step-Wise and Long-Term Sampling Effects in Flow-Based GRPO",
+            "url": "https://arxiv.org/html/2602.06422"
+          },
+          {
+            "title": "Agentic Reinforcement Learning with Implicit Step Rewards | OpenReview",
+            "url": "https://openreview.net/forum?id=ooROvpmxMV"
+          },
+          {
+            "title": "Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs",
+            "url": "https://arxiv.org/html/2509.25779v2"
+          },
+          {
+            "title": "STEP-LLM: Fine-Grained LLM Optimization",
+            "url": "https://www.emergentmind.com/topics/step-llm"
+          },
+          {
+            "title": "[Literature Review] SPA-RL: Reinforcing LLM Agents via Stepwise Progress Attribution",
+            "url": "https://www.themoonlight.io/en/review/spa-rl-reinforcing-llm-agents-via-stepwise-progress-attribution"
+          },
+          {
+            "title": "Agentic Reinforcement Learning with Implicit Step Rewards",
+            "url": "https://arxiv.org/html/2509.19199v3"
+          }
+        ]
+      },
+      "I found several relevant research papers and resources on step-level reward optimization for language model agents using reinforcement learning with sparse rewards. Here are the key findings:\n\n## Main Research Areas\n\nSparse and sometimes unverifiable rewards make it extremely challenging to assign credit when training LLM agents that serve as a policy.\n\n### Key Approaches\n\n1. **Implicit Step Rewards (iStar)**: A general credit-assignment strategy that integrates seamlessly with standard RL algorithms without relying on additional rollouts or explicit step labels. This approach alternatively optimizes an implicit process reward model (PRM) with the policy model to generate implicit step rewards via a trajectory-based DPO objective.\n\n2. **Stepwise Progress Attribution (SPA-RL)**: A novel framework designed to tackle the challenge of sparse and delayed rewards in reinforcement learning. It measures the progress of stepwise actions toward overall task completion as intermediate rewards, offering a more goal-oriented signal for RL.\n\n3. **StepAgent**: Utilizes step-wise reward to optimize the agent's reinforcement learning process by comparing the actions of the expert and the agent to automatically generate intermediate rewards for fine-grained optimization.\n\n4. **STEP-LLM**: Stepwise reward design enables fine-grained policy learning and rapid error identification, while full-trajectory policy optimization captures the compositional dependencies among tool actions in realistic, open-ended environments.\n\n### Core Challenge\n\nAgentic tasks are often long-horizon with sparse and delayed rewards, where reward sparsity and delay makes it difficult to propagate the final reward signal back to the intermediate actions taken in earlier steps of the trajectory. Without such intermediate feedback, agents often struggle to distinguish which specific actions contribute positively or negatively to the final outcome."
+    ],
+    "durationSeconds": 12.758775025000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T12:16:08.770Z_
+
+<details><summary>↩ Tool result · `toolu_01VWtXMBBVSta7yg3D9CKRjS`</summary>
+
+```text
+Web search results for query: "RAGEN reinforcement learning agent multi-turn credit assignment 2024 2025"
+
+Links: [{"title":"GitHub - mll-lab-nu/RAGEN: RAGEN leverages reinforcement learning to train LLM reasoning agents in interactive, stochastic environments. · GitHub","url":"https://github.com/mll-lab-nu/RAGEN"},{"title":"RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning","url":"https://arxiv.org/html/2504.20073v2"},{"title":"[PDF] RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/RAGEN:-Understanding-Self-Evolution-in-LLM-Agents-Wang-Wang/1d03586baa32b3d6ff657a180053821543e11abb"},{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"},{"title":"Understanding Self-Evolution in LLM Agents via Multi-Turn ...","url":"https://ragen-ai.github.io/pdf/RAGEN.pdf"},{"title":"From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models","url":"https://arxiv.org/html/2604.09459v1"},{"title":"GitHub - xxzcc/Awesome-Credit-Assignment-in-LLM-RL · GitHub","url":"https://github.com/xxzcc/Awesome-Credit-Assignment-in-LLM-RL"},{"title":"RAGEN - RL Agent","url":"https://ragen-ai.github.io/"},{"title":"Paper page - Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Credit Assignment","url":"https://huggingface.co/papers/2505.11821"},{"title":"RAGEN: Understanding Self-Evolution in LLM Agents via ...","url":"https://arxiv.org/pdf/2504.20073"}]
+
+Based on the search results, here's information about RAGEN and its focus on multi-turn credit assignment in reinforcement learning:
+
+## Overview
+
+RAGEN is built around StarPO (State-Thinking-Actions-Reward Policy Optimization), a unified RL framework for training multi-turn, trajectory-level agents with flexible control over reasoning processes, reward assignment mechanisms, and prompt-rollout structures.
+
+## Key Capabilities
+
+RAGEN implements StarPO, a general agent RL framework that supports multi-turn rollouts, trajectory-level reward assignment, and policy updates, on agent tasks requiring multi-turn stochastic interaction. RAGEN supports structured rollouts, customizable reward functions, and integration with multi-turn, stochastic environments. It serves both as the execution backend for StarPO and as a platform for studying stability, generalization, and learning dynamics in training reasoning agents.
+
+## Environments and Benchmarks
+
+RAGEN includes 10 built-in environments: Sokoban, FrozenLake, WebShop, DeepCoder, SearchQA, Lean, Bandit, Countdown, MetaMathQA, Sudoku.
+
+## Key Findings
+
+Early-stage agents respond with diverse symbolic reasoning, but collapse into deterministic, repetitive templates after training. Models converge to fixed phrasing, indicating that RL may reinforce superficial patterns instead of general reasoning and forms an "Echo Trap" that hinders long-term generalization.
+
+## Recent Updates
+
+RAGEN includes SNR-Adaptive Filtering (V2), a lightweight rollout filtering based on reward variance to mitigate noisy gradient updates.
+
+The work was published in 2025 and is available on arXiv and GitHub as an open-source system for training LLM agents with reinforcement learning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "74d5c52e-9c04-4253-a58d-e9a896ecc66b",
+  "tool_use_result": {
+    "query": "RAGEN reinforcement learning agent multi-turn credit assignment 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017ASncJLNQoA8uEc7tXtTVK",
+        "content": [
+          {
+            "title": "GitHub - mll-lab-nu/RAGEN: RAGEN leverages reinforcement learning to train LLM reasoning agents in interactive, stochastic environments. · GitHub",
+            "url": "https://github.com/mll-lab-nu/RAGEN"
+          },
+          {
+            "title": "RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning",
+            "url": "https://arxiv.org/html/2504.20073v2"
+          },
+          {
+            "title": "[PDF] RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/RAGEN:-Understanding-Self-Evolution-in-LLM-Agents-Wang-Wang/1d03586baa32b3d6ff657a180053821543e11abb"
+          },
+          {
+            "title": "GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub",
+            "url": "https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"
+          },
+          {
+            "title": "Understanding Self-Evolution in LLM Agents via Multi-Turn ...",
+            "url": "https://ragen-ai.github.io/pdf/RAGEN.pdf"
+          },
+          {
+            "title": "From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/html/2604.09459v1"
+          },
+          {
+            "title": "GitHub - xxzcc/Awesome-Credit-Assignment-in-LLM-RL · GitHub",
+            "url": "https://github.com/xxzcc/Awesome-Credit-Assignment-in-LLM-RL"
+          },
+          {
+            "title": "RAGEN - RL Agent",
+            "url": "https://ragen-ai.github.io/"
+          },
+          {
+            "title": "Paper page - Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Credit Assignment",
+            "url": "https://huggingface.co/papers/2505.11821"
+          },
+          {
+            "title": "RAGEN: Understanding Self-Evolution in LLM Agents via ...",
+            "url": "https://arxiv.org/pdf/2504.20073"
+          }
+        ]
+      },
+      "Based on the search results, here's information about RAGEN and its focus on multi-turn credit assignment in reinforcement learning:\n\n## Overview\n\nRAGEN is built around StarPO (State-Thinking-Actions-Reward Policy Optimization), a unified RL framework for training multi-turn, trajectory-level agents with flexible control over reasoning processes, reward assignment mechanisms, and prompt-rollout structures.\n\n## Key Capabilities\n\nRAGEN implements StarPO, a general agent RL framework that supports multi-turn rollouts, trajectory-level reward assignment, and policy updates, on agent tasks requiring multi-turn stochastic interaction. RAGEN supports structured rollouts, customizable reward functions, and integration with multi-turn, stochastic environments. It serves both as the execution backend for StarPO and as a platform for studying stability, generalization, and learning dynamics in training reasoning agents.\n\n## Environments and Benchmarks\n\nRAGEN includes 10 built-in environments: Sokoban, FrozenLake, WebShop, DeepCoder, SearchQA, Lean, Bandit, Countdown, MetaMathQA, Sudoku.\n\n## Key Findings\n\nEarly-stage agents respond with diverse symbolic reasoning, but collapse into deterministic, repetitive templates after training. Models converge to fixed phrasing, indicating that RL may reinforce superficial patterns instead of general reasoning and forms an \"Echo Trap\" that hinders long-term generalization.\n\n## Recent Updates\n\nRAGEN includes SNR-Adaptive Filtering (V2), a lightweight rollout filtering based on reward variance to mitigate noisy gradient updates.\n\nThe work was published in 2025 and is available on arXiv and GitHub as an open-source system for training LLM agents with reinforcement learning."
+    ],
+    "durationSeconds": 13.214554305999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T12:16:09.290Z_
+
+<details><summary>↩ Tool result · `toolu_01SkMv2NpLd77jUwntHVjUrD`</summary>
+
+```text
+Web search results for query: "temporal credit assignment large language model reinforcement learning multi-step"
+
+Links: [{"title":"HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents","url":"https://arxiv.org/html/2602.16165"},{"title":"[2604.09459] From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models","url":"https://arxiv.org/abs/2604.09459"},{"title":"Towards Efficient Multi-Agent and Temporal Credit Assignment in","url":"https://www.ri.cmu.edu/app/uploads/2025/07/cmu_msr_thesis.pdf"},{"title":"From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models","url":"https://arxiv.org/html/2604.09459v1"},{"title":"[2602.16165v1] HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents","url":"https://arxiv.org/abs/2602.16165v1"},{"title":"[2312.01072] A Survey of Temporal Credit Assignment in Deep Reinforcement Learning","url":"https://arxiv.org/abs/2312.01072"},{"title":"CALM: Credit Assignment with Language Models","url":"https://arxiv.org/html/2409.12798v1"},{"title":"Towards Efficient Multi-Agent and Temporal Credit Assignment in Reinforcement Learning - Robotics Institute Carnegie Mellon University","url":"https://www.ri.cmu.edu/publications/towards-efficient-multi-agent-and-temporal-credit-assignment-in-reinforcement-learning/"},{"title":"Retrospective In-Context Learning for Temporal Credit ...","url":"https://openreview.net/pdf?id=QAVpe6a3rp"},{"title":"Hindsight Credit Assignment for Long-Horizon LLM Agents","url":"https://arxiv.org/html/2603.08754v1"}]
+
+I've completed the web search for "temporal credit assignment large language model reinforcement learning multi-step". Here are the key findings:
+
+## Main Research Areas
+
+Reinforcement learning for LLMs increasingly relies on sparse, outcome-level rewards, with credit assignment manifesting in two regimes: reasoning RL (where credit must be distributed across tokens and steps within a single chain-of-thought generation of 500–30K+ tokens) and agentic RL (where multi-turn environment interaction introduces stochastic transitions, partial observability, and horizons of 100+ turns).
+
+## Key Approaches & Frameworks
+
+**HiPER (Hierarchical Plan-Execute RL)**: HiPER is a novel Hierarchical Plan–Execute RL framework that explicitly separates high-level planning from low-level execution, factorizing the policy into a high-level planner that proposes subgoals and a low-level executor that carries them out over multiple action steps.
+
+**CALM (Credit Assignment with Language Models)**: CALM is an approach that leverages Large Language Models to automate credit assignment via reward shaping and options discovery, using LLMs to decompose a task into elementary subgoals and assess the achievement of these subgoals in state-action transitions.
+
+**RICOL & RICL**: RICOL rethinks temporal credit assignment by leveraging LLMs to analyze past decisions and assign rewards more efficiently, using an LLM to retrospectively evaluate actions and convert sparse rewards into dense learning signals.
+
+**HCAPO**: Hindsight Credit Assignment Policy Optimization is a value-free reinforcement learning framework designed to resolve the sparse-reward bottleneck in long-horizon LLM agent tasks by refining coarse trajectory-level feedback into fine-grained, step-level advantage signals.
+
+## Core Challenge
+
+Long horizons create a temporal distance problem where early decisions have consequences that manifest many turns later, making the causal chain between action and outcome increasingly indirect.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "aa267ab2-19b2-4ee0-97c0-90394236a8fc",
+  "tool_use_result": {
+    "query": "temporal credit assignment large language model reinforcement learning multi-step",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HmjCE2gbjGKadaiRBFfuEC",
+        "content": [
+          {
+            "title": "HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents",
+            "url": "https://arxiv.org/html/2602.16165"
+          },
+          {
+            "title": "[2604.09459] From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/abs/2604.09459"
+          },
+          {
+            "title": "Towards Efficient Multi-Agent and Temporal Credit Assignment in",
+            "url": "https://www.ri.cmu.edu/app/uploads/2025/07/cmu_msr_thesis.pdf"
+          },
+          {
+            "title": "From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/html/2604.09459v1"
+          },
+          {
+            "title": "[2602.16165v1] HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents",
+            "url": "https://arxiv.org/abs/2602.16165v1"
+          },
+          {
+            "title": "[2312.01072] A Survey of Temporal Credit Assignment in Deep Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2312.01072"
+          },
+          {
+            "title": "CALM: Credit Assignment with Language Models",
+            "url": "https://arxiv.org/html/2409.12798v1"
+          },
+          {
+            "title": "Towards Efficient Multi-Agent and Temporal Credit Assignment in Reinforcement Learning - Robotics Institute Carnegie Mellon University",
+            "url": "https://www.ri.cmu.edu/publications/towards-efficient-multi-agent-and-temporal-credit-assignment-in-reinforcement-learning/"
+          },
+          {
+            "title": "Retrospective In-Context Learning for Temporal Credit ...",
+            "url": "https://openreview.net/pdf?id=QAVpe6a3rp"
+          },
+          {
+            "title": "Hindsight Credit Assignment for Long-Horizon LLM Agents",
+            "url": "https://arxiv.org/html/2603.08754v1"
+          }
+        ]
+      },
+      "I've completed the web search for \"temporal credit assignment large language model reinforcement learning multi-step\". Here are the key findings:\n\n## Main Research Areas\n\nReinforcement learning for LLMs increasingly relies on sparse, outcome-level rewards, with credit assignment manifesting in two regimes: reasoning RL (where credit must be distributed across tokens and steps within a single chain-of-thought generation of 500–30K+ tokens) and agentic RL (where multi-turn environment interaction introduces stochastic transitions, partial observability, and horizons of 100+ turns).\n\n## Key Approaches & Frameworks\n\n**HiPER (Hierarchical Plan-Execute RL)**: HiPER is a novel Hierarchical Plan–Execute RL framework that explicitly separates high-level planning from low-level execution, factorizing the policy into a high-level planner that proposes subgoals and a low-level executor that carries them out over multiple action steps.\n\n**CALM (Credit Assignment with Language Models)**: CALM is an approach that leverages Large Language Models to automate credit assignment via reward shaping and options discovery, using LLMs to decompose a task into elementary subgoals and assess the achievement of these subgoals in state-action transitions.\n\n**RICOL & RICL**: RICOL rethinks temporal credit assignment by leveraging LLMs to analyze past decisions and assign rewards more efficiently, using an LLM to retrospectively evaluate actions and convert sparse rewards into dense learning signals.\n\n**HCAPO**: Hindsight Credit Assignment Policy Optimization is a value-free reinforcement learning framework designed to resolve the sparse-reward bottleneck in long-horizon LLM agent tasks by refining coarse trajectory-level feedback into fine-grained, step-level advantage signals.\n\n## Core Challenge\n\nLong horizons create a temporal distance problem where early decisions have consequences that manifest many turns later, making the causal chain between action and outcome increasingly indirect."
+    ],
+    "durationSeconds": 13.336508346000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Great, I've found many highly relevant papers. Let me now fetch the key papers in detail and do more targeted searches for papers I haven't found yet. Let me prioritize the most relevant ones:
+
+1. **Turn-PPO** (2512.17008) - Directly relevant
+2. **Reinforcing Multi-Turn Reasoning via Turn-Level Credit Assignment** (2505.11821) - Directly relevant
+3. **GiGPO** (2505.10978) - Directly relevant (GRPO extension for agents)
+4. **RAGEN/StarPO** (2504.20073) - Directly relevant
+
+
+5. **iStar - Implicit Step Rewards** (2509.19199) - Relevant
+6. **SPA-RL** (2505.20732) - Relevant
+7. **StepAgent** (2411.03817) - Relevant
+8. **HiPER** (2602.16165) - Relevant
+9. **HCAPO** (2603.08754) - Relevant
+10. **From Reasoning to Agentic: Credit Assignment survey** (2604.09459) - Survey, very relevant
+11. **CALM** (2409.12798) - Relevant
+
+Now I should search for WebRL papers as well to round out the collection.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "d017b4be-40b1-44b2-940d-6e0891e3a194",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rvhbttp8bFuS6QwRCi4YYB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5670,
+      "cache_read_input_tokens": 26004,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5670
+      },
+      "output_tokens": 15,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+Found many highly relevant papers. Now let me fetch the key ones in detail and search for additional topics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "67a49841-21cc-4f41-a654-26795158514a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rvhbttp8bFuS6QwRCi4YYB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5670,
+      "cache_read_input_tokens": 26004,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5670
+      },
+      "output_tokens": 15,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01YRBKbs6rEm9ocidkr4xV3Q`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2512.17008",
+  "prompt": "Extract: title, authors, year, venue, abstract, core method (how they handle turn-level credit assignment), key experimental results, and any comparison between step-independent vs episode-level approaches. What is their \"Turn-PPO\" method exactly?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "9543636b-6600-4e4f-a4c1-2f6a95591598",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rvhbttp8bFuS6QwRCi4YYB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5670,
+      "cache_read_input_tokens": 26004,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5670
+      },
+      "output_tokens": 15,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019Wm7psn8h48UGmhpNfDEqE`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.11821",
+  "prompt": "Extract: title, authors, year, venue, abstract, core method for turn-level credit assignment and reward design, how they extend GRPO and PPO to multi-turn variants, key experimental results, and any discussion of advantage misattribution or sign issues."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "6fc4219a-4282-4403-baf1-e420a0df4314",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rvhbttp8bFuS6QwRCi4YYB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5670,
+      "cache_read_input_tokens": 26004,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5670
+      },
+      "output_tokens": 15,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01RakiTWyTusm7z7ntCTBPNh`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.10978",
+  "prompt": "Extract: title, authors, year, venue, abstract, core method of GiGPO (Group-in-Group Policy Optimization), how it achieves fine-grained credit assignment while being critic-free, anchor state grouping mechanism, key experimental results on ALFWorld and WebShop."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "992df8dc-051c-4338-a4bb-d3692bf7afe2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rvhbttp8bFuS6QwRCi4YYB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5670,
+      "cache_read_input_tokens": 26004,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5670
+      },
+      "output_tokens": 15,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01F4vSPXCfYX99VDeYoQMwWj`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2504.20073",
+  "prompt": "Extract: title, authors, year, venue, abstract, the StarPO framework details, how RAGEN handles multi-turn credit assignment, the \"Echo Trap\" finding, key experimental results, and any discussion of step-level vs episode-level reward assignment."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "97e899c8-a55e-48fe-915f-9105c0d5c79f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rvhbttp8bFuS6QwRCi4YYB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5670,
+      "cache_read_input_tokens": 26004,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5670
+      },
+      "output_tokens": 15,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-17T12:16:29.528Z_
+
+<details><summary>↩ Tool result · `toolu_01YRBKbs6rEm9ocidkr4xV3Q`</summary>
+
+```text
+# Turn-PPO Paper Analysis
+
+**Title:** Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved Multi-Turn RL in Agentic LLMs
+
+**Authors:** Junbo Li, Peng Zhou, Rui Meng, Meet P. Vadera, Lihong Li, Yang Li
+
+**Year:** 2025 (submitted December 18, 2025; revised January 23, 2026)
+
+**Venue:** EACL 2026
+
+**Abstract Summary:**
+The authors address limitations in applying GRPO to multi-turn agent tasks. They investigate "more stable and effective advantage estimation strategies" and propose turn-PPO, which "operates on a turn-level MDP formulation, as opposed to the commonly used token-level MDP."
+
+**Core Method—Turn-PPO:**
+Rather than computing advantages at the token level (standard practice), turn-PPO reformulates the problem as a turn-level MDP. This shift in granularity enables better credit assignment across multi-turn interactions where individual token rewards may be sparse or delayed.
+
+**Key Findings:**
+- PPO proved "more robust than GRPO" for multi-turn scenarios
+- Turn-PPO demonstrated effectiveness on WebShop and Sokoban benchmarks
+- Performance gains occurred "both with and without long reasoning components"
+
+**Comparison Note:**
+The paper contrasts token-level MDPs (standard approach) against their turn-level alternative, positioning the latter as superior for long-horizon reasoning tasks requiring proper credit assignment across dialogue turns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "f3e47c35-2b6b-4b37-9fea-b281fc3e6d19",
+  "tool_use_result": {
+    "bytes": 46634,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Turn-PPO Paper Analysis\n\n**Title:** Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved Multi-Turn RL in Agentic LLMs\n\n**Authors:** Junbo Li, Peng Zhou, Rui Meng, Meet P. Vadera, Lihong Li, Yang Li\n\n**Year:** 2025 (submitted December 18, 2025; revised January 23, 2026)\n\n**Venue:** EACL 2026\n\n**Abstract Summary:**\nThe authors address limitations in applying GRPO to multi-turn agent tasks. They investigate \"more stable and effective advantage estimation strategies\" and propose turn-PPO, which \"operates on a turn-level MDP formulation, as opposed to the commonly used token-level MDP.\"\n\n**Core Method—Turn-PPO:**\nRather than computing advantages at the token level (standard practice), turn-PPO reformulates the problem as a turn-level MDP. This shift in granularity enables better credit assignment across multi-turn interactions where individual token rewards may be sparse or delayed.\n\n**Key Findings:**\n- PPO proved \"more robust than GRPO\" for multi-turn scenarios\n- Turn-PPO demonstrated effectiveness on WebShop and Sokoban benchmarks\n- Performance gains occurred \"both with and without long reasoning components\"\n\n**Comparison Note:**\nThe paper contrasts token-level MDPs (standard approach) against their turn-level alternative, positioning the latter as superior for long-horizon reasoning tasks requiring proper credit assignment across dialogue turns.",
+    "durationMs": 5848,
+    "url": "https://arxiv.org/abs/2512.17008"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01D5u3k55ZVvmJyUHVd5rYg5`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2509.19199",
+  "prompt": "Extract: title, authors, year, venue, abstract, core method of implicit step rewards (iStar), how it assigns credit without explicit step labels, the trajectory-based DPO objective, key experimental results."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "08a02c03-d796-4675-bf5c-30cb81e3e413",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rvhbttp8bFuS6QwRCi4YYB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5670,
+      "cache_read_input_tokens": 26004,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5670
+      },
+      "output_tokens": 15,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Lmf3ya4AFviQtCcviZPvVN`</summary>
+
+```json
+{
+  "query": "WebRL agent reinforcement learning credit assignment multi-turn 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "eed1844b-ab64-4079-bc86-8e5647dbe97d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rvhbttp8bFuS6QwRCi4YYB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5670,
+      "cache_read_input_tokens": 26004,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5670
+      },
+      "output_tokens": 15,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T12:16:30.482Z_
+
+<details><summary>↩ Tool result · `toolu_019Wm7psn8h48UGmhpNfDEqE`</summary>
+
+```text
+# Paper Summary: Turn-Level Reward Design for LLM Agents
+
+**Title:** Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design
+
+**Authors:** Quan Wei, Siliang Zeng, Chenliang Li, William Brown, Oana Frunza, Wei Deng, Anderson Schneider, Yuriy Nevmyvaka, Yang Katie Zhao, Alfredo Garcia, Mingyi Hong
+
+**Year:** 2025 (submitted May 17, 2025; revised October 23, 2025)
+
+**Venue:** arXiv (cs.LG - Machine Learning)
+
+## Abstract Summary
+The work addresses limitations of sparse reward signals in reinforcement learning for multi-turn LLM agent reasoning. The authors propose "the first systematic study of turn-level reward design" to enable finer-grained credit assignment across reasoning steps.
+
+## Core Method
+The research extends GRPO and PPO algorithms with turn-level rewards incorporating two designs: "verifiable and LLM-as-judge" reward mechanisms. This approach replaces reliance solely on trajectory-level outcomes with intermediate signals at each decision step.
+
+## Key Experimental Results
+The methods demonstrate "greater stability, faster convergence, and higher accuracy" compared to baseline approaches. Across question-answering datasets, the approach achieved "highest answer correctness and 100% format correctness."
+
+## Notable Gap
+The provided content does not discuss advantage misattribution or sign issues in the reward assignment process.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "40da9072-a890-4bc9-b4aa-df1b60054609",
+  "tool_use_result": {
+    "bytes": 49170,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary: Turn-Level Reward Design for LLM Agents\n\n**Title:** Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design\n\n**Authors:** Quan Wei, Siliang Zeng, Chenliang Li, William Brown, Oana Frunza, Wei Deng, Anderson Schneider, Yuriy Nevmyvaka, Yang Katie Zhao, Alfredo Garcia, Mingyi Hong\n\n**Year:** 2025 (submitted May 17, 2025; revised October 23, 2025)\n\n**Venue:** arXiv (cs.LG - Machine Learning)\n\n## Abstract Summary\nThe work addresses limitations of sparse reward signals in reinforcement learning for multi-turn LLM agent reasoning. The authors propose \"the first systematic study of turn-level reward design\" to enable finer-grained credit assignment across reasoning steps.\n\n## Core Method\nThe research extends GRPO and PPO algorithms with turn-level rewards incorporating two designs: \"verifiable and LLM-as-judge\" reward mechanisms. This approach replaces reliance solely on trajectory-level outcomes with intermediate signals at each decision step.\n\n## Key Experimental Results\nThe methods demonstrate \"greater stability, faster convergence, and higher accuracy\" compared to baseline approaches. Across question-answering datasets, the approach achieved \"highest answer correctness and 100% format correctness.\"\n\n## Notable Gap\nThe provided content does not discuss advantage misattribution or sign issues in the reward assignment process.",
+    "durationMs": 5356,
+    "url": "https://arxiv.org/abs/2505.11821"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01P9RDRc1zVRJ9jMWTRsMxh6`</summary>
+
+```json
+{
+  "query": "AgentTrek agent training reinforcement learning trajectory optimization 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "9b2bdc9d-9bde-43ba-9967-b36bcb4303bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rvhbttp8bFuS6QwRCi4YYB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5670,
+      "cache_read_input_tokens": 26004,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5670
+      },
+      "output_tokens": 15,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RLBdfb4x98a6ZxuUQt9641`</summary>
+
+```json
+{
+  "query": "advantage misattribution sign error reinforcement learning sparse reward multi-step"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "0a624ab9-705e-46e1-841d-a3897225112d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rvhbttp8bFuS6QwRCi4YYB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5670,
+      "cache_read_input_tokens": 26004,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5670
+      },
+      "output_tokens": 15,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T12:16:31.787Z_
+
+<details><summary>↩ Tool result · `toolu_01RakiTWyTusm7z7ntCTBPNh`</summary>
+
+```text
+# Group-in-Group Policy Optimization for LLM Agent Training
+
+**Title:** Group-in-Group Policy Optimization for LLM Agent Training
+
+**Authors:** Lang Feng, Zhenghai Xue, Tingcong Liu, Bo An
+
+**Year:** 2025
+
+**Venue:** NeurIPS 2025
+
+## Abstract Summary
+The paper addresses limitations in applying group-based reinforcement learning to multi-turn LLM agents. The authors note that "agent-environment interactions unfold over many steps and often yield sparse or delayed rewards, making credit assignment across individual steps significantly more challenging."
+
+## Core Method: GiGPO
+
+GiGPO introduces a hierarchical two-level structure for advantage estimation:
+
+1. **Episode-level (macro):** Computes relative advantages across groups of complete trajectories
+2. **Step-level (micro):** Uses an anchor state grouping mechanism to retroactively construct step-level groups by identifying repeated environment states
+
+This approach enables fine-grained per-step credit signals while maintaining the benefits of group-based RL: critic-free operation, low memory requirements, and stable convergence.
+
+## Key Experimental Results
+
+- **ALFWorld:** >12% performance improvement over GRPO
+- **WebShop:** >9% performance improvement over GRPO  
+- **QA Tasks:** 42.1% (3B model) and 47.2% (7B model)
+- **Efficiency:** Maintains identical GPU memory overhead and LLM rollout with minimal additional computational cost
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "0d906c45-a826-439b-afe2-873444291aee",
+  "tool_use_result": {
+    "bytes": 48027,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Group-in-Group Policy Optimization for LLM Agent Training\n\n**Title:** Group-in-Group Policy Optimization for LLM Agent Training\n\n**Authors:** Lang Feng, Zhenghai Xue, Tingcong Liu, Bo An\n\n**Year:** 2025\n\n**Venue:** NeurIPS 2025\n\n## Abstract Summary\nThe paper addresses limitations in applying group-based reinforcement learning to multi-turn LLM agents. The authors note that \"agent-environment interactions unfold over many steps and often yield sparse or delayed rewards, making credit assignment across individual steps significantly more challenging.\"\n\n## Core Method: GiGPO\n\nGiGPO introduces a hierarchical two-level structure for advantage estimation:\n\n1. **Episode-level (macro):** Computes relative advantages across groups of complete trajectories\n2. **Step-level (micro):** Uses an anchor state grouping mechanism to retroactively construct step-level groups by identifying repeated environment states\n\nThis approach enables fine-grained per-step credit signals while maintaining the benefits of group-based RL: critic-free operation, low memory requirements, and stable convergence.\n\n## Key Experimental Results\n\n- **ALFWorld:** >12% performance improvement over GRPO\n- **WebShop:** >9% performance improvement over GRPO  \n- **QA Tasks:** 42.1% (3B model) and 47.2% (7B model)\n- **Efficiency:** Maintains identical GPU memory overhead and LLM rollout with minimal additional computational cost",
+    "durationMs": 4728,
+    "url": "https://arxiv.org/abs/2505.10978"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T12:16:35.674Z_
+
+<details><summary>↩ Tool result · `toolu_01D5u3k55ZVvmJyUHVd5rYg5`</summary>
+
+```text
+# Paper Summary: Agentic Reinforcement Learning with Implicit Step Rewards
+
+**Title:** Agentic Reinforcement Learning with Implicit Step Rewards
+
+**Authors:** Xiaoqian Liu, Ke Wang, Yuchuan Wu, Fei Huang, Yongbin Li, Junge Zhang, Jianbin Jiao
+
+**Year:** 2025 (submitted September 23)
+
+**Venue:** arXiv (cs.CL - Computation and Language)
+
+## Abstract Overview
+The researchers address a critical challenge in training LLM agents: assigning credit effectively when rewards are sparse. Their work tackles limitations of prior process supervision approaches that suffer from annotation bias and high variance.
+
+## Core Method: iStar (Implicit Step Rewards)
+
+The innovation centers on a strategy that "integrates seamlessly with standard RL algorithms without relying on additional rollouts or explicit step labels." Rather than requiring manual step-level annotations, iStar operates through:
+
+1. **Process Reward Model (PRM):** Optimized alternately with the policy
+2. **Trajectory-based DPO Objective:** Generates step rewards implicitly through a direct preference optimization framework
+3. **Dual Advantage Integration:** Combines step-level and episode-level advantages in policy updates
+
+## Credit Assignment Without Explicit Labels
+The method achieves credit assignment by deriving step-wise rewards from trajectory-level preferences, eliminating dependency on costly human step annotations while maintaining theoretical grounding.
+
+## Key Experimental Results
+Testing across WebShop, VisualSokoban, and SOTOPIA benchmarks demonstrated "superior performance over frontier LLMs and strong RL baselines," achieving state-of-the-art results with improved sample efficiency and stability.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "56006770-318a-4166-9112-94c1a23f21d3",
+  "tool_use_result": {
+    "bytes": 48193,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary: Agentic Reinforcement Learning with Implicit Step Rewards\n\n**Title:** Agentic Reinforcement Learning with Implicit Step Rewards\n\n**Authors:** Xiaoqian Liu, Ke Wang, Yuchuan Wu, Fei Huang, Yongbin Li, Junge Zhang, Jianbin Jiao\n\n**Year:** 2025 (submitted September 23)\n\n**Venue:** arXiv (cs.CL - Computation and Language)\n\n## Abstract Overview\nThe researchers address a critical challenge in training LLM agents: assigning credit effectively when rewards are sparse. Their work tackles limitations of prior process supervision approaches that suffer from annotation bias and high variance.\n\n## Core Method: iStar (Implicit Step Rewards)\n\nThe innovation centers on a strategy that \"integrates seamlessly with standard RL algorithms without relying on additional rollouts or explicit step labels.\" Rather than requiring manual step-level annotations, iStar operates through:\n\n1. **Process Reward Model (PRM):** Optimized alternately with the policy\n2. **Trajectory-based DPO Objective:** Generates step rewards implicitly through a direct preference optimization framework\n3. **Dual Advantage Integration:** Combines step-level and episode-level advantages in policy updates\n\n## Credit Assignment Without Explicit Labels\nThe method achieves credit assignment by deriving step-wise rewards from trajectory-level preferences, eliminating dependency on costly human step annotations while maintaining theoretical grounding.\n\n## Key Experimental Results\nTesting across WebShop, VisualSokoban, and SOTOPIA benchmarks demonstrated \"superior performance over frontier LLMs and strong RL baselines,\" achieving state-of-the-art results with improved sample efficiency and stability.",
+    "durationMs": 5756,
+    "url": "https://arxiv.org/abs/2509.19199"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T12:16:37.572Z_
+
+<details><summary>↩ Tool result · `toolu_01F4vSPXCfYX99VDeYoQMwWj`</summary>
+
+```text
+# RAGEN: LLM Agent Self-Evolution via Multi-Turn RL
+
+**Title:** RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning
+
+**Authors:** Zihan Wang, Kangrui Wang, Qineng Wang, Pingyue Zhang, Linjie Li, Zhengyuan Yang, Xing Jin, Kefan Yu, Minh Nhat Nguyen, Licheng Liu, Eli Gottlieb, Yiping Lu, Kyunghyun Cho, Jiajun Wu, Li Fei-Fei, Lijuan Wang, Yejin Choi, Manling Li
+
+**Year:** 2025 (submitted April 24, 2025; revised May 26, 2025)
+
+**Venue:** arXiv (cs.LG - Machine Learning)
+
+## Abstract Summary
+
+The paper addresses challenges in training LLMs as interactive agents through long-horizon decision-making and stochastic environmental feedback. The authors propose StarPO for trajectory-level agent RL and introduce RAGEN, a modular system for training and evaluation.
+
+## StarPO Framework
+
+StarPO represents "State-Thinking-Actions-Reward Policy Optimization," functioning as a general framework for trajectory-level agent reinforcement learning. The stabilized variant, StarPO-S, incorporates trajectory filtering, critic integration, and gradient stabilization mechanisms.
+
+## Key Findings
+
+**The Echo Trap:** The research identifies a recurring instability pattern where "reward variance cliffs and gradient spikes" occur during training, which StarPO-S addresses through stabilization techniques.
+
+**Rollout Shaping:** Effective RL training benefits from diverse initial states, medium-granularity interactions, and frequent sampling.
+
+**Reward Signal Requirements:** Without "fine-grained, reasoning-aware reward signals," agents fail to develop genuine reasoning, instead exhibiting shallow strategies or hallucinated reasoning steps.
+
+## Credit Assignment & Reward Structure
+
+The abstract emphasizes trajectory-level (episode-level) optimization rather than step-level approaches, stressing that multi-turn agent RL requires reasoning-aware signals for proper credit assignment across extended agent interactions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "2dd63f30-b0be-46d4-a096-e94a99d5a0b5",
+  "tool_use_result": {
+    "bytes": 49602,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# RAGEN: LLM Agent Self-Evolution via Multi-Turn RL\n\n**Title:** RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning\n\n**Authors:** Zihan Wang, Kangrui Wang, Qineng Wang, Pingyue Zhang, Linjie Li, Zhengyuan Yang, Xing Jin, Kefan Yu, Minh Nhat Nguyen, Licheng Liu, Eli Gottlieb, Yiping Lu, Kyunghyun Cho, Jiajun Wu, Li Fei-Fei, Lijuan Wang, Yejin Choi, Manling Li\n\n**Year:** 2025 (submitted April 24, 2025; revised May 26, 2025)\n\n**Venue:** arXiv (cs.LG - Machine Learning)\n\n## Abstract Summary\n\nThe paper addresses challenges in training LLMs as interactive agents through long-horizon decision-making and stochastic environmental feedback. The authors propose StarPO for trajectory-level agent RL and introduce RAGEN, a modular system for training and evaluation.\n\n## StarPO Framework\n\nStarPO represents \"State-Thinking-Actions-Reward Policy Optimization,\" functioning as a general framework for trajectory-level agent reinforcement learning. The stabilized variant, StarPO-S, incorporates trajectory filtering, critic integration, and gradient stabilization mechanisms.\n\n## Key Findings\n\n**The Echo Trap:** The research identifies a recurring instability pattern where \"reward variance cliffs and gradient spikes\" occur during training, which StarPO-S addresses through stabilization techniques.\n\n**Rollout Shaping:** Effective RL training benefits from diverse initial states, medium-granularity interactions, and frequent sampling.\n\n**Reward Signal Requirements:** Without \"fine-grained, reasoning-aware reward signals,\" agents fail to develop genuine reasoning, instead exhibiting shallow strategies or hallucinated reasoning steps.\n\n## Credit Assignment & Reward Structure\n\nThe abstract emphasizes trajectory-level (episode-level) optimization rather than step-level approaches, stressing that multi-turn agent RL requires reasoning-aware signals for proper credit assignment across extended agent interactions.",
+    "durationMs": 9124,
+    "url": "https://arxiv.org/abs/2504.20073"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T12:16:38.776Z_
+
+<details><summary>↩ Tool result · `toolu_01P9RDRc1zVRJ9jMWTRsMxh6`</summary>
+
+```text
+Web search results for query: "AgentTrek agent training reinforcement learning trajectory optimization 2024 2025"
+
+Links: [{"title":"GitHub - xlang-ai/AgentTrek: [ICLR2025 Spotlight] Agent Trajectory Synthesis via Guiding Replay with Web Tutorials · GitHub","url":"https://github.com/xlang-ai/AgentTrek"},{"title":"AgentTrek: Agent Trajectory Synthesis via Guiding Replay with Web Tutorials","url":"https://agenttrek.github.io/"},{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"},{"title":"AgentTrek: Agent Trajectory Synthesis via Guiding Replay with Web Tutorials | OpenReview","url":"https://openreview.net/forum?id=EEgYUccwsV"},{"title":"WebSynthesis: World-Model-Guided MCTS for Efficient WebUI-Trajectory Synthesis","url":"https://arxiv.org/html/2507.04370v1"},{"title":"AgentTrek: Agent Trajectory synthesis","url":"https://openreview.net/pdf/e95d923ccea15b1bab268aeeb8b3845547e3dafe.pdf"},{"title":"[2412.09605] AgentTrek: Agent Trajectory Synthesis via Guiding Replay with Web Tutorials","url":"https://arxiv.org/abs/2412.09605"},{"title":"[Quick Review] AgentTrek: Agent Trajectory Synthesis via Guiding Replay with Web Tutorials","url":"https://liner.com/review/agenttrek-agent-trajectory-synthesis-via-guiding-replay-with-web-tutorials"},{"title":"Dec 2025 Training One Model to Master Cross-Level","url":"https://arxiv.org/pdf/2512.09706"},{"title":"Paper page - AgentTrek: Agent Trajectory Synthesis via Guiding Replay with Web Tutorials","url":"https://huggingface.co/papers/2412.09605"}]
+
+Based on the search results, I found comprehensive information about AgentTrek:
+
+## Overview
+
+AgentTrek is an ICLR 2025 Spotlight paper on Agent Trajectory Synthesis via Guiding Replay with Web Tutorials.
+
+## What It Does
+
+AgentTrek is a scalable data synthesis pipeline that generates high-quality web agent trajectories by leveraging web tutorials. Specifically, the method automatically gathers tutorial-like texts from the internet, transforms them into task goals with step-by-step instructions, and employs a visual-language model (VLM) agent to simulate their execution in a real digital environment.
+
+## Problem It Addresses
+
+The development of GUI agents is hindered by the lack of high-quality, multi-step trajectory data required for effective training, as existing approaches rely on expensive and labor-intensive human annotation, making them unsustainable at scale.
+
+## Technical Approach
+
+The approach begins by automatically harvesting and filtering tutorial-like text from the web that describes GUI tasks and workflows, transforms these tutorials into structured agent tasks with high-level objectives and detailed step-by-step instructions, and uses a visual-language model (VLM) agent to execute these tasks in real environments, guided by the synthesized tutorials.
+
+## Results and Impact
+
+Agents trained with AgentTrek's synthesized data significantly outperform those trained on existing datasets across multiple benchmarks, showing marked improvements in both textual and visual web browsing capabilities. Additionally, compared to traditional human-annotated data pipelines, the method is more cost-effective, achieving a cost-per-trajectory of just $0.551 while maintaining high data quality.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "44b073ce-7eb7-4bd6-87c3-dbb29c3490b9",
+  "tool_use_result": {
+    "query": "AgentTrek agent training reinforcement learning trajectory optimization 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012jfHfyeXVsG1CzYJSB5Cxd",
+        "content": [
+          {
+            "title": "GitHub - xlang-ai/AgentTrek: [ICLR2025 Spotlight] Agent Trajectory Synthesis via Guiding Replay with Web Tutorials · GitHub",
+            "url": "https://github.com/xlang-ai/AgentTrek"
+          },
+          {
+            "title": "AgentTrek: Agent Trajectory Synthesis via Guiding Replay with Web Tutorials",
+            "url": "https://agenttrek.github.io/"
+          },
+          {
+            "title": "GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub",
+            "url": "https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"
+          },
+          {
+            "title": "AgentTrek: Agent Trajectory Synthesis via Guiding Replay with Web Tutorials | OpenReview",
+            "url": "https://openreview.net/forum?id=EEgYUccwsV"
+          },
+          {
+            "title": "WebSynthesis: World-Model-Guided MCTS for Efficient WebUI-Trajectory Synthesis",
+            "url": "https://arxiv.org/html/2507.04370v1"
+          },
+          {
+            "title": "AgentTrek: Agent Trajectory synthesis",
+            "url": "https://openreview.net/pdf/e95d923ccea15b1bab268aeeb8b3845547e3dafe.pdf"
+          },
+          {
+            "title": "[2412.09605] AgentTrek: Agent Trajectory Synthesis via Guiding Replay with Web Tutorials",
+            "url": "https://arxiv.org/abs/2412.09605"
+          },
+          {
+            "title": "[Quick Review] AgentTrek: Agent Trajectory Synthesis via Guiding Replay with Web Tutorials",
+            "url": "https://liner.com/review/agenttrek-agent-trajectory-synthesis-via-guiding-replay-with-web-tutorials"
+          },
+          {
+            "title": "Dec 2025 Training One Model to Master Cross-Level",
+            "url": "https://arxiv.org/pdf/2512.09706"
+          },
+          {
+            "title": "Paper page - AgentTrek: Agent Trajectory Synthesis via Guiding Replay with Web Tutorials",
+            "url": "https://huggingface.co/papers/2412.09605"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about AgentTrek:\n\n## Overview\n\nAgentTrek is an ICLR 2025 Spotlight paper on Agent Trajectory Synthesis via Guiding Replay with Web Tutorials.\n\n## What It Does\n\nAgentTrek is a scalable data synthesis pipeline that generates high-quality web agent trajectories by leveraging web tutorials. Specifically, the method automatically gathers tutorial-like texts from the internet, transforms them into task goals with step-by-step instructions, and employs a visual-language model (VLM) agent to simulate their execution in a real digital environment.\n\n## Problem It Addresses\n\nThe development of GUI agents is hindered by the lack of high-quality, multi-step trajectory data required for effective training, as existing approaches rely on expensive and labor-intensive human annotation, making them unsustainable at scale.\n\n## Technical Approach\n\nThe approach begins by automatically harvesting and filtering tutorial-like text from the web that describes GUI tasks and workflows, transforms these tutorials into structured agent tasks with high-level objectives and detailed step-by-step instructions, and uses a visual-language model (VLM) agent to execute these tasks in real environments, guided by the synthesized tutorials.\n\n## Results and Impact\n\nAgents trained with AgentTrek's synthesized data significantly outperform those trained on existing datasets across multiple benchmarks, showing marked improvements in both textual and visual web browsing capabilities. Additionally, compared to traditional human-annotated data pipelines, the method is more cost-effective, achieving a cost-per-trajectory of just $0.551 while maintaining high data quality."
+    ],
+    "durationSeconds": 7.578112874999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-17T12:16:39.336Z_
+
+<details><summary>↩ Tool result · `toolu_01Lmf3ya4AFviQtCcviZPvVN`</summary>
+
+```text
+Web search results for query: "WebRL agent reinforcement learning credit assignment multi-turn 2024"
+
+Links: [{"title":"From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models","url":"https://arxiv.org/html/2604.09459v1"},{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"},{"title":"WebAgent-R1: Training Web Agents via End-to-End Multi-Turn Reinforcement Learning","url":"https://arxiv.org/html/2505.16421v1"},{"title":"WEBAGENT-R1: Training Web Agents via End-to-End Multi-Turn","url":"https://arxiv.org/pdf/2505.16421"},{"title":"ICML Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Credit Assignment","url":"https://icml.cc/virtual/2025/49783"},{"title":"Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Credit Assignment","url":"https://arxiv.org/html/2505.11821v1"},{"title":"NeurIPS A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning","url":"https://neurips.cc/virtual/2025/127960"},{"title":"GitHub - xxzcc/Awesome-Credit-Assignment-in-LLM-RL · GitHub","url":"https://github.com/xxzcc/Awesome-Credit-Assignment-in-LLM-RL"},{"title":"NeurIPS Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design and Credit Assignment","url":"https://neurips.cc/virtual/2025/133311"},{"title":"Multi-Turn Credit Assignment with LLM Agents - hlfshell","url":"https://hlfshell.ai/posts/multi-turn-credit-assignment/"}]
+
+Based on the search results, here's what I found about WebRL agents, reinforcement learning, credit assignment, and multi-turn interactions in 2024:
+
+## Overview of WebRL and Agentic RL
+
+WebRL is part of the second wave of agentic RL that extends reinforcement learning to multi-turn interactive tasks, including LLM agents that browse the web. WebRL trains LLM web agents via self-evolving online curriculum reinforcement learning.
+
+## Credit Assignment in Multi-Turn Settings
+
+Credit assignment has emerged as a central challenge in agentic RL. The community has identified credit assignment as a shared bottleneck, with 47 papers between 2024 and early 2026 proposing methods ranging from Monte Carlo token-level value estimation to Shapley value-based reward decomposition.
+
+Fine-grained turn-level credit assignment strategies have been introduced for multi-turn LLM agent training, with multi-turn agent interactive tasks presenting a more intuitive setting to highlight the importance of fine-grained credit assignment compared to textual reasoning tasks.
+
+## Key Approaches
+
+Recent work formulates multi-turn agentic RL with dense per-turn rewards and token-level credit assignment, examining the impacts of environment, policy, and reward on multi-turn RL.
+
+A comprehensive taxonomy of credit assignment methods covers 47 methods (41 core, 6 adjacent enablers) published between 2024 and early 2026, covering reasoning RL, agentic RL, and multi-agent settings.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "2edc40a2-f0b1-4bb8-b5ab-9d95ab386fb1",
+  "tool_use_result": {
+    "query": "WebRL agent reinforcement learning credit assignment multi-turn 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01T6g3nmywyqhn2ZE4NgKkeJ",
+        "content": [
+          {
+            "title": "From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/html/2604.09459v1"
+          },
+          {
+            "title": "GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub",
+            "url": "https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"
+          },
+          {
+            "title": "WebAgent-R1: Training Web Agents via End-to-End Multi-Turn Reinforcement Learning",
+            "url": "https://arxiv.org/html/2505.16421v1"
+          },
+          {
+            "title": "WEBAGENT-R1: Training Web Agents via End-to-End Multi-Turn",
+            "url": "https://arxiv.org/pdf/2505.16421"
+          },
+          {
+            "title": "ICML Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Credit Assignment",
+            "url": "https://icml.cc/virtual/2025/49783"
+          },
+          {
+            "title": "Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Credit Assignment",
+            "url": "https://arxiv.org/html/2505.11821v1"
+          },
+          {
+            "title": "NeurIPS A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning",
+            "url": "https://neurips.cc/virtual/2025/127960"
+          },
+          {
+            "title": "GitHub - xxzcc/Awesome-Credit-Assignment-in-LLM-RL · GitHub",
+            "url": "https://github.com/xxzcc/Awesome-Credit-Assignment-in-LLM-RL"
+          },
+          {
+            "title": "NeurIPS Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design and Credit Assignment",
+            "url": "https://neurips.cc/virtual/2025/133311"
+          },
+          {
+            "title": "Multi-Turn Credit Assignment with LLM Agents - hlfshell",
+            "url": "https://hlfshell.ai/posts/multi-turn-credit-assignment/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about WebRL agents, reinforcement learning, credit assignment, and multi-turn interactions in 2024:\n\n## Overview of WebRL and Agentic RL\n\nWebRL is part of the second wave of agentic RL that extends reinforcement learning to multi-turn interactive tasks, including LLM agents that browse the web. WebRL trains LLM web agents via self-evolving online curriculum reinforcement learning.\n\n## Credit Assignment in Multi-Turn Settings\n\nCredit assignment has emerged as a central challenge in agentic RL. The community has identified credit assignment as a shared bottleneck, with 47 papers between 2024 and early 2026 proposing methods ranging from Monte Carlo token-level value estimation to Shapley value-based reward decomposition.\n\nFine-grained turn-level credit assignment strategies have been introduced for multi-turn LLM agent training, with multi-turn agent interactive tasks presenting a more intuitive setting to highlight the importance of fine-grained credit assignment compared to textual reasoning tasks.\n\n## Key Approaches\n\nRecent work formulates multi-turn agentic RL with dense per-turn rewards and token-level credit assignment, examining the impacts of environment, policy, and reward on multi-turn RL.\n\nA comprehensive taxonomy of credit assignment methods covers 47 methods (41 core, 6 adjacent enablers) published between 2024 and early 2026, covering reasoning RL, agentic RL, and multi-agent settings."
+    ],
+    "durationSeconds": 9.064508514000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T12:16:39.430Z_
+
+<details><summary>↩ Tool result · `toolu_01RLBdfb4x98a6ZxuUQt9641`</summary>
+
+```text
+Web search results for query: "advantage misattribution sign error reinforcement learning sparse reward multi-step"
+
+Links: [{"title":"sparse- reward multi-agent reinforcement learning","url":"https://arxiv.org/pdf/2509.21828"},{"title":"University of Sheﬃeld Dealing with Sparse Rewards in Reinforcement Learning","url":"https://arxiv.org/pdf/1910.09281"},{"title":"Reinforcement Learning: Dealing with Sparse Reward Environments | by Karam Daaboul | Medium","url":"https://medium.com/@m.k.daaboul/dealing-with-sparse-reward-environments-38c0489c844d"},{"title":"Reward Modeling for Reinforcement Learning-Based LLM Reasoning: Design, Challenges, and Evaluation","url":"https://arxiv.org/html/2602.09305v1"},{"title":"Sparse Rewards in Reinforcement Learning - GeeksforGeeks","url":"https://www.geeksforgeeks.org/machine-learning/sparse-rewards-in-reinforcement-learning/"},{"title":"Learning to Generalize from Sparse and Underspeciﬁed Rewards","url":"https://arxiv.org/pdf/1902.07198"},{"title":"Shaping Sparse Rewards in Reinforcement Learning: A Semi-supervised Approach","url":"https://arxiv.org/html/2501.19128v4"},{"title":"Revisiting Sparse Rewards for Goal-Reaching Reinforcement Learning","url":"https://arxiv.org/html/2407.00324v2"},{"title":"Hybrid Reinforcement:When Reward Is Sparse, It’s Better to Be Dense","url":"https://arxiv.org/html/2510.07242v1"},{"title":"(PDF) Reinforcement Learning with Sparse Rewards: Developing Algorithms for Learning in Environments with Infrequent Feedback","url":"https://www.researchgate.net/publication/391371020_Reinforcement_Learning_with_Sparse_Rewards_Developing_Algorithms_for_Learning_in_Environments_with_Infrequent_Feedback"}]
+
+The search has been completed. Here are the results for your query "advantage misattribution sign error reinforcement learning sparse reward multi-step":
+
+The search results cover several related topics in reinforcement learning with sparse rewards and multi-step learning:
+
+**Sparse Reward Challenges:** A common strategy to address the sparse-reward challenge in RL is reward redistribution, which transforms delayed, episodic rewards into denser proxy signals that provide more immediate feedback throughout a trajectory.
+
+**Advantage Function:** Expressing the Advantage function in terms of only V π allows for the use of a single set of parameters to define the advantage function and reducing the dimensionality of the function being learnt.
+
+**Dense vs Sparse Rewards:** Research confirms the popular notion that dense-reward formulations facilitate faster learning in comparison to sparse-reward formulations. However, findings also demonstrate that agents trained with minimum-time specification outperform those trained with dense rewards, even in terms of dense-reward performance metrics.
+
+**Multi-step Credit Assignment:** Return decomposition breaks down cumulative rewards to assign credit more precisely across time, which is relevant to addressing the multi-step attribution challenge in reinforcement learning.
+
+**Reward Design Issues:** Group-based formulations alleviate the gradient sparsity problem of pure verifier rewards and make optimization more sample-efficient.
+
+The search results primarily focus on sparse reward problems and reward shaping techniques, but don't specifically address the particular topic of "advantage misattribution sign error" in detail. If you need more specific information about this concept, you may want to search more narrowly for that specific term.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "1ab439dd-4d31-46ea-90fc-0ea873432a96",
+  "tool_use_result": {
+    "query": "advantage misattribution sign error reinforcement learning sparse reward multi-step",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Q6ropvpLyUx2sbFHwSGSFY",
+        "content": [
+          {
+            "title": "sparse- reward multi-agent reinforcement learning",
+            "url": "https://arxiv.org/pdf/2509.21828"
+          },
+          {
+            "title": "University of Sheﬃeld Dealing with Sparse Rewards in Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/1910.09281"
+          },
+          {
+            "title": "Reinforcement Learning: Dealing with Sparse Reward Environments | by Karam Daaboul | Medium",
+            "url": "https://medium.com/@m.k.daaboul/dealing-with-sparse-reward-environments-38c0489c844d"
+          },
+          {
+            "title": "Reward Modeling for Reinforcement Learning-Based LLM Reasoning: Design, Challenges, and Evaluation",
+            "url": "https://arxiv.org/html/2602.09305v1"
+          },
+          {
+            "title": "Sparse Rewards in Reinforcement Learning - GeeksforGeeks",
+            "url": "https://www.geeksforgeeks.org/machine-learning/sparse-rewards-in-reinforcement-learning/"
+          },
+          {
+            "title": "Learning to Generalize from Sparse and Underspeciﬁed Rewards",
+            "url": "https://arxiv.org/pdf/1902.07198"
+          },
+          {
+            "title": "Shaping Sparse Rewards in Reinforcement Learning: A Semi-supervised Approach",
+            "url": "https://arxiv.org/html/2501.19128v4"
+          },
+          {
+            "title": "Revisiting Sparse Rewards for Goal-Reaching Reinforcement Learning",
+            "url": "https://arxiv.org/html/2407.00324v2"
+          },
+          {
+            "title": "Hybrid Reinforcement:When Reward Is Sparse, It’s Better to Be Dense",
+            "url": "https://arxiv.org/html/2510.07242v1"
+          },
+          {
+            "title": "(PDF) Reinforcement Learning with Sparse Rewards: Developing Algorithms for Learning in Environments with Infrequent Feedback",
+            "url": "https://www.researchgate.net/publication/391371020_Reinforcement_Learning_with_Sparse_Rewards_Developing_Algorithms_for_Learning_in_Environments_with_Infrequent_Feedback"
+          }
+        ]
+      },
+      "The search has been completed. Here are the results for your query \"advantage misattribution sign error reinforcement learning sparse reward multi-step\":\n\nThe search results cover several related topics in reinforcement learning with sparse rewards and multi-step learning:\n\n**Sparse Reward Challenges:** A common strategy to address the sparse-reward challenge in RL is reward redistribution, which transforms delayed, episodic rewards into denser proxy signals that provide more immediate feedback throughout a trajectory.\n\n**Advantage Function:** Expressing the Advantage function in terms of only V π allows for the use of a single set of parameters to define the advantage function and reducing the dimensionality of the function being learnt.\n\n**Dense vs Sparse Rewards:** Research confirms the popular notion that dense-reward formulations facilitate faster learning in comparison to sparse-reward formulations. However, findings also demonstrate that agents trained with minimum-time specification outperform those trained with dense rewards, even in terms of dense-reward performance metrics.\n\n**Multi-step Credit Assignment:** Return decomposition breaks down cumulative rewards to assign credit more precisely across time, which is relevant to addressing the multi-step attribution challenge in reinforcement learning.\n\n**Reward Design Issues:** Group-based formulations alleviate the gradient sparsity problem of pure verifier rewards and make optimization more sample-efficient.\n\nThe search results primarily focus on sparse reward problems and reward shaping techniques, but don't specifically address the particular topic of \"advantage misattribution sign error\" in detail. If you need more specific information about this concept, you may want to search more narrowly for that specific term."
+    ],
+    "durationSeconds": 8.069141877000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I've gathered a lot of information. Let me now fetch more papers and search for additional ones:
+
+1. SPA-RL (2505.20732)
+2. HCAPO (2603.08754)
+3. HiPER (2602.16165)
+4. The credit assignment survey (2604.09459)
+5. WebAgent-R1 (2505.16421)
+6. StepAgent (2411.03817)
+7. Search for GAE in agent RL, WebRL paper specifically
+
+Let me fetch these in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "3d4a87cb-8fc3-472f-ad76-af4a74a251af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D1oLZXj1MA3u1UXeYWqrZ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6018,
+      "cache_read_input_tokens": 31674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6018
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+Good progress. Now let me fetch the remaining key papers and do more searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "a976d0b7-0728-462d-91bd-c5864b2fd26e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D1oLZXj1MA3u1UXeYWqrZ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6018,
+      "cache_read_input_tokens": 31674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6018
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0171z2U3qgLAReBpoE3bmFr2`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.20732",
+  "prompt": "Extract: title, authors, year, venue, abstract, core method of SPA-RL (Stepwise Progress Attribution), how it measures progress toward task completion as intermediate rewards, key experimental results and benchmarks."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "9d2d6014-57b3-4789-9500-3c0040417942",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D1oLZXj1MA3u1UXeYWqrZ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6018,
+      "cache_read_input_tokens": 31674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6018
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019Z8iH7trGXXCumQo8P6sEJ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.08754",
+  "prompt": "Extract: title, authors, year, venue, abstract, core method of HCAPO (Hindsight Credit Assignment Policy Optimization), how it refines trajectory-level feedback into step-level advantage signals, key experimental results."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "853fc19c-6e19-4882-976d-c33a7009986c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D1oLZXj1MA3u1UXeYWqrZ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6018,
+      "cache_read_input_tokens": 31674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6018
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013X6ZN4goRN6tFdUnb6z2ye`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2602.16165",
+  "prompt": "Extract: title, authors, year, venue, abstract, core method of HiPER (Hierarchical Plan-Execute RL), how it separates planning from execution for credit assignment, key experimental results."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "d13d018c-2ab6-4126-9021-e14e4304d36d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D1oLZXj1MA3u1UXeYWqrZ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6018,
+      "cache_read_input_tokens": 31674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6018
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-17T12:16:54.109Z_
+
+<details><summary>↩ Tool result · `toolu_0171z2U3qgLAReBpoE3bmFr2`</summary>
+
+```text
+# SPA-RL: Paper Summary
+
+**Title:** SPA-RL: Reinforcing LLM Agents via Stepwise Progress Attribution
+
+**Authors:** Hanlin Wang, Chak Tou Leong, Jiashuo Wang, Jian Wang, Wenjie Li
+
+**Year:** 2025 (submitted May 27, 2025)
+
+**Venue:** arXiv (cs.CL - Computation and Language)
+
+## Abstract
+The paper addresses a critical challenge in reinforcement learning for LLM agents: "delayed rewards: feedback signals are typically available only after the entire task is completed." This makes it difficult to guide earlier actions effectively.
+
+## Core Method
+Stepwise Progress Attribution (SPA) is a reward redistribution framework that decomposes final task rewards into individual step contributions. The approach trains a progress estimator that accumulates stepwise contributions across a trajectory to match task completion. During policy optimization, estimated per-step contributions combine with action grounding signals to create fine-grained intermediate rewards.
+
+## Key Experimental Results
+Testing on benchmark environments (Webshop, ALFWorld, and VirtualHome) shows:
+- Success rate improvement of +2.5% on average
+- Grounding accuracy improvement of +1.9% on average
+- More effective intermediate rewards for RL training compared to state-of-the-art methods
+
+**Code availability:** [GitHub repository provided](https://github.com/WangHanLinHenry/SPA-RL-Agent)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "c3abed0a-f005-408c-96bc-561b41261244",
+  "tool_use_result": {
+    "bytes": 47739,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# SPA-RL: Paper Summary\n\n**Title:** SPA-RL: Reinforcing LLM Agents via Stepwise Progress Attribution\n\n**Authors:** Hanlin Wang, Chak Tou Leong, Jiashuo Wang, Jian Wang, Wenjie Li\n\n**Year:** 2025 (submitted May 27, 2025)\n\n**Venue:** arXiv (cs.CL - Computation and Language)\n\n## Abstract\nThe paper addresses a critical challenge in reinforcement learning for LLM agents: \"delayed rewards: feedback signals are typically available only after the entire task is completed.\" This makes it difficult to guide earlier actions effectively.\n\n## Core Method\nStepwise Progress Attribution (SPA) is a reward redistribution framework that decomposes final task rewards into individual step contributions. The approach trains a progress estimator that accumulates stepwise contributions across a trajectory to match task completion. During policy optimization, estimated per-step contributions combine with action grounding signals to create fine-grained intermediate rewards.\n\n## Key Experimental Results\nTesting on benchmark environments (Webshop, ALFWorld, and VirtualHome) shows:\n- Success rate improvement of +2.5% on average\n- Grounding accuracy improvement of +1.9% on average\n- More effective intermediate rewards for RL training compared to state-of-the-art methods\n\n**Code availability:** [GitHub repository provided](https://github.com/WangHanLinHenry/SPA-RL-Agent)",
+    "durationMs": 4888,
+    "url": "https://arxiv.org/abs/2505.20732"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01K43ihH6RxsUFvAa2LzZUrw`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.09459",
+  "prompt": "Extract: title, authors, year, abstract. This is a survey paper on credit assignment in LLM RL. Extract: taxonomy of credit assignment methods, key categories (reasoning RL vs agentic RL), how many papers covered, key findings about step-level vs episode-level, any discussion of advantage sign issues or misattribution."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "6c05d7ee-a9ab-41bc-b265-618e47ecf8c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D1oLZXj1MA3u1UXeYWqrZ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6018,
+      "cache_read_input_tokens": 31674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6018
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T12:16:55.364Z_
+
+<details><summary>↩ Tool result · `toolu_019Z8iH7trGXXCumQo8P6sEJ`</summary>
+
+```text
+# Paper Summary: Hindsight Credit Assignment for Long-Horizon LLM Agents
+
+**Title:** Hindsight Credit Assignment for Long-Horizon LLM Agents
+
+**Authors:** Hui-Ze Tan, Xiao-Wen Yang, Hao Chen, Jie-Jing Shao, Yi Wen, Yuteng Shen, Weihong Luo, Xiku Du, Lan-Zhe Guo, Yu-Feng Li
+
+**Year:** 2026 (submitted March 7, 2026)
+
+**Venue:** arXiv (Computer Science - Machine Learning category)
+
+## Abstract
+The paper addresses a critical challenge in agent training: "credit assignment challenges in long-horizon, multi-step tasks due to sparse rewards." Existing methods like GRPO struggle with inaccurate Q-value estimates and misaligned baselines for intermediate states.
+
+## Core Method: HCAPO
+HCAPO (Hindsight Credit Assignment Policy Optimization) operates through two key mechanisms:
+
+1. **Post-hoc Critic Refinement:** The LLM itself functions as "a post-hoc critic to refine step-level Q-values through hindsight reasoning," enabling retrospective analysis of decision quality.
+
+2. **Multi-scale Advantage Mechanism:** HCAPO employs "a multi-scale advantage mechanism" that addresses value baseline inaccuracies at critical decision points, converting overall trajectory rewards into granular step-level signals.
+
+## Key Experimental Results
+- **WebShop:** 7.7% success rate improvement over GRPO (Qwen2.5-7B-Instruct)
+- **ALFWorld:** 13.8% improvement over GRPO
+- Demonstrates enhanced "exploration efficiency, promotes concise decision-making, and ensures scalability"
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "200fb941-555a-454b-ad94-1ce888927908",
+  "tool_use_result": {
+    "bytes": 46447,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary: Hindsight Credit Assignment for Long-Horizon LLM Agents\n\n**Title:** Hindsight Credit Assignment for Long-Horizon LLM Agents\n\n**Authors:** Hui-Ze Tan, Xiao-Wen Yang, Hao Chen, Jie-Jing Shao, Yi Wen, Yuteng Shen, Weihong Luo, Xiku Du, Lan-Zhe Guo, Yu-Feng Li\n\n**Year:** 2026 (submitted March 7, 2026)\n\n**Venue:** arXiv (Computer Science - Machine Learning category)\n\n## Abstract\nThe paper addresses a critical challenge in agent training: \"credit assignment challenges in long-horizon, multi-step tasks due to sparse rewards.\" Existing methods like GRPO struggle with inaccurate Q-value estimates and misaligned baselines for intermediate states.\n\n## Core Method: HCAPO\nHCAPO (Hindsight Credit Assignment Policy Optimization) operates through two key mechanisms:\n\n1. **Post-hoc Critic Refinement:** The LLM itself functions as \"a post-hoc critic to refine step-level Q-values through hindsight reasoning,\" enabling retrospective analysis of decision quality.\n\n2. **Multi-scale Advantage Mechanism:** HCAPO employs \"a multi-scale advantage mechanism\" that addresses value baseline inaccuracies at critical decision points, converting overall trajectory rewards into granular step-level signals.\n\n## Key Experimental Results\n- **WebShop:** 7.7% success rate improvement over GRPO (Qwen2.5-7B-Instruct)\n- **ALFWorld:** 13.8% improvement over GRPO\n- Demonstrates enhanced \"exploration efficiency, promotes concise decision-making, and ensures scalability\"",
+    "durationMs": 5143,
+    "url": "https://arxiv.org/abs/2603.08754"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0122P5Y5KDKWFYdZg5rhTVmT`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2411.03817",
+  "prompt": "Extract: title, authors, year, venue, abstract, core method of StepAgent (step-wise reinforcement learning for LLM agents), how it generates intermediate rewards by comparing expert and agent actions, key experimental results."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "5d7c3906-9593-4600-bc57-40fbbb9937c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D1oLZXj1MA3u1UXeYWqrZ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6018,
+      "cache_read_input_tokens": 31674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6018
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015LbzqxQYeyTqXLfz7N8rGE`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.16421",
+  "prompt": "Extract: title, authors, year, venue, abstract, core method of WebAgent-R1 for multi-turn web agent RL training, how it handles credit assignment, key experimental results."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "48d7be0b-8df1-40f0-85d2-bd82e6506c9e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D1oLZXj1MA3u1UXeYWqrZ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6018,
+      "cache_read_input_tokens": 31674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6018
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-17T12:16:57.270Z_
+
+<details><summary>↩ Tool result · `toolu_013X6ZN4goRN6tFdUnb6z2ye`</summary>
+
+```text
+# HiPER: Paper Summary
+
+**Title:** HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents
+
+**Authors:** Jiangweizhi Peng, Yuanxin Liu, Ruida Zhou, Charles Fleming, Zhaoran Wang, Alfredo Garcia, Mingyi Hong
+
+**Year:** 2026 (submitted February 18, 2026)
+
+**Venue:** arXiv (cs.LG - Computer Science, Machine Learning)
+
+## Abstract
+The paper addresses training LLMs as interactive agents for extended decision-making tasks with sparse rewards. Traditional flat RL approaches struggle to propagate credit effectively across long action sequences.
+
+## Core Method
+HiPER implements a two-level hierarchical architecture. The framework features "a high-level planner that proposes subgoals and a low-level executor that carries them out over multiple action steps." The key innovation is hierarchical advantage estimation (HAE), which "carefully assigns credit at both the planning and execution levels" by aggregating returns for each subgoal and coordinating updates across both tiers.
+
+## Planning vs. Execution Separation
+Rather than treating agents as flat policies, HiPER explicitly decomposes decision-making into hierarchical levels. This temporal abstraction enables more effective credit assignment compared to standard approaches that "must propagate credit across the entire trajectory without explicit temporal abstraction."
+
+## Key Results
+- ALFWorld: 97.4% success rate (+6.6% improvement)
+- WebShop: 83.3% success rate (+8.3% improvement)
+- Model: Qwen2.5-7B-Instruct
+- Particularly strong performance on long-horizon tasks requiring multiple dependent subtasks
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "a7b828cd-f099-4cc2-8287-4cfe015b3496",
+  "tool_use_result": {
+    "bytes": 49271,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# HiPER: Paper Summary\n\n**Title:** HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents\n\n**Authors:** Jiangweizhi Peng, Yuanxin Liu, Ruida Zhou, Charles Fleming, Zhaoran Wang, Alfredo Garcia, Mingyi Hong\n\n**Year:** 2026 (submitted February 18, 2026)\n\n**Venue:** arXiv (cs.LG - Computer Science, Machine Learning)\n\n## Abstract\nThe paper addresses training LLMs as interactive agents for extended decision-making tasks with sparse rewards. Traditional flat RL approaches struggle to propagate credit effectively across long action sequences.\n\n## Core Method\nHiPER implements a two-level hierarchical architecture. The framework features \"a high-level planner that proposes subgoals and a low-level executor that carries them out over multiple action steps.\" The key innovation is hierarchical advantage estimation (HAE), which \"carefully assigns credit at both the planning and execution levels\" by aggregating returns for each subgoal and coordinating updates across both tiers.\n\n## Planning vs. Execution Separation\nRather than treating agents as flat policies, HiPER explicitly decomposes decision-making into hierarchical levels. This temporal abstraction enables more effective credit assignment compared to standard approaches that \"must propagate credit across the entire trajectory without explicit temporal abstraction.\"\n\n## Key Results\n- ALFWorld: 97.4% success rate (+6.6% improvement)\n- WebShop: 83.3% success rate (+8.3% improvement)\n- Model: Qwen2.5-7B-Instruct\n- Particularly strong performance on long-horizon tasks requiring multiple dependent subtasks",
+    "durationMs": 5875,
+    "url": "https://arxiv.org/abs/2602.16165"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JPXxzRyMza1Cw713V1aA2w`</summary>
+
+```json
+{
+  "query": "WebRL web agent self-evolving online curriculum reinforcement learning arXiv 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "5c39fd43-c95e-4769-8ff7-b52634d5bc33",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D1oLZXj1MA3u1UXeYWqrZ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6018,
+      "cache_read_input_tokens": 31674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6018
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Pp6PmDD3npPuBrgbPT8JLY`</summary>
+
+```json
+{
+  "query": "GAE generalized advantage estimation language model agent reinforcement learning multi-turn 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "8e450762-9e9f-4b2c-a6f4-b2d0c713aaeb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D1oLZXj1MA3u1UXeYWqrZ5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6018,
+      "cache_read_input_tokens": 31674,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6018
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-17T12:16:59.478Z_
+
+<details><summary>↩ Tool result · `toolu_01K43ihH6RxsUFvAa2LzZUrw`</summary>
+
+```text
+# Credit Assignment in RL for LLMs: Survey Summary
+
+**Title:** From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models
+
+**Author:** Chenchen Zhang
+
+**Year:** 2026
+
+**Abstract Summary:** This survey examines the challenge of determining "which actions within a long trajectory caused the outcome" across two distinct settings: reasoning RL (single chain-of-thought, 500-30K+ tokens) and agentic RL (multi-turn interaction, 100K-1M tokens).
+
+## Taxonomy & Coverage
+
+The paper surveys **47 credit assignment methods** organized across two dimensions:
+
+1. **Granularity:** token, segment, step, turn, multi-agent
+2. **Methodology:** Monte Carlo, temporal difference, model-based, game-theoretic, information-theoretic
+
+## Key Findings
+
+**Reasoning vs. Agentic Distinction:** The work identifies a fundamental shift in the landscape. "Reasoning CA is maturing around process reward models and critic-free group comparison, while agentic CA is driving genuinely new approaches" including hindsight counterfactual analysis and turn-level MDP reformulations.
+
+**Episode-Level Limitations:** The abstract emphasizes that episode-level rewards become "increasingly uninformative" at longer horizons, highlighting the inadequacy of simple outcome-only signals for complex trajectories.
+
+## Contributions
+
+Beyond the taxonomy, the paper provides:
+- Machine-readable paper inventory with baseline families
+- Reporting checklist identifying methodological gaps
+- Benchmark protocol with task families and method selection decision tree
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "be153997-b13e-49f5-b8bc-30986ee26f95",
+  "tool_use_result": {
+    "bytes": 46647,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Credit Assignment in RL for LLMs: Survey Summary\n\n**Title:** From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models\n\n**Author:** Chenchen Zhang\n\n**Year:** 2026\n\n**Abstract Summary:** This survey examines the challenge of determining \"which actions within a long trajectory caused the outcome\" across two distinct settings: reasoning RL (single chain-of-thought, 500-30K+ tokens) and agentic RL (multi-turn interaction, 100K-1M tokens).\n\n## Taxonomy & Coverage\n\nThe paper surveys **47 credit assignment methods** organized across two dimensions:\n\n1. **Granularity:** token, segment, step, turn, multi-agent\n2. **Methodology:** Monte Carlo, temporal difference, model-based, game-theoretic, information-theoretic\n\n## Key Findings\n\n**Reasoning vs. Agentic Distinction:** The work identifies a fundamental shift in the landscape. \"Reasoning CA is maturing around process reward models and critic-free group comparison, while agentic CA is driving genuinely new approaches\" including hindsight counterfactual analysis and turn-level MDP reformulations.\n\n**Episode-Level Limitations:** The abstract emphasizes that episode-level rewards become \"increasingly uninformative\" at longer horizons, highlighting the inadequacy of simple outcome-only signals for complex trajectories.\n\n## Contributions\n\nBeyond the taxonomy, the paper provides:\n- Machine-readable paper inventory with baseline families\n- Reporting checklist identifying methodological gaps\n- Benchmark protocol with task families and method selection decision tree",
+    "durationMs": 5344,
+    "url": "https://arxiv.org/abs/2604.09459"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-17T12:17:01.886Z_
+
+<details><summary>↩ Tool result · `toolu_0122P5Y5KDKWFYdZg5rhTVmT`</summary>
+
+```text
+# StepAgent: LLM Agent Policy Optimization
+
+**Title:** From Novice to Expert: LLM Agent Policy Optimization via Step-wise Reinforcement Learning
+
+**Authors:** Zhirui Deng, Zhicheng Dou, Yutao Zhu, Ji-Rong Wen, Ruibin Xiong, Mang Wang, Weipeng Chen
+
+**Year:** 2024 (submitted November 6, 2024)
+
+**Venue:** arXiv (cs.AI)
+
+## Abstract Summary
+
+The paper addresses a critical limitation in LLM agent training: sparse reward signals. Traditional approaches provide only final outcomes, making policy learning inefficient for multi-step reasoning tasks.
+
+## Core Method: Step-wise Reinforcement Learning
+
+StepAgent introduces granular reward structures by automatically comparing expert and agent behaviors at each step. Rather than waiting for task completion to receive feedback, the system generates intermediate rewards throughout the decision chain, enabling finer-grained policy optimization.
+
+The approach incorporates:
+- **Intermediate reward generation** through expert-agent action comparisons
+- **Implicit-reward techniques** for agent self-reflection
+- **Inverse reinforcement learning** to facilitate policy adjustment
+
+## Theoretical Contribution
+
+The authors provide formal analysis showing that "the action distribution of the agent can converge toward the expert action distribution over multiple training cycles," grounding their empirical approach in theoretical foundations.
+
+## Key Results
+
+Experimental validation across multiple datasets demonstrates that StepAgent outperforms existing baseline methods, validating the effectiveness of step-wise optimization over traditional sparse-reward approaches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "3e4c62e2-13e8-4424-bb56-ac915fdee05f",
+  "tool_use_result": {
+    "bytes": 47518,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# StepAgent: LLM Agent Policy Optimization\n\n**Title:** From Novice to Expert: LLM Agent Policy Optimization via Step-wise Reinforcement Learning\n\n**Authors:** Zhirui Deng, Zhicheng Dou, Yutao Zhu, Ji-Rong Wen, Ruibin Xiong, Mang Wang, Weipeng Chen\n\n**Year:** 2024 (submitted November 6, 2024)\n\n**Venue:** arXiv (cs.AI)\n\n## Abstract Summary\n\nThe paper addresses a critical limitation in LLM agent training: sparse reward signals. Traditional approaches provide only final outcomes, making policy learning inefficient for multi-step reasoning tasks.\n\n## Core Method: Step-wise Reinforcement Learning\n\nStepAgent introduces granular reward structures by automatically comparing expert and agent behaviors at each step. Rather than waiting for task completion to receive feedback, the system generates intermediate rewards throughout the decision chain, enabling finer-grained policy optimization.\n\nThe approach incorporates:\n- **Intermediate reward generation** through expert-agent action comparisons\n- **Implicit-reward techniques** for agent self-reflection\n- **Inverse reinforcement learning** to facilitate policy adjustment\n\n## Theoretical Contribution\n\nThe authors provide formal analysis showing that \"the action distribution of the agent can converge toward the expert action distribution over multiple training cycles,\" grounding their empirical approach in theoretical foundations.\n\n## Key Results\n\nExperimental validation across multiple datasets demonstrates that StepAgent outperforms existing baseline methods, validating the effectiveness of step-wise optimization over traditional sparse-reward approaches.",
+    "durationMs": 5985,
+    "url": "https://arxiv.org/abs/2411.03817"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-17T12:17:02.775Z_
+
+<details><summary>↩ Tool result · `toolu_015LbzqxQYeyTqXLfz7N8rGE`</summary>
+
+```text
+# WebAgent-R1: Research Paper Summary
+
+**Title:** WebAgent-R1: Training Web Agents via End-to-End Multi-Turn Reinforcement Learning
+
+**Authors:** Zhepei Wei, Wenlin Yao, Yao Liu, Weizhi Zhang, Qin Lu, Liang Qiu, Changlong Yu, Puyang Xu, Chao Zhang, Bing Yin, Hyokun Yun, Lihong Li
+
+**Year:** 2025
+
+**Venue:** EMNLP 2025
+
+**Abstract:** The paper addresses training web agents for multi-turn interactions through reinforcement learning. The system "learns directly from online interactions with web environments by asynchronously generating diverse trajectories, entirely guided by binary rewards depending on task success."
+
+---
+
+## Core Method
+
+WebAgent-R1 employs an end-to-end multi-turn RL framework that generates diverse trajectories from actual web environment interactions. The approach uses binary success-based rewards to guide learning, incorporating thinking-based prompting strategies and behavior cloning as a warm-up training stage.
+
+## Credit Assignment
+
+The paper doesn't explicitly detail a sophisticated credit assignment mechanism—it relies on binary reward signals contingent on task completion rather than intermediate step rewards. This suggests credit assignment occurs implicitly through the RL optimization process across the full trajectory.
+
+## Key Experimental Results
+
+- **Qwen-2.5-3B:** Performance improved from 6.1% to 33.9% task success rate
+- **Llama-3.1-8B:** Performance improved from 8.5% to 44.8% task success rate
+- Results significantly outperformed existing methods and proprietary models including OpenAI o3
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "00f167a4-9e5e-4c49-b8d9-3083fc4f2d1f",
+  "tool_use_result": {
+    "bytes": 48230,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# WebAgent-R1: Research Paper Summary\n\n**Title:** WebAgent-R1: Training Web Agents via End-to-End Multi-Turn Reinforcement Learning\n\n**Authors:** Zhepei Wei, Wenlin Yao, Yao Liu, Weizhi Zhang, Qin Lu, Liang Qiu, Changlong Yu, Puyang Xu, Chao Zhang, Bing Yin, Hyokun Yun, Lihong Li\n\n**Year:** 2025\n\n**Venue:** EMNLP 2025\n\n**Abstract:** The paper addresses training web agents for multi-turn interactions through reinforcement learning. The system \"learns directly from online interactions with web environments by asynchronously generating diverse trajectories, entirely guided by binary rewards depending on task success.\"\n\n---\n\n## Core Method\n\nWebAgent-R1 employs an end-to-end multi-turn RL framework that generates diverse trajectories from actual web environment interactions. The approach uses binary success-based rewards to guide learning, incorporating thinking-based prompting strategies and behavior cloning as a warm-up training stage.\n\n## Credit Assignment\n\nThe paper doesn't explicitly detail a sophisticated credit assignment mechanism—it relies on binary reward signals contingent on task completion rather than intermediate step rewards. This suggests credit assignment occurs implicitly through the RL optimization process across the full trajectory.\n\n## Key Experimental Results\n\n- **Qwen-2.5-3B:** Performance improved from 6.1% to 33.9% task success rate\n- **Llama-3.1-8B:** Performance improved from 8.5% to 44.8% task success rate\n- Results significantly outperformed existing methods and proprietary models including OpenAI o3",
+    "durationMs": 5945,
+    "url": "https://arxiv.org/abs/2505.16421"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-17T12:17:04.885Z_
+
+<details><summary>↩ Tool result · `toolu_01JPXxzRyMza1Cw713V1aA2w`</summary>
+
+```text
+Web search results for query: "WebRL web agent self-evolving online curriculum reinforcement learning arXiv 2024"
+
+Links: [{"title":"[2411.02337] WebRL: Training LLM Web Agents via Self-Evolving Online Curriculum Reinforcement Learning","url":"https://arxiv.org/abs/2411.02337"},{"title":"WebRL: Training LLM Web Agents via Self-Evolving Online Curriculum Reinforcement Learning","url":"https://arxiv.org/html/2411.02337v1"},{"title":"GitHub - THUDM/WebRL: Building Open LLM Web Agents with Self-Evolving Online Curriculum RL · GitHub","url":"https://github.com/THUDM/WebRL"},{"title":"[2411.02337v1] WebRL: Training LLM Web Agents via Self-Evolving Online Curriculum Reinforcement Learning","url":"https://arxiv.org/abs/2411.02337v1"},{"title":"webrl: training llm web agents via self","url":"https://arxiv.org/pdf/2411.02337"},{"title":"Preprint WEBRL: TRAINING LLM WEB AGENTS VIA SELF-","url":"https://arxiv.org/pdf/2411.02337v1"},{"title":"WebRL: Training LLM Web Agents via Self-Evolving Online Curriculum Reinforcement Learning | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/webrl-training-llm-web-agents-via-self"},{"title":"WebRL: Training LLM Web Agents via Self-Evolving Online Curriculum Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=oVKEAFjEqv"},{"title":"WebRL: Training LLM Web Agents via Self-Evolving Online Curriculum Reinforcement Learning - Paper Detail","url":"https://deeplearn.org/arxiv/554503/webrl:-training-llm-web-agents-via-self-evolving-online-curriculum-reinforcement-learning"},{"title":"[PDF] WebRL: Training LLM Web Agents via Self-Evolving Online Curriculum Reinforcement Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/WebRL:-Training-LLM-Web-Agents-via-Self-Evolving-Qi-Liu/bde841b0dbbf7a15ee69966a828c7fe2cf532ad9"}]
+
+I found detailed information about WebRL. Here's a summary of the search results:
+
+## WebRL: Training LLM Web Agents via Self-Evolving Online Curriculum Reinforcement Learning
+
+WebRL is a self-evolving online curriculum reinforcement learning framework designed to train high-performance web agents using open LLMs.
+
+### Key Challenges Addressed
+WebRL addresses three key challenges in building LLM web agents, including the scarcity of training tasks, sparse feedback signals, and policy distribution drift in online learning.
+
+### Framework Components
+WebRL incorporates 1) a self-evolving curriculum that generates new tasks from unsuccessful attempts, 2) a robust outcome-supervised reward model (ORM), and 3) adaptive reinforcement learning strategies to ensure consistent improvements.
+
+### Performance Results
+On WebArena-Lite, WebRL improves the success rate of Llama-3.1-8B from 4.8% to 42.4%, and from 6.1% to 43% for GLM-4-9B. These open models significantly surpass the performance of GPT-4-Turbo (17.6%) and GPT-4o (13.9%) and outperform previous state-of-the-art web agents trained on open LLMs (AutoWebGLM, 18.2%).
+
+### Paper Details
+The paper was published on arXiv (2411.02337) by Zehan Qi and collaborators, with the latest version dated January 27, 2025. The code is available on GitHub at THUDM/WebRL.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "be2e1b0c-2681-4d53-83fc-931507b9ff2a",
+  "tool_use_result": {
+    "query": "WebRL web agent self-evolving online curriculum reinforcement learning arXiv 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01L2P2THwniHGd7LNoV47jGk",
+        "content": [
+          {
+            "title": "[2411.02337] WebRL: Training LLM Web Agents via Self-Evolving Online Curriculum Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2411.02337"
+          },
+          {
+            "title": "WebRL: Training LLM Web Agents via Self-Evolving Online Curriculum Reinforcement Learning",
+            "url": "https://arxiv.org/html/2411.02337v1"
+          },
+          {
+            "title": "GitHub - THUDM/WebRL: Building Open LLM Web Agents with Self-Evolving Online Curriculum RL · GitHub",
+            "url": "https://github.com/THUDM/WebRL"
+          },
+          {
+            "title": "[2411.02337v1] WebRL: Training LLM Web Agents via Self-Evolving Online Curriculum Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2411.02337v1"
+          },
+          {
+            "title": "webrl: training llm web agents via self",
+            "url": "https://arxiv.org/pdf/2411.02337"
+          },
+          {
+            "title": "Preprint WEBRL: TRAINING LLM WEB AGENTS VIA SELF-",
+            "url": "https://arxiv.org/pdf/2411.02337v1"
+          },
+          {
+            "title": "WebRL: Training LLM Web Agents via Self-Evolving Online Curriculum Reinforcement Learning | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/webrl-training-llm-web-agents-via-self"
+          },
+          {
+            "title": "WebRL: Training LLM Web Agents via Self-Evolving Online Curriculum Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=oVKEAFjEqv"
+          },
+          {
+            "title": "WebRL: Training LLM Web Agents via Self-Evolving Online Curriculum Reinforcement Learning - Paper Detail",
+            "url": "https://deeplearn.org/arxiv/554503/webrl:-training-llm-web-agents-via-self-evolving-online-curriculum-reinforcement-learning"
+          },
+          {
+            "title": "[PDF] WebRL: Training LLM Web Agents via Self-Evolving Online Curriculum Reinforcement Learning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/WebRL:-Training-LLM-Web-Agents-via-Self-Evolving-Qi-Liu/bde841b0dbbf7a15ee69966a828c7fe2cf532ad9"
+          }
+        ]
+      },
+      "I found detailed information about WebRL. Here's a summary of the search results:\n\n## WebRL: Training LLM Web Agents via Self-Evolving Online Curriculum Reinforcement Learning\n\nWebRL is a self-evolving online curriculum reinforcement learning framework designed to train high-performance web agents using open LLMs.\n\n### Key Challenges Addressed\nWebRL addresses three key challenges in building LLM web agents, including the scarcity of training tasks, sparse feedback signals, and policy distribution drift in online learning.\n\n### Framework Components\nWebRL incorporates 1) a self-evolving curriculum that generates new tasks from unsuccessful attempts, 2) a robust outcome-supervised reward model (ORM), and 3) adaptive reinforcement learning strategies to ensure consistent improvements.\n\n### Performance Results\nOn WebArena-Lite, WebRL improves the success rate of Llama-3.1-8B from 4.8% to 42.4%, and from 6.1% to 43% for GLM-4-9B. These open models significantly surpass the performance of GPT-4-Turbo (17.6%) and GPT-4o (13.9%) and outperform previous state-of-the-art web agents trained on open LLMs (AutoWebGLM, 18.2%).\n\n### Paper Details\nThe paper was published on arXiv (2411.02337) by Zehan Qi and collaborators, with the latest version dated January 27, 2025. The code is available on GitHub at THUDM/WebRL."
+    ],
+    "durationSeconds": 6.793969049000006
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-17T12:17:07.443Z_
+
+<details><summary>↩ Tool result · `toolu_01Pp6PmDD3npPuBrgbPT8JLY`</summary>
+
+```text
+Web search results for query: "GAE generalized advantage estimation language model agent reinforcement learning multi-turn 2024 2025"
+
+Links: [{"title":"VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents","url":"https://vagen-ai.github.io/vagen_paper.pdf"},{"title":"Generalized Advantage Estimation (GAE)","url":"https://apxml.com/courses/advanced-reinforcement-learning/chapter-3-advanced-policy-gradients-actor-critic/generalized-advantage-estimation"},{"title":"GAGPO: Generalized Advantage Grouped Policy Optimization","url":"https://arxiv.org/html/2605.13217"},{"title":"Generalized Advantage Estimation (GAE)","url":"https://www.emergentmind.com/topics/generalized-advantage-estimation-gae"},{"title":"RAGEN: Understanding Self-Evolution in LLM Agents via ...","url":"https://arxiv.org/pdf/2504.20073"},{"title":"GitHub - bsivanantham/GAE: Reinforcement learning algorithms with Generalized Advantage Estimation · GitHub","url":"https://github.com/bsivanantham/GAE"},{"title":"What are GAEs (Generalized Advantage Estimations) in Reinforcement Learning? | BoxingBytes","url":"https://boxingbytes.github.io/2025/03/20/gae.html"},{"title":"Extended Generalized Advantage Estimation (EGAE)","url":"https://www.emergentmind.com/topics/extended-generalized-advantage-estimation-egae"},{"title":"AgentRM: Enhancing Agent Generalization with Reward ...","url":"https://aclanthology.org/2025.acl-long.945.pdf"},{"title":"Generalized Advantage Estimation (GAE)","url":"https://nn.labml.ai/rl/ppo/gae.html"}]
+
+Based on the web search results, here's what I found about GAE (Generalized Advantage Estimation) in the context of language model agents and reinforcement learning for multi-turn tasks in 2024-2025:
+
+## Key Research Areas
+
+### VAGEN Framework (Multi-Turn Vision-Language Agents)
+VAGEN uses Token-Level Generalized Advantage Estimation (GAE), applying a per-token KL penalty at each token index to encourage the current policy to stay close to a frozen reference policy. The framework introduces Bi-Level General Advantage Estimation (Bi-Level GAE) that enables turn-aware credit assignment, which is specifically designed for multi-turn agent reasoning.
+
+### GAGPO (Generalized Advantage Grouped Policy Optimization)
+GAGPO extends critic-free grouped RL to multi-turn agent training with temporally propagated, step-aligned credit assignment. Recent critic-free on-policy methods include RLOO, GRPO, DAPO, and GSPO, though these methods are designed for single-turn generation or sequence-level reasoning.
+
+### RAGEN (Self-Evolving LLM Agents)
+RAGEN uses policy optimization with GAE (γ=1.0, λ=1.0) for multi-turn agent tasks. The framework supports multi-turn rollouts, trajectory-level reward assignment, and policy updates.
+
+## Core Technique
+Generalized Advantage Estimation (GAE) is a variance reduction technique for policy gradient methods that computes an exponentially-weighted estimator of the advantage function by blending multi-step temporal-difference (TD) errors with a tunable bias–variance trade-off.
+
+These recent works (2024-2025) show significant advances in adapting GAE specifically for multi-turn language model agents, addressing challenges in credit assignment across multiple interaction steps.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "acdf2263-ea9f-4e80-9e34-5b7e2c1a5b7f",
+  "tool_use_result": {
+    "query": "GAE generalized advantage estimation language model agent reinforcement learning multi-turn 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Gg7S73xC4SkRdY5M5StppS",
+        "content": [
+          {
+            "title": "VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents",
+            "url": "https://vagen-ai.github.io/vagen_paper.pdf"
+          },
+          {
+            "title": "Generalized Advantage Estimation (GAE)",
+            "url": "https://apxml.com/courses/advanced-reinforcement-learning/chapter-3-advanced-policy-gradients-actor-critic/generalized-advantage-estimation"
+          },
+          {
+            "title": "GAGPO: Generalized Advantage Grouped Policy Optimization",
+            "url": "https://arxiv.org/html/2605.13217"
+          },
+          {
+            "title": "Generalized Advantage Estimation (GAE)",
+            "url": "https://www.emergentmind.com/topics/generalized-advantage-estimation-gae"
+          },
+          {
+            "title": "RAGEN: Understanding Self-Evolution in LLM Agents via ...",
+            "url": "https://arxiv.org/pdf/2504.20073"
+          },
+          {
+            "title": "GitHub - bsivanantham/GAE: Reinforcement learning algorithms with Generalized Advantage Estimation · GitHub",
+            "url": "https://github.com/bsivanantham/GAE"
+          },
+          {
+            "title": "What are GAEs (Generalized Advantage Estimations) in Reinforcement Learning? | BoxingBytes",
+            "url": "https://boxingbytes.github.io/2025/03/20/gae.html"
+          },
+          {
+            "title": "Extended Generalized Advantage Estimation (EGAE)",
+            "url": "https://www.emergentmind.com/topics/extended-generalized-advantage-estimation-egae"
+          },
+          {
+            "title": "AgentRM: Enhancing Agent Generalization with Reward ...",
+            "url": "https://aclanthology.org/2025.acl-long.945.pdf"
+          },
+          {
+            "title": "Generalized Advantage Estimation (GAE)",
+            "url": "https://nn.labml.ai/rl/ppo/gae.html"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about GAE (Generalized Advantage Estimation) in the context of language model agents and reinforcement learning for multi-turn tasks in 2024-2025:\n\n## Key Research Areas\n\n### VAGEN Framework (Multi-Turn Vision-Language Agents)\nVAGEN uses Token-Level Generalized Advantage Estimation (GAE), applying a per-token KL penalty at each token index to encourage the current policy to stay close to a frozen reference policy. The framework introduces Bi-Level General Advantage Estimation (Bi-Level GAE) that enables turn-aware credit assignment, which is specifically designed for multi-turn agent reasoning.\n\n### GAGPO (Generalized Advantage Grouped Policy Optimization)\nGAGPO extends critic-free grouped RL to multi-turn agent training with temporally propagated, step-aligned credit assignment. Recent critic-free on-policy methods include RLOO, GRPO, DAPO, and GSPO, though these methods are designed for single-turn generation or sequence-level reasoning.\n\n### RAGEN (Self-Evolving LLM Agents)\nRAGEN uses policy optimization with GAE (γ=1.0, λ=1.0) for multi-turn agent tasks. The framework supports multi-turn rollouts, trajectory-level reward assignment, and policy updates.\n\n## Core Technique\nGeneralized Advantage Estimation (GAE) is a variance reduction technique for policy gradient methods that computes an exponentially-weighted estimator of the advantage function by blending multi-step temporal-difference (TD) errors with a tunable bias–variance trade-off.\n\nThese recent works (2024-2025) show significant advances in adapting GAE specifically for multi-turn language model agents, addressing challenges in credit assignment across multiple interaction steps."
+    ],
+    "durationSeconds": 8.945184328000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I've now gathered extensive information. Let me fetch a few more important papers:
+1. WebRL (2411.02337) - need more details
+2. HCAPO full paper (2603.08754) - already have good details
+3. GAGPO (2605.13217) - new and relevant
+4. VAGEN - relevant for bi-level GAE
+5. The Planner-R1 paper
+6. The "Alleviating Sparse Rewards" paper on flow-based GRPO
+
+Let me also search for a few more specific topics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "a33e57c7-52fa-4f32-97f8-e0f971962a8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012ibhSLmNoUKXvT2udZwAPg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5313,
+      "cache_read_input_tokens": 37692,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5313
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+Let me fetch a few more important papers that emerged from the searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "b4ca615d-5805-4712-a443-ff49e34ec452",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012ibhSLmNoUKXvT2udZwAPg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5313,
+      "cache_read_input_tokens": 37692,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5313
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01GhmGaRwnrJ8yMTpqmxzXNP`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2411.02337",
+  "prompt": "Extract: title, authors, year, venue, abstract, core method of WebRL (self-evolving curriculum, outcome-supervised reward model, adaptive RL), how it handles credit assignment with sparse rewards, key experimental results on WebArena."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "c3b631d0-dcca-4330-92cf-0b76cd73a247",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012ibhSLmNoUKXvT2udZwAPg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5313,
+      "cache_read_input_tokens": 37692,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5313
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PN6Tm2Mj2YTQJMSbg6kYmQ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2605.13217",
+  "prompt": "Extract: title, authors, year, abstract, core method of GAGPO (Generalized Advantage Grouped Policy Optimization), how it extends critic-free grouped RL to multi-turn agent training with temporally propagated step-aligned credit assignment, key experimental results."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "189a9df5-1b4c-400d-822c-86f3b649bb31",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012ibhSLmNoUKXvT2udZwAPg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5313,
+      "cache_read_input_tokens": 37692,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5313
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01E8bzeqNtSF3ArZKd9Lu3BT`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2512.17008v1",
+  "prompt": "Extract the detailed method section of Turn-PPO: (1) How exactly is the turn-level MDP formulated? (2) How is advantage computed at the turn level vs token level? (3) What specific problems did they identify with GRPO in multi-turn settings? (4) Any discussion of advantage sign issues or misattribution? (5) Detailed experimental results comparing Turn-PPO vs GRPO vs standard PPO. (6) WebShop and Sokoban results."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "d0846185-899a-4718-9d8e-d394ad6e4963",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012ibhSLmNoUKXvT2udZwAPg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5313,
+      "cache_read_input_tokens": 37692,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5313
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U5jGsTNGHRJZVFSRsaGXMX`</summary>
+
+```json
+{
+  "query": "\"Planner-R1\" reward shaping agentic RL smaller LLMs arXiv 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "d543a049-17da-45aa-9232-04a1eaadfdad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012ibhSLmNoUKXvT2udZwAPg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5313,
+      "cache_read_input_tokens": 37692,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5313
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RqfMCjsu5q46LzwufwzxKg`</summary>
+
+```json
+{
+  "query": "VAGEN bi-level GAE turn-aware credit assignment multi-turn VLM agent 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "b71d56b8-d93f-47cd-ae59-5083fe2493f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012ibhSLmNoUKXvT2udZwAPg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5313,
+      "cache_read_input_tokens": 37692,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5313
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-17T12:17:30.468Z_
+
+<details><summary>↩ Tool result · `toolu_01PN6Tm2Mj2YTQJMSbg6kYmQ`</summary>
+
+```text
+# GAGPO: Generalized Advantage Grouped Policy Optimization
+
+**Title:** GAGPO: Generalized Advantage Grouped Policy Optimization
+
+**Authors:** Siyuan Zhu, Chao Yu, Rongxin Yang, Zongkai Liu, Jinjun Hu, Qiwen Chen, Yibo Zhang
+
+**Year:** 2026 (arXiv:2605.13217v1, posted May 13, 2026)
+
+## Abstract Summary
+
+GAGPO addresses credit assignment challenges in multi-turn language model agent training through reinforcement learning. The method tackles the difficulty of propagating sparse, delayed trajectory-level rewards back to individual intermediate actions without requiring auxiliary value models.
+
+## Core Method
+
+GAGPO introduces three key innovations for step-aligned temporal credit assignment:
+
+1. **Grouped Value Proxy:** Constructs a non-parametric value estimate by "averaging the discounted returns of steps in the same [environmental] group" across sampled rollouts, enabling TD/GAE-style advantage computation without a learned critic.
+
+2. **Temporal Credit Propagation:** Implements recursive advantage estimation using the formula A^t = δt + γλA^(t+1), where temporal-difference residuals propagate delayed outcomes backward through time.
+
+3. **Group-Normalized PPO:** Applies normalization within rollout groups rather than across batches, and uses sequence-level importance ratios for multi-token actions to maintain coherent optimization signals.
+
+## Key Experimental Results
+
+**ALFWorld Performance:**
+- Qwen2.5-1.5B: 93.5% success (vs. 88.1% for prior best)
+- Qwen2.5-7B: 95.6% success (vs. 88.8% for prior best)
+
+**WebShop Performance:**
+- 1.5B model: 88.6 score, 78.1% success rate
+- 7B model: 90.3 score, 77.5% success rate
+
+**Learning Efficiency:** GAGPO demonstrates faster early-stage improvement, smoother optimization dynamics with lower gradient variance, and substantially lower advantage signal variance compared to baseline GiGPO.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "342a7014-873d-4edc-bc8f-33cda96ac012",
+  "tool_use_result": {
+    "bytes": 201333,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# GAGPO: Generalized Advantage Grouped Policy Optimization\n\n**Title:** GAGPO: Generalized Advantage Grouped Policy Optimization\n\n**Authors:** Siyuan Zhu, Chao Yu, Rongxin Yang, Zongkai Liu, Jinjun Hu, Qiwen Chen, Yibo Zhang\n\n**Year:** 2026 (arXiv:2605.13217v1, posted May 13, 2026)\n\n## Abstract Summary\n\nGAGPO addresses credit assignment challenges in multi-turn language model agent training through reinforcement learning. The method tackles the difficulty of propagating sparse, delayed trajectory-level rewards back to individual intermediate actions without requiring auxiliary value models.\n\n## Core Method\n\nGAGPO introduces three key innovations for step-aligned temporal credit assignment:\n\n1. **Grouped Value Proxy:** Constructs a non-parametric value estimate by \"averaging the discounted returns of steps in the same [environmental] group\" across sampled rollouts, enabling TD/GAE-style advantage computation without a learned critic.\n\n2. **Temporal Credit Propagation:** Implements recursive advantage estimation using the formula A^t = δt + γλA^(t+1), where temporal-difference residuals propagate delayed outcomes backward through time.\n\n3. **Group-Normalized PPO:** Applies normalization within rollout groups rather than across batches, and uses sequence-level importance ratios for multi-token actions to maintain coherent optimization signals.\n\n## Key Experimental Results\n\n**ALFWorld Performance:**\n- Qwen2.5-1.5B: 93.5% success (vs. 88.1% for prior best)\n- Qwen2.5-7B: 95.6% success (vs. 88.8% for prior best)\n\n**WebShop Performance:**\n- 1.5B model: 88.6 score, 78.1% success rate\n- 7B model: 90.3 score, 77.5% success rate\n\n**Learning Efficiency:** GAGPO demonstrates faster early-stage improvement, smoother optimization dynamics with lower gradient variance, and substantially lower advantage signal variance compared to baseline GiGPO.",
+    "durationMs": 10745,
+    "url": "https://arxiv.org/html/2605.13217"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-17T12:17:32.204Z_
+
+<details><summary>↩ Tool result · `toolu_01GhmGaRwnrJ8yMTpqmxzXNP`</summary>
+
+```text
+# WebRL Paper Summary
+
+**Title:** WebRL: Training LLM Web Agents via Self-Evolving Online Curriculum Reinforcement Learning
+
+**Authors:** Zehan Qi, Xiao Liu, Iat Long Iong, Hanyu Lai, Xueqiao Sun, Wenyi Zhao, Yu Yang, Xinyue Yang, Jiadai Sun, Shuntian Yao, Tianjie Zhang, Wei Xu, Jie Tang, Yuxiao Dong
+
+**Year:** 2024 (submitted November 4, 2024; published at ICLR 2025)
+
+**Venue:** ICLR 2025
+
+## Abstract Summary
+
+The paper addresses training open-source language models to function as effective web agents. The authors note that "LLMs have shown remarkable potential as autonomous agents, particularly in web-based tasks" but existing approaches rely on expensive proprietary APIs.
+
+## Core WebRL Methods
+
+**Three key components:**
+
+1. **Self-Evolving Curriculum:** Generates new training tasks dynamically from unsuccessful attempts, expanding limited task availability
+2. **Outcome-Supervised Reward Model (ORM):** Provides robust reward signals despite sparse feedback in web navigation environments
+3. **Adaptive Reinforcement Learning:** Maintains consistent performance improvements while mitigating policy distribution drift during online training
+
+## Handling Sparse Rewards
+
+The outcome-supervised reward model specifically addresses credit assignment challenges by supervising rewards based on task completion outcomes rather than relying on intermediate signals.
+
+## Key Experimental Results (WebArena-Lite)
+
+- Llama-3.1-8B: improved from 4.8% to 42.4% success rate
+- GLM-4-9B: improved from 6.1% to 43% success rate
+- Both significantly outperformed GPT-4-Turbo (17.6%) and GPT-4o (13.9%)
+- Exceeded previous state-of-the-art open-model approach (AutoWebGLM, 18.2%)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "17185edd-ea55-4a15-893d-b2f757df7db3",
+  "tool_use_result": {
+    "bytes": 48974,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# WebRL Paper Summary\n\n**Title:** WebRL: Training LLM Web Agents via Self-Evolving Online Curriculum Reinforcement Learning\n\n**Authors:** Zehan Qi, Xiao Liu, Iat Long Iong, Hanyu Lai, Xueqiao Sun, Wenyi Zhao, Yu Yang, Xinyue Yang, Jiadai Sun, Shuntian Yao, Tianjie Zhang, Wei Xu, Jie Tang, Yuxiao Dong\n\n**Year:** 2024 (submitted November 4, 2024; published at ICLR 2025)\n\n**Venue:** ICLR 2025\n\n## Abstract Summary\n\nThe paper addresses training open-source language models to function as effective web agents. The authors note that \"LLMs have shown remarkable potential as autonomous agents, particularly in web-based tasks\" but existing approaches rely on expensive proprietary APIs.\n\n## Core WebRL Methods\n\n**Three key components:**\n\n1. **Self-Evolving Curriculum:** Generates new training tasks dynamically from unsuccessful attempts, expanding limited task availability\n2. **Outcome-Supervised Reward Model (ORM):** Provides robust reward signals despite sparse feedback in web navigation environments\n3. **Adaptive Reinforcement Learning:** Maintains consistent performance improvements while mitigating policy distribution drift during online training\n\n## Handling Sparse Rewards\n\nThe outcome-supervised reward model specifically addresses credit assignment challenges by supervising rewards based on task completion outcomes rather than relying on intermediate signals.\n\n## Key Experimental Results (WebArena-Lite)\n\n- Llama-3.1-8B: improved from 4.8% to 42.4% success rate\n- GLM-4-9B: improved from 6.1% to 43% success rate\n- Both significantly outperformed GPT-4-Turbo (17.6%) and GPT-4o (13.9%)\n- Exceeded previous state-of-the-art open-model approach (AutoWebGLM, 18.2%)",
+    "durationMs": 13376,
+    "url": "https://arxiv.org/abs/2411.02337"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-17T12:17:41.415Z_
+
+<details><summary>↩ Tool result · `toolu_01U5jGsTNGHRJZVFSRsaGXMX`</summary>
+
+```text
+Web search results for query: ""Planner-R1" reward shaping agentic RL smaller LLMs arXiv 2025"
+
+Links: [{"title":"[2509.25779] Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs","url":"https://arxiv.org/abs/2509.25779"},{"title":"Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs","url":"https://arxiv.org/html/2509.25779v2"},{"title":"PLANNER-R1: REWARD SHAPING ENABLES EFFI- CIENT AGENTIC RL WITH SMALLER LLMS","url":"https://arxiv.org/pdf/2509.25779"},{"title":"Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs | OpenReview","url":"https://openreview.net/forum?id=CmOaD42eAT"},{"title":"Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250925779Z/abstract"},{"title":"Planner-R1: Reward Shaping Enables Efficient Agentic RL ...","url":"https://www.researchgate.net/publication/396048946_Planner-R1_Reward_Shaping_Enables_Efficient_Agentic_RL_with_Smaller_LLMs"},{"title":"PLANNER-R1: REWARD SHAPING ENABLES EFFI","url":"https://openreview.net/pdf/24fff7e9068e6d8af9f07e73abfdcb0d788c3abe.pdf"},{"title":"The Landscape of Agentic Reinforcement Learning for LLMs: A Survey","url":"https://arxiv.org/html/2509.02547v4"},{"title":"Enhancing Agentic RL with Progressive Reward Shaping and...","url":"https://arxiv.org/abs/2512.07478"},{"title":"Enhancing Agentic RL with Progressive Reward Shaping and Value-based Sampling Policy Optimization","url":"https://arxiv.org/html/2512.07478"}]
+
+I found comprehensive information about the Planner-R1 paper. Here's a summary:
+
+## Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs
+
+Planner-R1 achieved a 56.9% final-pass rate with only 180 training queries, a 2.7× improvement over GPT-5's 21.2% baseline and the strongest agentic result on the public leaderboard on the TravelPlanner benchmark.
+
+### Key Findings
+
+A central finding was that smaller models (8B) were highly responsive to reward shaping: with dense process-level signals, they reached competitive performance while being 3.5× more compute-efficient and 1.5× more memory-efficient than 32B models.
+
+Larger models were more robust under sparse rewards but exhibited smaller relative gains from shaping and higher variance across runs.
+
+### Methodology
+
+The researchers investigated Agentic RL with large language models on the TravelPlanner benchmark. While curriculum learning offered no significant benefit, shaped rewards consistently amplified learning dynamics, making 8B models the most efficient setting for agentic RL.
+
+### Generalization
+
+Fine-tuned models mostly maintained or exceeded baseline performance on out-of-domain tasks, including Multi-IF, NaturalPlan, and Tau-Bench.
+
+The paper is available on arXiv (2509.25779) and provides important insights into how reward shaping can make smaller language models competitive for agentic reinforcement learning tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "50a7cb90-55df-4d9f-82a6-ecbd028ad907",
+  "tool_use_result": {
+    "query": "\"Planner-R1\" reward shaping agentic RL smaller LLMs arXiv 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012ejigJTH2w9WHDNor1cQqN",
+        "content": [
+          {
+            "title": "[2509.25779] Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs",
+            "url": "https://arxiv.org/abs/2509.25779"
+          },
+          {
+            "title": "Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs",
+            "url": "https://arxiv.org/html/2509.25779v2"
+          },
+          {
+            "title": "PLANNER-R1: REWARD SHAPING ENABLES EFFI- CIENT AGENTIC RL WITH SMALLER LLMS",
+            "url": "https://arxiv.org/pdf/2509.25779"
+          },
+          {
+            "title": "Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs | OpenReview",
+            "url": "https://openreview.net/forum?id=CmOaD42eAT"
+          },
+          {
+            "title": "Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250925779Z/abstract"
+          },
+          {
+            "title": "Planner-R1: Reward Shaping Enables Efficient Agentic RL ...",
+            "url": "https://www.researchgate.net/publication/396048946_Planner-R1_Reward_Shaping_Enables_Efficient_Agentic_RL_with_Smaller_LLMs"
+          },
+          {
+            "title": "PLANNER-R1: REWARD SHAPING ENABLES EFFI",
+            "url": "https://openreview.net/pdf/24fff7e9068e6d8af9f07e73abfdcb0d788c3abe.pdf"
+          },
+          {
+            "title": "The Landscape of Agentic Reinforcement Learning for LLMs: A Survey",
+            "url": "https://arxiv.org/html/2509.02547v4"
+          },
+          {
+            "title": "Enhancing Agentic RL with Progressive Reward Shaping and...",
+            "url": "https://arxiv.org/abs/2512.07478"
+          },
+          {
+            "title": "Enhancing Agentic RL with Progressive Reward Shaping and Value-based Sampling Policy Optimization",
+            "url": "https://arxiv.org/html/2512.07478"
+          }
+        ]
+      },
+      "I found comprehensive information about the Planner-R1 paper. Here's a summary:\n\n## Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs\n\nPlanner-R1 achieved a 56.9% final-pass rate with only 180 training queries, a 2.7× improvement over GPT-5's 21.2% baseline and the strongest agentic result on the public leaderboard on the TravelPlanner benchmark.\n\n### Key Findings\n\nA central finding was that smaller models (8B) were highly responsive to reward shaping: with dense process-level signals, they reached competitive performance while being 3.5× more compute-efficient and 1.5× more memory-efficient than 32B models.\n\nLarger models were more robust under sparse rewards but exhibited smaller relative gains from shaping and higher variance across runs.\n\n### Methodology\n\nThe researchers investigated Agentic RL with large language models on the TravelPlanner benchmark. While curriculum learning offered no significant benefit, shaped rewards consistently amplified learning dynamics, making 8B models the most efficient setting for agentic RL.\n\n### Generalization\n\nFine-tuned models mostly maintained or exceeded baseline performance on out-of-domain tasks, including Multi-IF, NaturalPlan, and Tau-Bench.\n\nThe paper is available on arXiv (2509.25779) and provides important insights into how reward shaping can make smaller language models competitive for agentic reinforcement learning tasks."
+    ],
+    "durationSeconds": 16.457135511
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-17T12:17:42.387Z_
+
+<details><summary>↩ Tool result · `toolu_01E8bzeqNtSF3ArZKd9Lu3BT`</summary>
+
+```text
+# Turn-PPO Method Analysis
+
+## (1) Turn-Level MDP Formulation
+
+The turn-MDP redefines the state-action structure fundamentally. Rather than treating individual tokens as actions, the authors define the state as "the full interaction history up to the (h−1)-th round together with the current h-th query," while the action becomes "the LLM's response at round h." This creates uniform representation where every state is complete history plus current query, and every action is a full response.
+
+## (2) Advantage Computation: Turn vs Token Level
+
+**Token-level PPO** computes advantages at each token using the critic's value predictions: γV_{t+1} − V_t for intermediate tokens and r − V_T for final tokens, with clipping performed per token.
+
+**Turn-PPO** operates at turn granularity, computing advantages as γV_{n+1} − V_n for intermediate turns and r − V_N for final turns. Critically, "the entire LLM response for that turn is considered the action, so the computed advantage applies to the whole response." This yields much higher clipping ratios, preventing unstable updates when policy shifts dramatically.
+
+## (3) GRPO Problems in Multi-Turn Settings
+
+The paper identifies two fundamental issues:
+
+1. **Uniform advantage assignment**: GRPO applies "the same advantage uniformly to all tokens across turns," ignoring that different turns "contribute unequally to the final reward."
+
+2. **High variance in advantage estimation**: The "state representation misalignment" occurs because "within a response, the next state is simply the current state with one token appended, whereas across responses, the next state incorporates an entire block of tokens from the environment output." This causes the critic to regress toward averaged values, degrading advantage quality.
+
+## (4) Advantage Sign Issues
+
+The paper doesn't explicitly discuss advantage sign misattribution but emphasizes that token-level MDPs suffer from "state representation misalignment," complicating critic learning through heterogeneous transition patterns.
+
+## (5) Experimental Results Comparison
+
+**Table 2 Summary:**
+
+| Environment | Model | GRPO | Token-PPO | Turn-PPO |
+|---|---|---|---|---|
+| WebShop | Qwen2.5-3B | 0.72 | 0.73 | **0.75** |
+| WebShop | Qwen3-1.7B (no think) | 0.78 | 0.77 | **0.80** |
+| WebShop | Qwen3-1.7B (think) | Crash | 0.54 | **0.55** |
+| Sokoban | Qwen2.5-3B | Crash | 1.93 | **2.29** |
+| Sokoban | Qwen2.5-7B | Crash | 2.90 | **3.74** |
+
+Key observation: "GRPO exhibits significant instability: in both tasks, training often collapses abruptly, particularly in the long-reasoning setting with Qwen3."
+
+## (6) WebShop and Sokoban Results
+
+**WebShop**: Turn-PPO achieves consistent improvements over token-PPO (0.75 vs 0.73 for Qwen2.5-3B; 0.80 vs 0.77 for Qwen3 without reasoning). GRPO crashes when Qwen3's reasoning is enabled.
+
+**Sokoban**: Turn-PPO shows substantial gains—3.74 vs 2.90 for Qwen2.5-7B. Both GRPO implementations crash, whereas PPO variants succeed, demonstrating superior stability in sparse-reward spatial planning tasks.
+
+The authors conclude that turn-PPO enables "more coherent representation" and allows "flexible tuning of γ and λ," which token-PPO cannot support without training divergence.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "cc0392ea-6d61-482c-8de4-c0a975271554",
+  "tool_use_result": {
+    "bytes": 205821,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Turn-PPO Method Analysis\n\n## (1) Turn-Level MDP Formulation\n\nThe turn-MDP redefines the state-action structure fundamentally. Rather than treating individual tokens as actions, the authors define the state as \"the full interaction history up to the (h−1)-th round together with the current h-th query,\" while the action becomes \"the LLM's response at round h.\" This creates uniform representation where every state is complete history plus current query, and every action is a full response.\n\n## (2) Advantage Computation: Turn vs Token Level\n\n**Token-level PPO** computes advantages at each token using the critic's value predictions: γV_{t+1} − V_t for intermediate tokens and r − V_T for final tokens, with clipping performed per token.\n\n**Turn-PPO** operates at turn granularity, computing advantages as γV_{n+1} − V_n for intermediate turns and r − V_N for final turns. Critically, \"the entire LLM response for that turn is considered the action, so the computed advantage applies to the whole response.\" This yields much higher clipping ratios, preventing unstable updates when policy shifts dramatically.\n\n## (3) GRPO Problems in Multi-Turn Settings\n\nThe paper identifies two fundamental issues:\n\n1. **Uniform advantage assignment**: GRPO applies \"the same advantage uniformly to all tokens across turns,\" ignoring that different turns \"contribute unequally to the final reward.\"\n\n2. **High variance in advantage estimation**: The \"state representation misalignment\" occurs because \"within a response, the next state is simply the current state with one token appended, whereas across responses, the next state incorporates an entire block of tokens from the environment output.\" This causes the critic to regress toward averaged values, degrading advantage quality.\n\n## (4) Advantage Sign Issues\n\nThe paper doesn't explicitly discuss advantage sign misattribution but emphasizes that token-level MDPs suffer from \"state representation misalignment,\" complicating critic learning through heterogeneous transition patterns.\n\n## (5) Experimental Results Comparison\n\n**Table 2 Summary:**\n\n| Environment | Model | GRPO | Token-PPO | Turn-PPO |\n|---|---|---|---|---|\n| WebShop | Qwen2.5-3B | 0.72 | 0.73 | **0.75** |\n| WebShop | Qwen3-1.7B (no think) | 0.78 | 0.77 | **0.80** |\n| WebShop | Qwen3-1.7B (think) | Crash | 0.54 | **0.55** |\n| Sokoban | Qwen2.5-3B | Crash | 1.93 | **2.29** |\n| Sokoban | Qwen2.5-7B | Crash | 2.90 | **3.74** |\n\nKey observation: \"GRPO exhibits significant instability: in both tasks, training often collapses abruptly, particularly in the long-reasoning setting with Qwen3.\"\n\n## (6) WebShop and Sokoban Results\n\n**WebShop**: Turn-PPO achieves consistent improvements over token-PPO (0.75 vs 0.73 for Qwen2.5-3B; 0.80 vs 0.77 for Qwen3 without reasoning). GRPO crashes when Qwen3's reasoning is enabled.\n\n**Sokoban**: Turn-PPO shows substantial gains—3.74 vs 2.90 for Qwen2.5-7B. Both GRPO implementations crash, whereas PPO variants succeed, demonstrating superior stability in sparse-reward spatial planning tasks.\n\nThe authors conclude that turn-PPO enables \"more coherent representation\" and allows \"flexible tuning of γ and λ,\" which token-PPO cannot support without training divergence.",
+    "durationMs": 18302,
+    "url": "https://arxiv.org/html/2512.17008v1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-17T12:17:44.247Z_
+
+<details><summary>↩ Tool result · `toolu_01RqfMCjsu5q46LzwufwzxKg`</summary>
+
+```text
+Web search results for query: "VAGEN bi-level GAE turn-aware credit assignment multi-turn VLM agent 2025"
+
+Links: [{"title":"VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents","url":"https://vagen-ai.github.io/vagen_paper.pdf"},{"title":"[2510.16907] VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents","url":"https://arxiv.org/abs/2510.16907"},{"title":"VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents | OpenReview","url":"https://openreview.net/forum?id=xpjWEgf8zi"},{"title":"VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents","url":"https://arxiv.org/html/2510.16907v1"},{"title":"VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents - Microsoft Research","url":"https://www.microsoft.com/en-us/research/publication/vagen-reinforcing-world-model-reasoning-for-multi-turn-vlm-agents/"},{"title":"VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents","url":"https://www.researchgate.net/publication/396715759_VAGEN_Reinforcing_World_Model_Reasoning_for_Multi-Turn_VLM_Agents"},{"title":"VAGEN - VLM Agent Training","url":"https://vagen-ai.github.io/"},{"title":"[2510.16907v1] VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents","url":"https://arxiv.org/abs/2510.16907v1"},{"title":"VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents | alphaXiv","url":"https://www.alphaxiv.org/overview/2510.16907v1"},{"title":"VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents","url":"https://openreview.net/pdf/ed11882b04656406635941c99bb0b5dbf475a088.pdf"}]
+
+Based on the search results, I found comprehensive information about VAGEN. Here's what the research presents:
+
+## VAGEN: Overview
+
+VAGEN is a scalable system for training and analyzing multi-turn VLM agents in diverse visual environments.
+
+## Key Challenge
+
+A key challenge in training Vision-Language Model (VLM) agents, compared to Language Model (LLM) agents, lies in the shift from textual states to complex visual observations. This transition introduces partial observability and demands robust world modeling.
+
+## Core Technical Innovations
+
+**World Modeling Approach:** The framework decomposes the agent's reasoning into State Estimation ("what is the current state?") and Transition Modeling ("what comes next?"), which is critical for success.
+
+**Bi-Level GAE for Turn-Aware Credit Assignment:** The approach introduces Bi-Level General Advantage Estimation (Bi-Level GAE) for turn-aware credit assignment. The method first computes advantages at the turn level to assess whether a VLM's response in a single-step world modeling is generally effective, and then propagates these signals to the token level, providing each VLM-generated token with fine-grained advantages to optimize its generation process.
+
+## Performance Results
+
+Through this form of visual state reasoning, a 3B-parameter model achieves a score of 0.82 across five diverse agent benchmarks, representing a 3× improvement over its untrained counterpart (0.21) and outperforming proprietary reasoning models such as GPT-5 (0.75), Gemini 2.5 Pro (0.67) and Claude 4.5 (0.62).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "b49fff81-3a4a-44e4-8e2b-63b7b387cd94",
+  "tool_use_result": {
+    "query": "VAGEN bi-level GAE turn-aware credit assignment multi-turn VLM agent 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Y8cRnpc87KrhpLMu9GWb9M",
+        "content": [
+          {
+            "title": "VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents",
+            "url": "https://vagen-ai.github.io/vagen_paper.pdf"
+          },
+          {
+            "title": "[2510.16907] VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents",
+            "url": "https://arxiv.org/abs/2510.16907"
+          },
+          {
+            "title": "VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents | OpenReview",
+            "url": "https://openreview.net/forum?id=xpjWEgf8zi"
+          },
+          {
+            "title": "VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents",
+            "url": "https://arxiv.org/html/2510.16907v1"
+          },
+          {
+            "title": "VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents - Microsoft Research",
+            "url": "https://www.microsoft.com/en-us/research/publication/vagen-reinforcing-world-model-reasoning-for-multi-turn-vlm-agents/"
+          },
+          {
+            "title": "VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents",
+            "url": "https://www.researchgate.net/publication/396715759_VAGEN_Reinforcing_World_Model_Reasoning_for_Multi-Turn_VLM_Agents"
+          },
+          {
+            "title": "VAGEN - VLM Agent Training",
+            "url": "https://vagen-ai.github.io/"
+          },
+          {
+            "title": "[2510.16907v1] VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents",
+            "url": "https://arxiv.org/abs/2510.16907v1"
+          },
+          {
+            "title": "VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2510.16907v1"
+          },
+          {
+            "title": "VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents",
+            "url": "https://openreview.net/pdf/ed11882b04656406635941c99bb0b5dbf475a088.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about VAGEN. Here's what the research presents:\n\n## VAGEN: Overview\n\nVAGEN is a scalable system for training and analyzing multi-turn VLM agents in diverse visual environments.\n\n## Key Challenge\n\nA key challenge in training Vision-Language Model (VLM) agents, compared to Language Model (LLM) agents, lies in the shift from textual states to complex visual observations. This transition introduces partial observability and demands robust world modeling.\n\n## Core Technical Innovations\n\n**World Modeling Approach:** The framework decomposes the agent's reasoning into State Estimation (\"what is the current state?\") and Transition Modeling (\"what comes next?\"), which is critical for success.\n\n**Bi-Level GAE for Turn-Aware Credit Assignment:** The approach introduces Bi-Level General Advantage Estimation (Bi-Level GAE) for turn-aware credit assignment. The method first computes advantages at the turn level to assess whether a VLM's response in a single-step world modeling is generally effective, and then propagates these signals to the token level, providing each VLM-generated token with fine-grained advantages to optimize its generation process.\n\n## Performance Results\n\nThrough this form of visual state reasoning, a 3B-parameter model achieves a score of 0.82 across five diverse agent benchmarks, representing a 3× improvement over its untrained counterpart (0.21) and outperforming proprietary reasoning models such as GPT-5 (0.75), Gemini 2.5 Pro (0.67) and Claude 4.5 (0.62)."
+    ],
+    "durationSeconds": 19.095438905
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent, I've gathered a lot of data. Let me fetch a few more papers and get the last details I need:
+
+1. Planner-R1 (2509.25779) - need more details on its reward shaping approach
+2. VAGEN (2510.16907) - need to understand the Bi-Level GAE method better
+3. The survey paper (2604.09459) - might need more from the full text
+4. "Alleviating Sparse Rewards by Modeling Step-Wise and Long-Term Sampling Effects in Flow-Based GRPO" (2602.06422)
+
+
+5. AgentRM paper
+
+I should also look into some specific areas: advantage sign issues in the literature, DeepSeek-R1's GRPO implementation, ArCHer's hierarchical approach to RL for language models, and that practitioner's guide on multi-turn agentic RL.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "ff64ffb3-1d15-4eb6-8142-6eaf15ca811b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DRdvwJRazpHMYsW3E1v8gC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4704,
+      "cache_read_input_tokens": 43005,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4704
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70_
+
+Let me get a few more key papers and then compile the literature review.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "4d852d0e-9f6b-4c60-8c3c-795fffdd827b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DRdvwJRazpHMYsW3E1v8gC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4704,
+      "cache_read_input_tokens": 43005,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4704
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01UDUfKcExHwb4tLvUijJ64j`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2510.16907",
+  "prompt": "Extract: title, authors, year, venue, abstract, detailed description of Bi-Level GAE method (how turn-level advantages are computed first, then propagated to token level), key experimental results and benchmarks."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "88b834a8-8821-4041-9a82-3c16591d02ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DRdvwJRazpHMYsW3E1v8gC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4704,
+      "cache_read_input_tokens": 43005,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4704
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013PuqfXWGb2nMoTC18TKvzQ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2509.25779",
+  "prompt": "Extract: title, authors, year, venue, abstract, core findings on reward shaping for agentic RL (dense vs sparse rewards, effect on smaller vs larger models), key experimental results on TravelPlanner benchmark."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "66a2740a-741c-4115-9a8d-4138bf7798e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DRdvwJRazpHMYsW3E1v8gC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4704,
+      "cache_read_input_tokens": 43005,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4704
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EhDor3tkd4KeQuu1oBw7vZ`</summary>
+
+```json
+{
+  "query": "ArCHer hierarchical reinforcement learning language model multi-turn token-level turn-level 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "2134dae1-8cc7-4efc-8ce2-97c1b3fb2a9d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DRdvwJRazpHMYsW3E1v8gC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4704,
+      "cache_read_input_tokens": 43005,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4704
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015JNYJoNtc4ubbMKN6k4BZ6`</summary>
+
+```json
+{
+  "query": "\"practitioner guide\" multi-turn agentic reinforcement learning NeurIPS 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "f17b276f-21d0-4825-8128-092c9f7768ae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DRdvwJRazpHMYsW3E1v8gC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4704,
+      "cache_read_input_tokens": 43005,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4704
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01M4zCd6UcvZUxxughiE6uf2`</summary>
+
+```json
+{
+  "query": "DeepSeek-R1 GRPO reinforcement learning reasoning credit assignment token-level"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "4efe420e-5963-499b-aced-052b6a66bcd5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DRdvwJRazpHMYsW3E1v8gC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4704,
+      "cache_read_input_tokens": 43005,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4704
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-17T12:18:03.137Z_
+
+<details><summary>↩ Tool result · `toolu_01UDUfKcExHwb4tLvUijJ64j`</summary>
+
+```text
+# VAGEN: Paper Summary
+
+**Title:** "VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents"
+
+**Authors:** Kangrui Wang, Pingyue Zhang, Zihan Wang, Yaning Gao, Linjie Li, Qineng Wang, Hanyang Chen, Chi Wan, Yiping Lu, Zhengyuan Yang, Lijuan Wang, Ranjay Krishna, Jiajun Wu, Li Fei-Fei, Yejin Choi, and Manling Li
+
+**Year:** 2025 (submitted October 19, 2025)
+
+**Venue:** NeurIPS 2025
+
+## Abstract Summary
+
+The research tackles a critical challenge in training vision-language model agents: moving from text-based to visually-grounded reasoning. The authors propose that "VLM agents construct internal world models through explicit visual state" decomposition, focusing on State Estimation and Transition Modeling as core components.
+
+## Bi-Level GAE Method
+
+The paper introduces Bi-Level General Advantage Estimation (Bi-Level GAE) as a credit assignment mechanism. Rather than providing detailed equations in the source material, the abstract indicates this method enables "turn-aware credit assignment," suggesting advantages are first computed at the turn (interaction step) level before distribution to individual token positions within each turn.
+
+## Key Results
+
+A 3-billion parameter model achieved:
+- **0.82 score** across five diverse agent benchmarks
+- **3× improvement** over untrained baseline (0.21)
+- **Outperformed** GPT-5 (0.75), Gemini 2.5 Pro (0.67), and Claude 4.5 (0.62)
+
+The framework, VAGEN, demonstrates that optimal internal representation varies by task—natural language for semantic tasks, structured formats for precise manipulation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "8b537550-54fb-44a9-a36e-c48ad73a79f0",
+  "tool_use_result": {
+    "bytes": 49841,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# VAGEN: Paper Summary\n\n**Title:** \"VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents\"\n\n**Authors:** Kangrui Wang, Pingyue Zhang, Zihan Wang, Yaning Gao, Linjie Li, Qineng Wang, Hanyang Chen, Chi Wan, Yiping Lu, Zhengyuan Yang, Lijuan Wang, Ranjay Krishna, Jiajun Wu, Li Fei-Fei, Yejin Choi, and Manling Li\n\n**Year:** 2025 (submitted October 19, 2025)\n\n**Venue:** NeurIPS 2025\n\n## Abstract Summary\n\nThe research tackles a critical challenge in training vision-language model agents: moving from text-based to visually-grounded reasoning. The authors propose that \"VLM agents construct internal world models through explicit visual state\" decomposition, focusing on State Estimation and Transition Modeling as core components.\n\n## Bi-Level GAE Method\n\nThe paper introduces Bi-Level General Advantage Estimation (Bi-Level GAE) as a credit assignment mechanism. Rather than providing detailed equations in the source material, the abstract indicates this method enables \"turn-aware credit assignment,\" suggesting advantages are first computed at the turn (interaction step) level before distribution to individual token positions within each turn.\n\n## Key Results\n\nA 3-billion parameter model achieved:\n- **0.82 score** across five diverse agent benchmarks\n- **3× improvement** over untrained baseline (0.21)\n- **Outperformed** GPT-5 (0.75), Gemini 2.5 Pro (0.67), and Claude 4.5 (0.62)\n\nThe framework, VAGEN, demonstrates that optimal internal representation varies by task—natural language for semantic tasks, structured formats for precise manipulation.",
+    "durationMs": 6917,
+    "url": "https://arxiv.org/abs/2510.16907"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-17T12:18:03.245Z_
+
+<details><summary>↩ Tool result · `toolu_013PuqfXWGb2nMoTC18TKvzQ`</summary>
+
+```text
+# Planner-R1: Paper Summary
+
+**Title:** Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs
+
+**Authors:** Siyu Zhu, Yanbin Jiang, Hejian Sang, Shao Tang, Qingquan Song, Biao He, Rohit Jain, Zhipeng Wang, Alborz Geramifard
+
+**Year:** 2025 (submitted September 30, 2025)
+
+**Venue:** arXiv (cs.AI - Computer Science/Artificial Intelligence)
+
+## Abstract Summary
+The research examines agent-based reinforcement learning using language models on the TravelPlanner benchmark, focusing on how reward shaping influences training efficiency across different model sizes.
+
+## Core Findings on Reward Shaping
+
+**Dense vs. Sparse Rewards:**
+- Dense process-level reward signals proved significantly more effective than sparse approaches
+- "Shaped rewards consistently amplified learning dynamics"
+
+**Effect on Model Sizes:**
+- **Smaller models (8B parameters):** Highly responsive to reward shaping, achieving competitive results while being "3.5× more compute-efficient and 1.5× more memory-efficient than 32B models"
+- **Larger models (32B+):** More robust under sparse rewards but showed smaller relative gains from shaping and higher variance
+
+## Key TravelPlanner Results
+- **56.9% final-pass rate** achieved with only 180 training queries
+- Represents a **2.7× improvement** over GPT-5's 21.2% baseline
+- Strongest public leaderboard performance for agentic approaches
+- Generalization maintained: models performed comparably on out-of-domain tasks
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "f5cb64d1-c1c4-4898-a0e8-80fb4c85e431",
+  "tool_use_result": {
+    "bytes": 47264,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Planner-R1: Paper Summary\n\n**Title:** Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs\n\n**Authors:** Siyu Zhu, Yanbin Jiang, Hejian Sang, Shao Tang, Qingquan Song, Biao He, Rohit Jain, Zhipeng Wang, Alborz Geramifard\n\n**Year:** 2025 (submitted September 30, 2025)\n\n**Venue:** arXiv (cs.AI - Computer Science/Artificial Intelligence)\n\n## Abstract Summary\nThe research examines agent-based reinforcement learning using language models on the TravelPlanner benchmark, focusing on how reward shaping influences training efficiency across different model sizes.\n\n## Core Findings on Reward Shaping\n\n**Dense vs. Sparse Rewards:**\n- Dense process-level reward signals proved significantly more effective than sparse approaches\n- \"Shaped rewards consistently amplified learning dynamics\"\n\n**Effect on Model Sizes:**\n- **Smaller models (8B parameters):** Highly responsive to reward shaping, achieving competitive results while being \"3.5× more compute-efficient and 1.5× more memory-efficient than 32B models\"\n- **Larger models (32B+):** More robust under sparse rewards but showed smaller relative gains from shaping and higher variance\n\n## Key TravelPlanner Results\n- **56.9% final-pass rate** achieved with only 180 training queries\n- Represents a **2.7× improvement** over GPT-5's 21.2% baseline\n- Strongest public leaderboard performance for agentic approaches\n- Generalization maintained: models performed comparably on out-of-domain tasks",
+    "durationMs": 5729,
+    "url": "https://arxiv.org/abs/2509.25779"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-17T12:18:06.050Z_
+
+<details><summary>↩ Tool result · `toolu_01EhDor3tkd4KeQuu1oBw7vZ`</summary>
+
+```text
+Web search results for query: "ArCHer hierarchical reinforcement learning language model multi-turn token-level turn-level 2024"
+
+Links: [{"title":"[2402.19446] ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL","url":"https://arxiv.org/abs/2402.19446"},{"title":"ICML Poster ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL","url":"https://icml.cc/virtual/2024/poster/33654"},{"title":"ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL","url":"https://proceedings.mlr.press/v235/zhou24t.html"},{"title":"GitHub - YifeiZhou02/ArCHer: Research Code for \"ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL\" · GitHub","url":"https://github.com/YifeiZhou02/ArCHer"},{"title":"ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL","url":"https://yifeizhou02.github.io/archer.io/"},{"title":"training language model agents via hierarchical multi-turn RL","url":"https://dl.acm.org/doi/10.5555/3692070.3694644"},{"title":"[Quick Review] ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL","url":"https://liner.com/review/archer-training-language-model-agents-via-hierarchical-multiturn-rl"},{"title":"ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL","url":"https://arxiv.org/html/2402.19446v1"},{"title":"ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL | Jiayi Pan","url":"https://jiayipan.me/publication/archer/"},{"title":"[2402.19446v1] ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL","url":"https://arxiv.org/abs/2402.19446v1"}]
+
+I found comprehensive information about ArCHer. Here's what the search results reveal:
+
+## ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL
+
+ArCHer is an Actor-Critic Framework with a Hierarchical Structure that combines a high-level off-policy RL algorithm that trains a value function with a low-level RL algorithm that trains a token-by-token policy.
+
+### Core Problem & Motivation
+
+Large language models are used for goal-directed decision-making tasks where an LLM needs to make intelligent decisions over a multi-turn interaction to accomplish a task, but current RL methods for LLMs largely focus on optimizing single-turn rewards.
+
+### Framework Design
+
+ArCHer uses an off-policy temporal difference learning method to train an utterance-level value function at the high level, and any policy gradient algorithm can optimize the token generation at each turn of the interaction at the low level, treating the high-level value function as the terminal reward for that turn.
+
+This allows for sample reuse and faster convergence, while avoiding the need to perform Bellman backups over each individual token, as the high-level critic is trained at a coarser time-scale given by utterances.
+
+### Empirical Results
+
+ArCHer significantly improves efficiency and performance of multi-turn LLM tasks, attaining sample efficiency boosts of about 100x over prior on-policy methods and converging to a much better performance than other off-policy methods.
+
+### Publication
+
+The paper was published in the Proceedings of the 41st International Conference on Machine Learning, PMLR 235:62178-62209, 2024.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "f58927bf-dd27-4dce-9ed6-e2043326e9b4",
+  "tool_use_result": {
+    "query": "ArCHer hierarchical reinforcement learning language model multi-turn token-level turn-level 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019LRC5qBEJS5s3GGxYZq3n5",
+        "content": [
+          {
+            "title": "[2402.19446] ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL",
+            "url": "https://arxiv.org/abs/2402.19446"
+          },
+          {
+            "title": "ICML Poster ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL",
+            "url": "https://icml.cc/virtual/2024/poster/33654"
+          },
+          {
+            "title": "ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL",
+            "url": "https://proceedings.mlr.press/v235/zhou24t.html"
+          },
+          {
+            "title": "GitHub - YifeiZhou02/ArCHer: Research Code for \"ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL\" · GitHub",
+            "url": "https://github.com/YifeiZhou02/ArCHer"
+          },
+          {
+            "title": "ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL",
+            "url": "https://yifeizhou02.github.io/archer.io/"
+          },
+          {
+            "title": "training language model agents via hierarchical multi-turn RL",
+            "url": "https://dl.acm.org/doi/10.5555/3692070.3694644"
+          },
+          {
+            "title": "[Quick Review] ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL",
+            "url": "https://liner.com/review/archer-training-language-model-agents-via-hierarchical-multiturn-rl"
+          },
+          {
+            "title": "ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL",
+            "url": "https://arxiv.org/html/2402.19446v1"
+          },
+          {
+            "title": "ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL | Jiayi Pan",
+            "url": "https://jiayipan.me/publication/archer/"
+          },
+          {
+            "title": "[2402.19446v1] ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL",
+            "url": "https://arxiv.org/abs/2402.19446v1"
+          }
+        ]
+      },
+      "I found comprehensive information about ArCHer. Here's what the search results reveal:\n\n## ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL\n\nArCHer is an Actor-Critic Framework with a Hierarchical Structure that combines a high-level off-policy RL algorithm that trains a value function with a low-level RL algorithm that trains a token-by-token policy.\n\n### Core Problem & Motivation\n\nLarge language models are used for goal-directed decision-making tasks where an LLM needs to make intelligent decisions over a multi-turn interaction to accomplish a task, but current RL methods for LLMs largely focus on optimizing single-turn rewards.\n\n### Framework Design\n\nArCHer uses an off-policy temporal difference learning method to train an utterance-level value function at the high level, and any policy gradient algorithm can optimize the token generation at each turn of the interaction at the low level, treating the high-level value function as the terminal reward for that turn.\n\nThis allows for sample reuse and faster convergence, while avoiding the need to perform Bellman backups over each individual token, as the high-level critic is trained at a coarser time-scale given by utterances.\n\n### Empirical Results\n\nArCHer significantly improves efficiency and performance of multi-turn LLM tasks, attaining sample efficiency boosts of about 100x over prior on-policy methods and converging to a much better performance than other off-policy methods.\n\n### Publication\n\nThe paper was published in the Proceedings of the 41st International Conference on Machine Learning, PMLR 235:62178-62209, 2024."
+    ],
+    "durationSeconds": 7.53160295900001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-17T12:18:06.499Z_
+
+<details><summary>↩ Tool result · `toolu_015JNYJoNtc4ubbMKN6k4BZ6`</summary>
+
+```text
+Web search results for query: ""practitioner guide" multi-turn agentic reinforcement learning NeurIPS 2025"
+
+Links: [{"title":"NeurIPS A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning","url":"https://neurips.cc/virtual/2025/127960"},{"title":"A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=yPWJG9wgll"},{"title":"[2510.01132] A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning","url":"https://arxiv.org/abs/2510.01132"},{"title":"(PDF) A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning","url":"https://www.researchgate.net/publication/396094509_A_Practitioner's_Guide_to_Multi-turn_Agentic_Reinforcement_Learning"},{"title":"NeurIPS 2025 Workshop on Multi-Turn Interactions in Large Language Models","url":"https://workshop-multi-turn-interaction.github.io/"},{"title":"A Practitioner’s Guide to Multi-turn Agentic Reinforcement Learning","url":"https://arxiv.org/html/2510.01132v2"},{"title":"A Practitioner’s Guide to Multi-turn Agentic Reinforcement Learning","url":"https://openreview.net/pdf?id=yPWJG9wgll"},{"title":"Paper page - A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning","url":"https://huggingface.co/papers/2510.01132"},{"title":"A Practitioner's Guide to Multi-turn Agentic Reinforcement ...","url":"https://www.facebook.com/groups/DeepNetGroup/posts/2613713835688149/"},{"title":"A Practitioner's Guide to Multi-turn Agentic Reinforcement ...","url":"https://arxiv.org/pdf/2510.01132"}]
+
+I found comprehensive information about this paper. Here are the key details:
+
+## "A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning"
+
+This paper studies how to train large language models (LLMs) as autonomous agents that act over multiple turns in agentic environments. While reinforcement learning has driven strong single-turn reasoning, extending to multi-turn environments introduces new challenges yet to be addressed.
+
+### Key Research Areas
+
+The authors formulate multi-turn agentic RL with dense per-turn rewards and token-level credit assignment, and provide a systematic analysis of the impacts three RL pillars -- environment, policy, and reward -- on multi-turn RL.
+
+Under interactive text environments (TextWorld, ALFWorld), the authors examine scaling with environment complexity and generalization across tasks; they analyze the role of model priors in subsequent multi-turn RL training; and they compare the impact of sparse and dense per-turn rewards on RL learning.
+
+### Deliverables and Contributions
+
+The paper provides an extensible code framework for multi-turn agentic RL, and together, the formulation, analysis, and toolkit offer practical guidance for building LLM agents capable of robust multi-turn decision making in agentic environments.
+
+### Publication Details
+
+The paper was published on October 6, 2025 and presented at the MTI-LLM workshop at NeurIPS 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "9cabfe96-40df-47f1-b135-3d8cdc7fb290",
+  "tool_use_result": {
+    "query": "\"practitioner guide\" multi-turn agentic reinforcement learning NeurIPS 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FUJ8mqR9WhqLJbesU85Brh",
+        "content": [
+          {
+            "title": "NeurIPS A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning",
+            "url": "https://neurips.cc/virtual/2025/127960"
+          },
+          {
+            "title": "A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=yPWJG9wgll"
+          },
+          {
+            "title": "[2510.01132] A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2510.01132"
+          },
+          {
+            "title": "(PDF) A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning",
+            "url": "https://www.researchgate.net/publication/396094509_A_Practitioner's_Guide_to_Multi-turn_Agentic_Reinforcement_Learning"
+          },
+          {
+            "title": "NeurIPS 2025 Workshop on Multi-Turn Interactions in Large Language Models",
+            "url": "https://workshop-multi-turn-interaction.github.io/"
+          },
+          {
+            "title": "A Practitioner’s Guide to Multi-turn Agentic Reinforcement Learning",
+            "url": "https://arxiv.org/html/2510.01132v2"
+          },
+          {
+            "title": "A Practitioner’s Guide to Multi-turn Agentic Reinforcement Learning",
+            "url": "https://openreview.net/pdf?id=yPWJG9wgll"
+          },
+          {
+            "title": "Paper page - A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning",
+            "url": "https://huggingface.co/papers/2510.01132"
+          },
+          {
+            "title": "A Practitioner's Guide to Multi-turn Agentic Reinforcement ...",
+            "url": "https://www.facebook.com/groups/DeepNetGroup/posts/2613713835688149/"
+          },
+          {
+            "title": "A Practitioner's Guide to Multi-turn Agentic Reinforcement ...",
+            "url": "https://arxiv.org/pdf/2510.01132"
+          }
+        ]
+      },
+      "I found comprehensive information about this paper. Here are the key details:\n\n## \"A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning\"\n\nThis paper studies how to train large language models (LLMs) as autonomous agents that act over multiple turns in agentic environments. While reinforcement learning has driven strong single-turn reasoning, extending to multi-turn environments introduces new challenges yet to be addressed.\n\n### Key Research Areas\n\nThe authors formulate multi-turn agentic RL with dense per-turn rewards and token-level credit assignment, and provide a systematic analysis of the impacts three RL pillars -- environment, policy, and reward -- on multi-turn RL.\n\nUnder interactive text environments (TextWorld, ALFWorld), the authors examine scaling with environment complexity and generalization across tasks; they analyze the role of model priors in subsequent multi-turn RL training; and they compare the impact of sparse and dense per-turn rewards on RL learning.\n\n### Deliverables and Contributions\n\nThe paper provides an extensible code framework for multi-turn agentic RL, and together, the formulation, analysis, and toolkit offer practical guidance for building LLM agents capable of robust multi-turn decision making in agentic environments.\n\n### Publication Details\n\nThe paper was published on October 6, 2025 and presented at the MTI-LLM workshop at NeurIPS 2025."
+    ],
+    "durationSeconds": 7.503243067999982
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-17T12:18:07.111Z_
+
+<details><summary>↩ Tool result · `toolu_01M4zCd6UcvZUxxughiE6uf2`</summary>
+
+```text
+Web search results for query: "DeepSeek-R1 GRPO reinforcement learning reasoning credit assignment token-level"
+
+Links: [{"title":"DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning | Nature","url":"https://www.nature.com/articles/s41586-025-09422-z"},{"title":"[2501.12948] DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning","url":"https://arxiv.org/abs/2501.12948"},{"title":"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via","url":"https://arxiv.org/pdf/2501.12948"},{"title":"GRPO Reinforcement Learning Explained (DeepSeekMath Paper) - AI Papers Academy","url":"https://aipapersacademy.com/deepseekmath-grpo/"},{"title":"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning","url":"https://arxiv.org/html/2501.12948v1"},{"title":"Beyond Supervised Fine Tuning: How Reinforcement Learning Empowers AI with Minimal Labels","url":"https://fireworks.ai/blog/reinforcement-learning-with-verifiable-reward"},{"title":"Aman's AI Journal • Primers • DeepSeek-R1","url":"https://aman.ai/primers/ai/deepseek-R1/"},{"title":"Inside DeepSeek-R1: A Masterclass in Incentivising Intelligence","url":"https://blog.neosage.io/p/inside-deepseek-r1-a-masterclass"},{"title":"GitHub - FareedKhan-dev/train-deepseek-r1: Building DeepSeek R1 from Scratch · GitHub","url":"https://github.com/FareedKhan-dev/train-deepseek-r1"},{"title":"Understanding the DeepSeek R1 Paper - Hugging Face LLM Course","url":"https://huggingface.co/learn/llm-course/en/chapter12/3"}]
+
+I've completed the web search on DeepSeek-R1 GRPO reinforcement learning reasoning credit assignment token-level. Here are the key findings:
+
+## Core Framework
+
+DeepSeek-R1 uses Group Relative Policy Optimization (GRPO) as its RL framework, building on DeepSeek-V3 Base.
+
+## Token-Level Credit Assignment
+
+Regarding token-level credit assignment specifically, even though there is no ground truth label for each token, and only a reward for the entire response, the training signal still needs to be propagated at the token level to guide the model's learning step by step, since the model generates one token at a time. The policy ratio is calculated based on the probabilities to generate the next token, for each of the tokens in the response.
+
+However, token level reward is no longer required with the removal of the Value Model. Instead, all the advantage estimations are performed on a sequence level (i.e. on the whole completion).
+
+## Reasoning and Reward Signal
+
+The reward signal is only based on the correctness of final predictions against ground-truth answers, without imposing constraints on the reasoning process itself. The method used in DeepSeek-R1 is called outcome supervision because we only reward the final outcome.
+
+## Key Innovation
+
+GRPO foregoes the critic model that is typically the same size as the policy model, and estimates the baseline from group scores instead. The advantage is calculated relatively to the group of sampled responses, which is the meaning of "group relative" in GRPO's name.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "45e72dcd-9c27-424a-95e6-65fb3b67b202",
+  "tool_use_result": {
+    "query": "DeepSeek-R1 GRPO reinforcement learning reasoning credit assignment token-level",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FC5Bsb3AAXdyHLiJ3wb3zs",
+        "content": [
+          {
+            "title": "DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning | Nature",
+            "url": "https://www.nature.com/articles/s41586-025-09422-z"
+          },
+          {
+            "title": "[2501.12948] DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2501.12948"
+          },
+          {
+            "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via",
+            "url": "https://arxiv.org/pdf/2501.12948"
+          },
+          {
+            "title": "GRPO Reinforcement Learning Explained (DeepSeekMath Paper) - AI Papers Academy",
+            "url": "https://aipapersacademy.com/deepseekmath-grpo/"
+          },
+          {
+            "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2501.12948v1"
+          },
+          {
+            "title": "Beyond Supervised Fine Tuning: How Reinforcement Learning Empowers AI with Minimal Labels",
+            "url": "https://fireworks.ai/blog/reinforcement-learning-with-verifiable-reward"
+          },
+          {
+            "title": "Aman's AI Journal • Primers • DeepSeek-R1",
+            "url": "https://aman.ai/primers/ai/deepseek-R1/"
+          },
+          {
+            "title": "Inside DeepSeek-R1: A Masterclass in Incentivising Intelligence",
+            "url": "https://blog.neosage.io/p/inside-deepseek-r1-a-masterclass"
+          },
+          {
+            "title": "GitHub - FareedKhan-dev/train-deepseek-r1: Building DeepSeek R1 from Scratch · GitHub",
+            "url": "https://github.com/FareedKhan-dev/train-deepseek-r1"
+          },
+          {
+            "title": "Understanding the DeepSeek R1 Paper - Hugging Face LLM Course",
+            "url": "https://huggingface.co/learn/llm-course/en/chapter12/3"
+          }
+        ]
+      },
+      "I've completed the web search on DeepSeek-R1 GRPO reinforcement learning reasoning credit assignment token-level. Here are the key findings:\n\n## Core Framework\n\nDeepSeek-R1 uses Group Relative Policy Optimization (GRPO) as its RL framework, building on DeepSeek-V3 Base.\n\n## Token-Level Credit Assignment\n\nRegarding token-level credit assignment specifically, even though there is no ground truth label for each token, and only a reward for the entire response, the training signal still needs to be propagated at the token level to guide the model's learning step by step, since the model generates one token at a time. The policy ratio is calculated based on the probabilities to generate the next token, for each of the tokens in the response.\n\nHowever, token level reward is no longer required with the removal of the Value Model. Instead, all the advantage estimations are performed on a sequence level (i.e. on the whole completion).\n\n## Reasoning and Reward Signal\n\nThe reward signal is only based on the correctness of final predictions against ground-truth answers, without imposing constraints on the reasoning process itself. The method used in DeepSeek-R1 is called outcome supervision because we only reward the final outcome.\n\n## Key Innovation\n\nGRPO foregoes the critic model that is typically the same size as the policy model, and estimates the baseline from group scores instead. The advantage is calculated relatively to the group of sampled responses, which is the meaning of \"group relative\" in GRPO's name."
+    ],
+    "durationSeconds": 7.570116328000004
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me fetch the ArCHer paper and the Practitioner's Guide paper in detail, and then I can compile the full literature review.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "a6a539e9-61cc-4f1f-920c-a365931b4720",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011RGakUuTKxrTdTsYhesB5X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4283,
+      "cache_read_input_tokens": 47709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4283
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82_
+
+Let me fetch the last remaining key papers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "e5c96ec9-9662-4a1f-84cd-2d011ee1c5be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011RGakUuTKxrTdTsYhesB5X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4283,
+      "cache_read_input_tokens": 47709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4283
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0196Y3156uS6yVtzBh2bcUNr`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2402.19446",
+  "prompt": "Extract: title, authors, year, venue, abstract, core method of ArCHer (hierarchical multi-turn RL with utterance-level value function and token-level policy), how it handles credit assignment between turns and within turns, key experimental results and sample efficiency gains."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "17f89db1-fb49-41e0-86b4-0f0f71877048",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011RGakUuTKxrTdTsYhesB5X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4283,
+      "cache_read_input_tokens": 47709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4283
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015r9G7r7mg8VQ9BQjCQnWRK`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2510.01132",
+  "prompt": "Extract: title, authors, year, venue, abstract, key findings about multi-turn agentic RL formulation, comparison of sparse vs dense per-turn rewards, token-level credit assignment approach, key experimental results on TextWorld and ALFWorld."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "b32c385a-fa39-4cd2-acac-96d025f97544",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011RGakUuTKxrTdTsYhesB5X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4283,
+      "cache_read_input_tokens": 47709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4283
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01R6z1dvR4XnYfXjxcvhBKMP`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2604.09459",
+  "prompt": "Extract the full taxonomy of credit assignment methods from this survey. Specifically: (1) What are the main categories? (2) Which methods handle step-level vs turn-level vs token-level? (3) Any discussion of advantage sign issues or misattribution? (4) What are the key open problems identified? (5) List the most important papers covered in each category."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "65aadd9b-fb49-4d3e-bcc2-bd1f41324f8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011RGakUuTKxrTdTsYhesB5X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4283,
+      "cache_read_input_tokens": 47709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4283
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012RXDHPyYr9VxjjwLnjdN3v`</summary>
+
+```json
+{
+  "query": "\"reward redistribution\" \"return decomposition\" multi-turn agent reinforcement learning LLM 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "a990a88d-e728-4df1-ab38-19f24e3e3e6c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011RGakUuTKxrTdTsYhesB5X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4283,
+      "cache_read_input_tokens": 47709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4283
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-17T12:18:19.020Z_
+
+<details><summary>↩ Tool result · `toolu_0196Y3156uS6yVtzBh2bcUNr`</summary>
+
+```text
+# ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL
+
+**Title:** ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL
+
+**Authors:** Yifei Zhou, Andrea Zanette, Jiayi Pan, Sergey Levine, Aviral Kumar
+
+**Year:** 2024 (submitted February 29, 2024)
+
+**Venue:** arXiv (cs.LG - Machine Learning)
+
+## Abstract
+The paper addresses multi-turn reinforcement learning for LLM agents. The authors note that "current RL methods for LLMs largely focus on optimizing single-turn rewards," which limits agents' ability to seek information across turns or perform credit assignment.
+
+## Core Method
+ArCHer employs a hierarchical RL structure with two parallel algorithms:
+- **High-level component:** An off-policy value-based RL algorithm aggregating rewards across utterances
+- **Low-level component:** An RL algorithm training token policies within each turn, leveraging the high-level value function
+
+This design enables the framework to "preserve the flexibility of existing single-turn RL methods" while handling multiple turns and delayed rewards.
+
+## Credit Assignment Mechanism
+The hierarchical approach addresses credit assignment bidirectionally: the utterance-level value function evaluates decisions across turns, while token-level policies use this value information to optimize within-turn generation.
+
+## Key Results
+- **Sample efficiency:** Approximately 100x improvement over existing methods
+- **Scalability:** Performance improvements demonstrated up to 7 billion parameter models
+- Enhanced efficiency and performance on agent tasks
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "09c63cca-82f3-489b-97b6-4a5d91231009",
+  "tool_use_result": {
+    "bytes": 49144,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL\n\n**Title:** ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL\n\n**Authors:** Yifei Zhou, Andrea Zanette, Jiayi Pan, Sergey Levine, Aviral Kumar\n\n**Year:** 2024 (submitted February 29, 2024)\n\n**Venue:** arXiv (cs.LG - Machine Learning)\n\n## Abstract\nThe paper addresses multi-turn reinforcement learning for LLM agents. The authors note that \"current RL methods for LLMs largely focus on optimizing single-turn rewards,\" which limits agents' ability to seek information across turns or perform credit assignment.\n\n## Core Method\nArCHer employs a hierarchical RL structure with two parallel algorithms:\n- **High-level component:** An off-policy value-based RL algorithm aggregating rewards across utterances\n- **Low-level component:** An RL algorithm training token policies within each turn, leveraging the high-level value function\n\nThis design enables the framework to \"preserve the flexibility of existing single-turn RL methods\" while handling multiple turns and delayed rewards.\n\n## Credit Assignment Mechanism\nThe hierarchical approach addresses credit assignment bidirectionally: the utterance-level value function evaluates decisions across turns, while token-level policies use this value information to optimize within-turn generation.\n\n## Key Results\n- **Sample efficiency:** Approximately 100x improvement over existing methods\n- **Scalability:** Performance improvements demonstrated up to 7 billion parameter models\n- Enhanced efficiency and performance on agent tasks",
+    "durationMs": 4927,
+    "url": "https://arxiv.org/abs/2402.19446"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-17T12:18:20.869Z_
+
+<details><summary>↩ Tool result · `toolu_015r9G7r7mg8VQ9BQjCQnWRK`</summary>
+
+```text
+# A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning
+
+**Title:** A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning
+
+**Authors:** Ruiyi Wang, Prithviraj Ammanabrolu
+
+**Year:** 2025 (submitted October 1, 2025; revised December 6, 2025)
+
+**Venue:** arXiv:2510.01132 (cs.LG)
+
+## Abstract Summary
+
+The paper investigates empirically validated approaches for training large language models as agents through multi-turn RL. The authors state they "address this gap by first breaking down the design space into three inter-related pillars -- environment, reward, and policy."
+
+## Key Findings
+
+**Multi-turn Agentic RL Formulation:**
+The research organizes the design space into three components: environment characteristics (state/action space sizes, solution length), reward mechanisms, and policy gradient methods.
+
+**Sparse vs. Dense Per-Turn Rewards:**
+The study observes that "dense turn-level rewards accelerate training, performance and stability is highly dependent on the choice of RL algorithm." This indicates a nuanced relationship where reward density alone doesn't guarantee success.
+
+**Experimental Domains:**
+Testing occurred across TextWorld and ALFWorld (textual embodied reasoning tasks) and SWE-Gym (software engineering tasks). Findings suggest simple environments within domains can predict generalization to complex variants.
+
+**Policy Comparisons:**
+The research explores biased methods (PPO, GRPO) versus unbiased approaches (RLOO), alongside determining optimal SFT-to-RL training ratios within budget constraints.
+
+**Code Availability:** https://github.com/pearls-lab/meow-tea-taro
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "3b79841b-7aff-41f0-8547-9898771b4d49",
+  "tool_use_result": {
+    "bytes": 47397,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning\n\n**Title:** A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning\n\n**Authors:** Ruiyi Wang, Prithviraj Ammanabrolu\n\n**Year:** 2025 (submitted October 1, 2025; revised December 6, 2025)\n\n**Venue:** arXiv:2510.01132 (cs.LG)\n\n## Abstract Summary\n\nThe paper investigates empirically validated approaches for training large language models as agents through multi-turn RL. The authors state they \"address this gap by first breaking down the design space into three inter-related pillars -- environment, reward, and policy.\"\n\n## Key Findings\n\n**Multi-turn Agentic RL Formulation:**\nThe research organizes the design space into three components: environment characteristics (state/action space sizes, solution length), reward mechanisms, and policy gradient methods.\n\n**Sparse vs. Dense Per-Turn Rewards:**\nThe study observes that \"dense turn-level rewards accelerate training, performance and stability is highly dependent on the choice of RL algorithm.\" This indicates a nuanced relationship where reward density alone doesn't guarantee success.\n\n**Experimental Domains:**\nTesting occurred across TextWorld and ALFWorld (textual embodied reasoning tasks) and SWE-Gym (software engineering tasks). Findings suggest simple environments within domains can predict generalization to complex variants.\n\n**Policy Comparisons:**\nThe research explores biased methods (PPO, GRPO) versus unbiased approaches (RLOO), alongside determining optimal SFT-to-RL training ratios within budget constraints.\n\n**Code Availability:** https://github.com/pearls-lab/meow-tea-taro",
+    "durationMs": 5793,
+    "url": "https://arxiv.org/abs/2510.01132"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-17T12:18:22.773Z_
+
+<details><summary>↩ Tool result · `toolu_01R6z1dvR4XnYfXjxcvhBKMP`</summary>
+
+```text
+# Credit Assignment Survey Analysis
+
+Based on the arXiv abstract provided, I can offer limited insights, as the full paper content isn't available—only the metadata and abstract are shown.
+
+## Available Information:
+
+**Main Taxonomy Dimensions:**
+The survey organizes methods along two axes:
+- Assignment granularity: "token, segment, step, turn, multi-agent"
+- Methodology: "Monte Carlo, temporal difference, model-based, game-theoretic, information-theoretic"
+
+**Scope Coverage:**
+The paper addresses two regimes:
+- **Reasoning RL**: credit distribution across "tokens and steps within a single chain-of-thought generation (500--30K+ tokens)"
+- **Agentic RL**: "multi-turn environment interaction" with "horizons of 100+ turns (100K--1M tokens)"
+
+**Key Finding:**
+The abstract notes that "reasoning CA is maturing around process reward models and critic-free group comparison, while agentic CA is driving genuinely new approaches -- hindsight counterfactual analysis, privileged asymmetric critics, and turn-level MDP reformulations."
+
+## Limitations:
+
+I cannot definitively address your questions about advantage sign issues, misattribution discussion, specific open problems, or the most important papers in each category without access to the full paper text. The abstract mentions surveying 47 methods but doesn't enumerate them individually.
+
+To obtain this detailed taxonomy, you would need to access the full PDF or HTML version of the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "55edde4b-cfe2-46b3-a8a7-0238afc5d819",
+  "tool_use_result": {
+    "bytes": 46647,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Credit Assignment Survey Analysis\n\nBased on the arXiv abstract provided, I can offer limited insights, as the full paper content isn't available—only the metadata and abstract are shown.\n\n## Available Information:\n\n**Main Taxonomy Dimensions:**\nThe survey organizes methods along two axes:\n- Assignment granularity: \"token, segment, step, turn, multi-agent\"\n- Methodology: \"Monte Carlo, temporal difference, model-based, game-theoretic, information-theoretic\"\n\n**Scope Coverage:**\nThe paper addresses two regimes:\n- **Reasoning RL**: credit distribution across \"tokens and steps within a single chain-of-thought generation (500--30K+ tokens)\"\n- **Agentic RL**: \"multi-turn environment interaction\" with \"horizons of 100+ turns (100K--1M tokens)\"\n\n**Key Finding:**\nThe abstract notes that \"reasoning CA is maturing around process reward models and critic-free group comparison, while agentic CA is driving genuinely new approaches -- hindsight counterfactual analysis, privileged asymmetric critics, and turn-level MDP reformulations.\"\n\n## Limitations:\n\nI cannot definitively address your questions about advantage sign issues, misattribution discussion, specific open problems, or the most important papers in each category without access to the full paper text. The abstract mentions surveying 47 methods but doesn't enumerate them individually.\n\nTo obtain this detailed taxonomy, you would need to access the full PDF or HTML version of the paper.",
+    "durationMs": 4848,
+    "url": "https://arxiv.org/abs/2604.09459"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-17T12:18:26.840Z_
+
+<details><summary>↩ Tool result · `toolu_012RXDHPyYr9VxjjwLnjdN3v`</summary>
+
+```text
+Web search results for query: ""reward redistribution" "return decomposition" multi-turn agent reinforcement learning LLM 2025 2026"
+
+Links: [{"title":"sparse- reward multi-agent reinforcement learning","url":"https://arxiv.org/pdf/2509.21828"},{"title":"Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design","url":"https://arxiv.org/html/2505.11821v2"},{"title":"[Literature Review] SPA-RL: Reinforcing LLM Agents via Stepwise Progress Attribution","url":"https://www.themoonlight.io/en/review/spa-rl-reinforcing-llm-agents-via-stepwise-progress-attribution"},{"title":"Reinforcement Learning for LLM-based Multi-Agent Systems through Orchestration Traces","url":"https://arxiv.org/html/2605.02801v1"},{"title":"Enhancing Multi-Agent Learning in Real-World Interactive Environments through Process Reward Decomposition | OpenReview","url":"https://openreview.net/forum?id=E2CR6hmV1I"},{"title":"Training Task Reasoning LLM Agents for Multi-turn Task Planning via Single-turn Reinforcement Learning","url":"https://arxiv.org/html/2509.20616"},{"title":"Best Practices for Multi-Turn RL","url":"https://fireworks.ai/blog/best-practices-for-multi-turn-RL"},{"title":"LLM Collaboration with Multi-Agent Reinforcement Learning","url":"https://arxiv.org/pdf/2508.04652"},{"title":"[2505.11821] Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design","url":"https://arxiv.org/abs/2505.11821"},{"title":"Resolving Action Bottleneck: Agentic Reinforcement Learning Informed by Token-Level Energy","url":"https://arxiv.org/html/2605.14558"}]
+
+I found relevant research on this topic. Here's what the web search revealed:
+
+## Key Research Findings (2025-2026)
+
+### Recent Work on Multi-Turn RL and Reward Decomposition
+
+Recent research investigates RL approaches for LLM agents in multi-turn scenarios, with studies noting that algorithms like GRPO and PPO rely on sparse outcome rewards and lack dense intermediate signals. To address this, researchers have conducted systematic studies of turn-level reward design for multi-turn RL algorithms.
+
+### Return Decomposition and Credit Assignment
+
+Return decomposition breaks down cumulative rewards to assign credit more precisely across time, with recent work exploring alternative redistribution principles. This includes LLM-guided reward attribution approaches from 2025.
+
+### Specific Frameworks and Approaches
+
+SPA-RL (Stepwise Progress Attribution) is a reward redistribution framework that decomposes the sparse terminal reward into dense, fine-grained stepwise contributions, allowing for more effective RL training.
+
+Researchers extend GRPO and PPO to multi-turn variants by integrating turn-level rewards, enabling fine-grained credit assignment, with case studies designing two types of turn-level rewards: verifiable and LLM-as-judge.
+
+### Multi-Agent Systems
+
+In LLM multi-agent systems, a single final reward can attach to eight plausible units, with the lower four units (turn, message, tool, token) corresponding to temporal decomposition within agent trajectories.
+
+### Token-Level Redistribution
+
+Recent work proposes ActFocus, a token reweighting approach using energy-based redistribution mechanisms that outperforms PPO and GRPO, yielding significant gains without additional computational cost.
+
+The research landscape shows active development in 2025-2026 on improving credit assignment in multi-turn LLM agent training through various reward redistribution and return decomposition techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "63c204b6-a5ce-4311-a125-352ab7203d27",
+  "tool_use_result": {
+    "query": "\"reward redistribution\" \"return decomposition\" multi-turn agent reinforcement learning LLM 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NozMSskzThRkonbgXPSay7",
+        "content": [
+          {
+            "title": "sparse- reward multi-agent reinforcement learning",
+            "url": "https://arxiv.org/pdf/2509.21828"
+          },
+          {
+            "title": "Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design",
+            "url": "https://arxiv.org/html/2505.11821v2"
+          },
+          {
+            "title": "[Literature Review] SPA-RL: Reinforcing LLM Agents via Stepwise Progress Attribution",
+            "url": "https://www.themoonlight.io/en/review/spa-rl-reinforcing-llm-agents-via-stepwise-progress-attribution"
+          },
+          {
+            "title": "Reinforcement Learning for LLM-based Multi-Agent Systems through Orchestration Traces",
+            "url": "https://arxiv.org/html/2605.02801v1"
+          },
+          {
+            "title": "Enhancing Multi-Agent Learning in Real-World Interactive Environments through Process Reward Decomposition | OpenReview",
+            "url": "https://openreview.net/forum?id=E2CR6hmV1I"
+          },
+          {
+            "title": "Training Task Reasoning LLM Agents for Multi-turn Task Planning via Single-turn Reinforcement Learning",
+            "url": "https://arxiv.org/html/2509.20616"
+          },
+          {
+            "title": "Best Practices for Multi-Turn RL",
+            "url": "https://fireworks.ai/blog/best-practices-for-multi-turn-RL"
+          },
+          {
+            "title": "LLM Collaboration with Multi-Agent Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2508.04652"
+          },
+          {
+            "title": "[2505.11821] Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design",
+            "url": "https://arxiv.org/abs/2505.11821"
+          },
+          {
+            "title": "Resolving Action Bottleneck: Agentic Reinforcement Learning Informed by Token-Level Energy",
+            "url": "https://arxiv.org/html/2605.14558"
+          }
+        ]
+      },
+      "I found relevant research on this topic. Here's what the web search revealed:\n\n## Key Research Findings (2025-2026)\n\n### Recent Work on Multi-Turn RL and Reward Decomposition\n\nRecent research investigates RL approaches for LLM agents in multi-turn scenarios, with studies noting that algorithms like GRPO and PPO rely on sparse outcome rewards and lack dense intermediate signals. To address this, researchers have conducted systematic studies of turn-level reward design for multi-turn RL algorithms.\n\n### Return Decomposition and Credit Assignment\n\nReturn decomposition breaks down cumulative rewards to assign credit more precisely across time, with recent work exploring alternative redistribution principles. This includes LLM-guided reward attribution approaches from 2025.\n\n### Specific Frameworks and Approaches\n\nSPA-RL (Stepwise Progress Attribution) is a reward redistribution framework that decomposes the sparse terminal reward into dense, fine-grained stepwise contributions, allowing for more effective RL training.\n\nResearchers extend GRPO and PPO to multi-turn variants by integrating turn-level rewards, enabling fine-grained credit assignment, with case studies designing two types of turn-level rewards: verifiable and LLM-as-judge.\n\n### Multi-Agent Systems\n\nIn LLM multi-agent systems, a single final reward can attach to eight plausible units, with the lower four units (turn, message, tool, token) corresponding to temporal decomposition within agent trajectories.\n\n### Token-Level Redistribution\n\nRecent work proposes ActFocus, a token reweighting approach using energy-based redistribution mechanisms that outperforms PPO and GRPO, yielding significant gains without additional computational cost.\n\nThe research landscape shows active development in 2025-2026 on improving credit assignment in multi-turn LLM agent training through various reward redistribution and return decomposition techniques."
+    ],
+    "durationSeconds": 8.133933498
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have now gathered a comprehensive set of papers. Let me also look at the detailed Turn-Level Reward Design paper (2505.11821) and the GiGPO paper more deeply. Let me also search for a couple more things:
+
+1. The full text of the multi-turn reward design paper (2505.11821v2)
+2. ActFocus token-level energy paper
+3. AgentRM paper
+
+Actually, I think I have enough. Let me now compile the literature review. Let me organize my findings:
+
+### Papers found:
+
+**Direct Competitors (Turn-level credit assignment for multi-turn agent RL):**
+
+
+I'm seeing two key papers here. Turn-PPO from Li et al. introduces a turn-level MDP formulation with turn-level advantage estimation, showing that PPO is more robust than GRPO in multi-turn settings. Then there's the Wei et al. paper on turn-level reward design from ICML/NeurIPS 2025, which provides the first systematic study of this approach by extending both GRPO and PPO to multi-turn variants using turn-level rewards.
+
+Now looking at more recent work on hierarchical and grouped approaches. GiGPO uses a two-level structure combining episode-level macro advantages with step-level micro advantages through anchor state grouping, achieving significant improvements on ALFWorld and WebShop. GAGPO introduces a grouped value proxy for non-parametric value estimation with temporal credit propagation, while HCAPO takes a different angle by using an LLM as a post-hoc critic for step-level credit assignment.
+
+iStar alternates between process reward modeling and policy optimization using trajectory-based DPO to derive step rewards, leveraging both step-level and episode-level advantages. SPA-RL frames this as stepwise progress attribution with a reward redistribution framework that estimates per-step contributions. Moving into foundational work, ArCHer from ICML 2024 establishes a hierarchical multi-turn RL approach with separate utterance-level value functions and token-level policies.
+
+More recent methods like RAGEN/StarPO apply state-thinking-actions-reward policy optimization at the trajectory level with adaptive filtering, while VAGEN uses bi-level GAE to propagate turn-level advantages down to the token level—achieving strong results with smaller models. HiPER extends this with hierarchical planning, separating high-level planning from low-level execution with hierarchical advantage estimation.
+
+Beyond explicit credit assignment, frameworks like WebRL use self-evolving curricula with outcome reward models to dramatically improve web agent performance, and WebAgent-R1 applies end-to-end multi-turn RL with binary rewards for implicit credit assignment. StepAgent continues this line of work...
+
+Continuing with reward shaping approaches, Planner-R1 demonstrates that dense rewards can make smaller models competitive with much larger ones on complex planning tasks. There's also emerging survey work cataloging the landscape of credit assignment methods across reasoning and agentic domains, with taxonomies spanning different granularities and algorithmic approaches.
+
+A practitioner's guide from NeurIPS 2025 breaks down the core pillars of multi-turn agentic RL—environment, reward, and policy design—highlighting how turn-level reward density affects training speed but interacts with algorithm choice. DeepSeek-R1 provides a foundation here with GRPO, which operates at the episode level without step-level credit assignment, and this approach is being extended to multi-turn settings.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "6bb3d0ea-fb50-4bd2-bd15-c5552f22495a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012WX7DYzpsoer5LkKoNxva8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2739,
+      "cache_read_input_tokens": 51992,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2739
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 92_
+
+I now have comprehensive data on 18+ papers. Let me compile the literature review.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "679eed67-8f11-4a6b-9d99-c34323e734f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012WX7DYzpsoer5LkKoNxva8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2739,
+      "cache_read_input_tokens": 51992,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2739
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01WzjBgouPeiX6f71VbLMGdy`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "memory.md",
+  "content": "# Turn-Level PPO / Per-Step Credit Assignment Literature Review\n\n> 调研日期：2026-05-17  \n> 调研范围：2024–2026 年发表的 multi-turn agent RL credit assignment 相关论文\n\n---\n\n## 一、Direct Competitors：Turn-Level Credit Assignment Methods\n\n### 1.1 Turn-PPO (Li et al., 2025)\n\n- **论文**: Turn-PPO: Turn-Level Advantage Estimation with PPO for Improved Multi-Turn RL in Agentic LLMs\n- **作者**: Junbo Li, Peng Zhou, Rui Meng, Meet P. Vadera, Lihong Li, Yang Li\n- **年份/会议**: 2025, EACL 2026\n- **arXiv**: 2512.17008\n\n**核心方法**:\n- 将 MDP 从 token-level 重新定义为 turn-level：state = 到第 h-1 轮的完整交互历史 + 当前 query，action = LLM 在第 h 轮的完整 response\n- Turn-level advantage 计算：γV_{n+1} − V_n（中间 turn），r − V_N（最终 turn）\n- 整个 response 作为一个 action，advantage 应用于完整 response\n\n**对 GRPO 的批判**（与我们的发现高度相关）:\n1. **Uniform advantage assignment**: GRPO 对所有 token 跨 turn 施加相同的 advantage，忽略不同 turn 对最终 reward 的不等贡献\n2. **High variance in advantage estimation**: \"state representation misalignment\" — response 内的 next state 只多一个 token，而跨 response 的 next state 包含整个环境输出块，导致 critic 退化为平均值\n3. **GRPO 在 multi-turn 中频繁崩溃**: Sokoban 两个配置均 crash，WebShop 启用 reasoning 也 crash\n\n**关键实验结果**:\n\n| 环境 | 模型 | GRPO | Token-PPO | Turn-PPO |\n|------|------|------|-----------|----------|\n| WebShop | Qwen2.5-3B | 0.72 | 0.73 | **0.75** |\n| WebShop | Qwen3-1.7B (no think) | 0.78 | 0.77 | **0.80** |\n| WebShop | Qwen3-1.7B (think) | Crash | 0.54 | **0.55** |\n| Sokoban | Qwen2.5-3B | Crash | 1.93 | **2.29** |\n| Sokoban | Qwen2.5-7B | Crash | 2.90 | **3.74** |\n\n**与本项目的关系**: **最直接的竞品**。他们发现的 GRPO 问题（uniform advantage、崩溃）与我们发现的 Advantage Sign Misattribution 高度相关。区别在于：我们更深入地分析了 sign misattribution 的机制（γ 折扣导致早期步骤只保留 ~29% 的终端 return），他们更侧重 turn-level MDP 的形式化方案。\n\n---\n\n### 1.2 MT-GRPO / MT-PPO (Wei et al., 2025)\n\n- **论文**: Reinforcing Multi-Turn Reasoning in LLM Agents via Turn-Level Reward Design\n- **作者**: Quan Wei, Siliang Zeng, Chenliang Li, William Brown, Oana Frunza, Wei Deng, Anderson Schneider, Yuriy Nevmyvaka, Yang Katie Zhao, Alfredo Garcia, Mingyi Hong\n- **年份/会议**: 2025, ICML 2025\n- **arXiv**: 2505.11821\n\n**核心方法**:\n- 第一个系统性研究 turn-level reward design 的工作\n- 将 GRPO 和 PPO 扩展为 multi-turn 变体（MT-GRPO、MT-PPO）\n- 两种 turn-level reward 设计：(1) Verifiable reward（可验证中间结果）(2) LLM-as-judge reward（用 LLM 评价中间步骤质量）\n- 细粒度 credit assignment strategy\n\n**关键实验结果**:\n- 在 QA 数据集上 MT-PPO 一致性最优，尤其在 multi-hop 任务（HotpotQA）上提升显著\n- 100% format correctness，更高 answer correctness\n- 更快收敛，更高稳定性\n\n**与本项目的关系**: **直接竞品**。与我们的方向完全吻合——同样发现 episode-level sparse reward 不足以训练 multi-turn agent，需要 turn-level 信号。差异在于他们依赖外部 reward 信号（verifiable/LLM-judge），而我们关注的是在纯 outcome reward 下的 credit assignment 机制。\n\n---\n\n### 1.3 GiGPO (Feng et al., 2025)\n\n- **论文**: Group-in-Group Policy Optimization for LLM Agent Training\n- **作者**: Lang Feng, Zhenghai Xue, Tingcong Liu, Bo An\n- **年份/会议**: 2025, NeurIPS 2025\n- **arXiv**: 2505.10978\n\n**核心方法**:\n- 两层结构的 advantage estimation：\n  - **Episode-level (macro)**: 对完整 trajectory 的 group 计算 relative advantage\n  - **Step-level (micro)**: Anchor State Grouping — 在不同 trajectory 中找到重复出现的环境状态，回溯性地构建 step-level group，从而在相同状态下比较不同 action 的优劣\n- 保持 group-based RL 的优点：critic-free、低显存、稳定收敛\n\n**关键实验结果**:\n- ALFWorld: >12% improvement over GRPO\n- WebShop: >9% improvement over GRPO\n- QA: 42.1% (3B), 47.2% (7B)\n- 计算开销与 GRPO 几乎相同\n\n**与本项目的关系**: **方法组件参考**。Anchor State Grouping 是一个巧妙的思路——通过在不同 trajectory 中找到相同环境状态来实现 step-level 比较。但这种方法依赖于环境状态的可重复性，在 cost verification agent 这种任务中状态空间更大更稀疏，直接复用可能受限。但其 \"两层 advantage\" 的思想与我们的分析方向兼容。\n\n---\n\n### 1.4 GAGPO (Zhu et al., 2026)\n\n- **论文**: GAGPO: Generalized Advantage Grouped Policy Optimization\n- **作者**: Siyuan Zhu, Chao Yu, Rongxin Yang, Zongkai Liu, Jinjun Hu, Qiwen Chen, Yibo Zhang\n- **年份**: 2026\n- **arXiv**: 2605.13217\n\n**核心方法**:\n- **Grouped Value Proxy**: 非参数化的 value 估计，通过对同一环境 group 中步骤的 discounted return 取平均来构建 baseline\n- **Temporal Credit Propagation**: 递归 advantage 估计 A^t = δt + γλA^(t+1)，TD 残差向后传播延迟结果\n- **Group-Normalized PPO**: 在 rollout group 内归一化（而非 batch 内），使用 sequence-level importance ratio\n\n**关键实验结果**:\n- ALFWorld: Qwen2.5-1.5B 93.5% (vs. 88.1% prior best), Qwen2.5-7B 95.6% (vs. 88.8%)\n- WebShop: 1.5B 88.6 score / 78.1% SR, 7B 90.3 / 77.5%\n- 比 GiGPO 更低的 advantage signal variance，更快的早期学习\n\n**与本项目的关系**: **方法组件参考**。GAGPO 的 Grouped Value Proxy 本质上是一种无 critic 的 GAE 近似——用同一环境状态的多条 trajectory 来估计 value，再做 TD-style 的 advantage 传播。这与我们在纯 outcome reward 下寻找 credit assignment 方案的方向契合。\n\n---\n\n### 1.5 HCAPO (Tan et al., 2026)\n\n- **论文**: Hindsight Credit Assignment for Long-Horizon LLM Agents\n- **作者**: Hui-Ze Tan, Xiao-Wen Yang, Hao Chen, Jie-Jing Shao, Yi Wen, Yuteng Shen, Weihong Luo, Xiku Du, Lan-Zhe Guo, Yu-Feng Li\n- **年份**: 2026\n- **arXiv**: 2603.08754\n\n**核心方法**:\n- **Post-hoc Critic Refinement**: 用 LLM 自身作为 post-hoc critic，通过 hindsight reasoning 来 refine step-level Q-value\n- **Multi-scale Advantage Mechanism**: 在关键决策点修正 value baseline 不准确性，将 trajectory-level reward 转化为 step-level 信号\n- Value-free RL：不需要单独训练 critic\n\n**关键实验结果**:\n- WebShop: +7.7% over GRPO (Qwen2.5-7B-Instruct)\n- ALFWorld: +13.8% over GRPO\n- 更高 exploration efficiency，更简洁的决策\n\n**与本项目的关系**: **方法组件参考**。Hindsight credit assignment 的思路很有启发性——在看到完整 trajectory 后回溯性地评估每步的质量。但依赖 LLM 自身做 Q-value 估计的可靠性存疑。\n\n---\n\n### 1.6 iStar (Liu et al., 2025)\n\n- **论文**: Agentic Reinforcement Learning with Implicit Step Rewards\n- **作者**: Xiaoqian Liu, Ke Wang, Yuchuan Wu, Fei Huang, Yongbin Li, Junge Zhang, Jianbin Jiao\n- **年份**: 2025\n- **arXiv**: 2509.19199\n\n**核心方法**:\n- 交替优化 implicit Process Reward Model (PRM) 和 policy model\n- 通过 trajectory-based DPO objective 生成 implicit step reward\n- **Dual Advantage Integration**: 组合 step-level 和 episode-level advantage 进行 policy update\n- 不需要额外 rollout 或显式 step label\n\n**关键实验结果**:\n- WebShop, VisualSokoban, SOTOPIA 上超越 frontier LLM 和强 RL baseline\n- 更好的 sample efficiency 和稳定性\n\n**与本项目的关系**: **方法组件参考**。Dual advantage（step + episode）的组合是一个有趣的设计选择。Implicit PRM 的训练方式避免了人工标注 step reward 的成本。\n\n---\n\n### 1.7 SPA-RL (Wang et al., 2025)\n\n- **论文**: SPA-RL: Reinforcing LLM Agents via Stepwise Progress Attribution\n- **作者**: Hanlin Wang, Chak Tou Leong, Jiashuo Wang, Jian Wang, Wenjie Li\n- **年份**: 2025\n- **arXiv**: 2505.20732\n\n**核心方法**:\n- **Reward redistribution framework**: 将最终任务 reward 分解为各步的贡献\n- **Progress Estimator**: 训练一个进度估计器，使各步贡献的累积和匹配任务完成度\n- 估计的 per-step 贡献 + action grounding 信号 = 细粒度中间 reward\n\n**关键实验结果**:\n- WebShop, ALFWorld, VirtualHome 上平均 +2.5% success rate, +1.9% grounding accuracy\n\n**与本项目的关系**: **方法组件参考**。Progress estimator 的思路类似 potential-based reward shaping。在 cost verification 任务中，可以尝试类似思路估计每步对最终验证成功的\"贡献度\"。\n\n---\n\n## 二、Foundational Frameworks\n\n### 2.1 ArCHer (Zhou et al., 2024)\n\n- **论文**: ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL\n- **作者**: Yifei Zhou, Andrea Zanette, Jiayi Pan, Sergey Levine, Aviral Kumar\n- **年份/会议**: 2024, ICML 2024\n- **arXiv**: 2402.19446\n\n**核心方法**:\n- 开创性的 hierarchical multi-turn RL 框架\n- **High-level**: off-policy TD 学习 utterance-level value function（跨 turn 聚合 reward）\n- **Low-level**: policy gradient 在每个 turn 内优化 token 生成，使用 high-level value function 作为 terminal reward\n- Off-policy 特性允许 sample reuse\n- 避免对每个 token 做 Bellman backup\n\n**关键实验结果**:\n- 比 on-policy 方法约 **100x sample efficiency improvement**\n- 在 7B 模型上验证可扩展性\n\n**与本项目的关系**: **理论基础**。ArCHer 是 turn-level RL for LLMs 的开山之作。其 hierarchical (utterance-level value + token-level policy) 的设计启发了后续所有 Turn-PPO 类工作。但它依赖 off-policy 学习和显式 value function，而我们使用的 GRPO 是 on-policy、critic-free 的。\n\n---\n\n### 2.2 RAGEN / StarPO (Wang et al., 2025)\n\n- **论文**: RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning\n- **作者**: Zihan Wang, Kangrui Wang, Qineng Wang, Pingyue Zhang, et al.\n- **年份**: 2025\n- **arXiv**: 2504.20073\n\n**核心方法**:\n- **StarPO** (State-Thinking-Actions-Reward Policy Optimization): 通用 trajectory-level agent RL 框架\n- 支持 multi-turn rollout, trajectory-level reward assignment, policy update\n- **StarPO-S**: 稳定化变体，加入 trajectory filtering, critic integration, gradient stabilization\n- **SNR-Adaptive Filtering (V2)**: 基于 reward variance 的 rollout 过滤，减少 noisy gradient\n\n**关键发现**:\n- **Echo Trap**: 训练后 agent 收敛到固定短语模板，RL 可能强化了 superficial pattern 而非 general reasoning\n- 没有细粒度的 reasoning-aware reward signal，agent 无法发展真正的推理能力\n- 10 个内置环境（Sokoban, FrozenLake, WebShop, DeepCoder, SearchQA 等）\n\n**与本项目的关系**: **方法组件 + 实验平台**。StarPO 是一个通用框架，其 trajectory-level 设计在精神上与我们的 episode-level GRPO 类似。Echo Trap 现象值得关注——可能与我们观察到的 step-independent 崩塌有关联。\n\n---\n\n### 2.3 VAGEN (Wang et al., 2025)\n\n- **论文**: VAGEN: Reinforcing World Model Reasoning for Multi-Turn VLM Agents\n- **作者**: Kangrui Wang, Pingyue Zhang, Zihan Wang, et al.\n- **年份/会议**: 2025, NeurIPS 2025\n- **arXiv**: 2510.16907\n\n**核心方法**:\n- **Bi-Level GAE (Bi-Level Generalized Advantage Estimation)**:\n  - 第一层：turn-level advantage 评估每个 VLM response 的整体有效性\n  - 第二层：将 turn-level signal 传播到 token-level，为每个 token 提供细粒度 advantage\n- World Model 分解：State Estimation (\"当前状态是什么？\") + Transition Modeling (\"下一步会怎样？\")\n\n**关键实验结果**:\n- 3B 模型在 5 个 agent benchmark 上达到 0.82（3x improvement over untrained）\n- 超越 GPT-5 (0.75), Gemini 2.5 Pro (0.67), Claude 4.5 (0.62)\n\n**与本项目的关系**: **方法组件参考**。Bi-Level GAE 的 turn→token 传播机制是一个清晰的两层 credit assignment 设计。虽然 VAGEN 面向 VLM，但其 advantage 传播的数学形式可以直接迁移到 text-only agent RL。\n\n---\n\n### 2.4 HiPER (Peng et al., 2026)\n\n- **论文**: HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents\n- **作者**: Jiangweizhi Peng, Yuanxin Liu, Ruida Zhou, Charles Fleming, Zhaoran Wang, Alfredo Garcia, Mingyi Hong\n- **年份**: 2026\n- **arXiv**: 2602.16165\n\n**核心方法**:\n- **Hierarchical Plan-Execute**: 高层 planner 提出 subgoal，低层 executor 执行多步 action\n- **Hierarchical Advantage Estimation (HAE)**: 在 planning 和 execution 两层分别做 credit assignment\n  - 对每个 subgoal 聚合 return\n  - 在两层之间协调 update\n- 显式 temporal abstraction vs 传统 flat policy\n\n**关键实验结果**:\n- ALFWorld: 97.4% success (+6.6%)\n- WebShop: 83.3% success (+8.3%)\n- 在需要多个依赖子任务的长期任务上尤其强\n\n**与本项目的关系**: **理论参考**。Hierarchical 分解的思路有参考价值，但需要额外定义 subgoal 结构，在 cost verification 任务中 subgoal 的定义不太自然。\n\n---\n\n## 三、Agent RL Frameworks (Episode-Level Reward)\n\n### 3.1 WebRL (Qi et al., 2024)\n\n- **论文**: WebRL: Training LLM Web Agents via Self-Evolving Online Curriculum Reinforcement Learning\n- **作者**: Zehan Qi, Xiao Liu, et al.\n- **年份/会议**: 2024, ICLR 2025\n- **arXiv**: 2411.02337\n\n**核心方法**:\n- Self-evolving curriculum（从失败尝试生成新任务）\n- Outcome-Supervised Reward Model (ORM) 提供 reward signal\n- Adaptive RL 策略防止 policy distribution drift\n- 使用 episode-level reward，不做显式 step-level credit assignment\n\n**关键实验结果**:\n- Llama-3.1-8B: 4.8% → 42.4% on WebArena-Lite\n- GLM-4-9B: 6.1% → 43%\n- 超越 GPT-4-Turbo (17.6%), GPT-4o (13.9%)\n\n**与本项目的关系**: **Baseline 参考**。WebRL 表明在某些任务上 episode-level reward + curriculum 就能取得很好效果。但它没有 explicit credit assignment，在更长 horizon 或更稀疏 reward 的任务上可能受限。\n\n---\n\n### 3.2 WebAgent-R1 (Wei et al., 2025)\n\n- **论文**: WebAgent-R1: Training Web Agents via End-to-End Multi-Turn Reinforcement Learning\n- **作者**: Zhepei Wei, Wenlin Yao, et al.\n- **年份/会议**: 2025, EMNLP 2025\n- **arXiv**: 2505.16421\n\n**核心方法**:\n- End-to-end multi-turn RL，binary success reward\n- Thinking-based prompting + behavior cloning warm-up\n- Credit assignment 隐式地通过 RL 优化过程实现\n\n**关键实验结果**:\n- Qwen-2.5-3B: 6.1% → 33.9%\n- Llama-3.1-8B: 8.5% → 44.8%\n- 显著超越 OpenAI o3\n\n**与本项目的关系**: **Baseline 参考**。证明 end-to-end binary reward 也能工作，但不清楚其 credit assignment 的隐式机制。\n\n---\n\n### 3.3 StepAgent (Deng et al., 2024)\n\n- **论文**: From Novice to Expert: LLM Agent Policy Optimization via Step-wise Reinforcement Learning\n- **作者**: Zhirui Deng, Zhicheng Dou, Yutao Zhu, et al.\n- **年份**: 2024\n- **arXiv**: 2411.03817\n\n**核心方法**:\n- 通过自动比较 expert 和 agent 在每步的 action 来生成中间 reward\n- Implicit-reward + 自我反思\n- Inverse RL 辅助 policy adjustment\n- 理论证明 agent action 分布可收敛到 expert\n\n**与本项目的关系**: **方法参考**。依赖 expert demonstration 的方式在纯 RL 设定下不适用，但 IRL 思路可参考。\n\n---\n\n### 3.4 Planner-R1 (Zhu et al., 2025)\n\n- **论文**: Planner-R1: Reward Shaping Enables Efficient Agentic RL with Smaller LLMs\n- **作者**: Siyu Zhu, Yanbin Jiang, et al.\n- **年份**: 2025\n- **arXiv**: 2509.25779\n\n**核心方法**:\n- Dense process-level reward shaping\n- 研究 reward density 对不同大小模型的影响\n- Smaller (8B) models 对 reward shaping 高度敏感，dense reward 下可与 32B 竞争\n\n**关键实验结果**:\n- TravelPlanner: 56.9% final-pass (2.7x over GPT-5's 21.2%)\n- 8B 模型在 dense reward 下 3.5x compute-efficient vs 32B\n- Curriculum learning 无显著收益，shaped reward 一致性提升\n\n**与本项目的关系**: **实验参考**。验证了 dense reward 对小模型训练的重要性。在 cost verification 场景下，如何设计 dense intermediate reward 是核心问题。\n\n---\n\n## 四、Surveys & Guides\n\n### 4.1 From Reasoning to Agentic: Credit Assignment in RL for LLMs (Zhang, 2026)\n\n- **论文**: From Reasoning to Agentic: Credit Assignment in Reinforcement Learning for Large Language Models\n- **作者**: Chenchen Zhang\n- **年份**: 2026\n- **arXiv**: 2604.09459\n\n**核心内容**:\n- 覆盖 **47 种 credit assignment 方法**（41 core + 6 adjacent enablers），2024–2026\n- **两维分类法**:\n  - 粒度维度: token / segment / step / turn / multi-agent\n  - 方法维度: Monte Carlo / temporal difference / model-based / game-theoretic / information-theoretic\n- **两种 regime**:\n  - Reasoning RL: 单次 CoT（500–30K+ tokens），credit 在 tokens/steps 间分配\n  - Agentic RL: multi-turn 交互（100K–1M tokens），有 stochastic transition 和 partial observability\n- **关键判断**: Reasoning CA 围绕 PRM 和 critic-free group comparison 成熟，Agentic CA 正在推动新方法——hindsight counterfactual analysis, privileged asymmetric critics, turn-level MDP reformulations\n\n**与本项目的关系**: **理论框架**。这篇 survey 的分类法可以帮助定位我们的工作——我们的 \"Advantage Sign Misattribution\" 发现属于 turn-level + Monte Carlo 的交叉区域。\n\n---\n\n### 4.2 A Practitioner's Guide to Multi-turn Agentic RL (Wang & Ammanabrolu, 2025)\n\n- **论文**: A Practitioner's Guide to Multi-turn Agentic Reinforcement Learning\n- **作者**: Ruiyi Wang, Prithviraj Ammanabrolu\n- **年份/会议**: 2025, NeurIPS 2025 Workshop\n- **arXiv**: 2510.01132\n\n**核心内容**:\n- 三大支柱: Environment, Reward, Policy\n- **Dense vs Sparse per-turn reward**: dense turn-level reward 加速训练，但效果高度依赖 RL 算法选择\n- PPO vs GRPO vs RLOO 对比\n- Simple 环境可预测在 complex 变体上的泛化性\n\n**与本项目的关系**: **实验设计参考**。其关于 sparse vs dense reward 的系统比较提供了实验设计的参考框架。\n\n---\n\n### 4.3 DeepSeek-R1 (DeepSeek, 2025)\n\n- **论文**: DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\n- **arXiv**: 2501.12948\n\n**GRPO 在 single-turn 推理中的应用**:\n- Episode-level advantage: 对同一 prompt 的 group 采样 → 组内归一化\n- 所有 advantage estimation 在 sequence level（整个 completion）进行\n- 移除 Value Model 后不再需要 token-level reward\n- Policy ratio 仍在 token-level 计算（用于 gradient update）\n\n**与本项目的关系**: **方法基础**。DeepSeek-R1 确立了 GRPO 的 single-turn 范式，但其 sequence-level advantage 直接应用到 multi-turn 场景时会产生我们发现的 Advantage Sign Misattribution 问题——因为多步交互中，不同步骤的 action 质量可能完全不同，统一的 sequence-level advantage 无法区分。\n\n---\n\n## 五、与本项目的关系总结\n\n### 5.1 核心发现定位\n\n我们发现的 **Advantage Sign Misattribution** 问题——失败 episode 中好的 action 收到无差别的负向 advantage，成功 episode 中差的 action 收到正向 advantage——与以下工作有直接对应关系：\n\n| 论文 | 相关发现 |\n|------|----------|\n| Turn-PPO | \"uniform advantage assignment\" across turns，GRPO 在 multi-turn 中崩溃 |\n| GiGPO | GRPO \"collapses step-level distinctions\" |\n| HCAPO | GRPO 存在 \"inaccurate Q-value estimates and misaligned baselines for intermediate states\" |\n| GAGPO | sparse reward 下 \"impact of any individual action may only manifest much later\" |\n| iStar | \"sparse and sometimes unverifiable rewards make credit assignment extremely challenging\" |\n\n然而，**没有一篇论文明确使用 \"advantage sign misattribution\" 这个术语**，也没有论文量化分析 γ 折扣对 sign 的影响（如我们发现的 ~29% 保留率）。这是我们可以贡献的新 framing。\n\n### 5.2 分类\n\n**Direct Competitors（解决相同问题的方法）**:\n- Turn-PPO：turn-level MDP + turn-level advantage\n- MT-GRPO/MT-PPO：turn-level reward design（verifiable + LLM-judge）\n- GiGPO：anchor state grouping for step-level group comparison\n- GAGPO：grouped value proxy + temporal credit propagation\n- HCAPO：hindsight credit assignment with LLM-as-critic\n\n**Method Components（可借鉴的技术组件）**:\n- iStar: implicit PRM + dual advantage\n- SPA-RL: progress estimator for reward redistribution\n- VAGEN Bi-Level GAE: turn→token advantage propagation\n- ArCHer: utterance-level value function (off-policy)\n- HiPER: hierarchical advantage estimation\n\n**Theoretical Foundation（理论基础）**:\n- DeepSeek-R1 GRPO: 我们方法的出发点\n- Credit Assignment Survey (Zhang 2026): 分类法和开放问题\n- Practitioner's Guide: 实验设计参考\n\n**Baseline Comparison（效果对比参考）**:\n- WebRL: episode-level reward + curriculum\n- WebAgent-R1: binary reward + end-to-end RL\n- Planner-R1: reward shaping effect on model sizes\n\n### 5.3 我们的差异化贡献空间\n\n1. **Advantage Sign Misattribution 的正式定义和量化分析** — 现有工作描述了 \"uniform advantage\" 和 \"credit assignment challenge\"，但没有具体分析 sign 级别的错误及其量化影响\n2. **γ 折扣在 multi-step agent 中的 return 衰减分析** — 早期步骤只保留 ~29% 的终端 return，这个量化结果是新的\n3. **Step-independent vs Episode-level 的受控对比实验** — 直接证明 step-independent 优化的崩塌和 episode-level 的提升（0% vs 28%），这种 clean 的对比是稀缺的\n4. **在 cost verification 特定任务上的分析** — 现有工作集中在 WebShop, ALFWorld, Sokoban 等标准 benchmark，我们的任务场景是差异化的\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "deecb1fc-9af7-45b7-a777-8c829d50ccfe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012WX7DYzpsoer5LkKoNxva8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2739,
+      "cache_read_input_tokens": 51992,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2739
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-17T12:21:56.727Z_
+
+<details><summary>↩ Tool result · `toolu_01WzjBgouPeiX6f71VbLMGdy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "1f68151e-8f86-4f8e-a63f-664f60484525",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The file was saved successfully. Let me provide a summary to the user.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "7ac6ff71-e8ad-453d-b8c3-8db7dcbbbf4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MpajWdpqPz8xjuqPaoeduh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10021,
+      "cache_read_input_tokens": 54731,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10021
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96_
+
+文献调研完成，已写入 `memory.md`。覆盖 18 篇论文（2024–2026），结构如下：
+
+**Direct Competitors（5 篇）**:
+- **Turn-PPO** (EACL 2026) — turn-level MDP，发现 GRPO 在 multi-turn 中 uniform advantage + 频繁 crash，最相关竞品
+- **MT-GRPO/MT-PPO** (ICML 2025) — 第一个系统性 turn-level reward design 研究，verifiable + LLM-judge 两种 reward
+- **GiGPO** (NeurIPS 2025) — anchor state grouping 实现 step-level group comparison，critic-free
+- **GAGPO** (2026) — grouped value proxy + 递归 GAE，比 GiGPO variance 更低
+- **HCAPO** (2026) — hindsight credit assignment，LLM 做 post-hoc critic
+
+**Method Components（5 篇）**: iStar (implicit PRM + dual advantage), SPA-RL (progress estimator), VAGEN (bi-level GAE), ArCHer (ICML 2024, 开山之作), HiPER (hierarchical advantage)
+
+**Frameworks/Baselines（4 篇）**: RAGEN/StarPO, WebRL, WebAgent-R1, Planner-R1
+
+**Surveys（3 篇）**: Credit Assignment Survey (47 methods), Practitioner's Guide, DeepSeek-R1 GRPO
+
+**关键结论**: 没有论文使用 "advantage sign misattribution" 术语，也没有量化 γ 折扣对 sign 的影响（~29% 保留率）。Turn-PPO 描述了相近现象（uniform advantage assignment），但我们的 sign-level 分析和 step-independent vs episode-level 的受控对比（0% vs 28%）是差异化贡献空间。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "uuid": "942c4847-d192-480d-b099-7d7fb6d77c23",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MpajWdpqPz8xjuqPaoeduh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10021,
+      "cache_read_input_tokens": 54731,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10021
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 97_
+
+文献调研完成，已写入 `memory.md`。覆盖 18 篇论文（2024–2026），结构如下：
+
+**Direct Competitors（5 篇）**:
+- **Turn-PPO** (EACL 2026) — turn-level MDP，发现 GRPO 在 multi-turn 中 uniform advantage + 频繁 crash，最相关竞品
+- **MT-GRPO/MT-PPO** (ICML 2025) — 第一个系统性 turn-level reward design 研究，verifiable + LLM-judge 两种 reward
+- **GiGPO** (NeurIPS 2025) — anchor state grouping 实现 step-level group comparison，critic-free
+- **GAGPO** (2026) — grouped value proxy + 递归 GAE，比 GiGPO variance 更低
+- **HCAPO** (2026) — hindsight credit assignment，LLM 做 post-hoc critic
+
+**Method Components（5 篇）**: iStar (implicit PRM + dual advantage), SPA-RL (progress estimator), VAGEN (bi-level GAE), ArCHer (ICML 2024, 开山之作), HiPER (hierarchical advantage)
+
+**Frameworks/Baselines（4 篇）**: RAGEN/StarPO, WebRL, WebAgent-R1, Planner-R1
+
+**Surveys（3 篇）**: Credit Assignment Survey (47 methods), Practitioner's Guide, DeepSeek-R1 GRPO
+
+**关键结论**: 没有论文使用 "advantage sign misattribution" 术语，也没有量化 γ 折扣对 sign 的影响（~29% 保留率）。Turn-PPO 描述了相近现象（uniform advantage assignment），但我们的 sign-level 分析和 step-independent vs episode-level 的受控对比（0% vs 28%）是差异化贡献空间。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 392288,
+  "duration_api_ms": 627735,
+  "num_turns": 39,
+  "stop_reason": "end_turn",
+  "session_id": "ac2e1a09-0a0d-485a-b227-038ac090fe81",
+  "total_cost_usd": 1.5174137499999998,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 53051,
+    "cache_read_input_tokens": 329372,
+    "output_tokens": 15012,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 53051,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 554,
+        "cache_read_input_tokens": 54731,
+        "cache_creation_input_tokens": 10021,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 10021
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 401539,
+      "outputTokens": 16850,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 16,
+      "costUSD": 0.6457890000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 15012,
+      "cacheReadInputTokens": 329372,
+      "cacheCreationInputTokens": 53051,
+      "webSearchRequests": 0,
+      "costUSD": 0.8716247500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "4a0d12b6-27f7-4bff-8129-a1171d9184f6"
+}
+```
+
+</details>
+
+---

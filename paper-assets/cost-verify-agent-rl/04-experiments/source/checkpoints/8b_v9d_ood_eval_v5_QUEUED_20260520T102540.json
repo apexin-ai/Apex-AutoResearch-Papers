@@ -1,0 +1,16 @@
+{
+  "exp_id": "8b_v9d_ood_eval_v5",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:25:24.932Z",
+    "updated_at": "2026-05-20T10:25:40.208Z",
+    "hypothesis": "Evaluate 8B Cell C episode-level GRPO model (v9d step 10, val_before_train 96.875%) on 134 OOD ALFWorld tasks. Paper's key data point: 8B model OOD generalization under episode-level GRPO. Fix: val.env_groups 234→134 to match val.n_groups=[134].",
+    "parent": "8b_cell_c_episode_v9d"
+  },
+  "timestamp": "2026-05-20T10:25:40.414853+00:00",
+  "trigger": "update_registry"
+}

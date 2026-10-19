@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34fb47ef5b629387af00",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "eval seed300 step5 ood v2 bjb1",
+  "task_key": "worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_seed300_step5_ood_v2_bjb1_20260522T183811_result.json",
+    "occurrence": 1,
+    "bytes": 444,
+    "sha256": "e8af2afb8cbf6830a76b7a78c67b42aad14608ec67ff1e6ef71af850fc1073ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**启动成功，汇报：**\n\n- **PID**: 442738（子进程 TaskRunner pid=444677）\n- **GPU**: cuda:0 已分配 7933 MiB，cuda:1 空闲（符合约束）\n- **日志**: `/root/autodl-tmp/logs/seed300_step5_ood_eval_v2.log`\n- **状态**: 模型加载中，config 解析正确（seed.val=321, 134 OOD tasks, experiment_name=seed300-step5-ood-eval）\n- tokenizer regex warning 是 Qwen 已知的无害警告，不影响结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-seed300-step5-ood-v2-bjb1.md"
+}

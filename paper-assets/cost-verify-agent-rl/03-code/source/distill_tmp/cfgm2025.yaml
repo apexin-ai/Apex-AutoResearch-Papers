@@ -1,0 +1,27 @@
+paper_key: "cfgm2025"
+title: "Coarse-to-Fine Grounded Memory for LLM Agent Planning"
+venue: "EMNLP 2025"
+full_text_available: false
+
+research:
+  baselines: ["single-granularity memory agents"]
+  metrics:
+    - {name: "task success rate", direction: "higher_better"}
+  datasets: []
+  ablation_dimensions: ["memory granularity levels", "self-QA reflection"]
+  training_recipe:
+    optimizer: "N/A"
+    lr: "N/A"
+    hardware: "N/A"
+    method: "Three-phase grounded memory: (1) ground environmental info into coarse-grained focus points during training, (2) extract actionable hybrid-grained tips from experiences, (3) retrieve task-relevant materials at inference; fine-grained self-QA reflection for anomaly handling"
+  method_family: "memory-augmented LLM agent planning"
+
+positioning:
+  core_claim: "Multi-granularity grounded memory (coarse focus points + fine-grained key info) enables flexible adaptation to diverse scenarios and anomaly handling, overcoming limitations of single-granularity memory derived from dynamic environmental interactions."
+  key_results: "N/A (abstract does not report specific numbers)"
+  limitations: ["N/A"]
+  relation_to_us: "orthogonal"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

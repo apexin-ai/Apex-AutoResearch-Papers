@@ -1,0 +1,52 @@
+{
+  "exp_id": "8b_det_eval_h2",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:54:36.334Z",
+    "updated_at": "2026-05-19T12:32:42.763Z",
+    "spec": {
+      "command": "python train.py --config-name _alfworld_8b_det_eval_h2",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "160160",
+      "log_path": "~/runs/cost-verify-agent-rl/8b_det_eval_h2.log",
+      "submitted_at": "2026-05-19T11:54:36.028Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "32 in-dist ALFWorld val tasks",
+      "data_count": 32,
+      "model_name": "qwen3_8b_sft_v1/checkpoint-231",
+      "seed": 123,
+      "checkpoint_source": "qwen3_8b_sft_v1/checkpoint-231",
+      "eval_data": "32 in-dist tasks, T=0, greedy, h=2 windowing",
+      "checkpoint_path": "N/A (eval only)",
+      "wall_clock_seconds": 2286.7,
+      "gpu_hours": 1.27
+    },
+    "hypothesis": "h=2 windowing at T=0 deterministic eval will show substantial information loss compared to full-context T=0 eval on same 32 in-dist tasks. The gap quantifies pure information loss without sampling variance confound. Expected significant degradation from full-context baseline.",
+    "conclusion": "success",
+    "metrics": {
+      "success_rate": 0.3125,
+      "num_actions": 37.59,
+      "action_is_valid": 0.9188,
+      "pass_at_1": 0.3125,
+      "eval_tasks": 32,
+      "temperature": 0,
+      "do_sample": false,
+      "wandb_run": "qtxhh5ak",
+      "information_loss_pp": 37.5,
+      "information_loss_relative": 0.545
+    },
+    "completed_at": "2026-05-19T12:32:42.763Z"
+  },
+  "timestamp": "2026-05-19T12:32:42.930135+00:00",
+  "trigger": "update_registry"
+}

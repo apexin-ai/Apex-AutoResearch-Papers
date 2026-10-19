@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "id": "34652a9e7a85b17d9235",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code prepare h10 and adv analysis",
+  "task_key": "worker_code_prepare_h10_and_adv_analysis_20260518T001231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare_h10_and_adv_analysis_20260518T001231_result.json",
+    "occurrence": 1,
+    "bytes": 1890,
+    "sha256": "423988d49331e21e2a8a577c30a9d4c5343c62794e1417370c85f8dcb60bab4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个子任务验证结果：\n\n---\n\n**子任务 1: ADV 数据路径** ✅\n\n| 项目 | 值 |\n|------|------|\n| 路径 | `/root/runs/cost-verify-agent-rl/hsweep_h2_seed2/advantage_log.jsonl` |\n| 大小 | 255,872 bytes, 2200 行 |\n| 最后修改 | 2026-05-18 07:18 (仍在写入中) |\n| 样本 | `{\"episode_id\": 89, \"window_position\": 0, \"step_return\": -0.106, \"advantage\": 0.00141, \"uid\": \"11\"}` |\n\n数据格式与 `analyze_advantage_log_v2.py` 期望的字段完全吻合（episode_id, window_position, step_return, advantage）。\n\n---\n\n**子任务 2: analyze_advantage_log_v2.py** ✅\n\n- 远程已存在：`/root/cost-verify-agent-rl/scripts/analyze_advantage_log_v2.py`\n- 脚本默认输入路径 `DEFAULT_LOG` = `/root/runs/cost-verify-agent-rl/hsweep_h2_seed2/advantage_log.jsonl` — 与实际数据路径完全一致\n- 无需同步，直接可用：`python /root/cost-verify-agent-rl/scripts/analyze_advantage_log_v2.py`\n\n---\n\n**子任务 3: hsweep_h10 配置** ✅\n\n文件已存在：`/root/cost-verify-agent-rl/RAGEN/config/_alfworld_hsweep_h10.yaml`\n\n关键参数：\n- `step_independent_history_length: 10`（h=10）\n- `context_window_mode: \"step_independent\"`\n- `total_training_steps: 15`\n- `CUDA_VISIBLE_DEVICES: \"0,1\"`（bjb1-17606 白名单内）\n- `experiment_name: hsweep-h10`\n- `checkpoint_dir: /root/autodl-tmp/checkpoints/hsweep-h10/`\n- `val: 32 env_groups`（满足 C003 ≥16 episodes）\n\n---\n\n**结论：所有依赖就绪。** hsweep_h2_seed2 完成后可直接：\n1. 运行分析：`python /root/cost-verify-agent-rl/scripts/analyze_advantage_log_v2.py`\n2. 启动 h10：使用 `_alfworld_hsweep_h10.yaml` 配置（pre-flight checklist 需在启动前执行）"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "episode_id": 89,
+              "window_position": 0,
+              "step_return": -0.106,
+              "advantage": 0.00141,
+              "uid": "11"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-h10-and-adv-analysis.md"
+}

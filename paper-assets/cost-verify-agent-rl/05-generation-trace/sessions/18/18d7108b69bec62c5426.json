@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18d7108b69bec62c5426",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp022 status check",
+  "task_key": "worker_diagnose_exp022-status-check_20260515T032039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp022-status-check_20260515T032039_result.json",
+    "occurrence": 1,
+    "bytes": 1213,
+    "sha256": "e0778fbdbd8f6f47ddbb8e7d73719fcc515fb17bc6b322fb7d81f04149b8e646"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n进程状态: 运行中\n当前 step: 0 / 30 (尚未完成 step 0)\n运行时间: 3h 24m (wrapper) / Workers 活跃 5h 35m\nGPU 利用率: cuda:0 96% (41.7/97.9 GB), cuda:1 58% (41.7/97.9 GB)\n磁盘: /root/autodl-tmp 55GB 可用 (79%)\n\nMetrics: 无\n  - 训练进入 step 0 后 ~3 小时无日志输出\n  - 无 checkpoint 保存\n  - 无 wandb 目录\n\n分析:\n  - 进程和 GPU 均正常工作（GPU 利用率高，workers ~39% CPU）\n  - Step 0 耗时长的原因：ALFWorld 配置为 parallel_friendly=False, max_workers=1，\n    训练 rollout 需串行跑 4×16=64 条轨迹，每条最多 30 turns\n  - 日志无更新可能是 Python stdout 缓冲 + step 0 未完成\n  - kl_loss_coef 已通过 sed 修改为 0.5（符合预期）\n\n关键配置:\n  - model: Qwen3 1.72B (from exp021 SFT checkpoint)\n  - lr: 5e-7, kl_loss_coef: 0.5, entropy_coeff: 0.001\n  - train: 4 groups × 16 = 64 trajectories/step\n  - val: 8 groups × 1 = 8 trajectories\n  - FSDP + bfloat16, ppo_epochs: 1\n\n预估: Step 0 仍在 rollout 阶段，按当前速度首个 step 可能还需 1-2 小时。\n30 步总时长可能需 24-48 小时（取决于 step 0 完成后的实际 step 耗时）。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp022-status-check.md"
+}

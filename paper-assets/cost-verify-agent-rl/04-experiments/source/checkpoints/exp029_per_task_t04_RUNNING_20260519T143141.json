@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp029_per_task_t04",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:17:41.710Z",
+    "updated_at": "2026-05-19T14:31:41.518Z",
+    "hypothesis": "Per-task-type OOD eval with T=0.4 (paper protocol D092) will show similar task-type ranking pattern as T=0.0 but with higher overall success rate (~23.88% vs 16.4%). Multi-step tasks (heat/cool/two_obj) expected to remain worst.",
+    "parent": "exp029_per_task_breakdown",
+    "spec": {
+      "command": "python eval_per_task_type.py",
+      "server": "bjb1-17606",
+      "model_name": "exp029_hf (Qwen3-based)",
+      "seed": 1,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/exp029_hf",
+      "eval_data": "alfworld eval_out_of_distribution (134 tasks)",
+      "data_count": 134,
+      "data_path": "/root/autodl-tmp/alfworld"
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-19T14:31:41.790909+00:00",
+  "trigger": "update_registry"
+}

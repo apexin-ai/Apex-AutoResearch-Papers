@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fd71624a756d4a3c383",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor seed8 health check",
+  "task_key": "worker_monitor_seed8_health_check_20260521T155547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_seed8_health_check_20260521T155547_result.json",
+    "occurrence": 1,
+    "bytes": 870,
+    "sha256": "fc02094772ff1bd15b90eb6db56d25da4e1fcc225af1c7ff5f7fdd82f866413c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp029_seed8 状态：正常启动中**\n\n| 项目 | 状态 |\n|------|------|\n| PID 462991 | 存活，已运行 ~3 分钟 |\n| GPU | cuda:2 (99%, 36.6/97.9 GB) + cuda:3 (100%, 36.7/97.9 GB) — 符合 C006 白名单 |\n| 阶段 | 初始化完成，数据加载 100%，模型已加载到 WorkerDict，尚未开始训练 step |\n| W&B | 已连接，run ID `c0l6e7vd`，名称 `exp029-seed8-episode-level` |\n| Ray 隔离 | 正常 — seed7 和 seed8 各有独立 Ray session（`session_...515350_226699` vs `session_...862212_462996`），RAY_ADDRESS=local |\n| 错误 | 无。仅有 tokenizer regex warning 和 FSDP/CUDA deprecation warning，不影响训练 |\n\nseed7 同时在 GPU 0,1 上运行（100% 利用率，~45GB 显存），两个实验互不干扰。seed8 当前处于模型初始化阶段，预计几分钟内进入第一个训练 step。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-seed8-health-check.md"
+}

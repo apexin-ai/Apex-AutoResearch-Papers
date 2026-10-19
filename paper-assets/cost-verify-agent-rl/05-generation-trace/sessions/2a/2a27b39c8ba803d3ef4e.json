@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a27b39c8ba803d3ef4e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops kill g095 start g100",
+  "task_key": "worker_ops_kill-g095-start-g100_20260518T130740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-g095-start-g100_20260518T130740_result.json",
+    "occurrence": 1,
+    "bytes": 670,
+    "sha256": "39392c500a80b750514c6f452a8a18f317a61e78aa8db035850067b091c2e9b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 结果汇总\n\n| 项目 | 状态 |\n|---|---|\n| **g095 kill** | PID 416289 已终止，GPU 2,3 已释放（3MiB → idle） |\n| **factorial_seed2** | PID 576727 正常运行，GPU 0,1 占用 ~18GB each，未受影响 |\n| **g100 PID** | **714093** |\n| **g100 W&B run ID** | **da7701tk** |\n| **GPU 显存** | GPU 0: 17993MiB (factorial), GPU 1: 17993MiB (factorial), GPU 2: 4731MiB (g100 loading), GPU 3: 4731MiB (g100 loading) |\n| **RAM** | 84GB / 1TB used |\n| **Registry** | g095 → DONE/negative (metrics: val=0% step5); g100 → RUNNING (spec 完整) |\n| **Cron** | 每小时 :23 自动检查 g100 状态 (job 2140a5fb) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-g095-start-g100.md"
+}

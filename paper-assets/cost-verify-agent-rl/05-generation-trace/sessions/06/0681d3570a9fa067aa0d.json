@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0681d3570a9fa067aa0d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diag westd post restart",
+  "task_key": "worker_diag_westd-post-restart_20260519T124520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_westd-post-restart_20260519T124520_result.json",
+    "occurrence": 1,
+    "bytes": 1390,
+    "sha256": "c514ef105da47b4e8b60e67df0b8bcf729f79952dd9a1bfb158a57e49b77dbbb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 1. Cell C v3 训练 — 已死亡 (OOM)\n\n- **4 张 GPU 全部空闲**：0% 利用率，0 MiB 显存占用\n- **退出码**：1（崩溃）\n- **死因**：`torch.OutOfMemoryError` — 在 `loss.backward()` 阶段（`dp_actor.py:468`）尝试分配 8.76 GiB 失败\n  - GPU 0 总容量 94.97 GiB，PyTorch 已分配 118.48 GiB（跨 FSDP shards），仅剩 ~5-6 GiB 可用\n  - 两个 worker（pid 43190, 43724）同时 OOM\n- **日志**：`/root/runs/cost-verify-agent-rl/8b_cell_c_v3.log`\n- **关键信息**：`ppo_mini_batch_size=4` 对 8B 模型 + 4 GPU FSDP 在 backward pass 时显存不够。需要降 mini_batch_size 或启用 gradient checkpointing / offload。\n\n### 2. ScienceWorld 数据提取 — 存活\n\n- **PID 51279**：运行中，已运行 15 分 38 秒\n- **命令**：`python3 /root/autodl-tmp/extract_scienceworld_sft_optimized.py`\n- **输出文件**（partial，仍在写入）：\n  - `scienceworld_sft_train_partial.jsonl` — 619 条，33.4 MB\n  - `scienceworld_sft_val_partial.jsonl` — 322 条，16.0 MB\n- 最终文件 `scienceworld_sft_train.jsonl` 尚未生成（提取未完成）\n\n### 3. 磁盘\n\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| `/`（根） | 30G | 14G | 17G | 46% |\n| `/root/autodl-tmp` | 250G | 80G | 171G | 32% |\n\n磁盘充足，无风险。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-westd-post-restart.md"
+}

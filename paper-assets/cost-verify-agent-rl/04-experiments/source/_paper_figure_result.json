@@ -1,0 +1,436 @@
+{
+  "figures_found": [
+    {
+      "number": "1",
+      "env_type": "figure*",
+      "image_path": "fig_overview.pdf",
+      "caption": "Step-independent windowing (left) partitions the trajectory into fixed windows, each optimized independently. This introduces two failure mechanisms: M1 (information loss) truncates context at window ",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": true,
+      "source_file": "introduction.tex"
+    },
+    {
+      "number": "2",
+      "env_type": "figure",
+      "image_path": "fig_theory_curve.pdf",
+      "caption": "Upper bound on the probability of correct gradient sign vs.\\ episode success rate $p$ (Proposition~2). At typical agent task success rates ($p < 0.2$, shaded), the majority of gradient updates carry i",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "related_work.tex"
+    },
+    {
+      "number": "3",
+      "env_type": "figure*",
+      "image_path": "fig_training_dynamics.pdf",
+      "caption": "(a)~Training dynamics across partial factorial conditions. Cell~A collapses; Cell~B shows bounded learning; Cell~D improves monotonically. (b)~Window size $h$ vs.\\ success rate. Bars show mean over av",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "method.tex"
+    },
+    {
+      "number": "4",
+      "env_type": "figure",
+      "image_path": "fig_sign_misattribution.pdf",
+      "caption": "Sign-episode correlation (binary reward) vs.\\ credit agreement rate (penalty reward). Under binary reward, advantage sign tracks episode outcome near-perfectly, confirming M2. Under penalty reward, cr",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "experiments.tex"
+    },
+    {
+      "number": "5",
+      "env_type": "figure",
+      "image_path": "fig_seed_variability.pdf",
+      "caption": "OOD success rate across 11 episode-level GRPO seeds (Wilson 95\\% CI). Seeds partition into \\textit{Generalized} ($p{<}0.01$ vs.\\ SFT), \\textit{Stagnant} (stable, NS), and \\textit{Collapsed} ($\\times$)",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "experiments.tex"
+    },
+    {
+      "number": "A.1",
+      "env_type": "figure*",
+      "image_path": "fig_cross_scale.pdf",
+      "caption": "(a)~Cross-scale verification (single seed): both collapse (Cell~A) and fix (Cell~D) are observed from 1.7B to 8B. The episode-level fix appears more effective at 8B (96.9\\% vs.\\ 34.4\\% in-distribution",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.2",
+      "env_type": "figure*",
+      "image_path": "fig_additional_conditions.pdf",
+      "caption": "(a)~Standard remedies for step-independent training: dense reward shaping and discount factor $\\gamma{=}1.0$ both collapse to 0\\%; REINFORCE++ matches the SFT baseline without improvement. Only episod",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    },
+    {
+      "number": "A.3",
+      "env_type": "figure",
+      "image_path": "fig_response_length.pdf",
+      "caption": "Response length over training for 7 seeds under episode-level GRPO. Collapsed seeds (red) exhibit length inflation to 14{,}000--16{,}000 tokens. Generalized seeds (green) maintain or reduce response l",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    }
+  ],
+  "results": [],
+  "post_review": {
+    "compile": {
+      "success": true,
+      "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/_latex_iso_4w2f6k5k/main.pdf"
+    },
+    "figure_check": {
+      "passed": true,
+      "critical": [],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:cross_scale} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:hyperparameters_app} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:8b_results} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:problem_formulation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:related_work} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:response_length} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:step5_unified} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:factorial_experiments} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:formal_probability} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai-assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:episode_level} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:introduction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:cross_scale} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:eval_variance} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:step_independent} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:method_selection} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:m1_information_loss} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:conclusion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:experiments} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:m2_sign_misattribution} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:overview} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{prop:correct_sign} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:results_hsweep} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:sign_correlation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:results} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:biased_gradient} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:24"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:75"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "0 critical, 30 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper",
+      "sections": [
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "discussion.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 2
+        },
+        {
+          "file": "experiments.tex",
+          "role": "result",
+          "num_numbers": 67,
+          "num_cites": 4
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 1,
+          "num_cites": 11
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 3
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 29
+        },
+        {
+          "file": "theoretical_analysis.tex",
+          "role": "other",
+          "num_numbers": 19,
+          "num_cites": 0
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'agenticrl_survey2026' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'ahmadian2024back' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'andrychowicz2017her' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'arjona2019rudder' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'dapo2025' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'foerster2018coma' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'gradientcoupling2025' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'harutyunyan2019hindsight' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'istar2025' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'mtgrpo2025' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'ng1999shaping' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'schulman2015trpo' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'sweetrl2025' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'wang2024mathshepherd' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "experiments": [
+              "\\approx",
+              "\\ast",
+              "\\dagger",
+              "\\ddagger",
+              "\\gamma",
+              "\\geq",
+              "\\hat",
+              "\\in",
+              "\\leq",
+              "\\mid",
+              "\\sim",
+              "\\tau",
+              "\\times",
+              "\\to"
+            ],
+            "method": [
+              "\\gamma",
+              "\\hat",
+              "\\in",
+              "\\lceil",
+              "\\ldots",
+              "\\mid",
+              "\\mu",
+              "\\phi",
+              "\\pi",
+              "\\rceil",
+              "\\times"
+            ],
+            "related_work": [
+              "\\lambda",
+              "\\sigma",
+              "\\to"
+            ],
+            "theoretical_analysis": [
+              "\\alpha",
+              "\\approx",
+              "\\gamma",
+              "\\geq",
+              "\\hat",
+              "\\in",
+              "\\infty",
+              "\\leq",
+              "\\mid",
+              "\\mu",
+              "\\sigma",
+              "\\sim",
+              "\\square",
+              "\\theta",
+              "\\to"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 14,
+        "info": 1
+      }
+    }
+  },
+  "backup_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/_figure_backups/20260525_074313",
+  "error": "",
+  "timestamp": "2026-05-25T07:45:55.549331+00:00"
+}

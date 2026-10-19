@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "id": "1600c92c96ded6208d62",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "ops copy 8b ckpt to bjb1",
+  "task_key": "worker_ops_copy-8b-ckpt-to-bjb1_20260519T101156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_copy-8b-ckpt-to-bjb1_20260519T101156.log",
+    "occurrence": 1,
+    "bytes": 1582393,
+    "sha256": "c5fb955d9d870800a67b5c20f59ca0831aff65ac6b1ca4d872f7d4d14816871d"
+  },
+  "statistics": {
+    "messages": 1260,
+    "user_turns": 2,
+    "tool_calls": 540,
+    "roles": {
+      "log": 1,
+      "system": 48,
+      "record": 1,
+      "assistant": 128,
+      "tool_call": 540,
+      "tool_result": 540,
+      "user": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 47,
+      "chunks": [
+        {
+          "path": "1600c92c96ded6208d62-part-0001.json",
+          "message_count": 47
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 802,
+      "chunks": [
+        {
+          "path": "1600c92c96ded6208d62-part-0001.json",
+          "message_count": 133
+        },
+        {
+          "path": "1600c92c96ded6208d62-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1600c92c96ded6208d62-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "1600c92c96ded6208d62-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "1600c92c96ded6208d62-part-0005.json",
+          "message_count": 129
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 411,
+      "chunks": [
+        {
+          "path": "1600c92c96ded6208d62-part-0005.json",
+          "message_count": 51
+        },
+        {
+          "path": "1600c92c96ded6208d62-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "1600c92c96ded6208d62-part-0007.json",
+          "message_count": 180
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-copy-8b-ckpt-to-bjb1.md"
+}

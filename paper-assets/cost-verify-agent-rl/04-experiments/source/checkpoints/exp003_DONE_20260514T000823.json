@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp003",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T21:39:20.081Z",
+    "updated_at": "2026-05-14T00:08:23.334Z",
+    "spec": {
+      "hypothesis": "Always-on self-guidance via GRPO can achieve >=76% on ALFWorld with prompt truncation",
+      "model_name": "Qwen3-1.7B",
+      "server": "bjb1-17606",
+      "data_path": "/root/autodl-tmp/alfworld/",
+      "data_count": "3553 (train split)",
+      "seed": {
+        "train": 10000,
+        "val": 123
+      },
+      "description": "Phase A v3: prompt truncation + 128 traj/step + 100 steps + 50 max_turns",
+      "command": "python train.py --config-name=_alfworld_exp003",
+      "failure_reason": "Bootstrap failure: Qwen3-1.7B base不生成<answer>标签，原生格式为<think>...</think>+直接文本。RAGEN正则<think>(.*?)</think>\\s*<answer>(.*?)</answer>匹配失败→actions=[]→invalid_action=95.3%, pg_loss≈0。32/32样本确认。",
+      "checkpoint_path": "N/A",
+      "log_path": "~/runs/cost-verify-agent-rl/exp003.log",
+      "diagnosis_report": "artifacts/exp003/report/exp003_invalid_action_diagnosis.md"
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-14T00:08:23.334Z"
+  },
+  "timestamp": "2026-05-14T00:08:23.375370+00:00",
+  "trigger": "update_registry"
+}

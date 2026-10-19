@@ -1,0 +1,32 @@
+{
+  "exp_id": "gsweep_g100_h5_seed1",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:56:58.033Z",
+    "updated_at": "2026-05-18T17:35:36.897Z",
+    "hypothesis": "γ=1.0 with h=5 means no discount (all windows receive full terminal return). If collapse is driven by sign misattribution from discounting, γ=1.0 should show least collapse. But uniform return may reduce temporal credit assignment sharpness.",
+    "parent": "gsweep_g095_h5_seed1",
+    "spec": {
+      "command": "python train.py --config-name _alfworld_gamma_sweep_g100_h5",
+      "server": "westd-47453",
+      "gpu": "2,3",
+      "pid": "714093",
+      "wandb_run_id": "da7701tk",
+      "data_path": "/root/autodl-tmp/cost-verify-agent-rl/data/alfworld",
+      "data_count": 3553,
+      "model_name": "Qwen/Qwen2.5-3B",
+      "seed": 10000,
+      "checkpoint_source": "Qwen2.5-3B base",
+      "eval_data": "ALFWorld val 32 tasks",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/gsweep-g100-h5/",
+      "log_path": "/root/autodl-tmp/cost-verify-agent-rl/logs/gsweep_g100_seed1.log"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-18T17:35:37.062311+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,31 @@
+{
+  "exp_id": "7b_zeroshot_eval_v2",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T05:43:38.265Z",
+    "updated_at": "2026-05-19T05:44:02.833Z",
+    "hypothesis": "Zero-shot evaluation of Qwen3-8B on ALFWorld OOD 134 tasks. If success rate > 30%, can skip SFT and go directly to RL. If < 10%, SFT is mandatory. Establishes 8B baseline for model-agnostic claim.",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=2,3 python train.py --config-name _alfworld_7b_zeroshot_eval",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "790377",
+      "wandb_run_id": "w56o6f11",
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "data_path": "AlfworldSG_OOD (eval_out_of_distribution)",
+      "data_count": 134,
+      "eval_data": "alfworld_valid_unseen_134",
+      "log_path": "/root/runs/cost-verify-agent-rl/7b_zeroshot_eval_v2.log"
+    }
+  },
+  "timestamp": "2026-05-19T05:44:02.984293+00:00",
+  "trigger": "update_registry"
+}

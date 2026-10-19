@@ -1,0 +1,29 @@
+diff RAGEN/config/_alfworld_exp027_stable_grpo.yaml RAGEN/config/_alfworld_exp028a_recipe_fix.yaml
+
+1,10c1,4  (comments only)
+< # exp027: Stabilized GRPO (Reviewer-revised)
+---
+> # exp028a: Recipe Fix — Invalid Action Penalty Verification
+
+29c23  (experiment name)
+< experiment_name: exp027-alfworld-stable-grpo
+---
+> experiment_name: exp028a-recipe-fix
+
+35,36c29,30  (checkpoint paths)
+< local_log_dir: "/root/autodl-tmp/checkpoints/exp027/"
+< default_local_dir: "/root/autodl-tmp/checkpoints/exp027/"
+---
+> local_log_dir: "/root/autodl-tmp/checkpoints/exp028a/"
+> default_local_dir: "/root/autodl-tmp/checkpoints/exp028a/"
+
+75a70  (THE ONLY FUNCTIONAL CHANGE)
+> invalid_action_penalty_coef: 0.1
+
+All other parameters identical:
+- model_path: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4 (SFT checkpoint)
+- LR: 5e-7, kl_loss_coef: 0.005, entropy_coeff: 0.01
+- total_training_steps: 50, save_freq: 5, test_freq: 5
+- env_groups_train: 8, env_groups_val: 16, group_size: 16
+- ppo_mini_batch_size: 32, gamma: 0.95, max_turn: 50
+- format_penalty: 0

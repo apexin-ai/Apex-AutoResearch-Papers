@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2402bed3710ebe853818",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code scienceworld cell d config",
+  "task_key": "worker_code_scienceworld_cell_d_config_20260524T042701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scienceworld_cell_d_config_20260524T042701_result.json",
+    "occurrence": 1,
+    "bytes": 1624,
+    "sha256": "261a33e16ef3fee14b830f0094c3fc0b74f890ea7578b4033c0ee09ca5c0d5a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出汇总：\n\n### 创建的文件\n\n| 文件 | 路径 |\n|------|------|\n| Cell D GRPO 配置 | `/root/cost-verify-agent-rl/RAGEN/config/_scienceworld_cell_d_grpo.yaml` |\n| SFT 训练脚本 | `/root/cost-verify-agent-rl/scripts/run_scienceworld_sft_v2.sh` |\n| Cell D 启动脚本 | `/root/cost-verify-agent-rl/scripts/run_scienceworld_cell_d.sh` |\n| 数据生成脚本（从 westd 复制） | `/root/cost-verify-agent-rl/generate_scienceworld_sft.py` |\n\n### Cell D 配置关键参数\n- `context_window_mode: \"full\"` + `max_context_window: -1`（episode-level）\n- `n_gpus_per_node: 1`，`CUDA_VISIBLE_DEVICES: \"0\"`\n- `model_path: /root/autodl-tmp/checkpoints/scienceworld_sft_v2/final`\n- `total_training_steps: 15`，`save_freq: 5`，`test_freq: 5`\n- `env_tags: ScienceWorldSG`（全部 30 task types）\n- `seed.train: 42`\n- `train: env_groups=8, group_size=8`（64 samples/step）\n- `kl_loss_coef: 0.01`，`lr: 1e-6`（与 Cell A 一致）\n\n### SFT 训练参数\n- Base model: `/root/autodl-tmp/models/Qwen/Qwen3-1___7B/` ✓ 已确认存在\n- lr=2e-5, epochs=3, batch=2, grad_accum=8, max_seq=16384\n- 输出: `scienceworld_sft_v2/final/`\n\n### 需注意\n1. **SFT 数据尚不存在**：`/root/autodl-tmp/expert_sft/scienceworld_sft_train.jsonl` 不在 bjb1 上。需先运行 `python generate_scienceworld_sft.py` 生成（需要 `scienceworld` 包）\n2. **SFT checkpoint 尚不存在**：Cell D 依赖 SFT 完成后的 checkpoint，启动脚本有 pre-flight 检查会拦截\n3. **执行顺序**：生成 SFT 数据 → 运行 SFT 训练 → 启动 Cell D GRPO"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scienceworld-cell-d-config.md"
+}

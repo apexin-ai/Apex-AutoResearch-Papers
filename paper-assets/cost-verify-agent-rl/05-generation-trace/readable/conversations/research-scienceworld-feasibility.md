@@ -1,0 +1,2189 @@
+# research scienceworld feasibility
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 63
+- **Recorded user turns:** 0
+- **Tool calls:** 31
+- **Original source:** `logs/chats/worker_research_scienceworld-feasibility_20260519T031322.jsonl`
+- **Structured JSON:** [`f57f3dd168a62d3be91e.json`](../../sessions/f5/f57f3dd168a62d3be91e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+63 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T03:17:51.777755+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T03:17:51.778115+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T03:17:51.778331+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "ScienceWorld interactive text environment Python API installation action space observation reward"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "ScienceWorld interactive text environment Python API installation action space observation reward"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-19T03:17:51.778487+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "ScienceWorld expert demonstrations dataset SFT trajectory data"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "ScienceWorld expert demonstrations dataset SFT trajectory data"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T03:17:51.778677+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "ScienceWorld reinforcement learning LLM agent 2024 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "ScienceWorld reinforcement learning LLM agent 2024 2025 2026"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-19T03:17:51.778811+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep -ri \"scienceworld\\|science_world\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ --include=\"*.py\" --include=\"*.yaml\" -l 2>/dev/null; echo \"---SEPARATOR---\"; ls /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/env/ 2>/dev/null; echo \"---SEPARATOR---\"; cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/env/__init__.py 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "grep -ri \"scienceworld\\|science_world\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ --include=\"*.py\" --include=\"*.yaml\" -l 2>/dev/null; echo \"---SEPARATOR---\"; ls /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/env/ 2>/dev/null; echo \"---SEPARATOR---\"; cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/env/__init__.py 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T03:17:51.778937+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/env/ -name \"*.py\" 2>/dev/null | head -30; echo \"---SEPARATOR---\"; find /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/ -name \"*.yaml\" 2>/dev/null | head -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "find /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/env/ -name \"*.py\" 2>/dev/null | head -30; echo \"---SEPARATOR---\"; find /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/ -name \"*.yaml\" 2>/dev/null | head -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T03:17:51.779154+00:00_
+
+Web search results for query: "ScienceWorld expert demonstrations dataset SFT trajectory data"
+
+Links: [{"title":"u-10bei/sft_alfworld_trajectory_dataset_v5 · Datasets at Hugging Face","url":"https://huggingface.co/datasets/u-10bei/sft_alfworld_trajectory_dataset_v5"},{"title":"u-10bei/sft_alfworld_trajectory_dataset_v4 · Datasets at Hugging Face","url":"https://huggingface.co/datasets/u-10bei/sft_alfworld_trajectory_dataset_v4"},{"title":"u-10bei/sft_alfworld_trajectory_dataset_v3 · Datasets at Hugging Face","url":"https://huggingface.co/datasets/u-10bei/sft_alfworld_trajectory_dataset_v3"},{"title":"u-10bei/sft_alfworld_trajectory_dataset_v2 · Datasets at Hugging Face","url":"https://huggingface.co/datasets/u-10bei/sft_alfworld_trajectory_dataset_v2"},{"title":"u-10bei/sft_alfworld_trajectory_dataset · Datasets at Hugging Face","url":"https://huggingface.co/datasets/u-10bei/sft_alfworld_trajectory_dataset"},{"title":"TIGER-Lab/SWE-Next-SFT-Trajectories · Datasets at Hugging Face","url":"https://huggingface.co/datasets/TIGER-Lab/SWE-Next-SFT-Trajectories"},{"title":"Beyond Imitation: Recovering Dense Rewards from Demonstrations","url":"https://arxiv.org/pdf/2510.02493"},{"title":"Supervised Reinforcement Learning: From Expert Trajectories to Step-wise Reasoning","url":"https://arxiv.org/pdf/2510.25992"},{"title":"Harmonizing Supervised Fine-Tuning and Reinforcement ...","url":"https://arxiv.org/pdf/2508.11408"}]
+
+I found search results related to SFT (Supervised Fine-Tuning) trajectory datasets, but the results are mostly focused on ALFWorld and software engineering tasks rather than ScienceWorld specifically. Here's what I found:
+
+## SFT Trajectory Datasets
+
+The search returned several synthetic SFT (Supervised Fine-Tuning) datasets designed for agent training that programmatically generate expert trajectories without requiring an actual environment or a large language model. These include:
+
+- **ALFWorld Trajectory Datasets**: Multiple versions (v2-v5) of ALFWorld
+…[truncated 709 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T03:17:51.779383+00:00_
+
+Web search results for query: "ScienceWorld interactive text environment Python API installation action space observation reward"
+
+Links: [{"title":"scienceworld · PyPI","url":"https://pypi.org/project/scienceworld/"},{"title":"GitHub - allenai/ScienceWorld: ScienceWorld is a text-based virtual environment centered around accomplishing tasks from the standardized elementary science curriculum. · GitHub","url":"https://github.com/allenai/ScienceWorld"},{"title":"cs103-scienceworld 0.1.1 on PyPI - Libraries.io - security & maintenance data for open source software","url":"https://libraries.io/pypi/cs103-scienceworld"},{"title":"scienceworld","url":"https://pypi.org/project/scienceworld/1.0.0rc1/"},{"title":"GitHub - microsoft/TextWorld: ​TextWorld is a sandbox learning environment for the training and evaluation of reinforcement learning (RL) agents on text-based games.","url":"https://github.com/microsoft/TextWorld"},{"title":"textworld 1.7.0 on PyPI - Libraries.io - security & maintenance data for open source software","url":"https://libraries.io/pypi/textworld"},{"title":"textworld-express · PyPI","url":"https://pypi.org/project/textworld-express/"},{"title":"textworld · PyPI","url":"https://pypi.org/project/textworld/"},{"title":"API Tutorial 1: Getting Started with the Python API : SciTools Support","url":"https://support.scitools.com/support/solutions/articles/70000582855-api-tutorial-1-getting-started-with-the-python-api"},{"title":"wos · PyPI","url":"https://pypi.org/project/wos/"}]
+
+Based on the search results, here's what I found about ScienceWorld's interactive text environment Python API installation, action space, observation, and reward:
+
+## Overview
+ScienceWorld is an interactive text environment to study AI agents on accomplishing tasks from the standardized elementary science curriculum, centered around accomplishing tasks from this curriculum.
+
+## Python API Installation
+For convenience, a Python API is provided (Python >= 3.8), which interfaces usin
+…[truncated 1262 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T03:17:51.779588+00:00_
+
+Web search results for query: "ScienceWorld reinforcement learning LLM agent 2024 2025 2026"
+
+Links: [{"title":"EXPLORATORY MEMORY-AUGMENTED LLM AGENT","url":"https://openreview.net/pdf?id=UOzxviKVFO"},{"title":"Exploratory Memory-Augmented LLM Agent via Hybrid On- and Off-Policy Optimization","url":"https://arxiv.org/html/2602.23008v1"},{"title":"ProRL Agent: Rollout-as-a-Service for RL Training of Multi-Turn LLM Agents","url":"https://arxiv.org/html/2603.18815v1"},{"title":"From Novice to Expert: LLM Agent Policy Optimization via Step-wise   Reinforcement Learning","url":"https://arxiv.org/pdf/2411.03817"},{"title":"A Brief Overview: Agentic Reinforcement Learning In Large Language Models","url":"https://arxiv.org/html/2604.27859v2"},{"title":"Reinforcement World Model Learning for LLM-based Agents","url":"https://www.researchgate.net/publication/400506182_Reinforcement_World_Model_Learning_for_LLM-based_Agents"},{"title":"[2602.05842] Reinforcement World Model Learning for LLM-based Agents","url":"https://arxiv.org/abs/2602.05842"}]
+
+Based on the search results, I found several recent research papers related to reinforcement learning and LLM agents from 2024-2026, with multiple references to ScienceWorld:
+
+## Key Findings:
+
+**ScienceWorld in Recent RL Research:**
+
+ScienceWorld is used as a benchmark environment for training LLMs with reinforcement learning, with tasks like "turn on the red light bulb" that require agents to find objects before interacting with them. In ScienceWorld benchmarking, each task contains multiple variants, with training typically using the first five variants and evaluation on 20 unseen test variants.
+
+**Notable Recent Work (2025-2026):**
+
+1. **EMPO2 (February 2026):** An exploratory memory-augmented LLM agent that achieved 128.6% improvement on ScienceWorld over GRPO baseline. This research used ScienceWorld prompts identically for both online RL baselines and the proposed method.
+
+2. **Multi-turn RL for Agents (2025-2026):** Recent wo
+…[truncated 540 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T03:17:51.779930+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'grep -ri \\\"scienceworld\\\\\\\\|science_world\\\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ --include=\\\"*.py\\\" --include=\\\"*.yaml\\\" -l 2>/dev/null; echo \\\"---SEPARATOR---\\\"; ls /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/env/ 2>/dev/null; echo \\\"---SEPARATOR---\\\"; cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/env/__init__.py 2>/dev/null'\\n\\nExit code: 1\\n\\nStdout:\\n\\n---SEPARATOR---\\n---SEPARATOR---\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.25}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T03:17:51.780096+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---SEPARATOR---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.68}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T03:17:51.780259+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root -maxdepth 4 -type d -name \"RAGEN\" 2>/dev/null; echo \"===\"; find /root -maxdepth 4 -type d -name \"ragen\" 2>/dev/null; echo \"===\"; ls /root/cost-verify-agent-rl/ 2>/dev/null; echo \"===\"; ls /root/autodl-tmp/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "find /root -maxdepth 4 -type d -name \"RAGEN\" 2>/dev/null; echo \"===\"; find /root -maxdepth 4 -type d -name \"ragen\" 2>/dev/null; echo \"===\"; ls /root/cost-verify-agent-rl/ 2>/dev/null; echo \"===\"; ls /root/autodl-tmp/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T03:17:51.780404+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/cost-verify-agent-rl/RAGEN\\n===\\n/root/cost-verify-agent-rl/RAGEN/ragen\\n===\\nRAGEN\\nanalysis\\nanalyze_training.py\\nartifacts\\ndiagnose_exp003.py\\ndiagnose_exp003_v2.py\\nfigures\\nmodels\\nscripts\\ntests\\n===\\nalfworld\\ncheckpoints\\nconda-envs\\ndisk_monitor.log\\ndisk_monitor.sh\\neval_logs\\nexp003_dryrun.log\\nexp003_dryrun2.log\\nexp003_dryrun3.log\\nexp007_dryrun.log\\nexp007_formal.log\\nexp008_sft.log\\nexp008_sft_v2.log\\nexp009_grpo.log\\nexp010_grpo.log\\nexp011_grpo.log\\nexp012_grpo.log\\nexp021_val.log\\nexp021_val_v2.log\\nexp021_val_v3.log\\nexp021_val_v4.log\\nexp029_attempt7.log\\nexp029_restart.log\\nexpert_sft\\nexpert_sft_v2\\nexpert_sft_v3\\nexpert_sft_v4\\nexpert_trajectories\\nlogs\\nmodels\\npgpf\\nray_tmp\\nsft_data\\ntmp\\nverl-agent\\nwandb\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T03:17:51.780536+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "ScienceWorld GitHub allenai Python API reset step observation actions reward signal task variations"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "ScienceWorld GitHub allenai Python API reset step observation actions reward signal task variations"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T03:17:51.780718+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "ScienceWorld scienceworld pip Python API example code env.step env.reset admissible actions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "ScienceWorld scienceworld pip Python API example code env.step env.reset admissible actions"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T03:17:51.780888+00:00_
+
+Web search results for query: "ScienceWorld scienceworld pip Python API example code env.step env.reset admissible actions"
+
+Links: [{"title":"GitHub - allenai/ScienceWorld: ScienceWorld is a text-based virtual environment centered around accomplishing tasks from the standardized elementary science curriculum. · GitHub","url":"https://github.com/allenai/ScienceWorld"},{"title":"scienceworld · PyPI","url":"https://pypi.org/project/scienceworld/"},{"title":"How to Work with Environment Variables in Python","url":"https://oneuptime.com/blog/post/2026-01-26-work-with-environment-variables-python/view"},{"title":"Intro to development - Scientific Python Development Guide","url":"https://learn.scientific-python.org/development/tutorials/dev-environment/"},{"title":"🗝️ Storing Environment Variables and API Keys in Python | by Alwin Raju | Medium","url":"https://medium.com/@alwinraju/%EF%B8%8F-storing-environment-variables-and-api-keys-in-python-475144b2f098"},{"title":"Mastering the `.env` File in Python: A Comprehensive Guide - CodeRivers","url":"https://coderivers.org/blog/env-file-python/"},{"title":"Basic Usage - Gymnasium Documentation","url":"https://gymnasium.farama.org/introduction/basic_usage/"},{"title":"Python Environment Variables (Env Vars): A Primer","url":"https://developer.vonage.com/en/blog/python-environment-variables-a-primer"},{"title":"Python Env Vars: Complete Guide to Environment Variables | Codecademy","url":"https://www.codecademy.com/article/python-environment-variables"}]
+
+Based on the search results, I found information about ScienceWorld's Python API. Here's what I found:
+
+## ScienceWorld Python API Overview
+
+ScienceWorld provides a Python API (Python >= 3.8), which interfaces using the py4j package.
+
+## Installation
+
+You can install ScienceWorld via pip with: `pip install scienceworld[webserver]`
+
+## Basic API Usage
+
+Either the task ID or its name can be used to load a task with env.load().
+
+## Example Usage
+
+You can run a user console where y
+…[truncated 735 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T03:17:51.781077+00:00_
+
+Web search results for query: "ScienceWorld GitHub allenai Python API reset step observation actions reward signal task variations"
+
+Links: [{"title":"GitHub - allenai/ScienceWorld: ScienceWorld is a text-based virtual environment centered around accomplishing tasks from the standardized elementary science curriculum. · GitHub","url":"https://github.com/allenai/ScienceWorld"},{"title":"GitHub - allenai/codescientist: CodeScientist: An automated scientific discovery system for code-based experiments","url":"https://github.com/allenai/codescientist"},{"title":"GitHub - allenai/sso: Repository for Skill Set Optimization","url":"https://github.com/allenai/sso"},{"title":"scienceworld · PyPI","url":"https://pypi.org/project/scienceworld/"},{"title":"GitHub - allenai/clin · GitHub","url":"https://github.com/allenai/clin"},{"title":"ScienceWorld","url":"https://sciworld.apps.allenai.org/"},{"title":"GitHub - cognitiveailab/t5-scienceworld","url":"https://github.com/cognitiveailab/t5-scienceworld"},{"title":"GitHub - allenai/discoveryworld: A virtual environment for developing and evaluating automated scientific discovery agents. · GitHub","url":"https://github.com/allenai/discoveryworld"},{"title":"Ai2 · GitHub","url":"https://github.com/allenai?language=scala&type=source"},{"title":"The Allen Institute on Github","url":"https://alleninstitute.github.io/"}]
+
+Based on my search results, here's information about ScienceWorld from the allenai GitHub repository:
+
+## Overview
+ScienceWorld is a text-based virtual environment centered around accomplishing tasks from the standardized elementary science curriculum.
+
+## Python API
+A Python API is provided (Python >= 3.8), which interfaces using the py4j package.
+
+## Core Environment Components
+
+**Observations and Actions**: The tasks are listed in the table below along with their number of variations. Either the task ID or its name can be used to a task with env.load().
+
+**Task Variations**: Task can be set to any valid ScienceWorld
+…[truncated 1063 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T03:17:51.781267+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/cost-verify-agent-rl/RAGEN/ragen/env/ -name \"*.py\" | sort; echo \"===\"; cat /root/cost-verify-agent-rl/RAGEN/ragen/env/__init__.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "find /root/cost-verify-agent-rl/RAGEN/ragen/env/ -name \"*.py\" | sort; echo \"===\"; cat /root/cost-verify-agent-rl/RAGEN/ragen/env/__init__.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T03:17:51.781493+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/cost-verify-agent-rl/RAGEN/ragen/env/__init__.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/alfworld/config.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/alfworld/env.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/alfworld/utils.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/bandit/__init__.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/bandit/config.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/bandit/env.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/base.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/countdown/__init__.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/countdown/config.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/countdown/env.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/deepcoder/__init__.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/deepcoder/config.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/deepcoder/env.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/deepcoder/utils.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/frozen_lake/__init__.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/frozen_lake/config.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/frozen_lake/env.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/frozen_lake/utils.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/game_2048/__init__.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/game_2048/config.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/game_2048/env.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/lean/__init__.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/lean/config.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/lean/env.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/metamathqa/__init__.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/metamathqa/config.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/metamathqa/env.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/rubikscube/__init__.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/env/rubikscube/config.py\\n/root/cost-verify-agent-rl/RAGEN/ragen/
+…[truncated 6511 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T03:17:51.781677+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep -ri \"scienceworld\\|science_world\" /root/cost-verify-agent-rl/RAGEN/ --include=\"*.py\" --include=\"*.yaml\" -l 2>/dev/null; echo \"===FOUND===\"; echo \"No matches\" ",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "grep -ri \"scienceworld\\|science_world\" /root/cost-verify-agent-rl/RAGEN/ --include=\"*.py\" --include=\"*.yaml\" -l 2>/dev/null; echo \"===FOUND===\"; echo \"No matches\" ",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T03:17:51.781814+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"===FOUND===\\nNo matches\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T03:17:51.781937+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "allenai ScienceWorld API documentation getValidActionObjectCombinations step observation reward score tasks list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "allenai ScienceWorld API documentation getValidActionObjectCombinations step observation reward score tasks list"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-19T03:17:51.782055+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "ScienceWorld environment number of tasks variations 30 task types reward structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "ScienceWorld environment number of tasks variations 30 task types reward structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T03:17:51.782233+00:00_
+
+Web search results for query: "ScienceWorld environment number of tasks variations 30 task types reward structure"
+
+Links: [{"title":"[2203.07540] ScienceWorld: Is your Agent Smarter than a 5^\"th\" Grader?","url":"https://ar5iv.labs.arxiv.org/html/2203.07540"},{"title":"Knowledge-Enhanced Agents for Interactive Text Games | Towards Data Science","url":"https://towardsdatascience.com/knowledge-enhanced-agents-for-interactive-text-games-359e57da5de3/"},{"title":"SCIENCEWORLD: Is your Agent Smarter than a 5th Grader?","url":"https://arxiv.org/pdf/2203.07540"},{"title":"SCIENCEWORLD: Is your Agent Smarter than a 5","url":"https://par.nsf.gov/servlets/purl/10527040"},{"title":"GitHub - allenai/ScienceWorld: ScienceWorld is a text-based virtual environment centered around accomplishing tasks from the standardized elementary science curriculum. · GitHub","url":"https://github.com/allenai/ScienceWorld"},{"title":"SCIENCEWORLD: Is your Agent Smarter than a 5","url":"https://aclanthology.org/2022.emnlp-main.775.pdf"},{"title":"ScienceWorld Benchmark","url":"https://www.emergentmind.com/topics/scienceworld-benchmark"},{"title":"Differentiable Evolutionary Reinforcement Learning","url":"https://arxiv.org/html/2512.13399"},{"title":"Knowledge-enhanced Agents for Interactive Text Games Prateek Chhikara","url":"https://arxiv.org/pdf/2305.05091"},{"title":"Work in Progress DIFFERENTIABLE EVOLUTIONARY REINFORCEMENT LEARNING","url":"https://arxiv.org/pdf/2512.13399"}]
+
+Based on the search results, here's what I found about the ScienceWorld environment:
+
+## Task Structure
+
+ScienceWorld has 10 tasks with a total set of 30 sub-tasks. Each task functions as an individual benchmark with distinct reasoning abilities, knowledge requirements, and varying numbers of actions needed to achieve the goal state.
+
+## Task Variations
+
+The environment includes parametric variations of tasks. In one variation, the substance is named (e.g. metal fork), while in the other variation the substance is ran
+…[truncated 577 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T03:17:51.782471+00:00_
+
+Web search results for query: "allenai ScienceWorld API documentation getValidActionObjectCombinations step observation reward score tasks list"
+
+Links: [{"title":"GitHub - allenai/ScienceWorld: ScienceWorld is a text-based virtual environment centered around accomplishing tasks from the standardized elementary science curriculum. · GitHub","url":"https://github.com/allenai/ScienceWorld"},{"title":"GitHub - allenai/codescientist: CodeScientist: An automated scientific discovery system for code-based experiments","url":"https://github.com/allenai/codescientist"},{"title":"GitHub - allenai/discoveryworld: A virtual environment for developing and evaluating automated scientific discovery agents. · GitHub","url":"https://github.com/allenai/discoveryworld"},{"title":"GitHub - allenai/sso: Repository for Skill Set Optimization","url":"https://github.com/allenai/sso"},{"title":"ScienceWorld","url":"https://sciworld.apps.allenai.org/"},{"title":"scienceworld · PyPI","url":"https://pypi.org/project/scienceworld/1.1.0/"},{"title":"ScienceWorld - Task 1 Boil","url":"https://sciworld.apps.allenai.org/explore"},{"title":"GitHub - allenai/clin · GitHub","url":"https://github.com/allenai/clin"},{"title":"Using models by API","url":"https://docs.allenai.org/quick_start/apis"},{"title":"API Categories & Endpoints | allenai/s2-folks | DeepWiki","url":"https://deepwiki.com/allenai/s2-folks/2.2-api-categories-and-endpoints"}]
+
+I found the main ScienceWorld repository. Now let me search more specifically for the API documentation details you mentioned, particularly the methods like `getValidActionObjectCombinations`.
+
+Links: [{"title":"scienceworld · PyPI","url":"https://pypi.org/project/scienceworld/"},{"title":"GitHub - allenai/ScienceWorld: ScienceWorld is a text-based virtual environment centered around accomplishing tasks from the standardized elementary science curriculum. · GitHub","url":"https://github.com/allenai/ScienceWorld"},{"title":"Web of Science API - List of APIs for Sc
+…[truncated 5564 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T03:17:51.782691+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /root/cost-verify-agent-rl/RAGEN/ragen/env/base.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat /root/cost-verify-agent-rl/RAGEN/ragen/env/base.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T03:17:51.782875+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"from abc import ABC, abstractmethod\\nimport re\\nfrom typing import Optional, List, Tuple, Any, Dict\\n\\nclass BaseEnv(ABC):\\n    \\\"\\\"\\\"\\n    Abstract base class for all environments.\\n    The class needs to handle text-based input, input may be invalid\\n        - Environment will track the total reward for the trajectory\\n\\n    \\\"\\\"\\\"\\n    def __init__(self):\\n        pass\\n\\n    @abstractmethod\\n    def reset(self, seed=None, **kwargs) -> Any:\\n        \\\"\\\"\\\"\\n        Reset the environment.\\n        NOTE: the environment should be same for the same seed\\n        Returns:\\n            rendered environment\\n        \\\"\\\"\\\"\\n        pass\\n\\n    @abstractmethod\\n    def step(self, action) -> Tuple[Any, float, bool, Dict]:\\n        \\\"\\\"\\\"\\n        Execute one step in the environment.\\n        NOTE should also handle predefined invalid action (0)\\n        Args:\\n            action: Action to take, must be in action space, or default invalid action\\n            \\n        Returns:\\n            observation (rendered environment), reward, done, info\\n        \\\"\\\"\\\"\\n        pass\\n\\n    # below are optional methods\\n\\n    def render(self, mode: str = 'text') -> Any:\\n        \\\"\\\"\\\"Render the environment. Optional method.\\\"\\\"\\\"\\n        pass\\n\\n    def compute_reward(self, action, **kwargs) -> float:\\n        \\\"\\\"\\\"Compute reward for the action.\\\"\\\"\\\"\\n        pass\\n\\n    def close(self):\\n        \\\"\\\"\\\"Close the environment.\\\"\\\"\\\"\\n        pass\\n\\n\\nclass BaseDiscreteActionEnv(BaseEnv, ABC):\\n    \\\"\\\"\\\"\\n    Abstract base class for environments with discrete action spaces\\n    This class provides common functionality for environments like FrozenLakeEnv and SokobanEnv.\\n    \\\"\\\"\\\"\\n\\n    @abstractmethod\\n    def step(self, action: int) -> Tuple[Any, float, bool, Dict]:\\n        \\\"
+…[truncated 1438 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T03:17:51.783028+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /root/cost-verify-agent-rl/RAGEN/ragen/env/alfworld/env.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat /root/cost-verify-agent-rl/RAGEN/ragen/env/alfworld/env.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T03:17:51.783280+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nThis is the environment for the ALFRED dataset.\\nauthor: Qineng Wang\\ndate: 2025-03-30\\n\\nModified to match verl-agent AlfWorld implementation:\\n- Dynamic mode switching between train/val\\n- Simplified reward: score * won\\n- Admissible actions included in observation\\n\\n[exp023] Thread-safe cache: _RAW_ENV_CACHE protected by _RAW_ENV_LOCK.\\nEach instance copies game_files and creates its own alfred_env in reset().\\n\\\"\\\"\\\"\\nimport os\\nimport random\\nimport threading\\nimport textworld\\nimport textworld.gym\\nimport numpy as np\\nfrom alfworld.agents.environment.alfred_tw_env import AlfredTWEnv, AlfredDemangler, AlfredInfos\\nfrom ragen.env.base import BaseLanguageBasedEnv\\nfrom ragen.env.alfworld.config import AlfredEnvConfig\\nfrom ragen.env.alfworld.utils import load_config\\n\\n_RAW_ENV_CACHE = {}\\n_RAW_ENV_LOCK = threading.Lock()\\n_TW_LOAD_LOCK = threading.Lock()\\n\\n\\nclass AlfredTXTEnv(BaseLanguageBasedEnv):\\n\\n    # Mode mapping: RAGEN mode -> AlfWorld train_eval\\n    MODE_MAP = {\\n        'train': 'train',\\n        'val': None,  # Will use config.eval_dataset\\n        'test': None,  # Will use config.eval_dataset\\n    }\\n\\n    def __init__(self, config: AlfredEnvConfig = AlfredEnvConfig(), mode='train'):\\n        \\\"\\\"\\\"\\n        Initialize AlfWorld environment.\\n\\n        Args:\\n            config: AlfredEnvConfig instance\\n            mode: 'train' or 'val' - determines which dataset split to use\\n        \\\"\\\"\\\"\\n        super().__init__()\\n        self.config = config\\n        self.raw_env_config = load_config(self.config.config_file)\\n\\n        # Map RAGEN mode to AlfWorld train_eval\\n        self.current_mode = mode\\n        self._alfworld_mode = self._get_alfworld_mode(mode)\\n\\n        # Initialize raw environment (thread-safe cache)\\n        self.raw_env = self._get_cached_raw_env(self._alfworld_mode)\\n        self.num_
+…[truncated 6942 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T03:17:51.783436+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /root/cost-verify-agent-rl/RAGEN/ragen/env/alfworld/config.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat /root/cost-verify-agent-rl/RAGEN/ragen/env/alfworld/config.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-19T03:17:51.783593+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "site:github.com allenai ScienceWorld README API ScienWorldEnv step reset getValidActionObjectCombinations"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "site:github.com allenai ScienceWorld README API ScienWorldEnv step reset getValidActionObjectCombinations"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-19T03:17:51.783755+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"from ragen.env.base import BaseEnvConfig\\nfrom dataclasses import dataclass\\n\\n\\n@dataclass\\nclass AlfredEnvConfig(BaseEnvConfig):\\n    \\\"\\\"\\\"Configuration for text world AlfredEnv.\\n\\n    Matches verl-agent AlfWorld configuration:\\n    - Sparse reward: score * won (1.0 on success)\\n    - Supports train/eval_in_distribution/eval_out_of_distribution splits\\n    \\\"\\\"\\\"\\n    config_file: str = \\\"./ragen/env/alfworld/alfworld_config.yaml\\\"\\n    score: float = 10.0  # Reward on success (matching verl-agent)\\n    valid_action_bonus: float = 0.0\\n    success_gated_bonus: bool = False\\n    render_mode: str = \\\"text\\\"\\n    eval_dataset: str = \\\"eval_in_distribution\\\"  # 'eval_in_distribution' or 'eval_out_of_distribution'\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T03:17:51.783911+00:00_
+
+Web search results for query: "site:github.com allenai ScienceWorld README API ScienWorldEnv step reset getValidActionObjectCombinations"
+
+Links: [{"title":"GitHub - allenai/ScienceWorld: ScienceWorld is a text-based virtual environment centered around accomplishing tasks from the standardized elementary science curriculum. · GitHub","url":"https://github.com/allenai/ScienceWorld"},{"title":"GitHub - allenai/codescientist: CodeScientist: An automated scientific discovery system for code-based experiments","url":"https://github.com/allenai/codescientist"},{"title":"GitHub - allenai/clin · GitHub","url":"https://github.com/allenai/clin"},{"title":"GitHub - allenai/sso: Repository for Skill Set Optimization","url":"https://github.com/allenai/sso"},{"title":"infinigram-api/api/README.md at main · allenai/infinigram-api","url":"https://github.com/allenai/infinigram-api/blob/main/api/README.md"},{"title":"GitHub - isi-vista/mics-drrn-scienceworld","url":"https://github.com/isi-vista/mics-drrn-scienceworld"},{"title":"GitHub - cognitiveailab/kga2c-scienceworld · GitHub","url":"https://github.com/cognitiveailab/kga2c-scienceworld"},{"title":"the readme around the pipeline is out of date · Issue #148 · allenai/scholarphi","url":"https://github.com/allenai/scholarphi/issues/148"},{"title":"scholarphi/ui/README.md at main · allenai/scholarphi","url":"https://github.com/allenai/scholarphi/blob/main/ui/README.md"},{"title":"GitHub - cognitiveailab/t5-scienceworld","url":"https://github.com/cognitiveailab/t5-scienceworld"}]
+
+The search returned results about the ScienceWorld project from Allen AI. Based on the results, I can see that ScienceWorld is a text-based virtual environment centered around accomplishing tasks from the standardized elementary science curriculum, and a Python API is provided (Python >= 3.8), which interfaces using the py4j package.
+
+However, the search results don't contain specific API documentation for the `ScienceWorldEnv` class or the specific methods y
+…[truncated 622 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T03:17:51.784086+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebFetch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebFetch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T03:17:51.784216+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T03:17:51.784333+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://github.com/allenai/ScienceWorld",
+  "prompt": "Extract the complete Python API documentation: all method names (especially reset, step, load, getValidActionObjectCombinations, getScore, etc.), their parameters and return values. Also extract: the full list of 30 tasks with their variation counts, installation instructions, Java dependency requirements, and any example code showing how to use the environment. Include reward/score details."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://github.com/allenai/ScienceWorld",
+    "prompt": "Extract the complete Python API documentation: all method names (especially reset, step, load, getValidActionObjectCombinations, getScore, etc.), their parameters and return values. Also extract: the full list of 30 tasks with their variation counts, installation instructions, Java dependency requirements, and any example code showing how to use the environment. Include reward/score details."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-19T03:17:51.784453+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2602.23008",
+  "prompt": "Extract details about how EMPO2 uses ScienceWorld: what RL algorithm (GRPO?), how they format observations/actions for LLM, how many tasks they use, training setup (model size, episodes, steps per episode), baseline results vs their method results on ScienceWorld, and any details about prompt format or admissible actions handling."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://arxiv.org/abs/2602.23008",
+    "prompt": "Extract details about how EMPO2 uses ScienceWorld: what RL algorithm (GRPO?), how they format observations/actions for LLM, how many tasks they use, training setup (model size, episodes, steps per episode), baseline results vs their method results on ScienceWorld, and any details about prompt format or admissible actions handling."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T03:17:51.784587+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2411.03817",
+  "prompt": "Extract: how this paper uses ScienceWorld with LLM agents, what RL method they use, step-wise reward design, training data format, results on ScienceWorld tasks, model sizes, and any expert demonstrations or SFT data details."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://arxiv.org/abs/2411.03817",
+    "prompt": "Extract: how this paper uses ScienceWorld with LLM agents, what RL method they use, step-wise reward design, training data format, results on ScienceWorld tasks, model sizes, and any expert demonstrations or SFT data details."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T03:17:51.784722+00:00_
+
+# EMPO² on ScienceWorld: Information Not Available
+
+Based on the provided arXiv abstract page, I cannot extract the specific technical details you requested about EMPO²'s ScienceWorld implementation.
+
+The webpage only contains:
+- **Title and authors**
+- **Abstract excerpt** stating: "On ScienceWorld and WebShop, EMPO² achieves 128.6% and 11.3% improvements over GRPO, respectively."
+- **General framework description** mentioning it combines on- and off-policy updates with memory for exploration
+
+**What's missing from this source:**
+The abstract does not specify the RL algorithm details, LLM input/output formatting, number of tasks, model sizes, episode counts, step configurations, detailed baseline comparisons, or prompt/action handling specifics.
+
+To obtain these implementation details, you would need to access the full PDF or HTML versions of the paper linked on the page (available via the "View PDF" or "HTML (experimental)" links), which would contain the methodology and experimental sections with complete specifications.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebFetch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T03:17:51.784850+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/cost-verify-agent-rl/RAGEN/config/ -type f | sort; echo \"===\"; cat /root/cost-verify-agent-rl/RAGEN/config/alfworld.yaml 2>/dev/null || cat /root/cost-verify-agent-rl/RAGEN/config/envs/alfworld.yaml 2>/dev/null || find /root/cost-verify-agent-rl/RAGEN/config/ -name \"*alf*\" -o -name \"*env*\" | head -10",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "find /root/cost-verify-agent-rl/RAGEN/config/ -type f | sort; echo \"===\"; cat /root/cost-verify-agent-rl/RAGEN/config/alfworld.yaml 2>/dev/null || cat /root/cost-verify-agent-rl/RAGEN/config/envs/alfworld.yaml 2>/dev/null || find /root/cost-verify-agent-rl/RAGEN/config/ -name \"*alf*\" -o -name \"*env*\" | head -10",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T03:17:51.784989+00:00_
+
+# ScienceWorld API Documentation
+
+## Installation Requirements
+
+**Java Dependency:** "You will have to have `Java 1.8+` installed on your system" and Python 3.8+.
+
+**Installation Methods:**
+- PyPI: `pip install scienceworld`
+- Development: Clone repository and run `pip install .`
+- Web server: `pip install scienceworld[webserver]`
+
+## Setup Example
+
+```python
+conda create --name scienceworld python=3.8
+conda activate scienceworld
+pip install scienceworld
+```
+
+## Core API Methods
+
+The documentation mentions these key methods but does not provide complete parameter/return specifications:
+
+- `env.load()` - Load a task by ID or name
+- `reset()` - Reset environment state
+- `step()` - Execute actions
+- `getValidActionObjectCombinations()` - Retrieve valid action combinations
+- `getScore()` - Obtain reward/score
+- Additional methods referenced but not fully detailed
+
+## Task List (30 Tasks with Variations)
+
+| Task ID | Name | Variations |
+|---------|------|-----------|
+| 1-1 to 1-4 | State changes (boil, melt, freeze) | 30 each |
+| 2-1 to 2-3 | Thermometer & melting point | 540, 436, 300 |
+| 3-1 to 3-4 | Power & conductivity | 20, 20, 900, 600 |
+| 4-1 to 4-4 | Living/non-living classification | 300 each |
+| 5-1 to 5-2 | Plant/fruit growth | 126 each |
+| 6-1 to 6-3 | Chemistry mixing | 32-36 |
+| 7-1 to 7-3 | Lifespan analysis | 125 each |
+| 8-1 to 8-2 | Life stages | 14, 10 |
+| 9-1 to 9-3 | Inclined plane physics | 168-1386 |
+| 10-1 to 10-2 | Mendelian genetics | 120, 480 |
+
+## Example Usage
+
+```python
+python examples/random_agent.py --task-num=13 --num-episodes=5 --simplifications-preset easy
+python examples/human.py --task-num=3 --num-episodes=5
+```
+
+## Simplifications Available
+
+The environment supports: `teleportAction`, `openDoors`, `selfWateringFlowerPots`, `noElectricalAction`, `openContainers`. The `easy` preset applies most of these.
+
+## Score/Reward Details
+
+The documentation does not specify explicit reward values, only referencing `getScore()` method for obtaini
+…[truncated 10 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebFetch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-19T03:17:51.785141+00:00_
+
+# Analysis of arXiv:2411.03817
+
+Based on the provided webpage content, I can only offer limited information, as the page contains the abstract and metadata rather than the full paper details.
+
+## Available Information
+
+**Paper Focus:**
+The paper introduces StepAgent, which addresses the sparse reward problem in LLM agent reinforcement learning by utilizing "step-wise reward to optimize the agent's reinforcement learning process."
+
+**RL Approach:**
+The method employs "implicit-reward and inverse reinforcement learning techniques" alongside step-wise rewards for policy optimization.
+
+**Theoretical Contribution:**
+According to the abstract, "theoretical analysis demonstrates that the action distribution of the agent can converge toward the expert action distribution over multiple training cycles."
+
+## Information Not Available
+
+The webpage excerpt does not contain:
+- Specific details about ScienceWorld usage with their approach
+- Training data format specifications
+- Benchmark results on particular tasks
+- Model sizes employed
+- Expert demonstration or SFT (supervised fine-tuning) data details
+
+**To obtain this information**, you would need to access the full PDF paper ([available at `/pdf/2411.03817`](https://arxiv.org/pdf/2411.03817)) or the TeX source, where these technical details are likely documented in the methodology and experimental sections.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebFetch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T03:17:51.785324+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/cost-verify-agent-rl/RAGEN/config/_10_deepcoder.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_10_rubikscube.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_1_bandit.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_2_sokoban.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_3_frozen_lake.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_4_countdown.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_5_metamathqa.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_6_webshop.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_7_lean.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_8_sudoku.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_9_2048.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_9_search.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_dryrun.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp001.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp001b.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp002.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp002_dryrun.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp003.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp003_dryrun.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp004_instruct.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp005_fast.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp006_instruct_fast.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp007_dryrun.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp007_fixed.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp008_sft_grpo.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp012_reward_fix.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp013_lr_kl_fix.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp013b_dense_reward.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp014c_success_gated.yaml\\n/root/cost-verify-agent-rl/RAGEN/confi
+…[truncated 3963 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-19T03:17:51.785502+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /root/cost-verify-agent-rl/RAGEN/config/envs.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat /root/cost-verify-agent-rl/RAGEN/config/envs.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T03:17:51.785763+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"custom_envs:\\n  SimpleSokoban:\\n    env_type: sokoban\\n    max_actions_per_traj: 10 # used in environment state manager to control the actual max actions executed per trajectory\\n    env_instruction: |\\n      You are solving the Sokoban puzzle. \\n      You are the player and you need to push all boxes to targets. \\n      When you are right next to a box, you can push it by moving in the same direction. \\n      You cannot push a box through a wall, and you cannot pull a box. \\n      The answer should be a sequence of actions, like &lt;answer>Right || Right || Up&lt;/answer>\\n    max_tokens: 100 # used to curate llm prompt \\\"max words\\\", not used for rollout\\n    parallel_friendly: false\\n    max_workers: 32\\n    env_config: # keys should be a subset of SokobanConfig\\n      dim_x: 6\\n      dim_y: 6\\n      num_boxes: 1\\n      max_steps: 100\\n\\n  LargerSokoban:\\n    env_type: sokoban\\n    max_actions_per_traj: 10\\n    env_instruction: |\\n      You are solving the Sokoban puzzle. \\n      You are the player and you need to push all boxes to targets. \\n      When you are right next to a box, you can push it by moving in the same direction. \\n      You cannot push a box through a wall, and you cannot pull a box. \\n      The answer should be a sequence of actions, like &lt;answer>Right || Right || Up&lt;/answer>\\n    max_tokens: 100\\n    parallel_friendly: false\\n    max_workers: 32\\n    env_config:\\n      dim_x: 8\\n      dim_y: 8\\n      num_boxes: 2\\n      max_steps: 100\\n      search_depth: 10\\n  \\n  SokobanDifferentGridVocab:\\n    env_type: sokoban\\n    max_actions_per_traj: 10\\n    env_instruction: |\\n      You are solving the Sokoban puzzle. \\n      You are the player and you need to push all boxes to targets. \\n      When you are right next to a box, you can push it by moving in the same direction. \\n      You cannot push a box through a wall, and you cannot pull a box. \\n    
+…[truncated 6736 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-19T03:17:51.785926+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2602.23008v1",
+  "prompt": "Extract ALL details about ScienceWorld usage: (1) how observations and actions are formatted for the LLM, (2) prompt template used, (3) whether admissible actions are provided to the agent, (4) how many tasks/variations used for training and evaluation, (5) base model and size, (6) RL algorithm details (GRPO baseline), (7) max steps per episode, (8) training hyperparameters, (9) complete ScienceWorld results table with all baselines, (10) any expert data or SFT warmstart used, (11) reward function details."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://arxiv.org/html/2602.23008v1",
+    "prompt": "Extract ALL details about ScienceWorld usage: (1) how observations and actions are formatted for the LLM, (2) prompt template used, (3) whether admissible actions are provided to the agent, (4) how many tasks/variations used for training and evaluation, (5) base model and size, (6) RL algorithm details (GRPO baseline), (7) max steps per episode, (8) training hyperparameters, (9) complete ScienceWorld results table with all baselines, (10) any expert data or SFT warmstart used, (11) reward function details."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-19T03:17:51.786059+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://github.com/allenai/ScienceWorld/blob/main/scienceworld/scienceworld.py",
+  "prompt": "Extract all Python API method signatures and their docstrings from the ScienceWorldEnv class. I need: constructor parameters, reset(), step(), load(), getValidActionObjectCombinations(), getScore(), getPossibleActions(), getPossibleObjects(), getTaskNames(), and any other public methods. Include return types and parameter types."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://github.com/allenai/ScienceWorld/blob/main/scienceworld/scienceworld.py",
+    "prompt": "Extract all Python API method signatures and their docstrings from the ScienceWorldEnv class. I need: constructor parameters, reset(), step(), load(), getValidActionObjectCombinations(), getScore(), getPossibleActions(), getPossibleObjects(), getTaskNames(), and any other public methods. Include return types and parameter types."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-19T03:17:51.786240+00:00_
+
+# ScienceWorld Usage Details in EMPO2
+
+## 1. Observation and Action Formatting
+The paper doesn't explicitly detail LLM input formatting but indicates multi-step interactions where the agent receives state observations and generates natural language actions. Actions are executed against the environment, returning rewards and next states.
+
+## 2. Prompt Template
+The ScienceWorld prompt (Appendix B) includes:
+- Task description and available action formats
+- Current inventory and focusable items
+- Current observation
+- Instruction to "explore different actions" when uncertain
+- Two example trajectories for few-shot guidance
+
+## 3. Admissible Actions
+Yes, the agent receives action constraints: "You can only use FOCUS actions on these items: {focus_items}. You cannot FOCUS on any other things."
+
+## 4. Training/Evaluation Split
+"We use the first five variants for training and evaluate on the 20 unseen test variants" across 19 tasks spanning chemistry, classification, biology, electricity, and measurement.
+
+## 5. Base Model
+Qwen2.5-7B-Instruct (7 billion parameters)
+
+## 6. RL Algorithm Details
+Extended GRPO with multi-step capability, incorporating importance sampling and KL divergence regularization. The implementation builds on verl framework with β≥0 controlling regularization strength.
+
+## 7. Maximum Steps Per Episode
+The paper mentions "max episode length T" in pseudocode but doesn't specify the exact value in the main text or appendix sections provided.
+
+## 8. Training Hyperparameters
+Not comprehensively listed in the provided content; referred to as "same hyperparameter configuration for GRPO and EMPO2" with details in Appendix D.2.
+
+## 9. Results Table
+Table 1 shows EMPO2 achieving 75.9 average return versus GRPO's 33.2, with EMPO2 reaching perfect 100.0 scores on multiple classification tasks.
+
+## 10. Expert Data/SFT Warmstart
+No expert data used. The approach emphasizes "online RL through trial and error, without any prior embedding of the environment's rules."
+
+#
+…[truncated 182 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebFetch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-19T03:17:51.786420+00:00_
+
+# ScienceWorldEnv Python API Method Signatures
+
+## Constructor
+```python
+def __init__(self, taskName: str = None, serverPath: str = None, envStepLimit: int = 100)
+```
+"Start the simulator. Sets up the interface between python and the JVM."
+
+## Core Methods
+
+```python
+def load(self, taskName: str, variationIdx: int = 0, simplificationStr: str = "", 
+         generateGoldPath: bool = False) -> None
+```
+"Load a valid task and its variations/simplifications, and set up the simulator."
+
+```python
+def reset(self) -> Tuple[str, Dict[str, Any]]
+```
+Resets simulator to initial state; returns observation and info dictionary.
+
+```python
+def step(self, input_str: str) -> Tuple[str, int, bool, Dict[str, Any]]
+```
+"Take one step in the typical state-action-reward cycle of RL." Returns observation, reward, completion status, and infos dict.
+
+```python
+def close(self) -> None
+```
+Closes the JVM gateway connection.
+
+## Action & Object Methods
+
+```python
+def get_possible_actions(self) -> List[str]
+```
+"Get all possible actions in the current environment state."
+
+```python
+def get_possible_actions_with_IDs(self) -> List[Dict[str, Any]]
+```
+Returns actions with template IDs.
+
+```python
+def get_possible_objects(self) -> List[str]
+```
+"Get a list of all observable objects."
+
+```python
+def get_valid_action_object_combinations(self) -> List[str]
+```
+"Get a list of all of the *valid* action-object combinations."
+
+## Task & Information Methods
+
+```python
+def get_task_names(self) -> List[str]
+```
+"Get the name for the supported tasks in ScienceWorld."
+
+```python
+def get_task_description(self) -> str
+```
+"Get the description of the current task."
+
+```python
+def get_goal_progress(self) -> str
+```
+"Get the progress to the goal."
+
+```python
+def get_num_moves(self) -> int
+```
+"Get the current number of moves."
+
+## Free Actions
+
+```python
+def look(self) -> str
+```
+"Look around. This is a free action in that it consumes no time."
+
+```python
+def inventory(self) -> str
+```
+"Check your inventory. This 
+…[truncated 1167 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebFetch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-19T03:17:51.786615+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2603.18815v1",
+  "prompt": "Extract how ProRL Agent uses ScienceWorld: RL training setup, model size, number of tasks, episode structure, results on ScienceWorld, and how it compares to other baselines like GRPO/EMPO2. Also extract any details about prompt format and action space handling."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://arxiv.org/html/2603.18815v1",
+    "prompt": "Extract how ProRL Agent uses ScienceWorld: RL training setup, model size, number of tasks, episode structure, results on ScienceWorld, and how it compares to other baselines like GRPO/EMPO2. Also extract any details about prompt format and action space handling."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-19T03:17:51.786751+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"ScienceWorld\" LLM agent training SFT gold trajectory oracle actions 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"ScienceWorld\" LLM agent training SFT gold trajectory oracle actions 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-19T03:17:51.786869+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "ScienceWorld environment Java JVM py4j overhead latency parallel multiple instances"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "ScienceWorld environment Java JVM py4j overhead latency parallel multiple instances"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-19T03:17:51.786991+00:00_
+
+# ProRL Agent and ScienceWorld
+
+Based on my review of the provided document, **ProRL Agent does not mention ScienceWorld at all**. The paper does not discuss:
+
+- ScienceWorld as an evaluation environment
+- RL training specifically on ScienceWorld tasks
+- Comparisons with GRPO or EMPO2 baselines
+- Any results or metrics related to ScienceWorld
+
+## What the Paper Actually Covers
+
+ProRL Agent's evaluation focuses on:
+
+1. **Software Engineering**: SWE-Bench Verified (primary evaluation)
+2. **STEM Domain**: Web search-based question-answering using the SCP-116K dataset
+3. **Mathematics**: AMC (American Mathematics Competition) problems
+4. **Code Generation**: Codeforces programming tasks
+
+The paper states the system "is validated through RL training on software engineering, math, STEM, and coding tasks," but ScienceWorld is not among these domains.
+
+If you're seeking information about how ProRL Agent or similar systems handle ScienceWorld environments, you would need to consult different research papers that specifically evaluate on that benchmark.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebFetch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-19T03:17:51.787151+00:00_
+
+Web search results for query: "ScienceWorld environment Java JVM py4j overhead latency parallel multiple instances"
+
+Links: [{"title":"Slow first call to Java from Python · Issue #557 · py4j/py4j","url":"https://github.com/py4j/py4j/issues/557"},{"title":"6. Frequently Asked Questions — Py4J","url":"https://www.py4j.org/faq.html"},{"title":"Don’t Get Caught in the Cold, Warm-up Your JVM: Understand and Eliminate JVM Warm-up Overhead in Data-Parallel Systems | USENIX","url":"https://www.usenix.org/conference/osdi16/technical-sessions/presentation/lion"},{"title":"Py4J - Multiple GatewayServer and CallbackServer instances · GitHub","url":"https://gist.github.com/bartdag/0a6043a62e12f0e53ae296c112786ac7"},{"title":"3. Advanced Topics — Py4J","url":"https://www.py4j.org/advanced_topics.html"},{"title":"isa4j: a scalable Java library for creating ISA-Tab metadata","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7941097/"},{"title":"4 Ways to Reduce Latency in Your Java Applications","url":"https://fusion-reactor.com/blog-post/4-ways-to-reduce-latency-in-your-java-applications/"},{"title":"Managing Communication Latency-Hiding at Runtime for Parallel   Programming Languages and Libraries","url":"https://arxiv.org/pdf/1201.3804"}]
+
+I've performed the web search for your query about ScienceWorld environment, Java JVM, py4j overhead, latency, parallel processing, and multiple instances.
+
+The search results contain relevant information about several related topics:
+
+1. **Py4J Latency Issues**: First-time Py4J connection establishment experiences significant latency (cold start issue), while subsequent calls perform normally.
+
+2. **Multiple Gateway Instances**: Multiple GatewayServer and CallbackServer instances with different ports can be created on both the Java and Python sides.
+
+3. **JVM Warm-up Overhead**: JVM warm-up overhead from class loading and interpretation of bytecode is frequently the bottleneck, with some applications spending significant execution time in J
+…[truncated 607 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-19T03:17:51.787327+00:00_
+
+Web search results for query: ""ScienceWorld" LLM agent training SFT gold trajectory oracle actions 2024 2025"
+
+Links: [{"title":"Trial and Error: Exploration-Based Trajectory Optimization for LLM Agents | alphaXiv","url":"https://www.alphaxiv.org/overview/2403.02502v2"},{"title":"RLVMR: RL with Verifiable Meta-Reasoning Rewards for Long-Horizon Agents","url":"https://arxiv.org/pdf/2507.22844"},{"title":"CWM: Contrastive World Models for Action Feasibility Learning in Embodied Agent Pipelines","url":"https://arxiv.org/html/2602.22452"},{"title":"GitHub - Yifan-Song793/ETO: Trial and Error: Exploration-Based Trajectory Optimization of LLM Agents (ACL 2024 Main Conference) · GitHub","url":"https://github.com/Yifan-Song793/ETO"},{"title":"Training LLM-Based Agents with Synthetic Self-Reflected Trajectories and Partial Masking","url":"https://arxiv.org/html/2505.20023v1"},{"title":"Exploration-Based Trajectory Optimization for LLM Agents 3⃣","url":"https://aclanthology.org/2024.acl-long.409.pdf"},{"title":"When Greedy Wins: Emergent Exploitation Bias in Meta-Bandit LLM Training","url":"https://arxiv.org/pdf/2509.24923"},{"title":"Simulating Environments with Reasoning Models for Agent Training","url":"https://arxiv.org/pdf/2511.01824"}]
+
+Based on the search results, here's what I found regarding ScienceWorld LLM agent training with SFT, gold trajectories, and oracle actions:
+
+## Key Research Findings (2024-2025)
+
+### Exploration-Based Trajectory Optimization (ETO)
+
+A paper titled "Trial and Error: Exploration-Based Trajectory Optimization of LLM Agents" was published at ACL 2024. The approach uses SFT-based behavioral cloning to construct a base agent, gathers failed trajectories from the base agents and pairs them with expert trajectories, and applies DPO loss to fine-tune the policy with contrastive trajectory pairs.
+
+### ScienceWorld Performance Results
+
+On ScienceWorld-Unseen tasks, this approach achieved a 20% performance boost over SFT. The method demonstrated an 
+…[truncated 818 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-19T03:17:51.787508+00:00_
+
+called WebFetch
+
+<details open><summary>🔧 Tool call — WebFetch</summary>
+
+```json
+{
+  "url": "https://github.com/Yifan-Song793/ETO",
+  "prompt": "Extract details about how ETO handles ScienceWorld: (1) how expert/gold trajectories are obtained, (2) SFT data format, (3) training results on ScienceWorld tasks, (4) base model used, (5) how many tasks/variations used, (6) any data files or datasets released for ScienceWorld."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebFetch",
+  "tool_args": {
+    "url": "https://github.com/Yifan-Song793/ETO",
+    "prompt": "Extract details about how ETO handles ScienceWorld: (1) how expert/gold trajectories are obtained, (2) SFT data format, (3) training results on ScienceWorld tasks, (4) base model used, (5) how many tasks/variations used, (6) any data files or datasets released for ScienceWorld."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-19T03:17:51.787662+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"ScienceWorld\" \"gold path\" OR \"gold trajectory\" OR \"oracle\" generateGoldPath scripted agent"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"ScienceWorld\" \"gold path\" OR \"gold trajectory\" OR \"oracle\" generateGoldPath scripted agent"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-19T03:17:51.787795+00:00_
+
+# ETO's Approach to ScienceWorld
+
+Based on the provided GitHub repository content, here's what can be determined about ETO's ScienceWorld implementation:
+
+## Expert Trajectories
+The repository mentions that "expert trajectories for behavioral cloning" are downloaded during setup, with availability through Google Drive or Huggingface Datasets, though specific ScienceWorld trajectory collection methods aren't detailed in this documentation.
+
+## SFT Data Format
+ETO uses a conversation-based format with alternating "human" and "gpt" turns, structured as: `{"id": "example_0", "conversations": [{"from": "human"/"gpt", "value": "..."}]}`
+
+## Training Results
+The documentation highlights impressive ScienceWorld performance: a "22% improvement over SFT on the challenging out-of-distribution test set" and "higher rewards within fewer action steps."
+
+## Base Model & Task Scale
+The repository doesn't explicitly specify the base model architecture or exact number of ScienceWorld task variations used in this context.
+
+## Released Datasets
+ETO released SFT trajectory data on Huggingface at `agent-eto/eto-sft-trajectory`, though the repository content doesn't itemize which trajectories specifically pertain to ScienceWorld versus other environments (WebShop, ALFWorld).
+
+The core methodology emphasizes learning from failure trajectories using contrastive DPO training rather than exclusively relying on successful demonstrations.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebFetch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-19T03:17:51.787952+00:00_
+
+Web search results for query: ""ScienceWorld" "gold path" OR "gold trajectory" OR "oracle" generateGoldPath scripted agent"
+
+Links: [{"title":"GitHub - cognitiveailab/t5-scienceworld","url":"https://github.com/cognitiveailab/t5-scienceworld"},{"title":"GitHub - cognitiveailab/calm-scienceworld","url":"https://github.com/cognitiveailab/calm-scienceworld"},{"title":"Sub-goal Distillation: A Method to Improve Small Language Agents","url":"https://arxiv.org/html/2405.02749v1"},{"title":"Agent Planning with World Knowledge Model","url":"https://knowledge-nlp.github.io/acl2024/papers/20_agent_planning_with_world_know.pdf"},{"title":"GitHub - cognitiveailab/TextWorldExpress: Super fast implementations of common benchmark text world games · GitHub","url":"https://github.com/cognitiveailab/TextWorldExpress"},{"title":"GitHub - Yifan-Song793/ETO: Trial and Error: Exploration-Based Trajectory Optimization of LLM Agents (ACL 2024 Main Conference) · GitHub","url":"https://github.com/Yifan-Song793/ETO"},{"title":"Generating trajectory labels from short-term intention and long-term result","url":"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11900224"}]
+
+Based on the search results, I found relevant information about ScienceWorld and gold paths:
+
+Raw ScienceWorld gold path data is generated by an oracle agent and can be accessed through a goldpaths-all.zip file in the data directory. This data is used for training purposes after extraction and formatting.
+
+Additionally, from the TextWorldExpress documentation (which is related to similar text-world environments): Gold paths can be generated by setting the generateGoldPath flag to true when using reset(), and retrieved using the env.getGoldActionSequence() method. The gold paths are generated by agents that perform random walks in the environment.
+
+The search results show that ScienceWorld uses an oracle agent to generate these gold trajectory/path data for training language model agents on the ScienceWorld envir
+…[truncated 210 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-19T03:17:51.788170+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_report.md",
+  "content": "# ScienceWorld 环境接入 RAGEN 可行性调研报告\n\n**日期**: 2026-05-19\n\n---\n\n## 1. ScienceWorld 环境概述\n\n### 1.1 基本信息\n- **来源**: Allen AI (allenai/ScienceWorld)\n- **类型**: Text-based interactive environment，围绕小学科学课程任务\n- **安装**: `pip install scienceworld`（需要 Java 1.8+，通过 py4j 与 JVM 通信）\n- **Python 版本**: >= 3.8\n\n### 1.2 API 接口\n\n核心方法签名：\n\n```python\nclass ScienceWorldEnv:\n    def __init__(self, taskName=None, serverPath=None, envStepLimit=100)\n    def load(self, taskName, variationIdx=0, simplificationStr=\"\", generateGoldPath=False)\n    def reset(self) -> Tuple[str, Dict]           # (observation, info)\n    def step(self, input_str: str) -> Tuple[str, int, bool, Dict]  # (obs, reward, done, info)\n    def close()\n    \n    # Action space\n    def get_valid_action_object_combinations() -> List[str]   # admissible actions\n    def get_possible_actions() -> List[str]\n    def get_possible_objects() -> List[str]\n    \n    # Task info\n    def get_task_names() -> List[str]\n    def get_task_description() -> str\n    def get_goal_progress() -> str\n    \n    # Free actions (不消耗 step)\n    def look() -> str\n    def inventory() -> str\n    def taskdescription() -> str\n    \n    # Gold path\n    def get_gold_action_sequence() -> List[str]    # 需要 load 时设 generateGoldPath=True\n    \n    # Train/Dev/Test splits\n    def get_variations_train() -> List[int]\n    def get_variations_dev() -> List[int]\n    def get_variations_test() -> List[int]\n```\n\n### 1.3 Action Space\n- **Text-based**，与 ALFWorld 同类\n- 提供 `get_valid_action_object_combinations()` 返回当前 state 下所有合法 action-object 组合\n- 典型 action 格式: `\"pick up fork\"`, `\"pour water into beaker\"`, `\"focus on thermometer\"`\n- Action space 规模动态变化，通常 50-200 个合法 action\n\n### 1.4 Observation 格式\n- **纯文本**描述当前场景状态\n- 可通过 `look()` 和 `inventory()` 获取额外信息（free actions）\n- 无 state dict，纯自然语言\n\n### 1.5 Reward 信号\n- `step()` 返回 integer reward（0-100 分制）\n- **非 sparse**：有 subgoal 完成的中间 reward（goal progress 可查询）\n- 任务成功 = 达到满分\n- 可通过 `get_goal_progress()` 查看细粒度进展\n\n### 1.6 Episode 结构\n- `envStepLimit` 默认 100 步\n- Variable length，不同任务复杂度差异大\n- Gold path 长度通常 10-50 步\n\n### 1.7 任务规模\n\n**10 大类，30 子任务**，总计数千个 variations：\n\n| 大类 | 子任务数 | Variations 范围 | 示例 |\n|------|---------|----------------|------|\n| 物态变化 (boil/melt/freeze) | 4 | ~30 each | 烧开水、融化冰块 |\n| 温度测量 & 熔点 | 3 | 300-540 | 用温度计测量 |\n| 电学 & 导电性 | 4 | 20-900 | 连接电路 |\n| 生物/非生物分类 | 4 | ~300 each | 分类物品 |\n| 植物生长 | 2 | ~126 each | 种植观察 |\n| 化学混合 | 3 | 32-36 | 混合物质 |\n| 生命周期 | 3 | ~125 each | 分析寿命 |\n| 生命阶段 | 2 | 10-14 | 观察生长 |\n| 斜面力学 | 3 | 168-1386 | 物理实验 |\n| 孟德尔遗传 | 2 | 120-480 | 遗传实验 |\n\n### 1.8 Simplifications\n支持 6 种简化选项：`teleportAction`, `openDoors`, `selfWateringFlowerPots`, `noElectricalAction`, `openContainers`。`easy` preset 开启大部分简化。\n\n---\n\n## 2. RAGEN 当前支持状态\n\n### 2.1 ScienceWorld 支持\n**不支持**。`grep -ri \"scienceworld\"` 在整个 RAGEN 代码库中无匹配。\n\n### 2.2 已有环境列表\n\nRAGEN 当前支持 12 个环境（`__init__.py` 注册）：\n\n| 环境 | 类型 | 基类 |\n|------|------|------|\n| bandit | 离散 | BaseDiscreteActionEnv |\n| countdown | 语言 | BaseLanguageBasedEnv |\n| sokoban | 离散 | BaseDiscreteActionEnv |\n| frozen_lake | 离散 | BaseDiscreteActionEnv |\n| metamathqa | 语言 | BaseLanguageBasedEnv |\n| lean | 语言 | BaseLanguageBasedEnv |\n| deepcoder | 语言 | BaseLanguageBasedEnv |\n| sudoku | 语言 | BaseLanguageBasedEnv |\n| game_2048 | 语言 | BaseLanguageBasedEnv |\n| rubikscube | 语言 | BaseLanguageBasedEnv |\n| alfworld* | 语言 | BaseLanguageBasedEnv |\n| webshop* | 语言 | BaseLanguageBasedEnv |\n\n*ALFWorld 和 WebShop 通过 try/except 动态注册（依赖可选）。\n\n### 2.3 接口模式\n\nRAGEN BaseEnv 接口：\n```python\nclass BaseLanguageBasedEnv(BaseEnv):\n    def reset(self, seed=None, **kwargs) -> Any          # 返回 rendered observation\n    def step(self, action: str) -> Tuple[Any, float, bool, Dict]  # (obs, reward, done, info)\n    def render(self, mode='text') -> Any                  # optional\n    def close()                                           # optional\n```\n\nALFWorld 实现额外特性：\n- `reset(seed, mode)` 支持 train/val/test 模式切换\n- Observation 包含 admissible actions 列表\n- Reward: `config.score * float(won)` (sparse, 成功 10.0)\n- Info dict 包含 `action_is_valid`, `success`, `anchor_obs`\n\n---\n\n## 3. 适配工程量评估\n\n### 3.1 需要新建的文件\n\n```\nRAGEN/ragen/env/scienceworld/\n├── __init__.py          # 导出 ScienceWorldEnv, ScienceWorldEnvConfig\n├── config.py            # ScienceWorldEnvConfig dataclass\n├── env.py               # ScienceWorldEnv(BaseLanguageBasedEnv)\n└── utils.py             # task mapping, prompt formatting 等辅助函数\n```\n\n### 3.2 需要修改的文件\n\n| 文件 | 修改内容 |\n|------|---------|\n| `ragen/env/__init__.py` | 添加 try/except 动态注册 ScienceWorld（同 ALFWorld 模式） |\n| `config/envs.yaml` | 添加 ScienceWorld 环境配置项 |\n\n### 3.3 实现要点\n\n**env.py 核心逻辑**（对标 ALFWorld 实现）：\n1. `__init__`: 创建 `scienceworld.ScienceWorldEnv` 实例，配置 task/variation\n2. `reset(seed, mode)`: \n   - 根据 seed 选择 variation（train/dev/test split）\n   - 调用 `sw_env.load(taskName, variationIdx)` + `sw_env.reset()`\n   - 格式化 observation + admissible actions\n3. `step(action)`: \n   - 调用 `sw_env.step(action)`\n   - 重新获取 `get_valid_action_object_combinations()` 作为 admissible actions\n   - 归一化 reward（ScienceWorld 0-100 → RAGEN 0-1 或 0-10）\n   - 返回格式化 observation\n\n**config.py**：\n```python\n@dataclass\nclass ScienceWorldEnvConfig(BaseEnvConfig):\n    task_name: str = \"boil\"          # 或 task_id\n    simplification: str = \"\"         # \"easy\" preset 等\n    env_step_limit: int = 100\n    score: float = 10.0              # 成功奖励 scale\n    use_admissible_actions: bool = True\n```\n\n**envs.yaml 配置示例**：\n```yaml\nScienceWorld:\n    env_type: scienceworld\n    max_actions_per_traj: 50\n    parallel_friendly: false\n    max_workers: 1\n    env_instruction: |\n      You are a science experiment agent...\n    max_tokens: 512\n    env_config:\n      task_name: \"boil\"\n      simplification: \"\"\n      env_step_limit: 100\n```\n\n### 3.4 工程风险与注意事项\n\n| 风险 | 严重度 | 说明 |\n|------|--------|------|\n| Java/JVM 依赖 | **中** | 需要 Java 1.8+，服务器需预装。py4j 启动有 cold start 延迟 |\n| 并行化受限 | **中** | 每个 ScienceWorld 实例启动独立 JVM，内存开销大（~200-500MB/instance）。ALFWorld 也有类似问题（`max_workers: 1`） |\n| py4j 通信开销 | **低** | 每次 step/action 通过 socket 与 JVM 通信，延迟 ~5-20ms，相对 LLM 推理时间可忽略 |\n| Task 选择策略 | **低** | 30 个子任务难度差异大，需要设计 task sampling 策略 |\n\n### 3.5 预估工作量\n\n| 任务 | 预估时间 |\n|------|---------|\n| env.py + config.py + utils.py 实现 | 4-6 小时 |\n| __init__.py + envs.yaml 注册 | 0.5 小时 |\n| 测试与调试（本地 dry-run） | 2-3 小时 |\n| Prompt 设计与调优 | 2-4 小时 |\n| SFT 数据准备（如需） | 4-8 小时 |\n| **总计** | **12-22 Worker-hours** |\n\n---\n\n## 4. Expert Data 可用性\n\n### 4.1 内置 Gold Path\nScienceWorld 自带 oracle agent，通过 `generateGoldPath=True` 可获取每个 variation 的最优 action sequence：\n```python\nenv.load(\"boil\", variationIdx=0, generateGoldPath=True)\nenv.reset()\ngold_actions = env.get_gold_action_sequence()  # ['pick up beaker', 'pour water into beaker', ...]\n```\n这是最直接的 expert trajectory 来源。\n\n### 4.2 已有 SFT 数据集\n- **ETO (ACL 2024)**: HuggingFace `agent-eto/eto-sft-trajectory` 包含 ScienceWorld SFT trajectories\n  - 对话格式: `{\"id\": \"...\", \"conversations\": [{\"from\": \"human/gpt\", \"value\": \"...\"}]}`\n  - 可直接用于 SFT warmstart\n- **cognitiveailab/t5-scienceworld**: 包含 goldpaths-all.zip，T5 训练用的 gold trajectory 数据\n\n### 4.3 自动生成方案\n若需更多数据：\n1. **Gold path 批量生成**: 遍历所有 task + variation，调用 `get_gold_action_sequence()` 收集\n2. **LLM rollout 收集**: 用 GPT-4/Claude 在环境中交互，筛选成功 trajectory\n3. **ETO 方法**: 先 SFT，再收集失败 trajectory 做 contrastive DPO\n\n### 4.4 数据量估算\n- 30 个子任务 × 平均 100+ variations × 每条 10-50 步 ≈ 3000+ expert trajectories\n- 足够支持 SFT warmstart\n\n---\n\n## 5. 相关工作总结\n\n### 5.1 直接相关论文\n\n| 论文 | 年份 | 方法 | ScienceWorld 结果 | 模型 |\n|------|------|------|-------------------|------|\n| **EMPO2** | 2026.02 | Exploratory Memory + On/Off-policy RL | Avg 75.9（vs GRPO 33.2，+128.6%）| Qwen2.5-7B-Instruct |\n| **ETO** | 2024 (ACL) | SFT + Contrastive DPO | +22% over SFT on unseen test | - |\n| **StepAgent** | 2024.11 | Step-wise RL + Inverse RL | step-wise reward 优于 sparse | - |\n| **Reinforcement World Model** | 2026.02 | Action-conditioned world model | 自监督学习环境动态 | - |\n| **CLIN** | 2023 | Continual learning + memory | ScienceWorld persistent memory | - |\n\n### 5.2 关键发现\n\n1. **EMPO2 是当前 SOTA**：在 19 个 ScienceWorld 任务上平均 75.9 分，使用 GRPO + memory augmentation，基于 verl 框架\n2. **训练设置惯例**: 前 5 个 variations 训练，20 个 unseen test variations 评估\n3. **GRPO baseline 在 ScienceWorld 上有效但不强**：33.2 平均分，说明有很大提升空间\n4. **SFT warmstart 有帮助**：ETO 证明先 SFT 再 RL 效果好于纯 RL\n5. **与我们研究的关联**: ScienceWorld 的 multi-step reasoning + sparse reward 特性正好适合验证 step-independent RL 的 sign misattribution 问题\n\n---\n\n## 6. 可行性结论和建议\n\n### 6.1 可行性评估：**高度可行**\n\n| 维度 | 评分 | 理由 |\n|------|------|------|\n| API 兼容性 | ★★★★★ | Text-based, 标准 reset/step 接口，与 ALFWorld 高度相似 |\n| 工程复杂度 | ★★★★☆ | 有 ALFWorld 模板参考，主要是 wrapper 工作。Java 依赖略增复杂度 |\n| Expert Data | ★★★★★ | 内置 gold path + 现成 SFT 数据集 |\n| 研究价值 | ★★★★★ | 验证 generalizability 的理想第二环境 |\n| 社区基准 | ★★★★☆ | EMPO2/ETO 等提供了充足的 baseline 对比数据 |\n\n### 6.2 与 ALFWorld 的对比\n\n| 特性 | ALFWorld | ScienceWorld |\n|------|----------|--------------|\n| 任务类型 | 家庭任务（6类） | 科学实验（30子任务） |\n| Action space | Admissible actions | Admissible actions |\n| Reward | Sparse (success only) | 有中间 reward (0-100) |\n| 任务多样性 | 中 | 高（10大类30子任务） |\n| 平均 episode 长度 | 15-50 步 | 10-50 步 |\n| 依赖 | Python (textworld) | Java + py4j |\n| 并行化 | 困难 | 困难（JVM 开销） |\n\n### 6.3 建议\n\n1. **推荐接入**：ScienceWorld 是验证 sign misattribution 发现 generalizability 的优质第二环境\n2. **优先实现路径**：\n   - Phase 1: 实现基础 wrapper（1-2天），单任务（如 \"boil\"）验证 GRPO baseline\n   - Phase 2: 生成 gold path SFT 数据，做 SFT warmstart\n   - Phase 3: 运行完整实验（多任务），验证 step-independent RL 的发现\n3. **Task 选择建议**: 参考 EMPO2 的 19 个任务设置，前 5 variations 训练 + 20 unseen test\n4. **Reward 处理**: ScienceWorld 的中间 reward (0-100) 可直接用于验证 step-level credit assignment，比 ALFWorld 的 binary reward 更适合分析 sign misattribution\n\n### 6.4 风险缓解\n\n- **Java 依赖**: Docker 镜像预装或 conda 安装 openjdk\n- **并行瓶颈**: 与 ALFWorld 相同，设 `max_workers: 1`，`parallel_friendly: false`\n- **JVM 内存**: 预分配足够内存，避免 OOM\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_report.md",
+    "content": "# ScienceWorld 环境接入 RAGEN 可行性调研报告\n\n**日期**: 2026-05-19\n\n---\n\n## 1. ScienceWorld 环境概述\n\n### 1.1 基本信息\n- **来源**: Allen AI (allenai/ScienceWorld)\n- **类型**: Text-based interactive environment，围绕小学科学课程任务\n- **安装**: `pip install scienceworld`（需要 Java 1.8+，通过 py4j 与 JVM 通信）\n- **Python 版本**: >= 3.8\n\n### 1.2 API 接口\n\n核心方法签名：\n\n```python\nclass ScienceWorldEnv:\n    def __init__(self, taskName=None, serverPath=None, envStepLimit=100)\n    def load(self, taskName, variationIdx=0, simplificationStr=\"\", generateGoldPath=False)\n    def reset(self) -> Tuple[str, Dict]           # (observation, info)\n    def step(self, input_str: str) -> Tuple[str, int, bool, Dict]  # (obs, reward, done, info)\n    def close()\n    \n    # Action space\n    def get_valid_action_object_combinations() -> List[str]   # admissible actions\n    def get_possible_actions() -> List[str]\n    def get_possible_objects() -> List[str]\n    \n    # Task info\n    def get_task_names() -> List[str]\n    def get_task_description() -> str\n    def get_goal_progress() -> str\n    \n    # Free actions (不消耗 step)\n    def look() -> str\n    def inventory() -> str\n    def taskdescription() -> str\n    \n    # Gold path\n    def get_gold_action_sequence() -> List[str]    # 需要 load 时设 generateGoldPath=True\n    \n    # Train/Dev/Test splits\n    def get_variations_train() -> List[int]\n    def get_variations_dev() -> List[int]\n    def get_variations_test() -> List[int]\n```\n\n### 1.3 Action Space\n- **Text-based**，与 ALFWorld 同类\n- 提供 `get_valid_action_object_combinations()` 返回当前 state 下所有合法 action-object 组合\n- 典型 action 格式: `\"pick up fork\"`, `\"pour water into beaker\"`, `\"focus on thermometer\"`\n- Action space 规模动态变化，通常 50-200 个合法 action\n\n### 1.4 Observation 格式\n- **纯文本**描述当前场景状态\n- 可通过 `look()` 和 `inventory()` 获取额外信息（free actions）\n- 无 state dict，纯自然语言\n\n### 1.5 Reward 信号\n- `step()` 返回 integer reward（0-100 分制）\n- **非 sparse**：有 subgoal 完成的中间 reward（goal progress 可查询）\n- 任务成功 = 达到满分\n- 可通过 `get_goal_progress()` 查看细粒度进展\n\n### 1.6 Episode 结构\n- `envStepLimit` 默认 100 步\n- Variable length，不同任务复杂度差异大\n- Gold path 长度通常 10-50 步\n\n### 1.7 任务规模\n\n**10 大类，30 子任务**，总计数千个 variations：\n\n| 大类 | 子任务数 | Variations 范围 | 示例 |\n|------|---------|----------------|------|\n| 物态变化 (boil/melt/freeze) | 4 | ~30 each | 烧开水、融化冰块 |\n| 温度测量 & 熔点 | 3 | 300-540 | 用温度计测量 |\n| 电学 & 导电性 | 4 | 20-900 | 连接电路 |\n| 生物/非生物分类 | 4 | ~300 each | 分类物品 |\n| 植物生长 | 2 | ~126 each | 种植观察 |\n| 化学混合 | 3 | 32-36 | 混合物质 |\n| 生命周期 | 3 | ~125 each | 分析寿命 |\n| 生命阶段 | 2 | 10-14 | 观察生长 |\n| 斜面力学 | 3 | 168-1386 | 物理实验 |\n| 孟德尔遗传 | 2 | 120-480 | 遗传实验 |\n\n### 1.8 Simplifications\n支持 6 种简化选项：`teleportAction`, `openDoors`, `selfWateringFlowerPots`, `noElectricalAction`, `openContainers`。`easy` preset 开启大部分简化。\n\n---\n\n## 2. RAGEN 当前支持状态\n\n### 2.1 ScienceWorld 支持\n**不支持**。`grep -ri \"scienceworld\"` 在整个 RAGEN 代码库中无匹配。\n\n### 2.2 已有环境列表\n\nRAGEN 当前支持 12 个环境（`__init__.py` 注册）：\n\n| 环境 | 类型 | 基类 |\n|------|------|------|\n| bandit | 离散 | BaseDiscreteActionEnv |\n| countdown | 语言 | BaseLanguageBasedEnv |\n| sokoban | 离散 | BaseDiscreteActionEnv |\n| frozen_lake | 离散 | BaseDiscreteActionEnv |\n| metamathqa | 语言 | BaseLanguageBasedEnv |\n| lean | 语言 | BaseLanguageBasedEnv |\n| deepcoder | 语言 | BaseLanguageBasedEnv |\n| sudoku | 语言 | BaseLanguageBasedEnv |\n| game_2048 | 语言 | BaseLanguageBasedEnv |\n| rubikscube | 语言 | BaseLanguageBasedEnv |\n| alfworld* | 语言 | BaseLanguageBasedEnv |\n| webshop* | 语言 | BaseLanguageBasedEnv |\n\n*ALFWorld 和 WebShop 通过 try/except 动态注册（依赖可选）。\n\n### 2.3 接口模式\n\nRAGEN BaseEnv 接口：\n```python\nclass BaseLanguageBasedEnv(BaseEnv):\n    def reset(self, seed=None, **kwargs) -> Any          # 返回 rendered observation\n    def step(self, action: str) -> Tuple[Any, float, bool, Dict]  # (obs, reward, done, info)\n    def render(self, mode='text') -> Any                  # optional\n    def close()                                           # optional\n```\n\nALFWorld 实现额外特性：\n- `reset(seed, mode)` 支持 train/val/test 模式切换\n- Observation 包含 admissible actions 列表\n- Reward: `config.score * float(won)` (sparse, 成功 10.0)\n- Info dict 包含 `action_is_valid`, `success`, `anchor_obs`\n\n---\n\n## 3. 适配工程量评估\n\n### 3.1 需要新建的文件\n\n```\nRAGEN/ragen/env/scienceworld/\n├── __init__.py          # 导出 ScienceWorldEnv, ScienceWorldEnvConfig\n├── config.py            # ScienceWorldEnvConfig dataclass\n├── env.py               # ScienceWorldEnv(BaseLanguageBasedEnv)\n└── utils.py             # task mapping, prompt formatting 等辅助函数\n```\n\n### 3.2 需要修改的文件\n\n| 文件 | 修改内容 |\n|------|---------|\n| `ragen/env/__init__.py` | 添加 try/except 动态注册 ScienceWorld（同 ALFWorld 模式） |\n| `config/envs.yaml` | 添加 ScienceWorld 环境配置项 |\n\n### 3.3 实现要点\n\n**env.py 核心逻辑**（对标 ALFWorld 实现）：\n1. `__init__`: 创建 `scienceworld.ScienceWorldEnv` 实例，配置 task/variation\n2. `reset(seed, mode)`: \n   - 根据 seed 选择 variation（train/dev/test split）\n   - 调用 `sw_env.load(taskName, variationIdx)` + `sw_env.reset()`\n   - 格式化 observation + admissible actions\n3. `step(action)`: \n   - 调用 `sw_env.step(action)`\n   - 重新获取 `get_valid_action_object_combinations()` 作为 admissible actions\n   - 归一化 reward（ScienceWorld 0-100 → RAGEN 0-1 或 0-10）\n   - 返回格式化 observation\n\n**config.py**：\n```python\n@dataclass\nclass ScienceWorldEnvConfig(BaseEnvConfig):\n    task_name: str = \"boil\"          # 或 task_id\n    simplification: str = \"\"         # \"easy\" preset 等\n    env_step_limit: int = 100\n    score: float = 10.0              # 成功奖励 scale\n    use_admissible_actions: bool = True\n```\n\n**envs.yaml 配置示例**：\n```yaml\nScienceWorld:\n    env_type: scienceworld\n    max_actions_per_traj: 50\n    parallel_friendly: false\n    max_workers: 1\n    env_instruction: |\n      You are a science experiment agent...\n    max_tokens: 512\n    env_config:\n      task_name: \"boil\"\n      simplification: \"\"\n      env_step_limit: 100\n```\n\n### 3.4 工程风险与注意事项\n\n| 风险 | 严重度 | 说明 |\n|------|--------|------|\n| Java/JVM 依赖 | **中** | 需要 Java 1.8+，服务器需预装。py4j 启动有 cold start 延迟 |\n| 并行化受限 | **中** | 每个 ScienceWorld 实例启动独立 JVM，内存开销大（~200-500MB/instance）。ALFWorld 也有类似问题（`max_workers: 1`） |\n| py4j 通信开销 | **低** | 每次 step/action 通过 socket 与 JVM 通信，延迟 ~5-20ms，相对 LLM 推理时间可忽略 |\n| Task 选择策略 | **低** | 30 个子任务难度差异大，需要设计 task sampling 策略 |\n\n### 3.5 预估工作量\n\n| 任务 | 预估时间 |\n|------|---------|\n| env.py + config.py + utils.py 实现 | 4-6 小时 |\n| __init__.py + envs.yaml 注册 | 0.5 小时 |\n| 测试与调试（本地 dry-run） | 2-3 小时 |\n| Prompt 设计与调优 | 2-4 小时 |\n| SFT 数据准备（如需） | 4-8 小时 |\n| **总计** | **12-22 Worker-hours** |\n\n---\n\n## 4. Expert Data 可用性\n\n### 4.1 内置 Gold Path\nScienceWorld 自带 oracle agent，通过 `generateGoldPath=True` 可获取每个 variation 的最优 action sequence：\n```python\nenv.load(\"boil\", variationIdx=0, generateGoldPath=True)\nenv.reset()\ngold_actions = env.get_gold_action_sequence()  # ['pick up beaker', 'pour water into beaker', ...]\n```\n这是最直接的 expert trajectory 来源。\n\n### 4.2 已有 SFT 数据集\n- **ETO (ACL 2024)**: HuggingFace `agent-eto/eto-sft-trajectory` 包含 ScienceWorld SFT trajectories\n  - 对话格式: `{\"id\": \"...\", \"conversations\": [{\"from\": \"human/gpt\", \"value\": \"...\"}]}`\n  - 可直接用于 SFT warmstart\n- **cognitiveailab/t5-scienceworld**: 包含 goldpaths-all.zip，T5 训练用的 gold trajectory 数据\n\n### 4.3 自动生成方案\n若需更多数据：\n1. **Gold path 批量生成**: 遍历所有 task + variation，调用 `get_gold_action_sequence()` 收集\n2. **LLM rollout 收集**: 用 GPT-4/Claude 在环境中交互，筛选成功 trajectory\n3. **ETO 方法**: 先 SFT，再收集失败 trajectory 做 contrastive DPO\n\n### 4.4 数据量估算\n- 30 个子任务 × 平均 100+ variations × 每条 10-50 步 ≈ 3000+ expert trajectories\n- 足够支持 SFT warmstart\n\n---\n\n## 5. 相关工作总结\n\n### 5.1 直接相关论文\n\n| 论文 | 年份 | 方法 | ScienceWorld 结果 | 模型 |\n|------|------|------|-------------------|------|\n| **EMPO2** | 2026.02 | Exploratory Memory + On/Off-policy RL | Avg 75.9（vs GRPO 33.2，+128.6%）| Qwen2.5-7B-Instruct |\n| **ETO** | 2024 (ACL) | SFT + Contrastive DPO | +22% over SFT on unseen test | - |\n| **StepAgent** | 2024.11 | Step-wise RL + Inverse RL | step-wise reward 优于 sparse | - |\n| **Reinforcement World Model** | 2026.02 | Action-conditioned world model | 自监督学习环境动态 | - |\n| **CLIN** | 2023 | Continual learning + memory | ScienceWorld persistent memory | - |\n\n### 5.2 关键发现\n\n1. **EMPO2 是当前 SOTA**：在 19 个 ScienceWorld 任务上平均 75.9 分，使用 GRPO + memory augmentation，基于 verl 框架\n2. **训练设置惯例**: 前 5 个 variations 训练，20 个 unseen test variations 评估\n3. **GRPO baseline 在 ScienceWorld 上有效但不强**：33.2 平均分，说明有很大提升空间\n4. **SFT warmstart 有帮助**：ETO 证明先 SFT 再 RL 效果好于纯 RL\n5. **与我们研究的关联**: ScienceWorld 的 multi-step reasoning + sparse reward 特性正好适合验证 step-independent RL 的 sign misattribution 问题\n\n---\n\n## 6. 可行性结论和建议\n\n### 6.1 可行性评估：**高度可行**\n\n| 维度 | 评分 | 理由 |\n|------|------|------|\n| API 兼容性 | ★★★★★ | Text-based, 标准 reset/step 接口，与 ALFWorld 高度相似 |\n| 工程复杂度 | ★★★★☆ | 有 ALFWorld 模板参考，主要是 wrapper 工作。Java 依赖略增复杂度 |\n| Expert Data | ★★★★★ | 内置 gold path + 现成 SFT 数据集 |\n| 研究价值 | ★★★★★ | 验证 generalizability 的理想第二环境 |\n| 社区基准 | ★★★★☆ | EMPO2/ETO 等提供了充足的 baseline 对比数据 |\n\n### 6.2 与 ALFWorld 的对比\n\n| 特性 | ALFWorld | ScienceWorld |\n|------|----------|--------------|\n| 任务类型 | 家庭任务（6类） | 科学实验（30子任务） |\n| Action space | Admissible actions | Admissible actions |\n| Reward | Sparse (success only) | 有中间 reward (0-100) |\n| 任务多样性 | 中 | 高（10大类30子任务） |\n| 平均 episode 长度 | 15-50 步 | 10-50 步 |\n| 依赖 | Python (textworld) | Java + py4j |\n| 并行化 | 困难 | 困难（JVM 开销） |\n\n### 6.3 建议\n\n1. **推荐接入**：ScienceWorld 是验证 sign misattribution 发现 generalizability 的优质第二环境\n2. **优先实现路径**：\n   - Phase 1: 实现基础 wrapper（1-2天），单任务（如 \"boil\"）验证 GRPO baseline\n   - Phase 2: 生成 gold path SFT 数据，做 SFT warmstart\n   - Phase 3: 运行完整实验（多任务），验证 step-independent RL 的发现\n3. **Task 选择建议**: 参考 EMPO2 的 19 个任务设置，前 5 variations 训练 + 20 unseen test\n4. **Reward 处理**: ScienceWorld 的中间 reward (0-100) 可直接用于验证 step-level credit assignment，比 ALFWorld 的 binary reward 更适合分析 sign misattribution\n\n### 6.4 风险缓解\n\n- **Java 依赖**: Docker 镜像预装或 conda 安装 openjdk\n- **并行瓶颈**: 与 ALFWorld 相同，设 `max_workers: 1`，`parallel_friendly: false`\n- **JVM 内存**: 预分配足够内存，避免 OOM\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-19T03:17:51.788460+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_report.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-19T03:17:51.788652+00:00_
+
+报告已写入 `artifacts/scienceworld_feasibility_report.md`。
+
+**核心结论**：ScienceWorld 接入 RAGEN **高度可行**。
+
+关键发现：
+- **API 完全兼容**：text-based reset/step 接口与 ALFWorld 同构，可直接继承 `BaseLanguageBasedEnv`，参照 ALFWorld 实现 wrapper
+- **无需从零适配**：RAGEN 已有 12 个环境模板，ALFWorld 实现可直接复用，预估 **12-22 Worker-hours**
+- **Expert data 充足**：ScienceWorld 内置 `get_gold_action_sequence()` 可批量生成 gold trajectories，加上 ETO 已发布的 HuggingFace SFT 数据集
+- **研究价值高**：EMPO2 (2026.02) 证明 GRPO 在 ScienceWorld 上 baseline 仅 33.2 分（满分 100），有大量改进空间。30 个子任务 + 中间 reward (0-100) 比 ALFWorld 的 binary reward 更适合分析 step-level sign misattribution
+- **主要工程风险**：Java/JVM 依赖（py4j）和 JVM 实例内存开销，但与 ALFWorld 的并行化限制类似，可用相同策略处理
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_scienceworld-feasibility_20260519T031322"
+}
+```
+
+</details>
+
+---

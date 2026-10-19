@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "065fb84795180fd66331",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp013b cleanup restart",
+  "task_key": "worker_ops_exp013b-cleanup-restart_20260514T082737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp013b-cleanup-restart_20260514T082737_result.json",
+    "occurrence": 1,
+    "bytes": 1044,
+    "sha256": "26d3a799d06039e276c687310bd042381c44897c1ffaed6c24111d293ef15d55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理结果汇报\n\n### 清理前后对比\n\n| 资源 | 清理后状态 |\n|------|-----------|\n| GPU 0 (RTX PRO 6000) | 0 MiB / 97887 MiB, 0% 利用率 |\n| GPU 1 (RTX PRO 6000) | 0 MiB / 97887 MiB, 0% 利用率 |\n| CPU RAM | 919 GiB 可用 / 1.0 TiB 总计 |\n| 根分区 | 23G 可用 (25% 使用) |\n| 数据盘 | 118G 可用 (54% 使用) |\n\n### 清理动作\n- 杀掉 1 个训练进程 (PID 263851)\n- ray stop + 清理 /tmp/ray* 和 /dev/shm\n- tmux 会话已清理\n- 残留：仅 tensorboard + jupyter-lab（系统服务）\n\n### val 并发\n不需要降。919GB 可用 RAM 远超 20GB 阈值。当前 config 中 val `env_groups: 16` 保持不变。\n\n### Checkpoint & Config 确认\n- Checkpoint 存在：`/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5/actor/`\n- Config 存在且参数正确：\n  - `use_kl_loss: True`, `kl_loss_coef: 0.01`\n  - `format_penalty: 0`\n  - train `env_groups: 8`, `group_size: 16`\n  - val `env_groups: 16`, `group_size: 1`\n\n**环境干净，可以重启 exp013b。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp013b-cleanup-restart.md"
+}

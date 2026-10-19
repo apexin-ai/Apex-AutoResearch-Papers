@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "33e46a2b01ddc66eb10d",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "audit response mask hydra conflict",
+  "task_key": "worker_audit_response_mask_hydra_conflict_20260522T192101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_response_mask_hydra_conflict_20260522T192101.log",
+    "occurrence": 1,
+    "bytes": 667437,
+    "sha256": "6f5c873a6aff69d8d5e20674dd4633e5639fa7f5632d6ea0f1de50e0a9f6cbbd"
+  },
+  "statistics": {
+    "messages": 126,
+    "user_turns": 0,
+    "tool_calls": 51,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 20,
+      "tool_call": 51,
+      "tool_result": 51,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 126,
+      "chunks": [
+        {
+          "path": "33e46a2b01ddc66eb10d-part-0001.json",
+          "message_count": 114
+        },
+        {
+          "path": "33e46a2b01ddc66eb10d-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-response-mask-hydra-conflict.md"
+}

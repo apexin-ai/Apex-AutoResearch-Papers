@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "299eb1665d7d1400c8df",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "analysis exp026 full log",
+  "task_key": "worker_analysis_exp026_full_log_20260515T125106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp026_full_log_20260515T125106.log",
+    "occurrence": 1,
+    "bytes": 742438,
+    "sha256": "ca96976a2a9d834734f340eaf8fb536da79b71f378f811297d7a2ff51d79976f"
+  },
+  "statistics": {
+    "messages": 246,
+    "user_turns": 0,
+    "tool_calls": 95,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 95,
+      "tool_result": 95,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 246,
+      "chunks": [
+        {
+          "path": "299eb1665d7d1400c8df-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "299eb1665d7d1400c8df-part-0002.json",
+          "message_count": 66
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-exp026-full-log.md"
+}

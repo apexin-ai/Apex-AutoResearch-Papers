@@ -1,0 +1,16 @@
+{
+  "exp_id": "factorial_h2_episodeadv_seed2",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T04:48:02.228Z",
+    "updated_at": "2026-05-18T10:25:36.931Z",
+    "hypothesis": "Replicate factorial experiment (step-independent + episode-level advantage) with different seed to confirm that sign misattribution elimination is robust, not single-seed artifact. Same config, different seed, 15 steps.",
+    "parent": "factorial_h2_episodeadv_seed1"
+  },
+  "timestamp": "2026-05-18T10:25:37.102899+00:00",
+  "trigger": "update_registry"
+}

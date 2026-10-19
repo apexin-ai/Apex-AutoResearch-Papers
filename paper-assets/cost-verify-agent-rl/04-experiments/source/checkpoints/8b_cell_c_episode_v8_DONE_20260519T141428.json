@@ -1,0 +1,54 @@
+{
+  "exp_id": "8b_cell_c_episode_v8",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:10:15.655Z",
+    "updated_at": "2026-05-19T14:14:28.553Z",
+    "hypothesis": "Reducing ppo_mini_batch_size 4→2 halves backward activation memory (~3.7 GiB freed), and lowering gpu_memory_utilization 0.25→0.22 returns ~2.88 GiB/GPU to PyTorch allocator. Together these resolve the backward OOM that killed v7 (needed 3.7 GiB, had 0). D094 final attempt — if fails, 8B Cell C abandoned.",
+    "parent": "8b_cell_c_episode_v7",
+    "spec": {
+      "command": "bash -c 'cd /root/cost-verify-agent-rl/RAGEN/config && sed ... && python train.py --config-name _alfworld_8b_cell_c'",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "113992",
+      "log_path": "~/runs/cost-verify-agent-rl/8b_cell_c_episode_v8.log",
+      "submitted_at": "2026-05-19T14:13:14.349Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 31.4,
+      "gpu_hours": 0.03,
+      "data_path": "ALFWorld",
+      "data_count": 3553,
+      "model_name": "Qwen3-8B",
+      "seed": 1,
+      "checkpoint_path": "N/A - failed on config validation"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T14:13:43.897Z"
+    },
+    "failure_reason": "Traceback → h_size, \\ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ AssertionError: actor ppo_micro_batch_size_per_gpu * n_gpus_per_node (4) must be less than or equal to ppo_mini_batch_size (2)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T14:13:45.704Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T14:13:49.206647+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-19T14:14:28.877951+00:00",
+  "trigger": "update_registry"
+}

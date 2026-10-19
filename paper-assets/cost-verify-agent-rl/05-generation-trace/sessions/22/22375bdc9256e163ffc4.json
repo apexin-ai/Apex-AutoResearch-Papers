@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22375bdc9256e163ffc4",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "run exp028 prereq zeroshot instruct",
+  "task_key": "worker_run_exp028_prereq_zeroshot_instruct_20260515T210027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp028_prereq_zeroshot_instruct_20260515T210027_result.json",
+    "occurrence": 1,
+    "bytes": 1503,
+    "sha256": "ff33560fcdde6755b00baa0bf39c8dab720c096c5f3232096693da1ee80c79b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "README 确认：**Qwen3-1.7B 就是 instruct 模型**。关键摘要：\n\n> \"Qwen3 delivers groundbreaking advancements in reasoning, **instruction-following, agent capabilities**... surpassing previous QwQ (in thinking mode) and **Qwen2.5 instruct models** (in non-thinking mode)\"\n> \n> \"**Expertise in agent capabilities**, enabling precise integration with external tools in both thinking and unthinking modes\"\n\n## 结论\n\n**上次 exp028_prereq 已经用的是 Qwen3-1.7B（instruct）模型。** 不存在单独的 `Qwen3-1.7B-Instruct`——Qwen3 命名规范中，不带 `-Base` 后缀的就是 instruct 版本。\n\n重新运行相同配置 = 相同结果（0% success）。这不是模型选错的问题。\n\n## 对 D044 假设的影响\n\n上次 0% success 的基线已经是 instruct 模型：\n- **Qwen3-1.7B（instruct）零样本 = 0% success**\n- **SFT checkpoint = 6.25% success**\n\n这意味着 **SFT 并非毒药**——它实际上把 success 从 0% 提升到了 6.25%。D044 假设（\"SFT 是毒药\"）**不成立**。\n\n## 可选的下一步\n\n1. **跳过重跑**，直接用已有基线数据推进 exp028a\n2. 如果想排除代码 bug，可以用 **non-thinking mode**（`enable_thinking=False`）重跑一次——但这只会改变生成风格，不太可能大幅提升 success\n3. 用更大的模型（如 Qwen3-8B）做零样本基线，重新评估策略\n\n需要你做决定——是否仍要重跑，还是基于这个发现调整方案？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-exp028-prereq-zeroshot-instruct.md"
+}

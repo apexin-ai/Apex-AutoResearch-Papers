@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "211c3f7e11a515110130",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "monitor comprehensive status check",
+  "task_key": "worker_monitor_comprehensive_status_check_20260521T142137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_comprehensive_status_check_20260521T142137.log",
+    "occurrence": 1,
+    "bytes": 725216,
+    "sha256": "831c1c5508095e35d0bc03af54229024bea2b69857522465ed9aa4a136aeb744"
+  },
+  "statistics": {
+    "messages": 71,
+    "user_turns": 0,
+    "tool_calls": 28,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 28,
+      "tool_result": 28,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 71,
+      "chunks": [
+        {
+          "path": "211c3f7e11a515110130-part-0001.json",
+          "message_count": 45
+        },
+        {
+          "path": "211c3f7e11a515110130-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/monitor-comprehensive-status-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f627b6366ae63d52ea7",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "experiment seed4 episode bjb1",
+  "task_key": "worker_experiment_seed4-episode-bjb1_20260521T023858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_seed4-episode-bjb1_20260521T023858_result.json",
+    "occurrence": 1,
+    "bytes": 379,
+    "sha256": "62f367098d444ef1769fc6189d4ab96655232a4e41d4a811d56732402bdad136"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练启动成功。\n\n**状态：**\n- W&B run: `exp029-seed4-episode-level` (run ID: `u93qdyep`)\n- GPU: cuda:0,1 各占用 4715 MiB，正在加载模型和初始化 FSDP\n- 配置确认：seed train=123, val=456, optimizer_offload=false, total_training_steps=15\n- Registry: exp029_seed4_episode → RUNNING\n- 预计 ~5.5h 完成（~22min/step × 15 steps）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-seed4-episode-bjb1.md"
+}

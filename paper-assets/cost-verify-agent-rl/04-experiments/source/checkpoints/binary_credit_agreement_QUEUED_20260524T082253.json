@@ -1,0 +1,15 @@
+{
+  "exp_id": "binary_credit_agreement",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:17:59.737Z",
+    "updated_at": "2026-05-24T08:22:52.974Z",
+    "hypothesis": "Under binary reward (penalty=0), GRPO advantage sign is near-deterministically determined by episode outcome (sign-episode correlation ~100%), confirming M2 mechanism. Credit agreement with local action quality should be well below 50%."
+  },
+  "timestamp": "2026-05-24T08:22:53.310306+00:00",
+  "trigger": "update_registry"
+}

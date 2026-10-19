@@ -1,0 +1,16 @@
+{
+  "exp_id": "8b_sft_clean_eval",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T10:07:58.491Z",
+    "updated_at": "2026-05-19T10:40:46.261Z",
+    "hypothesis": "8B SFT checkpoint full-context eval on 32 in-dist val tasks. Provides clean comparison baseline: current 80.6% is OOD 134 tasks, 28.1% is in-dist 32 tasks with h=2 windowing. Need full-context in-dist number to quantify information loss from h=2 windowing on the SAME eval set. Required for paper: cannot write \"52pp loss\" when comparing different eval sets.",
+    "parent": "7b_sft_v1"
+  },
+  "timestamp": "2026-05-19T10:40:46.430864+00:00",
+  "trigger": "update_registry"
+}

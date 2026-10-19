@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp015",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:48:38.065Z",
+    "updated_at": "2026-05-14T12:56:28.547Z",
+    "hypothesis": "Sparse GRPO + 训练稳定性修复。纯 sparse reward（won=10.0，无 valid_action_bonus，无 format_penalty）。针对 exp012b 的 step 7 catastrophic collapse（grad_norm 1.48→0.094），三项修复：LR 1e-7（降 10 倍防单步更新过激）、kl_loss_coef 0.1（增 10 倍约束策略偏移）、max_grad_norm=1.0（梯度裁剪）。从 exp008 step 5 checkpoint 恢复，GRPO 30 步。",
+    "parent": "exp012b",
+    "notes": "配置就绪。关键变更：exp008_grpo/global_step_5 已被清理，改为从 SFT 模型（qwen3_sft_final）全新开始 GRPO（resume_mode: disable）。这意味着模型没有先前 GRPO 经验，但起点更干净。配置确认：LR=1e-7, kl_loss_coef=0.1, grad_clip=1.0, valid_action_bonus=0, format_penalty=0, env_groups=4, AlfworldSG tag。磁盘 219GB 可用。"
+  },
+  "timestamp": "2026-05-14T12:56:28.650960+00:00",
+  "trigger": "update_registry"
+}

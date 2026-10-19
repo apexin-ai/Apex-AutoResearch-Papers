@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d088d028e67d1dad2c7",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh check westd gpu status",
+  "task_key": "worker_ssh_check_westd_gpu_status_20260522T220933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_westd_gpu_status_20260522T220933_result.json",
+    "occurrence": 1,
+    "bytes": 886,
+    "sha256": "f7bd0a622181cd888ab9b236d46a020178ebe839696becdb7e18a00dc7a57463"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**GPU 状态（4× RTX PRO 6000 96GB）**\n\n| GPU | 显存使用 | 利用率 |\n|-----|---------|--------|\n| cuda:0 | 0 / 97887 MiB | 0% |\n| cuda:1 | 0 / 97887 MiB | 0% |\n| cuda:2 | 0 / 97887 MiB | 0% |\n| cuda:3 | 0 / 97887 MiB | 100%* |\n\n*cuda:3 显存为 0 但 utilization 显示 100%，可能是 nvidia-smi 瞬时采样误差，无实际负载。\n\n**残留进程**\n- 无 Python 训练进程、无 Ray、无 vLLM\n- 仅有系统服务（supervisord、jupyter-lab、tensorboard、sshd）和一个 exp029 的 checkpoint watchdog 脚本（PID 118781，每 60s 检查一次旧 checkpoint 并清理，开销可忽略）\n\n**tmux sessions**\n- 无\n\n**磁盘空间**\n- `/root/autodl-tmp/`: 250G 总量，已用 111G，可用 140G (45%)\n\n**结论：4 张 GPU 全部空闲，无训练进程残留，磁盘充裕。可随时启动新实验。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-westd-gpu-status.md"
+}

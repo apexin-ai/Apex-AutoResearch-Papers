@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d8dff3422bffa4373c1",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops v9d gpu check and restart",
+  "task_key": "worker_ops_v9d_gpu_check_and_restart_20260520T052807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_v9d_gpu_check_and_restart_20260520T052807_result.json",
+    "occurrence": 1,
+    "bytes": 695,
+    "sha256": "d140085d4caf192448f4f4c9e2f0734c5b0302528de003dc5c3310bdf4376519"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完美。训练已成功恢复并完成 val_before_train。\n\n## 汇报\n\n| 项目 | 结果 |\n|------|------|\n| 情况 | **A — 有残留进程**（4 个 ray worker 占满 GPU ~27GB/张） |\n| gpu_memory_utilization | **未修改**，保持 0.25 |\n| 新 PID | TaskRunner: 549487, Workers: 550057-550060 |\n| 恢复点 | **从 step 5 恢复** ✓（Training Progress: 5/30） |\n| val_before_train | **success: 93.75%**（32 episodes），num_actions: 15.8, action_is_valid: 99.4% |\n| 磁盘 | /root/autodl-tmp 106GB 可用（58% 使用） |\n| W&B run | `4x8hludk`（8b-cell-c-v9-fsdp2-offload） |\n\n训练正在从 step 6 开始正常推进，无 OOM/kv_cache 错误。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-v9d-gpu-check-and-restart.md"
+}

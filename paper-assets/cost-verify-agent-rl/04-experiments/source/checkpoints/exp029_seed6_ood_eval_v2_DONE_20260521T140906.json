@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp029_seed6_ood_eval_v2",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T13:57:41.031Z",
+    "updated_at": "2026-05-21T14:09:06.456Z",
+    "hypothesis": "Evaluate exp029_seed6_v3 final checkpoint (global_step_15, episode-level GRPO seed=789, val=28.1%) on 134 OOD tasks (valid_unseen, τ=0.4). Retry after v1 failed due to get_special_tokens() path mismatch. Fixed via qwen symlink.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=2 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed6_ood_eval\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "342378",
+      "data_path": "AlfworldSG_OOD (134 valid_unseen tasks)",
+      "data_count": 134,
+      "model_name": "Qwen2.5-1.5B-Instruct (episode GRPO seed=789, step 15)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen_exp029_seed6_step15_hf (symlink to global_step_15_hf)",
+      "eval_data": "AlfworldSG_OOD 134 tasks, τ=0.4",
+      "log_path": "/tmp/exp029_seed6_ood_eval_v2.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T14:09:04.581Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T14:09:06.456Z"
+  },
+  "timestamp": "2026-05-21T14:09:06.704778+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26e99a38833b7f575f8a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops scp checkpoints westd to bjb1",
+  "task_key": "worker_ops_scp_checkpoints_westd_to_bjb1_20260522T023208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp_checkpoints_westd_to_bjb1_20260522T023208_result.json",
+    "occurrence": 1,
+    "bytes": 732,
+    "sha256": "4c1046bcd4eb6e26aa30f7b841bf434032e6eae4faf30f7d218ffbe5b3d85e61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 传输结果\n\n| Checkpoint | 状态 | 文件数 | model.safetensors |\n|---|---|---|---|\n| seed5 step10 | ✓ 成功 | 10 | 4,063,515,640 bytes (与源一致) |\n| seed6 step15 | ✓ 成功 | 10 | 4,063,515,640 bytes (与源一致) |\n\n**bjb1 上的路径：**\n- `/root/autodl-tmp/checkpoints/exp029-seed5/global_step_10_hf/`\n- `/root/autodl-tmp/checkpoints/exp029-seed6/global_step_15_hf/`\n\n**Symlink（含 \"qwen\" 供 OOD eval 脚本识别）：**\n- `/root/autodl-tmp/checkpoints/qwen_seed5_step10_hf` → exp029-seed5/global_step_10_hf\n- `/root/autodl-tmp/checkpoints/qwen_seed6_step15_hf` → exp029-seed6/global_step_15_hf\n\n**磁盘剩余：** 63GB (75% used)，空间充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scp-checkpoints-westd-to-bjb1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "148198a36d4298a1f140",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp028c step6 9",
+  "task_key": "worker_check_exp028c_step6_9_20260516T030451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp028c_step6_9_20260516T030451_result.json",
+    "occurrence": 1,
+    "bytes": 582,
+    "sha256": "1d2fab92c15eb9331b3b6a031f1363eb721e9580495e393c206b3dc0844903c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存。核心发现：\n\n**进度纠正**: 实际仅完成 step 5，step 6 in progress（非预估的 step 8-9）。Pace ~51min/step，step 10 val 预计 ~4h 后。\n\n**关键趋势 (steps 1→5)**:\n- **action_is_valid**: 持续上升 0.764→0.896 (train), 0.745→0.965 (val) — 最明确的正向信号\n- **success**: 波动无趋势，val 维持 6.25% 不变\n- **kl_loss**: step 5 飙升到 0.824（step 4 仅 0.031，26 倍增长）— 最大风险信号，需关注后续是否继续恶化\n- **ppo_kl/pg_loss/grad_norm**: 正常，趋于稳定"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp028c-step6-9.md"
+}

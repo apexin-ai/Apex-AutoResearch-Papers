@@ -1,0 +1,76 @@
+{
+  "exp_id": "intervention-c-hard-cap",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T21:12:57.442Z",
+    "updated_at": "2026-05-21T22:27:43.521Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _alfworld_intervention_c_hard_cap\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "788147",
+      "log_path": "~/runs/cost-verify-agent-rl/intervention-c-hard-cap.log",
+      "submitted_at": "2026-05-21T21:12:56.719Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "ALFWorld episode-level",
+      "data_count": 134,
+      "model_name": "Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)",
+      "seed": 999,
+      "checkpoint_source": "qwen3_exp021_ragen_sft_v4 (SFT base)",
+      "eval_data": "N/A (training)",
+      "hyperparams": {
+        "response_length": 512,
+        "max_turn": 20,
+        "kl_loss_coef": 0.01,
+        "total_steps": 7
+      },
+      "checkpoint_path": "N/A (negative result)",
+      "wall_clock_seconds": 4486.8,
+      "gpu_hours": 2.49
+    },
+    "hypothesis": "Generation hard cap (per-turn 512 tokens + max 20 turns) physically prevents response_length explosion that caused 50% seed collapse. Same seed=999 as Seed 7 which collapsed at step 7. If step 7 resp_len < 2000 and success > 30%, hard cap is effective mitigation.",
+    "parent": "exp029_seed7",
+    "notes": "Completed 7/7 steps, EXIT_CODE=0. Hard cap (512 tokens/turn, 20 turns) FAILED to prevent response length explosion. Model compensated by using more turns — response_length/mean went from 4662 (step 6) to 7170 (step 7). Train success peaked at 38.28% (step 6) then crashed to 15.625% (step 7). Final val_success=9.375%, barely above baseline 6.25%. All 3 interventions (A: len_penalty, B: high_kl, C: hard_cap) are negative. W&B: https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/hszaa3vc",
+    "reproduce": {
+      "finished_at": "2026-05-21T22:22:23.182Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T22:22:27.354282+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "step7_train_success": 0.15625,
+      "step7_val_success": 0.09375,
+      "step7_train_resp_len": 870.25,
+      "step7_val_resp_len": 927.44,
+      "step7_response_length_mean": 7170.41,
+      "step7_aborted_ratio": 0,
+      "step7_pg_loss": 6.72e-05,
+      "step7_kl_loss": 0.0204,
+      "step7_grad_norm": 1.31,
+      "step6_train_success": 0.3828,
+      "step6_train_resp_len": 745,
+      "step6_response_length_mean": 4662.21,
+      "step0_val_success": 0.0625,
+      "step0_val_resp_len": 974.78
+    },
+    "completed_at": "2026-05-21T22:27:43.522Z"
+  },
+  "timestamp": "2026-05-21T22:27:43.788800+00:00",
+  "trigger": "update_registry"
+}

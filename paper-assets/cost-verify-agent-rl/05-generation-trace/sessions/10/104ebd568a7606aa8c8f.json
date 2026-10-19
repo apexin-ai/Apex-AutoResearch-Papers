@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "104ebd568a7606aa8c8f",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "audit paper data correctness",
+  "task_key": "worker_audit_paper_data_correctness_20260523T191551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_paper_data_correctness_20260523T191551.log",
+    "occurrence": 1,
+    "bytes": 893515,
+    "sha256": "dc62cab8a36ffb4e5b8af3e6bceb87338ded9050eedc88a7730f74e0507d218c"
+  },
+  "statistics": {
+    "messages": 144,
+    "user_turns": 0,
+    "tool_calls": 54,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 54,
+      "tool_result": 54,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 144,
+      "chunks": [
+        {
+          "path": "104ebd568a7606aa8c8f-part-0001.json",
+          "message_count": 74
+        },
+        {
+          "path": "104ebd568a7606aa8c8f-part-0002.json",
+          "message_count": 70
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-paper-data-correctness.md"
+}

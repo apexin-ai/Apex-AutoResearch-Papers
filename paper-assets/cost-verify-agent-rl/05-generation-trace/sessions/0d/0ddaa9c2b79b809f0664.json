@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ddaa9c2b79b809f0664",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix scienceworld sft oom",
+  "task_key": "worker_fix_scienceworld_sft_oom_20260524T225657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_scienceworld_sft_oom_20260524T225657_result.json",
+    "occurrence": 1,
+    "bytes": 362,
+    "sha256": "def588173c4d44ed6890ad75dad1a02968c99d85f3d5c0ad31dbc54ea0925d05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常启动。\n\n**汇报：**\n- **修复**：`sft_train_v3.py` 第 87 行加入 `per_device_eval_batch_size=1`（原默认 8 导致 eval 阶段 ~75GB logits OOM）\n- **新 PID**：171362，tmux session `scienceworld_sft_bjb1`\n- **状态**：模型加载完成，训练已开始（0/450 steps），train 3586 样本，val 1791 样本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-scienceworld-sft-oom.md"
+}

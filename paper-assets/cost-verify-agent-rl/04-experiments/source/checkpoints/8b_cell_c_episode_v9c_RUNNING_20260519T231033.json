@@ -1,0 +1,46 @@
+{
+  "exp_id": "8b_cell_c_episode_v9c",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T19:08:11.566Z",
+    "updated_at": "2026-05-19T23:10:33.082Z",
+    "hypothesis": "FSDP2 + CPUOffloadPolicy 解决 8B Cell C backward OOM。v9b 因 _fsdp_wrapped_module (FSDP1 专属属性) 在 compute_log_prob 崩溃。v9c 全量修复 5 个文件 10 处 FSDP1-specific 模式（_fsdp_wrapped_module→getattr 兼容, summon_full_params→isinstance 守卫）。预期无 FSDP1/2 兼容性问题。",
+    "parent": "8b_cell_c_episode_v9b",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && export WANDB_PROJECT=cost-verify-agent-rl && python train.py --config-name _alfworld_8b_cell_c_v9\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "178115",
+      "log_path": "~/runs/cost-verify-agent-rl/8b_cell_c_episode_v9c.log",
+      "submitted_at": "2026-05-19T19:08:33.403Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/data/alfworld/train/",
+      "data_count": 8810,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/8b-cell-c-v9/",
+      "checkpoint_source": "Qwen3-8B base (no SFT)",
+      "eval_data": "N/A - training experiment, parent is derivation chain not eval source"
+    },
+    "metrics": {
+      "step": 1,
+      "val_reward_mean_at_32": 4.06,
+      "gpu_mem_peak_gb": 83,
+      "step_time_min": 31.5
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-19T23:10:33.309496+00:00",
+  "trigger": "update_registry"
+}

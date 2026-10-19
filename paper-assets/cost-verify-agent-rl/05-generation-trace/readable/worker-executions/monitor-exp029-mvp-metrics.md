@@ -1,0 +1,2265 @@
+# monitor exp029 mvp metrics
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/workers/worker_monitor_exp029_mvp_metrics_20260516T231108.log`
+- **Structured JSON:** [`c15dd3d530d8db87f3f6.json`](../../sessions/c1/c15dd3d530d8db87f3f6.json)
+
+## Before a recorded user message
+
+45 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__compare_wandb_runs",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__fetch_wandb_metrics",
+    "mcp__agent-ml-research__fetch_wandb_run_history",
+    "mcp__agent-ml-research__get_best_wandb_run",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__list_wandb_runs",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "8c8a1d8d-9802-4619-adbe-51a5066c3a61",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778990400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "8f84d6c8-58f0-431e-8fdd-9aa199fe4eb7",
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to extract metrics from exp029 on the remote server bjb1-17606. Let me execute the commands via SSH to get the training metrics and validation results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "f0eb728f-9a49-403d-ae95-6a51fe8a392f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K8EfRpTj96achGhqqUs5Z1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12980,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12980
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01AeEtE2eVgrkXAkEzaPKZKW`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "f31b395e-6d97-4f3a-9ff5-1996735e1f38",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K8EfRpTj96achGhqqUs5Z1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12980,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12980
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T23:11:21.716Z_
+
+<details><summary>↩ Tool result · `toolu_01AeEtE2eVgrkXAkEzaPKZKW`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "b7c3a908-5b03-43b5-b4ed-d565dd5da4f8",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 28
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me execute the commands to extract the metrics from exp029.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "6523408f-508f-4f79-943b-944584e977b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014DqFPCqjcFewVDB2AFZJzv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 479,
+      "cache_read_input_tokens": 24821,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 479
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HCmd515gb81sn574u8VL9B`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep -E \"(step|success|entropy|ppo_kl|grad_norm|response_length|action_is_valid|pass@|reward|val|timing)\" /root/runs/cost-verify-agent-rl/exp029_episode_level.log | grep -iv \"skipping|warning|anchor|non-numeric\" | tail -100",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "38e93325-3057-4aed-af07-979b760840e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014DqFPCqjcFewVDB2AFZJzv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 479,
+      "cache_read_input_tokens": 24821,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 479
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T23:11:26.405Z_
+
+<details><summary>↩ Tool result · `toolu_01HCmd515gb81sn574u8VL9B`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "4aa739ea-1ecf-4510-bff0-d5478b80d6ba",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Row7bgL2PtgfBcFv66fVL4`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep -iE \"(val|test|eval)\" /root/runs/cost-verify-agent-rl/exp029_episode_level.log | grep -iv \"skipping|warning|anchor|non-numeric|val_before\" | tail -30",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "52efd741-9fc9-44e9-9e27-fa5e7ef9891e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014DqFPCqjcFewVDB2AFZJzv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 479,
+      "cache_read_input_tokens": 24821,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 479
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T23:11:27.321Z_
+
+<details><summary>↩ Tool result · `toolu_01Row7bgL2PtgfBcFv66fVL4`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "0c06c103-76be-41c2-a2d5-c9240844e24e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SNKXFvXXL3G2Je2mZxXCgS`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "tail -200 /root/runs/cost-verify-agent-rl/exp029_episode_level.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "a7a07e57-39ba-49dc-8d05-e871aae3394e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014DqFPCqjcFewVDB2AFZJzv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 479,
+      "cache_read_input_tokens": 24821,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 479
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T23:11:29.142Z_
+
+<details><summary>↩ Tool result · `toolu_01SNKXFvXXL3G2Je2mZxXCgS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,527:Skipping non-numeric metric 'anchor_obs' with value 'You close the microwave 1.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,527:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at sinkbasin 1. On the sinkbasin 1, you see a dishsponge 2, a egg 2, a potato 2, and a spatula 2.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at stoveburner 1. On the stoveburner 1, you see a kettle 1.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at stoveburner 2. On the stoveburner 2, you see a pan 1, and a pot 1.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at stoveburner 3. On the stoveburner 3, you see nothing.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at stoveburner 2. On the stoveburner 2, you see a pan 1, and a pot 1.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non\\n\\n... [截断: 输出过长，省略 43403 字符] ...\\n\\neward/worst@4/mean:np.float64(0.02) - val-aux/unknown/reward/worst@4/std:np.float64(0.4467661580737735) - val-aux/unknown/reward/best@8/mean:np.float64(8.97) - val-aux/unknown/reward/best@8/std:np.float64(3.039588787977743) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(9.88) - val-aux/unknown/reward/best@16/std:np.float64(1.0888526071052957) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.99) - val-core/unknown/reward/best@32/std:np.float64(0.31606961258558225) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05593867599964142 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.05593867599964142 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:14324.15625 - response_length/max:16379.0 - response_length/min:1413.0 - response_length/clip_ratio:0.015625 - response_length_non_aborted/mean:14324.15625 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1413.0 - response_length_non_aborted/clip_ratio:0.015625 - response/aborted_ratio:0.0 - prompt_length/mean:0.015625 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.015625 - timing_s/gen:1345.362777987495 - timing_s/collapse_metrics:30.975701972842216 - timing_s/filter:0.003918973729014397 - timing_s/old_log_prob:68.1950398646295 - timing_s/ref:62.72627100162208 - timing_s/adv:0.004521477967500687 - timing_s/update_actor:429.28117185644805 - timing_s/testing:212.49309626035392 - timing_s/save_checkpoint:18.362169835716486 - timing_s/step:2167.7636023629457 - timing_per_token_ms/update_actor:0.2341328479157543 - timing_per_token_ms/adv:2.466044594365014e-06 - timing_per_token_ms/gen:0.7337707380165799 - timing_per_token_ms/ref:0.034211331480562296 - perf/total_num_tokens:1833494 - perf/time_per_step:2167.7636023629457 - perf/throughput:422.89989508113825 - timing_s/train_step:1905.932634294033 - timing_s/eval_step:212.49309626035392 - timing_s/train_total:8440.504035070539 - timing_s/eval_total:212.49309626035392 - timing_s/collapse_total:65.00723348557949 - timing_s/collapse_first_turn_total:65.00705054961145 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:8745.191279888153\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m list(reward_extra_infos_dict.keys())=[]\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m \\rTraining Progress:   6%|▌         | 6/100 [2:51:36<45:07:46, 1728.37s/it]\\n\\u001b[33m(raylet)\\u001b[0m [2026-05-17 07:09:14,858 E 902954 902989] (raylet) file_system_monitor.cc:116: /root/autodl-tmp/tmp/ray/session_2026-05-17_04-12-39_632517_902347 is over 95% full, available space: 8.65515 GB; capacity: 250 GB. Object creation will fail if spilling is required.\\n\\u001b[33m(raylet)\\u001b[0m [2026-05-17 07:09:24,868 E 902954 902989] (raylet) file_system_monitor.cc:116: /root/autodl-tmp/tmp/ray/session_2026-05-17_04-12-39_632517_902347 is over 95% full, available space: 8.55818 GB; capacity: 250 GB. Object creation will fail if spilling is required.\\n\\u001b[33m(raylet)\\u001b[0m [2026-05-17 07:09:34,879 E 902954 902989] (raylet) file_system_monitor.cc:116: /root/autodl-tmp/tmp/ray/session_2026-05-17_04-12-39_632517_902347 is over 95% full, available space: 8.46122 GB; capacity: 250 GB. Object creation will fail if spilling is required.\\n\\u001b[33m(raylet)\\u001b[0m [2026-05-17 07:09:44,892 E 902954 902989] (raylet) file_system_monitor.cc:116: /root/autodl-tmp/tmp/ray/session_2026-05-17_04-12-39_632517_902347 is over 95% full, available space: 8.36425 GB; capacity: 250 GB. Object creation will fail if spilling is required.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "2fcf98a0-e8ec-4f33-96be-eaa40d027425",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,527:Skipping non-numeric metric 'anchor_obs' with value 'You close the microwave 1.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,527:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at sinkbasin 1. On the sinkbasin 1, you see a dishsponge 2, a egg 2, a potato 2, and a spatula 2.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at stoveburner 1. On the stoveburner 1, you see a kettle 1.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at stoveburner 2. On the stoveburner 2, you see a pan 1, and a pot 1.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at stoveburner 3. On the stoveburner 3, you see nothing.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at stoveburner 2. On the stoveburner 2, you see a pan 1, and a pot 1.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non\\\\n\\\\n... [截断: 输出过长，省略 43403 字符] ...\\\\n\\\\neward/worst@4/mean:np.float64(0.02) - val-aux/unknown/reward/worst@4/std:np.float64(0.4467661580737735) - val-aux/unknown/reward/best@8/mean:np.float64(8.97) - val-aux/unknown/reward/best@8/std:np.float64(3.039588787977743) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(9.88) - val-aux/unknown/reward/best@16/std:np.float64(1.0888526071052957) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.99) - val-core/unknown/reward/best@32/std:np.float64(0.31606961258558225) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05593867599964142 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.05593867599964142 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:14324.15625 - response_length/max:16379.0 - response_length/min:1413.0 - response_length/clip_ratio:0.015625 - response_length_non_aborted/mean:14324.15625 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1413.0 - response_length_non_aborted/clip_ratio:0.015625 - response/aborted_ratio:0.0 - prompt_length/mean:0.015625 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.015625 - timing_s/gen:1345.362777987495 - timing_s/collapse_metrics:30.975701972842216 - timing_s/filter:0.003918973729014397 - timing_s/old_log_prob:68.1950398646295 - timing_s/ref:62.72627100162208 - timing_s/adv:0.004521477967500687 - timing_s/update_actor:429.28117185644805 - timing_s/testing:212.49309626035392 - timing_s/save_checkpoint:18.362169835716486 - timing_s/step:2167.7636023629457 - timing_per_token_ms/update_actor:0.2341328479157543 - timing_per_token_ms/adv:2.466044594365014e-06 - timing_per_token_ms/gen:0.7337707380165799 - timing_per_token_ms/ref:0.034211331480562296 - perf/total_num_tokens:1833494 - perf/time_per_step:2167.7636023629457 - perf/throughput:422.89989508113825 - timing_s/train_step:1905.932634294033 - timing_s/eval_step:212.49309626035392 - timing_s/train_total:8440.504035070539 - timing_s/eval_total:212.49309626035392 - timing_s/collapse_total:65.00723348557949 - timing_s/collapse_first_turn_total:65.00705054961145 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:8745.191279888153\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m list(reward_extra_infos_dict.keys())=[]\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m \\\\rTraining Progress:   6%|▌         | 6/100 [2:51:36<45:07:46, 1728.37s/it]\\\\n\\\\u001b[33m(raylet)\\\\u001b[0m [2026-05-17 07:09:14,858 E 902954 902989] (raylet) file_system_monitor.cc:116: /root/autodl-tmp/tmp/ray/session_2026-05-17_04-12-39_632517_902347 is over 95% full, available space: 8.65515 GB; capacity: 250 GB. Object creation will fail if spilling is required.\\\\n\\\\u001b[33m(raylet)\\\\u001b[0m [2026-05-17 07:09:24,868 E 902954 902989] (raylet) file_system_monitor.cc:116: /root/autodl-tmp/tmp/ray/session_2026-05-17_04-12-39_632517_902347 is over 95% full, available space: 8.55818 GB; capacity: 250 GB. Object creation will fail if spilling is required.\\\\n\\\\u001b[33m(raylet)\\\\u001b[0m [2026-05-17 07:09:34,879 E 902954 902989] (raylet) file_system_monitor.cc:116: /root/autodl-tmp/tmp/ray/session_2026-05-17_04-12-39_632517_902347 is over 95% full, available space: 8.46122 GB; capacity: 250 GB. Object creation will fail if spilling is required.\\\\n\\\\u001b[33m(raylet)\\\\u001b[0m [2026-05-17 07:09:44,892 E 902954 902989] (raylet) file_system_monitor.cc:116: /root/autodl-tmp/tmp/ray/session_2026-05-17_04-12-39_632517_902347 is over 95% full, available space: 8.36425 GB; capacity: 250 GB. Object creation will fail if spilling is required.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,527:Skipping non-numeric metric 'anchor_obs' with value 'You close the microwave 1.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,527:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at sinkbasin 1. On the sinkbasin 1, you see a dishsponge 2, a egg 2, a potato 2, and a spatula 2.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at stoveburner 1. On the stoveburner 1, you see a kettle 1.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at stoveburner 2. On the stoveburner 2, you see a pan 1, and a pot 1.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,528:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at stoveburner 3. On the stoveburner 3, you see nothing.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at stoveburner 2. On the stoveburner 2, you see a pan 1, and a pot 1.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldSG.\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m WARNING:2026-05-17 06:59:20,529:Skipping non\\n\\n... [截断: 输出过长，省略 43403 字符] ...\\n\\neward/worst@4/mean:np.float64(0.02) - val-aux/unknown/reward/worst@4/std:np.float64(0.4467661580737735) - val-aux/unknown/reward/best@8/mean:np.float64(8.97) - val-aux/unknown/reward/best@8/std:np.float64(3.039588787977743) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(9.88) - val-aux/unknown/reward/best@16/std:np.float64(1.0888526071052957) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.99) - val-core/unknown/reward/best@32/std:np.float64(0.31606961258558225) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05593867599964142 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.05593867599964142 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:14324.15625 - response_length/max:16379.0 - response_length/min:1413.0 - response_length/clip_ratio:0.015625 - response_length_non_aborted/mean:14324.15625 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1413.0 - response_length_non_aborted/clip_ratio:0.015625 - response/aborted_ratio:0.0 - prompt_length/mean:0.015625 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.015625 - timing_s/gen:1345.362777987495 - timing_s/collapse_metrics:30.975701972842216 - timing_s/filter:0.003918973729014397 - timing_s/old_log_prob:68.1950398646295 - timing_s/ref:62.72627100162208 - timing_s/adv:0.004521477967500687 - timing_s/update_actor:429.28117185644805 - timing_s/testing:212.49309626035392 - timing_s/save_checkpoint:18.362169835716486 - timing_s/step:2167.7636023629457 - timing_per_token_ms/update_actor:0.2341328479157543 - timing_per_token_ms/adv:2.466044594365014e-06 - timing_per_token_ms/gen:0.7337707380165799 - timing_per_token_ms/ref:0.034211331480562296 - perf/total_num_tokens:1833494 - perf/time_per_step:2167.7636023629457 - perf/throughput:422.89989508113825 - timing_s/train_step:1905.932634294033 - timing_s/eval_step:212.49309626035392 - timing_s/train_total:8440.504035070539 - timing_s/eval_total:212.49309626035392 - timing_s/collapse_total:65.00723348557949 - timing_s/collapse_first_turn_total:65.00705054961145 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:8745.191279888153\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m list(reward_extra_infos_dict.keys())=[]\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m \\rTraining Progress:   6%|▌         | 6/100 [2:51:36<45:07:46, 1728.37s/it]\\n\\u001b[33m(raylet)\\u001b[0m [2026-05-17 07:09:14,858 E 902954 902989] (raylet) file_system_monitor.cc:116: /root/autodl-tmp/tmp/ray/session_2026-05-17_04-12-39_632517_902347 is over 95% full, available space: 8.65515 GB; capacity: 250 GB. Object creation will fail if spilling is required.\\n\\u001b[33m(raylet)\\u001b[0m [2026-05-17 07:09:24,868 E 902954 902989] (raylet) file_system_monitor.cc:116: /root/autodl-tmp/tmp/ray/session_2026-05-17_04-12-39_632517_902347 is over 95% full, available space: 8.55818 GB; capacity: 250 GB. Object creation will fail if spilling is required.\\n\\u001b[33m(raylet)\\u001b[0m [2026-05-17 07:09:34,879 E 902954 902989] (raylet) file_system_monitor.cc:116: /root/autodl-tmp/tmp/ray/session_2026-05-17_04-12-39_632517_902347 is over 95% full, available space: 8.46122 GB; capacity: 250 GB. Object creation will fail if spilling is required.\\n\\u001b[33m(raylet)\\u001b[0m [2026-05-17 07:09:44,892 E 902954 902989] (raylet) file_system_monitor.cc:116: /root/autodl-tmp/tmp/ray/session_2026-05-17_04-12-39_632517_902347 is over 95% full, available space: 8.36425 GB; capacity: 250 GB. Object creation will fail if spilling is required.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The pipe `|` is blocked in read-only mode. The third command (tail -200) worked but the output is very long and truncated. Let me parse what I can see and get more specific data. I can see some val metrics at the end. Let me get more specific data with grep commands without pipes.
+
+From the output I can see:
+- Training is at step 6 (6/100, 6%)
+- There are val metrics visible
+- Disk is getting full (95%+ on /root/autodl-tmp/tmp/ray/)
+
+Let me try more targeted grep commands to extract the metrics I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "9c83b90f-f9e7-432f-bfe7-a64e115a2405",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YPdzTUZ5fo1KNFbRF2hJDv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4381,
+      "cache_read_input_tokens": 25300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4381
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+管道被禁止，需要用单独的 grep 命令。第三个命令返回了部分数据但被截断。让我用更精确的 grep 提取关键指标。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "d3941685-2d26-4e51-b614-7a9b7f86d611",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YPdzTUZ5fo1KNFbRF2hJDv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4381,
+      "cache_read_input_tokens": 25300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4381
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014pVBeiGoNvnSFSpoRFMFFD`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep \"val-core/unknown/success\" /root/runs/cost-verify-agent-rl/exp029_episode_level.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "a2fba303-a925-409e-8a22-06f118149b03",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YPdzTUZ5fo1KNFbRF2hJDv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4381,
+      "cache_read_input_tokens": 25300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4381
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T23:11:39.182Z_
+
+<details><summary>↩ Tool result · `toolu_014pVBeiGoNvnSFSpoRFMFFD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "14e2dc81-2a31-4b19-bdaf-4fb8331bb1eb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TeoK1wTkx3G6fKJGdgjgnw`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep \"val-core/unknown/reward/best\" /root/runs/cost-verify-agent-rl/exp029_episode_level.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "b9558ab8-db38-410e-9f66-ce8d200ad5ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YPdzTUZ5fo1KNFbRF2hJDv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4381,
+      "cache_read_input_tokens": 25300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4381
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017s3RAK2NN8HPgkTubbMAmm`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep \"train/success\" /root/runs/cost-verify-agent-rl/exp029_episode_level.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "41441c21-e826-4de6-a9ed-d9e8b2712c27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YPdzTUZ5fo1KNFbRF2hJDv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4381,
+      "cache_read_input_tokens": 25300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4381
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T23:11:40.015Z_
+
+<details><summary>↩ Tool result · `toolu_01TeoK1wTkx3G6fKJGdgjgnw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=905580)\\u001b[0m  \\\"'val-core/unknown/reward/best@32/mean': np.float64(9.84), \\\"\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m  \\\"'val-core/unknown/reward/best@32/std': np.float64(1.2547509713086495), \\\"\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m step:0 - val-env/AlfworldSG/success:np.float64(0.125) - val-env/AlfworldSG/num_actions:np.float64(44.59375) - val-env/AlfworldSG/episodic_return:np.float64(0.0) - val-env/AlfworldSG/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/action_is_valid:np.float64(0.7831250000000001) - val-env/AlfworldSG/anchor_obs:np.float64(0.0) - val-env/AlfworldSG/raw_reward:np.float64(0.0) - val-env/AlfworldSG/pass@1:np.float64(0.125) - val-env/charts/avg_episode_return:np.float64(0.0) - val-env/AlfworldSG/non-zero/success:np.float64(1.0) - val-env/AlfworldSG/non-zero/num_actions:np.float64(44.59375) - val-env/AlfworldSG/non-zero/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/non-zero/action_is_valid:np.float64(0.7831250000000001) - val-env/AlfworldSG/non-zero/pass@1:np.float64(1.0) - val-env/response_length:np.float64(7088.03125) - val-core/unknown/reward/mean@32:np.float64(1.25) - val-aux/unknown/reward/std@32:np.float64(3.307189138830738) - val-aux/unknown/reward/best@2/mean:np.float64(2.16) - val-aux/unknown/reward/best@2/std:np.float64(4.1151427678757395) - val-aux/unknown/reward/worst@2/mean:np.float64(0.09) - val-aux/unknown/reward/worst@2/std:np.float64(0.9444045743218318) - val-aux/unknown/reward/best@4/mean:np.float64(3.92) - val-aux/unknown/reward/best@4/std:np.float64(4.881966816765554) - val-aux/unknown/reward/worst@4/mean:np.float64(0.0) - val-aux/unknown/reward/worst@4/std:np.float64(0.0) - val-aux/unknown/reward/best@8/mean:np.float64(6.44) - val-aux/unknown/reward/best@8/std:np.float64(4.788152044369519) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(8.79) - val-aux/unknown/reward/best@16/std:np.float64(3.2612727576821903) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.84) - val-core/unknown/reward/best@32/std:np.float64(1.2547509713086495) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0)\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m step:5 - collapse/first_turn_num_total:128 - collapse/first_turn_num_valid:125 - collapse/first_turn_valid_rate:0.9765625 - collapse_first_turn_sample/mi_estimate:0.13002801686525345 - collapse_first_turn_sample/mi_upper_bound:2.70805020110221 - collapse_first_turn_sample/matched_log_prob_mean:-0.07415873557329178 - collapse_first_turn_sample/marginal_log_prob_mean:-0.20418675243854523 - collapse_first_turn_sample/mi_seq_estimate:0.7237863540649414 - collapse_first_turn_sample/retrieval_accuracy@2:0.5625 - collapse_first_turn_sample/retrieval_chance_level@2:0.2333333333333333 - collapse_first_turn_sample/retrieval_above_chance@2:0.3291666666666667 - collapse_first_turn_sample/retrieval_accuracy@4:0.765625 - collapse_first_turn_sample/retrieval_chance_level@4:0.4666666666666666 - collapse_first_turn_sample/retrieval_above_chance@4:0.2989583333333334 - collapse_first_turn_sample/retrieval_accuracy@8:0.875 - collapse_first_turn_sample/retrieval_chance_level@8:0.9333333333333332 - collapse_first_turn_sample/retrieval_above_chance@8:-0.05833333333333324 - collapse_first_turn_sample/retrieval_accuracy:0.453125 - collapse_first_turn_sample/retrieval_chance_level:0.11666666666666665 - collapse_first_turn_sample/retrieval_above_chance:0.33645833333333336 - collapse_first_turn_sample/conditional_entropy_est:0.07415873557329178 - collapse_first_turn_sample/reasoning_entropy_est:0.20418675243854523 - collapse_first_turn_sample/conditional_entropy_seq_est:2.181023597717285 - collapse_first_turn_sample/reasoning_entropy_seq_est:2.9048097133636475 - collapse_first_turn_sample/marginal_std:0.154492974\\n\\n... [截断: 输出过长，省略 2136 字符] ...\\n\\nal-env/AlfworldSG/success:np.float64(0.25) - val-env/AlfworldSG/num_actions:np.float64(39.03125) - val-env/AlfworldSG/episodic_return:np.float64(0.0) - val-env/AlfworldSG/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/anchor_obs:np.float64(0.0) - val-env/AlfworldSG/raw_reward:np.float64(0.0) - val-env/AlfworldSG/pass@1:np.float64(0.25) - val-env/charts/avg_episode_return:np.float64(0.0) - val-env/AlfworldSG/non-zero/success:np.float64(1.0) - val-env/AlfworldSG/non-zero/num_actions:np.float64(39.03125) - val-env/AlfworldSG/non-zero/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/non-zero/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/non-zero/pass@1:np.float64(1.0) - val-env/response_length:np.float64(5777.1875) - val-core/unknown/reward/mean@32:np.float64(2.5) - val-aux/unknown/reward/std@32:np.float64(4.330127018922194) - val-aux/unknown/reward/best@2/mean:np.float64(4.2) - val-aux/unknown/reward/best@2/std:np.float64(4.935585071701226) - val-aux/unknown/reward/worst@2/mean:np.float64(0.6) - val-aux/unknown/reward/worst@2/std:np.float64(2.374868417407584) - val-aux/unknown/reward/best@4/mean:np.float64(6.69) - val-aux/unknown/reward/best@4/std:np.float64(4.7057305490221175) - val-aux/unknown/reward/worst@4/mean:np.float64(0.02) - val-aux/unknown/reward/worst@4/std:np.float64(0.4467661580737735) - val-aux/unknown/reward/best@8/mean:np.float64(8.97) - val-aux/unknown/reward/best@8/std:np.float64(3.039588787977743) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(9.88) - val-aux/unknown/reward/best@16/std:np.float64(1.0888526071052957) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.99) - val-core/unknown/reward/best@32/std:np.float64(0.31606961258558225) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05593867599964142 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.05593867599964142 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:14324.15625 - response_length/max:16379.0 - response_length/min:1413.0 - response_length/clip_ratio:0.015625 - response_length_non_aborted/mean:14324.15625 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1413.0 - response_length_non_aborted/clip_ratio:0.015625 - response/aborted_ratio:0.0 - prompt_length/mean:0.015625 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.015625 - timing_s/gen:1345.362777987495 - timing_s/collapse_metrics:30.975701972842216 - timing_s/filter:0.003918973729014397 - timing_s/old_log_prob:68.1950398646295 - timing_s/ref:62.72627100162208 - timing_s/adv:0.004521477967500687 - timing_s/update_actor:429.28117185644805 - timing_s/testing:212.49309626035392 - timing_s/save_checkpoint:18.362169835716486 - timing_s/step:2167.7636023629457 - timing_per_token_ms/update_actor:0.2341328479157543 - timing_per_token_ms/adv:2.466044594365014e-06 - timing_per_token_ms/gen:0.7337707380165799 - timing_per_token_ms/ref:0.034211331480562296 - perf/total_num_tokens:1833494 - perf/time_per_step:2167.7636023629457 - perf/throughput:422.89989508113825 - timing_s/train_step:1905.932634294033 - timing_s/eval_step:212.49309626035392 - timing_s/train_total:8440.504035070539 - timing_s/eval_total:212.49309626035392 - timing_s/collapse_total:65.00723348557949 - timing_s/collapse_first_turn_total:65.00705054961145 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:8745.191279888153\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "d3ded49e-0571-4d78-a5d4-62392ff9060b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m  \\\\\\\"'val-core/unknown/reward/best@32/mean': np.float64(9.84), \\\\\\\"\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m  \\\\\\\"'val-core/unknown/reward/best@32/std': np.float64(1.2547509713086495), \\\\\\\"\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m step:0 - val-env/AlfworldSG/success:np.float64(0.125) - val-env/AlfworldSG/num_actions:np.float64(44.59375) - val-env/AlfworldSG/episodic_return:np.float64(0.0) - val-env/AlfworldSG/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/action_is_valid:np.float64(0.7831250000000001) - val-env/AlfworldSG/anchor_obs:np.float64(0.0) - val-env/AlfworldSG/raw_reward:np.float64(0.0) - val-env/AlfworldSG/pass@1:np.float64(0.125) - val-env/charts/avg_episode_return:np.float64(0.0) - val-env/AlfworldSG/non-zero/success:np.float64(1.0) - val-env/AlfworldSG/non-zero/num_actions:np.float64(44.59375) - val-env/AlfworldSG/non-zero/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/non-zero/action_is_valid:np.float64(0.7831250000000001) - val-env/AlfworldSG/non-zero/pass@1:np.float64(1.0) - val-env/response_length:np.float64(7088.03125) - val-core/unknown/reward/mean@32:np.float64(1.25) - val-aux/unknown/reward/std@32:np.float64(3.307189138830738) - val-aux/unknown/reward/best@2/mean:np.float64(2.16) - val-aux/unknown/reward/best@2/std:np.float64(4.1151427678757395) - val-aux/unknown/reward/worst@2/mean:np.float64(0.09) - val-aux/unknown/reward/worst@2/std:np.float64(0.9444045743218318) - val-aux/unknown/reward/best@4/mean:np.float64(3.92) - val-aux/unknown/reward/best@4/std:np.float64(4.881966816765554) - val-aux/unknown/reward/worst@4/mean:np.float64(0.0) - val-aux/unknown/reward/worst@4/std:np.float64(0.0) - val-aux/unknown/reward/best@8/mean:np.float64(6.44) - val-aux/unknown/reward/best@8/std:np.float64(4.788152044369519) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(8.79) - val-aux/unknown/reward/best@16/std:np.float64(3.2612727576821903) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.84) - val-core/unknown/reward/best@32/std:np.float64(1.2547509713086495) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0)\\\\n\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m step:5 - collapse/first_turn_num_total:128 - collapse/first_turn_num_valid:125 - collapse/first_turn_valid_rate:0.9765625 - collapse_first_turn_sample/mi_estimate:0.13002801686525345 - collapse_first_turn_sample/mi_upper_bound:2.70805020110221 - collapse_first_turn_sample/matched_log_prob_mean:-0.07415873557329178 - collapse_first_turn_sample/marginal_log_prob_mean:-0.20418675243854523 - collapse_first_turn_sample/mi_seq_estimate:0.7237863540649414 - collapse_first_turn_sample/retrieval_accuracy@2:0.5625 - collapse_first_turn_sample/retrieval_chance_level@2:0.2333333333333333 - collapse_first_turn_sample/retrieval_above_chance@2:0.3291666666666667 - collapse_first_turn_sample/retrieval_accuracy@4:0.765625 - collapse_first_turn_sample/retrieval_chance_level@4:0.4666666666666666 - collapse_first_turn_sample/retrieval_above_chance@4:0.2989583333333334 - collapse_first_turn_sample/retrieval_accuracy@8:0.875 - collapse_first_turn_sample/retrieval_chance_level@8:0.9333333333333332 - collapse_first_turn_sample/retrieval_above_chance@8:-0.05833333333333324 - collapse_first_turn_sample/retrieval_accuracy:0.453125 - collapse_first_turn_sample/retrieval_chance_level:0.11666666666666665 - collapse_first_turn_sample/retrieval_above_chance:0.33645833333333336 - collapse_first_turn_sample/conditional_entropy_est:0.07415873557329178 - collapse_first_turn_sample/reasoning_entropy_est:0.20418675243854523 - collapse_first_turn_sample/conditional_entropy_seq_est:2.181023597717285 - collapse_first_turn_sample/reasoning_entropy_seq_est:2.9048097133636475 - collapse_first_turn_sample/marginal_std:0.154492974\\\\n\\\\n... [截断: 输出过长，省略 2136 字符] ...\\\\n\\\\nal-env/AlfworldSG/success:np.float64(0.25) - val-env/AlfworldSG/num_actions:np.float64(39.03125) - val-env/AlfworldSG/episodic_return:np.float64(0.0) - val-env/AlfworldSG/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/anchor_obs:np.float64(0.0) - val-env/AlfworldSG/raw_reward:np.float64(0.0) - val-env/AlfworldSG/pass@1:np.float64(0.25) - val-env/charts/avg_episode_return:np.float64(0.0) - val-env/AlfworldSG/non-zero/success:np.float64(1.0) - val-env/AlfworldSG/non-zero/num_actions:np.float64(39.03125) - val-env/AlfworldSG/non-zero/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/non-zero/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/non-zero/pass@1:np.float64(1.0) - val-env/response_length:np.float64(5777.1875) - val-core/unknown/reward/mean@32:np.float64(2.5) - val-aux/unknown/reward/std@32:np.float64(4.330127018922194) - val-aux/unknown/reward/best@2/mean:np.float64(4.2) - val-aux/unknown/reward/best@2/std:np.float64(4.935585071701226) - val-aux/unknown/reward/worst@2/mean:np.float64(0.6) - val-aux/unknown/reward/worst@2/std:np.float64(2.374868417407584) - val-aux/unknown/reward/best@4/mean:np.float64(6.69) - val-aux/unknown/reward/best@4/std:np.float64(4.7057305490221175) - val-aux/unknown/reward/worst@4/mean:np.float64(0.02) - val-aux/unknown/reward/worst@4/std:np.float64(0.4467661580737735) - val-aux/unknown/reward/best@8/mean:np.float64(8.97) - val-aux/unknown/reward/best@8/std:np.float64(3.039588787977743) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(9.88) - val-aux/unknown/reward/best@16/std:np.float64(1.0888526071052957) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.99) - val-core/unknown/reward/best@32/std:np.float64(0.31606961258558225) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05593867599964142 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.05593867599964142 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:14324.15625 - response_length/max:16379.0 - response_length/min:1413.0 - response_length/clip_ratio:0.015625 - response_length_non_aborted/mean:14324.15625 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1413.0 - response_length_non_aborted/clip_ratio:0.015625 - response/aborted_ratio:0.0 - prompt_length/mean:0.015625 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.015625 - timing_s/gen:1345.362777987495 - timing_s/collapse_metrics:30.975701972842216 - timing_s/filter:0.003918973729014397 - timing_s/old_log_prob:68.1950398646295 - timing_s/ref:62.72627100162208 - timing_s/adv:0.004521477967500687 - timing_s/update_actor:429.28117185644805 - timing_s/testing:212.49309626035392 - timing_s/save_checkpoint:18.362169835716486 - timing_s/step:2167.7636023629457 - timing_per_token_ms/update_actor:0.2341328479157543 - timing_per_token_ms/adv:2.466044594365014e-06 - timing_per_token_ms/gen:0.7337707380165799 - timing_per_token_ms/ref:0.034211331480562296 - perf/total_num_tokens:1833494 - perf/time_per_step:2167.7636023629457 - perf/throughput:422.89989508113825 - timing_s/train_step:1905.932634294033 - timing_s/eval_step:212.49309626035392 - timing_s/train_total:8440.504035070539 - timing_s/eval_total:212.49309626035392 - timing_s/collapse_total:65.00723348557949 - timing_s/collapse_first_turn_total:65.00705054961145 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:8745.191279888153\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=905580)\\u001b[0m  \\\"'val-core/unknown/reward/best@32/mean': np.float64(9.84), \\\"\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m  \\\"'val-core/unknown/reward/best@32/std': np.float64(1.2547509713086495), \\\"\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m step:0 - val-env/AlfworldSG/success:np.float64(0.125) - val-env/AlfworldSG/num_actions:np.float64(44.59375) - val-env/AlfworldSG/episodic_return:np.float64(0.0) - val-env/AlfworldSG/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/action_is_valid:np.float64(0.7831250000000001) - val-env/AlfworldSG/anchor_obs:np.float64(0.0) - val-env/AlfworldSG/raw_reward:np.float64(0.0) - val-env/AlfworldSG/pass@1:np.float64(0.125) - val-env/charts/avg_episode_return:np.float64(0.0) - val-env/AlfworldSG/non-zero/success:np.float64(1.0) - val-env/AlfworldSG/non-zero/num_actions:np.float64(44.59375) - val-env/AlfworldSG/non-zero/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/non-zero/action_is_valid:np.float64(0.7831250000000001) - val-env/AlfworldSG/non-zero/pass@1:np.float64(1.0) - val-env/response_length:np.float64(7088.03125) - val-core/unknown/reward/mean@32:np.float64(1.25) - val-aux/unknown/reward/std@32:np.float64(3.307189138830738) - val-aux/unknown/reward/best@2/mean:np.float64(2.16) - val-aux/unknown/reward/best@2/std:np.float64(4.1151427678757395) - val-aux/unknown/reward/worst@2/mean:np.float64(0.09) - val-aux/unknown/reward/worst@2/std:np.float64(0.9444045743218318) - val-aux/unknown/reward/best@4/mean:np.float64(3.92) - val-aux/unknown/reward/best@4/std:np.float64(4.881966816765554) - val-aux/unknown/reward/worst@4/mean:np.float64(0.0) - val-aux/unknown/reward/worst@4/std:np.float64(0.0) - val-aux/unknown/reward/best@8/mean:np.float64(6.44) - val-aux/unknown/reward/best@8/std:np.float64(4.788152044369519) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(8.79) - val-aux/unknown/reward/best@16/std:np.float64(3.2612727576821903) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.84) - val-core/unknown/reward/best@32/std:np.float64(1.2547509713086495) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0)\\n\\u001b[36m(TaskRunner pid=905580)\\u001b[0m step:5 - collapse/first_turn_num_total:128 - collapse/first_turn_num_valid:125 - collapse/first_turn_valid_rate:0.9765625 - collapse_first_turn_sample/mi_estimate:0.13002801686525345 - collapse_first_turn_sample/mi_upper_bound:2.70805020110221 - collapse_first_turn_sample/matched_log_prob_mean:-0.07415873557329178 - collapse_first_turn_sample/marginal_log_prob_mean:-0.20418675243854523 - collapse_first_turn_sample/mi_seq_estimate:0.7237863540649414 - collapse_first_turn_sample/retrieval_accuracy@2:0.5625 - collapse_first_turn_sample/retrieval_chance_level@2:0.2333333333333333 - collapse_first_turn_sample/retrieval_above_chance@2:0.3291666666666667 - collapse_first_turn_sample/retrieval_accuracy@4:0.765625 - collapse_first_turn_sample/retrieval_chance_level@4:0.4666666666666666 - collapse_first_turn_sample/retrieval_above_chance@4:0.2989583333333334 - collapse_first_turn_sample/retrieval_accuracy@8:0.875 - collapse_first_turn_sample/retrieval_chance_level@8:0.9333333333333332 - collapse_first_turn_sample/retrieval_above_chance@8:-0.05833333333333324 - collapse_first_turn_sample/retrieval_accuracy:0.453125 - collapse_first_turn_sample/retrieval_chance_level:0.11666666666666665 - collapse_first_turn_sample/retrieval_above_chance:0.33645833333333336 - collapse_first_turn_sample/conditional_entropy_est:0.07415873557329178 - collapse_first_turn_sample/reasoning_entropy_est:0.20418675243854523 - collapse_first_turn_sample/conditional_entropy_seq_est:2.181023597717285 - collapse_first_turn_sample/reasoning_entropy_seq_est:2.9048097133636475 - collapse_first_turn_sample/marginal_std:0.154492974\\n\\n... [截断: 输出过长，省略 2136 字符] ...\\n\\nal-env/AlfworldSG/success:np.float64(0.25) - val-env/AlfworldSG/num_actions:np.float64(39.03125) - val-env/AlfworldSG/episodic_return:np.float64(0.0) - val-env/AlfworldSG/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/anchor_obs:np.float64(0.0) - val-env/AlfworldSG/raw_reward:np.float64(0.0) - val-env/AlfworldSG/pass@1:np.float64(0.25) - val-env/charts/avg_episode_return:np.float64(0.0) - val-env/AlfworldSG/non-zero/success:np.float64(1.0) - val-env/AlfworldSG/non-zero/num_actions:np.float64(39.03125) - val-env/AlfworldSG/non-zero/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/non-zero/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/non-zero/pass@1:np.float64(1.0) - val-env/response_length:np.float64(5777.1875) - val-core/unknown/reward/mean@32:np.float64(2.5) - val-aux/unknown/reward/std@32:np.float64(4.330127018922194) - val-aux/unknown/reward/best@2/mean:np.float64(4.2) - val-aux/unknown/reward/best@2/std:np.float64(4.935585071701226) - val-aux/unknown/reward/worst@2/mean:np.float64(0.6) - val-aux/unknown/reward/worst@2/std:np.float64(2.374868417407584) - val-aux/unknown/reward/best@4/mean:np.float64(6.69) - val-aux/unknown/reward/best@4/std:np.float64(4.7057305490221175) - val-aux/unknown/reward/worst@4/mean:np.float64(0.02) - val-aux/unknown/reward/worst@4/std:np.float64(0.4467661580737735) - val-aux/unknown/reward/best@8/mean:np.float64(8.97) - val-aux/unknown/reward/best@8/std:np.float64(3.039588787977743) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(9.88) - val-aux/unknown/reward/best@16/std:np.float64(1.0888526071052957) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.99) - val-core/unknown/reward/best@32/std:np.float64(0.31606961258558225) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05593867599964142 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.05593867599964142 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:14324.15625 - response_length/max:16379.0 - response_length/min:1413.0 - response_length/clip_ratio:0.015625 - response_length_non_aborted/mean:14324.15625 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1413.0 - response_length_non_aborted/clip_ratio:0.015625 - response/aborted_ratio:0.0 - prompt_length/mean:0.015625 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.015625 - timing_s/gen:1345.362777987495 - timing_s/collapse_metrics:30.975701972842216 - timing_s/filter:0.003918973729014397 - timing_s/old_log_prob:68.1950398646295 - timing_s/ref:62.72627100162208 - timing_s/adv:0.004521477967500687 - timing_s/update_actor:429.28117185644805 - timing_s/testing:212.49309626035392 - timing_s/save_checkpoint:18.362169835716486 - timing_s/step:2167.7636023629457 - timing_per_token_ms/update_actor:0.2341328479157543 - timing_per_token_ms/adv:2.466044594365014e-06 - timing_per_token_ms/gen:0.7337707380165799 - timing_per_token_ms/ref:0.034211331480562296 - perf/total_num_tokens:1833494 - perf/time_per_step:2167.7636023629457 - perf/throughput:422.89989508113825 - timing_s/train_step:1905.932634294033 - timing_s/eval_step:212.49309626035392 - timing_s/train_total:8440.504035070539 - timing_s/eval_total:212.49309626035392 - timing_s/collapse_total:65.00723348557949 - timing_s/collapse_first_turn_total:65.00705054961145 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:8745.191279888153\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T23:11:40.434Z_
+
+<details><summary>↩ Tool result · `toolu_017s3RAK2NN8HPgkTubbMAmm`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "414ecc1c-5117-4bc2-a02c-1988e878afb9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I got some val results. Let me parse what I can see:
+
+**Step 0 val (initial eval):**
+- val-env/AlfworldSG/success: 0.125 (12.5%)
+- val-env/AlfworldSG/action_is_valid: 0.783
+- val-env/AlfworldSG/pass@1: 0.125
+- val-core/unknown/reward/mean@32: 1.25
+- val-core/unknown/reward/best@32/mean: 9.84
+
+**Step 5 val:**
+
+
+- val-env/AlfworldSG/success: 0.25 (25%)
+- val-env/AlfworldSG/action_is_valid: 0.704
+- val-env/AlfworldSG/pass@1: 0.25
+- val-core/unknown/reward/mean@32: 2.5
+- val-core/unknown/reward/best@32/mean: 9.99
+
+So the success rate doubled from 12.5% to 25% over those five steps, and the mean reward also doubled. Now I need to pull the training metrics for the intermediate steps to see the progression. Let me search for the step-by-step training data using the "step:N" format pattern.
+
+There's also a disk space warning showing the session directory is over 95% full with only 8.65 GB available out of 250 GB capacity, which is something I should keep an eye on.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "eb152168-94ee-453f-9d2e-1e246ba9a5a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MHd1mRo7nCeogFqgW4KMSb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4359,
+      "cache_read_input_tokens": 29681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4359
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+Got val results. Now getting train metrics per step.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "fe9312a1-1585-42d9-9b6d-2bbd412f10ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MHd1mRo7nCeogFqgW4KMSb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4359,
+      "cache_read_input_tokens": 29681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4359
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WFxUhrtgaEZmQMyJeGSYTc`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep \"train-env/AlfworldSG/success\" /root/runs/cost-verify-agent-rl/exp029_episode_level.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "aa85eb4b-d803-4c6d-bc6f-9a99ab877001",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MHd1mRo7nCeogFqgW4KMSb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4359,
+      "cache_read_input_tokens": 29681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4359
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T23:11:53.100Z_
+
+<details><summary>↩ Tool result · `toolu_01WFxUhrtgaEZmQMyJeGSYTc`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "20a425d0-7595-4f04-aa84-6f08663f5376",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019gGAyGKVgebg7HNgDBk7dU`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep \"actor/entropy\" /root/runs/cost-verify-agent-rl/exp029_episode_level.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "578736bc-d8bf-4710-ab61-72dbe8cf9f6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MHd1mRo7nCeogFqgW4KMSb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4359,
+      "cache_read_input_tokens": 29681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4359
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T23:11:54.101Z_
+
+<details><summary>↩ Tool result · `toolu_019gGAyGKVgebg7HNgDBk7dU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=905580)\\u001b[0m step:1 - collapse/first_turn_num_total:128 - collapse/first_turn_num_valid:128 - collapse/first_turn_valid_rate:1.0 - collapse_first_turn_sample/mi_estimate:0.19211174547672272 - collapse_first_turn_sample/mi_upper_bound:2.772588722239781 - collapse_first_turn_sample/matched_log_prob_mean:-0.1563212126493454 - collapse_first_turn_sample/marginal_log_prob_mean:-0.3484329581260681 - collapse_first_turn_sample/mi_seq_estimate:1.0814712047576904 - collapse_first_turn_sample/retrieval_accuracy@2:0.59375 - collapse_first_turn_sample/retrieval_chance_level@2:0.25 - collapse_first_turn_sample/retrieval_above_chance@2:0.34375 - collapse_first_turn_sample/retrieval_accuracy@4:0.875 - collapse_first_turn_sample/retrieval_chance_level@4:0.5 - collapse_first_turn_sample/retrieval_above_chance@4:0.375 - collapse_first_turn_sample/retrieval_accuracy@8:0.96875 - collapse_first_turn_sample/retrieval_chance_level@8:1.0 - collapse_first_turn_sample/retrieval_above_chance@8:-0.03125 - collapse_first_turn_sample/retrieval_accuracy:0.59375 - collapse_first_turn_sample/retrieval_chance_level:0.125 - collapse_first_turn_sample/retrieval_above_chance:0.46875 - collapse_first_turn_sample/conditional_entropy_est:0.1563212126493454 - collapse_first_turn_sample/reasoning_entropy_est:0.3484329581260681 - collapse_first_turn_sample/conditional_entropy_seq_est:4.5750861167907715 - collapse_first_turn_sample/reasoning_entropy_seq_est:5.656557559967041 - collapse_first_turn_sample/marginal_std:0.2992485463619232 - collapse_first_turn_sample/marginal_std_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_seq:0.18151746690273285 - collapse_first_turn_sample/marginal_std_ema:0.2992485463619232 - collapse_first_turn_sample/marginal_std_ema_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore_ema:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_ema_seq:0.18151746690273285 - timing_s/collapse_first_turn_step:34.031374448910356 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1796875) - train/AlfworldSG/num_actions:np.float64(42.03125) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.5625) - train/AlfworldSG/manager_invalid_action:np.float64(0.0053515625) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(42.03125) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.032619047619047624) - train/response_length:7112.4296875 - actor/entropy:0.027751293033361435 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.008871736121363938) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(7.680384442210197e-05) - actor/pg_clipfrac:np.float64(0.0008837057139317039) - actor/ppo_kl:np.float64(0.0002894240566555517) - actor/pg_clipfrac_lower:np.float64(7.795496628659748e-06) - actor/entropy_loss:np.float64(0.05525751511595445) - actor/grad_norm:np.float64(1.4590847454965115) - critic/score/mean:1.796875 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.796875 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.23779939115047455 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.23779939115047455 - critic/returns/max:2.474873065948486\\n\\n... [截断: 输出过长，省略 15559 字符] ...\\n\\nal-env/AlfworldSG/success:np.float64(0.25) - val-env/AlfworldSG/num_actions:np.float64(39.03125) - val-env/AlfworldSG/episodic_return:np.float64(0.0) - val-env/AlfworldSG/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/anchor_obs:np.float64(0.0) - val-env/AlfworldSG/raw_reward:np.float64(0.0) - val-env/AlfworldSG/pass@1:np.float64(0.25) - val-env/charts/avg_episode_return:np.float64(0.0) - val-env/AlfworldSG/non-zero/success:np.float64(1.0) - val-env/AlfworldSG/non-zero/num_actions:np.float64(39.03125) - val-env/AlfworldSG/non-zero/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/non-zero/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/non-zero/pass@1:np.float64(1.0) - val-env/response_length:np.float64(5777.1875) - val-core/unknown/reward/mean@32:np.float64(2.5) - val-aux/unknown/reward/std@32:np.float64(4.330127018922194) - val-aux/unknown/reward/best@2/mean:np.float64(4.2) - val-aux/unknown/reward/best@2/std:np.float64(4.935585071701226) - val-aux/unknown/reward/worst@2/mean:np.float64(0.6) - val-aux/unknown/reward/worst@2/std:np.float64(2.374868417407584) - val-aux/unknown/reward/best@4/mean:np.float64(6.69) - val-aux/unknown/reward/best@4/std:np.float64(4.7057305490221175) - val-aux/unknown/reward/worst@4/mean:np.float64(0.02) - val-aux/unknown/reward/worst@4/std:np.float64(0.4467661580737735) - val-aux/unknown/reward/best@8/mean:np.float64(8.97) - val-aux/unknown/reward/best@8/std:np.float64(3.039588787977743) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(9.88) - val-aux/unknown/reward/best@16/std:np.float64(1.0888526071052957) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.99) - val-core/unknown/reward/best@32/std:np.float64(0.31606961258558225) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05593867599964142 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.05593867599964142 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:14324.15625 - response_length/max:16379.0 - response_length/min:1413.0 - response_length/clip_ratio:0.015625 - response_length_non_aborted/mean:14324.15625 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1413.0 - response_length_non_aborted/clip_ratio:0.015625 - response/aborted_ratio:0.0 - prompt_length/mean:0.015625 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.015625 - timing_s/gen:1345.362777987495 - timing_s/collapse_metrics:30.975701972842216 - timing_s/filter:0.003918973729014397 - timing_s/old_log_prob:68.1950398646295 - timing_s/ref:62.72627100162208 - timing_s/adv:0.004521477967500687 - timing_s/update_actor:429.28117185644805 - timing_s/testing:212.49309626035392 - timing_s/save_checkpoint:18.362169835716486 - timing_s/step:2167.7636023629457 - timing_per_token_ms/update_actor:0.2341328479157543 - timing_per_token_ms/adv:2.466044594365014e-06 - timing_per_token_ms/gen:0.7337707380165799 - timing_per_token_ms/ref:0.034211331480562296 - perf/total_num_tokens:1833494 - perf/time_per_step:2167.7636023629457 - perf/throughput:422.89989508113825 - timing_s/train_step:1905.932634294033 - timing_s/eval_step:212.49309626035392 - timing_s/train_total:8440.504035070539 - timing_s/eval_total:212.49309626035392 - timing_s/collapse_total:65.00723348557949 - timing_s/collapse_first_turn_total:65.00705054961145 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:8745.191279888153\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "867cdb63-8ba5-4a92-a969-99e696d46c7b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m step:1 - collapse/first_turn_num_total:128 - collapse/first_turn_num_valid:128 - collapse/first_turn_valid_rate:1.0 - collapse_first_turn_sample/mi_estimate:0.19211174547672272 - collapse_first_turn_sample/mi_upper_bound:2.772588722239781 - collapse_first_turn_sample/matched_log_prob_mean:-0.1563212126493454 - collapse_first_turn_sample/marginal_log_prob_mean:-0.3484329581260681 - collapse_first_turn_sample/mi_seq_estimate:1.0814712047576904 - collapse_first_turn_sample/retrieval_accuracy@2:0.59375 - collapse_first_turn_sample/retrieval_chance_level@2:0.25 - collapse_first_turn_sample/retrieval_above_chance@2:0.34375 - collapse_first_turn_sample/retrieval_accuracy@4:0.875 - collapse_first_turn_sample/retrieval_chance_level@4:0.5 - collapse_first_turn_sample/retrieval_above_chance@4:0.375 - collapse_first_turn_sample/retrieval_accuracy@8:0.96875 - collapse_first_turn_sample/retrieval_chance_level@8:1.0 - collapse_first_turn_sample/retrieval_above_chance@8:-0.03125 - collapse_first_turn_sample/retrieval_accuracy:0.59375 - collapse_first_turn_sample/retrieval_chance_level:0.125 - collapse_first_turn_sample/retrieval_above_chance:0.46875 - collapse_first_turn_sample/conditional_entropy_est:0.1563212126493454 - collapse_first_turn_sample/reasoning_entropy_est:0.3484329581260681 - collapse_first_turn_sample/conditional_entropy_seq_est:4.5750861167907715 - collapse_first_turn_sample/reasoning_entropy_seq_est:5.656557559967041 - collapse_first_turn_sample/marginal_std:0.2992485463619232 - collapse_first_turn_sample/marginal_std_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_seq:0.18151746690273285 - collapse_first_turn_sample/marginal_std_ema:0.2992485463619232 - collapse_first_turn_sample/marginal_std_ema_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore_ema:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_ema_seq:0.18151746690273285 - timing_s/collapse_first_turn_step:34.031374448910356 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1796875) - train/AlfworldSG/num_actions:np.float64(42.03125) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.5625) - train/AlfworldSG/manager_invalid_action:np.float64(0.0053515625) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(42.03125) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.032619047619047624) - train/response_length:7112.4296875 - actor/entropy:0.027751293033361435 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.008871736121363938) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(7.680384442210197e-05) - actor/pg_clipfrac:np.float64(0.0008837057139317039) - actor/ppo_kl:np.float64(0.0002894240566555517) - actor/pg_clipfrac_lower:np.float64(7.795496628659748e-06) - actor/entropy_loss:np.float64(0.05525751511595445) - actor/grad_norm:np.float64(1.4590847454965115) - critic/score/mean:1.796875 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.796875 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.23779939115047455 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.23779939115047455 - critic/returns/max:2.474873065948486\\\\n\\\\n... [截断: 输出过长，省略 15559 字符] ...\\\\n\\\\nal-env/AlfworldSG/success:np.float64(0.25) - val-env/AlfworldSG/num_actions:np.float64(39.03125) - val-env/AlfworldSG/episodic_return:np.float64(0.0) - val-env/AlfworldSG/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/anchor_obs:np.float64(0.0) - val-env/AlfworldSG/raw_reward:np.float64(0.0) - val-env/AlfworldSG/pass@1:np.float64(0.25) - val-env/charts/avg_episode_return:np.float64(0.0) - val-env/AlfworldSG/non-zero/success:np.float64(1.0) - val-env/AlfworldSG/non-zero/num_actions:np.float64(39.03125) - val-env/AlfworldSG/non-zero/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/non-zero/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/non-zero/pass@1:np.float64(1.0) - val-env/response_length:np.float64(5777.1875) - val-core/unknown/reward/mean@32:np.float64(2.5) - val-aux/unknown/reward/std@32:np.float64(4.330127018922194) - val-aux/unknown/reward/best@2/mean:np.float64(4.2) - val-aux/unknown/reward/best@2/std:np.float64(4.935585071701226) - val-aux/unknown/reward/worst@2/mean:np.float64(0.6) - val-aux/unknown/reward/worst@2/std:np.float64(2.374868417407584) - val-aux/unknown/reward/best@4/mean:np.float64(6.69) - val-aux/unknown/reward/best@4/std:np.float64(4.7057305490221175) - val-aux/unknown/reward/worst@4/mean:np.float64(0.02) - val-aux/unknown/reward/worst@4/std:np.float64(0.4467661580737735) - val-aux/unknown/reward/best@8/mean:np.float64(8.97) - val-aux/unknown/reward/best@8/std:np.float64(3.039588787977743) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(9.88) - val-aux/unknown/reward/best@16/std:np.float64(1.0888526071052957) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.99) - val-core/unknown/reward/best@32/std:np.float64(0.31606961258558225) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05593867599964142 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.05593867599964142 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:14324.15625 - response_length/max:16379.0 - response_length/min:1413.0 - response_length/clip_ratio:0.015625 - response_length_non_aborted/mean:14324.15625 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1413.0 - response_length_non_aborted/clip_ratio:0.015625 - response/aborted_ratio:0.0 - prompt_length/mean:0.015625 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.015625 - timing_s/gen:1345.362777987495 - timing_s/collapse_metrics:30.975701972842216 - timing_s/filter:0.003918973729014397 - timing_s/old_log_prob:68.1950398646295 - timing_s/ref:62.72627100162208 - timing_s/adv:0.004521477967500687 - timing_s/update_actor:429.28117185644805 - timing_s/testing:212.49309626035392 - timing_s/save_checkpoint:18.362169835716486 - timing_s/step:2167.7636023629457 - timing_per_token_ms/update_actor:0.2341328479157543 - timing_per_token_ms/adv:2.466044594365014e-06 - timing_per_token_ms/gen:0.7337707380165799 - timing_per_token_ms/ref:0.034211331480562296 - perf/total_num_tokens:1833494 - perf/time_per_step:2167.7636023629457 - perf/throughput:422.89989508113825 - timing_s/train_step:1905.932634294033 - timing_s/eval_step:212.49309626035392 - timing_s/train_total:8440.504035070539 - timing_s/eval_total:212.49309626035392 - timing_s/collapse_total:65.00723348557949 - timing_s/collapse_first_turn_total:65.00705054961145 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:8745.191279888153\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=905580)\\u001b[0m step:1 - collapse/first_turn_num_total:128 - collapse/first_turn_num_valid:128 - collapse/first_turn_valid_rate:1.0 - collapse_first_turn_sample/mi_estimate:0.19211174547672272 - collapse_first_turn_sample/mi_upper_bound:2.772588722239781 - collapse_first_turn_sample/matched_log_prob_mean:-0.1563212126493454 - collapse_first_turn_sample/marginal_log_prob_mean:-0.3484329581260681 - collapse_first_turn_sample/mi_seq_estimate:1.0814712047576904 - collapse_first_turn_sample/retrieval_accuracy@2:0.59375 - collapse_first_turn_sample/retrieval_chance_level@2:0.25 - collapse_first_turn_sample/retrieval_above_chance@2:0.34375 - collapse_first_turn_sample/retrieval_accuracy@4:0.875 - collapse_first_turn_sample/retrieval_chance_level@4:0.5 - collapse_first_turn_sample/retrieval_above_chance@4:0.375 - collapse_first_turn_sample/retrieval_accuracy@8:0.96875 - collapse_first_turn_sample/retrieval_chance_level@8:1.0 - collapse_first_turn_sample/retrieval_above_chance@8:-0.03125 - collapse_first_turn_sample/retrieval_accuracy:0.59375 - collapse_first_turn_sample/retrieval_chance_level:0.125 - collapse_first_turn_sample/retrieval_above_chance:0.46875 - collapse_first_turn_sample/conditional_entropy_est:0.1563212126493454 - collapse_first_turn_sample/reasoning_entropy_est:0.3484329581260681 - collapse_first_turn_sample/conditional_entropy_seq_est:4.5750861167907715 - collapse_first_turn_sample/reasoning_entropy_seq_est:5.656557559967041 - collapse_first_turn_sample/marginal_std:0.2992485463619232 - collapse_first_turn_sample/marginal_std_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_seq:0.18151746690273285 - collapse_first_turn_sample/marginal_std_ema:0.2992485463619232 - collapse_first_turn_sample/marginal_std_ema_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore_ema:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_ema_seq:0.18151746690273285 - timing_s/collapse_first_turn_step:34.031374448910356 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1796875) - train/AlfworldSG/num_actions:np.float64(42.03125) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.5625) - train/AlfworldSG/manager_invalid_action:np.float64(0.0053515625) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(42.03125) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.032619047619047624) - train/response_length:7112.4296875 - actor/entropy:0.027751293033361435 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.008871736121363938) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(7.680384442210197e-05) - actor/pg_clipfrac:np.float64(0.0008837057139317039) - actor/ppo_kl:np.float64(0.0002894240566555517) - actor/pg_clipfrac_lower:np.float64(7.795496628659748e-06) - actor/entropy_loss:np.float64(0.05525751511595445) - actor/grad_norm:np.float64(1.4590847454965115) - critic/score/mean:1.796875 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.796875 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.23779939115047455 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.23779939115047455 - critic/returns/max:2.474873065948486\\n\\n... [截断: 输出过长，省略 15559 字符] ...\\n\\nal-env/AlfworldSG/success:np.float64(0.25) - val-env/AlfworldSG/num_actions:np.float64(39.03125) - val-env/AlfworldSG/episodic_return:np.float64(0.0) - val-env/AlfworldSG/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/anchor_obs:np.float64(0.0) - val-env/AlfworldSG/raw_reward:np.float64(0.0) - val-env/AlfworldSG/pass@1:np.float64(0.25) - val-env/charts/avg_episode_return:np.float64(0.0) - val-env/AlfworldSG/non-zero/success:np.float64(1.0) - val-env/AlfworldSG/non-zero/num_actions:np.float64(39.03125) - val-env/AlfworldSG/non-zero/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/non-zero/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/non-zero/pass@1:np.float64(1.0) - val-env/response_length:np.float64(5777.1875) - val-core/unknown/reward/mean@32:np.float64(2.5) - val-aux/unknown/reward/std@32:np.float64(4.330127018922194) - val-aux/unknown/reward/best@2/mean:np.float64(4.2) - val-aux/unknown/reward/best@2/std:np.float64(4.935585071701226) - val-aux/unknown/reward/worst@2/mean:np.float64(0.6) - val-aux/unknown/reward/worst@2/std:np.float64(2.374868417407584) - val-aux/unknown/reward/best@4/mean:np.float64(6.69) - val-aux/unknown/reward/best@4/std:np.float64(4.7057305490221175) - val-aux/unknown/reward/worst@4/mean:np.float64(0.02) - val-aux/unknown/reward/worst@4/std:np.float64(0.4467661580737735) - val-aux/unknown/reward/best@8/mean:np.float64(8.97) - val-aux/unknown/reward/best@8/std:np.float64(3.039588787977743) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(9.88) - val-aux/unknown/reward/best@16/std:np.float64(1.0888526071052957) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.99) - val-core/unknown/reward/best@32/std:np.float64(0.31606961258558225) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05593867599964142 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.05593867599964142 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:14324.15625 - response_length/max:16379.0 - response_length/min:1413.0 - response_length/clip_ratio:0.015625 - response_length_non_aborted/mean:14324.15625 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1413.0 - response_length_non_aborted/clip_ratio:0.015625 - response/aborted_ratio:0.0 - prompt_length/mean:0.015625 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.015625 - timing_s/gen:1345.362777987495 - timing_s/collapse_metrics:30.975701972842216 - timing_s/filter:0.003918973729014397 - timing_s/old_log_prob:68.1950398646295 - timing_s/ref:62.72627100162208 - timing_s/adv:0.004521477967500687 - timing_s/update_actor:429.28117185644805 - timing_s/testing:212.49309626035392 - timing_s/save_checkpoint:18.362169835716486 - timing_s/step:2167.7636023629457 - timing_per_token_ms/update_actor:0.2341328479157543 - timing_per_token_ms/adv:2.466044594365014e-06 - timing_per_token_ms/gen:0.7337707380165799 - timing_per_token_ms/ref:0.034211331480562296 - perf/total_num_tokens:1833494 - perf/time_per_step:2167.7636023629457 - perf/throughput:422.89989508113825 - timing_s/train_step:1905.932634294033 - timing_s/eval_step:212.49309626035392 - timing_s/train_total:8440.504035070539 - timing_s/eval_total:212.49309626035392 - timing_s/collapse_total:65.00723348557949 - timing_s/collapse_first_turn_total:65.00705054961145 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:8745.191279888153\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Mt2ogTZ33Axx9ipxXmSiXZ`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep \"actor/kl\" /root/runs/cost-verify-agent-rl/exp029_episode_level.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "212e934e-0b14-4aa2-b807-eb9d97c5ad3c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MHd1mRo7nCeogFqgW4KMSb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4359,
+      "cache_read_input_tokens": 29681,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4359
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T23:11:54.522Z_
+
+<details><summary>↩ Tool result · `toolu_01Mt2ogTZ33Axx9ipxXmSiXZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=905580)\\u001b[0m step:1 - collapse/first_turn_num_total:128 - collapse/first_turn_num_valid:128 - collapse/first_turn_valid_rate:1.0 - collapse_first_turn_sample/mi_estimate:0.19211174547672272 - collapse_first_turn_sample/mi_upper_bound:2.772588722239781 - collapse_first_turn_sample/matched_log_prob_mean:-0.1563212126493454 - collapse_first_turn_sample/marginal_log_prob_mean:-0.3484329581260681 - collapse_first_turn_sample/mi_seq_estimate:1.0814712047576904 - collapse_first_turn_sample/retrieval_accuracy@2:0.59375 - collapse_first_turn_sample/retrieval_chance_level@2:0.25 - collapse_first_turn_sample/retrieval_above_chance@2:0.34375 - collapse_first_turn_sample/retrieval_accuracy@4:0.875 - collapse_first_turn_sample/retrieval_chance_level@4:0.5 - collapse_first_turn_sample/retrieval_above_chance@4:0.375 - collapse_first_turn_sample/retrieval_accuracy@8:0.96875 - collapse_first_turn_sample/retrieval_chance_level@8:1.0 - collapse_first_turn_sample/retrieval_above_chance@8:-0.03125 - collapse_first_turn_sample/retrieval_accuracy:0.59375 - collapse_first_turn_sample/retrieval_chance_level:0.125 - collapse_first_turn_sample/retrieval_above_chance:0.46875 - collapse_first_turn_sample/conditional_entropy_est:0.1563212126493454 - collapse_first_turn_sample/reasoning_entropy_est:0.3484329581260681 - collapse_first_turn_sample/conditional_entropy_seq_est:4.5750861167907715 - collapse_first_turn_sample/reasoning_entropy_seq_est:5.656557559967041 - collapse_first_turn_sample/marginal_std:0.2992485463619232 - collapse_first_turn_sample/marginal_std_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_seq:0.18151746690273285 - collapse_first_turn_sample/marginal_std_ema:0.2992485463619232 - collapse_first_turn_sample/marginal_std_ema_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore_ema:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_ema_seq:0.18151746690273285 - timing_s/collapse_first_turn_step:34.031374448910356 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1796875) - train/AlfworldSG/num_actions:np.float64(42.03125) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.5625) - train/AlfworldSG/manager_invalid_action:np.float64(0.0053515625) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(42.03125) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.032619047619047624) - train/response_length:7112.4296875 - actor/entropy:0.027751293033361435 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.008871736121363938) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(7.680384442210197e-05) - actor/pg_clipfrac:np.float64(0.0008837057139317039) - actor/ppo_kl:np.float64(0.0002894240566555517) - actor/pg_clipfrac_lower:np.float64(7.795496628659748e-06) - actor/entropy_loss:np.float64(0.05525751511595445) - actor/grad_norm:np.float64(1.4590847454965115) - critic/score/mean:1.796875 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.796875 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.23779939115047455 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.23779939115047455 - critic/returns/max:2.474873065948486\\n\\n... [截断: 输出过长，省略 15559 字符] ...\\n\\nal-env/AlfworldSG/success:np.float64(0.25) - val-env/AlfworldSG/num_actions:np.float64(39.03125) - val-env/AlfworldSG/episodic_return:np.float64(0.0) - val-env/AlfworldSG/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/anchor_obs:np.float64(0.0) - val-env/AlfworldSG/raw_reward:np.float64(0.0) - val-env/AlfworldSG/pass@1:np.float64(0.25) - val-env/charts/avg_episode_return:np.float64(0.0) - val-env/AlfworldSG/non-zero/success:np.float64(1.0) - val-env/AlfworldSG/non-zero/num_actions:np.float64(39.03125) - val-env/AlfworldSG/non-zero/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/non-zero/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/non-zero/pass@1:np.float64(1.0) - val-env/response_length:np.float64(5777.1875) - val-core/unknown/reward/mean@32:np.float64(2.5) - val-aux/unknown/reward/std@32:np.float64(4.330127018922194) - val-aux/unknown/reward/best@2/mean:np.float64(4.2) - val-aux/unknown/reward/best@2/std:np.float64(4.935585071701226) - val-aux/unknown/reward/worst@2/mean:np.float64(0.6) - val-aux/unknown/reward/worst@2/std:np.float64(2.374868417407584) - val-aux/unknown/reward/best@4/mean:np.float64(6.69) - val-aux/unknown/reward/best@4/std:np.float64(4.7057305490221175) - val-aux/unknown/reward/worst@4/mean:np.float64(0.02) - val-aux/unknown/reward/worst@4/std:np.float64(0.4467661580737735) - val-aux/unknown/reward/best@8/mean:np.float64(8.97) - val-aux/unknown/reward/best@8/std:np.float64(3.039588787977743) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(9.88) - val-aux/unknown/reward/best@16/std:np.float64(1.0888526071052957) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.99) - val-core/unknown/reward/best@32/std:np.float64(0.31606961258558225) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05593867599964142 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.05593867599964142 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:14324.15625 - response_length/max:16379.0 - response_length/min:1413.0 - response_length/clip_ratio:0.015625 - response_length_non_aborted/mean:14324.15625 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1413.0 - response_length_non_aborted/clip_ratio:0.015625 - response/aborted_ratio:0.0 - prompt_length/mean:0.015625 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.015625 - timing_s/gen:1345.362777987495 - timing_s/collapse_metrics:30.975701972842216 - timing_s/filter:0.003918973729014397 - timing_s/old_log_prob:68.1950398646295 - timing_s/ref:62.72627100162208 - timing_s/adv:0.004521477967500687 - timing_s/update_actor:429.28117185644805 - timing_s/testing:212.49309626035392 - timing_s/save_checkpoint:18.362169835716486 - timing_s/step:2167.7636023629457 - timing_per_token_ms/update_actor:0.2341328479157543 - timing_per_token_ms/adv:2.466044594365014e-06 - timing_per_token_ms/gen:0.7337707380165799 - timing_per_token_ms/ref:0.034211331480562296 - perf/total_num_tokens:1833494 - perf/time_per_step:2167.7636023629457 - perf/throughput:422.89989508113825 - timing_s/train_step:1905.932634294033 - timing_s/eval_step:212.49309626035392 - timing_s/train_total:8440.504035070539 - timing_s/eval_total:212.49309626035392 - timing_s/collapse_total:65.00723348557949 - timing_s/collapse_first_turn_total:65.00705054961145 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:8745.191279888153\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "ead8282c-cc7e-4346-aa05-8ffb71e69414",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m step:1 - collapse/first_turn_num_total:128 - collapse/first_turn_num_valid:128 - collapse/first_turn_valid_rate:1.0 - collapse_first_turn_sample/mi_estimate:0.19211174547672272 - collapse_first_turn_sample/mi_upper_bound:2.772588722239781 - collapse_first_turn_sample/matched_log_prob_mean:-0.1563212126493454 - collapse_first_turn_sample/marginal_log_prob_mean:-0.3484329581260681 - collapse_first_turn_sample/mi_seq_estimate:1.0814712047576904 - collapse_first_turn_sample/retrieval_accuracy@2:0.59375 - collapse_first_turn_sample/retrieval_chance_level@2:0.25 - collapse_first_turn_sample/retrieval_above_chance@2:0.34375 - collapse_first_turn_sample/retrieval_accuracy@4:0.875 - collapse_first_turn_sample/retrieval_chance_level@4:0.5 - collapse_first_turn_sample/retrieval_above_chance@4:0.375 - collapse_first_turn_sample/retrieval_accuracy@8:0.96875 - collapse_first_turn_sample/retrieval_chance_level@8:1.0 - collapse_first_turn_sample/retrieval_above_chance@8:-0.03125 - collapse_first_turn_sample/retrieval_accuracy:0.59375 - collapse_first_turn_sample/retrieval_chance_level:0.125 - collapse_first_turn_sample/retrieval_above_chance:0.46875 - collapse_first_turn_sample/conditional_entropy_est:0.1563212126493454 - collapse_first_turn_sample/reasoning_entropy_est:0.3484329581260681 - collapse_first_turn_sample/conditional_entropy_seq_est:4.5750861167907715 - collapse_first_turn_sample/reasoning_entropy_seq_est:5.656557559967041 - collapse_first_turn_sample/marginal_std:0.2992485463619232 - collapse_first_turn_sample/marginal_std_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_seq:0.18151746690273285 - collapse_first_turn_sample/marginal_std_ema:0.2992485463619232 - collapse_first_turn_sample/marginal_std_ema_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore_ema:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_ema_seq:0.18151746690273285 - timing_s/collapse_first_turn_step:34.031374448910356 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1796875) - train/AlfworldSG/num_actions:np.float64(42.03125) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.5625) - train/AlfworldSG/manager_invalid_action:np.float64(0.0053515625) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(42.03125) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.032619047619047624) - train/response_length:7112.4296875 - actor/entropy:0.027751293033361435 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.008871736121363938) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(7.680384442210197e-05) - actor/pg_clipfrac:np.float64(0.0008837057139317039) - actor/ppo_kl:np.float64(0.0002894240566555517) - actor/pg_clipfrac_lower:np.float64(7.795496628659748e-06) - actor/entropy_loss:np.float64(0.05525751511595445) - actor/grad_norm:np.float64(1.4590847454965115) - critic/score/mean:1.796875 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.796875 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.23779939115047455 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.23779939115047455 - critic/returns/max:2.474873065948486\\\\n\\\\n... [截断: 输出过长，省略 15559 字符] ...\\\\n\\\\nal-env/AlfworldSG/success:np.float64(0.25) - val-env/AlfworldSG/num_actions:np.float64(39.03125) - val-env/AlfworldSG/episodic_return:np.float64(0.0) - val-env/AlfworldSG/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/anchor_obs:np.float64(0.0) - val-env/AlfworldSG/raw_reward:np.float64(0.0) - val-env/AlfworldSG/pass@1:np.float64(0.25) - val-env/charts/avg_episode_return:np.float64(0.0) - val-env/AlfworldSG/non-zero/success:np.float64(1.0) - val-env/AlfworldSG/non-zero/num_actions:np.float64(39.03125) - val-env/AlfworldSG/non-zero/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/non-zero/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/non-zero/pass@1:np.float64(1.0) - val-env/response_length:np.float64(5777.1875) - val-core/unknown/reward/mean@32:np.float64(2.5) - val-aux/unknown/reward/std@32:np.float64(4.330127018922194) - val-aux/unknown/reward/best@2/mean:np.float64(4.2) - val-aux/unknown/reward/best@2/std:np.float64(4.935585071701226) - val-aux/unknown/reward/worst@2/mean:np.float64(0.6) - val-aux/unknown/reward/worst@2/std:np.float64(2.374868417407584) - val-aux/unknown/reward/best@4/mean:np.float64(6.69) - val-aux/unknown/reward/best@4/std:np.float64(4.7057305490221175) - val-aux/unknown/reward/worst@4/mean:np.float64(0.02) - val-aux/unknown/reward/worst@4/std:np.float64(0.4467661580737735) - val-aux/unknown/reward/best@8/mean:np.float64(8.97) - val-aux/unknown/reward/best@8/std:np.float64(3.039588787977743) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(9.88) - val-aux/unknown/reward/best@16/std:np.float64(1.0888526071052957) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.99) - val-core/unknown/reward/best@32/std:np.float64(0.31606961258558225) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05593867599964142 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.05593867599964142 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:14324.15625 - response_length/max:16379.0 - response_length/min:1413.0 - response_length/clip_ratio:0.015625 - response_length_non_aborted/mean:14324.15625 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1413.0 - response_length_non_aborted/clip_ratio:0.015625 - response/aborted_ratio:0.0 - prompt_length/mean:0.015625 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.015625 - timing_s/gen:1345.362777987495 - timing_s/collapse_metrics:30.975701972842216 - timing_s/filter:0.003918973729014397 - timing_s/old_log_prob:68.1950398646295 - timing_s/ref:62.72627100162208 - timing_s/adv:0.004521477967500687 - timing_s/update_actor:429.28117185644805 - timing_s/testing:212.49309626035392 - timing_s/save_checkpoint:18.362169835716486 - timing_s/step:2167.7636023629457 - timing_per_token_ms/update_actor:0.2341328479157543 - timing_per_token_ms/adv:2.466044594365014e-06 - timing_per_token_ms/gen:0.7337707380165799 - timing_per_token_ms/ref:0.034211331480562296 - perf/total_num_tokens:1833494 - perf/time_per_step:2167.7636023629457 - perf/throughput:422.89989508113825 - timing_s/train_step:1905.932634294033 - timing_s/eval_step:212.49309626035392 - timing_s/train_total:8440.504035070539 - timing_s/eval_total:212.49309626035392 - timing_s/collapse_total:65.00723348557949 - timing_s/collapse_first_turn_total:65.00705054961145 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:8745.191279888153\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=905580)\\u001b[0m step:1 - collapse/first_turn_num_total:128 - collapse/first_turn_num_valid:128 - collapse/first_turn_valid_rate:1.0 - collapse_first_turn_sample/mi_estimate:0.19211174547672272 - collapse_first_turn_sample/mi_upper_bound:2.772588722239781 - collapse_first_turn_sample/matched_log_prob_mean:-0.1563212126493454 - collapse_first_turn_sample/marginal_log_prob_mean:-0.3484329581260681 - collapse_first_turn_sample/mi_seq_estimate:1.0814712047576904 - collapse_first_turn_sample/retrieval_accuracy@2:0.59375 - collapse_first_turn_sample/retrieval_chance_level@2:0.25 - collapse_first_turn_sample/retrieval_above_chance@2:0.34375 - collapse_first_turn_sample/retrieval_accuracy@4:0.875 - collapse_first_turn_sample/retrieval_chance_level@4:0.5 - collapse_first_turn_sample/retrieval_above_chance@4:0.375 - collapse_first_turn_sample/retrieval_accuracy@8:0.96875 - collapse_first_turn_sample/retrieval_chance_level@8:1.0 - collapse_first_turn_sample/retrieval_above_chance@8:-0.03125 - collapse_first_turn_sample/retrieval_accuracy:0.59375 - collapse_first_turn_sample/retrieval_chance_level:0.125 - collapse_first_turn_sample/retrieval_above_chance:0.46875 - collapse_first_turn_sample/conditional_entropy_est:0.1563212126493454 - collapse_first_turn_sample/reasoning_entropy_est:0.3484329581260681 - collapse_first_turn_sample/conditional_entropy_seq_est:4.5750861167907715 - collapse_first_turn_sample/reasoning_entropy_seq_est:5.656557559967041 - collapse_first_turn_sample/marginal_std:0.2992485463619232 - collapse_first_turn_sample/marginal_std_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_seq:0.18151746690273285 - collapse_first_turn_sample/marginal_std_ema:0.2992485463619232 - collapse_first_turn_sample/marginal_std_ema_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore_ema:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_ema_seq:0.18151746690273285 - timing_s/collapse_first_turn_step:34.031374448910356 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1796875) - train/AlfworldSG/num_actions:np.float64(42.03125) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.5625) - train/AlfworldSG/manager_invalid_action:np.float64(0.0053515625) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(42.03125) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.032619047619047624) - train/response_length:7112.4296875 - actor/entropy:0.027751293033361435 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.008871736121363938) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(7.680384442210197e-05) - actor/pg_clipfrac:np.float64(0.0008837057139317039) - actor/ppo_kl:np.float64(0.0002894240566555517) - actor/pg_clipfrac_lower:np.float64(7.795496628659748e-06) - actor/entropy_loss:np.float64(0.05525751511595445) - actor/grad_norm:np.float64(1.4590847454965115) - critic/score/mean:1.796875 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.796875 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.23779939115047455 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.23779939115047455 - critic/returns/max:2.474873065948486\\n\\n... [截断: 输出过长，省略 15559 字符] ...\\n\\nal-env/AlfworldSG/success:np.float64(0.25) - val-env/AlfworldSG/num_actions:np.float64(39.03125) - val-env/AlfworldSG/episodic_return:np.float64(0.0) - val-env/AlfworldSG/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/anchor_obs:np.float64(0.0) - val-env/AlfworldSG/raw_reward:np.float64(0.0) - val-env/AlfworldSG/pass@1:np.float64(0.25) - val-env/charts/avg_episode_return:np.float64(0.0) - val-env/AlfworldSG/non-zero/success:np.float64(1.0) - val-env/AlfworldSG/non-zero/num_actions:np.float64(39.03125) - val-env/AlfworldSG/non-zero/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/non-zero/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/non-zero/pass@1:np.float64(1.0) - val-env/response_length:np.float64(5777.1875) - val-core/unknown/reward/mean@32:np.float64(2.5) - val-aux/unknown/reward/std@32:np.float64(4.330127018922194) - val-aux/unknown/reward/best@2/mean:np.float64(4.2) - val-aux/unknown/reward/best@2/std:np.float64(4.935585071701226) - val-aux/unknown/reward/worst@2/mean:np.float64(0.6) - val-aux/unknown/reward/worst@2/std:np.float64(2.374868417407584) - val-aux/unknown/reward/best@4/mean:np.float64(6.69) - val-aux/unknown/reward/best@4/std:np.float64(4.7057305490221175) - val-aux/unknown/reward/worst@4/mean:np.float64(0.02) - val-aux/unknown/reward/worst@4/std:np.float64(0.4467661580737735) - val-aux/unknown/reward/best@8/mean:np.float64(8.97) - val-aux/unknown/reward/best@8/std:np.float64(3.039588787977743) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(9.88) - val-aux/unknown/reward/best@16/std:np.float64(1.0888526071052957) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.99) - val-core/unknown/reward/best@32/std:np.float64(0.31606961258558225) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05593867599964142 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.05593867599964142 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:14324.15625 - response_length/max:16379.0 - response_length/min:1413.0 - response_length/clip_ratio:0.015625 - response_length_non_aborted/mean:14324.15625 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1413.0 - response_length_non_aborted/clip_ratio:0.015625 - response/aborted_ratio:0.0 - prompt_length/mean:0.015625 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.015625 - timing_s/gen:1345.362777987495 - timing_s/collapse_metrics:30.975701972842216 - timing_s/filter:0.003918973729014397 - timing_s/old_log_prob:68.1950398646295 - timing_s/ref:62.72627100162208 - timing_s/adv:0.004521477967500687 - timing_s/update_actor:429.28117185644805 - timing_s/testing:212.49309626035392 - timing_s/save_checkpoint:18.362169835716486 - timing_s/step:2167.7636023629457 - timing_per_token_ms/update_actor:0.2341328479157543 - timing_per_token_ms/adv:2.466044594365014e-06 - timing_per_token_ms/gen:0.7337707380165799 - timing_per_token_ms/ref:0.034211331480562296 - perf/total_num_tokens:1833494 - perf/time_per_step:2167.7636023629457 - perf/throughput:422.89989508113825 - timing_s/train_step:1905.932634294033 - timing_s/eval_step:212.49309626035392 - timing_s/train_total:8440.504035070539 - timing_s/eval_total:212.49309626035392 - timing_s/collapse_total:65.00723348557949 - timing_s/collapse_first_turn_total:65.00705054961145 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:8745.191279888153\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have partial data. Let me now try to get step 2-5 train metrics. The output was truncated so I can see step 1 clearly. Let me grep for the specific steps that are missing.
+
+From step 1 I can extract:
+- train/AlfworldSG/success: 0.1796875 (17.97%)
+- train/AlfworldSG/action_is_valid: 0.682
+- train/AlfworldSG/pass@8: 0.5625 (56.25%)
+
+
+- actor/entropy: 0.0278
+- actor/ppo_kl: 0.000289
+- actor/grad_norm: 1.459
+- train/response_length: 7112.4
+
+And from step 5, I'm seeing the validation metrics showing improvement across the board: success rate at 25%, action validity at 0.704, and a mean reward of 2.5.
+
+Now I'm noticing the best reward metric jumped significantly to 9.99, which is a notable spike. I also see the critic's score averaging around 1.016 with response lengths at 14324.
+
+I need to isolate the training metrics for steps 2 through 5 individually since they're all bundled together in the output. Let me search for each step separately to get a clearer picture of the progression.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "e84fde31-7bc1-41fd-8b9d-e46ca68daeca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YJeNqZY9LHguFQ3iAC6XVa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7932,
+      "cache_read_input_tokens": 34040,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+Let me get the remaining steps' train metrics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "dd28c444-90d9-4a80-8247-2005e64bf141",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YJeNqZY9LHguFQ3iAC6XVa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7932,
+      "cache_read_input_tokens": 34040,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015yRdi2VPdoMYXLrQy3Vjrc`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep -A 0 \"train/AlfworldSG/success\" /root/runs/cost-verify-agent-rl/exp029_episode_level.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "e6bc82fb-d562-4e35-b277-a0c6676331c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YJeNqZY9LHguFQ3iAC6XVa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7932,
+      "cache_read_input_tokens": 34040,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T23:12:07.627Z_
+
+<details><summary>↩ Tool result · `toolu_015yRdi2VPdoMYXLrQy3Vjrc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=905580)\\u001b[0m step:1 - collapse/first_turn_num_total:128 - collapse/first_turn_num_valid:128 - collapse/first_turn_valid_rate:1.0 - collapse_first_turn_sample/mi_estimate:0.19211174547672272 - collapse_first_turn_sample/mi_upper_bound:2.772588722239781 - collapse_first_turn_sample/matched_log_prob_mean:-0.1563212126493454 - collapse_first_turn_sample/marginal_log_prob_mean:-0.3484329581260681 - collapse_first_turn_sample/mi_seq_estimate:1.0814712047576904 - collapse_first_turn_sample/retrieval_accuracy@2:0.59375 - collapse_first_turn_sample/retrieval_chance_level@2:0.25 - collapse_first_turn_sample/retrieval_above_chance@2:0.34375 - collapse_first_turn_sample/retrieval_accuracy@4:0.875 - collapse_first_turn_sample/retrieval_chance_level@4:0.5 - collapse_first_turn_sample/retrieval_above_chance@4:0.375 - collapse_first_turn_sample/retrieval_accuracy@8:0.96875 - collapse_first_turn_sample/retrieval_chance_level@8:1.0 - collapse_first_turn_sample/retrieval_above_chance@8:-0.03125 - collapse_first_turn_sample/retrieval_accuracy:0.59375 - collapse_first_turn_sample/retrieval_chance_level:0.125 - collapse_first_turn_sample/retrieval_above_chance:0.46875 - collapse_first_turn_sample/conditional_entropy_est:0.1563212126493454 - collapse_first_turn_sample/reasoning_entropy_est:0.3484329581260681 - collapse_first_turn_sample/conditional_entropy_seq_est:4.5750861167907715 - collapse_first_turn_sample/reasoning_entropy_seq_est:5.656557559967041 - collapse_first_turn_sample/marginal_std:0.2992485463619232 - collapse_first_turn_sample/marginal_std_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_seq:0.18151746690273285 - collapse_first_turn_sample/marginal_std_ema:0.2992485463619232 - collapse_first_turn_sample/marginal_std_ema_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore_ema:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_ema_seq:0.18151746690273285 - timing_s/collapse_first_turn_step:34.031374448910356 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1796875) - train/AlfworldSG/num_actions:np.float64(42.03125) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.5625) - train/AlfworldSG/manager_invalid_action:np.float64(0.0053515625) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(42.03125) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.032619047619047624) - train/response_length:7112.4296875 - actor/entropy:0.027751293033361435 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.008871736121363938) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(7.680384442210197e-05) - actor/pg_clipfrac:np.float64(0.0008837057139317039) - actor/ppo_kl:np.float64(0.0002894240566555517) - actor/pg_clipfrac_lower:np.float64(7.795496628659748e-06) - actor/entropy_loss:np.float64(0.05525751511595445) - actor/grad_norm:np.float64(1.4590847454965115) - critic/score/mean:1.796875 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.796875 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.23779939115047455 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.23779939115047455 - critic/returns/max:2.474873065948486\\n\\n... [截断: 输出过长，省略 15571 字符] ...\\n\\nal-env/AlfworldSG/success:np.float64(0.25) - val-env/AlfworldSG/num_actions:np.float64(39.03125) - val-env/AlfworldSG/episodic_return:np.float64(0.0) - val-env/AlfworldSG/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/anchor_obs:np.float64(0.0) - val-env/AlfworldSG/raw_reward:np.float64(0.0) - val-env/AlfworldSG/pass@1:np.float64(0.25) - val-env/charts/avg_episode_return:np.float64(0.0) - val-env/AlfworldSG/non-zero/success:np.float64(1.0) - val-env/AlfworldSG/non-zero/num_actions:np.float64(39.03125) - val-env/AlfworldSG/non-zero/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/non-zero/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/non-zero/pass@1:np.float64(1.0) - val-env/response_length:np.float64(5777.1875) - val-core/unknown/reward/mean@32:np.float64(2.5) - val-aux/unknown/reward/std@32:np.float64(4.330127018922194) - val-aux/unknown/reward/best@2/mean:np.float64(4.2) - val-aux/unknown/reward/best@2/std:np.float64(4.935585071701226) - val-aux/unknown/reward/worst@2/mean:np.float64(0.6) - val-aux/unknown/reward/worst@2/std:np.float64(2.374868417407584) - val-aux/unknown/reward/best@4/mean:np.float64(6.69) - val-aux/unknown/reward/best@4/std:np.float64(4.7057305490221175) - val-aux/unknown/reward/worst@4/mean:np.float64(0.02) - val-aux/unknown/reward/worst@4/std:np.float64(0.4467661580737735) - val-aux/unknown/reward/best@8/mean:np.float64(8.97) - val-aux/unknown/reward/best@8/std:np.float64(3.039588787977743) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(9.88) - val-aux/unknown/reward/best@16/std:np.float64(1.0888526071052957) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.99) - val-core/unknown/reward/best@32/std:np.float64(0.31606961258558225) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05593867599964142 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.05593867599964142 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:14324.15625 - response_length/max:16379.0 - response_length/min:1413.0 - response_length/clip_ratio:0.015625 - response_length_non_aborted/mean:14324.15625 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1413.0 - response_length_non_aborted/clip_ratio:0.015625 - response/aborted_ratio:0.0 - prompt_length/mean:0.015625 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.015625 - timing_s/gen:1345.362777987495 - timing_s/collapse_metrics:30.975701972842216 - timing_s/filter:0.003918973729014397 - timing_s/old_log_prob:68.1950398646295 - timing_s/ref:62.72627100162208 - timing_s/adv:0.004521477967500687 - timing_s/update_actor:429.28117185644805 - timing_s/testing:212.49309626035392 - timing_s/save_checkpoint:18.362169835716486 - timing_s/step:2167.7636023629457 - timing_per_token_ms/update_actor:0.2341328479157543 - timing_per_token_ms/adv:2.466044594365014e-06 - timing_per_token_ms/gen:0.7337707380165799 - timing_per_token_ms/ref:0.034211331480562296 - perf/total_num_tokens:1833494 - perf/time_per_step:2167.7636023629457 - perf/throughput:422.89989508113825 - timing_s/train_step:1905.932634294033 - timing_s/eval_step:212.49309626035392 - timing_s/train_total:8440.504035070539 - timing_s/eval_total:212.49309626035392 - timing_s/collapse_total:65.00723348557949 - timing_s/collapse_first_turn_total:65.00705054961145 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:8745.191279888153\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "b3ef1b89-4205-4c70-8e32-eb9ea0ba99ba",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m step:1 - collapse/first_turn_num_total:128 - collapse/first_turn_num_valid:128 - collapse/first_turn_valid_rate:1.0 - collapse_first_turn_sample/mi_estimate:0.19211174547672272 - collapse_first_turn_sample/mi_upper_bound:2.772588722239781 - collapse_first_turn_sample/matched_log_prob_mean:-0.1563212126493454 - collapse_first_turn_sample/marginal_log_prob_mean:-0.3484329581260681 - collapse_first_turn_sample/mi_seq_estimate:1.0814712047576904 - collapse_first_turn_sample/retrieval_accuracy@2:0.59375 - collapse_first_turn_sample/retrieval_chance_level@2:0.25 - collapse_first_turn_sample/retrieval_above_chance@2:0.34375 - collapse_first_turn_sample/retrieval_accuracy@4:0.875 - collapse_first_turn_sample/retrieval_chance_level@4:0.5 - collapse_first_turn_sample/retrieval_above_chance@4:0.375 - collapse_first_turn_sample/retrieval_accuracy@8:0.96875 - collapse_first_turn_sample/retrieval_chance_level@8:1.0 - collapse_first_turn_sample/retrieval_above_chance@8:-0.03125 - collapse_first_turn_sample/retrieval_accuracy:0.59375 - collapse_first_turn_sample/retrieval_chance_level:0.125 - collapse_first_turn_sample/retrieval_above_chance:0.46875 - collapse_first_turn_sample/conditional_entropy_est:0.1563212126493454 - collapse_first_turn_sample/reasoning_entropy_est:0.3484329581260681 - collapse_first_turn_sample/conditional_entropy_seq_est:4.5750861167907715 - collapse_first_turn_sample/reasoning_entropy_seq_est:5.656557559967041 - collapse_first_turn_sample/marginal_std:0.2992485463619232 - collapse_first_turn_sample/marginal_std_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_seq:0.18151746690273285 - collapse_first_turn_sample/marginal_std_ema:0.2992485463619232 - collapse_first_turn_sample/marginal_std_ema_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore_ema:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_ema_seq:0.18151746690273285 - timing_s/collapse_first_turn_step:34.031374448910356 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1796875) - train/AlfworldSG/num_actions:np.float64(42.03125) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.5625) - train/AlfworldSG/manager_invalid_action:np.float64(0.0053515625) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(42.03125) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.032619047619047624) - train/response_length:7112.4296875 - actor/entropy:0.027751293033361435 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.008871736121363938) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(7.680384442210197e-05) - actor/pg_clipfrac:np.float64(0.0008837057139317039) - actor/ppo_kl:np.float64(0.0002894240566555517) - actor/pg_clipfrac_lower:np.float64(7.795496628659748e-06) - actor/entropy_loss:np.float64(0.05525751511595445) - actor/grad_norm:np.float64(1.4590847454965115) - critic/score/mean:1.796875 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.796875 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.23779939115047455 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.23779939115047455 - critic/returns/max:2.474873065948486\\\\n\\\\n... [截断: 输出过长，省略 15571 字符] ...\\\\n\\\\nal-env/AlfworldSG/success:np.float64(0.25) - val-env/AlfworldSG/num_actions:np.float64(39.03125) - val-env/AlfworldSG/episodic_return:np.float64(0.0) - val-env/AlfworldSG/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/anchor_obs:np.float64(0.0) - val-env/AlfworldSG/raw_reward:np.float64(0.0) - val-env/AlfworldSG/pass@1:np.float64(0.25) - val-env/charts/avg_episode_return:np.float64(0.0) - val-env/AlfworldSG/non-zero/success:np.float64(1.0) - val-env/AlfworldSG/non-zero/num_actions:np.float64(39.03125) - val-env/AlfworldSG/non-zero/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/non-zero/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/non-zero/pass@1:np.float64(1.0) - val-env/response_length:np.float64(5777.1875) - val-core/unknown/reward/mean@32:np.float64(2.5) - val-aux/unknown/reward/std@32:np.float64(4.330127018922194) - val-aux/unknown/reward/best@2/mean:np.float64(4.2) - val-aux/unknown/reward/best@2/std:np.float64(4.935585071701226) - val-aux/unknown/reward/worst@2/mean:np.float64(0.6) - val-aux/unknown/reward/worst@2/std:np.float64(2.374868417407584) - val-aux/unknown/reward/best@4/mean:np.float64(6.69) - val-aux/unknown/reward/best@4/std:np.float64(4.7057305490221175) - val-aux/unknown/reward/worst@4/mean:np.float64(0.02) - val-aux/unknown/reward/worst@4/std:np.float64(0.4467661580737735) - val-aux/unknown/reward/best@8/mean:np.float64(8.97) - val-aux/unknown/reward/best@8/std:np.float64(3.039588787977743) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(9.88) - val-aux/unknown/reward/best@16/std:np.float64(1.0888526071052957) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.99) - val-core/unknown/reward/best@32/std:np.float64(0.31606961258558225) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05593867599964142 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.05593867599964142 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:14324.15625 - response_length/max:16379.0 - response_length/min:1413.0 - response_length/clip_ratio:0.015625 - response_length_non_aborted/mean:14324.15625 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1413.0 - response_length_non_aborted/clip_ratio:0.015625 - response/aborted_ratio:0.0 - prompt_length/mean:0.015625 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.015625 - timing_s/gen:1345.362777987495 - timing_s/collapse_metrics:30.975701972842216 - timing_s/filter:0.003918973729014397 - timing_s/old_log_prob:68.1950398646295 - timing_s/ref:62.72627100162208 - timing_s/adv:0.004521477967500687 - timing_s/update_actor:429.28117185644805 - timing_s/testing:212.49309626035392 - timing_s/save_checkpoint:18.362169835716486 - timing_s/step:2167.7636023629457 - timing_per_token_ms/update_actor:0.2341328479157543 - timing_per_token_ms/adv:2.466044594365014e-06 - timing_per_token_ms/gen:0.7337707380165799 - timing_per_token_ms/ref:0.034211331480562296 - perf/total_num_tokens:1833494 - perf/time_per_step:2167.7636023629457 - perf/throughput:422.89989508113825 - timing_s/train_step:1905.932634294033 - timing_s/eval_step:212.49309626035392 - timing_s/train_total:8440.504035070539 - timing_s/eval_total:212.49309626035392 - timing_s/collapse_total:65.00723348557949 - timing_s/collapse_first_turn_total:65.00705054961145 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:8745.191279888153\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=905580)\\u001b[0m step:1 - collapse/first_turn_num_total:128 - collapse/first_turn_num_valid:128 - collapse/first_turn_valid_rate:1.0 - collapse_first_turn_sample/mi_estimate:0.19211174547672272 - collapse_first_turn_sample/mi_upper_bound:2.772588722239781 - collapse_first_turn_sample/matched_log_prob_mean:-0.1563212126493454 - collapse_first_turn_sample/marginal_log_prob_mean:-0.3484329581260681 - collapse_first_turn_sample/mi_seq_estimate:1.0814712047576904 - collapse_first_turn_sample/retrieval_accuracy@2:0.59375 - collapse_first_turn_sample/retrieval_chance_level@2:0.25 - collapse_first_turn_sample/retrieval_above_chance@2:0.34375 - collapse_first_turn_sample/retrieval_accuracy@4:0.875 - collapse_first_turn_sample/retrieval_chance_level@4:0.5 - collapse_first_turn_sample/retrieval_above_chance@4:0.375 - collapse_first_turn_sample/retrieval_accuracy@8:0.96875 - collapse_first_turn_sample/retrieval_chance_level@8:1.0 - collapse_first_turn_sample/retrieval_above_chance@8:-0.03125 - collapse_first_turn_sample/retrieval_accuracy:0.59375 - collapse_first_turn_sample/retrieval_chance_level:0.125 - collapse_first_turn_sample/retrieval_above_chance:0.46875 - collapse_first_turn_sample/conditional_entropy_est:0.1563212126493454 - collapse_first_turn_sample/reasoning_entropy_est:0.3484329581260681 - collapse_first_turn_sample/conditional_entropy_seq_est:4.5750861167907715 - collapse_first_turn_sample/reasoning_entropy_seq_est:5.656557559967041 - collapse_first_turn_sample/marginal_std:0.2992485463619232 - collapse_first_turn_sample/marginal_std_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_seq:0.18151746690273285 - collapse_first_turn_sample/marginal_std_ema:0.2992485463619232 - collapse_first_turn_sample/marginal_std_ema_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore_ema:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_ema_seq:0.18151746690273285 - timing_s/collapse_first_turn_step:34.031374448910356 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1796875) - train/AlfworldSG/num_actions:np.float64(42.03125) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.5625) - train/AlfworldSG/manager_invalid_action:np.float64(0.0053515625) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(42.03125) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.032619047619047624) - train/response_length:7112.4296875 - actor/entropy:0.027751293033361435 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.008871736121363938) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(7.680384442210197e-05) - actor/pg_clipfrac:np.float64(0.0008837057139317039) - actor/ppo_kl:np.float64(0.0002894240566555517) - actor/pg_clipfrac_lower:np.float64(7.795496628659748e-06) - actor/entropy_loss:np.float64(0.05525751511595445) - actor/grad_norm:np.float64(1.4590847454965115) - critic/score/mean:1.796875 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.796875 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.23779939115047455 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.23779939115047455 - critic/returns/max:2.474873065948486\\n\\n... [截断: 输出过长，省略 15571 字符] ...\\n\\nal-env/AlfworldSG/success:np.float64(0.25) - val-env/AlfworldSG/num_actions:np.float64(39.03125) - val-env/AlfworldSG/episodic_return:np.float64(0.0) - val-env/AlfworldSG/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/anchor_obs:np.float64(0.0) - val-env/AlfworldSG/raw_reward:np.float64(0.0) - val-env/AlfworldSG/pass@1:np.float64(0.25) - val-env/charts/avg_episode_return:np.float64(0.0) - val-env/AlfworldSG/non-zero/success:np.float64(1.0) - val-env/AlfworldSG/non-zero/num_actions:np.float64(39.03125) - val-env/AlfworldSG/non-zero/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/non-zero/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/non-zero/pass@1:np.float64(1.0) - val-env/response_length:np.float64(5777.1875) - val-core/unknown/reward/mean@32:np.float64(2.5) - val-aux/unknown/reward/std@32:np.float64(4.330127018922194) - val-aux/unknown/reward/best@2/mean:np.float64(4.2) - val-aux/unknown/reward/best@2/std:np.float64(4.935585071701226) - val-aux/unknown/reward/worst@2/mean:np.float64(0.6) - val-aux/unknown/reward/worst@2/std:np.float64(2.374868417407584) - val-aux/unknown/reward/best@4/mean:np.float64(6.69) - val-aux/unknown/reward/best@4/std:np.float64(4.7057305490221175) - val-aux/unknown/reward/worst@4/mean:np.float64(0.02) - val-aux/unknown/reward/worst@4/std:np.float64(0.4467661580737735) - val-aux/unknown/reward/best@8/mean:np.float64(8.97) - val-aux/unknown/reward/best@8/std:np.float64(3.039588787977743) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(9.88) - val-aux/unknown/reward/best@16/std:np.float64(1.0888526071052957) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.99) - val-core/unknown/reward/best@32/std:np.float64(0.31606961258558225) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05593867599964142 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.05593867599964142 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:14324.15625 - response_length/max:16379.0 - response_length/min:1413.0 - response_length/clip_ratio:0.015625 - response_length_non_aborted/mean:14324.15625 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1413.0 - response_length_non_aborted/clip_ratio:0.015625 - response/aborted_ratio:0.0 - prompt_length/mean:0.015625 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.015625 - timing_s/gen:1345.362777987495 - timing_s/collapse_metrics:30.975701972842216 - timing_s/filter:0.003918973729014397 - timing_s/old_log_prob:68.1950398646295 - timing_s/ref:62.72627100162208 - timing_s/adv:0.004521477967500687 - timing_s/update_actor:429.28117185644805 - timing_s/testing:212.49309626035392 - timing_s/save_checkpoint:18.362169835716486 - timing_s/step:2167.7636023629457 - timing_per_token_ms/update_actor:0.2341328479157543 - timing_per_token_ms/adv:2.466044594365014e-06 - timing_per_token_ms/gen:0.7337707380165799 - timing_per_token_ms/ref:0.034211331480562296 - perf/total_num_tokens:1833494 - perf/time_per_step:2167.7636023629457 - perf/throughput:422.89989508113825 - timing_s/train_step:1905.932634294033 - timing_s/eval_step:212.49309626035392 - timing_s/train_total:8440.504035070539 - timing_s/eval_total:212.49309626035392 - timing_s/collapse_total:65.00723348557949 - timing_s/collapse_first_turn_total:65.00705054961145 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:8745.191279888153\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Dr3rRdTTMz83FpzB1BTbfp`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep \"step:2 \" /root/runs/cost-verify-agent-rl/exp029_episode_level.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "26bc0fb2-678e-4ecb-93c3-edc30b30906c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YJeNqZY9LHguFQ3iAC6XVa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7932,
+      "cache_read_input_tokens": 34040,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-16T23:12:08.524Z_
+
+<details><summary>↩ Tool result · `toolu_01Dr3rRdTTMz83FpzB1BTbfp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=905580)\\u001b[0m step:2 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1015625) - train/AlfworldSG/num_actions:np.float64(44.515625) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9717650462962963) - train/AlfworldSG/action_is_valid:np.float64(0.5731828703703704) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.4375) - train/AlfworldSG/manager_invalid_action:np.float64(0.0282349537037037) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(44.515625) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9717650462962963) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.5731828703703704) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.1505864197530864) - train/response_length:5901.5859375 - actor/entropy:0.032047029584646225 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0030242499196901917) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(-0.00012512784451246262) - actor/pg_clipfrac:np.float64(0.000694461318971662) - actor/ppo_kl:np.float64(0.00042924465085758534) - actor/pg_clipfrac_lower:np.float64(3.734167705715663e-06) - actor/entropy_loss:np.float64(0.05582154202420497) - actor/grad_norm:np.float64(1.0563133209943771) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.11041870713233948 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.11041870713233948 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:12825.84375 - response_length/max:16377.0 - response_length/min:1357.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:12825.84375 - response_length_non_aborted/max:16377.0 - response_length_non_aborted/min:1357.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:0.0078125 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.0078125 - timing_s/gen:989.9317800644785 - timing_s/collapse_metrics:3.9713457226753235e-05 - timing_s/filter:0.0025392547249794006 - timing_s/old_log_prob:68.69641191512346 - timing_s/ref:63.13770321570337 - timing_s/adv:0.009636949747800827 - timing_s/update_actor:402.0191779937595 - timing_s/step:1524.137899281457 - timing_per_token_ms/update_actor:0.24487846384088746 - timing_per_token_ms/adv:5.870071826249857e-06 - timing_per_token_ms/gen:0.6029889481347953 - timing_per_token_ms/ref:0.03845852292684231 - perf/total_num_tokens:1641709 - perf/time_per_step:1524.137899281457 - perf/throughput:538.5697057903917 - timing_s/train_step:1524.1378595679998 - timing_s/eval_step:0.0 - timing_s/train_total:3327.11297326535 - timing_s/eval_total:0.0 - timing_s/collapse_total:34.03149750083685 - timing_s/collapse_first_turn_total:34.031374448910356 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:3363.4826464653015\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "494304fa-c2ea-4595-9015-f5161c827116",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m step:2 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1015625) - train/AlfworldSG/num_actions:np.float64(44.515625) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9717650462962963) - train/AlfworldSG/action_is_valid:np.float64(0.5731828703703704) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.4375) - train/AlfworldSG/manager_invalid_action:np.float64(0.0282349537037037) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(44.515625) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9717650462962963) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.5731828703703704) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.1505864197530864) - train/response_length:5901.5859375 - actor/entropy:0.032047029584646225 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0030242499196901917) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(-0.00012512784451246262) - actor/pg_clipfrac:np.float64(0.000694461318971662) - actor/ppo_kl:np.float64(0.00042924465085758534) - actor/pg_clipfrac_lower:np.float64(3.734167705715663e-06) - actor/entropy_loss:np.float64(0.05582154202420497) - actor/grad_norm:np.float64(1.0563133209943771) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.11041870713233948 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.11041870713233948 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:12825.84375 - response_length/max:16377.0 - response_length/min:1357.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:12825.84375 - response_length_non_aborted/max:16377.0 - response_length_non_aborted/min:1357.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:0.0078125 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.0078125 - timing_s/gen:989.9317800644785 - timing_s/collapse_metrics:3.9713457226753235e-05 - timing_s/filter:0.0025392547249794006 - timing_s/old_log_prob:68.69641191512346 - timing_s/ref:63.13770321570337 - timing_s/adv:0.009636949747800827 - timing_s/update_actor:402.0191779937595 - timing_s/step:1524.137899281457 - timing_per_token_ms/update_actor:0.24487846384088746 - timing_per_token_ms/adv:5.870071826249857e-06 - timing_per_token_ms/gen:0.6029889481347953 - timing_per_token_ms/ref:0.03845852292684231 - perf/total_num_tokens:1641709 - perf/time_per_step:1524.137899281457 - perf/throughput:538.5697057903917 - timing_s/train_step:1524.1378595679998 - timing_s/eval_step:0.0 - timing_s/train_total:3327.11297326535 - timing_s/eval_total:0.0 - timing_s/collapse_total:34.03149750083685 - timing_s/collapse_first_turn_total:34.031374448910356 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:3363.4826464653015\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=905580)\\u001b[0m step:2 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1015625) - train/AlfworldSG/num_actions:np.float64(44.515625) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9717650462962963) - train/AlfworldSG/action_is_valid:np.float64(0.5731828703703704) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.4375) - train/AlfworldSG/manager_invalid_action:np.float64(0.0282349537037037) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(44.515625) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9717650462962963) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.5731828703703704) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.1505864197530864) - train/response_length:5901.5859375 - actor/entropy:0.032047029584646225 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0030242499196901917) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(-0.00012512784451246262) - actor/pg_clipfrac:np.float64(0.000694461318971662) - actor/ppo_kl:np.float64(0.00042924465085758534) - actor/pg_clipfrac_lower:np.float64(3.734167705715663e-06) - actor/entropy_loss:np.float64(0.05582154202420497) - actor/grad_norm:np.float64(1.0563133209943771) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.11041870713233948 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.11041870713233948 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:12825.84375 - response_length/max:16377.0 - response_length/min:1357.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:12825.84375 - response_length_non_aborted/max:16377.0 - response_length_non_aborted/min:1357.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:0.0078125 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.0078125 - timing_s/gen:989.9317800644785 - timing_s/collapse_metrics:3.9713457226753235e-05 - timing_s/filter:0.0025392547249794006 - timing_s/old_log_prob:68.69641191512346 - timing_s/ref:63.13770321570337 - timing_s/adv:0.009636949747800827 - timing_s/update_actor:402.0191779937595 - timing_s/step:1524.137899281457 - timing_per_token_ms/update_actor:0.24487846384088746 - timing_per_token_ms/adv:5.870071826249857e-06 - timing_per_token_ms/gen:0.6029889481347953 - timing_per_token_ms/ref:0.03845852292684231 - perf/total_num_tokens:1641709 - perf/time_per_step:1524.137899281457 - perf/throughput:538.5697057903917 - timing_s/train_step:1524.1378595679998 - timing_s/eval_step:0.0 - timing_s/train_total:3327.11297326535 - timing_s/eval_total:0.0 - timing_s/collapse_total:34.03149750083685 - timing_s/collapse_first_turn_total:34.031374448910356 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:3363.4826464653015\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NJUkbbxVUtsX2p8oeP1sX4`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep \"step:3 \" /root/runs/cost-verify-agent-rl/exp029_episode_level.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "93c1cbaa-f930-48ca-9c2e-9ac5f3966af1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YJeNqZY9LHguFQ3iAC6XVa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7932,
+      "cache_read_input_tokens": 34040,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7932
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T23:12:08.938Z_
+
+<details><summary>↩ Tool result · `toolu_01NJUkbbxVUtsX2p8oeP1sX4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=905580)\\u001b[0m step:3 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.3515625) - train/AlfworldSG/num_actions:np.float64(34.7890625) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9729901713709678) - train/AlfworldSG/action_is_valid:np.float64(0.6726933165827876) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.6875) - train/AlfworldSG/manager_invalid_action:np.float64(0.02700982862903226) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(35.06299212598425) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9806515113030226) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6779901143511561) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.14405241935483873) - train/response_length:6064.921875 - actor/entropy:0.023022135719656944 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0024653765140101314) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(2.7159927412867546e-05) - actor/pg_clipfrac:np.float64(0.0013713000223560812) - actor/ppo_kl:np.float64(0.0003446713870403073) - actor/pg_clipfrac_lower:np.float64(3.8871447145538696e-06) - actor/entropy_loss:np.float64(0.04549933575617615) - actor/grad_norm:np.float64(1.4884156007319689) - critic/score/mean:3.515625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:3.515625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.19113276898860931 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-2.4748730659484863 - critic/returns/mean:-0.19113276898860931 - critic/returns/max:2.4748730659484863 - critic/returns/min:-2.4748730659484863 - response_length/mean:10823.0703125 - response_length/max:16379.0 - response_length/min:1273.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:10823.0703125 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1273.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:0.0078125 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.0078125 - timing_s/gen:1014.443009627983 - timing_s/collapse_metrics:1.8931925296783447e-05 - timing_s/filter:0.0023853275924921036 - timing_s/old_log_prob:68.78793743439019 - timing_s/ref:63.20530593581498 - timing_s/adv:0.012896670028567314 - timing_s/update_actor:444.3343885894865 - timing_s/step:1591.1012906953692 - timing_per_token_ms/update_actor:0.3207370741265312 - timing_per_token_ms/adv:9.309295695228306e-06 - timing_per_token_ms/gen:0.7322631918565037 - timing_per_token_ms/ref:0.045623938672581146 - perf/total_num_tokens:1385354 - perf/time_per_step:1591.1012906953692 - perf/throughput:435.34437691096014 - timing_s/train_step:1591.101271763444 - timing_s/eval_step:0.0 - timing_s/train_total:4918.214245028794 - timing_s/eval_total:0.0 - timing_s/collapse_total:34.031516432762146 - timing_s/collapse_first_turn_total:34.031374448910356 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:4956.654009103775\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "17592c04-0787-40c7-8a3a-c7f7be123e5e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m step:3 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.3515625) - train/AlfworldSG/num_actions:np.float64(34.7890625) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9729901713709678) - train/AlfworldSG/action_is_valid:np.float64(0.6726933165827876) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.6875) - train/AlfworldSG/manager_invalid_action:np.float64(0.02700982862903226) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(35.06299212598425) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9806515113030226) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6779901143511561) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.14405241935483873) - train/response_length:6064.921875 - actor/entropy:0.023022135719656944 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0024653765140101314) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(2.7159927412867546e-05) - actor/pg_clipfrac:np.float64(0.0013713000223560812) - actor/ppo_kl:np.float64(0.0003446713870403073) - actor/pg_clipfrac_lower:np.float64(3.8871447145538696e-06) - actor/entropy_loss:np.float64(0.04549933575617615) - actor/grad_norm:np.float64(1.4884156007319689) - critic/score/mean:3.515625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:3.515625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.19113276898860931 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-2.4748730659484863 - critic/returns/mean:-0.19113276898860931 - critic/returns/max:2.4748730659484863 - critic/returns/min:-2.4748730659484863 - response_length/mean:10823.0703125 - response_length/max:16379.0 - response_length/min:1273.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:10823.0703125 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1273.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:0.0078125 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.0078125 - timing_s/gen:1014.443009627983 - timing_s/collapse_metrics:1.8931925296783447e-05 - timing_s/filter:0.0023853275924921036 - timing_s/old_log_prob:68.78793743439019 - timing_s/ref:63.20530593581498 - timing_s/adv:0.012896670028567314 - timing_s/update_actor:444.3343885894865 - timing_s/step:1591.1012906953692 - timing_per_token_ms/update_actor:0.3207370741265312 - timing_per_token_ms/adv:9.309295695228306e-06 - timing_per_token_ms/gen:0.7322631918565037 - timing_per_token_ms/ref:0.045623938672581146 - perf/total_num_tokens:1385354 - perf/time_per_step:1591.1012906953692 - perf/throughput:435.34437691096014 - timing_s/train_step:1591.101271763444 - timing_s/eval_step:0.0 - timing_s/train_total:4918.214245028794 - timing_s/eval_total:0.0 - timing_s/collapse_total:34.031516432762146 - timing_s/collapse_first_turn_total:34.031374448910356 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:4956.654009103775\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=905580)\\u001b[0m step:3 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.3515625) - train/AlfworldSG/num_actions:np.float64(34.7890625) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9729901713709678) - train/AlfworldSG/action_is_valid:np.float64(0.6726933165827876) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.6875) - train/AlfworldSG/manager_invalid_action:np.float64(0.02700982862903226) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(35.06299212598425) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9806515113030226) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6779901143511561) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.14405241935483873) - train/response_length:6064.921875 - actor/entropy:0.023022135719656944 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0024653765140101314) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(2.7159927412867546e-05) - actor/pg_clipfrac:np.float64(0.0013713000223560812) - actor/ppo_kl:np.float64(0.0003446713870403073) - actor/pg_clipfrac_lower:np.float64(3.8871447145538696e-06) - actor/entropy_loss:np.float64(0.04549933575617615) - actor/grad_norm:np.float64(1.4884156007319689) - critic/score/mean:3.515625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:3.515625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.19113276898860931 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-2.4748730659484863 - critic/returns/mean:-0.19113276898860931 - critic/returns/max:2.4748730659484863 - critic/returns/min:-2.4748730659484863 - response_length/mean:10823.0703125 - response_length/max:16379.0 - response_length/min:1273.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:10823.0703125 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1273.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:0.0078125 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.0078125 - timing_s/gen:1014.443009627983 - timing_s/collapse_metrics:1.8931925296783447e-05 - timing_s/filter:0.0023853275924921036 - timing_s/old_log_prob:68.78793743439019 - timing_s/ref:63.20530593581498 - timing_s/adv:0.012896670028567314 - timing_s/update_actor:444.3343885894865 - timing_s/step:1591.1012906953692 - timing_per_token_ms/update_actor:0.3207370741265312 - timing_per_token_ms/adv:9.309295695228306e-06 - timing_per_token_ms/gen:0.7322631918565037 - timing_per_token_ms/ref:0.045623938672581146 - perf/total_num_tokens:1385354 - perf/time_per_step:1591.1012906953692 - perf/throughput:435.34437691096014 - timing_s/train_step:1591.101271763444 - timing_s/eval_step:0.0 - timing_s/train_total:4918.214245028794 - timing_s/eval_total:0.0 - timing_s/collapse_total:34.031516432762146 - timing_s/collapse_first_turn_total:34.031374448910356 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:4956.654009103775\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, now I have step 2 and step 3 data. Let me get step 4 and step 5.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "d070af76-d3f7-4b59-850a-83481ee28850",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CRCdUTagannbjyy9gXyYoX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7522,
+      "cache_read_input_tokens": 41972,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7522
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SFfdVjNa5qoP2yzVWZXfee`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep \"step:4 \" /root/runs/cost-verify-agent-rl/exp029_episode_level.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "a995eedb-bfa9-43d7-91ba-981ab4473c2c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CRCdUTagannbjyy9gXyYoX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7522,
+      "cache_read_input_tokens": 41972,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7522
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014yCLqowCfYLcSxAYo9oNvF`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep \"step:5 \" /root/runs/cost-verify-agent-rl/exp029_episode_level.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "9872ab00-cb59-4746-9d00-1aec8d9db9a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CRCdUTagannbjyy9gXyYoX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7522,
+      "cache_read_input_tokens": 41972,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7522
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T23:12:20.134Z_
+
+<details><summary>↩ Tool result · `toolu_01SFfdVjNa5qoP2yzVWZXfee`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=905580)\\u001b[0m step:4 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.328125) - train/AlfworldSG/num_actions:np.float64(35.9765625) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9820996093750001) - train/AlfworldSG/action_is_valid:np.float64(0.6743354977955062) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.75) - train/AlfworldSG/manager_invalid_action:np.float64(0.017900390625000002) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(36.54761904761905) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9976884920634921) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6850392358557523) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.15275000000000002) - train/response_length:6337.953125 - actor/entropy:0.02663728967308998 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0035122649278491735) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(5.948590114712715e-06) - actor/pg_clipfrac:np.float64(0.0013008465043640172) - actor/ppo_kl:np.float64(0.0005999343145619562) - actor/pg_clipfrac_lower:np.float64(1.1024005459603359e-05) - actor/entropy_loss:np.float64(0.04744723754993174) - actor/grad_norm:np.float64(1.6516343615949154) - critic/score/mean:3.28125 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:3.28125 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.27962377667427063 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.27962377667427063 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.6201848983764648 - response_length/mean:11463.03125 - response_length/max:16382.0 - response_length/min:1264.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:11463.03125 - response_length_non_aborted/max:16382.0 - response_length_non_aborted/min:1264.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:0.0078125 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.0078125 - timing_s/gen:1036.8525437209755 - timing_s/collapse_metrics:1.5079975128173828e-05 - timing_s/filter:0.0023819319903850555 - timing_s/old_log_prob:69.7205015309155 - timing_s/ref:63.676626954227686 - timing_s/adv:0.00981074571609497 - timing_s/update_actor:445.7622770983726 - timing_s/step:1616.3571708276868 - timing_per_token_ms/update_actor:0.30380405849123276 - timing_per_token_ms/adv:6.686398824002259e-06 - timing_per_token_ms/gen:0.7066551875464984 - timing_per_token_ms/ref:0.04339805922037996 - perf/total_num_tokens:1467269 - perf/time_per_step:1616.3571708276868 - perf/throughput:453.88142747207803 - timing_s/train_step:1616.3571557477117 - timing_s/eval_step:0.0 - timing_s/train_total:6534.5714007765055 - timing_s/eval_total:0.0 - timing_s/collapse_total:34.031531512737274 - timing_s/collapse_first_turn_total:34.031374448910356 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:6575.354373693466\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "93179914-83bd-4e01-9240-f197ea2068a5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m step:4 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.328125) - train/AlfworldSG/num_actions:np.float64(35.9765625) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9820996093750001) - train/AlfworldSG/action_is_valid:np.float64(0.6743354977955062) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.75) - train/AlfworldSG/manager_invalid_action:np.float64(0.017900390625000002) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(36.54761904761905) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9976884920634921) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6850392358557523) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.15275000000000002) - train/response_length:6337.953125 - actor/entropy:0.02663728967308998 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0035122649278491735) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(5.948590114712715e-06) - actor/pg_clipfrac:np.float64(0.0013008465043640172) - actor/ppo_kl:np.float64(0.0005999343145619562) - actor/pg_clipfrac_lower:np.float64(1.1024005459603359e-05) - actor/entropy_loss:np.float64(0.04744723754993174) - actor/grad_norm:np.float64(1.6516343615949154) - critic/score/mean:3.28125 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:3.28125 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.27962377667427063 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.27962377667427063 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.6201848983764648 - response_length/mean:11463.03125 - response_length/max:16382.0 - response_length/min:1264.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:11463.03125 - response_length_non_aborted/max:16382.0 - response_length_non_aborted/min:1264.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:0.0078125 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.0078125 - timing_s/gen:1036.8525437209755 - timing_s/collapse_metrics:1.5079975128173828e-05 - timing_s/filter:0.0023819319903850555 - timing_s/old_log_prob:69.7205015309155 - timing_s/ref:63.676626954227686 - timing_s/adv:0.00981074571609497 - timing_s/update_actor:445.7622770983726 - timing_s/step:1616.3571708276868 - timing_per_token_ms/update_actor:0.30380405849123276 - timing_per_token_ms/adv:6.686398824002259e-06 - timing_per_token_ms/gen:0.7066551875464984 - timing_per_token_ms/ref:0.04339805922037996 - perf/total_num_tokens:1467269 - perf/time_per_step:1616.3571708276868 - perf/throughput:453.88142747207803 - timing_s/train_step:1616.3571557477117 - timing_s/eval_step:0.0 - timing_s/train_total:6534.5714007765055 - timing_s/eval_total:0.0 - timing_s/collapse_total:34.031531512737274 - timing_s/collapse_first_turn_total:34.031374448910356 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:6575.354373693466\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=905580)\\u001b[0m step:4 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.328125) - train/AlfworldSG/num_actions:np.float64(35.9765625) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9820996093750001) - train/AlfworldSG/action_is_valid:np.float64(0.6743354977955062) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.75) - train/AlfworldSG/manager_invalid_action:np.float64(0.017900390625000002) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(36.54761904761905) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9976884920634921) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6850392358557523) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.15275000000000002) - train/response_length:6337.953125 - actor/entropy:0.02663728967308998 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0035122649278491735) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(5.948590114712715e-06) - actor/pg_clipfrac:np.float64(0.0013008465043640172) - actor/ppo_kl:np.float64(0.0005999343145619562) - actor/pg_clipfrac_lower:np.float64(1.1024005459603359e-05) - actor/entropy_loss:np.float64(0.04744723754993174) - actor/grad_norm:np.float64(1.6516343615949154) - critic/score/mean:3.28125 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:3.28125 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.27962377667427063 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.27962377667427063 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.6201848983764648 - response_length/mean:11463.03125 - response_length/max:16382.0 - response_length/min:1264.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:11463.03125 - response_length_non_aborted/max:16382.0 - response_length_non_aborted/min:1264.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:0.0078125 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.0078125 - timing_s/gen:1036.8525437209755 - timing_s/collapse_metrics:1.5079975128173828e-05 - timing_s/filter:0.0023819319903850555 - timing_s/old_log_prob:69.7205015309155 - timing_s/ref:63.676626954227686 - timing_s/adv:0.00981074571609497 - timing_s/update_actor:445.7622770983726 - timing_s/step:1616.3571708276868 - timing_per_token_ms/update_actor:0.30380405849123276 - timing_per_token_ms/adv:6.686398824002259e-06 - timing_per_token_ms/gen:0.7066551875464984 - timing_per_token_ms/ref:0.04339805922037996 - perf/total_num_tokens:1467269 - perf/time_per_step:1616.3571708276868 - perf/throughput:453.88142747207803 - timing_s/train_step:1616.3571557477117 - timing_s/eval_step:0.0 - timing_s/train_total:6534.5714007765055 - timing_s/eval_total:0.0 - timing_s/collapse_total:34.031531512737274 - timing_s/collapse_first_turn_total:34.031374448910356 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:6575.354373693466\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T23:12:20.554Z_
+
+<details><summary>↩ Tool result · `toolu_014yCLqowCfYLcSxAYo9oNvF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=905580)\\u001b[0m step:5 - collapse/first_turn_num_total:128 - collapse/first_turn_num_valid:125 - collapse/first_turn_valid_rate:0.9765625 - collapse_first_turn_sample/mi_estimate:0.13002801686525345 - collapse_first_turn_sample/mi_upper_bound:2.70805020110221 - collapse_first_turn_sample/matched_log_prob_mean:-0.07415873557329178 - collapse_first_turn_sample/marginal_log_prob_mean:-0.20418675243854523 - collapse_first_turn_sample/mi_seq_estimate:0.7237863540649414 - collapse_first_turn_sample/retrieval_accuracy@2:0.5625 - collapse_first_turn_sample/retrieval_chance_level@2:0.2333333333333333 - collapse_first_turn_sample/retrieval_above_chance@2:0.3291666666666667 - collapse_first_turn_sample/retrieval_accuracy@4:0.765625 - collapse_first_turn_sample/retrieval_chance_level@4:0.4666666666666666 - collapse_first_turn_sample/retrieval_above_chance@4:0.2989583333333334 - collapse_first_turn_sample/retrieval_accuracy@8:0.875 - collapse_first_turn_sample/retrieval_chance_level@8:0.9333333333333332 - collapse_first_turn_sample/retrieval_above_chance@8:-0.05833333333333324 - collapse_first_turn_sample/retrieval_accuracy:0.453125 - collapse_first_turn_sample/retrieval_chance_level:0.11666666666666665 - collapse_first_turn_sample/retrieval_above_chance:0.33645833333333336 - collapse_first_turn_sample/conditional_entropy_est:0.07415873557329178 - collapse_first_turn_sample/reasoning_entropy_est:0.20418675243854523 - collapse_first_turn_sample/conditional_entropy_seq_est:2.181023597717285 - collapse_first_turn_sample/reasoning_entropy_seq_est:2.9048097133636475 - collapse_first_turn_sample/marginal_std:0.15449297428131104 - collapse_first_turn_sample/marginal_std_seq:1.6519771814346313 - collapse_first_turn_sample/mi_zscore:0.8362307548522949 - collapse_first_turn_sample/mi_zscore_seq:0.43786829710006714 - collapse_first_turn_sample/marginal_std_ema:0.284772989153862 - collapse_first_turn_sample/marginal_std_ema_seq:5.526448595523834 - collapse_first_turn_sample/mi_zscore_ema:0.45500457286834717 - collapse_first_turn_sample/mi_zscore_ema_seq:0.13094402849674225 - timing_s/collapse_first_turn_step:30.975676100701094 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1015625) - train/AlfworldSG/num_actions:np.float64(45.4609375) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9833854166666667) - train/AlfworldSG/action_is_valid:np.float64(0.5299893465909091) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.4375) - train/AlfworldSG/manager_invalid_action:np.float64(0.016614583333333335) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(45.818897637795274) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9911286089238845) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.5341624910522549) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.10126984126984129) - train/response_length:8385.2265625 - actor/entropy:0.02418254315853119 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0038334273267537355) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(-1.8167542293667793e-05) - actor/pg_clipfrac:np.float64(0.0015577685496737104) - actor/ppo_kl:np.float64(0.0019052136817947485) - actor/pg_clipfrac_lower:np.float64(8.20802591761094e-06) - actor/entropy_loss:np.float64(0.04434173442859901) - actor/grad_norm:np.float64(0.7427150448784232) - val-env/AlfworldSG/success:np.float64(0.25) - val-env/AlfworldSG/num_actions:np.float64(39.03125) - val-env/AlfworldSG/episodic_return:np.float64(0.0) - val-env/AlfworldSG/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/anchor_obs:np.float64(0.0) - val-env/AlfworldSG/raw_reward:np.float64(0.0) - val-env/AlfworldSG/pass@1:np.float64(0.25) - val-env/charts/avg_episode_return:np.float64(0.0) - val-env/AlfworldSG/non-zero/success:np.float64(1.0) - val-env/AlfworldSG/non-zero/num_actions:np.float64(39.03125) - val-env/AlfworldSG/non-zero/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/non-zero/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/non-zero/pass@1:np.float64(1.0) - val-env/response_length:np.float64(5777.1875) - val-core/unknown/reward/mean@32:np.float64(2.5) - val-aux/unknown/reward/std@32:np.float64(4.330127018922194) - val-aux/unknown/reward/best@2/mean:np.float64(4.2) - val-aux/unknown/reward/best@2/std:np.float64(4.935585071701226) - val-aux/unknown/reward/worst@2/mean:np.float64(0.6) - val-aux/unknown/reward/worst@2/std:np.float64(2.374868417407584) - val-aux/unknown/reward/best@4/mean:np.float64(6.69) - val-aux/unknown/reward/best@4/std:np.float64(4.7057305490221175) - val-aux/unknown/reward/worst@4/mean:np.float64(0.02) - val-aux/unknown/reward/worst@4/std:np.float64(0.4467661580737735) - val-aux/unknown/reward/best@8/mean:np.float64(8.97) - val-aux/unknown/reward/best@8/std:np.float64(3.039588787977743) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(9.88) - val-aux/unknown/reward/best@16/std:np.float64(1.0888526071052957) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.99) - val-core/unknown/reward/best@32/std:np.float64(0.31606961258558225) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05593867599964142 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.05593867599964142 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:14324.15625 - response_length/max:16379.0 - response_length/min:1413.0 - response_length/clip_ratio:0.015625 - response_length_non_aborted/mean:14324.15625 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1413.0 - response_length_non_aborted/clip_ratio:0.015625 - response/aborted_ratio:0.0 - prompt_length/mean:0.015625 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.015625 - timing_s/gen:1345.362777987495 - timing_s/collapse_metrics:30.975701972842216 - timing_s/filter:0.003918973729014397 - timing_s/old_log_prob:68.1950398646295 - timing_s/ref:62.72627100162208 - timing_s/adv:0.004521477967500687 - timing_s/update_actor:429.28117185644805 - timing_s/testing:212.49309626035392 - timing_s/save_checkpoint:18.362169835716486 - timing_s/step:2167.7636023629457 - timing_per_token_ms/update_actor:0.2341328479157543 - timing_per_token_ms/adv:2.466044594365014e-06 - timing_per_token_ms/gen:0.7337707380165799 - timing_per_token_ms/ref:0.034211331480562296 - perf/total_num_tokens:1833494 - perf/time_per_step:2167.7636023629457 - perf/throughput:422.89989508113825 - timing_s/train_step:1905.932634294033 - timing_s/eval_step:212.49309626035392 - timing_s/train_total:8440.504035070539 - timing_s/eval_total:212.49309626035392 - timing_s/collapse_total:65.00723348557949 - timing_s/collapse_first_turn_total:65.00705054961145 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:8745.191279888153\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "41a81aad-6824-4b97-a084-06d8cd9efea9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\u001b[36m(TaskRunner pid=905580)\\\\u001b[0m step:5 - collapse/first_turn_num_total:128 - collapse/first_turn_num_valid:125 - collapse/first_turn_valid_rate:0.9765625 - collapse_first_turn_sample/mi_estimate:0.13002801686525345 - collapse_first_turn_sample/mi_upper_bound:2.70805020110221 - collapse_first_turn_sample/matched_log_prob_mean:-0.07415873557329178 - collapse_first_turn_sample/marginal_log_prob_mean:-0.20418675243854523 - collapse_first_turn_sample/mi_seq_estimate:0.7237863540649414 - collapse_first_turn_sample/retrieval_accuracy@2:0.5625 - collapse_first_turn_sample/retrieval_chance_level@2:0.2333333333333333 - collapse_first_turn_sample/retrieval_above_chance@2:0.3291666666666667 - collapse_first_turn_sample/retrieval_accuracy@4:0.765625 - collapse_first_turn_sample/retrieval_chance_level@4:0.4666666666666666 - collapse_first_turn_sample/retrieval_above_chance@4:0.2989583333333334 - collapse_first_turn_sample/retrieval_accuracy@8:0.875 - collapse_first_turn_sample/retrieval_chance_level@8:0.9333333333333332 - collapse_first_turn_sample/retrieval_above_chance@8:-0.05833333333333324 - collapse_first_turn_sample/retrieval_accuracy:0.453125 - collapse_first_turn_sample/retrieval_chance_level:0.11666666666666665 - collapse_first_turn_sample/retrieval_above_chance:0.33645833333333336 - collapse_first_turn_sample/conditional_entropy_est:0.07415873557329178 - collapse_first_turn_sample/reasoning_entropy_est:0.20418675243854523 - collapse_first_turn_sample/conditional_entropy_seq_est:2.181023597717285 - collapse_first_turn_sample/reasoning_entropy_seq_est:2.9048097133636475 - collapse_first_turn_sample/marginal_std:0.15449297428131104 - collapse_first_turn_sample/marginal_std_seq:1.6519771814346313 - collapse_first_turn_sample/mi_zscore:0.8362307548522949 - collapse_first_turn_sample/mi_zscore_seq:0.43786829710006714 - collapse_first_turn_sample/marginal_std_ema:0.284772989153862 - collapse_first_turn_sample/marginal_std_ema_seq:5.526448595523834 - collapse_first_turn_sample/mi_zscore_ema:0.45500457286834717 - collapse_first_turn_sample/mi_zscore_ema_seq:0.13094402849674225 - timing_s/collapse_first_turn_step:30.975676100701094 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1015625) - train/AlfworldSG/num_actions:np.float64(45.4609375) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9833854166666667) - train/AlfworldSG/action_is_valid:np.float64(0.5299893465909091) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.4375) - train/AlfworldSG/manager_invalid_action:np.float64(0.016614583333333335) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(45.818897637795274) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9911286089238845) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.5341624910522549) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.10126984126984129) - train/response_length:8385.2265625 - actor/entropy:0.02418254315853119 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0038334273267537355) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(-1.8167542293667793e-05) - actor/pg_clipfrac:np.float64(0.0015577685496737104) - actor/ppo_kl:np.float64(0.0019052136817947485) - actor/pg_clipfrac_lower:np.float64(8.20802591761094e-06) - actor/entropy_loss:np.float64(0.04434173442859901) - actor/grad_norm:np.float64(0.7427150448784232) - val-env/AlfworldSG/success:np.float64(0.25) - val-env/AlfworldSG/num_actions:np.float64(39.03125) - val-env/AlfworldSG/episodic_return:np.float64(0.0) - val-env/AlfworldSG/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/anchor_obs:np.float64(0.0) - val-env/AlfworldSG/raw_reward:np.float64(0.0) - val-env/AlfworldSG/pass@1:np.float64(0.25) - val-env/charts/avg_episode_return:np.float64(0.0) - val-env/AlfworldSG/non-zero/success:np.float64(1.0) - val-env/AlfworldSG/non-zero/num_actions:np.float64(39.03125) - val-env/AlfworldSG/non-zero/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/non-zero/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/non-zero/pass@1:np.float64(1.0) - val-env/response_length:np.float64(5777.1875) - val-core/unknown/reward/mean@32:np.float64(2.5) - val-aux/unknown/reward/std@32:np.float64(4.330127018922194) - val-aux/unknown/reward/best@2/mean:np.float64(4.2) - val-aux/unknown/reward/best@2/std:np.float64(4.935585071701226) - val-aux/unknown/reward/worst@2/mean:np.float64(0.6) - val-aux/unknown/reward/worst@2/std:np.float64(2.374868417407584) - val-aux/unknown/reward/best@4/mean:np.float64(6.69) - val-aux/unknown/reward/best@4/std:np.float64(4.7057305490221175) - val-aux/unknown/reward/worst@4/mean:np.float64(0.02) - val-aux/unknown/reward/worst@4/std:np.float64(0.4467661580737735) - val-aux/unknown/reward/best@8/mean:np.float64(8.97) - val-aux/unknown/reward/best@8/std:np.float64(3.039588787977743) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(9.88) - val-aux/unknown/reward/best@16/std:np.float64(1.0888526071052957) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.99) - val-core/unknown/reward/best@32/std:np.float64(0.31606961258558225) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05593867599964142 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.05593867599964142 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:14324.15625 - response_length/max:16379.0 - response_length/min:1413.0 - response_length/clip_ratio:0.015625 - response_length_non_aborted/mean:14324.15625 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1413.0 - response_length_non_aborted/clip_ratio:0.015625 - response/aborted_ratio:0.0 - prompt_length/mean:0.015625 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.015625 - timing_s/gen:1345.362777987495 - timing_s/collapse_metrics:30.975701972842216 - timing_s/filter:0.003918973729014397 - timing_s/old_log_prob:68.1950398646295 - timing_s/ref:62.72627100162208 - timing_s/adv:0.004521477967500687 - timing_s/update_actor:429.28117185644805 - timing_s/testing:212.49309626035392 - timing_s/save_checkpoint:18.362169835716486 - timing_s/step:2167.7636023629457 - timing_per_token_ms/update_actor:0.2341328479157543 - timing_per_token_ms/adv:2.466044594365014e-06 - timing_per_token_ms/gen:0.7337707380165799 - timing_per_token_ms/ref:0.034211331480562296 - perf/total_num_tokens:1833494 - perf/time_per_step:2167.7636023629457 - perf/throughput:422.89989508113825 - timing_s/train_step:1905.932634294033 - timing_s/eval_step:212.49309626035392 - timing_s/train_total:8440.504035070539 - timing_s/eval_total:212.49309626035392 - timing_s/collapse_total:65.00723348557949 - timing_s/collapse_first_turn_total:65.00705054961145 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:8745.191279888153\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=905580)\\u001b[0m step:5 - collapse/first_turn_num_total:128 - collapse/first_turn_num_valid:125 - collapse/first_turn_valid_rate:0.9765625 - collapse_first_turn_sample/mi_estimate:0.13002801686525345 - collapse_first_turn_sample/mi_upper_bound:2.70805020110221 - collapse_first_turn_sample/matched_log_prob_mean:-0.07415873557329178 - collapse_first_turn_sample/marginal_log_prob_mean:-0.20418675243854523 - collapse_first_turn_sample/mi_seq_estimate:0.7237863540649414 - collapse_first_turn_sample/retrieval_accuracy@2:0.5625 - collapse_first_turn_sample/retrieval_chance_level@2:0.2333333333333333 - collapse_first_turn_sample/retrieval_above_chance@2:0.3291666666666667 - collapse_first_turn_sample/retrieval_accuracy@4:0.765625 - collapse_first_turn_sample/retrieval_chance_level@4:0.4666666666666666 - collapse_first_turn_sample/retrieval_above_chance@4:0.2989583333333334 - collapse_first_turn_sample/retrieval_accuracy@8:0.875 - collapse_first_turn_sample/retrieval_chance_level@8:0.9333333333333332 - collapse_first_turn_sample/retrieval_above_chance@8:-0.05833333333333324 - collapse_first_turn_sample/retrieval_accuracy:0.453125 - collapse_first_turn_sample/retrieval_chance_level:0.11666666666666665 - collapse_first_turn_sample/retrieval_above_chance:0.33645833333333336 - collapse_first_turn_sample/conditional_entropy_est:0.07415873557329178 - collapse_first_turn_sample/reasoning_entropy_est:0.20418675243854523 - collapse_first_turn_sample/conditional_entropy_seq_est:2.181023597717285 - collapse_first_turn_sample/reasoning_entropy_seq_est:2.9048097133636475 - collapse_first_turn_sample/marginal_std:0.15449297428131104 - collapse_first_turn_sample/marginal_std_seq:1.6519771814346313 - collapse_first_turn_sample/mi_zscore:0.8362307548522949 - collapse_first_turn_sample/mi_zscore_seq:0.43786829710006714 - collapse_first_turn_sample/marginal_std_ema:0.284772989153862 - collapse_first_turn_sample/marginal_std_ema_seq:5.526448595523834 - collapse_first_turn_sample/mi_zscore_ema:0.45500457286834717 - collapse_first_turn_sample/mi_zscore_ema_seq:0.13094402849674225 - timing_s/collapse_first_turn_step:30.975676100701094 - train/batch_size:128 - train/num_mini_batches:8 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1015625) - train/AlfworldSG/num_actions:np.float64(45.4609375) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9833854166666667) - train/AlfworldSG/action_is_valid:np.float64(0.5299893465909091) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.4375) - train/AlfworldSG/manager_invalid_action:np.float64(0.016614583333333335) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(45.818897637795274) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9911286089238845) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.5341624910522549) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.10126984126984129) - train/response_length:8385.2265625 - actor/entropy:0.02418254315853119 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0038334273267537355) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(-1.8167542293667793e-05) - actor/pg_clipfrac:np.float64(0.0015577685496737104) - actor/ppo_kl:np.float64(0.0019052136817947485) - actor/pg_clipfrac_lower:np.float64(8.20802591761094e-06) - actor/entropy_loss:np.float64(0.04434173442859901) - actor/grad_norm:np.float64(0.7427150448784232) - val-env/AlfworldSG/success:np.float64(0.25) - val-env/AlfworldSG/num_actions:np.float64(39.03125) - val-env/AlfworldSG/episodic_return:np.float64(0.0) - val-env/AlfworldSG/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/anchor_obs:np.float64(0.0) - val-env/AlfworldSG/raw_reward:np.float64(0.0) - val-env/AlfworldSG/pass@1:np.float64(0.25) - val-env/charts/avg_episode_return:np.float64(0.0) - val-env/AlfworldSG/non-zero/success:np.float64(1.0) - val-env/AlfworldSG/non-zero/num_actions:np.float64(39.03125) - val-env/AlfworldSG/non-zero/action_is_effective:np.float64(1.0) - val-env/AlfworldSG/non-zero/action_is_valid:np.float64(0.704375) - val-env/AlfworldSG/non-zero/pass@1:np.float64(1.0) - val-env/response_length:np.float64(5777.1875) - val-core/unknown/reward/mean@32:np.float64(2.5) - val-aux/unknown/reward/std@32:np.float64(4.330127018922194) - val-aux/unknown/reward/best@2/mean:np.float64(4.2) - val-aux/unknown/reward/best@2/std:np.float64(4.935585071701226) - val-aux/unknown/reward/worst@2/mean:np.float64(0.6) - val-aux/unknown/reward/worst@2/std:np.float64(2.374868417407584) - val-aux/unknown/reward/best@4/mean:np.float64(6.69) - val-aux/unknown/reward/best@4/std:np.float64(4.7057305490221175) - val-aux/unknown/reward/worst@4/mean:np.float64(0.02) - val-aux/unknown/reward/worst@4/std:np.float64(0.4467661580737735) - val-aux/unknown/reward/best@8/mean:np.float64(8.97) - val-aux/unknown/reward/best@8/std:np.float64(3.039588787977743) - val-aux/unknown/reward/worst@8/mean:np.float64(0.0) - val-aux/unknown/reward/worst@8/std:np.float64(0.0) - val-aux/unknown/reward/best@16/mean:np.float64(9.88) - val-aux/unknown/reward/best@16/std:np.float64(1.0888526071052957) - val-aux/unknown/reward/worst@16/mean:np.float64(0.0) - val-aux/unknown/reward/worst@16/std:np.float64(0.0) - val-core/unknown/reward/best@32/mean:np.float64(9.99) - val-core/unknown/reward/best@32/std:np.float64(0.31606961258558225) - val-aux/unknown/reward/worst@32/mean:np.float64(0.0) - val-aux/unknown/reward/worst@32/std:np.float64(0.0) - critic/score/mean:1.015625 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.015625 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.05593867599964142 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.2076144218444824 - critic/returns/mean:-0.05593867599964142 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.2076144218444824 - response_length/mean:14324.15625 - response_length/max:16379.0 - response_length/min:1413.0 - response_length/clip_ratio:0.015625 - response_length_non_aborted/mean:14324.15625 - response_length_non_aborted/max:16379.0 - response_length_non_aborted/min:1413.0 - response_length_non_aborted/clip_ratio:0.015625 - response/aborted_ratio:0.0 - prompt_length/mean:0.015625 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.015625 - timing_s/gen:1345.362777987495 - timing_s/collapse_metrics:30.975701972842216 - timing_s/filter:0.003918973729014397 - timing_s/old_log_prob:68.1950398646295 - timing_s/ref:62.72627100162208 - timing_s/adv:0.004521477967500687 - timing_s/update_actor:429.28117185644805 - timing_s/testing:212.49309626035392 - timing_s/save_checkpoint:18.362169835716486 - timing_s/step:2167.7636023629457 - timing_per_token_ms/update_actor:0.2341328479157543 - timing_per_token_ms/adv:2.466044594365014e-06 - timing_per_token_ms/gen:0.7337707380165799 - timing_per_token_ms/ref:0.034211331480562296 - perf/total_num_tokens:1833494 - perf/time_per_step:2167.7636023629457 - perf/throughput:422.89989508113825 - timing_s/train_step:1905.932634294033 - timing_s/eval_step:212.49309626035392 - timing_s/train_total:8440.504035070539 - timing_s/eval_total:212.49309626035392 - timing_s/collapse_total:65.00723348557949 - timing_s/collapse_first_turn_total:65.00705054961145 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:8745.191279888153\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me also check the step 0 val (initial eval) which I found earlier. Let me also check the disk space situation since I saw warnings about 95% full.
+
+Let me compile the metrics table:
+
+**Step 0 (initial val only):**
+- val success: 12.5%
+- val action_is_valid: 0.783
+- val pass@1: 12.5%
+- val-core/unknown/reward/mean@32: 1.25
+
+
+- val-core/unknown/reward/best@32/mean: 9.84
+
+**Step 1 (train):**
+- train success: 17.97%
+- train action_is_valid: 0.682
+- train pass@8: 56.25%
+- actor/entropy: 0.0278
+- actor/ppo_kl: 0.000289
+- actor/grad_norm: 1.459
+- train/response_length: 7112.4
+
+**Step 2 (train):**
+- train success: 10.16%
+- train action_is_valid: 0.573
+- train pass@8: 43.75%
+- actor/entropy: 0.0320
+- actor/ppo_kl: 0.000429
+- actor/grad_norm: 1.056
+- train/response_length: 5901.6
+
+**Step 3 (train):**
+- train success: 35.16%
+- train action_is_valid: 0.673
+- train pass@8: 68.75%
+- actor/entropy: 0.0230
+- actor/ppo_kl: 0.000345
+- actor/grad_norm: 1.488
+- train/response_length: 6064.9
+
+Looking at the training progression across these steps, I'm seeing some interesting patterns in how the model is performing. Step 2 shows a dip in success rate and action validity, but Step 3 bounces back significantly with the highest success rate at 35.16% and the best pass@8 score. The entropy is decreasing overall while KL divergence stays quite small, suggesting the policy is becoming more focused without diverging too much from the baseline.
+
+Step 4 continues the trend with even better pass@8 performance at 75%, though success drops slightly. The gradient norms are climbing, which could indicate the model is learning more aggressively. Then at Step 5, there's a notable shift—success plummets to 10.16% and action validity drops to 0.530, suggesting something went wrong during training. But the validation results show promise with a 25% success rate, which is encouraging despite the training metrics looking rough. Looking at the reward metrics more carefully, a mean of 2.5 across 32 episodes with a max reward of 10 translates to exactly 25% success rate—8 successful episodes out of 32—which clears both the C003 constraint requiring at least 16 episodes and the MVP threshold of 15%. I'm also noticing a concerning disk usage issue with /root/autodl-tmp nearly full at 95%, and there's a notable discrepancy between training response length metrics and total generation length, with the model pushing close to its maximum token limit at step 5.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "5b28473b-374b-41c6-ad58-23936e037368",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SoYA8rDZ4tTDpDbB9DJLBp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5255,
+      "cache_read_input_tokens": 49494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5255
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+数据全部提取完毕。
+
+## Exp029 完整 Metrics 表格
+
+### Train Metrics (Steps 1-5)
+
+| Metric | Step 1 | Step 2 | Step 3 | Step 4 | Step 5 |
+|--------|--------|--------|--------|--------|--------|
+| **success** | 17.97% | 10.16% | 35.16% | 32.81% | 10.16% |
+| **pass@8** | 56.25% | 43.75% | 68.75% | 75.00% | 43.75% |
+| **action_is_valid** | 0.682 | 0.573 | 0.673 | 0.674 | 0.530 |
+| **entropy** | 0.0278 | 0.0320 | 0.0230 | 0.0266 | 0.0242 |
+| **ppo_kl** | 0.000289 | 0.000429 | 0.000345 | 0.000600 | **0.00191** |
+| **grad_norm** | 1.459 | 1.056 | 1.488 | 1.652 | 0.743 |
+| **response_length** (train) | 7112 | 5902 | 6065 | 6338 | 8385 |
+| **response_length** (gen) | — | 12826 | 10823 | 11463 | 14324 |
+
+### Val Metrics (Step 0 = baseline, Step 5 = first checkpoint eval)
+
+| Metric | Step 0 (baseline) | Step 5 |
+|--------|-------------------|--------|
+| **success_rate** | 12.5% | **25.0%** |
+| **action_is_valid** | 0.783 | 0.704 |
+| **pass@1** | 12.5% | 25.0% |
+| **reward/mean@32** | 1.25 | 2.50 |
+| **reward/best@32** | 9.84 | 9.99 |
+| **response_length** | — | 5777 |
+| **episodes** | 32 | 32 |
+
+---
+
+## MVP 判定
+
+**Val success @ step 5 = 25% → PASS (阈值 ≥15%)**
+
+- 相对 baseline (12.5%) 翻倍，绝对提升 +12.5pp
+- 32 episodes 满足 C003 约束
+- pass@1 = 25% 一致确认
+
+### 关注点
+
+1. **KL 跳升**: step 5 ppo_kl = 0.00191 (前几步 ≤0.0006)，策略正在快速偏移
+2. **Train success 波动大**: step 3-4 达 ~33%，step 5 回落到 10.16%（高方差 + KL 相关）
+3. **磁盘告警**: `/root/autodl-tmp/tmp/ray/` 已 95% 满（剩余 ~8.5 GB / 250 GB），继续训练可能 OOM 磁盘
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "uuid": "cf1451ce-07ce-4112-a0a1-a6ed8524ed21",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SoYA8rDZ4tTDpDbB9DJLBp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5255,
+      "cache_read_input_tokens": 49494,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5255
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 45_
+
+数据全部提取完毕。
+
+## Exp029 完整 Metrics 表格
+
+### Train Metrics (Steps 1-5)
+
+| Metric | Step 1 | Step 2 | Step 3 | Step 4 | Step 5 |
+|--------|--------|--------|--------|--------|--------|
+| **success** | 17.97% | 10.16% | 35.16% | 32.81% | 10.16% |
+| **pass@8** | 56.25% | 43.75% | 68.75% | 75.00% | 43.75% |
+| **action_is_valid** | 0.682 | 0.573 | 0.673 | 0.674 | 0.530 |
+| **entropy** | 0.0278 | 0.0320 | 0.0230 | 0.0266 | 0.0242 |
+| **ppo_kl** | 0.000289 | 0.000429 | 0.000345 | 0.000600 | **0.00191** |
+| **grad_norm** | 1.459 | 1.056 | 1.488 | 1.652 | 0.743 |
+| **response_length** (train) | 7112 | 5902 | 6065 | 6338 | 8385 |
+| **response_length** (gen) | — | 12826 | 10823 | 11463 | 14324 |
+
+### Val Metrics (Step 0 = baseline, Step 5 = first checkpoint eval)
+
+| Metric | Step 0 (baseline) | Step 5 |
+|--------|-------------------|--------|
+| **success_rate** | 12.5% | **25.0%** |
+| **action_is_valid** | 0.783 | 0.704 |
+| **pass@1** | 12.5% | 25.0% |
+| **reward/mean@32** | 1.25 | 2.50 |
+| **reward/best@32** | 9.84 | 9.99 |
+| **response_length** | — | 5777 |
+| **episodes** | 32 | 32 |
+
+---
+
+## MVP 判定
+
+**Val success @ step 5 = 25% → PASS (阈值 ≥15%)**
+
+- 相对 baseline (12.5%) 翻倍，绝对提升 +12.5pp
+- 32 episodes 满足 C003 约束
+- pass@1 = 25% 一致确认
+
+### 关注点
+
+1. **KL 跳升**: step 5 ppo_kl = 0.00191 (前几步 ≤0.0006)，策略正在快速偏移
+2. **Train success 波动大**: step 3-4 达 ~33%，step 5 回落到 10.16%（高方差 + KL 相关）
+3. **磁盘告警**: `/root/autodl-tmp/tmp/ray/` 已 95% 满（剩余 ~8.5 GB / 250 GB），继续训练可能 OOM 磁盘
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 102234,
+  "duration_api_ms": 100757,
+  "num_turns": 16,
+  "stop_reason": "end_turn",
+  "session_id": "c6dc835a-5ead-44ba-bd01-1d738c91f207",
+  "total_cost_usd": 0.5048495,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 42908,
+    "cache_read_input_tokens": 217149,
+    "output_tokens": 5059,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 42908,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1999,
+        "cache_read_input_tokens": 49494,
+        "cache_creation_input_tokens": 5255,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 5255
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1480,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00157,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 5059,
+      "cacheReadInputTokens": 217149,
+      "cacheCreationInputTokens": 42908,
+      "webSearchRequests": 0,
+      "costUSD": 0.5032795000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "30fda9f7-9652-4545-ae00-d97327f38486"
+}
+```
+
+</details>
+
+---

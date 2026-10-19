@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "2069e017f267749ba179",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "ops scp checkpoints westd to bjb1",
+  "task_key": "worker_ops_scp_checkpoints_westd_to_bjb1_20260522T023208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp_checkpoints_westd_to_bjb1_20260522T023208.log",
+    "occurrence": 1,
+    "bytes": 465940,
+    "sha256": "beaa4146fed75657ef662df0e9d07bc15b0291a3d6e544d01ceb5fd413a02e9d"
+  },
+  "statistics": {
+    "messages": 445,
+    "user_turns": 0,
+    "tool_calls": 187,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 65,
+      "tool_call": 187,
+      "tool_result": 187,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 445,
+      "chunks": [
+        {
+          "path": "2069e017f267749ba179-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2069e017f267749ba179-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2069e017f267749ba179-part-0003.json",
+          "message_count": 85
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-scp-checkpoints-westd-to-bjb1.md"
+}

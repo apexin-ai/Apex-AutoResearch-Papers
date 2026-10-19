@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "070c7d7990da74da254e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp029 seed5 v2 oom",
+  "task_key": "worker_diagnose_exp029_seed5_v2_oom_20260521T120913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp029_seed5_v2_oom_20260521T120913_result.json",
+    "occurrence": 1,
+    "bytes": 1134,
+    "sha256": "56d7876f6825719ad3c94835c86005b601f8560f575969331a8a18d1b439edd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已收集足够信息。诊断结果：\n\n## exp029_seed5_v2 OOM 诊断报告\n\n**OOM 位置**：Step 12/15（73%→80%），`update_actor` 阶段的 `loss.backward()`（策略梯度反向传播），`dp_actor.py:469`。\n\n**Process 196655 身份**：seed5_v2 自己的 Ray worker（`ray::WorkerDict.actor_rollout_generate_sequences`），隶属 Ray session `session_2026-05-21_19-57-18`（raylet pid=190494）。不是 seed6 泄漏。seed5 主进程崩溃退出后，该 rollout worker 和 raylet 未被清理，仍占用 GPU 1 共 17.5 GiB。\n\n**GPU 0/1 当前状态**：\n| GPU | 显存占用 | 状态 |\n|-----|---------|------|\n| 0 | 0 MiB | 已释放（seed5 主进程退出），但 util 100% 为残留读数 |\n| 1 | 17,561 MiB | 被孤儿 Ray worker 196655 占用 |\n| 2,3 | 96 GiB each | seed6_v3 正常运行中 |\n\n**能否直接重试**：不能。需先杀掉 orphan Ray 进程（pid 196655 + raylet 190494 + head 189089）释放 GPU 1，然后才能重启 seed5。\n\n**建议操作**：\n```bash\nkill -9 196655 190494 189089   # 清理孤儿 Ray 进程树\n```\n清理后 GPU 0/1 即可复用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp029-seed5-v2-oom.md"
+}

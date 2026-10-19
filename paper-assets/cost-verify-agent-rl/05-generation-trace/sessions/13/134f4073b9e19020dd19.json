@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "134f4073b9e19020dd19",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analyze exp029 seed4 ood eval v2",
+  "task_key": "worker_analyze_exp029_seed4_ood_eval_v2_20260521T221757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp029_seed4_ood_eval_v2_20260521T221757_result.json",
+    "occurrence": 1,
+    "bytes": 841,
+    "sha256": "2401e257ad9dc64041a022e8c479667fb7f711f0c906b1853fff642e91fcc822"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/exp029_seed4_ood_eval_v2/report/exp029_seed4_ood_eval_v2_analysis.md`。\n\n## 结果\n\n**OOD success rate: 30.60% (41/134)**——目前所有 seed 中最高。\n\nCross-seed 对比：\n\n| Seed | OOD | 状态 |\n|------|-----|------|\n| SFT baseline | 5.97% | — |\n| Seed 3 | 10.45% | success |\n| Seed 1 | 23.88% | success |\n| Seed 5 step10 | 29.10% | OOM killed |\n| Seed 6 | 29.10% | success |\n| **Seed 4 step15** | **30.60%** | **collapse** |\n\n**Hypothesis 成立**。Collapse seed 不仅有 OOD 泛化，而且比所有正常 seed 都强。代价是 response_length 膨胀到 7212 tokens，action_is_valid 仅 63.67%——模型用更长的输出\"暴力搜索\"动作空间，虽然训练集上退化（pass@1=0.4375），但 OOD 场景下这种过度探索反而带来更好覆盖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp029-seed4-ood-eval-v2.md"
+}

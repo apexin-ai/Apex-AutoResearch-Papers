@@ -1,0 +1,16 @@
+{
+  "exp_id": "scienceworld_sft_bjb1_v2",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T22:59:19.201Z",
+    "updated_at": "2026-05-24T22:59:24.913Z",
+    "hypothesis": "SFT on ScienceWorld expert trajectories (3586 samples) teaches Qwen3-1.7B environment interaction format. Retry of scienceworld_sft_bjb1 with per_device_eval_batch_size=1 fix (v1 OOM at step 112 eval).",
+    "parent": "scienceworld_sft_bjb1"
+  },
+  "timestamp": "2026-05-24T22:59:25.273882+00:00",
+  "trigger": "update_registry"
+}

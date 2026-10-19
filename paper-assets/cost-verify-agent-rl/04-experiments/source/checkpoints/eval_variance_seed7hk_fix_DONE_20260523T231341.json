@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval_variance_seed7hk_fix",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T22:35:19.294Z",
+    "updated_at": "2026-05-23T23:13:41.274Z",
+    "hypothesis": "Quantify eval variance for seed7hk checkpoint (3 independent OOD evals at τ=0.4). Combined with seed200 data (std=1.29pp), provides 2-checkpoint evidence that eval noise is small relative to inter-seed gap.",
+    "spec": {
+      "command": "bash /root/cost-verify-agent-rl/run_seed7hk_fix.sh (config fixed: model_path → qwen_ symlink)",
+      "server": "bjb1-17606",
+      "gpu": "0",
+      "pid": "84851",
+      "data_path": "/root/cost-verify-agent-rl/data/alfworld",
+      "data_count": 134,
+      "model_name": "Qwen3-1.7B episode-level GRPO (seed7hk step5)",
+      "seed": "421,422,423",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen_exp029_seed7_high_kl_step5_hf",
+      "log_path": "/root/autodl-tmp/eval_variance_logs/seed7hk_fix_v4.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T23:13:38.783Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-23T23:13:41.274Z"
+  },
+  "timestamp": "2026-05-23T23:13:41.607757+00:00",
+  "trigger": "update_registry"
+}

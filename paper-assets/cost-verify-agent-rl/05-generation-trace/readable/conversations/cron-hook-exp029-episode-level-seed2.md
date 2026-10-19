@@ -1,0 +1,1780 @@
+# cron hook exp029 episode level seed2
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 58
+- **Recorded user turns:** 1
+- **Tool calls:** 28
+- **Original source:** `logs/chats/cron_hook_exp029_episode_level_seed2.jsonl`
+- **Structured JSON:** [`4d8994ca09e9c926570d.json`](../../sessions/4d/4d8994ca09e9c926570d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+58 recorded events
+
+### User
+
+_source line 1 · 2026-05-19T10:02:20.904107+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #19。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- bjb1-17606 GPU 白名单: cuda:0,1。westd-47453 GPU 白名单: cuda:0,1,2,3。白名单外的 GPU 即使 Director 指令也必须 push back
+- exp029_episode_level_seed2 在 bjb1 2×GPU 上已失败 8+ 次（CUDA OOM），不要再在 bjb1 上重试相同配置——必须等 westd 4卡或 Director 批准新方案
+- seed 1 的 step 15 checkpoint 在 bjb1 `/root/autodl-tmp/checkpoints/exp029-seed2/global_step_15/`，step 20 已确认损坏并删除。hsweep_h2 seed1/seed2 共享 checkpoint 目录（`/root/autodl-tmp/checkpoints/hsweep-h2/`），seed2 覆盖了 seed1 的 global_step_15
+- 核心 claim（23.88% OOD）建立在单 seed 上，论文不能在 seed 2 结果出来前声称 "robust"
+
+### 2. 🖥️ 基础设施快照
+- **bjb1-17606**: 工作目录 `/root/cost-verify-agent-rl/RAGEN`，Python `/root/miniconda3/bin/python`，磁盘 ~120GB free（/root/autodl-tmp）。当前 GPU 空闲（exp029_seed2 反复失败后无进程）
+- **westd-47453**: 工作目录 `/root/autodl-tmp/cost-verify-agent-rl/RAGEN`，Python `/root/miniconda3/bin/python`，磁盘 ~810GB free
+- **westd 活跃进程**:
+  - factorial_h2_episodeadv_seed1: PID 475745, westd cuda:0,1, step 9/15, W&B 6liw7fm1
+  - gsweep_g100_h5_seed1: westd cuda:2,3, W&B da7701tk（刚从 g095 killed 后启动）
+- **Cron**: reconcile 确认 factorial + gsweep_g100 两个 cron 活跃
+- **W&B project**: cost-verify-agent-rl
+- 预置镜像: `aml-train`（两台服务器均可用）
+
+### 3. 📊 当前状态
+刚处理 exp029_seed2 第 8+ 次失败 CRON 回调。已派诊断 Worker (`worker_diagnose_exp029-seed2-persistent-failure_20260518T172904`) 读取最新日志 `exp029_seed2_resume_step15_fixA.log`，**等待回调**。已向 Director 汇报持续故障并建议方案 A（等 westd GPU 释放后用 4 卡跑）。
+
+**Registry RUNNING**:
+- `factorial_h2_episodeadv_seed1` — Cell B 关键实验，step 9/15，KL 膨胀 1.77，step 10 val 是关键拐点
+- `gsweep_g100_h5_seed1` — γ=1.0 控制组，刚启动
+
+**Registry PENDING**:
+- `factorial_h2_episodeadv_seed2` — 等 Director 审批 + westd cuda:0,1 释放
+
+**等待中**:
+- 诊断 Worker 回调（exp029_seed2 持续失败根因）
+- Director 对 exp029_seed2 方案的决策（A/B/C 三选一）
+- factorial step 10 val cron 回调（最关键数据点）
+
+### 4. 📋 待办（条件触发式）
+- 诊断 Worker 回调到 → 读报告，更新 registry notes，如有新发现补充汇报 Director
+- Director 决策 exp029_seed2 方案 → 按决策执行（大概率方案 A 等 westd）
+- factorial cron 回调（step 10 val）→ 按 on-experiment-done 流程处理：更新 registry + 3-cell 分解比例 + 汇报 Director
+- factorial 完成（15/15）→ westd cuda:0,1 释放 → 立即提交 factorial_seed2（已 PENDING 等审批）或 exp029_seed2（取决于 Director 优先级）
+- gsweep_g100 完成 → westd cuda:2,3 释放 → 看 ROADMAP 下一个 gsweep 或其他实验
+- gsweep_g095 已确认 negative（step 5 collapsed, val=0%）→ 需向 Director 汇报（如果上一个 session 未汇报）
+
+### 5. 🎯 战略上下文
+- **核心 framing (D070)**: 3-cell 分解——information loss 89% (17.9pp) + sign misattribution 11% (2.2pp)。两者正交：info loss 限制学习上限，sign misattribution 是 collapse trigger
+- **P0 风险 (C3)**: 统计 power。核心 claim 全部单 seed。exp029_seed2 + factorial_seed2 是解决 C3 的唯一路径。exp029_seed2 持续失败是当前最大瓶颈
+- **决策链**: D062(放弃contrarian)→D067(catastrophic→fragility)→D068(OOD reeval 23.88%)→D069(GPU priority shift to seeds)→D070(3-cell分解)
+- **易错点**:
+  1. 不要在 bjb1 上再试 exp029_seed2 相同配置——已证明 2×GPU 不够。只有 Director 明确批准新方案才能重试
+  2. factorial step 10 val 是决定 Cell B 最终数值的关键——如果显著偏离 step 5 的 5.97%，3-cell 分解比例需要重算，paper_framing.md 需要更新
+  3. gsweep_g095 negative (collapsed) 是预期内的——γ=0.95 h=5 复现了 h-sweep 的 collapse pattern，不是坏消息
+  4. Worker 池 < 2 = 失职——诊断 Worker 回调后如果没有其他 CPU 任务，找文献调研/论文起草等并行铺开
+
+## 项目硬约束 (memory.md 节选)
+
+## M015: Ray 占 GPU 教训 (2026-05-19)
+
+**问题**：hsweep_h10 配置 GPU=2,3，但 Ray cluster idle worker 自动占用了 cuda:0,1 各 40GB，导致 westd 全部 4 GPU 被锁定。
+**规则**：所有训练启动必须显式设 `CUDA_VISIBLE_DEVICES`，不能让 Ray 自动占卡。
+
+## 可查的历史
+前 53 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-19T10:02:33.806164+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-19T10:02:33.886761+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 80
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-19T10:02:37.120731+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "limit": "0",
+  "filters": "{'status': 'RUNNING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "limit": "0",
+    "filters": "{'status': 'RUNNING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T10:02:37.601796+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T10:02:38.079212+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"7b_cell_a_h2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-19T07:48:29.054Z\", \"updated_at\": \"2026-05-19T09:12:23.155Z\", \"hypothesis\": \"7B (Qwen3-8B) Cell A: step-independent RL with h=2 from 80.6% SFT baseline. Tests whether information loss + sign misattribution mechanisms are scale-invariant. At 1.7B, Cell A collapsed to 0%/3.73%. If 8B Cell A also degrades (drop to &lt;70% or training instability/collapse), confirms the mechanisms are fundamental to step-independent RL regardless of model capacity. Core comparison: Cell A degradation vs Cell C stability, direction should match 1.7B findings. lr=5e-7 (conservative, strong baseline).\", \"parent\": \"7b_sft_v1\", \"notes\": \"D083: val_before_train=28.1% (h=2 windowing). 确认 information loss 在 8B 依然显著（SFT baseline 80.6% → h=2 window 只看到 28.1%）。监控 step 1 train metrics（collapse pattern）+ KL + grad_norm。\"}, \"hsweep_h20_seed1\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-18T18:04:42.684Z\", \"updated_at\": \"2026-05-19T09:12:21.238Z\", \"hypothesis\": \"h=20 with step_independent generation provides 20-step observation windows. Key data point for fig5 cliff figure: with h=10 and h=5 both collapsing, h=20 tests whether 20 steps of context is sufficient for recovery. If h=20 recovers (val > 0% at step 5+), the cliff is between h=10 and h=20. If still collapsed, the minimum viable context window is larger than 20 steps.\", \"parent\": \"hsweep_h10_seed1\", \"notes\": \"D084: step 4 耗时 5.66h，15步需85h。新计划：等 step 5 val（ETA ~22:00 UTC）出来后立即 kill。只需 step 5 val 这一个数据点做 cliff figure。Kill 后 bjb1 cuda:0,1 转 exp029_seed2 OOD eval。\"}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4946}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 958
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T10:02:38.079695+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-19T10:02:38.230919+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "cost-verify-agent-rl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T10:02:42.178767+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"hsweep_h20_seed1\", \"success\": true, \"actions\": [\"Job still running (pid=77613)\"]}, {\"exp_id\": \"7b_cell_a_h2\", \"success\": true, \"actions\": [\"Job still running (pid=849089)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 4576
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T10:02:42.229752+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\", \"content\": \"# Handover — 2026-05-19\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| 7b_cell_a_h2 | 7B (Qwen3-8B) Cell A: step-independent RL with h=2 from 80.6% SFT baseline. Tests whether information loss + sign misattribution mechanisms are scale-invariant. At 1.7B, Cell A collapsed to 0%/3.73%. If 8B Cell A also degrades (drop to &lt;70% or training instability/collapse), confirms the mechanisms are fundamental to step-independent RL regardless of model capacity. Core comparison: Cell A degradation vs Cell C stability, direction should match 1.7B findings. lr=5e-7 (conservative, strong baseline). | — | — | — |\\n| hsweep_h20_seed1 | h=20 with step_independent generation provides 20-step observation windows. Key data point for fig5 cliff figure: with h=10 and h=5 both collapsing, h=20 tests whether 20 steps of context is sufficient for recovery. If h=20 recovers (val > 0% at step 5+), the cliff is between h=10 and h=20. If still collapsed, the minimum viable context window is larger than 20 steps. | — | — | — |\\n\\n## 待处理\\n- exp029_seed2_ood_reeval_v4: Evaluate exp029_seed2 step 30 checkpoint (val peak 31.25%) on 134 OOD tasks (valid_unseen) for cross-seed OOD comparison. Paper table requires seed2 OOD number (seed1=23.88%). Previous v1/v2/v3 all crashed due to root partition overflow (M017), now fixed with TMPDIR redirect.（已分配 ? GPU:?，等待提交）\\n- exp028_prereq_zeroshot_instruct: Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\"SFT是毒药\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。（准备中）\\n- exp021_sft_ragen_format: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer> tag in
+…[truncated 4232 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 4150
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T10:02:42.230438+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\", \"content\": \"# cost-verify-agent-rl — Research Dashboard\\n\\n> 最后更新: 2026-05-19 02:53 UTC | 更新原因: D080 exp029_seed2 完成 + h=10 killed + tab3 完成 + 用户要求做全部条件性实验 + 7B/ScienceWorld 启动\\n\\n## 核心方向\\n诊断 LLM agent step-independent RL 训练失败的两个独立机制：information loss + sign misattribution。详见 paper_framing.md。\\n\\n**Claim 支撑强度：强**\\n- Cell A 崩溃/脆弱（两 seed），Cell B hard ceiling 0.75%（两 seed 完全一致），Cell C ~28-31%（两 seed）\\n- γ-sweep 全坍缩 (D075)，h=2/5/10 全失败 (D079)，h=20 有学习信号\\n- Sign misattribution 实证：per-sample 52% ≈ random (n=3000)，group 81.25% vs 理论 79.5%\\n\\n## 当前进展\\n- **核心实验基本完成**：factorial 双 seed + γ-sweep + exp029 双 seed + h-sweep（h=20 最后一个）\\n- **tab3 sign 分析完成**：实证确认 sign misattribution\\n- **用户指令：做全部条件性加分实验**（7B 验证 + ScienceWorld）\\n- **论文 Phase 1 完成**，Phase 2 进行中\\n\\n## Running / Active\\n| 任务 | server | GPU | 状态 | ETA |\\n|------|--------|-----|------|-----|\\n| hsweep_h20 | bjb1 | 0,1 | step ~3/15 | ~12:00 UTC |\\n| exp029_seed2 OOD eval | westd | 0,1 | running | ~30min |\\n| 7B prep (model/config) | — | CPU | Agent 调研中 | — |\\n| ScienceWorld 调研 | — | CPU | Agent 调研中 | — |\\n\\n## GPU 状态\\n- westd cuda:0,1: OOD eval（完成后空闲）\\n- westd cuda:2,3: **空闲**（等 7B 准备就绪后分配）\\n- bjb1 cuda:0,1: h=20\\n\\n## 近期任务\\n- [ ] exp029_seed2 OOD 134-task eval → 补论文表格\\n- [ ] h=20 step 5 val → cliff figure 最终数据点\\n- [ ] 7B 模型验证：Qwen3-7B Cell A vs Cell C\\n- [ ] ScienceWorld 环境适配（如可行）\\n- [ ] Paper Agent Phase 2: Results + 剩余图表\\n- [x] exp029_seed2 完成 (D080, val 28.1-31.25%) ✅\\n- [x] factorial_seed2 完成 (D078, val OOD 0.75% 跨 seed 一致) ✅\\n- [x] tab3 sign 分析完成 (52% per-sample, 81% group) ✅\\n- [x] h=10 killed (D079, 完全坍缩) ✅\\n\\n## 关键实验结果\\n| 实验 | OOD 134 | In-dist 32 | 意义 |\\n|------|---------|------------|------|\\n| exp029 seed1 (Cell C) | 23.88% | 28.1% | episode-level + full context |\\n| exp029 seed2 (Cell C) | **待 eval** | 31.25% peak | se
+…[truncated 1940 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 3999
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T10:02:56.337711+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "filters": "{'status': 'DONE'}",
+  "limit": "10",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "filters": "{'status': 'DONE'}",
+    "limit": "10",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T10:02:56.890815+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"7b_sft_eval_ood\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:39:26.088Z\", \"updated_at\": \"2026-05-19T07:43:55.586Z\", \"hypothesis\": \"Evaluate Qwen3-8B SFT checkpoint (7b_sft_v1, loss=0.0355, acc=98.56%) on ALFWorld OOD 134 tasks. Establishes 8B SFT baseline for subsequent RL experiments (Cell A vs Cell C). If success rate significantly higher than 1.7B SFT baseline (~6.25%), confirms model scale advantage for SFT; if similar, the 1.7B findings generalize.\", \"parent\": \"7b_sft_v1\", \"spec\": {\"command\": \"RAGEN eval val_only=true on ALFWorld OOD 134 tasks, Qwen3-8B SFT checkpoint-231\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\", \"cuda:3\"], \"model_name\": \"Qwen3-8B-SFT (checkpoint-231)\", \"data_path\": \"ALFWorld valid_unseen 134 tasks\", \"data_count\": 134, \"seed\": 42, \"checkpoint_source\": \"7b_sft_v1\", \"eval_data\": \"ALFWorld valid_unseen OOD 134 tasks\", \"wandb_run\": \"8v6iysv3\", \"pid\": 807986, \"log_path\": \"/root/autodl-tmp/logs/7b_sft_eval_ood.log\"}, \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.806, \"pass_at_1\": 0.806, \"num_actions\": 20.18, \"action_is_valid\": 0.963, \"action_is_effective\": 1, \"reward_mean_at_134\": 8.06, \"response_length\": 1987.9, \"best_at_2_mean\": 9.53, \"best_at_4_mean\": 9.98, \"best_at_8_mean\": 10, \"worst_at_2_mean\": 6.55, \"worst_at_4_mean\": 4.11, \"worst_at_8_mean\": 1.93}, \"notes\": \"Eval completed successfully. OOD 134 tasks success rate 80.6%. W&B data missing due to BrokenPipeError during wandb teardown (asyncio stream close), but all metrics logged to file. GPU cuda:2,3 released.\", \"checkpoint_path\": \"N/A (eval-only, source checkpoint from 7b_sft_v1)\", \"completed_at\": \"2026-05-19T07:43:55.586Z\"}, \"7b_sft_v1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T06:09:08.447Z\", \"updated_at\": \"2026-05-19T07:38:58.545Z\", \"hypothesis\"
+…[truncated 16286 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 553
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-19T10:02:57.041759+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "filters": "{'status': 'PENDING'}",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "filters": "{'status': 'PENDING'}",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T10:02:57.293386+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2418}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T10:03:22.143211+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "filters": "{'exp_id': 'factorial_h2_episodeadv_seed1'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "filters": "{'exp_id': 'factorial_h2_episodeadv_seed1'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T10:03:22.998797+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2578}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 855
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-19T10:03:23.199827+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T10:03:23.250696+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-19T10:03:28.476222+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-19T10:03:28.978845+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-19T10:03:28.979278+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "cost-verify-agent-rl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T10:03:29.432243+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [], \"actually_running_gpus\": [{\"server\": \"bjb1-17606\", \"gpu_id\": \"0\", \"exp_id\": \"hsweep_h20_seed1\"}, {\"server\": \"bjb1-17606\", \"gpu_id\": \"1\", \"exp_id\": \"hsweep_h20_seed1\"}, {\"server\": \"westd-47453\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"7b_cell_a_h2\"}, {\"server\": \"westd-47453\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"7b_cell_a_h2\"}, {\"server\": \"westd-47453\", \"gpu_id\": \"cuda:2\", \"exp_id\": \"7b_cell_a_h2\"}, {\"server\": \"westd-47453\", \"gpu_id\": \"cuda:3\", \"exp_id\": \"7b_cell_a_h2\"}], \"allocated_but_idle\": [], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"hsweep_h20_seed1\", \"gpus\": [\"0\", \"1\"], \"util_avg\": null}, {\"exp_id\": \"7b_cell_a_h2\", \"gpus\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 0 张, 实际跑 6 张 | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-19T10:03:29.432697+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "limit": "20",
+  "fields": "['status', 'conclusion', 'metrics', 'completed_at', 'hypothesis']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "limit": "20",
+    "fields": "['status', 'conclusion', 'metrics', 'completed_at', 'hypothesis']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T10:03:29.684069+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"7b_cell_a_h2\": {\"status\": \"RUNNING\", \"hypothesis\": \"7B (Qwen3-8B) Cell A: step-independent RL with h=2 from 80.6% SFT baseline. Tests whether information loss + sign misattribution mechanisms are scale-invariant. At 1.7B, Cell A collapsed to 0%/3.73%. If 8B Cell A also degrades (drop to &lt;70% or training instability/collapse), confirms the mechanisms are fundamental to step-independent RL regardless of model capacity. Core comparison: Cell A degradation vs Cell C stability, direction should match 1.7B findings. lr=5e-7 (conservative, strong baseline).\"}, \"hsweep_h20_seed1\": {\"status\": \"RUNNING\", \"hypothesis\": \"h=20 with step_independent generation provides 20-step observation windows. Key data point for fig5 cliff figure: with h=10 and h=5 both collapsing, h=20 tests whether 20 steps of context is sufficient for recovery. If h=20 recovers (val > 0% at step 5+), the cliff is between h=10 and h=20. If still collapsed, the minimum viable context window is larger than 20 steps.\", \"completed_at\": \"2026-05-18T18:38:43.732Z\"}, \"exp029_seed2_ood_reeval_v4\": {\"status\": \"ALLOCATED\", \"hypothesis\": \"Evaluate exp029_seed2 step 30 checkpoint (val peak 31.25%) on 134 OOD tasks (valid_unseen) for cross-seed OOD comparison. Paper table requires seed2 OOD number (seed1=23.88%). Previous v1/v2/v3 all crashed due to root partition overflow (M017), now fixed with TMPDIR redirect.\", \"conclusion\": \"failed\"}, \"7b_sft_eval_ood\": {\"status\": \"DONE\", \"hypothesis\": \"Evaluate Qwen3-8B SFT checkpoint (7b_sft_v1, loss=0.0355, acc=98.56%) on ALFWorld OOD 134 tasks. Establishes 8B SFT baseline for subsequent RL experiments (Cell A vs Cell C). If success rate significantly higher than 1.7B SFT baseline (~6.25%), confirms model scale advantage for SFT; if similar, the 1.7B findings generalize.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.806, \"pass_at_1\": 0.806, \"num_ac
+…[truncated 11470 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-19T10:04:04.174485+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T10:04:04.929005+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_52255ef8.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "Read",
+  "elapsed_ms": 754
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-19T10:04:04.929432+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__fetch_wandb_metrics",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__fetch_wandb_metrics",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T10:04:05.030314+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-19T10:04:08.946331+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T10:04:09.047302+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "Glob",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-19T10:04:12.963085+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-19T10:04:13.264591+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "Glob",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-19T10:04:16.427788+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-19T10:04:16.428435+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-19T10:04:33.787658+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-19T10:04:34.090022+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"7b_cell_a_h2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:48:29.054Z\", \"updated_at\": \"2026-05-19T09:12:23.155Z\", \"hypothesis\": \"7B (Qwen3-8B) Cell A: step-independent RL with h=2 from 80.6% SFT baseline. Tests whether information loss + sign misattribution mechanisms are scale-invariant. At 1.7B, Cell A collapsed to 0%/3.73%. If 8B Cell A also degrades (drop to &lt;70% or training instability/collapse), confirms the mechanisms are fundamental to step-independent RL regardless of model capacity. Core comparison: Cell A degradation vs Cell C stability, direction should match 1.7B findings. lr=5e-7 (conservative, strong baseline).\", \"parent\": \"7b_sft_v1\", \"spec\": {\"command\": \"python train.py --config-name _alfworld_8b_cell_a\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": 849089, \"log_path\": \"~/runs/cost-verify-agent-rl/7b_cell_a_h2.log\", \"submitted_at\": \"2026-05-19T08:01:29.531Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"Qwen3-8B-SFT (checkpoint-231)\", \"data_path\": \"ALFWorld train 140 games\", \"data_count\": 140, \"seed\": 42, \"checkpoint_source\": \"7b_sft_v1\", \"eval_data\": \"ALFWorld train 140 + val 32 (in-training eval)\", \"wandb_run\": \"irxgmlm2\", \"hyperparams\": {\"lr\": 5e-07, \"h\": 2, \"context_window_mode\": \"step_independent\", \"total_training_steps\": 15, \"n_gpus\": 4, \"gradient_checkpointing\": true, \"optimizer_offload\": true, \"enable_think\": false}}, \"notes\": \"D083: val_before_train=28.1% (h=2 windowing). 确认 information loss 在 8B 依然显著（SFT baseline 80.6% → h=2 window 只看到 28.1%）。监控 step 1 train metrics（collapse pattern）+ KL + grad_norm。\"}, \"hsweep_h20_seed1\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-18T18:04:42.684Z\", \"updated_at\": \"2026-05-19T09:12:21.238Z\
+…[truncated 2263 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 302
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-19T10:04:46.775463+00:00_
+
+called mcp__agent-ml-research__fetch_wandb_metrics
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__fetch_wandb_metrics</summary>
+
+```json
+{
+  "run_id": "qi8g4f86",
+  "metric_names": "['train/success_rate', 'val/success_rate', 'train/step', 'trainer/global_step', 'train/kl_loss', 'train/ppo_kl', 'train/grad_norm']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+  "tool_args": {
+    "run_id": "qi8g4f86",
+    "metric_names": "['train/success_rate', 'val/success_rate', 'train/step', 'trainer/global_step', 'train/kl_loss', 'train/ppo_kl', 'train/grad_norm']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-19T10:04:47.077363+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"W&B entity/project not configured. Set in config/projects/*.yaml\", \"metadata\": {\"elapsed_seconds\": 0}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-19T10:04:47.529525+00:00_
+
+called mcp__agent-ml-research__fetch_wandb_metrics
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__fetch_wandb_metrics</summary>
+
+```json
+{
+  "run_id": "irxgmlm2",
+  "metric_names": "['train/success_rate', 'val/success_rate', 'train/step', 'trainer/global_step', 'train/kl_loss', 'train/ppo_kl', 'train/grad_norm', 'val_before_train/success_rate']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+  "tool_args": {
+    "run_id": "irxgmlm2",
+    "metric_names": "['train/success_rate', 'val/success_rate', 'train/step', 'trainer/global_step', 'train/kl_loss', 'train/ppo_kl', 'train/grad_norm', 'val_before_train/success_rate']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-19T10:04:47.780934+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"W&B entity/project not configured. Set in config/projects/*.yaml\", \"metadata\": {\"elapsed_seconds\": 0}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-19T10:04:52.102367+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__load_project_config",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__load_project_config",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-19T10:04:52.203247+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-19T10:04:54.979323+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "cost-verify-agent-rl",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "cost-verify-agent-rl",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-19T10:04:55.030036+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"cost-verify-agent-rl\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_ids\": {\"bjb1-17606\": [\"cuda:0\", \"cuda:1\"], \"westd-47453\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"]}, \"project_path\": \"/root/cost-verify-agent-rl\", \"servers\": [{\"account\": \"root\", \"server\": \"bjb1-17606\"}, {\"account\": \"root\", \"server\": \"westd-47453\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-19T10:04:58.195892+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "cost-verify-agent-rl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-19T10:04:58.246580+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"cost-verify-agent-rl\", \"config\": {\"execution\": {\"gpu_ids\": {\"bjb1-17606\": [\"cuda:0\", \"cuda:1\"], \"westd-47453\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"]}, \"project_path\": \"/root/cost-verify-agent-rl\", \"servers\": [{\"account\": \"root\", \"server\": \"bjb1-17606\"}, {\"account\": \"root\", \"server\": \"westd-47453\"}]}, \"feishu\": {\"chat_id\": \"oc_4ebf0fb2d0159caa355a1a855f5ac59f\", \"operational_chat_id\": \"oc_733b284b383121720ce3d07c5c4a6bb2\", \"submission_chat_id\": \"oc_648eaf83d2b24d445764257cf6a55525\"}, \"project\": {\"created_at\": \"2026-05-13T17:31:30.051Z\", \"description\": \"Verify When It Matters: Behaviorally-Grounded Selective Verification for Interactive Agents\", \"name\": \"cost-verify-agent-rl\", \"phase\": \"research\", \"source_idea_id\": \"idea_009\"}, \"venue\": \"emnlp-2026\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-19T10:05:36.387203+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "monitor:hsweep_h20_and_7b_status",
+  "project": "cost-verify-agent-rl",
+  "task_prompt": "## 任务：检查两个 RUNNING 实验的当前进度\n\n### 实验 1: hsweep_h20_seed1（紧急 — 可能需要 kill）\n- **服务器**: bjb1-17606 (account: root)\n- **PID**: 77613\n- **日志**: /root/runs/cost-verify-agent-rl/hsweep_h20_seed1.log\n- **W&B run**: qi8g4f86, project=cost-verify-agent-rl\n- **背景**: h=20 实验，D084 计划等 step 5 val 出来后立即 kill。step 4 耗时 5.66h，step 5 val ETA 约 2026-05-18 22:00 UTC。现在远超该时间。\n- **检查项**:\n  1. SSH 到 bjb1，`tail -200 /root/runs/cost-verify-agent-rl/hsweep_h20_seed1.log` 查当前 step\n  2. 查 W&B `qi8g4f86` 的 train/success_rate, val/success_rate 历史（用 wandb API 或看日志）\n  3. 如果已经过了 step 5，记录 step 5 的 val/success_rate 和 train metrics\n  4. 检查 checkpoint 目录 `/root/autodl-tmp/checkpoints/hsweep-h20/` 有哪些 global_step_*\n\n### 实验 2: 7b_cell_a_h2（监控）\n- **服务器**: westd-47453 (account: root)\n- **PID**: 849089\n- **日志**: ~/runs/cost-verify-agent-rl/7b_cell_a_h2.log (root home dir)\n- **W&B run**: irxgmlm2, project=cost-verify-agent-rl\n- **背景**: Qwen3-8B Cell A (h=2 step-independent RL)，从 80.6% SFT baseline 开始。预期：如果 information loss + sign misattribution 机制与模型规模无关，8B 也会 collapse。val_before_train=28.1%。\n- **检查项**:\n  1. SSH 到 westd，`tail -200 ~/runs/cost-verify-agent-rl/7b_cell_a_h2.log`\n  2. 确认当前 step、train_success_rate、KL、grad_norm\n  3. 如果 step 1 已完成，记录 step 1 的所有 metrics\n\n### 输出要求\n写一份简洁的状态报告到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/monitor_status_20260519.md`，包含：\n- 每个实验的当前 step、关键 metrics\n- h=20: 是否已过 step 5？step 5 val 是多少？\n- 7b_cell_a: 当前 step、是否有 collapse 迹象？\n- 建议下一步操作\n\n完成后用 register_artifact 注册。",
+  "tool_groups": "['ssh', 'wandb', 'registry']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "monitor:hsweep_h20_and_7b_status",
+    "project": "cost-verify-agent-rl",
+    "task_prompt": "## 任务：检查两个 RUNNING 实验的当前进度\n\n### 实验 1: hsweep_h20_seed1（紧急 — 可能需要 kill）\n- **服务器**: bjb1-17606 (account: root)\n- **PID**: 77613\n- **日志**: /root/runs/cost-verify-agent-rl/hsweep_h20_seed1.log\n- **W&B run**: qi8g4f86, project=cost-verify-agent-rl\n- **背景**: h=20 实验，D084 计划等 step 5 val 出来后立即 kill。step 4 耗时 5.66h，step 5 val ETA 约 2026-05-18 22:00 UTC。现在远超该时间。\n- **检查项**:\n  1. SSH 到 bjb1，`tail -200 /root/runs/cost-verify-agent-rl/hsweep_h20_seed1.log` 查当前 step\n  2. 查 W&B `qi8g4f86` 的 train/success_rate, val/success_rate 历史（用 wandb API 或看日志）\n  3. 如果已经过了 step 5，记录 step 5 的 val/success_rate 和 train metrics\n  4. 检查 checkpoint 目录 `/root/autodl-tmp/checkpoints/hsweep-h20/` 有哪些 global_step_*\n\n### 实验 2: 7b_cell_a_h2（监控）\n- **服务器**: westd-47453 (account: root)\n- **PID**: 849089\n- **日志**: ~/runs/cost-verify-agent-rl/7b_cell_a_h2.log (root home dir)\n- **W&B run**: irxgmlm2, project=cost-verify-agent-rl\n- **背景**: Qwen3-8B Cell A (h=2 step-independent RL)，从 80.6% SFT baseline 开始。预期：如果 information loss + sign misattribution 机制与模型规模无关，8B 也会 collapse。val_before_train=28.1%。\n- **检查项**:\n  1. SSH 到 westd，`tail -200 ~/runs/cost-verify-agent-rl/7b_cell_a_h2.log`\n  2. 确认当前 step、train_success_rate、KL、grad_norm\n  3. 如果 step 1 已完成，记录 step 1 的所有 metrics\n\n### 输出要求\n写一份简洁的状态报告到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/monitor_status_20260519.md`，包含：\n- 每个实验的当前 step、关键 metrics\n- h=20: 是否已过 step 5？step 5 val 是多少？\n- 7b_cell_a: 当前 step、是否有 collapse 迹象？\n- 建议下一步操作\n\n完成后用 register_artifact 注册。",
+    "tool_groups": "['ssh', 'wandb', 'registry']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-19T10:05:49.858052+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_monitor_hsweep_h20_and_7b_status_20260519T100537\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/logs/workers/worker_monitor_hsweep_h20_and_7b_status_20260519T100537.log\", \"setup_data\": {}, \"message\": \"Worker worker_monitor_hsweep_h20_and_7b_status_20260519T100537 started. Use get_worker_status('worker_monitor_hsweep_h20_and_7b_status_20260519T100537') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 13470
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-19T10:05:50.310212+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "research:scienceworld-feasibility",
+  "project": "cost-verify-agent-rl",
+  "task_prompt": "## 任务：ScienceWorld 环境可行性调研\n\n### 背景\n当前项目 cost-verify-agent-rl 研究 LLM agent step-independent RL 训练的两个失败机制（information loss + sign misattribution）。核心实验在 ALFWorld 环境完成。现需评估 ScienceWorld 作为第二个环境的可行性，以支撑 \"环境无关\" (environment-agnostic) 的 claim。\n\nROADMAP 已将 ScienceWorld 列为\"条件性加分实验\"。\n\n### 调研内容\n\n1. **ScienceWorld 环境概述**:\n   - WebSearch 查找 ScienceWorld 论文和 GitHub repo\n   - 环境类型（文本交互式？observation/action 空间？）\n   - 任务复杂度和 episode 长度（平均多少步？）\n   - 与 ALFWorld 的相似性和差异\n\n2. **RL 训练适配性评估**:\n   - 是否有现成的 RL 训练框架支持 ScienceWorld？\n   - Reward 结构是什么（sparse/dense, binary/continuous）\n   - 是否能复用 RAGEN 框架（当前项目的训练框架）\n   - 适配工作量估算（需要改多少代码？）\n\n3. **已有 LLM agent 在 ScienceWorld 的 baseline**:\n   - 搜索近 1-2 年用 LLM 在 ScienceWorld 上的工作\n   - 记录 baseline 数字（success rate, 用的模型, 方法）\n   - 特别关注：是否有人做过 RL fine-tuning on ScienceWorld\n\n4. **可行性判断**:\n   - 适配 RAGEN 框架需要多久（估算）\n   - 能否在 1-2 周内完成从适配到实验结果\n   - 风险评估（什么可能 block？）\n\n### 输出\n写调研报告到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_20260519.md`\n\n结构：\n1. 环境概述（200 字）\n2. RL 适配性（包含 RAGEN 兼容性分析）\n3. 已有 baseline（表格）\n4. 可行性结论 + 风险 + 工期估算\n5. 建议下一步\n\n完成后用 register_artifact 注册。",
+  "tool_groups": "['knowledge']",
+  "tools": "['WebSearch', 'WebFetch', 'register_artifact']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "research:scienceworld-feasibility",
+    "project": "cost-verify-agent-rl",
+    "task_prompt": "## 任务：ScienceWorld 环境可行性调研\n\n### 背景\n当前项目 cost-verify-agent-rl 研究 LLM agent step-independent RL 训练的两个失败机制（information loss + sign misattribution）。核心实验在 ALFWorld 环境完成。现需评估 ScienceWorld 作为第二个环境的可行性，以支撑 \"环境无关\" (environment-agnostic) 的 claim。\n\nROADMAP 已将 ScienceWorld 列为\"条件性加分实验\"。\n\n### 调研内容\n\n1. **ScienceWorld 环境概述**:\n   - WebSearch 查找 ScienceWorld 论文和 GitHub repo\n   - 环境类型（文本交互式？observation/action 空间？）\n   - 任务复杂度和 episode 长度（平均多少步？）\n   - 与 ALFWorld 的相似性和差异\n\n2. **RL 训练适配性评估**:\n   - 是否有现成的 RL 训练框架支持 ScienceWorld？\n   - Reward 结构是什么（sparse/dense, binary/continuous）\n   - 是否能复用 RAGEN 框架（当前项目的训练框架）\n   - 适配工作量估算（需要改多少代码？）\n\n3. **已有 LLM agent 在 ScienceWorld 的 baseline**:\n   - 搜索近 1-2 年用 LLM 在 ScienceWorld 上的工作\n   - 记录 baseline 数字（success rate, 用的模型, 方法）\n   - 特别关注：是否有人做过 RL fine-tuning on ScienceWorld\n\n4. **可行性判断**:\n   - 适配 RAGEN 框架需要多久（估算）\n   - 能否在 1-2 周内完成从适配到实验结果\n   - 风险评估（什么可能 block？）\n\n### 输出\n写调研报告到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/scienceworld_feasibility_20260519.md`\n\n结构：\n1. 环境概述（200 字）\n2. RL 适配性（包含 RAGEN 兼容性分析）\n3. 已有 baseline（表格）\n4. 可行性结论 + 风险 + 工期估算\n5. 建议下一步\n\n完成后用 register_artifact 注册。",
+    "tool_groups": "['knowledge']",
+    "tools": "['WebSearch', 'WebFetch', 'register_artifact']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-19T10:05:52.922309+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_scienceworld-feasibility_20260519T100550\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/logs/workers/worker_research_scienceworld-feasibility_20260519T100550.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_scienceworld-feasibility_20260519T100550 started. Use get_worker_status('worker_research_scienceworld-feasibility_20260519T100550') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2612
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-19T10:06:28.584642+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 6/6 全占 | Worker 2 (GPU 0 / CPU 2) | 磁盘: 未检\n\nSession #19 初始化完成，状态同步：\n\n**RUNNING (2)**:\n1. `hsweep_h20_seed1` — bjb1 cuda:0,1, W&B qi8g4f86。D084 计划 step 5 val 后立即 kill。提交于 05-18 19:10 UTC，step 4 耗时 5.66h，step 5 val ETA 约 05-18 22:00 UTC — 现已远超该时间。已派 Worker SSH 确认当前 step。若 step 5 val 已出，按 D084 执行 kill，bjb1 转 exp029_seed2 OOD eval。\n2. `7b_cell_a_h2` — westd cuda:0,1,2,3 (全占), W&B irxgmlm2。Qwen3-8B Cell A (h=2 step-independent)，从 80.6% SFT baseline 开始，val_before_train=28.1%。Worker 同时在查 step 1 进度。\n\n**待处理**:\n- `exp029_seed2_ood_reeval_v4`: ALLOCATED 但 conclusion=failed（状态不一致）。需 bjb1 GPU 释放后重新提交。这是论文表格缺失的最后一个关键数据（seed2 OOD，seed1=23.88%）\n- ScienceWorld 可行性调研 Worker 已启动\n\n**与 handoff 的差异**:\nhandoff 提到 factorial_seed1 + gsweep_g100 在跑，实际它们已在前几个 loop 完成。当前跑的是 7b_cell_a（新实验）和 h=20（继续）。\n\n**下一步**:\n1. 等监控 Worker 回调 → h=20 step 5 val 确认后 kill + 立即在 bjb1 提交 exp029_seed2 OOD eval\n2. 持续监控 7b_cell_a step 1 collapse pattern\n3. ScienceWorld 调研完成后汇报可行性",
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 6/6 全占 | Worker 2 (GPU 0 / CPU 2) | 磁盘: 未检\n\nSession #19 初始化完成，状态同步：\n\n**RUNNING (2)**:\n1. `hsweep_h20_seed1` — bjb1 cuda:0,1, W&B qi8g4f86。D084 计划 step 5 val 后立即 kill。提交于 05-18 19:10 UTC，step 4 耗时 5.66h，step 5 val ETA 约 05-18 22:00 UTC — 现已远超该时间。已派 Worker SSH 确认当前 step。若 step 5 val 已出，按 D084 执行 kill，bjb1 转 exp029_seed2 OOD eval。\n2. `7b_cell_a_h2` — westd cuda:0,1,2,3 (全占), W&B irxgmlm2。Qwen3-8B Cell A (h=2 step-independent)，从 80.6% SFT baseline 开始，val_before_train=28.1%。Worker 同时在查 step 1 进度。\n\n**待处理**:\n- `exp029_seed2_ood_reeval_v4`: ALLOCATED 但 conclusion=failed（状态不一致）。需 bjb1 GPU 释放后重新提交。这是论文表格缺失的最后一个关键数据（seed2 OOD，seed1=23.88%）\n- ScienceWorld 可行性调研 Worker 已启动\n\n**与 handoff 的差异**:\nhandoff 提到 factorial_seed1 + gsweep_g100 在跑，实际它们已在前几个 loop 完成。当前跑的是 7b_cell_a（新实验）和 h=20（继续）。\n\n**下一步**:\n1. 等监控 Worker 回调 → h=20 step 5 val 确认后 kill + 立即在 bjb1 提交 exp029_seed2 OOD eval\n2. 持续监控 7b_cell_a step 1 collapse pattern\n3. ScienceWorld 调研完成后汇报可行性",
+    "project": "cost-verify-agent-rl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-19T10:06:32.858359+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 4273
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-19T10:06:46.440742+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp029_seed2_ood_reeval_v4",
+  "field": "status",
+  "value": "DONE",
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp029_seed2_ood_reeval_v4",
+    "field": "status",
+    "value": "DONE",
+    "project": "cost-verify-agent-rl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-19T10:06:47.353199+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp029_seed2_ood_reeval_v4\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:39:29.323Z\", \"updated_at\": \"2026-05-19T10:06:46.679Z\", \"hypothesis\": \"Evaluate exp029_seed2 step 30 checkpoint (val peak 31.25%) on 134 OOD tasks (valid_unseen) for cross-seed OOD comparison. Paper table requires seed2 OOD number (seed1=23.88%). Previous v1/v2/v3 all crashed due to root partition overflow (M017), now fixed with TMPDIR redirect.\", \"parent\": \"exp029_seed2_westd_resume\", \"spec\": {\"command\": \"bash -c \\\"export TMPDIR=/root/autodl-tmp/tmp && mkdir -p $TMPDIR && export RAY_TMPDIR=/root/autodl-tmp/ray_tmp && mkdir -p $RAY_TMPDIR && export TMUX_TMPDIR=/root/autodl-tmp/tmux && mkdir -p $TMUX_TMPDIR && export WANDB_DIR=/root/autodl-tmp/wandb && export WANDB_TMPDIR=/root/autodl-tmp/tmp && export WANDB_PROJECT=cost-verify-agent-rl && export CUDA_VISIBLE_DEVICES=0,1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && python -m verl.trainer.main_ppo --config-path /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config --config-name _alfworld_exp029_seed2_reeval_ood_v4\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"828607\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed2_ood_reeval_v4.log\", \"submitted_at\": \"2026-05-19T07:46:33.081Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 8413.6, \"gpu_hours\": 4.67}, \"notes\": \"D083: Worker 取消，OOD eval 延迟到 bjb1（h=20 完成后）。westd 4 GPU 优先给 7B Cell A RL。\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-19T10:06:46.679Z\"}, \"hint\": \"💡 建议将故障原因写入 memory.md（如何避免再犯）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8887}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 912
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-19T10:06:52.273741+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp029_seed2_ood_reeval_v4",
+  "field": "notes",
+  "value": "v4 在 westd 提交后被取消——westd 全部 4 GPU 转给 7B Cell A。exp029_seed2 OOD eval 改在 bjb1 执行（h=20 kill 后释放 cuda:0,1）。需创建 v5。",
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp029_seed2_ood_reeval_v4",
+    "field": "notes",
+    "value": "v4 在 westd 提交后被取消——westd 全部 4 GPU 转给 7B Cell A。exp029_seed2 OOD eval 改在 bjb1 执行（h=20 kill 后释放 cuda:0,1）。需创建 v5。",
+    "project": "cost-verify-agent-rl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-19T10:06:52.730058+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp029_seed2_ood_reeval_v4\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T07:39:29.323Z\", \"updated_at\": \"2026-05-19T10:06:52.497Z\", \"hypothesis\": \"Evaluate exp029_seed2 step 30 checkpoint (val peak 31.25%) on 134 OOD tasks (valid_unseen) for cross-seed OOD comparison. Paper table requires seed2 OOD number (seed1=23.88%). Previous v1/v2/v3 all crashed due to root partition overflow (M017), now fixed with TMPDIR redirect.\", \"parent\": \"exp029_seed2_westd_resume\", \"spec\": {\"command\": \"bash -c \\\"export TMPDIR=/root/autodl-tmp/tmp && mkdir -p $TMPDIR && export RAY_TMPDIR=/root/autodl-tmp/ray_tmp && mkdir -p $RAY_TMPDIR && export TMUX_TMPDIR=/root/autodl-tmp/tmux && mkdir -p $TMUX_TMPDIR && export WANDB_DIR=/root/autodl-tmp/wandb && export WANDB_TMPDIR=/root/autodl-tmp/tmp && export WANDB_PROJECT=cost-verify-agent-rl && export CUDA_VISIBLE_DEVICES=0,1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && python -m verl.trainer.main_ppo --config-path /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config --config-name _alfworld_exp029_seed2_reeval_ood_v4\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"828607\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed2_ood_reeval_v4.log\", \"submitted_at\": \"2026-05-19T07:46:33.081Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 8413.6, \"gpu_hours\": 4.67}, \"notes\": \"v4 在 westd 提交后被取消——westd 全部 4 GPU 转给 7B Cell A。exp029_seed2 OOD eval 改在 bjb1 执行（h=20 kill 后释放 cuda:0,1）。需创建 v5。\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-19T10:06:46.679Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4387}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp029_episode_level_seed2",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 456
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-19T10:07:06.336107+00:00_
+
+Session #19 初始化完成。当前状态：
+
+**RUNNING 实验 (2)**:
+- `hsweep_h20_seed1` — bjb1 cuda:0,1, 已运行 ~15h, step 5 val 应已出（Worker 确认中）
+- `7b_cell_a_h2` — westd cuda:0,1,2,3, 8B Cell A, Worker 检查 step 1 进度
+
+**Worker 池 (2)**:
+- 监控 Worker: SSH 查两实验进度
+- ScienceWorld 调研 Worker: 环境可行性评估
+
+**已处理**:
+- Registry 同步完成，reconcile 确认 2 个 cron 活跃
+- `exp029_seed2_ood_reeval_v4` 状态修复（ALLOCATED→DONE/failed，需创建 v5 在 bjb1）
+- Director 已汇报
+
+**等待回调**:
+- 监控 Worker → 确认 h=20 step 5 val → kill + 提交 exp029_seed2 OOD eval v5 到 bjb1
+- ScienceWorld Worker → 可行性结论 → 汇报 Director
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp029_episode_level_seed2"
+}
+```
+
+</details>
+
+---

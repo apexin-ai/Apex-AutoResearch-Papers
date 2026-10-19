@@ -1,0 +1,102 @@
+{
+  "exp_id": "8b_cell_c_episode_v9d",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 3,
+    "created_at": "2026-05-19T23:13:25.570Z",
+    "updated_at": "2026-05-20T09:32:14.894Z",
+    "hypothesis": "FSDP2 + CPUOffloadPolicy 8B Cell C episode-level GRPO。v9c 证明训练有效（2步 success 40%→64%），但 step 3 因 max_prompt_length==max_model_len 溢出。v9d 修复：max_prompt_length 16384→15360，留 1024 token headroom。从头训练（无 checkpoint）。",
+    "parent": "8b_cell_c_episode_v9c",
+    "reproduce": {
+      "finished_at": "2026-05-20T07:55:47.277Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (SIGHUP) at step 7/30. Training was healthy: train_success 91.4%, entropy 0.047, disk 91GB. Not algorithmic — signal kill. 3rd operational crash (disk full → deleted model → SIGHUP). Worker dispatched to diagnose + restart.",
+    "completed_at": "2026-05-20T02:20:48.275Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T02:20:51.818939+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T05:13:00.335716+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T07:55:52.509825+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "metrics": {
+          "step": 7,
+          "steps_total": 30,
+          "step_time_s": 1300,
+          "eta_hours": 8,
+          "train_success_step6": 0.852,
+          "train_success_step7": 0.914,
+          "pass_at_8": 1,
+          "entropy_step7": 0.0473,
+          "kl_step7": -0.034,
+          "grad_norm_step7": 0.573,
+          "pg_loss_step7": 0.00096,
+          "disk_available_gb": 91,
+          "disk_risk": "step 5 ckpt still 92GB (pre-config-change). step 10 ckpt must be ~33GB or disk crash. Need verification.",
+          "wandb_run_id": "4x8hludk",
+          "gpu_util": "75%/61%/82%/100%",
+          "gpu_mem_gb": "24/98 per card"
+        },
+        "notes": "SIGHUP 诊断 (2026-05-20): 无 EXIT_CODE=129。v9d 实际到达 step 10（checkpoint 存在 92GB），之前 metrics 仅更新到 step 7。v9c 根因: vLLM prompt 16384 = max_model_len 溢出 (EXIT_CODE=1)。v9d 已重启 (15:56 UTC)，从 step 10 恢复，wandb: aeml21w9。SFT checkpoint 通过 symlink→Qwen3-8B 修复。剩余 20 步。风险: prompt 长度崩溃仍可能重现。"
+      }
+    },
+    "notes": "SIGHUP 诊断 (2026-05-20): 无 EXIT_CODE=129。v9d 实际到达 step 10（checkpoint 存在 92GB），之前 metrics 仅更新到 step 7。v9c 根因: vLLM prompt 16384 = max_model_len 溢出 (EXIT_CODE=1)。v9d 已重启 (15:56 UTC)，从 step 10 恢复，wandb: aeml21w9。SFT checkpoint 通过 symlink→Qwen3-8B 修复。剩余 20 步。风险: prompt 长度崩溃仍可能重现。",
+    "spec": {
+      "command": "bash -c \"ln -sf /root/autodl-tmp/models/Qwen3-8B /root/autodl-tmp/checkpoints/qwen3_8b_sft_v1/checkpoint-231 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && export WANDB_PROJECT=cost-verify-agent-rl && python train.py --config-name _alfworld_8b_cell_c_v9\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "652262",
+      "data_path": "/root/autodl-tmp/data/alfworld/train/",
+      "data_count": 8810,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "log_path": "/root/runs/cost-verify-agent-rl/8b_cell_c_episode_v9d.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/8b-cell-c-v9/",
+      "checkpoint_source": "step 10 checkpoint + Qwen3-8B base model symlink",
+      "eval_data": "N/A - training experiment",
+      "save_contents": [
+        "model",
+        "extra"
+      ],
+      "note": "6th start: resume from step 10 with fixed save_contents yaml (actor_rollout_ref.actor.checkpoint)."
+    },
+    "metrics": {
+      "step": 15,
+      "steps_total": 30,
+      "stopped_reason": "reward_saturation_and_nccl_hang",
+      "train_success_step12": 1,
+      "pg_loss_step12": 0,
+      "advantage_step12": 0,
+      "val_before_train_step10": 0.96875,
+      "train_success_step7": 0.914,
+      "train_success_step11": 0.9375,
+      "effective_final_step": 10,
+      "wandb_run_id": "aeml21w9",
+      "note": "Reward saturated at step 12 (100% success, zero gradients). NCCL hang at step 15. Step 10 checkpoint is effective final model."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T09:32:15.115920+00:00",
+  "trigger": "update_registry"
+}

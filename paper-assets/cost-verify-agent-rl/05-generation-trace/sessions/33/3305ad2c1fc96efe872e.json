@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3305ad2c1fc96efe872e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp028a director corrections",
+  "task_key": "worker_code_exp028a_director_corrections_20260515T204310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp028a_director_corrections_20260515T204310_result.json",
+    "occurrence": 1,
+    "bytes": 1481,
+    "sha256": "565bb0dd707a79e37c030d9595bc1cd6307c6dbdfcbbedc4d5e866c8fad51285"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修正完成。产出总结：\n\n## 修正执行报告\n\n### 修正 1: 删除 exp028_gigpo 配置 ✅\n- `_alfworld_exp028_gigpo.yaml` → `_alfworld_exp028_gigpo.yaml.blocked`\n\n### 修正 2: 使用 Qwen3-1.7B ✅\n- model_path 改为 `/root/cost-verify-agent-rl/models/Qwen3-1.7B`（本地已验证存在）\n- 涉及文件：exp028a、exp028b、prereq_zeroshot 三个 config + 三个启动脚本\n\n### 修正 3: invalid_action_penalty ✅\n- **代码已存在完整链路**：`env.py` 检查 `action in admissible_commands` → `ctx_manager.py` 传递 `is_action_valid` → `step_rewards.py` 应用 penalty → `agent_trainer.py` 汇入 GRPO advantage\n- 在 `algorithm` 配置段显式添加 `invalid_action_penalty_coef: 0.1`\n- `format_penalty` 改回 0（与 exp027 一致，避免 gradient hijacking）\n- 单元测试 5/5 通过，验证了：\n  - 基本 penalty 逻辑\n  - 全失败 group 中不同 invalid 数量产生不同 return（方差 > 0 → 有梯度信号）\n  - coef=0 时禁用\n  - 成功 + penalty 的叠加正确\n\n### 修正 4: mini_batch_size 保持 32 ✅\n- exp028a: 32（已一致）\n- exp028b: 256 → 32\n\n### 修正 5: 严格最小变更 ✅\nexp028a vs exp027 diff 仅有：\n- `model_path`: SFT checkpoint → Qwen3-1.7B\n- `algorithm.invalid_action_penalty_coef: 0.1`（显式声明）\n- 实验名/路径（预期差异）\n\nLR(5e-7)、env_groups(8)、steps(50)、mini_batch(32)、save_freq(5) 均保持不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp028a-director-corrections.md"
+}

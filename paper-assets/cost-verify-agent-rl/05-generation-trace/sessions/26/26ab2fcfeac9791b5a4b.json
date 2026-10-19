@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26ab2fcfeac9791b5a4b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh verify seed100 eval config and prep seed200v4",
+  "task_key": "worker_ssh_verify_seed100_eval_config_and_prep_seed200v4_20260522T204403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_seed100_eval_config_and_prep_seed200v4_20260522T204403_result.json",
+    "occurrence": 1,
+    "bytes": 1289,
+    "sha256": "3ee1b661346c6164df93cb5396a150f1399f4e778e79c45cd8d258a92699432c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。\n\n---\n\n## 汇报\n\n### Part 1: westd seed100 OOD eval runtime config\n\n从 log config dump 确认的关键参数：\n\n| 参数 | 实际值 | 状态 |\n|------|--------|------|\n| `enable_think` | `True` | ✅ |\n| `enable_response_mask` | `False` | ✅ |\n| `val_only` | `True` | ✅ |\n| `temperature` (val_kwargs) | `0.4` | ✅ |\n| `context_window_mode` | `full` | ✅ |\n\n**Eval 进度**: 1861 行 log，尚无 `step:` 输出。GPU 0 占用 100%/90GB，进程活跃，仍在模型加载/生成阶段（wandb run 启动于 2026-05-23 04:22:43）。eval 配置为 134 个 OOD env_groups。\n\n### Part 2: bjb1 seed200 v4 训练准备\n\n| 检查项 | 结果 |\n|--------|------|\n| 磁盘空间 | 113GB free (56% used) ✅ |\n| SFT checkpoint | 存在，3.2GB model.safetensors ✅ |\n| seed200 config | 已创建 `_alfworld_exp029_seed200_episode.yaml` ✅ |\n| config 参数 | seed=200, steps=5, save_freq=5, 输出到 `/root/autodl-tmp/checkpoints/exp029-seed200/` |\n\n**seed300 eval v3**: 已完成。结果 — success=0.0, pass@1=0.0, num_actions=50（全部 max out），134 个 OOD episodes 全部失败。\n\n**bjb1 GPU**: GPU 0 占用 94%/56GB, GPU 1 占用 0%/56GB（VRAM 被占但利用率为 0，可能是残留进程）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-seed100-eval-config-and-prep-seed200v4.md"
+}

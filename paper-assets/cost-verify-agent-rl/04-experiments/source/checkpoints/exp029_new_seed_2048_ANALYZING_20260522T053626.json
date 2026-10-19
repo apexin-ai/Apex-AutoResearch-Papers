@@ -1,0 +1,48 @@
+{
+  "exp_id": "exp029_new_seed_2048",
+  "project": "cost-verify-agent-rl",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:57:22.267Z",
+    "updated_at": "2026-05-22T05:36:25.912Z",
+    "spec": {
+      "command": "python train.py --config-name _alfworld_new_seed_2048",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "79754",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_new_seed_2048.log",
+      "submitted_at": "2026-05-22T01:57:21.879Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "ALFWorld episode-level",
+      "data_count": 134,
+      "model_name": "Qwen3-1.5B",
+      "seed": 2048,
+      "checkpoint_source": "qwen3_exp021_ragen_sft_v4 (SFT base)",
+      "eval_data": "ALFWorld valid_unseen 32 episodes"
+    },
+    "hypothesis": "New seed (2048) episode-level GRPO with max_turn=50, 5 steps only. Provides stable-seed step-5 checkpoint for OOD eval as paper Table 1 control — establishing step-5 OOD baseline without any intervention or collapse.",
+    "reproduce": {
+      "finished_at": "2026-05-22T05:16:22.395Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T05:16:30.484249+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-22T05:36:26.246378+00:00",
+  "trigger": "update_registry"
+}

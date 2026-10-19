@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b1a16a63dcd2a1888ed",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp013b fix bonus validate",
+  "task_key": "worker_code_exp013b-fix-bonus-validate_20260514T081321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp013b-fix-bonus-validate_20260514T081321_result.json",
+    "occurrence": 1,
+    "bytes": 358,
+    "sha256": "3133258e7aff70fed9fa60eda72ec018982f479afcdc5ba6f0305937b8bc40d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n## 产出汇总\n\n| 项目 | 结果 |\n|------|------|\n| valid_action_bonus 修改 | `0.5` → `0.15` (envs.yaml:422) ✓ |\n| config.py 默认值 | `0.0` 不变 ✓ |\n| 有效动作 reward | `0.15` ✓ |\n| 无效动作 reward | `0.0` ✓ |\n| reward 方差 > 0 | `{0.15, 0.0}` ✓ |\n| kl_loss_coef | `0.01` ✓ |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp013b-fix-bonus-validate.md"
+}

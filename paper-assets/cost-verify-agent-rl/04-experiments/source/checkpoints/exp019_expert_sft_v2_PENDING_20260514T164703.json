@@ -1,0 +1,21 @@
+{
+  "exp_id": "exp019_expert_sft_v2",
+  "project": "cost-verify-agent-rl",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:38:05.515Z",
+    "updated_at": "2026-05-14T16:47:03.599Z",
+    "spec": {
+      "hypothesis": "两阶段 SFT：从 exp008_sft checkpoint（format_ok=100%, action_is_valid=90%）出发，用格式修复后的 expert trajectory 数据微调。降低 LR=5e-6（防遗忘 format），2 epochs。目标：success ≥ 10% 且 format_ok ≥ 90%。",
+      "parent": "exp008_sft",
+      "model_name": "Qwen3-1.7B",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/exp008_sft/final",
+      "description": "D018: B+C 方案 — 修复 expert data 格式 + 从 exp008_sft checkpoint 微调"
+    }
+  },
+  "timestamp": "2026-05-14T16:47:03.684853+00:00",
+  "trigger": "update_registry"
+}

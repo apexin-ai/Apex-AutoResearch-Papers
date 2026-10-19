@@ -1,0 +1,1401 @@
+# code plan 018 episode advantage
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 47
+- **Recorded user turns:** 0
+- **Tool calls:** 23
+- **Original source:** `logs/chats/worker_code_plan_018_episode_advantage_20260517T190830.jsonl`
+- **Structured JSON:** [`9a4a0f69bc2f9274a7a4.json`](../../sessions/9a/9a4a0f69bc2f9274a7a4.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+47 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T19:11:44.891156+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T19:11:44.891477+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T19:11:44.891699+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root -name \"agent_trainer.py\" -type f 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "find /root -name \"agent_trainer.py\" -type f 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-17T19:11:44.891856+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T19:11:44.891986+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root -name \"step_rewards.py\" -type f 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "find /root -name \"step_rewards.py\" -type f 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T19:11:44.892145+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T19:11:44.892326+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root -name \"agent_trainer.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "find /root -name \"agent_trainer.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T19:11:44.892450+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root -name \"step_rewards.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "find /root -name \"step_rewards.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T19:11:44.892588+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T19:11:44.892715+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/step_rewards.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T19:11:44.892851+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/step_rewards.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/step_rewards.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T19:11:44.893032+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nStep-level reward assignment and discounted return computation.\\n\\nPhase 1: Standard GRPO + discounted returns + invalid action penalty.\\nPhase 2 (future): GiGPO step-level advantage with anchor state grouping.\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\nimport torch\\nfrom collections import defaultdict\\nfrom typing import Optional\\n\\n\\ndef assign_step_rewards(\\n    episode_rewards: np.ndarray,\\n    episode_ids: np.ndarray,\\n    is_action_valid: np.ndarray,\\n    is_terminal: np.ndarray,\\n    invalid_action_penalty_coef: float = 0.1,\\n) -> np.ndarray:\\n    \\\"\\\"\\\"\\n    Assign per-step rewards from episode-level rewards.\\n\\n    Intermediate steps: -penalty if action invalid, else 0.\\n    Terminal step: episode_reward (+ invalid penalty if applicable).\\n\\n    Args:\\n        episode_rewards: (batch_size,) episode reward for each sample's episode\\n        episode_ids: (batch_size,) episode identifier\\n        is_action_valid: (batch_size,) 1.0 if valid, 0.0 if invalid\\n        is_terminal: (batch_size,) 1.0 if last step of episode\\n        invalid_action_penalty_coef: penalty magnitude for invalid actions\\n\\n    Returns:\\n        step_rewards: (batch_size,) per-step rewards\\n    \\\"\\\"\\\"\\n    batch_size = len(episode_rewards)\\n    step_rewards = np.zeros(batch_size, dtype=np.float32)\\n\\n    for i in range(batch_size):\\n        if not is_action_valid[i]:\\n            step_rewards[i] -= invalid_action_penalty_coef\\n        if is_terminal[i]:\\n            step_rewards[i] += float(episode_rewards[i])\\n\\n    return step_rewards\\n\\n\\ndef compute_step_discounted_returns(\\n    step_rewards: np.ndarray,\\n    episode_ids: np.ndarray,\\n    gamma: float = 0.95,\\n) -> torch.Tensor:\\n    \\\"\\\"\\\"\\n    Backward discounted returns per step within each episode.\\n    R_t = r_t + gamma * R_{t+1}\\n\\n    Assumes samples within each episode are ordered by step i
+…[truncated 1846 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T19:11:44.893182+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T19:11:44.893303+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root/autodl-tmp/cost-verify-agent-rl/RAGEN -name \"core_algos.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "find /root/autodl-tmp/cost-verify-agent-rl/RAGEN -name \"core_algos.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T19:11:44.893546+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nFSDP PPO Trainer with Ray-based single controller.\\nAdapted from the excellently written verl implementation.\\n\\\"\\\"\\\"\\n\\nimport os\\nimport logging\\nimport uuid\\nimport ray\\nimport torch\\nimport numpy as np\\nimport collections\\nfrom collections import defaultdict\\nfrom omegaconf import OmegaConf, open_dict\\nfrom torch.utils.data import Dataset, Sampler\\nfrom torchdata.stateful_dataloader import StatefulDataLoader\\nfrom tqdm import tqdm\\nfrom pprint import pprint\\nfrom copy import deepcopy\\n\\nfrom verl import DataProto\\nfrom verl.experimental.dataset.sampler import AbstractCurriculumSampler\\nfrom verl.protocol import pad_dataproto_to_divisor, unpad_dataproto\\nfrom verl.single_controller.ray import RayClassWithInitArgs, RayResourcePool, RayWorkerGroup\\nfrom verl.single_controller.ray.base import create_colocated_worker_cls\\nfrom verl.trainer.config import AlgoConfig\\nfrom verl.trainer.ppo import core_algos\\nfrom verl.trainer.ppo.core_algos import AdvantageEstimator, agg_loss\\nfrom ragen.trainer.core_algos import compute_grpo_outcome_advantage, compute_grpo_step_advantage, compute_gigpo_outcome_advantage\\nfrom ragen.trainer.step_rewards import (\\n    assign_step_rewards,\\n    compute_step_discounted_returns,\\n    compute_episode_returns,\\n)\\nfrom verl.trainer.ppo.metric_utils import (\\n    compute_data_metrics,\\n    compute_throughout_metrics,\\n    compute_timing_metrics,\\n    process_validation_metrics,\\n)\\nfrom verl.trainer.ppo.reward import compute_reward, compute_reward_async\\nfrom verl.trainer.ppo.utils import Role, WorkerType, need_critic, need_reference_policy, need_reward_model\\nfrom verl.utils.checkpoint.checkpoint_manager import find_latest_ckpt_path, should_save_ckpt_esi\\nfrom verl.utils.config import omega_conf_to_dataclass\\nfrom verl.utils.debug import marked_timer\\nfrom verl.utils.metric import reduce_metrics\\nfrom verl.utils.rollout_sk
+…[truncated 6747 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T19:11:44.893740+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/core_algos.py\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/verl/verl/trainer/ppo/core_algos.py\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/verl/recipe/spin/core_algos.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T19:11:44.893902+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/core_algos.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/core_algos.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T19:11:44.894157+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"from collections import defaultdict\\nfrom enum import Enum\\nfrom typing import Any, Callable, Optional\\n\\nimport numpy as np\\nimport torch\\nfrom omegaconf import DictConfig\\n\\nimport verl.utils.torch_functional as verl_F\\nfrom verl.trainer.config import AlgoConfig\\nfrom verl.utils import as_torch_index, group_mean_std\\nfrom verl.utils.import_utils import deprecated\\nfrom verl.workers.config import ActorConfig\\n\\nfrom verl.trainer.ppo.core_algos import (\\n    agg_loss,\\n    compute_gae_advantage_return,\\n    compute_grpo_outcome_advantage as _compute_grpo_outcome_advantage,\\n    compute_reinforce_plus_plus_outcome_advantage,\\n    compute_reinforce_plus_plus_baseline_outcome_advantage,\\n    compute_rloo_outcome_advantage,\\n    compute_value_loss,\\n)\\n\\n\\ndef compute_grpo_outcome_advantage(\\n    token_level_rewards: torch.Tensor,\\n    response_mask: torch.Tensor,\\n    index: np.ndarray,\\n    epsilon: float = 1e-6,\\n    norm_adv_by_std_in_grpo: bool = True,\\n    episode_ids: Optional[np.ndarray] = None,\\n    return_group_std: bool = False,\\n):\\n    \\\"\\\"\\\"\\n    Compute advantage for GRPO with episode-level deduplication support.\\n\\n    When episode_ids is provided (for single_turn/limited_multi_turn mode), each (index, episode_id) pair\\n    only contributes once to mean/std calculation, avoiding bias from different turn counts.\\n\\n    Args:\\n        return_group_std: If True, also returns the per-sample group std tensor for soft reweighting.\\n\\n    Returns:\\n        If return_group_std=False: (advantages, returns)\\n        If return_group_std=True: (advantages, returns, group_std) where group_std is shape (batch_size,)\\n    \\\"\\\"\\\"\\n    scores = token_level_rewards.sum(dim=-1)\\n\\n    id2score = defaultdict(list)\\n    id2mean = {}\\n    id2std = {}\\n\\n    with torch.no_grad():\\n        bsz = scores.shape[0]\\n\\n        # Use seen_pairs to deduplicate wh
+…[truncated 6745 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T19:11:44.894327+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n \"compute_advantage\\|advantage\\|step_independent\\|advantage_mode\\|def compute\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n \"compute_advantage\\|advantage\\|step_independent\\|advantage_mode\\|def compute\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T19:11:44.894461+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-17T19:11:44.894615+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n \"compute_advantage\\|advantage\\|step_independent\\|advantage_mode\\|def compute\\|def _compute\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n \"compute_advantage\\|advantage\\|step_independent\\|advantage_mode\\|def compute\\|def _compute\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T19:11:44.894745+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-17T19:11:44.894877+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n -e \"compute_advantage\" -e \"def compute\" -e \"step_independent\" -e \"advantage_mode\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n -e \"compute_advantage\" -e \"def compute\" -e \"step_independent\" -e \"advantage_mode\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T19:11:44.895011+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"172:def compute_advantage(data: DataProto, adv_estimator, gamma=1.0, lam=1.0, num_repeat=1, multi_turn=False, norm_adv_by_std_in_grpo=True, bi_level_gae=False, high_level_gamma=1.0, soft_advantage_reweight=False, context_window_mode='full', invalid_action_penalty_coef=0.1, advantage_type='grpo', gigpo_config=None, reward_include_step_penalties=False, advantage_mode=None):\\n272:    if context_window_mode == \\\"step_independent\\\" and adv_estimator == AdvantageEstimator.GRPO:\\n288:            if advantage_mode == \\\"episode_level\\\":\\n390:                \\\"[CRITICAL] step_independent mode: missing required fields \\\"\\n393:                \\\"_build_step_independent_samples did not populate these fields.\\\"\\n968:        batch = compute_advantage(\\n984:            advantage_mode=getattr(self.config.algorithm, 'advantage_mode', None),\\n1553:                    batch = compute_advantage(\\n1569:                        advantage_mode=getattr(self.config.algorithm, 'advantage_mode', None),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-17T19:11:44.895173+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "head -400 /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "head -400 /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T19:11:44.895422+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nFSDP PPO Trainer with Ray-based single controller.\\nAdapted from the excellently written verl implementation.\\n\\\"\\\"\\\"\\n\\nimport os\\nimport logging\\nimport uuid\\nimport ray\\nimport torch\\nimport numpy as np\\nimport collections\\nfrom collections import defaultdict\\nfrom omegaconf import OmegaConf, open_dict\\nfrom torch.utils.data import Dataset, Sampler\\nfrom torchdata.stateful_dataloader import StatefulDataLoader\\nfrom tqdm import tqdm\\nfrom pprint import pprint\\nfrom copy import deepcopy\\n\\nfrom verl import DataProto\\nfrom verl.experimental.dataset.sampler import AbstractCurriculumSampler\\nfrom verl.protocol import pad_dataproto_to_divisor, unpad_dataproto\\nfrom verl.single_controller.ray import RayClassWithInitArgs, RayResourcePool, RayWorkerGroup\\nfrom verl.single_controller.ray.base import create_colocated_worker_cls\\nfrom verl.trainer.config import AlgoConfig\\nfrom verl.trainer.ppo import core_algos\\nfrom verl.trainer.ppo.core_algos import AdvantageEstimator, agg_loss\\nfrom ragen.trainer.core_algos import compute_grpo_outcome_advantage, compute_grpo_step_advantage, compute_gigpo_outcome_advantage\\nfrom ragen.trainer.step_rewards import (\\n    assign_step_rewards,\\n    compute_step_discounted_returns,\\n    compute_episode_returns,\\n)\\nfrom verl.trainer.ppo.metric_utils import (\\n    compute_data_metrics,\\n    compute_throughout_metrics,\\n    compute_timing_metrics,\\n    process_validation_metrics,\\n)\\nfrom verl.trainer.ppo.reward import compute_reward, compute_reward_async\\nfrom verl.trainer.ppo.utils import Role, WorkerType, need_critic, need_reference_policy, need_reward_model\\nfrom verl.utils.checkpoint.checkpoint_manager import find_latest_ckpt_path, should_save_ckpt_esi\\nfrom verl.utils.config import omega_conf_to_dataclass\\nfrom verl.utils.debug import marked_timer\\nfrom verl.utils.metric import reduce_metrics\\nfrom verl.utils.rollout_sk
+…[truncated 6824 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T19:11:44.895606+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "sed -n '260,400p' /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "sed -n '260,400p' /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T19:11:44.895744+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-17T19:11:44.895870+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "head -400 /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "head -400 /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T19:11:44.896112+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nFSDP PPO Trainer with Ray-based single controller.\\nAdapted from the excellently written verl implementation.\\n\\\"\\\"\\\"\\n\\nimport os\\nimport logging\\nimport uuid\\nimport ray\\nimport torch\\nimport numpy as np\\nimport collections\\nfrom collections import defaultdict\\nfrom omegaconf import OmegaConf, open_dict\\nfrom torch.utils.data import Dataset, Sampler\\nfrom torchdata.stateful_dataloader import StatefulDataLoader\\nfrom tqdm import tqdm\\nfrom pprint import pprint\\nfrom copy import deepcopy\\n\\nfrom verl import DataProto\\nfrom verl.experimental.dataset.sampler import AbstractCurriculumSampler\\nfrom verl.protocol import pad_dataproto_to_divisor, unpad_dataproto\\nfrom verl.single_controller.ray import RayClassWithInitArgs, RayResourcePool, RayWorkerGroup\\nfrom verl.single_controller.ray.base import create_colocated_worker_cls\\nfrom verl.trainer.config import AlgoConfig\\nfrom verl.trainer.ppo import core_algos\\nfrom verl.trainer.ppo.core_algos import AdvantageEstimator, agg_loss\\nfrom ragen.trainer.core_algos import compute_grpo_outcome_advantage, compute_grpo_step_advantage, compute_gigpo_outcome_advantage\\nfrom ragen.trainer.step_rewards import (\\n    assign_step_rewards,\\n    compute_step_discounted_returns,\\n    compute_episode_returns,\\n)\\nfrom verl.trainer.ppo.metric_utils import (\\n    compute_data_metrics,\\n    compute_throughout_metrics,\\n    compute_timing_metrics,\\n    process_validation_metrics,\\n)\\nfrom verl.trainer.ppo.reward import compute_reward, compute_reward_async\\nfrom verl.trainer.ppo.utils import Role, WorkerType, need_critic, need_reference_policy, need_reward_model\\nfrom verl.utils.checkpoint.checkpoint_manager import find_latest_ckpt_path, should_save_ckpt_esi\\nfrom verl.utils.config import omega_conf_to_dataclass\\nfrom verl.utils.debug import marked_timer\\nfrom verl.utils.metric import reduce_metrics\\nfrom verl.utils.rollout_sk
+…[truncated 6823 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-17T19:11:44.896298+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n -A 60 \"step_independent\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n -A 60 \"step_independent\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T19:11:44.896505+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"272:    if context_window_mode == \\\"step_independent\\\" and adv_estimator == AdvantageEstimator.GRPO:\\n273-        episode_ids = data.non_tensor_batch.get(\\\"episode_ids\\\", None)\\n274-        is_action_valid = data.non_tensor_batch.get(\\\"is_action_valid\\\", None)\\n275-        is_terminal = data.non_tensor_batch.get(\\\"is_terminal\\\", None)\\n276-        episode_rewards = data.non_tensor_batch.get(\\\"reward\\\", None)\\n277-\\n278-        if episode_ids is not None and is_terminal is not None and episode_rewards is not None:\\n279-            is_valid = is_action_valid.astype(np.float32) if is_action_valid is not None else np.ones(len(episode_ids), dtype=np.float32)\\n280-            step_rews = assign_step_rewards(\\n281-                episode_rewards=episode_rewards.astype(np.float32),\\n282-                episode_ids=episode_ids,\\n283-                is_action_valid=is_valid,\\n284-                is_terminal=is_terminal.astype(np.float32),\\n285-                invalid_action_penalty_coef=invalid_action_penalty_coef,\\n286-            )\\n287-            # plan_018: episode_level advantage uses shared episode return across all windows\\n288-            if advantage_mode == \\\"episode_level\\\":\\n289-                step_returns = torch.tensor(\\n290-                    compute_episode_returns(step_rewards=step_rews, episode_ids=episode_ids, gamma=gamma),\\n291-                    dtype=torch.float32,\\n292-                ).to(data.batch[\\\"response_mask\\\"].device)\\n293-            else:\\n294-                step_returns = compute_step_discounted_returns(\\n295-                    step_rewards=step_rews,\\n296-                    episode_ids=episode_ids,\\n297-                    gamma=gamma,\\n298-                ).to(data.batch[\\\"response_mask\\\"].device)\\n299-\\n300-            response_mask = data.batch[\\\"response_mask\\\"]\\n301-            if multi_turn and \\\"loss_mask\
+…[truncated 5458 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-17T19:11:44.896742+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n -A 30 \"def compute_grpo_step_advantage\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/core_algos.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n -A 30 \"def compute_grpo_step_advantage\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/core_algos.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T19:11:44.896895+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"194:def compute_grpo_step_advantage(\\n195-    step_returns: torch.Tensor,\\n196-    response_mask: torch.Tensor,\\n197-    index: np.ndarray,\\n198-    epsilon: float = 1e-6,\\n199-    norm_adv_by_std: bool = True,\\n200-):\\n201-    \\\"\\\"\\\"\\n202-    GRPO advantage for step-level samples.\\n203-\\n204-    Each sample is one step of an episode. Groups are defined by `index`\\n205-    (task/prompt id). Within each group, advantage = (return - mean) / (std + eps),\\n206-    then broadcast to all response tokens via response_mask.\\n207-\\n208-    Args:\\n209-        step_returns: (batch_size,) discounted return per step\\n210-        response_mask: (batch_size, response_length)\\n211-        index: (batch_size,) task/prompt group identifier\\n212-        epsilon: numerical stability\\n213-        norm_adv_by_std: divide by group std (True = standard GRPO)\\n214-\\n215-    Returns:\\n216-        (advantages, returns) both shape (batch_size, response_length)\\n217-    \\\"\\\"\\\"\\n218-    scores = step_returns.clone()\\n219-\\n220-    id2score = defaultdict(list)\\n221-    id2mean = {}\\n222-    id2std = {}\\n223-\\n224-    with torch.no_grad():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-17T19:11:44.897028+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -rn \"advantage_mode\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -rn \"advantage_mode\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T19:11:44.897169+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_factorial_h2_episode_adv.yaml:3:# advantage_mode: episode_level (all windows share episode return)\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_factorial_h2_episode_adv.yaml:74:  advantage_mode: \\\"episode_level\\\"\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py:172:def compute_advantage(data: DataProto, adv_estimator, gamma=1.0, lam=1.0, num_repeat=1, multi_turn=False, norm_adv_by_std_in_grpo=True, bi_level_gae=False, high_level_gamma=1.0, soft_advantage_reweight=False, context_window_mode='full', invalid_action_penalty_coef=0.1, advantage_type='grpo', gigpo_config=None, reward_include_step_penalties=False, advantage_mode=None):\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py:288:            if advantage_mode == \\\"episode_level\\\":\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py:984:            advantage_mode=getattr(self.config.algorithm, 'advantage_mode', None),\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py:1569:                        advantage_mode=getattr(self.config.algorithm, 'advantage_mode', None),\\n\", \"stderr\": \"grep: /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/__pycache__/agent_trainer.cpython-312.pyc: binary file matches\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-17T19:11:44.897299+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root/autodl-tmp/cost-verify-agent-rl/RAGEN -name \"*.yaml\" -path \"*/config/*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "find /root/autodl-tmp/cost-verify-agent-rl/RAGEN -name \"*.yaml\" -path \"*/config/*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T19:11:44.897506+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_10_deepcoder.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_10_rubikscube.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_1_bandit.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_2_sokoban.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_3_frozen_lake.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_4_countdown.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_5_metamathqa.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_6_webshop.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_7_lean.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_8_sudoku.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_9_2048.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_9_search.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/base.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/envs.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/eval.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/eval_webshop.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/evaluate_api_llm.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/stream.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/webshop_full.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_dryrun.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp001.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp001b.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp002.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp002_dryrun.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp003.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp003_dryrun.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_phase_b.yaml\\n/root/autodl-tmp/cost-
+…[truncated 6389 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-17T19:11:44.897717+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_factorial_h2_episode_adv.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_factorial_h2_episode_adv.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-17T19:11:44.897892+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# plan_018: step_independent generation + episode-level advantage\\n# context_window_mode: step_independent (each window sees last h steps)\\n# advantage_mode: episode_level (all windows share episode return)\\n\\ndefaults:\\n  - base\\n\\nhydra:\\n  searchpath:\\n    - pkg://verl.trainer.config\\n\\nmodel_path: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\\n\\nsystem:\\n  CUDA_VISIBLE_DEVICES: \\\"0,1\\\"\\n\\nmicro_batch_size_per_gpu: 1\\nppo_mini_batch_size: 16\\n\\ntrainer:\\n  project_name: cost-verify-agent-rl\\n  experiment_name: factorial-h2-episode-adv\\n  total_training_steps: 15\\n  n_gpus_per_node: 2\\n  val_before_train: True\\n  test_freq: 5\\n  save_freq: 5\\n  local_log_dir: \\\"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/\\\"\\n  default_local_dir: \\\"/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/\\\"\\n  logger: ['console', 'wandb']\\n  max_actor_ckpt_to_keep: 10\\n  resume_mode: \\\"disable\\\"\\n\\nactor_rollout_ref:\\n  model:\\n    override_config:\\n      attn_implementation: sdpa\\n  actor:\\n    fsdp_config:\\n      optimizer_offload: True\\n    use_ref: True\\n    use_torch_compile: False\\n    use_kl_loss: True\\n    kl_loss_coef: 0.01\\n    kl_loss_type: low_var_kl\\n    entropy_coeff: 0.001\\n    clip_ratio_low: 0.2\\n    clip_ratio_high: 0.28\\n    loss_agg_mode: \\\"token-mean\\\"\\n    grad_clip: 1.0\\n    ppo_max_token_len_per_gpu: 65536\\n    optim:\\n      lr: 1e-6\\n  ref:\\n    use_torch_compile: False\\n    log_prob_max_token_len_per_gpu: 65536\\n  rollout:\\n    response_length: 1024\\n    gpu_memory_utilization: 0.35\\n    enable_chunked_prefill: true\\n    max_model_len: 20480\\n    temperature: 1.0\\n    max_num_batched_tokens: 20480\\n    enforce_eager: True\\n    val_kwargs:\\n      do_sample: True\\n      temperature: 0.4\\n\\nalgorithm:\\n  adv_estimator: grpo\\n  gamma: 0.95\\n  high_level_gamma: 0.95\\n  norm_adv_by_std_in_grpo: True\\
+…[truncated 734 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-17T19:11:44.898037+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n -A 40 \"def compute_grpo_step_advantage\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/core_algos.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n -A 40 \"def compute_grpo_step_advantage\" /root/autodl-tmp/cost-verify-agent-rl/RAGEN/ragen/trainer/core_algos.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-17T19:11:44.898196+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"194:def compute_grpo_step_advantage(\\n195-    step_returns: torch.Tensor,\\n196-    response_mask: torch.Tensor,\\n197-    index: np.ndarray,\\n198-    epsilon: float = 1e-6,\\n199-    norm_adv_by_std: bool = True,\\n200-):\\n201-    \\\"\\\"\\\"\\n202-    GRPO advantage for step-level samples.\\n203-\\n204-    Each sample is one step of an episode. Groups are defined by `index`\\n205-    (task/prompt id). Within each group, advantage = (return - mean) / (std + eps),\\n206-    then broadcast to all response tokens via response_mask.\\n207-\\n208-    Args:\\n209-        step_returns: (batch_size,) discounted return per step\\n210-        response_mask: (batch_size, response_length)\\n211-        index: (batch_size,) task/prompt group identifier\\n212-        epsilon: numerical stability\\n213-        norm_adv_by_std: divide by group std (True = standard GRPO)\\n214-\\n215-    Returns:\\n216-        (advantages, returns) both shape (batch_size, response_length)\\n217-    \\\"\\\"\\\"\\n218-    scores = step_returns.clone()\\n219-\\n220-    id2score = defaultdict(list)\\n221-    id2mean = {}\\n222-    id2std = {}\\n223-\\n224-    with torch.no_grad():\\n225-        bsz = scores.shape[0]\\n226-        for i in range(bsz):\\n227-            id2score[index[i]].append(scores[i])\\n228-\\n229-        for idx in id2score:\\n230-            if len(id2score[idx]) == 1:\\n231-                id2mean[idx] = torch.tensor(0.0, device=scores.device)\\n232-                id2std[idx] = torch.tensor(1.0, device=scores.device)\\n233-            else:\\n234-                scores_tensor = torch.stack(id2score[idx])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-17T19:11:44.898390+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && source /root/miniconda3/bin/activate && export TORCH_COMPILE_DISABLE=1 && python -c \"\nfrom ragen.trainer.step_rewards import compute_episode_returns, assign_step_rewards, compute_step_discounted_returns\nfrom ragen.trainer.core_algos import compute_grpo_step_advantage\nimport numpy as np\nimport torch\n\n# Simulate: 2 episodes (ep0, ep1), each with h=2 windows, group_size=2\nepisode_ids = np.array([0, 0, 1, 1])\nis_terminal = np.array([0, 1, 0, 1], dtype=np.float32)\nepisode_rewards = np.array([1.0, 1.0, 0.0, 0.0], dtype=np.float32)\nis_valid = np.ones(4, dtype=np.float32)\nuid = np.array([0, 0, 0, 0])\n\n# Step 1: assign step rewards\nstep_rews = assign_step_rewards(\n    episode_rewards=episode_rewards,\n    episode_ids=episode_ids,\n    is_action_valid=is_valid,\n    is_terminal=is_terminal,\n)\nprint('step_rewards:', step_rews)\n\n# Step 2a: episode-level returns (all windows share episode return)\nep_returns = compute_episode_returns(step_rewards=step_rews, episode_ids=episode_ids, gamma=0.95)\nprint('episode_returns:', ep_returns)\n\n# Step 2b: step-level returns (each window gets discounted return from its position)\nstep_returns = compute_step_discounted_returns(step_rewards=step_rews, episode_ids=episode_ids, gamma=0.95)\nprint('step_returns:', step_returns)\n\n# Step 3: GRPO normalization for both modes\nresponse_mask = torch.ones(4, 10)\n\nadv_ep, ret_ep = compute_grpo_step_advantage(\n    step_returns=torch.tensor(ep_returns),\n    response_mask=response_mask,\n    index=uid,\n)\nprint('episode_level advantages (per window):', adv_ep[:, 0])\n\nadv_step, ret_step = compute_grpo_step_advantage(\n    step_returns=step_returns,\n    response_mask=response_mask,\n    index=uid,\n)\nprint('step_level advantages (per window):', adv_step[:, 0])\n\n# Verify: episode_level -> same advantage for windows in same episode\nassert adv_ep[0, 0] == adv_ep[1, 0], 'FAIL: episode 0 windows differ'\nassert adv_ep[2, 0] == adv_ep[3, 0], 'FAIL: episode 1 windows differ'\nprint('PASS: episode-level mode gives uniform advantage within each episode')\n\n# Verify: step_level -> different advantages for windows in same episode\n# (because discounted returns differ by position)\nprint('step_level same-episode diff:', (adv_step[0,0] - adv_step[1,0]).item())\nprint('ALL TESTS PASSED')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && source /root/miniconda3/bin/activate && export TORCH_COMPILE_DISABLE=1 && python -c \"\nfrom ragen.trainer.step_rewards import compute_episode_returns, assign_step_rewards, compute_step_discounted_returns\nfrom ragen.trainer.core_algos import compute_grpo_step_advantage\nimport numpy as np\nimport torch\n\n# Simulate: 2 episodes (ep0, ep1), each with h=2 windows, group_size=2\nepisode_ids = np.array([0, 0, 1, 1])\nis_terminal = np.array([0, 1, 0, 1], dtype=np.float32)\nepisode_rewards = np.array([1.0, 1.0, 0.0, 0.0], dtype=np.float32)\nis_valid = np.ones(4, dtype=np.float32)\nuid = np.array([0, 0, 0, 0])\n\n# Step 1: assign step rewards\nstep_rews = assign_step_rewards(\n    episode_rewards=episode_rewards,\n    episode_ids=episode_ids,\n    is_action_valid=is_valid,\n    is_terminal=is_terminal,\n)\nprint('step_rewards:', step_rews)\n\n# Step 2a: episode-level returns (all windows share episode return)\nep_returns = compute_episode_returns(step_rewards=step_rews, episode_ids=episode_ids, gamma=0.95)\nprint('episode_returns:', ep_returns)\n\n# Step 2b: step-level returns (each window gets discounted return from its position)\nstep_returns = compute_step_discounted_returns(step_rewards=step_rews, episode_ids=episode_ids, gamma=0.95)\nprint('step_returns:', step_returns)\n\n# Step 3: GRPO normalization for both modes\nresponse_mask = torch.ones(4, 10)\n\nadv_ep, ret_ep = compute_grpo_step_advantage(\n    step_returns=torch.tensor(ep_returns),\n    response_mask=response_mask,\n    index=uid,\n)\nprint('episode_level advantages (per window):', adv_ep[:, 0])\n\nadv_step, ret_step = compute_grpo_step_advantage(\n    step_returns=step_returns,\n    response_mask=response_mask,\n    index=uid,\n)\nprint('step_level advantages (per window):', adv_step[:, 0])\n\n# Verify: episode_level -> same advantage for windows in same episode\nassert adv_ep[0, 0] == adv_ep[1, 0], 'FAIL: episode 0 windows differ'\nassert adv_ep[2, 0] == adv_ep[3, 0], 'FAIL: episode 1 windows differ'\nprint('PASS: episode-level mode gives uniform advantage within each episode')\n\n# Verify: step_level -> different advantages for windows in same episode\n# (because discounted returns differ by position)\nprint('step_level same-episode diff:', (adv_step[0,0] - adv_step[1,0]).item())\nprint('ALL TESTS PASSED')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-17T19:11:44.898549+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"step_rewards: [0. 1. 0. 0.]\\nepisode_returns: [0.95 0.95 0.   0.  ]\\nstep_returns: tensor([0.9500, 1.0000, 0.0000, 0.0000])\\nepisode_level advantages (per window): tensor([ 0.8660,  0.8660, -0.8660, -0.8660])\\nstep_level advantages (per window): tensor([ 0.8211,  0.9098, -0.8655, -0.8655])\\nPASS: episode-level mode gives uniform advantage within each episode\\nstep_level same-episode diff: -0.08876460790634155\\nALL TESTS PASSED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-17T19:11:44.898730+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && source /root/miniconda3/bin/activate && export TORCH_COMPILE_DISABLE=1 && python -c \"\nfrom hydra import compose, initialize_config_dir\nfrom omegaconf import OmegaConf\nimport os\n\nconfig_dir = os.path.abspath('config')\nwith initialize_config_dir(config_dir=config_dir, version_base=None):\n    cfg = compose(config_name='_alfworld_factorial_h2_episode_adv')\n\nprint('advantage_mode:', cfg.algorithm.advantage_mode)\nprint('context_window_mode:', cfg.agent_proxy.context_window_mode)\nprint('step_independent_history_length:', cfg.agent_proxy.step_independent_history_length)\nprint('gamma:', cfg.algorithm.gamma)\nprint('adv_estimator:', cfg.algorithm.adv_estimator)\nassert cfg.algorithm.advantage_mode == 'episode_level'\nassert cfg.agent_proxy.context_window_mode == 'step_independent'\nassert cfg.agent_proxy.step_independent_history_length == 2\nprint('CONFIG VALIDATION PASSED')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && source /root/miniconda3/bin/activate && export TORCH_COMPILE_DISABLE=1 && python -c \"\nfrom hydra import compose, initialize_config_dir\nfrom omegaconf import OmegaConf\nimport os\n\nconfig_dir = os.path.abspath('config')\nwith initialize_config_dir(config_dir=config_dir, version_base=None):\n    cfg = compose(config_name='_alfworld_factorial_h2_episode_adv')\n\nprint('advantage_mode:', cfg.algorithm.advantage_mode)\nprint('context_window_mode:', cfg.agent_proxy.context_window_mode)\nprint('step_independent_history_length:', cfg.agent_proxy.step_independent_history_length)\nprint('gamma:', cfg.algorithm.gamma)\nprint('adv_estimator:', cfg.algorithm.adv_estimator)\nassert cfg.algorithm.advantage_mode == 'episode_level'\nassert cfg.agent_proxy.context_window_mode == 'step_independent'\nassert cfg.agent_proxy.step_independent_history_length == 2\nprint('CONFIG VALIDATION PASSED')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T19:11:44.898871+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"advantage_mode: episode_level\\ncontext_window_mode: step_independent\\nstep_independent_history_length: 2\\ngamma: 0.95\\nadv_estimator: grpo\\nCONFIG VALIDATION PASSED\\n\", \"stderr\": \"/root/miniconda3/lib/python3.12/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In '_alfworld_factorial_h2_episode_adv': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information\\n  warnings.warn(msg, UserWarning)\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.05}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-17T19:11:44.899039+00:00_
+
+全部验证通过。
+
+## 结论：代码已完整实现，无需额外改动
+
+**已有实现覆盖了全部需求：**
+
+| 组件 | 文件 | 行号 | 状态 |
+|------|------|------|------|
+| `compute_episode_returns()` | `step_rewards.py:88` | 计算 episode 级 return，同 episode 所有 window 共享 | ✅ |
+| `advantage_mode` 分支 | `agent_trainer.py:288-292` | 当 `advantage_mode == "episode_level"` 时用 episode return 替代 per-window return | ✅ |
+| Config 传参 | `agent_trainer.py:984,1569` | `getattr(self.config.algorithm, 'advantage_mode', None)` | ✅ |
+| 实验 config | `_alfworld_factorial_h2_episode_adv.yaml:74` | `advantage_mode: "episode_level"` | ✅ |
+
+**验证结果：**
+- 模块导入成功
+- episode-level mode 下同一 episode 的两个 window advantage 完全相同（0.8660, 0.8660）
+- step-level mode 下同一 episode 的两个 window advantage 不同（0.8211 vs 0.9098，差 0.089）
+- Hydra config 解析正确：`advantage_mode=episode_level`, `context_window_mode=step_independent`, `h=2`
+
+**向后兼容**：`advantage_mode` 默认为 `None`，走原有 `compute_step_discounted_returns` 路径，不影响已有实验。
+
+实验 `factorial_h2_episodeadv_seed1` 的代码已就绪，可以提交训练。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_plan_018_episode_advantage_20260517T190830"
+}
+```
+
+</details>
+
+---

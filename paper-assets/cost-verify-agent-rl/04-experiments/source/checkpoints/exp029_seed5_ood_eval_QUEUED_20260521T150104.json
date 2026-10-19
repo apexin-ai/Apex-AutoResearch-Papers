@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp029_seed5_ood_eval",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T14:00:13.239Z",
+    "updated_at": "2026-05-21T15:01:03.874Z",
+    "hypothesis": "Evaluate exp029_seed5_v2 partial checkpoint (global_step_10, episode-level GRPO seed=456, training OOM at step 12) on 134 OOD tasks (valid_unseen, τ=0.4). Supplementary cross-seed variance data point despite incomplete training."
+  },
+  "timestamp": "2026-05-21T15:01:04.120962+00:00",
+  "trigger": "update_registry"
+}

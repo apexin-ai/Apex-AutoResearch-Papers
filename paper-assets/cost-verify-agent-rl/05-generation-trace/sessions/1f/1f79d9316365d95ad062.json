@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f79d9316365d95ad062",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops fix cell c oom restart",
+  "task_key": "worker_ops_fix-cell-c-oom-restart_20260519T114632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-cell-c-oom-restart_20260519T114632_result.json",
+    "occurrence": 1,
+    "bytes": 269,
+    "sha256": "ccd1c4b63b1af6f9da9d4cc3959972a3bfd7da64c081f8369a6582e09a2962d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功：\n\n- tmux session `8b_cell_c_episode_v2` 正在运行\n- `train.py` 进程存活（PID 7181）\n- 4 卡 GPU 已分配（0: 11GB, 1-3: 16GB）\n- 日志正常：AlfWorld 环境已初始化（3553 games），wandb 已连接，无 OOM 报错"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-cell-c-oom-restart.md"
+}

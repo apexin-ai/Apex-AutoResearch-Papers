@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp029_seed7_len_penalty",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T16:15:24.107Z",
+    "updated_at": "2026-05-21T20:40:11.431Z",
+    "hypothesis": "Response length penalty (threshold=1000, coef=0.5) prevents response_length explosion that caused ~43% seed collapse in episode-level GRPO. Same seed=999 as original Seed 7 which collapsed at step 7. If step 7 response_length < 2000 and success > 30%, penalty is effective.",
+    "parent": "exp029_seed7",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed7_len_penalty\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "495138",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_seed7_len_penalty.log",
+      "submitted_at": "2026-05-21T16:19:03.754Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "ALFWorld episode-level",
+      "data_count": "134 tasks",
+      "model_name": "Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)",
+      "seed": 999,
+      "response_length_penalty_coef": 0.5,
+      "response_length_penalty_threshold": 1000,
+      "total_steps": 7,
+      "checkpoint_source": "qwen3_exp021_ragen_sft_v4 (SFT base)",
+      "eval_data": "N/A (training experiment)"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-21T20:40:11.702561+00:00",
+  "trigger": "update_registry"
+}

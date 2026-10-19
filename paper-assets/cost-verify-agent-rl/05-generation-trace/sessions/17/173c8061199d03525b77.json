@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "173c8061199d03525b77",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops fsdp to hf merge",
+  "task_key": "worker_ops_fsdp_to_hf_merge_20260520T093117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fsdp_to_hf_merge_20260520T093117_result.json",
+    "occurrence": 1,
+    "bytes": 467,
+    "sha256": "a60b0fa1efe81740ed53356cf68d4f4fef768af8a447ca2d7644778bc72d78e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。v9d step 10 FSDP checkpoint 已合并为 HuggingFace 格式：\n\n- **路径**: `/root/autodl-tmp/checkpoints/8b-cell-c-v9/global_step_10/actor/huggingface/`\n- **模型**: Qwen3ForCausalLM, 8.19B params, bf16\n- **文件**: 4 个 safetensors shard (4.6G + 4.6G + 4.7G + 1.5G ≈ 15.4GB)\n- **耗时**: 43.8s（CPU-only，RAGEN 内置 `convert_fsdp_to_hf.py`）\n\n可以直接用 `AutoModelForCausalLM.from_pretrained()` 加载做 OOD eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fsdp-to-hf-merge.md"
+}

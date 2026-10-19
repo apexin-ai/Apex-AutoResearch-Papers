@@ -1,0 +1,47 @@
+{
+  "exp_id": "factorial_h2_episodeadv_seed2",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-18T04:48:02.228Z",
+    "updated_at": "2026-05-18T11:15:39.349Z",
+    "hypothesis": "Replicate factorial experiment (step-independent + episode-level advantage) with different seed to confirm that sign misattribution elimination is robust, not single-seed artifact. Same config, different seed, 15 steps.",
+    "parent": "factorial_h2_episodeadv_seed1",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "reproduce": {
+      "finished_at": "2026-05-18T10:52:18.239Z"
+    },
+    "completed_at": "2026-05-18T10:52:19.155Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T10:52:21.813105+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "cd /root/autodl-tmp/cost-verify-agent-rl && TMPDIR=/root/autodl-tmp/tmp python train_grpo_alfworld.py --config configs/_alfworld_factorial_h2_episode_adv_seed2.yaml",
+      "server": "westd-47453",
+      "gpu": "0,1",
+      "data_path": "/root/autodl-tmp/cost-verify-agent-rl/data/alfworld",
+      "data_count": 3553,
+      "model_name": "Qwen/Qwen2.5-3B",
+      "seed": 43,
+      "pid": 539852,
+      "wandb_run_id": "6rqnrlr7",
+      "checkpoint_source": "exp008_sft",
+      "eval_data": "alfworld_valid_unseen_134"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-18T11:15:39.503858+00:00",
+  "trigger": "update_registry"
+}

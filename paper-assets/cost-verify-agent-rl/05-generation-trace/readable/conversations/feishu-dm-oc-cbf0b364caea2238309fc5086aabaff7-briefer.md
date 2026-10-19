@@ -1,0 +1,954 @@
+# feishu dm oc cbf0b364caea2238309fc5086aabaff7 briefer
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 5
+- **Tool calls:** 11
+- **Original source:** `logs/chats/feishu_dm_oc_cbf0b364caea2238309fc5086aabaff7_briefer.jsonl`
+- **Structured JSON:** [`1fb2371290022c96ded7.json`](../../sessions/1f/1fb2371290022c96ded7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+10 recorded events
+
+### User
+
+_source line 1 · 2026-05-17T10:55:38.553010+00:00_
+
+[飞书用户 曹晓玉 (ou_9778f3d806b39e8206e9ffc130027576)]: 这项目初始idea是讲什么的，用大白话和我讲清楚
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "source": "feishu:oc_cbf0b364caea2238309fc5086aabaff7"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-17T10:55:45.264703+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-17T10:55:45.851104+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "ToolSearch",
+  "elapsed_ms": 586
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T10:55:48.009547+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-17T10:55:48.580953+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\", \"content\": \"# Citation Audit — 2026-05-15\\n\\n完整审计结果已写入 artifacts/citation_audit.md。\\n\\n## 审计摘要\\n\\n- 验证论文：27 篇（literature_map.yaml 全部条目）+ 1 篇额外（Thinkless）\\n- 验证通过：20 篇\\n- 需要修正：7 篇（3 个严重问题，2 个中等问题，2 个轻微问题）\\n- 关键发现：AgentPRM arXiv ID/作者/标题全错；Huang2024 作者不匹配；DAPO 标题错误；CFGM 会议和年份错误\\n\\n# Adaptive KL 可行性 — 2026-05-15\\n\\nverl 框架已内置 `AdaptiveKLController`（Ziegler 2019），RAGEN `agent_trainer.py` 已完整接入 reward-level KL adaptive 链路。**零代码修改，纯 YAML 配置切换**（~8 行）：\\n- `algorithm.use_kl_in_reward: True` + `kl_ctrl.type: adaptive`\\n- `actor.use_kl_loss: False`\\n- `target_kl: 0.1`, `kl_coef: 0.005`（初始值），`horizon: 10000`\\n\\n当前 exp027 用的是 loss-level KL（`use_kl_loss` + 静态 `kl_loss_coef`）。如需切换，实现 <1h，验证 2-4h。\\n\\n风险：reward-level KL 通过 advantage 间接影响梯度，与 loss-level 直接约束不同。如 reward-level 效果不理想，备选 Plan C（loss-level adaptive）需 ~30 行代码，半天可完成。\\n\\n# 失败模式记录\\n\\n- [失败模式] Ray raylet 异常终止：ActorUnavailableError RPC error Socket closed rpc_code: 14，Raylet 被 SIGKILL（OOM killer 或内存访问错误）。出现于 exp013e（val→train 过渡）和 exp027（step 4→5 过渡）。→ 修复方案：(1) 检查 cgroup 内存限制 vs Ray object_store + worker 内存总和 (2) 降低 env_groups 减少并发内存峰值 (3) 显式设置 ray_kwargs.ray_init.object_store_memory 限制 Ray 内存分配 (4) 用 RAY_memory_monitor_refresh_ms=0 禁用内存监控阈值冲突。\\n\", \"total_chars\": 1167, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 571
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-17T10:55:48.581368+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "ROADMAP.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "file": "ROADMAP.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-17T10:55:48.581674+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\", \"content\": \"# cost-verify-agent-rl — Research Dashboard\\n\\n> 最后更新: 2026-05-17 08:23 UTC | 更新原因: Loop 12 状态同步：h=2 崩溃确认、D059 eval 修复、dual mechanism 精确化、Paper Agent Phase 2\\n\\n## 核心方向\\nMulti-turn agent RL 的 credit assignment 诊断与修复：step-independent GRPO 存在 Advantage Sign Misattribution（梯度方向错误）+ Information Loss（推理 context 截断），episode-level GRPO 消除两者。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research Phase (MVP passed D053) + 审稿进行中 (Group C)\\n- **理论**: Sign Misattribution mechanism 三轮 Reviewer 确认收敛 (D058)\\n- **实验**: h-sweep 进行中，h=2 seed 1 step 3 已现崩溃 (18.75%→5.47%)\\n- **论文写作**: Method + Theoretical Analysis 完成；Introduction + Related Work 进行中\\n- **覆盖率**: 1/18 experiments completed (plan_001 only), h-sweep 大批量正在积累\\n\\n### 关键发现（本轮）\\n- D059: h-sweep val 用 truncated context（h=2 val=0%），需 post-hoc full-context eval\\n- Dual mechanism 精确分离：Info Loss (恒定 ceiling) vs Sign Misattribution (累积降解)\\n- GAE baseline (plan_003b) = verl 原生支持，只需 config 修改（已准备就绪）\\n\\n## 近期任务\\n- [ ] h=2 seed 1 完成 → 确认全面崩溃 + auto_next 自动启动 seed 2\\n- [ ] h=2 seed 2 完成 → 运行 analyze_advantage_log.py (plan_004 验证)\\n- [ ] post-hoc full-context eval 脚本完成 → 所有 checkpoint 统一 eval\\n- [ ] Paper Agent 完成 Intro + Related Work + 引用验证\\n- [ ] h=5/10 数据到位 → 验证 \\\"推理可行但训练崩溃\\\"（最强 sign misattribution 证据）\\n- [ ] 全部 h-sweep 15 runs 完成 → 画 cliff figure (plot_hsweep_cliff.py)\\n- [ ] 启动 GAE baseline (plan_003b) — config 已就绪，等 GPU\\n- [ ] plan_003 multi-seed replication（h-sweep 后）\\n\\n## GPU 预算\\n- 本地：bjb1-17606 × 2 GPU (A6000 96GB)，全部分配给 h-sweep\\n- h-sweep 预估：15 runs × ~12h/run = ~180h wall clock = ~7.5 天\\n- GAE baseline: ~10h（h-sweep 后）\\n- 云 GPU：未申请（如需加速可向 Manager 申请）\\n\\n## 准备就绪（等 GPU）\\n- GAE baseline config: `RAGEN/config/_alfworld_gae_baseline.yaml`\\n- REINFORCE++ config: `RAGEN/config/_alfworld_reinforce_pp_baseline.yaml`\\n- Advantage analysis: `s
+…[truncated 1626 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T10:55:51.744086+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "paper_framing.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "file": "paper_framing.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T10:55:51.795098+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md\", \"content\": \"# Paper Framing — Learning When to Verify: RL-Trained Selective Self-Verification for Interactive Agents\\n\\n> Post-MVP 重写 (2026-05-17) | D054 framing pivot + Dream Review feedback (weak reject → 修正理论)\\n\\n## Core Insight\\n\\nMulti-turn interactive agents 的 self-verification 大部分是 confirmatory（不改变行为）而非 corrective。训练 agent 学 selective verification 的前提是 RL 训练本身能 work。我们发现 LLM agent 社区默认的 step-independent training 在长 horizon 任务中灾难性崩溃，根因是**双机制失效**：\\n\\n1. **Policy Information Loss**: 短窗口（h 步）的 policy 无法学习跨步策略（如 \\\"先探索 drawer 再去 countertop\\\"）\\n2. **Advantage Sign Misattribution**: step_independent 中，per-window advantage 的**符号**由 episode 成败决定，而非 window-local action quality：\\n   - 失败 episode 中的好 action → 获得负 advantage（被错误惩罚）\\n   - 成功 episode 中的差 action → 获得正 advantage（被错误强化）\\n   - 梯度方向（reinforce/suppress）反映 episode outcome 而非 local decision quality\\n   - 附加：γ^k magnitude decay 使早期 window 信号更弱（γ^24 ≈ 29%, where 24 = ⌈T/h⌉-1 windows），但方向错误比幅度衰减更致命\\n\\nEpisode-level training 同时解决两者：policy 看全历史（解决 1），整条 trajectory 作为一个 GRPO 样本，所有 tokens 共享同一 advantage — 虽然仍是 episode-level credit（非 per-token），但消除了 window 间的 sign misattribution，因为不再需要将 episode reward 分配到独立优化的子窗口（解决 2）。\\n\\n**技术澄清**：GRPO 算法本身是 bandit-style（advantage = (R-μ)/σ，无显式 γ），但 RAGEN 的 step_independent 实现在 `compute_step_discounted_returns()` 中引入 γ 计算每个 window 的 return（代码：`agent_trainer.py:271-340`）。γ^(T-t) decay 对 step_independent 模式是代码事实，不是类比。Episode-level 模式下无此问题：整条 trajectory 只有一个 return = episode_reward。\\n\\n## Story Arc\\n\\n**Dual contribution**: Training methodology diagnosis + Selective verification system\\n\\n叙事线：\\n1. Self-verification 对 interactive agents 有用，但 always-on 成本高\\n2. 训练 agent 学 WHEN to verify 需要 RL → 但 LLM agent 社区默认的 step-independent training 在多轮任务上灾难性崩溃（0% at step 10）\\n3. 我们诊断双机制根因（information loss + advantage sign mis
+…[truncated 5127 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-17T10:56:11.733349+00:00_
+
+大白话版：
+
+---
+
+**背景**：现在很多人让大语言模型（LLM）当"智能体"去完成多步骤任务，比如在虚拟家庭环境里"去厨房打开抽屉拿杯子放到台面上"。为了让智能体少犯错，一个常见做法是让它**每一步都自我检查**——"我刚才做对了吗？要不要改？"但这样太浪费了，因为大部分检查结果是"没问题，继续"，等于白花了计算资源。
+
+**核心问题**：能不能训练智能体**学会只在关键时刻检查**，不重要的步骤就跳过？
+
+要训练这个能力需要用强化学习（RL）。但项目在实验中发现了一个更底层的坑：
+
+**关键发现**：LLM 智能体社区目前默认的训练方式叫 **step-independent**（把一整段对话切成小窗口，分别训练）。这个方式在多步骤任务上会**灾难性崩溃**——训到后面成功率直接掉到 0%。
+
+崩溃的原因有两个：
+
+1. **信息丢失**：切成小窗口后，模型看不到之前的历史，学不到跨步骤的策略（比如"先开抽屉再去台面"这种连贯逻辑）。
+2. **奖惩方向搞反**：整个任务失败了，里面其实有些步骤做得很好，但因为最终失败，这些好步骤也被惩罚了；反过来，成功任务里的烂步骤也被奖励了。相当于**好的打了差的奖了**，训练信号全乱了。
+
+**解决方案**：改用 **episode-level**（把整条对话当一个整体来训练），两个问题同时解决。实验验证：episode-level 训到第 5 步成功率 25%，而 step-independent 训到第 10 步成功率 0%。
+
+**最终目标**：在能正常训练的基础上，进一步教智能体"什么时候值得检查、什么时候不用检查"，做到**性能不掉但检查次数大幅减少**（省成本）。
+
+---
+
+简单总结：**发现了 LLM 智能体 RL 训练的一个隐藏 bug（切窗口训练导致奖惩搞反），修好它，然后在此基础上训练智能体学会"选择性自检"来省钱。**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+8 recorded events
+
+### User
+
+_source line 11 · 2026-05-17T10:56:54.776196+00:00_
+
+[飞书用户 曹晓玉 (ou_9778f3d806b39e8206e9ffc130027576)]: 那现在实验做的怎么样，支持原来的idea吗
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "source": "feishu:oc_cbf0b364caea2238309fc5086aabaff7"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T10:57:00.963562+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T10:57:01.602866+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "ToolSearch",
+  "elapsed_ms": 639
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T10:57:03.889660+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T10:57:04.471509+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp025c\": {\"status\": \"DONE\", \"created_at\": \"2026-05-15T08:09:29.393Z\", \"updated_at\": \"2026-05-17T10:53:00.425Z\", \"notes\": \"项目已 pivot 到 h-sweep + sign misattribution 诊断方向（D054/D057）。exp025c 属于 pivot 前的实验设计，不在当前 experiment_plan.yaml 中，与论文核心 claims 无关联。GPU 资源优先用于 h-sweep 和 GAE baseline。\", \"conclusion\": \"killed\"}, \"hsweep_h2_seed1\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T04:37:11.061Z\", \"updated_at\": \"2026-05-17T08:26:08.294Z\", \"hypothesis\": \"Step-independent GRPO with h=2 (minimal context, N=25 windows per episode) will catastrophically collapse due to advantage sign misattribution: early windows retain only γ^24=0.95^24≈29% of terminal return, and all windows in failed episodes receive undifferentiated negative advantage regardless of action quality\", \"parent\": \"exp029_episode_level\", \"metrics\": {\"train_step\": 2, \"train_success_step2\": 0.1484, \"train_pass8_step2\": 0.5, \"val_step0_success\": 0, \"gpu_util\": \"96-97%\", \"eta_hours\": 10.4}}, \"exp029_episode_level\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T08:49:53.280Z\", \"updated_at\": \"2026-05-17T04:36:52.662Z\", \"hypothesis\": \"Episode-level 训练（context_window_mode: full）解决 step_independent h=2 的信用分配缺陷，模型能学到跨步规划策略，val success 不再停滞于 baseline。\", \"parent\": \"exp028c_selfguide_recipe\", \"notes\": \"Director 决策 early-stop at step 15（val success 28.125%, pass@8=92.9%）释放 GPU 给 h-sweep。MVP 已通过（step 5 val=25%, 2x baseline）。Episode-level 训练假设确认：从 12.5% baseline 提升到 28.125%，而 step-independent 崩塌到 0%。Checkpoint: global_step_15。\", \"conclusion\": \"success\", \"metrics\": {\"current_step\": 15, \"total_steps\": 100, \"progress_pct\": 15, \"step5_val_success\": 0.25, \"step10_val_success\": 0.25, \"step15_val_success\": 0.28125, \"step15_val_pass_at_1\": 0.28125, \"step15_val_pass_at_2\": 0.469, \"step15_val_pass_at_4\": 0.726, \"step15_val_pass_at_8\": 0.929, \"step15_val_pass_at_16\": 
+…[truncated 38601 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 581
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T10:57:04.471917+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "report.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "file": "report.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T10:57:05.057614+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| hsweep_h2_seed1 | Step-independent GRPO with h=2 (minimal context, N=25 windows per episode) will catastrophically collapse due to advantage sign misattribution: early windows retain only γ^24=0.95^24≈29% of terminal return, and all windows in failed episodes receive undifferentiated negative advantage regardless of action quality | — | — | — |\\n\\n## 待处理\\n- exp028_prereq_zeroshot_instruct: Qwen3-1.7B-Instruct 零样本 ALFWorld eval，验证\\\"SFT是毒药\\\"假设。如果 Instruct ≥15% success（vs SFT checkpoint 6.25%），则确认 SFT 起点有害，exp028a 可跳过 SFT 直接 GRPO。（准备中）\\n- exp021_sft_ragen_format: Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent &lt;answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.（准备中）\\n- exp020d_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Symlink fix for response_mask assertion (proven in exp020b). exp020c failed: Hydra key path wrong.（准备中）\\n- exp020c_grpo_from_sft: GRPO from exp019b SFT checkpoint (20% success baseline). Sparse reward only (won=10.0), LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, 30 steps. Pass: success ≥ 20%. Fix: symlink + enable_response_mask=false (exp020/020b crashed on response_mask assertion).（准备中）\\n- exp019c_expert_sft_v3: Two-stage Expert SFT（重试）: 从 exp008_sft checkpoint 出发，用 v3 数据（保留原始 move actions + admissible actions augmentation）微调。LR=5e-6, 2 epochs, batch=4, grad_accum=4, max_se
+…[truncated 3114 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 585
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-17T10:57:32.050485+00:00_
+
+根据上次对话你问了初始 idea，这里先快速回顾再回答实验进展。
+
+## 初始 idea 回顾
+
+训练 AI agent 学会**什么时候该"回头检查"**，而不是每一步都检查（太贵）或完全不检查（容易出错）。
+
+## 实验进展：idea 发生了重大转向
+
+在做这个 idea 的过程中，团队撞上了一个**更底层的问题**——在多轮交互任务中，社区默认的训练方式（step-independent GRPO，把长对话切成小窗口分别训练）会**灾难性崩溃**。
+
+**关键对比实验：**
+
+| 训练方式 | 代表实验 | 验证集成功率 | 结论 |
+|---|---|---|---|
+| step-independent（切窗口训练） | exp028c | step 10 → **0%**（完全崩溃） | 失败 |
+| episode-level（整条轨迹训练） | exp029 | step 15 → **28.1%**（从 6.25% baseline 持续上升） | 成功 |
+
+**崩溃根因诊断出两个机制：**
+1. **信息丢失** — 小窗口看不到完整上下文，学不了跨步策略（比如"先开抽屉再去台面拿东西"）
+2. **梯度方向搞反** — 失败 episode 里的好动作被错误惩罚，成功 episode 里的差动作被错误强化
+
+## 当前状态
+
+- **核心结论已初步成立**：episode-level 训练能work，step-independent 会崩，机制分析已通过三轮 reviewer 审查
+- **正在跑**：h-sweep 实验（`hsweep_h2_seed1`，step 2 进行中），用不同窗口大小系统验证崩溃曲线
+- **论文写作**同步进行中，Method + 理论分析部分已完成
+- **原始的"学什么时候检查"（selective verification）还没开始做**，要等 episode-level 训练跑到足够好（≥40% 成功率）才有意义
+
+## 总结
+
+原始 idea 从"学什么时候检查"**转向了更根本的发现**：诊断 LLM agent RL 训练中被忽视的 step-independent 隐性代价。实验数据支持这个新方向的核心论点。选择性验证变成了论文的第二贡献，排在训练方法诊断之后。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+2 recorded events
+
+### User
+
+_source line 19 · 2026-05-17T11:12:49.171678+00:00_
+
+[飞书用户 曹晓玉 (ou_9778f3d806b39e8206e9ffc130027576)]: 这是更强了还是变弱了
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "source": "feishu:oc_cbf0b364caea2238309fc5086aabaff7"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-17T11:13:25.143334+00:00_
+
+说实话是**方向变了，变得更扎实但也更窄了**。
+
+**变强的部分：**
+- 项目在做实验的过程中发现了一个比原始 idea 更根本的问题：LLM agent 社区默认用的 step-independent 训练方式，在多轮任务上会**灾难性崩溃**（success 从有到直接归零）
+- 这个发现有硬实验支撑：step-independent 训了 10 步 success 归 0%（exp028c），而 episode-level 训练到 step 15 success 达 28.125%（exp029），是 baseline 的 2 倍多
+- 根因分析也做得比较深（双机制：信息丢失 + advantage 符号错配），经过了三轮内部审稿确认
+
+**变弱/还没验证的部分：**
+- 原始 idea 里最核心的"selective verification"（让 agent 学会什么时候该验证、什么时候不用）**还完全没开始做**，目前还在 Phase A，Phase B/C 的实验一个没跑
+- 这部分能不能做取决于 episode-level 训练的 success 能不能到 40% 以上，目前才 28%
+- 内部模拟审稿给了 weak reject，认为如果只讲"step-independent 会崩"这个诊断故事，分析深度还不够
+
+**总结：** 原来计划的是"训 agent 学会省钱地做自我验证"，现在实际变成了"诊断为什么 multi-turn agent 的 RL 训练会崩 + 怎么修"。诊断这半边证据比较硬，但原始的 cost-efficiency 故事还悬着没落地。项目目前正在跑 h-sweep（不同窗口大小的消融实验）来补强诊断侧的证据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 4
+
+2 recorded events
+
+### User
+
+_source line 21 · 2026-05-17T11:28:44.497257+00:00_
+
+[飞书用户 曹晓玉 (ou_9778f3d806b39e8206e9ffc130027576)]: 你觉得有没有从findings到main的希望
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "source": "feishu:oc_cbf0b364caea2238309fc5086aabaff7"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-17T11:29:23.808099+00:00_
+
+说实话，有希望但有条件，不是白给的。
+
+**有利的方面：**
+- Claim 1（step-independent 崩溃的双机制诊断）已经用实验立住了：episode-level 28% vs step-independent 0%，对比很干净
+- h-sweep 正在跑，如果出来一个漂亮的 "cliff figure"（随着 h 减小，性能断崖式下跌），这个图本身就很有说服力
+- 问题切得准——"社区默认做法其实是错的"这类发现审稿人是买账的
+
+**卡脖子的地方：**
+- 光靠诊断（Plan A 纯 methodology paper）不太够。Dream Review 已经给了 weak reject，说明纯分析贡献的 bar 很高
+- 真正能撑起 main 的是 **Phase B — selective verification**（训练 agent 学什么时候该 verify），但这块实验还一行没跑
+- 目前 episode-level 训练最高才 28% success，Self-Guide 是 72.7%，性能差距大。如果 selective verification 的基础 agent 不够强，cost-efficiency 的故事讲不圆
+- 单环境（ALFWorld）+ 单模型（1.7B），reviewer 一定会打
+
+**我的判断：**
+
+如果只做到 Claim 1（诊断 + h-sweep ablation），大概率是 workshop/findings 水平。要冲 main，Phase B 的 selective verification 必须跑通，形成"诊断问题 → 修复训练 → 在此基础上做 cost-efficient verification"的完整闭环。paper_framing.md 里的 contingency plan 也承认了这一点。
+
+核心变量是时间和 GPU——h-sweep 15 个 run 预计还要 7 天，Phase B 还没开始。如果目标是 NeurIPS 2026 ddl，时间会比较紧。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 5
+
+10 recorded events
+
+### User
+
+_source line 23 · 2026-05-17T13:41:45.734630+00:00_
+
+[飞书用户 曹晓玉 (ou_9778f3d806b39e8206e9ffc130027576)]: 现在有在积极推进吗，还需要多久GPU时间
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "source": "feishu:oc_cbf0b364caea2238309fc5086aabaff7"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-17T13:41:52.560208+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__list_available_gpus",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__list_available_gpus",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T13:41:53.427844+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "ToolSearch",
+  "elapsed_ms": 867
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-17T13:41:55.455351+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "filters": "{'status': 'RUNNING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "filters": "{'status': 'RUNNING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-17T13:41:56.037405+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"hsweep_h2_seed1\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-17T04:37:11.061Z\", \"updated_at\": \"2026-05-17T11:43:47.308Z\", \"hypothesis\": \"Step-independent GRPO with h=2 (minimal context, N=25 windows per episode) will catastrophically collapse due to advantage sign misattribution: early windows retain only γ^24=0.95^24≈29% of terminal return, and all windows in failed episodes receive undifferentiated negative advantage regardless of action quality\", \"parent\": \"exp029_episode_level\", \"metrics\": {\"train_step\": 9, \"total_steps\": 15, \"wandb_run_id\": \"7o9bjszm\", \"step1\": {\"success\": 0.1875, \"pass_at_8\": 0.4375, \"invalid_action\": 0.027}, \"step2\": {\"success\": 0.1484, \"pass_at_8\": 0.5, \"invalid_action\": 0.02}, \"step3\": {\"success\": 0.1875, \"pass_at_8\": 0.625, \"invalid_action\": 0.028}, \"step4\": {\"success\": 0.0547, \"pass_at_8\": 0.25, \"invalid_action\": 0.264}, \"step5\": {\"success\": 0.0156, \"pass_at_8\": 0.0625, \"invalid_action\": 0.369}, \"step6\": {\"success\": 0.0313, \"pass_at_8\": 0.25, \"invalid_action\": 0.471}, \"step7\": {\"success\": 0.0469, \"pass_at_8\": 0.1875, \"invalid_action\": 0.502}, \"step8\": {\"success\": 0.0156, \"pass_at_8\": 0.125, \"invalid_action\": 0.542}, \"step9\": {\"success\": 0, \"pass_at_8\": 0, \"invalid_action\": 0.641}, \"val_step0\": {\"success\": 0, \"reward_mean\": 0}, \"val_step5\": {\"success\": 0.0313, \"invalid_action\": 0.781}, \"checkpoint\": \"global_step_5\", \"gpu_util\": \"95-96%\", \"collapse_onset\": \"step3→step4\", \"pid\": 920380, \"elapsed_hours\": 7.1}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1993}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 582
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-17T13:41:56.037775+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "ROADMAP.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "file": "ROADMAP.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T13:41:56.596893+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\", \"content\": \"# cost-verify-agent-rl — Research Dashboard\\n\\n> 最后更新: 2026-05-17 08:23 UTC | 更新原因: Loop 12 状态同步：h=2 崩溃确认、D059 eval 修复、dual mechanism 精确化、Paper Agent Phase 2\\n\\n## 核心方向\\nMulti-turn agent RL 的 credit assignment 诊断与修复：step-independent GRPO 存在 Advantage Sign Misattribution（梯度方向错误）+ Information Loss（推理 context 截断），episode-level GRPO 消除两者。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research Phase (MVP passed D053) + 审稿进行中 (Group C)\\n- **理论**: Sign Misattribution mechanism 三轮 Reviewer 确认收敛 (D058)\\n- **实验**: h-sweep 进行中，h=2 seed 1 step 3 已现崩溃 (18.75%→5.47%)\\n- **论文写作**: Method + Theoretical Analysis 完成；Introduction + Related Work 进行中\\n- **覆盖率**: 1/18 experiments completed (plan_001 only), h-sweep 大批量正在积累\\n\\n### 关键发现（本轮）\\n- D059: h-sweep val 用 truncated context（h=2 val=0%），需 post-hoc full-context eval\\n- Dual mechanism 精确分离：Info Loss (恒定 ceiling) vs Sign Misattribution (累积降解)\\n- GAE baseline (plan_003b) = verl 原生支持，只需 config 修改（已准备就绪）\\n\\n## 近期任务\\n- [ ] h=2 seed 1 完成 → 确认全面崩溃 + auto_next 自动启动 seed 2\\n- [ ] h=2 seed 2 完成 → 运行 analyze_advantage_log.py (plan_004 验证)\\n- [ ] post-hoc full-context eval 脚本完成 → 所有 checkpoint 统一 eval\\n- [ ] Paper Agent 完成 Intro + Related Work + 引用验证\\n- [ ] h=5/10 数据到位 → 验证 \\\"推理可行但训练崩溃\\\"（最强 sign misattribution 证据）\\n- [ ] 全部 h-sweep 15 runs 完成 → 画 cliff figure (plot_hsweep_cliff.py)\\n- [ ] 启动 GAE baseline (plan_003b) — config 已就绪，等 GPU\\n- [ ] plan_003 multi-seed replication（h-sweep 后）\\n\\n## GPU 预算\\n- 本地：bjb1-17606 × 2 GPU (A6000 96GB)，全部分配给 h-sweep\\n- h-sweep 预估：15 runs × ~12h/run = ~180h wall clock = ~7.5 天\\n- GAE baseline: ~10h（h-sweep 后）\\n- 云 GPU：未申请（如需加速可向 Manager 申请）\\n\\n## 准备就绪（等 GPU）\\n- GAE baseline config: `RAGEN/config/_alfworld_gae_baseline.yaml`\\n- REINFORCE++ config: `RAGEN/config/_alfworld_reinforce_pp_baseline.yaml`\\n- Advantage analysis: `s
+…[truncated 1626 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 559
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-17T13:41:56.597286+00:00_
+
+called mcp__agent-ml-research__list_available_gpus
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_available_gpus</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "mcp__agent-ml-research__list_available_gpus",
+  "tool_args": {
+    "project": "cost-verify-agent-rl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-17T13:41:58.611804+00:00_
+
+{"result":"{\"gpus\": [{\"id\": \"cuda:0\", \"name\": \"NVIDIA RTX PRO 6000 Blackwell Server Edition\", \"memory_used_mb\": 25903, \"memory_total_mb\": 97887, \"utilization_pct\": 100, \"temperature_c\": 45, \"config_available\": true, \"server\": \"bjb1-17606\"}, {\"id\": \"cuda:1\", \"name\": \"NVIDIA RTX PRO 6000 Blackwell Server Edition\", \"memory_used_mb\": 25903, \"memory_total_mb\": 97887, \"utilization_pct\": 95, \"temperature_c\": 44, \"config_available\": true, \"server\": \"bjb1-17606\"}, {\"id\": \"cuda:0\", \"name\": \"NVIDIA RTX PRO 6000 Blackwell Server Edition\", \"memory_used_mb\": 0, \"memory_total_mb\": 97887, \"utilization_pct\": 0, \"temperature_c\": 29, \"config_available\": true, \"server\": \"westd-47453\"}, {\"id\": \"cuda:1\", \"name\": \"NVIDIA RTX PRO 6000 Blackwell Server Edition\", \"memory_used_mb\": 0, \"memory_total_mb\": 97887, \"utilization_pct\": 0, \"temperature_c\": 28, \"config_available\": true, \"server\": \"westd-47453\"}, {\"id\": \"cuda:2\", \"name\": \"NVIDIA RTX PRO 6000 Blackwell Server Edition\", \"memory_used_mb\": 0, \"memory_total_mb\": 97887, \"utilization_pct\": 0, \"temperature_c\": 29, \"config_available\": true, \"server\": \"westd-47453\"}, {\"id\": \"cuda:3\", \"name\": \"NVIDIA RTX PRO 6000 Blackwell Server Edition\", \"memory_used_mb\": 0, \"memory_total_mb\": 97887, \"utilization_pct\": 0, \"temperature_c\": 28, \"config_available\": true, \"server\": \"westd-47453\"}]}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer",
+  "tool": "mcp__agent-ml-research__list_available_gpus",
+  "elapsed_ms": 2014
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-17T13:42:10.998605+00:00_
+
+在积极推进，当前状态：
+
+**正在跑的实验：** `hsweep_h2_seed1`，已到 step 9/15，train success 从 step 3 的 18.75% 崩到 step 9 的 0%，崩溃趋势非常清晰——这正好是论文需要的证据（证明 step-independent 训练在短 context 下灾难性失败）。
+
+**GPU 占用：**
+- **bjb1-17606**：2× RTX PRO 6000（96GB），利用率 95-100%，正在跑 h-sweep
+- **westd-47453**：4× RTX PRO 6000，全部空闲（0% 利用率）
+
+**剩余 GPU 时间估算：**
+
+| 任务 | 预估时间 |
+|------|---------|
+| h-sweep 剩余（h=2 seed1 快完成 + seed2/3，h=5/10 各3 seeds） | ~14 runs × ~12h = **~168h**（单机串行约 7 天） |
+| GAE baseline | ~10h |
+| multi-seed replication (plan_003) | ~36h |
+| **合计** | **~214h GPU 时间** |
+
+如果只用 bjb1 一台机器串行跑，大约还要 **9 天**。westd-47453 有 4 张空闲卡，如果并行利用起来可以大幅缩短到 **3-4 天**。不过 westd 目前没有分配给这个项目，需要向 Manager 申请。
+
+论文写作方面也在同步推进（Method + Theoretical Analysis 已完成，Introduction + Related Work 正在写），不完全阻塞在 GPU 上。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_cbf0b364caea2238309fc5086aabaff7:briefer"
+}
+```
+
+</details>
+
+---

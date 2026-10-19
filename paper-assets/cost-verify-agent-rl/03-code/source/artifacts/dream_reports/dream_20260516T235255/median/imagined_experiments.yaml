@@ -1,0 +1,796 @@
+tier: median
+narrative_guidance: Rebalance为70% training methodology + 30% selective verification。Episode-level训练收敛至~36%，与step-independent的0%形成dramatic
+  gap（Claim 1 strong）。h-sweep展示预期趋势但有噪声，multi-seed variance偏大(std~6pp)。Selective verification可工作但cost-performance
+  tradeoff不够dramatic（Claim 2+3降级为preliminary evidence）。Paper主打episode-level training
+  methodology，selective verification作为downstream demo。需加厚Phase C ablation弥补Phase B弱结果。
+imagined_experiments:
+- name: Context window h-sweep ablation
+  plan_id: plan_002
+  description: Sweep h={2,5,10,20,full}，展示credit assignment threshold非binary
+  expected_results:
+    h2_success_rate: 0.0
+    h5_success_rate: 4.7
+    h10_success_rate: 18.8
+    h20_success_rate: 29.7
+    h_full_success_rate: 35.9
+    h2_action_is_valid: 72.3
+    h5_action_is_valid: 78.6
+    h10_action_is_valid: 85.1
+    h20_action_is_valid: 88.4
+    h_full_action_is_valid: 90.6
+    h2_convergence_steps: collapsed_step4
+    h5_convergence_steps: 25
+    h10_convergence_steps: 18
+    h20_convergence_steps: 15
+    h_full_convergence_steps: 12
+    cliff_threshold_h: 5
+  result_rationale: Median档下h-sweep大体展示预期趋势但存在噪声。h=2完全崩溃（gamma^(50-2)≈0），h=5勉强有信号但仅4.7%（cliff位于h=5-10之间，符合median指标h_cliff=3-8）。h=10到h=20的跳跃(18.8→29.7)不完全单调——某些seed下h=10偶尔超过h=20的个别eval
+    batch，造成noise。h=full达到35.9%但未突破40%阈值。整体趋势清晰但不像理想情况那样perfectly monotonic，存在reviewer可以质疑的边界case。
+  tables:
+  - name: 'Table 2: h-sweep results'
+    columns:
+    - h
+    - success_rate(%)
+    - action_is_valid(%)
+    - converge_step
+    - effective_discount
+    rows:
+    - - 2
+      - 0.0
+      - 72.3
+      - collapse
+      - '7.7e-25'
+    - - 5
+      - 4.7
+      - 78.6
+      - 25
+      - '7.7e-14'
+    - - 10
+      - 18.8
+      - 85.1
+      - 18
+      - '2.8e-7'
+    - - 20
+      - 29.7
+      - 88.4
+      - 15
+      - '5.2e-4'
+    - - full
+      - 35.9
+      - 90.6
+      - 12
+      - '1.0'
+  figures_description:
+  - 'Figure 2a: h vs success_rate曲线，sigmoid-like但h=10处有轻微非单调（某batch h=10略高于趋势线），error
+    bar较大'
+  - 'Figure 2b: effective discount gamma^(T-h) vs performance，log-scale，展示exponential
+    decay关系但散点有噪声'
+  analysis: h-sweep确认credit assignment decay hypothesis但curve不够clean。h=5是cliff区域（从4.7%到h=10的18.8%有4x跳跃）。关键发现：intermediate
+    h值(10,20)部分有效，说明threshold不是binary而是gradual degradation。但h=10和h=20之间的gap(11pp)小于h=20和full之间的gap(6pp)，暗示diminishing
+    returns。Reviewer可能argue h=20已经'good enough'——需要在paper中强调full context的额外6pp在deployment中的cumulative价值。
+- name: Multi-seed replication (3 seeds)
+  plan_id: plan_003
+  description: 2 additional seeds复现episode-level config，报告mean±std
+  expected_results:
+    seed1_success_rate: 35.9
+    seed2_success_rate: 29.7
+    seed3_success_rate: 39.1
+    mean_success_rate: 34.9
+    std_success_rate: 4.7
+    seed1_action_is_valid: 90.6
+    seed2_action_is_valid: 86.3
+    seed3_action_is_valid: 91.8
+    mean_action_is_valid: 89.6
+    std_action_is_valid: 2.9
+    seed1_convergence_step: 12
+    seed2_convergence_step: 16
+    seed3_convergence_step: 11
+  result_rationale: Median档下multi-seed std在5-8pp范围。三个seed分别为35.9/29.7/39.1%，std≈4.7pp——略低于median范围下限(5pp)但接近。Seed2表现较差(29.7%)拉低mean至34.9%，刚好落在median指标[30,42]内。Variance主要来自early
+    training的exploration randomness——不同seed在step 3-5的trajectory divergence决定了最终收敛点。action_is_valid更稳定(std
+    2.9pp)因为它是easier sub-task。
+  tables:
+  - name: 'Table 3: Multi-seed episode-level results'
+    columns:
+    - seed
+    - success_rate(%)
+    - action_is_valid(%)
+    - converge_step
+    - final_entropy
+    rows:
+    - - 42
+      - 35.9
+      - 90.6
+      - 12
+      - 0.18
+    - - 123
+      - 29.7
+      - 86.3
+      - 16
+      - 0.21
+    - - 7
+      - 39.1
+      - 91.8
+      - 11
+      - 0.16
+    - - mean±std
+      - 34.9±4.7
+      - 89.6±2.9
+      - 13.0±2.6
+      - 0.18±0.03
+  figures_description:
+  - 'Figure S1: 三条learning curve叠加，shaded area表示min-max范围，展示convergence trajectory
+    variance'
+  analysis: Std=4.7pp在可接受范围但不够tight。Seed2的29.7%是potential weakness——reviewer可能argue这接近step-independent上界。Defense：即使worst
+    seed(29.7%)仍远超step-independent(0-6%)，gap仍然dramatic(24-30pp)。但无法claim '≥40% convergence'——需要更多seeds或更长training来tighten
+    confidence interval。Paper措辞需调整为'converges to 30-39% range'而非固定数字。
+- name: Credit assignment mechanism analysis
+  plan_id: plan_004
+  description: 可视化effective discount、gradient signal strength、episode length correlation
+  expected_results:
+    gradient_signal_h2_relative: 0.003
+    gradient_signal_h5_relative: 0.041
+    gradient_signal_h10_relative: 0.287
+    gradient_signal_h20_relative: 0.714
+    gradient_signal_full_relative: 1.0
+    episode_length_performance_correlation: -0.43
+    episode_length_performance_p_value: 0.008
+    mean_episode_length: 38.7
+    gradient_variance_h2: 0.89
+    gradient_variance_full: 0.12
+  result_rationale: Mechanism analysis主要是对h-sweep数据的post-hoc分析。Gradient signal strength与effective
+    discount高度相关(r>0.95)——这是数学必然。Episode length与performance负相关(r=-0.43, p=0.008)说明longer
+    episodes在small-h下受害更严重——这支撑mechanism story。但correlation是moderate(-0.43)而非strong，因为episode
+    success还受task difficulty影响。Gradient variance在h=2时极高(0.89)说明信号几乎是noise。
+  tables:
+  - name: 'Table 4: Gradient signal analysis'
+    columns:
+    - h
+    - effective_discount
+    - relative_gradient_signal
+    - gradient_variance
+    - collapsed(%)
+    rows:
+    - - 2
+      - '7.7e-25'
+      - 0.003
+      - 0.89
+      - 100
+    - - 5
+      - '7.7e-14'
+      - 0.041
+      - 0.67
+      - 75
+    - - 10
+      - '2.8e-7'
+      - 0.287
+      - 0.34
+      - 25
+    - - 20
+      - '5.2e-4'
+      - 0.714
+      - 0.18
+      - 0
+    - - full
+      - 1.0
+      - 1.0
+      - 0.12
+      - 0
+  figures_description:
+  - 'Figure 2c: gradient signal strength vs h (log-scale x-axis)，展示exponential relationship'
+  - 'Figure 2d: episode length histogram colored by success/failure，stratified by
+    h value'
+  - 'Figure 2e: per-step gradient magnitude heatmap across training steps for each
+    h'
+  analysis: Mechanism analysis清晰支撑narrative：credit assignment decay是exponential的，gradient
+    signal在small h下是noise-dominated。Key insight for paper：不仅是signal弱，而且variance高——small-h模型实际在做random
+    walk而非learning。Episode length correlation提供additional evidence但不是smoking gun(r=-0.43)。整体sufficient
+    for methodology paper的Figure 2，但需要careful framing避免over-claim因果关系。
+- name: Action-change statistics from always-on runs
+  plan_id: plan_005
+  description: 收集always-on verification的action-change统计
+  expected_results:
+    total_verification_episodes: 240
+    total_verification_steps: 9360
+    action_change_rate_overall: 31.2
+    confirmatory_rate_pct: 68.8
+    action_change_success_correlation_r: 0.19
+    action_change_success_correlation_p: 0.003
+    per_task_action_change_rate_pick: 26.4
+    per_task_action_change_rate_clean: 33.7
+    per_task_action_change_rate_heat: 35.2
+    per_task_action_change_rate_cool: 29.8
+    per_task_action_change_rate_examine: 38.1
+    per_task_action_change_rate_pick_two: 28.9
+    action_change_at_early_steps_pct: 22.1
+    action_change_at_mid_steps_pct: 34.6
+    action_change_at_late_steps_pct: 41.3
+  result_rationale: Median档下confirmatory rate在55-75%范围——这里68.8%。意味着接近70%的verification没有改变agent行为，支撑'most
+    verification is wasted'的narrative。但action-change与success的correlation仅r=0.19(在median的0.15-0.25范围内)——这是moderate信号，sufficient
+    for motivation但不够强到支撑action-change作为standalone reward的strong claim。Late steps的action-change率更高(41.3%)因为agent在episode后期更likely偏离正轨，需要correction。
+  tables:
+  - name: 'Table 5: Action-change statistics'
+    columns:
+    - metric
+    - value
+    rows:
+    - - Confirmatory rate (no action change)
+      - 68.8%
+    - - Action-change rate
+      - 31.2%
+    - - Correlation with episode success (r)
+      - 0.19
+    - - p-value
+      - 0.003
+    - - Action-change at early steps (1-15)
+      - 22.1%
+    - - Action-change at mid steps (16-35)
+      - 34.6%
+    - - Action-change at late steps (36-50)
+      - 41.3%
+  figures_description:
+  - 'Figure 3a: action-change rate per step position (bar chart)，展示increasing trend'
+  - 'Figure 3b: scatter plot of per-episode action-change count vs episode success
+    (binary)，展示weak positive trend'
+  analysis: Confirmatory rate 68.8%确认核心motivation——大多数verification是浪费。但r=0.19的correlation偏弱，需要careful
+    framing。不能claim 'action-change strongly predicts success'，只能说'action-change is
+    a meaningful but noisy signal for verification informativeness'。Per-task breakdown显示examine类task最高(38.1%)——可能因为这类task需要更多exploration/correction。Paper应强调这是'proof-of-concept
+    evidence'而非conclusive。
+- name: Selective verification implementation
+  plan_id: plan_006
+  description: Code implementation of binary verify/skip mechanism (no GPU needed)
+  expected_results:
+    implementation_complete: true
+    verify_token_added: true
+    reward_function_implemented: true
+    alpha_default: 0.5
+    beta_default: 0.1
+    integration_test_passed: true
+  result_rationale: 纯code实现，无实验数据。实现binary verify/skip decision token，reward = task_success
+    + alpha * action_change_when_verified - beta * verification_cost。Alpha=0.5和beta=0.1是initial
+    hyperparameters，后续plan_007中调优。
+  tables: []
+  figures_description: []
+  analysis: Implementation milestone，无experimental findings。关键设计决策：(1) verify/skip作为special
+    token在每步action前输出，(2) reward中action_change仅在verify时计算(skip时为0)，(3) verification_cost是constant
+    penalty per verify。这些design choices在plan_012的ablation中会被验证。
+- name: B-IAVR selective verification training
+  plan_id: plan_007
+  description: 从best episode-level checkpoint初始化，训练selective verification policy
+  expected_results:
+    final_success_rate: 31.3
+    always_on_baseline_success: 35.9
+    success_delta_pp: -4.6
+    verification_rate: 71.2
+    verification_rate_reduction_vs_always_on: 28.8
+    action_is_valid: 87.4
+    training_steps_to_converge: 18
+    final_entropy: 0.24
+    final_kl: 0.034
+    cost_tokens_reduction_pct: 22.1
+  result_rationale: Median档下selective verification效果有限：verification rate仅降低28.8%(未达40%目标)，且success
+    delta为-4.6pp(在median的3-8pp范围内但偏大)。这是因为：(1) base model仅35.9% success，headroom本就有限——从weak
+    model上训练selectivity更难，因为model本身就不确定何时verification有帮助；(2) action-change signal仅r=0.19的correlation，reward信号noisy导致policy学到的是conservative
+    strategy(倾向verify)而非optimal selective；(3) 28.8%的verification reduction虽然存在但cost-performance
+    tradeoff不dramatic——需要几乎always verify才能维持本就不高的success rate。
+  tables:
+  - name: 'Table 6: B-IAVR training trajectory'
+    columns:
+    - step
+    - success(%)
+    - verify_rate(%)
+    - entropy
+    - kl
+    rows:
+    - - 0
+      - 35.9
+      - 100
+      - 0.18
+      - 0
+    - - 5
+      - 33.6
+      - 85.3
+      - 0.26
+      - 0.012
+    - - 10
+      - 32.0
+      - 76.8
+      - 0.28
+      - 0.021
+    - - 15
+      - 31.8
+      - 73.1
+      - 0.25
+      - 0.029
+    - - 18
+      - 31.3
+      - 71.2
+      - 0.24
+      - 0.034
+  figures_description:
+  - 'Figure 4a: success rate vs verification rate Pareto curve during training'
+  - 'Figure 4b: per-step verify probability heatmap across episode positions'
+  analysis: B-IAVR学到了一些selectivity但效果不够dramatic。Policy趋向于在early steps skip(因为early
+    steps action-change率低)但在late steps几乎always verify。验证率从100%降到71.2%——仅~29%reduction。Success
+    loss 4.6pp在可接受范围但combined with modest cost saving使得overall story偏弱。Paper中需要frame为'proof-of-concept
+    that selective verification is learnable via RL'而非'a system that dramatically
+    reduces cost'。
+- name: Selective verification full comparison
+  plan_id: plan_008
+  description: Always-on/B-IAVR/no-verify/random-p/confidence-threshold全面对比
+  expected_results:
+    always_on_success: 35.9
+    always_on_verify_rate: 100
+    always_on_tokens: 47200
+    biavr_success: 31.3
+    biavr_verify_rate: 71.2
+    biavr_tokens: 38100
+    no_verify_success: 23.4
+    no_verify_verify_rate: 0
+    no_verify_tokens: 24800
+    random_50_success: 28.1
+    random_50_verify_rate: 50
+    random_50_tokens: 35600
+    confidence_threshold_success: 30.5
+    confidence_threshold_verify_rate: 62.4
+    confidence_threshold_tokens: 39700
+  result_rationale: Median档下B-IAVR在Pareto frontier上marginally优于baselines但差距不大。与random-50%相比：B-IAVR用更多verification(71.2%
+    vs 50%)获得更多success(31.3% vs 28.1%)——说明B-IAVR的selectivity有signal但不dramatic。与confidence-threshold相比几乎持平(31.3%
+    vs 30.5% success, 71.2% vs 62.4% verify)——confidence-threshold更aggressive(verify少10pp)但success仅差0.8pp，暗示学到的policy和simple
+    heuristic差别有限。Key finding：verification本身有价值(always-on 35.9% vs no-verify 23.4%=12.5pp
+    gap)，但SELECTIVE verification的额外价值(vs random/confidence)是marginal的。
+  tables:
+  - name: 'Table 7: Full verification comparison'
+    columns:
+    - method
+    - success(%)
+    - verify_rate(%)
+    - tokens
+    - cost_relative
+    rows:
+    - - Always-on
+      - 35.9
+      - 100
+      - 47200
+      - '1.00'
+    - - B-IAVR (ours)
+      - 31.3
+      - 71.2
+      - 38100
+      - '0.81'
+    - - Confidence-threshold
+      - 30.5
+      - 62.4
+      - 39700
+      - '0.84'
+    - - Random-50%
+      - 28.1
+      - 50.0
+      - 35600
+      - '0.75'
+    - - No-verify
+      - 23.4
+      - 0
+      - 24800
+      - '0.53'
+  figures_description:
+  - 'Figure 5: Pareto frontier plot (success vs cost)，5 methods marked，B-IAVR slightly
+    above convex hull of baselines'
+  analysis: Full comparison确认verification有价值(12.5pp gap)但selective的marginal benefit有限。B-IAVR在Pareto
+    frontier上but仅marginally优于confidence-threshold。这意味着Claim 3无法以strong形式成立——paper需调整为：'B-IAVR
+    demonstrates that RL can learn selectivity, but the current action-change signal
+    provides limited advantage over simpler heuristics at this model capacity'。Framing应转向'the
+    gap between always-on and no-verify motivates future work on better verification
+    signals'。
+- name: No-verify ablation
+  plan_id: plan_009
+  description: Episode-level GRPO无self-verification，作为lower bound
+  expected_results:
+    success_rate: 23.4
+    action_is_valid: 85.7
+    success_delta_vs_always_on: -12.5
+    convergence_step: 14
+    final_entropy: 0.19
+    final_kl: 0.028
+  result_rationale: No-verify在median档下收敛至23.4%——比always-on(35.9%)低12.5pp。这证明verification有实质价值。差距来源：without
+    verification，agent在错误action后无法self-correct，导致episode在early mistake后cascading failure。12.5pp
+    gap对于paper是strong evidence that verification matters——即使selective verification效果不dramatic，always-on
+    verification的价值已被establish。action_is_valid略低(85.7% vs 90.6%)因为without verification
+    feedback，model less aware of action validity constraints。
+  tables:
+  - name: 'Table 8: No-verify vs always-on'
+    columns:
+    - config
+    - success(%)
+    - action_is_valid(%)
+    - avg_episode_length
+    rows:
+    - - Episode-level + always-on verify
+      - 35.9
+      - 90.6
+      - 38.7
+    - - Episode-level + no verify
+      - 23.4
+      - 85.7
+      - 42.1
+    - - Delta
+      - -12.5
+      - -4.9
+      - '+3.4'
+  figures_description:
+  - 'Figure S2: learning curves对比(with/without verification)，展示gap在training中持续存在'
+  analysis: 12.5pp gap是paper中supporting verification value的关键数据点。Without verification,
+    episodes倾向于更长(42.1 vs 38.7 steps)因为agent wandering而非converging。这支撑Section 2的motivation
+    ('verification helps but is costly → selective is needed')。即使B-IAVR最终效果modest，no-verify
+    ablation确认了research direction的合理性。
+- name: Entropy-controlled action-change analysis
+  plan_id: plan_010
+  description: 控制policy entropy后检验action-change-success partial correlation
+  expected_results:
+    raw_correlation_r: 0.19
+    partial_correlation_after_entropy_control: 0.14
+    partial_correlation_p_value: 0.031
+    entropy_action_change_correlation: 0.34
+    entropy_strata_low_correlation: 0.11
+    entropy_strata_mid_correlation: 0.16
+    entropy_strata_high_correlation: 0.13
+    significant_at_005: true
+  result_rationale: Median档下partial correlation从0.19降至0.14——entropy确实解释了部分action-change
+    variance(r=0.34 between entropy and action-change)，但控制后correlation仍然significant(p=0.031)。这意味着action-change不完全是entropy/randomness的artifact，但signal偏弱(r=0.14)。各entropy
+    stratum内的correlation基本一致(0.11-0.16)，说明relationship不依赖于specific entropy regime。对于paper够用作defense('action-change
+    signal survives entropy control')但不够强到claim causal relationship。
+  tables:
+  - name: 'Table 9: Entropy-controlled analysis'
+    columns:
+    - stratum
+    - n_episodes
+    - action_change_rate(%)
+    - success_rate(%)
+    - correlation_r
+    rows:
+    - - Low entropy (<0.15)
+      - 78
+      - 24.3
+      - 38.5
+      - 0.11
+    - - Mid entropy (0.15-0.25)
+      - 96
+      - 32.1
+      - 34.2
+      - 0.16
+    - - High entropy (>0.25)
+      - 66
+      - 38.7
+      - 30.1
+      - 0.13
+    - - Partial (entropy-controlled)
+      - 240 total
+      - '-'
+      - '-'
+      - 0.14 (p=0.031)
+  figures_description:
+  - 'Figure S3: partial correlation forest plot，展示raw vs controlled vs per-stratum'
+  analysis: Defense成立但marginal——action-change不是pure noise(p<0.05)但信号弱。High entropy
+    episodes有更多action-change(38.7% vs 24.3%)但更低success(30.1% vs 38.5%)——说明部分action-change确实是exploration
+    noise而非informative correction。Paper应acknowledge this nuance:'while action-change
+    survives entropy control, the modest partial correlation (r=0.14) suggests that
+    stronger reward signals for verification informativeness remain an open problem'。
+- name: 'Causal intervention: random vs verification-triggered changes'
+  plan_id: plan_011
+  description: 注入random action changes对比verification-triggered changes的success rate
+  expected_results:
+    verification_triggered_success_rate: 39.2
+    random_triggered_success_rate: 31.8
+    no_change_baseline_success_rate: 34.1
+    delta_triggered_vs_random: 7.4
+    delta_triggered_vs_no_change: 5.1
+    n_episodes_per_condition: 80
+    p_value_triggered_vs_random: 0.042
+  result_rationale: Median档下verification-triggered changes优于random但delta仅7.4pp(未达hypothesis的≥10pp)。关键insight：verification-triggered在成功率上(39.2%)高于no-change
+    baseline(34.1%)说明verification有selective correction能力；但random changes也并非灾难性(31.8%)——有时random
+    perturbation碰巧correct。7.4pp差距p=0.042，barely significant。这是'存在causal signal但不strong'的典型median档结果——够写进paper作为supporting
+    evidence但不够作为standalone claim。
+  tables:
+  - name: 'Table 10: Causal intervention results'
+    columns:
+    - condition
+    - success(%)
+    - n
+    - vs_random_p
+    rows:
+    - - Verification-triggered change
+      - 39.2
+      - 80
+      - '-'
+    - - Random change (matched rate)
+      - 31.8
+      - 80
+      - '0.042'
+    - - No change (baseline)
+      - 34.1
+      - 80
+      - '0.18'
+  figures_description:
+  - 'Figure S4: bar chart with error bars showing three conditions'
+  analysis: Causal evidence存在但偏弱。7.4pp delta不够large(hypothesis was ≥10pp)且p=0.042
+    barely passes threshold。有趣的是no-change baseline(34.1%)高于random(31.8%)——说明random
+    changes有时harmful。Paper应frame为'preliminary causal evidence that verification-triggered
+    corrections are non-random, though the effect size is modest'。Combined with entropy
+    analysis, 构成Claim 2的supporting evidence bundle，单独每个都不够strong但together形成coherent
+    picture。
+- name: Reward signal ablation (action-change vs alternatives)
+  plan_id: plan_012
+  description: 对比action-change/random trigger/confidence-based三种reward训练B-IAVR
+  expected_results:
+    action_change_reward_success: 31.3
+    action_change_reward_verify_rate: 71.2
+    action_change_reward_cost_reduction: 22.1
+    random_reward_success: 27.8
+    random_reward_verify_rate: 54.3
+    random_reward_cost_reduction: 31.4
+    confidence_reward_success: 30.1
+    confidence_reward_verify_rate: 68.7
+    confidence_reward_cost_reduction: 24.8
+  result_rationale: Median档下action-change reward略优但差距不dramatic。Action-change(31.3%
+    success)优于random(27.8%)3.5pp和confidence(30.1%)1.2pp。但random reward的verification
+    rate更低(54.3%)导致更大cost reduction(31.4%)——trade-off不clear-cut。Confidence-based与action-change几乎持平，暗示在这个model
+    capacity下两种信号效果类似。这confirm了'action-change is a reasonable reward signal'但不能claim
+    it's dramatically better——consistent with median tier的'selective verification效果有限'。
+  tables:
+  - name: 'Table 11: Reward signal comparison'
+    columns:
+    - reward_type
+    - success(%)
+    - verify_rate(%)
+    - cost_reduction(%)
+    - pareto_optimal
+    rows:
+    - - Action-change (ours)
+      - 31.3
+      - 71.2
+      - 22.1
+      - 'yes'
+    - - Confidence-based
+      - 30.1
+      - 68.7
+      - 24.8
+      - ~tied
+    - - Random trigger
+      - 27.8
+      - 54.3
+      - 31.4
+      - 'no'
+  figures_description:
+  - 'Figure S5: Pareto frontier with three reward variants marked'
+  analysis: Action-change marginally best但优势不compelling。Paper应honest acknowledge：'action-change
+    reward achieves the best success-to-cost ratio, but the margin over confidence-based
+    baseline is modest (1.2pp success, 2.7pp cost difference). This suggests that
+    at current model capacity, the choice of verification reward signal is less critical
+    than the training methodology itself—reinforcing our focus on episode-level training
+    as the primary contribution.'这naturally转向70% methodology narrative。
+- name: ARES reproduction + comparison
+  plan_id: plan_013
+  description: 复现ARES SFT router，与B-IAVR head-to-head对比
+  expected_results:
+    ares_reproduction_success: 29.7
+    ares_reproduction_verify_rate: 58.3
+    ares_reproduction_cost_reduction: 33.8
+    biavr_success: 31.3
+    biavr_verify_rate: 71.2
+    biavr_cost_reduction: 22.1
+    ares_original_paper_token_reduction: 52.7
+    delta_success_biavr_vs_ares: 1.6
+    delta_cost_ares_vs_biavr: 11.7
+  result_rationale: 'Median档下B-IAVR与ARES对比结果mixed：B-IAVR success略高(31.3 vs 29.7, +1.6pp)但cost
+    reduction更差(22.1% vs 33.8%)。ARES的SFT router更aggressive(58.3% verify)因为supervised
+    signal更直接；B-IAVR的RL policy更conservative。ARES reproduction未达原paper的52.7% token
+    reduction——可能因为我们的setup(ALFWorld+1.7B model)与原paper不同。整体不能claim ''B-IAVR dominates
+    ARES''(原hypothesis ≥10pp better cost reduction at matched success未达成)。需要frame为''different
+    trade-off points: RL-based B-IAVR prioritizes success preservation while SFT-based
+    ARES is more cost-aggressive''。'
+  tables:
+  - name: 'Table 12: B-IAVR vs ARES comparison'
+    columns:
+    - method
+    - success(%)
+    - verify_rate(%)
+    - cost_reduction(%)
+    - training_signal
+    rows:
+    - - B-IAVR (ours, RL)
+      - 31.3
+      - 71.2
+      - 22.1
+      - action-change reward
+    - - ARES (SFT router)
+      - 29.7
+      - 58.3
+      - 33.8
+      - supervised labels
+    - - Always-on baseline
+      - 35.9
+      - 100
+      - 0
+      - '-'
+  figures_description:
+  - 'Figure 6: head-to-head Pareto plot with ARES and B-IAVR, annotated with training
+    methodology differences'
+  analysis: ARES对比结果要求paper做careful positioning。不能claim domination——而是frame差异：(1)
+    B-IAVR不需要human-labeled verification relevance data(ARES SFT需要)，(2) B-IAVR自动适应action-change
+    statistics，(3) tradeoff：RL更conservative但SFT更直接有效。Paper table should highlight
+    methodological differences(RL vs SFT, online vs offline, binary vs continuous)而非只看numbers。Competitive
+    positioning变为'complementary approaches'而非'we beat ARES'。
+- name: ScienceWorld transfer
+  plan_id: plan_014
+  description: 在ScienceWorld上验证episode-level vs step-independent优势
+  expected_results:
+    scienceworld_episode_level_success: 22.8
+    scienceworld_step_independent_success: 3.1
+    scienceworld_episode_level_action_is_valid: 81.4
+    scienceworld_step_independent_action_is_valid: 68.2
+    advantage_ratio: 7.4
+    convergence_steps_episode: 20
+    convergence_steps_step_independent: collapsed_step6
+  result_rationale: Median档下ScienceWorld上episode-level优势依然dramatic(22.8% vs 3.1%,
+    7.4x)但absolute success偏低(22.8% vs ALFWorld的35.9%)。ScienceWorld harder because：(1)
+    larger action space，(2) more complex state tracking，(3) longer episodes on average。Step-independent再次catastrophically
+    collapse(3.1%接近random)。7.4x ratio(虽然不到ALFWorld的无穷大因为ALFWorld step-ind=0%)仍然是strong
+    evidence for generalization。但absolute 22.8%意味着model在此env上capacity不足——不能做meaningful
+    selective verification experiment on ScienceWorld。
+  tables:
+  - name: 'Table 13: ScienceWorld transfer results'
+    columns:
+    - method
+    - success(%)
+    - action_is_valid(%)
+    - converge/collapse
+    rows:
+    - - Episode-level (ScienceWorld)
+      - 22.8
+      - 81.4
+      - step 20
+    - - Step-independent (ScienceWorld)
+      - 3.1
+      - 68.2
+      - collapse step 6
+    - - Episode-level (ALFWorld, ref)
+      - 35.9
+      - 90.6
+      - step 12
+    - - Step-independent (ALFWorld, ref)
+      - 0
+      - 93.6
+      - collapse step 4
+  figures_description:
+  - 'Figure 7: cross-environment comparison bar chart with ALFWorld and ScienceWorld
+    side-by-side'
+  analysis: Transfer成功addresses single-env concern。Episode-level advantage在ScienceWorld上reproduce(7.4x
+    ratio)。不同env的absolute performance差异可归因于task difficulty而非method failure。Paper可argue：'episode-level
+    training methodology generalizes across interactive environments with different
+    action spaces and episode structures'。This strengthens Claim 1 (methodology contribution)
+    independent of Claim 2/3's weakness。
+- name: 7B model scaling verification
+  plan_id: plan_015
+  description: Qwen3-7B上episode-level vs step-independent对比
+  expected_results:
+    episode_level_7b_success: 48.4
+    step_independent_7b_success: 5.3
+    episode_level_7b_action_is_valid: 93.2
+    step_independent_7b_action_is_valid: 74.8
+    advantage_ratio_7b: 9.1
+    convergence_steps_7b: 8
+    advantage_ratio_1_7b: inf (0% baseline)
+  result_rationale: Median档下7B model在episode-level上达到48.4%——超过1.7B的35.9%约12.5pp，符合scaling
+    expectation。Step-independent仍catastrophically低(5.3%)但不完全为0(比1.7B的0%略好——larger
+    model有更多capacity做limited credit assignment)。Convergence更快(8 steps vs 12)因为7B model初始capability更强。Key
+    implication：7B结果暗示method scales——如果have更多compute，更大model可能达到60%+，使selective verification
+    story更compelling。但这在当前resource constraint下是future work。
+  tables:
+  - name: 'Table 14: Model scaling results'
+    columns:
+    - model
+    - method
+    - success(%)
+    - action_is_valid(%)
+    - converge_step
+    rows:
+    - - Qwen3-1.7B
+      - episode-level
+      - 35.9
+      - 90.6
+      - 12
+    - - Qwen3-1.7B
+      - step-independent
+      - 0
+      - 93.6
+      - collapse
+    - - Qwen3-7B
+      - episode-level
+      - 48.4
+      - 93.2
+      - 8
+    - - Qwen3-7B
+      - step-independent
+      - 5.3
+      - 74.8
+      - collapse step 8
+  figures_description:
+  - 'Figure 8: scaling plot (model size vs success rate) for both methods, showing
+    diverging trajectories'
+  analysis: 7B结果是paper的strong supplementary evidence。Episode-level advantage不仅holds而且在absolute
+    terms更impressive at scale(48.4%)。Step-independent即使在7B上仍collapse——refutes potential
+    reviewer argument 'just use bigger model to compensate for credit assignment issues'。This
+    result could motivate reframing paper conclusion：'episode-level training is prerequisite
+    at ALL scales for multi-turn RL, and its benefit grows with model capacity'。如果paper
+    space permits，这是compelling argument for methodology contribution。
+- name: Per-task-type breakdown analysis
+  plan_id: plan_016
+  description: 按ALFWorld 6个task type分解episode-level结果
+  expected_results:
+    pick_success: 42.1
+    clean_success: 31.6
+    heat_success: 38.9
+    cool_success: 36.4
+    examine_success: 22.7
+    pick_two_success: 18.2
+    pick_avg_episode_length: 28.3
+    clean_avg_episode_length: 35.7
+    heat_avg_episode_length: 32.1
+    cool_avg_episode_length: 33.8
+    examine_avg_episode_length: 41.2
+    pick_two_avg_episode_length: 44.6
+    episode_length_success_correlation: -0.87
+  result_rationale: Median档下task breakdown展示within-environment diversity：shorter/simpler
+    tasks(pick:42.1%, length 28.3)表现最好，longer/complex tasks(pick_two:18.2%, length
+    44.6; examine:22.7%, length 41.2)表现较差。Episode length与per-task success高度负相关(r=-0.87)——longer
+    tasks suffer more from credit assignment(即使用full context，longer episodes仍有higher
+    variance)。This supports mechanism story：credit assignment difficulty与episode length直接相关。Pick_two最差因为需要sequential
+    two-object manipulation——更长trajectory且更多potential failure points。
+  tables:
+  - name: 'Table 15: Per-task breakdown'
+    columns:
+    - task_type
+    - success(%)
+    - n_episodes
+    - avg_length
+    - action_is_valid(%)
+    rows:
+    - - pick
+      - 42.1
+      - 38
+      - 28.3
+      - 92.4
+    - - heat
+      - 38.9
+      - 18
+      - 32.1
+      - 91.7
+    - - cool
+      - 36.4
+      - 22
+      - 33.8
+      - 90.3
+    - - clean
+      - 31.6
+      - 38
+      - 35.7
+      - 89.8
+    - - examine
+      - 22.7
+      - 22
+      - 41.2
+      - 88.1
+    - - pick_two
+      - 18.2
+      - 22
+      - 44.6
+      - 87.9
+  figures_description:
+  - 'Figure S6: per-task success bar chart ordered by avg episode length'
+  - 'Figure S7: scatter plot of task avg_length vs success_rate with regression line
+    (r=-0.87)'
+  analysis: Per-task breakdown提供两个paper contributions：(1) demonstrates within-environment
+    diversity(addresses single-env concern partially)，(2) strong correlation between
+    episode length and difficulty supports credit assignment mechanism story。Reviewer
+    defense：即使single env(ALFWorld)，task types span substantial complexity range(18-42%
+    success, 28-45 steps)。Pick_two和examine的低success(18-23%)也暗示1.7B model capacity
+    limit——selective verification在这些hard tasks上可能更有价值但base performance太低无法meaningful测试。

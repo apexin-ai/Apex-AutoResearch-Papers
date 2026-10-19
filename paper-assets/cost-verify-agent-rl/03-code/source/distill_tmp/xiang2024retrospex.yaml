@@ -1,0 +1,30 @@
+paper_key: "xiang2024retrospex"
+title: "Retrospex: Language Agent Meets Offline Reinforcement Learning Critic"
+venue: "EMNLP 2024"
+full_text_available: false
+
+research:
+  baselines: ["LLM-only agents", "experience-augmented prompting baselines"]
+  metrics:
+    - {name: "task success rate", direction: "higher_better"}
+  datasets:
+    - {name: "ScienceWorld", size: "N/A"}
+    - {name: "ALFWorld", size: "N/A"}
+    - {name: "WebShop", size: "N/A"}
+  ablation_dimensions: ["dynamic rescoring weight", "critic training data"]
+  training_recipe:
+    optimizer: "N/A"
+    lr: "N/A"
+    hardware: "N/A"
+    method: "Offline RL critic trained on historical trajectories; dynamic action rescoring combining LLM action likelihood with critic-estimated action values"
+  method_family: "offline RL + LLM agent"
+
+positioning:
+  core_claim: "An offline RL critic can complement LLM action likelihood via dynamic rescoring, increasing the importance of experience-based values for environment-heavy tasks without stuffing experiences into context."
+  key_results: "Improvements over baselines on ScienceWorld, ALFWorld, and WebShop (exact numbers from abstract not available)"
+  limitations: ["N/A"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

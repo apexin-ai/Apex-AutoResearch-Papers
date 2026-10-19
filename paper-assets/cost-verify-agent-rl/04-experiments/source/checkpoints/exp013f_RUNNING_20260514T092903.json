@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp013f",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:21:46.227Z",
+    "updated_at": "2026-05-14T09:29:03.087Z",
+    "hypothesis": "exp013e 崩溃修复。Director 诊断: (1) Ray MemoryMonitor 阈值 224GB > cgroup 220GB 导致资源管理错误 → RAY_memory_monitor_refresh_ms=0 禁用 (2) 15 个旧 Ray session 残留 → 全部清理 (3) RAY_SYSTEM_MEMORY=210GB 限制可见内存 (4) val env_groups 16→4 降低过渡压力 (5) HYDRA_FULL_ERROR=1 + Ray log 自动备份。Dense reward shaping (valid_action_bonus=0.15, kl_loss_coef=0.01), 从 step 5 checkpoint 恢复。",
+    "parent": "exp013e",
+    "spec": {
+      "command": "HYDRA_FULL_ERROR=1 python train.py --config-name _alfworld_exp013b_dense_reward trainer.experiment_name=exp013f-alfworld-dense-reward trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp013f/ trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp013f/",
+      "server": "bjb1-17606",
+      "data_path": "AlfworldSG_Dense (3553 train games)",
+      "data_count": 3553,
+      "model_name": "Qwen3-1.7B SFT (exp008_sft/final)",
+      "seed": 10000,
+      "pid": 309633,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp013f/",
+      "log_path": "/root/autodl-tmp/tmp/ray/session_2026-05-14_17-27-22_001229_309633/logs/",
+      "description": "Dense reward GRPO resubmit (exp013e transient Ray crash). HYDRA_FULL_ERROR=1 added. object_store_memory=30GB, env_groups=4, valid_action_bonus=0.15, kl_loss_coef=0.01, format_penalty=0.",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5",
+      "eval_data": "N/A - training experiment"
+    }
+  },
+  "timestamp": "2026-05-14T09:29:03.127379+00:00",
+  "trigger": "update_registry"
+}

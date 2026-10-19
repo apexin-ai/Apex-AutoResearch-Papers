@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f590146eb1330338009",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "verify exp012 running code",
+  "task_key": "worker_verify_exp012-running-code_20260514T062944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_exp012-running-code_20260514T062944_result.json",
+    "occurrence": 1,
+    "bytes": 866,
+    "sha256": "9d20d8ca91606cdaa888ed84397e8cb9d0c19d9ca60a5651b20754c2876e52cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果\n\n| # | 检查项 | 结果 |\n|---|--------|------|\n| 1 | env.py 无 valid-action bonus | ✅ 正确 — reward 仅为 `config.score * float(won)` (L195)，无 0.1 bonus |\n| 2 | format_penalty = 0 | ✅ 正确 — yaml L74: `format_penalty: 0` |\n| 3 | 加载了正确 config | ✅ 使用了 `_alfworld_exp012_reward_fix` |\n| 4 | 进程存活 | ❌ **PID 221683 已死** |\n\n## 结论：代码正确，但进程已崩溃\n\nexp012 加载的代码和配置都是正确的，**但启动后立即报错退出**（EXIT_CODE=1）。\n\n**崩溃原因**：vLLM 版本不兼容。\n```\nTypeError: EngineArgs.__init__() got an unexpected keyword argument 'disable_mm_preprocessor_cache'\n```\n当前安装的 vllm 版本不支持 `disable_mm_preprocessor_cache` 参数。需要升级 vllm 或从配置中移除该参数后重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-exp012-running-code.md"
+}

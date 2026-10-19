@@ -1,0 +1,64 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-turn agent RL.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Credit assignment in RL for LLMs.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-verification for agents.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setting}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Credit Assignment Variants}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Step-independent GRPO.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Episode-level GRPO.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GAE baseline.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Selective Verification (B-IAVR)}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Hypothesized Failure Mechanisms}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Policy information loss.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Advantage sign misattribution.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Context Window Ablation (h-Sweep)}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Step-independent GRPO performance by context window size $h$ (3 seeds, 15 steps).}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:hsweep}{{1}{4}{Step-independent GRPO performance by context window size $h$ (3 seeds, 15 steps)}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Multi-Seed Episode-Level Replication}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Episode-level GRPO across 5 seeds. All seeds plateau by step 10--15.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:multiseed}{{2}{4}{Episode-level GRPO across 5 seeds. All seeds plateau by step 10--15}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}GAE Baseline Comparison}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Credit assignment method comparison (3 seeds, 15 steps).}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:gae}{{3}{5}{Credit assignment method comparison (3 seeds, 15 steps)}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Credit Assignment Mechanism Verification}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Advantage sign analysis: theoretical predictions vs. observed values.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:mechanism}{{4}{5}{Advantage sign analysis: theoretical predictions vs. observed values}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Valid Action Bonus Ablation}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Selective Verification Results}{6}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.1}Action-Change Statistics}{6}{subsubsection.4.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2}B-IAVR Training}{6}{subsubsection.4.6.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces B-IAVR selective verification training results.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:biavr}{{5}{6}{B-IAVR selective verification training results}{table.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.3}Verification Strategy Comparison}{6}{subsubsection.4.6.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Verification strategy comparison across methods.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:verifycomp}{{6}{6}{Verification strategy comparison across methods}{table.6}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.4}Reward Signal Ablation}{7}{subsubsection.4.6.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Reward signal comparison for selective verification training.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:rewardablation}{{7}{7}{Reward signal comparison for selective verification training}{table.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.5}ARES Comparison}{7}{subsubsection.4.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Transfer and Scaling}{7}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.7.1}ScienceWorld Transfer}{7}{subsubsection.4.7.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces ScienceWorld transfer: episode-level vs. step-independent.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:scienceworld}{{8}{7}{ScienceWorld transfer: episode-level vs. step-independent}{table.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.7.2}7B Model Scaling}{7}{subsubsection.4.7.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Scaling to Qwen3-7B: episode-level vs. step-independent.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:scaling}{{9}{8}{Scaling to Qwen3-7B: episode-level vs. step-independent}{table.9}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.7.3}Per-Task Breakdown}{8}{subsubsection.4.7.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Per-task-type breakdown (episode-level GRPO, 1.7B).}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:pertask}{{10}{8}{Per-task-type breakdown (episode-level GRPO, 1.7B)}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The coarser-is-sufficient hypothesis is false.}{8}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sign misattribution is real but not dominant.}{8}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Selective verification has a competence prerequisite.}{8}{section*.11}\protected@file@percent }
+\bibstyle{plainnat}
+\bibdata{references}
+\@writefile{toc}{\contentsline {paragraph}{Implications for the field.}{9}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\gdef \@abspage@last{9}

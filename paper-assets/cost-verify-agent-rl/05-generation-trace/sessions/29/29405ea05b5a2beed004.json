@@ -1,0 +1,1008 @@
+{
+  "schema_version": "1.0",
+  "id": "29405ea05b5a2beed004",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "cron hook exp012 20260514T093415 889718",
+  "task_key": "cron_hook_exp012_20260514T093415_889718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_exp012_20260514T093415_889718.jsonl",
+    "occurrence": 1,
+    "bytes": 52899,
+    "sha256": "db9dc464cb43f3f1d29779976498440efb6607d33af796b92faadcf0a29cd0fb"
+  },
+  "statistics": {
+    "messages": 50,
+    "user_turns": 2,
+    "tool_calls": 23,
+    "roles": {
+      "user": 2,
+      "tool_call": 23,
+      "tool_result": 23,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T06:30:07.760870+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: exp012\n- project: cost-verify-agent-rl\n- server: bjb1-17606\n- log_path: ~/runs/cost-verify-agent-rl/exp012.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T06:30:19.874679+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__save_project_file",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T06:30:19.925370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T06:30:22.937382+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T06:30:23.640416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T06:30:23.642357+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp012\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T06:24:24.322Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:30:06.373Z\\\", \\\"hypothesis\\\": \\\"format_penalty=0 + group_size=16 解决 exp010/011 中 format penalty 劫持 GRPO 梯度导致 success 崩塌的问题。从 step 5 checkpoint 恢复，预期 success rate 能持续上升而非崩塌。\\\", \\\"parent\\\": \\\"exp011\\\", \\\"notes\\\": \\\"D010指令：纯A2实验，隔离变量。format_penalty=0（非-0.01），不含valid-action bonus，env.py保持原始二值reward（won=10.0/otherwise 0）。group_size=16, resume from step 5。Worker验证配置中。\\\", \\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m ragen.llm_agent.agent_proxy --config-name _alfworld_exp012_reward_fix\\\", \\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/alfworld/\\\", \\\"data_count\\\": 3553, \\\"model_name\\\": \\\"Qwen3-1.7B (SFT warmup, resumed from GRPO step 5)\\\", \\\"seed\\\": 10000, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp012_grpo.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp012_grpo/\\\", \\\"config\\\": \\\"_alfworld_exp012_reward_fix.yaml\\\", \\\"changes_from_parent\\\": \\\"format_penalty: -0.1→0, group_size: 8→16, resume from step 5 instead of step 10\\\"}, \\\"pid\\\": \\\"221683\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/exp012.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p \\\\\\\\$TMPDIR && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python -m ragen.llm_agent.agent_proxy --config-name _alfworld_exp012_reward_fix\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T06:30:05.818Z\\\"}, \\\"failure_reason\\\": \\\"Traceback →  = LLM( ^^^^ File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\\\\\", line 342, in __init__ engine_args = EngineArgs( ^^^^^^^^^^^ \n…[truncated 18733 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 704
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T06:30:23.897520+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 257
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T06:30:23.897996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T06:30:24.402006+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-14T06:30:06Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 16 个实验 — DONE 9, PREPARING 7\\\\n**DONE 分布**: failed 7, killed 1, success 1\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — bjb1-17606:cuda:0, bjb1-17606:cuda:1\\\\n- **空闲（分配了没跑）**: bjb1-17606:cuda:0, bjb1-17606:cuda:1\\\\n\\\\n### 🏃 RUNNING\\\\n_（无）_\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `exp012` [failed] — 2026-05-14T06:30:06 — Traceback →  = LLM( ^^^^ File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vll\\\\n- `exp011` [killed] — 2026-05-14T06:26:41\\\\n- `exp010` [failed] — 2026-05-14T05:28:54 — OSError: No space left on device - fast_downward copies libdownward.so to /tmp (\\\\n- `exp009` [failed] — 2026-05-14T04:28:35\\\\n- `exp008_sft` [success] — 2026-05-14T03:41:45\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `exp012`: Traceback →  = LLM( ^^^^ File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\\\\\", line 342, in __init__ engine_args = EngineArgs( ^^^^^^^^^^^ TypeError: EngineArgs.__init__() got \\\\n- `exp011`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n- `exp010`: OSError: No space left on device - fast_downward copies libdownward.so to /tmp (root partition full, 30GB). Same root cause as exp007 but different trigger path. Fix: set TMPDIR=/root/autodl-tmp/tmp\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- exp008（准备中）\\\\n- exp007_dryrun（准备中）\\\\n- exp005（准备中）\\\\n- exp_003（准备中）\\\\n- exp_003_dryrun（准备中）\\\\n- exp_003_dryrun2（准备中）\\\\n- exp003_dryrun3（准备中）\\\\n- exp_003_dryrun3（准备中）\\\\n\\\\n## 近期结论\\\\n- **exp012** (failed): format_penalty=0 + group_size=16 解决 exp010/011 中 format penalty 劫持 GRPO 梯度导致 success 崩塌的问题。从 step 5 checkpoint 恢复，预期 success rate 能持续上升而非崩塌。 ← 基于 exp011\\\\n- **exp01\n…[truncated 636 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 504
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T06:30:24.402493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T06:30:24.402804+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T06:30:25.812260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\\\", \\\"content\\\": \\\"# cost-verify-agent-rl — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 03:03 UTC | 更新原因: D006: 撤回 exp008, 改用 SFT warmup → GRPO 两阶段方案\\\\n\\\\n## 核心方向\\\\n训练 agent 学会\\\\\\\"何时验证\\\\\\\"：B-IAVR 用 action 是否因 self-guidance 而改变作为行为信号，结合 Lagrangian 预算控制，让 agent 在关键决策步骤集中验证。基于 Self-Guide（always-on self-guidance via GRPO）扩展。\\\\n\\\\n## 阶段\\\\n**MVP 验证中** — Phase A SFT warmup 启动中\\\\n\\\\n## GPU 速率（实测）\\\\n- 硬件：2× RTX PRO 6000 Blackwell 94GB @ bjb1-17606\\\\n- GRPO 30 步（64 traj/step）：~12 min/step ≈ 6h\\\\n- SFT（预估）：~20-30 min 单卡\\\\n\\\\n## MVP 状态\\\\n\\\\n### Phase A: Always-On Self-Guidance 基线\\\\n\\\\n**exp003** → ❌ bootstrap 失败（Qwen3 无 `<answer>` 标签 → 95% invalid）→ killed\\\\n**exp007** → ❌ /tmp 磁盘满 step 11 崩溃，无 checkpoint。但 10 步数据正向：\\\\n- success 0%→6.25%, action_is_valid 4%→8.35%, manager_invalid 6.5%→1.56%\\\\n- 解析器修复有效，GRPO 能产生非零 success\\\\n- Kill 条件触发（8.35% < 10%），Agent 诊断根因：模型缺乏 ALFWorld 命令语义知识（D006）\\\\n\\\\n**SFT warmup**（准备中）→ 用公开 ALFWorld 轨迹数据 SFT 教模型命令格式和语义\\\\n- 数据：`u-10bei/sft_alfworld_trajectory_dataset` → 转 RAGEN format\\\\n- 预估：SFT ~2h + 验证（action_is_valid 目标 > 50%）\\\\n- 基础设施修复：RAY_TMPDIR→数据盘, save_freq ≤ steps/3\\\\n\\\\n**exp009**（待 SFT 完成）→ SFT checkpoint 接入 GRPO 30 步\\\\n- 预估 ~6h，kill 条件待定（SFT 后起点更高，标准相应调整）\\\\n\\\\n### Phase A 判定标准\\\\n- **PASS**: ALFWorld success rate ≥ 76%（匹配 Self-Guide 论文）\\\\n- SFT warmup 验证标准：action_is_valid > 50%\\\\n\\\\n### Phase B: B-IAVR（被 Phase A 阻塞）\\\\n- 代码已就绪（61 tests passed）\\\\n- 等 Phase A checkpoint\\\\n\\\\n## 近期任务\\\\n- [ ] **SFT warmup**：数据下载 + 格式转换 + SFT 训练 + 验证\\\\n- [ ] exp009：SFT checkpoint → GRPO 30 步\\\\n- [ ] Phase B: B-IAVR selective verification\\\\n\\\\n## GPU 预算\\\\n- 分配：bjb1-17606 cuda:0, cuda:1（RTX PRO 6000 94GB × 2）\\\\n- 已消耗：~6h（exp003 + dryrun + exp007 10步）\\\\n- SFT + GRPO 预估：~8h\\\\n- 全项目上限：200h H100-equivalent\\\\n\\\\n## 关键风险\\\\n1. **SFT 过拟合**：SFT 轨迹可能导致模型记忆特定路径，降低 GRPO 探索多样性。需控制 epochs 和监控 entropy\\\\n2. **format_penalty 失效**：parser fallback \n…[truncated 926 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 1409
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T06:30:25.812819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}], \\\"actually_running_gpus\\\": [], \\\"allocated_but_idle\\\": [{\\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"idle_min\\\": null}, {\\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"idle_min\\\": null}], \\\"running_experiments\\\": [], \\\"worker_pool\\\": {\\\"total\\\": 1, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 1, \\\"details\\\": [{\\\"worker_id\\\": \\\"worker_verify_exp012-running-code_20260514T062944\\\", \\\"task\\\": \\\"verify:exp012-running-code\\\"}]}, \\\"summary\\\": \\\"分配 2 张, 实际跑 0 张 ⚠️ | Worker 1 (GPU 0 / CPU 1)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 1410
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T06:30:25.813120+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T06:30:25.863811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_a0266242."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T06:30:36.260493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*on-experiment-failed*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T06:30:36.311191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T06:30:39.135997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/on-experiment-failed*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T06:30:39.237804+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "Glob",
+            "elapsed_ms": 101
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T06:30:41.797709+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/skills/**/on-experiment-failed*",
+              "path": "/home/ubuntu"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T06:30:42.100555+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "Glob",
+            "elapsed_ms": 302
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T06:30:44.663014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T06:30:44.714146+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: on-experiment-failed\n3\tdescription: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。\n4\tscope: global\n5\ttags:\n6\t- workflow\n7\t- diagnosis\n8\t- cron-hook\n9\ttools:\n10\t- read_registry\n11\t- tail_training_logs\n12\t- update_registry\n13\t- append_idea\n14\t- feishu_send_result_card\n15\t- spawn_worker\n16\t- check_job_status\n17\tversion: 4\n18\theavy: true\n19\troles:\n20\t- agent\n21\t---\n22\t\n23\t# 实验失败诊断工作流\n24\t\n25\t## 触发方式\n26\t由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。\n27\t\n28\t## 步骤\n29\t\n30\t### Step 0: 读取项目上下文（诊断前必须执行）\n31\t先读文档，再看日志——否则诊断方向可能完全错误：\n32\t\n33\t- `read_project_file(\"memory.md\")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案\n34\t- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构\n35\t\n36\t读完后检查：\n37\t- memory.md 里有没有\"此类实验曾失败，原因是 X\"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程\n38\t- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）\n39\t\n40\t### Step 1: 了解失败背景\n41\t- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path\n42\t\n43\t### Step 2: 浅层日志诊断\n44\t有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)\n45\t- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback\n46\t- 没找到 → 增加行数再查\n47\t\n48\t### Step 2.5: 深查（满足以下任一条件时 spawn_worker）\n49\t- 运行时长 < 5 分钟（初始化阶段崩溃）\n50\t- tail 日志中未见明确 Traceback 或错误行\n51\t- 同类实验连续失败 ≥ 2 次\n52\t\n53\t```python\n54\tspawn_worker(\n55\t    task_type=\"diagnose:{exp_id}\",\n56\t    task_prompt=\"\"\"SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。\n57\t\n58\t项目路径：{project_path}（绝对路径）\n59\t日志路径：{log_path}（可能为空）\n60\t\n61\t执行步骤（按顺序，有结论就停）：\n62\t\n63\t1. 如果有日志路径：\n64\t   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）\n65\t   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）\n66\t   - 日志文件不存在：说明任务启动即失败，跳到步骤 2\n67\t\n68\t2. 日志无错误或无日志时，检查基础设施：\n69\t   - 入口文件是否存在\n70\t   - 激活环境并验证 import\n71\t   - 检查 configs/ 目录\n72\t\n73\t3. 检查磁盘/内存（OOM 类）\n74\t\n75\t最后输出一行 JSON：\n76\t{\"root_cause\":\"<引用具体报错行>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true}\"\"\",\n77\t    tool_groups=[\"ssh\"],\n78\t)\n79\t```\n80\t\n81\tWorker 返回后，以其结论作为 Step 3 的诊断依据。\n82\t\n83\t### \n…[truncated 1766 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T06:30:54.510614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "file": "memory.md"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T06:30:54.962590+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\\\", \\\"content\\\": \\\"# Project Memory\\\\n\\\\n## 2026-05-14: SFT Warmup 调研完成\\\\n\\\\n### 核心问题\\\\nQwen3-1.7B base 模型不输出 `<think>...</think><answer>...</answer>` 标签，导致 RAGEN action 解析 100% 失败。需要 SFT warmup 教模型输出正确格式后再接 GRPO。\\\\n\\\\n### RAGEN 代码现状\\\\n- **RAGEN 无内置 SFT 训练脚本**，只有 RL 训练流程（GRPO/PPO）\\\\n- 需要外部工具（如 LLaMA-Factory、ms-swift）做 SFT\\\\n- RAGEN 的 ALFWorld 配置使用 `AlfworldSG` tag，system prompt 包含 self-guidance assessment 要求\\\\n- 格式: `<think> [reasoning] </think> <answer> [action] </answer>`\\\\n\\\\n### 可用公开数据集\\\\n- `u-10bei/sft_alfworld_trajectory_dataset` (v1-v5): 模板合成轨迹\\\\n- `yijunyang/alfworld-sft-dataset`: ALFWorld SFT 数据\\\\n- `agent-eto/eto-sft-trajectory`: Agent 轨迹 SFT 数据\\\\n\\\\n### 文献参考\\\\n- \\\\\\\"Warm Up Before You Train\\\\\\\" (EMNLP 2025): 50-100 条 target domain 数据 + domain-agnostic warmup\\\\n- SkillRL (ICLR 2026): 用 LLaMA-Factory 做 SFT，已开源 SFT 数据生成代码\\\\n- AgentGym-RL: SFT + progressive horizon RL pipeline\\\\n\\\\n## 2026-05-14: /tmp 磁盘满 — 两次崩溃的完整修复\\\\n\\\\n### 失败模式（两次触发路径不同）\\\\n| 实验 | 触发路径 | Step |\\\\n|------|---------|------|\\\\n| exp007 | Ray session files 写入 /tmp/ray | Step 10 |\\\\n| exp010 | fast_downward 复制 libdownward.so 到 /tmp | Step 11 |\\\\n\\\\n### 根因\\\\nbjb1-17606 根分区只有 30GB，/tmp 在根分区上。ALFWorld 依赖的 fast_downward planner 和 Ray 都会向 /tmp 写大量临时文件。\\\\n\\\\n### 完整修复（两个环境变量缺一不可）\\\\n```bash\\\\n# .bashrc 中已添加：\\\\nexport RAY_TMPDIR=/root/autodl-tmp/ray_tmp   # 修复 Ray session files\\\\nexport TMPDIR=/root/autodl-tmp/tmp/            # 修复 fast_downward + Python tempfile\\\\n```\\\\n\\\\n### 训练启动命令模板\\\\n后续所有训练必须确保 TMPDIR 生效：\\\\n```bash\\\\nexport TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR && python train.py ...\\\\n```\\\\n\\\\n## 2026-05-14: exp009 资源冲突教训\\\\n\\\\n### 失败模式: 双 GRPO 训练同时跑在相同 GPU\\\\n- **现象**: exp009 和 exp010 都提交到 cuda:0+1，同时写同一 checkpoint 目录\\\\n- **预防**: 提交新实验前必须检查是否有同 GPU 的 RUNNING 实验；同一 checkpoint 目录不可被多个实验同时写入\\\\n\\\\n## 2026-05-14: SFT warmup 验证结果\\\\n\\\\n### exp008_sft 产出\\\\n- \n…[truncated 1735 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 451
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T06:30:55.113487+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__feishu_send_result_card",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T06:30:55.214349+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T06:31:10.030892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "bjb1-17606",
+              "exp_id": "exp012",
+              "project": "cost-verify-agent-rl",
+              "n": "80"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T06:31:10.985164+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.\\\", \\\"Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.\\\", \\\"Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.\\\", \\\"See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.\\\", \\\"/root/miniconda3/lib/python3.12/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In '_alfworld_exp012_reward_fix': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information\\\", \\\"  warnings.warn(msg, UserWarning)\\\", \\\"WARNING: kimina-client is not installed or failed to import. Lean environments will not be loaded.\\\", \\\"The tokenizer you are loading from '/root/autodl-tmp/checkpoints/qwen3_sft_final' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.\\\", \\\"Starting evaluation process. Check config/eval.yaml for specific configs.\\\", \\\"Error executing job with overrides: []\\\", \\\"Traceback (most recent call last):\\\", \\\"  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/ragen/llm_agent/agent_proxy.py\\\\\\\", line 624, in main\\\", \\\"    actor_wg = VllmWrapperWg(config, tokenizer)\\\", \\\"               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\", \\\"  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/ragen/llm_agent/agent_proxy.py\\\\\\\", line 69, in __init__\\\", \\\"    self.llm = LLM(\\\", \\\"               ^^^^\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\\\\\", line 342, in __init__\\\", \\\"    \n…[truncated 433 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 954
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T06:31:34.514649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T06:31:35.031187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_a0266242."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "Read",
+            "elapsed_ms": 516
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T06:31:48.293483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diagnose:exp012",
+              "project": "cost-verify-agent-rl",
+              "task_prompt": "SSH 到服务器 bjb1-17606，诊断并修复实验 exp012 的 vLLM 版本兼容问题。\n\n## 背景\nexp012 使用 `python -m ragen.llm_agent.agent_proxy --config-name _alfworld_exp012_reward_fix` 启动，在初始化阶段崩溃：\n```\nFile \"/root/cost-verify-agent-rl/RAGEN/ragen/llm_agent/agent_proxy.py\", line 69, in __init__\n    self.llm = LLM(\nTypeError: EngineArgs.__init__() got an unexpected keyword argument 'disable_mm_preprocessor_cache'\n```\n\nvLLM 安装在 `/root/miniconda3/lib/python3.12/site-packages/vllm/`。\n\n## 任务\n1. 检查当前 vLLM 版本：`pip show vllm`\n2. 看 agent_proxy.py 第 60-80 行，找到 LLM() 调用中传了哪些参数\n3. 确定 `disable_mm_preprocessor_cache` 是在代码里硬编码还是从 config 传入\n4. 修复方案（选最小改动）：\n   - 如果是代码硬编码：移除该参数（或加版本判断）\n   - 如果是 config 传入：从 config 文件中移除该字段\n   - 如果 vLLM 版本太旧：检查是否可以升级（注意不要破坏 veRL/RAGEN 训练管线——之前 train.py 用 vLLM 是正常的）\n5. 修复后验证：`python -c \"from vllm import LLM; print('ok')\"` 确认 import 正常\n6. 如果修复了代码/config，dry-run 验证：\n   ```bash\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n   export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR\n   export ALFWORLD_DATA=/root/autodl-tmp/alfworld\n   cd /root/cost-verify-agent-rl/RAGEN\n   python -m ragen.llm_agent.agent_proxy --config-name _alfworld_exp012_reward_fix 2>&1 | head -30\n   ```\n   只看前 30 行确认不再报同样的 TypeError 即可（不需要跑完整训练）\n\n## 输出\n最终输出一行 JSON：\n{\"root_cause\":\"具体原因\",\"error_type\":\"infrastructure\",\"fix_applied\":\"做了什么修复\",\"vllm_version\":\"当前版本\",\"can_resubmit\":true/false}\n\n## 环境\n- conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径：`/root/cost-verify-agent-rl/RAGEN/`\n- Python: 3.12",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T06:31:52.000683+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_exp012_20260514T063149\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/logs/workers/worker_diagnose_exp012_20260514T063149.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diagnose_exp012_20260514T063149 started. Use get_worker_status('worker_diagnose_exp012_20260514T063149') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3707
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T06:32:02.463505+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T06:32:02.764999+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "Glob",
+            "elapsed_ms": 301
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T06:32:05.427979+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T06:32:05.479879+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T06:32:18.367071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp012",
+              "field": "notes",
+              "value": "D010指令：纯A2实验，隔离变量。format_penalty=0（非-0.01），不含valid-action bonus，env.py保持原始二值reward（won=10.0/otherwise 0）。group_size=16, resume from step 5。\n\n失败原因: vLLM 版本兼容问题。agent_proxy.py:69 传 `disable_mm_preprocessor_cache` 给 vLLM LLM()，但服务器安装的 vLLM 版本不支持此参数。TypeError at EngineArgs.__init__()。启动即崩溃，无训练数据。\n\n诊断 Worker: worker_diagnose_exp012_20260514T063149 正在修复。error_type=infrastructure。",
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T06:32:18.869770+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp012\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T06:24:24.322Z\\\", \\\"updated_at\\\": \\\"2026-05-14T06:32:18.431Z\\\", \\\"hypothesis\\\": \\\"format_penalty=0 + group_size=16 解决 exp010/011 中 format penalty 劫持 GRPO 梯度导致 success 崩塌的问题。从 step 5 checkpoint 恢复，预期 success rate 能持续上升而非崩塌。\\\", \\\"parent\\\": \\\"exp011\\\", \\\"notes\\\": \\\"D010指令：纯A2实验，隔离变量。format_penalty=0（非-0.01），不含valid-action bonus，env.py保持原始二值reward（won=10.0/otherwise 0）。group_size=16, resume from step 5。\\\\n\\\\n失败原因: vLLM 版本兼容问题。agent_proxy.py:69 传 `disable_mm_preprocessor_cache` 给 vLLM LLM()，但服务器安装的 vLLM 版本不支持此参数。TypeError at EngineArgs.__init__()。启动即崩溃，无训练数据。\\\\n\\\\n诊断 Worker: worker_diagnose_exp012_20260514T063149 正在修复。error_type=infrastructure。\\\", \\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m ragen.llm_agent.agent_proxy --config-name _alfworld_exp012_reward_fix\\\", \\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu\\\": \\\"cuda:0,cuda:1\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/alfworld/\\\", \\\"data_count\\\": 3553, \\\"model_name\\\": \\\"Qwen3-1.7B (SFT warmup, resumed from GRPO step 5)\\\", \\\"seed\\\": 10000, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5/\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/exp012.log\\\", \\\"checkpoint_path\\\": \\\"none\\\", \\\"config\\\": \\\"_alfworld_exp012_reward_fix.yaml\\\", \\\"changes_from_parent\\\": \\\"format_penalty: -0.1→0, group_size: 8→16, resume from step 5 instead of step 10\\\"}, \\\"pid\\\": \\\"221683\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/exp012.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p \\\\\\\\$TMPDIR && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python -m ragen.llm_agent.agent_proxy --config-name _alfworld_exp012_reward_fix\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-\n…[truncated 585 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 502
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T06:32:20.833917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__feishu_send_result_card"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__feishu_send_result_card",
+            "tool_args": {
+              "exp_id": "exp012",
+              "conclusion": "failed",
+              "key_metrics": "{}",
+              "baseline_comparison": "启动即崩溃，无训练数据。vLLM EngineArgs 不支持 disable_mm_preprocessor_cache 参数（版本兼容问题）。已派 Worker 修复中。"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T06:32:27.008394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f6289b018a4b12bf6bdf951f8b\\\", \\\"chat_id\\\": \\\"oc_4ebf0fb2d0159caa355a1a855f5ac59f\\\", \\\"msg_type\\\": \\\"interactive\\\", \\\"next_required_steps\\\": \\\"飞书卡片已发出。请立即完成剩余步骤（不可跳过）： (1) 如有跨实验价值的教训/约定 → save_project_file(file='memory.md', ...) 追加一行； (2) move_idea — 将实验从 IN_PROGRESS 移到对应区块。\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__feishu_send_result_card",
+            "elapsed_ms": 6174
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T06:32:27.059089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 / 实际在跑 0 ⚠️ | Worker 池 2 (GPU 0 / CPU 2)\n\n## exp012 失败报告\n\n**错误类型**: infrastructure（启动即崩溃，0 训练步）\n\n**根因**: `agent_proxy.py:69` 向 vLLM `LLM()` 传 `disable_mm_preprocessor_cache` 参数，服务器上 vLLM 版本不支持此参数：\n```\nTypeError: EngineArgs.__init__() got an unexpected keyword argument 'disable_mm_preprocessor_cache'\n```\n\n**对比**: exp010/exp011 使用 `train.py` 入口正常运行（veRL 内部调 vLLM 的方式不同），exp012 切换到 `agent_proxy.py` 入口首次暴露此兼容问题。\n\n**处理**: 已派 Worker (diagnose:exp012) SSH 到 bjb1-17606 修复——移除不兼容参数或升级 vLLM。修复后可立即重新提交 exp012，预计修复 ~10 分钟。\n\n**GPU 空闲说明**: 2 张 GPU 因 exp012 崩溃暂时空闲，修复后立即重提交。",
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T06:32:28.917500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1858
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T06:32:34.169794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T06:32:34.271999+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\\\", \\\"content\\\": \\\"# Project Memory\\\\n\\\\n## 2026-05-14: SFT Warmup 调研完成\\\\n\\\\n### 核心问题\\\\nQwen3-1.7B base 模型不输出 `<think>...</think><answer>...</answer>` 标签，导致 RAGEN action 解析 100% 失败。需要 SFT warmup 教模型输出正确格式后再接 GRPO。\\\\n\\\\n### RAGEN 代码现状\\\\n- **RAGEN 无内置 SFT 训练脚本**，只有 RL 训练流程（GRPO/PPO）\\\\n- 需要外部工具（如 LLaMA-Factory、ms-swift）做 SFT\\\\n- RAGEN 的 ALFWorld 配置使用 `AlfworldSG` tag，system prompt 包含 self-guidance assessment 要求\\\\n- 格式: `<think> [reasoning] </think> <answer> [action] </answer>`\\\\n\\\\n### 可用公开数据集\\\\n- `u-10bei/sft_alfworld_trajectory_dataset` (v1-v5): 模板合成轨迹\\\\n- `yijunyang/alfworld-sft-dataset`: ALFWorld SFT 数据\\\\n- `agent-eto/eto-sft-trajectory`: Agent 轨迹 SFT 数据\\\\n\\\\n### 文献参考\\\\n- \\\\\\\"Warm Up Before You Train\\\\\\\" (EMNLP 2025): 50-100 条 target domain 数据 + domain-agnostic warmup\\\\n- SkillRL (ICLR 2026): 用 LLaMA-Factory 做 SFT，已开源 SFT 数据生成代码\\\\n- AgentGym-RL: SFT + progressive horizon RL pipeline\\\\n\\\\n## 2026-05-14: /tmp 磁盘满 — 两次崩溃的完整修复\\\\n\\\\n### 失败模式（两次触发路径不同）\\\\n| 实验 | 触发路径 | Step |\\\\n|------|---------|------|\\\\n| exp007 | Ray session files 写入 /tmp/ray | Step 10 |\\\\n| exp010 | fast_downward 复制 libdownward.so 到 /tmp | Step 11 |\\\\n\\\\n### 根因\\\\nbjb1-17606 根分区只有 30GB，/tmp 在根分区上。ALFWorld 依赖的 fast_downward planner 和 Ray 都会向 /tmp 写大量临时文件。\\\\n\\\\n### 完整修复（两个环境变量缺一不可）\\\\n```bash\\\\n# .bashrc 中已添加：\\\\nexport RAY_TMPDIR=/root/autodl-tmp/ray_tmp   # 修复 Ray session files\\\\nexport TMPDIR=/root/autodl-tmp/tmp/            # 修复 fast_downward + Python tempfile\\\\n```\\\\n\\\\n### 训练启动命令模板\\\\n后续所有训练必须确保 TMPDIR 生效：\\\\n```bash\\\\nexport TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR && python train.py ...\\\\n```\\\\n\\\\n## 2026-05-14: exp009 资源冲突教训\\\\n\\\\n### 失败模式: 双 GRPO 训练同时跑在相同 GPU\\\\n- **现象**: exp009 和 exp010 都提交到 cuda:0+1，同时写同一 checkpoint 目录\\\\n- **预防**: 提交新实验前必须检查是否有同 GPU 的 RUNNING 实验；同一 checkpoint 目录不可被多个实验同时写入\\\\n\\\\n## 2026-05-14: SFT warmup 验证结果\\\\n\\\\n### exp008_sft 产出\\\\n- \n…[truncated 1735 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 102
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-14T06:32:56.298341+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "cost-verify-agent-rl",
+              "file": "memory.md",
+              "content": "# Project Memory\n\n## 2026-05-14: SFT Warmup 调研完成\n\n### 核心问题\nQwen3-1.7B base 模型不输出 `<think>...</think><answer>...</answer>` 标签，导致 RAGEN action 解析 100% 失败。需要 SFT warmup 教模型输出正确格式后再接 GRPO。\n\n### RAGEN 代码现状\n- **RAGEN 无内置 SFT 训练脚本**，只有 RL 训练流程（GRPO/PPO）\n- 需要外部工具（如 LLaMA-Factory、ms-swift）做 SFT\n- RAGEN 的 ALFWorld 配置使用 `AlfworldSG` tag，system prompt 包含 self-guidance assessment 要求\n- 格式: `<think> [reasoning] </think> <answer> [action] </answer>`\n\n### 可用公开数据集\n- `u-10bei/sft_alfworld_trajectory_dataset` (v1-v5): 模板合成轨迹\n- `yijunyang/alfworld-sft-dataset`: ALFWorld SFT 数据\n- `agent-eto/eto-sft-trajectory`: Agent 轨迹 SFT 数据\n\n### 文献参考\n- \"Warm Up Before You Train\" (EMNLP 2025): 50-100 条 target domain 数据 + domain-agnostic warmup\n- SkillRL (ICLR 2026): 用 LLaMA-Factory 做 SFT，已开源 SFT 数据生成代码\n- AgentGym-RL: SFT + progressive horizon RL pipeline\n\n## 2026-05-14: /tmp 磁盘满 — 两次崩溃的完整修复\n\n### 失败模式（两次触发路径不同）\n| 实验 | 触发路径 | Step |\n|------|---------|------|\n| exp007 | Ray session files 写入 /tmp/ray | Step 10 |\n| exp010 | fast_downward 复制 libdownward.so 到 /tmp | Step 11 |\n\n### 根因\nbjb1-17606 根分区只有 30GB，/tmp 在根分区上。ALFWorld 依赖的 fast_downward planner 和 Ray 都会向 /tmp 写大量临时文件。\n\n### 完整修复（两个环境变量缺一不可）\n```bash\n# .bashrc 中已添加：\nexport RAY_TMPDIR=/root/autodl-tmp/ray_tmp   # 修复 Ray session files\nexport TMPDIR=/root/autodl-tmp/tmp/            # 修复 fast_downward + Python tempfile\n```\n\n### 训练启动命令模板\n后续所有训练必须确保 TMPDIR 生效：\n```bash\nexport TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR && python train.py ...\n```\n\n## 2026-05-14: exp009 资源冲突教训\n\n### 失败模式: 双 GRPO 训练同时跑在相同 GPU\n- **现象**: exp009 和 exp010 都提交到 cuda:0+1，同时写同一 checkpoint 目录\n- **预防**: 提交新实验前必须检查是否有同 GPU 的 RUNNING 实验；同一 checkpoint 目录不可被多个实验同时写入\n\n## 2026-05-14: SFT warmup 验证结果\n\n### exp008_sft 产出\n- action_is_valid: 8.4% → 90%（独立 eval 4 episodes）\n- format_ok: 100%\n- success_rate: 0%（符合预期，SFT 教语义不教策略）\n- 训练: 1200 条数据, 3 epochs, 225 steps, ~8 min, final_loss=0.069\n\n### exp010 初始 validation（GRPO 训练开始前）\n- action_is_valid: 65.2%（GRPO rollout 环境下，低于独立 eval 的 90%）\n- action_is_effective: 93.1%\n- success_rate: 0%\n\n## 2026-05-14: exp010 GRPO 学习信号问题\n\n### 现象\n- action_is_valid 58.8% → 68.3%（持续提升 ✓）\n- success_rate 4.7% → 0%（崩塌 ✗）\n- pass@8 37.5% → 0%（崩塌 ✗）\n\n### 根因分析（D007/D008 确认）\nformat_penalty=-0.1 劫持 GRPO 梯度：格式奖惩信号远比稀疏 task success 信号强，模型优化格式正确性而忽略任务完成。exp012 修复：format_penalty=0。\n\n## 2026-05-14: ALFWorld 无原生连续 score（A1 不可行）\n\n### 发现\n- ALFWorld `infos[\"score\"]` 是**纯二值 0/1**，等价于 `won`\n- 根源：ALFWorld 用 PddlEnv（非标准 TextWorld），goal 是 conjunction，所有 predicates 必须同时满足\n- 实测 6 种任务类型 walkthrough，score 序列都是 `[0,0,...,0,1]`\n- TextWorld 的 `intermediate_reward` 仅在 `tw.py` 中实现，PddlEnv 不支持\n\n### 替代方案评估\n- **A1' walkthrough 进度**: 可行但高风险（鼓励模仿抑制探索，GRPO 可能 collapse）\n- **A1'' PDDL facts 子目标**: 逻辑更正确但实现复杂\n- **不加 A1**: 先看 exp012 纯 A2 效果\n\n## 2026-05-14: Phase B (B-IAVR) 就绪状态\n\n### 代码状态\n- 68/68 测试通过（含 7 个新 a_pre wiring 测试）\n- a_pre 链路已修复（原 bug: biavr_changed hardcoded False）\n\n### 启动前准备清单\n1. FSDP → HF 格式转换（Phase A checkpoint 是 FSDP 分片）\n2. 更新 `_alfworld_phase_b.yaml` 的 model_path、experiment_name、local_log_dir\n3. 确认 vLLM 在 gpu_memory_utilization=0.4 下能容纳 max_model_len=32768\n\n### 文献对标\n- 最接近: \"Learning When to Plan\" (Paglieri 2025) — 无 action change 信号、无 budget 约束\n- Lagrangian 实现建议: PID Lagrangian (Stooke 2020) 避免验证率振荡\n- 训练解耦参考: DeGRPO / Thinkless (Fang 2025)\n\n## 2026-05-14: vLLM 版本兼容问题（agent_proxy.py 入口）\n\n### 失败模式\n- `agent_proxy.py:69` 创建 `VllmWrapperWg` 时传 `disable_mm_preprocessor_cache` 给 vLLM `LLM()`\n- 服务器上 vLLM 版本不支持此参数 → `TypeError: EngineArgs.__init__() got an unexpected keyword argument`\n- 仅 `agent_proxy.py` 入口触发，`train.py` 入口（veRL 内部调 vLLM）不受影响\n\n### 修复方案\n等 Worker 诊断结果确认具体修复（移除参数 / 升级 vLLM / config 调整）。\n"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-14T06:32:56.449518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 151
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-14T06:33:04.651709+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成 on-experiment-failed 工作流：\n\n1. **诊断**: exp012 启动即崩溃，`agent_proxy.py:69` 传 `disable_mm_preprocessor_cache` 给 vLLM `LLM()`，服务器 vLLM 版本不支持此参数。error_type=infrastructure。\n2. **Registry**: 已更新 notes 和 failure_reason\n3. **飞书卡片**: 已发送\n4. **Director 汇报**: 已发送（含 [资源] 行，2 GPU 空闲等修复后重提交）\n5. **memory.md**: 已记录新失败模式\n6. **修复 Worker**: `worker_diagnose_exp012_20260514T063149` 正在 SSH 修复中\n\n等 Worker 回调后重提交 exp012。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012"
+          },
+          "id": "event-000048"
+        }
+      ],
+      "message_count": 48
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-14T09:33:40.518233+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-14T09:34:15.887775+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-17606 cuda:0, cuda:1（仅此 2 张，不可用其他卡）\n- 训练启动必须带 `export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR`（根分区 /tmp 只有 30GB，exp007/exp010 两次因此崩溃）\n- conda 环境不是 venv：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- checkpoint 目录不可被多个实验同时写入（exp009 教训）\n- `agent_proxy.py` 入口有 vLLM 版本兼容问题（`disable_mm_preprocessor_cache`），exp012 因此崩溃，Worker 正在修复中——修复确认前不要用此入口重提交\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606，账号 root\n- 工作目录：`/root/cost-verify-agent-rl/RAGEN/`\n- Python：`/root/miniconda3/bin/python`（Python 3.12，conda base env）\n- 模型：SFT checkpoint `/root/autodl-tmp/checkpoints/exp008_sft/final`（symlink `qwen3_sft_final`），GRPO step 5 checkpoint `/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5/`\n- 数据：ALFWorld `/root/autodl-tmp/alfworld/`（3553 games），SFT 数据 `/root/autodl-tmp/sft_data/alfworld_sft_ragen.jsonl`（1200 条）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：无（exp012 已崩溃，2 张 GPU 空闲）\n- Worker：`worker_diagnose_exp012_20260514T063149`（诊断修复 vLLM 兼容问题，等待回调）\n\n### 3. 📊 当前状态\nexp012（format_penalty=0 + group_size=16，纯 A2 实验）启动即崩溃——vLLM `EngineArgs` 不认识 `disable_mm_preprocessor_cache` 参数。已派 Worker SSH 到服务器诊断修复，等回调。\n\nRegistry 关键状态：\n- exp012: DONE/failed（vLLM 兼容，0 训练步）\n- exp011: DONE/killed（reward shaping 问题，D007 决策 kill）\n- exp010: DONE/failed（/tmp 磁盘满 step 11，但有 10 步数据：success 崩塌 4.7%→0%）\n- exp008_sft: DONE/success（action_is_valid 90%，唯一成功实验）\n\n已完成：registry 更新、飞书结果卡片、Director 汇报、memory.md 写入新失败模式。\n等待：Worker `diagnose:exp012` 回调。\n\n### 4. 📋 待办\n- Worker diagnose:exp012 回调 → 确认修复内容 → 创建新实验 exp013（或重用 exp012 配置）重新提交到 cuda:0+cuda:1，命令需包含修复后的入口\n- 如果 Worker 修复失败（vLLM 升级破坏 veRL 管线）→ 改用 `train.py` 入口而非 `agent_proxy.py`，需要将 exp012 的 reward 修改（format_penalty=0）适配到 train.py 的 config 格式\n- exp012 重跑成功后 → 按 on-experiment-done skill 处理结果，关注 success_rate 是否不再崩塌\n\n### 5. 🎯 战略上下文\n- 核心链路：D001(ALFWorld+Qwen3-1.7B) → D004(parser fix) → D006(SFT warmup) → D007/D008(kill reward shaping 问题，A2=降 format_penalty)\n- 当前瓶颈：exp010 发现 format_penalty=-0.1 劫持 GRPO 梯度导致 success 崩塌。exp012 是修复验证（format_penalty=0），但因 vLLM 兼容问题未跑出来\n- Phase A 判定标准：ALFWorld success_rate ≥ 76%（匹配 Self-Guide 论文）\n- Phase B (B-IAVR) 代码就绪（68/68 测试通过），被 Phase A checkpoint 阻塞\n- 易错点：`agent_proxy.py` 和 `train.py` 是两个不同入口，vLLM 调用方式不同。之前所有成功运行的实验都用 `train.py`。exp012 首次用 `agent_proxy.py` 就撞上兼容问题——如果 Worker 修不好，回退到 `train.py` 入口是安全的\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp012"
+          },
+          "id": "event-000050"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-exp012-20260514t093415-889718.md"
+}

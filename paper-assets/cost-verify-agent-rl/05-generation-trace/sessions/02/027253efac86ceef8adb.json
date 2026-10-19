@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "027253efac86ceef8adb",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research advantage ratio logs",
+  "task_key": "worker_research_advantage_ratio_logs_20260524T232729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_advantage_ratio_logs_20260524T232729_result.json",
+    "occurrence": 1,
+    "bytes": 1824,
+    "sha256": "e92d7049a0a1af8124a9051bc4a3187c613a26c00fe1b7845365fb5f608d6539"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a complete picture. Here's the assessment:\n\n---\n\n## 结果汇报\n\n### 1. 日志中是否有 advantage 分布数据？\n\n**有。** `/root/runs/cost-verify-agent-rl/hsweep_h2_seed2/advantage_log.jsonl`\n\n- 3000 条记录，每条包含：`episode_id`, `window_position`, `step_return`, `advantage`, `uid`\n- 代码中 `_n = min(len(advantages), 200)` 限制每步最多记录 200 条，3000 / 200 = **恰好 15 个 training step**\n- **无 `training_step` 字段**，但可从顺序位置推断：records 0-199 = step 1, 200-399 = step 2, ..., 2800-2999 = step 15\n- 这是 ALFWorld h=2 step-level 的数据（即 Cell A）\n\n### 2. 是否有现成的 advantage 分析脚本？\n\n有两个：`scripts/analyze_advantage_log.py` 和 `scripts/analyze_advantage_log_v2.py`。但它们分析的是 sign-vs-outcome 和 position decay，**未按 training step 拆分**，也**未计算 |Â_correct|/|Â_wrong| ratio**。\n\n已有的 `artifacts/advantage_analysis_summary.json` 是全步聚合结果，不含 per-step breakdown。\n\n### 3. Checkpoint 可用性\n\nbjb1-17606 上**无 Cell A checkpoint**（有 `hsweep-h10-seed2` 但无 `hsweep-h2-seed2`）。不过不需要 checkpoint，日志数据已够用。\n\n### 4. 可行性评估\n\n**可以直接从现有日志提取，无需重跑。** 方法：\n\n- 按每 200 条切分为 15 个 training step\n- 每个 step 内，按 `step_return > 0`（correct）vs `step_return ≤ 0`（wrong）分组\n- 计算 `mean(|advantage|_correct) / mean(|advantage|_wrong)`\n- 取 step 1, 5, 10, 15 四个时间点\n\n**局限**：\n- 仅 1 个 seed（seed2），无 error bar\n- 仅 ALFWorld，无 ScienceWorld Cell A 数据（config 存在但未跑 `LOG_PER_SAMPLE_ADV=1`）\n- 每步仅 200 条（实际 batch 可能更大，部分数据被截断）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-advantage-ratio-logs.md"
+}

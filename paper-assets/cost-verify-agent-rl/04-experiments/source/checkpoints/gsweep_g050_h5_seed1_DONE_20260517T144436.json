@@ -1,0 +1,42 @@
+{
+  "exp_id": "gsweep_g050_h5_seed1",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:56:51.277Z",
+    "updated_at": "2026-05-17T14:44:36.785Z",
+    "hypothesis": "γ=0.5 with h=5 will show accelerated collapse compared to default γ=0.95, because γ^k decay compounds: early windows receive only γ^(N-1) ≈ 0.5^9 ≈ 0.2% of terminal return, making sign misattribution maximally severe.",
+    "parent": "hsweep_h2_seed1",
+    "spec": {
+      "command": "python train_alfworld.py --config config/_alfworld_gamma_sweep_g050_h5.yaml",
+      "server": "westd-47453",
+      "gpu": "cuda:2,3",
+      "pid": 9932,
+      "model_name": "Qwen3-1.7B",
+      "seed": 42,
+      "data_path": "ALFWorld",
+      "data_count": "134 train tasks",
+      "checkpoint_path": "N/A (crashed 9min after startup, vLLM inductor AssertionError)",
+      "log_path": "N/A"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T14:42:42.369Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T14:42:45.029228+00:00"
+        }
+      ]
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T14:44:36.785Z"
+  },
+  "timestamp": "2026-05-17T14:44:36.909004+00:00",
+  "trigger": "update_registry"
+}

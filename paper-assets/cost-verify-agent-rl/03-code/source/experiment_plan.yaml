@@ -1,0 +1,719 @@
+experiments:
+- id: plan_001
+  title: Episode-level GRPO convergence (exp029 continuation)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on: []
+  registry_id: exp029_episode_level
+  status: done
+  description: 'Episode-level GRPO (context_window_mode: full) on Qwen3-1.7B + ALFWorld.
+    50 steps, dual-GPU. MVP passed at step 5 (val=25%, 2x baseline 12.5%). Continue
+    to convergence (step 20+) with tatsu parallel patch for 4x val speedup.
+
+    '
+  hypothesis: 'Episode-level training enables stable RL for multi-turn agents, reaching
+    ≥40% success by convergence.
+
+    '
+  metrics:
+  - success_rate
+  - action_is_valid
+  - kl_divergence
+  - entropy
+  gpu_hours_estimate: 48
+  framing_ref: claim_1
+- id: plan_002
+  title: Context window h-sweep ablation (3 seeds each)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_001
+  registry_id: hsweep_h2_seed1
+  status: running
+  description: 'Sweep context_window h={2, 5, 10, 20, full} on same GRPO config. Config:
+    context_window_mode=step_independent + step_independent_history_length={h} (h=full
+    uses context_window_mode=full). 15 steps per run, 3 seeds each. KEY paper figure:
+    shows credit assignment cliff is robust across seeds. Addresses Reviewer Concern
+    #1 + Dream C3 (statistical power).
+
+    '
+  hypothesis: 'Performance degrades monotonically with smaller h, with sharp cliff
+    below h=10. Cliff is robust across seeds (not single-run artifact).
+
+    '
+  metrics:
+  - success_rate_per_h
+  - convergence_speed
+  - collapse_rate
+  gpu_hours_estimate: 90
+  notes: 'h=2 seed1 DONE (collapse 0%), h=2 seed2 DONE (val 9.375%), h=5 collapsed
+    (evidence from γ-sweep plan_017: all γ values at h=5 collapsed), h=10 DONE/killed
+    (D079: val=SFT baseline 6.25%, train=0%, no learning), h=20 RUNNING (hsweep_h20_seed1),
+    h=full = exp029 (23.88% OOD). Cliff pattern: h≤10 collapse, h=full learns. h=20
+    is critical boundary test.'
+- id: plan_003
+  title: Multi-seed replication (5 seeds total)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_001
+  registry_id: exp029_seed3_episode
+  status: planned
+  description: '4 additional seeds for exp029 episode-level config (5 total incl original).
+    Report mean ± std. Dream C3 要求 5-8 seeds for credible CI.
+
+    '
+  hypothesis: 'Episode-level success rate is reproducible (std < 5pp across 5 seeds).
+
+    '
+  metrics:
+  - success_rate_mean
+  - success_rate_std
+  gpu_hours_estimate: 192
+- id: plan_003b
+  title: REINFORCE++ baseline comparison (fallback from GAE)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_001
+  registry_id: gae_baseline_seed1
+  status: done
+  conclusion: killed
+  description: Per-token credit baseline using REINFORCE++ (running-mean baseline,
+    adv_estimator=reinforce_plus_plus_baseline). Fallback from GAE due to TRL 1.1.0
+    removing AutoModelForCausalLMWithValueHead (critic head unavailable, D060). Provides
+    per-token advantage normalization vs episode-level GRPO uniform advantage. If
+    REINFORCE++ >> episode-level → per-token normalization adds value even without
+    critic. If comparable → episode-level info is the key factor, not credit granularity.
+  hypothesis: REINFORCE++ provides modest improvement over episode-level GRPO due
+    to per-token advantage normalization, but both far exceed step-independent.
+  metrics:
+  - success_rate
+  - per_token_advantage_variance
+  gpu_hours_estimate: 60
+  notes: 'D060: GAE infeasible (TRL 1.1.0 removed ValueHead). Using REINFORCE++ as
+    practical per-token baseline. Running on westd cuda:0,1.'
+- id: plan_003c
+  title: Episode-level + valid_action_bonus (plateau-breaker, D056)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_001
+  registry_id: null
+  status: planned
+  description: 'Derived from exp013f negative (D056): dense reward gaming is step_independent-specific.
+    Episode-level training prevents per-step reward gaming because model optimizes
+    full trajectory total reward. Add valid_action_bonus=0.05 to episode-level config.
+    Test if this safely improves action_is_valid (currently 55.9%) without gaming,
+    and whether it breaks the 23-25% success plateau. Run during h-sweep batch as
+    h=full variant.
+
+    '
+  hypothesis: 'Episode-level + small valid_action_bonus safely improves action_is_valid
+    (target ≥80%) without reward gaming, and success rate exceeds 30% (breaking exp029
+    plateau). Gaming only occurs under step_independent.
+
+    '
+  metrics:
+  - success_rate
+  - action_is_valid
+  - valid_bonus_vs_task_reward_ratio
+  gpu_hours_estimate: 24
+  parent: exp013f
+  notes: 'Parent derivation: exp013f gaming → D056 insight → episode-level safety
+    hypothesis'
+- id: plan_004
+  title: Credit assignment mechanism empirical verification (paper Figure 2)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_002
+  registry_id: hsweep_h2_seed2
+  status: done
+  conclusion: success
+  description: "Empirically verify \"Advantage Sign Misattribution\" mechanism (D058,\
+    \ Reviewer-refined): (a) Per-window advantage logging from h=2 seed 2: record\
+    \ (episode_id, window_position,\n    raw_return, advantage_sign, advantage_magnitude,\
+    \ episode_outcome, local_action_quality_proxy)\n(b) Key analysis: advantage sign\
+    \ vs episode outcome correlation (should be ~1.0),\n    advantage sign vs local\
+    \ action quality correlation (should be ~0, proving misattribution)\n(c) Contrast\
+    \ success vs failure episodes: success → all positive (including bad windows),\n\
+    \    failure → all negative (including good windows)\n(d) γ^k magnitude decay:\
+    \ advantage magnitude vs position in success episodes (e) Episode-level control:\
+    \ all tokens share one advantage (no position/sign variance) Data source: LOG_PER_SAMPLE_ADV=1\
+    \ on h=2 seed 2 (10 lines logging code, zero GPU overhead). Code reference: agent_trainer.py:271-340,\
+    \ core_algos.py:194-246.\n"
+  hypothesis: 'Per-window advantage in step_independent shows: (1) advantage sign
+    is determined by episode success/failure (correlation > 0.95), (2) advantage sign
+    is NOT correlated with window-local action quality (r < 0.1), proving sign misattribution,
+    (3) magnitude decays as γ^k from terminal position, (4) episode-level shows uniform
+    advantage with no sign/magnitude position effects.
+
+    '
+  metrics:
+  - sign_vs_outcome_correlation
+  - sign_vs_local_quality_correlation
+  - magnitude_position_decay_r2
+  - episode_level_variance
+  gpu_hours_estimate: 4
+  notes: 'D058+Reviewer: ''sign misattribution'' is the core mechanism (direction
+    error > magnitude error). γ^k decay is secondary.'
+- id: plan_005
+  title: Action-change statistics from always-on runs
+  claim: Claim 2 (DEFERRED per D061)
+  phase: B
+  priority: P2-deferred
+  depends_on:
+  - plan_001
+  registry_id: null
+  status: planned
+  description: 'Collect action-change statistics from exp029 trained checkpoints:
+    (1) fraction of verifications triggering action change, (2) correlation between
+    action change and episode success, (3) per-task-type breakdown. Informs reward
+    design and provides empirical grounding.
+
+    '
+  hypothesis: 'Most verifications are confirmatory (>60% no action change). Action
+    change positively correlates with episode success (r > 0.2).
+
+    '
+  metrics:
+  - action_change_rate
+  - correlation
+  - confirmatory_rate
+  gpu_hours_estimate: 4
+- id: plan_006
+  title: Selective verification implementation
+  claim: Claim 2 (DEFERRED per D061)
+  phase: B
+  priority: P2-deferred
+  depends_on:
+  - plan_005
+  registry_id: null
+  status: planned
+  description: 'Implement binary verify/skip decision in RAGEN framework. Agent outputs
+    special token (verify/skip) before each step. Reward = task_success + alpha *
+    action_change_when_verified - beta * verification_cost. Code-only, no GPU.
+
+    '
+  hypothesis: null
+  metrics: []
+  gpu_hours_estimate: 0
+- id: plan_007
+  title: B-IAVR selective verification training
+  claim: Claim 2, Claim 3 (DEFERRED per D061)
+  phase: B
+  priority: P2-deferred
+  depends_on:
+  - plan_006
+  - plan_001
+  registry_id: null
+  status: planned
+  description: 'Train selective verification policy via episode-level GRPO. Initialize
+    from best exp029 checkpoint. Action-change reward encourages verification only
+    when informative.
+
+    '
+  hypothesis: 'B-IAVR achieves verification rate ↓40%+ vs always-on while maintaining
+    success within 5pp of baseline.
+
+    '
+  metrics:
+  - success_rate
+  - verification_rate
+  - cost_reduction
+  gpu_hours_estimate: 96
+- id: plan_008
+  title: Selective verification full comparison
+  claim: Claim 3 (DEFERRED per D061)
+  phase: B
+  priority: P2-deferred
+  depends_on:
+  - plan_007
+  registry_id: null
+  status: planned
+  description: 'Compare on same val set: always-on / B-IAVR / no-verify / random-p
+    / confidence-threshold. Report success rate, verification rate, total inference
+    tokens, per-task breakdown.
+
+    '
+  hypothesis: 'B-IAVR dominates Pareto frontier (best success-to-cost ratio).
+
+    '
+  metrics:
+  - success_rate
+  - verification_rate
+  - cost_reduction
+  - total_tokens
+  gpu_hours_estimate: 8
+- id: plan_009
+  title: No-verify ablation
+  claim: Claim 3 (DEFERRED per D061)
+  phase: C
+  priority: P2-deferred
+  depends_on:
+  - plan_001
+  registry_id: null
+  status: planned
+  description: 'Episode-level GRPO without any self-verification. Lower bound: demonstrates
+    verification value.
+
+    '
+  hypothesis: 'Removing verification drops success by ≥10pp vs always-on.
+
+    '
+  metrics:
+  - success_rate
+  - action_is_valid
+  gpu_hours_estimate: 48
+- id: plan_010
+  title: Entropy-controlled action-change analysis
+  claim: Claim 2 (DEFERRED per D061)
+  phase: C
+  priority: P2-deferred
+  depends_on:
+  - plan_005
+  registry_id: null
+  status: planned
+  description: 'Defense for "action change = noise" concern. Stratify by policy entropy;
+    test if action-change-success correlation holds within each stratum.
+
+    '
+  hypothesis: 'Partial correlation remains significant (p < 0.05) after controlling
+    entropy.
+
+    '
+  metrics:
+  - partial_correlation
+  - p_value
+  gpu_hours_estimate: 4
+- id: plan_011
+  title: 'Causal intervention: random vs verification-triggered changes'
+  claim: Claim 2 (DEFERRED per D061)
+  phase: C
+  priority: P2-deferred
+  depends_on:
+  - plan_001
+  registry_id: null
+  status: planned
+  description: 'Inject random action changes at same rate as verification-triggered.
+    Compare task success. If verification-triggered >> random, causal evidence.
+
+    '
+  hypothesis: 'Verification-triggered changes yield ≥10pp higher success than random.
+
+    '
+  metrics:
+  - success_rate_triggered
+  - success_rate_random
+  - delta
+  gpu_hours_estimate: 8
+- id: plan_012
+  title: Reward signal ablation (action-change vs alternatives)
+  claim: Claim 2 (DEFERRED per D061)
+  phase: C
+  priority: P2-deferred
+  depends_on:
+  - plan_007
+  registry_id: null
+  status: planned
+  description: 'Train B-IAVR with alternative rewards: (a) action-change (ours), (b)
+    random trigger reward, (c) confidence-based reward. Demonstrates action-change
+    is the best signal.
+
+    '
+  hypothesis: 'Action-change reward produces best cost-performance tradeoff.
+
+    '
+  metrics:
+  - success_rate
+  - verification_rate
+  - cost_reduction
+  gpu_hours_estimate: 192
+- id: plan_013
+  title: ARES reproduction + comparison
+  claim: Claim 3 (DEFERRED per D061)
+  phase: C
+  priority: P2-deferred
+  depends_on:
+  - plan_007
+  registry_id: null
+  status: planned
+  description: 'Reproduce ARES SFT router on ALFWorld (same model). Head-to-head with
+    B-IAVR on identical eval episodes. Addresses "ARES differentiation" concern.
+
+    '
+  hypothesis: 'B-IAVR achieves ≥10pp better cost reduction than ARES at matched success.
+
+    '
+  metrics:
+  - success_rate
+  - verification_rate
+  - cost_reduction
+  gpu_hours_estimate: 24
+- id: plan_014
+  title: ScienceWorld transfer (episode-level advantage)
+  claim: Claim 1
+  phase: D
+  priority: P2
+  depends_on:
+  - plan_001
+  registry_id: null
+  status: planned
+  description: 'Validate episode-level vs step-independent on ScienceWorld. Different
+    env, similar multi-turn structure. Addresses single-env concern.
+
+    '
+  hypothesis: 'Episode-level advantage generalizes: ≥2x improvement over step-independent.
+
+    '
+  metrics:
+  - success_rate_episode
+  - success_rate_step_independent
+  gpu_hours_estimate: 72
+- id: plan_015
+  title: 7B model scaling verification
+  claim: Claim 1
+  phase: D
+  priority: P2
+  depends_on:
+  - plan_002
+  registry_id: null
+  status: planned
+  description: 'Episode-level vs step-independent on Qwen3-7B. Addresses model size
+    concern. May need cloud GPU.
+
+    '
+  hypothesis: 'Episode-level advantage holds at 7B scale.
+
+    '
+  metrics:
+  - success_rate_episode_7B
+  - success_rate_step_independent_7B
+  gpu_hours_estimate: 192
+  notes: May require cloud GPU rental (4x A100 or 2x H100)
+- id: plan_016
+  title: Per-task-type breakdown analysis
+  claim: Claim 1
+  phase: D
+  priority: P2
+  depends_on:
+  - plan_001
+  registry_id: exp029_per_task_breakdown
+  status: done
+  description: 'Breakdown by ALFWorld task type (pick, clean, heat, cool, examine,
+    pick_two). Shows within-environment diversity.
+
+    '
+  hypothesis: 'Episode-level advantage varies by task complexity; longer tasks benefit
+    more.
+
+    '
+  metrics:
+  - per_task_success
+  - episode_length_correlation
+  gpu_hours_estimate: 2
+- id: plan_017
+  title: Discount factor γ-sweep (dual mechanism separation)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_001
+  registry_id: gsweep_g050_h5_seed1
+  status: running
+  notes_extra: g050 killed (collapsed). g080 RUNNING on westd cuda:2,3. g095/g100
+    pending.
+  description: 'Sweep discount factor γ ∈ {0.5, 0.8, 0.95, 1.0} with fixed h=5, step_independent
+    mode, 15 steps each. Separates two mechanisms: (1) magnitude decay (γ^k attenuation)
+    vs (2) sign misattribution (advantage sign determined by episode outcome). γ=1.0
+    eliminates magnitude decay; if collapse persists, sign misattribution is the root
+    cause. KEY paper evidence for dual mechanism separation.
+
+    '
+  hypothesis: 'γ=1.0 eliminates magnitude decay but step_independent still collapses,
+    proving sign misattribution is the root cause rather than γ^k decay. Lower γ values
+    show accelerated collapse due to compounded magnitude attenuation.
+
+    '
+  metrics:
+  - success_rate_per_gamma
+  - collapse_onset_step
+  - magnitude_decay_vs_sign_effect
+  gpu_hours_estimate: 40
+  notes: '4 γ values × 15 steps. γ=0.5 running (gsweep_g050_h5_seed1). Remaining:
+    gsweep_g080_h5_seed1, gsweep_g095_h5_seed1, gsweep_g100_h5_seed1 pre-registered.'
+- id: plan_018
+  title: 'Factorial mechanism separation: truncated-obs + episode-level advantage'
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_001
+  registry_id: factorial_h2_episodeadv_seed1
+  status: done
+  conclusion: success
+  description: 'CRITICAL experiment requested by ALL 3 Dream review tiers. 2×2 factorial
+    design to isolate information loss from sign misattribution. Configuration: step_independent
+    GENERATION (h=2 observation window, model only sees 2 steps of history during
+    rollout) BUT episode-level ADVANTAGE computation (all windows in same episode
+    share one GRPO advantage = normalized episode return). This means the model still
+    has limited observation (information loss present) but credit assignment is correct
+    (sign misattribution eliminated). Outcome interpretation: (A) if still collapses
+    → information loss is dominant (model cannot plan with limited visibility regardless
+    of credit quality); (B) if succeeds → sign misattribution was dominant (correct
+    credit enables learning even with limited observation). May require small code
+    modification in RAGEN: compute_step_discounted_returns() needs a mode that assigns
+    episode return to all windows uniformly instead of per-window γ-discounted returns.'
+  hypothesis: Truncated observation (h=2) + episode-level advantage isolates the two
+    mechanisms. If collapse persists, information loss is primary. If performance
+    improves significantly over standard step_independent h=2 (currently 0%), sign
+    misattribution is primary.
+  metrics:
+  - success_rate
+  - collapse_onset_step
+  - comparison_vs_step_independent_h2
+  - comparison_vs_episode_level_full
+  gpu_hours_estimate: 24
+  notes: 'Dream consensus: this is THE most critical missing experiment. All 3 tiers
+    (best/median/worst) independently flagged the absence of factorial mechanism separation
+    as a critical weakness. Also serves to resolve the r=0.640 diagnostic question.'
+- id: plan_019
+  title: Evaluation set expansion (32→134 tasks)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on: []
+  registry_id: null
+  status: done
+  conclusion: success
+  description: Expand ALFWorld validation set from 32 to 134 tasks (standard full
+    split). Dream worst-case flagged 32 tasks as critically small (3.125% per episode,
+    many comparisons are <2 episode difference). Standard ALFWorld evaluation uses
+    134 tasks. This is a config/infrastructure change affecting all future experiments.
+  hypothesis: Larger evaluation set provides statistical power for ≤3pp differences.
+    Current results (e.g. 25% = 8/32 tasks) become more precise.
+  metrics:
+  - statistical_power
+  - confidence_interval_width
+  gpu_hours_estimate: 0
+  notes: Infrastructure change. Need to verify RAGEN supports 134-task eval split
+    and identify the correct task list file. May require modifying val config.
+- id: plan_020
+  title: 8B SFT Training (Qwen3-8B ALFWorld)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on: []
+  registry_id: 7b_sft_v1
+  description: SFT Qwen3-8B on ALFWorld expert data (2460 examples). Creates 8B SFT
+    checkpoint for Cell A/C RL experiments. Validates training pipeline at 8B scale.
+  hypothesis: SFT Qwen3-8B will achieve high training accuracy and establish strong
+    baseline for subsequent RL, enabling scale-invariant mechanism verification.
+- id: plan_021
+  title: 8B SFT OOD Evaluation (134 tasks)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_020
+  registry_id: 7b_sft_eval_ood
+  description: 'Evaluate 8B SFT checkpoint on 134 OOD tasks. Establishes 8B SFT baseline
+    for paper table. Result: 80.6% OOD success.'
+  hypothesis: 8B SFT baseline substantially exceeds 1.7B baseline, confirming model
+    scale advantage for SFT.
+- id: plan_022
+  title: 8B SFT In-dist Evaluation (32 tasks)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_020
+  registry_id: 8b_sft_clean_eval_v2
+  description: Clean 8B SFT eval on 32 in-dist val tasks. Provides denominator for
+    information loss quantification (same eval set as Cell A).
+  hypothesis: 8B SFT full-context in-dist success provides upper bound for h=2 information
+    loss measurement.
+- id: plan_023
+  title: 8B Deterministic Eval — Full Context (T=0)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_020
+  registry_id: 8b_det_eval_full
+  description: 'Deterministic (T=0) eval of 8B SFT with full context on 32 in-dist
+    tasks. Paired with h=2 eval for information loss quantification without sampling
+    variance. Result: 68.75%.'
+  hypothesis: T=0 deterministic eval eliminates sampling variance, providing clean
+    information loss measurement.
+- id: plan_024
+  title: 8B Deterministic Eval — h=2 (T=0)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_023
+  registry_id: 8b_det_eval_h2
+  description: 'Deterministic (T=0) eval of 8B SFT with h=2 windowing on same 32 in-dist
+    tasks. Result: 31.25%. Information loss = 68.75% - 31.25% = 37.5pp.'
+  hypothesis: h=2 windowing causes substantial information loss at 8B scale, confirming
+    scale-invariant mechanism.
+- id: plan_025
+  title: 8B Cell A Collapse Verification
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_020
+  registry_id: 7b_cell_a_h2
+  description: '8B Cell A: step-independent RL with h=2 from 80.6% SFT baseline. Result:
+    step 1 = 12.5% (baseline halved), step 2 = 1.5625% (Q4 complete collapse). Confirms
+    scale-invariant collapse mechanism.'
+  hypothesis: 8B Cell A collapses like 1.7B Cell A, confirming sign misattribution
+    + information loss are scale-invariant.
+- id: plan_026
+  title: 8B Cell C Episode-Level GRPO (v9d, FSDP2+CPUOffload)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_020
+  - plan_025
+  registry_id: 8b_cell_c_episode_v9d
+  description: '8B Cell C episode-level GRPO with FSDP2+CPUOffloadPolicy. 30 steps
+    on 4×RTX PRO 6000 96GB. If successful, provides cross-scale positive control:
+    not only failure mechanism is scale-invariant, but fix effectiveness is too. Step
+    5: val 81.25%.'
+  hypothesis: 8B Cell C episode-level training succeeds (maintaining/improving from
+    SFT baseline), confirming episode-level fix is scale-invariant.
+- id: plan_027
+  title: Factorial Mechanism Separation — Seed 2 Replication
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_018
+  registry_id: factorial_h2_episodeadv_seed2
+  description: 'Seed 2 replication of factorial experiment (step-independent generation
+    + episode-level advantage). Confirms sign misattribution elimination effect is
+    robust across seeds. Result: OOD 0.75% (train 55.5%, hard ceiling from info loss).'
+  hypothesis: 'Factorial mechanism separation result replicates: sign misattribution
+    elimination enables training even with truncated observation.'
+- id: plan_028
+  title: Episode-Level Seed 2 (Cross-seed OOD)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_001
+  registry_id: exp029_episode_level_seed2
+  description: Seed 2 replication of exp029 episode-level GRPO. Val peaked at 31.25%.
+    Step 30 checkpoint lost in disk cleanup (M019). Provides cross-seed evidence.
+  hypothesis: Episode-level success is reproducible across seeds.
+  notes: Killed due to checkpoint loss (M019). Paper uses step 15 val data.
+- id: plan_029
+  title: h-sweep h=10 (cliff boundary test)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_002
+  registry_id: hsweep_h10_seed1
+  description: 'h=10 step-independent GRPO. Result: val=SFT baseline 6.25%, train=0%.
+    No learning — cliff is above h=10. Killed per D079.'
+  hypothesis: h=10 provides insufficient context for learning, confirming cliff between
+    h=10 and h=20.
+- id: plan_030
+  title: h-sweep h=20 (cliff boundary test)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_029
+  registry_id: hsweep_h20_seed1
+  description: 'h=20 step-independent GRPO. Key cliff boundary: h=10 collapsed, h=20
+    shows if 20 steps of context enables recovery. Result: 15.6% val success — partial
+    recovery, cliff between h=10 and h=20.'
+  hypothesis: h=20 shows partial recovery, narrowing cliff location to h=10~h=20.
+- id: plan_031
+  title: Per-task OOD Eval T=0.4 (exp029 rerun)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_001
+  registry_id: exp029_per_task_t04_v2
+  description: 'Per-task-type OOD eval with T=0.4 (paper protocol D092). Independent
+    eval script result: 19.4% (26/134). pick_two_obj = 0% (hardest). Pipeline difference
+    vs RAGEN 23.88% under investigation.'
+  hypothesis: Task-type ranking pattern consistent across eval methods; multi-step
+    tasks remain hardest.
+- id: plan_032
+  title: ScienceWorld SFT Training (second environment)
+  claim: Claim 1
+  phase: D
+  priority: P1
+  depends_on: []
+  registry_id: scienceworld_sft
+  description: ScienceWorld 1.7B SFT training. 3592 train / 1796 val expert trajectories,
+    2 epochs. Creates SFT checkpoint for subsequent GRPO experiments. Validates pipeline
+    generalization to second interactive environment.
+  hypothesis: SFT pipeline generalizes to ScienceWorld, providing base checkpoint
+    for cross-environment RL mechanism comparison.
+- id: plan_033
+  title: ScienceWorld SFT Eval v2 (baseline establishment)
+  claim: Claim 1
+  phase: D
+  priority: P1
+  depends_on:
+  - plan_032
+  registry_id: scienceworld_sft_eval_v2
+  description: 'Full dev split eval (1796 episodes, 30 task types) of ScienceWorld
+    SFT checkpoint. Fixed valid_action_rate metric (v1 had truncation bug). Currently
+    running: ~53% complete, success rate ~30.8%.'
+  hypothesis: ScienceWorld SFT establishes baseline success rate for subsequent GRPO
+    Cell A vs Cell C comparison.
+- id: plan_034
+  title: γ-sweep γ=0.80 (magnitude decay isolation)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_017
+  registry_id: gsweep_g080_h5_seed1
+  description: 'γ=0.80 with h=5. Early windows retain γ^9 ≈ 13% of terminal return.
+    Result: collapsed (negative). All γ values collapse at h=5, proving sign misattribution
+    is the root cause, not magnitude decay.'
+  hypothesis: γ=0.80 collapses like other γ values, confirming sign misattribution
+    dominates magnitude decay.
+- id: plan_035
+  title: γ-sweep γ=0.95 (default control)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_017
+  registry_id: gsweep_g095_h5_seed1
+  description: 'γ=0.95 with h=5 — control condition matching hsweep_h5. Early windows
+    retain γ^9 ≈ 63%. Result: collapsed (negative).'
+  hypothesis: γ=0.95 reproduces h5 collapse, providing control for γ-sweep.
+- id: plan_036
+  title: γ-sweep γ=1.00 (no discount, key evidence)
+  claim: Claim 1
+  phase: A+
+  priority: P0
+  depends_on:
+  - plan_017
+  registry_id: gsweep_g100_h5_seed1
+  description: 'γ=1.00 eliminates magnitude decay entirely. If collapse persists,
+    proves sign misattribution alone causes collapse. Result: collapsed (negative).
+    KEY EVIDENCE: even without any γ^k decay, step-independent still collapses.'
+  hypothesis: γ=1.0 eliminates magnitude decay but still collapses, proving sign misattribution
+    is the root cause independent of discount factor.

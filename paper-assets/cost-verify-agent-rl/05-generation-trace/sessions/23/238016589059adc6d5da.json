@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "238016589059adc6d5da",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor v9d resume verify",
+  "task_key": "worker_monitor_v9d_resume_verify_20260520T052255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_v9d_resume_verify_20260520T052255_result.json",
+    "occurrence": 1,
+    "bytes": 747,
+    "sha256": "f4e48256cd75c88397327881fe9236fdffacfce98d66b270deec61cc4901eb2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**DEAD** — 进程已崩溃，`EXIT_CODE=1`。\n\n**崩溃原因**：vLLM KV cache 内存不足：\n```\nValueError: No available memory for the cache blocks.\nTry increasing `gpu_memory_utilization` when initializing the engine.\n```\n\nvLLM rollout 初始化时，模型权重加载到 GPU 后剩余显存不足以分配 KV cache blocks。4 张卡每张 ~5GB 已用（加载模型权重），但 96GB 卡理论上应该够用——可能是 `gpu_memory_utilization` 设置过低，或者 FSDP actor 和 vLLM rollout 共用 GPU 时内存冲突。\n\ncheckpoint 路径不存在，无法确认是否从 step 5 恢复（进程在恢复/val_before_train 之前就崩了）。\n\n磁盘：102GB 可用（/root/autodl-tmp 60% used）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-v9d-resume-verify.md"
+}

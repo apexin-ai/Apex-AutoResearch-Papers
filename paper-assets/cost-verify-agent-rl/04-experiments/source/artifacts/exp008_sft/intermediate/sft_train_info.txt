@@ -1,0 +1,3 @@
+Server path: /root/cost-verify-agent-rl/scripts/sft_train.py
+Model: Qwen3-1.7B, LR: 2e-5, Epochs: 3, BS: 4×4=16, MaxLen: 4096
+Output: /root/autodl-tmp/checkpoints/exp008_sft/

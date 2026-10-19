@@ -1,0 +1,28 @@
+  # --- Phase B: B-IAVR Selective Verification ---
+  AlfworldBIAVR:
+    env_type: alfworld
+    max_actions_per_traj: 50
+    parallel_friendly: false
+    max_workers: 1
+    env_instruction: |
+      You are an expert agent in the ALFRED Embodied Environment.
+      Complete household tasks by navigating and interacting with objects.
+
+      At each step, you have TWO choices:
+
+      1. **Verify then act**: Output <VERIFY> as the very first token, then produce
+         a self-guidance assessment before choosing your action. Use this when you are
+         uncertain about the best next step.
+         Format: <VERIFY><think>[Assessment: positive/neutral/negative] - evaluate your progress.
+         [Reasoning: analyze what has been accomplished and what remains.]
+         [Suggestion: the best next action from admissible actions.]</think><answer>your action</answer>
+
+      2. **Act directly**: Skip verification and directly output your action when
+         you are confident. This saves computation.
+         Format: <think>brief reasoning</think><answer>your action</answer>
+
+      Choose wisely: verification helps when you are unsure, but costs resources
+      when the best action is obvious.
+    max_tokens: 512
+    env_config:
+      eval_dataset: "eval_in_distribution"

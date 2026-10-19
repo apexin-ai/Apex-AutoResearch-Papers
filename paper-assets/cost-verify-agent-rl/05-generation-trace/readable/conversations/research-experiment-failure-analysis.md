@@ -1,0 +1,1306 @@
+# research experiment failure analysis
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 39
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/chats/worker_research_experiment_failure_analysis_20260515T114729.jsonl`
+- **Structured JSON:** [`8c4fc9fa21f911215bd4.json`](../../sessions/8c/8c4fc9fa21f911215bd4.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+39 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T11:52:44.595573+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T11:52:44.595971+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T11:52:44.596145+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/ 2>/dev/null || echo \"NO_DOCS_DIR\"",
+  "description": "Check if docs directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/ 2>/dev/null || echo \"NO_DOCS_DIR\"",
+    "description": "Check if docs directory exists"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T11:52:44.596284+00:00_
+
+total 60
+drwxr-xr-x  4 ubuntu ubuntu  4096 May 14 17:57 .
+drwxr-xr-x 10 ubuntu ubuntu  4096 May 15 11:15 ..
+-rw-r--r--  1 ubuntu ubuntu 42772 May 13 17:31 IDEA_BRIEF.md
+drwxr-xr-x  2 ubuntu ubuntu  4096 May 14 17:57 paper
+drwxr-xr-x  3 ubuntu ubuntu  4096 May 14 17:57 results
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T11:52:44.596411+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "limit": "0",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "limit": "0",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T11:52:44.596874+00:00_
+
+Error: result (78,950 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T11:52:44.597086+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt",
+  "limit": "400"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt",
+    "limit": "400"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T11:52:44.597219+00:00_
+
+File content (34711 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T11:52:44.597341+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt",
+  "limit": "200",
+  "offset": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt",
+    "limit": "200",
+    "offset": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T11:52:44.597475+00:00_
+
+File content (34711 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T11:52:44.597596+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt",
+  "limit": "150",
+  "offset": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt",
+    "limit": "150",
+    "offset": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T11:52:44.597738+00:00_
+
+File content (34711 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T11:52:44.597853+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "wc -l /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt",
+  "description": "Count lines in registry file"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "wc -l /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt",
+    "description": "Count lines in registry file"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T11:52:44.597967+00:00_
+
+0 /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T11:52:44.598104+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nprint(f'Total experiments: {len(result)}')\nprint('Keys in first exp:', list(result[0].keys()) if result else 'empty')\n\" 2>/dev/null || echo \"trying alternative parse...\"\n",
+  "description": "Parse JSON structure of registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nprint(f'Total experiments: {len(result)}')\nprint('Keys in first exp:', list(result[0].keys()) if result else 'empty')\n\" 2>/dev/null || echo \"trying alternative parse...\"\n",
+    "description": "Parse JSON structure of registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T11:52:44.598251+00:00_
+
+Total experiments: 4
+trying alternative parse...
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T11:52:44.598380+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\n# The result field is a string containing the actual data\nresult_str = data['result']\n# Try parsing result as JSON\ntry:\n    result = json.loads(result_str)\n    if isinstance(result, list):\n        print(f'List of {len(result)} items')\n        if result:\n            print('First item keys:', list(result[0].keys()))\n    elif isinstance(result, dict):\n        print(f'Dict with keys: {list(result.keys())[:10]}')\n        # maybe experiments are values\n        for k, v in list(result.items())[:2]:\n            print(f'  {k}: type={type(v).__name__}')\n            if isinstance(v, dict):\n                print(f'    keys: {list(v.keys())[:10]}')\nexcept json.JSONDecodeError:\n    # Maybe it's already structured\n    print('Result is not JSON, first 500 chars:')\n    print(result_str[:500])\n\"\n",
+  "description": "Parse registry JSON structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\n# The result field is a string containing the actual data\nresult_str = data['result']\n# Try parsing result as JSON\ntry:\n    result = json.loads(result_str)\n    if isinstance(result, list):\n        print(f'List of {len(result)} items')\n        if result:\n            print('First item keys:', list(result[0].keys()))\n    elif isinstance(result, dict):\n        print(f'Dict with keys: {list(result.keys())[:10]}')\n        # maybe experiments are values\n        for k, v in list(result.items())[:2]:\n            print(f'  {k}: type={type(v).__name__}')\n            if isinstance(v, dict):\n                print(f'    keys: {list(v.keys())[:10]}')\nexcept json.JSONDecodeError:\n    # Maybe it's already structured\n    print('Result is not JSON, first 500 chars:')\n    print(result_str[:500])\n\"\n",
+    "description": "Parse registry JSON structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T11:52:44.598512+00:00_
+
+Dict with keys: ['success', 'data', 'error', 'metadata']
+  success: type=bool
+  data: type=dict
+    keys: ['experiments', 'count', 'total', 'baseline']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T11:52:44.598643+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(f'Total experiments: {result[\\\"data\\\"][\\\"total\\\"]}')\nprint(f'Returned experiments: {result[\\\"data\\\"][\\\"count\\\"]}')\nprint(f'Experiments in list: {len(exps)}')\n# Print all exp IDs\nfor e in exps:\n    exp_id = e.get('exp_id', 'N/A')\n    status = e.get('status', 'N/A')\n    print(f'  {exp_id}: {status}')\n\"\n",
+  "description": "List all experiment IDs and statuses"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(f'Total experiments: {result[\\\"data\\\"][\\\"total\\\"]}')\nprint(f'Returned experiments: {result[\\\"data\\\"][\\\"count\\\"]}')\nprint(f'Experiments in list: {len(exps)}')\n# Print all exp IDs\nfor e in exps:\n    exp_id = e.get('exp_id', 'N/A')\n    status = e.get('status', 'N/A')\n    print(f'  {exp_id}: {status}')\n\"\n",
+    "description": "List all experiment IDs and statuses"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T11:52:44.598770+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 11, in &lt;module>
+    exp_id = e.get('exp_id', 'N/A')
+             ^^^^^
+AttributeError: 'str' object has no attribute 'get'
+Total experiments: 50
+Returned experiments: 50
+Experiments in list: 50
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T11:52:44.598886+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Check structure - is it a dict of exp_id -> exp_data?\nif isinstance(exps, dict):\n    print('Dict with keys:', list(exps.keys())[:5])\n    first_key = list(exps.keys())[0]\n    first_val = exps[first_key]\n    print(f'First value type: {type(first_val).__name__}')\n    if isinstance(first_val, dict):\n        print(f'First value keys: {list(first_val.keys())}')\nelif isinstance(exps, list):\n    print(f'List of {len(exps)} items')\n    print(f'First item type: {type(exps[0]).__name__}')\n    if isinstance(exps[0], str):\n        # exps is list of strings (exp_ids)? check if it's list of JSON strings\n        try:\n            parsed = json.loads(exps[0])\n            print('Items are JSON strings')\n            print('Parsed keys:', list(parsed.keys())[:10])\n        except:\n            print('Items are plain strings:', exps[0][:200])\n\"\n",
+  "description": "Inspect experiment data structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Check structure - is it a dict of exp_id -> exp_data?\nif isinstance(exps, dict):\n    print('Dict with keys:', list(exps.keys())[:5])\n    first_key = list(exps.keys())[0]\n    first_val = exps[first_key]\n    print(f'First value type: {type(first_val).__name__}')\n    if isinstance(first_val, dict):\n        print(f'First value keys: {list(first_val.keys())}')\nelif isinstance(exps, list):\n    print(f'List of {len(exps)} items')\n    print(f'First item type: {type(exps[0]).__name__}')\n    if isinstance(exps[0], str):\n        # exps is list of strings (exp_ids)? check if it's list of JSON strings\n        try:\n            parsed = json.loads(exps[0])\n            print('Items are JSON strings')\n            print('Parsed keys:', list(parsed.keys())[:10])\n        except:\n            print('Items are plain strings:', exps[0][:200])\n\"\n",
+    "description": "Inspect experiment data structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T11:52:44.599006+00:00_
+
+Dict with keys: ['exp026_step_independent_grpo', 'exp025c', 'exp025b', 'exp025', 'exp021_ragen_sft_v4']
+First value type: dict
+First value keys: ['status', 'retry_count', 'created_at', 'updated_at', 'spec', 'server', 'gpu', 'account', 'reproduce', 'notes', 'metrics', 'failure_reason', 'conclusion', 'completed_at', 'extra']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T11:52:44.599148+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Dump all experiments with key fields\nfor exp_id, exp in exps.items():\n    spec = exp.get('spec', {}) or {}\n    hypothesis = spec.get('hypothesis', '') or ''\n    print(f'=== {exp_id} ===')\n    print(f'  status: {exp.get(\\\"status\\\")}')\n    print(f'  conclusion: {exp.get(\\\"conclusion\\\", \\\"\\\")[:200]}')\n    print(f'  failure_reason: {exp.get(\\\"failure_reason\\\", \\\"\\\")[:200]}')\n    print(f'  hypothesis: {hypothesis[:200]}')\n    metrics = exp.get('metrics', {}) or {}\n    print(f'  metrics: {json.dumps(metrics)[:300]}')\n    notes = exp.get('notes', '') or ''\n    print(f'  notes: {notes[:300]}')\n    extra = exp.get('extra', {}) or {}\n    print(f'  extra: {json.dumps(extra)[:300]}')\n    print()\n\" 2>&1 | head -1500\n",
+  "description": "Extract key fields from all 50 experiments",
+  "timeout": "30000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Dump all experiments with key fields\nfor exp_id, exp in exps.items():\n    spec = exp.get('spec', {}) or {}\n    hypothesis = spec.get('hypothesis', '') or ''\n    print(f'=== {exp_id} ===')\n    print(f'  status: {exp.get(\\\"status\\\")}')\n    print(f'  conclusion: {exp.get(\\\"conclusion\\\", \\\"\\\")[:200]}')\n    print(f'  failure_reason: {exp.get(\\\"failure_reason\\\", \\\"\\\")[:200]}')\n    print(f'  hypothesis: {hypothesis[:200]}')\n    metrics = exp.get('metrics', {}) or {}\n    print(f'  metrics: {json.dumps(metrics)[:300]}')\n    notes = exp.get('notes', '') or ''\n    print(f'  notes: {notes[:300]}')\n    extra = exp.get('extra', {}) or {}\n    print(f'  extra: {json.dumps(extra)[:300]}')\n    print()\n\" 2>&1 | head -1500\n",
+    "description": "Extract key fields from all 50 experiments",
+    "timeout": "30000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T11:52:44.599434+00:00_
+
+=== exp026_step_independent_grpo ===
+  status: DONE
+  conclusion: failed
+  failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed
+  hypothesis: 
+  metrics: {"val_before_train_success": 0.0625, "val_before_train_action_is_valid": 0.631, "val_before_train_action_is_effective": 0.879, "val_before_train_episodes": 16, "val_before_train_pass_at_1": 0.0625, "truncation_count_val": 25}
+  notes: ⚠️ D029: CRON 误判 DONE(failed)，进程实际仍在运行。GPU 双卡 100%, PID 782015/782016 alive。Registry 不可逆，真正完成后手动更新 conclusion/metrics。val_before_train: success=6.25%。早停标准：step 10 success ≤6.25% → 评估 kill; step 20 success <12% → 评估; NaN/entropy归零/GPU骤降 → 立即汇报。后续实验硬规则：禁止 WANDB_MODE=disabled。
+  extra: {"hook_events": [{"event": "on_failed", "action": "agent", "ts": "2026-05-15T11:07:29.450586+00:00"}]}
+
+=== exp025c ===
+  status: PENDING
+  conclusion: failed
+  failure_reason: 
+  hypothesis: verl-agent GRPO with Qwen3-1.7B on single GPU (TP=1, enforce_eager, thread-limited) can train ALFWorld within cgroup pids.max=20480 limit. Degraded dry run validated: PIDs stable at 6575/20480 (32%). 
+  metrics: {}
+  notes: D028: 停止 verl-agent 直接运行。cgroup pids.max=20480 硬限制无法调整，verl-agent 依赖 Ray 多进程架构在此服务器不可行（双 GPU dry run PID 安全但 Ray 调度 CPU 卡死，单 GPU rollout.n=2 GRPO group size 太小）。全力转向 Track B cherry-pick：将 step-independent rollout 移植到 RAGEN 框架。
+  extra: {}
+
+=== exp025b ===
+  status: DONE
+  conclusion: failed
+  failure_reason: Traceback → /resource_tracker.py", line 89, in _stop File "/root/autodl-tmp/conda-envs/verl-agent/lib/python3.12/site-packages/multiprocess/resource_tracker.py", line 102, in _stop_locked AttributeErr
+  hypothesis: 
+  metrics: {}
+  notes: 三次提交均失败。第三次：pre-flight 清理后 Ray 主进程启动成功、数据加载成功（8810 train / 494 val），但 AlfworldWorker 进程初始化时线程创建失败（Resource temporarily unavailable, EAGAIN）。36+ 次 system:11 错误，43+ 次 Fatal Python error: Aborted。jemalloc arena background thread creation failed。根因：系统 nproc/线程上限不足，8 个 AlfworldWorker + Ray 内部线程总数超限。需排查 u
+  extra: {"hook_events": [{"event":
+…[truncated 20352 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T11:52:44.599622+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\nfor exp_id, exp in exps.items():\n    spec = exp.get('spec', {}) or {}\n    if spec:\n        print(f'=== {exp_id} spec ===')\n        print(json.dumps(spec, indent=2)[:500])\n        print()\n\" 2>&1 | head -1000\n",
+  "description": "Extract spec fields from all experiments",
+  "timeout": "30000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\nfor exp_id, exp in exps.items():\n    spec = exp.get('spec', {}) or {}\n    if spec:\n        print(f'=== {exp_id} spec ===')\n        print(json.dumps(spec, indent=2)[:500])\n        print()\n\" 2>&1 | head -1000\n",
+    "description": "Extract spec fields from all experiments",
+    "timeout": "30000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T11:52:44.599965+00:00_
+
+=== exp026_step_independent_grpo spec ===
+{
+  "command": "bash -c \"ray stop --force; pkill -9 -f ray; pkill -9 -f vllm; sleep 3; rm -rf /tmp/ray/session_*; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl && bash scripts/run_exp026_step_independent_grpo.sh\"",
+  "server": "bjb1-17606",
+  "gpu": "cuda:0,cuda:1",
+  "pid": 778562,
+  "log_path": "~/runs/cost-verify-agent-rl/exp026_step_independent_grpo.log",
+  "submitted_at": "2026-05-15T10:28:31.867Z",
+  "submitted_via": "submit_traini
+
+=== exp025c spec ===
+{
+  "name": "verl-agent ALFWorld GRPO baseline \u2014 single GPU, thread-safe config",
+  "hypothesis": "verl-agent GRPO with Qwen3-1.7B on single GPU (TP=1, enforce_eager, thread-limited) can train ALFWorld within cgroup pids.max=20480 limit. Degraded dry run validated: PIDs stable at 6575/20480 (32%). Target: success \u226520%.",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate /root/autodl-tmp/conda-envs/verl-agent && cd /root/autodl-tmp/verl-agent && ba
+
+=== exp025b spec ===
+{
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate /root/autodl-tmp/conda-envs/verl-agent && cd /root/autodl-tmp/verl-agent && bash examples/grpo_trainer/run_alfworld_exp025.sh\"",
+  "server": "bjb1-17606",
+  "gpu": [
+    "cuda:0",
+    "cuda:1"
+  ],
+  "pid": "615550",
+  "log_path": "~/runs/cost-verify-agent-rl/exp025b.log",
+  "submitted_at": "2026-05-15T07:41:46.859Z",
+  "submitted_via": "submit_training_job",
+  "backend": "tmux",
+  "account": "root"
+}
+
+=== exp025 spec ===
+{
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/verl-agent && bash examples/grpo_trainer/run_alfworld_exp025.sh\"",
+  "server": "bjb1-17606",
+  "gpu": [
+    "cuda:0",
+    "cuda:1"
+  ],
+  "pid": "555182",
+  "log_path": "~/runs/cost-verify-agent-rl/exp025.log",
+  "submitted_at": "2026-05-15T07:13:01.394Z",
+  "submitted_via"
+…[truncated 20537 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T11:52:44.600149+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Extract hyperparams from spec for key experiments\nfor exp_id in ['exp023c_grpo_serial', 'exp022_grpo_from_sft_v4', 'exp020b_grpo_from_sft', 'exp013f', 'exp012b', 'exp016', 'exp015', 'exp010', 'exp007', 'exp003', 'exp026_step_independent_grpo']:\n    if exp_id in exps:\n        spec = exps[exp_id].get('spec', {}) or {}\n        hp = spec.get('hyperparams', spec.get('config', ''))\n        print(f'=== {exp_id} hyperparams ===')\n        if isinstance(hp, dict):\n            print(json.dumps(hp, indent=2))\n        else:\n            print(hp if hp else 'N/A')\n        print()\n\"\n",
+  "description": "Extract hyperparameters from key experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Extract hyperparams from spec for key experiments\nfor exp_id in ['exp023c_grpo_serial', 'exp022_grpo_from_sft_v4', 'exp020b_grpo_from_sft', 'exp013f', 'exp012b', 'exp016', 'exp015', 'exp010', 'exp007', 'exp003', 'exp026_step_independent_grpo']:\n    if exp_id in exps:\n        spec = exps[exp_id].get('spec', {}) or {}\n        hp = spec.get('hyperparams', spec.get('config', ''))\n        print(f'=== {exp_id} hyperparams ===')\n        if isinstance(hp, dict):\n            print(json.dumps(hp, indent=2))\n        else:\n            print(hp if hp else 'N/A')\n        print()\n\"\n",
+    "description": "Extract hyperparameters from key experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T11:52:44.600301+00:00_
+
+=== exp023c_grpo_serial hyperparams ===
+{
+  "lr": 5e-07,
+  "kl_loss_coef": 0.5,
+  "max_grad_norm": 1,
+  "total_steps": 30,
+  "reward_scale": 10,
+  "gpu_memory_utilization": 0.6,
+  "parallel_friendly": false,
+  "max_workers": 1,
+  "format_penalty": 0
+}
+
+=== exp022_grpo_from_sft_v4 hyperparams ===
+{
+  "lr": 5e-07,
+  "kl_loss_coef": 0.5,
+  "max_grad_norm": 1,
+  "total_steps": 30,
+  "format_penalty": 0,
+  "success_reward": 10
+}
+
+=== exp020b_grpo_from_sft hyperparams ===
+N/A
+
+=== exp013f hyperparams ===
+N/A
+
+=== exp012b hyperparams ===
+N/A
+
+=== exp016 hyperparams ===
+N/A
+
+=== exp015 hyperparams ===
+N/A
+
+=== exp010 hyperparams ===
+N/A
+
+=== exp007 hyperparams ===
+N/A
+
+=== exp003 hyperparams ===
+N/A
+
+=== exp026_step_independent_grpo hyperparams ===
+N/A
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T11:52:44.600431+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Get server, gpu, created_at, updated_at, completed_at for timeline\nfor exp_id, exp in exps.items():\n    created = exp.get('created_at', '')\n    updated = exp.get('updated_at', '')\n    completed = exp.get('completed_at', '')\n    server = exp.get('server', '')\n    gpu = exp.get('gpu', '')\n    reproduce = exp.get('reproduce', '')\n    print(f'{exp_id}: created={created}, server={server}, gpu={gpu}')\n    if reproduce:\n        print(f'  reproduce: {str(reproduce)[:200]}')\n\"\n",
+  "description": "Get timeline and server info for all experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/55201814-09cd-4f99-a00f-295ef953a69d/tool-results/mcp-agent-ml-research-read_registry-1778845667411.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Get server, gpu, created_at, updated_at, completed_at for timeline\nfor exp_id, exp in exps.items():\n    created = exp.get('created_at', '')\n    updated = exp.get('updated_at', '')\n    completed = exp.get('completed_at', '')\n    server = exp.get('server', '')\n    gpu = exp.get('gpu', '')\n    reproduce = exp.get('reproduce', '')\n    print(f'{exp_id}: created={created}, server={server}, gpu={gpu}')\n    if reproduce:\n        print(f'  reproduce: {str(reproduce)[:200]}')\n\"\n",
+    "description": "Get timeline and server info for all experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T11:52:44.600587+00:00_
+
+exp026_step_independent_grpo: created=2026-05-15T09:34:33.675Z, server=bjb1-17606, gpu=cuda:0,cuda:1
+  reproduce: {'server': 'bjb1-17606', 'gpu': 'cuda:0,cuda:1', 'started_at': '2026-05-15T09:35:34.249Z', 'finished_at': '2026-05-15T11:07:27.171Z', 'training_hours': 1.53}
+exp025c: created=2026-05-15T08:09:29.393Z, server=, gpu=
+exp025b: created=2026-05-15T07:34:34.283Z, server=bjb1-17606, gpu=cuda:0,cuda:1
+  reproduce: {'server': 'bjb1-17606', 'gpu': 'cuda:0,cuda:1', 'started_at': '2026-05-15T07:35:49.952Z', 'command': 'bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate /root/autodl-tmp/conda-
+exp025: created=2026-05-15T06:52:48.190Z, server=bjb1-17606, gpu=cuda:0,cuda:1
+  reproduce: {'server': 'bjb1-17606', 'gpu': 'cuda:0,cuda:1', 'started_at': '2026-05-15T07:11:50.984Z', 'command': 'bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl
+exp021_ragen_sft_v4: created=2026-05-15T02:09:31.719Z, server=, gpu=
+  reproduce: {'finished_at': '2026-05-15T02:57:51.981Z'}
+exp024_success_gated_grpo: created=2026-05-15T06:03:10.298Z, server=, gpu=
+exp023c_grpo_serial: created=2026-05-15T04:20:22.909Z, server=, gpu=
+exp023_grpo_parallel: created=2026-05-15T04:06:02.056Z, server=, gpu=
+  reproduce: {'finished_at': '2026-05-15T04:10:48.550Z'}
+exp022_grpo_from_sft_v4: created=2026-05-15T03:17:34.035Z, server=, gpu=
+exp021_sft_ragen_format: created=2026-05-14T22:35:48.559Z, server=, gpu=
+exp020d_grpo_from_sft: created=2026-05-14T22:19:30.993Z, server=, gpu=
+exp020c_grpo_from_sft: created=2026-05-14T22:15:37.659Z, server=, gpu=
+exp020b_grpo_from_sft: created=2026-05-14T22:12:38.928Z, server=, gpu=
+exp020_grpo_from_sft: created=2026-05-14T22:07:16.290Z, server=, gpu=
+  reproduce: {'finished_at': '2026-05-14T22:09:21.956Z'}
+exp019b_expert_sft_v3: created=2026-05-14T17:30:00.085Z, server=bjb1-17606, gpu=cuda:0
+  reproduce: {'finished_at': '2026-05-14T21:43:23.788Z'}
+exp019c_expert_sft_v3: created=2026-05-14T21:03:02.685Z, 
+…[truncated 4142 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T11:52:44.600781+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T11:52:44.601002+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\", \"content\": \"# Memory — cost-verify-agent-rl\\n\\n## ALFWorld 动作命名：move vs put（2026-05-14 纠正）\\n- **ALFWorld admissible_commands 包含 `move X to Y`，不含 `put X in/on Y`**\\n- PDDL planner 生成的 `move` 动作是正确的 admissible action\\n- 之前的诊断 worker 误判为\\\"move 错应改 put\\\"导致 exp019 数据错误 → D019 kill\\n- exp019b 使用原始 expert data（保留 move）+ admissible actions augmentation\\n- `augment_admissible_v2.py` 确认：move_actions=678, put_actions=0\\n\\n## [已解决] SFT 数据必须与 RAGEN 格式精确匹配（2026-05-15 验证）\\n**根因**：SFT 训练数据的 observation/action 格式与 RAGEN 运行时格式不一致 → 分布偏移 → val 0% success。\\n\\n**RAGEN 精确格式**（ctx_manager.py L577/L656/L201）：\\n- System: `\\\"You're a helpful assistant. \\\"` + AlfworldSG env_instruction\\n- User Turn 1: `\\\\nTurn 1:\\\\nState:\\\\n{obs}\\\\nYou have 50 actions left. Always output: &lt;think>...&lt;/think> &lt;answer>...&lt;/answer>...`\\n- User Turn 2+: `Reward:\\\\n0.0\\\\n` + Turn N state\\n- Assistant: `&lt;think>[Assessment]...[Suggestion]&lt;/think>&lt;answer>action&lt;/answer>`\\n- Action 解析：先匹配 `&lt;answer>` 标签，fallback 匹配 `&lt;/think>` 后裸文本\\n\\n**证据**：\\n- exp019b: eval_sft_fast 20% success → RAGEN val 0% success（格式不匹配）\\n- exp021: RAGEN 格式 v4 数据 SFT → RAGEN val **25%** success（格式对齐后修复）\\n- exp021: eval_sft_fast 0% success（预期，模型已对齐 RAGEN 格式）\\n\\n**教训**：SFT 数据必须用 `convert_sft_to_ragen_format.py` 转换为 RAGEN 精确格式。后续 SFT 实验全部用 v4+ 数据。\\n\\n## RAGEN Reward Pipeline 确认正常（非 Bug）\\n- raw_reward=0 是日志 artifact（env.py info dict 缺 raw_reward 字段，es_manager 默认 0）\\n- 实际 reward 通过 history['reward'] 正确传递：critic/score 正确（step 7 score/mean=0.46875=3/64×10.0）\\n- NaiveRewardManager 是 pass-through，不覆盖 env reward\\n- DummyRewardManager 同理，rm_scores 直接返回 env reward\\n\\n## Sparse GRPO 冷启动根因\\n- Base model ALFWorld success ~4.7%（仅 val，train temperature=1.0 下接近 0%）\\n- 纯 sparse reward（won=10.0）下，几乎所有 GRPO group 全零 reward → advantage=0 → pg_loss=0\\n- LR=1e-7 过保守（零梯度），LR
+…[truncated 6636 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T11:52:44.601161+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "ROADMAP.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "file": "ROADMAP.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T11:52:44.601358+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\", \"content\": \"# cost-verify-agent-rl — Research Dashboard\\n\\n> 最后更新: 2026-05-15 10:50 UTC | 更新原因: exp026 训练已确认运行 PID=778562，双卡占满，监控 Worker 已派出\\n\\n## 核心方向\\nB-IAVR: 训练 interactive agent 选择性自我验证，基于行为改变信号（action change）作为 verification informativeness 的 reward。基于 Self-Guide (arXiv 2604.03098) 框架，Qwen3-1.7B + ALFWorld + verl-agent GRPO。\\n\\n## 当前阶段\\n🧪 **MVP 验证 — Phase A: Always-On Self-Guidance baseline**\\n目标：ALFWorld success ≥ 20%（GRPO 训练后）\\n\\n### 当前状态：exp026 正式训练已确认运行\\n\\n**D028 pivot**：verl-agent 在 AutoDL 容器上因 cgroup pids.max=20480 无法运行（6 次失败，10+ GPU-h 空转）。转向 Track B: cherry-pick verl-agent 核心创新到 RAGEN 代码库。\\n\\n**exp026_step_independent_grpo**（cherry-pick Phase 1 核心实验）：\\n- Step-independent rollout + step-level discounted returns GRPO\\n- 整合到 RAGEN 框架，不依赖 Ray\\n- Dry run step 0 验证通过：step-level advantage 生效（max=11.93/min=-0.47），无 fallback 警告\\n- **正式训练 150 steps 已确认启动，PID=778562，cuda:0+cuda:1 占满**\\n- 监控 Worker 已派出，覆盖进程存活 + 早期指标检查\\n- 配置：KL=0.01, LR=1e-6, cuda:0+cuda:1, SFT checkpoint from exp021\\n\\n**关键变更 vs exp022-24（失败的 RAGEN GRPO）**：\\n- Context: O(1) vs O(steps) — 解决 full-history 爆炸\\n- KL: 0.01 vs 0.5 — 更小正则化\\n- LR: 1e-6 vs 5e-7 — 更大学习率\\n- Reward: step-level discounted vs episode-only sparse\\n\\n### SFT 基线（C003 compliant 16-episode eval）\\n- exp021: success=6.25%, action_is_valid=68.75%\\n- Checkpoint: `/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final/`\\n- MVP 目标 ≥20% 需 ~3x 提升\\n\\n### 实验历程\\n| exp | 方案 | 结果 | 教训 |\\n|-----|------|------|------|\\n| exp001-003 | 环境搭建 + dry-run | infra 调通 | Ray memory 需硬编码 30GB |\\n| exp008_sft | 基础 SFT warmup | 0% success, 100% format | format 学习成功 |\\n| exp012b | GRPO LR=1e-6 | step 7 collapse | LR 过高 |\\n| exp013f | Dense reward bonus=0.15 | reward gaming | dense bonus 被独立最大化 |\\n| exp019b | 两阶段 Expert SFT | 20% success (eval_sft) | 两阶段保留 format 知识 |\\n| exp021
+…[truncated 2507 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T11:52:44.601612+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/experiment_failure_analysis.md",
+  "content": "# cost-verify-agent-rl 实验失败模式系统性分析\n\n> 分析范围：全部 50 个实验（exp_001 ~ exp026）  \n> 时间跨度：2026-05-13 18:26 ~ 2026-05-15 11:07 UTC（~41 小时）  \n> 生成日期：2026-05-15\n\n---\n\n## 1. 实验总览表\n\n| exp_id | status | conclusion | 一句话摘要 | 失败分类 |\n|--------|--------|------------|-----------|---------|\n| exp_001 | DONE | failed | 首次环境搭建 | Infrastructure |\n| exp_001b | DONE | failed | 环境搭建重试 | Infrastructure |\n| exp_002 | DONE | failed | 环境搭建 v2 | Infrastructure |\n| exp_003 | DONE | failed | 全历史 GRPO + 冷启动失败 | Algorithm Design |\n| exp_003 (underscore) | PREPARING | failed | GRPO v3 prompt truncation | Algorithm Design |\n| exp_003_dryrun | PREPARING | failed | dry-run 调试 | Infrastructure |\n| exp_003_dryrun2 | PREPARING | failed | dry-run 调试 v2 | Infrastructure |\n| exp003_dryrun3 | PREPARING | failed | dry-run 调试 v3 | Infrastructure |\n| exp_003_dryrun3 | PREPARING | failed | dry-run 调试 v3 重复 | Infrastructure |\n| exp005 | PREPARING | (未执行) | Fast config 方案，未实际运行 | — |\n| exp007_dryrun | PREPARING | (未执行) | exp007 dry-run，未记录结果 | — |\n| exp007 | DONE | failed | Parser fix + /tmp 磁盘满 + action_is_valid 8.4% | Infrastructure + Algorithm |\n| exp008 | PREPARING | killed | SFT warmup 方案被撤回 | — |\n| **exp008_sft** | **DONE** | **success** | **SFT warmup: format_ok=100%, action_is_valid=90%, success=0%** | **— (成功)** |\n| exp009 | DONE | failed | response_mask 断言 + 资源冲突 | Environment/Format |\n| exp010 | DONE | failed | GRPO 11步后 /tmp 满崩溃; success 4.7%→0% | Infrastructure + Algorithm |\n| exp011 | DONE | killed | reward shaping 问题，Director 终止 | Algorithm Design |\n| exp012 | DONE | failed | vLLM 版本不兼容 (disable_mm_preprocessor_cache) | Environment/Format |\n| exp012b | DONE | killed | Step 7 catastrophic collapse (LR=1e-6) | Hyperparameters |\n| exp013 | DONE | killed | Director 驳回纯 KL 方案，要求 dense reward | — |\n| exp013b | DONE | failed | Ray OOM (object_store 70GB + memory 164GB > cgroup 220GB) | Infrastructure |\n| exp013c | DONE | killed | 预防性 kill (与 exp013b 同配置) | Infrastructure |\n| exp013d | DONE | failed | Ray object_store env var 未生效 → OOM | Infrastructure |\n| exp013e | DONE | failed | Ray RPC Socket closed (val→train 切换) | Infrastructure |\n| **exp013f** | **DONE** | **negative** | **Dense reward GRPO: reward gaming (action_is_valid 60%→97.5%, success 不变)** | **Algorithm Design** |\n| exp014a | PREPARING | killed | success-gated bonus bootstrap 问题 | Algorithm Design |\n| exp014b | PREPARING | killed | 被 Director 修订 | — |\n| exp014c | PREPARING | (未执行) | 未记录 | — |\n| exp015 | DONE | killed | LR=1e-7 过保守，零梯度 | Hyperparameters |\n| exp016 | DONE | failed | Sparse GRPO pg_loss=0，base success ~0% 无学习信号 | Algorithm Design |\n| **exp017_expert_sft** | **DONE** | **success** | **Expert PDDL SFT: 5% success, 63.8% action_is_valid** | **— (成功)** |\n| exp018_sft_grpo | PREPARING | killed | exp017 eval 5% 太弱，取消 GRPO | — |\n| exp019_expert_sft_v2 | DONE | killed | move→put 替换方向错误 | Environment/Format |\n| exp019b_expert_sft_v2 | PREPARING | (未执行) | 被 v3 取代 | — |\n| **exp019b_expert_sft_v3** | **DONE** | **success** | **两阶段 Expert SFT: eval_sft 20% success, format_ok=100%** | **— (成功)** |\n| exp019c_expert_sft_v3 | PREPARING | killed | GPU 被 exp019b nohup 占用 | Infrastructure |\n| exp020_grpo_from_sft | DONE | failed | Checkpoint path 缺 \"qwen\" → AssertionError | Environment/Format |\n| **exp020b_grpo_from_sft** | **DONE** | **negative** | **GRPO from SFT: entropy 坍缩 61%, success 18.75%→4.69%, val 始终 0%** | **Algorithm Design + Eval Mismatch** |\n| exp020c_grpo_from_sft | PREPARING | failed | SFT/RAGEN 格式不兼容，废弃 | Environment/Format |\n| exp020d_grpo_from_sft | PREPARING | failed | 同上 | Environment/Format |\n| **exp021_ragen_sft_v4** | **DONE** | **negative** | **RAGEN 格式 SFT: 16ep eval 6.25% (原 4ep 25% 不可靠)** | **Evaluation Mismatch** |\n| exp021_sft_ragen_format | PREPARING | killed | 被 exp021_ragen_sft_v4 取代 | — |\n| exp022_grpo_from_sft_v4 | DONE | killed | GRPO step 0: action_is_valid 48.75% (远低于 SFT 87.5%) | Algorithm Design |\n| exp023_grpo_parallel | DONE | failed | TextWorld tatsu parser 多线程崩溃 | Framework Limitation |\n| **exp023c_grpo_serial** | **DONE** | **failed** | **磁盘满 + GRPO 8步退化 (success 29.7%→23.4%, entropy↓)** | **Infrastructure + Algorithm** |\n| exp024_success_gated_grpo | DONE | killed | RAGEN GRPO 路线终止后不适用 | — |\n| exp025 | DONE | failed | ModuleNotFoundError (错误 conda env) | Environment/Format |\n| exp025b | DONE | failed | pthread_create EAGAIN (cgroup pids.max) | Framework Limitation |\n| exp025c | PENDING | failed | cgroup pids.max=20480 硬限制，verl-agent 路线终止 | Framework Limitation |\n| exp026_step_independent_grpo | DONE | failed* | Cron 误判 DONE(failed)，实际可能仍在运行 | Infrastructure (误报) |\n\n**统计**：成功 3 / 阴性 3 / 失败 22 / 被 kill 13 / 未执行 9 = 50 总计  \n*exp026 被 cron 误标，真实状态待确认\n\n---\n\n## 2. 按失败原因分类\n\n### 2.1 Infrastructure（基础设施问题）— 14 个实验\n\n#### /tmp 磁盘满（3 次）\n- **exp007**: step 10, /tmp 被 Ray session 文件占满 30GB 根分区\n- **exp010**: step 11, fast_downward libdownward.so 复制到 /tmp 失败\n- **exp023c_grpo_serial**: step 9, /root/autodl-tmp 94% (233G/250G), OSError Errno 28\n\n**共性模式**: AutoDL 根分区仅 30GB，Ray session logs + TextWorld 临时文件 + checkpoint 累积超限。  \n**缓解措施**: `TMPDIR=/root/autodl-tmp/tmp/` 部分解决了 /tmp 问题，但数据盘本身也会满。  \n**教训**: 每次启动前 `df -h` 是 pre-flight checklist 必检项。\n\n#### Ray/cgroup OOM（4 次）\n- **exp013b**: object_store 70GB + memory 164GB = 234GB > cgroup 220GB → Plasma ENOMEM\n- **exp013c**: 预防性 kill（同配置）\n- **exp013d**: `RAY_object_store_memory` env var 未被 Ray 读取（需 Hydra config override）\n- **exp013e**: Ray RPC Socket closed（val→train 内存峰值切换）\n\n**共性模式**: AutoDL cgroup 内存上限 220GB，Ray 默认 object_store 70GB 必超。128 并发 ALFWorld 游戏加剧。  \n**缓解措施**: `object_store_memory=30GB` (Hydra override) + `env_groups=4` (降并发) + `RAY_memory_monitor_refresh_ms=0`。exp013f 验证全部修复生效。  \n**教训**: Ray env var 在 Hydra 场景下可能不生效，必须用 config override。\n\n#### cgroup pids.max 限制（3 次）\n- **exp025**: ModuleNotFoundError（实际是错 conda env，但暴露了 verl-agent 依赖多进程）\n- **exp025b**: 8 个 AlfworldWorker + Ray 线程总数超 pids.max=20480 → EAGAIN\n- **exp025c**: 降到单 GPU 仍无法解决，路线终止\n\n**共性模式**: AutoDL 容器 pids.max=20480 硬限制不可调，verl-agent Ray 多进程架构天然不兼容。  \n**缓解措施**: 无法在 AutoDL 上解决。D028 决定放弃 verl-agent 直接运行。  \n**教训**: 容器化环境必须提前检测 cgroup 限制。\n\n#### 早期环境搭建（4 次）\n- **exp_001, exp_001b, exp_002**: 首次 RAGEN + ALFWorld 环境搭建\n- **exp_003_dryrun 系列** (4 次): Ray 配置调试\n\n**共性模式**: 新框架首次部署的常规困难。  \n**教训**: 首次实验预留至少 4h 用于环境调试。\n\n#### Cron 误报 / 资源冲突（3 次）\n- **exp019c_expert_sft_v3**: GPU 被 exp019b 的 nohup 占用\n- **exp026**: Cron 误判进程已死（实际 GPU 双卡 100%）\n- **exp019b_expert_sft_v3**: Cron 误报 failed（训练实际正常完成）\n\n**教训**: 必须用 submit_training_job 提交；cron 报 failed 先验日志。\n\n---\n\n### 2.2 Environment/Format（格式不匹配）— 8 个实验\n\n#### SFT 格式 vs RAGEN 格式不一致（4 次）\n- **exp020_grpo_from_sft**: checkpoint 路径不含 \"qwen\" → AssertionError\n- **exp020b**: GRPO from SFT checkpoint, val success 始终 0%（格式偏移）\n- **exp020c/d**: 同一根因，废弃\n\n**共性模式**: SFT 训练数据的 observation/action 格式与 RAGEN runtime 格式不一致 → 分布偏移。exp019b eval_sft 20% success，但 RAGEN val 0%。  \n**解法**: `convert_sft_to_ragen_format.py` 将数据转为 RAGEN 精确格式（v4 数据），exp021 验证通过。  \n**教训**: SFT 数据**必须**与 inference 框架的精确格式对齐。这是本项目最大的格式教训。\n\n#### Checkpoint 路径命名断言（2 次）\n- **exp009**: `enable_response_mask` 断言检查 `\"qwen\" in model_path.lower()`\n- **exp020_grpo_from_sft**: 同一断言\n\n**缓解**: 创建含 \"qwen\" 的 symlink。\n\n#### 错误 conda 环境（1 次）\n- **exp025**: `conda activate base` 而非 verl-agent 专属环境 → ModuleNotFoundError\n\n#### move→put 数据替换错误（1 次）\n- **exp019_expert_sft_v2**: ALFWorld admissible_commands 包含 `move X to Y`，不含 `put`。诊断 Worker 误判导致数据错误。\n\n---\n\n### 2.3 Hyperparameters（超参选择）— 4 个实验\n\n| exp | LR | KL coef | 问题 | 结果 |\n|-----|-------|---------|------|------|\n| exp015 | 1e-7 | — | 过保守，零梯度 | killed |\n| exp012b | 1e-6 | — | 过激，step 7 collapse | killed |\n| exp020b | 5e-7 | 0.1 | KL 约束过弱，entropy 坍缩 61% | negative |\n| exp022/023c | 5e-7 | 0.5 | KL 约束过强，限制探索 | killed/failed |\n\n**共性模式**: 超参空间极窄。LR 在 1e-7（无学习）和 1e-6（崩溃）之间仅一个数量级。KL coef 0.1 太弱、0.5 太强。  \n**最佳区间（基于 verl-agent 论文）**: LR=1e-6 + KL=0.01，exp026 正在验证。  \n**教训**: Agent RL 超参敏感度远高于标准 NLP fine-tuning，需要更系统的搜索。\n\n---\n\n### 2.4 Algorithm Design（算法设计）— 8 个实验\n\n#### Sparse GRPO 冷启动失败（4 次）\n- **exp003**: base model success ~0%，GRPO 无学习信号\n- **exp007**: parser fix 后 action_is_valid 仅 8.4%，仍无法 bootstrap\n- **exp010**: success 4.7%→0%，action_is_valid 提升但 success 下降\n- **exp016**: pg_loss 恒为 0，12 步无任何学习信号\n\n**共性模式**: base Qwen3-1.7B 在 ALFWorld 的 success ~4.7%（val）, temperature=1.0 下接近 0%（train）。GRPO group 几乎全零 reward → advantage=0 → 无梯度。  \n**解法**: SFT warmup 提升 baseline success 后再接 GRPO。exp008_sft 验证 format 学习，exp017/019b/021 逐步提升 task knowledge。\n\n#### Dense Reward Gaming（1 次）\n- **exp013f**: valid_action_bonus=0.15 被独立最大化。action_is_valid 60%→97.5%（学会合法命令），但 success 始终 0-8%。cumulative bonus ~4.5 主导梯度 vs sparse success 10.0。\n\n**教训**: Dense reward 必须 success-gated 或极低比例（<1:100），否则模型最大化中间奖励而非最终目标。\n\n#### Full-History Context 爆炸导致 GRPO 退化（3 次）\n- **exp020b**: entropy 0.107→0.042 (坍缩 61%), success 18.75%→4.69%\n- **exp022**: step 0 即退化，action_is_valid 从 SFT 87.5% 降至 48.75%\n- **exp023c**: 8 步稳定退化，success 29.7%→23.4%, pass@16 75%→50%\n\n**共性模式**: RAGEN 全历史拼接 → 50步 context 25K+ tokens → 信噪比极低 → GRPO 从噪声中学到错误梯度。这是 RAGEN 框架的**结构性限制**，非超参可解决。  \n**解法**: Step-independent rollout（verl-agent 核心创新），每步 context 恒定 ~2-3K tokens。exp026 实现此方案。\n\n#### Catastrophic Collapse（1 次单独归因）\n- **exp012b**: step 6 success=8.59% → step 7 success=0%, grad_norm 1.48→0.09, pg_loss→0\n\n**根因**: GRPO 单步 policy update 过激（LR=1e-6），跳出有 success 的分布区域后无法恢复。\n\n---\n\n### 2.5 Evaluation Mismatch（评估方法不一致）— 3 个实验\n\n- **exp021_ragen_sft_v4**: 4-episode eval 显示 25% success（原 conclusion=success），16-episode eval 降至 6.25%。D024 降级为 negative。\n- **exp019b_expert_sft_v3**: eval_sft_fast 20% success，但 RAGEN 框架内 val 0%（格式差异）\n- **exp022_grpo_from_sft_v4**: step 0 仅 8 episodes 评估，val_success=12.5% 不可靠\n\n**共性模式**: 小样本（4-8 episodes）方差极大，不同 eval 框架结果不可比。  \n**制度**: C003 约束——所有 eval 必须 ≥16 episodes。  \n**教训**: Eval 方法必须与训练框架一致，否则指标不可信。\n\n---\n\n### 2.6 Framework Limitation（框架局限）— 3 个实验\n\n#### RAGEN 全历史拼接\n- 结构性问题，影响 exp020b/022/023c 全部 GRPO 实验\n- context 长度随 episode 步数线性增长，50 步 → 25K+ tokens\n- 每 episode 仅 1 个 training sample（vs verl-agent 每步 1 sample → 50x 数据效率）\n\n#### TextWorld/tatsu 线程不安全\n- **exp023_grpo_parallel**: `textworld.envs.pddl.logic._PARSER` 单例非线程安全\n- 多线程并行 rollout 崩溃\n- 修复：`threading.Lock()` 包裹整个 textworld 加载链\n\n#### verl-agent + AutoDL 容器不兼容\n- **exp025/025b/025c**: cgroup pids.max=20480 限制 Ray 多进程架构\n- 无法在当前服务器环境解决\n\n---\n\n## 3. 成功 / 阴性实验分析\n\n### 3.1 成功实验（3 个）\n\n| exp | 方案 | 关键指标 | 成功条件 |\n|-----|------|---------|---------|\n| exp008_sft | 基础 SFT (1200 条, 3 epochs) | format_ok=100%, action_is_valid=90%, success=0% | 单阶段 SFT 足以学会格式 |\n| exp017_expert_sft | Expert PDDL SFT (2460 条, 3 epochs) | success=5%, action_is_valid=63.8%, format_ok=75% | Expert trajectory 有 task knowledge 但格式退化 |\n| exp019b_expert_sft_v3 | 两阶段 SFT (exp008→v3 data, 2 epochs) | success=20%, format_ok=100%, action_is_valid=85.3% | **两阶段保留 format 知识 + 叠加 task knowledge** |\n\n**关键发现**:\n1. **两阶段 SFT 优于单阶段**: exp017 直接用 expert data → format_ok 降至 75%；exp019b 从 exp008 checkpoint 出发 → format_ok 保持 100%\n2. **SFT 是必要 warmup**: 从 0% 到 20% success 全靠 SFT，GRPO 尚未贡献正增益\n3. **数据量 2460-2546 条、2-3 epochs、单卡 ~48 min** 是高效的 SFT 配置\n\n### 3.2 阴性实验（3 个）——揭示了什么\n\n| exp | 假设 | 阴性结论 |\n|-----|------|---------|\n| exp013f | Dense reward 解决 sparse 冷启动 | Reward gaming: 模型最大化中间奖励，忽略最终目标 |\n| exp020b | GRPO from SFT 提升 success | Entropy 坍缩: GRPO 在 RAGEN 框架中系统性退化 SFT 能力 |\n| exp021_ragen_sft_v4 | RAGEN 格式 SFT 达 25% success | 16ep eval 仅 6.25%，4ep 结果不可靠 |\n\n**核心阴性结论**: **RAGEN 框架内的 GRPO 训练（无论什么超参）都会退化 SFT 获得的能力**。这不是超参问题，是架构问题。\n\n---\n\n## 4. 已证伪的路线\n\n### 4.1 RAGEN 全历史 GRPO（3/3 失败）\n- exp020b: entropy 坍缩 61%, success 18.75%→4.69%\n- exp022: action_is_valid 从 87.5% 降至 48.75%\n- exp023c: 8 步持续退化\n- **结论**: 全历史拼接导致 context 爆炸，信噪比过低，GRPO 无法有效学习。D025/D026 终止此路线。\n\n### 4.2 Unconditional Dense Reward Shaping（1/1 失败）\n- exp013f: valid_action_bonus=0.15 被独立最大化\n- **结论**: 非 success-gated 的 dense bonus 必然导致 reward gaming。\n\n### 4.3 过高 KL Coefficient（0.5 过度约束）\n- exp022: KL=0.5 下 step 0 即退化\n- exp023c: KL=0.5 下 8 步持续退化\n- **结论**: KL=0.5 过强，限制了有效探索。verl-agent 论文用 KL=0.01。\n\n### 4.4 verl-agent 直接运行（3/3 失败）\n- exp025/025b/025c: AutoDL cgroup pids.max=20480 硬限制\n- **结论**: 当前容器环境不支持 Ray 多进程架构。D028 终止。\n\n### 4.5 Sparse GRPO 冷启动（从 base model）\n- exp003/007/010/016: base success ~0-4.7%，无学习信号\n- **结论**: 必须 SFT warmup 到 ≥5% success 才有可能 bootstrap。\n\n---\n\n## 5. 仍成立的假设\n\n### 5.1 Step-Independent Rollout 是关键差异（exp026 验证中）\n- RAGEN 全历史 3/3 退化 vs verl-agent step-independent 论文 86.1% success\n- exp026 dry run step 0 验证通过：step-level advantage 生效（max=11.93/min=-0.47）\n- 每步 context ~2-3K tokens（恒定）vs 全历史 25K+（线性增长）\n- 每 episode 产出 ~50 training samples（vs 全历史 1 sample）\n\n### 5.2 SFT Baseline 6.25% 是可靠起点\n- exp021 16ep eval 确认 6.25% success（C003 compliant）\n- 两阶段 SFT 路线（exp008→exp019b→exp021）已验证\n- Checkpoint `/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final/` 可复用\n\n### 5.3 KL=0.01 + LR=1e-6 是更优超参区间\n- 来源：verl-agent 论文在 ALFWorld 的最佳配置\n- KL=0.01 << 0.1/0.5，允许更大探索幅度\n- LR=1e-6 配合 KL=0.01 的低正则化，exp026 正在验证\n- 对比 exp012b (LR=1e-6 + 无 KL→collapse) 和 exp015 (LR=1e-7→零梯度)\n\n### 5.4 两阶段 SFT 保留 Format 知识\n- exp017 单阶段 → format_ok 75%（退化）\n- exp019b 两阶段 → format_ok 100%（保留）\n- 后续 SFT 实验应从 exp008_sft checkpoint 出发\n\n### 5.5 Pre-flight Checklist 显著减少基础设施失败\n- C002 制定后，exp023c 到 exp026 的基础设施失败率明显下降\n- 必检项：磁盘、入口点、config 参数、checkpoint 路径\n\n---\n\n## 6. exp026 后的下一步建议\n\n### 场景 A：exp026 成功（success ≥ 20%）\n\n1. **确认 MVP**：Step-independent rollout + GRPO 在 RAGEN 框架内有效\n2. **Phase 2 GiGPO**：叠加 step-level advantage grouping（anchor state grouping + 折扣回报），预期进一步提升\n3. **Invalid action penalty**：添加 -0.1/step 惩罚（verl-agent 配置），抑制无效动作\n4. **扩大 eval**：50+ episodes 确认稳健性\n5. **Scale up**：增加训练步数（150→300），探索 7B 模型\n\n### 场景 B：exp026 失败但无退化（success ~6.25%，持平 SFT baseline）\n\n1. **超参网格搜索**：LR ∈ {5e-7, 1e-6, 2e-6}, KL ∈ {0.005, 0.01, 0.02}\n2. **增加 group_size**：当前 16 → 32，提升 GRPO advantage 估计质量\n3. **Success-gated dense reward**：仅在 success episode 给 step-level bonus，避免 exp013f 的 gaming\n4. **GiGPO 提前引入**：如果 GRPO 信号不足，step-level grouping 可能帮助 credit assignment\n\n### 场景 C：exp026 退化（success < 6.25%，低于 SFT baseline）\n\n1. **诊断退化原因**：是 entropy 坍缩 (类似 exp020b) 还是 KL 过大 (类似 exp022)?\n2. **SPEAR 算法**：专门解决 sparse reward 冷启动（ICLR 2026），可能比 GRPO 更适合\n3. **重新评估框架**：如果 step-independent 也退化，问题可能在 reward 结构（非 context 问题）\n4. **更换服务器**：不受 cgroup 限制的环境直接运行 verl-agent 原版\n\n---\n\n## 7. 关键数字总结\n\n| 指标 | 数值 |\n|------|------|\n| 总实验数 | 50 |\n| 实际执行（DONE + 部分 PREPARING） | ~35 |\n| 成功 | 3 (8.6% of DONE) |\n| 阴性（有价值结论） | 3 |\n| 基础设施失败 | 14 (40%) |\n| 算法/设计失败 | 8 (23%) |\n| 格式/环境失败 | 8 (23%) |\n| 超参失败 | 4 (11%) |\n| 框架局限 | 3 (9%) |\n| 累计 GPU-hours | ~35h |\n| 有效训练 GPU-hours（成功实验） | ~5h |\n| GPU 利用率（有效/总计） | ~14% |\n| 最佳 success rate | 20% (exp019b eval_sft), 6.25% (exp021 RAGEN 16ep) |\n\n---\n\n## 8. 实验时间线可视化\n\n```\nMay 13 18:00  exp_001 ──────── 环境搭建（失败×5）\n         ↓\nMay 13 21:00  exp_003 系列 ─── GRPO 冷启动（失败×4）\n         ↓\nMay 14 00:00  exp007 ──────── Parser fix + 速度优化（/tmp满）\n         ↓\nMay 14 03:00  exp008_sft ──── SFT warmup ✓ (format=100%)\n         ↓\nMay 14 03:30  exp009/010 ──── GRPO from SFT（/tmp满 + success→0%）\n         ↓\nMay 14 05:00  exp011/012 ──── Reward fix + vLLM 不兼容\n         ↓\nMay 14 06:45  exp012b ─────── GRPO LR=1e-6 catastrophic collapse\n         ↓\nMay 14 08:00  exp013b-f ───── Dense reward（4次 OOM + 1次 reward gaming）\n         ↓\nMay 14 12:50  exp015/016 ──── Sparse GRPO（零梯度 / pg_loss=0）\n         ↓\nMay 14 15:36  exp017 ──────── Expert SFT ✓ (success=5%)\n         ↓\nMay 14 17:30  exp019b ─────── 两阶段 SFT ✓ (success=20%)\n         ↓\nMay 14 22:00  exp020-020d ─── GRPO from SFT（格式不匹配 → val 0%）\n         ↓\nMay 15 02:00  exp021 ──────── RAGEN 格式 SFT（6.25% @ 16ep）\n         ↓\nMay 15 03:17  exp022 ──────── RAGEN GRPO #1（退化）\n         ↓\nMay 15 04:00  exp023/023c ─── RAGEN GRPO #2/#3（崩溃 + 退化）\n         ↓                   → D025/D026: RAGEN GRPO 终止\nMay 15 06:52  exp025 系列 ─── verl-agent 直接运行（cgroup 失败×3）\n         ↓                   → D028: verl-agent 路线终止\nMay 15 09:34  exp026 ──────── Cherry-pick step-independent（训练中）\n```\n\n---\n\n## 9. 失败模式 → 制度化约束 映射\n\n| 失败模式 | 频次 | 对应约束 |\n|---------|------|---------|\n| 小样本 eval 误导决策 | 3 | C003: eval ≥16 episodes |\n| Pre-flight 可拦截的失败 | 5+ | C002: 启动前 checklist |\n| GPU 冲突 | 2 | C001: 指定 cuda:0,1 |\n| Cron 误报 | 3 | 使用 submit_training_job + 日志验证 |\n| SFT/inference 格式不一致 | 4 | memory: 必须用 convert_sft_to_ragen_format.py |\n| Ray 内存超限 | 4 | memory: Hydra override object_store=30GB |\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/experiment_failure_analysis.md",
+    "content": "# cost-verify-agent-rl 实验失败模式系统性分析\n\n> 分析范围：全部 50 个实验（exp_001 ~ exp026）  \n> 时间跨度：2026-05-13 18:26 ~ 2026-05-15 11:07 UTC（~41 小时）  \n> 生成日期：2026-05-15\n\n---\n\n## 1. 实验总览表\n\n| exp_id | status | conclusion | 一句话摘要 | 失败分类 |\n|--------|--------|------------|-----------|---------|\n| exp_001 | DONE | failed | 首次环境搭建 | Infrastructure |\n| exp_001b | DONE | failed | 环境搭建重试 | Infrastructure |\n| exp_002 | DONE | failed | 环境搭建 v2 | Infrastructure |\n| exp_003 | DONE | failed | 全历史 GRPO + 冷启动失败 | Algorithm Design |\n| exp_003 (underscore) | PREPARING | failed | GRPO v3 prompt truncation | Algorithm Design |\n| exp_003_dryrun | PREPARING | failed | dry-run 调试 | Infrastructure |\n| exp_003_dryrun2 | PREPARING | failed | dry-run 调试 v2 | Infrastructure |\n| exp003_dryrun3 | PREPARING | failed | dry-run 调试 v3 | Infrastructure |\n| exp_003_dryrun3 | PREPARING | failed | dry-run 调试 v3 重复 | Infrastructure |\n| exp005 | PREPARING | (未执行) | Fast config 方案，未实际运行 | — |\n| exp007_dryrun | PREPARING | (未执行) | exp007 dry-run，未记录结果 | — |\n| exp007 | DONE | failed | Parser fix + /tmp 磁盘满 + action_is_valid 8.4% | Infrastructure + Algorithm |\n| exp008 | PREPARING | killed | SFT warmup 方案被撤回 | — |\n| **exp008_sft** | **DONE** | **success** | **SFT warmup: format_ok=100%, action_is_valid=90%, success=0%** | **— (成功)** |\n| exp009 | DONE | failed | response_mask 断言 + 资源冲突 | Environment/Format |\n| exp010 | DONE | failed | GRPO 11步后 /tmp 满崩溃; success 4.7%→0% | Infrastructure + Algorithm |\n| exp011 | DONE | killed | reward shaping 问题，Director 终止 | Algorithm Design |\n| exp012 | DONE | failed | vLLM 版本不兼容 (disable_mm_preprocessor_cache) | Environment/Format |\n| exp012b | DONE | killed | Step 7 catastrophic collapse (LR=1e-6) | Hyperparameters |\n| exp013 | DONE | killed | Director 驳回纯 KL 方案，要求 dense reward | — |\n| exp013b | DONE | failed | Ray OOM (object_store 70GB + memory 164GB > cgroup 220GB) | Infrastructure |\n| exp013c | DONE | killed | 预防性 kill (与 exp013b 同配置) | Infrastructure |\n| exp013d | DONE | failed | Ray object_store env var 未生效 → OOM | Infrastructure |\n| exp013e | DONE | failed | Ray RPC Socket closed (val→train 切换) | Infrastructure |\n| **exp013f** | **DONE** | **negative** | **Dense reward GRPO: reward gaming (action_is_valid 60%→97.5%, success 不变)** | **Algorithm Design** |\n| exp014a | PREPARING | killed | success-gated bonus bootstrap 问题 | Algorithm Design |\n| exp014b | PREPARING | killed | 被 Director 修订 | — |\n| exp014c | PREPARING | (未执行) | 未记录 | — |\n| exp015 | DONE | killed | LR=1e-7 过保守，零梯度 | Hyperparameters |\n| exp016 | DONE | failed | Sparse GRPO pg_loss=0，base success ~0% 无学习信号 | Algorithm Design |\n| **exp017_expert_sft** | **DONE** | **success** | **Expert PDDL SFT: 5% success, 63.8% action_is_valid** | **— (成功)** |\n| exp018_sft_grpo | PREPARING | killed | exp017 eval 5% 太弱，取消 GRPO | — |\n| exp019_expert_sft_v2 | DONE | killed | move→put 替换方向错误 | Environment/Format |\n| exp019b_expert_sft_v2 | PREPARING | (未执行) | 被 v3 取代 | — |\n| **exp019b_expert_sft_v3** | **DONE** | **success** | **两阶段 Expert SFT: eval_sft 20% success, format_ok=100%** | **— (成功)** |\n| exp019c_expert_sft_v3 | PREPARING | killed | GPU 被 exp019b nohup 占用 | Infrastructure |\n| exp020_grpo_from_sft | DONE | failed | Checkpoint path 缺 \"qwen\" → AssertionError | Environment/Format |\n| **exp020b_grpo_from_sft** | **DONE** | **negative** | **GRPO from SFT: entropy 坍缩 61%, success 18.75%→4.69%, val 始终 0%** | **Algorithm Design + Eval Mismatch** |\n| exp020c_grpo_from_sft | PREPARING | failed | SFT/RAGEN 格式不兼容，废弃 | Environment/Format |\n| exp020d_grpo_from_sft | PREPARING | failed | 同上 | Environment/Format |\n| **exp021_ragen_sft_v4** | **DONE** | **negative** | **RAGEN 格式 SFT: 16ep eval 6.25% (原 4ep 25% 不可靠)** | **Evaluation Mismatch** |\n| exp021_sft_ragen_format | PREPARING | killed | 被 exp021_ragen_sft_v4 取代 | — |\n| exp022_grpo_from_sft_v4 | DONE | killed | GRPO step 0: action_is_valid 48.75% (远低于 SFT 87.5%) | Algorithm Design |\n| exp023_grpo_parallel | DONE | failed | TextWorld tatsu parser 多线程崩溃 | Framework Limitation |\n| **exp023c_grpo_serial** | **DONE** | **failed** | **磁盘满 + GRPO 8步退化 (success 29.7%→23.4%, entropy↓)** | **Infrastructure + Algorithm** |\n| exp024_success_gated_grpo | DONE | killed | RAGEN GRPO 路线终止后不适用 | — |\n| exp025 | DONE | failed | ModuleNotFoundError (错误 conda env) | Environment/Format |\n| exp025b | DONE | failed | pthread_create EAGAIN (cgroup pids.max) | Framework Limitation |\n| exp025c | PENDING | failed | cgroup pids.max=20480 硬限制，verl-agent 路线终止 | Framework Limitation |\n| exp026_step_independent_grpo | DONE | failed* | Cron 误判 DONE(failed)，实际可能仍在运行 | Infrastructure (误报) |\n\n**统计**：成功 3 / 阴性 3 / 失败 22 / 被 kill 13 / 未执行 9 = 50 总计  \n*exp026 被 cron 误标，真实状态待确认\n\n---\n\n## 2. 按失败原因分类\n\n### 2.1 Infrastructure（基础设施问题）— 14 个实验\n\n#### /tmp 磁盘满（3 次）\n- **exp007**: step 10, /tmp 被 Ray session 文件占满 30GB 根分区\n- **exp010**: step 11, fast_downward libdownward.so 复制到 /tmp 失败\n- **exp023c_grpo_serial**: step 9, /root/autodl-tmp 94% (233G/250G), OSError Errno 28\n\n**共性模式**: AutoDL 根分区仅 30GB，Ray session logs + TextWorld 临时文件 + checkpoint 累积超限。  \n**缓解措施**: `TMPDIR=/root/autodl-tmp/tmp/` 部分解决了 /tmp 问题，但数据盘本身也会满。  \n**教训**: 每次启动前 `df -h` 是 pre-flight checklist 必检项。\n\n#### Ray/cgroup OOM（4 次）\n- **exp013b**: object_store 70GB + memory 164GB = 234GB > cgroup 220GB → Plasma ENOMEM\n- **exp013c**: 预防性 kill（同配置）\n- **exp013d**: `RAY_object_store_memory` env var 未被 Ray 读取（需 Hydra config override）\n- **exp013e**: Ray RPC Socket closed（val→train 内存峰值切换）\n\n**共性模式**: AutoDL cgroup 内存上限 220GB，Ray 默认 object_store 70GB 必超。128 并发 ALFWorld 游戏加剧。  \n**缓解措施**: `object_store_memory=30GB` (Hydra override) + `env_groups=4` (降并发) + `RAY_memory_monitor_refresh_ms=0`。exp013f 验证全部修复生效。  \n**教训**: Ray env var 在 Hydra 场景下可能不生效，必须用 config override。\n\n#### cgroup pids.max 限制（3 次）\n- **exp025**: ModuleNotFoundError（实际是错 conda env，但暴露了 verl-agent 依赖多进程）\n- **exp025b**: 8 个 AlfworldWorker + Ray 线程总数超 pids.max=20480 → EAGAIN\n- **exp025c**: 降到单 GPU 仍无法解决，路线终止\n\n**共性模式**: AutoDL 容器 pids.max=20480 硬限制不可调，verl-agent Ray 多进程架构天然不兼容。  \n**缓解措施**: 无法在 AutoDL 上解决。D028 决定放弃 verl-agent 直接运行。  \n**教训**: 容器化环境必须提前检测 cgroup 限制。\n\n#### 早期环境搭建（4 次）\n- **exp_001, exp_001b, exp_002**: 首次 RAGEN + ALFWorld 环境搭建\n- **exp_003_dryrun 系列** (4 次): Ray 配置调试\n\n**共性模式**: 新框架首次部署的常规困难。  \n**教训**: 首次实验预留至少 4h 用于环境调试。\n\n#### Cron 误报 / 资源冲突（3 次）\n- **exp019c_expert_sft_v3**: GPU 被 exp019b 的 nohup 占用\n- **exp026**: Cron 误判进程已死（实际 GPU 双卡 100%）\n- **exp019b_expert_sft_v3**: Cron 误报 failed（训练实际正常完成）\n\n**教训**: 必须用 submit_training_job 提交；cron 报 failed 先验日志。\n\n---\n\n### 2.2 Environment/Format（格式不匹配）— 8 个实验\n\n#### SFT 格式 vs RAGEN 格式不一致（4 次）\n- **exp020_grpo_from_sft**: checkpoint 路径不含 \"qwen\" → AssertionError\n- **exp020b**: GRPO from SFT checkpoint, val success 始终 0%（格式偏移）\n- **exp020c/d**: 同一根因，废弃\n\n**共性模式**: SFT 训练数据的 observation/action 格式与 RAGEN runtime 格式不一致 → 分布偏移。exp019b eval_sft 20% success，但 RAGEN val 0%。  \n**解法**: `convert_sft_to_ragen_format.py` 将数据转为 RAGEN 精确格式（v4 数据），exp021 验证通过。  \n**教训**: SFT 数据**必须**与 inference 框架的精确格式对齐。这是本项目最大的格式教训。\n\n#### Checkpoint 路径命名断言（2 次）\n- **exp009**: `enable_response_mask` 断言检查 `\"qwen\" in model_path.lower()`\n- **exp020_grpo_from_sft**: 同一断言\n\n**缓解**: 创建含 \"qwen\" 的 symlink。\n\n#### 错误 conda 环境（1 次）\n- **exp025**: `conda activate base` 而非 verl-agent 专属环境 → ModuleNotFoundError\n\n#### move→put 数据替换错误（1 次）\n- **exp019_expert_sft_v2**: ALFWorld admissible_commands 包含 `move X to Y`，不含 `put`。诊断 Worker 误判导致数据错误。\n\n---\n\n### 2.3 Hyperparameters（超参选择）— 4 个实验\n\n| exp | LR | KL coef | 问题 | 结果 |\n|-----|-------|---------|------|------|\n| exp015 | 1e-7 | — | 过保守，零梯度 | killed |\n| exp012b | 1e-6 | — | 过激，step 7 collapse | killed |\n| exp020b | 5e-7 | 0.1 | KL 约束过弱，entropy 坍缩 61% | negative |\n| exp022/023c | 5e-7 | 0.5 | KL 约束过强，限制探索 | killed/failed |\n\n**共性模式**: 超参空间极窄。LR 在 1e-7（无学习）和 1e-6（崩溃）之间仅一个数量级。KL coef 0.1 太弱、0.5 太强。  \n**最佳区间（基于 verl-agent 论文）**: LR=1e-6 + KL=0.01，exp026 正在验证。  \n**教训**: Agent RL 超参敏感度远高于标准 NLP fine-tuning，需要更系统的搜索。\n\n---\n\n### 2.4 Algorithm Design（算法设计）— 8 个实验\n\n#### Sparse GRPO 冷启动失败（4 次）\n- **exp003**: base model success ~0%，GRPO 无学习信号\n- **exp007**: parser fix 后 action_is_valid 仅 8.4%，仍无法 bootstrap\n- **exp010**: success 4.7%→0%，action_is_valid 提升但 success 下降\n- **exp016**: pg_loss 恒为 0，12 步无任何学习信号\n\n**共性模式**: base Qwen3-1.7B 在 ALFWorld 的 success ~4.7%（val）, temperature=1.0 下接近 0%（train）。GRPO group 几乎全零 reward → advantage=0 → 无梯度。  \n**解法**: SFT warmup 提升 baseline success 后再接 GRPO。exp008_sft 验证 format 学习，exp017/019b/021 逐步提升 task knowledge。\n\n#### Dense Reward Gaming（1 次）\n- **exp013f**: valid_action_bonus=0.15 被独立最大化。action_is_valid 60%→97.5%（学会合法命令），但 success 始终 0-8%。cumulative bonus ~4.5 主导梯度 vs sparse success 10.0。\n\n**教训**: Dense reward 必须 success-gated 或极低比例（<1:100），否则模型最大化中间奖励而非最终目标。\n\n#### Full-History Context 爆炸导致 GRPO 退化（3 次）\n- **exp020b**: entropy 0.107→0.042 (坍缩 61%), success 18.75%→4.69%\n- **exp022**: step 0 即退化，action_is_valid 从 SFT 87.5% 降至 48.75%\n- **exp023c**: 8 步稳定退化，success 29.7%→23.4%, pass@16 75%→50%\n\n**共性模式**: RAGEN 全历史拼接 → 50步 context 25K+ tokens → 信噪比极低 → GRPO 从噪声中学到错误梯度。这是 RAGEN 框架的**结构性限制**，非超参可解决。  \n**解法**: Step-independent rollout（verl-agent 核心创新），每步 context 恒定 ~2-3K tokens。exp026 实现此方案。\n\n#### Catastrophic Collapse（1 次单独归因）\n- **exp012b**: step 6 success=8.59% → step 7 success=0%, grad_norm 1.48→0.09, pg_loss→0\n\n**根因**: GRPO 单步 policy update 过激（LR=1e-6），跳出有 success 的分布区域后无法恢复。\n\n---\n\n### 2.5 Evaluation Mismatch（评估方法不一致）— 3 个实验\n\n- **exp021_ragen_sft_v4**: 4-episode eval 显示 25% success（原 conclusion=success），16-episode eval 降至 6.25%。D024 降级为 negative。\n- **exp019b_expert_sft_v3**: eval_sft_fast 20% success，但 RAGEN 框架内 val 0%（格式差异）\n- **exp022_grpo_from_sft_v4**: step 0 仅 8 episodes 评估，val_success=12.5% 不可靠\n\n**共性模式**: 小样本（4-8 episodes）方差极大，不同 eval 框架结果不可比。  \n**制度**: C003 约束——所有 eval 必须 ≥16 episodes。  \n**教训**: Eval 方法必须与训练框架一致，否则指标不可信。\n\n---\n\n### 2.6 Framework Limitation（框架局限）— 3 个实验\n\n#### RAGEN 全历史拼接\n- 结构性问题，影响 exp020b/022/023c 全部 GRPO 实验\n- context 长度随 episode 步数线性增长，50 步 → 25K+ tokens\n- 每 episode 仅 1 个 training sample（vs verl-agent 每步 1 sample → 50x 数据效率）\n\n#### TextWorld/tatsu 线程不安全\n- **exp023_grpo_parallel**: `textworld.envs.pddl.logic._PARSER` 单例非线程安全\n- 多线程并行 rollout 崩溃\n- 修复：`threading.Lock()` 包裹整个 textworld 加载链\n\n#### verl-agent + AutoDL 容器不兼容\n- **exp025/025b/025c**: cgroup pids.max=20480 限制 Ray 多进程架构\n- 无法在当前服务器环境解决\n\n---\n\n## 3. 成功 / 阴性实验分析\n\n### 3.1 成功实验（3 个）\n\n| exp | 方案 | 关键指标 | 成功条件 |\n|-----|------|---------|---------|\n| exp008_sft | 基础 SFT (1200 条, 3 epochs) | format_ok=100%, action_is_valid=90%, success=0% | 单阶段 SFT 足以学会格式 |\n| exp017_expert_sft | Expert PDDL SFT (2460 条, 3 epochs) | success=5%, action_is_valid=63.8%, format_ok=75% | Expert trajectory 有 task knowledge 但格式退化 |\n| exp019b_expert_sft_v3 | 两阶段 SFT (exp008→v3 data, 2 epochs) | success=20%, format_ok=100%, action_is_valid=85.3% | **两阶段保留 format 知识 + 叠加 task knowledge** |\n\n**关键发现**:\n1. **两阶段 SFT 优于单阶段**: exp017 直接用 expert data → format_ok 降至 75%；exp019b 从 exp008 checkpoint 出发 → format_ok 保持 100%\n2. **SFT 是必要 warmup**: 从 0% 到 20% success 全靠 SFT，GRPO 尚未贡献正增益\n3. **数据量 2460-2546 条、2-3 epochs、单卡 ~48 min** 是高效的 SFT 配置\n\n### 3.2 阴性实验（3 个）——揭示了什么\n\n| exp | 假设 | 阴性结论 |\n|-----|------|---------|\n| exp013f | Dense reward 解决 sparse 冷启动 | Reward gaming: 模型最大化中间奖励，忽略最终目标 |\n| exp020b | GRPO from SFT 提升 success | Entropy 坍缩: GRPO 在 RAGEN 框架中系统性退化 SFT 能力 |\n| exp021_ragen_sft_v4 | RAGEN 格式 SFT 达 25% success | 16ep eval 仅 6.25%，4ep 结果不可靠 |\n\n**核心阴性结论**: **RAGEN 框架内的 GRPO 训练（无论什么超参）都会退化 SFT 获得的能力**。这不是超参问题，是架构问题。\n\n---\n\n## 4. 已证伪的路线\n\n### 4.1 RAGEN 全历史 GRPO（3/3 失败）\n- exp020b: entropy 坍缩 61%, success 18.75%→4.69%\n- exp022: action_is_valid 从 87.5% 降至 48.75%\n- exp023c: 8 步持续退化\n- **结论**: 全历史拼接导致 context 爆炸，信噪比过低，GRPO 无法有效学习。D025/D026 终止此路线。\n\n### 4.2 Unconditional Dense Reward Shaping（1/1 失败）\n- exp013f: valid_action_bonus=0.15 被独立最大化\n- **结论**: 非 success-gated 的 dense bonus 必然导致 reward gaming。\n\n### 4.3 过高 KL Coefficient（0.5 过度约束）\n- exp022: KL=0.5 下 step 0 即退化\n- exp023c: KL=0.5 下 8 步持续退化\n- **结论**: KL=0.5 过强，限制了有效探索。verl-agent 论文用 KL=0.01。\n\n### 4.4 verl-agent 直接运行（3/3 失败）\n- exp025/025b/025c: AutoDL cgroup pids.max=20480 硬限制\n- **结论**: 当前容器环境不支持 Ray 多进程架构。D028 终止。\n\n### 4.5 Sparse GRPO 冷启动（从 base model）\n- exp003/007/010/016: base success ~0-4.7%，无学习信号\n- **结论**: 必须 SFT warmup 到 ≥5% success 才有可能 bootstrap。\n\n---\n\n## 5. 仍成立的假设\n\n### 5.1 Step-Independent Rollout 是关键差异（exp026 验证中）\n- RAGEN 全历史 3/3 退化 vs verl-agent step-independent 论文 86.1% success\n- exp026 dry run step 0 验证通过：step-level advantage 生效（max=11.93/min=-0.47）\n- 每步 context ~2-3K tokens（恒定）vs 全历史 25K+（线性增长）\n- 每 episode 产出 ~50 training samples（vs 全历史 1 sample）\n\n### 5.2 SFT Baseline 6.25% 是可靠起点\n- exp021 16ep eval 确认 6.25% success（C003 compliant）\n- 两阶段 SFT 路线（exp008→exp019b→exp021）已验证\n- Checkpoint `/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final/` 可复用\n\n### 5.3 KL=0.01 + LR=1e-6 是更优超参区间\n- 来源：verl-agent 论文在 ALFWorld 的最佳配置\n- KL=0.01 << 0.1/0.5，允许更大探索幅度\n- LR=1e-6 配合 KL=0.01 的低正则化，exp026 正在验证\n- 对比 exp012b (LR=1e-6 + 无 KL→collapse) 和 exp015 (LR=1e-7→零梯度)\n\n### 5.4 两阶段 SFT 保留 Format 知识\n- exp017 单阶段 → format_ok 75%（退化）\n- exp019b 两阶段 → format_ok 100%（保留）\n- 后续 SFT 实验应从 exp008_sft checkpoint 出发\n\n### 5.5 Pre-flight Checklist 显著减少基础设施失败\n- C002 制定后，exp023c 到 exp026 的基础设施失败率明显下降\n- 必检项：磁盘、入口点、config 参数、checkpoint 路径\n\n---\n\n## 6. exp026 后的下一步建议\n\n### 场景 A：exp026 成功（success ≥ 20%）\n\n1. **确认 MVP**：Step-independent rollout + GRPO 在 RAGEN 框架内有效\n2. **Phase 2 GiGPO**：叠加 step-level advantage grouping（anchor state grouping + 折扣回报），预期进一步提升\n3. **Invalid action penalty**：添加 -0.1/step 惩罚（verl-agent 配置），抑制无效动作\n4. **扩大 eval**：50+ episodes 确认稳健性\n5. **Scale up**：增加训练步数（150→300），探索 7B 模型\n\n### 场景 B：exp026 失败但无退化（success ~6.25%，持平 SFT baseline）\n\n1. **超参网格搜索**：LR ∈ {5e-7, 1e-6, 2e-6}, KL ∈ {0.005, 0.01, 0.02}\n2. **增加 group_size**：当前 16 → 32，提升 GRPO advantage 估计质量\n3. **Success-gated dense reward**：仅在 success episode 给 step-level bonus，避免 exp013f 的 gaming\n4. **GiGPO 提前引入**：如果 GRPO 信号不足，step-level grouping 可能帮助 credit assignment\n\n### 场景 C：exp026 退化（success < 6.25%，低于 SFT baseline）\n\n1. **诊断退化原因**：是 entropy 坍缩 (类似 exp020b) 还是 KL 过大 (类似 exp022)?\n2. **SPEAR 算法**：专门解决 sparse reward 冷启动（ICLR 2026），可能比 GRPO 更适合\n3. **重新评估框架**：如果 step-independent 也退化，问题可能在 reward 结构（非 context 问题）\n4. **更换服务器**：不受 cgroup 限制的环境直接运行 verl-agent 原版\n\n---\n\n## 7. 关键数字总结\n\n| 指标 | 数值 |\n|------|------|\n| 总实验数 | 50 |\n| 实际执行（DONE + 部分 PREPARING） | ~35 |\n| 成功 | 3 (8.6% of DONE) |\n| 阴性（有价值结论） | 3 |\n| 基础设施失败 | 14 (40%) |\n| 算法/设计失败 | 8 (23%) |\n| 格式/环境失败 | 8 (23%) |\n| 超参失败 | 4 (11%) |\n| 框架局限 | 3 (9%) |\n| 累计 GPU-hours | ~35h |\n| 有效训练 GPU-hours（成功实验） | ~5h |\n| GPU 利用率（有效/总计） | ~14% |\n| 最佳 success rate | 20% (exp019b eval_sft), 6.25% (exp021 RAGEN 16ep) |\n\n---\n\n## 8. 实验时间线可视化\n\n```\nMay 13 18:00  exp_001 ──────── 环境搭建（失败×5）\n         ↓\nMay 13 21:00  exp_003 系列 ─── GRPO 冷启动（失败×4）\n         ↓\nMay 14 00:00  exp007 ──────── Parser fix + 速度优化（/tmp满）\n         ↓\nMay 14 03:00  exp008_sft ──── SFT warmup ✓ (format=100%)\n         ↓\nMay 14 03:30  exp009/010 ──── GRPO from SFT（/tmp满 + success→0%）\n         ↓\nMay 14 05:00  exp011/012 ──── Reward fix + vLLM 不兼容\n         ↓\nMay 14 06:45  exp012b ─────── GRPO LR=1e-6 catastrophic collapse\n         ↓\nMay 14 08:00  exp013b-f ───── Dense reward（4次 OOM + 1次 reward gaming）\n         ↓\nMay 14 12:50  exp015/016 ──── Sparse GRPO（零梯度 / pg_loss=0）\n         ↓\nMay 14 15:36  exp017 ──────── Expert SFT ✓ (success=5%)\n         ↓\nMay 14 17:30  exp019b ─────── 两阶段 SFT ✓ (success=20%)\n         ↓\nMay 14 22:00  exp020-020d ─── GRPO from SFT（格式不匹配 → val 0%）\n         ↓\nMay 15 02:00  exp021 ──────── RAGEN 格式 SFT（6.25% @ 16ep）\n         ↓\nMay 15 03:17  exp022 ──────── RAGEN GRPO #1（退化）\n         ↓\nMay 15 04:00  exp023/023c ─── RAGEN GRPO #2/#3（崩溃 + 退化）\n         ↓                   → D025/D026: RAGEN GRPO 终止\nMay 15 06:52  exp025 系列 ─── verl-agent 直接运行（cgroup 失败×3）\n         ↓                   → D028: verl-agent 路线终止\nMay 15 09:34  exp026 ──────── Cherry-pick step-independent（训练中）\n```\n\n---\n\n## 9. 失败模式 → 制度化约束 映射\n\n| 失败模式 | 频次 | 对应约束 |\n|---------|------|---------|\n| 小样本 eval 误导决策 | 3 | C003: eval ≥16 episodes |\n| Pre-flight 可拦截的失败 | 5+ | C002: 启动前 checklist |\n| GPU 冲突 | 2 | C001: 指定 cuda:0,1 |\n| Cron 误报 | 3 | 使用 submit_training_job + 日志验证 |\n| SFT/inference 格式不一致 | 4 | memory: 必须用 convert_sft_to_ragen_format.py |\n| Ray 内存超限 | 4 | memory: Hydra override object_store=30GB |\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T11:52:44.602046+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/experiment_failure_analysis.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T11:52:44.602224+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "experiment_failure_analysis",
+  "type": "report",
+  "description": "50个实验的系统性失败模式分析：按6类分类（Infrastructure/Format/Hyperparameters/Algorithm/Evaluation/Framework），含已证伪路线、仍成立假设、exp026后续建议",
+  "project": "cost-verify-agent-rl",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/experiment_failure_analysis.md",
+  "tags": "['analysis', 'failure-modes', 'lessons-learned', 'all-experiments']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "experiment_failure_analysis",
+    "type": "report",
+    "description": "50个实验的系统性失败模式分析：按6类分类（Infrastructure/Format/Hyperparameters/Algorithm/Evaluation/Framework），含已证伪路线、仍成立假设、exp026后续建议",
+    "project": "cost-verify-agent-rl",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/experiment_failure_analysis.md",
+    "tags": "['analysis', 'failure-modes', 'lessons-learned', 'all-experiments']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T11:52:44.602389+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_fd1ede\", \"name\": \"experiment_failure_analysis\", \"type\": \"report\", \"description\": \"50个实验的系统性失败模式分析：按6类分类（Infrastructure/Format/Hyperparameters/Algorithm/Evaluation/Framework），含已证伪路线、仍成立假设、exp026后续建议\", \"path\": \"projects/cost-verify-agent-rl/artifacts/_project/report/experiment_failure_analysis.md\", \"url\": null, \"project\": \"cost-verify-agent-rl\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T11:52:35.463995+00:00\", \"tags\": [\"analysis\", \"failure-modes\", \"lessons-learned\", \"all-experiments\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-15T11:52:44.602558+00:00_
+
+文档已生成并注册。核心发现：
+
+**50 个实验，3 个成功（6%），GPU 有效利用率仅 14%。**
+
+失败分布：
+- **Infrastructure 40%**（磁盘满、Ray OOM、cgroup 限制、cron 误报）
+- **Algorithm Design 23%**（sparse 冷启动、reward gaming、full-history 退化）
+- **Format/Environment 23%**（SFT/RAGEN 格式不匹配是单一最大教训）
+- **Hyperparameters 11%**（LR/KL 的可行窗口极窄）
+- **Framework 9%**（RAGEN 结构性限制 + verl-agent 容器不兼容）
+
+最关键的已证伪路线：**RAGEN 全历史 GRPO 3/3 退化**，根因是 context 爆炸而非超参。exp026 的 step-independent rollout 是目前唯一未被证伪的 RL 路线。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_experiment_failure_analysis_20260515T114729"
+}
+```
+
+</details>
+
+---

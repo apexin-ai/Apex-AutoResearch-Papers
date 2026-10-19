@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20a67ed14a37742663dc",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "eval seed300 step5 ood bjb1",
+  "task_key": "worker_eval_seed300_step5_ood_bjb1_20260522T175535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_seed300_step5_ood_bjb1_20260522T175535_result.json",
+    "occurrence": 1,
+    "bytes": 1225,
+    "sha256": "1ec471bcffe719c5fd6429378849385cd1035c9800d3544b3adf931232769a88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval is running — model loaded on cuda:0 (8133 MiB), cuda:1 untouched. Environment loading in progress.\n\n## 结果汇总\n\n### 1. FSDP → HF 转换\n- 完成，311 parameters，2.03B params (4.06 GB bf16)\n- 输出: `/root/autodl-tmp/checkpoints/exp029_seed300_step5_hf/`\n- Symlink: `qwen_exp029_seed300_step5_hf` → `exp029_seed300_step5_hf`\n\n### 2. OOD Eval 启动\n- **PID**: 439148 (TaskRunner: 441087)\n- **GPU**: cuda:0, 8133 MiB used\n- **Config**: `_alfworld_seed300_step5_ood_eval.yaml`\n- **Log**: `/root/autodl-tmp/logs/seed300_step5_ood_eval.log`\n- 134 AlfworldSG_OOD tasks, temp=0.4, val_only=True\n\n### 3. Seed300 训练 Metrics\n\n| Metric | Step 0 | Step 5 | Delta |\n|--------|--------|--------|-------|\n| pass@1 | 12.5% | **25.0%** | +12.5pp |\n| action_is_valid | 78.3% | 66.3% | -12.0pp |\n| response_length (val) | 7088 | 6203 | -885 |\n| reward/mean@32 | 1.25 | 2.50 | +1.25 |\n\n### 4. 判断: **Healthy**\n- pass@1 从 12.5% 翻倍到 25.0%（+12.5pp），明确提升\n- action_is_valid 下降 12pp 值得关注，但 pass@1 提升说明模型学到了更有效的策略（虽然 validity 下降，但成功率提升）\n- response_length 缩短说明模型行为更紧凑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-seed300-step5-ood-bjb1.md"
+}

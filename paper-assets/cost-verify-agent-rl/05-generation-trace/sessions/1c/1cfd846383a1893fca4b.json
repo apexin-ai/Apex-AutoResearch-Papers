@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1cfd846383a1893fca4b",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_20.md",
+  "task_key": "loop_20",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_20.md",
+    "occurrence": 1,
+    "bytes": 3671,
+    "sha256": "0931920f61bf498e30a273a01be57b3c6ab8a1e2008eaf931b7962ee026c8d99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 20\nreason: idle_timeout\nupdated: '2026-05-21T20:47:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- `get_project_resource_usage` 显示 allocated_gpus=[]（registry 未同步），但实际 westd 4 GPU 全在跑。提交新实验前必须确认 GPU 实际空闲\n- bjb1-17606 cuda:0,1 当前空闲，seed4 prep worker 已派但尚未回调——不要重复派发同类型 worker\n- v9d step 10 checkpoint 是论文关键数据点（8B OOD generalization），路径不可删除\n- exp029_seed3_ood_v2 可能 hang（GPU 0%，日志停在 09:56），诊断 worker 正在跑——不要盲目 kill，等诊断结果\n- Cell C v3 止损阈值：step 5 success=0% + action_is_valid<20% → 终止释放 GPU（ROADMAP 明确）\n\n### 2. 🖥️ 基础设施快照\n- **westd-47453**: 工作目录 ~/runs/cost-verify-agent-rl/，磁盘 813G/879G (3% free)\n  - cuda:0,1 → exp029_seed3_ood_v2 (PID 530289，可能 hang)\n  - cuda:2,3 → scienceworld_grpo_cell_c_v3 (PID 88226，step 3/15，已跑 ~8h)\n  - 日志：~/runs/cost-verify-agent-rl/ 下各实验 .log 文件\n- **bjb1-17606**: 磁盘 817G/879G (3% free)，cuda:0,1 空闲\n  - 之前跑过 scienceworld_sft_eval_v2（已完成 success）\n- Cron 活跃：scienceworld_grpo_cell_c_v3（reconcile 确认 pid=88226 alive）\n\n### 3. 📊 当前状态\nSession 20 初始化完成，已向 Director 汇报。\n\nRegistry RUNNING:\n- `exp029_seed3_ood_v2`: westd cuda:0,1，seed3 OOD 134-task eval（⚠️ 疑似 hang）\n- `scienceworld_grpo_cell_c_v3`: westd cuda:2,3，step 3/15，success=0, action_is_valid=9.4%, ETA step 5 约 4h\n\nWorker 活跃:\n- `worker_experiment_seed4-bjb1-prep_20260521T024319` — 在 bjb1 准备 seed4 episode-level GRPO\n- `worker_ops_seed3-ood-v2-progress_20260521T024207` — 诊断 seed3 OOD eval 是否 hang（已 9 turns，发现 GPU 0%）\n\n等待:\n- 两个 Worker 回调\n- Cell C v3 step 5 产出（~4h 后）→ 止损判断\n- Director 回复 session 20 汇报\n\n### 4. 📋 待办\n- seed3-ood-v2-progress worker 回调 → 如确认 hang → kill PID 530289 → 重跑 eval → 更新 registry\n- seed3-ood-v2-progress worker 回调 → 如正常运行 → 等完成回调 → 按 on-experiment-done 处理\n- seed4-bjb1-prep worker 回调 → 确认环境就绪 → submit_training_job → 注册 cron\n- Cell C v3 step 5 cron 回调 → 检查 val metrics → success=0% + action_is_valid<20% → kill + 向 Director 汇报 + 释放 westd cuda:2,3 → 排下一个实验（8b_v9d_ood_eval 修复重跑？）\n- seed3 OOD eval 完成 → 关键数据点（seed3 OOD success rate）→ 更新论文 Table 1 multi-seed mean → westd cuda:0,1 释放排下一个\n\n### 5. 🎯 战略上下文\n- **论文 story**: 诊断 step-independent RL 的 dual failure mechanism (info loss + sign misattribution)，Cell C (episode-level) 是 fix\n- **论文接近完成**: D108 已更新 multi-seed mean 17.2% [10.4-23.9%]，待 Reviewer 一致性审查 + Cell C v3 step 5 决定\n- **Claim 强度**: 诊断 VERY STRONG / 修复 STRONG（D104）\n- **Cell C v3 大概率止损**: step 3 success=0, action_is_valid=9.4%——ScienceWorld 环境下 episode-level GRPO 信号极弱，与 ALFWorld 的成功形成对比。止损后论文 narrative 不变（ScienceWorld Cell C 标注为 inconclusive / negative，Limitations 已覆盖 fix generality）\n- **易错点**: seed3 OOD v2 看起来是 eval 但可能加载了完整模型做 rollout（FSDP config），GPU 0% 不一定 = hang，可能是 CPU-bound 阶段。等 worker 诊断再判断\n- **8b_v9d_ood_eval 已失败 4 次**（v1-v4 全 AssertionError），但 8B OOD 已有 90.3% 数据（plan_021 7b_sft_eval_ood）。v9d OOD 是 nice-to-have 不是 blocker\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-20.md"
+}

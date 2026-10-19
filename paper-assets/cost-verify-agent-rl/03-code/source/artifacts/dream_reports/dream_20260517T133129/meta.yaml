@@ -1,0 +1,4265 @@
+dream_id: dream_20260517T133129
+project: cost-verify-agent-rl
+venue: ''
+focus: 'Post-novelty-check framing with updated competitive positioning: sign misattribution
+  as deeper mechanistic characterization (not just "uniform advantage"), P(correct|update)
+  quantification, dual mechanism separation, contrarian episode-level solution. Evaluate
+  with updated experiment plan including γ-sweep, K-sweep, ScienceWorld transfer.
+  Key question: does the contrarian positioning hold against Turn-PPO/GAGPO/HiPER
+  competitors?'
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: Episode-level 训练收敛到强 performance，双机制理论完整验证，selective verification 可行，contrarian
+        positioning 成立
+      key_assumptions:
+      - Episode-level GRPO 收敛至 ≥45% val success（pass@1），打破当前 28% plateau
+      - h-sweep 在 3 seeds 上均展示 h<10 的 sharp cliff（无 seed 是 outlier）
+      - Sign misattribution 实证：sign-vs-outcome correlation ≥0.95，sign-vs-local-quality
+        correlation <0.1
+      - GAE baseline 与 episode-level GRPO 持平或仅略优（delta <5pp），证明 episode-level 信息是关键而非
+        per-token credit
+      - Multi-seed std <5pp（5 seeds），结果 robust
+      - Selective verification（B-IAVR）训练收敛，action-change reward 有效
+      - ScienceWorld transfer 成功（episode-level ≥2x step-independent）
+      number_ranges:
+        episode_level_val_success_converged:
+        - 0.45
+        - 0.6
+        step_independent_h2_val_success:
+        - 0.0
+        - 0.05
+        h_sweep_cliff_threshold:
+        - 8
+        - 12
+        sign_vs_outcome_correlation:
+        - 0.95
+        - 1.0
+        sign_vs_local_quality_correlation:
+        - 0.0
+        - 0.1
+        gamma_k_magnitude_decay_r2:
+        - 0.85
+        - 0.99
+        multi_seed_mean_success:
+        - 0.42
+        - 0.58
+        multi_seed_std:
+        - 0.02
+        - 0.05
+        gae_vs_episode_level_delta_pp:
+        - -3
+        - 5
+        selective_verification_rate_reduction:
+        - 0.4
+        - 0.65
+        selective_success_delta_vs_always_on_pp:
+        - 0
+        - 3
+        scienceworld_episode_vs_step_ratio:
+        - 2.0
+        - 4.0
+      narrative_direction: '原始 framing 完全成立。Dual contribution paper：(1) 诊断 step-independent
+        灾难性失败的双机制 （sign misattribution + information loss），实证量化，contrarian solution（更粗的
+        episode-level 反而优于 finer credit）直接挑战社区 "越细越好" 假设；(2) 在此基础上实现 selective verification，
+        B-IAVR 以 40-65% cost reduction 匹配 always-on performance。三个 claims 全部成立， 不需要调整强度。GAE
+        baseline 验证了 episode-level 信息是核心而非 per-token credit。 ScienceWorld transfer
+        回应 single-env 审稿攻击。可投 NeurIPS/ICLR 主会。
+
+        '
+    median:
+      tier: median
+      meaning: Episode-level 训练有效但 performance 中等，双机制理论部分验证，selective verification
+        未完成或效果弱，paper 收缩为 diagnostic contribution
+      key_assumptions:
+      - Episode-level GRPO 收敛至 30-40% val success，足以证明优于 step-independent 但不足以支撑 cost-efficiency
+        story
+      - h-sweep cliff 存在但 sharpness 因 seed 而异（2/3 seeds 清晰，1 seed 模糊）
+      - Sign misattribution 实证部分验证：sign-vs-outcome correlation 0.80-0.95（存在但非完美）
+      - GAE baseline 优于 episode-level GRPO 5-12pp，削弱 contrarian positioning（finer
+        credit 确实有价值）
+      - Multi-seed std 5-8pp，reproducibility 可接受但不完美
+      - Selective verification 未完成（时间/资源不足）或效果弱（verification reduction <30%）
+      - ScienceWorld transfer 未执行或结果不明确
+      number_ranges:
+        episode_level_val_success_converged:
+        - 0.3
+        - 0.44
+        step_independent_h2_val_success:
+        - 0.0
+        - 0.08
+        h_sweep_cliff_threshold:
+        - 5
+        - 10
+        sign_vs_outcome_correlation:
+        - 0.8
+        - 0.94
+        sign_vs_local_quality_correlation:
+        - 0.05
+        - 0.2
+        gamma_k_magnitude_decay_r2:
+        - 0.6
+        - 0.84
+        multi_seed_mean_success:
+        - 0.28
+        - 0.42
+        multi_seed_std:
+        - 0.05
+        - 0.08
+        gae_vs_episode_level_delta_pp:
+        - 5
+        - 12
+        selective_verification_rate_reduction:
+        - 0.15
+        - 0.35
+        selective_success_delta_vs_always_on_pp:
+        - 3
+        - 8
+        scienceworld_episode_vs_step_ratio:
+        - 1.2
+        - 2.0
+      narrative_direction: 'Paper 收缩为 Plan A 方向：diagnostic + analysis contribution。标题变为
+        "Why Step-Independent RL Fails for LLM Multi-Turn Agents: Dual Mechanism Analysis"。
+        Claim 1 保留但调整措辞：sign misattribution 是 "dominant factor" 而非 "complete explanation"，
+        因为 correlation 未达 0.95。GAE 优势需正面讨论：承认 finer credit 在 performance 上有额外价值， 但
+        reframe 为 "episode-level 是 necessary minimum（消除 sign misattribution）， GAE
+        是 sufficient improvement（加 per-token credit）"，不再强推 contrarian "更粗就够了"。 Selective
+        verification（Claim 2/3）降为 preliminary results 或 future work。 h-sweep 和多 seed
+        机制分析需做得更深（community practice survey, 更多 ablation）来补偿 selective verification
+        贡献的缺失。仍可投同 venue 但作为 analysis paper track。
+
+        '
+    worst:
+      tier: worst
+      meaning: Episode-level plateau 未突破或回退，双机制理论被 GAE 结果反驳，contrarian positioning
+        不成立，需要全新 angle
+      key_assumptions:
+      - Episode-level GRPO plateau 在 25-30%，未显著超过当前 step 15 的 28.125%
+      - h-sweep cliff 不一致：部分 seed 无崩溃（h=5 也能学到 15-20%），削弱 'catastrophic failure' narrative
+      - Sign misattribution 实证模糊：sign-vs-outcome correlation 0.60-0.80，存在但非主因
+      - GAE baseline 大幅优于 episode-level GRPO（>15pp），证明 per-token credit 是关键，episode-level
+        信息不够
+      - Multi-seed std >8pp，部分 seed 成功部分 seed 失败，不 reproducible
+      - Selective verification 不可行（base agent 太弱，无法做 cost-efficiency）
+      - exp029 的 action_is_valid 持续低（~55%），模型未真正学到有效策略，只是 memorize 少量 pattern
+      number_ranges:
+        episode_level_val_success_converged:
+        - 0.22
+        - 0.3
+        step_independent_h2_val_success:
+        - 0.0
+        - 0.1
+        h_sweep_cliff_threshold:
+        - 3
+        - 8
+        sign_vs_outcome_correlation:
+        - 0.6
+        - 0.8
+        sign_vs_local_quality_correlation:
+        - 0.15
+        - 0.35
+        gamma_k_magnitude_decay_r2:
+        - 0.3
+        - 0.6
+        multi_seed_mean_success:
+        - 0.2
+        - 0.3
+        multi_seed_std:
+        - 0.08
+        - 0.15
+        gae_vs_episode_level_delta_pp:
+        - 12
+        - 25
+        selective_verification_rate_reduction:
+        - 0.0
+        - 0.15
+        selective_success_delta_vs_always_on_pp:
+        - 8
+        - 20
+        scienceworld_episode_vs_step_ratio:
+        - 0.8
+        - 1.5
+      narrative_direction: 原始 framing 的两个支柱均不成立：(1) "episode-level 就够了" 被 GAE 反驳（finer
+        credit 确实必要）， (2) "catastrophic failure" 被不一致的 h-sweep 削弱。需要完全 reframe。 新
+        angle 选项：(A) "Empirical Taxonomy of Credit Assignment Failure Modes in LLM
+        Agent RL"—— 不再 claim 单一解法，而是系统分类不同 CA 方法（step-independent, episode-level,
+        GAE, turn-level） 在不同条件下的 failure modes，填补 CA Survey (Zhang 2604.09459) 的实验空白。
+        h-sweep 的不一致性反而变成 contribution（"failure mode 是 context-dependent，非 universal"）。
+        (B) "When Does Coarse Credit Assignment Suffice? Conditions for Episode-Level
+        RL in Multi-Turn Agents"—— 承认 episode-level 不是 universal solution，但找到它 work
+        的 sufficient conditions （task length, reward sparsity, action space size），变成
+        prescriptive guideline paper。 两个 angle 均需额外 2-3 个实验但不降 venue。Selective verification
+        完全放弃。
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/best/paper.pdf
+  imagined_experiments:
+  - name: Episode-level GRPO convergence (exp029 continuation)
+    plan_id: plan_001
+    description: 'Episode-level GRPO 继续训练至 step 50+。当前 step15 val=28.125%， train=43.75%。观察
+      val success 是否突破 plateau 并收敛至 ≥45%。
+
+      '
+    expected_results:
+      step20_val_success: 0.34
+      step30_val_success: 0.42
+      step40_val_success: 0.47
+      step50_val_success: 0.48
+      converged_val_pass_at_1: 0.48
+      converged_val_pass_at_8: 0.96
+      converged_train_success: 0.56
+      converged_action_is_valid: 0.72
+      converged_action_is_effective: 0.85
+      converged_entropy: 0.15
+      converged_ppo_kl: 0.008
+      convergence_step: 45
+      total_training_hours: 22
+    result_rationale: '当前 train success（43.75%）大幅领先 val success（28.125%），说明模型已学到有效策略
+      但尚未充分泛化。这个 train-val gap 的缩小是 RL 训练的典型模式：早期策略过拟合训练任务 分布，随着 entropy 逐渐降低和 policy
+      稳定，模型学到更通用的行动模式（如 "先探索容器再 去目标位置" 的跨任务策略）。Step 15→30 是加速期（policy 从探索转向利用），step
+      30→50 进入收敛区。Val success 从 28%→48% 的跃升源于 episode-level 训练消除了 sign misattribution——正确的梯度方向保证了训练信号持续积累而非在好坏
+      window 间相互抵消。 Action_is_valid 从 55%→72% 的改善是 success 提升的副产品（成功 trajectory 自然包含
+      更多有效动作）。最终 48% 而非更高，因为 Qwen3-1.7B 的基础能力限制了 ceiling （pass@8=0.96 说明潜力在 ~50% 左右）。
+
+      '
+    tables:
+    - title: Episode-level GRPO training trajectory
+      columns:
+      - step
+      - val_success
+      - train_success
+      - action_is_valid
+      - entropy
+      - pass_at_8
+      rows:
+      - - 5
+        - 0.25
+        - 0.31
+        - 0.48
+        - 0.22
+        - 0.82
+      - - 10
+        - 0.25
+        - 0.38
+        - 0.51
+        - 0.19
+        - 0.88
+      - - 15
+        - 0.281
+        - 0.438
+        - 0.545
+        - 0.17
+        - 0.93
+      - - 20
+        - 0.34
+        - 0.48
+        - 0.6
+        - 0.16
+        - 0.94
+      - - 30
+        - 0.42
+        - 0.53
+        - 0.67
+        - 0.15
+        - 0.95
+      - - 40
+        - 0.47
+        - 0.55
+        - 0.71
+        - 0.15
+        - 0.96
+      - - 50
+        - 0.48
+        - 0.56
+        - 0.72
+        - 0.15
+        - 0.96
+    figures_description:
+    - 'Fig: Val success vs training step，显示 step 15-30 加速区和 step 40+ 收敛 plateau。附
+      train success 作为 upper envelope 参考。'
+    analysis: '收敛值 48% 是 best 档的核心支撑点。关键观察：(1) train-val gap 从 15pp (step15) 缩小到 8pp
+      (step50)，表明 policy 泛化逐步改善；(2) pass@8 从 0.93→0.96 表明多数任务在 8 次采样 内可解，constraint
+      是 greedy decoding 下的 deterministic 策略选择；(3) 48% 对比 exp028c 的 0% (step10 val)，episode-level
+      优势倍率 >10x，为 Claim 1 提供最直接证据。
+
+      '
+  - name: Context window h-sweep ablation (3 seeds each)
+    plan_id: plan_002
+    description: 'h={2, 5, 10, 20, full}，每值 3 seeds，各 15 steps。展示 credit assignment
+      cliff 的位置和 robustness。Paper 核心 Figure。
+
+      '
+    expected_results:
+      h2_mean_step15_success: 0.02
+      h2_std: 0.02
+      h2_collapse_onset_step_mean: 4.0
+      h5_mean_step15_success: 0.06
+      h5_std: 0.03
+      h5_collapse_onset_step_mean: 6.5
+      h10_mean_step15_success: 0.18
+      h10_std: 0.04
+      h10_collapse_onset_step_mean: null
+      h20_mean_step15_success: 0.31
+      h20_std: 0.04
+      h20_collapse_onset_step_mean: null
+      full_mean_step15_success: 0.38
+      full_std: 0.03
+      cliff_threshold: 10
+      all_seeds_show_cliff_below_h10: true
+    result_rationale: 'h-sweep 结果由双机制共同决定：(1) Information loss — h=2 的 2-step context
+      窗口完全无法 编码跨步策略（如 "先开冰箱再放东西"），模型只能做 reactive single-step 决策。h=5 稍好但 仍不足以覆盖 ALFWorld
+      平均 ~25 步的关键策略跨度。h=10 开始捕获部分多步依赖。h=20 覆盖 大部分策略所需上下文。(2) Sign misattribution —
+      h 越小，独立优化的 window 越多 （T/h 个），sign misattribution 影响越大。h=2 产生 ~12 个独立 window，每个
+      window 的 advantage 符号完全由 episode outcome 决定而非 window-local action quality。h=10
+      产生 ~2-3 个 window，misattribution 仍存在但影响较小。h=full 完全消除 window 间 sign 问题。Cliff
+      在 h=10 附近是因为这是两个机制 jointly 从 "勉强可学" 转为 "不可学" 的 临界点。已有 hsweep_h2_seed1 数据验证 h=2
+      collapse 模式（step3→4 onset，step9 归零）， 3-seed 复现确认非 outlier。
+
+      '
+    tables:
+    - title: h-sweep performance summary (step 15, 3 seeds)
+      columns:
+      - h
+      - mean_success
+      - std
+      - seed1
+      - seed2
+      - seed3
+      - collapse?
+      rows:
+      - - 2
+        - 0.02
+        - 0.02
+        - 0.0
+        - 0.03
+        - 0.02
+        - Yes (step 3-5)
+      - - 5
+        - 0.06
+        - 0.03
+        - 0.04
+        - 0.09
+        - 0.05
+        - Yes (step 6-8)
+      - - 10
+        - 0.18
+        - 0.04
+        - 0.22
+        - 0.16
+        - 0.15
+        - No (slow decline)
+      - - 20
+        - 0.31
+        - 0.04
+        - 0.34
+        - 0.28
+        - 0.31
+        - 'No'
+      - - full
+        - 0.38
+        - 0.03
+        - 0.4
+        - 0.36
+        - 0.38
+        - 'No'
+    - title: Collapse onset step (mean across seeds)
+      columns:
+      - h
+      - collapse_onset_step
+      - success_at_onset
+      - final_success
+      rows:
+      - - 2
+        - 4.0
+        - 0.15
+        - 0.02
+      - - 5
+        - 6.5
+        - 0.12
+        - 0.06
+      - - 10
+        - N/A
+        - N/A
+        - 0.18
+      - - 20
+        - N/A
+        - N/A
+        - 0.31
+      - - full
+        - N/A
+        - N/A
+        - 0.38
+    figures_description:
+    - 'Fig 1 (paper Figure 1): h vs mean success rate (step 15) with error bars (±1
+      std across 3 seeds)。清晰展示 h=10 处 sharp cliff。所有 3 seeds 在 h<10 区域一致 collapse。'
+    - 'Fig 1b: Training curves per h value (success vs step)，以 shaded region 表示 seed
+      间 std。h=2 和 h=5 的 collapse 轨迹清晰可见。'
+    analysis: 'Cliff 位于 h=10 处（从 18%→6%→2% 的两级跌落），且 3 seeds 无 outlier（所有 seed 在 h<10
+      时均展示 collapse）。这是 paper 最关键的 figure 之一：(1) 证明 step-independent 失败不是 hyperparameter
+      敏感性问题而是结构性缺陷；(2) cliff 的存在证明问题不是 "逐渐退化" 而是 "相变式崩溃"；(3) h=20 vs full 的 gap (31%
+      vs 38%) 说明即使 较大的 h 仍有 information loss，episode-level 是最优的。
+
+      '
+  - name: Multi-seed replication (5 seeds total)
+    plan_id: plan_003
+    description: '4 additional seeds for episode-level config，加原始 seed 共 5 个。 Full
+      training to convergence (~50 steps each)。Report mean ± std。
+
+      '
+    expected_results:
+      seed1_converged_success: 0.48
+      seed2_converged_success: 0.45
+      seed3_converged_success: 0.5
+      seed4_converged_success: 0.44
+      seed5_converged_success: 0.52
+      mean_success: 0.478
+      std_success: 0.031
+      ci_95_lower: 0.44
+      ci_95_upper: 0.52
+      all_seeds_above_40pct: true
+      convergence_step_range:
+      - 40
+      - 55
+    result_rationale: 'Episode-level GRPO 的 seed 间 variance 低（std ~3pp）有三个原因：(1) 消除
+      sign misattribution 后，所有 seed 收到一致的正确梯度方向——不像 step-independent 中 不同 seed 可能在不同
+      step 发生 collapse（hsweep_h2_seed1 在 step4 开始 collapse， 而 exp028c 是不同模式）；(2) GRPO
+      的 group-based advantage normalization 提供了 自然的 variance reduction（相比 REINFORCE）；(3)
+      ALFWorld 任务分布相对 structured （6 个 task type，每类有清晰的最优策略模式），policy 收敛目标较为 deterministic。
+      Mean 47.8% 在 best 档指标范围 [42%, 58%] 内偏中。各 seed 的差异主要来自早期 exploration 随机性决定的策略发现顺序（某些
+      seed 先学会 clean task 的策略，另一些 先学会 pick task）。
+
+      '
+    tables:
+    - title: Multi-seed episode-level GRPO results
+      columns:
+      - seed
+      - converged_success
+      - convergence_step
+      - final_action_is_valid
+      - final_pass_at_8
+      rows:
+      - - 1
+        - 0.48
+        - 45
+        - 0.72
+        - 0.96
+      - - 2
+        - 0.45
+        - 50
+        - 0.69
+        - 0.94
+      - - 3
+        - 0.5
+        - 42
+        - 0.74
+        - 0.97
+      - - 4
+        - 0.44
+        - 55
+        - 0.68
+        - 0.93
+      - - 5
+        - 0.52
+        - 40
+        - 0.76
+        - 0.97
+      - - mean±std
+        - 0.478±0.031
+        - 46.4±5.9
+        - 0.718±0.032
+        - 0.954±0.017
+    figures_description:
+    - 'Fig: 5 seeds training curves (val success vs step) overlay plot with individual
+      thin lines + bold mean line + shaded std band。'
+    analysis: 'Std=3.1pp 满足 <5pp 要求。95% CI [0.44, 0.52] 不包含 step-independent 的任何 positive
+      result（exp028c step10=0%），差异显著（p<0.001, Welch t-test）。 所有 5 seeds 均超过 40%，无
+      seed 是 failure case。
+
+      '
+  - name: GAE baseline comparison
+    plan_id: plan_003b
+    description: 'GAE(λ=0.95, γ=1.0) 和 GAE(λ=1.0, γ=1.0) 在 RAGEN 中实现。 15 steps × 3
+      seeds each。与 episode-level GRPO 对比。
+
+      '
+    expected_results:
+      gae_095_mean_step15_success: 0.36
+      gae_095_std: 0.04
+      gae_100_mean_step15_success: 0.39
+      gae_100_std: 0.04
+      episode_grpo_mean_step15_success: 0.38
+      episode_grpo_std: 0.03
+      gae_095_vs_episode_delta_pp: -2.0
+      gae_100_vs_episode_delta_pp: 1.0
+      both_far_exceed_step_independent: true
+      step_independent_h2_step15_success: 0.02
+    result_rationale: 'GAE 与 episode-level GRPO 持平（delta < 5pp）是 best 档的关键预测，因为它直接
+      支持 contrarian positioning：更精细的 per-token credit assignment（GAE 提供） 并不比更粗的 episode-level
+      credit（GRPO 提供）更好。机制解释：(1) GAE(λ=1,γ=1) 在极限下等价于 Monte Carlo return + baseline
+      subtraction，与 episode-level GRPO 的 group-normalized advantage 在信息量上相近——两者都使用完整
+      episode return， 差异仅在 advantage 计算方式（GAE 用 learned value function, GRPO 用 group
+      statistics）。 (2) GAE(λ=0.95) 引入了 temporal discounting 的 bias（偏向近期 reward）， 在
+      sparse binary reward（只有 episode end 有 reward）下这个 bias 没有帮助反而 略微损害性能。(3) Critic
+      head 的 estimation error（尤其是训练早期 value function 不准确时）引入 noise，抵消了 per-token credit
+      的理论优势。(4) 关键是：GAE 和 episode-level GRPO 都解决了 sign misattribution（因为都使用 episode-level
+      return）， 所以两者都远超 step-independent。性能差异只反映 credit assignment granularity 的 边际价值，在
+      sparse reward 设定下这个边际很小。
+
+      '
+    tables:
+    - title: GAE vs Episode-level GRPO comparison (step 15, 3 seeds)
+      columns:
+      - method
+      - mean_success
+      - std
+      - vs_step_independent_ratio
+      rows:
+      - - GAE(λ=0.95, γ=1.0)
+        - 0.36
+        - 0.04
+        - 18x
+      - - GAE(λ=1.0, γ=1.0)
+        - 0.39
+        - 0.04
+        - 19.5x
+      - - Episode-level GRPO
+        - 0.38
+        - 0.03
+        - 19x
+      - - Step-independent (h=2)
+        - 0.02
+        - 0.02
+        - 1x (baseline)
+    figures_description:
+    - 'Fig: Bar chart comparing 4 methods, 显示 GAE 与 episode-level GRPO 持平，两者均远超 step-independent。Error
+      bars for std across seeds。'
+    analysis: 'GAE 与 episode-level GRPO 的 delta < 5pp 是 paper 的关键论据：证明 episode-level
+      信息（而非 per-token credit assignment）是多轮 agent RL 成功的核心要素。 这直接挑战 "越细越好" 的社区假设——Turn-PPO、GAGPO、iStar
+      都投入复杂机制做 finer credit，但我们的证据表明在 sparse reward 多轮设定下，这些复杂性是不必要的。 GRPO 的简洁性（无
+      critic、无 value function）反而是优势。
+
+      '
+  - name: Episode-level + valid_action_bonus (plateau-breaker, D056)
+    plan_id: plan_003c
+    description: '在 episode-level config 上加 valid_action_bonus=0.05。测试是否安全提升 action_is_valid
+      且突破 exp029 的 23-28% success plateau。
+
+      '
+    expected_results:
+      step15_val_success: 0.36
+      step15_val_action_is_valid: 0.82
+      step15_val_action_is_effective: 0.9
+      valid_bonus_vs_task_reward_ratio: 0.18
+      gaming_detected: false
+      success_vs_baseline_delta_pp: 8.0
+      action_is_valid_improvement_pp: 27.0
+    result_rationale: 'Episode-level 训练下 valid_action_bonus 安全有效，原因与 step-independent
+      下的 gaming 机制截然不同。在 exp013f（step-independent）中，model 优化的是每个独立 window 的 per-step
+      reward，所以累积的 valid_action_bonus（~4.5 over 50 steps） 主导了 learning signal，model
+      学会 "总是输出有效但无用的动作" 来最大化 bonus。 在 episode-level 下，model 优化的是整条 trajectory 的 total
+      reward（success=10 + Σvalid_bonus）。关键差异：GRPO 的 advantage 是 group-normalized 的，所以所有
+      trajectory 都有相似的 valid_bonus 总量（因为 action count 大致相同），advantage 的区分度主要来自 success
+      reward（有/无 10 分的差异远大于 valid_bonus 的微小变化）。 因此 model 被引导向 success 方向学习，同时 valid_action_bonus
+      作为 exploration shaping 帮助 model 避免输出无效动作（从 55%→82%），间接提升 success（有效动作 是成功的前提）。36%
+      的 success（vs baseline 28%）表明打破了 plateau。
+
+      '
+    tables:
+    - title: Episode-level + valid_action_bonus vs baseline (step 15)
+      columns:
+      - config
+      - success
+      - action_is_valid
+      - gaming_indicator
+      rows:
+      - - episode-level baseline
+        - 0.281
+        - 0.545
+        - N/A
+      - - episode-level + bonus
+        - 0.36
+        - 0.82
+        - 'No'
+      - - step-independent + bonus (exp013f)
+        - 0.0
+        - 0.975
+        - Yes (reward ratio 1:67)
+    figures_description:
+    - 'Fig: action_is_valid 和 success 的双轴 training curves 对比（baseline vs +bonus vs
+      exp013f）。exp013f 展示 gaming pattern（valid↑ success↓），episode-level +bonus 展示
+      safe co-improvement。'
+    analysis: '这个实验同时服务于两个目的：(1) 作为 plateau-breaker 提升 episode-level 基线 performance；(2)
+      作为 dense reward gaming 是 step-independent-specific 的 因果证据（same bonus, different
+      training mode → gaming vs no-gaming）。
+
+      '
+  - name: Credit assignment mechanism empirical verification (paper Figure 2)
+    plan_id: plan_004
+    description: 'Per-window advantage logging 实证验证 sign misattribution 机制。 从 h=2
+      seed 2 收集 advantage 数据并分析 sign-outcome correlation。
+
+      '
+    expected_results:
+      sign_vs_outcome_correlation: 0.97
+      sign_vs_local_quality_correlation: 0.04
+      gamma_k_magnitude_decay_r2: 0.92
+      episode_level_advantage_sign_variance: 0.0
+      episode_level_advantage_magnitude_cv: 0.0
+      success_episodes_all_positive_pct: 0.98
+      failure_episodes_all_negative_pct: 0.96
+      good_window_in_failure_negative_pct: 0.94
+      bad_window_in_success_positive_pct: 0.95
+      n_episodes_analyzed: 128
+      n_windows_analyzed: 1536
+    result_rationale: 'Sign misattribution 的 correlation 结构由 RAGEN 的 step_independent
+      实现直接决定。 代码路径 agent_trainer.py:271-340 中，每个 window 的 return 由 compute_step_discounted_returns()
+      计算：return_w = Σ_{t=w}^{T} γ^(t-w) * r_t。 由于 ALFWorld 是 sparse binary reward（只有
+      episode 最后一步有 +10 或 0）， 所有 window 的 return 只取决于 episode 是否成功。成功 episode：return_w
+      = γ^(T-w) * 10 > 0（所有 window 正），失败 episode：return_w = 0（经 GRPO group normalization
+      后 变为负 advantage）。因此 advantage sign 与 episode outcome 的 correlation 接近 1.0 （0.97
+      而非 1.0 是因为 GRPO normalization 中偶有 group 全成功或全失败的 edge case）。 Sign 与 local action
+      quality 的 correlation 接近 0（0.04）是因为 advantage sign 完全由 episode outcome 决定，与
+      window 内 action 质量无关——好 window 坏 window 在同一 episode 内获得相同符号的 advantage。γ^k decay
+      的 R²=0.92 反映 magnitude 随 window 位置的指数衰减（早期 window 信号更弱）。Episode-level 模式下所有
+      token 共享一个 advantage（sign variance = 0, magnitude CV = 0），没有 position-dependent
+      distortion。
+
+      '
+    tables:
+    - title: 'Advantage sign analysis: step-independent (h=2) vs episode-level'
+      columns:
+      - metric
+      - step_independent_h2
+      - episode_level
+      rows:
+      - - sign-outcome correlation
+        - 0.97
+        - N/A (single advantage)
+      - - sign-local_quality correlation
+        - 0.04
+        - N/A
+      - - γ^k magnitude decay R²
+        - 0.92
+        - N/A (no decay)
+      - - advantage sign variance (within episode)
+        - 0.0
+        - 0.0
+      - - '% success eps with all-positive windows'
+        - 98%
+        - 100%
+      - - '% failure eps with all-negative windows'
+        - 96%
+        - 100%
+    - title: Window-level advantage examples (2 success + 2 failure episodes)
+      columns:
+      - episode
+      - outcome
+      - window
+      - advantage
+      - local_quality_proxy
+      rows:
+      - - ep_001
+        - success
+        - w1 (earliest)
+        - '+0.31'
+        - low (exploration)
+      - - ep_001
+        - success
+        - w6 (goal action)
+        - '+2.47'
+        - high
+      - - ep_001
+        - success
+        - w12 (terminal)
+        - '+7.89'
+        - medium
+      - - ep_042
+        - failure
+        - w1
+        - '-0.28'
+        - high (good start)
+      - - ep_042
+        - failure
+        - w5
+        - '-1.93'
+        - low (wrong room)
+      - - ep_042
+        - failure
+        - w10
+        - '-6.52'
+        - medium
+    figures_description:
+    - 'Fig 2a (paper Figure 2 left): Scatter plot — advantage sign (y=+1/-1) vs episode
+      outcome (x=success/failure)，颜色编码 local action quality。几乎完美的 sign-outcome alignment，且
+      high/low quality points 混合分布在每侧（证明 sign 与 quality 无关）。'
+    - 'Fig 2b (paper Figure 2 right): Advantage magnitude vs window position (in success
+      episodes)，展示 γ^k 指数衰减拟合线（R²=0.92）。'
+    - 'Fig 2c: Episode-level control — 所有 token 的 advantage 值相同（水平线），无 position/sign
+      variation。'
+    analysis: '这是 paper 的理论核心 figure。三个 panel 分别证明：(a) advantage sign 由 episode outcome
+      决定（sign misattribution，r=0.97），(b) magnitude 按 γ^k 衰减 （information loss 的辅助效应，R²=0.92），(c)
+      episode-level 完全消除两者。 Sign misattribution 是 "方向错误"（好 action 被惩罚、坏 action 被奖励），
+      比 magnitude decay（"信号弱"）更致命——这解释了为什么 h=2 catastrophically collapses 而非只是 "学得慢"。
+
+      '
+  - name: Action-change statistics from always-on runs
+    plan_id: plan_005
+    description: '从 exp029 converged checkpoint 收集 always-on verification 的 action-change
+      统计。
+
+      '
+    expected_results:
+      confirmatory_rate: 0.72
+      action_change_rate: 0.28
+      action_change_success_correlation: 0.35
+      per_task_action_change_rate_pick: 0.22
+      per_task_action_change_rate_clean: 0.31
+      per_task_action_change_rate_heat: 0.3
+      per_task_action_change_rate_cool: 0.27
+      per_task_action_change_rate_examine: 0.25
+      per_task_action_change_rate_pick_two: 0.35
+      mean_verifications_per_episode: 18.5
+      mean_action_changes_per_episode: 5.2
+      action_change_at_critical_steps_rate: 0.48
+      n_episodes: 256
+    result_rationale: '72% confirmatory rate 反映 trained agent 的 policy 已经较为 deterministic——大部分
+      时候 verification 后 agent 选择相同动作，说明 verification 并未提供新信息。28% 的 action change 集中在两类
+      step：(1) 关键决策点（如选择去哪个房间、选择哪个容器）， 这些 step 的 policy entropy 较高；(2) 纠错点（前一步执行了无效动作后需要修正策略）。
+      Action change 与 success 的正相关（r=0.35）表明 verification 触发的改变倾向于 改善决策——成功 episode
+      中更多的 action change 意味着 agent 在关键点做出了修正。 pick_two 任务的 action_change_rate 最高（0.35）因为它需要更多分支决策（选两个物品
+      的顺序和位置），每个决策点的 uncertainty 更高。
+
+      '
+    tables:
+    - title: Action-change statistics breakdown
+      columns:
+      - task_type
+      - episodes
+      - confirmatory_rate
+      - action_change_rate
+      - success_with_change
+      - success_without_change
+      rows:
+      - - pick
+        - 85
+        - 0.78
+        - 0.22
+        - 0.52
+        - 0.45
+      - - clean
+        - 52
+        - 0.69
+        - 0.31
+        - 0.5
+        - 0.38
+      - - heat
+        - 38
+        - 0.7
+        - 0.3
+        - 0.48
+        - 0.4
+      - - cool
+        - 30
+        - 0.73
+        - 0.27
+        - 0.53
+        - 0.43
+      - - examine
+        - 21
+        - 0.75
+        - 0.25
+        - 0.47
+        - 0.42
+      - - pick_two
+        - 30
+        - 0.65
+        - 0.35
+        - 0.44
+        - 0.33
+      - - overall
+        - 256
+        - 0.72
+        - 0.28
+        - 0.49
+        - 0.41
+    figures_description:
+    - 'Fig: Per-step action-change probability heatmap across episode progression
+      (x=normalized step position 0-1, y=task type)。显示 action change 集中在 episode 中期（探索→执行转折点）。'
+    analysis: '72% confirmatory rate 直接支持 selective verification 的 motivation：大部分
+      verification 是浪费计算资源的。同时 r=0.35 的 positive correlation 说明 action change 不是随机噪声——它携带关于
+      episode 成功的预测信息，为 action-change-based reward 提供了 grounding。
+
+      '
+  - name: Selective verification implementation
+    plan_id: plan_006
+    description: 'RAGEN 框架中实现 binary verify/skip decision。纯代码实现，无 GPU 结果。
+
+      '
+    expected_results:
+      implementation_complete: true
+      special_tokens_added:
+      - <verify>
+      - <skip>
+      reward_formula: R = task_success + α * action_change_when_verified - β * verification_cost
+      alpha: 0.5
+      beta: 0.1
+      code_changes_files: 4
+      unit_tests_passing: true
+    result_rationale: '实现层面是 engineering work，best 档下顺利完成。关键设计决策：(1) 在每个 step 的 action
+      output 前插入 verify/skip special token（最小化对现有 pipeline 的侵入）； (2) α=0.5 和 β=0.1
+      的初始值基于 plan_005 的 action-change statistics（action change 约 28% 的时间发生，verification
+      cost 需要足够低以允许 ~40-60% verification rate）；(3) 当 agent 选择 verify 但未 change action
+      时，reward 减少 β（惩罚 无信息的 verification）；当 agent 选择 verify 且 changed action 时，reward
+      增加 α（奖励信息性 verification）。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '纯实现步骤，为 plan_007 训练做准备。
+
+      '
+  - name: B-IAVR selective verification training
+    plan_id: plan_007
+    description: '从 exp029 best checkpoint 初始化，用 action-change reward 训练 selective
+      verification policy。Episode-level GRPO。
+
+      '
+    expected_results:
+      converged_val_success: 0.46
+      converged_verification_rate: 0.42
+      verification_rate_reduction_vs_always_on: 0.58
+      success_delta_vs_always_on_pp: -2.0
+      converged_action_change_when_verified: 0.52
+      converged_skip_accuracy: 0.88
+      convergence_step: 30
+      training_hours: 36
+      cost_reduction_total_tokens: 0.52
+    result_rationale: 'B-IAVR 收敛到 42% verification rate（58% reduction）且 success 仅降
+      2pp（46% vs 48% always-on），原因：(1) 从 converged checkpoint 初始化意味着 agent 已有强 policy
+      base，只需学习 verify/skip 决策（低维问题，收敛快）；(2) Action-change reward 有效 引导 agent 识别 "高
+      uncertainty 步骤" 和 "低 uncertainty 步骤"——agent 学会在 policy entropy 高的 decision point（如选择房间）verify，在
+      routine step（如 "go to countertop"）skip；(3) 42% verification rate 意味着 agent 平均每
+      episode verify ~7.8 次 (18.5 * 0.42)，跳过 ~10.7 次。被跳过的 step 中 88% 确实是 confirmatory
+      的（skip_accuracy=0.88），说明 agent 精确识别了不需要 verification 的 step；(4) 2pp 的 success
+      drop 来自少数 false skip——agent 在个别关键 decision point 错误地 skip 了 verification，导致错误决策未被纠正。这个
+      trade-off 在 cost-efficiency 角度是有利的。
+
+      '
+    tables:
+    - title: B-IAVR training trajectory
+      columns:
+      - step
+      - success
+      - verification_rate
+      - action_change_when_verified
+      - skip_accuracy
+      rows:
+      - - 0
+        - 0.48
+        - 1.0
+        - 0.28
+        - N/A
+      - - 5
+        - 0.47
+        - 0.72
+        - 0.35
+        - 0.75
+      - - 10
+        - 0.46
+        - 0.58
+        - 0.42
+        - 0.82
+      - - 20
+        - 0.46
+        - 0.45
+        - 0.5
+        - 0.86
+      - - 30
+        - 0.46
+        - 0.42
+        - 0.52
+        - 0.88
+    figures_description:
+    - 'Fig: Dual-axis training curve — success rate (left y) 基本水平，verification rate
+      (right y) 从 100%→42% 逐步下降。'
+    analysis: '58% verification reduction 在 best 档指标范围 [40%, 65%] 的上部。关键：agent 学会了
+      选择性 verify——action_change_when_verified 从 0.28 (always-on) 提升到 0.52 （selective），说明
+      agent 确实在选择 informative step 做 verify。
+
+      '
+  - name: Selective verification full comparison
+    plan_id: plan_008
+    description: '同一 val set 上对比 always-on / B-IAVR / no-verify / random-p / confidence-threshold。
+
+      '
+    expected_results:
+      always_on_success: 0.48
+      always_on_verification_rate: 1.0
+      always_on_total_tokens: 1.0
+      biavr_success: 0.46
+      biavr_verification_rate: 0.42
+      biavr_total_tokens: 0.52
+      no_verify_success: 0.36
+      no_verify_verification_rate: 0.0
+      no_verify_total_tokens: 0.38
+      random_p40_success: 0.41
+      random_p40_verification_rate: 0.4
+      random_p40_total_tokens: 0.55
+      confidence_threshold_success: 0.43
+      confidence_threshold_verification_rate: 0.45
+      confidence_threshold_total_tokens: 0.58
+      biavr_pareto_dominant: true
+    result_rationale: 'B-IAVR 在 Pareto frontier 上 dominant 的原因：(1) vs always-on：仅
+      -2pp success 但节省 48% tokens，efficiency 远高；(2) vs no-verify：+10pp success 因为
+      selective verification 在关键 step 纠正了错误；(3) vs random-p（以 40% probability 随机 verify）：+5pp
+      success at comparable verification rate，因为 random 浪费 verify 在 不需要的 step 且错过关键
+      step；(4) vs confidence-threshold（基于 logit entropy 决定是否 verify）：+3pp success
+      at lower verification rate，因为 model 的 token-level confidence 不完全反映 decision-level
+      uncertainty（一个 confident-looking action 可能在 trajectory-level 是错误的，confidence
+      无法捕捉这种 temporal credit structure， 而 B-IAVR 通过 RL 学到了 trajectory-aware 的 verify
+      策略）。
+
+      '
+    tables:
+    - title: Selective verification comparison (same val set, 128 episodes)
+      columns:
+      - method
+      - success_rate
+      - verification_rate
+      - relative_tokens
+      - success_per_token
+      rows:
+      - - always-on
+        - 0.48
+        - 1.0
+        - 1.0
+        - 0.48
+      - - B-IAVR (ours)
+        - 0.46
+        - 0.42
+        - 0.52
+        - 0.88
+      - - confidence-threshold
+        - 0.43
+        - 0.45
+        - 0.58
+        - 0.74
+      - - random-p=0.4
+        - 0.41
+        - 0.4
+        - 0.55
+        - 0.75
+      - - no-verify
+        - 0.36
+        - 0.0
+        - 0.38
+        - 0.95
+    figures_description:
+    - 'Fig (paper Figure 4): Pareto frontier plot — x=relative inference cost, y=success
+      rate。B-IAVR 在 frontier 的最优位置（highest success at given cost）。'
+    - 'Fig: Per-task breakdown bar chart — 6 task types × 5 methods。'
+    analysis: 'B-IAVR 的 success-per-token ratio (0.88) 是所有方法中最高的（always-on=0.48， 说明
+      always-on 一半以上的 verification 是浪费的）。这是 Claim 3 的核心证据。
+
+      '
+  - name: No-verify ablation
+    plan_id: plan_009
+    description: 'Episode-level GRPO 训练但完全移除 self-verification。Verification 价值的 lower
+      bound。
+
+      '
+    expected_results:
+      converged_val_success: 0.36
+      converged_action_is_valid: 0.65
+      success_drop_vs_always_on_pp: 12.0
+      convergence_step: 40
+    result_rationale: '移除 verification 后 success 降 12pp（48%→36%）反映了 verification 在
+      ALFWorld 中 的两个作用：(1) 错误纠正——agent 在某些 step 选择了错误动作（如 go to wrong room）， verification
+      提供了 second chance 来修正。没有 verification，这些错误直接导致 episode 失败。(2) 信息获取——verification
+      过程中 agent 重新审视 observation，有时发现之前 忽略的信息（如 "there is a cup on the shelf" 被遗漏）。12pp
+      的 drop 在 best 档 预期内（≥10pp），足以证明 verification 有价值。同时 36% 的 success 说明 episode-level
+      policy 本身已经很强——verification 是 incremental improvement 而非必需品。 Action_is_valid
+      下降（72%→65%）因为 verification 提供的 error feedback 在某些 case 帮助 model 避免后续的 invalid
+      action。
+
+      '
+    tables:
+    - title: Verification ablation impact
+      columns:
+      - config
+      - success
+      - action_is_valid
+      - avg_steps_to_success
+      rows:
+      - - always-on verification
+        - 0.48
+        - 0.72
+        - 18.3
+      - - no verification
+        - 0.36
+        - 0.65
+        - 16.8
+      - - delta
+        - -12pp
+        - -7pp
+        - -1.5 steps
+    figures_description: []
+    analysis: '12pp gap 证明 verification 有价值，但 36% 无验证的 success 也说明 episode-level training
+      本身学到了 strong policy。这支持 "verification 是 optional optimization, not critical
+      requirement" 的定位，让 selective verification 的 framing 更合理—— 我们不是 "必须 verify 才能
+      work"，而是 "verify 有帮助，如何只在有帮助时 verify"。
+
+      '
+  - name: Entropy-controlled action-change analysis
+    plan_id: plan_010
+    description: '控制 policy entropy 后检验 action-change 与 success 的偏相关。 回应 "action change
+      = noise" 审稿攻击。
+
+      '
+    expected_results:
+      raw_correlation: 0.35
+      partial_correlation_controlling_entropy: 0.28
+      partial_correlation_p_value: 0.003
+      n_episodes: 256
+      entropy_strata: 4
+      correlation_by_stratum_low: 0.25
+      correlation_by_stratum_mid_low: 0.3
+      correlation_by_stratum_mid_high: 0.29
+      correlation_by_stratum_high: 0.26
+    result_rationale: '控制 entropy 后 partial correlation 仍显著（0.28, p=0.003）证明 action
+      change 不仅仅 是 policy uncertainty 的 proxy。机制：高 entropy step 确实更可能 change action（因为
+      policy 不确定），但 action change 的信息价值超越了 uncertainty 本身——verification 触发的 change
+      反映了 agent 在 re-examination 后发现了 initial decision 的错误， 这种 "informed correction"
+      与 success 的相关性在所有 entropy 层级中都存在。 四个 entropy stratum 的 correlation 相对稳定（0.25-0.30），说明
+      action-change-success relationship 是 robust 的，不是被高 entropy bin 驱动的 artifact。
+
+      '
+    tables:
+    - title: Entropy-stratified action-change analysis
+      columns:
+      - entropy_stratum
+      - n_steps
+      - action_change_rate
+      - correlation_with_success
+      - p_value
+      rows:
+      - - low (0-0.1)
+        - 420
+        - 0.15
+        - 0.25
+        - 0.02
+      - - mid-low (0.1-0.3)
+        - 380
+        - 0.25
+        - 0.3
+        - 0.008
+      - - mid-high (0.3-0.6)
+        - 410
+        - 0.35
+        - 0.29
+        - 0.005
+      - - high (0.6+)
+        - 326
+        - 0.45
+        - 0.26
+        - 0.01
+      - - overall (partial)
+        - 1536
+        - 0.28
+        - 0.28
+        - 0.003
+    figures_description:
+    - 'Fig: 4-panel scatter plots (one per entropy stratum) showing action-change
+      rate vs episode success，with partial correlation annotation。'
+    analysis: 'Partial correlation 0.28 (p=0.003) 在 best 档下充分回应 "action change = noise"
+      攻击。Stratum-level stability 是额外的 robustness 证据。
+
+      '
+  - name: 'Causal intervention: random vs verification-triggered changes'
+    plan_id: plan_011
+    description: '以相同 rate 注入 random action changes，对比 verification-triggered changes
+      的 task success。因果推断证据。
+
+      '
+    expected_results:
+      success_rate_verification_triggered: 0.48
+      success_rate_random_change: 0.33
+      success_rate_no_change: 0.36
+      delta_triggered_vs_random_pp: 15.0
+      delta_triggered_vs_no_change_pp: 12.0
+      n_episodes_per_condition: 128
+      p_value_triggered_vs_random: 0.001
+    result_rationale: 'Verification-triggered changes 显著优于 random changes（+15pp），证明
+      verification 过程 genuinely 帮助 agent 做出更好的决策（因果效应），而不仅仅是 "任何 change 都有 帮助"。Random
+      changes 反而比 no-change 略差（33% vs 36%），因为随机改变一个已经 合理的决策会导致更多错误。Verification-triggered
+      changes 只在 agent 认为当前决策 有误时才发生（28% 的 step），且这些改变指向更正确的方向——这是 trained policy
+      的 verification 过程提供了 informed error correction，而非 random perturbation。 15pp
+      的 delta 是强因果证据，p<0.001。
+
+      '
+    tables:
+    - title: Causal intervention comparison
+      columns:
+      - condition
+      - success
+      - action_change_rate
+      - p_value_vs_triggered
+      rows:
+      - - verification-triggered
+        - 0.48
+        - 0.28
+        - —
+      - - random (matched rate)
+        - 0.33
+        - 0.28
+        - 0.001
+      - - no change baseline
+        - 0.36
+        - 0.0
+        - <0.001
+    figures_description:
+    - 'Fig: Bar chart with significance markers (***, p<0.001) 展示三个条件的 success rate。'
+    analysis: '15pp delta 是 Claim 2 的因果证据支柱。Verification-triggered > no-change > random
+      的排序说明 (a) verification 有值，(b) informed change 远优于 uninformed change。
+
+      '
+  - name: Reward signal ablation (action-change vs alternatives)
+    plan_id: plan_012
+    description: 'B-IAVR 用三种 reward 训练对比：action-change / random-trigger / confidence-based。
+
+      '
+    expected_results:
+      action_change_success: 0.46
+      action_change_verification_rate: 0.42
+      action_change_cost_reduction: 0.52
+      random_trigger_success: 0.4
+      random_trigger_verification_rate: 0.55
+      random_trigger_cost_reduction: 0.38
+      confidence_success: 0.43
+      confidence_verification_rate: 0.5
+      confidence_cost_reduction: 0.42
+    result_rationale: 'Action-change reward 最优因为它直接衡量 verification 的 informativeness（是否改变了
+      决策）。Random-trigger reward（随机时机给 reward）无法引导 agent 学习 when to verify 的有用 pattern，导致
+      verification rate 高（55%，不知道何时 skip）且 success 低 （40%，浪费 verification 在无用 step）。Confidence-based
+      reward（基于 logit entropy 决定 verify 价值）性能居中——它能捕捉 token-level uncertainty 但错过
+      trajectory-level 的 verification 需求（如一个 confident 但在 trajectory context 中错误的
+      action）。 Action-change 的优势在于它是 outcome-informed 的 signal（verification 是否 actually
+      改变了行为），而非 proxy signal（uncertainty/randomness）。
+
+      '
+    tables:
+    - title: Reward signal ablation
+      columns:
+      - reward_type
+      - success
+      - verif_rate
+      - cost_reduction
+      - pareto_efficient
+      rows:
+      - - action-change (ours)
+        - 0.46
+        - 0.42
+        - 0.52
+        - 'Yes'
+      - - confidence-based
+        - 0.43
+        - 0.5
+        - 0.42
+        - 'No'
+      - - random-trigger
+        - 0.4
+        - 0.55
+        - 0.38
+        - 'No'
+    figures_description:
+    - 'Fig: Pareto frontier plot comparing 3 reward variants, action-change dominates。'
+    analysis: 'Action-change reward 在 success 和 cost reduction 两个维度上都最优， 验证了 action
+      change 作为 verification informativeness signal 的有效性。
+
+      '
+  - name: ARES reproduction + comparison
+    plan_id: plan_013
+    description: '复现 ARES SFT router on ALFWorld（same model），与 B-IAVR head-to-head
+      对比。
+
+      '
+    expected_results:
+      ares_success: 0.44
+      ares_verification_rate: 0.55
+      ares_cost_reduction: 0.38
+      biavr_success: 0.46
+      biavr_verification_rate: 0.42
+      biavr_cost_reduction: 0.52
+      biavr_vs_ares_cost_reduction_delta_pp: 14.0
+      biavr_vs_ares_success_delta_pp: 2.0
+    result_rationale: 'B-IAVR 在 cost reduction 上超越 ARES 14pp（52% vs 38%）且 success
+      略高（+2pp）。 ARES 使用 SFT-trained router（supervision 来自 heuristic labels），存在两个限制：
+      (1) SFT label quality ceiling——heuristic 标注的 verify/skip decision 不一定最优， router
+      只能学到 heuristic 的水平；(2) 无 exploration——SFT 是 imitation learning， router 无法发现
+      heuristic 未覆盖的 verification pattern。B-IAVR 用 RL 训练 （action-change reward），agent
+      通过 exploration 发现比 heuristic 更精准的 verification timing。另外 ARES 的 continuous effort
+      设计（连续 effort 值而非 binary verify/skip）在 ALFWorld 的 binary decision 结构下未必优于简洁的
+      binary approach。 ARES 的 verification_rate=55% 高于 B-IAVR 的 42%，说明 ARES router
+      更保守（不确定 时倾向 verify），这牺牲了 cost efficiency。
+
+      '
+    tables:
+    - title: B-IAVR vs ARES comparison (same model, same val set)
+      columns:
+      - method
+      - success
+      - verif_rate
+      - cost_reduction
+      - training_method
+      rows:
+      - - B-IAVR (ours)
+        - 0.46
+        - 0.42
+        - 0.52
+        - RL (action-change reward)
+      - - ARES (reproduced)
+        - 0.44
+        - 0.55
+        - 0.38
+        - SFT (heuristic labels)
+      - - delta
+        - +2pp
+        - -13pp
+        - +14pp
+        - —
+    figures_description:
+    - 'Fig: Head-to-head Pareto plot with ARES and B-IAVR on same axes。'
+    analysis: '14pp cost reduction 优势直接回应 "ARES differentiation" 审稿攻击。核心差异化： RL >
+      SFT for learning verification policy（RL 可 explore optimal timing, SFT 被 heuristic
+      label quality 限制）。
+
+      '
+  - name: ScienceWorld transfer (episode-level advantage)
+    plan_id: plan_014
+    description: 'ScienceWorld 环境上验证 episode-level vs step-independent。不同环境，类似多轮结构。
+
+      '
+    expected_results:
+      episode_level_success: 0.32
+      step_independent_h2_success: 0.04
+      step_independent_h10_success: 0.11
+      episode_vs_step_h2_ratio: 8.0
+      episode_vs_step_h10_ratio: 2.9
+      episode_vs_step_independent_mean_ratio: 3.2
+      scienceworld_task_diversity: 10
+      episode_convergence_step: 20
+    result_rationale: 'ScienceWorld 的 episode-level 优势比率 3.2x（32% vs 10% step-independent
+      均值）在 best 档范围 [2x, 4x] 内。ScienceWorld 与 ALFWorld 共享关键结构特征：(1) 多轮交互 （平均 ~30 steps），(2)
+      sparse binary reward（任务完成/未完成），(3) 需要跨步策略 规划（如 science 实验需要按顺序操作多个 object）。这些结构特征正是
+      sign misattribution 和 information loss 的触发条件。因此 episode-level 的优势可以 transfer。
+      绝对 success 低于 ALFWorld（32% vs 48%）因为 ScienceWorld 任务更复杂（需要 domain-specific knowledge，如化学反应、物理实验步骤），但
+      relative advantage （3.2x ratio）甚至高于 ALFWorld，因为 ScienceWorld 的 longer horizon（~30
+      steps vs ~25 steps）使 sign misattribution 更严重（更多 window，每个 window 的 sign 偏差对训练的干扰更大）。Step-independent
+      h=2 几乎完全 collapse（4%），h=10 也仅 11%，验证了 cliff 现象在新环境中的 generalizability。
+
+      '
+    tables:
+    - title: 'ScienceWorld: Episode-level vs Step-independent'
+      columns:
+      - method
+      - success
+      - convergence_step
+      - collapse?
+      rows:
+      - - episode-level
+        - 0.32
+        - 20
+        - 'No'
+      - - step-independent (h=2)
+        - 0.04
+        - N/A
+        - Yes (step 5)
+      - - step-independent (h=10)
+        - 0.11
+        - N/A
+        - Partial
+    figures_description:
+    - 'Fig: ALFWorld vs ScienceWorld side-by-side bar charts，展示 episode-level advantage
+      在两个环境中的一致性。'
+    analysis: 'Cross-environment transfer 是回应 "single environment" 审稿攻击的关键证据。 3.2x
+      ratio 证明 dual mechanism 不是 ALFWorld-specific artifact，而是 sparse-reward multi-turn
+      任务的通用问题。
+
+      '
+  - name: 7B model scaling verification
+    plan_id: plan_015
+    description: 'Qwen3-7B 上验证 episode-level vs step-independent。回应 model size concern。
+
+      '
+    expected_results:
+      episode_level_7B_success: 0.58
+      step_independent_h2_7B_success: 0.08
+      step_independent_h10_7B_success: 0.22
+      episode_vs_step_ratio_7B: 3.6
+      episode_7B_vs_1_7B_improvement_pp: 10.0
+      step_independent_7B_vs_1_7B_improvement_pp: 6.0
+      convergence_step_7B: 30
+    result_rationale: '7B model 在两个 regime 下都更强（episode-level 58% vs 1.7B 48%；step-independent
+      h=10 22% vs 1.7B 18%），但 episode-level 的 relative advantage 更大（3.6x vs 3.0x at
+      1.7B, comparing h=10）。原因：(1) 7B 的更强 base capability 意味着 policy 有更多 "正确策略" 可学，但
+      sign misattribution 仍然阻止 step-independent 学到它们—— 更强的 model 反而让 misattribution
+      的 "浪费" 更显著；(2) 7B 的更长 context window 利用能力使 episode-level training 的优势更大（1.7B
+      可能在 full context 下也有信息 处理限制，7B 更充分利用全 episode 信息）。Step-independent 在 7B 下表现略好于
+      1.7B 但仍远不及 episode-level，说明 model scaling alone 不能解决 sign misattribution—— 这支持
+      "问题在 training methodology 而非 model capacity" 的 framing。
+
+      '
+    tables:
+    - title: 7B vs 1.7B scaling comparison
+      columns:
+      - method
+      - 1.7B success
+      - 7B success
+      - scaling gain
+      rows:
+      - - episode-level
+        - 0.48
+        - 0.58
+        - +10pp
+      - - step-independent (h=10)
+        - 0.18
+        - 0.22
+        - +4pp
+      - - step-independent (h=2)
+        - 0.02
+        - 0.08
+        - +6pp
+      - - episode/step ratio
+        - 2.7x
+        - 3.6x
+        - ratio increases
+    figures_description:
+    - 'Fig: Grouped bar chart — 1.7B vs 7B × episode/step-independent。'
+    analysis: '7B 实验的核心贡献不是追求 SOTA performance（58% 仍低于 GAGPO 93.5%），而是证明 episode-level
+      advantage 随 model scale 增大而增强——larger model 更需要正确的 training methodology。这预测了在更大
+      model（70B+）上 episode-level 的优势会更明显。
+
+      '
+  - name: Per-task-type breakdown analysis
+    plan_id: plan_016
+    description: 'ALFWorld 6 种 task type 的分类 success 分析。展示 within-environment diversity。
+
+      '
+    expected_results:
+      pick_episode_success: 0.55
+      pick_step_indep_success: 0.08
+      clean_episode_success: 0.48
+      clean_step_indep_success: 0.03
+      heat_episode_success: 0.52
+      heat_step_indep_success: 0.05
+      cool_episode_success: 0.5
+      cool_step_indep_success: 0.04
+      examine_episode_success: 0.42
+      examine_step_indep_success: 0.02
+      pick_two_episode_success: 0.38
+      pick_two_step_indep_success: 0.01
+      episode_length_success_correlation: -0.82
+      longer_tasks_benefit_more: true
+    result_rationale: 'Episode-level advantage 在所有 task type 上一致存在，但更长、更复杂的任务获益更多。
+      Pick（最简单，~15 步）的 episode-level success 最高（55%）因为策略最直接（find object → pick → put），step-independent
+      也能偶尔成功（8%）。Pick_two（最复杂， ~35 步）的 episode-level success 最低（38%）因为需要两轮 find-pick-put
+      的跨步 协调，但 step-independent 几乎完全 collapse（1%）。Episode-length 与 success 的 负相关（r=-0.82）反映了
+      ALFWorld 的 task complexity gradient。关键观察： episode-level 的 advantage ratio（episode/step-independent）随
+      task length 增加： pick=6.9x, clean=16x, heat=10.4x, cool=12.5x, examine=21x, pick_two=38x。
+      这是因为更长的 task 有更多的 sign-misattributed window，累积的梯度方向错误更严重。
+
+      '
+    tables:
+    - title: Per-task-type breakdown
+      columns:
+      - task
+      - avg_steps
+      - episode_success
+      - step_indep_success
+      - advantage_ratio
+      rows:
+      - - pick
+        - 15
+        - 0.55
+        - 0.08
+        - 6.9x
+      - - clean
+        - 22
+        - 0.48
+        - 0.03
+        - 16x
+      - - heat
+        - 20
+        - 0.52
+        - 0.05
+        - 10.4x
+      - - cool
+        - 20
+        - 0.5
+        - 0.04
+        - 12.5x
+      - - examine
+        - 28
+        - 0.42
+        - 0.02
+        - 21x
+      - - pick_two
+        - 35
+        - 0.38
+        - 0.01
+        - 38x
+    figures_description:
+    - 'Fig: Grouped bar chart per task type (episode vs step-independent)，按 task length
+      排序。'
+    - 'Fig: Scatter plot — average episode length vs advantage ratio，展示 length-advantage
+      正相关。'
+    analysis: Per-task breakdown 提供了 dual mechanism theory 的 additional support：advantage
+      ratio 随 task length monotonically 增加，consistent with 更多 window → 更多 sign misattribution
+      → 更大的 catastrophic effect。这也回应了 "ALFWorld 多样性 不足" 的 concern——6 个 task type 在
+      complexity 和 strategy 上有显著差异， episode-level advantage 在全部 type 上都成立。
+  review_report: '---
+
+    dream_id: dream_20260517T133129
+
+    tier: best
+
+    overall_score: borderline (3.5/6)
+
+    timestamp: 2026-05-17T14:07:12.085455+00:00
+
+    ---
+
+
+    # Dream Review Report: "Learning When to Verify: RL-Trained Selective Self-Verification
+    for Multi-Turn Interactive Agents"
+
+
+    **Review Mode:** Full (2 Reviewers + Roundtable)
+
+    **Date:** 2026-05-17
+
+    **Venue Standard:** Top ML venue, ~25% acceptance rate, 6-point scale
+
+
+    ---
+
+
+    ## Roundtable Summary
+
+
+    | Reviewer | Focus | Preliminary Score | Final Score |
+
+    |----------|-------|-------------------|-------------|
+
+    | R1 | Method + Experiments | 4/6 (Weak Accept) | 4/6 |
+
+    | R2 | Novelty + Related Work | 3/6 (Weak Reject) | 3/6 |
+
+    | **Consensus** | | | **3.5/6 (Borderline)** |
+
+
+    ---
+
+
+    ## Step 1: Independent Reviews
+
+
+    ### R1 (Method + Experiments)
+
+
+    **Strengths identified:**
+
+    - The dual mechanism diagnosis (sign misattribution + information loss) is intuitive
+    and empirically grounded. The r=0.97 sign-outcome correlation vs r=0.04 sign-quality
+    correlation is compelling quantitative evidence.
+
+    - Experimental breadth is commendable: 17+ experiments covering h-sweep, multi-seed
+    replication, GAE comparison, dense shaping ablation, causal intervention, entropy-controlled
+    analysis, reward ablation, ARES comparison, ScienceWorld transfer, 7B scaling,
+    per-task breakdown.
+
+    - B-IAVR reward design (action-change as intrinsic signal) is clean and interpretable.
+    The asymmetric alpha=0.5 > beta=0.1 appropriately incentivizes exploration.
+
+    - Statistical practices are adequate: 5 seeds for primary claim, 3 seeds per ablation,
+    p-values reported for causal and correlation analyses.
+
+
+    **Weaknesses identified:**
+
+    - (Major) The dual mechanism is not cleanly separated experimentally. The h-sweep
+    varies both context length and credit granularity simultaneously. A factorial
+    design (episode-level credit with truncated context, or step-independent credit
+    with full context) is needed to isolate each mechanism''s contribution.
+
+    - (Major) The -2pp B-IAVR success difference (48% to 46%) is within the 3.1pp
+    seed standard deviation, making "only 2pp loss" statistically unsupported without
+    a paired significance test.
+
+    - (Major) Absolute performance (48%) is dramatically below concurrent methods
+    (GAGPO 93.5%, HiPER 97.4%), raising questions about practical relevance.
+
+    - (Minor) GAE comparison only shows lambda=1.0 and lambda=0.95. A fuller sweep
+    (lambda={0.0, 0.5, 0.9}) would strengthen or weaken the "episode-level info is
+    key" claim.
+
+    - (Minor) Causal intervention (verification-triggered 48% vs random 33%) may suffer
+    from selection bias: the model preferentially verifies at high-information decision
+    points.
+
+    - (Minor) Scope may be RAGEN-specific rather than general to all multi-turn RL
+    implementations.
+
+
+    ### R2 (Novelty + Related Work)
+
+
+    **Strengths identified:**
+
+    - Addresses a real issue that practitioners encounter. The h-sweep cliff showing
+    phase-transition behavior is a genuinely useful empirical finding.
+
+    - The action-change reward concept for verification routing is clean and avoids
+    oracle labels.
+
+    - The paper is well-written and clearly structured.
+
+
+    **Weaknesses identified:**
+
+    - (Major) Diagnostic contribution is incremental over Turn-PPO, which already
+    identified the "uniform advantage" problem. The paper''s sign misattribution is
+    the mechanism underlying Turn-PPO''s observation, not a qualitatively new insight.
+
+    - (Major) Episode-level GRPO is not a novel algorithm; it is REINFORCE with trajectory
+    returns within the GRPO framework. The "fix" may reduce to a one-line configuration
+    change in RAGEN.
+
+    - (Major) The "contrarian" framing ("coarser credit is better") is undermined
+    by the paper''s own evidence: GAE(lambda=1.0) matching episode-level proves they
+    are equivalent (not that coarser is superior), and GAGPO achieving 93.5% with
+    a 1.5B model proves finer credit IS better when correctly implemented.
+
+    - (Major) Related work is critically inadequate. Missing: proper engagement with
+    Turn-PPO (most direct predecessor), GiGPO (86.1% ALFWorld same model class), PA-MoE
+    (93.8% with 1.5B), HCAPO (+13.8% over GRPO via hindsight credit), process reward
+    model literature, and selective verification competitors (Derailer-Rerailer, Agent-Omit).
+
+    - (Major) B-IAVR is structurally isomorphic to Thinkless (RL-trained binary control
+    token), adapted from single-turn reasoning to multi-turn verification. The differentiation
+    (action-change reward, multi-turn setting) is non-trivial but limited.
+
+    - (Minor) ScienceWorld transfer is likely single-seed (no variance reported).
+    Both environments are text-based discrete-action domains; no web/API/continuous
+    environments tested.
+
+    - (Minor) The paper characterizes GAGPO/HiPER as using "finer-grained credit assignment
+    and larger models," but GAGPO achieves 93.5% with a 1.5B model (same or smaller).
+    This mischaracterization deflects from the real performance gap.
+
+
+    ---
+
+
+    ## Step 2: Cross-Sharing and Discussion
+
+
+    ### Points of Agreement (both reviewers converge)
+
+
+    1. **The diagnostic observation is real but overstated.** Step-independent GRPO
+    with short windows does fail for sparse-reward multi-turn tasks, and the sign
+    misattribution mechanism is a correct explanation. However, framing this as a
+    deep theoretical contribution overstates what is essentially an empirical characterization
+    of a known failure mode.
+
+
+    2. **The performance gap is the elephant in the room.** 48% vs 93.5% on the same
+    benchmark with comparable model sizes is a 45pp gap that the paper cannot dismiss
+    by saying "our contribution is diagnostic." If the diagnostic leads to a method
+    that underperforms correct fine-grained methods by 45pp, the practical implication
+    of the diagnosis is unclear.
+
+
+    3. **B-IAVR''s statistical claims are unsupported.** The -2pp difference (48%
+    to 46%) and the Pareto dominance over confidence-threshold (+3pp) are within noise
+    bounds given 3.1pp seed variance. Formal paired significance tests are required.
+
+
+    4. **Experimental breadth is a genuine strength.** The paper covers more ablations
+    and controls than most submissions. The h-sweep, sign correlation analysis, entropy-controlled
+    partial correlation, and causal intervention are individually well-designed.
+
+
+    5. **The GAE comparison is the paper''s most interesting finding** but is underexploited.
+    GAE(lambda=1.0) matching episode-level GRPO at step 15 is genuinely informative,
+    but only two lambda values are tested and the comparison is at an early checkpoint
+    (step 15), not at convergence.
+
+
+    ### Points of Disagreement
+
+
+    **R1 favors acceptance (4/6); R2 favors rejection (3/6).** The split hinges on:
+
+
+    - **Novelty bar:** R1 considers the diagnostic + B-IAVR combination sufficient
+    for a top venue; R2 considers each component individually insufficient and their
+    combination not emergent.
+
+    - **Weight of the performance gap:** R1 accepts the "diagnostic contribution"
+    framing; R2 argues this framing is undermined when correct fine-grained methods
+    (not just broken ones) dramatically outperform the proposed approach.
+
+    - **Related work severity:** R1 notes RAGEN-specificity as a minor concern; R2
+    elevates missing Turn-PPO engagement and absent GAGPO/GiGPO comparison to major
+    deficiencies.
+
+
+    ---
+
+
+    ## Step 3: Convergence
+
+
+    After cross-examination, the reviewers converge on the following assessments:
+
+
+    ### What the Paper Does Well
+
+    1. **Clear mechanistic story.** The sign misattribution explanation is crisp and
+    quantitatively supported (r=0.97 vs r=0.04). Even if incremental over Turn-PPO,
+    the level of empirical verification (per-window advantage logging, concrete examples
+    in Table 5) exceeds prior work.
+
+    2. **The h-sweep cliff** is a strong visual/quantitative result showing phase-transition
+    behavior. This is the paper''s single most compelling figure/table.
+
+    3. **Action-change as intrinsic reward** for verification routing is a clean idea
+    with practical grounding (72% confirmatory rate, causal intervention showing 15pp
+    advantage over random changes).
+
+    4. **Comprehensive ablation design.** The paper systematically addresses potential
+    counterarguments (entropy confound, reward signal alternatives, ARES comparison,
+    cross-environment transfer, model scaling).
+
+
+    ### What Must Be Fixed for Acceptance
+
+
+    1. **Related work overhaul (critical).** Must add and properly engage with: Turn-PPO
+    (differentiate the diagnostic contribution), GiGPO/GAGPO/PA-MoE (acknowledge that
+    correct fine-grained credit dramatically outperforms episode-level), process reward
+    models, and selective verification competitors (Thinkless differentiation, Derailer-Rerailer).
+
+
+    2. **Reframe the "contrarian" claim (critical).** The current claim "episode-level
+    credit, not finer per-token credit, is the key" is falsified by GAGPO''s 93.5%
+    with 1.5B. The honest claim is: "Episode-level credit eliminates sign misattribution
+    introduced by broken step-independent windowing, and performs comparably to GAE
+    under sparse binary rewards. This does not imply that correct fine-grained methods
+    are unnecessary; it identifies the failure mode of incorrect ones."
+
+
+    3. **Statistical testing for B-IAVR (major).** Report paired t-test or bootstrap
+    CI on the 48% vs 46% difference. Report significance tests for Pareto dominance
+    claims over confidence-threshold and ARES baselines.
+
+
+    4. **Factorial mechanism separation (major).** Add at minimum one experiment:
+    episode-level credit with truncated context (e.g., h=2 observation window but
+    episode-level advantage). This isolates information loss from sign misattribution.
+
+
+    5. **Fuller GAE sweep (moderate).** Test lambda={0.0, 0.5, 0.9} to show the relationship
+    between credit granularity and performance, strengthening or qualifying the "episode-level
+    suffices" claim.
+
+
+    ---
+
+
+    ## Step 4: Consolidated Assessment
+
+
+    ### Overall Score: 3.5/6 (Borderline, leaning Weak Reject)
+
+
+    ### Detailed Scoring
+
+
+    | Dimension | Score | Notes |
+
+    |-----------|-------|-------|
+
+    | Novelty | 3/6 | Incremental over Turn-PPO; episode-level GRPO is textbook; B-IAVR
+    resembles Thinkless |
+
+    | Soundness | 4/6 | Mechanism analysis is correct but not cleanly separated; B-IAVR
+    stats insufficient |
+
+    | Significance | 3/6 | Diagnostic value is real but 48% vs 93.5% gap limits practical
+    impact |
+
+    | Clarity | 5/6 | Well-written, well-structured, clear figures and tables |
+
+    | Experimental coverage | 5/6 | Comprehensive ablations, multiple environments,
+    scaling |
+
+    | Related work | 2/6 | Critical omissions: Turn-PPO engagement, GAGPO/GiGPO comparison,
+    process rewards |
+
+
+    ### Justification
+
+
+    The paper presents a useful empirical characterization of why step-independent
+    GRPO fails for multi-turn agents with sparse rewards. The sign misattribution
+    mechanism is correctly identified and quantitatively verified. The h-sweep cliff
+    showing phase-transition behavior is a genuinely informative result. The action-change
+    reward concept for selective verification is clean and practical.
+
+
+    However, the paper falls short of the acceptance threshold for three interconnected
+    reasons:
+
+
+    1. **The novelty gap.** Turn-PPO already diagnosed the uniform advantage problem;
+    episode-level GRPO is standard REINFORCE; B-IAVR parallels Thinkless. No single
+    component clears the novelty bar, and their combination does not produce emergent
+    novelty beyond "diagnosis + obvious fix + known technique applied to new domain."
+
+
+    2. **The framing is undermined by evidence.** The "contrarian" positioning ("coarser
+    credit is better") is directly contradicted by GAGPO achieving 93.5% with correct
+    finer credit on the same benchmark with a comparable model. The paper''s actual
+    finding is "broken finer is worse than correct coarser," which is tautological.
+    This framing issue pervades the abstract, introduction, and contribution claims.
+
+
+    3. **Practical irrelevance of cost reduction.** B-IAVR reduces verification cost
+    by 58% on a 48% success agent. No practitioner would deploy or optimize costs
+    for a 48% agent when 93%+ agents exist on the same benchmark. The cost reduction
+    becomes meaningful only if validated at competitive performance levels.
+
+
+    ### Path to Acceptance
+
+
+    The paper could become acceptable with:
+
+    - Honest repositioning as "empirical diagnosis of a specific failure mode in RAGEN-style
+    training" rather than "challenging the finer-is-better assumption"
+
+    - Explicit comparison acknowledging GAGPO/GiGPO as evidence that correct fine-grained
+    credit IS superior
+
+    - Factorial experiment separating sign misattribution from information loss
+
+    - Statistical significance tests for all B-IAVR comparison claims
+
+    - Substantially expanded related work covering Turn-PPO, process rewards, and
+    selective verification competitors
+
+    - Ideally, demonstrating B-IAVR on top of a competitive base method (GAGPO-level
+    performance)
+
+
+    ### Key Questions for Authors
+
+
+    1. How does the sign misattribution formalization differ from Turn-PPO''s "uniform
+    advantage" beyond being a more precise restatement of the same phenomenon?
+
+
+    2. GAE(lambda=1.0, gamma=1.0) is mathematically equivalent to Monte Carlo returns
+    with a baseline. Does this not make "episode-level GRPO" simply a special case
+    of standard GAE, rather than a contrarian alternative?
+
+
+    3. GAGPO achieves 93.5% on ALFWorld with Qwen2.5-1.5B. How do you reconcile "episode-level
+    credit suffices" with a 45pp improvement from correct fine-grained credit on the
+    same benchmark and model class?
+
+
+    4. Can you provide paired significance tests for B-IAVR (46%) vs always-on (48%),
+    vs confidence-threshold (43%), and vs ARES (44%)?
+
+
+    5. What prevents a practitioner from simply setting h=T in RAGEN to achieve episode-level
+    training? If this is a configuration change, how is the contribution more than
+    "documenting and fixing a framework default"?
+
+
+    6. Could you add a factorial experiment with episode-level advantage but truncated
+    observation context (h=2 window visibility, shared advantage) to isolate information
+    loss from sign misattribution?
+
+    '
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/median/paper.pdf
+  imagined_experiments:
+  - name: Episode-level GRPO convergence (exp029 continuation)
+    plan_id: plan_001
+    description: 'Episode-level GRPO 继续训练至 step 50+。基于已有 step 15 数据（val=28.125%）外推收敛曲线。
+      Median 档下模型持续缓慢进步但遭遇 plateau，最终稳定在 35% 附近。
+
+      '
+    expected_results:
+      step20_val_success: 0.3125
+      step25_val_success: 0.34375
+      step30_val_success: 0.34375
+      step35_val_success: 0.375
+      step40_val_success: 0.375
+      step50_val_success: 0.375
+      converged_val_success: 0.375
+      converged_train_success: 0.5625
+      converged_pass_at_1: 0.375
+      converged_pass_at_4: 0.78
+      converged_pass_at_8: 0.94
+      converged_pass_at_16: 0.998
+      converged_action_is_valid: 0.62
+      converged_action_is_effective: 0.81
+      converged_entropy: 0.18
+      converged_ppo_kl: 0.008
+      plateau_onset_step: 30
+      total_training_hours: 24
+    result_rationale: 'Step 15 已达 28.125%，训练曲线减速明显（step 5→10 无进步，step 10→15 仅 +3pp）。
+      Median 档下 episode-level GRPO 的 bandit-style credit（所有 token 共享同一 advantage）
+      足以消除 sign misattribution，但缺乏 per-token credit 使得模型难以学习精细的 action-level 策略。 37.5%
+      的 plateau 反映了 GRPO episode-level 的 credit assignment 天花板：模型学会了 "哪类 trajectory
+      好"但无法精确归因 "哪个 action 关键"。Pass@8=0.94 说明 policy 覆盖了 正确策略但 greedy sampling 时选择不够精准。这个
+      success rate 足以证明 episode-level 显著优于 step-independent（0%），但不足以支撑 cost-efficiency
+      story（需 ≥40%）。
+
+      '
+    tables:
+    - title: Episode-level GRPO convergence trajectory
+      columns:
+      - step
+      - val_success
+      - train_success
+      - pass_at_8
+      - action_is_valid
+      - entropy
+      rows:
+      - - 5
+        - 0.25
+        - 0.3125
+        - 0.875
+        - 0.5
+        - 0.22
+      - - 10
+        - 0.25
+        - 0.375
+        - 0.8125
+        - 0.52
+        - 0.2
+      - - 15
+        - 0.28125
+        - 0.4375
+        - 0.75
+        - 0.545
+        - 0.19
+      - - 20
+        - 0.3125
+        - 0.5
+        - 0.8125
+        - 0.57
+        - 0.19
+      - - 25
+        - 0.34375
+        - 0.5313
+        - 0.875
+        - 0.6
+        - 0.18
+      - - 30
+        - 0.34375
+        - 0.5625
+        - 0.875
+        - 0.61
+        - 0.18
+      - - 40
+        - 0.375
+        - 0.5625
+        - 0.9375
+        - 0.62
+        - 0.18
+      - - 50
+        - 0.375
+        - 0.5625
+        - 0.9375
+        - 0.62
+        - 0.18
+    figures_description:
+    - 'Learning curve (val_success vs step): 缓慢上升至 step 30 后 plateau 于 37.5%，与 step-independent
+      exp028c 的 0%@step10 形成鲜明对比。'
+    analysis: '收敛于 37.5% 落入 median 指标范围 [30%, 44%]。足以作为 diagnostic paper 的核心证据： episode-level
+      训练有效（vs step-independent 灾难性崩溃），但 performance 不够强以支撑 selective verification
+      的 cost-efficiency 叙事。Paper pivot 到 Plan A。
+
+      '
+  - name: Context window h-sweep ablation (3 seeds each)
+    plan_id: plan_002
+    description: 'Sweep h={2, 5, 10, 20, full}，每个 h 值 3 个 seed，每 seed 训练 15 steps。
+      Median 档下 cliff 存在但 sharpness 因 seed 而异。
+
+      '
+    expected_results:
+      h2_seed1_step15_success: 0.0
+      h2_seed2_step15_success: 0.0
+      h2_seed3_step15_success: 0.0313
+      h2_mean: 0.0104
+      h2_std: 0.018
+      h5_seed1_step15_success: 0.0625
+      h5_seed2_step15_success: 0.0313
+      h5_seed3_step15_success: 0.125
+      h5_mean: 0.0729
+      h5_std: 0.047
+      h10_seed1_step15_success: 0.1563
+      h10_seed2_step15_success: 0.125
+      h10_seed3_step15_success: 0.2188
+      h10_mean: 0.1667
+      h10_std: 0.047
+      h20_seed1_step15_success: 0.25
+      h20_seed2_step15_success: 0.2188
+      h20_seed3_step15_success: 0.2813
+      h20_mean: 0.25
+      h20_std: 0.031
+      full_seed1_step15_success: 0.3125
+      full_seed2_step15_success: 0.25
+      full_seed3_step15_success: 0.2813
+      full_mean: 0.2813
+      full_std: 0.031
+      cliff_threshold_h: 10
+      cliff_clear_seeds: 2
+      cliff_fuzzy_seeds: 1
+    result_rationale: 'h=2 一致崩溃（3/3 seeds → ~0%）：2-step window 对 ALFWorld 完全不够，policy
+      information loss 和 sign misattribution 同时严重。h=5 有 1 个 seed 勉强存活（12.5%）但另 2 个很弱，因为
+      5-step 窗口偶尔能捕捉到短 task 的完整策略但多数时候不行。h=10 是转折区域但 seed 间方差大： seed 3 达 21.9% 说明
+      10-step 窗口在某些 seed 初始化下能部分解决 information loss， 但 sign misattribution 仍导致梯度噪声。h=20
+      和 full 接近但有 gap（25% vs 28%）， 说明即使 20-step 窗口也会因 sign misattribution 损失一些信号。
+      Cliff 的 "fuzzy seed" 出现在 h=10 区间——seed 3 的 21.9% 模糊了 cliff 的清晰度， 而 seed 1/2
+      的 15.6%/12.5% 明确显示 h<10 区域的 degradation。2/3 seeds 清晰对应 median 定义。
+
+      '
+    tables:
+    - title: h-sweep results (15 steps, 3 seeds each)
+      columns:
+      - h
+      - seed1
+      - seed2
+      - seed3
+      - mean
+      - std
+      - collapse_at_step
+      rows:
+      - - h=2
+        - 0%
+        - 0%
+        - 3.1%
+        - 1.0%
+        - 1.8%
+        - step 3-4
+      - - h=5
+        - 6.3%
+        - 3.1%
+        - 12.5%
+        - 7.3%
+        - 4.7%
+        - step 5-7
+      - - h=10
+        - 15.6%
+        - 12.5%
+        - 21.9%
+        - 16.7%
+        - 4.7%
+        - none
+      - - h=20
+        - 25.0%
+        - 21.9%
+        - 28.1%
+        - 25.0%
+        - 3.1%
+        - none
+      - - full
+        - 31.3%
+        - 25.0%
+        - 28.1%
+        - 28.1%
+        - 3.1%
+        - none
+    - title: h-sweep action_is_valid at step 15
+      columns:
+      - h
+      - mean_action_is_valid
+      - mean_invalid_action
+      rows:
+      - - h=2
+        - 0.31
+        - 0.69
+      - - h=5
+        - 0.48
+        - 0.52
+      - - h=10
+        - 0.55
+        - 0.45
+      - - h=20
+        - 0.58
+        - 0.42
+      - - full
+        - 0.6
+        - 0.4
+    figures_description:
+    - 'Bar chart: mean success rate per h-value with error bars (3 seeds)。清晰 cliff
+      在 h=5→h=2 区间，h=10 区间 seed 方差较大。'
+    - Individual seed trajectories (5 panels, one per h)：h=2 三条线一致下降，h=10 三条线有明显 spread。
+    analysis: 'Cliff 存在于 h≈5-10 区间，但非单一 sharp threshold。h=2 → 0% 是 robust 的（3/3 seeds），
+      h=5 → h=10 是 transition zone 且 seed-dependent。这支持 Claim 1 但 cliff sharpness
+      弱于 ideal：无法画出一条漂亮的 "step function"，只能描述 "monotonic degradation with high-variance
+      transition zone"。Paper 需要更多讨论来解释 seed 依赖性。
+
+      '
+  - name: Multi-seed replication (5 seeds total)
+    plan_id: plan_003
+    description: '4 个额外 seed 运行 exp029 episode-level 配置（共 5 seeds），训练至 step 30+，报告
+      mean ± std。
+
+      '
+    expected_results:
+      seed1_converged_success: 0.375
+      seed2_converged_success: 0.3125
+      seed3_converged_success: 0.28125
+      seed4_converged_success: 0.4063
+      seed5_converged_success: 0.34375
+      multi_seed_mean_success: 0.3438
+      multi_seed_std: 0.048
+      multi_seed_ci95_lower: 0.284
+      multi_seed_ci95_upper: 0.404
+      multi_seed_mean_action_is_valid: 0.59
+      multi_seed_std_action_is_valid: 0.04
+      multi_seed_mean_pass_at_8: 0.9
+      multi_seed_std_pass_at_8: 0.03
+    result_rationale: '5 个 seed 的 spread 反映了 GRPO 训练的固有随机性：初始化 + rollout sampling
+      + ALFWorld 环境随机性。Std = 4.8pp 落入 median 范围 [5%, 8%] 的下端。Mean = 34.4% 落入 [28%,
+      42%]。 Seed 3 最弱（28.1%）可能因为初始 rollout 运气差导致 early advantage estimates 偏差， seed
+      4 最强（40.6%）可能恰好 early rollout 探索到了高效策略。 这个 std 水平意味着 "episode-level 有效" 的 claim
+      是 robust 的（CI 下界 28.4% >> step-independent 0%）， 但具体 success rate 有不可忽略的 seed
+      依赖性。Reproducibility 可接受但不完美。
+
+      '
+    tables:
+    - title: Multi-seed episode-level GRPO results (converged)
+      columns:
+      - seed
+      - val_success
+      - train_success
+      - pass_at_8
+      - action_is_valid
+      - converge_step
+      rows:
+      - - 1
+        - 37.5%
+        - 56.3%
+        - 93.8%
+        - 0.62
+        - 30
+      - - 2
+        - 31.3%
+        - 50.0%
+        - 87.5%
+        - 0.58
+        - 35
+      - - 3
+        - 28.1%
+        - 46.9%
+        - 87.5%
+        - 0.55
+        - 25
+      - - 4
+        - 40.6%
+        - 59.4%
+        - 93.8%
+        - 0.63
+        - 30
+      - - 5
+        - 34.4%
+        - 53.1%
+        - 87.5%
+        - 0.59
+        - 30
+      - - mean±std
+        - 34.4±4.8%
+        - 53.1±4.9%
+        - 90.0±3.4%
+        - 0.59±0.04
+        - 30±3.5
+    figures_description:
+    - 'Box plot: 5-seed distribution of converged val_success，mean 34.4%，quartiles
+      可见。与 step-independent 的 0±0% 并排。'
+    - 5 条 learning curve 叠加图：convergence speed 和 final performance 的 seed-to-seed
+      variation。
+    analysis: 'Std 4.8pp 意味着 paper 需要报告 CI 而非单点。CI [28.4%, 40.4%] 宽度 12pp 说明单 seed
+      结果不够可信——这也是为什么 dream review 要求多 seed。好消息是 CI 下界仍远超 step-independent。
+
+      '
+  - name: GAE baseline comparison
+    plan_id: plan_003b
+    description: '实现 GAE(λ=0.95, γ=1.0) 和 GAE(λ=1.0, γ=1.0) 作为标准 RL baseline，需要 critic
+      head。 15 steps × 3 seeds each。
+
+      '
+    expected_results:
+      gae_095_seed1_step15_success: 0.375
+      gae_095_seed2_step15_success: 0.4063
+      gae_095_seed3_step15_success: 0.4375
+      gae_095_mean: 0.4063
+      gae_095_std: 0.031
+      gae_10_seed1_step15_success: 0.34375
+      gae_10_seed2_step15_success: 0.375
+      gae_10_seed3_step15_success: 0.3125
+      gae_10_mean: 0.3438
+      gae_10_std: 0.031
+      episode_grpo_mean_at_step15: 0.2813
+      gae_095_vs_episode_grpo_delta_pp: 12.5
+      gae_10_vs_episode_grpo_delta_pp: 6.25
+      gae_095_per_token_advantage_variance: 0.42
+      gae_10_per_token_advantage_variance: 0.28
+      episode_grpo_per_token_advantage_variance: 0.0
+    result_rationale: 'GAE(0.95) 的 12.5pp 优势落入 median 范围 [5, 12] 的上端。这直接挑战 contrarian
+      positioning： finer credit assignment（per-token advantage via value function）确实比
+      episode-level bandit credit 提供额外信息。GAE(1.0, 1.0) 相当于 MC return + baseline，优势较小（6.25pp），
+      因为 λ=1.0 等效于不做 bootstrapping，信息量接近 episode-level。 GAE(0.95) 的优势来源于 critic 提供的
+      per-token baseline 减少了 variance，使得有效 action 能更快被强化。但关键是 GAE 也远超 step-independent（40.6%
+      vs 0%），说明问题的主要因素 确实是 step-independent 的 sign misattribution，而非 credit granularity
+      不够。 这迫使 paper 调整叙事：episode-level 是 "necessary minimum"，GAE 是 "sufficient improvement"。
+
+      '
+    tables:
+    - title: GAE vs Episode-level GRPO comparison (step 15, 3 seeds)
+      columns:
+      - method
+      - mean_success
+      - std
+      - adv_variance
+      - training_cost_ratio
+      rows:
+      - - Step-independent (h=2)
+        - 1.0%
+        - 1.8%
+        - 0.85
+        - 1.0x
+      - - Episode-level GRPO
+        - 28.1%
+        - 3.1%
+        - 0.0
+        - 1.2x
+      - - GAE(λ=1.0, γ=1.0)
+        - 34.4%
+        - 3.1%
+        - 0.28
+        - 1.8x
+      - - GAE(λ=0.95, γ=1.0)
+        - 40.6%
+        - 3.1%
+        - 0.42
+        - 1.8x
+    figures_description:
+    - 'Bar chart: 4 methods 对比，error bars from 3 seeds。清晰展示 step-independent → episode-level
+      的巨大 jump，以及 episode-level → GAE 的 modest improvement。'
+    analysis: 'GAE 优势削弱 contrarian "更粗就够了" 的 positioning。Paper 需改为：step-independent
+      的问题 是 sign misattribution（episode-level 解决），但 performance 最优需要 finer credit（GAE
+      解决）。 两个 contribution 维度分离：诊断问题（我们的主要贡献）vs 最大化性能（GAE/竞品的贡献）。 GAE 额外 50% 训练成本（critic
+      head）是 trade-off，可以讨论但不改变主论点。
+
+      '
+  - name: Episode-level + valid_action_bonus (plateau-breaker)
+    plan_id: plan_003c
+    description: '在 episode-level 配置上加 valid_action_bonus=0.05。测试是否安全提升 action_is_valid
+      且打破 plateau。
+
+      '
+    expected_results:
+      step15_val_success: 0.3125
+      step15_val_action_is_valid: 0.72
+      step15_val_action_is_effective: 0.85
+      step15_train_success: 0.4688
+      valid_bonus_vs_task_reward_ratio: 0.22
+      gaming_detected: false
+      plateau_broken: false
+      success_delta_vs_no_bonus_pp: 3.1
+    result_rationale: 'Episode-level 训练下 valid_action_bonus 不会被 game（与 exp013f step-independent
+      不同）， 因为模型优化的是整条 trajectory 的 total reward，而非单个 window 的 return。 Action_is_valid
+      从 55% 提升至 72%（有效但非 dramatic），因为 bonus 信号相对 task reward 仍然弱（ratio 0.22 vs exp013f
+      的 67）。Success 仅提升 3pp（31.3% vs 28.1%）， 因为 valid action 和 task success 的 correlation
+      虽为正但不强——模型可以执行 valid 但 strategically wrong 的 action。Plateau 未被打破：根本瓶颈是 credit
+      assignment granularity， 不是 action validity。这个实验更多是 negative control：证明 dense
+      reward gaming 是 step-independent 特有的问题。
+
+      '
+    tables:
+    - title: Episode-level ± valid_action_bonus comparison (step 15)
+      columns:
+      - config
+      - val_success
+      - action_is_valid
+      - gaming
+      - bonus_ratio
+      rows:
+      - - Episode-level (no bonus)
+        - 28.1%
+        - 54.5%
+        - N/A
+        - N/A
+      - - Episode-level + bonus=0.05
+        - 31.3%
+        - 72.0%
+        - 'No'
+        - 0.22
+      - - Step-independent + bonus=0.05 (exp013f)
+        - 0%
+        - 97.5%
+        - 'Yes'
+        - 67.0
+    figures_description:
+    - 对比三种配置的 action_is_valid 和 success 趋势：step-independent gaming（valid↑ success→0）vs
+      episode-level safe（valid↑ success 持平/微升）。
+    analysis: '结果验证 D056 insight：dense reward gaming 是 step-independent 特有的。但 bonus
+      对 打破 success plateau 帮助有限。可作为 paper 的 supplementary ablation。
+
+      '
+  - name: Credit assignment mechanism empirical verification (paper Figure 2)
+    plan_id: plan_004
+    description: '对 h=2 seed 2 运行添加 per-window advantage logging，验证 sign misattribution
+      机制。 分析 advantage sign 与 episode outcome / local action quality 的 correlation。
+
+      '
+    expected_results:
+      sign_vs_outcome_correlation: 0.87
+      sign_vs_local_quality_correlation: 0.14
+      gamma_k_magnitude_decay_r2: 0.72
+      episode_level_advantage_variance_across_positions: 0.0
+      success_episodes_all_positive_pct: 0.92
+      failure_episodes_all_negative_pct: 0.89
+      mixed_sign_episodes_pct: 0.11
+      total_episodes_analyzed: 256
+      total_windows_analyzed: 3200
+    result_rationale: 'Sign-vs-outcome correlation 0.87 而非理论预测的 ~1.0，因为 GRPO 的 group
+      normalization 引入噪声：当一个 group 内所有 trajectory 都失败时，GRPO 的 (R-μ)/σ 会将 "least bad"
+      的 trajectory 赋予正 advantage，即使 episode 失败。这导致约 11% 的 episode 出现 "mixed sign"
+      （失败 episode 中部分 window 获得正 advantage）。 Sign-vs-local-quality correlation 0.14（非零但弱）因为
+      local action quality proxy （action_is_valid × action_is_effective）与 episode
+      outcome 有弱正相关——好的 local action 确实微弱增加 success 概率。但 0.14 远低于 0.87，足以证明 advantage
+      sign 主要由 episode outcome 决定而非 local quality。 γ^k decay R²=0.72 说明 magnitude
+      decay 存在但拟合不完美：实际 magnitude 受 GRPO normalization 和 token-level variance 影响，不是纯粹的
+      γ^k 指数衰减。
+
+      '
+    tables:
+    - title: Advantage sign attribution analysis (h=2, 256 episodes)
+      columns:
+      - metric
+      - value
+      - interpretation
+      rows:
+      - - sign-vs-outcome corr
+        - 0.87
+        - strong but not perfect — GRPO normalization noise
+      - - sign-vs-local-quality corr
+        - 0.14
+        - weak — sign NOT determined by local action quality
+      - - γ^k decay R²
+        - 0.72
+        - moderate fit — magnitude decays with position but noisy
+      - - success eps all-positive %
+        - 92%
+        - most success episodes have uniformly positive advantages
+      - - failure eps all-negative %
+        - 89%
+        - most failure episodes have uniformly negative advantages
+      - - mixed-sign episodes %
+        - 11%
+        - GRPO normalization creates exceptions
+    - title: Per-window advantage statistics (success vs failure episodes)
+      columns:
+      - episode_type
+      - mean_advantage
+      - std_advantage
+      - pct_positive
+      - pct_negative
+      rows:
+      - - success (n=72)
+        - '+0.43'
+        - '0.12'
+        - 92%
+        - 8%
+      - - failure (n=184)
+        - '-0.31'
+        - '0.15'
+        - 11%
+        - 89%
+    - title: 'Episode-level control: advantage uniformity'
+      columns:
+      - mode
+      - within_episode_sign_variance
+      - within_episode_magnitude_cv
+      rows:
+      - - step-independent (h=2)
+        - 0.18
+        - 0.45
+      - - episode-level
+        - 0.0
+        - 0.0
+    figures_description:
+    - 'Figure 2a: Scatter plot of per-window advantage sign (+1/-1) vs episode outcome
+      (success/failure)，clear clustering but with ~11% exceptions in off-diagonal
+      quadrants。'
+    - 'Figure 2b: Per-window advantage magnitude vs window position (from terminal)，γ^k
+      decay 趋势线 R²=0.72。'
+    - 'Figure 2c: Same analysis for episode-level — all positions have identical advantage（完美水平线）。'
+    analysis: 'Sign misattribution 实证为 "dominant factor" 而非 "complete explanation"。0.87
+      correlation 足够强以支撑核心 claim，但 GRPO normalization 导致的 exceptions 需要诚实讨论。 Paper
+      措辞从 "advantage sign is determined by episode outcome" 改为 "advantage sign is
+      predominantly determined by episode outcome (r=0.87), with exceptions arising
+      from GRPO''s within-group normalization"。γ^k decay 作为 secondary mechanism 报告但不过度强调。
+
+      '
+  - name: Action-change statistics from always-on runs
+    plan_id: plan_005
+    description: '从 exp029 训练好的 checkpoint 收集 verification 后的 action change 统计。
+
+      '
+    expected_results:
+      overall_action_change_rate: 0.32
+      confirmatory_rate: 0.68
+      action_change_when_success: 0.28
+      action_change_when_failure: 0.34
+      action_change_success_correlation: 0.12
+      per_task_breakdown:
+        pick:
+          action_change_rate: 0.25
+          n_episodes: 40
+        clean:
+          action_change_rate: 0.38
+          n_episodes: 25
+        heat:
+          action_change_rate: 0.35
+          n_episodes: 20
+        cool:
+          action_change_rate: 0.3
+          n_episodes: 15
+        examine:
+          action_change_rate: 0.42
+          n_episodes: 10
+        pick_two:
+          action_change_rate: 0.4
+          n_episodes: 18
+      total_verification_events: 512
+    result_rationale: '68% confirmatory rate 符合 "大部分 verification 是 confirmatory"
+      的 hypothesis。 但 action_change-success correlation 仅 0.12（弱正相关），低于 hypothesis
+      的 0.2。 原因：在 37.5% success rate 下，模型经常在 "confused" 状态下 change action（改了但改错了），
+      导致 change ≠ improvement。高 confirmatory rate 说明 always-on verification 有大量浪费，
+      支持 selective verification 的动机。但弱 correlation 意味着 action-change 作为 reward signal
+      的信噪比可能不够好——这预示了 Phase B 的挑战。
+
+      '
+    tables:
+    - title: Verification action-change statistics
+      columns:
+      - category
+      - action_change_rate
+      - n_events
+      rows:
+      - - Overall
+        - 32%
+        - 512
+      - - Success episodes
+        - 28%
+        - 192
+      - - Failure episodes
+        - 34%
+        - 320
+      - - Early turns (1-3)
+        - 38%
+        - 180
+      - - Mid turns (4-6)
+        - 30%
+        - 170
+      - - Late turns (7+)
+        - 28%
+        - 162
+    figures_description:
+    - 'Histogram: action change rate per turn position，early turns 更高（模型初期更不确定）。'
+    - 'Confusion matrix: verification outcome (change/confirm) × episode outcome (success/failure)。'
+    analysis: 'Confirmatory rate 高是好消息（支持 selective verification 动机），但 correlation
+      弱是坏消息 （action-change 作为 reward 的有效性存疑）。这为 plan_007 的弱结果埋下伏笔。
+
+      '
+  - name: Selective verification implementation
+    plan_id: plan_006
+    description: '实现 binary verify/skip decision，纯代码工作无 GPU。
+
+      '
+    expected_results:
+      implementation_complete: true
+      code_changes_files: 5
+      test_coverage: unit tests passing
+      integration_verified: true
+    result_rationale: '纯工程任务，无不确定性。实现 verify/skip token + reward 计算逻辑。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: '实现本身不影响 tier，为 plan_007 做准备。
+
+      '
+  - name: B-IAVR selective verification training
+    plan_id: plan_007
+    description: '用 episode-level GRPO 训练 selective verification policy，从 exp029 best
+      checkpoint 初始化。 Action-change reward 驱动 verification 选择。
+
+      '
+    expected_results:
+      converged_success: 0.34375
+      converged_verification_rate: 0.72
+      verification_rate_reduction_vs_always_on: 0.28
+      success_delta_vs_always_on_pp: -3.1
+      training_steps_to_converge: 20
+      reward_components:
+        task_success_mean: 0.34
+        action_change_reward_mean: 0.08
+        verification_cost_penalty_mean: -0.05
+      training_stability: moderate oscillation in verification_rate
+    result_rationale: 'Verification rate reduction 仅 28%，落入 median 范围 [15%, 35%] 但未达
+      target 40%。 原因是 action-change reward 的信噪比弱（plan_005 显示 correlation 仅 0.12）：模型
+      难以学到 "何时 verify 有信息量"，倾向于保守地 verify（因为 skip-and-fail 的惩罚 高于 unnecessary-verify
+      的成本）。Success 下降 3.1pp 因为偶尔 skip 了本该 verify 的 turn。 训练过程中 verification_rate 振荡反映了
+      reward signal 的噪声——模型在 "verify everything" 和 "skip too much" 之间摆动。
+
+      '
+    tables:
+    - title: B-IAVR training trajectory
+      columns:
+      - step
+      - success
+      - verification_rate
+      - cost_reduction
+      rows:
+      - - 0
+        - 37.5%
+        - 100%
+        - 0%
+      - - 5
+        - 34.4%
+        - 85%
+        - 15%
+      - - 10
+        - 31.3%
+        - 68%
+        - 32%
+      - - 15
+        - 34.4%
+        - 75%
+        - 25%
+      - - 20
+        - 34.4%
+        - 72%
+        - 28%
+    figures_description:
+    - 'Dual-axis plot: success rate (left) and verification rate (right) vs training
+      step，显示 verification rate 的 oscillation。'
+    analysis: '28% verification reduction 不足以讲 compelling cost-efficiency story。Selective
+      verification 降为 paper 的 preliminary results / future work section。
+
+      '
+  - name: Selective verification full comparison
+    plan_id: plan_008
+    description: '在相同 val set 上比较 always-on / B-IAVR / no-verify / random-p / confidence-threshold。
+
+      '
+    expected_results:
+      always_on_success: 0.375
+      always_on_verification_rate: 1.0
+      always_on_total_tokens: 45000
+      biavr_success: 0.34375
+      biavr_verification_rate: 0.72
+      biavr_total_tokens: 38000
+      no_verify_success: 0.25
+      no_verify_verification_rate: 0.0
+      no_verify_total_tokens: 28000
+      random_p05_success: 0.3125
+      random_p05_verification_rate: 0.5
+      random_p05_total_tokens: 35000
+      confidence_threshold_success: 0.3125
+      confidence_threshold_verification_rate: 0.65
+      confidence_threshold_total_tokens: 37000
+    result_rationale: 'B-IAVR 的 Pareto 优势不明显：它与 confidence-threshold 在 success-cost
+      space 中位置接近。 Random-p=0.5 也达到了 31.3% success，仅比 B-IAVR 低 3pp，但 verification
+      cost 更低。 这说明 learned selective policy 相对 simple heuristics 的优势微弱——在 37.5% 的
+      base success rate 下，verification 的 marginal value 本身就不大（只有 +12.5pp vs no-verify），
+      所以 "选择性 verify" 的空间有限。
+
+      '
+    tables:
+    - title: Selective verification comparison
+      columns:
+      - method
+      - success
+      - verif_rate
+      - tokens
+      - cost_saving
+      rows:
+      - - Always-on
+        - 37.5%
+        - 100%
+        - 45000
+        - 0%
+      - - B-IAVR (ours)
+        - 34.4%
+        - 72%
+        - 38000
+        - 15.6%
+      - - Confidence-threshold
+        - 31.3%
+        - 65%
+        - 37000
+        - 17.8%
+      - - Random p=0.5
+        - 31.3%
+        - 50%
+        - 35000
+        - 22.2%
+      - - No-verify
+        - 25.0%
+        - 0%
+        - 28000
+        - 37.8%
+    figures_description:
+    - 'Pareto frontier plot: success rate vs verification cost。B-IAVR 在 frontier 上但与
+      confidence-threshold 重叠。'
+    analysis: 'B-IAVR 未能 dominate Pareto frontier。这进一步支持 selective verification 降为
+      preliminary result。Paper 的核心 contribution 只能是 Claim 1（diagnostic）。
+
+      '
+  - name: No-verify ablation
+    plan_id: plan_009
+    description: 'Episode-level GRPO 完全不做 self-verification，作为 lower bound。
+
+      '
+    expected_results:
+      converged_val_success: 0.25
+      converged_action_is_valid: 0.52
+      success_delta_vs_always_on_pp: -12.5
+    result_rationale: '无 verification 时 success 降 12.5pp（25% vs 37.5%），符合 hypothesis（≥10pp）。
+      这证明 verification 本身有价值（模型确实受益于 self-check），但 12.5pp 的 gap 也意味着 verification
+      的 marginal value 在 medium-performance regime 并非 overwhelming。 对 pick 类简单任务影响小（5pp），对
+      clean/heat 类复杂任务影响大（15-20pp）。
+
+      '
+    tables:
+    - title: Verification ablation
+      columns:
+      - config
+      - val_success
+      - delta_vs_always_on
+      rows:
+      - - Always-on verification
+        - 37.5%
+        - baseline
+      - - No verification
+        - 25.0%
+        - -12.5pp
+    figures_description:
+    - 'Per-task-type breakdown bar chart: verification 对复杂任务影响更大。'
+    analysis: '12.5pp gap 支持 "verification 有价值" 的前提。但在 selective verification 效果弱的情况下，
+      这个数据更多用于 motivation section 而非 main result。
+
+      '
+  - name: Entropy-controlled action-change analysis
+    plan_id: plan_010
+    description: '按 policy entropy 分层，检验 action-change-success correlation 在控制 entropy
+      后是否保持。
+
+      '
+    expected_results:
+      raw_correlation: 0.12
+      partial_correlation_controlling_entropy: 0.08
+      p_value: 0.12
+      low_entropy_stratum_correlation: 0.05
+      high_entropy_stratum_correlation: 0.15
+      n_observations: 512
+    result_rationale: '控制 entropy 后 partial correlation 降至 0.08（p=0.12，not significant
+      at 0.05）。 高 entropy stratum 的 correlation（0.15）比低 entropy（0.05）高，说明 action-change
+      在 uncertain states 中更 informative，但在 confident states 中接近 noise。 这意味着 action-change
+      作为 reward signal 有 confounding：部分 correlation 来自 "uncertain states → both more
+      changes and more failures"，不是 "change → improvement"。
+
+      '
+    tables:
+    - title: Entropy-stratified action-change analysis
+      columns:
+      - stratum
+      - n
+      - action_change_rate
+      - success_rate
+      - correlation
+      rows:
+      - - Low entropy (<0.1)
+        - 180
+        - 22%
+        - 42%
+        - 0.05
+      - - Medium entropy (0.1-0.3)
+        - 200
+        - 32%
+        - 35%
+        - 0.1
+      - - High entropy (>0.3)
+        - 132
+        - 45%
+        - 25%
+        - 0.15
+      - - All (raw)
+        - 512
+        - 32%
+        - 34%
+        - 0.12
+      - - All (partial, controlling entropy)
+        - 512
+        - '-'
+        - '-'
+        - 0.08
+    figures_description:
+    - 'Scatter plot with entropy-colored points: action_change vs success，高 entropy
+      点（红色）集中在高 change / 低 success 区域。'
+    analysis: 'p=0.12 无法拒绝 null hypothesis。这弱化了 action-change 作为 intrinsic reward
+      的理论基础。 Paper 需诚实报告：action-change signal 有 entropy confounding，但 selective verification
+      已降为 future work，所以这个 negative 结果的影响可控。
+
+      '
+  - name: 'Causal intervention: random vs verification-triggered changes'
+    plan_id: plan_011
+    description: '随机注入 action changes（与 verification-triggered 同频率），比较 task success。
+
+      '
+    expected_results:
+      verification_triggered_success: 0.375
+      random_change_success: 0.28125
+      delta_pp: 9.4
+      p_value: 0.04
+      n_episodes_per_condition: 128
+    result_rationale: 'Verification-triggered changes 比 random 高 9.4pp，接近但略低于 hypothesis
+      的 10pp。 P=0.04 勉强 significant。这提供了弱 causal evidence：verification 确实能在 marginal
+      上 选择更好的 change point。但 effect size 不大，因为在 37.5% base success 下，很多 episode 的命运在
+      verification 之前就已决定（选错了第一步物品 → 后续 verify 无法挽救）。
+
+      '
+    tables:
+    - title: Causal intervention results
+      columns:
+      - condition
+      - success
+      - n_episodes
+      - p_value
+      rows:
+      - - Verification-triggered
+        - 37.5%
+        - 128
+        - '-'
+      - - Random (same rate)
+        - 28.1%
+        - 128
+        - '0.04'
+      - - No changes
+        - 25.0%
+        - 128
+        - ref
+    figures_description:
+    - 'Bar chart with significance stars: 三种 condition 的 success rate。'
+    analysis: '弱 causal evidence。可作为 supplementary result 但不足以成为 main claim。
+
+      '
+  - name: Reward signal ablation (action-change vs alternatives)
+    plan_id: plan_012
+    description: '用不同 reward signal 训练 B-IAVR：action-change / random trigger / confidence-based。
+
+      '
+    expected_results:
+      action_change_success: 0.34375
+      action_change_verification_rate: 0.72
+      random_trigger_success: 0.3125
+      random_trigger_verification_rate: 0.55
+      confidence_based_success: 0.3125
+      confidence_based_verification_rate: 0.68
+    result_rationale: 'Action-change reward 略优于 alternatives（+3pp success, 高 verification
+      rate）， 但差距不大。Random trigger 的 success 仅低 3pp 说明 learned policy 的 value add 有限。
+      Confidence-based 与 action-change 接近因为两者都 proxy 了 "uncertainty"。 在 median 档下，三种
+      reward 的差异不够大以 claim "action-change is the best signal"。
+
+      '
+    tables:
+    - title: Reward signal comparison
+      columns:
+      - reward
+      - success
+      - verif_rate
+      - cost_reduction
+      rows:
+      - - Action-change (ours)
+        - 34.4%
+        - 72%
+        - 28%
+      - - Confidence-based
+        - 31.3%
+        - 68%
+        - 32%
+      - - Random trigger
+        - 31.3%
+        - 55%
+        - 45%
+    figures_description:
+    - 'Grouped bar chart: 三种 reward 的 success / verification rate / cost reduction。'
+    analysis: '差异不显著，进一步支持 selective verification 降为 future work。
+
+      '
+  - name: ARES reproduction + comparison
+    plan_id: plan_013
+    description: '复现 ARES SFT router 在 ALFWorld 上的表现，与 B-IAVR head-to-head 比较。
+
+      '
+    expected_results:
+      ares_repro_success: 0.3125
+      ares_repro_verification_rate: 0.55
+      ares_repro_cost_reduction: 0.45
+      biavr_success: 0.34375
+      biavr_verification_rate: 0.72
+      biavr_cost_reduction: 0.28
+      biavr_vs_ares_success_delta_pp: 3.1
+      biavr_vs_ares_cost_reduction_delta_pp: -17
+    result_rationale: 'ARES 的 SFT router 更 aggressive 地 skip verification（55% rate），cost
+      reduction 更高（45%） 但 success 更低（31.3%）。B-IAVR success 略高（+3pp）但 cost 更高（只省 28%
+      vs 45%）。 两者在 Pareto frontier 上各有优势而非 domination。 原因：ARES 用 SFT 从 expert demonstrations
+      学习 skip pattern，more data-efficient； B-IAVR 用 RL 但 reward signal 弱导致 policy
+      不够 aggressive。
+
+      '
+    tables:
+    - title: B-IAVR vs ARES comparison
+      columns:
+      - method
+      - success
+      - verif_rate
+      - cost_reduction
+      - training_paradigm
+      rows:
+      - - B-IAVR (ours)
+        - 34.4%
+        - 72%
+        - 28%
+        - RL (GRPO)
+      - - ARES (repro)
+        - 31.3%
+        - 55%
+        - 45%
+        - SFT router
+      - - Always-on
+        - 37.5%
+        - 100%
+        - 0%
+        - N/A
+    figures_description:
+    - 'Pareto plot: B-IAVR 和 ARES 在 success-cost space 中的位置。'
+    analysis: '无法 claim B-IAVR dominates ARES。但在 Plan A (diagnostic paper) 下，这个比较降为
+      supplementary material。
+
+      '
+  - name: ScienceWorld transfer (episode-level advantage)
+    plan_id: plan_014
+    description: '在 ScienceWorld 上验证 episode-level vs step-independent。
+
+      '
+    expected_results:
+      not_executed: true
+      reason: 资源/时间不足，ScienceWorld 集成复杂度高于预期
+    result_rationale: 'Median 档定义明确指出 "ScienceWorld transfer 未执行或结果不明确"。 ScienceWorld
+      需要不同的 environment wrapper 和 action space adapter，集成工作量 在 Phase D 时间线内难以完成，尤其在
+      Phase A+ 已消耗大量 GPU hours 的情况下。 Paper 将其列为 limitation / future work，承认 single-environment
+      是弱点。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Single-environment limitation 需在 paper 中正面讨论。通过 h-sweep 的 within-ALFWorld
+      多样性和 per-task-type breakdown 来部分缓解，但 reviewer concern #5 无法完全回应。
+
+      '
+  - name: 7B model scaling verification
+    plan_id: plan_015
+    description: '在 Qwen3-7B 上验证 episode-level vs step-independent。
+
+      '
+    expected_results:
+      not_executed: true
+      reason: 需要 4xA100 或 2xH100 云 GPU，预算/时间约束
+    result_rationale: '7B 模型需要至少 4xA100 80GB（episode-level full context 下 7B 的 memory
+      footprint 约 60GB+）， 现有双 GPU 设置无法支撑。在 median 档下 budget 不足以租用云 GPU。 Paper 将 "small
+      model" 列为 limitation，定位为 resource-constrained research。
+
+      '
+    tables: []
+    figures_description: []
+    analysis: 'Reviewer concern #6 只能通过 framing 缓解（"resource-constrained research
+      setting"）， 无硬 evidence。Analysis paper track 对 model scale 的要求比 SOTA paper 更宽容。
+
+      '
+  - name: Per-task-type breakdown analysis
+    plan_id: plan_016
+    description: '按 ALFWorld 6 种 task type 分解 episode-level 和 step-independent 的 success。
+
+      '
+    expected_results:
+      episode_level_per_task:
+        pick:
+          success: 0.5
+          n_episodes: 40
+          avg_episode_length: 18
+        clean:
+          success: 0.36
+          n_episodes: 25
+          avg_episode_length: 28
+        heat:
+          success: 0.3
+          n_episodes: 20
+          avg_episode_length: 32
+        cool:
+          success: 0.33
+          n_episodes: 15
+          avg_episode_length: 25
+        examine:
+          success: 0.2
+          n_episodes: 10
+          avg_episode_length: 35
+        pick_two:
+          success: 0.22
+          n_episodes: 18
+          avg_episode_length: 40
+      step_independent_per_task:
+        pick:
+          success: 0.05
+          n_episodes: 40
+          avg_episode_length: 18
+        clean:
+          success: 0.0
+          n_episodes: 25
+          avg_episode_length: 28
+        heat:
+          success: 0.0
+          n_episodes: 20
+          avg_episode_length: 32
+        cool:
+          success: 0.0
+          n_episodes: 15
+          avg_episode_length: 25
+        examine:
+          success: 0.0
+          n_episodes: 10
+          avg_episode_length: 35
+        pick_two:
+          success: 0.0
+          n_episodes: 18
+          avg_episode_length: 40
+      episode_length_vs_episode_level_advantage_correlation: -0.82
+    result_rationale: 'Episode-level 优势在长 episode 任务上更大：pick（最短，18 steps）episode-level
+      也只有 50%， 但 step-independent 还有 5%；examine 和 pick_two（35-40 steps）episode-level
+      20-22% 而 step-independent 0%。Correlation -0.82 说明 episode length 越长，step-independent
+      的 sign misattribution 越严重（更多 window 的 advantage sign 被 episode outcome 污染）。
+      Pick 任务 step-independent 残存 5% success 因为有些 pick 任务 trajectory 短到 1-2 个 window，
+      sign misattribution 的伤害较小。
+
+      '
+    tables:
+    - title: Per-task-type breakdown
+      columns:
+      - task_type
+      - n
+      - avg_steps
+      - episode_level
+      - step_independent
+      - delta
+      rows:
+      - - pick
+        - 40
+        - 18
+        - 50.0%
+        - 5.0%
+        - +45.0pp
+      - - clean
+        - 25
+        - 28
+        - 36.0%
+        - 0.0%
+        - +36.0pp
+      - - cool
+        - 15
+        - 25
+        - 33.3%
+        - 0.0%
+        - +33.3pp
+      - - heat
+        - 20
+        - 32
+        - 30.0%
+        - 0.0%
+        - +30.0pp
+      - - pick_two
+        - 18
+        - 40
+        - 22.2%
+        - 0.0%
+        - +22.2pp
+      - - examine
+        - 10
+        - 35
+        - 20.0%
+        - 0.0%
+        - +20.0pp
+    figures_description:
+    - 'Grouped bar chart: 每种 task type 的 episode-level vs step-independent success，按
+      avg_steps 排序。清晰展示长任务的 advantage 更大但 absolute success 更低。'
+    - 'Scatter plot: avg_episode_length vs episode-level success，负相关 r=-0.82。'
+    analysis: Per-task breakdown 是 diagnostic paper 的重要 figure：展示了 step-independent
+      崩溃 在长 horizon 任务上尤为严重，与 sign misattribution 机制预测一致（更多 windows → 更多 misattributed
+      gradients）。短任务（pick）的残存 success 提供了额外 mechanistic evidence。 这部分分析在 Plan A 下变得更重要，作为
+      h-sweep 的补充。
+  review_report: '---
+
+    dream_id: dream_20260517T133129
+
+    tier: median
+
+    overall_score: weak reject
+
+    timestamp: 2026-05-17T14:14:53.925243+00:00
+
+    ---
+
+
+    # Dream Review Report: "Why Step-Independent RL Fails for LLM Multi-Turn Agents:
+    Dual Mechanism Analysis"
+
+
+    **Review Mode**: Full (2 Reviewers, complete roundtable)
+
+    **Date**: 2026-05-17
+
+
+    ---
+
+
+    ## Panel Summary
+
+
+    | Reviewer | Focus | Score | Confidence |
+
+    |----------|-------|-------|------------|
+
+    | R1 | Methods + Experiments | 4/6 (Weak Accept) | 4/5 |
+
+    | R2 | Novelty + Related Work | 3/6 (Weak Reject) | 4/5 |
+
+    | **Consensus** | — | **3/6 (Weak Reject)** | **4/5** |
+
+
+    ---
+
+
+    ## Paper Overview
+
+
+    The paper diagnoses why step-independent GRPO training catastrophically fails
+    for multi-turn LLM agents on ALFWorld. It identifies a dual mechanism: (1) policy
+    information loss from truncated context windows and (2) advantage sign misattribution,
+    where per-window advantage signs are dominated by episode outcome (r=0.87) rather
+    than local action quality (r=0.14). Episode-level GRPO is proposed as a "necessary
+    minimum" fix (34.4% ±4.8%), with GAE(λ=0.95) providing an additional 12.5pp through
+    finer per-token credit. Experiments include a context-window sweep (h∈{2,5,10,20,full},
+    3 seeds each), 5-seed replication, per-task-type analysis (r=-0.82 with episode
+    length), and preliminary selective verification results.
+
+
+    ---
+
+
+    ## Consensus Strengths
+
+
+    1. **The sign attribution analysis is the paper''s strongest and most novel empirical
+    result.** The r=0.87 (sign-vs-outcome) vs r=0.14 (sign-vs-local-quality) finding,
+    supported by 256 episodes and 3200 windows, with 92% all-positive advantages in
+    success episodes and 89% all-negative in failure episodes, provides concrete mechanistic
+    quantification rare in the agent RL literature.
+
+
+    2. **The h-sweep ablation is well-designed and informative.** Five context-window
+    values with three seeds each reveals clear monotonic degradation with a seed-dependent
+    transition zone at h≈5-10. This is a model for systematic ablation design.
+
+
+    3. **Multi-seed replication is adequate for the core claim.** Five seeds with
+    95% CI [28.4%, 40.4%] convincingly establishes that episode-level training is
+    qualitatively superior to step-independent (≤1%), even at the CI lower bound.
+
+
+    4. **The paper is clearly written with a logical narrative.** Tables are clean
+    and informative. The "necessary minimum" vs "sufficient improvement" framing is
+    intellectually honest. The diagnostic paper positioning is appropriate.
+
+
+    5. **The per-task-type analysis (r=-0.82 with episode length) provides internal
+    mechanistic validation**, showing that longer-horizon tasks suffer more severe
+    step-independent failure, consistent with the sign misattribution mechanism.
+
+
+    ---
+
+
+    ## Consensus Weaknesses (Ranked by Severity)
+
+
+    ### Critical
+
+
+    **W1. No factorial mechanism separation.** (Both R1 and R2)
+
+    The paper''s central claim is a "dual mechanism," but information loss and sign
+    misattribution are never experimentally isolated. The h-sweep varies both context
+    window size (affecting information loss) and the number of independently-optimized
+    windows (affecting sign misattribution) simultaneously. A 2×2 factorial design
+    — {full context, truncated context} × {episode advantage, per-window advantage}
+    — is needed. Without this, the "dual mechanism" is a theoretical decomposition,
+    not an empirically validated causal attribution. The relative contribution of
+    each mechanism remains unknown.
+
+
+    **W2. Single environment, single model scale.** (Both R1 and R2)
+
+    All experiments use ALFWorld with Qwen2.5-1.5B. The paper claims to identify general
+    mechanisms for "multi-turn LLM agents," but generality is not tested. The per-task-type
+    analysis provides within-environment diversity across episode lengths but does
+    not substitute for cross-environment validation (e.g., ScienceWorld, WebShop).
+    The absence of scaling experiments (7B+) leaves open whether the mechanism is
+    model-capacity-dependent: if larger models partially compensate via stronger in-context
+    learning, the "necessary" claim weakens.
+
+
+    ### Major
+
+
+    **W3. SOTA gap undermines practical relevance.** (R2, partially acknowledged by
+    R1)
+
+    GAGPO achieves 93.5% on ALFWorld at the same scale (1.5B); HiPER achieves 97.4%
+    at 7B. These methods implicitly solve sign misattribution through finer credit
+    assignment. The paper diagnoses why a 34.4% method fails relative to a 1% method,
+    but does not demonstrate that this diagnosis yields insights applicable to improving
+    the 93%+ methods. The "diagnostic contribution" framing is valid in principle
+    but requires stronger justification for why the community should invest attention
+    in understanding this specific failure mode when effective solutions already exist.
+
+
+    **W4. GAE comparison at fixed step count, not convergence.** (R1, supported by
+    R2)
+
+    Comparing episode-level GRPO (28.1%) and GAE(0.95) (40.6%) at step 15 conflates
+    training speed with asymptotic performance. Table 4 shows episode-level GRPO continues
+    improving past step 15 (reaching 34.4% at step 30). If GAE also continues improving,
+    the 12.5pp gap may widen or narrow at convergence. This leaves the core "necessary
+    minimum vs sufficient improvement" decomposition quantitatively uncertain.
+
+
+    **W5. No comparison with Turn-PPO.** (R2)
+
+    The paper positions extensively against Turn-PPO in the Discussion (claiming sign
+    misattribution is a "superset" of uniform advantage) but provides no empirical
+    comparison. Turn-PPO''s turn-level value function likely also eliminates sign
+    misattribution while providing finer credit. Without this comparison, the contrarian
+    "coarser suffices" positioning is incomplete.
+
+
+    ### Moderate
+
+
+    **W6. Limited novelty beyond Turn-PPO.** (R2)
+
+    The conceptual jump from Turn-PPO''s "uniform advantage" to this paper''s "sign
+    misattribution" is incremental. Under binary rewards, the advantage sign mapping
+    to episode outcome follows directly from the GRPO formulation. The quantification
+    (r=0.87, r=0.14) adds empirical grounding, but the underlying insight is accessible
+    through first principles. The contribution is better characterized as systematic
+    empirical verification of a predictable phenomenon.
+
+
+    **W7. Local action quality proxy is coarse.** (R1)
+
+    The r=0.14 sign-vs-quality correlation uses action validity (syntactic correctness)
+    as a proxy for action quality (strategic value). A syntactically valid action
+    that navigates to the wrong room is "valid" but poor quality. If a task-progress-based
+    proxy were used, the correlation might increase, potentially weakening the sign
+    misattribution claim. The paper does not discuss this limitation or test sensitivity
+    to the proxy choice.
+
+
+    **W8. Selective verification section is premature.** (Both R1 and R2)
+
+    B-IAVR achieves only 28% verification reduction with 3.1pp success cost, does
+    not dominate the Pareto frontier, and the action-change reward signal loses significance
+    after entropy correction (partial r=0.08, p=0.12). Section 6 occupies a full page
+    without strengthening the core contribution. It should be removed or reduced to
+    2-3 sentences in Future Work.
+
+
+    **W9. Credit assignment related work is thin.** (R2)
+
+    For a paper whose core contribution concerns credit assignment, citing a single
+    survey is insufficient. Missing references include COMA (Foerster et al., 2018),
+    QMIX (Rashid et al., 2018), difference rewards, and other foundational temporal/multi-agent
+    credit assignment work.
+
+
+    ### Minor
+
+
+    **W10. "Catastrophic" language overstates h-sweep findings.** (R1)
+
+    Only h=2 shows near-zero performance. h=5 achieves 7.3%, h=10 achieves 16.7%.
+    The Abstract and Introduction use "catastrophically fails" language that is only
+    justified for h=2 specifically.
+
+
+    **W11. No formal significance tests.** (R1)
+
+    Means and standard deviations are reported but no hypothesis tests for key comparisons.
+    The per-task correlation (r=-0.82, n=6) has p≈0.045, barely significant and should
+    be noted.
+
+
+    **W12. Small validation set (32 episodes).** (R1)
+
+    3.125% resolution per episode limits precision for fine-grained comparisons. Many
+    reported differences (e.g., 3.1pp) correspond to a single additional episode succeeding
+    or failing.
+
+
+    ---
+
+
+    ## Key Questions for Authors
+
+
+    1. **Mechanism separation**: Can you provide a factorial experiment (episode-level
+    advantage with truncated context, full-context with per-window advantage) to quantify
+    the relative contribution of each mechanism?
+
+
+    2. **Turn-PPO comparison**: How does Turn-PPO''s turn-level value function perform
+    on ALFWorld? If it eliminates sign misattribution while providing finer credit,
+    is not episode-level GRPO dominated?
+
+
+    3. **GAE at convergence**: What is GAE(0.95)''s converged performance? Does the
+    12.5pp gap persist, widen, or narrow?
+
+
+    4. **Generality**: Have you attempted any verification beyond ALFWorld? The mechanism
+    prediction (severity scales with episode length and 1-p) is testable on other
+    environments.
+
+
+    5. **GAGPO reconciliation**: GAGPO achieves 93.5% at the same model scale. Is
+    this gap attributable to finer credit assignment, longer training, different initialization,
+    or recipe differences? This comparison is critical for positioning.
+
+
+    ---
+
+
+    ## Consensus Score Justification
+
+
+    **Score: 3/6 (Weak Reject)**
+
+
+    The paper identifies a real failure mode (advantage sign misattribution in step-independent
+    training) and provides systematic empirical evidence (sign attribution analysis,
+    h-sweep, multi-seed replication). These are genuine contributions.
+
+
+    However, three structural problems prevent acceptance at a top ML venue:
+
+
+    1. The "dual mechanism" central claim is not experimentally validated as two separate
+    mechanisms (no factorial design).
+
+    2. Single-environment, single-scale evidence cannot support the general claims
+    made.
+
+    3. The practical relevance is limited given that existing methods (GAGPO, HiPER)
+    already achieve 93-97% on the same benchmark, implicitly solving the diagnosed
+    problem.
+
+
+    The paper reads as a solid workshop contribution or a foundation for a stronger
+    full paper. With the factorial experiment, one additional environment, GAE convergence
+    data, and a Turn-PPO comparison, it could reach the acceptance threshold.
+
+
+    ---
+
+
+    ## Revision Recommendations (Priority Order)
+
+
+    1. **Run the factorial experiment** (2×2: context × advantage level) to separate
+    the two mechanisms
+
+    2. **Add at least one more environment** (ScienceWorld or WebShop) for generality
+
+    3. **Run GAE to convergence** and report converged performance for all methods
+
+    4. **Add Turn-PPO comparison** on ALFWorld
+
+    5. **Remove or drastically shorten Section 6** (selective verification)
+
+    6. **Expand credit assignment related work** (COMA, QMIX, difference rewards)
+
+    7. **Test sensitivity to the local quality proxy** (replace action validity with
+    a task-progress measure)
+
+    8. **Moderate language**: use "catastrophic" only for h=2; use "severe degradation"
+    for h=5-10'
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/dream_reports/dream_20260517T133129/worst/paper.pdf
+  imagined_experiments:
+  - name: Context window h-sweep ablation (3 seeds each)
+    plan_id: plan_002
+    description: Sweep h={2, 5, 10, 20, full}, 15 steps, 3 seeds each. 测试 credit assignment
+      cliff 是否 robust。
+    expected_results:
+      h2_seed1_val_success_step15: 0.0
+      h2_seed2_val_success_step15: 0.031
+      h2_seed3_val_success_step15: 0.0
+      h5_seed1_val_success_step15: 0.156
+      h5_seed2_val_success_step15: 0.0
+      h5_seed3_val_success_step15: 0.188
+      h10_seed1_val_success_step15: 0.094
+      h10_seed2_val_success_step15: 0.219
+      h10_seed3_val_success_step15: 0.125
+      h20_seed1_val_success_step15: 0.188
+      h20_seed2_val_success_step15: 0.25
+      h20_seed3_val_success_step15: 0.156
+      full_seed1_val_success_step15: 0.25
+      full_seed2_val_success_step15: 0.281
+      full_seed3_val_success_step15: 0.219
+      collapse_rate_h2: 0.67
+      collapse_rate_h5: 0.33
+      collapse_rate_h10: 0.0
+      cliff_threshold_range: 3-8 (seed-dependent)
+    result_rationale: Worst 档下 h-sweep cliff 不一致。h=2 多数 seed 崩溃但非全部（seed2 靠运气学到少量
+      pattern）。h=5 更关键：seed1/3 没有崩溃且学到 15-19%，只有 seed2 崩溃。这直接削弱 'catastrophic failure
+      below threshold' narrative——cliff 位置是 stochastic 的，不是 deterministic 的。h=10/20/full
+      之间差异不大（均在 10-25% 区间），说明即使给了足够 context，episode-level 本身也有天花板。Monotonic degradation
+      假设不成立：h=5 的某些 seed 可以接近 h=full。
+    tables:
+    - name: 'Table 1: h-sweep results (mean ± std across 3 seeds)'
+      columns:
+      - h
+      - val_success_mean
+      - val_success_std
+      - collapse_rate
+      - convergence_step
+      rows:
+      - - 2
+        - 1.0%
+        - 1.8%
+        - 67%
+        - 3-4
+      - - 5
+        - 11.5%
+        - 10.4%
+        - 33%
+        - 4-6
+      - - 10
+        - 14.6%
+        - 6.3%
+        - 0%
+        - N/A
+      - - 20
+        - 19.8%
+        - 4.8%
+        - 0%
+        - N/A
+      - - full
+        - 25.0%
+        - 3.1%
+        - 0%
+        - N/A
+    figures_description:
+    - 'Fig: h-value vs val_success with per-seed lines. 无 clean cliff——h=5 区间有巨大 variance
+      band（0-19%），与 h=10 overlap。Error bars 在 h=5 处最宽。'
+    analysis: Cliff 不 robust。h=5 std=10.4pp 意味着 cliff 位置是 random variable 而非 structural
+      property。无法 claim 'h<X catastrophically fails' 因为 X 取决于 seed。这削弱了 paper 的核心
+      figure 说服力——reviewer 会问 'with more seeds would the cliff disappear entirely?'
+  - name: Multi-seed replication (5 seeds total)
+    plan_id: plan_003
+    description: 4 additional seeds for exp029 episode-level config, report mean ±
+      std。
+    expected_results:
+      seed1_val_success_step15: 0.281
+      seed2_val_success_step15: 0.188
+      seed3_val_success_step15: 0.313
+      seed4_val_success_step15: 0.156
+      seed5_val_success_step15: 0.25
+      mean_val_success: 0.238
+      std_val_success: 0.062
+      max_val_success_any_seed: 0.313
+      min_val_success_any_seed: 0.156
+      seeds_above_30pct: 1
+      seeds_below_20pct: 1
+      convergence_step_range: 10-15 (all plateau)
+      step50_mean_val_success: 0.26
+      step50_std: 0.071
+    result_rationale: Worst 档要求 multi_seed_std > 8pp。5 seeds 中 std=6.2pp（接近但略低于阈值），但如果看
+      step 50（训练更久），seed 4 可能进一步恶化（plateau 后缓慢下降到 12-15%），使得 late-stage std 达到 8-10pp。关键问题：seed
+      4 只有 15.6%，与 step-independent h=10 的 best seed（21.9%）重叠——episode-level 的 advantage
+      over step-independent 在 per-seed 层面不 universal。reproducibility 不够 strong（CI
+      太宽），reviewer 会 flag 'your method might just be getting lucky on some seeds'。
+    tables:
+    - name: 'Table 2: Multi-seed episode-level GRPO results'
+      columns:
+      - seed
+      - step5_val
+      - step10_val
+      - step15_val
+      - step50_val
+      - plateau_onset
+      rows:
+      - - 1
+        - 25.0%
+        - 25.0%
+        - 28.1%
+        - 28.1%
+        - step 10
+      - - 2
+        - 18.8%
+        - 18.8%
+        - 18.8%
+        - 21.9%
+        - step 5
+      - - 3
+        - 25.0%
+        - 31.3%
+        - 31.3%
+        - 31.3%
+        - step 10
+      - - 4
+        - 12.5%
+        - 15.6%
+        - 15.6%
+        - 15.6%
+        - step 5
+      - - 5
+        - 18.8%
+        - 25.0%
+        - 25.0%
+        - 28.1%
+        - step 10
+    figures_description:
+    - 'Fig: Training curves (5 seeds) with shaded std band. Band 宽度在 step 5 后稳定但 wide（±6pp），所有
+      seed 在 step 10-15 plateau，无 seed 突破 32%。'
+    analysis: Mean 23.8% ± 6.2pp。95% CI = [11.3%, 36.3%]。这个 CI 与 step-independent
+      h=10 mean（14.6%）有 overlap，削弱 episode-level 的统计 significance。更致命的是 plateau 现象——所有
+      seed 在 step 10-15 停滞，额外训练 35 步几乎无改善，说明 episode-level GRPO 本身有信息瓶颈（无 per-token
+      credit）。
+  - name: GAE baseline comparison
+    plan_id: plan_003b
+    description: GAE(λ=0.95, γ=1.0) 和 GAE(λ=1.0, γ=1.0) vs episode-level GRPO, 15
+      steps × 3 seeds。
+    expected_results:
+      gae_095_mean_val_success_step15: 0.438
+      gae_095_std: 0.047
+      gae_100_mean_val_success_step15: 0.375
+      gae_100_std: 0.055
+      episode_grpo_mean_val_success_step15: 0.238
+      gae_095_vs_episode_delta_pp: 20.0
+      gae_100_vs_episode_delta_pp: 13.7
+      gae_095_action_is_valid: 0.78
+      gae_095_convergence_step: 12
+      gae_still_improving_at_step15: true
+    result_rationale: Worst 档核心假设：GAE >> episode-level GRPO（delta > 15pp）。GAE(0.95)
+      有 value function 做 per-token credit assignment，能区分 trajectory 中好/坏 action 并精确更新。Episode-level
+      GRPO 所有 token 共享一个 advantage（相当于 REINFORCE），缺乏 temporal difference 信息。20pp gap
+      证明 per-token credit 是关键——episode-level 'just knowing the outcome' 不够，你需要知道 which
+      tokens contributed。这直接反驳 paper 的 contrarian claim 'coarser is better'。GAE(1.0,1.0)
+      稍弱因为 high variance（相当于 Monte Carlo），但仍优于 GRPO 因为 critic 提供 baseline。
+    tables:
+    - name: 'Table 3: GAE vs Episode-level GRPO'
+      columns:
+      - method
+      - val_success_mean
+      - std
+      - delta_vs_episode_grpo
+      - action_is_valid
+      - still_improving
+      rows:
+      - - Episode GRPO
+        - 23.8%
+        - 6.2pp
+        - —
+        - 55%
+        - No (plateau)
+      - - GAE(λ=1.0,γ=1.0)
+        - 37.5%
+        - 5.5pp
+        - +13.7pp
+        - 72%
+        - Marginal
+      - - GAE(λ=0.95,γ=1.0)
+        - 43.8%
+        - 4.7pp
+        - +20.0pp
+        - 78%
+        - 'Yes'
+    figures_description:
+    - 'Fig: Learning curves — GAE(0.95) clearly dominates from step 5 onward, with
+      episode GRPO plateauing while GAE continues climbing. The gap widens over training.'
+    analysis: GAE 大幅超越 episode-level GRPO 证明 per-token temporal difference credit
+      是关键。Episode-level 的 'advantage sign is correct' 不够——你还需要 magnitude differentiation
+      across tokens。这反驳了 contrarian positioning：社区追求 finer credit 是对的。Episode-level
+      只是 '方向不错但信息太粗' 的 solution。Paper 的核心 contribution（'coarser suffices'）被实验数据否定。
+  - name: Episode-level + valid_action_bonus (plateau-breaker)
+    plan_id: plan_003c
+    description: Episode-level + valid_action_bonus=0.05, 测试能否打破 plateau 且不 game。
+    expected_results:
+      val_success_step15: 0.25
+      val_action_is_valid_step15: 0.72
+      val_action_is_valid_step30: 0.85
+      success_plateau_broken: false
+      reward_gaming_detected: false
+      valid_bonus_vs_task_ratio: 4.2:10 (per episode)
+      action_is_valid_improvement: +17pp vs vanilla
+    result_rationale: Episode-level 下 dense reward gaming 不发生（与 exp013f 对比，D056 insight
+      正确）。action_is_valid 从 55% 提升到 72-85%，模型确实学到了更多合法 action format。但 success rate
+      仍 plateau 在 25%——更多 valid actions ≠ 更好的 task strategy。模型能输出合法格式但不知道 WHICH valid
+      action 能推进 task。Valid action bonus 解决的是 syntax 问题而非 semantics 问题。Plateau 未突破因为瓶颈不在
+      action validity 而在 credit assignment granularity（GAE 结果已证明）。
+    tables: []
+    figures_description:
+    - 'Fig: action_is_valid 稳步上升（55%→85%），success_rate 保持 flat（25%±3pp）。两条线 decouple
+      证明 valid format ≠ task success。'
+    analysis: D056 insight 部分正确（episode-level 不 game dense reward），但 plateau 不是 action_is_valid
+      造成的。Base agent 学会了 'speak the right language' 但不知道 'say the right thing'。Plateau
+      本质是 episode-level credit 太粗——all valid actions 获得相同 reinforcement signal，模型无法区分哪个
+      valid action 更好。
+  - name: Credit assignment mechanism empirical verification
+    plan_id: plan_004
+    description: Per-window advantage logging 验证 sign misattribution 机制。
+    expected_results:
+      sign_vs_outcome_correlation: 0.72
+      sign_vs_local_quality_correlation: 0.28
+      gamma_k_magnitude_decay_r2: 0.45
+      episode_level_advantage_variance: 0.0
+      success_episodes_all_positive: 0.85
+      failure_episodes_all_negative: 0.78
+      mixed_sign_episodes_pct: 0.18
+    result_rationale: Worst 档下 sign misattribution 存在但非 dominant。sign_vs_outcome_correlation=0.72
+      说明 advantage sign 确实偏向 episode outcome，但 0.72 远非 'near 1.0' 的理论预测。28% 的 local
+      quality correlation 说明 advantage 中有 non-trivial 的 local signal（GRPO 的 group
+      normalization 引入了组内相对排序信息）。18% 的 episodes 出现 mixed signs（部分 window positive
+      部分 negative in same episode），这不符合 'pure sign misattribution' 理论（理论预测应为 0%）。γ^k
+      decay R²=0.45 说明 magnitude 确实随 position 衰减但 fit 不好（noise 大）。总结：mechanism 存在但不
+      clean，empirical evidence 是 'moderate support' 而非 'strong confirmation'。
+    tables:
+    - name: 'Table 4: Advantage sign analysis'
+      columns:
+      - metric
+      - theoretical_prediction
+      - observed
+      - interpretation
+      rows:
+      - - sign-outcome corr
+        - '>0.95'
+        - '0.72'
+        - Exists but not dominant
+      - - sign-local_quality corr
+        - <0.1
+        - '0.28'
+        - Non-trivial local signal present
+      - - γ^k decay R²
+        - '>0.8'
+        - '0.45'
+        - Weak fit
+      - - mixed-sign episodes
+        - 0%
+        - 18%
+        - Theory violation
+      - - episode-level variance
+        - '0'
+        - '0'
+        - Confirmed (trivially)
+    figures_description:
+    - 'Fig 2 draft: scatter plot of per-window advantage sign vs episode outcome.
+      明显 trend 但大量 noise。不像理论预测的 clean two-cluster separation。'
+    analysis: Sign misattribution 是 real phenomenon 但 paper 需要大幅 soften claims。不能写
+      'advantage sign is entirely determined by episode outcome'——实际只有 72% correlation。Mixed-sign
+      episodes 的存在说明 GRPO group normalization 引入了组内 local ranking 信号（当 group 中有 partial
+      success 时）。Reviewer 会 attack：'your mechanism is one factor among several, not
+      THE explanation'。这把论文从 'mechanistic explanation paper' 降级为 'we observed a contributing
+      factor'。
+  - name: Action-change statistics from always-on runs
+    plan_id: plan_005
+    description: 从 exp029 checkpoints 收集 verification 后 action change 统计。
+    expected_results:
+      action_change_rate: 0.35
+      confirmatory_rate: 0.65
+      action_change_success_correlation: 0.08
+      action_change_rate_success_episodes: 0.38
+      action_change_rate_failure_episodes: 0.34
+      per_task_variance: 'high (pick: 0.25, clean: 0.45, heat: 0.30)'
+    result_rationale: Base agent 只有 28% success rate，大部分 verification 是在失败 trajectory
+      中进行的。Action change rate 35%（不是 >60% confirmatory 的预期？ 其实是——65% confirmatory
+      符合假设）。但关键问题：action_change_success_correlation 极低（0.08），说明 action change 与 episode
+      success 几乎无关。在成功 episodes 中 change rate=38%，失败中=34%——差异 negligible。这意味着 action-change
+      作为 reward signal 没有 information content：改变 action 并不 predictive of 成功。原因：base
+      agent 太弱（28% success），它的 verification 大多是 random perturbation 而非 informed correction。
+    tables: []
+    figures_description:
+    - 'Fig: action_change_rate 按 task type 分解。High variance across types 但 none 显示
+      strong change-success correlation。'
+    analysis: Action-change reward 的前提假设（'change = informative verification'）在这个 agent
+      能力水平下不成立。28% success 的 agent 做 verification 更像是 random re-sampling 而非 informed
+      decision revision。Selective verification 的整个 Phase B 建立在沙子上——你需要一个足够强的 agent（≥50%
+      success?）才能让 verification 成为 meaningful signal 而非 noise。
+  - name: Selective verification implementation
+    plan_id: plan_006
+    description: 实现 binary verify/skip decision。Code-only。
+    expected_results:
+      implementation_complete: true
+      code_lines_added: 280
+      integration_test_pass: true
+      gpu_hours: 0
+    result_rationale: 纯代码实现，无 ML 依赖。能完成但实际 training（plan_007）会 fail 因为 base agent
+      太弱。
+    tables: []
+    figures_description: []
+    analysis: Implementation 本身 trivial。问题不在代码而在 downstream training signal quality。
+  - name: B-IAVR selective verification training
+    plan_id: plan_007
+    description: 从 exp029 best checkpoint 训练 selective verification policy。
+    expected_results:
+      verification_rate: 0.88
+      success_rate: 0.219
+      success_delta_vs_always_on_pp: -6.2
+      cost_reduction: 0.12
+      training_converged: false
+      policy_behavior: near-always-verify (degenerate)
+    result_rationale: Base agent 只有 28% success。Selective policy 面临两个问题：(1) action-change
+      reward 无 information content（plan_005 证明 change 与 success 无关），所以 reward signal
+      is noise；(2) skip verification 有 immediate cost（performance drop），而 base agent
+      已经很弱，任何 skip 都大幅降低本就脆弱的 success rate。Policy 学到 degenerate solution：几乎 always
+      verify（88% rate），偶尔 skip 是 random noise 而非 learned strategy。12% cost reduction
+      远未达到 40% target。Success 还 drop 了 6pp 因为那 12% skip 确实 hurt。
+    tables:
+    - name: 'Table 5: B-IAVR training results'
+      columns:
+      - metric
+      - target
+      - achieved
+      - gap
+      rows:
+      - - verification_rate_reduction
+        - ≥40%
+        - 12%
+        - -28pp
+      - - success_delta_vs_always_on
+        - <5pp
+        - -6.2pp
+        - Fail
+      - - cost_reduction_pct
+        - ≥40%
+        - 12%
+        - -28pp
+      - - policy_entropy_final
+        - '>0.3'
+        - '0.08'
+        - Collapsed to always-verify
+    figures_description:
+    - 'Fig: verification rate 从 100% 缓慢下降到 88% 然后 plateau。Policy entropy → 0 表明 degenerate
+      convergence。'
+    analysis: Selective verification 在 base agent success < 30% 时完全不可行。Policy 无法学到
+      meaningful skip pattern 因为：(1) reward signal (action-change) 是 noise，(2) skipping
+      has guaranteed downside with no upside at this performance level。整个 Phase B
+      contribution 不成立。
+  - name: Selective verification full comparison
+    plan_id: plan_008
+    description: Always-on / B-IAVR / no-verify / random-p / confidence-threshold
+      对比。
+    expected_results:
+      always_on_success: 0.281
+      biavr_success: 0.219
+      biavr_verification_rate: 0.88
+      no_verify_success: 0.188
+      random_p05_success: 0.234
+      random_p05_verification_rate: 0.5
+      confidence_threshold_success: 0.25
+      confidence_threshold_verification_rate: 0.62
+    result_rationale: 'B-IAVR 不 dominate Pareto frontier。Random-p=0.5 在 success/cost
+      tradeoff 上 comparable to B-IAVR（random: 23.4% success at 50% cost vs B-IAVR:
+      21.9% at 88% cost）——random 更 cost-efficient。Confidence threshold 也优于 B-IAVR。这证明
+      learned policy 不优于 naive baselines，因为 base agent 太弱导致所有 verification 策略 degenerate。No-verify
+      只 drop 9pp（远低于预期的 ≥10pp），说明 verification 本身 value 也有限。'
+    tables:
+    - name: 'Table 6: Verification strategy comparison'
+      columns:
+      - method
+      - success
+      - verify_rate
+      - cost_tokens
+      - success_per_token
+      rows:
+      - - always-on
+        - 28.1%
+        - 100%
+        - 1.00x
+        - '0.281'
+      - - B-IAVR (ours)
+        - 21.9%
+        - 88%
+        - 0.92x
+        - '0.238'
+      - - random-p=0.5
+        - 23.4%
+        - 50%
+        - 0.67x
+        - '0.349'
+      - - confidence
+        - 25.0%
+        - 62%
+        - 0.74x
+        - '0.338'
+      - - no-verify
+        - 18.8%
+        - 0%
+        - 0.45x
+        - '0.418'
+    figures_description:
+    - 'Fig: Pareto frontier (success vs cost). B-IAVR 位于 frontier 内部（dominated by
+      random-p and confidence）。No-verify 有最好的 tokens-per-success efficiency。'
+    analysis: Paper Claim 3 完全 fail。B-IAVR 被 naive baselines dominate。讽刺的是 no-verify
+      的 efficiency 最高（per-token success ratio），说明在 28% success 水平下，verification 本身就是
+      pure overhead——agent 改变 action 不提升 success。
+  - name: No-verify ablation
+    plan_id: plan_009
+    description: Episode-level GRPO without self-verification。
+    expected_results:
+      success_rate: 0.188
+      action_is_valid: 0.52
+      delta_vs_always_on: -9.3
+    result_rationale: No-verify 只 drop ~9pp（28.1% → 18.8%），低于预期的 ≥10pp。原因：在 28% success
+      level，verification 的 marginal value 有限——agent 的 success 主要来自偶然走对 path，verification
+      只是小幅增加 correction 机会但不 fundamentally 改变 strategy。如果 base agent 更强（如 GAE 的 44%），verification
+      drop 可能更大，但我们无法测试因为 episode-level 训练不出更强的 agent。
+    tables: []
+    figures_description: []
+    analysis: Verification value 存在但 modest（9pp）。不足以支撑 'selective verification 是重要
+      research problem' 的 motivation——reviewer 会说 'if verification only adds 9pp,
+      why not just skip it entirely and save tokens?'
+  - name: Entropy-controlled action-change analysis
+    plan_id: plan_010
+    description: Stratify by policy entropy，测试 action-change-success correlation 是否
+      holds。
+    expected_results:
+      partial_correlation_after_entropy_control: 0.03
+      p_value: 0.42
+      low_entropy_stratum_correlation: 0.05
+      high_entropy_stratum_correlation: 0.11
+      entropy_success_correlation: -0.15
+    result_rationale: Controlling for entropy 后 action-change-success correlation
+      从 0.08 降至 0.03（p=0.42，not significant）。这证明 plan_005 中观察到的微弱 correlation 完全由
+      entropy confound 解释：高 entropy → 更多 random action change + 更低 success。Action
+      change 本身无 causal relationship with success。Reviewer concern 'action change
+      = noise' 被证实。
+    tables: []
+    figures_description:
+    - 'Fig: partial correlation heatmap across entropy strata. All cells near zero
+      after controlling.'
+    analysis: Action-change 作为 verification informativeness proxy 的理论基础被否定。Change
+      只是 high entropy 的 side effect，不是 'verification found better action'。Claim 2
+      的 reward design 无 empirical grounding。
+  - name: 'Causal intervention: random vs verification-triggered changes'
+    plan_id: plan_011
+    description: Inject random action changes at same rate，对比 verification-triggered。
+    expected_results:
+      success_rate_verification_triggered: 0.22
+      success_rate_random_change: 0.19
+      delta_pp: 3.0
+      p_value: 0.31
+      effect_size_cohens_d: 0.12
+    result_rationale: Verification-triggered changes 只比 random changes 好 3pp（not significant,
+      p=0.31）。Effect size tiny (d=0.12)。原因：28% success 的 agent 做 verification 时，其
+      'correction' 几乎等价于 random re-sampling from policy——agent 没有真正的 'second opinion'
+      能力，verification output 和 original output 来自同一个 weak policy distribution。Causal
+      evidence for verification value 不成立。
+    tables: []
+    figures_description:
+    - 'Fig: success rate comparison with 95% CI error bars. Bars overlap heavily.'
+    analysis: Verification 在 weak agent 上 ≈ random perturbation。这是 Claim 2 的 death
+      blow——不仅 action-change 不是好 reward（plan_010），verification 本身在当前 agent 能力下就没有
+      causal value（它的 correction 不比 random good）。
+  - name: Reward signal ablation (action-change vs alternatives)
+    plan_id: plan_012
+    description: 比较不同 reward signals 训练 selective policy。
+    expected_results:
+      action_change_success: 0.219
+      action_change_verify_rate: 0.88
+      random_trigger_success: 0.234
+      random_trigger_verify_rate: 0.52
+      confidence_reward_success: 0.25
+      confidence_reward_verify_rate: 0.65
+    result_rationale: 所有 reward variants 都 fail 达到 target，但 action-change 是最差的——它训出
+      near-always-verify 因为 reward signal 是 noise（plan_010 已证明）。Random trigger 反而学到
+      reasonable skip rate 因为 random reward 至少不 mislead（均匀分布）。Confidence 略好因为 confidence
+      与 success 有 weak correlation。讽刺：learned reward (action-change) 输给了 uninformed
+      baselines。
+    tables:
+    - name: 'Table 7: Reward signal comparison'
+      columns:
+      - reward_type
+      - success
+      - verify_rate
+      - pareto_dominated
+      rows:
+      - - action-change (ours)
+        - 21.9%
+        - 88%
+        - Yes (by all others)
+      - - random trigger
+        - 23.4%
+        - 52%
+        - 'No'
+      - - confidence-based
+        - 25.0%
+        - 65%
+        - 'No'
+    figures_description: []
+    analysis: Action-change reward 是 worst performer。Claim 2 ('action-change is effective
+      intrinsic reward') 被彻底 falsified。Paper 失去了 selective verification 的 technical
+      contribution。
+  - name: ARES reproduction + comparison
+    plan_id: plan_013
+    description: Reproduce ARES SFT router, head-to-head 对比。
+    expected_results:
+      ares_success: 0.25
+      ares_verification_rate: 0.55
+      ares_cost_reduction: 0.38
+      biavr_success: 0.219
+      biavr_verification_rate: 0.88
+      biavr_cost_reduction: 0.12
+      ares_dominates_biavr: true
+    result_rationale: ARES 用 SFT 从 oracle decisions 学 router，不需要 RL reward signal
+      quality。在 same base agent 上 ARES 能学到 55% verification rate 且保持 success（因为它直接学
+      'when did verification change outcome' from data），而 B-IAVR 依赖 noisy RL reward
+      学不到 meaningful policy。ARES 在 Pareto frontier 上 dominate B-IAVR。我们不仅没有 '≥10pp
+      better cost reduction'，反而被 dominated。
+    tables: []
+    figures_description:
+    - 'Fig: Pareto frontier with ARES point clearly dominating B-IAVR point.'
+    analysis: SFT approach (ARES) 优于 RL approach (B-IAVR) 在这个 setting 下。原因：SFT 有 oracle
+      supervision（从 data 直接学 when to verify），不受 reward noise 影响。RL 需要 good reward
+      signal 但我们没有。Paper 的 'RL > SFT for selective verification' implicit claim 被反驳。
+  - name: ScienceWorld transfer
+    plan_id: plan_014
+    description: Episode-level vs step-independent on ScienceWorld。
+    expected_results:
+      episode_level_success: 0.15
+      step_independent_success: 0.12
+      ratio: 1.25
+      episode_level_std: 0.06
+      step_independent_std: 0.08
+      difference_significant: false
+      p_value: 0.38
+    result_rationale: Worst 档下 scienceworld_episode_vs_step_ratio 在 [0.8, 1.5]。Ratio=1.25
+      意味着 episode-level 只是 marginally better（15% vs 12%，差异 3pp not significant p=0.38）。ScienceWorld
+      有更短的 episodes（~10-15 steps vs ALFWorld 30-50），所以 step-independent 的 information
+      loss 没那么严重——shorter episodes = fewer windows = less sign misattribution。这反驳了
+      'episode-level universally superior' claim，支持 'advantage depends on episode
+      length' 的 nuanced view，但也意味着我们的 contribution 是 domain-specific 而非 general。
+    tables:
+    - name: 'Table 8: ScienceWorld transfer'
+      columns:
+      - method
+      - success
+      - std
+      - avg_episode_length
+      rows:
+      - - episode-level
+        - 15.0%
+        - 6pp
+        - 12.3 steps
+      - - step-independent (h=5)
+        - 12.0%
+        - 8pp
+        - 12.3 steps
+    figures_description: []
+    analysis: 'Episode-level advantage 不 generalize to shorter-horizon tasks。ScienceWorld
+      的短 episode 使 step-independent 的缺陷不 manifest。Reviewer concern #5 (single environment)
+      被证实——our finding is ALFWorld-specific (long horizon)，不是 general principle。'
+  - name: 7B model scaling verification
+    plan_id: plan_015
+    description: Qwen3-7B 上验证 episode-level vs step-independent。
+    expected_results:
+      episode_level_7b_success: 0.35
+      step_independent_7b_success: 0.22
+      delta_pp: 13
+      relative_improvement: 1.59
+      step_independent_collapse: false
+      step_independent_7b_h5_success: 0.18
+    result_rationale: 7B 模型更强，step-independent 不完全崩溃（22% vs 1.7B 的 0%）。原因：更大模型有更好的
+      in-context learning，即使 h=5 窗口也能从有限 context 推断 partial strategy。Episode-level
+      仍优（35% vs 22%）但 gap 缩小（13pp vs 1.7B 的 28pp）。这进一步削弱 'catastrophic failure' narrative——在
+      stronger model 上 step-independent 只是 suboptimal 而非 catastrophic。Reviewer 会问
+      'at what model size does the gap disappear entirely?'
+    tables:
+    - name: 'Table 9: 7B scaling'
+      columns:
+      - method
+      - 1.7B
+      - 7B
+      - gap_reduction
+      rows:
+      - - episode-level
+        - 28.1%
+        - 35%
+        - —
+      - - step-independent (h=5)
+        - 0%
+        - 22%
+        - 'Gap: 28pp→13pp'
+    figures_description: []
+    analysis: Episode-level advantage diminishes with model scale。7B step-independent
+      不崩溃（22%），gap 缩小到 13pp。暗示 'catastrophic failure' 是 small model + long horizon
+      的特定 interaction，更大模型的 in-context learning 能部分补偿 credit assignment 缺陷。Paper 的
+      alarm ('step-independent catastrophically fails!') 变成了 'step-independent is
+      suboptimal for small models on long tasks'——much weaker claim。
+  - name: Per-task-type breakdown analysis
+    plan_id: plan_016
+    description: 按 ALFWorld task type 分解 success。
+    expected_results:
+      pick_success: 0.35
+      clean_success: 0.25
+      heat_success: 0.3
+      cool_success: 0.2
+      examine_success: 0.15
+      pick_two_success: 0.1
+      episode_length_correlation: 0.45
+      longest_task_success: 0.1
+      shortest_task_success: 0.35
+    result_rationale: '较短 task（pick: ~15 steps）success 较高（35%），较长 task（pick_two: ~45
+      steps, examine: ~40 steps）success 最低（10-15%）。Episode length correlation=0.45
+      (moderate)。这 partially 支持 ''longer tasks benefit more from episode-level''，但
+      correlation 不够 strong——其他 factors（task complexity, number of required objects）也
+      matter。Not a clean story。'
+    tables:
+    - name: 'Table 10: Per-task breakdown'
+      columns:
+      - task_type
+      - success
+      - avg_episode_length
+      - step_indep_success
+      rows:
+      - - pick
+        - 35%
+        - '15'
+        - 8%
+      - - heat
+        - 30%
+        - '22'
+        - 3%
+      - - clean
+        - 25%
+        - '28'
+        - 0%
+      - - cool
+        - 20%
+        - '25'
+        - 2%
+      - - examine
+        - 15%
+        - '38'
+        - 0%
+      - - pick_two
+        - 10%
+        - '45'
+        - 0%
+    figures_description:
+    - 'Fig: scatter plot success vs episode_length, with moderate negative trend (r=-0.45).'
+    analysis: Task length 是 contributing factor 但非唯一因素。Paper 可以 claim 'longer tasks
+      benefit more' 但不能 claim 'length is the mechanism'。Adds nuance but not a strong
+      independent contribution。
+  review_report: '---
+
+    dream_id: dream_20260517T133129
+
+    tier: worst
+
+    overall_score: reject
+
+    timestamp: 2026-05-17T14:21:53.259432+00:00
+
+    ---
+
+
+    # Dream Review Report: Credit Assignment Granularity in Multi-Turn Agent RL
+
+
+    **Paper**: "Credit Assignment Granularity in Multi-Turn Agent RL: An Empirical
+    Taxonomy of Failure Modes"
+
+    **Review mode**: Full roundtable (R1: Methods & Experiments, R2: Novelty & Related
+    Work)
+
+    **Date**: 2026-05-17
+
+
+    ---
+
+
+    ## Roundtable Summary
+
+
+    Both reviewers converge on a negative assessment. The paper attempts to characterize
+    failure modes of credit assignment granularity in multi-turn agent RL on ALFWorld,
+    comparing step-independent GRPO, episode-level GRPO, and GAE. The core findings
+    are: (1) step-independent training has a stochastic performance cliff, (2) episode-level
+    GRPO plateaus at 23.8% and is massively outperformed by GAE (43.8%), and (3) selective
+    verification (B-IAVR) fails completely and is Pareto-dominated by naive baselines.
+    While the diagnostic intent is commendable and the honest reporting of negative
+    results is appreciated, critical experimental weaknesses, low absolute performance
+    relative to prior work, and limited novelty preclude acceptance at a top venue.
+
+
+    **Consensus score: 2.5/6 (Reject)**
+
+    - R1 (Methods & Experiments): 3/6
+
+    - R2 (Novelty & Related Work): 2/6
+
+
+    ---
+
+
+    ## Step 1: Independent Reviews
+
+
+    ### R1 Review: Methods & Experiments
+
+
+    **Strengths**:
+
+    - Systematic h-sweep ablation design with collapse rate tracking provides a reproducible
+    characterization framework
+
+    - Mechanistic analysis (Table 4) goes beyond performance-only reporting to diagnose
+    WHY step-independent training fails (sign-outcome correlation 0.72, sign-local
+    quality 0.28)
+
+    - Practical relevance: the community does default to step-independent training
+    in frameworks like RAGEN
+
+    - Honest reporting of B-IAVR failure is unusual and commendable
+
+
+    **Weaknesses (Critical)**:
+
+
+    1. **Evaluation set critically small (32 tasks)**: Every percentage point equals
+    0.32 tasks. The reported 43.8% (GAE) vs 23.8% (episode GRPO) is ~14 vs ~8 tasks
+    solved. Binomial 95% CI for 43.8% at n=32 is approximately [27%, 62%]. Many reported
+    differences (e.g., ScienceWorld 15% vs 12% = 4.8 vs 3.8 tasks) are statistically
+    meaningless. This is the single largest threat to validity.
+
+
+    2. **Seed counts insufficient for claimed phenomena**: The "stochastic performance
+    cliff" is the paper''s central finding, yet h=5 with 3 seeds yields 33% collapse
+    rate (1 of 3 seeds collapsed). With n=3, a 33% collapse rate has 95% CI of [1%,
+    91%]. A minimum of 10-15 seeds is needed to characterize stochastic phenomena.
+
+
+    3. **GAE comparison fairness questionable**: The paper does not specify critic
+    architecture, training budget, or whether hyperparameters were tuned independently.
+    A per-token advantage method with a trained critic has strictly more information
+    than episode-level GRPO. Without compute-matched comparison, this risks being
+    "more sophisticated method works better."
+
+
+    4. **Absolute performance far below prior work**: The best result (GAE at 43.8%)
+    is 30-55pp below published ALFWorld results at same or smaller scale: Self-Guide
+    72.7% (1.7B), GAGPO 93.5% (1.5B), HiPER 97.4% (7B). This raises the possibility
+    that observed "failure modes" are artifacts of a broken training recipe rather
+    than fundamental properties of credit assignment granularity.
+
+
+    5. **Sign misattribution predictions quantitatively wrong**: Predicted >0.95,
+    observed 0.72. Predicted 0% mixed-sign episodes, observed 18%. Predicted R^2 >0.8,
+    observed 0.45. The theory is directionally correct but quantitatively off by large
+    margins. 48% of advantage sign variance is NOT explained by episode outcome.
+
+
+    6. **B-IAVR failure eliminates the paper''s dual contribution**: Selective verification
+    is Pareto-dominated by random selection. The action-change reward has partial
+    correlation 0.03 (p=0.42) with success after entropy control. The causal intervention
+    shows verification corrections are indistinguishable from random perturbations
+    (3pp, p=0.31, d=0.12). This leaves only the diagnostic contribution.
+
+
+    7. **ScienceWorld transfer not significant (p=0.38)**: Including non-significant
+    results as evidence weakens credibility.
+
+
+    8. **7B scaling contradicts "catastrophic" narrative**: Gap narrows from 28pp
+    to 13pp. Step-independent h=5 reaches 22% at 7B vs 0% at 1.7B. "Catastrophic failure"
+    is a small-model artifact.
+
+
+    **Key Missing Experiments**:
+
+    - Implementation parity check (run a known-good ALFWorld recipe to verify infrastructure)
+
+    - Larger evaluation set (standard ALFWorld uses 134 tasks, not 32)
+
+    - More seeds (minimum 10 for cliff characterization)
+
+    - Compute-matched comparison across methods
+
+    - Learning curves to distinguish "not converged" from "lower optimum"
+
+    - Entropy/KL tracking to diagnose collapse mechanism
+
+
+    **R1 Score: 3/6 (Reject)**
+
+
+    ---
+
+
+    ### R2 Review: Novelty & Related Work
+
+
+    **Strengths**:
+
+    - Clean formalization of the sign misattribution mechanism with testable quantitative
+    predictions
+
+    - Community service value in flagging RAGEN''s problematic default
+
+    - Valid action bonus experiment cleanly separates syntax from strategy
+
+    - Clear writing and honest limitations
+
+
+    **Weaknesses (Critical)**:
+
+
+    1. **Core finding confirms community consensus**: The multi-turn agent RL community
+    (Turn-PPO, GiGPO, GAGPO, iStar, HiPER, ArCher) already pursues finer-grained credit
+    because practitioners know step-independent windowing is problematic. Confirming
+    "episode-level beats artificially truncated credit" does not meet the novelty
+    bar.
+
+
+    2. **Insufficient differentiation from Turn-PPO**: Turn-PPO already identifies
+    "uniform advantage" as the pathology of naive multi-turn GRPO and proposes turn-level
+    value functions. "Sign misattribution" reframes the same structural problem (episode
+    outcome dominates per-step credit) rather than revealing a fundamentally new phenomenon.
+
+
+    3. **Best result (23.8% episode-level, 43.8% GAE) catastrophically below SOTA**:
+    HiPER 97.4%, GAGPO 93.5%, PA-MoE 93.8%, Self-Guide 72.7% on the same benchmark
+    at same or smaller scale. The proposed "fix" barely works, undermining practical
+    significance.
+
+
+    4. **Selective verification absent as a contribution**: B-IAVR fails completely.
+    The action-change reward is empirically uninformative (partial correlation 0.03).
+    The causal intervention shows verification corrections are indistinguishable from
+    random. The entire Phase B contribution is void.
+
+
+    5. **Circular framing**: The paper claims step-independent training is "the community
+    default" but provides evidence only from RAGEN. Other frameworks (ArCher, HiPER,
+    GAGPO, GiGPO) never had this problem. Diagnosing one framework''s implementation
+    choice is presented as a community-level insight.
+
+
+    6. **Missing key related work**: PA-MoE (93.8% ALFWorld at 1.5B) and HCAPO (hindsight
+    credit assignment addressing the same problem) are absent from the related work,
+    despite being directly relevant.
+
+
+    7. **Taxonomy is too thin**: The "taxonomy of failure modes" has only two entries
+    (information loss and sign misattribution), and their decomposition is not empirically
+    validated. A taxonomy paper typically requires breadth across many methods/environments
+    or definitive causal understanding.
+
+
+    **R2 Score: 2/6 (Reject)**
+
+
+    ---
+
+
+    ## Step 2-3: Cross-Sharing and Convergence
+
+
+    ### Points of Full Agreement (Both Reviewers)
+
+
+    1. **Evaluation set (32 tasks) is critically small** and invalidates most quantitative
+    claims. Standard ALFWorld evaluation uses 134 tasks.
+
+    2. **Absolute performance (23.8-43.8%) is unacceptably below prior work (72-97%)**
+    at same model scale, suggesting implementation problems that confound the diagnostic
+    analysis.
+
+    3. **B-IAVR failure eliminates a major claimed contribution**, leaving only the
+    diagnostic taxonomy.
+
+    4. **Seed counts (3 seeds) are insufficient** for characterizing the stochastic
+    cliff phenomenon. The 33% collapse rate at h=5 has CI of [1%, 91%].
+
+    5. **GAE comparison lacks methodological details** (critic architecture, compute
+    matching).
+
+    6. **ScienceWorld transfer is not significant** and should not be presented as
+    evidence.
+
+    7. **The paper is essentially a RAGEN bug report** inflated to a community-level
+    diagnostic contribution.
+
+
+    ### Points of Partial Disagreement
+
+
+    - **Severity of sign misattribution quantitative discrepancies**: R1 views the
+    0.72 vs >0.95 gap as undermining the theory''s validity. R2 sees it as a presentation
+    issue (theory directionally correct but oversimplified). Both agree the paper
+    overclaims the mechanism''s explanatory power.
+
+    - **7B scaling result**: R1 sees it as contradicting the "catastrophic" narrative.
+    R2 sees potential value in showing failure mode is model-size-dependent. Both
+    agree "catastrophic" is overstated.
+
+    - **Residual novelty of "coarser beats step-independent" angle**: R1 gives slightly
+    more credit to the contrarian direction. R2 considers it insufficiently differentiated
+    from Turn-PPO. Both agree the paper undersells this contrast.
+
+
+    ### Score Movement After Cross-Review
+
+    - R1: 3/6 → 3/6 (unchanged; R2''s concerns reinforced existing assessment)
+
+    - R2: 3/6 → 2/6 (reduced; R1''s quantitative evidence about seed CI, causal intervention
+    null, and prediction failures further weakened the novelty case)
+
+
+    ---
+
+
+    ## Step 4: Consolidated Assessment
+
+
+    ### Overall Score: 2.5/6 (Reject)
+
+
+    ### Decision Rationale
+
+
+    The paper addresses a relevant question (how credit assignment granularity affects
+    multi-turn agent RL), and the diagnostic intent is well-motivated. However, it
+    fails on multiple fronts:
+
+
+    **Fatal Weaknesses**:
+
+    1. **Experimental validity**: 32-task evaluation set with 3 seeds provides no
+    statistical power for the claims made. The "stochastic cliff" characterization,
+    the centerpiece finding, cannot be reliably established with n=3 per condition.
+
+    2. **Performance gap to SOTA**: The 30-55pp gap between the paper''s best result
+    and published baselines at the same scale suggests the observed "failure modes"
+    may be artifacts of an under-tuned training pipeline, not fundamental properties
+    of credit assignment granularity.
+
+    3. **Contribution void**: B-IAVR (selective verification) fails completely. The
+    action-change reward is uninformative. The causal intervention shows verification
+    corrections are statistically indistinguishable from random. This removes the
+    paper''s primary technical contribution.
+
+    4. **Limited novelty**: The surviving diagnostic contribution confirms community
+    consensus (finer credit is better). Turn-PPO, GAGPO, and others have already identified
+    and addressed the same structural problem.
+
+
+    **Positive Aspects (insufficient to overcome fatal weaknesses)**:
+
+    - Honest reporting of negative results
+
+    - Clean formalization of sign misattribution mechanism
+
+    - Community service value in flagging RAGEN''s default
+
+    - Systematic experimental design intent (h-sweep, multi-seed, cross-environment,
+    cross-scale)
+
+
+    ### Recommendations for Revision
+
+
+    1. **Scale evaluation to 134 tasks** (full standard ALFWorld split) and run minimum
+    10 seeds per condition
+
+    2. **Establish implementation parity** by reproducing at least one published baseline
+    (e.g., Self-Guide at 72.7%) in the same codebase
+
+    3. **Specify and match compute** for the GAE comparison (critic architecture,
+    training FLOPs)
+
+    4. **Either strengthen selective verification** (with a competent base agent)
+    or remove it entirely and focus on a pure diagnostic contribution
+
+    5. **Differentiate clearly from Turn-PPO** with empirical evidence showing sign
+    misattribution is a distinct and more informative diagnosis
+
+    6. **Soften claims** to match evidence: "stochastic cliff" requires more seeds;
+    "catastrophic failure" is model-size-specific; sign misattribution is "a contributing
+    factor" not "the mechanism"
+
+    7. **Add missing related work**: PA-MoE, HCAPO, and other ALFWorld-specific methods
+    achieving >90%
+
+
+    ### Confidence: 4/5
+
+    Both reviewers have high confidence in their assessments. The experimental weaknesses
+    (small evaluation set, few seeds, low absolute performance) are objective and
+    independently verifiable.'
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-17T14:22:06+00:00'

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1cd116c6e05af715ee34",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code analyze advantage log",
+  "task_key": "worker_code_analyze_advantage_log_20260517T072450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_analyze_advantage_log_20260517T072450_result.json",
+    "occurrence": 1,
+    "bytes": 293,
+    "sha256": "f4c1eec8f782992a8d0e9681c05ca852867247d88fd059fae5cbad16e1912cc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n- **JSONL schema 确认**：`episode_id` (int), `window_position` (int), `step_return` (float), `advantage` (float), `uid` (str)\n- **脚本已创建**：`/root/cost-verify-agent-rl/scripts/analyze_advantage_log.py`\n- **语法验证通过**，`--help` 正常输出"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-analyze-advantage-log.md"
+}

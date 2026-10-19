@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp024_success_gated_grpo",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:03:10.298Z",
+    "updated_at": "2026-05-15T06:04:05.148Z",
+    "hypothesis": "Success-gated GRPO from exp021 checkpoint. D026 终止 RAGEN GRPO 后不再适用，success-gated 不解决 context 爆炸根因。关联 D027。",
+    "spec": {
+      "command": "success-gated GRPO (never actually ran, killed before start)",
+      "server": "bjb1-17606",
+      "data_path": "N/A",
+      "data_count": 0,
+      "model_name": "Qwen3-1.7B (exp021 checkpoint)",
+      "seed": 42
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-15T06:04:05.148Z"
+  },
+  "timestamp": "2026-05-15T06:04:05.225847+00:00",
+  "trigger": "update_registry"
+}

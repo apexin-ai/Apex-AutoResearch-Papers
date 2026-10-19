@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp016",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:44:58.883Z",
+    "updated_at": "2026-05-14T13:52:35.158Z",
+    "hypothesis": "LR 折中方案：LR=5e-7（exp012b 1e-6 collapse vs exp015 1e-7 零梯度的中间值）。kl_loss_coef=0.1, max_grad_norm=1.0 保持。纯 sparse reward（won=10.0，无 bonus，无 format_penalty）。从 exp015/global_step_5 checkpoint 恢复，GRPO 30 步。",
+    "parent": "exp015"
+  },
+  "timestamp": "2026-05-14T13:52:35.258407+00:00",
+  "trigger": "update_registry"
+}

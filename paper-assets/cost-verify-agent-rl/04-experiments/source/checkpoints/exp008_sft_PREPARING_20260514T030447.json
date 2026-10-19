@@ -1,0 +1,21 @@
+{
+  "exp_id": "exp008_sft",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T03:04:47.496Z",
+    "updated_at": "2026-05-14T03:04:47.496Z",
+    "spec": {
+      "hypothesis": "SFT warmup on ALFWorld trajectory data teaches Qwen3-1.7B valid command format + semantics, achieving action_is_valid > 50%",
+      "parent": "exp007",
+      "model_name": "Qwen3-1.7B",
+      "description": "SFT phase of D006: TRL SFTTrainer full finetune on u-10bei/sft_alfworld_trajectory_dataset, converted to RAGEN AlfworldSG format. Single GPU, ~20-30 min. Checkpoint feeds exp009 (GRPO).",
+      "decision": "D006"
+    }
+  },
+  "timestamp": "2026-05-14T03:04:47.516846+00:00",
+  "trigger": "update_registry"
+}

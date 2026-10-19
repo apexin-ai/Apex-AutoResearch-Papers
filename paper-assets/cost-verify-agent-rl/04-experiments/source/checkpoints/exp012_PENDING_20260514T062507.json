@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp012",
+  "project": "cost-verify-agent-rl",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:24:24.322Z",
+    "updated_at": "2026-05-14T06:25:07.623Z",
+    "hypothesis": "format_penalty=0 + group_size=16 解决 exp010/011 中 format penalty 劫持 GRPO 梯度导致 success 崩塌的问题。从 step 5 checkpoint 恢复，预期 success rate 能持续上升而非崩塌。",
+    "parent": "exp011",
+    "notes": "D008批准。修复reward: format_penalty -0.1→0, group_size 8→16。从exp008 GRPO step 5 checkpoint恢复。Config: _alfworld_exp012_reward_fix.yaml。Dry-run通过。"
+  },
+  "timestamp": "2026-05-14T06:25:07.649848+00:00",
+  "trigger": "update_registry"
+}

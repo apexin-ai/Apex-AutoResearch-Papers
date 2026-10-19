@@ -1,0 +1,47 @@
+# W&B Sweep Config for Phase B (B-IAVR)
+# Based on exp026 (step-independent GRPO) baseline
+# Project: cost-verify-agent-rl
+#
+# Usage:
+#   wandb sweep artifacts/wandb_sweep_config.yaml
+#   wandb agent <sweep_id>
+
+program: RAGEN/ragen/llm_agent/agent_proxy.py
+method: bayes  # Bayesian optimization — better sample efficiency than grid/random for 4 params
+metric:
+  name: val_success_rate
+  goal: maximize
+
+parameters:
+  kl_loss_coef:
+    values: [0.005, 0.01, 0.02]
+    # exp026 uses 0.01 (verl-agent default). exp022-24 used 0.5 (too conservative, collapsed).
+    # 0.005: allow more exploration from ref policy
+    # 0.02: slightly more conservative, may help stability with biavr reward added
+
+  lr:
+    values: [5e-7, 1e-6, 2e-6]
+    # exp026 uses 1e-6 (verl-agent default). exp022-24 used 5e-7 (too slow).
+    # 5e-7: conservative, slower convergence but less risk of instability
+    # 2e-6: faster learning, but risks overshooting with biavr reward signal
+
+  gamma:
+    values: [0.9, 0.95, 0.99]
+    # exp026 uses 0.95 for discounted returns in step-independent GRPO.
+    # 0.9: stronger discounting, emphasizes near-term rewards (good if early verification matters)
+    # 0.99: near-undiscounted, treats all steps similarly (baseline-like)
+
+  step_independent_history_length:
+    values: [3, 5, 8]
+    # exp026 uses 5. Controls bounded history window in step-independent mode.
+    # 3: minimal context — agent must act with less memory, verification becomes more valuable
+    # 8: richer context — agent may need fewer verifications, tests if biavr still helps
+
+# Fixed parameters (not swept, inherited from exp026)
+# kl_loss_type: low_var_kl (k3 estimator)
+# clip_ratio: [0.2, 0.28]
+# biavr.beta: 0.3 (target verify rate)
+# biavr.alpha: 1.0
+# biavr.eta: 0.01
+# group_size: 16 (exp026 uses 16)
+# val env_groups: 16 (C003 compliance)

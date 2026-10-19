@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp013d",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:34:37.036Z",
+    "updated_at": "2026-05-14T08:35:08.999Z",
+    "hypothesis": "exp013b/c 内存修复重试。Dense reward shaping (valid_action_bonus=0.15) 已验证有效 (reward_std=1.608>0)。修复: env_groups 8→4 (64并发, 峰值~158GB < 220GB cgroup限制) + RAY_object_store_memory=30GB。",
+    "parent": "exp013c",
+    "notes": "内存修复: env_groups 8→4 (并发128→64), RAY_object_store_memory=30GB。峰值内存~158GB，220GB cgroup安全。其余同exp013b: valid_action_bonus=0.15, kl=0.01, format_penalty=0, group_size=16, resume step 5。",
+    "server": "bjb1-17606",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p \\$TMPDIR && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_object_store_memory=30000000000 && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp013b_dense_reward\"",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "272157",
+      "log_path": "~/runs/cost-verify-agent-rl/exp013d.log",
+      "submitted_at": "2026-05-14T08:35:08.798Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "272157",
+    "log_path": "~/runs/cost-verify-agent-rl/exp013d.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p \\$TMPDIR && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && export RAY_object_store_memory=30000000000 && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp013b_dense_reward\""
+    }
+  },
+  "timestamp": "2026-05-14T08:35:09.383400+00:00",
+  "trigger": "update_registry"
+}

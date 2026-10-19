@@ -1,0 +1,117 @@
+{
+  "exp_id": "exp028c_selfguide_recipe",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:38:48.089Z",
+    "updated_at": "2026-05-16T08:18:36.285Z",
+    "wandb_run_id": "4yu6qz1m",
+    "spec": {
+      "command": "bash scripts/run_exp028c_selfguide_recipe.sh",
+      "server": "bjb1-17606",
+      "data_path": "AlfworldSG (env_configs)",
+      "data_count": 128,
+      "model_name": "qwen3_exp021_ragen_sft_v4 (SFT checkpoint)",
+      "seed": 10000
+    },
+    "notes": "Self-Guide recipe 对齐实验。9项改动 vs exp027: (1) ppo_mini_batch_size 32→128 (2) total_steps 50→100 (3) LR 5e-7→1e-6 (4) KL 0.005→0.01 (5) env_groups 8→16 (6) group_size 16→8 (7) entropy 0.01→0.001 (8) history_length 5→2 (9) loss_agg seq-mean-token-mean→token-mean. model_path=SFT checkpoint. PID=824675. step_1_train 三方交叉验证通过。step_2_train 待完成后验证（之前数据为脏数据已清除）。",
+    "metrics": {
+      "step_0_val": {
+        "success": 6.25,
+        "pass_at_1": 6.25,
+        "action_is_valid": 74.5,
+        "score_mean": 0.119
+      },
+      "step_1_train": {
+        "success": 13.28,
+        "pass_at_8": 37.5,
+        "action_is_valid": 76.4,
+        "action_is_effective": 96.37,
+        "entropy": 0.2634,
+        "kl_loss": 0.0128,
+        "ppo_kl": 0.019,
+        "grad_norm": 16.88,
+        "score_mean": 0.843,
+        "time_s": 3252,
+        "note": "三方交叉验证通过"
+      },
+      "step_2_train": {
+        "success": 6.25,
+        "pass_at_8": 25,
+        "action_is_valid": 83.2,
+        "entropy": 0.247,
+        "kl_loss": 0.1706,
+        "pg_loss": 0.007,
+        "grad_norm": 17.3,
+        "score_mean": 0.274,
+        "time_s": 3120,
+        "note": "kl_loss修正为0.1706(原0.017为ppo_kl误录),补回pg_loss=0.007"
+      },
+      "step_3_train": {
+        "success": 15.63,
+        "pass_at_8": 68.75,
+        "action_is_valid": 85.9,
+        "entropy": 0.2488,
+        "kl_loss": 0.1118,
+        "grad_norm": 12.57,
+        "score_mean": 0.661,
+        "time_s": 2760,
+        "note": "日志验证"
+      },
+      "step_4_train": {
+        "success": 18.75,
+        "pass_at_8": 62.5,
+        "action_is_valid": 87.94,
+        "entropy": 0.234,
+        "kl_loss": 0.031,
+        "ppo_kl": 0.015,
+        "note": "kl_loss=0.031已确认正确"
+      },
+      "step_5_train": {
+        "success": 9.4,
+        "pass_at_8": 37.5,
+        "action_is_valid": 89.6,
+        "entropy": 0.236,
+        "kl_loss": 0.824,
+        "grad_norm": 13.1,
+        "note": "kl_loss飙升后 step6已回落至0.098"
+      },
+      "step_5_val": {
+        "success": 6.25,
+        "pass_at_1": 6.25,
+        "action_is_valid": 96.5,
+        "action_is_effective": 100,
+        "num_actions": 49.4,
+        "score_mean": 0.518,
+        "note": "val success未提升,但action_is_valid +22pp(74.5→96.5),reward 4.4x提升"
+      },
+      "step_6_train": {
+        "success": 10.94,
+        "action_is_valid": 90.4,
+        "entropy": 0.234,
+        "kl_loss": 0.098,
+        "grad_norm": 12.54,
+        "note": "kl_loss回落(0.824→0.098),训练稳定"
+      },
+      "step_7_train": {
+        "success": 21.88,
+        "pass_at_8": 56.25,
+        "action_is_valid": 91.8,
+        "entropy": 0.224,
+        "kl_loss": 0.046,
+        "note": "新高:success 21.88%,首次超过MVP 20%阀值(train)"
+      }
+    },
+    "conclusion": "failed",
+    "reproduce": {
+      "finished_at": "2026-05-16T08:18:35.556Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-16T08:18:36.285Z"
+  },
+  "timestamp": "2026-05-16T08:18:36.393389+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "011dbef9d0a8ea79287d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp003 progress",
+  "task_key": "worker_monitor_exp003_progress_20260513T214414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp003_progress_20260513T214414_result.json",
+    "occurrence": 1,
+    "bytes": 1081,
+    "sha256": "ca33b2bf7f0816d3c6079bf6bb3f7c665eb5f3624bd0b10a281fac954ad931d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp003 状态汇报：**\n\n1. **当前步数：0/100** — 尚未完成任何训练步。日志仍在初始化阶段（加载模型 → 初始化 AlfWorld 环境 → 加载 eval 数据集 140 games）。`actor_rollout_generate_sequences` 正在运行，推测正在执行第一轮 rollout。\n\n2. **无报错** — grep 未找到任何 Error/Traceback/Exception。\n\n3. **关键指标：暂无** — 尚未产出 advantages/pg_loss/success_rate/reward 等训练指标（grep \"advantages\" 返回空）。\n\n4. **GPU 利用率：**\n   - GPU 0: 63%, 41,627 MiB / 97,887 MiB (42.5%)\n   - GPU 1: 63%, 41,645 MiB / 97,887 MiB (42.5%)\n   - 两卡均在活跃计算中，显存占用合理。\n\n5. **dashboard_agent：运行中** (PID 158538, `ray::DashboardAgent`)\n\n6. **状态：正常初始化中。** 进程 05:39 UTC 启动，运行约 5 分钟。Qwen3-1.7B 模型已加载到 2×GPU（FSDP），AlfWorld 训练集 3553 games 和 eval 集 140 games 已就绪，正在进行第一轮 rollout。一切正常，预计几分钟后会出现 step 1 的指标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp003-progress.md"
+}

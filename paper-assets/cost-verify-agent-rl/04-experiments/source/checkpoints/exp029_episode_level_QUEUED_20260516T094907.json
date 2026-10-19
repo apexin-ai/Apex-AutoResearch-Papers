@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp029_episode_level",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T08:49:53.280Z",
+    "updated_at": "2026-05-16T09:49:07.192Z",
+    "hypothesis": "Episode-level 训练（context_window_mode: full）解决 step_independent h=2 的信用分配缺陷，模型能学到跨步规划策略，val success 不再停滞于 baseline。",
+    "parent": "exp028c_selfguide_recipe",
+    "notes": "D051+D052 后续。仅改训练模式（full vs step_independent），其余参数与 exp028c 完全一致（控制变量）。配置: RAGEN/config/_alfworld_exp029_episode_level.yaml。启动脚本: scripts/run_exp029_episode_level.sh。Pass: step 5 val ≥10%, step 10 val ≥20%。Val 扩大到 140 episodes。gpu_memory_utilization=0.92（接近极限，需监控 OOM）。"
+  },
+  "timestamp": "2026-05-16T09:49:07.312903+00:00",
+  "trigger": "update_registry"
+}

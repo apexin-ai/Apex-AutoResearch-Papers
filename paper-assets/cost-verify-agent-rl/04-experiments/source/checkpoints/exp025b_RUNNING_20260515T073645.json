@@ -1,0 +1,41 @@
+{
+  "exp_id": "exp025b",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:34:34.283Z",
+    "updated_at": "2026-05-15T07:36:45.108Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate /root/autodl-tmp/conda-envs/verl-agent && cd /root/autodl-tmp/verl-agent && bash examples/grpo_trainer/run_alfworld_exp025.sh\"",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "614229",
+      "log_path": "~/runs/cost-verify-agent-rl/exp025b.log",
+      "submitted_at": "2026-05-15T07:36:44.668Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "parent": "exp025",
+    "notes": "exp025 bugfix re-run。修复：(1) conda env 改为 /root/autodl-tmp/conda-envs/verl-agent (2) save_freq=-1→25。模型 confound: 论文用 Qwen2.5-1.5B-Instruct，我们用 Qwen3-1.7B（框架验证，非严格复现）。",
+    "server": "bjb1-17606",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-17606",
+      "gpu": "cuda:0,cuda:1",
+      "started_at": "2026-05-15T07:35:49.952Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate /root/autodl-tmp/conda-envs/verl-agent && cd /root/autodl-tmp/verl-agent && bash examples/grpo_trainer/run_alfworld_exp025.sh\""
+    },
+    "pid": "614229",
+    "log_path": "~/runs/cost-verify-agent-rl/exp025b.log"
+  },
+  "timestamp": "2026-05-15T07:36:45.536624+00:00",
+  "trigger": "update_registry"
+}

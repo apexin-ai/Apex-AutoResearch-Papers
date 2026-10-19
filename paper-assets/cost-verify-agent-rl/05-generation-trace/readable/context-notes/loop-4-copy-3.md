@@ -1,0 +1,77 @@
+# reviewer / loop_4.md
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_4.md`
+- **Structured JSON:** [`027b2cee32ca234adab0.json`](../../sessions/02/027b2cee32ca234adab0.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 4
+reason: max_wall_time
+updated: '2026-05-14T12:57:35+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- CUDA_VISIBLE_DEVICES 只能用 0,1（项目 `execution.gpu_ids` 白名单）
+- 服务器：`bjb1-17606(root)`，SSH 端口可能因 AutoDL 重启变化
+- `exp008_grpo/global_step_5` checkpoint 已被磁盘清理删除——任何引用此路径的 resume 配置都会失败
+- train.py:203 有 hardcoded `ray_init_kwargs["object_store_memory"] = 30 * 1024**3`——不要删除，这是防止 Plasma OOM 的关键修复
+- Ray 启动前必须设置 `RAY_memory_monitor_refresh_ms=0` + `RAY_SYSTEM_MEMORY=210000000000`（cgroup 限制 220GB，Ray 默认读到宿主机 1TB 会算错）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：`bjb1-17606`，工作目录 `/root/cost-verify-agent-rl/RAGEN`
+- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）
+- 模型：`/root/autodl-tmp/checkpoints/qwen3_sft_final`（SFT warmup 基线）
+- 数据：`/root/autodl-tmp/alfworld/`（3553 train games）
+- W&B：**未启用**（logger=['console']），训练指标在 Ray worker 日志中：`/root/autodl-tmp/tmp/ray/session_*/logs/worker-*-01000000-*.out`
+- Checkpoints 现存：`exp013f/global_step_{10,15,20,25,30}`（62G）+ `exp008_sft`（23G）
+- 磁盘：`/root/autodl-tmp/` 219GB 可用
+- 活跃进程：**无**（exp013f 已完成，GPU 空闲）
+
+### 3. 📊 当前状态
+**刚完成**：exp013f 全 30 步训练完成并审查。结论：dense reward（unconditional valid_action_bonus=0.15）成功打破 GRPO 零梯度死锁（pg_loss ≠ 0, grad_norm 1.2~8.1），但导致 reward gaming（action_is_valid 56%→86%，success 始终 0~7.8%，val success=0%）。
+
+**Registry**：无 RUNNING 实验。最近 DONE：exp013f（completed, reward gaming），exp013b/c/d/e（failed/killed, 基础设施问题）。
+
+**已就绪待提交**：
+- exp014c（success-gated bonus）— 配置和代码完成，我已发 CRITICAL 警告：从 SFT 冷启动 success≈0% → gated bonus 不触发 → 零梯度死锁风险。建议从 exp013f/step_10 恢复。
+- exp015（sparse stable GRPO，LR 1e-7, KL 0.1）— 我已发 WARNING：纯 baseline 对照价值，但预期零梯度。
+
+**等待 Director 决策**：是否采纳我的建议（从 exp013f/step_10 恢复 exp014c，而非 SFT 冷启动）。
+
+### 4. 📋 待办（条件触发式）
+- exp014c 或 exp015 被提交 → 验证启动配置（env tag、resume 路径、Ray env vars、CUDA devices），10 分钟后检查是否通过 val→train 过渡
+- 任何实验出现 step 数据 → 从 Ray worker 日志（不是 stdout）grep `step:N` 提取 pg_loss/grad_norm/success，验证是否零梯度
+- exp014c 从 SFT 冷启动被批准 → step 5 检查 success rate，如果 =0% 立即报 CRITICAL 建议 kill
+- Director 要求审查 ROADMAP 或新 decision → 执行路线图审查
+- 新实验提交 → 必查：(1) CUDA 0,1 (2) object_store_memory 30GB (3) RAY_memory_monitor_refresh_ms=0 (4) registry 已注册
+
+### 5. 🎯 战略上下文
+**项目核心结论链**：
+- D006: SFT warmup 成功（action_is_valid 8%→68%）
+- D010/D011: Binary reward + format_penalty=0 = 零梯度死锁（exp012b 证实）
+- **exp013f 关键发现**：Dense reward 打破死锁（pg_loss≠0）但导致 reward gaming。action_is_valid 提升但 success 不涨。
+
+**下一个"我"最容易判断错的事**：
+1. **不要认为 success-gated bonus 能冷启动**——从 SFT 开始 success≈0%，gated bonus 等于没有 bonus，等于 exp012b。必须从有初始 success rate 的 checkpoint 恢复（如 exp013f/step_10）。
+2. **训练指标不在 stdout**——必须去 Ray worker 日志 `grep "step:" /root/autodl-tmp/tmp/ray/session_*/logs/worker-*-01000000-*.out` 提取。
+3. **val env_groups=16 + cgroup 220GB** 是反复崩溃的根因——新实验务必通过 Hydra override 降到 4，或用 run_exp013f.sh 模板。
+4. **exp013f/step_10 是最有价值的 checkpoint**——step 10 时 action_is_valid 已提升但 reward gaming 尚未严重，适合作为 Phase B 或改进实验的起点。Step 20+ 已过度优化 dense reward，不推荐。
+
+
+---

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e83628bd405893097be",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp010 early steps",
+  "task_key": "worker_monitor_exp010_early_steps_20260514T034827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp010_early_steps_20260514T034827_result.json",
+    "occurrence": 1,
+    "bytes": 73,
+    "sha256": "017960adbcf024695bf5ea340b4185107f43c6b77beb3fbc802c88c7166fba74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询已调度，3 分钟后检查 step 2 是否完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp010-early-steps.md"
+}

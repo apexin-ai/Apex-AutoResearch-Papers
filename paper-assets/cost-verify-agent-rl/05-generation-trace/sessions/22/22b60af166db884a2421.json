@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22b60af166db884a2421",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "figure training dynamics idood fix",
+  "task_key": "worker_figure_training_dynamics_idood_fix_20260523T130153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_training_dynamics_idood_fix_20260523T130153_result.json",
+    "occurrence": 1,
+    "bytes": 166,
+    "sha256": "040a42f46d686bf4d3f96b3241f19ceb2e9644265ec3c36bcf9e53178489c615"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Panel (b) 已更新。所有 bar 上方现在显示带 (ID)/(OOD) 的内联标注：h=2/5/10/20 标 (ID)，Full 标 (OOD)。PDF 和 PNG 均已覆盖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-training-dynamics-idood-fix.md"
+}

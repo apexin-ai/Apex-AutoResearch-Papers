@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b2c69b8f49902639e62",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix seed6 ood eval model path",
+  "task_key": "worker_fix_seed6_ood_eval_model_path_20260521T133730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_seed6_ood_eval_model_path_20260521T133730_result.json",
+    "occurrence": 1,
+    "bytes": 526,
+    "sha256": "ed186c398e9e209f6971d8d10df3ba91e612b3c039653c8878b21de062aabe91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**修复**：`ctx_manager.py:28` 的 `get_special_tokens()` 通过 `\"qwen\" in tokenizer.name_or_path.lower()` 识别模型类型。创建符号链接 `qwen_exp029_seed6_step15_hf` → 原 checkpoint 路径，更新 eval config 的 `model_path`。\n\n**Eval 状态**：\n- PID: 342378（westd-47453, cuda:2）\n- Qwen3ForCausalLM 1.72B 已加载，vLLM 初始化中\n- GPU 2 已占用 ~11 GB，正在启动\n- 日志：`/tmp/exp029_seed6_ood_eval_v2.log`\n- 134 OOD tasks, val_only 模式"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-seed6-ood-eval-model-path.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12705f09903782ac921c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "experiment seed3 ood final launch urgent",
+  "task_key": "worker_experiment_seed3-ood-final-launch-urgent_20260520T225947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_seed3-ood-final-launch-urgent_20260520T225947_result.json",
+    "occurrence": 1,
+    "bytes": 464,
+    "sha256": "a608ae6b4d40bb1e3ead69d2825cdf06b21018c993a8d148d7c6c0687d6c128c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp029_seed3_ood_final 已提交。**\n\n| 项目 | 值 |\n|------|-----|\n| PID | 417862 |\n| 服务器 | westd-47453 |\n| GPU | cuda:0, cuda:1 |\n| 日志 | `~/runs/cost-verify-agent-rl/exp029_seed3_ood_final.log` |\n\nGPU 0,1 当前 0%/3MiB —— 进程正在初始化（加载 Python 依赖），尚未开始占用显存。GPU 2,3 被其他任务占用（100%/~45GB），符合预期。日志显示 conda/gym 警告，属正常启动输出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-seed3-ood-final-launch-urgent.md"
+}

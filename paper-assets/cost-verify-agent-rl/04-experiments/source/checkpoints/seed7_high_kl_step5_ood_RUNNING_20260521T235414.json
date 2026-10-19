@@ -1,0 +1,36 @@
+{
+  "exp_id": "seed7_high_kl_step5_ood",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:09:57.949Z",
+    "updated_at": "2026-05-21T23:54:14.075Z",
+    "spec": {
+      "command": "python train.py --config-name _alfworld_seed7_high_kl_step5_ood_eval",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "968497",
+      "log_path": "~/runs/cost-verify-agent-rl/seed7_high_kl_step5_ood.log",
+      "submitted_at": "2026-05-21T23:48:37.258Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "ALFWorld OOD 134 episodes",
+      "data_count": 134,
+      "model_name": "Qwen3-1.5B (seed7 high KL step 5)",
+      "seed": 789,
+      "checkpoint_source": "qwen_exp029_seed7_high_kl_step5_hf",
+      "eval_data": "ALFWorld OOD 134 episodes"
+    },
+    "hypothesis": "Seed 7 with high-KL intervention at step 5 (mid-training, before final degradation) OOD eval — provides pre-collapse data point for bimodal analysis.",
+    "parent": "exp029_seed7_high_kl",
+    "notes": "First attempt failed: Ray started but ALFWorld env never initialized (silent failure, log path was None). Restarted by Worker at ~23:50 UTC with same checkpoint /root/autodl-tmp/checkpoints/qwen_exp029_seed7_high_kl_step5_hf/. Second attempt running."
+  },
+  "timestamp": "2026-05-21T23:54:14.371412+00:00",
+  "trigger": "update_registry"
+}

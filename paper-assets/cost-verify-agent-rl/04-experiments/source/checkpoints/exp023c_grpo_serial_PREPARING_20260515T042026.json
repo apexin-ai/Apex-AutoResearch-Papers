@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp023c_grpo_serial",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:20:22.909Z",
+    "updated_at": "2026-05-15T04:20:26.831Z",
+    "hypothesis": "GRPO from exp021 RAGEN-format SFT checkpoint, serial mode (parallel_friendly=false, max_workers=1). reward score=10.0, kl_loss_coef=0.5, LR=5e-7, 30 steps. Fixes: revert to serial to avoid tatsu thread-safety crash (exp023). Pass: success ≥ 15% (improve over exp022 step0 12.5%)."
+  },
+  "timestamp": "2026-05-15T04:20:26.921482+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp029_seed100_step5_ood_eval",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T17:41:22.129Z",
+    "updated_at": "2026-05-22T20:40:01.582Z",
+    "hypothesis": "Seed100 episode-level GRPO checkpoint (step5, val pass@1=18.75%) will show non-zero OOD generalization (>0%) on 134 AlfworldSG_OOD tasks, classifying it as \"healthy-with-OOD\" rather than \"healthy-but-zero-OOD\" like seed300.",
+    "parent": "exp029_seed100_episode"
+  },
+  "timestamp": "2026-05-22T20:40:01.980085+00:00",
+  "trigger": "update_registry"
+}

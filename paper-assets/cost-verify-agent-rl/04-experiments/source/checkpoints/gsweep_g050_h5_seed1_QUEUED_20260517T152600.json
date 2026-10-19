@@ -1,0 +1,49 @@
+{
+  "exp_id": "gsweep_g050_h5_seed1",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 2,
+    "created_at": "2026-05-17T13:56:51.277Z",
+    "updated_at": "2026-05-17T15:25:59.936Z",
+    "hypothesis": "γ=0.5 with h=5 will show accelerated collapse compared to default γ=0.95, because γ^k decay compounds: early windows receive only γ^(N-1) ≈ 0.5^9 ≈ 0.2% of terminal return, making sign misattribution maximally severe.",
+    "parent": "hsweep_h2_seed1",
+    "reproduce": {
+      "finished_at": "2026-05-17T14:42:42.369Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T14:42:45.029228+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "metrics": {
+          "training_steps_completed": 0,
+          "wandb_run_id": null,
+          "checkpoint_path": null,
+          "log_path": "/root/runs/cost-verify-agent-rl/gsweep_g050_h5_seed1.log",
+          "crash_reason": "AssertionError: duplicate template name in torch._inductor/select_algorithm.py — vLLM/PyTorch incompatibility during rollout module init",
+          "crash_stage": "initialization (before any training step)",
+          "collapse_onset_step": null,
+          "total_training_steps": 0,
+          "elapsed_hours": 0,
+          "server": "westd-47453",
+          "gpu": "cuda:2,3",
+          "gamma": 0.5,
+          "h": 5
+        },
+        "notes": "Infrastructure failure: experiment crashed during vLLM rollout module initialization with 'AssertionError: duplicate template name' in torch._inductor/select_algorithm.py. This is a vLLM/PyTorch version incompatibility on westd-47453. Zero training steps completed, no W&B data, no checkpoint. Hypothesis (γ=0.5 accelerates collapse vs γ=0.95) was never tested. Needs environment fix (likely vLLM or PyTorch version mismatch) before retry."
+      }
+    },
+    "completed_at": "2026-05-17T14:44:36.785Z",
+    "notes": "Infrastructure failure: experiment crashed during vLLM rollout module initialization with 'AssertionError: duplicate template name' in torch._inductor/select_algorithm.py. This is a vLLM/PyTorch version incompatibility on westd-47453. Zero training steps completed, no W&B data, no checkpoint. Hypothesis (γ=0.5 accelerates collapse vs γ=0.95) was never tested. Needs environment fix (likely vLLM or PyTorch version mismatch) before retry."
+  },
+  "timestamp": "2026-05-17T15:26:00.069782+00:00",
+  "trigger": "update_registry"
+}

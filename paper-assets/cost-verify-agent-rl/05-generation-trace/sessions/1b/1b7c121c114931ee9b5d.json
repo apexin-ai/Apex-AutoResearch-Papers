@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b7c121c114931ee9b5d",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor eval v2 progress urgent",
+  "task_key": "worker_monitor_eval_v2_progress_urgent_20260519T230854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_eval_v2_progress_urgent_20260519T230854_result.json",
+    "occurrence": 1,
+    "bytes": 589,
+    "sha256": "ea519983cc75370048abced01852c145baccdb367991327167b8c9ce0226afa9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## ScienceWorld eval_v2 进度\n\n| 项目 | 值 |\n|------|-----|\n| **进程** | PID 187796 **存活**，已运行 4h23m |\n| **进度** | **409/1796** (22.8%) |\n| **成功** | 158 OK / 251 FAIL — **success rate 38.6%** |\n| **当前任务** | grow-plant 系列 |\n| **GPU** | cuda:0 84GB/96%, cuda:1 84GB/92% — 满载运行 |\n| **速率** | ~1.56 ep/min (409 ep / 263 min) |\n| **预计剩余** | **~14.9h**（1387 episodes remaining） |\n\n注意：结果 JSON 尚未生成（`eval_results_dev_v2.json` 不存在），应在全部 1796 episodes 跑完后写入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-eval-v2-progress-urgent.md"
+}

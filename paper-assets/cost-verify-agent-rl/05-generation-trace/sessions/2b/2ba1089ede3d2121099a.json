@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ba1089ede3d2121099a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops westd gpu2 seed42 ood eval",
+  "task_key": "worker_ops_westd_gpu2_seed42_ood_eval_20260522T122752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_gpu2_seed42_ood_eval_20260522T122752_result.json",
+    "occurrence": 1,
+    "bytes": 2542,
+    "sha256": "2eca8a5fb37978799a984663f4caf6d3392b4dd382ebdb9bbd41c2a5d3e4db61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Seed42 eval 进程存活但 vLLM 引擎初始化较慢（可能是两个 Ray 实例共享 CPU 资源导致）。两个 tmux session 都在运行。我先给出最终报告。\n\n---\n\n## 汇报\n\n### 1. GPU 2: seed42 OOD eval — 启动成功（初始化中）\n\n- FSDP checkpoint 从 bjb1 转换为 HF 格式（在 bjb1 上完成，2B param Qwen3, 15.6s）\n- HF 模型 SCP 到 westd: `/root/autodl-tmp/checkpoints/exp029_seed42_step5_hf/` (4.06 GB model.safetensors)\n- Config: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_seed42_step5_ood_eval.yaml`\n  - `system.CUDA_VISIBLE_DEVICES: \"2\"`, `seed.val: 321`, `val_only: True`, 134 OOD tasks\n- tmux session: `ragen_eval_gpu2`，进程存活\n- GPU 2 已分配 8149 MiB（模型加载完成），vLLM KV cache 尚未分配（可能因两个 Ray 实例共享 CPU 资源导致初始化较慢）\n- 日志: `/root/autodl-tmp/logs/ragen_seed42_ood_eval.log`\n\n### 2. GPU 3: seed2 step15 OOD eval — 运行中\n\n- Seed2 step15 checkpoint **已在 westd**（`/root/autodl-tmp/cost-verify-agent-rl/backups/exp029-seed2-bjb1/exp029-seed2/global_step_15/actor/`）\n- FSDP→HF 转换完成: `/root/autodl-tmp/checkpoints/exp029_seed2_step15_hf/` (4.06 GB)\n- Config: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_seed2_step15_ood_eval.yaml`\n  - `system.CUDA_VISIBLE_DEVICES: \"3\"`, `seed.val: 321`, `val_only: True`, 134 OOD tasks\n- tmux session: `ragen_eval_gpu3`\n- GPU 3: **90467 MiB** — vLLM 全速推理中\n- 日志: `/root/autodl-tmp/logs/ragen_seed2_ood_eval.log`\n\n### 3. Task C: seed4/seed6 pipeline 确认\n\n**seed4** (来源: `/root/runs/cost-verify-agent-rl/exp029_seed4_ood_eval_v2.log`):\n- ✅ **RAGEN pipeline** (train.py + Hydra config `_alfworld_exp029_seed4_ood_eval`)\n- ✅ **seed.val = 321**\n- ✅ enable_response_mask = False\n- ✅ 134 AlfworldSG_OOD tasks, group_size=1\n- model_path: `qwen_exp029_seed4_step15_hf`\n\n**seed6** (来源: `/root/runs/cost-verify-agent-rl/exp029_seed6_step15_ood.log`):\n- ✅ **RAGEN pipeline** (train.py + Hydra config `_alfworld_exp029_seed6_ood_eval`)\n- ✅ **seed.val = 321**\n- ✅ enable_response_mask = False\n- ✅ 134 AlfworldSG_OOD tasks, group_size=1\n- model_path: `qwen_exp029_seed6_step15_hf`\n- ⚠️ 该次 run 以 EXIT_CODE=1 结束（Ray worker registration failed，跑了约 7 小时后崩溃）\n\n**注**: `table1_ood/` 下的日志是另一套 standalone eval 脚本（非 RAGEN train.py），使用了不同的 checkpoint 路径（`exp029-seed{4,6}/global_step_15_hf`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-gpu2-seed42-ood-eval.md"
+}

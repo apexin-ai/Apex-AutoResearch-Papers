@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04ebc6c8850340883952",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix exp029 vllm oom",
+  "task_key": "worker_fix_exp029_vllm_oom_20260516T122532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp029_vllm_oom_20260516T122532_result.json",
+    "occurrence": 1,
+    "bytes": 855,
+    "sha256": "00cac0a1c97474b198c1a17354bf59a949f9d94608a5b25c1021bbfe085e5389"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**无需修改** — 配置已经是目标状态：\n\n| 项目 | 值 |\n|------|-----|\n| 文件 | `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml` |\n| 字段 | `actor_rollout_ref.rollout.gpu_memory_utilization` |\n| 当前值 | **0.35** （已经是目标值）|\n| base.yaml 默认 | 0.3 |\n| YAML 验证 | 通过 |\n\n**GPU 状态**: 两块 RTX PRO 6000 完全空闲（各 3 MiB 占用 / 97.9 GiB 总量）。\n\n**训练命令**:\n```bash\nbash /root/cost-verify-agent-rl/scripts/run_exp029_episode_level.sh\n```\n脚本包含完整 pre-flight checklist（模型/磁盘/GPU/配置检查），最终执行 `python train.py --config-name _alfworld_exp029_episode_level`。\n\n0.35 × 95 GiB ≈ 33 GiB，即使 FSDP actor 占了 55 GiB，剩余 40 GiB 仍够 vLLM 使用。可以直接启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp029-vllm-oom.md"
+}

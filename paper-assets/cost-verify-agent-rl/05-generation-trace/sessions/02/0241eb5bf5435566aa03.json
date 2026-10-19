@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0241eb5bf5435566aa03",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "diagnose grpo val degradation",
+  "task_key": "worker_diagnose_grpo-val-degradation_20260515T042229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_grpo-val-degradation_20260515T042229.log",
+    "occurrence": 1,
+    "bytes": 873520,
+    "sha256": "db02b54a78561eb1c02a6e6fdd91a3901712870e9c5ed0f34cc61a6202b67032"
+  },
+  "statistics": {
+    "messages": 307,
+    "user_turns": 0,
+    "tool_calls": 125,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 125,
+      "tool_result": 125,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 307,
+      "chunks": [
+        {
+          "path": "0241eb5bf5435566aa03-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0241eb5bf5435566aa03-part-0002.json",
+          "message_count": 127
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-grpo-val-degradation.md"
+}

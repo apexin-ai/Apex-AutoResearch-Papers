@@ -1,0 +1,15 @@
+{
+  "exp_id": "scienceworld_cell_d_episode",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T15:04:02.321Z",
+    "updated_at": "2026-05-25T15:04:12.006Z",
+    "hypothesis": "Episode-level advantage (full context window) generalizes beyond ALFWorld to ScienceWorld: the same mechanism that boosted ALFWorld performance will yield ≥2x improvement over step-independent baseline on ScienceWorld, demonstrating environment-agnostic benefit of episode-level credit assignment."
+  },
+  "timestamp": "2026-05-25T15:04:12.382368+00:00",
+  "trigger": "update_registry"
+}

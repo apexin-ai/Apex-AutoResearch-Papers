@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f5921014ec4fdef5d03",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "paper update experiments tex",
+  "task_key": "worker_paper_update-experiments-tex_20260520T105917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_update-experiments-tex_20260520T105917_result.json",
+    "occurrence": 1,
+    "bytes": 1088,
+    "sha256": "512a7fa3ca40ffb6afc32a29b5de06ddfc48f11bd4cd8cac3796c9ff5a74d377"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。具体改动：\n\n**替换了 5 个 placeholder：**\n\n1. **`plan_002`** (line 47) → 单 seed 状态说明，附 exp028c/exp029 来源注释\n2. **`tab1_main_results`** (原 line 60) → 1.7B 主结果表（Table 1），含 Cell A（h=2, 2 seeds: 0%/0%, 3.73%/9.375%）、Cell B（factorial, 2 seeds: 0.75%/20%, 0.75%/55.5%）、Cell C（episode-level: 23.88%/28.125%）\n3. **`tab2_h_sweep`** (原 line 71) → h-sweep 消融表（Table 2），h=2→0%, h=5→0%, h=10→6.25%, h=20→15.6%, full→23.88%\n4. **h-sweep 正文段落** (原 line 75-76) → 用具体数字替换 \"precise numbers await multi-seed completion\"，描述 credit assignment cliff\n5. **`tab3_mechanism_verification`** (原 line 112) → sign misattribution 验证表（Table 3）+ 解释段落：credit agreement 52.07%≈random, point biserial r=0.068≈0, γ=1.0 坍缩\n\n**未替换的 placeholder（无数据）：**\n- `fig6_training_curves`、`fig5_h_sweep_curve`（图表占位）\n- `plan_003b`（GAE baseline）\n- `tab4_selective_comparison`（selective verification）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-update-experiments-tex.md"
+}

@@ -1,0 +1,44 @@
+{
+  "exp_id": "exp026_step_independent_grpo",
+  "project": "cost-verify-agent-rl",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:34:33.675Z",
+    "updated_at": "2026-05-15T09:34:38.467Z",
+    "spec": {
+      "name": "GRPO + step-independent rollout (cherry-pick Phase 1)",
+      "hypothesis": "Step-independent rollout (bounded context ~2-3K tokens per step) + GRPO with step-level discounted returns + invalid action penalty enables effective RL training on ALFWorld. Key differences vs failed exp022-24: context O(1) vs O(steps), KL coef 0.01 vs 0.5, LR 1e-6 vs 5e-7, step-level reward assignment. Target: success ≥20% (3x over SFT baseline 6.25%).",
+      "parent": "exp021_ragen_sft_v4",
+      "command": "bash scripts/run_exp026_step_independent_grpo.sh",
+      "server": "bjb1-17606",
+      "data_path": "RAGEN expert data (same as exp021)",
+      "data_count": "16 train tasks / 128 val tasks per epoch",
+      "model_name": "Qwen3-1.7B (SFT checkpoint: /root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final/)",
+      "seed": 0,
+      "framework": "RAGEN + cherry-picked step-independent rollout",
+      "algorithm": "GRPO + step-independent rollout + discounted returns",
+      "gpus": "cuda:0,1 (2x RTX PRO 6000 Blackwell 98GB)",
+      "key_params": {
+        "context_window_mode": "step_independent",
+        "step_independent_history_length": 5,
+        "kl_loss_coef": 0.01,
+        "kl_loss_type": "low_var_kl",
+        "lr": 1e-06,
+        "group_size": 8,
+        "gamma": 0.95,
+        "invalid_action_penalty_coef": 0.1,
+        "max_turn": 50,
+        "total_training_steps": 150,
+        "test_freq": 5,
+        "save_freq": 25,
+        "val_before_train": true,
+        "use_turn_scores": true
+      }
+    }
+  },
+  "timestamp": "2026-05-15T09:34:38.594882+00:00",
+  "trigger": "update_registry"
+}

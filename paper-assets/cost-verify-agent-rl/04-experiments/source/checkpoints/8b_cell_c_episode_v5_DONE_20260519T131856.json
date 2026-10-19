@@ -1,0 +1,43 @@
+{
+  "exp_id": "8b_cell_c_episode_v5",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:11:45.033Z",
+    "updated_at": "2026-05-19T13:18:55.955Z",
+    "hypothesis": "8B Cell C episode-level with use_ref=False (releasing ~8 GiB/GPU from ref model) and gpu_memory_utilization=0.20 will resolve the Catch-22 OOM: FSDP+ref baseline ~90 GiB/GPU leaves no room for VLLM. Removing ref model is the only viable fix since batch/token params were already minimized in v1-v3 and gpu_memory_utilization=0.15 was too low for VLLM init in v4.",
+    "parent": "8b_cell_c_episode_v2",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1,2,3 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python train.py --config-name _alfworld_8b_cell_c'",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "75042",
+      "log_path": "~/runs/cost-verify-agent-rl/8b_cell_c_episode_v5.log",
+      "submitted_at": "2026-05-19T13:16:02.004Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "ALFWorld train 140 games",
+      "data_count": 140,
+      "model_name": "qwen3_8b_sft_v1/checkpoint-231",
+      "seed": 42,
+      "checkpoint_source": "7b_sft_v1",
+      "eval_data": "ALFWorld train 140 + val 32 (in-training eval)",
+      "checkpoint_path": "N/A (failed before first step)",
+      "wall_clock_seconds": 174.0,
+      "gpu_hours": 0.19
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T13:18:55.955Z"
+  },
+  "timestamp": "2026-05-19T13:18:56.127630+00:00",
+  "trigger": "update_registry"
+}

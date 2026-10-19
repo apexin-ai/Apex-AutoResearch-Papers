@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "034f259a2fbb21e48e17",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp027 config and script",
+  "task_key": "worker_code_exp027_config_and_script_20260515T140213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp027_config_and_script_20260515T140213_result.json",
+    "occurrence": 1,
+    "bytes": 746,
+    "sha256": "f46255c3489837d5e88611f01e5b35b0a42d4c6cc8532e17ef9a61a138988503"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry run 通过，所有参数正确。\n\n### 结果汇总\n\n| 项目 | 详情 |\n|------|------|\n| **配置文件** | `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp027_stable_grpo.yaml` |\n| **启动脚本** | `/root/cost-verify-agent-rl/scripts/run_exp027_stable_grpo.sh` |\n| **SFT checkpoint** | `/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4/model.safetensors` (3.2GB, 确认存在) |\n| **Dry run** | 通过 |\n\n### exp026 → exp027 参数变更\n\n| 参数 | exp026 | exp027 |\n|------|--------|--------|\n| LR | 1e-6 | **5e-7** |\n| KL coef | 0.01 | **0.04** |\n| entropy_coeff | 0.001 (base default) | **0.01** |\n| save_freq | 25 | **5** |\n| total_steps | 150 | **50** |\n| W&B | enabled | enabled |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp027-config-and-script.md"
+}

@@ -1,0 +1,1453 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{kim2025reflact,digiRL2024,wang2022scienceworld}
+\citation{shao2024deepseekmath}
+\citation{ragen2025,selfguide2026,spear2025,feng2025gigpo}
+\citation{feng2025gigpo}
+\citation{gagpo2026}
+\citation{turnppo2025}
+\citation{hcapo2026}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@LN{36}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN@col{2}
+\@LN{39}{0}
+\@LN{40}{0}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\@LN{79}{0}
+\citation{shao2024deepseekmath}
+\citation{schulman2017ppo}
+\citation{ouyang2022instructgpt,rafailov2023dpo}
+\citation{yao2023react,ragen2025}
+\citation{ragen2025}
+\citation{digiRL2024}
+\citation{spear2025}
+\citation{selfguide2026}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Step-independent windowing (left) partitions the trajectory into fixed windows, each optimized independently. This introduces two failure mechanisms: M1 (information loss) truncates context at window boundaries, and M2 (sign misattribution) assigns all windows the same advantage sign based on episode outcome. Episode-level training (right) treats the full trajectory as a single sample, eliminating both mechanisms.}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:overview}{{1}{2}{Step-independent windowing (left) partitions the trajectory into fixed windows, each optimized independently. This introduces two failure mechanisms: M1 (information loss) truncates context at window boundaries, and M2 (sign misattribution) assigns all windows the same advantage sign based on episode outcome. Episode-level training (right) treats the full trajectory as a single sample, eliminating both mechanisms}{figure.caption.1}{}}
+\@LN@col{1}
+\@LN{80}{1}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN@col{2}
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related_work}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{RL for multi-turn LLM agents.}{2}{section*.2}\protected@file@percent }
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN{130}{1}
+\@LN{131}{1}
+\@LN{132}{1}
+\@LN{133}{1}
+\@LN{134}{1}
+\@LN{135}{1}
+\@LN{136}{1}
+\@LN{137}{1}
+\@LN{138}{1}
+\citation{sutton1988td,williams1992reinforce}
+\citation{schulman2016gae}
+\citation{lightman2024lets}
+\citation{zhou2024archer}
+\citation{kazemnejad2024vineppo}
+\citation{prime2025}
+\citation{vapo2025}
+\citation{istar2025}
+\citation{feng2025gigpo}
+\citation{turnppo2025}
+\citation{sweetrl2025}
+\citation{mtgrpo2025}
+\citation{gagpo2026}
+\citation{hcapo2026}
+\citation{irc2026}
+\citation{mcgrpo2026}
+\citation{grpolambda2025}
+\citation{oar2026}
+\citation{gradientcoupling2025}
+\citation{ragen2_2026}
+\citation{grpocollapse2025}
+\citation{rcgrpo2026}
+\citation{edgegrpo2025}
+\citation{kaelbling1998planning}
+\citation{shao2024deepseekmath}
+\citation{ragen2025}
+\@LN@col{1}
+\@LN{139}{2}
+\@LN{140}{2}
+\@LN{141}{2}
+\@LN{142}{2}
+\@LN{143}{2}
+\@writefile{toc}{\contentsline {paragraph}{Credit assignment in RL.}{3}{section*.3}\protected@file@percent }
+\@LN{144}{2}
+\@LN{145}{2}
+\@LN{146}{2}
+\@LN{147}{2}
+\@LN{148}{2}
+\@LN{149}{2}
+\@LN{150}{2}
+\@LN{151}{2}
+\@LN{152}{2}
+\@LN{153}{2}
+\@LN{154}{2}
+\@LN{155}{2}
+\@LN{156}{2}
+\@LN{157}{2}
+\@LN{158}{2}
+\@LN{159}{2}
+\@LN{160}{2}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@writefile{toc}{\contentsline {paragraph}{GRPO collapse phenomena.}{3}{section*.4}\protected@file@percent }
+\@LN{173}{2}
+\@LN{174}{2}
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN{180}{2}
+\@LN{181}{2}
+\@LN{182}{2}
+\@LN{183}{2}
+\@LN{184}{2}
+\@LN{185}{2}
+\@LN{186}{2}
+\@LN{187}{2}
+\@LN{188}{2}
+\@LN{189}{2}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Upper bound on the probability of correct gradient sign vs.\ episode success rate $p$ (Proposition~2). At typical agent task success rates ($p < 0.2$, shaded), the majority of gradient updates carry incorrect sign regardless of group size $K$.}}{3}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:theory_curve}{{2}{3}{Upper bound on the probability of correct gradient sign vs.\ episode success rate $p$ (Proposition~2). At typical agent task success rates ($p < 0.2$, shaded), the majority of gradient updates carry incorrect sign regardless of group size $K$}{figure.caption.5}{}}
+\@LN{190}{2}
+\@LN{191}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@LN{192}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation and GRPO}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:problem_formulation}{{3.1}{3}{Problem Formulation and GRPO}{subsection.3.1}{}}
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\@LN{197}{2}
+\@LN{198}{2}
+\@LN{199}{2}
+\@LN{200}{2}
+\@LN{201}{2}
+\@LN{202}{2}
+\@LN{203}{2}
+\newlabel{eq:grpo_advantage}{{1}{3}{Problem Formulation and GRPO}{equation.1}{}}
+\@LN{204}{2}
+\@LN{205}{2}
+\@LN{206}{2}
+\@LN{207}{2}
+\@LN{208}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Step-Independent Windowing}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:step_independent}{{3.2}{3}{Step-Independent Windowing}{subsection.3.2}{}}
+\@LN{209}{2}
+\@LN{210}{2}
+\@LN{211}{2}
+\@LN{212}{2}
+\@LN{213}{2}
+\@LN{214}{2}
+\newlabel{eq:step_return}{{2}{3}{Step-Independent Windowing}{equation.2}{}}
+\@LN{215}{2}
+\@LN@col{1}
+\@LN{216}{3}
+\@LN{217}{3}
+\@LN{218}{3}
+\@LN{219}{3}
+\@LN{220}{3}
+\@LN{221}{3}
+\@LN{222}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Dual Mechanism Analysis}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:dual_mechanism}{{3.3}{4}{Dual Mechanism Analysis}{subsection.3.3}{}}
+\@LN{223}{3}
+\@LN{224}{3}
+\@LN{225}{3}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Mechanism 1: Policy Information Loss}{4}{subsubsection.3.3.1}\protected@file@percent }
+\newlabel{sec:m1_information_loss}{{3.3.1}{4}{Mechanism 1: Policy Information Loss}{subsubsection.3.3.1}{}}
+\@LN{226}{3}
+\@LN{227}{3}
+\@LN{228}{3}
+\@LN{229}{3}
+\@LN{230}{3}
+\@LN{231}{3}
+\@LN{232}{3}
+\@LN{233}{3}
+\@LN{234}{3}
+\@LN{235}{3}
+\@LN{236}{3}
+\@LN{237}{3}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Mechanism 2: Advantage Sign Misattribution}{4}{subsubsection.3.3.2}\protected@file@percent }
+\newlabel{sec:m2_sign_misattribution}{{3.3.2}{4}{Mechanism 2: Advantage Sign Misattribution}{subsubsection.3.3.2}{}}
+\@LN{238}{3}
+\@LN{239}{3}
+\@LN{240}{3}
+\newlabel{eq:sign_correlation}{{3}{4}{Mechanism 2: Advantage Sign Misattribution}{equation.3}{}}
+\@LN{241}{3}
+\@LN{242}{3}
+\@LN{243}{3}
+\@LN{244}{3}
+\@LN{245}{3}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@LN{250}{3}
+\@LN{251}{3}
+\@LN{252}{3}
+\@LN{253}{3}
+\@LN{254}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Episode-Level Training}{4}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:episode_level}{{3.4}{4}{Episode-Level Training}{subsection.3.4}{}}
+\@LN{255}{3}
+\@LN{256}{3}
+\@LN{257}{3}
+\@LN{258}{3}
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
+\@LN{263}{3}
+\@LN@col{2}
+\@LN{264}{3}
+\@LN{265}{3}
+\@LN{266}{3}
+\@LN{267}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Partial Factorial Design}{4}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:factorial_design}{{3.5}{4}{Partial Factorial Design}{subsection.3.5}{}}
+\@LN{268}{3}
+\@LN{269}{3}
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@LN{273}{3}
+\@LN{274}{3}
+\@LN{275}{3}
+\@LN{276}{3}
+\@LN{277}{3}
+\@LN{278}{3}
+\@LN{279}{3}
+\@LN{280}{3}
+\@LN{281}{3}
+\@LN{282}{3}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Theoretical Analysis}{4}{section.4}\protected@file@percent }
+\newlabel{sec:theory}{{4}{4}{Theoretical Analysis}{section.4}{}}
+\@LN{283}{3}
+\@LN{284}{3}
+\@LN{285}{3}
+\@LN{286}{3}
+\@LN{287}{3}
+\@LN{288}{3}
+\@LN{289}{3}
+\@LN{290}{3}
+\@LN{291}{3}
+\@LN{292}{3}
+\@LN{293}{3}
+\@LN{294}{3}
+\@LN{295}{3}
+\@LN{296}{3}
+\@LN{297}{3}
+\@LN{298}{3}
+\@LN{299}{3}
+\@LN{300}{3}
+\@LN{301}{3}
+\@LN{302}{3}
+\@LN{303}{3}
+\@LN{304}{3}
+\@LN{305}{3}
+\@LN{306}{3}
+\@LN{307}{3}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces (a)~Training dynamics across partial factorial conditions. Cell~A collapses; Cell~B shows bounded learning; Cell~D improves monotonically. (b)~Window size $h$ vs.\ success rate. Bars show mean over available seeds; black dots at $h{=}10$ show individual seeds (2 seeds), revealing seed-dependent instability at this boundary. Hatched bars indicate collapsed conditions ($0\%$).}}{5}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:hsweep}{{3}{5}{(a)~Training dynamics across partial factorial conditions. Cell~A collapses; Cell~B shows bounded learning; Cell~D improves monotonically. (b)~Window size $h$ vs.\ success rate. Bars show mean over available seeds; black dots at $h{=}10$ show individual seeds (2 seeds), revealing seed-dependent instability at this boundary. Hatched bars indicate collapsed conditions ($0\%$)}{figure.caption.6}{}}
+\@LN@col{1}
+\@LN{308}{4}
+\@LN{309}{4}
+\@LN{310}{4}
+\@LN{311}{4}
+\@LN{312}{4}
+\@LN{313}{4}
+\@LN{314}{4}
+\@LN{315}{4}
+\@LN{316}{4}
+\@LN{317}{4}
+\@LN{318}{4}
+\@LN{319}{4}
+\@LN{320}{4}
+\@LN{321}{4}
+\newlabel{prop:correct_sign}{{4}{5}{Theoretical Analysis}{section.4}{}}
+\@LN{322}{4}
+\@LN{323}{4}
+\@LN{324}{4}
+\@LN{325}{4}
+\@LN{326}{4}
+\newlabel{eq:correct_conditional}{{4}{5}{Theoretical Analysis}{equation.4}{}}
+\@LN{327}{4}
+\@LN{328}{4}
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@LN{332}{4}
+\@LN{333}{4}
+\@LN{334}{4}
+\@LN{335}{4}
+\@LN{336}{4}
+\@LN@col{2}
+\@LN{337}{4}
+\@LN{338}{4}
+\@LN{339}{4}
+\@LN{340}{4}
+\@LN{341}{4}
+\@LN{342}{4}
+\@LN{343}{4}
+\@LN{344}{4}
+\@LN{345}{4}
+\@LN{346}{4}
+\@LN{347}{4}
+\@LN{348}{4}
+\@LN{349}{4}
+\@LN{350}{4}
+\@LN{351}{4}
+\@writefile{toc}{\contentsline {paragraph}{Severity scales with task difficulty.}{5}{section*.7}\protected@file@percent }
+\@LN{352}{4}
+\@LN{353}{4}
+\@LN{354}{4}
+\@LN{355}{4}
+\@LN{356}{4}
+\@LN{357}{4}
+\@LN{358}{4}
+\@LN{359}{4}
+\@LN{360}{4}
+\@LN{361}{4}
+\@LN{362}{4}
+\@writefile{toc}{\contentsline {paragraph}{Reward saturation.}{5}{section*.8}\protected@file@percent }
+\@LN{363}{4}
+\@LN{364}{4}
+\@LN{365}{4}
+\citation{shridhar2021alfworld}
+\citation{qwen3_2025}
+\citation{ragen2025}
+\citation{shao2024deepseekmath}
+\@LN@col{1}
+\@LN{366}{5}
+\@LN{367}{5}
+\@LN{368}{5}
+\@LN{369}{5}
+\@writefile{toc}{\contentsline {paragraph}{Cumulative divergence.}{6}{section*.9}\protected@file@percent }
+\@LN{370}{5}
+\@LN{371}{5}
+\@LN{372}{5}
+\@LN{373}{5}
+\@LN{374}{5}
+\newlabel{eq:biased_gradient}{{5}{6}{Cumulative divergence}{equation.5}{}}
+\@LN{375}{5}
+\@LN{376}{5}
+\@LN{377}{5}
+\@LN{378}{5}
+\@LN{379}{5}
+\@LN{380}{5}
+\@LN{381}{5}
+\@LN{382}{5}
+\@LN{383}{5}
+\@LN{384}{5}
+\@LN{385}{5}
+\@LN{386}{5}
+\@LN{387}{5}
+\@LN{388}{5}
+\@writefile{toc}{\contentsline {paragraph}{Extension to ternary reward.}{6}{section*.10}\protected@file@percent }
+\@LN{389}{5}
+\@LN{390}{5}
+\@LN{391}{5}
+\@LN{392}{5}
+\@LN{393}{5}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@LN{398}{5}
+\@LN{399}{5}
+\@LN{400}{5}
+\@LN{401}{5}
+\@LN{402}{5}
+\@LN{403}{5}
+\@LN{404}{5}
+\@LN{405}{5}
+\@LN{406}{5}
+\@LN{407}{5}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{6}{section.5}\protected@file@percent }
+\newlabel{sec:experiments}{{5}{6}{Experiments}{section.5}{}}
+\@LN{408}{5}
+\@LN{409}{5}
+\@LN{410}{5}
+\@LN{411}{5}
+\@LN@col{2}
+\@LN{412}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Setup}{6}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:setup}{{5.1}{6}{Setup}{subsection.5.1}{}}
+\@LN{413}{5}
+\@LN{414}{5}
+\@LN{415}{5}
+\@LN{416}{5}
+\@LN{417}{5}
+\@LN{418}{5}
+\@LN{419}{5}
+\@LN{420}{5}
+\@LN{421}{5}
+\@LN{422}{5}
+\@LN{423}{5}
+\@LN{424}{5}
+\@LN{425}{5}
+\@LN{426}{5}
+\@LN{427}{5}
+\@LN{428}{5}
+\@LN{429}{5}
+\@LN{430}{5}
+\@LN{431}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Partial Factorial Mechanism Separation}{6}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:factorial_experiments}{{5.2}{6}{Partial Factorial Mechanism Separation}{subsection.5.2}{}}
+\@LN{432}{5}
+\@LN{433}{5}
+\@LN{434}{5}
+\@LN{435}{5}
+\@LN{436}{5}
+\@LN{437}{5}
+\@LN{438}{5}
+\@LN{439}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Results}{6}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:results}{{5.3}{6}{Results}{subsection.5.3}{}}
+\@LN{440}{5}
+\@LN{441}{5}
+\@LN{442}{5}
+\@LN{443}{5}
+\@LN{444}{5}
+\@LN{445}{5}
+\@LN{446}{5}
+\@LN{447}{5}
+\@LN{448}{5}
+\@LN{449}{5}
+\@LN{450}{5}
+\@LN{451}{5}
+\@LN{452}{5}
+\@LN{453}{5}
+\@LN{454}{5}
+\@LN{455}{5}
+\@writefile{toc}{\contentsline {paragraph}{Additional conditions.}{6}{section*.12}\protected@file@percent }
+\@LN{456}{5}
+\@LN{457}{5}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces 1.7B results on ALFWorld (best checkpoint per seed). Full seed-level breakdown in Table~\ref {tab:seed_variability} and Appendix~\ref {tab:additional_baselines}.}}{7}{table.caption.11}\protected@file@percent }
+\newlabel{tab:main_results}{{1}{7}{1.7B results on ALFWorld (best checkpoint per seed). Full seed-level breakdown in Table~\ref {tab:seed_variability} and Appendix~\ref {tab:additional_baselines}}{table.caption.11}{}}
+\@LN{458}{6}
+\@LN{459}{6}
+\@writefile{toc}{\contentsline {paragraph}{Window-size sweep.}{7}{section*.13}\protected@file@percent }
+\@LN{460}{6}
+\@LN{461}{6}
+\@LN{462}{6}
+\@LN{463}{6}
+\@LN{464}{6}
+\@LN{465}{6}
+\@LN{466}{6}
+\@LN{467}{6}
+\newlabel{sec:results_hsweep}{{5.3}{7}{Window-size sweep}{section*.13}{}}
+\@LN{468}{6}
+\@LN{469}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Sign Misattribution Verification}{7}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:sign_verification}{{5.4}{7}{Sign Misattribution Verification}{subsection.5.4}{}}
+\@LN{470}{6}
+\@LN{471}{6}
+\@LN{472}{6}
+\@LN{473}{6}
+\@LN{474}{6}
+\@LN{475}{6}
+\@LN{476}{6}
+\@LN{477}{6}
+\@LN{478}{6}
+\@LN{479}{6}
+\@LN{480}{6}
+\@LN{481}{6}
+\@LN{482}{6}
+\@LN{483}{6}
+\@LN{484}{6}
+\@LN{485}{6}
+\@LN{486}{6}
+\@LN{487}{6}
+\@LN{488}{6}
+\@LN{489}{6}
+\@LN{490}{6}
+\@LN{491}{6}
+\@LN{492}{6}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Sign-episode correlation (binary reward) vs.\ credit agreement rate (penalty reward). Under binary reward, advantage sign tracks episode outcome near-perfectly, confirming M2. Under penalty reward, credit agreement drops to near-random chance (dashed line).}}{7}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:sign_misattribution}{{4}{7}{Sign-episode correlation (binary reward) vs.\ credit agreement rate (penalty reward). Under binary reward, advantage sign tracks episode outcome near-perfectly, confirming M2. Under penalty reward, credit agreement drops to near-random chance (dashed line)}{figure.caption.14}{}}
+\@LN{493}{6}
+\@LN{494}{6}
+\@LN{495}{6}
+\@LN{496}{6}
+\@LN{497}{6}
+\@LN{498}{6}
+\@LN{499}{6}
+\@LN{500}{6}
+\@LN{501}{6}
+\@LN{502}{6}
+\@LN{503}{6}
+\@LN{504}{6}
+\@LN{505}{6}
+\@LN{506}{6}
+\@LN{507}{6}
+\@LN{508}{6}
+\@LN{509}{6}
+\@LN{510}{6}
+\@LN{511}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Episode-Level Training: Seed Variability}{7}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:seed_variability}{{5.5}{7}{Episode-Level Training: Seed Variability}{subsection.5.5}{}}
+\@LN{512}{6}
+\@LN{513}{6}
+\@LN{514}{6}
+\@LN{515}{6}
+\@LN{516}{6}
+\@LN{517}{6}
+\@LN{518}{6}
+\@LN{519}{6}
+\@LN{520}{6}
+\@LN{521}{6}
+\@LN{522}{6}
+\@LN{523}{6}
+\citation{wang2022scienceworld}
+\citation{hcapo2026}
+\citation{feng2025gigpo}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Episode-level GRPO across 11 seeds (134 OOD tasks, best checkpoint per seed). C=Collapsed, S=Stagnant, G=Generalized (Fisher exact $p{<}0.01$ vs.\ SFT). NS=not significant. Wilson 95\% confidence interval. SFT baseline: 6.72\%.}}{8}{table.caption.15}\protected@file@percent }
+\newlabel{tab:seed_variability}{{2}{8}{Episode-level GRPO across 11 seeds (134 OOD tasks, best checkpoint per seed). C=Collapsed, S=Stagnant, G=Generalized (Fisher exact $p{<}0.01$ vs.\ SFT). NS=not significant. Wilson 95\% confidence interval. SFT baseline: 6.72\%}{table.caption.15}{}}
+\@LN{524}{7}
+\@LN{525}{7}
+\@LN{526}{7}
+\@LN{527}{7}
+\@LN{528}{7}
+\@LN{529}{7}
+\@LN{530}{7}
+\@LN{531}{7}
+\@LN{532}{7}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Cross-Scale and Cross-Environment Verification}{8}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:cross_scale}{{5.6}{8}{Cross-Scale and Cross-Environment Verification}{subsection.5.6}{}}
+\@LN{533}{7}
+\@LN{534}{7}
+\@LN{535}{7}
+\@LN{536}{7}
+\@LN{537}{7}
+\@LN{538}{7}
+\@LN{539}{7}
+\@LN{540}{7}
+\@LN{541}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{8}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Generality and mechanism interaction.}{8}{section*.17}\protected@file@percent }
+\@LN{542}{7}
+\@LN{543}{7}
+\@LN{544}{7}
+\@LN{545}{7}
+\@LN{546}{7}
+\@LN{547}{7}
+\@LN{548}{7}
+\@LN{549}{7}
+\@LN{550}{7}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces OOD success rate across 11 episode-level GRPO seeds (Wilson 95\% CI). Seeds partition into \textit  {Generalized} ($p{<}0.01$ vs.\ SFT), \textit  {Stagnant} (stable, NS), and \textit  {Collapsed} ($\times $). Avoiding collapse is necessary but not sufficient.}}{8}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:seed_variability}{{5}{8}{OOD success rate across 11 episode-level GRPO seeds (Wilson 95\% CI). Seeds partition into \textit {Generalized} ($p{<}0.01$ vs.\ SFT), \textit {Stagnant} (stable, NS), and \textit {Collapsed} ($\times $). Avoiding collapse is necessary but not sufficient}{figure.caption.16}{}}
+\@LN{551}{7}
+\@LN{552}{7}
+\@LN{553}{7}
+\@LN{554}{7}
+\@LN{555}{7}
+\@LN{556}{7}
+\@writefile{toc}{\contentsline {paragraph}{Concurrent methods.}{8}{section*.18}\protected@file@percent }
+\@LN{557}{7}
+\@LN{558}{7}
+\@LN{559}{7}
+\@LN{560}{7}
+\@LN{561}{7}
+\@LN{562}{7}
+\@LN{563}{7}
+\@LN{564}{7}
+\@LN{565}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{8}{Conclusion}{section.7}{}}
+\@LN{566}{7}
+\@LN{567}{7}
+\@LN{568}{7}
+\@LN{569}{7}
+\@LN{570}{7}
+\@LN{571}{7}
+\@LN{572}{7}
+\@LN{573}{7}
+\@LN{574}{7}
+\@LN{575}{7}
+\@LN{576}{7}
+\@LN{577}{7}
+\@LN{578}{7}
+\@LN{579}{7}
+\@LN{580}{7}
+\bibdata{references}
+\bibcite{digiRL2024}{{1}{2024}{{Bai et~al.}}{{Bai, Zhou, Cemri, Pan, Suhr, Levine, and Kumar}}}
+\bibcite{prime2025}{{2}{2025}{{Cui et~al.}}{{Cui, Yuan, Wang, Wang, Li, He, Fan, Yu, Xu, Chen, Yuan, Chen, Zhang, Lv, Wang, Yao, Han, Peng, Cheng, Liu, Sun, Zhou, and Ding}}}
+\bibcite{grpocollapse2025}{{3}{2025}{{Deng et~al.}}{{Deng, Li, Gong, Ren, Thrampoulidis, and Li}}}
+\bibcite{feng2025gigpo}{{4}{2025}{{Feng et~al.}}{{Feng, Xue, Liu, and An}}}
+\bibcite{kaelbling1998planning}{{5}{1998}{{Kaelbling et~al.}}{{Kaelbling, Littman, and Cassandra}}}
+\bibcite{kazemnejad2024vineppo}{{6}{2024}{{Kazemnejad et~al.}}{{Kazemnejad, Aghajohari, Portelance, Sordoni, Reddy, Courville, and Le~Roux}}}
+\bibcite{kim2025reflact}{{7}{2025}{{Kim et~al.}}{{Kim, Rhee, Kim, Kim, Lee, Sung, and Jung}}}
+\bibcite{mcgrpo2026}{{8}{2026}{{Kim}}{{}}}
+\bibcite{turnppo2025}{{9}{2026{a}}{{Li et~al.}}{{Li, Zhou, Meng, Vadera, Li, and Li}}}
+\bibcite{oar2026}{{10}{2026{b}}{{Li et~al.}}{{Li, Kang, Xiao, Xing, Si, Li, Gong, Yang, Xiao, and Guo}}}
+\bibcite{lightman2024lets}{{11}{2024}{{Lightman et~al.}}{{Lightman, Kosaraju, Burda, Edwards, Baker, Lee, Leike, Schulman, Sutskever, and Cobbe}}}
+\bibcite{gradientcoupling2025}{{12}{2025}{{Liu et~al.}}{{Liu, Wu, Peng, Chen, Yu, Ding, and Liu}}}
+\bibcite{istar2025}{{13}{2026}{{Liu et~al.}}{{Liu, Wang, Wu, Huang, Li, Zhang, and Jiao}}}
+\bibcite{irc2026}{{14}{2026}{{Modecrua et~al.}}{{Modecrua, Kaewtawee, Pachtrachai, and Kraisingkorn}}}
+\bibcite{ouyang2022instructgpt}{{15}{2022}{{Ouyang et~al.}}{{Ouyang, Wu, Jiang, Almeida, Wainwright, Mishkin, Zhang, Agarwal, Slama, Ray, Schulman, Hilton, Kelton, Miller, Simens, Askell, Welinder, Christiano, Leike, and Lowe}}}
+\bibcite{grpolambda2025}{{16}{2025}{{Parthasarathi et~al.}}{{Parthasarathi, Reymond, Chen, Cui, and Chandar}}}
+\bibcite{spear2025}{{17}{2026}{{Qin et~al.}}{{Qin, Tan, He, Li, Lin, Li, Xu, Shi, Cai, Rui, Cai, Cai, Zhang, Ye, Li, and Sun}}}
+\bibcite{rafailov2023dpo}{{18}{2023}{{Rafailov et~al.}}{{Rafailov, Sharma, Mitchell, Manning, Ermon, and Finn}}}
+\@LN@col{1}
+\@LN{581}{8}
+\@LN{582}{8}
+\@LN{583}{8}
+\@LN{584}{8}
+\@LN{585}{8}
+\@LN{586}{8}
+\@LN{587}{8}
+\@LN{588}{8}
+\@LN{589}{8}
+\@LN{590}{8}
+\@LN{591}{8}
+\@LN{592}{8}
+\@LN{593}{8}
+\@LN{594}{8}
+\@LN{595}{8}
+\@LN{596}{8}
+\@LN{597}{8}
+\@LN{598}{8}
+\@LN{599}{8}
+\@LN{600}{8}
+\@LN{601}{8}
+\@LN{602}{8}
+\@LN{603}{8}
+\@LN{604}{8}
+\@LN{605}{8}
+\@LN{606}{8}
+\@LN{607}{8}
+\@LN{608}{8}
+\@LN{609}{8}
+\@LN{610}{8}
+\@LN{611}{8}
+\@LN{612}{8}
+\@LN{613}{8}
+\@LN{614}{8}
+\@LN{615}{8}
+\@LN{616}{8}
+\@LN{617}{8}
+\@LN{618}{8}
+\@LN{619}{8}
+\@LN{620}{8}
+\@LN{621}{8}
+\@LN{622}{8}
+\@LN{623}{8}
+\@LN{624}{8}
+\@LN{625}{8}
+\@LN{626}{8}
+\@LN{627}{8}
+\@LN{628}{8}
+\@LN{629}{8}
+\@LN{630}{8}
+\@LN{631}{8}
+\@LN@col{2}
+\@LN{632}{8}
+\@LN{633}{8}
+\@LN{634}{8}
+\@LN{635}{8}
+\@LN{636}{8}
+\@LN{637}{8}
+\@LN{638}{8}
+\@LN{639}{8}
+\@LN{640}{8}
+\@LN{641}{8}
+\@LN{642}{8}
+\@LN{643}{8}
+\@LN{644}{8}
+\@LN{645}{8}
+\@LN{646}{8}
+\@LN{647}{8}
+\@LN{648}{8}
+\@LN{649}{8}
+\@LN{650}{8}
+\@LN{651}{8}
+\@LN{652}{8}
+\@LN{653}{8}
+\@LN{654}{8}
+\@LN{655}{8}
+\@LN{656}{8}
+\@LN{657}{8}
+\@LN{658}{8}
+\@LN{659}{8}
+\@LN{660}{8}
+\@LN{661}{8}
+\@LN{662}{8}
+\@LN{663}{8}
+\@LN{664}{8}
+\@LN{665}{8}
+\@LN{666}{8}
+\@LN{667}{8}
+\@LN{668}{8}
+\@LN{669}{8}
+\@LN{670}{8}
+\@LN{671}{8}
+\@LN{672}{8}
+\@LN{673}{8}
+\@LN{674}{8}
+\@LN{675}{8}
+\@LN{676}{8}
+\@LN{677}{8}
+\@LN{678}{8}
+\@LN{679}{8}
+\@LN{680}{8}
+\@LN{681}{8}
+\@LN{682}{8}
+\@LN{683}{8}
+\@LN{684}{8}
+\@LN{685}{8}
+\@LN{686}{8}
+\@LN{687}{8}
+\@LN{688}{8}
+\bibcite{schulman2016gae}{{19}{2016}{{Schulman et~al.}}{{Schulman, Moritz, Levine, Jordan, and Abbeel}}}
+\bibcite{schulman2017ppo}{{20}{2017}{{Schulman et~al.}}{{Schulman, Wolski, Dhariwal, Radford, and Klimov}}}
+\bibcite{shao2024deepseekmath}{{21}{2024}{{Shao et~al.}}{{Shao, Wang, Zhu, Xu, Song, Bi, Zhang, Zhang, Li, Wu, and Guo}}}
+\bibcite{shridhar2021alfworld}{{22}{2021}{{Shridhar et~al.}}{{Shridhar, Yuan, C\^{o}t\'{e}, Bisk, Trischler, and Hausknecht}}}
+\bibcite{sutton1988td}{{23}{1988}{{Sutton}}{{}}}
+\bibcite{hcapo2026}{{24}{2026}{{Tan et~al.}}{{Tan, Yang, Chen, Shao, Wen, Shen, Luo, Du, Guo, and Li}}}
+\bibcite{wang2022scienceworld}{{25}{2022}{{Wang et~al.}}{{Wang, Jansen, C\^{o}t\'{e}, and Ammanabrolu}}}
+\bibcite{selfguide2026}{{26}{2026{a}}{{Wang et~al.}}{{Wang, Wu, Song, Zhang, Zhang, Kong, Kwok, Chang, Luo, Wu, and Liu}}}
+\bibcite{ragen2_2026}{{27}{2026{b}}{{Wang et~al.}}{{Wang, Gui, Jin, Wang, Liu, Wang, Chen, Li, Yang, Zhang, Lu, Wu, Li, Wang, Choi, and Li}}}
+\bibcite{ragen2025}{{28}{2025}{{Wang et~al.}}{{Wang, Wang, Wang, Zhang, Li, Yang, Jin, Yu, Nguyen, Liu, Gottlieb, Lu, Cho, Wu, Li, Wang, Choi, and Li}}}
+\bibcite{mtgrpo2025}{{29}{2025}{{Wei et~al.}}{{Wei, Zeng, Li, Brown, Frunza, Deng, Schneider, Nevmyvaka, Zhao, Garcia, and Hong}}}
+\bibcite{williams1992reinforce}{{30}{1992}{{Williams}}{{}}}
+\bibcite{qwen3_2025}{{31}{2025}{{Yang et~al.}}{{Yang, Li, Yang, Zhang, Hui, Zheng, Yu, Gao, Huang, Lv, Zheng, Liu, Zhou, Huang, Hu, Ge, Wei, Lin, Tang, Yang, Tu, Zhang, Yang, Yang, Zhou, Zhou, Lin et~al.}}}
+\bibcite{yao2023react}{{32}{2023}{{Yao et~al.}}{{Yao, Zhao, Yu, Du, Shafran, Narasimhan, and Cao}}}
+\bibcite{vapo2025}{{33}{2025}{{Yue et~al.}}{{Yue, Yuan, Yu, Zuo, Zhu, Xu, Chen, Wang, Fan, Du, Wei, Yu, Liu, Liu, Liu, Lin, Lin, Ma, Zhang, Zhang, Zhang, Zhu, Zhang, Liu, Wang, Wu, and Yan}}}
+\bibcite{edgegrpo2025}{{34}{2025}{{Zhang et~al.}}{{Zhang, Wen, Wu, and Huang}}}
+\bibcite{rcgrpo2026}{{35}{2026}{{Zhong et~al.}}{{Zhong, Zhai, Song, Bian, Liu, and Tan}}}
+\bibcite{sweetrl2025}{{36}{2025}{{Zhou et~al.}}{{Zhou, Jiang, Tian, Weston, Levine, Sukhbaatar, and Li}}}
+\bibcite{zhou2024archer}{{37}{2024}{{Zhou et~al.}}{{Zhou, Zanette, Pan, Levine, and Kumar}}}
+\bibcite{gagpo2026}{{38}{2026}{{Zhu et~al.}}{{Zhu, Yu, Yang, Liu, Hu, Chen, and Zhang}}}
+\@LN@col{1}
+\@LN{689}{9}
+\@LN{690}{9}
+\@LN{691}{9}
+\@LN{692}{9}
+\@LN{693}{9}
+\@LN{694}{9}
+\@LN{695}{9}
+\@LN{696}{9}
+\@LN{697}{9}
+\@LN{698}{9}
+\@LN{699}{9}
+\@LN{700}{9}
+\@LN{701}{9}
+\@LN{702}{9}
+\@LN{703}{9}
+\@LN{704}{9}
+\@LN{705}{9}
+\@LN{706}{9}
+\@LN{707}{9}
+\@LN{708}{9}
+\@LN{709}{9}
+\@LN{710}{9}
+\@LN{711}{9}
+\@LN{712}{9}
+\@LN{713}{9}
+\@LN{714}{9}
+\@LN{715}{9}
+\@LN{716}{9}
+\@LN{717}{9}
+\@LN{718}{9}
+\@LN{719}{9}
+\@LN{720}{9}
+\@LN{721}{9}
+\@LN{722}{9}
+\@LN{723}{9}
+\@LN{724}{9}
+\@LN{725}{9}
+\@LN{726}{9}
+\@LN{727}{9}
+\@LN{728}{9}
+\@LN{729}{9}
+\@LN{730}{9}
+\@LN{731}{9}
+\@LN{732}{9}
+\@LN{733}{9}
+\@LN{734}{9}
+\@LN{735}{9}
+\@LN{736}{9}
+\@LN{737}{9}
+\@LN{738}{9}
+\@LN{739}{9}
+\@LN{740}{9}
+\@LN{741}{9}
+\@LN{742}{9}
+\@LN{743}{9}
+\@LN{744}{9}
+\@LN@col{2}
+\@LN{745}{9}
+\@LN{746}{9}
+\@LN{747}{9}
+\@LN{748}{9}
+\@LN{749}{9}
+\@LN{750}{9}
+\@LN{751}{9}
+\@LN{752}{9}
+\@LN{753}{9}
+\@LN{754}{9}
+\@LN{755}{9}
+\@LN{756}{9}
+\@LN{757}{9}
+\@LN{758}{9}
+\@LN{759}{9}
+\@LN{760}{9}
+\@LN{761}{9}
+\@LN{762}{9}
+\@LN{763}{9}
+\@LN{764}{9}
+\@LN{765}{9}
+\@LN{766}{9}
+\@LN{767}{9}
+\@LN{768}{9}
+\@LN{769}{9}
+\@LN{770}{9}
+\@LN{771}{9}
+\@LN{772}{9}
+\@LN{773}{9}
+\@LN{774}{9}
+\@LN{775}{9}
+\@LN{776}{9}
+\@LN{777}{9}
+\@LN{778}{9}
+\@LN{779}{9}
+\@LN{780}{9}
+\@LN{781}{9}
+\@LN{782}{9}
+\@LN{783}{9}
+\@LN{784}{9}
+\@LN{785}{9}
+\@LN{786}{9}
+\@LN{787}{9}
+\@LN{788}{9}
+\@LN{789}{9}
+\@LN{790}{9}
+\@LN{791}{9}
+\@LN{792}{9}
+\@LN{793}{9}
+\@LN{794}{9}
+\@LN{795}{9}
+\@LN{796}{9}
+\@LN{797}{9}
+\@LN{798}{9}
+\@LN{799}{9}
+\@LN{800}{9}
+\@LN@col{1}
+\@LN{801}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Theoretical Analysis: Full Derivations}{11}{appendix.A}\protected@file@percent }
+\newlabel{app:theory_full}{{A}{11}{Theoretical Analysis: Full Derivations}{appendix.A}{}}
+\@LN{802}{10}
+\@LN{803}{10}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Why Sign Misattribution is the Core Mechanism}{11}{subsection.A.1}\protected@file@percent }
+\newlabel{app:sign_fundamental}{{A.1}{11}{Why Sign Misattribution is the Core Mechanism}{subsection.A.1}{}}
+\@LN{804}{10}
+\@LN{805}{10}
+\@LN{806}{10}
+\@LN{807}{10}
+\@LN{808}{10}
+\@LN{809}{10}
+\@LN{810}{10}
+\@LN{811}{10}
+\@LN{812}{10}
+\@LN{813}{10}
+\@LN{814}{10}
+\@LN{815}{10}
+\@LN{816}{10}
+\@LN{817}{10}
+\@LN{818}{10}
+\@LN{819}{10}
+\@LN{820}{10}
+\@LN{821}{10}
+\@LN{822}{10}
+\@LN{823}{10}
+\@LN{824}{10}
+\@LN{825}{10}
+\@LN{826}{10}
+\@LN{827}{10}
+\@LN{828}{10}
+\@LN{829}{10}
+\@LN{830}{10}
+\@LN{831}{10}
+\@LN{832}{10}
+\@LN{833}{10}
+\@LN{834}{10}
+\@LN{835}{10}
+\@LN{836}{10}
+\@LN{837}{10}
+\@LN{838}{10}
+\@LN{839}{10}
+\@LN{840}{10}
+\@LN{841}{10}
+\@LN{842}{10}
+\@LN{843}{10}
+\@LN{844}{10}
+\@LN{845}{10}
+\@LN{846}{10}
+\@LN{847}{10}
+\@LN{848}{10}
+\@LN{849}{10}
+\@LN{850}{10}
+\@LN{851}{10}
+\@LN@col{2}
+\@LN{852}{10}
+\@LN{853}{10}
+\@LN{854}{10}
+\@LN{855}{10}
+\@LN{856}{10}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Formal Probability Analysis}{11}{subsection.A.2}\protected@file@percent }
+\newlabel{app:formal_probability}{{A.2}{11}{Formal Probability Analysis}{subsection.A.2}{}}
+\@LN{857}{10}
+\@LN{858}{10}
+\@LN{859}{10}
+\@LN{860}{10}
+\@LN{861}{10}
+\@LN{862}{10}
+\@LN{863}{10}
+\@LN{864}{10}
+\@LN{865}{10}
+\@LN{866}{10}
+\@LN{867}{10}
+\@LN{868}{10}
+\@LN{869}{10}
+\@LN{870}{10}
+\@LN{871}{10}
+\@LN{872}{10}
+\@LN{873}{10}
+\@LN{874}{10}
+\@LN{875}{10}
+\@LN{876}{10}
+\@LN{877}{10}
+\@LN{878}{10}
+\@LN{879}{10}
+\@LN{880}{10}
+\@LN{881}{10}
+\@LN{882}{10}
+\@LN{883}{10}
+\@LN{884}{10}
+\newlabel{app:nonbinary_extension}{{A.2}{11}{Formal Probability Analysis}{subsection.A.2}{}}
+\@LN{885}{10}
+\@LN{886}{10}
+\@LN{887}{10}
+\@LN{888}{10}
+\@LN{889}{10}
+\@LN{890}{10}
+\@LN{891}{10}
+\@LN{892}{10}
+\@LN{893}{10}
+\@LN{894}{10}
+\@LN{895}{10}
+\@LN{896}{10}
+\@LN{897}{10}
+\@LN{898}{10}
+\@LN{899}{10}
+\citation{ragen2025}
+\citation{sutton1988td}
+\@LN@col{1}
+\@LN{900}{11}
+\@LN{901}{11}
+\@LN{902}{11}
+\@LN{903}{11}
+\@LN{904}{11}
+\@LN{905}{11}
+\@LN{906}{11}
+\@LN{907}{11}
+\@LN{908}{11}
+\@LN{909}{11}
+\@LN{910}{11}
+\@LN{911}{11}
+\@LN{912}{11}
+\@LN{913}{11}
+\@LN{914}{11}
+\@LN{915}{11}
+\@LN{916}{11}
+\@LN{917}{11}
+\@LN{918}{11}
+\@LN{919}{11}
+\@LN{920}{11}
+\@LN{921}{11}
+\@LN{922}{11}
+\@LN{923}{11}
+\@LN{924}{11}
+\@LN{925}{11}
+\@LN{926}{11}
+\@LN{927}{11}
+\@LN{928}{11}
+\@LN{929}{11}
+\@LN{930}{11}
+\@LN{931}{11}
+\@LN{932}{11}
+\@LN{933}{11}
+\@LN{934}{11}
+\@LN{935}{11}
+\@LN{936}{11}
+\@LN{937}{11}
+\@LN{938}{11}
+\@LN{939}{11}
+\@LN{940}{11}
+\@LN{941}{11}
+\@LN{942}{11}
+\@LN{943}{11}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Why the Community Defaults to Step-Independent Training}{12}{subsection.A.3}\protected@file@percent }
+\newlabel{app:why_defaults}{{A.3}{12}{Why the Community Defaults to Step-Independent Training}{subsection.A.3}{}}
+\@LN{944}{11}
+\@LN{945}{11}
+\@LN{946}{11}
+\@LN{947}{11}
+\@LN{948}{11}
+\@LN{949}{11}
+\@LN{950}{11}
+\@LN@col{2}
+\@LN{951}{11}
+\@LN{952}{11}
+\@LN{953}{11}
+\@LN{954}{11}
+\@LN{955}{11}
+\@LN{956}{11}
+\@LN{957}{11}
+\@LN{958}{11}
+\@LN{959}{11}
+\@LN{960}{11}
+\@LN{961}{11}
+\@LN{962}{11}
+\@LN{963}{11}
+\@LN{964}{11}
+\@LN{965}{11}
+\@LN{966}{11}
+\@LN{967}{11}
+\@LN{968}{11}
+\@LN{969}{11}
+\@LN{970}{11}
+\@LN{971}{11}
+\@LN{972}{11}
+\@LN{973}{11}
+\@LN{974}{11}
+\@LN{975}{11}
+\@LN{976}{11}
+\@LN{977}{11}
+\@LN{978}{11}
+\@LN{979}{11}
+\@LN{980}{11}
+\@LN{981}{11}
+\@LN{982}{11}
+\@LN{983}{11}
+\@LN{984}{11}
+\@LN{985}{11}
+\@LN{986}{11}
+\@LN{987}{11}
+\@LN{988}{11}
+\@LN{989}{11}
+\@LN{990}{11}
+\@LN{991}{11}
+\@LN{992}{11}
+\@LN{993}{11}
+\@LN{994}{11}
+\@LN{995}{11}
+\@LN{996}{11}
+\@LN{997}{11}
+\@LN{998}{11}
+\@LN{999}{11}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}Connection to Classical Credit Assignment}{12}{subsection.A.4}\protected@file@percent }
+\newlabel{app:classical_connection}{{A.4}{12}{Connection to Classical Credit Assignment}{subsection.A.4}{}}
+\@LN{1000}{11}
+\@LN{1001}{11}
+\citation{schulman2016gae}
+\citation{williams1992reinforce}
+\citation{ragen2025}
+\@LN@col{1}
+\@LN{1002}{12}
+\@LN{1003}{12}
+\@LN{1004}{12}
+\@LN{1005}{12}
+\@LN{1006}{12}
+\@LN{1007}{12}
+\@LN{1008}{12}
+\@LN{1009}{12}
+\@LN{1010}{12}
+\@LN{1011}{12}
+\@LN{1012}{12}
+\@LN{1013}{12}
+\@LN{1014}{12}
+\@LN{1015}{12}
+\@LN{1016}{12}
+\@LN{1017}{12}
+\@LN{1018}{12}
+\@LN{1019}{12}
+\@LN{1020}{12}
+\@LN{1021}{12}
+\@LN{1022}{12}
+\@LN{1023}{12}
+\@LN{1024}{12}
+\@LN{1025}{12}
+\@LN{1026}{12}
+\@LN{1027}{12}
+\@LN{1028}{12}
+\@LN{1029}{12}
+\@LN{1030}{12}
+\@LN{1031}{12}
+\@LN{1032}{12}
+\@LN{1033}{12}
+\@LN{1034}{12}
+\@LN{1035}{12}
+\@LN{1036}{12}
+\@LN{1037}{12}
+\@LN{1038}{12}
+\@LN{1039}{12}
+\@LN{1040}{12}
+\@LN{1041}{12}
+\@LN{1042}{12}
+\@LN{1043}{12}
+\@LN{1044}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Hyperparameters}{13}{appendix.B}\protected@file@percent }
+\newlabel{app:hyperparameters}{{B}{13}{Hyperparameters}{appendix.B}{}}
+\@LN{1045}{12}
+\@LN{1046}{12}
+\@LN{1047}{12}
+\@LN{1048}{12}
+\@LN{1049}{12}
+\@LN{1050}{12}
+\@LN{1051}{12}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Shared RL training hyperparameters across all conditions.}}{13}{table.caption.21}\protected@file@percent }
+\newlabel{tab:hyperparameters_app}{{3}{13}{Shared RL training hyperparameters across all conditions}{table.caption.21}{}}
+\@LN{1052}{12}
+\@LN{1053}{12}
+\@writefile{toc}{\contentsline {paragraph}{SFT baseline.}{13}{section*.22}\protected@file@percent }
+\@LN{1054}{12}
+\@LN{1055}{12}
+\@LN{1056}{12}
+\@LN{1057}{12}
+\@LN{1058}{12}
+\@LN{1059}{12}
+\@LN{1060}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Cross-Scale and Cross-Environment Results}{13}{appendix.C}\protected@file@percent }
+\newlabel{app:8b_results}{{C}{13}{Cross-Scale and Cross-Environment Results}{appendix.C}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces 8B results on ALFWorld. SFT and $h{=}2$ use decoding temperature $\tau {=}0$; RL uses $\tau {=}0.4$. Cell~A: step~2 (post-collapse). Cell~D: step~10. Single seed. The primary comparison is Cell~A collapse (0\%) vs Cell~D success, which is independent of decoding temperature.}}{13}{table.caption.24}\protected@file@percent }
+\newlabel{tab:8b_results}{{4}{13}{8B results on ALFWorld. SFT and $h{=}2$ use decoding temperature $\tau {=}0$; RL uses $\tau {=}0.4$. Cell~A: step~2 (post-collapse). Cell~D: step~10. Single seed. The primary comparison is Cell~A collapse (0\%) vs Cell~D success, which is independent of decoding temperature}{table.caption.24}{}}
+\@LN{1061}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Additional Conditions}{13}{appendix.D}\protected@file@percent }
+\newlabel{app:additional}{{D}{13}{Additional Conditions}{appendix.D}{}}
+\@LN{1062}{12}
+\@writefile{toc}{\contentsline {paragraph}{Dense reward.}{13}{section*.25}\protected@file@percent }
+\@LN{1063}{12}
+\@LN{1064}{12}
+\@LN{1065}{12}
+\@LN{1066}{12}
+\newlabel{sec:results_dense}{{D}{13}{Dense reward}{section*.25}{}}
+\@LN{1067}{12}
+\@writefile{toc}{\contentsline {paragraph}{REINFORCE++.}{13}{section*.26}\protected@file@percent }
+\@LN{1068}{12}
+\@LN{1069}{12}
+\@LN{1070}{12}
+\@LN{1071}{12}
+\@LN{1072}{12}
+\@LN{1073}{12}
+\@LN{1074}{12}
+\citation{turnppo2025}
+\citation{hcapo2026}
+\citation{feng2025gigpo}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces (a)~Cross-scale verification (single seed): both collapse (Cell~A) and fix (Cell~D) are observed from 1.7B to 8B. The episode-level fix appears more effective at 8B (96.9\% vs.\ 34.4\% in-distribution). (b)~Information loss (M1) quantification (single seed each): restricting context to $h{=}2$ drops SFT performance by 37.5pp at 8B ALFWorld and 30.3pp on ScienceWorld.}}{14}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:cross_scale}{{6}{14}{(a)~Cross-scale verification (single seed): both collapse (Cell~A) and fix (Cell~D) are observed from 1.7B to 8B. The episode-level fix appears more effective at 8B (96.9\% vs.\ 34.4\% in-distribution). (b)~Information loss (M1) quantification (single seed each): restricting context to $h{=}2$ drops SFT performance by 37.5pp at 8B ALFWorld and 30.3pp on ScienceWorld}{figure.caption.23}{}}
+\@LN@col{1}
+\@LN{1075}{13}
+\@LN{1076}{13}
+\@LN{1077}{13}
+\@LN{1078}{13}
+\@LN{1079}{13}
+\@LN{1080}{13}
+\@LN{1081}{13}
+\@LN{1082}{13}
+\@LN{1083}{13}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Additional baselines on ALFWorld (1.7B). Neither method improves over the SFT baseline on in-distribution tasks.}}{14}{table.caption.27}\protected@file@percent }
+\newlabel{tab:additional_baselines}{{5}{14}{Additional baselines on ALFWorld (1.7B). Neither method improves over the SFT baseline on in-distribution tasks}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {paragraph}{Discount factor sweep.}{14}{section*.28}\protected@file@percent }
+\@LN{1084}{13}
+\@LN{1085}{13}
+\@LN{1086}{13}
+\@LN{1087}{13}
+\@LN{1088}{13}
+\@LN{1089}{13}
+\newlabel{app:cell_c}{{D}{14}{Cell~C attempt}{section*.30}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cell~C attempt.}{14}{section*.30}\protected@file@percent }
+\@LN{1090}{13}
+\@LN{1091}{13}
+\@LN{1092}{13}
+\@LN{1093}{13}
+\@LN{1094}{13}
+\@LN@col{2}
+\@LN{1095}{13}
+\@LN{1096}{13}
+\@LN{1097}{13}
+\@LN{1098}{13}
+\@LN{1099}{13}
+\@LN{1100}{13}
+\@LN{1101}{13}
+\@LN{1102}{13}
+\@LN{1103}{13}
+\@LN{1104}{13}
+\@LN{1105}{13}
+\@LN{1106}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Method Selection Guide}{14}{appendix.E}\protected@file@percent }
+\newlabel{app:method_selection}{{E}{14}{Method Selection Guide}{appendix.E}{}}
+\@LN{1107}{13}
+\@LN{1108}{13}
+\@LN{1109}{13}
+\@LN{1110}{13}
+\@LN{1111}{13}
+\@LN{1112}{13}
+\@LN{1113}{13}
+\@LN{1114}{13}
+\@LN{1115}{13}
+\@LN{1116}{13}
+\@LN{1117}{13}
+\@LN{1118}{13}
+\@LN{1119}{13}
+\@LN{1120}{13}
+\@LN{1121}{13}
+\@LN{1122}{13}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces (a)~Standard remedies for step-independent training: dense reward shaping and discount factor $\gamma {=}1.0$ both collapse to 0\%; REINFORCE++ matches the SFT baseline without improvement. Only episode-level training (Cell~D) exceeds baseline. (b)~Dense reward gaming: action validity rises from 60\% to 97.5\% while task success remains 0\%; the agent maximizes format-level rewards without solving tasks.}}{15}{figure.caption.29}\protected@file@percent }
+\newlabel{fig:additional_conditions}{{7}{15}{(a)~Standard remedies for step-independent training: dense reward shaping and discount factor $\gamma {=}1.0$ both collapse to 0\%; REINFORCE++ matches the SFT baseline without improvement. Only episode-level training (Cell~D) exceeds baseline. (b)~Dense reward gaming: action validity rises from 60\% to 97.5\% while task success remains 0\%; the agent maximizes format-level rewards without solving tasks}{figure.caption.29}{}}
+\@LN@col{1}
+\@LN{1123}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Response Length During Training}{15}{appendix.F}\protected@file@percent }
+\newlabel{app:response_length}{{F}{15}{Response Length During Training}{appendix.F}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Response length over training for 7 seeds under episode-level GRPO. Collapsed seeds (red) exhibit length inflation to 14{,}000--16{,}000 tokens. Generalized seeds (green) maintain or reduce response length. Stagnant seed (orange, seed100) remains near the SFT initialization.}}{15}{figure.caption.31}\protected@file@percent }
+\newlabel{fig:response_length}{{8}{15}{Response length over training for 7 seeds under episode-level GRPO. Collapsed seeds (red) exhibit length inflation to 14{,}000--16{,}000 tokens. Generalized seeds (green) maintain or reduce response length. Stagnant seed (orange, seed100) remains near the SFT initialization}{figure.caption.31}{}}
+\@LN{1124}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {G}Unified Step-5 Evaluation}{15}{appendix.G}\protected@file@percent }
+\newlabel{app:step5_unified}{{G}{15}{Unified Step-5 Evaluation}{appendix.G}{}}
+\@LN{1125}{14}
+\@LN{1126}{14}
+\@LN{1127}{14}
+\@LN{1128}{14}
+\@LN{1129}{14}
+\@LN{1130}{14}
+\@LN{1131}{14}
+\@LN@col{2}
+\@LN{1132}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Evaluation Variance Analysis}{15}{appendix.H}\protected@file@percent }
+\newlabel{app:eval_variance}{{H}{15}{Evaluation Variance Analysis}{appendix.H}{}}
+\@LN{1133}{14}
+\@LN{1134}{14}
+\@LN{1135}{14}
+\@LN{1136}{14}
+\@LN{1137}{14}
+\@LN{1138}{14}
+\@LN{1139}{14}
+\@LN{1140}{14}
+\@LN{1141}{14}
+\@LN{1142}{14}
+\@LN{1143}{14}
+\@LN{1144}{14}
+\@LN{1145}{14}
+\@LN{1146}{14}
+\@LN{1147}{14}
+\@LN{1148}{14}
+\@LN{1149}{14}
+\@LN{1150}{14}
+\@LN{1151}{14}
+\@LN{1152}{14}
+\@writefile{toc}{\contentsline {paragraph}{Training efficiency.}{15}{section*.34}\protected@file@percent }
+\@LN{1153}{14}
+\@LN{1154}{14}
+\@LN{1155}{14}
+\@LN{1156}{14}
+\@LN{1157}{14}
+\@LN{1158}{14}
+\@LN{1159}{14}
+\@LN{1160}{14}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Episode-level GRPO: all 11 seeds at training step~5 (134 OOD tasks, 32 ID tasks, $\tau {=}0.4$). SFT baseline: 12.5\% ID, 6.72\% OOD. OOD results marked ``---'' indicate checkpoints unavailable for post-hoc evaluation on the 134-task OOD set. ID results marked ``---'' indicate step-5 validation metrics not recorded in training logs.}}{16}{table.caption.32}\protected@file@percent }
+\newlabel{tab:step5_unified}{{6}{16}{Episode-level GRPO: all 11 seeds at training step~5 (134 OOD tasks, 32 ID tasks, $\tau {=}0.4$). SFT baseline: 12.5\% ID, 6.72\% OOD. OOD results marked ``---'' indicate checkpoints unavailable for post-hoc evaluation on the 134-task OOD set. ID results marked ``---'' indicate step-5 validation metrics not recorded in training logs}{table.caption.32}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Evaluation variance for a single checkpoint (seed200 step~5, 134 OOD tasks, $\tau {=}0.4$). Three independent runs yield std$=$1.29pp, an order of magnitude smaller than the inter-seed performance range in Table~\ref {tab:seed_variability} (8.2\%--30.6\%).}}{16}{table.caption.33}\protected@file@percent }
+\newlabel{tab:eval_variance}{{7}{16}{Evaluation variance for a single checkpoint (seed200 step~5, 134 OOD tasks, $\tau {=}0.4$). Three independent runs yield std$=$1.29pp, an order of magnitude smaller than the inter-seed performance range in Table~\ref {tab:seed_variability} (8.2\%--30.6\%)}{table.caption.33}{}}
+\@LN{1161}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Early Training Signal Analysis}{16}{appendix.I}\protected@file@percent }
+\newlabel{app:early_signal}{{I}{16}{Early Training Signal Analysis}{appendix.I}{}}
+\@LN{1162}{15}
+\@LN{1163}{15}
+\@LN{1164}{15}
+\@LN{1165}{15}
+\@LN{1166}{15}
+\@LN{1167}{15}
+\@LN{1168}{15}
+\@LN{1169}{15}
+\@LN{1170}{15}
+\@LN{1171}{15}
+\@LN{1172}{15}
+\@LN{1173}{15}
+\@LN{1174}{15}
+\@LN{1175}{15}
+\@LN{1176}{15}
+\@LN{1177}{15}
+\@LN{1178}{15}
+\@LN{1179}{15}
+\@LN{1180}{15}
+\@LN@col{2}
+\@LN{1181}{15}
+\@LN{1182}{15}
+\@LN{1183}{15}
+\@LN{1184}{15}
+\@LN{1185}{15}
+\@LN{1186}{15}
+\@LN{1187}{15}
+\@LN{1188}{15}
+\@LN{1189}{15}
+\@LN{1190}{15}
+\@LN{1191}{15}
+\@LN{1192}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {J}Use of AI Assistance}{16}{appendix.J}\protected@file@percent }
+\@LN{1193}{15}
+\@LN{1194}{15}
+\gdef \@abspage@last{16}

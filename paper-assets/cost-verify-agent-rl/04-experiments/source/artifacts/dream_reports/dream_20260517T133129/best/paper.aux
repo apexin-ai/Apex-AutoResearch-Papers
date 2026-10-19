@@ -1,0 +1,115 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{alfworld}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{ragen}
+\citation{turnppo}
+\citation{gagpo}
+\citation{mtgrpo}
+\citation{istar}
+\citation{archer}
+\citation{hiper}
+\citation{reflact}
+\citation{selfguide}
+\citation{reflexion}
+\citation{ares}
+\citation{thinkless}
+\citation{casurvey}
+\citation{gae}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-turn RL for LLM agents.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-verification and reflection in LLM agents.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Adaptive compute allocation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Credit assignment in RL.}{2}{section*.4}\protected@file@percent }
+\citation{alfworld}
+\citation{scienceworld}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setting}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Diagnosing Step-Independent Training Failure}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:mechanism}{{3.2}{3}{Diagnosing Step-Independent Training Failure}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Advantage sign misattribution.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Policy information loss.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Episode-level GRPO.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Selective Verification via B-IAVR{}}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:biavr}{{3.3}{3}{Selective Verification via \ours {}}{subsection.3.3}{}}
+\newlabel{eq:reward}{{1}{3}{Selective Verification via \ours {}}{equation.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Environments.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Episode-Level GRPO Convergence}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Episode-level GRPO training trajectory on ALFWorld.}}{4}{table.caption.11}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:convergence}{{1}{4}{Episode-level GRPO training trajectory on ALFWorld}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {paragraph}{Multi-seed replication.}{4}{section*.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Multi-seed episode-level GRPO results (5 seeds, converged).}}{4}{table.caption.13}\protected@file@percent }
+\newlabel{tab:multiseed}{{2}{4}{Multi-seed episode-level GRPO results (5 seeds, converged)}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{Effect of dense shaping reward.}{5}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Mechanism Analysis: The $h$-Sweep Cliff}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Context window ablation.}{5}{section*.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Context window $h$-sweep (step 15, 3 seeds each). ``Collapse'' indicates success peaks then drops to near zero.}}{5}{table.caption.16}\protected@file@percent }
+\newlabel{tab:hsweep}{{3}{5}{Context window $h$-sweep (step 15, 3 seeds each). ``Collapse'' indicates success peaks then drops to near zero}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {paragraph}{Empirical verification of sign misattribution.}{5}{section*.17}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Advantage sign analysis: step-independent ($h{=}2$) vs.\ episode-level.}}{5}{table.caption.18}\protected@file@percent }
+\newlabel{tab:sign}{{4}{5}{Advantage sign analysis: step-independent ($h{=}2$) vs.\ episode-level}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Episode-Level Information Is What Matters}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:gae}{{4.4}{5}{Episode-Level Information Is What Matters}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Window-level advantage examples from step-independent training ($h{=}2$).}}{6}{table.caption.19}\protected@file@percent }
+\newlabel{tab:window_examples}{{5}{6}{Window-level advantage examples from step-independent training ($h{=}2$)}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces GAE vs.\ episode-level GRPO comparison (step 15, 3 seeds).}}{6}{table.caption.20}\protected@file@percent }
+\newlabel{tab:gae}{{6}{6}{GAE vs.\ episode-level GRPO comparison (step 15, 3 seeds)}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Selective Verification Results}{6}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Action-change statistics.}{6}{section*.21}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Action-change statistics from always-on verification (256 episodes).}}{6}{table.caption.22}\protected@file@percent }
+\newlabel{tab:action_change}{{7}{6}{Action-change statistics from always-on verification (256 episodes)}{table.caption.22}{}}
+\@writefile{toc}{\contentsline {paragraph}{Causal evidence for action-change value.}{6}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Entropy-controlled analysis.}{7}{section*.24}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Entropy-stratified action-change analysis (1,536 steps from 256 episodes).}}{7}{table.caption.25}\protected@file@percent }
+\newlabel{tab:entropy}{{8}{7}{Entropy-stratified action-change analysis (1,536 steps from 256 episodes)}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {paragraph}{B-IAVR{} training.}{7}{section*.26}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces B-IAVR{} training trajectory.}}{7}{table.caption.27}\protected@file@percent }
+\newlabel{tab:biavr_training}{{9}{7}{\ours {} training trajectory}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {paragraph}{Full comparison.}{7}{section*.28}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Selective verification comparison (same val set, 128 episodes).}}{7}{table.caption.29}\protected@file@percent }
+\newlabel{tab:full_comparison}{{10}{7}{Selective verification comparison (same val set, 128 episodes)}{table.caption.29}{}}
+\@writefile{toc}{\contentsline {paragraph}{Reward signal ablation.}{8}{section*.30}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Reward signal ablation for selective verification training.}}{8}{table.caption.31}\protected@file@percent }
+\newlabel{tab:reward_ablation}{{11}{8}{Reward signal ablation for selective verification training}{table.caption.31}{}}
+\@writefile{toc}{\contentsline {paragraph}{Comparison with ARES.}{8}{section*.32}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces B-IAVR{} vs.\ ARES (reproduced, same model and val set).}}{8}{table.caption.33}\protected@file@percent }
+\newlabel{tab:ares}{{12}{8}{\ours {} vs.\ ARES (reproduced, same model and val set)}{table.caption.33}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Transfer and Scaling}{8}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{ScienceWorld transfer.}{8}{section*.34}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces ScienceWorld: episode-level vs.\ step-independent.}}{8}{table.caption.35}\protected@file@percent }
+\newlabel{tab:scienceworld}{{13}{8}{ScienceWorld: episode-level vs.\ step-independent}{table.caption.35}{}}
+\@writefile{toc}{\contentsline {paragraph}{7B model scaling.}{8}{section*.36}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{alfworld}{{1}{2021}{{Shridhar et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Scaling comparison: 1.7B vs.\ 7B.}}{9}{table.caption.37}\protected@file@percent }
+\newlabel{tab:scaling}{{14}{9}{Scaling comparison: 1.7B vs.\ 7B}{table.caption.37}{}}
+\@writefile{toc}{\contentsline {paragraph}{Per-task-type breakdown.}{9}{section*.38}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Per-task-type breakdown on ALFWorld.}}{9}{table.caption.39}\protected@file@percent }
+\newlabel{tab:pertask}{{15}{9}{Per-task-type breakdown on ALFWorld}{table.caption.39}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Verification Ablation}{9}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{9}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.40}\protected@file@percent }
+\bibcite{scienceworld}{{2}{2024}{{Wang et~al.}}{{}}}
+\bibcite{ragen}{{3}{2025}{{Liu et~al.}}{{}}}
+\bibcite{reflexion}{{4}{2023}{{Shinn et~al.}}{{}}}
+\bibcite{reflact}{{5}{2023}{{Yao et~al.}}{{}}}
+\bibcite{selfguide}{{6}{2025}{{Kim et~al.}}{{}}}
+\bibcite{ares}{{7}{2025}{{Chen et~al.}}{{}}}
+\bibcite{thinkless}{{8}{2025}{{Shen et~al.}}{{}}}
+\bibcite{turnppo}{{9}{2025}{{Zhang et~al.}}{{}}}
+\bibcite{gagpo}{{10}{2025}{{Li et~al.}}{{}}}
+\bibcite{mtgrpo}{{11}{2025}{{Wu et~al.}}{{}}}
+\bibcite{istar}{{12}{2026}{{Wang et~al.}}{{}}}
+\bibcite{archer}{{13}{2024}{{Zhou et~al.}}{{}}}
+\bibcite{hiper}{{14}{2025b}{{Zhang et~al.}}{{}}}
+\bibcite{casurvey}{{15}{2024}{{Zhang et~al.}}{{}}}
+\bibcite{gae}{{16}{2016}{{Schulman et~al.}}{{}}}
+\bibcite{grpo}{{17}{2024}{{Shao et~al.}}{{}}}
+\gdef \@abspage@last{10}

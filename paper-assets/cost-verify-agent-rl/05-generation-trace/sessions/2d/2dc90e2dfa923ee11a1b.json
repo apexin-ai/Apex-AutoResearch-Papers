@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2dc90e2dfa923ee11a1b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor seed training progress",
+  "task_key": "worker_monitor_seed_training_progress_20260521T111837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_seed_training_progress_20260521T111837_result.json",
+    "occurrence": 1,
+    "bytes": 839,
+    "sha256": "0aa41144af0e95533229f40664a3e3295be78b1c02b8b424cd1ff4b7f60ade02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `worker_outputs/seed_training_progress_20260521.md`。\n\n**核心发现**：\n\n| Seed | Step | Train Success | Val Success (step 5) | ETA |\n|------|------|---------------|----------------------|-----|\n| seed4 (bjb1) | 5/15 (33%) | 0.148 | 0.094 (step 0 only) | ~00:30 May 22 |\n| seed5 (westd) | 9/15 (60%) | 0.438 | 0.063 | ~21:00 today |\n| seed6 (westd) | 8/15 (53%) | 0.422 | **0.219** | ~21:30 today |\n\n**需关注**：\n- **seed4 训练成功率显著偏低**（0.13-0.15 vs 其他 seed 的 ~0.42），且速度最慢（~30min/step vs ~18-20min/step）\n- **seed5 train-val gap 大**：train 0.44 但 val 只有 0.063\n- **seed6 表现最佳**：val success 0.219 最高，response length 在下降（正面信号）\n- westd GPU 内存接近满载（95-99%），bjb1 磁盘 79%，均暂无风险"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-seed-training-progress.md"
+}

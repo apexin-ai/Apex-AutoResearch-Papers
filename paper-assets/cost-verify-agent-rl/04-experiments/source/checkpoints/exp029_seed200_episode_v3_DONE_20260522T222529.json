@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp029_seed200_episode_v3",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T19:02:45.629Z",
+    "updated_at": "2026-05-22T22:25:29.174Z",
+    "hypothesis": "Isolating RAY_TMPDIR and WANDB_DIR per seed prevents Ray actor conflicts that crashed v1/v2, enabling stable episode-level GRPO training with seed=200 as part of N=10 seeds expansion for Table 1.",
+    "parent": "exp029_seed200_episode",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=2,3 RAY_ADDRESS='' RAY_TMPDIR=/root/autodl-tmp/ray_seed200 WANDB_DIR=/root/autodl-tmp/wandb_tmp VLLM_WORKER_MULTIPROC_METHOD=spawn python train.py --config-name _alfworld_exp029_seed200_episode",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "129823",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_seed200_episode_v3.log",
+      "submitted_at": "2026-05-22T19:03:02.232Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "AlfworldSG",
+      "data_count": 134,
+      "model_name": "Qwen/Qwen2.5-3B-Instruct",
+      "seed": 200,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4",
+      "eval_data": "AlfworldSG",
+      "wall_clock_seconds": 11129.8,
+      "gpu_hours": 6.18
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-22T22:08:32.068Z"
+  },
+  "timestamp": "2026-05-22T22:25:29.480681+00:00",
+  "trigger": "update_registry"
+}

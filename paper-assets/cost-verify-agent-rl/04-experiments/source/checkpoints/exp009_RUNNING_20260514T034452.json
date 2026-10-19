@@ -1,0 +1,51 @@
+{
+  "exp_id": "exp009",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-14T03:35:13.150Z",
+    "updated_at": "2026-05-14T03:44:52.809Z",
+    "reproduce": {
+      "finished_at": "2026-05-14T03:39:35.514Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T03:39:36.501130+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "metrics": {
+          "status": "training_never_started",
+          "completed_steps": 0,
+          "total_steps": 30,
+          "error": "AssertionError: enable_response_mask path check failed for SFT checkpoint path"
+        },
+        "notes": "第1次启动即失败: AssertionError response mask only supported for qwen/llama-3 — SFT checkpoint 路径 .../exp008_sft/final 不含 \"qwen\"。修复: 创建 symlink /root/autodl-tmp/checkpoints/qwen3_sft_final → final，保留 response_mask。"
+      }
+    },
+    "notes": "第1次启动即失败: AssertionError response mask only supported for qwen/llama-3 — SFT checkpoint 路径 .../exp008_sft/final 不含 \"qwen\"。修复: 创建 symlink /root/autodl-tmp/checkpoints/qwen3_sft_final → final，保留 response_mask。",
+    "completed_at": "2026-05-14T03:42:46.557Z",
+    "spec": {
+      "hypothesis": "GRPO with SFT-warmed Qwen3-1.7B can learn ALFWorld task-solving strategy from environment reward, achieving success_rate >= 76%",
+      "model_name": "Qwen3-1.7B (SFT warmup)",
+      "description": "Phase A GRPO retry: symlink fix for response_mask, RAY_TMPDIR explicit in command, save_freq=5",
+      "decision": "D006",
+      "command": "python train.py --config-name=_alfworld_exp008_sft_grpo",
+      "server": "bjb1-17606",
+      "data_path": "/root/autodl-tmp/alfworld/",
+      "data_count": 3553,
+      "seed": 10000,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp008_grpo/",
+      "log_path": "/root/autodl-tmp/exp009_grpo.log"
+    }
+  },
+  "timestamp": "2026-05-14T03:44:52.833128+00:00",
+  "trigger": "update_registry"
+}

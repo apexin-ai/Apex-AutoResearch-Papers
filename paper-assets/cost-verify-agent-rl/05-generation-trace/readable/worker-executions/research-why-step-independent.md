@@ -1,0 +1,3816 @@
+# research why step independent
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 59
+- **Recorded user turns:** 0
+- **Tool calls:** 20
+- **Original source:** `logs/workers/worker_research_why_step_independent_20260517T051055.log`
+- **Structured JSON:** [`00e4ee762df76ffd71f9.json`](../../sessions/00/00e4ee762df76ffd71f9.json)
+
+## Before a recorded user message
+
+59 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "907af76d-1296-4651-9c8f-0e5d0073f2b0",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779012000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "c4e09b88-b848-4209-83c5-106f5c140d56",
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to research why LLM agent RL training frameworks default to "step-independent" mode, gather evidence from various frameworks (RAGEN, verl-agent, OpenRLHF), analyze the root causes, and write a comprehensive analysis document to the server.
+
+Let me break this down:
+1. WebSearch to find evidence from these frameworks
+2. Analyze the reasons
+3. Write the analysis to the server via SSH
+
+Let me start by searching for information about these frameworks and their step-independent design choices. I'll need to use WebSearch and then SSH to write the file.
+
+
+Now I'm pulling up the WebSearch and SSH tools to start gathering information and preparing to write the analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "db177cc9-f2c0-4466-b818-964415e3a4a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VqVLhXWdXVWGofCBQbMz7w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13394,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13394
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+我来调研这几个框架为什么默认 step-independent 模式。先加载需要的工具。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "24a3dd49-e396-4a2f-921f-4dded89b4e01",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VqVLhXWdXVWGofCBQbMz7w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13394,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13394
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01NgWzoC8C8Rs6PrU7pK19xX`</summary>
+
+```json
+{
+  "query": "select:WebSearch,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "25e8e4a3-9134-4997-9fd3-315a6040c8c9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VqVLhXWdXVWGofCBQbMz7w",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13394,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13394
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-17T05:11:09.222Z_
+
+<details><summary>↩ Tool result · `toolu_01NgWzoC8C8Rs6PrU7pK19xX`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "322b9f5a-d32c-47d9-b3cc-7cfcaf1fce61",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:WebSearch,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, tools are loaded. Let me now do multiple web searches in parallel to gather evidence from different frameworks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "f0e196f4-dde7-45be-b0da-3555dce2f3eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015QrmkAt4qqLcDpuAVjW8Ud",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1042,
+      "cache_read_input_tokens": 25235,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1042
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+开始并行搜索各框架的相关信息。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "8000ea36-e13b-48e7-bb9f-f82cb0ca81ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015QrmkAt4qqLcDpuAVjW8Ud",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1042,
+      "cache_read_input_tokens": 25235,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1042
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0197TgFeGAHUsQatrUw1oqkn`</summary>
+
+```json
+{
+  "query": "RAGEN AI multi-turn RL training step-independent rollout GitHub"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "ac26d7d6-d3f0-481d-9bdb-95d4a12060a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015QrmkAt4qqLcDpuAVjW8Ud",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1042,
+      "cache_read_input_tokens": 25235,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1042
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DWzZ1bRJzBohNvhDWmq1UT`</summary>
+
+```json
+{
+  "query": "verl agent multi-turn reinforcement learning step level reward GitHub"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "4b4494b8-0107-4408-9879-e3bb40eb730d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015QrmkAt4qqLcDpuAVjW8Ud",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1042,
+      "cache_read_input_tokens": 25235,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1042
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015UJV1DdiDyVGqKpGKmh42v`</summary>
+
+```json
+{
+  "query": "OpenRLHF multi-turn agent training per step advantage calculation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "0a6a30d8-0401-4c85-b6ee-86541955f0e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015QrmkAt4qqLcDpuAVjW8Ud",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1042,
+      "cache_read_input_tokens": 25235,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1042
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DnG53mM2RogSL2AEuUWX3C`</summary>
+
+```json
+{
+  "query": "LLM agent RL training \"context window\" OOM \"multi-turn\" truncation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "36619a3b-3cb1-4931-bdf2-acbc60281be9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015QrmkAt4qqLcDpuAVjW8Ud",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1042,
+      "cache_read_input_tokens": 25235,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1042
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T05:11:20.388Z_
+
+<details><summary>↩ Tool result · `toolu_0197TgFeGAHUsQatrUw1oqkn`</summary>
+
+```text
+Web search results for query: "RAGEN AI multi-turn RL training step-independent rollout GitHub"
+
+Links: [{"title":"Understanding Self-Evolution in LLM Agents via Multi-Turn ...","url":"https://ragen-ai.github.io/pdf/RAGEN.pdf"},{"title":"GitHub - mll-lab-nu/RAGEN: RAGEN leverages reinforcement learning to train LLM reasoning agents in interactive, stochastic environments. · GitHub","url":"https://github.com/mll-lab-nu/RAGEN"},{"title":"RAGEN-2: Reasoning Collapse in Agentic RL","url":"https://ragen-ai.github.io/"},{"title":"GitHub - mll-lab-nu/VAGEN: Training VLM agents with multi-turn reinforcement learning · GitHub","url":"https://github.com/RAGEN-AI/VAGEN"},{"title":"GitHub - RAGEN-AI/RAGEN: RAGEN leverages reinforcement learning to train LLM reasoning agents in interactive, stochastic environments.","url":"https://github.com/RAGEN-AI/RAGEN/tree/main"},{"title":"RAGEN: Self-Evolution in LLM Agents via Multi-Turn RL","url":"https://www.emergentmind.com/papers/2504.20073"},{"title":"RAGEN/README.md at main · RAGEN-AI/RAGEN","url":"https://github.com/RAGEN-AI/RAGEN/blob/main/README.md"},{"title":"Paper page - RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning","url":"https://huggingface.co/papers/2504.20073"},{"title":"RAGEN: Understanding Self-Evolution in LLM Agents via ...","url":"https://arxiv.org/pdf/2504.20073"},{"title":"(PDF) RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning","url":"https://www.researchgate.net/publication/391282817_RAGEN_Understanding_Self-Evolution_in_LLM_Agents_via_Multi-Turn_Reinforcement_Learning"}]
+
+Based on the search results, here's what I found about RAGEN AI's multi-turn RL training approach:
+
+## Overview
+
+RAGEN leverages reinforcement learning to train LLM reasoning agents in interactive, stochastic environments. RAGEN is built around StarPO (State-Thinking-Actions-Reward Policy Optimization), a unified RL framework for training multi-turn, trajectory-level agents with flexible control over reasoning processes, reward assignment mechanisms, and prompt-rollout structures.
+
+## Step-Independent Rollout Approach
+
+The key innovation regarding rollouts is that StarPO optimizes entire trajectories using importance sampling. This approach enables long-horizon reasoning while maintaining computational efficiency. More specifically, StarPO optimizes entire trajectories using importance sampling rather than using step-by-step optimization.
+
+## Training Architecture
+
+The StarPO framework operates with two interleaved stages: rollout stage and update stage. During the Rollout Stage, given an initial state, the LLM generates multiple trajectories. At each step, the model produces a reasoning-guided action. The environment returns feedback (reward and next state).
+
+## GitHub Repository
+
+Code and environments are available at https://github.com/RAGEN-AI/RAGEN.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "1d202178-3a36-4dec-b1e8-a569e9deb5d5",
+  "tool_use_result": {
+    "query": "RAGEN AI multi-turn RL training step-independent rollout GitHub",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014bX7xkAgysWhXgMuLTnnbw",
+        "content": [
+          {
+            "title": "Understanding Self-Evolution in LLM Agents via Multi-Turn ...",
+            "url": "https://ragen-ai.github.io/pdf/RAGEN.pdf"
+          },
+          {
+            "title": "GitHub - mll-lab-nu/RAGEN: RAGEN leverages reinforcement learning to train LLM reasoning agents in interactive, stochastic environments. · GitHub",
+            "url": "https://github.com/mll-lab-nu/RAGEN"
+          },
+          {
+            "title": "RAGEN-2: Reasoning Collapse in Agentic RL",
+            "url": "https://ragen-ai.github.io/"
+          },
+          {
+            "title": "GitHub - mll-lab-nu/VAGEN: Training VLM agents with multi-turn reinforcement learning · GitHub",
+            "url": "https://github.com/RAGEN-AI/VAGEN"
+          },
+          {
+            "title": "GitHub - RAGEN-AI/RAGEN: RAGEN leverages reinforcement learning to train LLM reasoning agents in interactive, stochastic environments.",
+            "url": "https://github.com/RAGEN-AI/RAGEN/tree/main"
+          },
+          {
+            "title": "RAGEN: Self-Evolution in LLM Agents via Multi-Turn RL",
+            "url": "https://www.emergentmind.com/papers/2504.20073"
+          },
+          {
+            "title": "RAGEN/README.md at main · RAGEN-AI/RAGEN",
+            "url": "https://github.com/RAGEN-AI/RAGEN/blob/main/README.md"
+          },
+          {
+            "title": "Paper page - RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning",
+            "url": "https://huggingface.co/papers/2504.20073"
+          },
+          {
+            "title": "RAGEN: Understanding Self-Evolution in LLM Agents via ...",
+            "url": "https://arxiv.org/pdf/2504.20073"
+          },
+          {
+            "title": "(PDF) RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning",
+            "url": "https://www.researchgate.net/publication/391282817_RAGEN_Understanding_Self-Evolution_in_LLM_Agents_via_Multi-Turn_Reinforcement_Learning"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about RAGEN AI's multi-turn RL training approach:\n\n## Overview\n\nRAGEN leverages reinforcement learning to train LLM reasoning agents in interactive, stochastic environments. RAGEN is built around StarPO (State-Thinking-Actions-Reward Policy Optimization), a unified RL framework for training multi-turn, trajectory-level agents with flexible control over reasoning processes, reward assignment mechanisms, and prompt-rollout structures.\n\n## Step-Independent Rollout Approach\n\nThe key innovation regarding rollouts is that StarPO optimizes entire trajectories using importance sampling. This approach enables long-horizon reasoning while maintaining computational efficiency. More specifically, StarPO optimizes entire trajectories using importance sampling rather than using step-by-step optimization.\n\n## Training Architecture\n\nThe StarPO framework operates with two interleaved stages: rollout stage and update stage. During the Rollout Stage, given an initial state, the LLM generates multiple trajectories. At each step, the model produces a reasoning-guided action. The environment returns feedback (reward and next state).\n\n## GitHub Repository\n\nCode and environments are available at https://github.com/RAGEN-AI/RAGEN."
+    ],
+    "durationSeconds": 6.044101277000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T05:11:22.949Z_
+
+<details><summary>↩ Tool result · `toolu_01DWzZ1bRJzBohNvhDWmq1UT`</summary>
+
+```text
+Web search results for query: "verl agent multi-turn reinforcement learning step level reward GitHub"
+
+Links: [{"title":"GitHub - langfengQ/verl-agent: verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. verl-agent is also the official code for paper \"Group-in-Group Policy Optimization for LLM Agent Training\" · GitHub","url":"https://github.com/langfengq/verl-agent"},{"title":"GitHub - verl-project/verl: verl/HybridFlow: A Flexible and Efficient RL Post-Training Framework · GitHub","url":"https://github.com/verl-project/verl"},{"title":"GitHub - mll-lab-nu/VAGEN: Training VLM agents with multi-turn reinforcement learning · GitHub","url":"https://github.com/mll-lab-nu/VAGEN"},{"title":"GitHub - WooooDyy/AgentGym-RL: Code and implementations for the paper \"AgentGym-RL: Training LLM Agents for Long-Horizon Decision Making through Multi-Turn Reinforcement Learning\" by Zhiheng Xi et al. · GitHub","url":"https://github.com/WooooDyy/AgentGym-RL"},{"title":"GitHub - agentica-project/verl · GitHub","url":"https://github.com/agentica-project/verl"},{"title":"GitHub - janhq/verl-deepresearch: verl: Volcano Engine Reinforcement Learning for LLMs · GitHub","url":"https://github.com/janhq/verl-deepresearch"},{"title":"GitHub - Intelligent-Internet/ii_verl: veRL: Volcano Engine Reinforcement Learning for LLM · GitHub","url":"https://github.com/Intelligent-Internet/ii_verl"},{"title":"GitHub - lmgame-org/GRL: Multi-Turn RL Training System with AgentTrainer for Language Model Game Reinforcement Learning","url":"https://github.com/lmgame-org/GRL"},{"title":"VERL - Agent-lightning","url":"https://microsoft.github.io/agent-lightning/latest/algorithm-zoo/verl/"},{"title":"VerlTool: Towards Holistic Agentic Reinforcement Learning with Tool Use","url":"https://arxiv.org/html/2509.01055v1"}]
+
+Based on the search results, here's information about VERL agent multi-turn reinforcement learning with step-level reward on GitHub:
+
+## VERL Agent Overview
+
+VERL-agent is an extension of VeRL, designed for training LLM/VLM agents via RL. The official repository is available at https://github.com/langfengq/verl-agent.
+
+## Multi-Turn RL Support
+
+VERL-agent supports multi-step interactive loops between agents and environments. Agents perceive environmental feedback after each step, forming the basis for reinforcement learning. 
+
+VERL-agent features a customizable memory module that allows for flexibly choosing what history to include for each step. The input typically consists of the current observation along with a concise history summary at each step. Developers can freely define what to include, such as recent steps, key events, summaries, or external knowledge. There's no requirement to concatenate the full history, and the input structure for each step is fully customizable.
+
+## Step-Level Reward Handling
+
+VERL decomposes each agent execution into prompt–response pairs via the Adapter and associates them with their corresponding reward signals as Triplet objects. The final scalar reward, derived from the last triplet in the trajectory, is propagated to all preceding triplets following the identical assignment strategy. This ensures that each triplet receives an identical reward signal and can be independently optimized as a valid RLHF trajectory within the VERL framework.
+
+## Supported Environments
+
+The supported environments are adapted from ALFWorld, Sokoban, SkyRL-Gym, Search-R1, Gym Cards, WebShop, and AppWorld.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "a177fb3e-b407-4969-940f-d151f3fe216f",
+  "tool_use_result": {
+    "query": "verl agent multi-turn reinforcement learning step level reward GitHub",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AcV12aoj8M1N9Kem9eKcGD",
+        "content": [
+          {
+            "title": "GitHub - langfengQ/verl-agent: verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. verl-agent is also the official code for paper \"Group-in-Group Policy Optimization for LLM Agent Training\" · GitHub",
+            "url": "https://github.com/langfengq/verl-agent"
+          },
+          {
+            "title": "GitHub - verl-project/verl: verl/HybridFlow: A Flexible and Efficient RL Post-Training Framework · GitHub",
+            "url": "https://github.com/verl-project/verl"
+          },
+          {
+            "title": "GitHub - mll-lab-nu/VAGEN: Training VLM agents with multi-turn reinforcement learning · GitHub",
+            "url": "https://github.com/mll-lab-nu/VAGEN"
+          },
+          {
+            "title": "GitHub - WooooDyy/AgentGym-RL: Code and implementations for the paper \"AgentGym-RL: Training LLM Agents for Long-Horizon Decision Making through Multi-Turn Reinforcement Learning\" by Zhiheng Xi et al. · GitHub",
+            "url": "https://github.com/WooooDyy/AgentGym-RL"
+          },
+          {
+            "title": "GitHub - agentica-project/verl · GitHub",
+            "url": "https://github.com/agentica-project/verl"
+          },
+          {
+            "title": "GitHub - janhq/verl-deepresearch: verl: Volcano Engine Reinforcement Learning for LLMs · GitHub",
+            "url": "https://github.com/janhq/verl-deepresearch"
+          },
+          {
+            "title": "GitHub - Intelligent-Internet/ii_verl: veRL: Volcano Engine Reinforcement Learning for LLM · GitHub",
+            "url": "https://github.com/Intelligent-Internet/ii_verl"
+          },
+          {
+            "title": "GitHub - lmgame-org/GRL: Multi-Turn RL Training System with AgentTrainer for Language Model Game Reinforcement Learning",
+            "url": "https://github.com/lmgame-org/GRL"
+          },
+          {
+            "title": "VERL - Agent-lightning",
+            "url": "https://microsoft.github.io/agent-lightning/latest/algorithm-zoo/verl/"
+          },
+          {
+            "title": "VerlTool: Towards Holistic Agentic Reinforcement Learning with Tool Use",
+            "url": "https://arxiv.org/html/2509.01055v1"
+          }
+        ]
+      },
+      "Based on the search results, here's information about VERL agent multi-turn reinforcement learning with step-level reward on GitHub:\n\n## VERL Agent Overview\n\nVERL-agent is an extension of VeRL, designed for training LLM/VLM agents via RL. The official repository is available at https://github.com/langfengq/verl-agent.\n\n## Multi-Turn RL Support\n\nVERL-agent supports multi-step interactive loops between agents and environments. Agents perceive environmental feedback after each step, forming the basis for reinforcement learning. \n\nVERL-agent features a customizable memory module that allows for flexibly choosing what history to include for each step. The input typically consists of the current observation along with a concise history summary at each step. Developers can freely define what to include, such as recent steps, key events, summaries, or external knowledge. There's no requirement to concatenate the full history, and the input structure for each step is fully customizable.\n\n## Step-Level Reward Handling\n\nVERL decomposes each agent execution into prompt–response pairs via the Adapter and associates them with their corresponding reward signals as Triplet objects. The final scalar reward, derived from the last triplet in the trajectory, is propagated to all preceding triplets following the identical assignment strategy. This ensures that each triplet receives an identical reward signal and can be independently optimized as a valid RLHF trajectory within the VERL framework.\n\n## Supported Environments\n\nThe supported environments are adapted from ALFWorld, Sokoban, SkyRL-Gym, Search-R1, Gym Cards, WebShop, and AppWorld."
+    ],
+    "durationSeconds": 8.130724769999997
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T05:11:23.690Z_
+
+<details><summary>↩ Tool result · `toolu_015UJV1DdiDyVGqKpGKmh42v`</summary>
+
+```text
+Web search results for query: "OpenRLHF multi-turn agent training per step advantage calculation"
+
+Links: [{"title":"GitHub - OpenRLHF/OpenRLHF: An Easy-to-use, Scalable and High-performance Agentic RL Framework based on Ray (PPO & DAPO & REINFORCE++ & VLM & TIS & vLLM & Ray & Async RL) · GitHub","url":"https://github.com/OpenRLHF/OpenRLHF"},{"title":"Multi-Turn Tool Use with RL - by Janu Verma","url":"https://januverma.substack.com/p/multi-turn-tool-use-with-rl"},{"title":"Basic Training Pipeline | OpenRLHF/OpenRLHF | DeepWiki","url":"https://deepwiki.com/OpenRLHF/OpenRLHF/8.1-basic-training-examples"},{"title":"Welcome to OpenRLHF’s documentation! — OpenRLHF 0.10.2 documentation","url":"https://openrlhf.readthedocs.io/"},{"title":"TSR: Trajectory‑Search Rollouts for Multi‑Turn RL of LLM Agents","url":"https://arxiv.org/html/2602.11767v1"},{"title":"Hybrid Engine — OpenRLHF 0.9 documentation","url":"https://openrlhf.readthedocs.io/en/latest/hybrid_engine.html"},{"title":"Scaling LLM Multi-turn RL with End-to-end Summarization- ...","url":"https://miaolu3.github.io/ArXiv_SUPO.pdf"},{"title":"GitHub - WooooDyy/AgentGym-RL: Code and implementations for the paper \"AgentGym-RL: Training LLM Agents for Long-Horizon Decision Making through Multi-Turn Reinforcement Learning\" by Zhiheng Xi et al. · GitHub","url":"https://github.com/WooooDyy/AgentGym-RL"},{"title":"Customizing multiturn AI agents with reinforcement learning - Amazon Science","url":"https://www.amazon.science/blog/customizing-multiturn-ai-agents-with-reinforcement-learning"},{"title":"An Easy-to-use, Scalable and High-performance RLHF ...","url":"https://aclanthology.org/2025.emnlp-demos.48.pdf"}]
+
+Based on the search results, here's what I found about OpenRLHF's multi-turn agent training and per-step advantage calculation:
+
+## OpenRLHF Multi-Turn Agent Training
+
+OpenRLHF unifies generation and training through token-in-token-out agent execution, ensuring perfect consistency, easy single/multi-turn extension, and zero text-level mismatches. The framework provides both SingleTurnExecutor and MultiTurnExecutor options supporting standard RLHF, custom reward functions, multi-step reasoning, and external environments.
+
+## Advantage Calculation
+
+OpenRLHF implements Generalized Advantage Estimation (GAE), where temporal difference residuals are calculated as part of the advantage computation. 
+
+For multi-turn scenarios specifically, advantage computation has been revised to ensure correctness in both single-turn and multi-turn scenarios, including implementations for REINFORCE++ and GAE. The framework correctly computes attention masks, loss masks, position ids and sequence ids for environment observations and assistant's actions in each turn.
+
+OpenRLHF supports single-turn rewards and multi-turn agents through HTTP remote reward models, custom Python reward functions, full multi-turn environments, or wrapping vLLM as an OpenAI-compatible chat server.
+
+The framework also includes support for various advantage estimators that can be configured via the `--advantage_estimator` parameter to work across different RL algorithms and multi-turn scenarios.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "b942edf9-3b93-4e4e-b26f-7177fff4a20f",
+  "tool_use_result": {
+    "query": "OpenRLHF multi-turn agent training per step advantage calculation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FXTYKBKQPmnQfEcgn4Enaq",
+        "content": [
+          {
+            "title": "GitHub - OpenRLHF/OpenRLHF: An Easy-to-use, Scalable and High-performance Agentic RL Framework based on Ray (PPO & DAPO & REINFORCE++ & VLM & TIS & vLLM & Ray & Async RL) · GitHub",
+            "url": "https://github.com/OpenRLHF/OpenRLHF"
+          },
+          {
+            "title": "Multi-Turn Tool Use with RL - by Janu Verma",
+            "url": "https://januverma.substack.com/p/multi-turn-tool-use-with-rl"
+          },
+          {
+            "title": "Basic Training Pipeline | OpenRLHF/OpenRLHF | DeepWiki",
+            "url": "https://deepwiki.com/OpenRLHF/OpenRLHF/8.1-basic-training-examples"
+          },
+          {
+            "title": "Welcome to OpenRLHF’s documentation! — OpenRLHF 0.10.2 documentation",
+            "url": "https://openrlhf.readthedocs.io/"
+          },
+          {
+            "title": "TSR: Trajectory‑Search Rollouts for Multi‑Turn RL of LLM Agents",
+            "url": "https://arxiv.org/html/2602.11767v1"
+          },
+          {
+            "title": "Hybrid Engine — OpenRLHF 0.9 documentation",
+            "url": "https://openrlhf.readthedocs.io/en/latest/hybrid_engine.html"
+          },
+          {
+            "title": "Scaling LLM Multi-turn RL with End-to-end Summarization- ...",
+            "url": "https://miaolu3.github.io/ArXiv_SUPO.pdf"
+          },
+          {
+            "title": "GitHub - WooooDyy/AgentGym-RL: Code and implementations for the paper \"AgentGym-RL: Training LLM Agents for Long-Horizon Decision Making through Multi-Turn Reinforcement Learning\" by Zhiheng Xi et al. · GitHub",
+            "url": "https://github.com/WooooDyy/AgentGym-RL"
+          },
+          {
+            "title": "Customizing multiturn AI agents with reinforcement learning - Amazon Science",
+            "url": "https://www.amazon.science/blog/customizing-multiturn-ai-agents-with-reinforcement-learning"
+          },
+          {
+            "title": "An Easy-to-use, Scalable and High-performance RLHF ...",
+            "url": "https://aclanthology.org/2025.emnlp-demos.48.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about OpenRLHF's multi-turn agent training and per-step advantage calculation:\n\n## OpenRLHF Multi-Turn Agent Training\n\nOpenRLHF unifies generation and training through token-in-token-out agent execution, ensuring perfect consistency, easy single/multi-turn extension, and zero text-level mismatches. The framework provides both SingleTurnExecutor and MultiTurnExecutor options supporting standard RLHF, custom reward functions, multi-step reasoning, and external environments.\n\n## Advantage Calculation\n\nOpenRLHF implements Generalized Advantage Estimation (GAE), where temporal difference residuals are calculated as part of the advantage computation. \n\nFor multi-turn scenarios specifically, advantage computation has been revised to ensure correctness in both single-turn and multi-turn scenarios, including implementations for REINFORCE++ and GAE. The framework correctly computes attention masks, loss masks, position ids and sequence ids for environment observations and assistant's actions in each turn.\n\nOpenRLHF supports single-turn rewards and multi-turn agents through HTTP remote reward models, custom Python reward functions, full multi-turn environments, or wrapping vLLM as an OpenAI-compatible chat server.\n\nThe framework also includes support for various advantage estimators that can be configured via the `--advantage_estimator` parameter to work across different RL algorithms and multi-turn scenarios."
+    ],
+    "durationSeconds": 8.400707535000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T05:11:27.812Z_
+
+<details><summary>↩ Tool result · `toolu_01DnG53mM2RogSL2AEuUWX3C`</summary>
+
+```text
+Web search results for query: "LLM agent RL training "context window" OOM "multi-turn" truncation"
+
+Links: [{"title":"Context Window Overflow in 2026: Fix LLM Errors Fast","url":"https://redis.io/blog/context-window-overflow/"},{"title":"Top techniques to Manage Context Lengths in LLMs","url":"https://agenta.ai/blog/top-6-techniques-to-manage-context-length-in-llms"},{"title":"Scaling LLM Multi-turn RL with End-to-end Summarization- ...","url":"https://miaolu3.github.io/ArXiv_SUPO.pdf"},{"title":"How to stop the LLM from losing context in a multi-turn conversation · community · Discussion #163655","url":"https://github.com/orgs/community/discussions/163655"},{"title":"Scaling LLM Multi-turn RL with End-to-end Summarization-based Context Management | alphaXiv","url":"https://www.alphaxiv.org/overview/2510.06727v1"},{"title":"Verlog: A Multi-turn RL framework for LLM agents – Machine Learning Blog | ML@CMU | Carnegie Mellon University","url":"https://blog.ml.cmu.edu/2025/09/15/verlog-a-multi-turn-rl-framework-for-llm-agents/"},{"title":"Context Window Management: Strategies for Long-Context AI Agents and Chatbots","url":"https://www.getmaxim.ai/articles/context-window-management-strategies-for-long-context-ai-agents-and-chatbots/"},{"title":"MemAgent: Reshaping Long-Context LLM with Multi-Conv RL based Memory Agent","url":"https://memagent-sialab.github.io/"},{"title":"SkyRL-Agent: Efficient RL Training for Multi-turn LLM Agent","url":"https://arxiv.org/html/2511.16108"},{"title":"[Literature Review] MemAgent: Reshaping Long-Context LLM with Multi-Conv RL-based Memory Agent","url":"https://www.themoonlight.io/en/review/memagent-reshaping-long-context-llm-with-multi-conv-rl-based-memory-agent"}]
+
+I've performed a web search on LLM agent RL training with context window, OOM, and multi-turn truncation challenges. Here are the key findings:
+
+## Context Window as a Fundamental Bottleneck
+
+Context length is a fundamental bottleneck in reinforcement learning fine-tuning of LLM agents for long-horizon multi-turn tool use, where existing RL pipelines suffer from degraded instruction following, excessive rollout costs, and strict context limits.
+
+## Key Challenges
+
+The context length of the underlying LLM fundamentally restricts the horizon of RL training, preventing agents from tackling tasks whose solution requires more tool calls than can fit into a single context window, creating a scalability barrier where LLM agents can't be effectively trained to operate in long-horizon environments without explicit context management mechanisms.
+
+Conversation history accumulation causes every exchange to add tokens to context, so multi-turn interactions can quickly reach substantial token counts (e.g., 30,000 tokens after 15 turns).
+
+## Solutions: Summarization-Based Context Management
+
+Summarization-based context management for multi-turn RL training scales RL training beyond a fixed working context length limit by periodically compressing tool-use history to concise, LLM-generated summaries, resetting the working context to the initial prompt augmented with task-relevant summary of past interactions.
+
+SUPO (Summarization augmented Policy Optimization), developed by researchers at ByteDance Seed, Stanford University, and Carnegie Mellon University, integrates end-to-end summarization-based context management into multi-turn RL, achieving up to 14.0% absolute accuracy improvement on complex tasks while enabling generalization to more interaction turns than seen during training.
+
+## Alternative Approaches
+
+MemAgent proposes equipping LLMs with dynamically updating "Memory Modules" that enable processing long texts in a segmented manner, with the model actively updating memory state after each segment to achieve a "local processing + global fusion" workflow.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "12ce1750-2543-4038-81aa-5289f2764555",
+  "tool_use_result": {
+    "query": "LLM agent RL training \"context window\" OOM \"multi-turn\" truncation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0188nq15fpqfVcBXwHYtwh4F",
+        "content": [
+          {
+            "title": "Context Window Overflow in 2026: Fix LLM Errors Fast",
+            "url": "https://redis.io/blog/context-window-overflow/"
+          },
+          {
+            "title": "Top techniques to Manage Context Lengths in LLMs",
+            "url": "https://agenta.ai/blog/top-6-techniques-to-manage-context-length-in-llms"
+          },
+          {
+            "title": "Scaling LLM Multi-turn RL with End-to-end Summarization- ...",
+            "url": "https://miaolu3.github.io/ArXiv_SUPO.pdf"
+          },
+          {
+            "title": "How to stop the LLM from losing context in a multi-turn conversation · community · Discussion #163655",
+            "url": "https://github.com/orgs/community/discussions/163655"
+          },
+          {
+            "title": "Scaling LLM Multi-turn RL with End-to-end Summarization-based Context Management | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2510.06727v1"
+          },
+          {
+            "title": "Verlog: A Multi-turn RL framework for LLM agents – Machine Learning Blog | ML@CMU | Carnegie Mellon University",
+            "url": "https://blog.ml.cmu.edu/2025/09/15/verlog-a-multi-turn-rl-framework-for-llm-agents/"
+          },
+          {
+            "title": "Context Window Management: Strategies for Long-Context AI Agents and Chatbots",
+            "url": "https://www.getmaxim.ai/articles/context-window-management-strategies-for-long-context-ai-agents-and-chatbots/"
+          },
+          {
+            "title": "MemAgent: Reshaping Long-Context LLM with Multi-Conv RL based Memory Agent",
+            "url": "https://memagent-sialab.github.io/"
+          },
+          {
+            "title": "SkyRL-Agent: Efficient RL Training for Multi-turn LLM Agent",
+            "url": "https://arxiv.org/html/2511.16108"
+          },
+          {
+            "title": "[Literature Review] MemAgent: Reshaping Long-Context LLM with Multi-Conv RL-based Memory Agent",
+            "url": "https://www.themoonlight.io/en/review/memagent-reshaping-long-context-llm-with-multi-conv-rl-based-memory-agent"
+          }
+        ]
+      },
+      "I've performed a web search on LLM agent RL training with context window, OOM, and multi-turn truncation challenges. Here are the key findings:\n\n## Context Window as a Fundamental Bottleneck\n\nContext length is a fundamental bottleneck in reinforcement learning fine-tuning of LLM agents for long-horizon multi-turn tool use, where existing RL pipelines suffer from degraded instruction following, excessive rollout costs, and strict context limits.\n\n## Key Challenges\n\nThe context length of the underlying LLM fundamentally restricts the horizon of RL training, preventing agents from tackling tasks whose solution requires more tool calls than can fit into a single context window, creating a scalability barrier where LLM agents can't be effectively trained to operate in long-horizon environments without explicit context management mechanisms.\n\nConversation history accumulation causes every exchange to add tokens to context, so multi-turn interactions can quickly reach substantial token counts (e.g., 30,000 tokens after 15 turns).\n\n## Solutions: Summarization-Based Context Management\n\nSummarization-based context management for multi-turn RL training scales RL training beyond a fixed working context length limit by periodically compressing tool-use history to concise, LLM-generated summaries, resetting the working context to the initial prompt augmented with task-relevant summary of past interactions.\n\nSUPO (Summarization augmented Policy Optimization), developed by researchers at ByteDance Seed, Stanford University, and Carnegie Mellon University, integrates end-to-end summarization-based context management into multi-turn RL, achieving up to 14.0% absolute accuracy improvement on complex tasks while enabling generalization to more interaction turns than seen during training.\n\n## Alternative Approaches\n\nMemAgent proposes equipping LLMs with dynamically updating \"Memory Modules\" that enable processing long texts in a segmented manner, with the model actively updating memory state after each segment to achieve a \"local processing + global fusion\" workflow."
+    ],
+    "durationSeconds": 11.989097293999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+找到关键线索。继续深入搜索 verl-agent 的具体实现细节和 RAGEN 的 step-independent 设计。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "af79cbef-9f00-49ea-a8c7-44d74df6b4d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U7DogaJnZ2DpqofBAanrVw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4135,
+      "cache_read_input_tokens": 26277,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4135
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U9eGaBNYTe5HHtqWMmFyLe`</summary>
+
+```json
+{
+  "query": "verl-agent \"identical reward\" \"each triplet\" step independent trajectory GitHub langfengq"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "00e6408b-3240-41b0-84f6-6b9dd87fbb25",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U7DogaJnZ2DpqofBAanrVw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4135,
+      "cache_read_input_tokens": 26277,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4135
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U1r8LXW4vi3WEzmpW3tTgG`</summary>
+
+```json
+{
+  "query": "RAGEN StarPO \"per-step\" vs \"trajectory-level\" advantage reward assignment"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "80e0cd54-064c-4b9a-abd1-91cc8891a9d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U7DogaJnZ2DpqofBAanrVw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4135,
+      "cache_read_input_tokens": 26277,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4135
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014nchmsCZ6QYFSFH6N6omiZ`</summary>
+
+```json
+{
+  "query": "OpenRLHF multi-turn \"single turn\" code reuse rollout worker vLLM"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "764669dc-58d3-4028-9784-43b50cd0f02b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U7DogaJnZ2DpqofBAanrVw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4135,
+      "cache_read_input_tokens": 26277,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4135
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015URXVaT7My3NVQCpoCWBLy`</summary>
+
+```json
+{
+  "query": "\"single turn RLHF\" to \"multi-turn\" agent RL adaptation challenge framework design"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "593de843-4391-4234-a1da-f7b244ebf123",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U7DogaJnZ2DpqofBAanrVw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4135,
+      "cache_read_input_tokens": 26277,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4135
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T05:11:38.146Z_
+
+<details><summary>↩ Tool result · `toolu_01U9eGaBNYTe5HHtqWMmFyLe`</summary>
+
+```text
+Web search results for query: "verl-agent "identical reward" "each triplet" step independent trajectory GitHub langfengq"
+
+Links: [{"title":"VERL - Agent-lightning","url":"https://microsoft.github.io/agent-lightning/latest/algorithm-zoo/verl/"},{"title":"VERL - Agent-lightning - Microsoft Open Source","url":"https://microsoft.github.io/agent-lightning/stable/algorithm-zoo/verl/"}]
+
+I found relevant information about VERL and its reward handling mechanism. Based on the search results:
+
+VERL decomposes each agent execution into prompt–response pairs via the Adapter and associates them with their corresponding reward signals as Triplet objects. The final scalar reward, derived from the last triplet in the trajectory, is propagated to all preceding triplets following the identical assignment strategy, ensuring that each triplet receives an identical reward signal and can be independently optimized as a valid RLHF trajectory within the VERL framework.
+
+The search results come from the Microsoft Agent-Lightning documentation, which provides a wrapper around the VERL framework. However, the search results don't include specific GitHub references to the langfengq user account or the exact repository you may be looking for. If you're looking for the original VERL framework repository or specific commits/discussions by langfengq, you may want to search GitHub directly or provide additional context about what specific information you're seeking.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "3b88d8aa-91f2-4f5c-b7e6-73fa5345b54a",
+  "tool_use_result": {
+    "query": "verl-agent \"identical reward\" \"each triplet\" step independent trajectory GitHub langfengq",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Q61T7G392A1CLGEKj4cVoH",
+        "content": [
+          {
+            "title": "VERL - Agent-lightning",
+            "url": "https://microsoft.github.io/agent-lightning/latest/algorithm-zoo/verl/"
+          },
+          {
+            "title": "VERL - Agent-lightning - Microsoft Open Source",
+            "url": "https://microsoft.github.io/agent-lightning/stable/algorithm-zoo/verl/"
+          }
+        ]
+      },
+      "I found relevant information about VERL and its reward handling mechanism. Based on the search results:\n\nVERL decomposes each agent execution into prompt–response pairs via the Adapter and associates them with their corresponding reward signals as Triplet objects. The final scalar reward, derived from the last triplet in the trajectory, is propagated to all preceding triplets following the identical assignment strategy, ensuring that each triplet receives an identical reward signal and can be independently optimized as a valid RLHF trajectory within the VERL framework.\n\nThe search results come from the Microsoft Agent-Lightning documentation, which provides a wrapper around the VERL framework. However, the search results don't include specific GitHub references to the langfengq user account or the exact repository you may be looking for. If you're looking for the original VERL framework repository or specific commits/discussions by langfengq, you may want to search GitHub directly or provide additional context about what specific information you're seeking."
+    ],
+    "durationSeconds": 4.964883467
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T05:11:40.431Z_
+
+<details><summary>↩ Tool result · `toolu_01U1r8LXW4vi3WEzmpW3tTgG`</summary>
+
+```text
+Web search results for query: "RAGEN StarPO "per-step" vs "trajectory-level" advantage reward assignment"
+
+Links: [{"title":"RAGEN: Understanding Self-Evolution in LLM Agents via ...","url":"https://arxiv.org/pdf/2504.20073"},{"title":"RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning","url":"https://arxiv.org/html/2504.20073v2"},{"title":"GitHub - mll-lab-nu/RAGEN: RAGEN leverages reinforcement learning to train LLM reasoning agents in interactive, stochastic environments. · GitHub","url":"https://github.com/mll-lab-nu/RAGEN"},{"title":"StarPO: RL Framework for LLM Agents","url":"https://www.emergentmind.com/topics/starpo-framework"},{"title":"Training AI Agents That Don’t Fall Apart: How RAGEN and StarPO Are Solving the ‘Echo Trap’ | by Tech Dose | Medium","url":"https://medium.com/@tech.dose/training-ai-agents-that-dont-fall-apart-how-ragen-and-starpo-are-solving-the-echo-trap-c149b23248fa"},{"title":"Training LLM Agents Just Got More Stable: Researchers Introduce StarPO-S and RAGEN to Tackle Multi-Turn Reasoning and Collapse in Reinforcement Learning - MarkTechPost","url":"https://www.marktechpost.com/2025/05/01/training-llm-agents-just-got-more-stable-researchers-introduce-starpo-s-and-ragen-to-tackle-multi-turn-reasoning-and-collapse-in-reinforcement-learning/"},{"title":"RAGEN: AI framework tackles LLM agent instability","url":"https://www.artificialintelligence-news.com/news/ragen-ai-framework-tackles-llm-agent-instability/"},{"title":"RAGEN-2: Reasoning Collapse in Agentic RL","url":"https://ragen-ai.github.io/"},{"title":"RAGEN: Self-Evolution in LLM Agents via Multi-Turn RL","url":"https://www.emergentmind.com/papers/2504.20073"},{"title":"RAGEN: AI framework tackles LLM agent instability - Saizen Acuity","url":"https://saizenacuity.com/ragen-ai-framework-tackles-llm-agent-instability/"}]
+
+Based on the search results, here's what I found about the per-step vs trajectory-level advantage reward assignment in RAGEN StarPO:
+
+## Key Difference
+
+StarPO's trajectory-level objective differs from previous methods like PPO and GRPO, which optimize single-turn output given input. The fundamental distinction is in how rewards are assigned:
+
+**Per-Step (Token-Level):** StarPO can be instantiated with PPO for token-level updates, where a critic is trained to estimate token-level value and advantages.
+
+**Trajectory-Level:** For the critic-free approach, a scalar reward is assigned to each trajectory and normalized advantage is computed across all tokens in the trajectory.
+
+## How They Work
+
+Instead of step-by-step optimization, StarPO optimizes entire trajectories using importance sampling, enabling long-horizon reasoning while maintaining computational efficiency.
+
+Token-level per-trajectory objectives are used, with the advantages computed via either GAE with critic, or normalized returns in the critic-free regime.
+
+## Practical Implications
+
+The research findings indicate that reward mechanisms should directly reinforce intermediate reasoning steps rather than relying solely on outcome-based feedback, suggesting that trajectory-level rewards alone may be insufficient for training agents to develop genuine reasoning capabilities.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "3eda3bdf-deb7-4470-ae77-4c0bfdcdeb74",
+  "tool_use_result": {
+    "query": "RAGEN StarPO \"per-step\" vs \"trajectory-level\" advantage reward assignment",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Fgee4jRftLciaw5CsmaPjM",
+        "content": [
+          {
+            "title": "RAGEN: Understanding Self-Evolution in LLM Agents via ...",
+            "url": "https://arxiv.org/pdf/2504.20073"
+          },
+          {
+            "title": "RAGEN: Understanding Self-Evolution in LLM Agents via Multi-Turn Reinforcement Learning",
+            "url": "https://arxiv.org/html/2504.20073v2"
+          },
+          {
+            "title": "GitHub - mll-lab-nu/RAGEN: RAGEN leverages reinforcement learning to train LLM reasoning agents in interactive, stochastic environments. · GitHub",
+            "url": "https://github.com/mll-lab-nu/RAGEN"
+          },
+          {
+            "title": "StarPO: RL Framework for LLM Agents",
+            "url": "https://www.emergentmind.com/topics/starpo-framework"
+          },
+          {
+            "title": "Training AI Agents That Don’t Fall Apart: How RAGEN and StarPO Are Solving the ‘Echo Trap’ | by Tech Dose | Medium",
+            "url": "https://medium.com/@tech.dose/training-ai-agents-that-dont-fall-apart-how-ragen-and-starpo-are-solving-the-echo-trap-c149b23248fa"
+          },
+          {
+            "title": "Training LLM Agents Just Got More Stable: Researchers Introduce StarPO-S and RAGEN to Tackle Multi-Turn Reasoning and Collapse in Reinforcement Learning - MarkTechPost",
+            "url": "https://www.marktechpost.com/2025/05/01/training-llm-agents-just-got-more-stable-researchers-introduce-starpo-s-and-ragen-to-tackle-multi-turn-reasoning-and-collapse-in-reinforcement-learning/"
+          },
+          {
+            "title": "RAGEN: AI framework tackles LLM agent instability",
+            "url": "https://www.artificialintelligence-news.com/news/ragen-ai-framework-tackles-llm-agent-instability/"
+          },
+          {
+            "title": "RAGEN-2: Reasoning Collapse in Agentic RL",
+            "url": "https://ragen-ai.github.io/"
+          },
+          {
+            "title": "RAGEN: Self-Evolution in LLM Agents via Multi-Turn RL",
+            "url": "https://www.emergentmind.com/papers/2504.20073"
+          },
+          {
+            "title": "RAGEN: AI framework tackles LLM agent instability - Saizen Acuity",
+            "url": "https://saizenacuity.com/ragen-ai-framework-tackles-llm-agent-instability/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the per-step vs trajectory-level advantage reward assignment in RAGEN StarPO:\n\n## Key Difference\n\nStarPO's trajectory-level objective differs from previous methods like PPO and GRPO, which optimize single-turn output given input. The fundamental distinction is in how rewards are assigned:\n\n**Per-Step (Token-Level):** StarPO can be instantiated with PPO for token-level updates, where a critic is trained to estimate token-level value and advantages.\n\n**Trajectory-Level:** For the critic-free approach, a scalar reward is assigned to each trajectory and normalized advantage is computed across all tokens in the trajectory.\n\n## How They Work\n\nInstead of step-by-step optimization, StarPO optimizes entire trajectories using importance sampling, enabling long-horizon reasoning while maintaining computational efficiency.\n\nToken-level per-trajectory objectives are used, with the advantages computed via either GAE with critic, or normalized returns in the critic-free regime.\n\n## Practical Implications\n\nThe research findings indicate that reward mechanisms should directly reinforce intermediate reasoning steps rather than relying solely on outcome-based feedback, suggesting that trajectory-level rewards alone may be insufficient for training agents to develop genuine reasoning capabilities."
+    ],
+    "durationSeconds": 6.221542964
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T05:11:42.201Z_
+
+<details><summary>↩ Tool result · `toolu_014nchmsCZ6QYFSFH6N6omiZ`</summary>
+
+```text
+Web search results for query: "OpenRLHF multi-turn "single turn" code reuse rollout worker vLLM"
+
+Links: [{"title":"GitHub - OpenRLHF/OpenRLHF: An Easy-to-use, Scalable and High-performance Agentic RL Framework based on Ray (PPO & DAPO & REINFORCE++ & VLM & TIS & vLLM & Ray & Async RL) · GitHub","url":"https://github.com/OpenRLHF/OpenRLHF"},{"title":"Welcome to OpenRLHF’s documentation! — OpenRLHF 0.10.2 documentation","url":"https://openrlhf.readthedocs.io/"},{"title":"openrlhf · PyPI","url":"https://pypi.org/project/openrlhf/"},{"title":"GitHub - OpenRLHF/OpenRLHF-M: An Easy-to-use, Scalable and High-performance RLHF Framework designed for Multimodal Models. · GitHub","url":"https://github.com/OpenRLHF/OpenRLHF-M"},{"title":"Hybrid Engine — OpenRLHF 0.9 documentation","url":"https://openrlhf.readthedocs.io/en/latest/hybrid_engine.html"},{"title":"Quick Start — OpenRLHF 0.9 documentation","url":"https://openrlhf.readthedocs.io/en/latest/quick_start.html"},{"title":"Anatomy of RL Frameworks - Hanif Leoputera","url":"https://www.hanifleo.com/anatomy-of-rl-frameworks/"},{"title":"OpenRLHF: An Easy-to-use, Scalable and High-performance RLHF Framework Jian Hu∗","url":"https://arxiv.org/pdf/2405.11143"},{"title":"Accelerating RLHF with vLLM, Best Practice from OpenRLHF | vLLM Blog","url":"https://blog.vllm.ai/2025/04/23/openrlhf-vllm.html"},{"title":"Reinforcement Learning from Human Feedback - vLLM","url":"https://docs.vllm.ai/en/stable/training/rlhf/"}]
+
+Based on the web search results, here's what I found regarding OpenRLHF, multi-turn, single-turn, code reuse, rollout worker, and vLLM:
+
+## Key Findings
+
+**Architecture and Design:**
+OpenRLHF's key design is that RL algorithms are decoupled from agent execution modes, with all algorithms working seamlessly with both single-turn and multi-turn agent executors, running through a unified token-in-token-out pipeline for consistent behavior.
+
+**Multi-turn and Single-turn Support:**
+OpenRLHF supports single-turn rewards with multi-turn agents, enabling HTTP remote reward models, custom Python reward functions, full multi-turn environments, or wrapping vLLM as an OpenAI-compatible chat server.
+
+**vLLM Integration:**
+OpenRLHF is built on Ray + vLLM distributed architecture, orchestrating multiple components across GPUs efficiently, separating the Actor, Reward, Reference, and Critic models across different GPUs for scalable training on models up to 70B+ parameters.
+
+**Code Reuse Through Unified Pipeline:**
+The unified agent-based paradigm uses a token-in-token-out pipeline that decouples execution mode (single-turn/multi-turn) from the RL algorithm, allowing any algorithm to pair with any mode through a single shared loss layer.
+
+**Rollout with vLLM:**
+RLHF training spends 80% of the time on sample generation, and OpenRLHF is powered by vLLM with Auto Tensor Parallelism (AutoTP) and Pipeline Parallelism (PP) for high-throughput, memory-efficient generation.
+
+This design enables efficient code reuse by having a single pipeline architecture that works for both single-turn and multi-turn scenarios without requiring separate implementations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "340749e2-47ee-4048-9179-2e1562aa0b00",
+  "tool_use_result": {
+    "query": "OpenRLHF multi-turn \"single turn\" code reuse rollout worker vLLM",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QyW3b2tiMJJPShA6fyo1pT",
+        "content": [
+          {
+            "title": "GitHub - OpenRLHF/OpenRLHF: An Easy-to-use, Scalable and High-performance Agentic RL Framework based on Ray (PPO & DAPO & REINFORCE++ & VLM & TIS & vLLM & Ray & Async RL) · GitHub",
+            "url": "https://github.com/OpenRLHF/OpenRLHF"
+          },
+          {
+            "title": "Welcome to OpenRLHF’s documentation! — OpenRLHF 0.10.2 documentation",
+            "url": "https://openrlhf.readthedocs.io/"
+          },
+          {
+            "title": "openrlhf · PyPI",
+            "url": "https://pypi.org/project/openrlhf/"
+          },
+          {
+            "title": "GitHub - OpenRLHF/OpenRLHF-M: An Easy-to-use, Scalable and High-performance RLHF Framework designed for Multimodal Models. · GitHub",
+            "url": "https://github.com/OpenRLHF/OpenRLHF-M"
+          },
+          {
+            "title": "Hybrid Engine — OpenRLHF 0.9 documentation",
+            "url": "https://openrlhf.readthedocs.io/en/latest/hybrid_engine.html"
+          },
+          {
+            "title": "Quick Start — OpenRLHF 0.9 documentation",
+            "url": "https://openrlhf.readthedocs.io/en/latest/quick_start.html"
+          },
+          {
+            "title": "Anatomy of RL Frameworks - Hanif Leoputera",
+            "url": "https://www.hanifleo.com/anatomy-of-rl-frameworks/"
+          },
+          {
+            "title": "OpenRLHF: An Easy-to-use, Scalable and High-performance RLHF Framework Jian Hu∗",
+            "url": "https://arxiv.org/pdf/2405.11143"
+          },
+          {
+            "title": "Accelerating RLHF with vLLM, Best Practice from OpenRLHF | vLLM Blog",
+            "url": "https://blog.vllm.ai/2025/04/23/openrlhf-vllm.html"
+          },
+          {
+            "title": "Reinforcement Learning from Human Feedback - vLLM",
+            "url": "https://docs.vllm.ai/en/stable/training/rlhf/"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found regarding OpenRLHF, multi-turn, single-turn, code reuse, rollout worker, and vLLM:\n\n## Key Findings\n\n**Architecture and Design:**\nOpenRLHF's key design is that RL algorithms are decoupled from agent execution modes, with all algorithms working seamlessly with both single-turn and multi-turn agent executors, running through a unified token-in-token-out pipeline for consistent behavior.\n\n**Multi-turn and Single-turn Support:**\nOpenRLHF supports single-turn rewards with multi-turn agents, enabling HTTP remote reward models, custom Python reward functions, full multi-turn environments, or wrapping vLLM as an OpenAI-compatible chat server.\n\n**vLLM Integration:**\nOpenRLHF is built on Ray + vLLM distributed architecture, orchestrating multiple components across GPUs efficiently, separating the Actor, Reward, Reference, and Critic models across different GPUs for scalable training on models up to 70B+ parameters.\n\n**Code Reuse Through Unified Pipeline:**\nThe unified agent-based paradigm uses a token-in-token-out pipeline that decouples execution mode (single-turn/multi-turn) from the RL algorithm, allowing any algorithm to pair with any mode through a single shared loss layer.\n\n**Rollout with vLLM:**\nRLHF training spends 80% of the time on sample generation, and OpenRLHF is powered by vLLM with Auto Tensor Parallelism (AutoTP) and Pipeline Parallelism (PP) for high-throughput, memory-efficient generation.\n\nThis design enables efficient code reuse by having a single pipeline architecture that works for both single-turn and multi-turn scenarios without requiring separate implementations."
+    ],
+    "durationSeconds": 7.203347438999997
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T05:11:45.200Z_
+
+<details><summary>↩ Tool result · `toolu_015URXVaT7My3NVQCpoCWBLy`</summary>
+
+```text
+Web search results for query: ""single turn RLHF" to "multi-turn" agent RL adaptation challenge framework design"
+
+Links: [{"title":"GitHub - OpenRLHF/OpenRLHF: An Easy-to-use, Scalable and High-performance Agentic RL Framework based on Ray (PPO & DAPO & REINFORCE++ & VLM & TIS & vLLM & Ray & Async RL) · GitHub","url":"https://github.com/OpenRLHF/OpenRLHF"},{"title":"ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL","url":"https://yifeizhou02.github.io/archer.io/"},{"title":"Multi-turn Reinforcement Learning from Preference Human Feedback Lior Shani ∗1","url":"https://openreview.net/pdf?id=rVSc3HIZS4"},{"title":"Verlog: A Multi-turn RL framework for LLM agents – Machine Learning Blog | ML@CMU | Carnegie Mellon University","url":"https://blog.ml.cmu.edu/2025/09/15/verlog-a-multi-turn-rl-framework-for-llm-agents/"},{"title":"Understanding Self-Evolution in LLM Agents via Multi-Turn ...","url":"https://ragen-ai.github.io/pdf/RAGEN.pdf"},{"title":"From Self-Evolving Synthetic Data to Verifiable-Reward RL: Post-Training Multi-turn Interactive Tool-Using Agents","url":"https://arxiv.org/html/2601.22607v1"},{"title":"SkyRL-Agent: Efficient RL Training for Multi-turn LLM Agent","url":"https://arxiv.org/pdf/2511.16108"},{"title":"Multi-Turn Reinforcement Learning","url":"https://www.emergentmind.com/topics/multi-turn-reinforcement-learning-rl"},{"title":"Customizing multiturn AI agents with reinforcement learning - Amazon Science","url":"https://www.amazon.science/blog/customizing-multiturn-ai-agents-with-reinforcement-learning"},{"title":"training language model agents via hierarchical multi-turn RL","url":"https://dl.acm.org/doi/10.5555/3692070.3694644"}]
+
+Based on the search results, here's a comprehensive overview of the transition from single-turn RLHF to multi-turn agent RL adaptation and the challenge frameworks being designed:
+
+## Key Challenge Identified
+
+Single-turn RL may not be directly adapted to multi-turn agent RL, as vanilla adaptations from single-turn methods like PPO and GRPO achieve early gains in agent settings but often collapse.
+
+## Core Issues
+
+Most prior works focus on optimizing greedily for single-turn human preferences (single-turn RLHF), and policies trained in this way lack strategic planning over a long horizon. Multi-turn RL directly maximizes the long-term objective of interest (e.g., customer satisfaction at the end of a multi-turn conversation).
+
+Token-level methods face the challenge of an extremely long horizon (number of tokens per round * number of interactions), leading to numerical instabilities and slow convergence, while utterance-level methods face the challenge of an exponential action space (exponential in the number of tokens per utterance).
+
+## Framework Design Solutions
+
+### Hierarchical Approaches
+ArCHer builds a hierarchical RL approach and runs two RL algorithms in parallel: a high-level off-policy value-based RL algorithm to aggregate reward over utterances, and a low-level policy gradient RL algorithm that utilizes this high-level value function to train a token policy within each turn.
+
+### Agent-Based Unified Paradigm
+OpenRLHF unifies generation and training through token-in-token-out agent execution, ensuring perfect consistency, easy single/multi-turn extension, and zero text-level mismatches.
+
+### Long-Horizon Handling
+To handle extremely long episodes, frameworks treat each turn as an independent training sample. This eliminates the need to encode the entire trajectory into a single context window and allows for modular, customizable memory architectures.
+
+### Stabilization Techniques
+StarPO-S is a stabilized variant that targets sampling quality, gradient stability, and exploration regularization to avoid premature collapse.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "cd8d302d-85cd-4195-b5a1-43cf469cf5d6",
+  "tool_use_result": {
+    "query": "\"single turn RLHF\" to \"multi-turn\" agent RL adaptation challenge framework design",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01P1i1tUpvdmJEfDbwo4fnrE",
+        "content": [
+          {
+            "title": "GitHub - OpenRLHF/OpenRLHF: An Easy-to-use, Scalable and High-performance Agentic RL Framework based on Ray (PPO & DAPO & REINFORCE++ & VLM & TIS & vLLM & Ray & Async RL) · GitHub",
+            "url": "https://github.com/OpenRLHF/OpenRLHF"
+          },
+          {
+            "title": "ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL",
+            "url": "https://yifeizhou02.github.io/archer.io/"
+          },
+          {
+            "title": "Multi-turn Reinforcement Learning from Preference Human Feedback Lior Shani ∗1",
+            "url": "https://openreview.net/pdf?id=rVSc3HIZS4"
+          },
+          {
+            "title": "Verlog: A Multi-turn RL framework for LLM agents – Machine Learning Blog | ML@CMU | Carnegie Mellon University",
+            "url": "https://blog.ml.cmu.edu/2025/09/15/verlog-a-multi-turn-rl-framework-for-llm-agents/"
+          },
+          {
+            "title": "Understanding Self-Evolution in LLM Agents via Multi-Turn ...",
+            "url": "https://ragen-ai.github.io/pdf/RAGEN.pdf"
+          },
+          {
+            "title": "From Self-Evolving Synthetic Data to Verifiable-Reward RL: Post-Training Multi-turn Interactive Tool-Using Agents",
+            "url": "https://arxiv.org/html/2601.22607v1"
+          },
+          {
+            "title": "SkyRL-Agent: Efficient RL Training for Multi-turn LLM Agent",
+            "url": "https://arxiv.org/pdf/2511.16108"
+          },
+          {
+            "title": "Multi-Turn Reinforcement Learning",
+            "url": "https://www.emergentmind.com/topics/multi-turn-reinforcement-learning-rl"
+          },
+          {
+            "title": "Customizing multiturn AI agents with reinforcement learning - Amazon Science",
+            "url": "https://www.amazon.science/blog/customizing-multiturn-ai-agents-with-reinforcement-learning"
+          },
+          {
+            "title": "training language model agents via hierarchical multi-turn RL",
+            "url": "https://dl.acm.org/doi/10.5555/3692070.3694644"
+          }
+        ]
+      },
+      "Based on the search results, here's a comprehensive overview of the transition from single-turn RLHF to multi-turn agent RL adaptation and the challenge frameworks being designed:\n\n## Key Challenge Identified\n\nSingle-turn RL may not be directly adapted to multi-turn agent RL, as vanilla adaptations from single-turn methods like PPO and GRPO achieve early gains in agent settings but often collapse.\n\n## Core Issues\n\nMost prior works focus on optimizing greedily for single-turn human preferences (single-turn RLHF), and policies trained in this way lack strategic planning over a long horizon. Multi-turn RL directly maximizes the long-term objective of interest (e.g., customer satisfaction at the end of a multi-turn conversation).\n\nToken-level methods face the challenge of an extremely long horizon (number of tokens per round * number of interactions), leading to numerical instabilities and slow convergence, while utterance-level methods face the challenge of an exponential action space (exponential in the number of tokens per utterance).\n\n## Framework Design Solutions\n\n### Hierarchical Approaches\nArCHer builds a hierarchical RL approach and runs two RL algorithms in parallel: a high-level off-policy value-based RL algorithm to aggregate reward over utterances, and a low-level policy gradient RL algorithm that utilizes this high-level value function to train a token policy within each turn.\n\n### Agent-Based Unified Paradigm\nOpenRLHF unifies generation and training through token-in-token-out agent execution, ensuring perfect consistency, easy single/multi-turn extension, and zero text-level mismatches.\n\n### Long-Horizon Handling\nTo handle extremely long episodes, frameworks treat each turn as an independent training sample. This eliminates the need to encode the entire trajectory into a single context window and allows for modular, customizable memory architectures.\n\n### Stabilization Techniques\nStarPO-S is a stabilized variant that targets sampling quality, gradient stability, and exploration regularization to avoid premature collapse."
+    ],
+    "durationSeconds": 9.585025452999995
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Great, I'm getting a lot of useful information. Let me search for more specific evidence about why step-independent is the default, including specific code patterns and the SUPO paper which explicitly discusses this issue.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "d13cec12-84cb-47c4-87ec-e8f2706d3469",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xg6DSMw7RrVyyEpJw13Yk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3772,
+      "cache_read_input_tokens": 30412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3772
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+很好，关键证据越来越清晰。继续搜索更多技术细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "9e8afd1c-2d60-4c33-aa11-211966b25b53",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xg6DSMw7RrVyyEpJw13Yk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3772,
+      "cache_read_input_tokens": 30412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3772
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017HhBqacEBbNVE1xLDkeYMD`</summary>
+
+```json
+{
+  "query": "SUPO \"summarization augmented policy optimization\" context management multi-turn RL ByteDance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "1d535f9c-349f-443c-a784-2b3985090fbe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xg6DSMw7RrVyyEpJw13Yk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3772,
+      "cache_read_input_tokens": 30412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3772
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LEgrnsCCq1aYxLHT6CDW2R`</summary>
+
+```json
+{
+  "query": "verl-agent \"Group-in-Group\" policy optimization step decomposition triplet independent"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "b67c3618-449a-4fe0-9e80-dbb0919271b6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xg6DSMw7RrVyyEpJw13Yk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3772,
+      "cache_read_input_tokens": 30412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3772
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015ZLNHEKz8boDjntZWFry7R`</summary>
+
+```json
+{
+  "query": "SkyRL-Agent \"efficient RL\" multi-turn \"context length\" \"per step\" training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "e5e34af7-39fc-4281-bc64-73bc641394b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xg6DSMw7RrVyyEpJw13Yk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3772,
+      "cache_read_input_tokens": 30412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3772
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019ctF7ArF8PBJeWC5mjVti5`</summary>
+
+```json
+{
+  "query": "ArCHer hierarchical multi-turn RL \"token level\" \"utterance level\" challenge exponential action space"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "e2ba7b06-6291-4bf3-96d6-f8aabb57352c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019xg6DSMw7RrVyyEpJw13Yk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3772,
+      "cache_read_input_tokens": 30412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3772
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T05:11:57.111Z_
+
+<details><summary>↩ Tool result · `toolu_01LEgrnsCCq1aYxLHT6CDW2R`</summary>
+
+```text
+Web search results for query: "verl-agent "Group-in-Group" policy optimization step decomposition triplet independent"
+
+Links: [{"title":"Group-in-Group Policy Optimization for LLM Agent Training","url":"https://arxiv.org/html/2505.10978v1"},{"title":"GitHub - langfengQ/verl-agent: verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. verl-agent is also the official code for paper \"Group-in-Group Policy Optimization for LLM Agent Training\" · GitHub","url":"https://github.com/langfengq/verl-agent"},{"title":"[2505.10978] Group-in-Group Policy Optimization for LLM Agent Training","url":"https://arxiv.org/abs/2505.10978"},{"title":"verl-agent/recipe/hgpo at master · langfengQ/verl-agent","url":"https://github.com/langfengQ/verl-agent/tree/master/recipe/hgpo"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training Lang Feng1","url":"https://arxiv.org/pdf/2505.10978"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training | OpenReview","url":"https://openreview.net/forum?id=QXEhBMNrCW"},{"title":"NeurIPS Poster Group-in-Group Policy Optimization for LLM Agent Training","url":"https://neurips.cc/virtual/2025/poster/118123"},{"title":"Build software better, together","url":"https://github.com/topics/gigpo"},{"title":"Paper page - Group-in-Group Policy Optimization for LLM Agent Training","url":"https://huggingface.co/papers/2505.10978"},{"title":"[2505.10978v2] Group-in-Group Policy Optimization for LLM Agent Training","url":"https://arxiv.org/abs/2505.10978v2"}]
+
+Based on the search results, here's what I found about verl-agent and Group-in-Group Policy Optimization:
+
+## Overview
+
+verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL and is the official code for the paper "Group-in-Group Policy Optimization for LLM Agent Training".
+
+## Group-in-Group Policy Optimization (GiGPO)
+
+GiGPO is a novel RL algorithm that achieves fine-grained credit assignment for LLM agents while preserving the appealing properties of group-based RL: critic-free, low memory, and stable convergence.
+
+## Two-Level Structure for Policy Optimization
+
+GiGPO introduces a two-level structure for estimating relative advantage: at the episode-level, it computes macro relative advantages based on groups of complete trajectories; at the step-level, it introduces an anchor state grouping mechanism that retroactively constructs step-level groups by identifying repeated environment states across trajectories, with actions stemming from the same state grouped together to enable micro relative advantage estimation.
+
+## Step-Independent Decomposition
+
+verl-agent proposes a step-independent multi-turn rollout mechanism, which allows for fully customizable per-step input structures, history management, and memory modules. verl-agent constructs inputs step-by-step, with each input being concise and customizable, keeping the context length almost constant over time and making it highly scalable for long-horizon scenarios.
+
+## Source Code
+
+The complete source code is provided at https://github.com/langfengQ/verl-agent.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "a080cb78-2130-4389-ba36-e1d6293da296",
+  "tool_use_result": {
+    "query": "verl-agent \"Group-in-Group\" policy optimization step decomposition triplet independent",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BfoZ37HmVh4VqHrdGT4Cnq",
+        "content": [
+          {
+            "title": "Group-in-Group Policy Optimization for LLM Agent Training",
+            "url": "https://arxiv.org/html/2505.10978v1"
+          },
+          {
+            "title": "GitHub - langfengQ/verl-agent: verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. verl-agent is also the official code for paper \"Group-in-Group Policy Optimization for LLM Agent Training\" · GitHub",
+            "url": "https://github.com/langfengq/verl-agent"
+          },
+          {
+            "title": "[2505.10978] Group-in-Group Policy Optimization for LLM Agent Training",
+            "url": "https://arxiv.org/abs/2505.10978"
+          },
+          {
+            "title": "verl-agent/recipe/hgpo at master · langfengQ/verl-agent",
+            "url": "https://github.com/langfengQ/verl-agent/tree/master/recipe/hgpo"
+          },
+          {
+            "title": "Group-in-Group Policy Optimization for LLM Agent Training Lang Feng1",
+            "url": "https://arxiv.org/pdf/2505.10978"
+          },
+          {
+            "title": "Group-in-Group Policy Optimization for LLM Agent Training | OpenReview",
+            "url": "https://openreview.net/forum?id=QXEhBMNrCW"
+          },
+          {
+            "title": "NeurIPS Poster Group-in-Group Policy Optimization for LLM Agent Training",
+            "url": "https://neurips.cc/virtual/2025/poster/118123"
+          },
+          {
+            "title": "Build software better, together",
+            "url": "https://github.com/topics/gigpo"
+          },
+          {
+            "title": "Paper page - Group-in-Group Policy Optimization for LLM Agent Training",
+            "url": "https://huggingface.co/papers/2505.10978"
+          },
+          {
+            "title": "[2505.10978v2] Group-in-Group Policy Optimization for LLM Agent Training",
+            "url": "https://arxiv.org/abs/2505.10978v2"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about verl-agent and Group-in-Group Policy Optimization:\n\n## Overview\n\nverl-agent is an extension of veRL, designed for training LLM/VLM agents via RL and is the official code for the paper \"Group-in-Group Policy Optimization for LLM Agent Training\".\n\n## Group-in-Group Policy Optimization (GiGPO)\n\nGiGPO is a novel RL algorithm that achieves fine-grained credit assignment for LLM agents while preserving the appealing properties of group-based RL: critic-free, low memory, and stable convergence.\n\n## Two-Level Structure for Policy Optimization\n\nGiGPO introduces a two-level structure for estimating relative advantage: at the episode-level, it computes macro relative advantages based on groups of complete trajectories; at the step-level, it introduces an anchor state grouping mechanism that retroactively constructs step-level groups by identifying repeated environment states across trajectories, with actions stemming from the same state grouped together to enable micro relative advantage estimation.\n\n## Step-Independent Decomposition\n\nverl-agent proposes a step-independent multi-turn rollout mechanism, which allows for fully customizable per-step input structures, history management, and memory modules. verl-agent constructs inputs step-by-step, with each input being concise and customizable, keeping the context length almost constant over time and making it highly scalable for long-horizon scenarios.\n\n## Source Code\n\nThe complete source code is provided at https://github.com/langfengQ/verl-agent."
+    ],
+    "durationSeconds": 6.134350052000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T05:11:58.182Z_
+
+<details><summary>↩ Tool result · `toolu_017HhBqacEBbNVE1xLDkeYMD`</summary>
+
+```text
+Web search results for query: "SUPO "summarization augmented policy optimization" context management multi-turn RL ByteDance"
+
+Links: [{"title":"Scaling LLM Multi-turn RL with End-to-end Summarization-based Context Management | alphaXiv","url":"https://www.alphaxiv.org/overview/2510.06727v1"},{"title":"Scaling LLM Multi-turn RL with End-to-end Summarization- ...","url":"https://miaolu3.github.io/ArXiv_SUPO.pdf"},{"title":"[Quick Review] Scaling LLM Multi-turn RL with End-to-end Summarization-based Context\\n Management","url":"https://liner.com/review/scaling-llm-multiturn-rl-with-endtoend-summarizationbased-context-management"},{"title":"Paper page - Scaling LLM Multi-turn RL with End-to-end Summarization-based Context Management","url":"https://huggingface.co/papers/2510.06727"},{"title":"SCALING LLM MULTI-TURN RL WITH END-TO- ...","url":"https://openreview.net/pdf/10c39467b7f1356121d2e937298acf09641e8c62.pdf"},{"title":"(PDF) Scaling LLM Multi-turn RL with End-to-end Summarization-based Context Management","url":"https://www.researchgate.net/publication/396330817_Scaling_LLM_Multi-turn_RL_with_End-to-end_Summarization-based_Context_Management"},{"title":"Scaling LLM Multi-turn RL with End-to-end Summarization-based Context Management | OpenReview","url":"https://openreview.net/forum?id=778Yl5j1TE"},{"title":"[PDF] Scaling LLM Multi-turn RL with End-to-end Summarization-based Context Management | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Scaling-LLM-Multi-turn-RL-with-End-to-end-Context-Lu-Sun/fc329a561cad5ab623241bd512170a1021ae14e0"},{"title":"Multi-Agent Tool-Integrated Policy Optimization","url":"https://arxiv.org/html/2510.04678v1"},{"title":"REINFORCING MULTI-TURN REASONING IN LLM ...","url":"https://openreview.net/pdf?id=7cgTBPuwMr"}]
+
+Based on the search results, I've found comprehensive information about SUPO. Here's what the research shows:
+
+## Overview
+
+SUPO (Summarization augmented Policy Optimization) is a method that enables RL training of LLM agents to scale beyond their fixed context window limitations through end-to-end learned summarization, developed by researchers at ByteDance Seed, Stanford University, and Carnegie Mellon University.
+
+## The Problem It Addresses
+
+SUPO addresses reinforcement learning fine-tuning of large language model agents for long-horizon multi-turn tool use, where context length becomes a bottleneck, and existing RL pipelines suffer from degraded instruction following, excessive rollout costs, and strict context limits.
+
+## Technical Approach
+
+The method introduces summarization-based context management to training by periodically compressing tool-use history through LLM-generated summaries that retain task-relevant information to maintain a compact context while enabling agents to scale beyond fixed context windows. 
+
+A policy gradient representation enables standard LLM RL infrastructures to optimize both tool-use behaviors and summarization strategies in an end-to-end fashion.
+
+## Performance Results
+
+The approach achieves up to 14.0% absolute accuracy improvement on complex tasks like BrowseComp-Plus while enabling generalization to more interaction turns than seen during training. On CodeGym, SUPO with a 4K working context length and 32K effective context length achieves a 4.7% absolute improvement in accuracy (47.7% vs 43.0%) compared to GRPO using a 32K working context length.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "55f16b29-bd51-4e7a-be1e-f51ee35008b0",
+  "tool_use_result": {
+    "query": "SUPO \"summarization augmented policy optimization\" context management multi-turn RL ByteDance",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RGdESKFtWeH3KGF1363Car",
+        "content": [
+          {
+            "title": "Scaling LLM Multi-turn RL with End-to-end Summarization-based Context Management | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2510.06727v1"
+          },
+          {
+            "title": "Scaling LLM Multi-turn RL with End-to-end Summarization- ...",
+            "url": "https://miaolu3.github.io/ArXiv_SUPO.pdf"
+          },
+          {
+            "title": "[Quick Review] Scaling LLM Multi-turn RL with End-to-end Summarization-based Context\\n Management",
+            "url": "https://liner.com/review/scaling-llm-multiturn-rl-with-endtoend-summarizationbased-context-management"
+          },
+          {
+            "title": "Paper page - Scaling LLM Multi-turn RL with End-to-end Summarization-based Context Management",
+            "url": "https://huggingface.co/papers/2510.06727"
+          },
+          {
+            "title": "SCALING LLM MULTI-TURN RL WITH END-TO- ...",
+            "url": "https://openreview.net/pdf/10c39467b7f1356121d2e937298acf09641e8c62.pdf"
+          },
+          {
+            "title": "(PDF) Scaling LLM Multi-turn RL with End-to-end Summarization-based Context Management",
+            "url": "https://www.researchgate.net/publication/396330817_Scaling_LLM_Multi-turn_RL_with_End-to-end_Summarization-based_Context_Management"
+          },
+          {
+            "title": "Scaling LLM Multi-turn RL with End-to-end Summarization-based Context Management | OpenReview",
+            "url": "https://openreview.net/forum?id=778Yl5j1TE"
+          },
+          {
+            "title": "[PDF] Scaling LLM Multi-turn RL with End-to-end Summarization-based Context Management | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Scaling-LLM-Multi-turn-RL-with-End-to-end-Context-Lu-Sun/fc329a561cad5ab623241bd512170a1021ae14e0"
+          },
+          {
+            "title": "Multi-Agent Tool-Integrated Policy Optimization",
+            "url": "https://arxiv.org/html/2510.04678v1"
+          },
+          {
+            "title": "REINFORCING MULTI-TURN REASONING IN LLM ...",
+            "url": "https://openreview.net/pdf?id=7cgTBPuwMr"
+          }
+        ]
+      },
+      "Based on the search results, I've found comprehensive information about SUPO. Here's what the research shows:\n\n## Overview\n\nSUPO (Summarization augmented Policy Optimization) is a method that enables RL training of LLM agents to scale beyond their fixed context window limitations through end-to-end learned summarization, developed by researchers at ByteDance Seed, Stanford University, and Carnegie Mellon University.\n\n## The Problem It Addresses\n\nSUPO addresses reinforcement learning fine-tuning of large language model agents for long-horizon multi-turn tool use, where context length becomes a bottleneck, and existing RL pipelines suffer from degraded instruction following, excessive rollout costs, and strict context limits.\n\n## Technical Approach\n\nThe method introduces summarization-based context management to training by periodically compressing tool-use history through LLM-generated summaries that retain task-relevant information to maintain a compact context while enabling agents to scale beyond fixed context windows. \n\nA policy gradient representation enables standard LLM RL infrastructures to optimize both tool-use behaviors and summarization strategies in an end-to-end fashion.\n\n## Performance Results\n\nThe approach achieves up to 14.0% absolute accuracy improvement on complex tasks like BrowseComp-Plus while enabling generalization to more interaction turns than seen during training. On CodeGym, SUPO with a 4K working context length and 32K effective context length achieves a 4.7% absolute improvement in accuracy (47.7% vs 43.0%) compared to GRPO using a 32K working context length."
+    ],
+    "durationSeconds": 8.133348535000005
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T05:11:59.629Z_
+
+<details><summary>↩ Tool result · `toolu_019ctF7ArF8PBJeWC5mjVti5`</summary>
+
+```text
+Web search results for query: "ArCHer hierarchical multi-turn RL "token level" "utterance level" challenge exponential action space"
+
+Links: [{"title":"[2402.19446] ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL","url":"https://arxiv.org/abs/2402.19446"},{"title":"ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL","url":"https://yifeizhou02.github.io/archer.io/"},{"title":"ARCHER: TRAINING LANGUAGE MODEL AGENTS VIA HIERARCHICAL MULTI-TURN RL","url":"https://openreview.net/pdf/77b4400f252a2472bb63ace57ab4249ae1f12c4f.pdf"},{"title":"ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL","url":"https://arxiv.org/html/2402.19446v1"},{"title":"[Quick Review] ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL","url":"https://liner.com/review/archer-training-language-model-agents-via-hierarchical-multiturn-rl"},{"title":"GitHub - YifeiZhou02/ArCHer: Research Code for \"ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL\" · GitHub","url":"https://github.com/YifeiZhou02/ArCHer"},{"title":"training language model agents via hierarchical multi-turn RL","url":"https://dl.acm.org/doi/10.5555/3692070.3694644"},{"title":"ArCHer: Hierarchical RL for Language Agents","url":"https://www.emergentmind.com/papers/2402.19446"},{"title":"Paper page - ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL","url":"https://huggingface.co/papers/2402.19446"},{"title":"Multi-Turn Reinforcement Learning","url":"https://www.emergentmind.com/topics/multi-turn-reinforcement-learning-rl"}]
+
+Based on the search results, here's comprehensive information about ArCHer and its approach to hierarchical multi-turn RL:
+
+## Overview
+
+ArCHer (Actor-Critic Framework with a Hierarchical Structure) is a framework for building multi-turn RL algorithms for LLMs.
+
+## Hierarchical Structure: Token-Level vs. Utterance-Level Challenges
+
+Token-level methods face the challenge of an extremely long horizon (number of tokens per round * number of interactions), leading to numerical instabilities and slow convergence, while utterance-level methods face the challenge of an exponential action space (exponential in the number of tokens per utterance), resulting in difficulty in optimizing over such large action space.
+
+## ArCHer's Solution
+
+ArCHer's hierarchical RL approach runs two RL algorithms in parallel: a high-level off-policy value-based RL algorithm to aggregate reward over utterances, and a low-level RL algorithm that utilizes this high-level value function to train a token policy within each utterance or turn.
+
+By running two RL algorithms simultaneously, one at the high level (utterances) and one at the low level (tokens), ArCHer reduces task horizons while enjoying the ability to retain a compact token-level action space at the low level. Specifically, the framework prescribes an off-policy temporal difference learning method for training an utterance-level value function at the high level, and any on-policy policy gradient algorithm for optimizing the token generation at each turn.
+
+## Performance
+
+ArCHer significantly improves efficiency and performance on agent tasks, attaining a sample efficiency of about 100x over existing methods, while also improving with larger model capacity (up to the 7 billion scale that was tested).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "baafe8ba-5859-436e-903d-30fca4031b56",
+  "tool_use_result": {
+    "query": "ArCHer hierarchical multi-turn RL \"token level\" \"utterance level\" challenge exponential action space",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011jk5CrYpJDDotFqPiJcofM",
+        "content": [
+          {
+            "title": "[2402.19446] ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL",
+            "url": "https://arxiv.org/abs/2402.19446"
+          },
+          {
+            "title": "ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL",
+            "url": "https://yifeizhou02.github.io/archer.io/"
+          },
+          {
+            "title": "ARCHER: TRAINING LANGUAGE MODEL AGENTS VIA HIERARCHICAL MULTI-TURN RL",
+            "url": "https://openreview.net/pdf/77b4400f252a2472bb63ace57ab4249ae1f12c4f.pdf"
+          },
+          {
+            "title": "ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL",
+            "url": "https://arxiv.org/html/2402.19446v1"
+          },
+          {
+            "title": "[Quick Review] ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL",
+            "url": "https://liner.com/review/archer-training-language-model-agents-via-hierarchical-multiturn-rl"
+          },
+          {
+            "title": "GitHub - YifeiZhou02/ArCHer: Research Code for \"ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL\" · GitHub",
+            "url": "https://github.com/YifeiZhou02/ArCHer"
+          },
+          {
+            "title": "training language model agents via hierarchical multi-turn RL",
+            "url": "https://dl.acm.org/doi/10.5555/3692070.3694644"
+          },
+          {
+            "title": "ArCHer: Hierarchical RL for Language Agents",
+            "url": "https://www.emergentmind.com/papers/2402.19446"
+          },
+          {
+            "title": "Paper page - ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL",
+            "url": "https://huggingface.co/papers/2402.19446"
+          },
+          {
+            "title": "Multi-Turn Reinforcement Learning",
+            "url": "https://www.emergentmind.com/topics/multi-turn-reinforcement-learning-rl"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about ArCHer and its approach to hierarchical multi-turn RL:\n\n## Overview\n\nArCHer (Actor-Critic Framework with a Hierarchical Structure) is a framework for building multi-turn RL algorithms for LLMs.\n\n## Hierarchical Structure: Token-Level vs. Utterance-Level Challenges\n\nToken-level methods face the challenge of an extremely long horizon (number of tokens per round * number of interactions), leading to numerical instabilities and slow convergence, while utterance-level methods face the challenge of an exponential action space (exponential in the number of tokens per utterance), resulting in difficulty in optimizing over such large action space.\n\n## ArCHer's Solution\n\nArCHer's hierarchical RL approach runs two RL algorithms in parallel: a high-level off-policy value-based RL algorithm to aggregate reward over utterances, and a low-level RL algorithm that utilizes this high-level value function to train a token policy within each utterance or turn.\n\nBy running two RL algorithms simultaneously, one at the high level (utterances) and one at the low level (tokens), ArCHer reduces task horizons while enjoying the ability to retain a compact token-level action space at the low level. Specifically, the framework prescribes an off-policy temporal difference learning method for training an utterance-level value function at the high level, and any on-policy policy gradient algorithm for optimizing the token generation at each turn.\n\n## Performance\n\nArCHer significantly improves efficiency and performance on agent tasks, attaining a sample efficiency of about 100x over existing methods, while also improving with larger model capacity (up to the 7 billion scale that was tested)."
+    ],
+    "durationSeconds": 7.427786618999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T05:11:59.660Z_
+
+<details><summary>↩ Tool result · `toolu_015ZLNHEKz8boDjntZWFry7R`</summary>
+
+```text
+Web search results for query: "SkyRL-Agent "efficient RL" multi-turn "context length" "per step" training"
+
+Links: [{"title":"SkyRL-Agent: Efficient RL Training for Multi-turn LLM Agent","url":"https://arxiv.org/html/2511.16108v1"},{"title":"[2511.16108] SkyRL-Agent: Efficient RL Training for Multi-turn LLM Agent","url":"https://arxiv.org/abs/2511.16108"},{"title":"SkyRL-Agent: Efficient RL Training for Multi-turn LLM Agent | Request PDF","url":"https://www.researchgate.net/publication/397823745_SkyRL-Agent_Efficient_RL_Training_for_Multi-turn_LLM_Agent"},{"title":"[Literature Review] SkyRL-Agent: Efficient RL Training for Multi-turn LLM Agent","url":"https://www.themoonlight.io/en/review/skyrl-agent-efficient-rl-training-for-multi-turn-llm-agent"},{"title":"SkyRL-Agent: Efficient RL Training for Multi-turn LLM Agent | alphaXiv","url":"https://www.alphaxiv.org/overview/2511.16108v1"},{"title":"ProRL Agent: Rollout-as-a-Service for RL Training of Multi-Turn LLM Agents","url":"https://arxiv.org/html/2603.18815v1"},{"title":"Multi-Turn RL for Search with SkyRL — SkyRL documentation","url":"https://skyrl.readthedocs.io/en/latest/examples/search.html"},{"title":"GitHub - NovaSky-AI/SkyRL: SkyRL: A Modular Full-stack RL Library for LLMs · GitHub","url":"https://github.com/NovaSky-AI/SkyRL"},{"title":"Efficient RL Training for Multi-Turn LLM Agents with SKYRL ...","url":"https://www.linkedin.com/posts/nishantha-ruwan-15b301b2_skyrl-agent-efficient-rl-training-for-multi-turn-activity-7402077692675866624-rFaV"},{"title":"dblp: SkyRL-Agent: Efficient RL Training for Multi-turn LLM Agent.","url":"https://dblp.org/rec/journals/corr/abs-2511-16108.html"}]
+
+I've found comprehensive information about SkyRL-Agent. Here's what the search results show:
+
+## Overview
+
+SkyRL-Agent is a framework for efficient, multi-turn, long-horizon agent training and evaluation. It provides efficient asynchronous dispatching, lightweight tool integration, and flexible backend interoperability, enabling seamless use with existing RL frameworks such as SkyRL-train, VeRL, and Tinker.
+
+## Key Components
+
+The framework consists of three main architectural components:
+
+1. **Tool-Centric Agent Loop**: Agents interact purely via OpenAI-style function calls, where each tool defines its execution logic and runtime. This design unifies the management of agent and environment states, bringing agent-state-modifying operations (e.g., context management) under the same tool abstraction.
+
+2. **Fine-Grained Dispatcher**: SkyRL-Agent decomposes each trajectory into three stage jobs: runtime initialization, agent run (LLM generation), and reward calculation.
+
+3. **Backend Bridge**: It adopts a transition-based design, recording each LLM invocation as an individual transition tuple containing input tokens, output tokens, and their corresponding log probabilities.
+
+## Performance Results
+
+Using SkyRL-Agent, SA-SWE-32B was trained from Qwen3-32B (24.4% Pass@1) purely with reinforcement learning. An optimized asynchronous pipeline dispatcher achieves a 1.55x speedup over naive asynchronous batching. Together, these optimizations enable SA-SWE-32B to reach 39.4% Pass@1 on SWE-Bench Verified with more than 2x cost reduction compared to prior models reaching similar performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "52e927e5-d7ed-4dfa-9c7c-bffdcf715213",
+  "tool_use_result": {
+    "query": "SkyRL-Agent \"efficient RL\" multi-turn \"context length\" \"per step\" training",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WziqWRyYJZyhNAzS3C9brP",
+        "content": [
+          {
+            "title": "SkyRL-Agent: Efficient RL Training for Multi-turn LLM Agent",
+            "url": "https://arxiv.org/html/2511.16108v1"
+          },
+          {
+            "title": "[2511.16108] SkyRL-Agent: Efficient RL Training for Multi-turn LLM Agent",
+            "url": "https://arxiv.org/abs/2511.16108"
+          },
+          {
+            "title": "SkyRL-Agent: Efficient RL Training for Multi-turn LLM Agent | Request PDF",
+            "url": "https://www.researchgate.net/publication/397823745_SkyRL-Agent_Efficient_RL_Training_for_Multi-turn_LLM_Agent"
+          },
+          {
+            "title": "[Literature Review] SkyRL-Agent: Efficient RL Training for Multi-turn LLM Agent",
+            "url": "https://www.themoonlight.io/en/review/skyrl-agent-efficient-rl-training-for-multi-turn-llm-agent"
+          },
+          {
+            "title": "SkyRL-Agent: Efficient RL Training for Multi-turn LLM Agent | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2511.16108v1"
+          },
+          {
+            "title": "ProRL Agent: Rollout-as-a-Service for RL Training of Multi-Turn LLM Agents",
+            "url": "https://arxiv.org/html/2603.18815v1"
+          },
+          {
+            "title": "Multi-Turn RL for Search with SkyRL — SkyRL documentation",
+            "url": "https://skyrl.readthedocs.io/en/latest/examples/search.html"
+          },
+          {
+            "title": "GitHub - NovaSky-AI/SkyRL: SkyRL: A Modular Full-stack RL Library for LLMs · GitHub",
+            "url": "https://github.com/NovaSky-AI/SkyRL"
+          },
+          {
+            "title": "Efficient RL Training for Multi-Turn LLM Agents with SKYRL ...",
+            "url": "https://www.linkedin.com/posts/nishantha-ruwan-15b301b2_skyrl-agent-efficient-rl-training-for-multi-turn-activity-7402077692675866624-rFaV"
+          },
+          {
+            "title": "dblp: SkyRL-Agent: Efficient RL Training for Multi-turn LLM Agent.",
+            "url": "https://dblp.org/rec/journals/corr/abs-2511-16108.html"
+          }
+        ]
+      },
+      "I've found comprehensive information about SkyRL-Agent. Here's what the search results show:\n\n## Overview\n\nSkyRL-Agent is a framework for efficient, multi-turn, long-horizon agent training and evaluation. It provides efficient asynchronous dispatching, lightweight tool integration, and flexible backend interoperability, enabling seamless use with existing RL frameworks such as SkyRL-train, VeRL, and Tinker.\n\n## Key Components\n\nThe framework consists of three main architectural components:\n\n1. **Tool-Centric Agent Loop**: Agents interact purely via OpenAI-style function calls, where each tool defines its execution logic and runtime. This design unifies the management of agent and environment states, bringing agent-state-modifying operations (e.g., context management) under the same tool abstraction.\n\n2. **Fine-Grained Dispatcher**: SkyRL-Agent decomposes each trajectory into three stage jobs: runtime initialization, agent run (LLM generation), and reward calculation.\n\n3. **Backend Bridge**: It adopts a transition-based design, recording each LLM invocation as an individual transition tuple containing input tokens, output tokens, and their corresponding log probabilities.\n\n## Performance Results\n\nUsing SkyRL-Agent, SA-SWE-32B was trained from Qwen3-32B (24.4% Pass@1) purely with reinforcement learning. An optimized asynchronous pipeline dispatcher achieves a 1.55x speedup over naive asynchronous batching. Together, these optimizations enable SA-SWE-32B to reach 39.4% Pass@1 on SWE-Bench Verified with more than 2x cost reduction compared to prior models reaching similar performance."
+    ],
+    "durationSeconds": 7.743740575000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have substantial evidence. Let me search for a few more specific details about the code-level implementation patterns and why frameworks default to step-independent.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "e5177fc7-7200-4ab3-b949-e99c09c2f5c1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S4LS17rK1zhqPKTJvN3j5x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 958,
+      "cache_creation_input_tokens": 3274,
+      "cache_read_input_tokens": 34184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3274
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+关键证据充分了。再搜索几个关于具体代码实现和框架设计选择的细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "e19c227c-f059-43f5-8399-4e7ea2305be3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S4LS17rK1zhqPKTJvN3j5x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 958,
+      "cache_creation_input_tokens": 3274,
+      "cache_read_input_tokens": 34184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3274
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013Tc7kUfg7T2P9J3eNcVaSF`</summary>
+
+```json
+{
+  "query": "verl-agent adapter triplet \"prompt response\" decompose trajectory RLHF compatible independent optimization"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "eb7b188b-97a2-42eb-8315-3eeab8f8ef3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S4LS17rK1zhqPKTJvN3j5x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 958,
+      "cache_creation_input_tokens": 3274,
+      "cache_read_input_tokens": 34184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3274
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FKgxK4ZwPW3ZiEvBybrSnD`</summary>
+
+```json
+{
+  "query": "Verlog CMU multi-turn RL framework \"per turn\" \"context window\" scalability"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "ec03bf5a-83fb-4847-9b67-3df5c0b1a7ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S4LS17rK1zhqPKTJvN3j5x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 958,
+      "cache_creation_input_tokens": 3274,
+      "cache_read_input_tokens": 34184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3274
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-17T05:12:11.689Z_
+
+<details><summary>↩ Tool result · `toolu_013Tc7kUfg7T2P9J3eNcVaSF`</summary>
+
+```text
+Web search results for query: "verl-agent adapter triplet "prompt response" decompose trajectory RLHF compatible independent optimization"
+
+Links: [{"title":"VERL - Agent-lightning","url":"https://microsoft.github.io/agent-lightning/latest/algorithm-zoo/verl/"},{"title":"VERL - Agent-lightning - Microsoft Open Source","url":"https://microsoft.github.io/agent-lightning/stable/algorithm-zoo/verl/"},{"title":"GitHub - verl-project/verl: verl/HybridFlow: A Flexible and Efficient RL Post-Training Framework · GitHub","url":"https://github.com/verl-project/verl"},{"title":"Agent Loop - verl documentation - Read the Docs","url":"https://verl.readthedocs.io/en/latest/advance/agent_loop.html"},{"title":"[RFC] verl with Agent/Env · Issue #1172 · volcengine/verl","url":"https://github.com/volcengine/verl/issues/1172"},{"title":"GitHub - langfengQ/verl-agent: verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. verl-agent is also the official code for paper \"Group-in-Group Policy Optimization for LLM Agent Training\" · GitHub","url":"https://github.com/langfengQ/verl-agent"},{"title":"verl: Reinforcement learning training framework for large models, designed …","url":"https://jimmysong.io/ai/verl/"},{"title":"Understanding Self-Evolution in LLM Agents via Multi-Turn ...","url":"https://ragen-ai.github.io/pdf/RAGEN.pdf"},{"title":"Agentic RL Training - verl documentation - Read the Docs","url":"https://verl.readthedocs.io/en/latest/start/agentic_rl.html"},{"title":"NeuralForge: Agentic AI and RLHF RLVR Platform | Kellton","url":"https://www.kellton.com/ai-ml/neuralforge"}]
+
+Based on the search results, here's what I found regarding your query about verl-agent adapter triplet decomposition and RLHF optimization:
+
+## VERL's Trajectory Decomposition Approach
+
+VERL decomposes each agent execution into prompt–response pairs via the Adapter and associates them with their corresponding reward signals as Triplet objects. The final scalar reward, derived from the last triplet in the trajectory, is propagated to all preceding triplets following the identical assignment strategy. This ensures that each triplet receives an identical reward signal and can be independently optimized as a valid RLHF trajectory within the VERL framework.
+
+## Independent Optimization Capability
+
+The key advantage of this approach is that each triplet receives an identical reward signal and can be independently optimized as a valid RLHF trajectory within the VERL framework, making the decomposition RLHF-compatible and enabling independent optimization of each prompt-response pair.
+
+## Agent-Specific Extensions
+
+For more advanced agent training capabilities, verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. This extension includes features like customizable memory modules and algorithms designed for fine-grained credit assignment in agent training scenarios.
+
+The current VERL framework does not provide fine-grained control over reward propagation mechanisms, but the modular design allows independent optimization of decomposed trajectory components for RLHF training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "8f616f6b-815e-40ea-a156-4a8b7f11c64e",
+  "tool_use_result": {
+    "query": "verl-agent adapter triplet \"prompt response\" decompose trajectory RLHF compatible independent optimization",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01V3Ei5Xc8trzM6tqQR3YuLb",
+        "content": [
+          {
+            "title": "VERL - Agent-lightning",
+            "url": "https://microsoft.github.io/agent-lightning/latest/algorithm-zoo/verl/"
+          },
+          {
+            "title": "VERL - Agent-lightning - Microsoft Open Source",
+            "url": "https://microsoft.github.io/agent-lightning/stable/algorithm-zoo/verl/"
+          },
+          {
+            "title": "GitHub - verl-project/verl: verl/HybridFlow: A Flexible and Efficient RL Post-Training Framework · GitHub",
+            "url": "https://github.com/verl-project/verl"
+          },
+          {
+            "title": "Agent Loop - verl documentation - Read the Docs",
+            "url": "https://verl.readthedocs.io/en/latest/advance/agent_loop.html"
+          },
+          {
+            "title": "[RFC] verl with Agent/Env · Issue #1172 · volcengine/verl",
+            "url": "https://github.com/volcengine/verl/issues/1172"
+          },
+          {
+            "title": "GitHub - langfengQ/verl-agent: verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. verl-agent is also the official code for paper \"Group-in-Group Policy Optimization for LLM Agent Training\" · GitHub",
+            "url": "https://github.com/langfengQ/verl-agent"
+          },
+          {
+            "title": "verl: Reinforcement learning training framework for large models, designed …",
+            "url": "https://jimmysong.io/ai/verl/"
+          },
+          {
+            "title": "Understanding Self-Evolution in LLM Agents via Multi-Turn ...",
+            "url": "https://ragen-ai.github.io/pdf/RAGEN.pdf"
+          },
+          {
+            "title": "Agentic RL Training - verl documentation - Read the Docs",
+            "url": "https://verl.readthedocs.io/en/latest/start/agentic_rl.html"
+          },
+          {
+            "title": "NeuralForge: Agentic AI and RLHF RLVR Platform | Kellton",
+            "url": "https://www.kellton.com/ai-ml/neuralforge"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding your query about verl-agent adapter triplet decomposition and RLHF optimization:\n\n## VERL's Trajectory Decomposition Approach\n\nVERL decomposes each agent execution into prompt–response pairs via the Adapter and associates them with their corresponding reward signals as Triplet objects. The final scalar reward, derived from the last triplet in the trajectory, is propagated to all preceding triplets following the identical assignment strategy. This ensures that each triplet receives an identical reward signal and can be independently optimized as a valid RLHF trajectory within the VERL framework.\n\n## Independent Optimization Capability\n\nThe key advantage of this approach is that each triplet receives an identical reward signal and can be independently optimized as a valid RLHF trajectory within the VERL framework, making the decomposition RLHF-compatible and enabling independent optimization of each prompt-response pair.\n\n## Agent-Specific Extensions\n\nFor more advanced agent training capabilities, verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. This extension includes features like customizable memory modules and algorithms designed for fine-grained credit assignment in agent training scenarios.\n\nThe current VERL framework does not provide fine-grained control over reward propagation mechanisms, but the modular design allows independent optimization of decomposed trajectory components for RLHF training."
+    ],
+    "durationSeconds": 6.613079589000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-17T05:12:12.663Z_
+
+<details><summary>↩ Tool result · `toolu_01FKgxK4ZwPW3ZiEvBybrSnD`</summary>
+
+```text
+Web search results for query: "Verlog CMU multi-turn RL framework "per turn" "context window" scalability"
+
+Links: [{"title":"Verlog: A Multi-turn RL framework for LLM agents – Machine Learning Blog | ML@CMU | Carnegie Mellon University","url":"https://blog.ml.cmu.edu/2025/09/15/verlog-a-multi-turn-rl-framework-for-llm-agents/"},{"title":"Verlog: Context-lite Multi-turn Reinforcement Learning ...","url":"https://openreview.net/pdf?id=GmodkWwMV3"},{"title":"Verlog | A Multi-turn RL framework for LLM agents","url":"https://wentsechen.github.io/Verlog_blogpost/"},{"title":"GitHub - mikolajmg/Verlog: Verlog: A Multi-turn RL framework for LLM agents · GitHub","url":"https://github.com/mikolajmg/Verlog"},{"title":"GitHub - utopic-dev/Verlog: Verlog: A Multi-turn RL framework for LLM agents","url":"https://github.com/utopic-dev/Verlog"},{"title":"Verlog: A Multi-turn RL framework for LLM agents","url":"https://www.linkedin.com/posts/mldcmu_verlog-a-multi-turn-rl-framework-for-llm-activity-7373367603114721282-2RW_"},{"title":"Verlog: A Multi-turn RL framework for LLM brokers – Machine Studying Weblog | ML@CMU – techtrendfeed.com","url":"https://techtrendfeed.com/?p=6785"},{"title":"NeurIPS Verlog: Context-lite Multi-turn Reinforcement Learning framework for Long-Horizon LLM Agents","url":"https://neurips.cc/virtual/2025/128043"},{"title":"Verlog - A Multi-turn RL framework for LLM agents | Agentic Intelligence Lab","url":"https://agentic-intelligence-lab.org/2025/08/15/technical-post.html"},{"title":"Verlog: An Efficient Synchronized Multi-turn RL Framework for LLM Agents | OpenReview","url":"https://openreview.net/forum?id=U3yTQonq10"}]
+
+Based on the web search results, here's what I found about Verlog, the CMU multi-turn RL framework:
+
+## Overview
+Verlog is a multi-turn reinforcement learning framework built for long-horizon LLM-agentic tasks with highly variable episode lengths. Whereas prior frameworks like VeRL and RAGEN effectively handle tasks with ~10 turns, and verl-agent scales up to 50 turns, Verlog is designed to operate in environments with over 400 turns, making it uniquely suited for complex, long-term decision-making.
+
+## Per-Turn Abstraction and Context Window
+The framework's key innovation directly addresses your query: To handle extremely long episodes, Verlog treats each turn as an independent training sample, which eliminates the need to encode the entire trajectory into a single context window and allows for modular, customizable memory architectures. 
+
+The framework treats each turn as an individual training data point, allowing flexible control over how many previous turns are included, truncating outdated state-action pairs from the trajectory and retaining only the most recent memory length state-action pairs along with the current state in the context window. The LLM agent achieves higher performance when using a shorter memory length during fine-tuning, with memory lengths of one and two consistently yielding the highest performance across settings.
+
+## Scalability
+Across all three domains, Verlog demonstrates its ability to train reliably under long horizons, sparse rewards, and variable episode lengths, showing that the framework scales naturally from short to very long multi-turn tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "9ef6dd68-0dda-464f-b7db-eb024223dbbc",
+  "tool_use_result": {
+    "query": "Verlog CMU multi-turn RL framework \"per turn\" \"context window\" scalability",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E2j2biuPQnAYYWgU3p3Vfv",
+        "content": [
+          {
+            "title": "Verlog: A Multi-turn RL framework for LLM agents – Machine Learning Blog | ML@CMU | Carnegie Mellon University",
+            "url": "https://blog.ml.cmu.edu/2025/09/15/verlog-a-multi-turn-rl-framework-for-llm-agents/"
+          },
+          {
+            "title": "Verlog: Context-lite Multi-turn Reinforcement Learning ...",
+            "url": "https://openreview.net/pdf?id=GmodkWwMV3"
+          },
+          {
+            "title": "Verlog | A Multi-turn RL framework for LLM agents",
+            "url": "https://wentsechen.github.io/Verlog_blogpost/"
+          },
+          {
+            "title": "GitHub - mikolajmg/Verlog: Verlog: A Multi-turn RL framework for LLM agents · GitHub",
+            "url": "https://github.com/mikolajmg/Verlog"
+          },
+          {
+            "title": "GitHub - utopic-dev/Verlog: Verlog: A Multi-turn RL framework for LLM agents",
+            "url": "https://github.com/utopic-dev/Verlog"
+          },
+          {
+            "title": "Verlog: A Multi-turn RL framework for LLM agents",
+            "url": "https://www.linkedin.com/posts/mldcmu_verlog-a-multi-turn-rl-framework-for-llm-activity-7373367603114721282-2RW_"
+          },
+          {
+            "title": "Verlog: A Multi-turn RL framework for LLM brokers – Machine Studying Weblog | ML@CMU – techtrendfeed.com",
+            "url": "https://techtrendfeed.com/?p=6785"
+          },
+          {
+            "title": "NeurIPS Verlog: Context-lite Multi-turn Reinforcement Learning framework for Long-Horizon LLM Agents",
+            "url": "https://neurips.cc/virtual/2025/128043"
+          },
+          {
+            "title": "Verlog - A Multi-turn RL framework for LLM agents | Agentic Intelligence Lab",
+            "url": "https://agentic-intelligence-lab.org/2025/08/15/technical-post.html"
+          },
+          {
+            "title": "Verlog: An Efficient Synchronized Multi-turn RL Framework for LLM Agents | OpenReview",
+            "url": "https://openreview.net/forum?id=U3yTQonq10"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about Verlog, the CMU multi-turn RL framework:\n\n## Overview\nVerlog is a multi-turn reinforcement learning framework built for long-horizon LLM-agentic tasks with highly variable episode lengths. Whereas prior frameworks like VeRL and RAGEN effectively handle tasks with ~10 turns, and verl-agent scales up to 50 turns, Verlog is designed to operate in environments with over 400 turns, making it uniquely suited for complex, long-term decision-making.\n\n## Per-Turn Abstraction and Context Window\nThe framework's key innovation directly addresses your query: To handle extremely long episodes, Verlog treats each turn as an independent training sample, which eliminates the need to encode the entire trajectory into a single context window and allows for modular, customizable memory architectures. \n\nThe framework treats each turn as an individual training data point, allowing flexible control over how many previous turns are included, truncating outdated state-action pairs from the trajectory and retaining only the most recent memory length state-action pairs along with the current state in the context window. The LLM agent achieves higher performance when using a shorter memory length during fine-tuning, with memory lengths of one and two consistently yielding the highest performance across settings.\n\n## Scalability\nAcross all three domains, Verlog demonstrates its ability to train reliably under long horizons, sparse rewards, and variable episode lengths, showing that the framework scales naturally from short to very long multi-turn tasks."
+    ],
+    "durationSeconds": 7.159024095
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent! Now I have very rich evidence. Let me also search for some more details about the specific technical reasons - especially OOM issues and the PPO/GRPO implementation patterns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "3ccf485c-1f7b-4424-af1d-201e2e326a9c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CS2fhpzG8CKZGw3BhgkyZw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3017,
+      "cache_read_input_tokens": 37458,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3017
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+关键证据已经非常充分。再搜一个关于 PPO/GRPO 从 single-turn 到 multi-turn 的代码继承问题。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "7c07805b-054d-4577-b5dd-a25d3434a7a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CS2fhpzG8CKZGw3BhgkyZw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3017,
+      "cache_read_input_tokens": 37458,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3017
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ArRD6ZfAa3pdS9mM6ugKUC`</summary>
+
+```json
+{
+  "query": "GRPO \"group relative\" multi-turn agent \"each response\" independent advantage DeepSeek"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "65c1000d-1bfc-4d18-acc3-dcbbd5737f99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CS2fhpzG8CKZGw3BhgkyZw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3017,
+      "cache_read_input_tokens": 37458,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3017
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014m1mRteZXTMTC222nUnZSh`</summary>
+
+```json
+{
+  "query": "OpenRLHF GitHub issue \"multi-turn\" \"context length\" OOM memory rollout generation",
+  "allowed_domains": [
+    "github.com"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "2ee9179b-a20e-4926-a42f-93f4f8674157",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CS2fhpzG8CKZGw3BhgkyZw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3017,
+      "cache_read_input_tokens": 37458,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3017
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-17T05:12:26.624Z_
+
+<details><summary>↩ Tool result · `toolu_014m1mRteZXTMTC222nUnZSh`</summary>
+
+```text
+Web search results for query: "OpenRLHF GitHub issue "multi-turn" "context length" OOM memory rollout generation"
+
+Links: [{"title":"GitHub - OpenRLHF/OpenRLHF-M: An Easy-to-use, Scalable and High-performance RLHF Framework designed for Multimodal Models. · GitHub","url":"https://github.com/OpenRLHF/OpenRLHF-M"},{"title":"GitHub - OpenRLHF/OpenRLHF: An Easy-to-use, Scalable and High-performance Agentic RL Framework based on Ray (PPO & DAPO & REINFORCE++ & VLM & TIS & vLLM & Ray & Async RL) · GitHub","url":"https://github.com/OpenRLHF/OpenRLHF"},{"title":"OOM on Llama 8B · Issue #698 · OpenRLHF/OpenRLHF","url":"https://github.com/OpenRLHF/OpenRLHF/issues/698"},{"title":"Issues · OpenRLHF/OpenRLHF","url":"https://github.com/OpenRLHF/OpenRLHF/issues"},{"title":"OOM with Llama3-8b on 8*H100 · Issue #519 · OpenRLHF/OpenRLHF","url":"https://github.com/OpenRLHF/OpenRLHF/issues/519"},{"title":"GitHub - hjc3613/OpenRLHF","url":"https://github.com/hjc3613/OpenRLHF"},{"title":"Some of the step tasks have been OOM Killed - Custom reward_func · Issue #1139 · OpenRLHF/OpenRLHF","url":"https://github.com/OpenRLHF/OpenRLHF/issues/1139"},{"title":"GitHub - OpenRLHF/OpenRLHF: An Easy-to-use, Scalable and High-performance RLHF Framework based on Ray (PPO & GRPO & REINFORCE++ & vLLM & Ray & Dynamic Sampling & Async Agentic RL)","url":"https://github.com/OpenRLHF/OpenRLHF/tree/main"},{"title":"GitHub - KempnerInstitute/AgentsOpenRLHF: An Easy-to-use, Scalable and High-performance RLHF Framework based on Ray (PPO & GRPO & REINFORCE++ & vLLM & Ray & Dynamic Sampling & Async Agentic RL) · GitHub","url":"https://github.com/KempnerInstitute/AgentsOpenRLHF"},{"title":"Train Qwen/Qwen2.5-72B-Instruct encountering RAM OOM · Issue #632 · OpenRLHF/OpenRLHF","url":"https://github.com/OpenRLHF/OpenRLHF/issues/632"}]
+
+Based on the web search results, I found several relevant GitHub issues related to OpenRLHF and OOM (Out of Memory) problems during rollout generation and training:
+
+## Key Issues Found:
+
+1. **Issue #519 - OOM with Llama3-8b on 8*H100**: This issue involved PPO on Llama3-8b with 8*H100 GPUs experiencing OOM after some training updates, even with configurations including flash_attn, zero3, gradient_checkpointing, and adam_offload.
+
+2. **Issue #698 - OOM on Llama 8B**: The issue reported running out of memory on an 80 GB A100 even with a batch size of 1 and training sequence length of 128.
+
+3. **Issue #1139 - OOM Killed with Custom reward_func**: This recent issue (October 2025) involved OOM errors even after trying to reduce the micro_rollout_batch_size and vllm_generate_batch_size, occurring when running PPO on 4*H100 with OLMo 150M models.
+
+4. **Issue #632 - RAM OOM with Qwen 72B**: A similar problem was reported on a node with 1.4TB memory.
+
+## Recommended Solutions:
+
+The search results suggest several optimization strategies:
+- Increase the rollout_micro_batch_size and minimize the TP size of vLLM engine as much as possible
+- Use hybrid engine --colocate_all_models and --vllm_enable_sleep rather than distributed RLHF when the model size and context length are small values
+- For a large base model, if an OOM occurs, do not use any colocate options
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "83506430-3183-4d64-b70b-6f7c1d6eb293",
+  "tool_use_result": {
+    "query": "OpenRLHF GitHub issue \"multi-turn\" \"context length\" OOM memory rollout generation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019SGbCyJRJFRt6MvrPXnHKU",
+        "content": [
+          {
+            "title": "GitHub - OpenRLHF/OpenRLHF-M: An Easy-to-use, Scalable and High-performance RLHF Framework designed for Multimodal Models. · GitHub",
+            "url": "https://github.com/OpenRLHF/OpenRLHF-M"
+          },
+          {
+            "title": "GitHub - OpenRLHF/OpenRLHF: An Easy-to-use, Scalable and High-performance Agentic RL Framework based on Ray (PPO & DAPO & REINFORCE++ & VLM & TIS & vLLM & Ray & Async RL) · GitHub",
+            "url": "https://github.com/OpenRLHF/OpenRLHF"
+          },
+          {
+            "title": "OOM on Llama 8B · Issue #698 · OpenRLHF/OpenRLHF",
+            "url": "https://github.com/OpenRLHF/OpenRLHF/issues/698"
+          },
+          {
+            "title": "Issues · OpenRLHF/OpenRLHF",
+            "url": "https://github.com/OpenRLHF/OpenRLHF/issues"
+          },
+          {
+            "title": "OOM with Llama3-8b on 8*H100 · Issue #519 · OpenRLHF/OpenRLHF",
+            "url": "https://github.com/OpenRLHF/OpenRLHF/issues/519"
+          },
+          {
+            "title": "GitHub - hjc3613/OpenRLHF",
+            "url": "https://github.com/hjc3613/OpenRLHF"
+          },
+          {
+            "title": "Some of the step tasks have been OOM Killed - Custom reward_func · Issue #1139 · OpenRLHF/OpenRLHF",
+            "url": "https://github.com/OpenRLHF/OpenRLHF/issues/1139"
+          },
+          {
+            "title": "GitHub - OpenRLHF/OpenRLHF: An Easy-to-use, Scalable and High-performance RLHF Framework based on Ray (PPO & GRPO & REINFORCE++ & vLLM & Ray & Dynamic Sampling & Async Agentic RL)",
+            "url": "https://github.com/OpenRLHF/OpenRLHF/tree/main"
+          },
+          {
+            "title": "GitHub - KempnerInstitute/AgentsOpenRLHF: An Easy-to-use, Scalable and High-performance RLHF Framework based on Ray (PPO & GRPO & REINFORCE++ & vLLM & Ray & Dynamic Sampling & Async Agentic RL) · GitHub",
+            "url": "https://github.com/KempnerInstitute/AgentsOpenRLHF"
+          },
+          {
+            "title": "Train Qwen/Qwen2.5-72B-Instruct encountering RAM OOM · Issue #632 · OpenRLHF/OpenRLHF",
+            "url": "https://github.com/OpenRLHF/OpenRLHF/issues/632"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant GitHub issues related to OpenRLHF and OOM (Out of Memory) problems during rollout generation and training:\n\n## Key Issues Found:\n\n1. **Issue #519 - OOM with Llama3-8b on 8*H100**: This issue involved PPO on Llama3-8b with 8*H100 GPUs experiencing OOM after some training updates, even with configurations including flash_attn, zero3, gradient_checkpointing, and adam_offload.\n\n2. **Issue #698 - OOM on Llama 8B**: The issue reported running out of memory on an 80 GB A100 even with a batch size of 1 and training sequence length of 128.\n\n3. **Issue #1139 - OOM Killed with Custom reward_func**: This recent issue (October 2025) involved OOM errors even after trying to reduce the micro_rollout_batch_size and vllm_generate_batch_size, occurring when running PPO on 4*H100 with OLMo 150M models.\n\n4. **Issue #632 - RAM OOM with Qwen 72B**: A similar problem was reported on a node with 1.4TB memory.\n\n## Recommended Solutions:\n\nThe search results suggest several optimization strategies:\n- Increase the rollout_micro_batch_size and minimize the TP size of vLLM engine as much as possible\n- Use hybrid engine --colocate_all_models and --vllm_enable_sleep rather than distributed RLHF when the model size and context length are small values\n- For a large base model, if an OOM occurs, do not use any colocate options"
+    ],
+    "durationSeconds": 7.759462465000004
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-17T05:12:27.145Z_
+
+<details><summary>↩ Tool result · `toolu_01ArRD6ZfAa3pdS9mM6ugKUC`</summary>
+
+```text
+Web search results for query: "GRPO "group relative" multi-turn agent "each response" independent advantage DeepSeek"
+
+Links: [{"title":"Training-Free Group Relative Policy Optimization","url":"https://arxiv.org/html/2510.08191v1"},{"title":"Group Relative Policy Optimization (GRPO)","url":"https://cameronrwolfe.substack.com/p/grpo"},{"title":"What is GRPO? The RL algorithm used to train DeepSeek | by Mehul Gupta | Data Science in Your Pocket | Medium","url":"https://medium.com/data-science-in-your-pocket/what-is-grpo-the-rl-algorithm-used-to-train-deepseek-12acc19798d3"},{"title":"Group Relative Policy Optimization (GRPO): deepseek’s RL cheat-code | by Jaideep Ray | Better ML | Medium","url":"https://medium.com/better-ml/group-relative-policy-optimization-grpo-the-deep-seek-cheat-code-5c13a2c86317"},{"title":"RC-GRPO: Reward-Conditioned Group Relative Policy Optimization for Multi-Turn Tool Calling Agents","url":"https://arxiv.org/html/2602.03025"},{"title":"Training DeepSeek-R1: The Math Behind Group Relative Policy Optimization (GRPO) | WordGPT Blog","url":"https://wordgptpro.com/blog/deepseek-r1-grpo-training"},{"title":"The Math Behind DeepSeek: A Deep Dive into Group Relative Policy Optimization (GRPO) | by Sahin Ahmed(Data Scientist/MLE) | Medium","url":"https://medium.com/@sahin.samia/the-math-behind-deepseek-a-deep-dive-into-group-relative-policy-optimization-grpo-8a75007491ba"},{"title":"Training-Free Group Relative Policy Optimization | OpenReview","url":"https://openreview.net/forum?id=tyUnYbE7Gi"},{"title":"GRPO - Group Relative Policy Optimization: How DeepSeek Trains Reasoning Models","url":"https://chessman7.substack.com/p/grpo-group-relative-policy-optimization"},{"title":"DeepSeek’s GRPO is the biggest breakthrough since transformers | Fabrix.ai","url":"https://fabrix.ai/blog/deepseeks-grpo-is-the-biggest-breakthrough-since-transformers/"}]
+
+Based on the search results, here's what I found about GRPO and its applications to multi-turn agents:
+
+## GRPO Overview
+
+GRPO (Group Relative Policy Optimization) is a method used in reinforcement learning (RL) to help a model learn better by comparing different actions and making small, controlled updates using a group of observations.
+
+## Group Relative Advantage and Independent Responses
+
+GRPO computes a group-relative advantage by comparing the reward of each response to the average reward in its group. At each optimization step, rather than calculating a numerical advantage for gradient ascent within each group of rollouts, the method leverages LLMs to introspect on each group and distill a semantic advantage.
+
+## Application to Multi-Turn Agents
+
+A recent paper titled "RC-GRPO: Reward-Conditioned Group Relative Policy Optimization for Multi-Turn Tool Calling Agents" addresses challenges with applying GRPO to multi-turn scenarios. A common recipe, SFT followed by GRPO, can stall when within-group reward variation is low (e.g., more rollouts in a group receive the all 0 or all 1 reward), making the group-normalized advantage uninformative and yielding vanishing updates.
+
+The paper proposes RC-GRPO, which treats exploration as a controllable steering problem via discrete reward tokens, first fine-tuning a Reward-Conditioned Trajectory Policy (RCTP) on mixed-quality trajectories with reward goal special tokens, then during RL, sampling diverse reward tokens within each GRPO group and conditioning rollouts on the sampled token to improve within-group diversity.
+
+## Training-Free GRPO Extension
+
+Another variant, Training-Free GRPO, is a cost-effective solution that enhances LLM agent performance without any parameter updates. This method significantly enhances the performance of frozen policy models such as DeepSeek-V3.1-Terminus with only dozens of training samples.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "90768119-915c-4170-89cd-af6e28588bb7",
+  "tool_use_result": {
+    "query": "GRPO \"group relative\" multi-turn agent \"each response\" independent advantage DeepSeek",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Hgfw8PN2jzaJ2XWB3729VS",
+        "content": [
+          {
+            "title": "Training-Free Group Relative Policy Optimization",
+            "url": "https://arxiv.org/html/2510.08191v1"
+          },
+          {
+            "title": "Group Relative Policy Optimization (GRPO)",
+            "url": "https://cameronrwolfe.substack.com/p/grpo"
+          },
+          {
+            "title": "What is GRPO? The RL algorithm used to train DeepSeek | by Mehul Gupta | Data Science in Your Pocket | Medium",
+            "url": "https://medium.com/data-science-in-your-pocket/what-is-grpo-the-rl-algorithm-used-to-train-deepseek-12acc19798d3"
+          },
+          {
+            "title": "Group Relative Policy Optimization (GRPO): deepseek’s RL cheat-code | by Jaideep Ray | Better ML | Medium",
+            "url": "https://medium.com/better-ml/group-relative-policy-optimization-grpo-the-deep-seek-cheat-code-5c13a2c86317"
+          },
+          {
+            "title": "RC-GRPO: Reward-Conditioned Group Relative Policy Optimization for Multi-Turn Tool Calling Agents",
+            "url": "https://arxiv.org/html/2602.03025"
+          },
+          {
+            "title": "Training DeepSeek-R1: The Math Behind Group Relative Policy Optimization (GRPO) | WordGPT Blog",
+            "url": "https://wordgptpro.com/blog/deepseek-r1-grpo-training"
+          },
+          {
+            "title": "The Math Behind DeepSeek: A Deep Dive into Group Relative Policy Optimization (GRPO) | by Sahin Ahmed(Data Scientist/MLE) | Medium",
+            "url": "https://medium.com/@sahin.samia/the-math-behind-deepseek-a-deep-dive-into-group-relative-policy-optimization-grpo-8a75007491ba"
+          },
+          {
+            "title": "Training-Free Group Relative Policy Optimization | OpenReview",
+            "url": "https://openreview.net/forum?id=tyUnYbE7Gi"
+          },
+          {
+            "title": "GRPO - Group Relative Policy Optimization: How DeepSeek Trains Reasoning Models",
+            "url": "https://chessman7.substack.com/p/grpo-group-relative-policy-optimization"
+          },
+          {
+            "title": "DeepSeek’s GRPO is the biggest breakthrough since transformers | Fabrix.ai",
+            "url": "https://fabrix.ai/blog/deepseeks-grpo-is-the-biggest-breakthrough-since-transformers/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about GRPO and its applications to multi-turn agents:\n\n## GRPO Overview\n\nGRPO (Group Relative Policy Optimization) is a method used in reinforcement learning (RL) to help a model learn better by comparing different actions and making small, controlled updates using a group of observations.\n\n## Group Relative Advantage and Independent Responses\n\nGRPO computes a group-relative advantage by comparing the reward of each response to the average reward in its group. At each optimization step, rather than calculating a numerical advantage for gradient ascent within each group of rollouts, the method leverages LLMs to introspect on each group and distill a semantic advantage.\n\n## Application to Multi-Turn Agents\n\nA recent paper titled \"RC-GRPO: Reward-Conditioned Group Relative Policy Optimization for Multi-Turn Tool Calling Agents\" addresses challenges with applying GRPO to multi-turn scenarios. A common recipe, SFT followed by GRPO, can stall when within-group reward variation is low (e.g., more rollouts in a group receive the all 0 or all 1 reward), making the group-normalized advantage uninformative and yielding vanishing updates.\n\nThe paper proposes RC-GRPO, which treats exploration as a controllable steering problem via discrete reward tokens, first fine-tuning a Reward-Conditioned Trajectory Policy (RCTP) on mixed-quality trajectories with reward goal special tokens, then during RL, sampling diverse reward tokens within each GRPO group and conditioning rollouts on the sampled token to improve within-group diversity.\n\n## Training-Free GRPO Extension\n\nAnother variant, Training-Free GRPO, is a cost-effective solution that enhances LLM agent performance without any parameter updates. This method significantly enhances the performance of frozen policy models such as DeepSeek-V3.1-Terminus with only dozens of training samples."
+    ],
+    "durationSeconds": 9.130291576999996
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have very comprehensive evidence. Let me compile my findings and write the analysis document to the server. Let me organize my analysis:
+
+## Root Causes (ranked by evidence strength):
+
+1. **RLHF Framework Compatibility / Historical Inheritance**: The most fundamental reason. verl explicitly decomposes multi-turn trajectories into (prompt, response) triplets and assigns identical rewards to make them "independently optimizable as a valid RLHF trajectory." This shows the design choice is driven by backward compatibility with single-turn RLHF infrastructure.
+
+2. **Context Window Limitations**: Confirmed by SUPO, Verlog, and SkyRL-Agent. 
+
+Long episodes exceed model context length, forcing truncation, so treating each step independently sidesteps this constraint entirely. SUPO explicitly notes that "context length of the underlying LLM fundamentally restricts the horizon of RL training."
+
+3. **GPU Memory / OOM**: OpenRLHF issues (#519, #698, #1139) show that even 8B models on H100s can OOM. Full episode training with long context requires storing all activations, which causes quadratic memory growth. Per-step decomposition keeps each training sample short and manageable.
+
+4. **Computational Efficiency / Batching**: Per-step samples are shorter and more uniform in length, making them easier to batch efficiently and improving GPU utilization. SkyRL-Agent explicitly decomposes trajectories for this reason.
+
+5. **Scalability Design Choice**: verl-agent chose step-independent training specifically for scalability, keeping context length nearly constant and enabling long-horizon scenarios.
+
+6. **Token-Level Loss Tradition**: GRPO and PPO were designed for single-turn interactions, so applying them to multi-turn naturally means treating each turn independently. ArCHer identifies the core issue: token-level methods struggle with extremely long horizons, leading to numerical instabilities and slow convergence.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "e7898c38-6d10-4d51-98c3-e98bf5c28dbb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012hExfgk3xv45LfdN4Qz1nz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1173,
+      "cache_creation_input_tokens": 1462,
+      "cache_read_input_tokens": 40475,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1462
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+证据非常充分。现在创建目录并写入分析文档。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "c7abfe03-27a4-4b97-9861-c5eb1656f41c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012hExfgk3xv45LfdN4Qz1nz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1173,
+      "cache_creation_input_tokens": 1462,
+      "cache_read_input_tokens": 40475,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1462
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NaqXnpZRBTubHXdjcFtvSY`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "mkdir -p /root/cost-verify-agent-rl/analysis",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "a990a2fc-2e97-4ab3-b3b1-218412adfe55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012hExfgk3xv45LfdN4Qz1nz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1173,
+      "cache_creation_input_tokens": 1462,
+      "cache_read_input_tokens": 40475,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1462
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-17T05:12:46.987Z_
+
+<details><summary>↩ Tool result · `toolu_01NaqXnpZRBTubHXdjcFtvSY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "69f5a786-1ce6-4a03-8e2e-b48ff13055ea",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01C5ZuCDRqgZfYgYh4jtCWzW`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat > /root/cost-verify-agent-rl/analysis/why_step_independent.md << 'DOCEOF'\n# Why LLM Agent Training Defaults to Step-Independent Mode\n\n## Summary\n\nLLM agent RL frameworks (RAGEN, verl/verl-agent, OpenRLHF, SkyRL-Agent, Verlog) default to step-independent mode primarily for three reinforcing reasons: (1) backward compatibility with single-turn RLHF infrastructure, (2) context window and GPU memory constraints, and (3) computational efficiency through uniform-length batching. The design was not a deliberate algorithmic choice based on multi-turn RL theory, but an engineering path-of-least-resistance that inherited assumptions from single-turn RLHF and happened to sidestep context/memory bottlenecks. The community has only recently begun to recognize this as a problem rather than a feature.\n\n## Evidence by Framework\n\n### verl / verl-agent\n\n**The most explicit evidence of step-independent-by-design.**\n\nverl decomposes each agent execution into prompt-response pairs via an \"Adapter\" and associates them with reward signals as \"Triplet\" objects. The final scalar reward from the last triplet is propagated to all preceding triplets following an \"identical assignment strategy.\" The documentation explicitly states: \"each triplet receives an identical reward signal and can be **independently optimized as a valid RLHF trajectory** within the VERL framework\" (Microsoft Agent-Lightning docs, https://microsoft.github.io/agent-lightning/latest/algorithm-zoo/verl/).\n\nverl-agent further proposes a \"step-independent multi-turn rollout mechanism\" that \"allows for fully customizable per-step input structures, history management, and memory modules.\" The stated rationale: \"keeping the context length almost constant over time and making it highly scalable for long-horizon scenarios\" (https://github.com/langfengQ/verl-agent).\n\n**Root cause revealed:** The design explicitly prioritizes compatibility with existing RLHF training loops. Multi-turn trajectories are forced into the (prompt, response, reward) triplet format that single-turn RLHF expects. This is an engineering convenience, not an algorithmic recommendation.\n\n### RAGEN (StarPO)\n\nRAGEN's StarPO framework supports both trajectory-level and per-step modes. The default critic-free regime assigns a scalar reward to each trajectory and computes normalized advantage across all tokens. However, when instantiated with PPO (which requires a critic), it falls back to token-level updates where a critic estimates token-level value and advantages (https://arxiv.org/html/2504.20073v2).\n\n**Key finding:** RAGEN explicitly identifies that \"vanilla adaptations from single-turn methods like PPO and GRPO achieve early gains in agent settings but often collapse.\" This confirms the problem exists but acknowledges it as the status quo that their work tries to fix, not something they introduced.\n\nStarPO-S is their stabilized variant addressing this, suggesting the default (unstabilized) mode was inherited from prior practice.\n\n### OpenRLHF\n\nOpenRLHF's architecture uses a \"unified token-in-token-out pipeline\" that \"decouples execution mode (single-turn/multi-turn) from the RL algorithm.\" While this sounds clean, the practical implication is that multi-turn is an extension layered on top of a fundamentally single-turn infrastructure.\n\nMultiple GitHub issues document OOM problems even for small models:\n- Issue #519: Llama3-8B OOM on 8xH100 during PPO training\n- Issue #698: OOM on 80GB A100 with batch_size=1, seq_len=128\n- Issue #1139: OOM on 4xH100 with 150M parameter models\n\nThese OOM issues with short sequences explain why the framework defaults to shorter, per-step training samples rather than full episode contexts.\n\n### SkyRL-Agent\n\nSkyRL-Agent explicitly \"decomposes each trajectory into three stage jobs\" and records \"each LLM invocation as an individual transition tuple containing input tokens, output tokens, and their corresponding log probabilities\" (https://arxiv.org/html/2511.16108v1).\n\n**Rationale:** Efficiency. Their async dispatcher achieves 1.55x speedup by processing per-step transitions independently. Full-episode processing would create variable-length batches that waste GPU compute.\n\n### Verlog (CMU)\n\nVerlog most explicitly articulates the rationale: \"To handle extremely long episodes, [the framework] treats each turn as an independent training sample. This eliminates the need to encode the entire trajectory into a single context window\" (https://blog.ml.cmu.edu/2025/09/15/verlog-a-multi-turn-rl-framework-for-llm-agents/).\n\nThey further show that \"the LLM agent achieves higher performance when using a shorter memory length during fine-tuning, with memory lengths of one and two consistently yielding the highest performance.\" This finding may have reinforced the community belief that step-independence is not just expedient but also optimal, though it likely reflects overfitting to short-horizon credit assignment rather than a true advantage.\n\n### SUPO (ByteDance/Stanford/CMU)\n\nSUPO explicitly diagnoses the problem: \"context length of the underlying LLM fundamentally restricts the horizon of RL training, preventing agents from tackling tasks whose solution requires more tool calls than can fit into a single context window\" (https://www.alphaxiv.org/overview/2510.06727v1).\n\nTheir solution (learned summarization to compress history) implicitly confirms that the default practice is to truncate or ignore history, i.e., step-independent mode is the fallback when context overflows.\n\n## Root Causes (ranked by evidence strength)\n\n### 1. Single-Turn RLHF Infrastructure Inheritance (Primary Cause)\n\n**Evidence:** verl's explicit \"Triplet\" decomposition; OpenRLHF's \"unified token-in-token-out pipeline\" designed for single-turn first; GRPO/PPO algorithms designed for (prompt, response) pairs.\n\n**Mechanism:** The entire LLM post-training ecosystem was built for single-turn RLHF (InstructGPT, ChatGPT-style). When researchers extended these frameworks to multi-turn agents, the path of least resistance was to decompose multi-turn trajectories into independent single-turn samples. verl makes this most explicit: each step becomes a \"valid RLHF trajectory\" that plugs directly into existing training code.\n\n**Why it persists:** Rewriting the entire training pipeline (loss computation, batching, gradient accumulation, distributed training) for trajectory-level optimization is a massive engineering effort. Per-step decomposition \"just works\" with existing infrastructure.\n\n### 2. Context Window Hard Constraint\n\n**Evidence:** SUPO paper (\"context length fundamentally restricts the horizon\"); Verlog (\"eliminates the need to encode the entire trajectory\"); verl-agent (\"keeping context length almost constant\").\n\n**Mechanism:** A 10-step agent episode with environment observations can easily reach 30K-50K tokens. Models with 4K-8K context (common during training) physically cannot fit full episodes. Even with 32K context models, training with full episodes means each sample consumes enormous GPU memory for attention computation (quadratic in sequence length).\n\n**Quantitative evidence from SUPO:** Using 4K working context with summarization matches or beats 32K full-context training (47.7% vs 43.0% on CodeGym), suggesting the community may have empirically observed that full-context training doesn't help and concluded step-independence is fine.\n\n### 3. GPU Memory / OOM Constraints\n\n**Evidence:** OpenRLHF issues #519, #698, #1139 showing OOM even with small models and short sequences; the prevalence of gradient checkpointing, offloading, and micro-batching workarounds.\n\n**Mechanism:** Full-episode training requires:\n- Storing all token activations for backpropagation (O(L^2) for attention)\n- KV cache during generation proportional to full episode length\n- Critic/value network forward pass on full episode\n\nPer-step decomposition reduces each training sample to a few hundred tokens, making memory manageable. This is not just about context window limits but about practical trainability.\n\n### 4. Batching Efficiency\n\n**Evidence:** SkyRL-Agent's 1.55x speedup from per-step decomposition; verl-agent's \"constant context length\" design.\n\n**Mechanism:** Multi-turn episodes have highly variable lengths (some tasks solve in 2 steps, others need 20). Batching variable-length full episodes wastes compute through padding. Per-step samples are more uniform in length, enabling efficient GPU utilization. vLLM and other inference engines are optimized for uniform-length batch processing.\n\n### 5. GRPO/PPO Algorithm Design Assumption\n\n**Evidence:** ArCHer paper (\"token-level methods face extremely long horizon, leading to numerical instabilities and slow convergence\"); RC-GRPO paper (group-normalized advantage becomes \"uninformative\" with low within-group reward variation in multi-turn).\n\n**Mechanism:** GRPO computes advantages by comparing responses within a group. In multi-turn settings with sparse terminal rewards, all steps in an episode get the same reward, making within-group normalization collapse. The algorithm was designed for single-turn where each response has its own distinct reward. Using it per-step is a workaround for this fundamental mismatch, not a principled choice.\n\n### 6. Empirical Misinterpretation\n\n**Evidence:** Verlog finding that \"memory length of 1-2 yields highest performance\"; early RAGEN results showing per-step can work in simple environments.\n\n**Mechanism:** On short-horizon tasks or tasks with strong per-step signals, step-independent training can appear to work fine or even outperform trajectory-level training (due to lower variance). This creates survivorship bias: researchers who tried it on easy tasks concluded it was sufficient, and never tested on tasks where cross-step credit assignment matters.\n\n## Implications for Our Paper\n\n### Framing the Contribution\n\nOur paper can position the finding as: **The community's default of step-independent training is not a deliberate algorithmic choice but an engineering accident inherited from single-turn RLHF infrastructure, reinforced by context/memory constraints, and sustained by insufficient evaluation on tasks requiring multi-step credit assignment.**\n\n### Specific Arguments to Make\n\n1. **Infrastructure lock-in:** verl's \"Triplet\" decomposition and OpenRLHF's \"unified pipeline\" show that multi-turn was retrofitted onto single-turn code. The frameworks chose compatibility over correctness.\n\n2. **Conflation of scalability with optimality:** verl-agent and Verlog explicitly chose step-independence for scalability (constant context length, efficient batching). But scalability != training effectiveness. Our results show this trade-off is catastrophic for tasks requiring temporal credit assignment.\n\n3. **No framework warns users:** None of the frameworks document that step-independent mode may fail for multi-turn tasks. It's the silent default, not a flagged trade-off.\n\n4. **The \"it works on benchmarks\" trap:** Most agent RL papers evaluate on tasks solvable in 2-5 steps (ALFWorld, WebShop, simple tool-use). On these, step-independent is adequate. Our contribution is showing failure on tasks requiring longer-horizon reasoning.\n\n### Citation Targets\n\n- verl-agent (GiGPO paper, arXiv:2505.10978) for explicit step-independent design rationale\n- SUPO (arXiv:2510.06727) for context window as fundamental bottleneck\n- ArCHer (arXiv:2402.19446) for theoretical framing of token-level vs utterance-level challenges\n- Verlog (NeurIPS 2025) for \"each turn as independent training sample\" design\n- RC-GRPO (arXiv:2602.03025) for GRPO failure modes in multi-turn\n\n## Sources\n\n- verl-agent: https://github.com/langfengQ/verl-agent\n- VERL/Agent-Lightning docs: https://microsoft.github.io/agent-lightning/latest/algorithm-zoo/verl/\n- RAGEN/StarPO: https://arxiv.org/html/2504.20073v2, https://github.com/RAGEN-AI/RAGEN\n- OpenRLHF: https://github.com/OpenRLHF/OpenRLHF\n- SkyRL-Agent: https://arxiv.org/html/2511.16108v1\n- Verlog: https://blog.ml.cmu.edu/2025/09/15/verlog-a-multi-turn-rl-framework-for-llm-agents/\n- SUPO: https://www.alphaxiv.org/overview/2510.06727v1\n- ArCHer: https://arxiv.org/abs/2402.19446\n- RC-GRPO: https://arxiv.org/html/2602.03025\n- GiGPO: https://arxiv.org/abs/2505.10978\nDOCEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "6e6b2949-1bed-4851-bca6-e5c99bfa1a07",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H2xXaQ1BKnY2vNXPzGD1fo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1867,
+      "cache_read_input_tokens": 41937,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1867
+      },
+      "output_tokens": 62,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-17T05:14:01.228Z_
+
+<details><summary>↩ Tool result · `toolu_01C5ZuCDRqgZfYgYh4jtCWzW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "399e86af-0baf-4db1-9473-41f79d5d35d4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+验证文件写入成功。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "f2b5c8b7-651d-44b8-8b0e-0a68a314de31",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0161x2K1xf5nis1he1vJ72fW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3242,
+      "cache_read_input_tokens": 43804,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3242
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Tap3FKaDYuccTtou83oVtu`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "wc -l /root/cost-verify-agent-rl/analysis/why_step_independent.md && echo \"---\" && head -20 /root/cost-verify-agent-rl/analysis/why_step_independent.md",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "97f3aac3-9c89-4f49-ae6b-7620aee8987c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0161x2K1xf5nis1he1vJ72fW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3242,
+      "cache_read_input_tokens": 43804,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3242
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-17T05:14:05.039Z_
+
+<details><summary>↩ Tool result · `toolu_01Tap3FKaDYuccTtou83oVtu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"138 /root/cost-verify-agent-rl/analysis/why_step_independent.md\\n---\\n# Why LLM Agent Training Defaults to Step-Independent Mode\\n\\n## Summary\\n\\nLLM agent RL frameworks (RAGEN, verl/verl-agent, OpenRLHF, SkyRL-Agent, Verlog) default to step-independent mode primarily for three reinforcing reasons: (1) backward compatibility with single-turn RLHF infrastructure, (2) context window and GPU memory constraints, and (3) computational efficiency through uniform-length batching. The design was not a deliberate algorithmic choice based on multi-turn RL theory, but an engineering path-of-least-resistance that inherited assumptions from single-turn RLHF and happened to sidestep context/memory bottlenecks. The community has only recently begun to recognize this as a problem rather than a feature.\\n\\n## Evidence by Framework\\n\\n### verl / verl-agent\\n\\n**The most explicit evidence of step-independent-by-design.**\\n\\nverl decomposes each agent execution into prompt-response pairs via an \\\"Adapter\\\" and associates them with reward signals as \\\"Triplet\\\" objects. The final scalar reward from the last triplet is propagated to all preceding triplets following an \\\"identical assignment strategy.\\\" The documentation explicitly states: \\\"each triplet receives an identical reward signal and can be **independently optimized as a valid RLHF trajectory** within the VERL framework\\\" (Microsoft Agent-Lightning docs, https://microsoft.github.io/agent-lightning/latest/algorithm-zoo/verl/).\\n\\nverl-agent further proposes a \\\"step-independent multi-turn rollout mechanism\\\" that \\\"allows for fully customizable per-step input structures, history management, and memory modules.\\\" The stated rationale: \\\"keeping the context length almost constant over time and making it highly scalable for long-horizon scenarios\\\" (https://github.com/langfengQ/verl-agent).\\n\\n**Root cause revealed:** The design explicitly prioritizes compatibility with existing RLHF training loops. Multi-turn trajectories are forced into the (prompt, response, reward) triplet format that single-turn RLHF expects. This is an engineering convenience, not an algorithmic recommendation.\\n\\n### RAGEN (StarPO)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "07dac4a4-0c08-49fd-b8c6-efa0ebfe36ae",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"138 /root/cost-verify-agent-rl/analysis/why_step_independent.md\\\\n---\\\\n# Why LLM Agent Training Defaults to Step-Independent Mode\\\\n\\\\n## Summary\\\\n\\\\nLLM agent RL frameworks (RAGEN, verl/verl-agent, OpenRLHF, SkyRL-Agent, Verlog) default to step-independent mode primarily for three reinforcing reasons: (1) backward compatibility with single-turn RLHF infrastructure, (2) context window and GPU memory constraints, and (3) computational efficiency through uniform-length batching. The design was not a deliberate algorithmic choice based on multi-turn RL theory, but an engineering path-of-least-resistance that inherited assumptions from single-turn RLHF and happened to sidestep context/memory bottlenecks. The community has only recently begun to recognize this as a problem rather than a feature.\\\\n\\\\n## Evidence by Framework\\\\n\\\\n### verl / verl-agent\\\\n\\\\n**The most explicit evidence of step-independent-by-design.**\\\\n\\\\nverl decomposes each agent execution into prompt-response pairs via an \\\\\\\"Adapter\\\\\\\" and associates them with reward signals as \\\\\\\"Triplet\\\\\\\" objects. The final scalar reward from the last triplet is propagated to all preceding triplets following an \\\\\\\"identical assignment strategy.\\\\\\\" The documentation explicitly states: \\\\\\\"each triplet receives an identical reward signal and can be **independently optimized as a valid RLHF trajectory** within the VERL framework\\\\\\\" (Microsoft Agent-Lightning docs, https://microsoft.github.io/agent-lightning/latest/algorithm-zoo/verl/).\\\\n\\\\nverl-agent further proposes a \\\\\\\"step-independent multi-turn rollout mechanism\\\\\\\" that \\\\\\\"allows for fully customizable per-step input structures, history management, and memory modules.\\\\\\\" The stated rationale: \\\\\\\"keeping the context length almost constant over time and making it highly scalable for long-horizon scenarios\\\\\\\" (https://github.com/langfengQ/verl-agent).\\\\n\\\\n**Root cause revealed:** The design explicitly prioritizes compatibility with existing RLHF training loops. Multi-turn trajectories are forced into the (prompt, response, reward) triplet format that single-turn RLHF expects. This is an engineering convenience, not an algorithmic recommendation.\\\\n\\\\n### RAGEN (StarPO)\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"138 /root/cost-verify-agent-rl/analysis/why_step_independent.md\\n---\\n# Why LLM Agent Training Defaults to Step-Independent Mode\\n\\n## Summary\\n\\nLLM agent RL frameworks (RAGEN, verl/verl-agent, OpenRLHF, SkyRL-Agent, Verlog) default to step-independent mode primarily for three reinforcing reasons: (1) backward compatibility with single-turn RLHF infrastructure, (2) context window and GPU memory constraints, and (3) computational efficiency through uniform-length batching. The design was not a deliberate algorithmic choice based on multi-turn RL theory, but an engineering path-of-least-resistance that inherited assumptions from single-turn RLHF and happened to sidestep context/memory bottlenecks. The community has only recently begun to recognize this as a problem rather than a feature.\\n\\n## Evidence by Framework\\n\\n### verl / verl-agent\\n\\n**The most explicit evidence of step-independent-by-design.**\\n\\nverl decomposes each agent execution into prompt-response pairs via an \\\"Adapter\\\" and associates them with reward signals as \\\"Triplet\\\" objects. The final scalar reward from the last triplet is propagated to all preceding triplets following an \\\"identical assignment strategy.\\\" The documentation explicitly states: \\\"each triplet receives an identical reward signal and can be **independently optimized as a valid RLHF trajectory** within the VERL framework\\\" (Microsoft Agent-Lightning docs, https://microsoft.github.io/agent-lightning/latest/algorithm-zoo/verl/).\\n\\nverl-agent further proposes a \\\"step-independent multi-turn rollout mechanism\\\" that \\\"allows for fully customizable per-step input structures, history management, and memory modules.\\\" The stated rationale: \\\"keeping the context length almost constant over time and making it highly scalable for long-horizon scenarios\\\" (https://github.com/langfengQ/verl-agent).\\n\\n**Root cause revealed:** The design explicitly prioritizes compatibility with existing RLHF training loops. Multi-turn trajectories are forced into the (prompt, response, reward) triplet format that single-turn RLHF expects. This is an engineering convenience, not an algorithmic recommendation.\\n\\n### RAGEN (StarPO)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+文件已写入 `/root/cost-verify-agent-rl/analysis/why_step_independent.md`（138行）。
+
+核心发现总结：
+
+**Step-independent 不是一个有意的算法设计，而是工程路径依赖的产物。** 六个根因按证据强度排序：
+
+1. **Single-turn RLHF 基础设施继承** — verl 最明确：把 multi-turn 拆成 Triplet 让每步"independently optimized as a valid RLHF trajectory"，本质是为了兼容已有代码
+2. **Context window 硬约束** — 10步 episode 轻松超 30K tokens，4K-8K context 模型物理放不下
+3. **GPU OOM** — OpenRLHF 多个 issue 显示 8B 模型在 H100 上都 OOM，per-step 大幅降低显存需求
+4. **Batching 效率** — SkyRL-Agent 通过 per-step 分解获得 1.55x 加速
+5. **GRPO/PPO 算法假设** — 设计给 single-turn 的 group-normalized advantage 在 multi-turn sparse reward 下坍塌
+6. **经验误读** — Verlog 发现 memory_length=1-2 效果最好，造成"step-independent 足够好"的错觉
+
+论文可以用这些证据支撑 "diagnosing the hidden cost of community default practice" 这个 contribution，重点引用 verl-agent（GiGPO）、SUPO、ArCHer、Verlog。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "uuid": "32e33b2a-35d7-4f80-9391-eb1a3bcd0e27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BeqU5qT7hk9WHBLhYfPM8R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 809,
+      "cache_read_input_tokens": 47046,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 809
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 59_
+
+文件已写入 `/root/cost-verify-agent-rl/analysis/why_step_independent.md`（138行）。
+
+核心发现总结：
+
+**Step-independent 不是一个有意的算法设计，而是工程路径依赖的产物。** 六个根因按证据强度排序：
+
+1. **Single-turn RLHF 基础设施继承** — verl 最明确：把 multi-turn 拆成 Triplet 让每步"independently optimized as a valid RLHF trajectory"，本质是为了兼容已有代码
+2. **Context window 硬约束** — 10步 episode 轻松超 30K tokens，4K-8K context 模型物理放不下
+3. **GPU OOM** — OpenRLHF 多个 issue 显示 8B 模型在 H100 上都 OOM，per-step 大幅降低显存需求
+4. **Batching 效率** — SkyRL-Agent 通过 per-step 分解获得 1.55x 加速
+5. **GRPO/PPO 算法假设** — 设计给 single-turn 的 group-normalized advantage 在 multi-turn sparse reward 下坍塌
+6. **经验误读** — Verlog 发现 memory_length=1-2 效果最好，造成"step-independent 足够好"的错觉
+
+论文可以用这些证据支撑 "diagnosing the hidden cost of community default practice" 这个 contribution，重点引用 verl-agent（GiGPO）、SUPO、ArCHer、Verlog。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 194320,
+  "duration_api_ms": 272490,
+  "num_turns": 21,
+  "stop_reason": "end_turn",
+  "session_id": "7e6bb464-aa2c-4fc5-a15c-ba3f8548cd71",
+  "total_cost_usd": 1.0387199999999999,
+  "usage": {
+    "input_tokens": 2143,
+    "cache_creation_input_tokens": 36014,
+    "cache_read_input_tokens": 338669,
+    "output_tokens": 6020,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 36014,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 445,
+        "cache_read_input_tokens": 47046,
+        "cache_creation_input_tokens": 809,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 809
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 282023,
+      "outputTokens": 8212,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 16,
+      "costUSD": 0.4830830000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 2143,
+      "outputTokens": 6020,
+      "cacheReadInputTokens": 338669,
+      "cacheCreationInputTokens": 36014,
+      "webSearchRequests": 0,
+      "costUSD": 0.555637,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "570f1bc3-a6c9-4d7f-a377-d7e10f40c2f9"
+}
+```
+
+</details>
+
+---

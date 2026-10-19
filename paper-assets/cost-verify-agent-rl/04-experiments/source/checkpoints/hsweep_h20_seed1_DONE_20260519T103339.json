@@ -1,0 +1,71 @@
+{
+  "exp_id": "hsweep_h20_seed1",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-18T18:04:42.684Z",
+    "updated_at": "2026-05-19T10:33:39.352Z",
+    "hypothesis": "h=20 with step_independent generation provides 20-step observation windows. Key data point for fig5 cliff figure: with h=10 and h=5 both collapsing, h=20 tests whether 20 steps of context is sufficient for recovery. If h=20 recovers (val > 0% at step 5+), the cliff is between h=10 and h=20. If still collapsed, the minimum viable context window is larger than 20 steps.",
+    "parent": "hsweep_h10_seed1",
+    "reproduce": {
+      "finished_at": "2026-05-18T18:38:42.494Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-18T18:38:43.732Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T18:38:46.246660+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "诊断中: worker_diagnose_hsweep_h20_seed1_20260518T184044 正在 SSH 深查失败原因。日志尾部无 Traceback，疑似系统级 kill (OOM/磁盘)。"
+      }
+    },
+    "notes": "D084 确认: 只需 step 5 val 数据做 cliff figure (in-dist val success vs h-value), 不需要 checkpoint, 不做 h=20 OOD eval。Step 5 val 出来后立即 kill, 释放 bjb1 GPU 给 exp029_seed2 OOD eval + 8b_sft_clean_eval。",
+    "spec": {
+      "command": "source /root/miniconda3/bin/activate && cd /root/cost-verify-agent-rl/RAGEN && export RAY_OBJECT_STORE_MEMORY=16000000000 && PYTHONUNBUFFERED=1 python train.py --config-name _alfworld_hsweep_h20 seed.train=10000 trainer.experiment_name=hsweep-h20-seed1",
+      "server": "bjb1-17606",
+      "gpu": "0,1",
+      "pid": 77613,
+      "log_path": "/root/runs/cost-verify-agent-rl/hsweep_h20_seed1.log",
+      "submitted_at": "2026-05-18T19:10:38.966Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wandb_run_id": "qi8g4f86",
+      "data_path": "ALFWorld",
+      "data_count": 3553,
+      "model_name": "Qwen3-1.7B (SFT v4)",
+      "seed": 10000,
+      "checkpoint_source": "qwen3_exp021_ragen_sft_v4",
+      "eval_data": "ALFWorld val 32 tasks",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/hsweep-h20/",
+      "hyperparams": {
+        "total_training_steps": 15,
+        "h": 20,
+        "max_actor_ckpt_to_keep": 3,
+        "val_before_train": false,
+        "optimizer_offload": false,
+        "ray_object_store_memory": "16GB"
+      },
+      "wall_clock_seconds": 55380.4,
+      "gpu_hours": 15.38
+    },
+    "metrics": {
+      "step1_train": 0.203,
+      "step2_train": 0.133,
+      "step4_train": 0.281,
+      "val_step5_success": 0.15625
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T10:33:39.509547+00:00",
+  "trigger": "update_registry"
+}

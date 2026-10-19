@@ -1,0 +1,911 @@
+# cron hook exp013b
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 30
+- **Recorded user turns:** 1
+- **Tool calls:** 14
+- **Original source:** `logs/chats/cron_hook_exp013b.jsonl`
+- **Structured JSON:** [`d52abff6e642a8f0cc0e.json`](../../sessions/d5/d52abff6e642a8f0cc0e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+30 recorded events
+
+### User
+
+_source line 1 · 2026-05-14T15:49:18.548227+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #5。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：bjb1-17606 cuda:0, cuda:1。config 中未显式列 gpu_ids，但全部实验历史均使用这两张卡，不得使用其他 GPU
+- /root/autodl-tmp 磁盘 95% full（exp013f 结束时仅剩 4.1GB）。提交新实验前必须清理旧 checkpoint（exp008_grpo/global_step_5 已被多次引用，不能删；exp012_grpo、exp013b_grpo、exp013e 可清理）
+- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（不要假设 .venv）
+- WandB 中 `train/*/raw_reward` 和 `episodic_return` 是日志 artifact（恒为 0），实际 reward 看 `critic/score/*`。已被误诊一次（D015→D017 纠正）
+- exp014a/b/c 已被 D013 撤销（killed），不要恢复它们
+
+### 2. 🖥️ 基础设施快照
+- 服务器：bjb1-17606，2× RTX PRO 6000 Blackwell 94GB
+- 工作目录：`/root/cost-verify-agent-rl/RAGEN`（训练入口 `python train.py`）
+- Python：`/root/miniconda3/bin/python`（conda base，不是 venv）
+- 模型 checkpoint：`/root/autodl-tmp/checkpoints/`（exp008_sft/final = SFT warmup，exp008_grpo/global_step_5 = GRPO 恢复点）
+- Expert SFT 数据：`/root/autodl-tmp/expert_trajectories/sft_data/train.jsonl`（2460 条 PDDL expert trajectory）
+- ALFWorld 数据：`/root/autodl-tmp/alfworld/`（3553 train games）
+- 必需环境变量：`TMPDIR=/root/autodl-tmp/tmp/`, `ALFWORLD_DATA=/root/autodl-tmp/alfworld`, `RAY_memory_monitor_refresh_ms=0`, `RAY_SYSTEM_MEMORY=210000000000`, `HYDRA_FULL_ERROR=1`
+- 活跃进程：exp017_expert_sft (PID 353947, cron 监控中, bjb1-17606)
+- 无活跃 Worker
+
+### 3. 📊 当前状态
+exp017_expert_sft 正在 RUNNING——用 PDDL expert trajectory 数据（2460条）SFT Qwen3-1.7B instruct，LR=2e-5, 3 epochs, batch=4, grad_accum=4。脚本 `scripts/run_expert_sft.sh`。Pass 标准 success ≥ 10%。Cron 在监控。
+
+exp018_sft_grpo 处于 PREPARING——计划从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练（LR=5e-7, kl=0.1, grad_clip=1.0, won=10.0, 30 步）。Pass: success ≥ 20%。
+
+其余 30 个实验全部 DONE/PREPARING(killed)。无待处理的 Worker 回调或 Director 决策。
+
+### 4. 📋 待办（条件触发式）
+- exp017 cron 回调（success）→ spawn Worker eval SFT checkpoint（134 tasks full eval）→ update registry metrics → 若 success ≥ 10% 则准备 exp018 提交审批（PENDING）→ 向 Director 汇报
+- exp017 cron 回调（failed）→ 诊断失败原因 → 若基础设施问题则修复重提交；若算法问题则向 Director 汇报并建议调整
+- exp018 审批通过 → submit_on_allocated，从 exp017 checkpoint 开始 sparse GRPO
+- exp018 完成且 success ≥ 20% → Phase A PASS，启动 Phase B (B-IAVR)：FSDP→HF 转换 + `_alfworld_phase_b.yaml` 配置
+- exp018 失败/negative → 考虑 Tier 1 备选方案（SPEAR 或 DAPO+AR3PO），向 Director 提 pivot 建议
+- 磁盘告警 → 清理 exp012_grpo、exp013b_grpo、exp013e checkpoint 释放空间
+
+### 5. 🎯 战略上下文
+**核心问题链**：Qwen3-1.7B base success ~4% → GRPO sparse reward 无信号 → dense reward 会被 gaming → 唯一出路是先用 Expert SFT 提升 base success rate → 再接 sparse GRPO。
+
+**决策链（关键转折）**：
+- D006: SFT warmup 解决 format 问题（success: action_is_valid 8%→90%）
+- D011-D013: dense reward gaming 确认，放弃 dense reward 路线
+- D016: Pivot to Expert SFT（用 PDDL expert trajectory 而非公开数据集，数据量 2460 vs 之前 1200）
+
+**易错点**：
+1. 不要再尝试 dense reward shaping（exp013f 已证明会 gaming）
+2. 不要把 WandB raw_reward=0 当 bug——这是日志 artifact，看 critic/score
+3. Phase B 代码已就绪（68 tests pass），但绝对不要在 Phase A 未通过时启动
+4. 磁盘只剩 ~4GB，新实验前必须清理旧 checkpoint
+5. Expert SFT 数据（2460 条）比之前的 SFT（1200 条公开数据）质量更高（PDDL solver 生成的 optimal trajectory），预期 success rate 提升显著
+
+## 可查的历史
+前 16 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp013b",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-14T15:49:28.763701+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp013b",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-14T15:49:28.814386+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp013b",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T15:49:32.387184+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "cost-verify-agent-rl",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp013b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "cost-verify-agent-rl",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T15:49:32.437776+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp013b",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T15:49:32.963046+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp017_expert_sft\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T15:36:28.291Z\", \"updated_at\": \"2026-05-14T15:41:57.365Z\", \"hypothesis\": \"Expert SFT: 用 PDDL expert trajectory 数据 SFT Qwen3-1.7B instruct 模型，提升 ALFWorld baseline success rate，为后续 GRPO 提供更好的冷启动点。LR=2e-5, 3 epochs, batch_size=4, grad_accum=4。Pass 标准: success ≥ 10%。\", \"parent\": \"exp008_sft\", \"spec\": {\"command\": \"bash scripts/run_expert_sft.sh\", \"server\": \"bjb1-17606\", \"data_path\": \"/root/autodl-tmp/expert_trajectories/sft_data/train.jsonl\", \"data_count\": 2460, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"Qwen/Qwen3-1.7B (original instruct)\", \"eval_data\": \"ALFWorld 134 tasks eval after SFT\"}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1641}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp013b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 575
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T15:49:32.963512+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp013b",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-14T15:49:33.240971+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp013b",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "cost-verify-agent-rl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T15:49:34.942147+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"exp017_expert_sft\", \"success\": true, \"actions\": [\"Job still running (pid=353947)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp013b",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 2504
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T15:49:34.942787+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\", \"content\": \"# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp017_expert_sft | Expert SFT: 用 PDDL expert trajectory 数据 SFT Qwen3-1.7B instruct 模型，提升 ALFWorld baseline success rate，为后续 GRPO 提供更好的冷启动点。LR=2e-5, 3 epochs, batch_size=4, grad_accum=4。Pass 标准: success ≥ 10%。 | — | — | — |\\n\\n## 待处理\\n- exp018_sft_grpo（准备中）\\n- exp014b: 极低 Dense Reward: valid_action_bonus=0.01（1:1000 比例），测试极弱 bonus 能否防 collapse 又不引发 gaming。如果 bonus 弱到不影响 GRPO reward ranking，模型不会被诱导走捷径。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。（准备中）\\n- exp014a: Success-Gated Dense Reward: valid_action_bonus=0.15 只在 group 内至少一条 trajectory success 时才给。消除 reward gaming 的独立最大化路径——没有 success 就没有 bonus，模型必须探索 success。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。（准备中）\\n- exp014c: Success-gated valid_action_bonus：bonus 仅在 episode 成功时累加到 reward，消除独立最大化路径。valid_action_bonus=0.15, success_reward=10.0。解决 exp013f reward gaming（unconditional bonus 导致 agent 放弃 success 追求 valid action）。从 step 5 checkpoint 恢复 GRPO 30 步。（准备中）\\n- exp008（准备中）\\n- exp007_dryrun（准备中）\\n- exp005（准备中）\\n- exp_003（准备中）\\n- exp_003_dryrun（准备中）\\n- exp_003_dryrun2（准备中）\\n- …另有 2 项\\n\\n## 近期结论\\n- **exp016** (failed): LR 折中方案：LR=5e-7（exp012b 1e-6 collapse vs exp015 1e-7 零梯度的中间值）。kl_loss_coef=0.1, max_grad_norm=1.0 保持。纯 sparse reward（won=10.0，无 bonus，无 format_penalty）。从 exp015/global_step_5 checkpoint 恢复，GRPO 30 步。 ← 基于 exp015\\n- **exp015** (killed): Sparse GRPO + 训练稳定性修复。纯 sparse reward（won=10.0，无 valid_action_bonus，无 format_penalty）。针对 exp012b 的 step 7 catastrophic collapse（grad_norm 1.48→0.094），三项修复：LR 1e-7（降 10 倍防单步更新过激）、kl_loss_coef 0.1（增 10 倍约束策略偏移）、max_grad_norm=1.0（梯度裁剪）。从 exp008 step 5 checkpoint 恢复，GRPO 30 步。 
+…[truncated 1083 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp013b",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1979
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T15:49:34.993669+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\", \"content\": \"# cost-verify-agent-rl — Research Dashboard\\n\\n> 最后更新: 2026-05-14 13:51 UTC | 更新原因: D014: kill exp015, exp016 准备中, expert trajectory 收集 65%\\n\\n## 核心方向\\n训练 agent 学会\\\"何时验证\\\"：B-IAVR 用 action 是否因 self-guidance 而改变作为行为信号，结合 Lagrangian 预算控制。基于 Self-Guide（always-on self-guidance via GRPO）扩展。\\n\\n## 阶段\\n**MVP 验证中** — Phase A LR 寻优，exp016 准备中\\n\\n## GPU 速率（实测）\\n- 硬件：2× RTX PRO 6000 Blackwell 94GB @ bjb1-17606\\n- GRPO 30 步：~5.6 min/step ≈ 2.8h\\n- SFT：~30 min 单卡\\n\\n## MVP 状态\\n\\n### Phase A: Always-On Self-Guidance 基线\\n\\n**LR 搜索区间已确定**：\\n- LR=1e-6（exp012b）：有信号（success 8.6%），但 step 7 catastrophic collapse（grad_norm 1.48→0.09）\\n- LR=1e-7（exp015）：无 collapse（grad_norm 稳定），但无有效学习（step 3-5 连续零梯度）\\n- **LR=5e-7（exp016）**：折中方案，保留 KL=0.1 + grad_clip=1.0 稳定措施\\n\\n**实验历程**：\\n- exp008_sft → ✅ SFT warmup（action_is_valid 8%→90%）\\n- exp010 → ❌ format_penalty 劫持梯度\\n- exp012b → ❌ sparse reward, LR=1e-6, collapse at step 7\\n- exp013f → ❌ dense reward gaming（action_is_valid→97.5%, success→0%）。验证了 GRPO 学习能力 + 基础设施修复\\n- exp015 → ❌ sparse reward, LR=1e-7, 无有效学习（3/5 步零梯度）。验证了 collapse 修复有效\\n- **exp016 → 准备中** — sparse reward, LR=5e-7, 从 exp015 step 5 恢复\\n\\n**并行进行**：\\n- Expert trajectory 收集：ALFWorld PDDL expert, ~1146/1759 条（65%），CPU-only\\n- 文献调研完成：SPEAR/DAPO/Dr.GRPO/AR3PO 备选方案已评估\\n\\n### Phase A 判定标准\\n- **PASS**: ALFWorld success ≥ 20%\\n\\n### Phase B: B-IAVR（被 Phase A 阻塞）\\n- 代码就绪（68 tests passed）\\n- FSDP→HF 转换脚本就绪\\n- 等 Phase A checkpoint\\n\\n## 近期任务\\n- [ ] 清理 exp015 Ray 残留进程 → 启动 exp016\\n- [ ] 监控 exp016 step 6-7 kill/go\\n- [ ] Expert trajectory 收集完成后验证数据质量\\n- [ ] 如 exp016 失败：(a) expert SFT 强化 warmup → sparse GRPO 或 (b) DAPO+AR3PO 方案\\n\\n## GPU 预算\\n- 分配：bjb1-17606 cuda:0, cuda:1\\n- 已消耗：~22h（exp003-015 系列）\\n- exp016 预估：~3h\\n- 全项目上限：200h H100-equivalent\\n\\n## 关键风险\\n1. **LR 微调可能是死胡同**：5e-7 不一定
+…[truncated 1305 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp013b",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 1752
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T15:49:55.766559+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp013b",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T15:49:56.219790+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_9f237037.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp013b",
+  "tool": "Read",
+  "elapsed_ms": 453
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T15:49:56.774464+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'PREPARING'}",
+  "project": "cost-verify-agent-rl",
+  "fields": "['status', 'hypothesis']",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp013b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'PREPARING'}",
+    "project": "cost-verify-agent-rl",
+    "fields": "['status', 'hypothesis']",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T15:49:56.925491+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp018_sft_grpo\": {\"status\": \"PREPARING\", \"hypothesis\": \"Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 baseline success rate（≥10%），使 GRPO 有足够非零 reward group 产生有效梯度。LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, won=10.0, 无 bonus/penalty, GRPO 30 步。Pass: success ≥ 20%。\"}, \"exp014b\": {\"status\": \"PREPARING\", \"hypothesis\": \"极低 Dense Reward: valid_action_bonus=0.01（1:1000 比例），测试极弱 bonus 能否防 collapse 又不引发 gaming。如果 bonus 弱到不影响 GRPO reward ranking，模型不会被诱导走捷径。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。\"}, \"exp014a\": {\"status\": \"PREPARING\", \"hypothesis\": \"Success-Gated Dense Reward: valid_action_bonus=0.15 只在 group 内至少一条 trajectory success 时才给。消除 reward gaming 的独立最大化路径——没有 success 就没有 bonus，模型必须探索 success。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。\"}, \"exp014c\": {\"status\": \"PREPARING\", \"hypothesis\": \"Success-gated valid_action_bonus：bonus 仅在 episode 成功时累加到 reward，消除独立最大化路径。valid_action_bonus=0.15, success_reward=10.0。解决 exp013f reward gaming（unconditional bonus 导致 agent 放弃 success 追求 valid action）。从 step 5 checkpoint 恢复 GRPO 30 步。\"}, \"exp008\": {\"status\": \"PREPARING\"}}, \"count\": 5, \"total\": 12, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0985}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp013b",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T15:50:01.002472+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp013b",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T15:50:01.153349+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp013b",
+  "tool": "Glob",
+  "elapsed_ms": 150
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T15:50:05.067657+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp013b",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T15:50:05.419306+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp013b",
+  "tool": "Glob",
+  "elapsed_ms": 351
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-14T15:50:09.133621+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp013b",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T15:50:09.184969+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp013b",
+  "tool": "Glob",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T15:50:11.546888+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp013b",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T15:50:11.647699+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp013b",
+  "tool": "Glob",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T15:50:25.126722+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp013b",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T15:50:25.227943+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp013b",
+  "tool": "ToolSearch",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T15:50:44.204734+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "infra:disk-cleanup",
+  "project": "cost-verify-agent-rl",
+  "task_prompt": "## 任务：清理 bjb1-17606 磁盘空间\n\n服务器 bjb1-17606 的 /root/autodl-tmp 磁盘已 95% 满，需要在 exp017 完成前清理，为 exp018 腾空间。\n\n### 清理目标\n删除以下旧 checkpoint 目录（已确认不再需要）：\n- `/root/autodl-tmp/checkpoints/exp012_grpo/`\n- `/root/autodl-tmp/checkpoints/exp013b_grpo/`\n- `/root/autodl-tmp/checkpoints/exp013e/`\n\n### 绝对不能删除\n- `/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5` — 多个实验的恢复点\n- `/root/autodl-tmp/checkpoints/exp008_sft/final` — SFT warmup checkpoint\n- `/root/autodl-tmp/expert_trajectories/` — expert trajectory 数据\n- `/root/autodl-tmp/alfworld/` — ALFWorld 数据\n\n### 步骤\n1. 先用 ssh_read_only 查看当前磁盘使用情况：`df -h /root/autodl-tmp`\n2. 用 ssh_read_only 列出 `/root/autodl-tmp/checkpoints/` 下所有目录及大小：`du -sh /root/autodl-tmp/checkpoints/*/`\n3. 确认要删除的三个目录存在，且不包含 exp008 相关内容\n4. 用 ssh_execute 逐个删除：`rm -rf /root/autodl-tmp/checkpoints/exp012_grpo/ && rm -rf /root/autodl-tmp/checkpoints/exp013b_grpo/ && rm -rf /root/autodl-tmp/checkpoints/exp013e/`\n5. 再次 `df -h /root/autodl-tmp` 确认释放了多少空间\n6. 检查是否还有其他可清理的大文件（如 /tmp 下的临时文件、pip cache 等）：`du -sh /root/autodl-tmp/tmp/* 2>/dev/null; du -sh /root/.cache/pip 2>/dev/null; du -sh /root/.cache/huggingface 2>/dev/null`\n\n### 注意\n- exp017_expert_sft 正在运行（PID 353947），不要干扰它\n- 服务器环境：conda base，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 清理完成后报告释放了多少空间，以及当前磁盘使用率",
+  "tool_groups": "['ssh']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp013b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "infra:disk-cleanup",
+    "project": "cost-verify-agent-rl",
+    "task_prompt": "## 任务：清理 bjb1-17606 磁盘空间\n\n服务器 bjb1-17606 的 /root/autodl-tmp 磁盘已 95% 满，需要在 exp017 完成前清理，为 exp018 腾空间。\n\n### 清理目标\n删除以下旧 checkpoint 目录（已确认不再需要）：\n- `/root/autodl-tmp/checkpoints/exp012_grpo/`\n- `/root/autodl-tmp/checkpoints/exp013b_grpo/`\n- `/root/autodl-tmp/checkpoints/exp013e/`\n\n### 绝对不能删除\n- `/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5` — 多个实验的恢复点\n- `/root/autodl-tmp/checkpoints/exp008_sft/final` — SFT warmup checkpoint\n- `/root/autodl-tmp/expert_trajectories/` — expert trajectory 数据\n- `/root/autodl-tmp/alfworld/` — ALFWorld 数据\n\n### 步骤\n1. 先用 ssh_read_only 查看当前磁盘使用情况：`df -h /root/autodl-tmp`\n2. 用 ssh_read_only 列出 `/root/autodl-tmp/checkpoints/` 下所有目录及大小：`du -sh /root/autodl-tmp/checkpoints/*/`\n3. 确认要删除的三个目录存在，且不包含 exp008 相关内容\n4. 用 ssh_execute 逐个删除：`rm -rf /root/autodl-tmp/checkpoints/exp012_grpo/ && rm -rf /root/autodl-tmp/checkpoints/exp013b_grpo/ && rm -rf /root/autodl-tmp/checkpoints/exp013e/`\n5. 再次 `df -h /root/autodl-tmp` 确认释放了多少空间\n6. 检查是否还有其他可清理的大文件（如 /tmp 下的临时文件、pip cache 等）：`du -sh /root/autodl-tmp/tmp/* 2>/dev/null; du -sh /root/.cache/pip 2>/dev/null; du -sh /root/.cache/huggingface 2>/dev/null`\n\n### 注意\n- exp017_expert_sft 正在运行（PID 353947），不要干扰它\n- 服务器环境：conda base，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 清理完成后报告释放了多少空间，以及当前磁盘使用率",
+    "tool_groups": "['ssh']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T15:50:49.782393+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_infra_disk-cleanup_20260514T155044\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/logs/workers/worker_infra_disk-cleanup_20260514T155044.log\", \"setup_data\": {}, \"message\": \"Worker worker_infra_disk-cleanup_20260514T155044 started. Use get_worker_status('worker_infra_disk-cleanup_20260514T155044') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp013b",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 5577
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-14T15:50:49.834160+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际跑 2 | Worker 池 1 (GPU 0 / CPU 1)\n\n**Session Loop #5 启动汇报**\n\n1. **exp017_expert_sft** — RUNNING，PID 353947，cron 正常监控。用 PDDL expert trajectory（2460条）SFT Qwen3-1.7B，LR=2e-5, 3 epochs。等待完成回调。\n\n2. **exp018_sft_grpo** — PREPARING，等 exp017 完成且 success ≥ 10% 后提交审批。\n\n3. **磁盘** — 95% 满，已派 Worker 清理旧 checkpoint（exp012_grpo, exp013b_grpo, exp013e），为 exp018 腾空间。\n\n4. **待触发动作**：exp017 完成 → eval SFT checkpoint（134 tasks）→ 若 pass 则提交 exp018 审批。\n\n无阻塞项，等待 exp017 cron 回调。",
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp013b",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 2 / 实际跑 2 | Worker 池 1 (GPU 0 / CPU 1)\n\n**Session Loop #5 启动汇报**\n\n1. **exp017_expert_sft** — RUNNING，PID 353947，cron 正常监控。用 PDDL expert trajectory（2460条）SFT Qwen3-1.7B，LR=2e-5, 3 epochs。等待完成回调。\n\n2. **exp018_sft_grpo** — PREPARING，等 exp017 完成且 success ≥ 10% 后提交审批。\n\n3. **磁盘** — 95% 满，已派 Worker 清理旧 checkpoint（exp012_grpo, exp013b_grpo, exp013e），为 exp018 腾空间。\n\n4. **待触发动作**：exp017 完成 → eval SFT checkpoint（134 tasks）→ 若 pass 则提交 exp018 审批。\n\n无阻塞项，等待 exp017 cron 回调。",
+    "project": "cost-verify-agent-rl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T15:50:54.569398+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_4ebf0fb2d0159caa355a1a855f5ac59f:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp013b",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 4735
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-14T15:50:59.672221+00:00_
+
+Session #5 初始化完成。
+
+- **exp017_expert_sft**: RUNNING，PID 353947，cron 监控中
+- **磁盘清理 Worker** 已派出（worker_infra_disk-cleanup），清理 exp012/013b/013e 旧 checkpoint
+- 已向 Director 汇报当前状态
+
+等待两个回调：
+1. 磁盘清理 Worker 完成
+2. exp017 cron 回调（训练完成/失败）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp013b"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp029_seed6_step15_ood",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:59:56.936Z",
+    "updated_at": "2026-05-22T04:04:13.174Z",
+    "spec": {
+      "command": "cd /root/cost-verify-agent-rl && CUDA_VISIBLE_DEVICES=1 python RAGEN/eval/eval_ood.py --checkpoint_path /root/autodl-tmp/checkpoints/qwen_seed6_step15_hf --max_turn 50 --num_episodes 134 --temperature 0.4",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "383485",
+      "log_path": "/root/autodl-tmp/tmp/ood_eval_seed6.log",
+      "submitted_at": "2026-05-22T01:59:56.545Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "ALFWorld OOD 134 tasks",
+      "data_count": 134,
+      "model_name": "Qwen3-1.5B (seed6 step15)",
+      "seed": 6,
+      "checkpoint_source": "exp029_seed6 global_step_15_hf (SCP from westd)",
+      "eval_data": "ALFWorld OOD 134 tasks",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/qwen_seed6_step15_hf",
+      "wall_clock_seconds": 7456.6,
+      "gpu_hours": 2.07
+    },
+    "hypothesis": "OOD eval for seed 6 step 15 checkpoint. Seed 6 exhibited collapse behavior. OOD success rate shows generalization impact of seed collapse, contributing to paper Table 1.",
+    "conclusion": "success",
+    "metrics": {
+      "ood_success_rate": 0.2985,
+      "ood_tasks": 134,
+      "server": "bjb1-17606",
+      "note": "reproducibility run (SCP from westd), original eval=29.10% on westd"
+    },
+    "completed_at": "2026-05-22T04:04:13.174Z"
+  },
+  "timestamp": "2026-05-22T04:04:13.473612+00:00",
+  "trigger": "update_registry"
+}

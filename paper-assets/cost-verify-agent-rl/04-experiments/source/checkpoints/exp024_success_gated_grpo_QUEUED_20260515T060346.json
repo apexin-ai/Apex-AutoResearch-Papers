@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp024_success_gated_grpo",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:03:10.298Z",
+    "updated_at": "2026-05-15T06:03:46.879Z",
+    "hypothesis": "Success-gated GRPO from exp021 checkpoint. D026 终止 RAGEN GRPO 后不再适用，success-gated 不解决 context 爆炸根因。关联 D027。"
+  },
+  "timestamp": "2026-05-15T06:03:46.960533+00:00",
+  "trigger": "update_registry"
+}

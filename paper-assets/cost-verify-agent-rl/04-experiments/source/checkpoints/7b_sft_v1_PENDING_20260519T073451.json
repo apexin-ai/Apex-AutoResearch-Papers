@@ -1,0 +1,15 @@
+{
+  "exp_id": "7b_sft_v1",
+  "project": "cost-verify-agent-rl",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:09:08.447Z",
+    "updated_at": "2026-05-19T07:34:51.707Z",
+    "hypothesis": "SFT Qwen3-8B on ALFWorld expert data (2460 examples) to create 8B SFT checkpoint for subsequent RL training (Cell A vs C). Also tests westd stability with non-Ray workload (torchrun). SFT is mandatory for fair comparison with 1.7B experiments (same pipeline: base → SFT → RL)."
+  },
+  "timestamp": "2026-05-19T07:34:51.899286+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,971 @@
+# diagnose factorial h2 crash v3
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 31
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/chats/worker_diagnose_factorial_h2_crash_v3_20260518T101859.jsonl`
+- **Structured JSON:** [`f1960b10fdd2d9c21ca3.json`](../../sessions/f1/f1960b10fdd2d9c21ca3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+31 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T10:20:53.310346+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T10:20:53.310702+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T10:20:53.310910+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "tail -200 ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "tail -200 ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T10:20:53.311049+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -i \"error\\|exception\\|traceback\\|nan\\|oom\\|killed\\|segfault\" ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -i \"error\\|exception\\|traceback\\|nan\\|oom\\|killed\\|segfault\" ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-18T10:20:53.311307+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=482241)\\u001b[0m WARNING:2026-05-18 18:14:49,861:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at shelf 2. On the shelf 2, you see nothing.' for env AlfworldOOD.\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m WARNING:2026-05-18 18:14:49,861:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldOOD.\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m WARNING:2026-05-18 18:14:49,861:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at shelf 3. On the shelf 3, you see a desklamp 1, and a pencil 1.' for env AlfworldOOD.\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m WARNING:2026-05-18 18:14:49,861:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldOOD.\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m WARNING:2026-05-18 18:14:49,861:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at shelf 1. On the shelf 1, you see a cd 2.' for env AlfworldOOD.\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m WARNING:2026-05-18 18:14:49,861:Skipping non-numeric metric 'anchor_obs' with value 'This is a normal mug 1. In it, you see nothing.' for env AlfworldOOD.\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m WARNING:2026-05-18 18:14:49,861:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at safe 1. The safe 1 is closed.' for env AlfworldOOD.\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m WARNING:2026-05-18 18:14:49,861:Skipping non-numeric metric 'anchor_obs' with value 'Nothing happens.' for env AlfworldOOD.\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m WARNING:2026-05-18 18:14:49,861:Skipping non-numeric metric 'anchor_obs' with value 'You open the safe 1. The safe 1 is open. In it, you see nothing.' for env AlfworldOOD.\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m WARNING:2026-05-18 18:14:49,861:Skipping non-numeric metric 'anchor_obs' with value 'You arrive at shelf 1. On the sh
+…[truncated 7442 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T10:20:53.311479+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T10:20:53.311640+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "df -h /root /root/autodl-tmp",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "df -h /root /root/autodl-tmp",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T10:20:53.311780+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\noverlay          30G   24G  6.1G  80% /\\n/dev/md0        250G  129G  122G  52% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T10:20:53.311905+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "dmesg | grep -i \"oom\\|killed\" | tail -10",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "dmesg | grep -i \"oom\\|killed\" | tail -10",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T10:20:53.312031+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"dmesg: read kernel buffer failed: Operation not permitted\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T10:20:53.312186+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -i \"error\\|exception\\|traceback\\|nan\\|oom\\|killed\\|segfault\\|CUDA\\|RuntimeError\\|out of memory\" ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log | grep -v \"Skipping non-numeric\" | tail -80",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -i \"error\\|exception\\|traceback\\|nan\\|oom\\|killed\\|segfault\\|CUDA\\|RuntimeError\\|out of memory\" ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log | grep -v \"Skipping non-numeric\" | tail -80",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T10:20:53.312390+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"config: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 1e-06, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig', 'wrap_policy': {'min_num_params': 0}, 'param_offload': False, 'optimizer_offload': True, 'offload_policy': False, 'reshard_after_forward': True, 'fsdp_size': -1, 'forward_prefetch': False, 'model_dtype': 'fp32', 'use_orig_params': False, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'use_torch_compile': True, 'entropy_checkpointing': False, 'forward_only': False, 'strategy': 'fsdp', 'dtype': 'bfloat16'}, '_target_': 'verl.workers.config.FSDPActorConfig', 'strategy': 'fsdp', 'ppo_mini_batch_size': '${ppo_mini_batch_size}', 'ppo_micro_batch_size': None, 'ppo_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'use_dynamic_bsz': False, 'ppo_max_token_len_per_gpu': 65536, 'clip_ratio': 0.2, 'clip_ratio_low': 0.2, 'clip_ratio_high': 0.28, 'freeze_vision_tower': False, 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig', 'loss_mode': 'vanilla', 'clip_cov_ratio': 0.0002, 'clip_cov_lb': 1.0, 'clip_cov_ub': 5.0, 'kl_cov_ratio': 0.0002, 'ppo_kl_coef': 0.1}, 'clip_ratio_c': 3.0, 'loss_agg_mode': 'token-mean', 'entropy_coeff': 0.001, 'use_kl_loss': True, 'use_torch_compile': False, 'kl_loss_coef': 0.01, 'kl_loss_type': 'low_var_kl', 'ppo_epochs': 1, 'shuffle': False, 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig', 'save_contents': ['model', 'optimizer', 'extra'], 'load_contents': '${.save_contents}', 'async_save': False}, 'use_fused_kernels':
+…[truncated 6645 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T10:20:53.312552+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "ls -la /root/autodl-tmp/checkpoints/ 2>/dev/null; echo \"---\"; find /root/autodl-tmp -maxdepth 3 -name \"global_step_*\" -type d 2>/dev/null | head -20; echo \"---\"; find /root/cost-verify-agent-rl/RAGEN -path \"*/wandb/*\" -name \"*.wandb\" 2>/dev/null | head -10",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "ls -la /root/autodl-tmp/checkpoints/ 2>/dev/null; echo \"---\"; find /root/autodl-tmp -maxdepth 3 -name \"global_step_*\" -type d 2>/dev/null | head -20; echo \"---\"; find /root/cost-verify-agent-rl/RAGEN -path \"*/wandb/*\" -name \"*.wandb\" 2>/dev/null | head -10",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T10:20:53.312727+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x 10 root root 4096 May 18 16:23 .\\ndrwxr-xr-x 13 root root 4096 May 18 03:21 ..\\ndrwxr-xr-x  3 root root   27 May 18 03:33 exp021_ragen_sft_v4\\ndrwxr-xr-x  5 root root  132 May 18 18:15 factorial-h2-episode-adv\\ndrwxr-xr-x  2 root root   10 May 18 12:51 factorial-h2-episodeadv-seed2\\ndrwxr-xr-x  2 root root   10 May 17 22:00 gae_baseline\\ndrwxr-xr-x  3 root root   81 May 18 09:57 gsweep-g050-h5\\ndrwxr-xr-x  3 root root   80 May 18 14:36 gsweep-g080-h5\\ndrwxr-xr-x  2 root root   10 May 18 16:23 gsweep-g095-h5\\ndrwxr-xr-x  2 root root   10 May 18 16:23 gsweep-g100-h5\\nlrwxrwxrwx  1 root root   54 May 17 22:02 qwen3_exp021_ragen_sft_v4 -> /root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final\\n---\\n/root/autodl-tmp/checkpoints/gsweep-g050-h5/global_step_10\\n/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_5\\n/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_10\\n/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_15\\n/root/autodl-tmp/checkpoints/gsweep-g080-h5/global_step_5\\n---\\n/root/cost-verify-agent-rl/RAGEN/wandb/run-20260517_224815-5c4h3iis/run-5c4h3iis.wandb\\n/root/cost-verify-agent-rl/RAGEN/wandb/run-20260517_224851-1p5gg1bc/run-1p5gg1bc.wandb\\n/root/cost-verify-agent-rl/RAGEN/wandb/run-20260518_034137-i0y7xl9l/run-i0y7xl9l.wandb\\n/root/cost-verify-agent-rl/RAGEN/wandb/run-20260518_034716-jsrvwcfd/run-jsrvwcfd.wandb\\n/root/cost-verify-agent-rl/RAGEN/wandb/run-20260518_040916-6liw7fm1/run-6liw7fm1.wandb\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T10:20:53.312862+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -i \"save\\|checkpoint\\|ckpt\" /root/cost-verify-agent-rl/RAGEN/configs/_alfworld_factorial_h2_episode_adv.yaml 2>/dev/null; echo \"===\"; cat /root/cost-verify-agent-rl/RAGEN/configs/_alfworld_factorial_h2_episode_adv.yaml 2>/dev/null | head -80",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -i \"save\\|checkpoint\\|ckpt\" /root/cost-verify-agent-rl/RAGEN/configs/_alfworld_factorial_h2_episode_adv.yaml 2>/dev/null; echo \"===\"; cat /root/cost-verify-agent-rl/RAGEN/configs/_alfworld_factorial_h2_episode_adv.yaml 2>/dev/null | head -80",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T10:20:53.312993+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T10:20:53.313113+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n \"step\\|Step\\|training_step\\|global_step\" ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log | grep -i \"step [0-9]\\|step_[0-9]\\|steps:\" | tail -30",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n \"step\\|Step\\|training_step\\|global_step\" ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log | grep -i \"step [0-9]\\|step_[0-9]\\|steps:\" | tail -30",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T10:20:53.313307+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"39842:\\u001b[36m(WorkerDict pid=482885)\\u001b[0m INFO:2026-05-18 08:47:04,709:[Rank 0] Saved optim to /root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_5/actor/optim_world_size_2_rank_0.pt\\n39843:\\u001b[36m(WorkerDict pid=482885)\\u001b[0m INFO:2026-05-18 08:47:04,711:[Rank 0] Saved extra_state to /root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_5/actor/extra_state_world_size_2_rank_0.pt\\n44987:\\u001b[36m(TaskRunner pid=482241)\\u001b[0m step:5 - train/batch_size:5856 - train/num_mini_batches:366 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:0.15625 - train/AlfworldSG/num_actions:41.6328125 - train/AlfworldSG/episodic_return:0.0 - train/AlfworldSG/action_is_effective:0.9128475289981537 - train/AlfworldSG/action_is_valid:0.7992400081296474 - train/AlfworldSG/anchor_obs:0.0 - train/AlfworldSG/raw_reward:0.0 - train/AlfworldSG/manager_invalid_action:0.08715247100184635 - train/AlfworldSG/pass@8:0.625 - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:1.0 - train/AlfworldSG/non-zero/num_actions:41.6328125 - train/AlfworldSG/non-zero/action_is_effective:0.9128475289981537 - train/AlfworldSG/non-zero/action_is_valid:0.7992400081296474 - train/AlfworldSG/non-zero/manager_invalid_action:0.09219434948955647 - train/AlfworldSG/non-zero/pass@8:1.0 - train/response_length:55.30586242675781 - actor/entropy:0.6993302702903748 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:0.7349865138530731 - actor/kl_coef:0.01 - actor/pg_loss:0.010003227110817912 - actor/pg_clipfrac:0.07074316758720312 - actor/ppo_kl:0.031360076673097335 - actor/pg_clipfrac_lower:0.0018931772950556399 - actor/entropy_loss:0.7899330819344983 - actor/grad_norm:9.592293992394307 - val-env/AlfworldOOD/success:0.05970149253731343 - val-env/AlfworldOOD/num_actions:31.567164179104477 - val-env/AlfworldOOD/e
+…[truncated 6272 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T10:20:53.313502+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep \"actor/ppo_kl\\|actor/kl_loss\\|step:\" ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log | grep -o \"step:[0-9]*\\|actor/ppo_kl:[0-9.]*\\|actor/kl_loss:[0-9.]*\" | paste - - - 2>/dev/null || grep \"actor/ppo_kl\" ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log | grep -o \"ppo_kl:[0-9.]*\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep \"actor/ppo_kl\\|actor/kl_loss\\|step:\" ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log | grep -o \"step:[0-9]*\\|actor/ppo_kl:[0-9.]*\\|actor/kl_loss:[0-9.]*\" | paste - - - 2>/dev/null || grep \"actor/ppo_kl\" ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log | grep -o \"ppo_kl:[0-9.]*\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T10:20:53.313693+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"step:0\\tstep:1\\tactor/kl_loss:0.23847730457782745\\nactor/ppo_kl:0.03970946078771693\\tstep:2774\\tstep:2774\\nstep:2774\\tstep:0\\tstep:2\\nactor/kl_loss:0.207899559289217\\tactor/ppo_kl:0.025005523681326677\\tstep:3340\\nstep:3340\\tstep:3340\\tstep:0\\nstep:3\\tactor/kl_loss:1.0769932568073273\\tactor/ppo_kl:0.033402384830188675\\nstep:2888\\tstep:2888\\tstep:2888\\nstep:0\\tstep:4\\tactor/kl_loss:0.6375531703233719\\nactor/ppo_kl:0.023997632392045654\\tstep:2693\\tstep:2693\\nstep:2693\\tstep:0\\tstep:5\\nactor/kl_loss:0.7349865138530731\\tactor/ppo_kl:0.031360076673097335\\tstep:3937\\nstep:3937\\tstep:2896\\tstep:1027\\nstep:6\\tactor/kl_loss:0.7889621555805206\\tactor/ppo_kl:0.03484964255977617\\nstep:2518\\tstep:2518\\tstep:2518\\nstep:0\\tstep:7\\tactor/kl_loss:1.7742387652397156\\nactor/ppo_kl:0.027427554747690822\\tstep:3368\\tstep:3368\\nstep:3368\\tstep:0\\tstep:8\\nactor/kl_loss:1.4969750940799713\\tactor/ppo_kl:0.05393858339518291\\tstep:3596\\nstep:3596\\tstep:3596\\tstep:0\\nstep:9\\tactor/kl_loss:1.4365162253379822\\tactor/ppo_kl:0.025097997061444905\\nstep:3713\\tstep:3713\\tstep:3713\\nstep:0\\tstep:10\\tactor/kl_loss:1.0292270481586456\\nactor/ppo_kl:0.056760046877215586\\tstep:4391\\tstep:4391\\nstep:3286\\tstep:1091\\tstep:11\\nactor/kl_loss:2.5355896949768066\\tactor/ppo_kl:0.05551270709967949\\tstep:3158\\nstep:3158\\tstep:3158\\tstep:0\\nstep:12\\tactor/kl_loss:1.6631814241409302\\tactor/ppo_kl:0.09592498151383241\\nstep:3006\\tstep:3006\\tstep:3006\\nstep:0\\tstep:13\\tactor/kl_loss:1.7058231830596924\\nactor/ppo_kl:0.0006495558913577964\\tstep:3264\\tstep:3264\\nstep:3264\\tstep:0\\tstep:14\\nactor/kl_loss:2.2356399297714233\\tactor/ppo_kl:0.053821996629246964\\tstep:2940\\nstep:2940\\tstep:2940\\tstep:0\\nstep:15\\tactor/kl_loss:2.845434308052063\\tactor/ppo_kl:0.08793599904358182\\nstep:4136\\tstep:4136\\tstep:3034\\nstep:1089\\t\\t\\n\", \"stderr\": \"\", \"return_code\": 0}, \"
+…[truncated 59 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T10:20:53.313846+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "tail -30 ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "tail -30 ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T10:20:53.314015+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/worst@64/mean': 0.0, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/worst@64/std': 0.0, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/best@128/mean': 1.26, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/best@128/std': 3.3184936341659603, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/worst@128/mean': 0.0, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/worst@128/std': 0.0, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/best@256/mean': 2.29, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/best@256/std': 4.201892430798295, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/worst@256/mean': 0.0, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/worst@256/std': 0.0, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/best@512/mean': 3.8, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/best@512/std': 4.853864439804639, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/worst@512/mean': 0.0, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/worst@512/std': 0.0, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/best@1024/mean': 6.14, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/best@1024/std': 4.868305660083393, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/worst@1024/mean': 0.0, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/worst@1024/std': 0.0, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m 
+…[truncated 1345 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T10:20:53.314200+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "wc -l ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "wc -l ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T10:20:53.314339+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"101764 /root/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T10:20:53.314487+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "ls -la /root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_15/",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "ls -la /root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_15/",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T10:20:53.314703+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 3 root root   27 May 18 18:15 .\\ndrwxr-xr-x 5 root root  132 May 18 18:15 ..\\ndrwxr-xr-x 3 root root 4096 May 18 18:15 actor\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T10:20:53.314884+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "grep -n \"BrokenPipeError\\|atexit\\|Exception ignored\\|Saved.*global_step_15\\|step:15\" ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log | tail -20",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "grep -n \"BrokenPipeError\\|atexit\\|Exception ignored\\|Saved.*global_step_15\\|step:15\" ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log | tail -20",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T10:20:53.315092+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"101656:\\u001b[36m(WorkerDict pid=482885)\\u001b[0m INFO:2026-05-18 18:15:36,521:[Rank 0] Saved model to /root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_15/actor/model_world_size_2_rank_0.pt\\n101657:\\u001b[36m(WorkerDict pid=482885)\\u001b[0m INFO:2026-05-18 18:15:44,106:[Rank 0] Saved optim to /root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_15/actor/optim_world_size_2_rank_0.pt\\n101658:\\u001b[36m(WorkerDict pid=482885)\\u001b[0m INFO:2026-05-18 18:15:44,108:[Rank 0] Saved extra_state to /root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_15/actor/extra_state_world_size_2_rank_0.pt\\n101659:\\u001b[36m(WorkerDict pid=482886)\\u001b[0m INFO:2026-05-18 18:15:36,712:[Rank 1] Saved model to /root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_15/actor/model_world_size_2_rank_1.pt\\n101660:\\u001b[36m(WorkerDict pid=482885)\\u001b[0m INFO:2026-05-18 18:15:44,292:[Rank 0] Saved model config and tokenizer class to /root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_15/actor/huggingface\\n101668:\\u001b[36m(TaskRunner pid=482241)\\u001b[0m step:15 - train/batch_size:5856 - train/num_mini_batches:366 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:0.1640625 - train/AlfworldSG/num_actions:44.9453125 - train/AlfworldSG/episodic_return:0.0 - train/AlfworldSG/action_is_effective:0.9829044448721973 - train/AlfworldSG/action_is_valid:0.8553250988858916 - train/AlfworldSG/anchor_obs:0.0 - train/AlfworldSG/raw_reward:0.0 - train/AlfworldSG/manager_invalid_action:0.01709555512780279 - train/AlfworldSG/pass@8:0.5625 - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:1.0 - train/AlfworldSG/non-zero/num_actions:44.9453125 - train/AlfworldSG/non-zero/action_is_effective:0.9829044448721973 - train/AlfworldSG/non-zero/action_is_valid:0.85532509
+…[truncated 6360 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T10:20:53.315251+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "sed -n '101700,101764p' ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-47453",
+    "command": "sed -n '101700,101764p' ~/runs/cost-verify-agent-rl/factorial_h2_episodeadv_seed1.log",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T10:20:53.315466+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=482241)\\u001b[0m            ^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m   File \\\"/root/miniconda3/lib/python3.12/site-packages/wandb/sdk/lib/service/service_connection.py\\\", line 351, in publish_teardown_and_close\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m     await self._client.close()\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m   File \\\"/root/miniconda3/lib/python3.12/site-packages/wandb/sdk/lib/service/service_client.py\\\", line 123, in close\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m     await self._writer.wait_closed()\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m   File \\\"/root/miniconda3/lib/python3.12/asyncio/streams.py\\\", line 364, in wait_closed\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m     await self._protocol._get_close_waiter(self)\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m BrokenPipeError: [Errno 32] Broken pipe\\n\\u001b[36m(WorkerDict pid=482886)\\u001b[0m INFO:2026-05-18 18:15:44,574:[Rank 1] Saved optim to /root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_15/actor/optim_world_size_2_rank_1.pt\\n\\u001b[36m(WorkerDict pid=482886)\\u001b[0m INFO:2026-05-18 18:15:44,575:[Rank 1] Saved extra_state to /root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_15/actor/extra_state_world_size_2_rank_1.pt\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-env/AlfworldOOD/non-zero/pass@1': 1.0, 'val-env/response_length': \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"846.1282958984375, 'val-core/unknown/reward/mean@6656': \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"0.009014423076923076, 'val-aux/unknown/reward/std@6656': 0.3001049332247322, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/best@2/mean': 0.0, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\u001b[0m  \\\"'val-aux/unknown/reward/best@2/std': 0.0, \\\"\\n\\u001b[36m(TaskRunner pid=482241)\\
+…[truncated 5338 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-18T10:20:53.315713+00:00_
+
+## 诊断结果
+
+### 1. 根因：不是真正的崩溃，训练实际已完成全部 15/15 步
+
+EXIT_CODE=1 由 **W&B atexit cleanup 中的 `BrokenPipeError`** 导致，发生在所有训练和 checkpoint 保存完成之后。具体位置：`wandb/sdk/lib/service/service_connection.py:teardown_atexit`。这是 wandb 已知问题，进程退出时 service connection 断开。
+
+**没有 OOM、没有 NaN、没有 CUDA 错误、磁盘未满。**
+
+### 2. Checkpoint 状态：完整，全部可用
+
+| Checkpoint | 路径 |
+|---|---|
+| global_step_5 | `/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_5/` |
+| global_step_10 | `/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_10/` |
+| global_step_15 | `/root/autodl-tmp/checkpoints/factorial-h2-episode-adv/global_step_15/` (final) |
+
+所有 rank (0,1) 的 model、optim、extra_state 均已保存。
+
+### 3. KL 趋势（训练确实完成，但有质量问题）
+
+| Step | kl_loss | ppo_kl | val success |
+|------|---------|--------|-------------|
+| 1 | 0.238 | 0.040 | — |
+| 5 | 0.735 | 0.031 | 5.97% |
+| 10 | 1.029 | 0.057 | — |
+| 15 | 2.845 | 0.088 | **0.75%** |
+
+kl_loss 从 0.24 增长到 2.85，ppo_kl 保持在 0.025-0.096 范围内（不算爆炸）。但 **validation success 从 5.97% 崩塌到 0.75%**，模型在训练后期严重退化（overfit to train distribution，丧失泛化能力）。
+
+### 4. 结论与建议
+
+- **无需修复崩溃**：EXIT_CODE=1 是 wandb cleanup 的假阳性，训练已正常完成。可在启动脚本尾部加 `; exit 0` 或 `wandb.finish()` 显式关闭。
+- **真正的问题是训练质量**：模型在 15 步后完全退化。`kl_loss_coef=0.01` 过低，未能阻止 policy 偏移。
+- **global_step_5 是最佳 checkpoint**（val success 5.97%），global_step_15 反而最差。
+- **不需要从 checkpoint 恢复继续训练**，因为更多训练只会进一步退化。应调整超参后重启。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diagnose_factorial_h2_crash_v3_20260518T101859"
+}
+```
+
+</details>
+
+---

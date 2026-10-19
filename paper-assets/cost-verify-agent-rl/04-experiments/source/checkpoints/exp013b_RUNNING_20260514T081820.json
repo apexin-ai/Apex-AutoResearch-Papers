@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp013b",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:15:44.247Z",
+    "updated_at": "2026-05-14T08:18:19.776Z",
+    "hypothesis": "Dense reward shaping: valid_action_bonus=0.15 per valid action + success_reward=10.0 + kl_loss_coef=0.01。每步有效动作获得 0.15 奖励提供持续 GRPO 学习信号（30步累计上限4.5 vs 终局10.0），KL 约束防止 policy 过激更新。format_penalty=0，从 step 5 checkpoint 恢复 GRPO 30 步。",
+    "parent": "exp013",
+    "notes": "D011批准dense reward shaping方案。超参（Director确认）: valid_action_bonus=0.15, kl_loss_coef=0.01, success_reward=10.0, format_penalty=0。代码改动：env.py step()中action_is_available时追加bonus，AlfworldSG_Dense tag，新config _alfworld_exp013b_dense_reward.yaml。Dry-run通过，C002 pre-flight通过。Kill/go: step 1-2 reward_std>0且pg_loss≠0→继续; step 10 success=0+valid不涨→kill。",
+    "server": "bjb1-17606",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-17606",
+      "gpu": "cuda:0,cuda:1",
+      "started_at": "2026-05-14T08:17:09.149Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p \\$TMPDIR && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp013b_dense_reward\""
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p \\$TMPDIR && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp013b_dense_reward\"",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "258987",
+      "log_path": "~/runs/cost-verify-agent-rl/exp013b.log",
+      "submitted_at": "2026-05-14T08:18:19.588Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "258987",
+    "log_path": "~/runs/cost-verify-agent-rl/exp013b.log"
+  },
+  "timestamp": "2026-05-14T08:18:20.158527+00:00",
+  "trigger": "update_registry"
+}

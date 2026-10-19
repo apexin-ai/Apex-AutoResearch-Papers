@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0226aae703088636e46b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp029 init v2",
+  "task_key": "worker_check_exp029_init_v2_20260516T122757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp029_init_v2_20260516T122757_result.json",
+    "occurrence": 1,
+    "bytes": 632,
+    "sha256": "54f580bcd97059d423fa1a706039fb6888e92209a9837d6ca3370e5a546c5e62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp029 初始化通过。**\n\n- **进程**: PID 861524 存活，运行 2 分 55 秒，状态 Ss+\n- **GPU**: cuda:0 和 cuda:1 各占用 4715 MiB / 97887 MiB（模型已加载，尚未进入 rollout 高显存阶段）\n- **日志**: FSDP workers 初始化完成，数据集加载完成 (8810/8810 + 494/494)，wandb run `exp029-alfworld-episode-level` 已创建 (run id: x4bbiddh)，正在进入训练循环\n- **错误**: grep 匹配到的 \"Error\" 仅来自配置打印中的 `'truncation': 'error'` 字符串，无真实错误、无 OOM、无 Traceback\n\n初始化成功，实验已进入正常运行阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp029-init-v2.md"
+}

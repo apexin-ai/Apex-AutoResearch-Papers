@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp014b",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:45:27.876Z",
+    "updated_at": "2026-05-14T12:45:27.876Z"
+  },
+  "timestamp": "2026-05-14T12:45:27.948883+00:00",
+  "trigger": "update_registry"
+}

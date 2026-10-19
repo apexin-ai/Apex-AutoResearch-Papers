@@ -1,0 +1,800 @@
+paper:
+  title: ''
+  version: 47
+  generated_at: '2026-05-24T23:53:01.083213+00:00'
+claims:
+- id: C001
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Step-independent training collapses to 0% task success within 10 training
+    steps while action validity initially remains above 89% (steps 1-3) before cascading
+    to below 1% (steps 11+)
+  type: quantitative
+  evidence:
+  - hsweep_h2_seed1
+  decisions:
+  - D052
+  deprecated: true
+- id: C003
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Episode-level GRPO resolves both failure mechanisms
+  type: mechanistic
+  evidence:
+  - exp029_episode_level
+  decisions:
+  - D053
+  - D055
+  deprecated: true
+- id: C006
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Advantage sign is determined by episode outcome not local action quality under
+    step-independent training
+  type: mechanistic
+  evidence:
+  - exp028c_selfguide_recipe
+  decisions:
+  - D055
+  - D058
+  deprecated: true
+- id: C010
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Over 90% of self-verification instances are confirmatory
+  type: quantitative
+  evidence:
+  - long2026selfverification
+  decisions: []
+  deprecated: true
+- id: C011
+  location:
+    section: theoretical_analysis
+    paragraph: 0
+    sentence: 0
+  text: At p=12.5% and K=8, approximately 80.9% of gradient updates for locally good
+    windows have incorrect sign
+  type: quantitative
+  evidence:
+  - exp029_episode_level
+  - exp028c_selfguide_recipe
+  decisions:
+  - D058
+  deprecated: false
+- id: C012
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Step-independent training collapses to 0% task success within 10 training
+    steps while action validity initially remains above 89% (steps 1-3) before cascading
+    to below 1% (steps 11+)
+  type: quantitative
+  evidence:
+  - hsweep_h2_seed1
+  decisions:
+  - D052
+  deprecated: false
+- id: C014
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Dense reward shaping causes reward gaming: action validity 60% to 97.5% while
+    success stays 0%'
+  type: quantitative
+  evidence:
+  - exp013f
+  decisions: []
+  deprecated: false
+- id: C017
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: At p=12.5% and K=8, approximately 80.9% of gradient updates for locally correct
+    windows point in wrong direction
+  type: quantitative
+  evidence:
+  - exp029_episode_level
+  - exp028c_selfguide_recipe
+  decisions:
+  - D058
+  deprecated: false
+- id: C021
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Episode-level training achieves 28.1% validation success from baseline
+  type: quantitative
+  evidence:
+  - exp029_episode_level
+  decisions:
+  - D053
+  - D057
+  deprecated: false
+- id: C022
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Over 90% of self-verification instances are confirmatory with approximately
+    2% corrective
+  type: quantitative
+  evidence:
+  - long2026selfverification
+  decisions: []
+  deprecated: true
+- id: C023
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 80.9% of gradient updates for locally correct windows point in the wrong direction
+    (p=12.5%, K=8)
+  type: quantitative
+  evidence:
+  - exp_id: exp028c
+    metric: theoretical_derivation
+  - exp_id: exp029
+    metric: baseline_success_rate
+  decisions: []
+  deprecated: false
+- id: C025
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Episode-level GRPO achieves 28.1% validation success where step-independent
+    training collapses to 0%
+  type: quantitative
+  evidence:
+  - exp_id: exp029
+    metric: val_success_rate
+  - exp_id: exp028c
+    metric: val_success_rate
+  decisions: []
+  deprecated: false
+- id: C028
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Action validity drops from 89.3% to 43.1% (two-phase collapse)
+  type: quantitative
+  evidence:
+  - exp_id: hsweep_h2_seed1
+    metric: train/AlfworldSG/action_is_valid
+    details: 'step 2: 0.89316 (89.3%), step 4: 0.43055 (43.1%). W&B run 7o9bjszm.'
+  decisions: []
+  deprecated: false
+- id: C029
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Step-independent windowing introduces two failure mechanisms that cause catastrophic
+    training collapse
+  type: theoretical
+  evidence:
+  - dual_mechanism_analysis
+  decisions:
+  - D073_narrative
+  deprecated: false
+- id: C031
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'GRPO is episode-level by design: each rollout receives a single return and
+    a single advantage'
+  type: definitional
+  evidence:
+  - shao2024deepseekmath
+  decisions: []
+  deprecated: false
+- id: C034
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: The RAGEN framework introduces step-independent training where each h-step
+    window becomes an independent GRPO sample
+  type: definitional
+  evidence:
+  - ragen2025
+  decisions: []
+  deprecated: false
+- id: C038
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Mechanism 1 (Policy Information Loss) destroys the policy's ability to generalize
+    to tasks requiring cross-step reasoning
+  type: theoretical
+  evidence:
+  - dual_mechanism_analysis
+  decisions:
+  - D073_narrative
+  deprecated: false
+- id: C043
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Mechanism 2 (Advantage Sign Misattribution) destabilizes the optimization
+    process, producing high-variance training dynamics
+  type: theoretical
+  evidence:
+  - dual_mechanism_analysis
+  - sign_correlation_eq
+  decisions:
+  - D073_narrative
+  deprecated: false
+- id: C049
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'The two mechanisms predict three distinct training regimes: monotonic collapse,
+    oscillation-then-degradation, and stable learning'
+  type: theoretical
+  evidence:
+  - dual_mechanism_analysis
+  decisions:
+  - D073_narrative
+  deprecated: false
+- id: C056
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Episode-level training resolves both failure mechanisms by treating the complete
+    trajectory as a single GRPO sample
+  type: theoretical
+  evidence:
+  - exp029_episode_level
+  decisions:
+  - D073_narrative
+  deprecated: false
+- id: C064
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: For T=50, h=2, gamma=0.95, the first window retains gamma^24 approx 0.29 of
+    the terminal window's return
+  type: quantitative
+  evidence:
+  - computed_from_formula
+  decisions: []
+  deprecated: false
+- id: C073
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: The factorial 2x2 design tests qualitative predictions about training dynamics,
+    not quantitative effect decomposition
+  type: methodological
+  evidence:
+  - factorial_h2_episodeadv_seed1
+  decisions:
+  - D073_narrative
+  deprecated: false
+- id: C074
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: RAGEN introduced step-independent windowing that has become the community
+    default
+  type: literature
+  evidence:
+  - ragen2025
+  decisions: []
+  deprecated: false
+- id: C076
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: None of the existing methods diagnoses step-independent windowing itself as
+    a source of systematic sign errors
+  type: positioning
+  evidence:
+  - literature_review
+  decisions:
+  - D073_narrative
+  deprecated: false
+- id: C079
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: IRC reports per-turn advantages frequently disagree in sign with outcome advantages,
+    causing 14pp degradation (54% vs 68%)
+  type: literature
+  evidence:
+  - irc2026
+  decisions: []
+  deprecated: false
+- id: C083
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: MC-GRPO measures 5% sign-flip rate accounting for approximately 4% accuracy
+    loss
+  type: literature
+  evidence:
+  - mcgrpo2025
+  decisions: []
+  deprecated: false
+- id: C088
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: GRPO-lambda Lemma 1 shows value estimation error grows with sequence position
+  type: literature
+  evidence:
+  - grpolambda2025
+  decisions: []
+  deprecated: false
+- id: C094
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Episode-level GRPO shares GAE lambda=1 Monte Carlo return structure but differs
+    in baseline (group normalization vs learned value)
+  type: theoretical
+  evidence:
+  - schulman2016gae
+  - shao2024deepseekmath
+  decisions: []
+  deprecated: false
+- id: C101
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Turn-PPO reports GRPO directly crashes on WebShop and Sokoban with three fixes
+    all failing
+  type: literature
+  evidence:
+  - turnppo2026
+  decisions: []
+  deprecated: false
+- id: C109
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: MT-GRPO shows GRPO-OR achieves only 0.04 exact match vs MT-GRPO 0.50 (12x
+    gap)
+  type: literature
+  evidence:
+  - mtgrpo2025
+  decisions: []
+  deprecated: false
+- id: C118
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: ArCHer achieves 100x sample efficiency over flat RL via hierarchical decomposition
+  type: literature
+  evidence:
+  - archer2024
+  decisions: []
+  deprecated: false
+- id: C128
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: HiPER reaches 97.4% on ALFWorld with hierarchical progressive exploration
+  type: literature
+  evidence:
+  - hiper2026
+  decisions: []
+  deprecated: false
+- id: C139
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: RAGEN-2 provides mathematical proof of advantage collapse when within-prompt
+    reward variance approaches zero
+  type: literature
+  evidence:
+  - ragen2_2026
+  decisions: []
+  deprecated: false
+- id: C151
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: GRPO-Collapse shows all four tested models collapse within 300 training steps
+  type: literature
+  evidence:
+  - grpocollapse2025
+  decisions: []
+  deprecated: false
+- id: C164
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Gradient Coupling expected-value analysis is compatible with our per-sample
+    sign analysis
+  type: positioning
+  evidence:
+  - gradientcoupling2025
+  decisions:
+  - D073_narrative
+  deprecated: false
+- id: C165
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: SFT checkpoint achieves 12.5% success rate on 32-task in-distribution validation
+    set (4/32)
+  type: quantitative
+  evidence:
+  - exp019b_expert_sft_v3
+  - exp029_episode_level
+  decisions: []
+  deprecated: true
+- id: C167
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Pre-SFT model achieves 0% success in zero-shot evaluation
+  type: quantitative
+  evidence:
+  - exp028_prereq_zeroshot
+  decisions: []
+  deprecated: true
+- id: C170
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: At p=0.125 K=8, Proposition predicts approximately 80.9% of gradient updates
+    carry incorrect sign
+  type: quantitative
+  evidence:
+  - theoretical_analysis_prop2
+  decisions: []
+  deprecated: true
+- id: C174
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Episode-level GRPO eliminates both failure mechanisms
+  type: theoretical
+  evidence:
+  - dual_mechanism_analysis
+  decisions:
+  - D073_narrative
+  deprecated: true
+- id: C179
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Step-independent h=2 is the default RAGEN configuration and community standard
+  type: literature
+  evidence:
+  - ragen2025
+  decisions: []
+  deprecated: true
+- id: C185
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Factorial Cell B (h=2 + episode advantage) eliminates M2 while M1 remains
+    active
+  type: methodological
+  evidence:
+  - factorial_design
+  decisions:
+  - D073_narrative
+  deprecated: true
+- id: C192
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Dense reward adds +0.15 per valid action bonus under step-independent h=2
+  type: configuration
+  evidence:
+  - exp013f
+  decisions: []
+  deprecated: true
+- id: C200
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: REINFORCE++ substituted for GAE after TRL 1.1.0 removed AutoModelForCausalLMWithValueHead
+  type: configuration
+  evidence:
+  - gae_baseline_seed1
+  decisions: []
+  deprecated: true
+- id: C209
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: gamma-sweep at h=5 with gamma in {0.50, 0.80, 0.95, 1.00} tests magnitude
+    decay vs sign misattribution
+  type: methodological
+  evidence:
+  - gsweep_g050_h5_seed1
+  - gsweep_g080_h5_seed1
+  - gsweep_g095_h5_seed1
+  - gsweep_g100_h5_seed1
+  decisions:
+  - D075_gamma_sweep
+  deprecated: true
+- id: C219
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: All main results report 134-task OOD set
+  type: methodological
+  evidence:
+  - exp029_episode_level
+  - hsweep_h2_seed2_reeval_ood
+  decisions: []
+  deprecated: true
+- id: C220
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: SFT checkpoint achieves 12.5% success rate on held-out 32-task in-distribution
+    validation set (4 of 32 tasks)
+  type: quantitative
+  evidence:
+  - exp_id: exp021_ragen_sft_v4
+    metric: ragen_val_success_16ep
+    value: 6.25%
+    note: 16ep eval; 32-task eval from RAGEN val_before_train shows 12.5%
+  decisions: []
+  deprecated: false
+- id: C222
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Pre-SFT model achieves 0% success in zero-shot evaluation
+  type: quantitative
+  evidence:
+  - exp_id: exp028_prereq_zeroshot
+    metric: success
+    value: 0
+  decisions: []
+  deprecated: false
+- id: C225
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: At p=0.125, K=8, approximately 80.9% of gradient updates carry incorrect advantage
+    sign
+  type: derived
+  evidence:
+  - exp_id: method_proposition
+    note: 'From Proposition prop:correct_sign: P(correct) = p/(1-(1-p)^K) = 0.125/(1-0.875^8)
+      = 0.191, so 80.9% incorrect'
+  decisions: []
+  deprecated: false
+- id: C229
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Cell A: h=2 + step-level advantage, both M1 and M2 active, default RAGEN
+    configuration, two seeds'
+  type: design
+  evidence:
+  - exp_id: hsweep_h2_seed1
+  - exp_id: hsweep_h2_seed2
+  decisions:
+  - D073
+  deprecated: false
+- id: C234
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Cell B: h=2 + episode-level advantage, M1 active, M2 eliminated, two seeds'
+  type: design
+  evidence:
+  - exp_id: factorial_h2_episodeadv_seed1
+  - exp_id: factorial_h2_episodeadv_seed2
+  decisions:
+  - D073
+  deprecated: false
+- id: C240
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Cell D: full observation + episode-level advantage, neither mechanism active,
+    two seeds'
+  type: design
+  evidence:
+  - exp_id: exp029_episode_level
+  - exp_id: exp029_episode_level_seed2
+  decisions:
+  - D073
+  deprecated: false
+- id: C247
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Dense reward baseline: h=2, +0.15 valid action bonus, 30 training steps'
+  type: design
+  evidence:
+  - exp_id: exp013f
+    metric: final_val_success
+    value: 0
+  decisions: []
+  deprecated: false
+- id: C255
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'REINFORCE++ baseline: episode-level with per-token running-mean baseline,
+    substituted for GAE after TRL 1.1.0 removed AutoModelForCausalLMWithValueHead'
+  type: design
+  evidence:
+  - exp_id: gae_baseline_seed1
+    note: Actually ran REINFORCE++ (adv_estimator=reinforce_plus_plus_baseline)
+  decisions:
+  - D060
+  deprecated: false
+- id: C264
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'All four gamma values produce complete training collapse within 5 training
+    steps: gamma=0.50 collapsed at step 1; gamma=0.80: 3.1% at step 5 then 0%; gamma=0.95:
+    0% at step 5; gamma=1.0: collapsed'
+  type: quantitative
+  evidence:
+  - exp_id: gsweep_g050_h5_seed1
+    metric: val_step5.success
+    value: 0
+  - exp_id: gsweep_g080_h5_seed1
+    metric: step5_val_success
+    value: 3.125%
+  - exp_id: gsweep_g095_h5_seed1
+    metric: val_success_step5
+    value: 0
+  - exp_id: gsweep_g100_h5_seed1
+    metric: conclusion_reason
+    value: collapsed
+  decisions:
+  - D075
+  deprecated: false
+- id: C274
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Sign misattribution is the operative failure mechanism; magnitude decay modulates
+    speed but is neither necessary nor sufficient
+  type: qualitative
+  evidence:
+  - exp_id: gsweep_g100_h5_seed1
+    note: gamma=1.0 eliminates magnitude decay yet still collapses
+  - exp_id: gsweep_g050_h5_seed1
+    note: gamma=0.5 maximum decay, earliest collapse (step 1)
+  decisions:
+  - D075
+  deprecated: false
+- id: C285
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Window-size sweep: h in {2, 5, 10, 20} vs episode-level; h=10 and h=20 data
+    collection in progress'
+  type: design
+  evidence:
+  - exp_id: hsweep_h2_seed1
+  - exp_id: hsweep_h10_seed1
+    note: RUNNING
+  - exp_id: hsweep_h20_seed1
+    note: RUNNING
+  decisions: []
+  deprecated: false
+tables:
+- id: tab:hyperparameters
+  location:
+    section: experiments
+    table_number: 0
+  caption: ''
+  cells:
+  - row: Group size K
+    col: Value
+    value: '8'
+    source:
+      exp_id: hsweep_h2_seed1
+      metric: config
+  - row: Learning rate
+    col: Value
+    value: 1e-6
+    source:
+      exp_id: hsweep_h2_seed1
+      metric: config
+  - row: KL penalty beta
+    col: Value
+    value: '0.01'
+    source:
+      exp_id: hsweep_h2_seed1
+      metric: config
+  - row: Discount gamma
+    col: Value
+    value: '0.95'
+    source:
+      exp_id: hsweep_h2_seed1
+      metric: config
+  - row: Invalid action penalty
+    col: Value
+    value: '0.1'
+    source:
+      exp_id: hsweep_h2_seed1
+      metric: config
+  - row: Tasks per training step
+    col: Value
+    value: '16'
+    source:
+      exp_id: hsweep_h2_seed1
+      metric: config
+  - row: Training steps
+    col: Value
+    value: '15'
+    source:
+      exp_id: hsweep_h2_seed1
+      metric: config
+  deprecated: false
+figures: []
+_completeness:
+  coverage: 41/41
+  claims: 41
+  tables: 1
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 41
+    tier3: 0
+    tierX: 0
+  last_checked: '2026-05-24T23:53:01.083250+00:00'

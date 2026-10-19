@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e95945562da17416381",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor v9d resume step10 verify",
+  "task_key": "worker_monitor_v9d_resume_step10_verify_20260520T075715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_v9d_resume_step10_verify_20260520T075715_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "e1b0615bd44942b8dc7db7c1bdde83fca91eb2e7b851b0266371c99bf769c3dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**v9d 恢复验证完全成功。**\n\n### 关键结果\n\n| 验证项 | 状态 | 详情 |\n|--------|------|------|\n| **Resume from step 10** | ✓ | 加载 `global_step_10/actor/` checkpoint（model + rng + lr_scheduler），Training Progress 显示 `10/30` |\n| **val_before_train** | ✓ | **96.875% success**（32 episodes，满足 C003 ≥16 要求） |\n| **vLLM 初始化** | ✓ | 无 OOM/KV cache 错误，generation 耗时 80.5s |\n| **symlink/model_path** | ✓ | 无相关错误 |\n| **save_contents** | ✓ | actor: `['model', 'extra']`，critic: `['model', 'optimizer', 'extra']` |\n\n### val_before_train 指标\n- **success**: 96.875%\n- **pass@1**: 96.875%\n- **action_is_valid**: 99.6%\n- **action_is_effective**: 100%\n- **num_actions**: 14.8（平均步数）\n- **reward/mean@32**: 9.6875\n\n训练已从 step 10 继续，当前进度 10/30。wandb run: `aeml21w9`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-v9d-resume-step10-verify.md"
+}

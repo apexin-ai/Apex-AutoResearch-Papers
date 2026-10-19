@@ -1,0 +1,16 @@
+{
+  "exp_id": "8b_v9d_ood_eval_v3",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:13:27.671Z",
+    "updated_at": "2026-05-20T10:13:42.595Z",
+    "hypothesis": "Evaluate 8B Cell C episode-level GRPO model (v9d step 10, val_before_train 96.875%) on 134 OOD ALFWorld tasks. Paper's key data point. Config fix via base64-encoded script: ppo_mini_batch_size=4, env_groups=2, n_groups=[2].",
+    "parent": "8b_cell_c_episode_v9d"
+  },
+  "timestamp": "2026-05-20T10:13:42.798715+00:00",
+  "trigger": "update_registry"
+}

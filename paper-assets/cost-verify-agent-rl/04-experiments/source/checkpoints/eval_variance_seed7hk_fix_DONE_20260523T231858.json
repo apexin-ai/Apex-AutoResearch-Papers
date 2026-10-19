@@ -1,0 +1,43 @@
+{
+  "exp_id": "eval_variance_seed7hk_fix",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T22:35:19.294Z",
+    "updated_at": "2026-05-23T23:18:58.418Z",
+    "hypothesis": "Quantify eval variance for seed7hk checkpoint (3 independent OOD evals at τ=0.4). Combined with seed200 data (std=1.29pp), provides 2-checkpoint evidence that eval noise is small relative to inter-seed gap.",
+    "spec": {
+      "command": "bash /root/cost-verify-agent-rl/run_seed7hk_fix.sh (config fixed: model_path → qwen_ symlink)",
+      "server": "bjb1-17606",
+      "gpu": "0",
+      "pid": "84851",
+      "data_path": "/root/cost-verify-agent-rl/data/alfworld",
+      "data_count": 134,
+      "model_name": "Qwen3-1.7B episode-level GRPO (seed7hk step5)",
+      "seed": "421,422,423",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen_exp029_seed7_high_kl_step5_hf",
+      "log_path": "/root/autodl-tmp/eval_variance_logs/seed7hk_fix_v4.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T23:13:38.783Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-23T23:13:41.274Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-23T23:13:44.895594+00:00"
+        }
+      ]
+    },
+    "notes": "失败原因: ctx_manager.py:35 get_special_tokens() ValueError — tokenizer.name_or_path 为本地 checkpoint 路径 (/root/autodl-tmp/checkpoints/exp029_seed7_high_kl_step5_hf)，不在代码白名单中。symlink 修复 (qwen_ prefix) 使 v4 进入 eval 阶段（W&B run mmsm7ira 已初始化）但进程仍死亡。| 已有成果: eval_variance_p1 已获 seed200 方差数据 (std=1.29pp)，seed7hk 部分为补充数据 | 建议: 修改 get_special_tokens() 支持本地路径，或直接用 seed200 单点方差数据（已足够支撑 Limitations）"
+  },
+  "timestamp": "2026-05-23T23:18:58.758648+00:00",
+  "trigger": "update_registry"
+}

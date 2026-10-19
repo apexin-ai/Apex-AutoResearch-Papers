@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "248343b83e2e9ed5c7b3",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research cpu offload d096",
+  "task_key": "worker_research_cpu-offload-d096_20260519T143608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_cpu-offload-d096_20260519T143608_result.json",
+    "occurrence": 1,
+    "bytes": 1080,
+    "sha256": "8581f13d465286941292947127f066f0d9050b8abd9d6517e52ad8980a95d73d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。总结：\n\n**核心发现：**\n1. v7 的 `optimizer_offload: True` **完全无效** — RAGEN 重写了 `update_actor` 但没包含 offload 逻辑，且 init 时 optimizer.state 为空导致首次 offload 也跳过\n2. FSDP1 下 actor 的 CPUOffload **被硬编码关闭**（verl line 492），无法通过 config 开启\n3. FSDP2 + `offload_policy: True` 是正确方案 — verl 原生支持，PyTorch 2.10 已就绪\n\n**v9 config 已创建：**`/root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_cell_c_v9.yaml`\n\n关键变更：\n- `strategy: fsdp2` + `offload_policy: True` — FSDP2 原生 CPU offload，任何时刻 GPU 上只有 1-2 个 layer\n- `enable_activation_offload: true` — 互补措施\n- `gpu_memory_utilization: 0.20`（从 0.22 降低）— 为 weight sync 留空间\n- 移除无效的 `optimizer_offload: True`\n\n**主要风险：** FSDP2 在 RAGEN 上可能未充分测试，需通过 val_before_train 验证数值正确性。训练速度预计下降 2-3x。\n\n报告位于 `artifacts/d096_cpu_offload_research.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-cpu-offload-d096.md"
+}

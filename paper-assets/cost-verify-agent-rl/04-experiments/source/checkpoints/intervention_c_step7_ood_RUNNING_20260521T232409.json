@@ -1,0 +1,61 @@
+{
+  "exp_id": "intervention_c_step7_ood",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T22:54:26.515Z",
+    "updated_at": "2026-05-21T23:24:09.308Z",
+    "spec": {
+      "command": "python train.py --config-name _alfworld_intervention_c_ood_eval",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "895615",
+      "log_path": "~/runs/cost-verify-agent-rl/intervention_c_step7_ood.log",
+      "submitted_at": "2026-05-21T22:54:26.154Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "eval_out_of_distribution",
+      "data_count": 134,
+      "model_name": "qwen_intervention_c_hard_cap_step7_hf",
+      "seed": 789,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen_intervention_c_hard_cap_step7_hf",
+      "eval_data": "AlfworldSG_OOD (134 tasks)"
+    },
+    "hypothesis": "Intervention-C (hard cap: 512 tokens/turn + 20 turns) step 7 (final, collapsed) achieves low OOD generalization, consistent with other collapsed seeds showing low OOD despite some train success.",
+    "parent": "intervention-c-hard-cap",
+    "reproduce": {
+      "finished_at": "2026-05-21T23:18:29.604Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T23:18:32.894345+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "ood_pass_at_1": 0.1493,
+      "ood_action_is_valid": 0.663,
+      "ood_num_actions": 43.67,
+      "ood_response_length": 6365.6,
+      "ood_action_is_effective": 1,
+      "ood_reward_mean": 1.493,
+      "eval_tasks": 134,
+      "eval_time_seconds": 1370
+    },
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/qwen_intervention_c_hard_cap_step7_hf",
+    "log_path": "/root/runs/cost-verify-agent-rl/intervention_c_step7_ood.log",
+    "conclusion": "success",
+    "notes": "W&B: https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/0x0x1b4p | OOD pass@1=14.93% confirms hypothesis: hard-cap collapse produces low OOD generalization (unlike Seed 4 anomaly at 30.6%). action_is_valid=66.3% and num_actions=43.67 show degraded policy quality with action budget exhaustion on OOD tasks."
+  },
+  "timestamp": "2026-05-21T23:24:09.605342+00:00",
+  "trigger": "update_registry"
+}

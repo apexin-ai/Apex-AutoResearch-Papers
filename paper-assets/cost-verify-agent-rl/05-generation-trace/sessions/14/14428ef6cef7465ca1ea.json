@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14428ef6cef7465ca1ea",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops seed3 ood v2 progress",
+  "task_key": "worker_ops_seed3-ood-v2-progress_20260521T024207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_seed3-ood-v2-progress_20260521T024207_result.json",
+    "occurrence": 1,
+    "bytes": 899,
+    "sha256": "64d465c2cb30d78ea2bdfcf56c171b856f6f03918fccb4e92aa8f59a70783e23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp029_seed3_ood_v2 进度\n\n- **进程状态**: alive（PID 530289, 运行 2h03m）\n- **GPU 利用率**: cuda:0 0%, cuda:1 0%（显存占用 46GB/98GB 和 45GB/98GB）\n- **已完成**: 134/134 tasks — eval 已全部完成\n- **当前阶段**: PPO update（compute_policy_loss），total_training_steps=1，即将结束\n- **预估剩余**: <30min（PPO update 接近尾声）\n- **异常**: 无严重错误（8547 条 `anchor_obs` 非数值型 metric 警告，无害）\n\n### Eval 结果（step 15, 134 OOD games）\n\n| 指标 | 值 |\n|------|-----|\n| **success (pass@1)** | **10.45%** (≈14/134) |\n| action_is_effective | 92.6% |\n| action_is_valid | 48.8% |\n| avg num_actions | 41.9 |\n| manager_invalid_action | 7.4% |\n| avg response_length | 7500.7 tokens |\n\n### W&B\n- run_id: `gqr6ux4z`\n- run name: `exp029-seed3-ood-final`\n- project: `cost-verify-agent-rl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-seed3-ood-v2-progress.md"
+}

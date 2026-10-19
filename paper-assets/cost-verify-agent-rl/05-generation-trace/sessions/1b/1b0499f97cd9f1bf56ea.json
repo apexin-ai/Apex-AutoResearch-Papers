@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b0499f97cd9f1bf56ea",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis exp007",
+  "task_key": "worker_analysis_exp007_20260514T025245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp007_20260514T025245_result.json",
+    "occurrence": 1,
+    "bytes": 1063,
+    "sha256": "1d92b2703f19b32e9e10c95a08f260b851bade07b086dc029e8864c679c1e657"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp007 分析结论：**FAILED**\n\n### 双重失败\n\n1. **基础设施崩溃**：step 10/30 时 `/tmp` 磁盘满（Ray session 文件占满 30GB 根分区），fast_downward 无法复制 .so 文件。无 checkpoint 保存。\n\n2. **学习信号不足**：即使完成的 10 步中，关键指标无上升趋势：\n\n| 指标 | Dryrun 基线 | Step 10 (最终) | Phase A 标准 |\n|------|------------|---------------|-------------|\n| action_is_valid | 5.4% | 8.4% | >10% (FAIL) |\n| success_rate | - | 6.3% | ≥76% (PASS) |\n| manager_invalid_action | 6.5% | 1.6% | <50% ✓ |\n\n### 核心发现\n\n- **Parser fix 有效**：manager_invalid_action 从 exp003 的 95% 降到 <3%\n- **但解决格式问题后暴露语义问题**：动作格式正确但在 ALFWorld 中语义无效（action_is_valid 仅 4-12%）\n- pg_loss 非零（有梯度），但 reward 过于稀疏（大部分轨迹 reward=0），GRPO 无法有效学习\n\n报告已写入 `artifacts/exp007/report/exp007_analysis.md`，registry 已更新为 `conclusion: failed`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp007.md"
+}

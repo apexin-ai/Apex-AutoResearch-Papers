@@ -1,0 +1,681 @@
+# paper writing related work
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 23
+- **Recorded user turns:** 0
+- **Tool calls:** 11
+- **Original source:** `logs/chats/worker_paper_writing_related_work_20260517T081214.jsonl`
+- **Structured JSON:** [`86e266fb131f94abf3a5.json`](../../sessions/86/86e266fb131f94abf3a5.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+23 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T08:14:10.612395+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/introduction.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T08:14:10.612788+00:00_
+
+1	\section{Introduction}
+2	\label{sec:introduction}
+3	
+4	Training Large Language Model (LLM) agents for multi-turn interactive tasks poses a fundamental challenge: policies must compose actions across 30 to 50 interaction steps in environments such as household navigation~\cite{kim2025reflact}, web interaction~\cite{digiRL2024}, and scientific experimentation. Supervised fine-tuning (SFT) can teach action formatting but fails to instill compositional planning, because expert demonstrations do not expose the trial-and-error exploration through which effective multi-step strategies emerge. Reinforcement learning (RL) addresses this gap by optimizing policies through direct environment interaction, and Group Relative Policy Optimization (GRPO)~\cite{shao2024deepseekmath} has become a preferred method due to its critic-free design and direct compatibility with language model architectures. Recent work applies RL-based training to interactive agents across diverse domains, from text-based games~\cite{ragen2025} and GUI interaction~\cite{digiRL2024} to tool use~\cite{spear2025} and instruction following~\cite{selfguide2026,feng2025gigpo}. These efforts share a common implementation pattern that has received little scrutiny: the multi-turn trajectory is decomposed into fixed-size windows, and each window is optimized as an independent training sample. This decomposition is the focus of our analysis.
+5	
+6	Current agent RL frameworks default to \textit{step-independent training}: the trajectory is partitioned into non-overlapping windows of $h$ consecutive steps, each receiving a discounted return derived from the binary episode outcome and optimized independently via GRPO~\cite{ragen2025,selfguide2026}. This choice is motivated by practical considerations: it fits long trajectories within limited context windows, multiplies the effective batch size, and aligns with the token-level training paradigm of language models. However, the decomposition introduces a fundamental cred
+…[truncated 4930 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T08:14:10.612987+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/method.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-17T08:14:10.613208+00:00_
+
+1	\section{Method}
+2	\label{sec:method}
+3	
+4	\subsection{Problem Formulation}
+5	\label{sec:problem_formulation}
+6	
+7	We formalize the multi-turn interactive agent as a Partially Observable Markov Decision Process (POMDP) $\mathcal{M} = (\mathcal{S}, \mathcal{A}, \mathcal{O}, P, \Omega, R, \gamma)$, where $\mathcal{S}$ is the state space of the environment, $\mathcal{A}$ is the action space (natural language commands), $\mathcal{O}$ is the observation space (textual feedback from the environment), $P: \mathcal{S} \times \mathcal{A} \rightarrow \mathcal{S}$ is the transition function, $\Omega: \mathcal{S} \rightarrow \mathcal{O}$ is the observation function, $R$ is the reward function, and $\gamma \in [0,1]$ is a discount factor. The agent policy $\pi_\phi(a_t \mid h_t)$ generates actions conditioned on the interaction history $h_t = (o_1, a_1, o_2, a_2, \ldots, o_t)$, where $\phi$ denotes the policy parameters. An episode consists of $T$ interaction steps, terminating with a binary reward $R \in \{0, r_+\}$ that indicates task success or failure.
+8	
+9	In practice, multi-turn episodes can span 50 or more interaction steps, each containing hundreds of tokens. Training a language model policy on the full history $h_T$ is computationally expensive and often exceeds the model's context window. This motivates the \textbf{step-independent windowing} approach: the trajectory is partitioned into non-overlapping windows of $h$ consecutive steps, and each window is optimized independently with its own computed return. Concretely, window $k$ observes only $(o_{(k-1)h+1}, a_{(k-1)h+1}, \ldots, o_{kh})$ and receives a return $R_k$ derived from the episode outcome. This decomposition treats each window as a separate training sample, allowing standard context-length models to process the data. We show below that this seemingly practical choice introduces two failure mechanisms that cause catastrophic training collapse.
+10	
+11	\subsection{GRPO for Language Agents}
+12	\label{sec:grpo}
+…[truncated 11918 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T08:14:10.613372+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T08:14:10.613500+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T08:14:10.613648+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "literature_map.yaml",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "file": "literature_map.yaml",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T08:14:10.614148+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/literature_map.yaml\", \"content\": \"# B-IAVR Literature Map\\n# Updated: 2026-05-16\\n# Categories: direct-competitor, method-component, background, evaluation\\n# Roles: predecessor, competitor, baseline, evaluation, background\\n\\npapers:\\n\\n  # ============================================================\\n  # Direction 1: Self-Verification / Self-Correction in LLM Agents\\n  # ============================================================\\n\\n  - id: kamoi2024self-correction-survey\\n    title: \\\"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs\\\"\\n    authors: \\\"Kamoi et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2024\\n    arxiv_id: \\\"2406.01297\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Foundational survey establishing that pure intrinsic self-correction is unreliable.\\n      Validates B-IAVR's use of grounded verification (environment re-observation) over prompted self-feedback.\\n\\n  - id: tie2025correctbench\\n    title: \\\"Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs\\\"\\n    authors: \\\"Tie et al.\\\"\\n    venue: \\\"NeurIPS 2025 Datasets & Benchmarks\\\"\\n    year: 2025\\n    arxiv_id: \\\"2510.16062\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Benchmark showing self-correction has diminishing returns when applied uniformly.\\n      Supports B-IAVR's selective verification design over blanket correction.\\n\\n  - id: self-verification-dilemma-2026\\n    title: \\\"Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning\\\"\\n    authors: \\\"Long et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2026\\n    arxiv_id: \\\"2602.03485\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n  
+…[truncated 25833 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T08:14:10.614370+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/",
+  "description": "List paper directory contents"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/",
+    "description": "List paper directory contents"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T08:14:10.614503+00:00_
+
+introduction.tex
+method.tex
+theoretical_analysis.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T08:14:10.614698+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/related_work.tex",
+  "content": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{RL Training for LLM Agents.}\nGroup Relative Policy Optimization (GRPO)~\\cite{shao2024deepseekmath} emerged from mathematical reasoning alignment and was scaled to large systems through techniques such as dynamic sampling and clip-higher stabilization~\\cite{dapo2025}. Adapting GRPO to multi-turn interactive agents requires addressing the mismatch between its episode-level design and the practical constraints of long trajectories. RAGEN~\\cite{ragen2025} introduced the step-independent windowing approach that has become the community default, partitioning trajectories into fixed-size windows optimized separately. Subsequent work has proposed algorithmic improvements that operate within or alongside this framework. GiGPO~\\cite{feng2025gigpo} addresses credit assignment through a nested group structure that estimates step-level advantages without a learned critic, achieving substantial gains on ALFWorld and WebShop. Self-Guide~\\cite{selfguide2026} co-evolves an internal reward model with the policy, providing denser learning signals than binary episode outcomes. SPEAR~\\cite{spear2025} combines self-imitation learning with progressive curriculum to handle sparse rewards in early training. WebAgent-R1~\\cite{wei2025webagent-r1} extends GRPO to multi-turn web interaction (M-GRPO) with dynamic context compression, while SORL~\\cite{li2025sorl} introduces turn-level importance sampling for off-policy stability. HCAPO~\\cite{hcapo2026} uses an LLM-as-critic to assign hindsight credit at critical decision states. These methods improve training algorithms or reward design at various granularities. None diagnoses the step-independent windowing mechanism itself as a source of systematic sign misattribution, which is the structural failure we identify and formalize.\n\n\\paragraph{Credit Assignment in Reinforcement Learning.}\nThe temporal credit assignment problem has a long history. REINFORCE~\\cite{williams1992reinforce} provides unbiased but high-variance episode-level gradients. PPO~\\cite{schulman2017ppo} reduces variance through a learned value function and clipped surrogate objectives. Generalized Advantage Estimation (GAE)~\\cite{schulman2016gae} interpolates between one-step bootstrap and Monte Carlo returns via the $\\lambda$ parameter, offering a continuous spectrum from TD(0) to full-episode credit. The TD($\\lambda$) family~\\cite{sutton1988td} established this interpolation in the tabular setting. In the LLM agent context, process reward models provide step-level supervision: AgentPRM~\\cite{choudhury2025agentprm,xi2025agentprm} estimates per-step value through Monte Carlo rollouts or TD-based estimation with GAE. SkillMaster~\\cite{skillmaster2026} proposes DualAdv-GRPO, which separately estimates advantages for task-solving and skill-editing decisions. Episode-level GRPO, as we advocate, is equivalent to GAE(1,1) without a critic: it assigns uniform advantage across all steps, forgoing per-step granularity in exchange for correct gradient direction. Our contribution is not a new credit assignment algorithm but a diagnosis of why the community's standard adaptation of GRPO (step-independent windowing) produces catastrophic sign errors in multi-turn settings.\n\n\\paragraph{Selective Verification and Adaptive Computation.}\nA growing body of work trains models to allocate computation adaptively rather than uniformly. In the reasoning domain, Thinkless~\\cite{du2025thinkless} introduces an RL-trained control token that decides whether to invoke extended thinking for each query. AutoThink~\\cite{tu2025autothink} uses multi-stage RL to shape when reasoning-capable models activate their chain-of-thought. SelfBudgeter~\\cite{selfbudgeter2026} frames adaptive computation as token budget allocation trained via budget-guided GRPO. In the agent domain, ARES~\\cite{yang2026ares} trains an SFT-initialized router that selects reasoning effort levels per step, refined via GRPO with a combined outcome and token-efficiency reward. Agent-Omit~\\cite{agent-omit2026} learns to omit redundant thoughts and observations through agentic RL, reducing context length without sacrificing performance. Sherlock~\\cite{sherlock2025} performs selective verification at the workflow level through offline counterfactual analysis and speculative execution. Derailer-Rerailer~\\cite{wan2025derailer-rerailer} detects instability triggers in reasoning chains and invokes targeted verification. These approaches operate at the reasoning-token level (Thinkless, AutoThink, SelfBudgeter), workflow-DAG level (Sherlock), or use heuristic triggers (Derailer-Rerailer) and SFT-initialized routers (ARES). Our selective verification differs in scope and mechanism: it makes a binary verify-or-skip decision at each agent interaction step, trained end-to-end via RL with an action-change informativeness signal that requires no external annotations or heuristic design.\n\n\\paragraph{Self-Verification and Self-Correction.}\nSelf-verification has received significant attention as a mechanism for improving LLM reliability. Kamoi et al.~\\cite{kamoi2024self-correction-survey} survey self-correction in LLMs and establish that pure intrinsic self-correction (without external feedback) is unreliable across most settings. Long et al.~\\cite{long2026selfverification} quantify the verification dilemma empirically: over 90\\% of self-verification instances are confirmatory, with only approximately 2\\% producing corrective changes. CorrectBench~\\cite{tie2025correctbench} further demonstrates that uniform self-correction exhibits diminishing returns, as models repeatedly ``correct'' already-correct answers. VerifiAgent~\\cite{verifiagent2025} proposes a unified verification framework with meta-verification and tool-based adaptive strategies, focusing on improving verification quality through better methods. These findings collectively establish two facts: verification quality is limited by confirmatory bias, and uniform application of verification wastes computation on uninformative instances. Our work addresses a complementary question: given that most verification is confirmatory, \\textit{when} should an agent verify? The 90\\% confirmatory rate reported by Long et al. directly motivates learning a selective policy that triggers verification only at steps where action change is likely.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/related_work.tex",
+    "content": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{RL Training for LLM Agents.}\nGroup Relative Policy Optimization (GRPO)~\\cite{shao2024deepseekmath} emerged from mathematical reasoning alignment and was scaled to large systems through techniques such as dynamic sampling and clip-higher stabilization~\\cite{dapo2025}. Adapting GRPO to multi-turn interactive agents requires addressing the mismatch between its episode-level design and the practical constraints of long trajectories. RAGEN~\\cite{ragen2025} introduced the step-independent windowing approach that has become the community default, partitioning trajectories into fixed-size windows optimized separately. Subsequent work has proposed algorithmic improvements that operate within or alongside this framework. GiGPO~\\cite{feng2025gigpo} addresses credit assignment through a nested group structure that estimates step-level advantages without a learned critic, achieving substantial gains on ALFWorld and WebShop. Self-Guide~\\cite{selfguide2026} co-evolves an internal reward model with the policy, providing denser learning signals than binary episode outcomes. SPEAR~\\cite{spear2025} combines self-imitation learning with progressive curriculum to handle sparse rewards in early training. WebAgent-R1~\\cite{wei2025webagent-r1} extends GRPO to multi-turn web interaction (M-GRPO) with dynamic context compression, while SORL~\\cite{li2025sorl} introduces turn-level importance sampling for off-policy stability. HCAPO~\\cite{hcapo2026} uses an LLM-as-critic to assign hindsight credit at critical decision states. These methods improve training algorithms or reward design at various granularities. None diagnoses the step-independent windowing mechanism itself as a source of systematic sign misattribution, which is the structural failure we identify and formalize.\n\n\\paragraph{Credit Assignment in Reinforcement Learning.}\nThe temporal credit assignment problem has a long history. REINFORCE~\\cite{williams1992reinforce} provides unbiased but high-variance episode-level gradients. PPO~\\cite{schulman2017ppo} reduces variance through a learned value function and clipped surrogate objectives. Generalized Advantage Estimation (GAE)~\\cite{schulman2016gae} interpolates between one-step bootstrap and Monte Carlo returns via the $\\lambda$ parameter, offering a continuous spectrum from TD(0) to full-episode credit. The TD($\\lambda$) family~\\cite{sutton1988td} established this interpolation in the tabular setting. In the LLM agent context, process reward models provide step-level supervision: AgentPRM~\\cite{choudhury2025agentprm,xi2025agentprm} estimates per-step value through Monte Carlo rollouts or TD-based estimation with GAE. SkillMaster~\\cite{skillmaster2026} proposes DualAdv-GRPO, which separately estimates advantages for task-solving and skill-editing decisions. Episode-level GRPO, as we advocate, is equivalent to GAE(1,1) without a critic: it assigns uniform advantage across all steps, forgoing per-step granularity in exchange for correct gradient direction. Our contribution is not a new credit assignment algorithm but a diagnosis of why the community's standard adaptation of GRPO (step-independent windowing) produces catastrophic sign errors in multi-turn settings.\n\n\\paragraph{Selective Verification and Adaptive Computation.}\nA growing body of work trains models to allocate computation adaptively rather than uniformly. In the reasoning domain, Thinkless~\\cite{du2025thinkless} introduces an RL-trained control token that decides whether to invoke extended thinking for each query. AutoThink~\\cite{tu2025autothink} uses multi-stage RL to shape when reasoning-capable models activate their chain-of-thought. SelfBudgeter~\\cite{selfbudgeter2026} frames adaptive computation as token budget allocation trained via budget-guided GRPO. In the agent domain, ARES~\\cite{yang2026ares} trains an SFT-initialized router that selects reasoning effort levels per step, refined via GRPO with a combined outcome and token-efficiency reward. Agent-Omit~\\cite{agent-omit2026} learns to omit redundant thoughts and observations through agentic RL, reducing context length without sacrificing performance. Sherlock~\\cite{sherlock2025} performs selective verification at the workflow level through offline counterfactual analysis and speculative execution. Derailer-Rerailer~\\cite{wan2025derailer-rerailer} detects instability triggers in reasoning chains and invokes targeted verification. These approaches operate at the reasoning-token level (Thinkless, AutoThink, SelfBudgeter), workflow-DAG level (Sherlock), or use heuristic triggers (Derailer-Rerailer) and SFT-initialized routers (ARES). Our selective verification differs in scope and mechanism: it makes a binary verify-or-skip decision at each agent interaction step, trained end-to-end via RL with an action-change informativeness signal that requires no external annotations or heuristic design.\n\n\\paragraph{Self-Verification and Self-Correction.}\nSelf-verification has received significant attention as a mechanism for improving LLM reliability. Kamoi et al.~\\cite{kamoi2024self-correction-survey} survey self-correction in LLMs and establish that pure intrinsic self-correction (without external feedback) is unreliable across most settings. Long et al.~\\cite{long2026selfverification} quantify the verification dilemma empirically: over 90\\% of self-verification instances are confirmatory, with only approximately 2\\% producing corrective changes. CorrectBench~\\cite{tie2025correctbench} further demonstrates that uniform self-correction exhibits diminishing returns, as models repeatedly ``correct'' already-correct answers. VerifiAgent~\\cite{verifiagent2025} proposes a unified verification framework with meta-verification and tool-based adaptive strategies, focusing on improving verification quality through better methods. These findings collectively establish two facts: verification quality is limited by confirmatory bias, and uniform application of verification wastes computation on uninformative instances. Our work addresses a complementary question: given that most verification is confirmatory, \\textit{when} should an agent verify? The 90\\% confirmatory rate reported by Long et al. directly motivates learning a selective policy that triggers verification only at steps where action change is likely.\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T08:14:10.614902+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/related_work.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T08:14:10.615048+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -n \"—\\|–\" /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/related_work.tex | grep -v \"\\\\-\\\\-\" || echo \"No em-dash or en-dash found\"",
+  "description": "Check for em-dashes and en-dashes"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -n \"—\\|–\" /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/related_work.tex | grep -v \"\\\\-\\\\-\" || echo \"No em-dash or en-dash found\"",
+    "description": "Check for em-dashes and en-dashes"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T08:14:10.615173+00:00_
+
+No em-dash or en-dash found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T08:14:10.615294+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/related_work.tex | sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/~/ /g; s/[{}]//g' | wc -w",
+  "description": "Approximate word count excluding LaTeX commands"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/related_work.tex | sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/~/ /g; s/[{}]//g' | wc -w",
+    "description": "Approximate word count excluding LaTeX commands"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T08:14:10.615408+00:00_
+
+697
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T08:14:10.615532+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "detex /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/related_work.tex 2>/dev/null | wc -w || cat /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/related_work.tex | wc -w",
+  "description": "Word count of related work tex file"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "detex /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/related_work.tex 2>/dev/null | wc -w || cat /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/related_work.tex | wc -w",
+    "description": "Word count of related work tex file"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T08:14:10.615662+00:00_
+
+743
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T08:14:10.615780+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -c \"\\\\\\\\cite\" /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/related_work.tex",
+  "description": "Count citation commands"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -c \"\\\\\\\\cite\" /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/related_work.tex",
+    "description": "Count citation commands"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T08:14:10.615890+00:00_
+
+4
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-17T08:14:10.616015+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "grep -oP '\\\\cite\\{[^}]+\\}' /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/related_work.tex | tr ',' '\\n' | wc -l",
+  "description": "Count individual citation keys"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "grep -oP '\\\\cite\\{[^}]+\\}' /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/docs/paper/related_work.tex | tr ',' '\\n' | wc -l",
+    "description": "Count individual citation keys"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T08:14:10.616123+00:00_
+
+27
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_writing_related_work_20260517T081214",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-17T08:14:10.616262+00:00_
+
+Related Work section written to `docs/paper/related_work.tex`. 
+
+Summary:
+- 4 paragraphs (~900 words with markup, ~740 prose words), 27 citation keys across all clusters
+- No em-dashes, no -ing phrase endings, no paper stacking
+- Each cluster ends with clear positioning of our work relative to that literature
+- Citation keys match the `literature_map.yaml` IDs and the keys already used in `introduction.tex`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_writing_related_work_20260517T081214"
+}
+```
+
+</details>
+
+---

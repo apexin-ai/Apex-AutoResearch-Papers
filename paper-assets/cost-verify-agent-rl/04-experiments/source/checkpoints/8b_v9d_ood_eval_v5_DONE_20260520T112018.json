@@ -1,0 +1,44 @@
+{
+  "exp_id": "8b_v9d_ood_eval_v5",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:25:24.932Z",
+    "updated_at": "2026-05-20T11:20:18.763Z",
+    "hypothesis": "Evaluate 8B Cell C episode-level GRPO model (v9d step 10, val_before_train 96.875%) on 134 OOD ALFWorld tasks. Paper's key data point: 8B model OOD generalization under episode-level GRPO. Fix: val.env_groups 234→134 to match val.n_groups=[134].",
+    "parent": "8b_cell_c_episode_v9d",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && sed -i 's/env_groups: 234/env_groups: 134/' /root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_v9d_ood_eval.yaml && echo '=== env_groups/n_groups after sed fix ===' && grep -n -E 'env_groups|n_groups' /root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_v9d_ood_eval.yaml && cd /root/cost-verify-agent-rl/RAGEN && export WANDB_PROJECT=cost-verify-agent-rl && python train.py --config-name _alfworld_8b_v9d_ood_eval\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "737225",
+      "log_path": "~/runs/cost-verify-agent-rl/8b_v9d_ood_eval_v5.log",
+      "submitted_at": "2026-05-20T10:26:02.004Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "N/A (eval only)",
+      "wall_clock_seconds": 3256.8,
+      "gpu_hours": 3.62
+    },
+    "conclusion": "success",
+    "metrics": {
+      "pass_at_1": 90.3,
+      "action_valid_rate": 98.7,
+      "n_tasks": 134,
+      "temperature": 0.4,
+      "model": "8B Cell C v9d step 10"
+    },
+    "completed_at": "2026-05-20T11:20:18.763Z"
+  },
+  "timestamp": "2026-05-20T11:20:18.979211+00:00",
+  "trigger": "update_registry"
+}

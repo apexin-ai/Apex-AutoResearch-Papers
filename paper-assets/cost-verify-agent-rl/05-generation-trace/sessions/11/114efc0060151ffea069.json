@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "114efc0060151ffea069",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code eval checkpoint full context",
+  "task_key": "worker_code_eval_checkpoint_full_context_20260517T081157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_checkpoint_full_context_20260517T081157_result.json",
+    "occurrence": 1,
+    "bytes": 2541,
+    "sha256": "5ab53e35956082af5a701b52163bafec6982b874fc992f7d3258f5e6b67adc20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调研结论与产出\n\n### 1. RAGEN eval 机制调研\n\n**选择方案 B（独立脚本）**，原因：\n- RAGEN 有 `ragen/eval.py` 独立入口，但它用 Hydra 绑定 `config_name=base`，默认 CoordSokoban 环境，覆盖为 ALFWorld 需要大量 Hydra overrides 且调试困难\n- 已有 `scripts/eval_checkpoint.py` 提供了完整的 ALFWorld standalone eval 基础设施（FSDP 转换、env 初始化、action parsing、metrics 收集）\n- 关键变化：将 single-turn + `HISTORY_LENGTH=5` 替换为 **multi-turn messages 匹配 RAGEN `context_window_mode=full`**\n\n**Multi-turn 格式**（匹配 `ctx_manager._build_infer_multi_turn_messages`）：\n- `system`: `\"You're a helpful assistant. {env_instruction}\"`\n- `user`: `\"\\nTurn 1:\\nState:\\n{obs}\\n...\"` \n- `assistant`: model response\n- `user`: `\"Reward:\\n{reward}\\n\\nTurn 2:\\nState:\\n...\"` \n- ... 完整对话历史\n\n### 2. 脚本\n\n**路径**: `/root/cost-verify-agent-rl/scripts/eval_checkpoint_full_context.py` (379 行)\n\n### 3. 验证结果\n\n- 语法检查: OK\n- `--help`: OK\n- `--dry_run --run_dir`: 正确发现 exp029 的 3 个 checkpoint (step 5, 10, 15)\n- `--dry_run --ckpt_path`: 正确解析单个 checkpoint\n\n### 4. 使用说明\n\n```bash\n# 环境激活\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/cost-verify-agent-rl\n\n# 单个 checkpoint（FSDP 自动转换）\npython scripts/eval_checkpoint_full_context.py \\\n    --ckpt_path /root/autodl-tmp/checkpoints/hsweep-h2/global_step_10 \\\n    --num_episodes 32 --gpu 0\n\n# 批量：一个 run 下所有 checkpoint\npython scripts/eval_checkpoint_full_context.py \\\n    --run_dir /root/autodl-tmp/checkpoints/hsweep-h2/ \\\n    --num_episodes 32 --gpu 0\n\n# 先预览发现了哪些 checkpoint\npython scripts/eval_checkpoint_full_context.py \\\n    --run_dir /root/autodl-tmp/checkpoints/hsweep-h2/ --dry_run\n\n# 输出在 /root/autodl-tmp/eval_results/full_context/\n# 每个 checkpoint 一个 JSON + batch 汇总 JSON\n```\n\n### 5. 限制\n\n- 必须在 base conda env 中运行（依赖 RAGEN、vllm、alfworld）\n- FSDP → HF 转换需要 ~8GB CPU 内存和 ~30s\n- 每个 checkpoint eval 后必须重新加载模型（不同权重）\n- `max_model_len=20480` 匹配 hsweep 训练配置；若 full-context 对话超长，最旧的 turn 会被自动截断（`truncate_messages`）\n- hsweep checkpoint 目录尚未创建（训练未开始），脚本已验证可正确处理 exp029 的现有 FSDP checkpoint"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-checkpoint-full-context.md"
+}

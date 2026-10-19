@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "208422de7ce4a5e14b70",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp027 urgent status check",
+  "task_key": "worker_ops_exp027_urgent_status_check_20260515T152743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp027_urgent_status_check_20260515T152743_result.json",
+    "occurrence": 1,
+    "bytes": 2853,
+    "sha256": "bcb19075c725ac90653940f1e5e3c508f9479428a9beb0e4fbcfa02e158ef103"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp027 状态检查报告\n\n---\n\n### 1. 进程存活 ✅\n\n```\nPID     ELAPSED CMD\n789790    55:01 python train.py --config-name _alfworld_exp027_stable_grpo\n```\n\n**进程存活**，已运行 55 分钟。\n\n---\n\n### 2. tmux 输出\n\ntmux 命令在 read-only 模式下被阻止，无法获取。\n\n---\n\n### 3. 训练日志 & 指标\n\n**当前训练步数：step 0（初始验证刚完成，尚未进入第一个训练步）**\n\n主日志 (`exp027_stable_grpo.log`) 中无 `global_step` 或 `step:` 记录——所有实质输出在 Ray worker log 中。\n\nWorker log 中唯一的 step 记录是 **step:0 初始验证**（`val_before_train=True`）：\n\n| 指标 | 值 |\n|------|-----|\n| val-env/AlfworldSG/**success** | **6.25%** |\n| val-env/AlfworldSG/pass@1 | 6.25% |\n| val-env/AlfworldSG/action_is_valid | 63.125% |\n| val-env/AlfworldSG/action_is_effective | 87.875% |\n| val-env/AlfworldSG/num_actions | 42.375 |\n| val-env/response_length | 114.67 |\n| val-core/unknown/reward/mean@775 | 0.3226 |\n| validation generation time | 502.57 秒 |\n\n**尚无训练指标（KL / entropy / pg_loss）**——初始验证后进入第一个训练 step 的 rollout 阶段。主日志末尾（23:00:18）全是 TaskRunner 的 rollout warnings（`Skipping non-numeric metric 'anchor_obs'`），说明 step 1 的环境交互正在进行中。\n\nWorker `WorkerDict pid=793233` 输出了 `compute_policy_loss` 的 FutureWarning，表明 policy update 计算已开始执行。\n\n---\n\n### 4. Checkpoint ❌\n\n```\n/root/autodl-tmp/checkpoints/exp027/\ntotal 4\ndrwxr-xr-x  2 root root   10 May 15 22:33 .\ndrwxr-xr-x 10 root root 4096 May 15 22:33 ..\n```\n\n**目录为空，无 checkpoint 产出。** 符合预期——训练还未完成任何 step。\n\n---\n\n### 5. W&B 状态 ✅\n\nW&B run: `run-20260515_223406-y7jiibqk`\n\n```\nfiles/\n  output.log    855933 bytes  (最后更新 23:16)\n  requirements.txt\n  wandb-metadata.json\n  media/\n```\n\n`wandb-summary.json` **尚未生成**（正常——第一个训练 step 未完成时不会写 summary）。\n\n`output.log` 持续在更新（855KB，最后更新 23:16），**W&B 正在上报日志**。output.log 末尾内容与主日志一致——rollout warnings。\n\n---\n\n### 总结\n\n| 检查项 | 状态 |\n|--------|------|\n| 进程存活 | ✅ PID 789790，运行 55 分钟 |\n| 当前步数 | step 0 完成（初始验证），step 1 rollout 进行中 |\n| 训练指标 | 尚无（KL/entropy/pg_loss 需等 step 1 完成） |\n| 初始 val success | 6.25%（16 episodes） |\n| Checkpoint | ❌ 无（预期之中） |\n| W&B 上报 | ✅ output.log 持续更新 |\n\n训练正常运行中。初始验证耗时 ~8.4 分钟，之后进入 step 1 的 rollout 阶段。鉴于 Alfworld 环境交互较慢，第一个完整训练 step 尚需时间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp027-urgent-status-check.md"
+}

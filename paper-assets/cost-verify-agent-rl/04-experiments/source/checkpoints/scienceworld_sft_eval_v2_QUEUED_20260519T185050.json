@@ -1,0 +1,16 @@
+{
+  "exp_id": "scienceworld_sft_eval_v2",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:50:45.230Z",
+    "updated_at": "2026-05-19T18:50:50.144Z",
+    "hypothesis": "Evaluate ScienceWorld SFT checkpoint (global_step_448) on dev split with fixed valid_action_rate metric. v1 eval had bug: action_is_valid checked against truncated shown[:50] (mostly 'connect' format), now checks full valid_actions list. Establishes true SFT baseline success rate for ScienceWorld.",
+    "parent": "scienceworld_sft_eval"
+  },
+  "timestamp": "2026-05-19T18:50:50.516174+00:00",
+  "trigger": "update_registry"
+}

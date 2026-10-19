@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "204143d655257a3500be",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "fix m041 ray isolation seed6 v3",
+  "task_key": "worker_fix_m041_ray_isolation_seed6_v3_20260521T082141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_m041_ray_isolation_seed6_v3_20260521T082141_result.json",
+    "occurrence": 1,
+    "bytes": 975,
+    "sha256": "54794cf2276bec5123369197a5e5b603821a74f14c106223ecd4466b69c28ee4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 隔离验证成功。**\n\n| GPU | UUID | PID | 内存 | 归属 |\n|-----|------|-----|------|------|\n| 0 | dc15bb53 | 886568 | 91272 MiB | Seed 5 v2 |\n| 1 | 7be8796e | 886569 | 91272 MiB | Seed 5 v2 |\n| 2 | 9a15ae69 | 927990 | 4722 MiB | Seed 6 v3 |\n| 3 | f73743a7 | 927997 | 4722 MiB | Seed 6 v3 |\n\n---\n\n## 汇总报告\n\n1. **Seed 5 v2 健康状态**：正常运行，PID 879704，GPU 0,1 各占 91GB，无影响\n2. **Ray 隔离方案**：`RAY_ADDRESS=local`（方案 B 的简化版）。强制 `ray.init()` 启动独立本地 Ray 集群（随机端口），不连接 Seed 5 的默认 6379 集群。无需手动管理 Ray head\n3. **Seed 6 v3 新 PID**：920749（wrapper），实际 worker PID 927990/927997\n4. **GPU 分布**：GPU 0,1 = Seed 5（91GB），GPU 2,3 = Seed 6（4.7GB，正在加载模型）——完全隔离\n5. **对 Seed 5 的影响**：无。清理和重启过程仅操作 Seed 6 相关进程，Seed 5 全程正常运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-m041-ray-isolation-seed6-v3.md"
+}

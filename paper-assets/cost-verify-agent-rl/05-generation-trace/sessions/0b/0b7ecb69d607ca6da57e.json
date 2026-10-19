@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b7ecb69d607ca6da57e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "audit h10 val check",
+  "task_key": "worker_audit_h10_val_check_20260523T193623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_h10_val_check_20260523T193623_result.json",
+    "occurrence": 1,
+    "bytes": 520,
+    "sha256": "5f6d8c7b29cc8315f33f9fed5072a8a2fce86467ae8fbe837ac882687a4261d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论：\n\n**step 5 的 val success rate = 6.25% (2/32)**，与 Figure 3(b) 一致。\n\n数据来源：W&B run `x09p5xd0` (hsweep-h10-seed1), metric `val-env/AlfworldSG/success`, `_step=5`, value = 0.0625。\n\n两次 val eval（step 0 和 step 5）都是 0.0625。run 状态为 crashed（只跑到 step 7，共 15 步），但 step 5 的 val 已完整记录。\n\nregistry 中 `step5_val_success: SFT_baseline` (12.5%) 的描述不准确——实际值是 SFT baseline 的一半（6.25% vs 12.5%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-h10-val-check.md"
+}

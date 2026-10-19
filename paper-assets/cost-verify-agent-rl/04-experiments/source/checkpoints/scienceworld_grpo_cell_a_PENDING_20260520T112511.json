@@ -1,0 +1,16 @@
+{
+  "exp_id": "scienceworld_grpo_cell_a",
+  "project": "cost-verify-agent-rl",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:24:49.171Z",
+    "updated_at": "2026-05-20T11:25:10.923Z",
+    "hypothesis": "ScienceWorld 环境下 step-independent GRPO (h=2) 也会出现 policy collapse，验证 ALFWorld 观察到的 collapse 是 step-independent credit assignment 的固有问题而非环境特异性",
+    "parent": "scienceworld_sft"
+  },
+  "timestamp": "2026-05-20T11:25:11.160680+00:00",
+  "trigger": "update_registry"
+}

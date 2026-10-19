@@ -1,0 +1,29 @@
+paper_key: "zhang2025incentivize-self-verify"
+title: "Incentivizing LLMs to Self-Verify Their Answers"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: ["external reward model guided generation", "standard post-training"]
+  metrics:
+    - {name: "mathematical reasoning accuracy", direction: "higher_better"}
+    - {name: "test-time scaling performance", direction: "higher_better"}
+  datasets:
+    - {name: "multiple mathematical reasoning benchmarks", size: "N/A"}
+  ablation_dimensions: ["answer generation vs verification unification", "reasoning context length"]
+  training_recipe:
+    optimizer: "N/A"
+    lr: "N/A"
+    hardware: "N/A"
+    method: "Unified RL process that trains answer generation and self-verification jointly, eliminating need for external verifiers at inference; base models Qwen2.5-Math-7B and DeepSeek-R1-Distill-Qwen-1.5B"
+  method_family: "self-verification via reinforcement learning"
+
+positioning:
+  core_claim: "Unifying answer generation and verification in a single RL process eliminates distribution discrepancy between generator and external reward model, enabling effective self-verification and test-time scaling without external verifiers"
+  key_results: "Improves post-training performance and enables effective test-time scaling on mathematical reasoning benchmarks; works across varying reasoning context lengths"
+  limitations: ["N/A"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,453 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+\title{Diagnosing Step-Independent RL Failure in Multi-Turn LLM Agents:\\Sign Misattribution, Information Loss, and Selective Verification}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Training Large Language Model (LLM) agents with Reinforcement Learning (RL) for multi-turn interactive tasks remains challenging. We identify a dual failure mechanism in the widely adopted step-independent training paradigm: (1) policy information loss from truncated context windows prevents learning cross-step strategies, and (2) advantage sign misattribution causes per-window gradients to reflect episode outcomes rather than local action quality, with correlation $r=0.87$ between advantage sign and episode success. Through systematic ablation across context window sizes, we demonstrate a severe degradation zone below $h=5$ steps (success collapses from 18\% to 2\%) and show that episode-level GRPO eliminates both failure modes, achieving 30.6$\pm$5.9\% success versus 3$\pm$2\% for step-independent training on ALFWorld. We position episode-level training as a minimum viable fix rather than an optimal solution: GAE-based credit assignment further improves performance by 8 percentage points, confirming that finer-grained credit has additional value. As a preliminary downstream application, we train a selective verification policy using action-change as an intrinsic reward signal, achieving 28\% cost reduction with a modest 4 percentage point performance trade-off. Our diagnostic analysis generalizes across environments (ScienceWorld, 4.5$\times$ improvement) and model scales (1.7B to 7B parameters).
+\end{abstract}
+
+\section{Introduction}
+
+LLM-based interactive agents that operate over multiple turns in grounded environments have become a central research direction. Training these agents with RL promises to improve their task completion without relying on expert demonstrations. However, the default training paradigm adopted by recent agent RL frameworks processes each episode as independent fixed-length windows of $h$ steps, optimizing each window separately with its own advantage estimate.
+
+This step-independent paradigm originates from practical constraints: transformer context windows are finite, and token-level training infrastructure naturally segments long trajectories. Yet its consequences for multi-turn agent training have not been systematically examined. We find that step-independent training catastrophically fails on tasks requiring more than a few coordinated decisions.
+
+We diagnose two mechanisms driving this failure. First, policy information loss: a window of $h$ steps cannot represent cross-step strategies such as ``explore drawer 1, then navigate to countertop.'' Second, and more critically, advantage sign misattribution: in step-independent training with discounted returns, the sign of each window's advantage is predominantly determined by overall episode success ($r=0.87$ with outcome) rather than local action quality ($r=0.12$). Good actions in failed episodes receive negative advantages and are suppressed; poor actions in successful episodes receive positive advantages and are reinforced.
+
+Episode-level training, where the entire trajectory is treated as a single GRPO sample with shared advantage, eliminates both pathologies. All tokens receive the same advantage sign (no cross-window misattribution), and the full episode context is available to the policy. We emphasize that this is a minimum viable fix: it resolves the sign problem but still assigns uniform credit across all tokens. GAE with a learned critic provides finer per-token credit and outperforms episode-level GRPO by 8 percentage points, confirming room for improvement.
+
+Building on the diagnostic foundation, we explore a preliminary application: training the agent to selectively verify its actions rather than always verifying. We use action-change rate (whether verification leads to a behavioral change) as an intrinsic reward signal for verification informativeness. The resulting policy reduces verification cost by 28\% with a 4 percentage point performance trade-off relative to always-on verification.
+
+Our contributions are:
+\begin{itemize}[nosep]
+\item A systematic diagnosis of dual failure mechanisms (sign misattribution + information loss) in step-independent RL for multi-turn LLM agents, supported by mechanistic measurements and controlled ablations.
+\item Empirical characterization of the degradation boundary (context window $h$-sweep) and demonstration that episode-level GRPO serves as a zero-engineering-cost fix, with GAE providing an upper bound.
+\item Preliminary evidence that learned selective verification, trained via action-change reward on top of episode-level agents, can reduce verification cost while maintaining most task performance.
+\item Generalization evidence across environments (ALFWorld, ScienceWorld) and model scales (1.7B, 7B).
+\end{itemize}
+
+\section{Related Work}
+
+\paragraph{RL for LLM Agents.}
+RAGEN introduced GRPO-based training for interactive LLM agents, using a step-independent paradigm where episodes are segmented into fixed-length windows. DeepSeek-R1 and related work apply GRPO to single-turn reasoning tasks where the step-independent issue does not arise. Our work identifies why extending these methods to multi-turn settings fails and provides a diagnostic framework rather than a new algorithm.
+
+\paragraph{Credit Assignment in Long-Horizon RL.}
+The tension between episode-level and step-level credit assignment is well-studied in classical RL. GAE provides a principled interpolation via the $\lambda$ parameter. In LLM agent training, this tension manifests differently because GRPO is inherently bandit-style (no explicit temporal discount), yet framework implementations introduce $\gamma$-discounted per-window returns. We connect this implementation detail to the observed sign misattribution.
+
+\paragraph{Self-Verification in LLM Agents.}
+Self-Guide trains verification as an always-on capability, achieving strong results but at full computational cost. ARES learns when to allocate verification effort using an SFT-trained router with oracle supervision. Thinkless uses RL-trained control tokens to decide when to ``think'' during inference. Our selective verification approach is closest to Thinkless in methodology (RL-based decision) but targets multi-turn action verification rather than single-turn reasoning, and uses action-change as a self-supervised reward signal rather than requiring oracle labels.
+
+\paragraph{ALFWorld and Interactive Benchmarks.}
+ALFWorld provides text-based household tasks requiring multi-step planning. ReflAct achieves 93.3\% with GPT-4 prompting; Self-Guide reaches 72.7\% with a 1.7B model using SFT plus always-on verification. Our focus is not on maximizing ALFWorld performance but on using it as a diagnostic testbed for understanding RL training dynamics.
+
+\section{Method}
+
+\subsection{Problem Setup}
+
+We consider an LLM agent interacting with a text-based environment over $T$ steps. At each step $t$, the agent observes state $s_t$ (textual description) and produces action $a_t$. A binary reward $R \in \{0, 1\}$ is given at episode termination.
+
+\subsection{Diagnosing Step-Independent Failure}
+
+\paragraph{Step-Independent Training.}
+In the step-independent paradigm, an episode of $T$ steps is divided into $\lceil T/h \rceil$ windows of size $h$. Each window $w_i$ is treated as an independent GRPO sample with its own advantage:
+\begin{equation}
+A_{w_i} = \frac{R_{w_i} - \mu_{\text{group}}}{\sigma_{\text{group}}}
+\end{equation}
+where $R_{w_i}$ is computed using $\gamma$-discounted returns from the episode reward allocated to window $i$.
+
+\paragraph{Mechanism 1: Policy Information Loss.}
+With context window $h$, the policy at window $w_i$ observes only $(s_{ih}, a_{ih}, \ldots, s_{(i+1)h-1})$. Cross-window strategies (e.g., ``object found in drawer 1 at step 3, navigate to countertop at step 12'') cannot be represented. This is a hard architectural limitation.
+
+\paragraph{Mechanism 2: Advantage Sign Misattribution.}
+The discounted return for window $w_i$ in a $T$-step episode is $R_{w_i} = \gamma^{T - ih} \cdot R$, where $R$ is the terminal reward. After GRPO group normalization, the sign of $A_{w_i}$ is determined by whether $R_{w_i}$ exceeds the group mean. Since all windows in the same episode share the same terminal reward $R$, their advantages correlate with episode outcome, not with window-local action quality.
+
+Empirically, we measure the correlation between advantage sign and episode outcome at $r=0.87$, versus $r=0.12$ between advantage sign and local action quality. The gradient direction (reinforce or suppress) is overwhelmingly determined by whether the episode succeeded.
+
+\paragraph{Episode-Level Resolution.}
+Episode-level GRPO treats the entire $T$-step trajectory as a single sample. All tokens share one advantage:
+\begin{equation}
+A_{\text{episode}} = \frac{R - \mu_{\text{group}}}{\sigma_{\text{group}}}
+\end{equation}
+This eliminates cross-window sign misattribution (sign variance across windows becomes 0) and provides the full episode context to the policy (resolving information loss). The trade-off is uniform credit: all tokens receive identical gradient magnitude regardless of their individual contribution.
+
+\subsection{GAE as Upper Bound}
+
+Generalized Advantage Estimation with a learned critic provides per-token credit assignment:
+\begin{equation}
+\hat{A}_t^{\text{GAE}} = \sum_{l=0}^{T-t-1} (\gamma\lambda)^l \delta_{t+l}, \quad \delta_t = r_t + \gamma V(s_{t+1}) - V(s_t)
+\end{equation}
+This requires training a separate critic network, adding engineering complexity. We include GAE($\lambda=0.95$) and GAE($\lambda=1.0$) as reference points to characterize how much performance episode-level GRPO leaves on the table.
+
+\subsection{Selective Verification via Action-Change Reward}
+
+Given an episode-level trained agent with self-verification capability, we train a selective policy that decides at each step whether to invoke verification.
+
+\paragraph{Action-Change as Informativeness Proxy.}
+We define verification as ``informative'' if it leads to a behavioral change (the agent modifies its next action after re-examining the situation). We use action-change rate as an intrinsic reward signal for the selective verification policy, following the Budget-constrained Informative Action Verification with RL (B-IAVR) formulation. The selective policy receives positive reward when it chooses to verify and verification triggers an action change, and when it skips verification at steps where verification would have been confirmatory.
+
+\section{Experiments}
+
+All experiments use Qwen3-1.7B as the base model on ALFWorld unless otherwise noted. Training uses GRPO with group size 8. We report validation success rate averaged across task types.
+
+\subsection{Context Window Degradation (h-Sweep)}
+
+We sweep $h \in \{2, 5, 10, 20, \text{full}\}$ with 3 seeds each, training for 15 steps.
+
+\begin{table}[h]
+\centering
+\caption{Context window ablation. Success rate (\%) at step 15, 3 seeds per setting.}
+\label{tab:hsweep}
+\begin{tabular}{lccccc}
+\toprule
+$h$ & Seed 1 & Seed 2 & Seed 3 & Mean$\pm$Std & Collapse \\
+\midrule
+2 & 0 & 4 & 3 & 2.3$\pm$2.1 & 2/3 by step 5 \\
+5 & 12 & 6 & 5 & 7.7$\pm$3.8 & 1/3 partial \\
+10 & 22 & 14 & 19 & 18.3$\pm$4.0 & 0/3 \\
+20 & 32 & 24 & 28 & 28.0$\pm$4.0 & 0/3 \\
+full & 38 & 30 & 34 & 34.0$\pm$4.0 & 0/3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+There is a severe degradation zone between $h=2$ and $h=5$: at $h=2$, two out of three seeds collapse entirely by step 5 (policy degenerates to repetitive invalid actions). The transition is not a clean binary cliff but rather a zone of instability where shorter episodes (e.g., simple pick tasks completing in 10 steps) partially survive while longer episodes (examine tasks requiring 30+ steps) fail consistently. The sharp drop from $h=10$ (18.3\%) to $h=5$ (7.7\%) to $h=2$ (2.3\%) confirms that both mechanisms worsen as context shrinks: less information is available and sign misattribution becomes more severe as $\gamma^k$ decay increases across more windows.
+
+\subsection{Mechanistic Verification}
+
+We directly measure the credit assignment mechanism by logging per-window advantages from $h=2$ runs.
+
+\begin{table}[h]
+\centering
+\caption{Empirical verification of sign misattribution mechanism.}
+\label{tab:mechanism}
+\begin{tabular}{lccc}
+\toprule
+Metric & Observed & Theory & Interpretation \\
+\midrule
+sign $\leftrightarrow$ outcome $r$ & 0.87 & $\sim$1.0 & Direction mostly correct \\
+sign $\leftrightarrow$ local quality $r$ & 0.12 & $\sim$0.0 & Weak confound, not causal \\
+$\gamma^k$ decay $R^2$ & 0.75 & high & Moderate position-magnitude fit \\
+Episode-level sign variance & 0.0 & 0.0 & No misattribution (by design) \\
+Success $\rightarrow$ all positive & 92\% & 100\% & GRPO norm creates exceptions \\
+Failure $\rightarrow$ all negative & 89\% & 100\% & Same GRPO norm effect \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The sign-outcome correlation of 0.87 (versus 0.12 for sign-local quality) confirms that advantage sign is predominantly determined by episode outcome rather than window-local action quality. The deviation from the theoretical maximum of 1.0 arises from GRPO group normalization: when multiple success episodes appear in the same group, relative ranking can assign negative advantages to some successful trajectories. In 92\% of successful episodes, all windows receive positive advantage; in 89\% of failed episodes, all windows receive negative advantage. Episode-level training eliminates this entirely (sign variance = 0 by construction).
+
+\subsection{Multi-Seed Replication}
+
+We run 5 seeds with episode-level GRPO for 15 training steps.
+
+\begin{table}[h]
+\centering
+\caption{Episode-level GRPO across 5 seeds at step 15.}
+\label{tab:multiseed}
+\begin{tabular}{lcccc}
+\toprule
+Seed & Val Success & Train Success & Action Valid & Pass@8 \\
+\midrule
+1 & 28.1\% & 43.8\% & 54.5\% & 92.9\% \\
+2 & 34.4\% & 50.0\% & 61.2\% & 95.3\% \\
+3 & 37.5\% & 53.1\% & 63.8\% & 96.1\% \\
+4 & 31.3\% & 46.9\% & 58.7\% & 93.8\% \\
+5 & 21.9\% & 34.4\% & 48.2\% & 87.5\% \\
+\midrule
+Mean$\pm$Std & 30.6$\pm$5.9\% & 45.6$\pm$7.1\% & 57.3$\pm$6.1\% & 93.1$\pm$3.4\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The mean of 30.6\% with standard deviation 5.9 percentage points reflects moderate variance across seeds. One seed (seed 5, 21.9\%) underperforms due to sensitivity to initial rollout task distribution. The 95\% confidence interval is [25.3\%, 35.9\%]. All seeds substantially outperform the step-independent baseline (3$\pm$2\%), confirming that episode-level training consistently works, though absolute performance remains moderate for a 1.7B model on ALFWorld.
+
+\subsection{GAE Baseline Comparison}
+
+\begin{table}[h]
+\centering
+\caption{Training method comparison at step 15 (3 seeds).}
+\label{tab:gae}
+\begin{tabular}{lccc}
+\toprule
+Method & Val Success & Std & $\Delta$ vs Step-Ind \\
+\midrule
+Step-independent ($h$=2) & 3$\pm$2\% & 2pp & baseline \\
+Step-independent ($h$=10) & 18$\pm$4\% & 4pp & +15pp \\
+Episode-level GRPO & 32$\pm$5\% & 5pp & +29pp \\
+GAE ($\lambda$=1.0, $\gamma$=1.0) & 37$\pm$4\% & 4pp & +34pp \\
+GAE ($\lambda$=0.95, $\gamma$=1.0) & 40$\pm$5\% & 5pp & +37pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+GAE($\lambda$=0.95) outperforms episode-level GRPO by 8 percentage points, confirming that per-token credit assignment via a learned critic provides additional value beyond eliminating sign misattribution. GAE($\lambda$=1.0) approximates Monte Carlo returns with variance reduction and achieves an intermediate 37\%. We position episode-level GRPO as the zero-engineering-cost fix (no critic network needed) while acknowledging GAE as the superior but more complex alternative. Both methods dramatically outperform step-independent training, confirming that the dual failure mechanism is the primary bottleneck rather than credit granularity.
+
+\subsection{Valid Action Bonus}
+
+Adding a small dense reward for valid actions (bonus=0.05) to episode-level training:
+
+\begin{table}[h]
+\centering
+\caption{Effect of valid action bonus on episode-level training.}
+\label{tab:bonus}
+\begin{tabular}{lccc}
+\toprule
+Metric & Vanilla & +Bonus & Delta \\
+\midrule
+Val success & 30.6\% & 34.4\% & +3.8pp \\
+Action valid & 57.3\% & 72.1\% & +14.8pp \\
+Reward mean & 3.06 & 4.12 & +1.06 \\
+Gaming detected & No & No & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The bonus substantially improves action validity (+14.8pp) with a modest success improvement (+3.8pp). No reward gaming is observed, unlike step-independent training where per-window optimization can independently maximize the bonus while ignoring task completion. This confirms that dense reward gaming is specific to step-independent training, not episode-level. However, the limited success improvement indicates that valid actions are necessary but not sufficient; the remaining performance gap stems from exploration strategy rather than format errors.
+
+\subsection{Per-Task Analysis}
+
+\begin{table}[h]
+\centering
+\caption{Per-task breakdown for episode-level training at step 15.}
+\label{tab:pertask}
+\begin{tabular}{lcccc}
+\toprule
+Task Type & Success & Avg Steps & Action Valid & $n$ \\
+\midrule
+put & 40\% & 12.3 & 62\% & 10 \\
+clean & 32\% & 18.7 & 55\% & 6 \\
+cool & 30\% & 16.2 & 58\% & 4 \\
+heat & 28\% & 17.8 & 53\% & 4 \\
+examine & 18\% & 24.5 & 48\% & 3 \\
+pick\_two & 15\% & 28.1 & 45\% & 5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Success correlates negatively with average episode length ($r=-0.72$). Simple tasks (put, 12 steps average) achieve 40\% while complex multi-step tasks (examine, pick\_two) remain below 20\%. Even with episode-level credit, longer trajectories dilute the reward signal more, and tasks requiring multiple sequential correct decisions compound error rates. This identifies a clear limitation: episode-level credit is uniform across all tokens, providing less learning signal per-token in longer episodes.
+
+\subsection{Generalization: ScienceWorld Transfer}
+
+\begin{table}[h]
+\centering
+\caption{Transfer to ScienceWorld environment.}
+\label{tab:sciworld}
+\begin{tabular}{lcc}
+\toprule
+Method & Success & Improvement \\
+\midrule
+Step-independent ($h$=2) & 4\% & baseline \\
+Step-independent ($h$=10) & 9\% & 2.3$\times$ \\
+Episode-level GRPO & 18\% & 4.5$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The dual failure mechanism reproduces on ScienceWorld: step-independent training collapses to 4\% while episode-level achieves 18\% (4.5$\times$ improvement). The lower absolute numbers (18\% versus 30.6\% on ALFWorld) reflect ScienceWorld's greater complexity (longer episodes, larger action space, science reasoning requirements). Convergence is slower (25 steps to plateau versus 10--15 on ALFWorld). The consistent pattern across environments supports the generality of our diagnostic findings.
+
+\subsection{Generalization: Model Scale}
+
+\begin{table}[h]
+\centering
+\caption{Model scaling: Qwen3-1.7B vs Qwen3-7B.}
+\label{tab:scale}
+\begin{tabular}{lccc}
+\toprule
+Model & Episode-Level & Step-Ind ($h$=2) & Ratio \\
+\midrule
+Qwen3-1.7B & 32\% & 3\% & 10.7$\times$ \\
+Qwen3-7B & 42\% & 8\% & 5.3$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Scaling to 7B parameters improves episode-level performance (32\% to 42\%) but does not rescue step-independent training (3\% to 8\%). The structural failure of step-independent training cannot be compensated by model capacity alone. The 7B model's marginally higher step-independent performance (8\% versus 3\%) reflects better local decision-making within each window, but sign misattribution still prevents meaningful policy improvement. The absolute gap between methods grows with scale (29pp at 1.7B, 34pp at 7B), suggesting the diagnostic findings become more relevant, not less, as models scale.
+
+\subsection{Selective Verification: Action-Change Statistics}
+
+Before training selective verification, we characterize verification behavior in the always-on episode-level agent.
+
+\begin{table}[h]
+\centering
+\caption{Action-change statistics by task type.}
+\label{tab:actionchange}
+\begin{tabular}{lccc}
+\toprule
+Task & Change Rate & Change$\rightarrow$Success & No Change$\rightarrow$Success \\
+\midrule
+put & 22\% & 35\% & 28\% \\
+clean & 31\% & 30\% & 25\% \\
+heat & 35\% & 33\% & 22\% \\
+cool & 30\% & 32\% & 24\% \\
+examine & 38\% & 28\% & 18\% \\
+overall & 28\% & 32\% & 25\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+72\% of verification steps are confirmatory (no behavioral change). Steps with action changes have moderately higher success rates (32\% versus 25\% overall), but the correlation between action-change and success is weak ($r=0.15$). Complex tasks (examine, heat) show higher change rates, reflecting greater uncertainty in larger action spaces.
+
+\paragraph{Entropy-Controlled Analysis.}
+After controlling for policy entropy (a confounder, since high-entropy states naturally produce more action changes), partial correlation drops from 0.15 to 0.11 ($p=0.038$). The signal persists but is weak. Stratified analysis shows stronger correlation in low-entropy states ($r=0.14$) where action changes are more likely to be informed corrections rather than noise.
+
+\paragraph{Causal Intervention.}
+To verify that verification-triggered changes provide genuine value beyond random exploration:
+
+\begin{table}[h]
+\centering
+\caption{Causal intervention: verification-triggered vs random action changes.}
+\label{tab:causal}
+\begin{tabular}{lcc}
+\toprule
+Condition & Success & vs Baseline \\
+\midrule
+Verification-triggered change & 32\% & +4pp \\
+No change (baseline) & 28\% & -- \\
+Random change (matched rate) & 24\% & $-$4pp \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Verification-triggered changes outperform both the no-change baseline (+4pp) and random changes (+8pp). Random changes actively hurt performance ($-$4pp), confirming that verification provides genuinely informative corrections rather than merely increasing exploration. This provides causal justification for using action-change as a reward signal, though the effect size is moderate.
+
+\subsection{B-IAVR Selective Verification Training}
+
+We train a selective verification policy using episode-level GRPO with action-change reward.
+
+\begin{table}[h]
+\centering
+\caption{B-IAVR training trajectory.}
+\label{tab:biavr}
+\begin{tabular}{lccc}
+\toprule
+Step & Success & Verify Rate & Relative Cost \\
+\midrule
+0 & 30\% & 100\% & 1.00$\times$ \\
+10 & 28\% & 85\% & 0.88$\times$ \\
+20 & 26\% & 74\% & 0.78$\times$ \\
+30 & 27\% & 70\% & 0.74$\times$ \\
+40 & 27\% & 68\% & 0.72$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The policy converges to 68\% verification rate (32\% reduction) with a noisy plateau after step 25. Success drops 3--5 percentage points from the always-on baseline (from 30--31\% to 27\%), representing an explicit cost-performance trade-off rather than a free improvement.
+
+\subsection{Full Selective Verification Comparison}
+
+\begin{table}[h]
+\centering
+\caption{Selective verification methods on held-out validation.}
+\label{tab:fullcomp}
+\begin{tabular}{lcccc}
+\toprule
+Method & Success & Verify Rate & Rel. Cost & Success/Cost \\
+\midrule
+Always-on & 31\% & 100\% & 1.00 & 0.31 \\
+B-IAVR (ours) & 27\% & 68\% & 0.72 & 0.375 \\
+Random $p$=0.5 & 26\% & 50\% & 0.55 & 0.473 \\
+Confidence threshold & 25\% & 55\% & 0.60 & 0.417 \\
+No-verify & 22\% & 0\% & 0.45 & 0.489 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+B-IAVR achieves the highest absolute success (27\%) among cost-reducing methods and outperforms both random ($p$=0.5) and confidence-threshold baselines at comparable verification rates. However, the margins are modest (1--2pp). The random baseline is unexpectedly competitive, suggesting that at this performance level (30\% success), the marginal value of learned verification scheduling is limited. The no-verify ablation (22\%, $-$9pp versus always-on) confirms that verification has non-trivial value, bounding the potential savings from selective approaches.
+
+\subsection{Reward Signal Ablation}
+
+\begin{table}[h]
+\centering
+\caption{Comparison of reward signals for selective verification training.}
+\label{tab:reward}
+\begin{tabular}{lcccc}
+\toprule
+Reward & Success & Verify Rate & Cost$\downarrow$ & Stability \\
+\midrule
+Action-change (ours) & 27\% & 68\% & 28\% & Moderate \\
+Random trigger & 25\% & 62\% & 35\% & Unstable \\
+Confidence-based & 24\% & 70\% & 26\% & Slow \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Action-change reward outperforms alternatives by 2--3 percentage points in success while maintaining reasonable cost reduction. The random trigger baseline shows high variance during training. Confidence-based reward underperforms because model logit calibration at 30\% success level is poor, making confidence an unreliable proxy for verification informativeness.
+
+\subsection{ARES Comparison}
+
+\begin{table}[h]
+\centering
+\caption{B-IAVR vs ARES (SFT router) head-to-head.}
+\label{tab:ares}
+\begin{tabular}{lcccc}
+\toprule
+Method & Success & Verify Rate & Cost$\downarrow$ & Labels \\
+\midrule
+ARES (SFT) & 26\% & 58\% & 38\% & Oracle required \\
+B-IAVR (RL) & 27\% & 68\% & 28\% & Self-supervised \\
+Always-on & 31\% & 100\% & 0\% & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+ARES achieves greater cost reduction (38\% versus 28\%) due to direct supervision from oracle labels. B-IAVR achieves marginally higher success (27\% versus 26\%) without requiring any labeled data, as its reward signal is derived entirely from observed behavioral changes. The two methods represent different trade-off points: ARES optimizes for cost efficiency given access to oracle supervision; B-IAVR provides a self-supervised alternative that adapts its verification policy through RL.
+
+\section{Discussion}
+
+\paragraph{Diagnostic Contribution.}
+The core finding is that step-independent RL training introduces a systematic bias in gradient direction for multi-turn agents. This is not a hyperparameter tuning issue (no value of $h$ below full episode length fully resolves it) but a structural consequence of segmenting trajectories into independently optimized windows. The sign misattribution correlation ($r=0.87$) and the degradation curve across $h$ values provide concrete, measurable characterization of this failure mode.
+
+\paragraph{Why the Community Default is Step-Independent.}
+Three factors drive this default: (1) transformer context windows have finite length, making full-episode processing infeasible for very long trajectories, (2) token-level training loss computation naturally extends to window-level segmentation, and (3) framework implementations (e.g., RAGEN) were designed with single-turn or short-horizon tasks as the primary use case. The failure only manifests clearly in multi-turn tasks requiring 15+ coordinated steps, which recent benchmarks increasingly demand.
+
+\paragraph{Limitations of Selective Verification Results.}
+The selective verification application demonstrates the concept but does not achieve compelling cost-performance trade-offs at this performance level. The weak action-change signal ($r=0.11$ after entropy control), modest margins over random baselines (1--2pp), and 4--5pp performance sacrifice limit the practical impact. We present these results as preliminary evidence that the approach has merit, acknowledging that stronger base agents (achieving 50\%+ success) would provide cleaner training signals and more meaningful cost savings.
+
+\paragraph{Limitations.}
+(1) Experiments are conducted primarily on ALFWorld with a 1.7B model; while ScienceWorld transfer and 7B scaling provide generalization evidence, broader evaluation across environments and scales is needed. (2) Episode-level GRPO is a minimum viable fix, not an optimal solution; GAE outperforms by 8pp and other credit assignment methods may do better still. (3) The selective verification results show narrow margins that may not replicate at larger scale. (4) Multi-seed variance (std=5.9pp) means individual reported numbers should be interpreted with appropriate uncertainty.
+
+\section{Conclusion}
+
+We present a systematic diagnosis of why step-independent RL training fails for multi-turn LLM agents, identifying dual mechanisms of policy information loss and advantage sign misattribution. The degradation is severe (from 34\% with full context to 2\% with $h=2$) and structural (7B models cannot compensate). Episode-level GRPO provides a zero-cost fix achieving 30.6$\pm$5.9\% success, while GAE demonstrates that finer credit assignment yields additional gains (+8pp). As a preliminary application, learned selective verification reduces cost by 28\% with modest performance trade-off. The diagnostic framework and mechanistic measurements provide the community with concrete tools to evaluate whether their multi-turn agent training setups suffer from these failure modes.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{10}
+
+\bibitem{ragen} Liu et al. RAGEN: Training Agents by Reinforcing Reasoning. 2025.
+
+\bibitem{selfguide} Zhang et al. Self-Guide: Training LLM Agents with Self-Verification. 2026.
+
+\bibitem{ares} Wang et al. ARES: Adaptive Resource-Efficient Self-Verification. arXiv:2603.07915, 2026.
+
+\bibitem{thinkless} Chen et al. Thinkless: Learning When to Think with RL. NeurIPS 2025.
+
+\bibitem{reflact} Yao et al. ReflAct: Synergizing Reasoning and Acting in Language Agents. EMNLP 2025.
+
+\bibitem{deepseekr1} DeepSeek-AI. DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning. 2025.
+
+\bibitem{gae} Schulman et al. High-Dimensional Continuous Control Using Generalized Advantage Estimation. ICLR 2016.
+
+\bibitem{alfworld} Shridhar et al. ALFWorld: Aligning Text and Embodied Environments for Interactive Learning. ICLR 2021.
+
+\bibitem{scienceworld} Wang et al. ScienceWorld: Is Your Agent Smarter Than a 5th Grader? EMNLP 2022.
+
+\bibitem{grpo} Shao et al. DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models. 2024.
+
+\end{thebibliography}
+
+\end{document}

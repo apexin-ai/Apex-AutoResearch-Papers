@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp029_seed7_high_kl_step5_ood_v2",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T22:36:15.521Z",
+    "updated_at": "2026-05-23T00:27:44.343Z",
+    "hypothesis": "D134 协议 re-eval: high_kl step5 checkpoint (KL 10x intervention) OOD eval with enable_think=true, enable_response_mask=false, full context, T=0.4. v1 在 bjb1 crash (checkpoint 目录名缺 qwen_ 前缀). 原始 eval 得 8.21% (11/134). 验证 D134 协议下是否一致。",
+    "parent": "exp029_seed7_ood_precollapse",
+    "spec": {
+      "command": "bash -c \"cd /root/cost-verify-agent-rl/RAGEN && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && WANDB_DIR=/root/autodl-tmp/wandb_tmp python train.py --config-name _alfworld_seed7_high_kl_step5_ood_eval_westd enable_response_mask=false actor_rollout_ref.model.enable_response_mask=false\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "217542",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_seed7_high_kl_step5_ood_v2.log",
+      "submitted_at": "2026-05-22T22:36:38.766Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-23T00:27:44.982336+00:00",
+  "trigger": "update_registry"
+}

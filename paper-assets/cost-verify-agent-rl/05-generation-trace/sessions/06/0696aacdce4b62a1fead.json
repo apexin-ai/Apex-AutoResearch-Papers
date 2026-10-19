@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0696aacdce4b62a1fead",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "experiment alfworld seed3 v2",
+  "task_key": "worker_experiment_alfworld-seed3-v2_20260520T170757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_alfworld-seed3-v2_20260520T170757_result.json",
+    "occurrence": 1,
+    "bytes": 679,
+    "sha256": "df7b2b49e97a105184b178c67ee33e2e9b0a2403f26bb8fe93a4a88ccc814f2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training is starting up successfully:\n\n- **Seed format**: ✅ `seed: {train: 42, val: 123}` — correctly resolved\n- **Ray**: ✅ Local Ray instance started (dashboard at 127.0.0.1:8266)\n- **Config**: ✅ All parameters correct (episode-level, full context window, 2 GPUs)\n- **No errors**: Only benign warnings (conda, gym deprecation, Hydra defaults)\n\n**Summary**:\n- `exp029_seed3_v2` submitted on westd-47453 cuda:0,1, PID 991448\n- Fixed seed format from bare `seed=42` → `seed.train=42 seed.val=123`\n- Checkpoints → `/root/autodl-tmp/checkpoints/exp029-seed3/`\n- W&B experiment name: `exp029-seed3-episode-level`\n- 15 training steps, 12h timeout"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-alfworld-seed3-v2.md"
+}

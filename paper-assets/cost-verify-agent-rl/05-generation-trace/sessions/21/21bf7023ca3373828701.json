@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21bf7023ca3373828701",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "urgent full status check all experiments",
+  "task_key": "worker_urgent_full_status_check_all_experiments_20260521T203550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_full_status_check_all_experiments_20260521T203550_result.json",
+    "occurrence": 1,
+    "bytes": 2700,
+    "sha256": "c84eaf0cc15c1ab992b9523b99b26202508cc0980b0bb00da327e34ea37de644"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Here's the full summary:\n\n```\n=== 实验状态 ===\n\n1. len_penalty (westd 0,1): ✅ 完成\n   - 进程: PID 495138 已退出, EXIT_CODE=0, 总耗时 ~2h40m\n   - 进度: 7/7 步完成 + final validation\n   \n   val success 趋势:    step0=6.25%  → step7=28.13%  (↑)\n   val resp_len 趋势:   step0=8600   → step7=7598    (↓ 仅减 12%)\n   train success:       step1=31.25% (之后中间步被截断)\n   train/resp_len:      step1=1992   (penalty 在 train 上生效)\n   rollout resp_len:    step1=10319  → step7=14284   (↑ 持续膨胀)\n   \n   判断: ❌ 未通过\n   - val resp_len = 7598 >> 2000 阈值 (FAIL)\n   - val success = 28.13% < 30% 阈值 (FAIL, 差 1.87%)\n   - 结论: length penalty 效果不足，只把 val 从 8600 压到 7598，远未达标\n\n2. high_kl (bjb1 0,1): 🔄 进行中\n   - 进程: GPU 活跃 (77.8 GB used, 71% util), 无 EXIT_CODE\n   - 进度: 已完成 step 5/7 (含 val), 正在跑 step 6 或 7\n   - kl_coef = 0.1 (len_penalty 的 10 倍)\n   \n   val success 趋势:    step0=15.63% → step5=28.13%  (↑ 持续改善)\n   val resp_len 趋势:   step0=5575   → step5=5353    (→ 基本稳定)\n   train success:       step1=15.63% → step5=13.28%  (→ 稳定偏低)\n   rollout resp_len:    step1=... → step5=13169       (↑ 膨胀)\n   \n   预计完成: ~35-70 min 后 (每步 ~35min)\n\n3. seed8 (westd 2,3): 🔄 进行中\n   - 进程: GPU 活跃 (45.2/46.3 GB, 100% util), 已运行 4h25m\n   - 进度: step 9/15 (60%)\n   \n   val success 趋势:    step0=31.25% → step5=28.13%  (↓ 略降)\n   val resp_len 趋势:   step0=2469   → step5=3162    (↑ 缓慢增长)\n   train success:       step1=35.9%  → step9=10.9%   (↓↓ 急剧下降!)\n   train resp_len:      step1=1784   → step9=11569   (↑↑ 6.5 倍膨胀!)\n   rollout resp_len:    step1=9879   → step9=14869   (↑ 逼近 16K 上限)\n   \n   ⚠️ 严重信号: train success 从 36% 暴跌到 11%, 同时 resp_len \n   从 1784 → 11569, 经典的 response length 膨胀 / reward hacking\n   \n   预计完成: ~3h26m 后 (ETA ~07:30 UTC)\n\n=== GPU 状态 ===\nwestd: GPU 0=[0 MiB, 0%]  GPU 1=[0 MiB, 0%]  GPU 2=[45169 MiB, 100%]  GPU 3=[46285 MiB, 100%]\nbjb1:  GPU 0=[77809 MiB, 71%]  GPU 1=[77811 MiB, 68%]\n\n=== 空闲 GPU ===\nwestd cuda:0, cuda:1  ← len_penalty 完成后已释放\n```\n\n**关键发现:**\n- len_penalty 未达标 — penalty 强度不够，resp_len 只从 8600 降到 7598\n- high_kl 趋势最健康 — val success 持续上升，resp_len 保持稳定在 5300-5500\n- seed8 正在 reward hack — train success 崩塌 + resp_len 爆炸，后 6 步可能继续恶化"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-full-status-check-all-experiments.md"
+}

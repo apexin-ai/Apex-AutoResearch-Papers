@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "325bf5a36e868b48ecde",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp029 step1 urgent",
+  "task_key": "worker_check_exp029_step1_urgent_20260516T145902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp029_step1_urgent_20260516T145902_result.json",
+    "occurrence": 1,
+    "bytes": 1597,
+    "sha256": "df18149e3ee7d5aaaeb34ff5bd33dd402d267ec2e6315267418e495e71a8961f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp029 状态汇总\n\n### 进程：**已死** (PID 861524 不存在)\n\n### GPU：**空闲**\n```\nGPU 0: 0%, 0 MiB\nGPU 1: 0%, 0 MiB\n```\n\n### W&B Run `x4bbiddh`：**crashed**，运行 4873s (~81分钟)\n\n### 已产出 Metrics（共 2 个 step）：\n\n**Step 0 (初始 eval)：**\n| 指标 | 值 |\n|------|-----|\n| val-env/AlfworldSG/pass@1 | 10.71% |\n| val-env/AlfworldSG/success | 10.71% |\n| val-core/unknown/reward/mean@140 | 1.0714 |\n| val-core/unknown/reward/best@140/mean | 10 |\n| val-env/AlfworldSG/action_is_valid | 0.6544 |\n| val-env/AlfworldSG/action_is_effective | 1.0 |\n| val-env/AlfworldSG/num_actions | 45.33 |\n| val-env/response_length | 7023.36 |\n\n**Step 1 (第 1 轮训练后)：**\n| 指标 | 值 |\n|------|-----|\n| train/AlfworldSG/success | 17.19% |\n| train/AlfworldSG/pass@8 | 50% |\n| train/AlfworldSG/action_is_valid | 0.6878 |\n| train/AlfworldSG/action_is_effective | 0.9606 |\n| train/AlfworldSG/num_actions | 41.72 |\n| train/response_length | 7887.56 |\n| critic/rewards/mean | 1.7188 |\n| actor/pg_loss | -0.0 |\n| actor/entropy | 0.0265 |\n| actor/kl_loss | 0.0008 |\n| actor/grad_norm | 0.9941 |\n| perf/throughput | 452.03 tokens/s |\n| perf/time_per_step | 1857s (~31min) |\n| timing_s/gen | 1278s |\n| timing_s/update_actor | 407.6s |\n\n### 崩溃原因：**磁盘满**\n日志末尾显示 `OSError: [Errno 28] No space left on device`，发生在 ALFWorld 环境加载 `fast_downward/libdownward.so` 到 `/tmp/` 时。训练完成 Step 1 后进入第二轮 rollout，ALFWorld 环境初始化写 `/tmp` 失败导致崩溃。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp029-step1-urgent.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a9d5c1876a5b834ae7f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops exp027 process check",
+  "task_key": "worker_ops_exp027_process_check_20260515T143606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp027_process_check_20260515T143606_result.json",
+    "occurrence": 1,
+    "bytes": 802,
+    "sha256": "005d0e5452be30d8cac5467ef00cd1f6931540dc5bf88c5c85b76a4a09d0bb14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp027_stable_grpo 状态\n\n| 项目 | 状态 |\n|------|------|\n| **PID 789764** | 存活，启动于 22:33（约 3 分钟前） |\n| **tmux session** | `exp027_stable_grpo` 存在 |\n| **GPU 占用** | GPU 0: 41598 MiB, GPU 1: 41390 MiB（两卡均在使用） |\n| **W&B** | 已创建 run `exp027-alfworld-stable-grpo` (ID: y7jiibqk)，正在同步 |\n| **训练主进程** | `python train.py --config-name _alfworld_exp027_stable_grpo` (PID 789790) |\n| **Ray workers** | 2 个 `actor_rollout_generate_sequences` worker 在运行（CPU 75%+），多个 IDLE worker 就绪 |\n\n**日志最后内容**：W&B 初始化完成，数据集 tokenize 完成（8810 条 + 494 条），训练即将开始第一个 step。当前处于 **正常启动阶段**，尚未产出训练 metrics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp027-process-check.md"
+}

@@ -1,0 +1,66 @@
+{
+  "exp_id": "7b_cell_a_h2",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:48:29.054Z",
+    "updated_at": "2026-05-19T11:16:19.786Z",
+    "hypothesis": "7B (Qwen3-8B) Cell A: step-independent RL with h=2 from 80.6% SFT baseline. Tests whether information loss + sign misattribution mechanisms are scale-invariant. At 1.7B, Cell A collapsed to 0%/3.73%. If 8B Cell A also degrades (drop to &lt;70% or training instability/collapse), confirms the mechanisms are fundamental to step-independent RL regardless of model capacity. Core comparison: Cell A degradation vs Cell C stability, direction should match 1.7B findings. lr=5e-7 (conservative, strong baseline).",
+    "parent": "7b_sft_v1",
+    "spec": {
+      "command": "python train.py --config-name _alfworld_8b_cell_a",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": 849089,
+      "log_path": "~/runs/cost-verify-agent-rl/7b_cell_a_h2.log",
+      "submitted_at": "2026-05-19T08:01:29.531Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "Qwen3-8B-SFT (checkpoint-231)",
+      "data_path": "ALFWorld train 140 games",
+      "data_count": 140,
+      "seed": 42,
+      "checkpoint_source": "7b_sft_v1",
+      "eval_data": "ALFWorld train 140 + val 32 (in-training eval)",
+      "wandb_run": "irxgmlm2",
+      "hyperparams": {
+        "lr": 5e-07,
+        "h": 2,
+        "context_window_mode": "step_independent",
+        "total_training_steps": 15,
+        "n_gpus": 4,
+        "gradient_checkpointing": true,
+        "optimizer_offload": true,
+        "enable_think": false
+      }
+    },
+    "notes": "D083/D084: step 1 collapse 确认。监控 step 2-5 两个情景: Q4(完全崩溃 &lt;5%) vs Q5b(退化但不崩溃 10-15%)。重点: KL/entropy 是否继续恶化。val_before_train=28.1%, step1_train=12.5%, KL=1.92, entropy=0.115。",
+    "metrics": {
+      "val_before_train_success": 0.281,
+      "step1_train_success": 0.125,
+      "step1_kl": 1.917,
+      "step1_entropy": 0.115,
+      "step1_grad_norm": 2.29,
+      "step1_num_actions": 47.7,
+      "step1_pass_at_8": 0.5,
+      "step1_pg_clipfrac": 0.109,
+      "step1_response_length": 567.5,
+      "step1_duration_sec": 5076,
+      "collapse_pattern": "val 28.1% → train 12.5% in 1 step; entropy 0.115 (near-zero); num_actions 47.7/50 (maxed out)",
+      "current_step": "step 2 rollout",
+      "gpu_util": "4x 100%, 60-65GB VRAM"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-19T11:16:19.966243+00:00",
+  "trigger": "update_registry"
+}

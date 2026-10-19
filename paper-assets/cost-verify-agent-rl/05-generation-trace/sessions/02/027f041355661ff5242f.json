@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "027f041355661ff5242f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp029 seed2 persistent failure",
+  "task_key": "worker_diagnose_exp029-seed2-persistent-failure_20260518T172904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp029-seed2-persistent-failure_20260518T172904_result.json",
+    "occurrence": 1,
+    "bytes": 997,
+    "sha256": "13b4fd92b4165fcb0314ffc5aea04463225e18aad762ae4d8b36d938cb4427ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。核心结论：\n\n**exp029_seed2 的 OOM 问题早已修复。** 最近反复失败的真正原因是 **磁盘空间耗尽**（`/root/autodl-tmp` 250G 盘已用 227G，91%），不是 GPU 内存问题。\n\n4 次运行的错误分类：\n| 次数 | 错误 | 状态 |\n|------|------|------|\n| #1 | CUDA OOM (loss.backward) | 已通过降 token_len + gradient_checkpointing 修复 |\n| #2 | 磁盘满 (torch.save checkpoint) | **根因** |\n| #3 | FSDP resume 设备不匹配 (optimizer_offload 改动) | 次要问题 |\n| #4 | 磁盘满 (torch.save checkpoint) | **同 #2** |\n\n训练本身完全正常（step 15-24 成功运行，success rate 37.5%），在 step 25 保存 checkpoint 时 5 个旧 checkpoint 占 100G，磁盘写满崩溃。\n\n**修复方案**：删除 `exp029-seed2` 的 step 5/10/15/25 旧 checkpoint（释放 ~63G），清理 `hsweep-h2`（释放 41G），设 `max_actor_ckpt_to_keep: 3`，从 step 20 resume。\n\n报告已写入 artifacts。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp029-seed2-persistent-failure.md"
+}

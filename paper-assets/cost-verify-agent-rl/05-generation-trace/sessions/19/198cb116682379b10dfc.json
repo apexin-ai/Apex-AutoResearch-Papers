@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "198cb116682379b10dfc",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis binary reward results v2",
+  "task_key": "worker_analysis_binary_reward_results_v2_20260523T114334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_binary_reward_results_v2_20260523T114334_result.json",
+    "occurrence": 1,
+    "bytes": 1098,
+    "sha256": "63ff75d118935ecc16b7e31a6cdef9a6bffb75f41235b3acc3ee9ae73c43161e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results written to `artifacts/binary_reward_final_results.md`.\n\n## Summary\n\n**Training status**: 1/3 iterations complete (iteration 0 done, ~2h remaining). PID 14928 still running.\n\n**Core result from iteration 0 (400 records)**:\n\n| Metric | Value |\n|--------|-------|\n| **Credit agreement** | **157/157 = 100%** |\n| Zero advantage (all-fail groups, no gradient) | 243/400 = 60.75% |\n| Episode success rate | 12/72 = 16.67% |\n| Groups with ≥1 success | 4/10 |\n\n- 100% credit agreement confirms the theoretical prediction: binary reward + GRPO makes advantage sign perfectly track episode outcome.\n- The cost: **60.75% of windows produce zero advantage** (all-fail groups) — no learning signal from these.\n- Advantage asymmetry: positive magnitudes ~5× larger than negative (expected at low success rates).\n\nThis establishes the baseline for the paper: binary reward gives perfect agreement but wastes 60%+ compute on zero-gradient windows. Step-level reward (format_penalty ≠ 0) should trade a small amount of agreement for gradient signal from all windows."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-binary-reward-results-v2.md"
+}

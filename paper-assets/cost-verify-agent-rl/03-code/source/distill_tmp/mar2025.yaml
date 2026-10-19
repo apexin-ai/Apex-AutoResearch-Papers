@@ -1,0 +1,28 @@
+paper_key: "mar2025"
+title: "MAR: Multi-Agent Reflexion Improves Reasoning Abilities in LLMs"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: ["single-agent reflexion", "standard LLM reasoning"]
+  metrics:
+    - {name: "reasoning accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "reasoning benchmarks", size: "N/A"}
+  ablation_dimensions: ["number of agents", "reflexion mechanism"]
+  training_recipe:
+    optimizer: "N/A"
+    lr: "N/A"
+    hardware: "N/A"
+    method: "Multi-agent reflexion framework where multiple LLM agents collaborate and reflect on reasoning to improve accuracy"
+  method_family: "multi-agent reflexion / collaborative reasoning"
+
+positioning:
+  core_claim: "Multi-agent reflexion, where multiple LLM agents iteratively reflect and refine reasoning, improves reasoning abilities beyond single-agent approaches"
+  key_results: "N/A (abstract not retrieved due to rate limiting)"
+  limitations: ["N/A"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0520caa49baf2a3b1ed8",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops verify bjb1 exp029 alive",
+  "task_key": "worker_ops_verify-bjb1-exp029-alive_20260518T102238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-bjb1-exp029-alive_20260518T102238_result.json",
+    "occurrence": 1,
+    "bytes": 490,
+    "sha256": "77e9276ac3e7db923f579793801f2480d7a6e12549ab95b2b82c62a346336005"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **PID 24047: alive** — `python train.py --config-name _alfworld_exp029_episode_level_seed2`，启动于 17:40，运行约 43 分钟\n- **GPU 0: 45989 MiB / 97887 MiB** — 100% util, 437W\n- **GPU 1: 45989 MiB / 97887 MiB** — 100% util, 440W\n- **当前阶段**: Ray 集群运行中，两张 GPU 均被 `actor_rollout_compute_log_prob` worker 占用（PID 27465/27466），正在执行 rollout + log_prob 计算，属于 GRPO 训练的数据采集/概率计算阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-bjb1-exp029-alive.md"
+}

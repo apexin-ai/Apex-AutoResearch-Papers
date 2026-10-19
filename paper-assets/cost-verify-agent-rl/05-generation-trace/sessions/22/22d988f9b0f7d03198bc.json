@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22d988f9b0f7d03198bc",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops bjb1 fix symlink and resubmit scienceworld",
+  "task_key": "worker_ops_bjb1_fix_symlink_and_resubmit_scienceworld_20260522T040821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1_fix_symlink_and_resubmit_scienceworld_20260522T040821_result.json",
+    "occurrence": 1,
+    "bytes": 720,
+    "sha256": "7e9d6464b17511ba3441ad2c5a6189ef7bf406849d5deacb3f91e379d28edabc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，正在加载模型 checkpoint。\n\n### 产出汇总\n\n| 项目 | 结果 |\n|------|------|\n| **Symlink** | `qwen3_scienceworld_sft -> scienceworld_sft` 创建成功 |\n| **Config 更新** | `model_path` 已改为 `/root/autodl-tmp/checkpoints/qwen3_scienceworld_sft/huggingface` |\n| **Dry-run** | 路径验证通过（12 files, safetensors OK, qwen in path OK） |\n| **PID** | 386364（tmux session: `scienceworld_grpo_cell_c_v4`） |\n| **启动日志** | Ray TaskRunner 启动正常，tokenizer 加载中，checkpoint shards 2/2 已加载。有 Mistral regex warning（无害） |\n| **GPU 占用** | GPU 0: 1369 MiB, GPU 1: 1369 MiB（模型加载中，后续会增长） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-fix-symlink-and-resubmit-scienceworld.md"
+}

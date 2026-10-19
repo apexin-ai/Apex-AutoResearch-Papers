@@ -1,0 +1,60 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{RL for Language Model Agents.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-Turn Agent Frameworks.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Credit Assignment in RL.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Adaptive Computation for LLM Agents.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Credit Assignment Decay Analysis}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Episode-Level GRPO}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Environments.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Context Window Sweep (Core Result)}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Context window ($h$) sweep on ALFWorld with Qwen3-1.7B. Step-independent training ($h \leq 2$) causes complete collapse. Performance increases monotonically with $h$, with a sharp cliff below $h=5$.}}{4}{table.caption.8}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:hsweep}{{1}{4}{Context window ($h$) sweep on ALFWorld with Qwen3-1.7B. Step-independent training ($h \leq 2$) causes complete collapse. Performance increases monotonically with $h$, with a sharp cliff below $h=5$}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Multi-Seed Replication}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Episode-level GRPO results across 3 seeds on ALFWorld.}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:multiseed}{{2}{4}{Episode-level GRPO results across 3 seeds on ALFWorld}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Credit Assignment Mechanism Analysis}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Relationship between effective discount $\gamma ^{T-h}$, relative gradient signal, and observed task success. The correlation between predicted signal strength and observed performance validates the credit assignment decay mechanism.}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:mechanism}{{3}{5}{Relationship between effective discount $\gamma ^{T-h}$, relative gradient signal, and observed task success. The correlation between predicted signal strength and observed performance validates the credit assignment decay mechanism}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Verification Value Analysis}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Ablation separating training methodology (episode-level vs.\ step-independent) from inference strategy (with/without verification).}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:verify}{{4}{5}{Ablation separating training methodology (episode-level vs.\ step-independent) from inference strategy (with/without verification)}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Cross-Environment Validation}{5}{subsection.4.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Episode-level vs.\ step-independent training across environments.}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:crossenv}{{5}{6}{Episode-level vs.\ step-independent training across environments}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Model Scale Verification}{6}{subsection.4.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Episode-level vs.\ step-independent across model scales on ALFWorld.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:scale}{{6}{6}{Episode-level vs.\ step-independent across model scales on ALFWorld}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Per-Task Breakdown}{6}{subsection.4.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Per-task-type performance on ALFWorld. Episode-level advantage is consistent across all task types. Shorter tasks achieve higher absolute success, consistent with the credit assignment mechanism (shorter $T$ means less decay).}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:pertask}{{7}{6}{Per-task-type performance on ALFWorld. Episode-level advantage is consistent across all task types. Shorter tasks achieve higher absolute success, consistent with the credit assignment mechanism (shorter $T$ means less decay)}{table.caption.14}{}}
+\bibstyle{plain}
+\bibcite{ragen2025}{1}
+\bibcite{selfguide2026}{2}
+\bibcite{ares2026}{3}
+\bibcite{thinkless2025}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Relationship to existing frameworks.}{7}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model capacity as a separate bottleneck.}{7}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical guidance.}{7}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Future directions.}{7}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\bibcite{reflact2025}{5}
+\bibcite{alfworld2021}{6}
+\bibcite{scienceworld2022}{7}
+\bibcite{grpo2024}{8}
+\bibcite{qwen2024}{9}
+\bibcite{sutton2018}{10}
+\gdef \@abspage@last{8}

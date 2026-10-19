@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f7709635eb538c75355",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "experiment seed2 ood step15 bjb1",
+  "task_key": "worker_experiment_seed2-ood-step15-bjb1_20260520T191152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_seed2-ood-step15-bjb1_20260520T191152_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "7419efd0c2f2c304cdc4518d0601f3c29d49d9e84e9c377496d28c9297786387"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job 已通过校验，Ray 实例已启动，正在初始化 eval。\n\n**汇总：**\n- **Checkpoint**: `/root/autodl-tmp/checkpoints/exp029/global_step_15`（21GB，存在）\n- **Config**: `_alfworld_exp029_seed2_ood_step15.yaml`（已修复 `train.env_groups: 1→16` 绕过 batch size 断言）\n- **GPU**: bjb1-17606 cuda:0，RTX PRO 6000 96GB\n- **Eval 参数**: 134 OOD tasks（AlfworldSG_OOD），T=0.4，group_size=1，val_only=True，enable_think=False\n- **Job ID**: `exp029_seed2_ood_step15`，tmux session 同名，日志 `~/runs/cost-verify-agent-rl/exp029_seed2_ood_step15.log`\n- **超时**: 8 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-seed2-ood-step15-bjb1.md"
+}

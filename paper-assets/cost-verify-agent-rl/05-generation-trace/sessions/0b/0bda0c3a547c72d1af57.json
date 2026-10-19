@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bda0c3a547c72d1af57",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check scienceworld sft pid",
+  "task_key": "worker_check_scienceworld_sft_pid_20260524T221456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_scienceworld_sft_pid_20260524T221456_result.json",
+    "occurrence": 1,
+    "bytes": 1097,
+    "sha256": "523b26bde6b936f8cdbe9332f8d8db7e3159f3d326cc3562402743db64dab8ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n| 项目 | 值 |\n|------|-----|\n| **PID** | 168770 |\n| **运行时长** | ~2:45（启动于 May 25 06:12） |\n| **tmux session** | `scienceworld_sft_bjb1` |\n| **GPU 占用** | cuda:0, 550 MiB |\n| **W&B run ID** | **无** — 脚本 `sft_train_v3.py` 设置了 `report_to=\"none\"`，未对接 W&B |\n| **output_dir** | `/root/autodl-tmp/checkpoints/scienceworld_sft_bjb1/`（当前为空，尚未保存 checkpoint） |\n\n训练命令：\n```\npython scripts/sft_train_v3.py \\\n  --model_path /root/autodl-tmp/models/Qwen/Qwen3-1___7B \\\n  --data_path data/scienceworld_sft_train.jsonl \\\n  --val_path data/scienceworld_sft_val.jsonl \\\n  --output_dir /root/autodl-tmp/checkpoints/scienceworld_sft_bjb1 \\\n  --num_train_epochs 2 --per_device_train_batch_size 1 \\\n  --gradient_accumulation_steps 16 --learning_rate 5e-6 \\\n  --lr_scheduler_type cosine --max_seq_length 16384 \\\n  --warmup_ratio 0.05 --save_steps 112 --seed 42\n```\n\n`RAGEN/wandb/run-20260524_161721-33j24s39` 是昨天的旧 run（ID: `33j24s39`），与当前 SFT 训练无关。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-scienceworld-sft-pid.md"
+}

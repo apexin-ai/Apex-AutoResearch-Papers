@@ -1,0 +1,57 @@
+{
+  "exp_id": "hsweep_h10_seed1",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-17T17:30:46.964Z",
+    "updated_at": "2026-05-19T02:45:40.356Z",
+    "hypothesis": "h=10 with step_independent generation provides 10-step observation windows. Key data point for fig5 cliff figure: if h=10 shows recovery (val > 0%), the cliff is between h=5 and h=10. If still collapsed, cliff is between h=10 and full context (h=28).",
+    "parent": "hsweep_h2_seed1",
+    "reproduce": {
+      "finished_at": "2026-05-18T03:09:23.490Z"
+    },
+    "failure_reason": "Intentionally killed by ops worker (kill-h10-dual-reeval-restart) to free bjb1 cuda:0,1 for exp029 reeval + hsweep_h2_seed2 reeval sequence. Will be restarted after reevals complete.",
+    "completed_at": "2026-05-18T03:09:24.711Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T03:09:28.621330+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "killed",
+        "notes": "Director 批准临时 kill（刚启动几分钟，无进度损失）以释放 bjb1 cuda:0,1 跑 exp029 + hsweep_h2_seed2 双 reeval。Reeval 完成后重启。原由 auto_next_hsweep.sh 自动启动，未经正式审批。"
+      }
+    },
+    "notes": "Director ordered kill: h=10 fully collapsed (train=0% from step 2, val=SFT baseline at step 5). Ray cluster占全部4 GPU（idle worker锁定cuda:0,1各40GB）。M015教训：必须显式设CUDA_VISIBLE_DEVICES。",
+    "spec": {
+      "command": "python train.py --config-name _alfworld_hsweep_h10 seed.train=10000 trainer.experiment_name=hsweep-h10-seed1",
+      "server": "westd-47453",
+      "gpu": "2,3",
+      "pid": 34193,
+      "wandb_run_id": "x09p5xd0",
+      "data_path": "/root/autodl-tmp/cost-verify-agent-rl/data/alfworld",
+      "data_count": 3553,
+      "model_name": "Qwen3-1.7B (SFT v4) — registry曾误记为Qwen2.5-3B，config验证确认是Qwen3",
+      "seed": 10000,
+      "checkpoint_source": "qwen3_exp021_ragen_sft_v4",
+      "eval_data": "ALFWorld val 32 tasks",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/hsweep-h10/",
+      "log_path": "/root/autodl-tmp/cost-verify-agent-rl/logs/hsweep_h10_seed1.log"
+    },
+    "conclusion": "killed",
+    "metrics": {
+      "step2_train_success": 0,
+      "step5_val_success": "SFT_baseline",
+      "collapse_onset": "step 2",
+      "verdict": "complete collapse, h=10 insufficient context"
+    }
+  },
+  "timestamp": "2026-05-19T02:45:40.523089+00:00",
+  "trigger": "update_registry"
+}

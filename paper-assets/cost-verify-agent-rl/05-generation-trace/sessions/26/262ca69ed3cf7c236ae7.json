@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "262ca69ed3cf7c236ae7",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose seed8 ood precollapse result",
+  "task_key": "worker_diagnose_seed8_ood_precollapse_result_20260521T214401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_seed8_ood_precollapse_result_20260521T214401_result.json",
+    "occurrence": 1,
+    "bytes": 856,
+    "sha256": "a05525f700a9a51855cf026d92e62a77527d2546e5d30668eebd6e9f8a0886be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp029_seed8_ood_precollapse 完成，registry 已更新至 DONE。**\n\n结果汇总：\n\n| Metric | Value |\n|--------|-------|\n| OOD success rate | **11.94%** |\n| pass@1 | 11.94% |\n| action_is_valid | 57.54% |\n| num_actions | 44.92 |\n| response_length | 6503 |\n\nOOD 横向对比（pre-collapse vs 其他 seed）：\n\n| Checkpoint | OOD Success |\n|-----------|-------------|\n| SFT baseline | 5.97% |\n| Seed 3 | 10.45% |\n| **Seed 8 pre-collapse (step 5)** | **11.94%** |\n| Seed 1 | 23.88% |\n| Seed 5 | 29.10% |\n| Seed 6 | 29.10% |\n\nSeed 8 pre-collapse 的 OOD 泛化能力（11.94%）略高于 SFT 和 Seed 3，但远低于 Seed 1/5/6。结合这是 step 5（训练早期、崩溃前）的 checkpoint，说明 seed 8 在崩溃前 OOD 能力处于中等偏下水平。\n\ntmux session 无残留，进程已完全退出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-seed8-ood-precollapse-result.md"
+}

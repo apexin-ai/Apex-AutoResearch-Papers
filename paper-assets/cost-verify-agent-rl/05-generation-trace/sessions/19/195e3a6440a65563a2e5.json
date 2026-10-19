@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "195e3a6440a65563a2e5",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "ops exp025 degraded dryrun",
+  "task_key": "worker_ops_exp025_degraded_dryrun_20260515T075212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp025_degraded_dryrun_20260515T075212.log",
+    "occurrence": 1,
+    "bytes": 887280,
+    "sha256": "eabaadf82f7e06826ab0b2c1d04cbca8456fca380e4e184d17564f7f73a5aee7"
+  },
+  "statistics": {
+    "messages": 593,
+    "user_turns": 0,
+    "tool_calls": 224,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 141,
+      "tool_call": 224,
+      "tool_result": 224,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 593,
+      "chunks": [
+        {
+          "path": "195e3a6440a65563a2e5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "195e3a6440a65563a2e5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "195e3a6440a65563a2e5-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "195e3a6440a65563a2e5-part-0004.json",
+          "message_count": 53
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-exp025-degraded-dryrun.md"
+}

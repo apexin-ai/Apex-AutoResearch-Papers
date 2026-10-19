@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f4940c3a022e5aede64",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops westd seed4 ood reeval",
+  "task_key": "worker_ops_westd_seed4_ood_reeval_20260522T124925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_seed4_ood_reeval_20260522T124925_result.json",
+    "occurrence": 1,
+    "bytes": 379,
+    "sha256": "7b917ccc8faefb52cc394c3b0a49cc1f3a0622757a4869b63c377ece9d7888fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 成功启动。\n\n- **PID**: 842530 (主进程), 846638 (actor WorkerDict on GPU 0)\n- **GPU 0**: 9231MiB / 97887MiB 已占用，actor 模型正在加载中（vLLM 模型加载后显存会上升）\n- **Config 确认**: seed.val=321, enable_response_mask=False, val_only=True, 134 OOD tasks\n- **日志**: `/root/autodl-tmp/logs/seed4_step15_ood_eval_v2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-seed4-ood-reeval.md"
+}

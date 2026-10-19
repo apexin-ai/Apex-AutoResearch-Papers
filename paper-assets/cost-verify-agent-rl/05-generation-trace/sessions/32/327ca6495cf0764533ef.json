@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "327ca6495cf0764533ef",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp 001 check",
+  "task_key": "worker_monitor_exp_001_check_20260513T191117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp_001_check_20260513T191117_result.json",
+    "occurrence": 1,
+    "bytes": 838,
+    "sha256": "1c2d8936431271a7e501f91ed48f6af908925ac472b59a378d0f9dd11e2c749d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "report.md 是自动生成的，无法手动写入。直接汇报结果：\n\n---\n\n## exp_001 状态: FAILED\n\n| 项目 | 结果 |\n|------|------|\n| **进度** | step 6/50（第 7 步崩溃） |\n| **GPU 利用率** | 0%（双卡空闲，无 GPU 进程） |\n| **PID 87845** | 已终止 |\n| **退出码** | 1 |\n\n**错误**:\n```\nValueError: The decoder prompt (length 4096) plus the number of requested output tokens\n(at least 1) is longer than the maximum model length of 4096.\n```\n\n**原因**: 多轮 rollout 累积的 prompt 在 step 7 达到 4096 tokens 上限（等于 `max_model_len`），vLLM 拒绝生成因为没有剩余空间给输出 token。\n\n**修复方向**: 增大 `max_model_len`（如 8192），或在 rollout 时截断/压缩历史 prompt 使其不超过 `max_model_len - max_new_tokens`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp-001-check.md"
+}

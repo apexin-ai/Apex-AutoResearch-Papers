@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e27fe2f26afa80b5b6c",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diag seed7hk v4 urgent",
+  "task_key": "worker_diag_seed7hk_v4_urgent_20260523T230915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_seed7hk_v4_urgent_20260523T230915_result.json",
+    "occurrence": 1,
+    "bytes": 1172,
+    "sha256": "9c9edeaa79a0c48dc3457027a10e2363ad7ce756c492ae73c295648c97f962ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### seed7hk eval v4\n**状态：正在运行中（seed=0/3）**\n\n- 07:06 启动，当前在第 1 轮 eval (seed=0)\n- 模型 `qwen_exp029_seed7_high_kl_step5_hf` **加载成功**（config 修复生效）\n- wandb run: `evalvar-seed7hk-s0-fix` (ID: mmsm7ira)\n- 数据 tokenization 完成 (8810 items + 341 items)，正在 eval rollout 阶段\n- PID 84851 仍存活，TaskRunner (PID 86914) 88% CPU 活跃\n\n旧的 3 轮 (seed7hk_s0/s1/s2) 全部 crash：`ValueError: Unsupported model: /root/autodl-tmp/checkpoints/exp029_seed7_high_kl_step5_hf`。v4 修复了这个问题。\n\n### GPU\n| GPU | Util | VRAM |\n|-----|------|------|\n| 0 | 0% | 8133 / 97887 MiB |\n\nGPU 利用率 0% 可能是 ALFWorld 环境交互的 CPU-bound 阶段，模型已加载到 VRAM (8.1GB)。仅 1 张 GPU 可见。\n\n### seed200\n无活跃进程。checkpoint 存在于 `/root/autodl-tmp/checkpoints/qwen_exp029_seed200_step5_hf`。\n\n### 注意\n有 6 个旧的 orphan `ray::TaskRunner` 进程 (PID 48255/52397/55911/70926/74563/78173，02:40-05:55 启动) 仍在运行，来自之前失败的 eval。占用约 17GB+ 内存。v4 eval 完成后建议清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-seed7hk-v4-urgent.md"
+}

@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp029_seed100_step10_ood_eval",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:30:21.012Z",
+    "updated_at": "2026-05-23T03:12:06.969Z",
+    "hypothesis": "seed100 step5→step10 纵向 OOD 变化验证 later-emerging property. step5 OOD=11.19% (NS vs SFT). 若 step10 OOD 显著上升 (>20%, p<0.05), 支持 gradual emergence claim; 若仍 NS, 需修正 claim 或增加 step15 数据点.",
+    "parent": "exp029_seed100_resume_step10",
+    "spec": {
+      "command": "bash -c \"cd /root/cost-verify-agent-rl/RAGEN && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && WANDB_DIR=/root/autodl-tmp/wandb_tmp python train.py --config-name _alfworld_seed100_step10_ood_eval enable_response_mask=false actor_rollout_ref.model.enable_response_mask=false\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "340462",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_seed100_step10_ood_eval.log",
+      "submitted_at": "2026-05-23T01:36:12.432Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "metrics": {
+      "ood_pass_at_1": 0.1269,
+      "ood_count": "17/134",
+      "action_is_valid": 0.7056,
+      "num_actions_avg": 44.88,
+      "response_length_avg": 7466.4,
+      "best_at_8": 6.71,
+      "best_at_32": 9.84
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T03:12:07.416656+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp029_seed7_ood_precollapse",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T21:12:54.573Z",
+    "updated_at": "2026-05-21T21:33:12.366Z",
+    "hypothesis": "Seed 7 (collapse seed, step 5 = pre-collapse checkpoint) retains OOD generalization ability before response_length explosion. Comparing pre-collapse OOD vs post-collapse OOD reveals whether collapse destroys learned generalization or the model never generalized.",
+    "parent": "exp029_seed7",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-21T21:33:12.645688+00:00",
+  "trigger": "update_registry"
+}

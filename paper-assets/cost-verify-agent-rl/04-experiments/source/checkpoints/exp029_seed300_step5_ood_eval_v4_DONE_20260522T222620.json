@@ -1,0 +1,44 @@
+{
+  "exp_id": "exp029_seed300_step5_ood_eval_v4",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:20:43.237Z",
+    "updated_at": "2026-05-22T22:26:20.239Z",
+    "hypothesis": "v3 OOD eval 0% 是 enable_think=false 导致的 config artifact。修正 enable_think=true 后，seed300 step5 checkpoint 在 OOD 134 tasks 上应该获得 >0% pass@1。如果仍为 0% 则确认 seed300 确实是 healthy-but-zero-OOD。",
+    "parent": "exp029_seed300_step5_ood_eval_v3",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 WANDB_DIR=/root/autodl-tmp/wandb_tmp python train.py --config-name _alfworld_seed300_step5_ood_eval_v4 enable_response_mask=false actor_rollout_ref.model.enable_response_mask=false",
+      "server": "bjb1-17606",
+      "data_path": "AlfworldSG_OOD",
+      "data_count": 134,
+      "model_name": "qwen_exp029_seed300_step5_hf",
+      "seed": 321,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen_exp029_seed300_step5_hf",
+      "eval_data": "AlfworldSG_OOD 134 tasks",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/qwen_exp029_seed300_step5_hf",
+      "log_path": "/root/autodl-tmp/logs/ood_eval_v4_seed300.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "pass_at_1": 0.1045,
+      "successes": 14,
+      "total": 134,
+      "wilson_ci_lower": 0.063,
+      "wilson_ci_upper": 0.168,
+      "fisher_p_vs_sft": 0.28,
+      "fisher_significance": "NS",
+      "pipeline": "ragen",
+      "enable_think": true,
+      "enable_response_mask": false,
+      "context_window_mode": "full",
+      "temperature": 0.4
+    },
+    "completed_at": "2026-05-22T22:26:20.239Z"
+  },
+  "timestamp": "2026-05-22T22:26:20.542533+00:00",
+  "trigger": "update_registry"
+}

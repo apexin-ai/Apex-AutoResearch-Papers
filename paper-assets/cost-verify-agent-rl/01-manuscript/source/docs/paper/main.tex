@@ -1,0 +1,45 @@
+\documentclass[11pt]{article}
+
+\usepackage[review]{acl}
+
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+
+\title{Sign Misattribution in Step-Independent Agent RL:\\Dual Mechanism Diagnosis and Episode-Level Correction}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Reinforcement learning (RL) for multi-turn large language model (LLM) agents requires credit assignment across long interaction trajectories. The dominant training paradigm decomposes these trajectories into fixed-size windows optimized independently via Group Relative Policy Optimization (GRPO), yet this design choice has received little scrutiny. We identify a structural credit assignment pathology driven by two distinct mechanisms: \textit{policy information loss}, which truncates cross-window context and imposes a constant performance ceiling, and \textit{advantage sign misattribution}, which causes a substantial fraction of gradient updates for locally correct actions to carry incorrect sign. A partial factorial experiment isolates each mechanism: removing sign misattribution converts catastrophic collapse into bounded learning; additionally removing information loss enables out-of-distribution (OOD) generalization. Direct sign measurement confirms the theoretical prediction, with credit agreement dropping to near-random levels. Episode-level GRPO, which treats the full trajectory as a single optimization sample, structurally eliminates both failure modes but remains seed-dependent: 17.7\% mean OOD success versus 6.72\% supervised fine-tuning (SFT) baseline, though only 36\% of seeds achieve significant generalization, indicating that avoiding collapse is necessary but not sufficient. Cross-scale verification at 8B parameters and cross-environment validation on ScienceWorld provide preliminary evidence that the pathology extends beyond our primary setting\footnote{Code and data are available at \url{https://anonymous.4open.science/r/cost-verify-agent-rl-52D4/}.}.
+\end{abstract}
+
+\input{introduction}
+\input{related_work}
+\input{method}
+\input{theoretical_analysis}
+\input{experiments}
+\input{discussion}
+\input{conclusion}
+
+\section*{Limitations}
+
+Our experiments span two environments (ALFWorld, ScienceWorld) and two scales (1.7B, 8B); additional environments and scales would strengthen generality, and the 8B and ScienceWorld results are single-seed. Among 11 seeds at 1.7B, only 36\% achieve significant OOD generalization; the mechanism driving seed-dependent transfer remains open. OOD evaluations are single-run at $\tau{=}0.4$; multi-run averaging would reduce evaluation variance (Appendix~\ref{app:eval_variance}). Episode-level training increases sequence length from $O(h)$ to $O(T)$, which may limit scalability to very long episodes without further engineering. We do not reproduce concurrent methods (HCAPO, Turn-PPO, GiGPO); our framework predicts their success through finer-grained credit, consistent with published results (Section~\ref{sec:discussion}).
+
+\bibliography{references}
+
+\clearpage
+\input{appendix}
+
+\end{document}

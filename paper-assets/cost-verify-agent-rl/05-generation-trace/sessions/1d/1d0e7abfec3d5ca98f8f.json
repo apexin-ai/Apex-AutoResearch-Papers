@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d0e7abfec3d5ca98f8f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp029 episode level seed2",
+  "task_key": "worker_diagnose_exp029_episode_level_seed2_20260518T054247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp029_episode_level_seed2_20260518T054247_result.json",
+    "occurrence": 1,
+    "bytes": 732,
+    "sha256": "bb18c5b1986bfd8cf107c2359c6d6f9c2698c116f74b5a7db4d65c559eed5f9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告已写入 `artifacts/exp029_episode_level_seed2/diagnose_report.md`。\n\n**根因：CUDA OOM during `loss.backward()` at step 1**\n\n核心发现：\n- 崩溃位置：`dp_actor.py:468`，actor policy update 的反向传播\n- seed 1 (train_seed=10000) 跑完了 16 步但最后也 OOM 退出，说明这套配置内存 headroom 本就很小\n- seed 2 (train_seed=43) 的 step 1 rollout 恰好产生了更长序列，直接撑爆内存\n- 磁盘（123G free）、Ray、代码均无问题，纯粹是 GPU 内存不足\n\n**可重启，但需要调整**。直接重试可能再次 OOM。推荐方案 B（降低 `ppo_max_token_len_per_gpu`）或方案 D（迁移到 westd-47453 的 4 卡环境）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp029-episode-level-seed2.md"
+}

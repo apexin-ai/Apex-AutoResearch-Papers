@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "103452f7b90f682bdba9",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research seed2 deep search",
+  "task_key": "worker_research_seed2_deep_search_20260522T151647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_seed2_deep_search_20260522T151647_result.json",
+    "occurrence": 1,
+    "bytes": 1143,
+    "sha256": "37523dc4fbce8187cbd2fc0be455a1812ac06ff127fc949a608588515111315d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "搜索完毕。结论：\n\n## seed2 checkpoint 搜索结果\n\n**seed2 最高 step = 15，step 20/25/30 不存在。**\n\n### 完整目录清单\n\n| 路径 | 格式 | 大小 | 说明 |\n|------|------|------|------|\n| `/root/autodl-tmp/cost-verify-agent-rl/backups/exp029-seed2-bjb1/exp029-seed2/global_step_15/` | FSDP（actor/huggingface 子目录） | 21G（整个 backup） | 从 bjb1 备份过来的原始 FSDP checkpoint，huggingface 子目录只有 tokenizer 文件，无 model weights |\n| `/root/autodl-tmp/checkpoints/exp029_seed2_step15_hf/` | HF（含 model.safetensors） | 3.8G | 已转换的 HF 格式 checkpoint，完整可用 |\n\n### 确认不存在\n\n- `global_step_20` / `global_step_25` / `global_step_30` — 两台服务器（westd + bjb1）均不存在\n- `latest_checkpointed_iteration.txt` 内容为 `15`，证实训练只保存到 step 15\n- `episode_level_seed2` — 无匹配\n- `seed2*resume` / `seed2*westd` — 无匹配\n- `exp029-seed200` 目录为空，与 seed2 无关\n\nbjb1 上 seed2 数据已被完全清除（find 无结果），所有 seed2 存档仅在 westd 上述两个位置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-seed2-deep-search.md"
+}

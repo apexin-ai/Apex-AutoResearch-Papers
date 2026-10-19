@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "301d6e6a9239c8f33937",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp029 immediate",
+  "task_key": "worker_check_exp029_immediate_20260516T153029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp029_immediate_20260516T153029_result.json",
+    "occurrence": 1,
+    "bytes": 1326,
+    "sha256": "df010cabec3e217ff5efa2e03ddf576ec81b1bce41cffab9062dd5a646806e3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp029_episode_level 状态汇报\n\n### 进程状态: ALIVE\n| 进程 | PID | 运行时间 | RSS |\n|------|-----|---------|-----|\n| 主进程 | 872859 | 4min 34s | 2 MB (coordinator) |\n| TaskRunner | 876099 | 4min 18s | ~2.1 GB |\n\n### GPU 状态\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| cuda:0 | 37,987 MiB / 48GB | 98% |\n| cuda:1 | 38,857 MiB / 48GB | 98% |\n\n### 当前阶段: `val_before_train` (初始验证)\n\n训练尚未开始。当前进度：\n1. 模型加载完成 (Qwen3 from `qwen3_exp021_ragen_sft_v4`)\n2. FSDP 2-GPU 初始化完成\n3. W&B 连接成功 → run `7hz8rhxg` (\"exp029-alfworld-episode-level\")\n4. 数据加载完成 (train: 8810, val: 494)\n5. **正在执行 val_before_train**：ALFWorld 环境交互中（日志末尾大量 `anchor_obs` warnings，时间戳 23:31:06，说明正在跑 32 个 val episodes）\n\n### 关键配置\n- env: AlfworldSG (episode-level)\n- train groups: 16×8=128 episodes/step\n- val groups: 32×1=32 episodes\n- total_training_steps: 100\n- lr: 1e-6 (constant), entropy_coeff: 0.001, kl_loss_coef: 0.01\n- valid_action_bonus: 0.15, success_gated_bonus: True\n\n### Metrics\n暂无训练 metrics，val_before_train 尚未完成。预计 val 完成后会输出 baseline success_rate，然后进入 step 0 rollout。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp029-immediate.md"
+}

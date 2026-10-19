@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp028a_recipe_fix",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:08:53.131Z",
+    "updated_at": "2026-05-15T21:25:46.006Z",
+    "hypothesis": "invalid_action_penalty (-0.1) 为全失败 GRPO group 提供非零方差梯度信号。从 exp021 SFT checkpoint (6.25% success) 出发，仅增加 invalid_action_penalty_coef=0.1，其余参数与 exp027 完全一致。预期：penalty 让失败 trajectory 间有区分（invalid action 多=reward更低），解决 ~43% group 零梯度问题。Pass: success ≥20%（稳定，非瞬时 peak）。",
+    "parent": "exp027_stable_grpo",
+    "wandb_run_id": "lu42su82",
+    "spec": {
+      "command": "bash scripts/run_exp028a_recipe_fix.sh",
+      "server": "bjb1-17606",
+      "model_name": "qwen3_exp021_ragen_sft_v4",
+      "seed": 10000,
+      "data_path": "AlfworldSG",
+      "data_count": 128,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4",
+      "eval_data": "AlfworldSG val 16 episodes"
+    },
+    "conclusion": "killed",
+    "notes": "与 exp027 功能等价（penalty getattr 默认值=0.1 在 exp027 中已生效）。Director 指令停止。",
+    "completed_at": "2026-05-15T21:25:46.007Z"
+  },
+  "timestamp": "2026-05-15T21:25:46.112518+00:00",
+  "trigger": "update_registry"
+}

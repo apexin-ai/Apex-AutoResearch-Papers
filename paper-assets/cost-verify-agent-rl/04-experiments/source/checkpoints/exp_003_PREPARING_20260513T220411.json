@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp_003",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T21:01:51.727Z",
+    "updated_at": "2026-05-13T22:04:11.399Z",
+    "spec": {
+      "hypothesis": "Always-on self-guidance via GRPO can achieve ≥76% on ALFWorld with proper prompt truncation (max_prompt_length=4096)",
+      "model_name": "Qwen3-1.7B",
+      "server": "bjb1-17606",
+      "data_path": "/root/autodl-tmp/alfworld/",
+      "data_count": 8810,
+      "seed": 42,
+      "parent": "exp_002",
+      "description": "Phase A v3: add prompt truncation (max_prompt_length=4096) matching Self-Guide paper"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-13T22:04:11.439543+00:00",
+  "trigger": "update_registry"
+}

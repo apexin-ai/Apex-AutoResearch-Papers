@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp013",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:02:52.275Z",
+    "updated_at": "2026-05-14T08:04:35.100Z",
+    "hypothesis": "Dense reward shaping (valid_action_bonus=0.5 + success_reward=10.0) 解决 sparse binary reward 冷启动死锁。每步有效动作获得 0.5 奖励提供持续学习信号，终局 success 保留 10.0 大奖引导任务完成。",
+    "parent": "exp012b",
+    "notes": "D011驳回纯KL方案。Director要求dense reward shaping: valid_action_bonus=0.5 + success_reward=10.0 (1:20比值)。需改reward function代码（env.py或es_manager.py），不只是yaml config。format_penalty=0保持，从step 5恢复。",
+    "conclusion": "killed",
+    "spec": {
+      "checkpoint_path": "none",
+      "log_path": "none"
+    },
+    "completed_at": "2026-05-14T08:04:35.100Z"
+  },
+  "timestamp": "2026-05-14T08:04:35.149712+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp029_seed300_step5_ood_eval_v2",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:37:44.501Z",
+    "updated_at": "2026-05-22T19:09:31.537Z",
+    "hypothesis": "OOD eval of seed300 step5 checkpoint with unified pipeline (seed.val=321, enable_response_mask=false, 134 OOD tasks, T=0.4). Retry of v1 which crashed due to W&B /tmp cleanup. Fix: WANDB_DIR=/root/autodl-tmp/wandb_tmp.",
+    "parent": "exp029_seed300_step5_ood_eval",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 WANDB_DIR=/root/autodl-tmp/wandb_tmp python train.py --config-name _alfworld_seed300_step5_ood_eval",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "442738",
+      "log_path": "/root/autodl-tmp/logs/seed300_step5_ood_eval_v2.log",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen_exp029_seed300_step5_hf",
+      "eval_data": "AlfworldSG_OOD 134 tasks",
+      "data_path": "AlfworldSG_OOD",
+      "data_count": 134,
+      "model_name": "qwen_exp029_seed300_step5_hf",
+      "seed": 321,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/qwen_exp029_seed300_step5_hf"
+    },
+    "conclusion": "failed",
+    "metrics": {
+      "ood_pass_at_1": 0,
+      "ood_success": 0,
+      "ood_reward_mean": 0,
+      "ood_action_is_valid": 0.918,
+      "ood_response_length": 4150.7,
+      "ood_episodes": 134
+    },
+    "completed_at": "2026-05-22T19:06:06.251Z"
+  },
+  "timestamp": "2026-05-22T19:09:31.878506+00:00",
+  "trigger": "update_registry"
+}

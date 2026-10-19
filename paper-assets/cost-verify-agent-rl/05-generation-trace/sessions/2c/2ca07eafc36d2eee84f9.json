@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ca07eafc36d2eee84f9",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "experiment hsweep h10 multiseed",
+  "task_key": "worker_experiment_hsweep_h10_multiseed_20260523T181523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_hsweep_h10_multiseed_20260523T181523_result.json",
+    "occurrence": 1,
+    "bytes": 423,
+    "sha256": "7af1261d89d1e84b49e36f62ec2cf404ba5bbb01ac4c58df599b69ad54b3a541"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**执行摘要：**\n- 单卡配置 `_alfworld_hsweep_h10_1gpu.yaml` 已创建（1 GPU, 5 steps, ppo_mini_batch_size=8）\n- **Seed2**（train_seed=20000）已在 bjb1 cuda:0 启动，PID 42499，GPU 占用 14.8GB，正在加载数据\n- Log: `/root/autodl-tmp/hsweep_h10_seed2.log`，W&B: `hsweep-h10-seed2-1gpu`\n- Seed3/Seed4 启动命令已记录在 artifact `hsweep_h10_multiseed_status.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-hsweep-h10-multiseed.md"
+}

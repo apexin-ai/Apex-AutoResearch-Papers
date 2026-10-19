@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ad2046036aa28c7a3c6",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops bjb1 c prime resume maxturn50",
+  "task_key": "worker_ops_bjb1_c_prime_resume_maxturn50_20260522T013653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1_c_prime_resume_maxturn50_20260522T013653_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "54ed3924f6acb53500a46f6460caad16e5462400b1b4cfa701997f83de60bd8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Resume from `global_step_5` confirmed. Both ranks loaded model + optimizer + rng + lr_scheduler from the checkpoint.\n\n## Report\n\n| Item | Value |\n|------|-------|\n| **PID** | 367061 |\n| **tmux session** | `exp029_c_prime_resume_mt50` |\n| **GPU** | cuda:0,1 @ ~8.9GB each |\n| **W&B run ID** | `k9od7ujw` |\n| **W&B URL** | https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/k9od7ujw |\n| **max_turn** | 50 (confirmed in loaded config) |\n| **Resume** | Loaded model/optimizer/rng/lr_scheduler from `global_step_5` on both ranks |\n| **Config** | `_alfworld_c_prime_resume_mt50.yaml` |\n| **Steps** | Will run steps 6-7 (total_training_steps=7, save_freq=5 → saves at step 7 as final) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-c-prime-resume-maxturn50.md"
+}

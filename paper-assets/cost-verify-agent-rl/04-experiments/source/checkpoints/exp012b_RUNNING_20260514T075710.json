@@ -1,0 +1,59 @@
+{
+  "exp_id": "exp012b",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:44:22.570Z",
+    "updated_at": "2026-05-14T07:57:10.343Z",
+    "hypothesis": "format_penalty=0 + group_size=16，从 step 5 checkpoint 恢复 GRPO 训练。纯 A2 实验（D010）：隔离 format penalty 对 success 崩塌的影响。exp012 的基础设施修复重试（vLLM 参数兼容已修复）。",
+    "parent": "exp012",
+    "notes": "D010指令重试。exp012 因 vLLM 0.18.1 不支持 disable_mm_preprocessor_cache 参数启动即崩。诊断 Worker 确认 alfworld 训练入口不涉及该参数（仅 ap_webshop.py 有残留），dry-run 通过。使用相同配置 _alfworld_exp012_reward_fix 重新提交。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p \\$TMPDIR && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp012_reward_fix\"",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "233689",
+      "log_path": "~/runs/cost-verify-agent-rl/exp012b.log",
+      "submitted_at": "2026-05-14T06:45:43.279Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "bjb1-17606",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "pid": "233689",
+    "log_path": "~/runs/cost-verify-agent-rl/exp012b.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p \\$TMPDIR && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp012_reward_fix\"",
+      "code_commit": "20daedc47558e000f7de912b060646bf2e8026bd"
+    },
+    "metrics": {
+      "step": 8,
+      "total_steps": 30,
+      "step6_success": 0.0859,
+      "step6_action_is_valid": 0.613,
+      "step6_pass_at_16": 0.5,
+      "step6_ppo_kl": 0.0039,
+      "step6_entropy": 0.1006,
+      "step6_grad_norm": 1.477,
+      "step7_success": 0,
+      "step7_action_is_valid": 0.685,
+      "step7_pass_at_16": 0,
+      "step7_pg_loss": 0,
+      "step7_ppo_kl": 0.00439,
+      "step7_entropy": 0.0904,
+      "step7_grad_norm": 0.094,
+      "trend": "success 8.6%→0% collapse at step 7 (same pattern as exp010, delayed 1 step). grad_norm 1.477→0.094, pg_loss→0. Reward fix delayed but did not prevent collapse."
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-14T07:57:10.396792+00:00",
+  "trigger": "update_registry"
+}

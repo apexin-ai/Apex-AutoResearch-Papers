@@ -1,0 +1,49 @@
+{
+  "exp_id": "exp029_per_task_breakdown",
+  "project": "cost-verify-agent-rl",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T12:22:29.035Z",
+    "updated_at": "2026-05-19T14:14:46.720Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python eval_per_task_type.py\"",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "169264",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_per_task_breakdown.log",
+      "submitted_at": "2026-05-19T13:22:17.722Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "ALFWorld valid_unseen 134 tasks grouped by task type",
+      "data_count": 134,
+      "model_name": "exp029_seed1_global_step_15",
+      "seed": 1,
+      "checkpoint_source": "exp029_episode_level global_step_15",
+      "eval_data": "ALFWorld valid_unseen 134 OOD tasks"
+    },
+    "hypothesis": "Per-task-type OOD eval of exp029 seed1 (Cell C, episode-level + full context) will reveal which ALFWorld task types benefit most from RL training, providing granular analysis for paper Results section. Checkpoint: global_step_15, 134 OOD tasks grouped by task type.",
+    "parent": "exp029_episode_level",
+    "reproduce": {
+      "finished_at": "2026-05-19T14:06:22.115Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T14:06:24.846177+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T14:14:46.895926+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1585a47bef981ed165f7",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops seed7 high kl progress",
+  "task_key": "worker_ops_seed7-high-kl-progress_20260521T205140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_seed7-high-kl-progress_20260521T205140_result.json",
+    "occurrence": 1,
+    "bytes": 1521,
+    "sha256": "6ada47700d3c127b07589813d35c7f85fc5efbd5aeb6b74634a7b847b333b4be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇报：\n\n## exp029_seed7_high_kl 状态\n\n- **进程状态**: dead（PID 334159 已退出，EXIT_CODE=0，正常完成）\n- **GPU 利用率**: cuda:0 和 cuda:1 均 0%，0 MiB 占用（已释放）\n- **当前训练 step**: 7/7（全部完成），总耗时 3h40m\n\n### 关键 Metrics\n\n| 指标 | Step 0 (初始) | Final |\n|------|-------------|-------|\n| val_success (pass@1, 32ep) | 15.625% | **31.25%** |\n| val_response_length | 5,575 | 6,046 |\n| val_reward_mean@32 | 1.5625 | 3.125 |\n| train_response_length | 5,601 | **12,850** |\n\n**KL 相关**:\n- actor/kl_loss (step 1): 0.00128, kl_coef=0.1\n- actor/ppo_kl (step 1): 2.71e-05\n\n### 异常情况\n\n1. **W&B BrokenPipeError**: teardown 时 W&B 连接断裂，metrics 可能未完全同步到 W&B（日志里有数据但 registry 之前没收到）\n2. **Train response_length 膨胀**: 训练集 response_length 从 5,601 涨到 12,850（+129%），接近 max 16,380。Val response_length 仅温和增长（+8.4%），但 train 端的膨胀说明 **KL=0.1 未能完全抑制 response_length explosion**，只是在 val 端表现更克制\n3. **Checkpoint 已保存**: `/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/global_step_7/`\n\n### Hypothesis 评估\n\n假设条件 \"step 7 response_length < 2000 and success > 30%\"：success 31.25% 达标，但 train response_length 12,850 远超 2000 阈值。高 KL 改善了 val success（15.6% → 31.25%），但未能阻止训练端 response length 膨胀。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-seed7-high-kl-progress.md"
+}

@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp018_sft_grpo",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T15:43:08.545Z",
+    "updated_at": "2026-05-14T16:45:31.434Z",
+    "hypothesis": "Expert SFT → Sparse GRPO：从 exp017 SFT checkpoint 开始纯 sparse GRPO 训练。SFT 提升 baseline success rate（≥10%），使 GRPO 有足够非零 reward group 产生有效梯度。LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, won=10.0, 无 bonus/penalty, GRPO 30 步。Pass: success ≥ 20%。",
+    "parent": "exp017_expert_sft",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-14T16:45:31.508960+00:00",
+  "trigger": "update_registry"
+}

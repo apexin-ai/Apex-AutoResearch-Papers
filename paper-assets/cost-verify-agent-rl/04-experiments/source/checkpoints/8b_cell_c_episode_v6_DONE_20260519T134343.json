@@ -1,0 +1,40 @@
+{
+  "exp_id": "8b_cell_c_episode_v6",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:23:28.445Z",
+    "updated_at": "2026-05-19T13:43:43.030Z",
+    "hypothesis": "8B Cell C episode-level with use_ref=False, max_model_len=16384 (up from 8192 which was too short for some prompts), no expandable_segments (incompatible with vLLM CuMemAllocator). v5 proved OOM is solved and VLLM inits successfully; v6 fixes the remaining prompt length issue. If backward pass succeeds, Cell C at 8B scale provides the positive control for scale-invariant information loss analysis.",
+    "parent": "8b_cell_c_episode_v5",
+    "spec": {
+      "command": "bash -c 'cd /root/cost-verify-agent-rl/RAGEN/config && sed -i \"s/max_model_len: 8192/max_model_len: 16384/g\" _alfworld_8b_cell_c.yaml && echo \"=== Config verification ===\" && grep -E \"max_model_len|use_ref|use_kl_loss|gpu_memory_utilization|ppo_mini_batch_size\" _alfworld_8b_cell_c.yaml && echo \"=== Starting training ===\" && cd /root/cost-verify-agent-rl/RAGEN && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p /root/autodl-tmp/checkpoints/8b-cell-c /root/autodl-tmp/tmp && export TMPDIR=/root/autodl-tmp/tmp && export RAY_TMPDIR=/root/autodl-tmp/ray_tmp && export WANDB_PROJECT=cost-verify-agent-rl && CUDA_VISIBLE_DEVICES=0,1,2,3 python train.py --config-name _alfworld_8b_cell_c'",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "84321",
+      "log_path": "~/runs/cost-verify-agent-rl/8b_cell_c_episode_v6.log",
+      "submitted_at": "2026-05-19T13:24:02.584Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 1180.4,
+      "gpu_hours": 1.31
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T13:43:41.216Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T13:43:43.030Z"
+  },
+  "timestamp": "2026-05-19T13:43:43.209087+00:00",
+  "trigger": "update_registry"
+}

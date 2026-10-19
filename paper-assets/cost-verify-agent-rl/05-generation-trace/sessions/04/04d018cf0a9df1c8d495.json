@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04d018cf0a9df1c8d495",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor comprehensive status check",
+  "task_key": "worker_monitor_comprehensive_status_check_20260521T142137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_comprehensive_status_check_20260521T142137_result.json",
+    "occurrence": 1,
+    "bytes": 1925,
+    "sha256": "f72dab7f89fe0a6308af4bb388fd6afbe2924e1869d1ad47724f483b5daebb0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 综合状态报告\n\n### Seed 7 (westd GPU 0,1) — W&B: p6vwsrfk\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | **ALIVE** (PID 226699, uptime ~2h) |\n| 当前 step | **Step 5** (已完成 step 4, 进度 27%, 4/15) |\n| GPU 内存 | GPU 0: 97207/97887 MiB (99.3%), GPU 1: 97207/97887 MiB (99.3%) |\n| Step 5 backward | **已通过** — checkpoint 已成功保存至 global_step_5 (22:09) |\n| OOM 风险 | **低** — 虽然内存占用 99.3% 极高，但已稳定通过 5 个 step 的 backward+save，内存未持续增长 |\n| Step 4 关键指标 | train success=1.0, pass@8=1.0, critic/score=6.95, entropy_loss=0.062 |\n| 速度 | ~797s/step (~13.3 min), 预计剩余 ~2.2h 完成 |\n\n### Seed 5 OOD eval (westd GPU 3) — W&B: u4zste0d\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | **ALIVE** (PID 383150, uptime ~19 min) |\n| GPU 内存 | GPU 3: 90469/97887 MiB (92.4%) |\n| W&B | state=running, **尚无指标** 写入 |\n| 状态 | **进行中** — 模型已加载，W&B 已初始化，正在执行 134 episodes AlfworldSG_OOD 的 val rollouts |\n\n还在跑，尚无结果。\n\n### Seed 4 (bjb1 GPU 0,1) — W&B: fb1o765g\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | **ALIVE** (PID 302056, uptime ~5h40m) |\n| 当前 step | **Step 10** (_step=10, 进度 67%, 10/15) |\n| GPU 内存 | GPU 0: 20731/97887 MiB (21.2%), GPU 1: 同 |\n| W&B 指标 | critic/score/mean=3.83, actor/kl_coef=0.01, entropy_loss=0.04 |\n| Checkpoint | global_step_10 已保存 (21GB) |\n| 磁盘 | 222/250GB (89%), **剩余 29GB** — 需关注，后续 checkpoint 可能不够 |\n\n**磁盘风险提醒**: Seed 4 checkpoint 已占 21GB，剩余 29GB。max_actor_ckpt_to_keep=3 + max_critic_ckpt_to_keep=1，如果每个 checkpoint ~21GB，3 个 actor checkpoint 就 63GB，可能超限。但 save_freq=5，已有 step 10，下次保存 step 15（最终），旧 checkpoint 会被清理，勉强够用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-comprehensive-status-check.md"
+}

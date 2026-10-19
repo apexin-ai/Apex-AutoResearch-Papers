@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fa53ccb2352a61b8bde",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research tatsu race condition",
+  "task_key": "worker_research_tatsu_race_condition_20260516T153213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_tatsu_race_condition_20260516T153213_result.json",
+    "occurrence": 1,
+    "bytes": 1441,
+    "sha256": "086a383cd2fec615c44808a4e2e5c1338651410dbe198508582b44aa045cf865"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出总结：\n\n---\n\n## 根因分析\n\nTextWorld 1.7.0 有 4 个 **模块级单例** TatSu parser。`ParseContext.parse()` 每次调用都修改实例状态（`_tokenizer`、`_statestack`、`_last_node` 等），多线程并发调用会互相覆盖状态。\n\n**最关键的是 #4 (CSGParser)**：它在每次 `env.step()` 时都被调用（`grammar.derive()` → `_parse_and_convert()` → `_PARSER.parse()`），即使 env 创建被锁保护，并行 step 仍会 race。\n\n## 推荐方案\n\n**Thread-local parser 实例**（方案 B）— 每个线程自动获得独立 parser，零锁竞争，内存开销可忽略。\n\n排除方案：\n- 方案 A（全局锁）：会序列化所有 step 中的 parse 调用，削弱并行收益\n- 方案 C（升级 tatsu）：5.8.3→5.19.0 API 变化大，textworld 不兼容\n\n## 验证结果\n\n| 条件 | 结果 |\n|------|------|\n| 无 patch，4 线程并行 step | **7/8 崩溃**（IndexError/TypeError） |\n| 有 patch，4 线程并行 step | **8/8 通过** |\n\n## 文件位置\n\n- Patch: `/root/cost-verify-agent-rl/RAGEN/patches/tatsu_parallel_fix.py`\n- 测试: `/root/cost-verify-agent-rl/RAGEN/patches/test_tatsu_parallel.py`\n- 文档: `/root/cost-verify-agent-rl/RAGEN/patches/README_tatsu_fix.md`\n\n## 预估加速\n\n`max_workers=4` 时 val 从 ~10min → **~2.5min**（4x），瓶颈转移到 env 创建（串行，受 fast_downward 限制）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-tatsu-race-condition.md"
+}

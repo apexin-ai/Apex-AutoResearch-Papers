@@ -1,0 +1,147 @@
+paper_key: "feng2025gigpo"
+title: "GiGPO: Group-in-Group Policy Optimization for LLM Agent Training"
+venue: "NeurIPS 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "Qwen2.5 (zero-shot)"
+    - "ReAct"
+    - "Reflexion"
+    - "PPO (with critic)"
+    - "RLOO"
+    - "GRPO"
+    - "DAPO"
+    - "GPT-4o"
+    - "Gemini-2.5-Pro"
+    - "R1-Instruct"
+    - "Search-R1"
+    - "ZeroSearch"
+    - "StepSearch"
+  metrics:
+    - {name: "Success Rate (%)", direction: "higher_better"}
+    - {name: "WebShop Score", direction: "higher_better"}
+    - {name: "QA Accuracy (%)", direction: "higher_better"}
+    - {name: "Tool Efficiency (avg calls per query)", direction: "lower_better"}
+  datasets:
+    - {name: "ALFWorld", size: "3,827 task instances across 6 categories (Pick, Look, Clean, Heat, Cool, Pick2)"}
+    - {name: "WebShop", size: "1.1M products, 12k instructions"}
+    - {name: "NQ (Natural Questions)", size: "single-hop QA"}
+    - {name: "TriviaQA", size: "single-hop QA"}
+    - {name: "PopQA", size: "single-hop QA"}
+    - {name: "HotpotQA", size: "multi-hop QA"}
+    - {name: "2WikiMultiHopQA", size: "multi-hop QA"}
+    - {name: "MuSiQue", size: "multi-hop QA"}
+    - {name: "Bamboogle", size: "multi-hop QA"}
+    - {name: "Sokoban (6x6)", size: "vision-language game"}
+    - {name: "EZPoints", size: "vision-language game"}
+    - {name: "Gym Cards", size: "vision-language game"}
+  ablation_dimensions:
+    - "Episode-level advantage (A^E) removal"
+    - "Step-level advantage (A^S) removal"
+    - "Normalization strategy (with std vs without std)"
+    - "Weighting coefficient omega (0.0 to 1.4)"
+    - "Dynamic vs fixed advantage weighting"
+  training_recipe:
+    optimizer: "not explicitly stated (standard RL setup)"
+    lr: "1e-6 (actor), 1e-5 (critic for PPO baseline)"
+    batch_size: "group size N=8 (ALFWorld/WebShop), N=5 (QA)"
+    hardware: "H100 GPUs (2x-8x depending on task/model size)"
+    training_iterations: "150 (ALFWorld/WebShop), 200 (QA)"
+    kl_penalty_beta: 0.01
+    discount_factor_gamma: 0.95
+    weighting_omega: 1.0
+    max_steps: "50 (ALFWorld), 15 (WebShop), 4 turns (QA)"
+    max_lengths: "prompt 2048-4096, response 512"
+    num_seeds: 3
+    framework: "verl-agent (open-source, based on verl)"
+  method_family: "Group-based reinforcement learning with hierarchical advantage estimation"
+
+positioning:
+  core_claim: "Fine-grained per-step credit assignment in multi-turn LLM agent training can be achieved without a critic network by retroactively grouping identical environment states across trajectories within the same group rollout, yielding a hierarchical episode-level + step-level advantage that is both computationally free (<0.002% overhead) and substantially more effective than flat group-based RL."
+  key_results: "ALFWorld: 86.1% (1.5B) / 90.2% (7B) vs GRPO 72.8%/77.6% (+13.3/+12.6pp); WebShop: 83.5 score / 67.4% success (1.5B) vs GRPO 75.8/56.8% (+7.7/+10.6pp); Search QA avg: 42.1% (3B) / 47.2% (7B) vs Search-R1 32.5%/38.5%; VLM Sokoban: 81.0% success"
+  limitations:
+    - "Reliance on state matching for anchor group construction -- in complex environments identical states may be hard to detect due to noise or continuous state spaces"
+    - "Graceful degradation to GRPO when no states repeat means step-level benefits are environment-dependent"
+    - "Similarity-based grouping (soft matching) mentioned as future direction but not implemented"
+    - "Evaluated primarily on text-based interactive environments; generalization to truly open-ended or real-world environments unclear"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "LLMs have leapt from static question-answer systems to versatile agents -- sets the stage for agent training as the next frontier, immediately grounding in the agent paradigm shift"
+  tension: "Group-based RL (GRPO, RLOO) excels in single-turn tasks but collapses in multi-turn agent settings due to sparse delayed rewards and the inability to assign credit to individual steps within long trajectories (50 steps, 20k+ tokens). The naive solution (per-state rollouts) is prohibitively expensive."
+  key_insight: "Revealed in Section 3.2 -- identical environment states naturally recur across trajectories within the same group because agents start from the same initial state. These 'anchor states' can be retroactively identified via hashmap lookups to construct step-level comparison groups at near-zero cost, achieving fine-grained credit assignment without extra rollouts or a critic."
+  argument_chain: "LLM agents need RL training → group-based RL succeeds for single-turn but fails for multi-turn due to credit assignment → existing solutions (critic, per-state rollouts) are expensive/unstable → key observation: identical states recur naturally across group trajectories → exploit this via anchor state grouping for step-level advantages → combine with episode-level advantages hierarchically → validate across embodied (ALFWorld), web (WebShop), QA (7 datasets), and vision-language (3 games) tasks → near-zero computational overhead"
+  contribution_framing: "5 contributions: (1) novel RL algorithm preserving critic-free properties, (2) two-level advantage structure, (3) anchor state grouping mechanism, (4) strong empirical gains with numbers (>12% ALFWorld, >9% WebShop), (5) open-source verl-agent framework release"
+  intro_structure: "5 paragraphs: P1=context (LLMs as agents), P2=RL motivation (group-based methods succeed in single-turn), P3=problem (multi-turn credit assignment challenge), P4=core research question posed explicitly, P5=solution and results summary"
+  notable_technique: "Posing an explicit research question in P4 ('Can we preserve critic-free, low-memory, and stable convergence properties...while introducing fine-grained credit assignment?') creates a clear pivot from problem to solution. The paper also effectively uses the 'near-zero cost' framing to preempt the obvious objection that finer-grained credit assignment must be expensive."
+
+figures:
+  figure_count: 18  # 6 main text + ~12 appendix (prompts, framework comparison, VLM examples)
+  figure1:
+    type: "motivation"
+    description: "Three-column comparison: (left) vanilla GRPO with only episode-level advantages -- all steps in a trajectory get the same advantage signal; (center) costly approach requiring per-state rollouts with branching actions a4', a4''; (right) GiGPO's efficient method that aggregates distinct actions from shared environment states across trajectories without extra rollouts."
+    narrative_role: "Establishes the core problem (flat advantages in GRPO) and the key insight (reuse naturally occurring state repetitions) in a single visual. Directly motivates the method by showing what's wrong and how GiGPO fixes it."
+    design_elements: ["三列对比布局", "颜色编码区分不同trajectory", "箭头标注advantage信号流向", "X标记标注错误/不足", "checkmark标注GiGPO优势"]
+    visual_style: "Clean schematic with color-coded trajectories (blue/orange), environment states shown as rounded boxes, agent actions as arrows. Left-to-right narrative progression from problem to naive solution to proposed solution."
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "grouped_bar"
+      what_compared: "Ablation of GiGPO components: GiGPO w/o std, GiGPO w/ std, GiGPO w/o A^S, GiGPO w/o A^E across ALFWorld subtasks and WebShop"
+      how_gain_highlighted: "Full GiGPO variants (w/o std, w/ std) consistently taller bars; removing either A^E or A^S shows visible drops, especially on harder tasks (Cool, Pick2)"
+      design_note: "Serves double duty as both ablation and result figure; tasks ordered by difficulty to show step-level advantages matter more for harder tasks"
+    - figure_id: "Figure 5"
+      viz_type: "line_plot + histogram"
+      what_compared: "Training dynamics: success rate over iterations (left) and distribution of step-level group sizes at 3 checkpoints (right)"
+      how_gain_highlighted: "Shows convergence behavior and that group sizes stabilize at 6-8, demonstrating the mechanism works reliably"
+      design_note: "Dual-panel combining training curve with mechanistic insight; checkpoints on the curve link to the histogram panels"
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["A^E presence", "A^S presence", "normalization (std vs no std)"]
+      design_note: "Component ablation presented as grouped bars across tasks, making it easy to see which component matters most per task type. Harder tasks (Cool, Pick2) show larger drops when removing A^S, supporting the credit assignment narrative."
+    - figure_id: "Figure 6"
+      viz_type: "stacked_bar"
+      dimensions_varied: ["computation time breakdown: shared GRPO vs GiGPO-specific additions"]
+      design_note: "Efficiency ablation as time breakdown bar chart. Orange (GiGPO overhead: anchor grouping 0.01s + step advantage 0.53s) is visually negligible compared to blue (shared GRPO computation), making the <0.002% claim immediately visceral."
+  figure_narrative_role: "Figure 1 (motivation: what's wrong with GRPO, what GiGPO does) → Figure 2 (method overview: pipeline and two-level advantage) → Figure 3 (concrete example: step-level grouping in WebShop) → Figure 4 (ablation: both components matter) → Figure 5 (training dynamics: mechanism works stably) → Figure 6 (efficiency: near-zero overhead). Progression: problem → method → example → validation → analysis → cost."
+
+tables:
+  table_count: 5  # 2 main text + 3 appendix
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "ALFWorld subtasks (Pick, Look, Clean, Heat, Cool, Pick2, All) + WebShop (Score, Success %)"
+    row_organization: "by_category"  # Closed-source → Prompting → RL methods, within RL: PPO → RLOO → GRPO → GiGPO
+    col_organization: "grouped_by_dataset"  # ALFWorld subtasks grouped, then WebShop columns
+    highlight_strategy: "No explicit bold/underline in source; best results are in GiGPO rows"
+    statistical_reporting: "mean ± std across 3 random seeds for all RL methods"
+    num_baselines: 8  # Qwen2.5, ReAct, Reflexion, PPO, RLOO, GRPO, GiGPO w/ std, GiGPO w/o std (per model size)
+    num_model_sizes: 2  # Qwen2.5-1.5B and 7B
+    design_note: "Wide table covering 9 evaluation columns; separates prompting baselines (no std) from RL methods (with std); two model sizes stacked vertically. Comprehensive coverage of ALFWorld subtasks reveals per-category strengths."
+  ablation_tables:
+    - table_id: "Table 5 (Appendix)"
+      what_varied: ["weighting coefficient omega from 0.0 to 1.4"]
+      variation_style: "full_numbers"
+      design_note: "Sensitivity analysis showing omega=1.0 is robust default; performance relatively stable across 0.6-1.2 range"
+    - table_id: "Table 4 (Appendix)"
+      what_varied: ["RL algorithm (GRPO vs DAPO vs GiGPO_dynamic)"]
+      variation_style: "full_numbers"
+      design_note: "Shows GiGPO's dynamic weighting variant; comparison with DAPO demonstrates orthogonality to other RL improvements"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 3: VLM agent results (Sokoban, EZPoints, Gym Cards with Qwen2.5-VL-3B); Table 4: DAPO comparison and dynamic weighting; Table 5: omega sensitivity analysis"
+    reason: "Main tables focus on the two primary benchmarks (ALFWorld, WebShop) and QA tasks. VLM results, algorithm variants, and hyperparameter sensitivity are secondary validation moved to appendix to keep main text focused."
+
+second_result_table:
+  table_id: "Table 2"
+  row_axis: "methods"
+  col_axis: "Single-hop QA (NQ, TriviaQA, PopQA) + Multi-hop QA (HotpotQA, 2Wiki, MuSiQue, Bamboogle) + Average"
+  row_organization: "by_category"  # Baseline → Search-RL methods → GiGPO
+  col_organization: "grouped_by_hop_type"
+  highlight_strategy: "No explicit bold/underline"
+  statistical_reporting: "single numbers (no std reported for QA experiments)"
+  num_baselines: 4  # R1-Instruct, Search-R1, ZeroSearch, StepSearch
+  num_model_sizes: 2  # Qwen2.5-3B and 7B
+  design_note: "Organized by reasoning complexity (single-hop vs multi-hop); some StepSearch entries missing (--), GiGPO achieves large gains on Bamboogle (64.1% vs next-best 34.4% for 3B)"

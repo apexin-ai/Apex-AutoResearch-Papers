@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22faa381fdfd0ad97a70",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops cleanup exp016 ray",
+  "task_key": "worker_ops_cleanup-exp016-ray_20260514T145559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-exp016-ray_20260514T145559_result.json",
+    "occurrence": 1,
+    "bytes": 230,
+    "sha256": "17017a8b958cbfeb032d586212ec5b49f72efb5a4f13da86274cb764d74b5265"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n| | 清理前 | 清理后 |\n|---|---|---|\n| GPU 0 | 48659 / 97887 MiB | **0 / 97887 MiB** |\n| GPU 1 | 48651 / 97887 MiB | **0 / 97887 MiB** |\n\n两卡显存已完全释放，无残留进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-exp016-ray.md"
+}

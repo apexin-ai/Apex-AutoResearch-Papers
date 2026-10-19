@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp023c_grpo_serial",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:20:22.909Z",
+    "updated_at": "2026-05-15T04:20:40.026Z",
+    "hypothesis": "GRPO from exp021 RAGEN-format SFT checkpoint. Serial mode (parallel_friendly=false, max_workers=1) to avoid tatsu race. reward scale=10.0, kl_loss_coef=0.5, LR=5e-7, val env_groups=16, gpu_memory_utilization=0.6, 30 steps. Pass: success ≥ 25%, step time baseline comparison with exp022 (~208s/step).",
+    "parent": "exp023_grpo_parallel"
+  },
+  "timestamp": "2026-05-15T04:20:40.133320+00:00",
+  "trigger": "update_registry"
+}

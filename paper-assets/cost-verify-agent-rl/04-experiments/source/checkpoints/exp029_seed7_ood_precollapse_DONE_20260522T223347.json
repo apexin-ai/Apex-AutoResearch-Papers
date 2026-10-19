@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp029_seed7_ood_precollapse",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T21:12:54.573Z",
+    "updated_at": "2026-05-22T22:33:47.107Z",
+    "hypothesis": "Re-eval high_kl step5 checkpoint with updated D134 protocol (enable_think=true, enable_response_mask=false, full context). Original eval gave 8.21% OOD. Note: uses exp029_seed7_high_kl_step5_hf (KL 10x intervention), not standard seed7 pre-collapse (checkpoint lost). Tests protocol consistency vs original RAGEN eval result.",
+    "parent": "exp029_seed7",
+    "conclusion": "killed",
+    "notes": "Using high_kl step5 checkpoint (exp029_seed7_high_kl_step5_hf) on bjb1-17606. Standard seed7 step5 checkpoint does not exist. D134 protocol: enable_think=true, 134 OOD tasks, seed=321.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 WANDB_DIR=/root/autodl-tmp/wandb_tmp python train.py --config-name _alfworld_seed7_ood_precollapse enable_response_mask=false actor_rollout_ref.model.enable_response_mask=false",
+      "server": "bjb1-17606",
+      "data_path": "AlfworldSG_OOD",
+      "data_count": 134,
+      "model_name": "exp029_seed7_high_kl_step5_hf",
+      "seed": 321,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/exp029_seed7_high_kl_step5_hf",
+      "eval_data": "AlfworldSG_OOD 134 tasks"
+    },
+    "completed_at": "2026-05-22T22:08:30.500Z"
+  },
+  "timestamp": "2026-05-22T22:33:47.437454+00:00",
+  "trigger": "update_registry"
+}

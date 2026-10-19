@@ -1,0 +1,1452 @@
+# writing method draft
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 30
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/workers/worker_writing_method_draft_20260515T200851.log`
+- **Structured JSON:** [`6bf2c619d8788a1bad95.json`](../../sessions/6b/6bf2c619d8788a1bad95.json)
+
+## Before a recorded user message
+
+30 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "26230ea8-9e76-408e-8659-9fe4c3db31bb",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778888400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "e492b507-8a13-423a-aeb9-09687cf168b0",
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我先读取相关项目文件，了解更多上下文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "1b62ac12-8a09-4f98-a1f4-23cab132767f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QGBPiqb4S3MKye5HHGs9uU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12336,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12336
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EPSU6Kw9zcJPotLQKKcs1S`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "5dd86348-4c88-4373-983e-e3499f2ca4bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QGBPiqb4S3MKye5HHGs9uU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12336,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12336
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T20:09:04.329Z_
+
+<details><summary>↩ Tool result · `toolu_01EPSU6Kw9zcJPotLQKKcs1S`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "3bf49166-0cce-47b2-9221-748735e08174",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the relevant project files to get more context before writing the method draft.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "c3d982f3-3526-488e-bb0b-6e323c906f21",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PKEDLYLaavWGX1iYkQxxaR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1333,
+      "cache_read_input_tokens": 24177,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1333
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01KJhfZ6A4xZSrY48kF2c1qA`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "2b89f6ba-8fbf-42aa-88ff-2440346c97be",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PKEDLYLaavWGX1iYkQxxaR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1333,
+      "cache_read_input_tokens": 24177,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1333
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T20:09:08.199Z_
+
+<details><summary>↩ Tool result · `toolu_01KJhfZ6A4xZSrY48kF2c1qA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md\", \"content\": \"# Paper Framing — B-IAVR: Selective Self-Verification via RL\\n\\n> 基于 D039 framing 方向 + Worker framing draft (2026-05-15)\\n\\n## Core Insight\\n\\n大多数 self-verification 是 confirmatory 而非 corrective——不改变 agent 行为。用 action change 作为 reward signal，RL 可以训练 agent 只在 verification 真正 informative 时触发验证，实现 cost-efficiency。\\n\\n## Story Arc\\n\\nCost-efficiency story，不走 performance story。ALFWorld SOTA 88-93%，Self-Guide 1.7B 72.7%，performance 竞争无意义。核心叙事：**RL-trained selective verification 在接近 baseline 性能的前提下显著减少 verification 开销**。\\n\\n## Core Claims\\n\\n### Claim 1 (target: moderate): Selective verification reduces cost while preserving performance\\n- 所需证据：always-on baseline ≥50% success + B-IAVR verification ↓40%+ 且 success 持平\\n- 当前证据状态：**not yet established**，依赖 exp027 pass + Phase B 全部完成\\n- 前提风险：cost-efficiency story 要求 baseline 本身够强（≥50%），否则\\\"省验证开销\\\"在弱系统上无实际意义\\n\\n### Claim 2 (target: moderate): Action change 是有效的 verification informativeness reward\\n- 所需证据：训练收敛 + ablation（对比 random trigger / confidence threshold / always-on）\\n- 当前证据状态：**not yet established**\\n\\n### Claim 3 (target: weak): Learned policy > heuristic baselines\\n- 所需证据：完整 ablation 矩阵（always-on / no-verify / random-p / confidence-threshold）\\n- 当前证据状态：**not yet established**\\n\\n## Reviewer Attack Surface\\n\\n1. **Baseline performance insufficient**（最大风险）：cost-efficiency story 的前提是 always-on baseline 本身要够强（≥50%）。如果 baseline 只有 20-30%，\\\"省验证开销\\\"在一个本就很弱的系统上没有实际意义。exp027 MVP 阈值仅 20%，距 50% 的论文门槛有很大 gap。\\n2. **Single environment (ALFWorld)**：泛化性不足，只能说 \\\"in ALFWorld\\\" 不能说 \\\"consistently\\\"\\n3. **Action change = noise vs signal**：action change 可能仅反映随机性而非 verification informativeness。需证明 action change 与 task outcome 有因果关系，而非仅是 noise。**防御实验为 Phase B 必做项**（见 Experiment Requirements）。\\n4. **Small model (1.7B)**：规模限制，需明确定位为 \\\"resource-constrained agent\\\" 场景\\n5. **与 ARES 差异化不足**：需实验对比 ARES 方法（SFT router vs RL policy）\\n\\n## 与竞争者的差异化\\n\\n| 维度 | ARES (2603.07915) | B-IAVR (Ours) |\\n|------|-------------------|----------------|\\n| Decision type | Continuous effort allocation | Binary verify/skip |\\n| Training | SFT on filtered data | RL (GRPO) with action-change reward |\\n| Signal | Pre-defined quality metrics | Behavioral change (action change) |\\n| Scope | Reasoning tasks | Interactive agent tasks |\\n\\n## Evidence Roadmap\\n\\n1. **Phase A (当前)**: exp027 — always-on Self-Guidance baseline, target ≥20% (MVP) / ≥50% (论文)\\n2. **Phase B**: B-IAVR 训练 — selective verification policy + action-change reward\\n3. **Phase C**: Ablation matrix — always-on / no-verify / random-p / confidence-threshold\\n4. **Phase D**: ARES 对比实验\\n\\n## Experiment Requirements\\n\\n### Phase B 必做项\\n\\n1. **Action change = noise vs signal 防御**（对应 Reviewer Concern 3）\\n   - **Entropy-controlled 分析**：控制 policy entropy 后，action change 是否仍与 task outcome 正相关？排除\\\"高 entropy → 更多 random change → 假信号\\\"的混淆\\n   - **Causal intervention**：人为注入 random action change vs verification-triggered action change，对比 task success rate 差异，证明 verification-triggered change 有因果效用\", \"total_chars\": 2924, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "0026f233-5ac7-4fc5-b83a-4a7c3b53065e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — B-IAVR: Selective Self-Verification via RL\\\\n\\\\n> 基于 D039 framing 方向 + Worker framing draft (2026-05-15)\\\\n\\\\n## Core Insight\\\\n\\\\n大多数 self-verification 是 confirmatory 而非 corrective——不改变 agent 行为。用 action change 作为 reward signal，RL 可以训练 agent 只在 verification 真正 informative 时触发验证，实现 cost-efficiency。\\\\n\\\\n## Story Arc\\\\n\\\\nCost-efficiency story，不走 performance story。ALFWorld SOTA 88-93%，Self-Guide 1.7B 72.7%，performance 竞争无意义。核心叙事：**RL-trained selective verification 在接近 baseline 性能的前提下显著减少 verification 开销**。\\\\n\\\\n## Core Claims\\\\n\\\\n### Claim 1 (target: moderate): Selective verification reduces cost while preserving performance\\\\n- 所需证据：always-on baseline ≥50% success + B-IAVR verification ↓40%+ 且 success 持平\\\\n- 当前证据状态：**not yet established**，依赖 exp027 pass + Phase B 全部完成\\\\n- 前提风险：cost-efficiency story 要求 baseline 本身够强（≥50%），否则\\\\\\\"省验证开销\\\\\\\"在弱系统上无实际意义\\\\n\\\\n### Claim 2 (target: moderate): Action change 是有效的 verification informativeness reward\\\\n- 所需证据：训练收敛 + ablation（对比 random trigger / confidence threshold / always-on）\\\\n- 当前证据状态：**not yet established**\\\\n\\\\n### Claim 3 (target: weak): Learned policy > heuristic baselines\\\\n- 所需证据：完整 ablation 矩阵（always-on / no-verify / random-p / confidence-threshold）\\\\n- 当前证据状态：**not yet established**\\\\n\\\\n## Reviewer Attack Surface\\\\n\\\\n1. **Baseline performance insufficient**（最大风险）：cost-efficiency story 的前提是 always-on baseline 本身要够强（≥50%）。如果 baseline 只有 20-30%，\\\\\\\"省验证开销\\\\\\\"在一个本就很弱的系统上没有实际意义。exp027 MVP 阈值仅 20%，距 50% 的论文门槛有很大 gap。\\\\n2. **Single environment (ALFWorld)**：泛化性不足，只能说 \\\\\\\"in ALFWorld\\\\\\\" 不能说 \\\\\\\"consistently\\\\\\\"\\\\n3. **Action change = noise vs signal**：action change 可能仅反映随机性而非 verification informativeness。需证明 action change 与 task outcome 有因果关系，而非仅是 noise。**防御实验为 Phase B 必做项**（见 Experiment Requirements）。\\\\n4. **Small model (1.7B)**：规模限制，需明确定位为 \\\\\\\"resource-constrained agent\\\\\\\" 场景\\\\n5. **与 ARES 差异化不足**：需实验对比 ARES 方法（SFT router vs RL policy）\\\\n\\\\n## 与竞争者的差异化\\\\n\\\\n| 维度 | ARES (2603.07915) | B-IAVR (Ours) |\\\\n|------|-------------------|----------------|\\\\n| Decision type | Continuous effort allocation | Binary verify/skip |\\\\n| Training | SFT on filtered data | RL (GRPO) with action-change reward |\\\\n| Signal | Pre-defined quality metrics | Behavioral change (action change) |\\\\n| Scope | Reasoning tasks | Interactive agent tasks |\\\\n\\\\n## Evidence Roadmap\\\\n\\\\n1. **Phase A (当前)**: exp027 — always-on Self-Guidance baseline, target ≥20% (MVP) / ≥50% (论文)\\\\n2. **Phase B**: B-IAVR 训练 — selective verification policy + action-change reward\\\\n3. **Phase C**: Ablation matrix — always-on / no-verify / random-p / confidence-threshold\\\\n4. **Phase D**: ARES 对比实验\\\\n\\\\n## Experiment Requirements\\\\n\\\\n### Phase B 必做项\\\\n\\\\n1. **Action change = noise vs signal 防御**（对应 Reviewer Concern 3）\\\\n   - **Entropy-controlled 分析**：控制 policy entropy 后，action change 是否仍与 task outcome 正相关？排除\\\\\\\"高 entropy → 更多 random change → 假信号\\\\\\\"的混淆\\\\n   - **Causal intervention**：人为注入 random action change vs verification-triggered action change，对比 task success rate 差异，证明 verification-triggered change 有因果效用\\\", \\\"total_chars\\\": 2924, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/paper_framing.md\", \"content\": \"# Paper Framing — B-IAVR: Selective Self-Verification via RL\\n\\n> 基于 D039 framing 方向 + Worker framing draft (2026-05-15)\\n\\n## Core Insight\\n\\n大多数 self-verification 是 confirmatory 而非 corrective——不改变 agent 行为。用 action change 作为 reward signal，RL 可以训练 agent 只在 verification 真正 informative 时触发验证，实现 cost-efficiency。\\n\\n## Story Arc\\n\\nCost-efficiency story，不走 performance story。ALFWorld SOTA 88-93%，Self-Guide 1.7B 72.7%，performance 竞争无意义。核心叙事：**RL-trained selective verification 在接近 baseline 性能的前提下显著减少 verification 开销**。\\n\\n## Core Claims\\n\\n### Claim 1 (target: moderate): Selective verification reduces cost while preserving performance\\n- 所需证据：always-on baseline ≥50% success + B-IAVR verification ↓40%+ 且 success 持平\\n- 当前证据状态：**not yet established**，依赖 exp027 pass + Phase B 全部完成\\n- 前提风险：cost-efficiency story 要求 baseline 本身够强（≥50%），否则\\\"省验证开销\\\"在弱系统上无实际意义\\n\\n### Claim 2 (target: moderate): Action change 是有效的 verification informativeness reward\\n- 所需证据：训练收敛 + ablation（对比 random trigger / confidence threshold / always-on）\\n- 当前证据状态：**not yet established**\\n\\n### Claim 3 (target: weak): Learned policy > heuristic baselines\\n- 所需证据：完整 ablation 矩阵（always-on / no-verify / random-p / confidence-threshold）\\n- 当前证据状态：**not yet established**\\n\\n## Reviewer Attack Surface\\n\\n1. **Baseline performance insufficient**（最大风险）：cost-efficiency story 的前提是 always-on baseline 本身要够强（≥50%）。如果 baseline 只有 20-30%，\\\"省验证开销\\\"在一个本就很弱的系统上没有实际意义。exp027 MVP 阈值仅 20%，距 50% 的论文门槛有很大 gap。\\n2. **Single environment (ALFWorld)**：泛化性不足，只能说 \\\"in ALFWorld\\\" 不能说 \\\"consistently\\\"\\n3. **Action change = noise vs signal**：action change 可能仅反映随机性而非 verification informativeness。需证明 action change 与 task outcome 有因果关系，而非仅是 noise。**防御实验为 Phase B 必做项**（见 Experiment Requirements）。\\n4. **Small model (1.7B)**：规模限制，需明确定位为 \\\"resource-constrained agent\\\" 场景\\n5. **与 ARES 差异化不足**：需实验对比 ARES 方法（SFT router vs RL policy）\\n\\n## 与竞争者的差异化\\n\\n| 维度 | ARES (2603.07915) | B-IAVR (Ours) |\\n|------|-------------------|----------------|\\n| Decision type | Continuous effort allocation | Binary verify/skip |\\n| Training | SFT on filtered data | RL (GRPO) with action-change reward |\\n| Signal | Pre-defined quality metrics | Behavioral change (action change) |\\n| Scope | Reasoning tasks | Interactive agent tasks |\\n\\n## Evidence Roadmap\\n\\n1. **Phase A (当前)**: exp027 — always-on Self-Guidance baseline, target ≥20% (MVP) / ≥50% (论文)\\n2. **Phase B**: B-IAVR 训练 — selective verification policy + action-change reward\\n3. **Phase C**: Ablation matrix — always-on / no-verify / random-p / confidence-threshold\\n4. **Phase D**: ARES 对比实验\\n\\n## Experiment Requirements\\n\\n### Phase B 必做项\\n\\n1. **Action change = noise vs signal 防御**（对应 Reviewer Concern 3）\\n   - **Entropy-controlled 分析**：控制 policy entropy 后，action change 是否仍与 task outcome 正相关？排除\\\"高 entropy → 更多 random change → 假信号\\\"的混淆\\n   - **Causal intervention**：人为注入 random action change vs verification-triggered action change，对比 task success rate 差异，证明 verification-triggered change 有因果效用\", \"total_chars\": 2924, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_019NtUBw2XEWFcGe75coaXby`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "literature_map.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "2c5a76fc-ec47-4773-97a7-4435c8002dd6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PKEDLYLaavWGX1iYkQxxaR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1333,
+      "cache_read_input_tokens": 24177,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1333
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T20:09:09.228Z_
+
+<details><summary>↩ Tool result · `toolu_019NtUBw2XEWFcGe75coaXby`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/literature_map.yaml\", \"content\": \"# B-IAVR Literature Map\\n# Updated: 2026-05-15\\n# Categories: direct-competitor, method-component, background, evaluation\\n# Roles: predecessor, competitor, baseline, evaluation, background\\n\\npapers:\\n\\n  # ============================================================\\n  # Direction 1: Self-Verification / Self-Correction in LLM Agents\\n  # ============================================================\\n\\n  - id: kamoi2024self-correction-survey\\n    title: \\\"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs\\\"\\n    authors: \\\"Kamoi et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2024\\n    arxiv_id: \\\"2406.01297\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Foundational survey establishing that pure intrinsic self-correction is unreliable.\\n      Validates B-IAVR's use of grounded verification (environment re-observation) over prompted self-feedback.\\n\\n  - id: tie2025correctbench\\n    title: \\\"Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs\\\"\\n    authors: \\\"Tie et al.\\\"\\n    venue: \\\"NeurIPS 2025 Datasets & Benchmarks\\\"\\n    year: 2025\\n    arxiv_id: \\\"2510.16062\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Benchmark showing self-correction has diminishing returns when applied uniformly.\\n      Supports B-IAVR's selective verification design over blanket correction.\\n\\n  - id: self-verification-dilemma-2026\\n    title: \\\"Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning\\\"\\n    authors: \\\"Long et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2026\\n    arxiv_id: \\\"2602.03485\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Empirically validates that >90% of self-verification is confirmatory, ~2% corrective.\\n      Directly supports B-IAVR's core thesis that verification should be selective.\\n      Their experience-pool approach is complementary to B-IAVR's action-change signal.\\n\\n  - id: zhang2025incentivize-self-verify\\n    title: \\\"Incentivizing LLMs to Self-Verify Their Answers\\\"\\n    authors: \\\"Zhang et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2506.01369\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Unifies answer generation and verification via single RL training process.\\n      Parallel to B-IAVR: they train verification into generation; B-IAVR trains when to trigger separate verification.\\n\\n  - id: mar2025\\n    title: \\\"MAR: Multi-Agent Reflexion Improves Reasoning Abilities in LLMs\\\"\\n    authors: \\\"Ozer et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2512.20845\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Multi-agent self-correction with diverse critic personas.\\n      Complementary: MAR improves correction quality; B-IAVR decides when to trigger correction.\\n\\n  - id: ssr2025\\n    title: \\\"SSR: Socratic Self-Refine for Large Language Model Reasoning\\\"\\n    authors: \\\"Shi et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2511.10621\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Structured Socratic questioning for self-refinement.\\n      Complementary: improves correction step quality; B-IAVR focuses on when to invoke correction.\\n\\n  # ============================================================\\n  # Direction 2: Agent RL Training\\n  # ============================================================\\n\\n  - id: feng2025gigpo\\n    title: \\\"GiGPO: Group-in-Group Policy Optimization for LLM Agent Training\\\"\\n    authors: \\\"Feng et al.\\\"\\n    venue: \\\"NeurIPS 2025\\\"\\n    year: 2025\\n    arxiv_id: \\\"2505.10978\\\"\\n    category: method-component\\n    role: predecessor\\n    relevance_note: >\\n      Core training algorithm for B-IAVR. Nested group structure provides step-level credit\\n      assignment without learned critic. >12% over GRPO on ALFWorld, >9% on WebShop.\\n\\n  - id: selfguide2026\\n    title: \\\"Co-Evolution of Policy and Internal Reward for Language Agents (Self-Guide)\\\"\\n    authors: \\\"Wang et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2026\\n    arxiv_id: \\\"2604.03098\\\"\\n    category: method-component\\n    role: predecessor\\n    relevance_note: >\\n      Direct predecessor. B-IAVR extends Self-Guide's co-evolving internal reward.\\n      The self-guidance signal is the foundation for action-change detection triggering verification.\\n      8% improvement over env-reward-only on ALFWorld with Qwen3-1.7B/4B.\\n\\n  - id: spear2025\\n    title: \\\"SPEAR: Self-Imitation with Progressive Exploration for Agentic RL\\\"\\n    authors: \\\"Qin et al.\\\"\\n    venue: \\\"ICLR 2026\\\"\\n    year: 2025\\n    arxiv_id: \\\"2509.22601\\\"\\n    category: method-component\\n    role: background\\n    relevance_note: >\\n      Curriculum-based self-imitation for sparse-reward agent tasks.\\n      Up to +16.1% on ALFWorld over GRPO. Self-imitation curriculum could augment B-IAVR training.\\n\\n  - id: wei2025webagent-r1\\n    title: \\\"WebAgent-R1: Training Web Agents via End-to-End Multi-Turn RL\\\"\\n    authors: \\\"Wei et al.\\\"\\n    venue: \\\"EMNLP 2025\\\"\\n    year: 2025\\n    arxiv_id: \\\"2505.16421\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Extends GRPO to multi-turn (M-GRPO) with dynamic context compression.\\n      Qwen-2.5-3B: 6.1% to 33.9% on WebArena-Lite. M-GRPO multi-turn extension relevant to B-IAVR.\\n\\n  - id: dapo2025\\n    title: \\\"DAPO: An Open-Source LLM Reinforcement Learning System at Scale\\\"\\n    authors: \\\"Yu et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2503.14476\\\"\\n    category: method-component\\n    role: background\\n    relevance_note: >\\n      RL training stabilization techniques (Clip-Higher, Dynamic Sampling).\\n      Applicable to B-IAVR's RL training to prevent entropy collapse.\\n\\n  - id: digiRL2024\\n    title: \\\"DigiRL: Training In-The-Wild Device-Control Agents with Autonomous RL\\\"\\n    authors: \\\"Bai et al.\\\"\\n    venue: \\\"NeurIPS 2024\\\"\\n    year: 2024\\n    arxiv_id: \\\"2406.11896\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Online RL for device control agents. Demonstrates online RL viability for interactive agents.\\n      49.5% absolute improvement over SFT. Parallel approach to B-IAVR in text-based setting.\\n\\n  - id: li2025sorl\\n    title: \\\"SORL: Stabilizing Off-Policy RL for Long-Horizon Agent Training\\\"\\n    authors: \\\"Li et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2511.20718\\\"\\n    category: method-component\\n    role: background\\n    relevance_note: >\\n      Turn-level importance sampling + clipping-triggered normalization for stable multi-turn agent RL.\\n      Directly applicable to B-IAVR's multi-turn ALFWorld training stability.\\n\\n  - id: agentic-rl-survey-2025\\n    title: \\\"The Landscape of Agentic RL for LLMs: A Survey\\\"\\n    authors: \\\"Zhang et al.\\\"\\n    venue: \\\"TMLR 2026\\\"\\n    year: 2025\\n    arxiv_id: \\\"2509.02547\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Comprehensive survey formalizing agentic RL. Contextualizes B-IAVR as training agents\\n      to make meta-decisions (when to verify) via RL within the POMDP framework.\\n\\n  # ============================================================\\n  # Direction 3: Selective Verification / Adaptive Computation\\n  # ============================================================\\n\\n  - id: wan2025derailer-rerailer\\n    title: \\\"Derailer-Rerailer: Adaptive Verification for Efficient and Reliable LM Reasoning\\\"\\n    authors: \\\"Wan et al.\\\"\\n    venue: \\\"ACL 2025 Findings\\\"\\n    year: 2025\\n    arxiv_id: \\\"2408.13940\\\"\\n    category: direct-competitor\\n    role: competitor\\n    relevance_note: >\\n      Most directly related competitor. Both do selective verification with binary trigger.\\n      Key difference: operates on reasoning chains (single-turn); B-IAVR on agent trajectories (multi-turn).\\n      Uses heuristic instability signal; B-IAVR uses RL-trained action-change signal.\\n      8-11% accuracy gain, 2-3x efficiency over uniform verification.\\n\\n  - id: sherlock2025\\n    title: \\\"Sherlock: Reliable and Efficient Agentic Workflow Execution\\\"\\n    authors: \\\"Microsoft\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2511.00330\\\"\\n    category: direct-competitor\\n    role: competitor\\n    relevance_note: >\\n      Selective verification for agentic workflows via offline counterfactual analysis + speculative execution.\\n      Different scope: workflow DAG level (offline); B-IAVR is step-level (online RL).\\n      18.3% accuracy gain, 26% cost reduction, 48.7% latency reduction.\\n\\n  - id: singhi2025when-to-verify\\n    title: \\\"When To Solve, When To Verify: Compute-Optimal Verification for LLM Reasoning\\\"\\n    authors: \\\"Singhi et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2504.01005\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Derives inference scaling laws for solve-vs-verify tradeoff.\\n      Finding that over-verification is suboptimal directly supports B-IAVR's selective approach.\\n      B-IAVR learns this allocation via RL rather than analytically.\\n\\n  - id: yang2026ares\\n    title: \\\"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents\\\"\\n    authors: \\\"Yang et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2026\\n    arxiv_id: \\\"2603.07915\\\"\\n    category: direct-competitor\\n    role: competitor\\n    relevance_note: >\\n      Closest competitor in agent domain. Both train learned per-step compute allocation.\\n      ARES uses SFT-initialized router further refined via GRPO with outcome + token efficiency reward;\\n      B-IAVR trains binary verify/not-verify via RL with action-change signal.\\n      Key differences: (1) reward signal — ARES optimizes token efficiency, B-IAVR uses action-change\\n      as verification trigger; (2) data requirement — ARES needs difficulty-annotated training data\\n      to bootstrap the router, B-IAVR learns from environment interaction alone.\\n      Reduces reasoning tokens by up to 52.7%.\\n\\n  - id: tu2025autothink\\n    title: \\\"Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL\\\"\\n    authors: \\\"Tu et al.\\\"\\n    venue: \\\"NeurIPS 2025\\\"\\n    year: 2025\\n    arxiv_id: \\\"2505.10832\\\"\\n    category: direct-competitor\\n    role: competitor\\n    relevance_note: >\\n      Analogous idea in reasoning domain: RL-trained adaptive computation trigger.\\n      Operates on single-turn reasoning; B-IAVR on multi-turn agent trajectories.\\n      +6.4% accuracy, -52% tokens on DeepSeek-R1-Distill-Qwen-1.5B.\\n\\n  - id: du2025thinkless\\n    title: \\\"Thinkless: LLM Learns When to Think\\\"\\n    authors: \\\"Du et al.\\\"\\n    venue: \\\"NeurIPS 2025\\\"\\n    year: 2025\\n    arxiv_id: \\\"2505.13379\\\"\\n    category: direct-competitor\\n    role: competitor\\n    relevance_note: >\\n      RL-trained control token to decide when to invoke extended thinking.\\n      Methodologically closest to B-IAVR in reasoning domain; B-IAVR applies to interactive agent trajectories.\\n\\n  - id: wang2025efficient-agents\\n    title: \\\"Efficient Agents: Building Effective Agents While Reducing Cost\\\"\\n    authors: \\\"Wang et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2508.02694\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      First systematic study of agent efficiency-effectiveness tradeoff.\\n      Framework-level cost reduction; B-IAVR addresses cost at verification-policy level.\\n      Retains 96.7% performance with 28.4% cost-of-pass improvement.\\n\\n  - id: venktesh2025trust-but-verify\\n    title: \\\"Trust but Verify! A Survey on Verification Design for Test-time Scaling\\\"\\n    authors: \\\"Venktesh et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2508.16665\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Survey of verification approaches for test-time compute scaling.\\n      Identifies verification timing as key open problem. B-IAVR provides concrete solution for agent setting.\\n\\n  # ============================================================\\n  # Direction 4: ALFWorld / Interactive Environment Benchmarks\\n  # ============================================================\\n\\n  - id: kim2025reflact\\n    title: \\\"ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection\\\"\\n    authors: \\\"Kim et al.\\\"\\n    venue: \\\"EMNLP 2025\\\"\\n    year: 2025\\n    arxiv_id: \\\"2505.15182\\\"\\n    category: evaluation\\n    role: baseline\\n    relevance_note: >\\n      Prompting SOTA on ALFWorld at 93.3%. Replaces ReAct's next-action thinking with state-goal reflection.\\n      B-IAVR addresses different axis (cost-efficiency) since ALFWorld accuracy is near saturation.\\n\\n  - id: choudhury2025agentprm\\n    title: \\\"AgentPRM: Process Reward Models for LLM Agents\\\"\\n    authors: \\\"Choudhury et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2502.10325\\\"\\n    category: evaluation\\n    role: baseline\\n    relevance_note: >\\n      Monte Carlo rollout-based process reward for agent training. 3B models achieve 91% on ALFWorld.\\n      Validates RL training approach; AgentPRM could serve as reward model for B-IAVR.\\n\\n  - id: xi2025agentprm\\n    title: \\\"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress\\\"\\n    authors: \\\"Xi et al.\\\"\\n    venue: \\\"ACM Web Conference 2026\\\"\\n    year: 2025\\n    arxiv_id: \\\"2511.08325\\\"\\n    category: evaluation\\n    role: baseline\\n    relevance_note: >\\n      Independent work from Choudhury et al., using TD-based estimation with GAE for scalable\\n      PRM data labeling. 8x more compute-efficient than baselines with robust test-time scaling.\\n      Different approach: Choudhury uses MC rollouts; Xi uses TD+GAE for step-wise promise and progress.\\n\\n  - id: xiang2024retrospex\\n    title: \\\"Retrospex: Language Agent Meets Offline RL Critic\\\"\\n    authors: \\\"Xiang et al.\\\"\\n    venue: \\\"EMNLP 2024\\\"\\n    year: 2024\\n    arxiv_id: \\\"2505.11807\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Offline RL Critic augments LLM agent action selection via dynamic rescoring.\\n      Similar architecture could inform B-IAVR's verification value estimation.\\n\\n  - id: cfgm2025\\n    title: \\\"CFGM: Coarse-to-Fine Grounded Memory for LLM Agent Planning\\\"\\n    authors: \\\"Yang et al.\\\"\\n    venue: \\\"EMNLP 2025\\\"\\n    year: 2025\\n    arxiv_id: \\\"2508.15305\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Memory-augmented agent planning with episodic grounding.\\n      ALFWorld +10.40%, WebShop +20%. Complementary to B-IAVR's verification approach.\\n\\n  - id: respact2024\\n    title: \\\"ReSpAct: Harmonizing Reasoning, Speaking, and Acting\\\"\\n    authors: \\\"Dongre et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2024\\n    arxiv_id: \\\"2411.00927\\\"\\n    category: evaluation\\n    role: baseline\\n    relevance_note: >\\n      Integrates dialogue/reasoning/acting. +6% over ReAct on ALFWorld.\\n      Reduces invalid actions from 13% to 3%; B-IAVR's verification achieves error prevention differently.\\n\", \"total_chars\": 14579, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "26001688-204d-4d6b-b91e-fd87a02dcf6f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/literature_map.yaml\\\", \\\"content\\\": \\\"# B-IAVR Literature Map\\\\n# Updated: 2026-05-15\\\\n# Categories: direct-competitor, method-component, background, evaluation\\\\n# Roles: predecessor, competitor, baseline, evaluation, background\\\\n\\\\npapers:\\\\n\\\\n  # ============================================================\\\\n  # Direction 1: Self-Verification / Self-Correction in LLM Agents\\\\n  # ============================================================\\\\n\\\\n  - id: kamoi2024self-correction-survey\\\\n    title: \\\\\\\"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs\\\\\\\"\\\\n    authors: \\\\\\\"Kamoi et al.\\\\\\\"\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    year: 2024\\\\n    arxiv_id: \\\\\\\"2406.01297\\\\\\\"\\\\n    category: background\\\\n    role: background\\\\n    relevance_note: >\\\\n      Foundational survey establishing that pure intrinsic self-correction is unreliable.\\\\n      Validates B-IAVR's use of grounded verification (environment re-observation) over prompted self-feedback.\\\\n\\\\n  - id: tie2025correctbench\\\\n    title: \\\\\\\"Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs\\\\\\\"\\\\n    authors: \\\\\\\"Tie et al.\\\\\\\"\\\\n    venue: \\\\\\\"NeurIPS 2025 Datasets & Benchmarks\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2510.16062\\\\\\\"\\\\n    category: background\\\\n    role: background\\\\n    relevance_note: >\\\\n      Benchmark showing self-correction has diminishing returns when applied uniformly.\\\\n      Supports B-IAVR's selective verification design over blanket correction.\\\\n\\\\n  - id: self-verification-dilemma-2026\\\\n    title: \\\\\\\"Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning\\\\\\\"\\\\n    authors: \\\\\\\"Long et al.\\\\\\\"\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    year: 2026\\\\n    arxiv_id: \\\\\\\"2602.03485\\\\\\\"\\\\n    category: background\\\\n    role: background\\\\n    relevance_note: >\\\\n      Empirically validates that >90% of self-verification is confirmatory, ~2% corrective.\\\\n      Directly supports B-IAVR's core thesis that verification should be selective.\\\\n      Their experience-pool approach is complementary to B-IAVR's action-change signal.\\\\n\\\\n  - id: zhang2025incentivize-self-verify\\\\n    title: \\\\\\\"Incentivizing LLMs to Self-Verify Their Answers\\\\\\\"\\\\n    authors: \\\\\\\"Zhang et al.\\\\\\\"\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2506.01369\\\\\\\"\\\\n    category: background\\\\n    role: background\\\\n    relevance_note: >\\\\n      Unifies answer generation and verification via single RL training process.\\\\n      Parallel to B-IAVR: they train verification into generation; B-IAVR trains when to trigger separate verification.\\\\n\\\\n  - id: mar2025\\\\n    title: \\\\\\\"MAR: Multi-Agent Reflexion Improves Reasoning Abilities in LLMs\\\\\\\"\\\\n    authors: \\\\\\\"Ozer et al.\\\\\\\"\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2512.20845\\\\\\\"\\\\n    category: background\\\\n    role: background\\\\n    relevance_note: >\\\\n      Multi-agent self-correction with diverse critic personas.\\\\n      Complementary: MAR improves correction quality; B-IAVR decides when to trigger correction.\\\\n\\\\n  - id: ssr2025\\\\n    title: \\\\\\\"SSR: Socratic Self-Refine for Large Language Model Reasoning\\\\\\\"\\\\n    authors: \\\\\\\"Shi et al.\\\\\\\"\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2511.10621\\\\\\\"\\\\n    category: background\\\\n    role: background\\\\n    relevance_note: >\\\\n      Structured Socratic questioning for self-refinement.\\\\n      Complementary: improves correction step quality; B-IAVR focuses on when to invoke correction.\\\\n\\\\n  # ============================================================\\\\n  # Direction 2: Agent RL Training\\\\n  # ============================================================\\\\n\\\\n  - id: feng2025gigpo\\\\n    title: \\\\\\\"GiGPO: Group-in-Group Policy Optimization for LLM Agent Training\\\\\\\"\\\\n    authors: \\\\\\\"Feng et al.\\\\\\\"\\\\n    venue: \\\\\\\"NeurIPS 2025\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2505.10978\\\\\\\"\\\\n    category: method-component\\\\n    role: predecessor\\\\n    relevance_note: >\\\\n      Core training algorithm for B-IAVR. Nested group structure provides step-level credit\\\\n      assignment without learned critic. >12% over GRPO on ALFWorld, >9% on WebShop.\\\\n\\\\n  - id: selfguide2026\\\\n    title: \\\\\\\"Co-Evolution of Policy and Internal Reward for Language Agents (Self-Guide)\\\\\\\"\\\\n    authors: \\\\\\\"Wang et al.\\\\\\\"\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    year: 2026\\\\n    arxiv_id: \\\\\\\"2604.03098\\\\\\\"\\\\n    category: method-component\\\\n    role: predecessor\\\\n    relevance_note: >\\\\n      Direct predecessor. B-IAVR extends Self-Guide's co-evolving internal reward.\\\\n      The self-guidance signal is the foundation for action-change detection triggering verification.\\\\n      8% improvement over env-reward-only on ALFWorld with Qwen3-1.7B/4B.\\\\n\\\\n  - id: spear2025\\\\n    title: \\\\\\\"SPEAR: Self-Imitation with Progressive Exploration for Agentic RL\\\\\\\"\\\\n    authors: \\\\\\\"Qin et al.\\\\\\\"\\\\n    venue: \\\\\\\"ICLR 2026\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2509.22601\\\\\\\"\\\\n    category: method-component\\\\n    role: background\\\\n    relevance_note: >\\\\n      Curriculum-based self-imitation for sparse-reward agent tasks.\\\\n      Up to +16.1% on ALFWorld over GRPO. Self-imitation curriculum could augment B-IAVR training.\\\\n\\\\n  - id: wei2025webagent-r1\\\\n    title: \\\\\\\"WebAgent-R1: Training Web Agents via End-to-End Multi-Turn RL\\\\\\\"\\\\n    authors: \\\\\\\"Wei et al.\\\\\\\"\\\\n    venue: \\\\\\\"EMNLP 2025\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2505.16421\\\\\\\"\\\\n    category: background\\\\n    role: background\\\\n    relevance_note: >\\\\n      Extends GRPO to multi-turn (M-GRPO) with dynamic context compression.\\\\n      Qwen-2.5-3B: 6.1% to 33.9% on WebArena-Lite. M-GRPO multi-turn extension relevant to B-IAVR.\\\\n\\\\n  - id: dapo2025\\\\n    title: \\\\\\\"DAPO: An Open-Source LLM Reinforcement Learning System at Scale\\\\\\\"\\\\n    authors: \\\\\\\"Yu et al.\\\\\\\"\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2503.14476\\\\\\\"\\\\n    category: method-component\\\\n    role: background\\\\n    relevance_note: >\\\\n      RL training stabilization techniques (Clip-Higher, Dynamic Sampling).\\\\n      Applicable to B-IAVR's RL training to prevent entropy collapse.\\\\n\\\\n  - id: digiRL2024\\\\n    title: \\\\\\\"DigiRL: Training In-The-Wild Device-Control Agents with Autonomous RL\\\\\\\"\\\\n    authors: \\\\\\\"Bai et al.\\\\\\\"\\\\n    venue: \\\\\\\"NeurIPS 2024\\\\\\\"\\\\n    year: 2024\\\\n    arxiv_id: \\\\\\\"2406.11896\\\\\\\"\\\\n    category: background\\\\n    role: background\\\\n    relevance_note: >\\\\n      Online RL for device control agents. Demonstrates online RL viability for interactive agents.\\\\n      49.5% absolute improvement over SFT. Parallel approach to B-IAVR in text-based setting.\\\\n\\\\n  - id: li2025sorl\\\\n    title: \\\\\\\"SORL: Stabilizing Off-Policy RL for Long-Horizon Agent Training\\\\\\\"\\\\n    authors: \\\\\\\"Li et al.\\\\\\\"\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2511.20718\\\\\\\"\\\\n    category: method-component\\\\n    role: background\\\\n    relevance_note: >\\\\n      Turn-level importance sampling + clipping-triggered normalization for stable multi-turn agent RL.\\\\n      Directly applicable to B-IAVR's multi-turn ALFWorld training stability.\\\\n\\\\n  - id: agentic-rl-survey-2025\\\\n    title: \\\\\\\"The Landscape of Agentic RL for LLMs: A Survey\\\\\\\"\\\\n    authors: \\\\\\\"Zhang et al.\\\\\\\"\\\\n    venue: \\\\\\\"TMLR 2026\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2509.02547\\\\\\\"\\\\n    category: background\\\\n    role: background\\\\n    relevance_note: >\\\\n      Comprehensive survey formalizing agentic RL. Contextualizes B-IAVR as training agents\\\\n      to make meta-decisions (when to verify) via RL within the POMDP framework.\\\\n\\\\n  # ============================================================\\\\n  # Direction 3: Selective Verification / Adaptive Computation\\\\n  # ============================================================\\\\n\\\\n  - id: wan2025derailer-rerailer\\\\n    title: \\\\\\\"Derailer-Rerailer: Adaptive Verification for Efficient and Reliable LM Reasoning\\\\\\\"\\\\n    authors: \\\\\\\"Wan et al.\\\\\\\"\\\\n    venue: \\\\\\\"ACL 2025 Findings\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2408.13940\\\\\\\"\\\\n    category: direct-competitor\\\\n    role: competitor\\\\n    relevance_note: >\\\\n      Most directly related competitor. Both do selective verification with binary trigger.\\\\n      Key difference: operates on reasoning chains (single-turn); B-IAVR on agent trajectories (multi-turn).\\\\n      Uses heuristic instability signal; B-IAVR uses RL-trained action-change signal.\\\\n      8-11% accuracy gain, 2-3x efficiency over uniform verification.\\\\n\\\\n  - id: sherlock2025\\\\n    title: \\\\\\\"Sherlock: Reliable and Efficient Agentic Workflow Execution\\\\\\\"\\\\n    authors: \\\\\\\"Microsoft\\\\\\\"\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2511.00330\\\\\\\"\\\\n    category: direct-competitor\\\\n    role: competitor\\\\n    relevance_note: >\\\\n      Selective verification for agentic workflows via offline counterfactual analysis + speculative execution.\\\\n      Different scope: workflow DAG level (offline); B-IAVR is step-level (online RL).\\\\n      18.3% accuracy gain, 26% cost reduction, 48.7% latency reduction.\\\\n\\\\n  - id: singhi2025when-to-verify\\\\n    title: \\\\\\\"When To Solve, When To Verify: Compute-Optimal Verification for LLM Reasoning\\\\\\\"\\\\n    authors: \\\\\\\"Singhi et al.\\\\\\\"\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2504.01005\\\\\\\"\\\\n    category: background\\\\n    role: background\\\\n    relevance_note: >\\\\n      Derives inference scaling laws for solve-vs-verify tradeoff.\\\\n      Finding that over-verification is suboptimal directly supports B-IAVR's selective approach.\\\\n      B-IAVR learns this allocation via RL rather than analytically.\\\\n\\\\n  - id: yang2026ares\\\\n    title: \\\\\\\"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents\\\\\\\"\\\\n    authors: \\\\\\\"Yang et al.\\\\\\\"\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    year: 2026\\\\n    arxiv_id: \\\\\\\"2603.07915\\\\\\\"\\\\n    category: direct-competitor\\\\n    role: competitor\\\\n    relevance_note: >\\\\n      Closest competitor in agent domain. Both train learned per-step compute allocation.\\\\n      ARES uses SFT-initialized router further refined via GRPO with outcome + token efficiency reward;\\\\n      B-IAVR trains binary verify/not-verify via RL with action-change signal.\\\\n      Key differences: (1) reward signal — ARES optimizes token efficiency, B-IAVR uses action-change\\\\n      as verification trigger; (2) data requirement — ARES needs difficulty-annotated training data\\\\n      to bootstrap the router, B-IAVR learns from environment interaction alone.\\\\n      Reduces reasoning tokens by up to 52.7%.\\\\n\\\\n  - id: tu2025autothink\\\\n    title: \\\\\\\"Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL\\\\\\\"\\\\n    authors: \\\\\\\"Tu et al.\\\\\\\"\\\\n    venue: \\\\\\\"NeurIPS 2025\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2505.10832\\\\\\\"\\\\n    category: direct-competitor\\\\n    role: competitor\\\\n    relevance_note: >\\\\n      Analogous idea in reasoning domain: RL-trained adaptive computation trigger.\\\\n      Operates on single-turn reasoning; B-IAVR on multi-turn agent trajectories.\\\\n      +6.4% accuracy, -52% tokens on DeepSeek-R1-Distill-Qwen-1.5B.\\\\n\\\\n  - id: du2025thinkless\\\\n    title: \\\\\\\"Thinkless: LLM Learns When to Think\\\\\\\"\\\\n    authors: \\\\\\\"Du et al.\\\\\\\"\\\\n    venue: \\\\\\\"NeurIPS 2025\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2505.13379\\\\\\\"\\\\n    category: direct-competitor\\\\n    role: competitor\\\\n    relevance_note: >\\\\n      RL-trained control token to decide when to invoke extended thinking.\\\\n      Methodologically closest to B-IAVR in reasoning domain; B-IAVR applies to interactive agent trajectories.\\\\n\\\\n  - id: wang2025efficient-agents\\\\n    title: \\\\\\\"Efficient Agents: Building Effective Agents While Reducing Cost\\\\\\\"\\\\n    authors: \\\\\\\"Wang et al.\\\\\\\"\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2508.02694\\\\\\\"\\\\n    category: background\\\\n    role: background\\\\n    relevance_note: >\\\\n      First systematic study of agent efficiency-effectiveness tradeoff.\\\\n      Framework-level cost reduction; B-IAVR addresses cost at verification-policy level.\\\\n      Retains 96.7% performance with 28.4% cost-of-pass improvement.\\\\n\\\\n  - id: venktesh2025trust-but-verify\\\\n    title: \\\\\\\"Trust but Verify! A Survey on Verification Design for Test-time Scaling\\\\\\\"\\\\n    authors: \\\\\\\"Venktesh et al.\\\\\\\"\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2508.16665\\\\\\\"\\\\n    category: background\\\\n    role: background\\\\n    relevance_note: >\\\\n      Survey of verification approaches for test-time compute scaling.\\\\n      Identifies verification timing as key open problem. B-IAVR provides concrete solution for agent setting.\\\\n\\\\n  # ============================================================\\\\n  # Direction 4: ALFWorld / Interactive Environment Benchmarks\\\\n  # ============================================================\\\\n\\\\n  - id: kim2025reflact\\\\n    title: \\\\\\\"ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection\\\\\\\"\\\\n    authors: \\\\\\\"Kim et al.\\\\\\\"\\\\n    venue: \\\\\\\"EMNLP 2025\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2505.15182\\\\\\\"\\\\n    category: evaluation\\\\n    role: baseline\\\\n    relevance_note: >\\\\n      Prompting SOTA on ALFWorld at 93.3%. Replaces ReAct's next-action thinking with state-goal reflection.\\\\n      B-IAVR addresses different axis (cost-efficiency) since ALFWorld accuracy is near saturation.\\\\n\\\\n  - id: choudhury2025agentprm\\\\n    title: \\\\\\\"AgentPRM: Process Reward Models for LLM Agents\\\\\\\"\\\\n    authors: \\\\\\\"Choudhury et al.\\\\\\\"\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2502.10325\\\\\\\"\\\\n    category: evaluation\\\\n    role: baseline\\\\n    relevance_note: >\\\\n      Monte Carlo rollout-based process reward for agent training. 3B models achieve 91% on ALFWorld.\\\\n      Validates RL training approach; AgentPRM could serve as reward model for B-IAVR.\\\\n\\\\n  - id: xi2025agentprm\\\\n    title: \\\\\\\"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress\\\\\\\"\\\\n    authors: \\\\\\\"Xi et al.\\\\\\\"\\\\n    venue: \\\\\\\"ACM Web Conference 2026\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2511.08325\\\\\\\"\\\\n    category: evaluation\\\\n    role: baseline\\\\n    relevance_note: >\\\\n      Independent work from Choudhury et al., using TD-based estimation with GAE for scalable\\\\n      PRM data labeling. 8x more compute-efficient than baselines with robust test-time scaling.\\\\n      Different approach: Choudhury uses MC rollouts; Xi uses TD+GAE for step-wise promise and progress.\\\\n\\\\n  - id: xiang2024retrospex\\\\n    title: \\\\\\\"Retrospex: Language Agent Meets Offline RL Critic\\\\\\\"\\\\n    authors: \\\\\\\"Xiang et al.\\\\\\\"\\\\n    venue: \\\\\\\"EMNLP 2024\\\\\\\"\\\\n    year: 2024\\\\n    arxiv_id: \\\\\\\"2505.11807\\\\\\\"\\\\n    category: background\\\\n    role: background\\\\n    relevance_note: >\\\\n      Offline RL Critic augments LLM agent action selection via dynamic rescoring.\\\\n      Similar architecture could inform B-IAVR's verification value estimation.\\\\n\\\\n  - id: cfgm2025\\\\n    title: \\\\\\\"CFGM: Coarse-to-Fine Grounded Memory for LLM Agent Planning\\\\\\\"\\\\n    authors: \\\\\\\"Yang et al.\\\\\\\"\\\\n    venue: \\\\\\\"EMNLP 2025\\\\\\\"\\\\n    year: 2025\\\\n    arxiv_id: \\\\\\\"2508.15305\\\\\\\"\\\\n    category: background\\\\n    role: background\\\\n    relevance_note: >\\\\n      Memory-augmented agent planning with episodic grounding.\\\\n      ALFWorld +10.40%, WebShop +20%. Complementary to B-IAVR's verification approach.\\\\n\\\\n  - id: respact2024\\\\n    title: \\\\\\\"ReSpAct: Harmonizing Reasoning, Speaking, and Acting\\\\\\\"\\\\n    authors: \\\\\\\"Dongre et al.\\\\\\\"\\\\n    venue: \\\\\\\"arXiv\\\\\\\"\\\\n    year: 2024\\\\n    arxiv_id: \\\\\\\"2411.00927\\\\\\\"\\\\n    category: evaluation\\\\n    role: baseline\\\\n    relevance_note: >\\\\n      Integrates dialogue/reasoning/acting. +6% over ReAct on ALFWorld.\\\\n      Reduces invalid actions from 13% to 3%; B-IAVR's verification achieves error prevention differently.\\\\n\\\", \\\"total_chars\\\": 14579, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/literature_map.yaml\", \"content\": \"# B-IAVR Literature Map\\n# Updated: 2026-05-15\\n# Categories: direct-competitor, method-component, background, evaluation\\n# Roles: predecessor, competitor, baseline, evaluation, background\\n\\npapers:\\n\\n  # ============================================================\\n  # Direction 1: Self-Verification / Self-Correction in LLM Agents\\n  # ============================================================\\n\\n  - id: kamoi2024self-correction-survey\\n    title: \\\"When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs\\\"\\n    authors: \\\"Kamoi et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2024\\n    arxiv_id: \\\"2406.01297\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Foundational survey establishing that pure intrinsic self-correction is unreliable.\\n      Validates B-IAVR's use of grounded verification (environment re-observation) over prompted self-feedback.\\n\\n  - id: tie2025correctbench\\n    title: \\\"Can LLMs Correct Themselves? A Benchmark of Self-Correction in LLMs\\\"\\n    authors: \\\"Tie et al.\\\"\\n    venue: \\\"NeurIPS 2025 Datasets & Benchmarks\\\"\\n    year: 2025\\n    arxiv_id: \\\"2510.16062\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Benchmark showing self-correction has diminishing returns when applied uniformly.\\n      Supports B-IAVR's selective verification design over blanket correction.\\n\\n  - id: self-verification-dilemma-2026\\n    title: \\\"Self-Verification Dilemma: Experience-Driven Suppression of Overused Checking in LLM Reasoning\\\"\\n    authors: \\\"Long et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2026\\n    arxiv_id: \\\"2602.03485\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Empirically validates that >90% of self-verification is confirmatory, ~2% corrective.\\n      Directly supports B-IAVR's core thesis that verification should be selective.\\n      Their experience-pool approach is complementary to B-IAVR's action-change signal.\\n\\n  - id: zhang2025incentivize-self-verify\\n    title: \\\"Incentivizing LLMs to Self-Verify Their Answers\\\"\\n    authors: \\\"Zhang et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2506.01369\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Unifies answer generation and verification via single RL training process.\\n      Parallel to B-IAVR: they train verification into generation; B-IAVR trains when to trigger separate verification.\\n\\n  - id: mar2025\\n    title: \\\"MAR: Multi-Agent Reflexion Improves Reasoning Abilities in LLMs\\\"\\n    authors: \\\"Ozer et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2512.20845\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Multi-agent self-correction with diverse critic personas.\\n      Complementary: MAR improves correction quality; B-IAVR decides when to trigger correction.\\n\\n  - id: ssr2025\\n    title: \\\"SSR: Socratic Self-Refine for Large Language Model Reasoning\\\"\\n    authors: \\\"Shi et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2511.10621\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Structured Socratic questioning for self-refinement.\\n      Complementary: improves correction step quality; B-IAVR focuses on when to invoke correction.\\n\\n  # ============================================================\\n  # Direction 2: Agent RL Training\\n  # ============================================================\\n\\n  - id: feng2025gigpo\\n    title: \\\"GiGPO: Group-in-Group Policy Optimization for LLM Agent Training\\\"\\n    authors: \\\"Feng et al.\\\"\\n    venue: \\\"NeurIPS 2025\\\"\\n    year: 2025\\n    arxiv_id: \\\"2505.10978\\\"\\n    category: method-component\\n    role: predecessor\\n    relevance_note: >\\n      Core training algorithm for B-IAVR. Nested group structure provides step-level credit\\n      assignment without learned critic. >12% over GRPO on ALFWorld, >9% on WebShop.\\n\\n  - id: selfguide2026\\n    title: \\\"Co-Evolution of Policy and Internal Reward for Language Agents (Self-Guide)\\\"\\n    authors: \\\"Wang et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2026\\n    arxiv_id: \\\"2604.03098\\\"\\n    category: method-component\\n    role: predecessor\\n    relevance_note: >\\n      Direct predecessor. B-IAVR extends Self-Guide's co-evolving internal reward.\\n      The self-guidance signal is the foundation for action-change detection triggering verification.\\n      8% improvement over env-reward-only on ALFWorld with Qwen3-1.7B/4B.\\n\\n  - id: spear2025\\n    title: \\\"SPEAR: Self-Imitation with Progressive Exploration for Agentic RL\\\"\\n    authors: \\\"Qin et al.\\\"\\n    venue: \\\"ICLR 2026\\\"\\n    year: 2025\\n    arxiv_id: \\\"2509.22601\\\"\\n    category: method-component\\n    role: background\\n    relevance_note: >\\n      Curriculum-based self-imitation for sparse-reward agent tasks.\\n      Up to +16.1% on ALFWorld over GRPO. Self-imitation curriculum could augment B-IAVR training.\\n\\n  - id: wei2025webagent-r1\\n    title: \\\"WebAgent-R1: Training Web Agents via End-to-End Multi-Turn RL\\\"\\n    authors: \\\"Wei et al.\\\"\\n    venue: \\\"EMNLP 2025\\\"\\n    year: 2025\\n    arxiv_id: \\\"2505.16421\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Extends GRPO to multi-turn (M-GRPO) with dynamic context compression.\\n      Qwen-2.5-3B: 6.1% to 33.9% on WebArena-Lite. M-GRPO multi-turn extension relevant to B-IAVR.\\n\\n  - id: dapo2025\\n    title: \\\"DAPO: An Open-Source LLM Reinforcement Learning System at Scale\\\"\\n    authors: \\\"Yu et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2503.14476\\\"\\n    category: method-component\\n    role: background\\n    relevance_note: >\\n      RL training stabilization techniques (Clip-Higher, Dynamic Sampling).\\n      Applicable to B-IAVR's RL training to prevent entropy collapse.\\n\\n  - id: digiRL2024\\n    title: \\\"DigiRL: Training In-The-Wild Device-Control Agents with Autonomous RL\\\"\\n    authors: \\\"Bai et al.\\\"\\n    venue: \\\"NeurIPS 2024\\\"\\n    year: 2024\\n    arxiv_id: \\\"2406.11896\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Online RL for device control agents. Demonstrates online RL viability for interactive agents.\\n      49.5% absolute improvement over SFT. Parallel approach to B-IAVR in text-based setting.\\n\\n  - id: li2025sorl\\n    title: \\\"SORL: Stabilizing Off-Policy RL for Long-Horizon Agent Training\\\"\\n    authors: \\\"Li et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2511.20718\\\"\\n    category: method-component\\n    role: background\\n    relevance_note: >\\n      Turn-level importance sampling + clipping-triggered normalization for stable multi-turn agent RL.\\n      Directly applicable to B-IAVR's multi-turn ALFWorld training stability.\\n\\n  - id: agentic-rl-survey-2025\\n    title: \\\"The Landscape of Agentic RL for LLMs: A Survey\\\"\\n    authors: \\\"Zhang et al.\\\"\\n    venue: \\\"TMLR 2026\\\"\\n    year: 2025\\n    arxiv_id: \\\"2509.02547\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Comprehensive survey formalizing agentic RL. Contextualizes B-IAVR as training agents\\n      to make meta-decisions (when to verify) via RL within the POMDP framework.\\n\\n  # ============================================================\\n  # Direction 3: Selective Verification / Adaptive Computation\\n  # ============================================================\\n\\n  - id: wan2025derailer-rerailer\\n    title: \\\"Derailer-Rerailer: Adaptive Verification for Efficient and Reliable LM Reasoning\\\"\\n    authors: \\\"Wan et al.\\\"\\n    venue: \\\"ACL 2025 Findings\\\"\\n    year: 2025\\n    arxiv_id: \\\"2408.13940\\\"\\n    category: direct-competitor\\n    role: competitor\\n    relevance_note: >\\n      Most directly related competitor. Both do selective verification with binary trigger.\\n      Key difference: operates on reasoning chains (single-turn); B-IAVR on agent trajectories (multi-turn).\\n      Uses heuristic instability signal; B-IAVR uses RL-trained action-change signal.\\n      8-11% accuracy gain, 2-3x efficiency over uniform verification.\\n\\n  - id: sherlock2025\\n    title: \\\"Sherlock: Reliable and Efficient Agentic Workflow Execution\\\"\\n    authors: \\\"Microsoft\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2511.00330\\\"\\n    category: direct-competitor\\n    role: competitor\\n    relevance_note: >\\n      Selective verification for agentic workflows via offline counterfactual analysis + speculative execution.\\n      Different scope: workflow DAG level (offline); B-IAVR is step-level (online RL).\\n      18.3% accuracy gain, 26% cost reduction, 48.7% latency reduction.\\n\\n  - id: singhi2025when-to-verify\\n    title: \\\"When To Solve, When To Verify: Compute-Optimal Verification for LLM Reasoning\\\"\\n    authors: \\\"Singhi et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2504.01005\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Derives inference scaling laws for solve-vs-verify tradeoff.\\n      Finding that over-verification is suboptimal directly supports B-IAVR's selective approach.\\n      B-IAVR learns this allocation via RL rather than analytically.\\n\\n  - id: yang2026ares\\n    title: \\\"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents\\\"\\n    authors: \\\"Yang et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2026\\n    arxiv_id: \\\"2603.07915\\\"\\n    category: direct-competitor\\n    role: competitor\\n    relevance_note: >\\n      Closest competitor in agent domain. Both train learned per-step compute allocation.\\n      ARES uses SFT-initialized router further refined via GRPO with outcome + token efficiency reward;\\n      B-IAVR trains binary verify/not-verify via RL with action-change signal.\\n      Key differences: (1) reward signal — ARES optimizes token efficiency, B-IAVR uses action-change\\n      as verification trigger; (2) data requirement — ARES needs difficulty-annotated training data\\n      to bootstrap the router, B-IAVR learns from environment interaction alone.\\n      Reduces reasoning tokens by up to 52.7%.\\n\\n  - id: tu2025autothink\\n    title: \\\"Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL\\\"\\n    authors: \\\"Tu et al.\\\"\\n    venue: \\\"NeurIPS 2025\\\"\\n    year: 2025\\n    arxiv_id: \\\"2505.10832\\\"\\n    category: direct-competitor\\n    role: competitor\\n    relevance_note: >\\n      Analogous idea in reasoning domain: RL-trained adaptive computation trigger.\\n      Operates on single-turn reasoning; B-IAVR on multi-turn agent trajectories.\\n      +6.4% accuracy, -52% tokens on DeepSeek-R1-Distill-Qwen-1.5B.\\n\\n  - id: du2025thinkless\\n    title: \\\"Thinkless: LLM Learns When to Think\\\"\\n    authors: \\\"Du et al.\\\"\\n    venue: \\\"NeurIPS 2025\\\"\\n    year: 2025\\n    arxiv_id: \\\"2505.13379\\\"\\n    category: direct-competitor\\n    role: competitor\\n    relevance_note: >\\n      RL-trained control token to decide when to invoke extended thinking.\\n      Methodologically closest to B-IAVR in reasoning domain; B-IAVR applies to interactive agent trajectories.\\n\\n  - id: wang2025efficient-agents\\n    title: \\\"Efficient Agents: Building Effective Agents While Reducing Cost\\\"\\n    authors: \\\"Wang et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2508.02694\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      First systematic study of agent efficiency-effectiveness tradeoff.\\n      Framework-level cost reduction; B-IAVR addresses cost at verification-policy level.\\n      Retains 96.7% performance with 28.4% cost-of-pass improvement.\\n\\n  - id: venktesh2025trust-but-verify\\n    title: \\\"Trust but Verify! A Survey on Verification Design for Test-time Scaling\\\"\\n    authors: \\\"Venktesh et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2508.16665\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Survey of verification approaches for test-time compute scaling.\\n      Identifies verification timing as key open problem. B-IAVR provides concrete solution for agent setting.\\n\\n  # ============================================================\\n  # Direction 4: ALFWorld / Interactive Environment Benchmarks\\n  # ============================================================\\n\\n  - id: kim2025reflact\\n    title: \\\"ReflAct: World-Grounded Decision Making in LLM Agents via Goal-State Reflection\\\"\\n    authors: \\\"Kim et al.\\\"\\n    venue: \\\"EMNLP 2025\\\"\\n    year: 2025\\n    arxiv_id: \\\"2505.15182\\\"\\n    category: evaluation\\n    role: baseline\\n    relevance_note: >\\n      Prompting SOTA on ALFWorld at 93.3%. Replaces ReAct's next-action thinking with state-goal reflection.\\n      B-IAVR addresses different axis (cost-efficiency) since ALFWorld accuracy is near saturation.\\n\\n  - id: choudhury2025agentprm\\n    title: \\\"AgentPRM: Process Reward Models for LLM Agents\\\"\\n    authors: \\\"Choudhury et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2025\\n    arxiv_id: \\\"2502.10325\\\"\\n    category: evaluation\\n    role: baseline\\n    relevance_note: >\\n      Monte Carlo rollout-based process reward for agent training. 3B models achieve 91% on ALFWorld.\\n      Validates RL training approach; AgentPRM could serve as reward model for B-IAVR.\\n\\n  - id: xi2025agentprm\\n    title: \\\"AgentPRM: Process Reward Models for LLM Agents via Step-Wise Promise and Progress\\\"\\n    authors: \\\"Xi et al.\\\"\\n    venue: \\\"ACM Web Conference 2026\\\"\\n    year: 2025\\n    arxiv_id: \\\"2511.08325\\\"\\n    category: evaluation\\n    role: baseline\\n    relevance_note: >\\n      Independent work from Choudhury et al., using TD-based estimation with GAE for scalable\\n      PRM data labeling. 8x more compute-efficient than baselines with robust test-time scaling.\\n      Different approach: Choudhury uses MC rollouts; Xi uses TD+GAE for step-wise promise and progress.\\n\\n  - id: xiang2024retrospex\\n    title: \\\"Retrospex: Language Agent Meets Offline RL Critic\\\"\\n    authors: \\\"Xiang et al.\\\"\\n    venue: \\\"EMNLP 2024\\\"\\n    year: 2024\\n    arxiv_id: \\\"2505.11807\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Offline RL Critic augments LLM agent action selection via dynamic rescoring.\\n      Similar architecture could inform B-IAVR's verification value estimation.\\n\\n  - id: cfgm2025\\n    title: \\\"CFGM: Coarse-to-Fine Grounded Memory for LLM Agent Planning\\\"\\n    authors: \\\"Yang et al.\\\"\\n    venue: \\\"EMNLP 2025\\\"\\n    year: 2025\\n    arxiv_id: \\\"2508.15305\\\"\\n    category: background\\n    role: background\\n    relevance_note: >\\n      Memory-augmented agent planning with episodic grounding.\\n      ALFWorld +10.40%, WebShop +20%. Complementary to B-IAVR's verification approach.\\n\\n  - id: respact2024\\n    title: \\\"ReSpAct: Harmonizing Reasoning, Speaking, and Acting\\\"\\n    authors: \\\"Dongre et al.\\\"\\n    venue: \\\"arXiv\\\"\\n    year: 2024\\n    arxiv_id: \\\"2411.00927\\\"\\n    category: evaluation\\n    role: baseline\\n    relevance_note: >\\n      Integrates dialogue/reasoning/acting. +6% over ReAct on ALFWorld.\\n      Reduces invalid actions from 13% to 3%; B-IAVR's verification achieves error prevention differently.\\n\", \"total_chars\": 14579, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01W5HsvNN9r4VcaPp5XpDs7z`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "ARCHITECTURE.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "5d617704-5c70-4dd1-8eaf-10f983f84a64",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PKEDLYLaavWGX1iYkQxxaR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1333,
+      "cache_read_input_tokens": 24177,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1333
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T20:09:09.708Z_
+
+<details><summary>↩ Tool result · `toolu_01W5HsvNN9r4VcaPp5XpDs7z`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No ARCHITECTURE.md found for 'cost-verify-agent-rl'.\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "3ef1cdb6-6b99-47d6-afa7-0159717b664e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No ARCHITECTURE.md found for 'cost-verify-agent-rl'.\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"No ARCHITECTURE.md found for 'cost-verify-agent-rl'.\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01CMJGFfkAy4cLHb4cuk4xpe`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "cb0540aa-921f-4077-b35e-6fd84dbde76e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PKEDLYLaavWGX1iYkQxxaR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1333,
+      "cache_read_input_tokens": 24177,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1333
+      },
+      "output_tokens": 49,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T20:09:10.275Z_
+
+<details><summary>↩ Tool result · `toolu_01CMJGFfkAy4cLHb4cuk4xpe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\", \"content\": \"# Citation Audit — 2026-05-15\\n\\n完整审计结果已写入 artifacts/citation_audit.md。\\n\\n## 审计摘要\\n\\n- 验证论文：27 篇（literature_map.yaml 全部条目）+ 1 篇额外（Thinkless）\\n- 验证通过：20 篇\\n- 需要修正：7 篇（3 个严重问题，2 个中等问题，2 个轻微问题）\\n- 关键发现：AgentPRM arXiv ID/作者/标题全错；Huang2024 作者不匹配；DAPO 标题错误；CFGM 会议和年份错误\\n\\n# Adaptive KL 可行性 — 2026-05-15\\n\\nverl 框架已内置 `AdaptiveKLController`（Ziegler 2019），RAGEN `agent_trainer.py` 已完整接入 reward-level KL adaptive 链路。**零代码修改，纯 YAML 配置切换**（~8 行）：\\n- `algorithm.use_kl_in_reward: True` + `kl_ctrl.type: adaptive`\\n- `actor.use_kl_loss: False`\\n- `target_kl: 0.1`, `kl_coef: 0.005`（初始值），`horizon: 10000`\\n\\n当前 exp027 用的是 loss-level KL（`use_kl_loss` + 静态 `kl_loss_coef`）。如需切换，实现 <1h，验证 2-4h。\\n\\n风险：reward-level KL 通过 advantage 间接影响梯度，与 loss-level 直接约束不同。如 reward-level 效果不理想，备选 Plan C（loss-level adaptive）需 ~30 行代码，半天可完成。\\n\", \"total_chars\": 790, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "8a75866e-96b1-450e-8f92-2b69c12f976f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\\\", \\\"content\\\": \\\"# Citation Audit — 2026-05-15\\\\n\\\\n完整审计结果已写入 artifacts/citation_audit.md。\\\\n\\\\n## 审计摘要\\\\n\\\\n- 验证论文：27 篇（literature_map.yaml 全部条目）+ 1 篇额外（Thinkless）\\\\n- 验证通过：20 篇\\\\n- 需要修正：7 篇（3 个严重问题，2 个中等问题，2 个轻微问题）\\\\n- 关键发现：AgentPRM arXiv ID/作者/标题全错；Huang2024 作者不匹配；DAPO 标题错误；CFGM 会议和年份错误\\\\n\\\\n# Adaptive KL 可行性 — 2026-05-15\\\\n\\\\nverl 框架已内置 `AdaptiveKLController`（Ziegler 2019），RAGEN `agent_trainer.py` 已完整接入 reward-level KL adaptive 链路。**零代码修改，纯 YAML 配置切换**（~8 行）：\\\\n- `algorithm.use_kl_in_reward: True` + `kl_ctrl.type: adaptive`\\\\n- `actor.use_kl_loss: False`\\\\n- `target_kl: 0.1`, `kl_coef: 0.005`（初始值），`horizon: 10000`\\\\n\\\\n当前 exp027 用的是 loss-level KL（`use_kl_loss` + 静态 `kl_loss_coef`）。如需切换，实现 <1h，验证 2-4h。\\\\n\\\\n风险：reward-level KL 通过 advantage 间接影响梯度，与 loss-level 直接约束不同。如 reward-level 效果不理想，备选 Plan C（loss-level adaptive）需 ~30 行代码，半天可完成。\\\\n\\\", \\\"total_chars\\\": 790, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/memory.md\", \"content\": \"# Citation Audit — 2026-05-15\\n\\n完整审计结果已写入 artifacts/citation_audit.md。\\n\\n## 审计摘要\\n\\n- 验证论文：27 篇（literature_map.yaml 全部条目）+ 1 篇额外（Thinkless）\\n- 验证通过：20 篇\\n- 需要修正：7 篇（3 个严重问题，2 个中等问题，2 个轻微问题）\\n- 关键发现：AgentPRM arXiv ID/作者/标题全错；Huang2024 作者不匹配；DAPO 标题错误；CFGM 会议和年份错误\\n\\n# Adaptive KL 可行性 — 2026-05-15\\n\\nverl 框架已内置 `AdaptiveKLController`（Ziegler 2019），RAGEN `agent_trainer.py` 已完整接入 reward-level KL adaptive 链路。**零代码修改，纯 YAML 配置切换**（~8 行）：\\n- `algorithm.use_kl_in_reward: True` + `kl_ctrl.type: adaptive`\\n- `actor.use_kl_loss: False`\\n- `target_kl: 0.1`, `kl_coef: 0.005`（初始值），`horizon: 10000`\\n\\n当前 exp027 用的是 loss-level KL（`use_kl_loss` + 静态 `kl_loss_coef`）。如需切换，实现 <1h，验证 2-4h。\\n\\n风险：reward-level KL 通过 advantage 间接影响梯度，与 loss-level 直接约束不同。如 reward-level 效果不理想，备选 Plan C（loss-level adaptive）需 ~30 行代码，半天可完成。\\n\", \"total_chars\": 790, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also read the decisions log and any existing writing plan to understand the project state better.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "01f6209e-1198-4180-87e9-100ce6483f2f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015h7ejCG7mjJqMS2omKGx5t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8008,
+      "cache_read_input_tokens": 25510,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8008
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01V7jtYYs6TcQx5cuipdsazB`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "decisions.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "b1a0bcee-d642-4a19-9946-7bf8ca82da31",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015h7ejCG7mjJqMS2omKGx5t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8008,
+      "cache_read_input_tokens": 25510,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8008
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T20:09:15.200Z_
+
+<details><summary>↩ Tool result · `toolu_01V7jtYYs6TcQx5cuipdsazB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/decisions.yaml\", \"content\": \"_next_id: 43\\ndecisions:\\n- id: D001\\n  date: 2026-05-13 17:33 UTC\\n  summary: MVP 选择 ALFWorld + Qwen3-1.7B 单环境验证 B-IAVR 核心假设\\n  rationale: ALFWorld 离散动作空间使 action_changed 信号最清晰，semantic canonicalization 简单（verb,object,receptacle三元组）。Qwen3-1.7B\\n    有充分 headroom（+8.6pp on ALFWorld）。MVP 只需验证\\\"agent 能学会选择性验证\\\"这一核心假设，不需要跨环境/跨模型。2×GPU\\n    足够 1.7B+LoRA 训练。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-13 18:39 UTC\\n  summary: Phase A 使用全量微调（非 LoRA），匹配 Self-Guide 原始论文设置\\n  rationale: Self-Guide 原文用全量微调 GRPO。1.7B 模型在 94GB VRAM 下全量微调显存仅 38.5GB，完全可行。匹配 baseline\\n    设置确保公平对比。IDEA_BRIEF 提及 LoRA 是基于 H100 80GB 的资源估算，RTX PRO 6000 94GB 无需节省。\\n  related_experiments:\\n  - exp_id: exp_001\\n    role: Phase A baseline\\n    result: running\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-13 23:55 UTC\\n  summary: Kill exp003，Phase A bootstrap 失败确认，等待 invalid action 根因诊断后决定修复方向\\n  rationale: 'exp003 step 1: invalid_action=95.3%, pg_loss≈0, 每步 1.6h（100步=160h）。GRPO\\n    从 0.125% valid action 中无法获得有效学习信号。Qwen3 无独立 Instruct 版，Plan B 失效。需先诊断 invalid\\n    action 根因（格式冲突 / token 问题 / prompt 不兼容）再选修复路径。'\\n  related_experiments:\\n  - exp_id: exp003\\n    role: primary\\n    result: failed - bootstrap failure, 95% invalid actions, pg_loss≈0\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-14 00:10 UTC\\n  summary: 采用方案 A（修改解析器适配 Qwen3 格式）+ prompt 增强 + 速度优化，解决 bootstrap 失败\\n  rationale: 根因确认：Qwen3-1.7B 原生输出 &lt;think>...&lt;/think> 后直接跟自然语言，不生成 &lt;answer> 标签。RAGEN\\n    解析器正则要求 &lt;answer> 导致 95% invalid。方案 A 最快（1-2h 改代码）、最低风险（不换模型不加训练阶段），同时优化速度（关闭 collapse\\n    multi_turn 省 35% 步耗时 + 减 traj/step）。\\n  related_experiments:\\n  - exp_id: exp003\\n    role: diagnostic\\n    result: '32/32 samples confirm: no &lt;answer> tag in Qwen3 output'\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-14 02:56 UTC\\n  summary: exp007 borderline 但不 pivot SFT，提高 LR 到 5e-6 重跑 GRPO\\n  rationale: exp007 step 10 action_is_valid=8.35%，技术上触发预设 kill 条件（<10%），但：(1) 趋势明确上升\\n    4.01%→8.35%（+0.48pp/step），线性外推 ~step 14 即突破 10%；(2) success 从 0%→6.25%，GRPO 确实在学习；(3)\\n    manager_invalid 6.46%→1.56%，解析器修复有效；(4) 崩溃是 /tmp 磁盘满（基础设施），非算法失败；(5) SFT warmup\\n    需额外收集 expert trajectories + 训练周期，开销大。因此override kill 条件，选择提高 LR（1e-6→5e-6）重跑 GRPO\\n    30 步，save_freq=5，同时修复所有基础设施问题（RAY_TMPDIR、/tmp 清理）。新 kill 条件：step 10 action_is_valid\\n    < 15%（因 LR 提高 5x，预期收敛更快）。\\n  related_experiments:\\n  - exp_id: exp007\\n    role: evidence\\n    result: step 10 action_is_valid=8.35%, success=6.25%, 因磁盘满崩溃于 step 11, checkpoint\\n      全部丢失\\n  depends_on:\\n  - D004\\n- id: D006\\n  date: 2026-05-14 03:02 UTC\\n  summary: 撤回 exp008 (LR 5e-6)，改用 SFT warmup 再接 GRPO\\n  rationale: Agent 正确指出 action_is_valid 低的根因不是 LR 不够高，而是 Qwen3-1.7B 缺乏 ALFWorld 命令语义知识——92%\\n    的动作语法正确但语义无效（不是合法 ALFWorld 命令）。提高 LR 只能加速已有信号的收敛，无法从根本解决命令词汇缺失。SFT warmup 直接教模型\\n    ALFWorld 命令格式和语义，GRPO 再优化策略，是更高效的路径。SFT 计划已就绪（artifacts/sft_warmup_plan.md），总成本\\n    ~8h（SFT 2h + GRPO 6h），可接受。\\n  related_experiments:\\n  - exp_id: exp007\\n    role: evidence\\n    result: 10 步 action_is_valid 仅 8.35%，语法正确但语义无效，指向命令知识缺失而非学习速度问题\\n  depends_on:\\n  - D005\\n- id: D007\\n  date: 2026-05-14 05:40 UTC\\n  summary: Kill exp011，改 reward function（连续score+降format penalty+group_size 16），从\\n    step 5 checkpoint 恢复\\n  rationale: Reward 分析确认：format_penalty(-0.1/turn)在零成功 group 中劫持 GRPO 梯度，模型只学格式不学任务（action_is_valid\\n    68% + success 0%）。A1 连续 score 给部分完成的轨迹提供梯度信号；A2 降 format_penalty 到 -0.01 避免淹没任务信号；B1\\n    group_size 8→16 提高正信号 group 比例（32%→53%）。从 step 5 恢复因其仍有 1.6% success 残余。\\n  related_experiments:\\n  - exp_id: exp010\\n    role: evidence\\n    result: failed - reward analysis revealed format penalty hijacking GRPO gradient\\n  - exp_id: exp011\\n    role: killed\\n    result: same reward config as exp010, will repeat collapse pattern\\n  depends_on:\\n  - D006\\n- id: D008\\n  date: 2026-05-14 05:41 UTC\\n  summary: Reviewer 确认 exp010 reward shaping 分析正确；A2(降 format_penalty)为 P0，A1(进度奖励)需先验证\\n    infos[\\\"score\\\"] 粒度\\n  rationale: Reviewer 独立验证了代码引用和根因诊断。新发现：env.py:137 未请求 score=True，AlfWorld 不同任务类型的\\n    score 粒度未知。A2（format_penalty→0 或 -0.01）风险最低——KL loss 已提供格式压力（SFT 模型 90% valid），penalty\\n    冗余且有害。exp011 从 step 10 恢复无 reward 修改=浪费算力，已在 D007 中 kill。\\n  related_experiments:\\n  - exp_id: exp010\\n    role: analysis_source\\n    result: failed\\n  - exp_id: exp011\\n    role: killed\\n    result: wasteful_resume_from_step10\\n  depends_on: []\\n- id: D009\\n  date: 2026-05-14 06:34 UTC\\n  summary: 强制 pre-flight checklist：每次实验提交前必须验证入口点、磁盘、参数兼容性、checkpoint 路径\\n  rationale: 18 个实验仅 1 成功，多数失败为可避免的工程问题（错误入口点、磁盘满、格式不兼容）。exp012 再次因用错入口点（agent_proxy\\n    vs train.py）失败。引入 pre-flight checklist 防止此类重复失败。\\n  related_experiments:\\n  - exp_id: exp012\\n    role: trigger\\n    result: failed - wrong entry point\\n  - exp_id: exp007\\n    role: prior failure\\n    result: failed - disk full\\n  - exp_id: exp003\\n    role: prior failure\\n    result: failed - format incompatibility\\n  depends_on:\\n  - D006\\n  - D008\\n- id: D010\\n  date: 2026-05-14 07:41 UTC\\n  summary: Kill exp012b（零梯度死锁），引入 dense reward shaping 设计 exp013，下调 MVP pass 标准至 success\\n    ≥ 20%\\n  rationale: 两位 Reviewer 独立确认：exp012b step 6-7 pg_loss=0, success=0%, pass@16=0%,\\n    advantages 全零。format_penalty=0 消除了组内 reward 方差，GRPO 无梯度信号。继续跑浪费 ~10.6 GPU-hours。核心问题是\\n    sparse binary reward + 弱基础模型 + GRPO 方差依赖 = 冷启动死锁。方向（SFT→GRPO）未被证伪，但需要 reward shaping\\n    打破死锁。76% MVP 标准不现实（Self-Guide 是非 RL 方法），下调至 20% 证明 GRPO 能学到有意义策略。\\n  related_experiments:\\n  - exp_id: exp012b\\n    role: trigger\\n    result: zero gradient deadlock - pg_loss=0, success=0%\\n  - exp_id: exp010\\n    role: comparison\\n    result: format_penalty=-0.1 had success=4.7% but gradient hijacking\\n  - exp_id: exp008_sft\\n    role: baseline\\n    result: SFT taught format compliance but not task strategy\\n  depends_on:\\n  - D008\\n  - D009\\n- id: D011\\n  date: 2026-05-14 07:41 UTC\\n  summary: Kill exp012b（零梯度死锁确认），引入 dense reward shaping，下调 MVP pass 标准至 success ≥\\n    20%\\n  rationale: Reviewer critical 确认：format_penalty=0 + binary reward + 0% success =\\n    零梯度死锁（pg_loss=0.0），模型完全不更新。exp010 的 format_penalty=-0.1 至少创造了 reward 方差但方向错误。根本问题是\\n    ALFWorld sparse binary reward + GRPO 在基础模型太弱时无法工作。解决方案：加 step-level dense reward\\n    shaping（子目标奖励），方向正确且创造梯度信号。76% 目标来自 Self-Guide 论文的非 RL 方法，30 步 GRPO 不可达，MVP pass\\n    下调至 success ≥ 20% + 明确上升趋势。\\n  related_experiments:\\n  - exp_id: exp012b\\n    role: trigger\\n    result: step 6-7 train success=0%, pg_loss=0.0, 零梯度\\n  - exp_id: exp010\\n    role: 对照\\n    result: format_penalty=-0.1 时 step 1 success=4.7% 但后续崩塌\\n  - exp_id: exp008_sft\\n    role: 基础\\n    result: SFT warmup 成功，action_is_valid 68-72%\\n  depends_on:\\n  - D008\\n  - D009\\n- id: D012\\n  date: 2026-05-14 12:40 UTC\\n  summary: 'exp013f negative: dense reward gaming — 下一步 success-gated bonus + 降低 bonus\\n    比例'\\n  rationale: exp013f 完成 30 步，dense reward (valid_action_bonus=0.15) 解决了 collapse（grad_norm\\n    稳定 1.7-8.15）但引发 reward gaming：action_is_valid 60%→97.5% 而 success 归零，score_max\\n    从 10+ 塌缩到 4.5。模型学会独立最大化 dense reward（29步×0.15=4.35）放弃高风险 success（10.0）。核心问题：dense\\n    reward 可被独立最大化。修复方向：(1) success-gated bonus 消除独立最大化路径 (2) 降低 bonus 到 0.01 测试弱信号是否足够\\n    (3) 前 N 步 warmup 后撤掉 bonus。优先级 exp014c > exp014a > exp014b。\\n  related_experiments:\\n  - exp_id: exp013f\\n    role: primary\\n    result: negative - reward gaming\\n  - exp_id: exp012b\\n    role: baseline\\n    result: negative - catastrophic collapse\\n  depends_on:\\n  - D011\\n- id: D013\\n  date: 2026-05-14 12:47 UTC\\n  summary: D012 修订：放弃 success-gated bonus（bootstrap 问题），改走 sparse GRPO + 训练稳定性修复\\n  rationale: Success-gated bonus 在 success≈0% 时退化为 sparse reward，无法解决冷启动。而 exp012b\\n    step 6 success=8.59% 证明 sparse GRPO 有信号，collapse（grad_norm 1.48→0.09）可能是 LR 过高\\n    / KL 过低导致的单步更新过激，不是 reward sparsity。方案 B（sparse GRPO + 极低 LR 1e-7 + KL 0.1 + gradient\\n    clipping）直接解决 collapse 且不引入新 reward hacking 风险。\\n  related_experiments:\\n  - exp_id: exp012b\\n    role: evidence\\n    result: step 6 success=8.59% proves sparse signal exists; collapse at step 7 was\\n      training instability\\n  - exp_id: exp013f\\n    role: evidence\\n    result: dense reward gaming confirms reward shaping risks\\n  depends_on:\\n  - D012\\n- id: D014\\n  date: 2026-05-14 13:44 UTC\\n  summary: Kill exp015（LR 1e-7 过保守，连续 3 步零梯度），启动 exp016 LR=5e-7 折中方案\\n  rationale: exp015 step 1-2 有梯度信号（pg_loss>0, success 3-5%），验证了 D013 的 collapse 修复。但\\n    step 3-5 连续零梯度，LR=1e-7 的参数更新量约 5e-12，模型行为无可观测变化。Kill 条件已满足。LR=1e-6（exp012b）collapse，LR=1e-7（exp015）不学习，取折中\\n    LR=5e-7 + 保留 KL=0.1 + grad_clip=1.0。从 exp015 step 5 checkpoint 恢复（保留 step 1-2\\n    的微小更新）。\\n  related_experiments:\\n  - exp_id: exp015\\n    role: primary\\n    result: kill - LR too conservative, 3 consecutive zero-gradient steps\\n  - exp_id: exp012b\\n    role: reference\\n    result: LR 1e-6 collapsed at step 7\\n  depends_on:\\n  - D013\\n- id: D015\\n  date: 2026-05-14 14:55 UTC\\n  summary: Kill exp016 — reward function 完全失效，12 步零 reward 信号，GPU 空转\\n  rationale: exp016 step 12/30，所有 step 的 raw_reward/advantages/returns 均为 0。Step 7\\n    出现 4.7% success 但 reward 仍为 0，说明 reward function 未正确将 success 映射到 reward。grad_norm\\n    ~0.85 仅来自 entropy loss，模型无 policy gradient 信号。疑似 checkpoint resume 后 reward config\\n    丢失。继续运行浪费 GPU。\\n  related_experiments:\\n  - exp_id: exp016\\n    role: subject\\n    result: killed — reward function broken\\n  depends_on:\\n  - D014\\n- id: D016\\n  date: 2026-05-14 14:57 UTC\\n  summary: Pivot to Expert SFT warmup — GRPO 在 base success ~1-2% 下无法工作，LR 搜索区间穷尽\\n  rationale: Reviewer critical 分析确认：exp016 step 7 pg_loss=0.000151 证明 reward function\\n    本身可用，但 7 步中仅 1 步有 success（14%），步骤 8-12 连续 5 步零梯度。反推 base success rate ~1-2%，GRPO\\n    在此 sparsity 下无法产生有效学习。LR 搜索已覆盖 1e-6（collapse）→ 5e-7（无效学习）→ 1e-7（零梯度），区间穷尽。Pivot\\n    到 expert SFT：用 ALFWorld HandCodedTWAgent 收集的 expert trajectories（当前 ~61-70%）做\\n    SFT warmup，将 base success 提升到 10-15% 后再上 sparse GRPO。\\n  related_experiments:\\n  - exp_id: exp016\\n    role: evidence\\n    result: 6/7 steps zero gradient, base success ~1-2%\\n  - exp_id: exp015\\n    role: evidence\\n    result: LR=1e-7 zero gradients after step 3\\n  - exp_id: exp012b\\n    role: evidence\\n    result: LR=1e-6 catastrophic collapse\\n  depends_on:\\n  - D015\\n  - D014\\n  - D013\\n- id: D017\\n  date: 2026-05-14 15:20 UTC\\n  summary: D015 误诊纠正 — reward pipeline 正常，exp016 失败原因是 base success 太稀疏（1/8 步有信号）\\n  rationale: Reviewer 逐行核实 exp016.log：Step 7 critic/score/mean=0.46875（= 3/64 × 10.0）、critic/score/max=10.0、pg_loss=0.000151、grad_norm=2.0，reward\\n    function 完全正确。Agent 报告的 raw_reward=0 来自 es_manager 的 info.get('raw_reward', 0.0)\\n    日志 artifact，ALFWorld env info 不含此 key。NaiveRewardManager 检测到 rm_scores 后 pass-through，agent_trainer.py:779\\n    不是覆写。D016 Expert SFT pivot 仍成立，理由修正为 base success ~4.7%（仅 1/8 步有 success）太稀疏。\\n  related_experiments:\\n  - exp_id: exp016\\n    role: evidence\\n    result: reward pipeline confirmed working; killed due to sparse success, not bug\\n  depends_on:\\n  - D015\\n  - D016\\n- id: D018\\n  date: 2026-05-14 16:37 UTC\\n  summary: exp017 eval 5% success（低于 10% 阈值），采用方案 B+C：修复数据格式 + 从 exp008_sft checkpoint\\n    继续微调\\n  rationale: 'exp017 SFT eval: 5% success (1/20)，format_ok 从 100% 降至 75%，action_is_valid\\n    从 90% 降至 63.8%。25% episodes parse 失败（1 步退出）。expert trajectory 格式与 RAGEN &lt;think>/&lt;answer>\\n    不完全匹配，SFT 学到任务知识但破坏了 format 合规性。方案：(1) 修复 expert data 格式对齐 RAGEN template (2)\\n    从 exp008_sft checkpoint 开始微调（已有 100% format_ok），用较低 LR 防止遗忘 format。预计 ~1.5h。方案\\n    A（直接 GRPO）信号改善极小（5% vs 4.7%），方案 D 工程量太大。'\\n  related_experiments:\\n  - exp_id: exp017_expert_sft\\n    role: evidence\\n    result: 5% success, format_ok 75%, below 10% threshold\\n  - exp_id: exp008_sft\\n    role: baseline\\n    result: 0% success but 100% format_ok, 90% action_is_valid\\n  depends_on:\\n  - D016\\n  - D017\\n- id: D019\\n  date: 2026-05-14 16:48 UTC\\n  summary: Kill exp019 — move→put 替换方向错误，admissible_commands 中是 move 不是 put\\n  rationale: Reviewer critical 确认：ALFWorld handcoded expert 代码 5 种任务类型全部用 \\\"move {}\\n    to {}\\\" 检查 admissible_commands，RAGEN env.py action_is_available 检查 action in admissible_commands。fix_expert_sft_format.py\\n    将 2157 条正确的 \\\"move\\\" 替换为 \\\"put in/on\\\"，教模型产生不在 admissible_commands 中的动作，会进一步恶化 action_is_valid。正确修复方向：保留\\n    \\\"move\\\" 原样，在 observation 中添加 admissible actions 列表后缀。\\n  related_experiments:\\n  - exp_id: exp019_expert_sft_v2\\n    role: subject\\n    result: killed — trained on incorrectly modified data (move→put)\\n  depends_on:\\n  - D018\\n- id: D020\\n  date: 2026-05-14 21:53 UTC\\n  summary: exp019b SFT eval 通过（20% success），启动 GRPO 训练\\n  rationale: exp019b 三项指标全部达标：success=20%, format_ok=100%, action_is_valid=85.3%。admissible\\n    actions augmentation 是关键因素（exp017 无→5%, exp019b 有→20%）。SFT checkpoint 已提供足够 base\\n    success rate，GRPO 应有足够非零 reward groups 产生有效梯度。从 exp019b checkpoint 启动 sparse GRPO\\n    是 MVP gate 最后一步。\\n  related_experiments:\\n  - exp_id: exp019b_expert_sft_v3\\n    role: evidence\\n    result: success=20%, format_ok=100%, action_is_valid=85.3%\\n  - exp_id: exp017_expert_sft\\n    role: baseline\\n    result: success=5%, format_ok=75% (无 admissible actions)\\n  depends_on:\\n  - D018\\n  - D019\\n- id: D021\\n  date: 2026-05-14 22:34 UTC\\n  summary: exp020 系列 0% success 根因确认：SFT 训练格式与 RAGEN 格式不匹配，走方案 B 重训\\n  rationale: 同一 checkpoint 在 eval_sft_fast 中 20% success，在 RAGEN 中 0%。根因三个：(1) system\\n    prompt 矛盾（RAGEN 说不要标签又说要标签）(2) observation 格式完全不同（RAGEN 有 Turn N/State/Reward\\n    包装，SFT 数据没有）(3) temperature 差异。RAGEN 的多轮结构是 GRPO rollout 必需的，不能去掉。正确方案是将 SFT 数据转换为\\n    RAGEN 格式重训，而非改 RAGEN 适配 SFT。\\n  related_experiments:\\n  - exp_id: exp020_grpo_from_sft\\n    role: evidence\\n    result: AssertionError, 未运行\\n  - exp_id: exp020b_grpo_from_sft\\n    role: evidence\\n    result: val_before_train success=0%, action_is_valid=16.7%\\n  - exp_id: exp020c_grpo_from_sft\\n    role: evidence\\n    result: hydra config error\\n  - exp_id: exp020d_grpo_from_sft\\n    role: evidence\\n    result: killed, 同 exp020b 配置\\n  depends_on:\\n  - D020\\n- id: D022\\n  date: 2026-05-15 01:07 UTC\\n  summary: exp020b GRPO 失败，确认 eval mismatch 是根因，恢复 D021 RAGEN 格式重训路线\\n  rationale: exp020b 30步中跑了22步，train success从18.75%降到4.69%，val success始终0%，entropy坍缩61%。核心问题不是GRPO算法，而是SFT模型在RAGEN多轮框架下表现与eval_sft_fast完全不同（0%\\n    vs 20%）。之前Reviewer修正认为\\\"0%是样本量问题\\\"是错误的——22步训练确认了系统性不一致。D021（将SFT数据转换为RAGEN格式重训）是正确方向，恢复执行。\\n  related_experiments:\\n  - exp_id: exp020b_grpo_from_sft\\n    role: evidence\\n    result: train success 18.75%→4.69%, val success=0%, entropy collapse\\n  - exp_id: exp019b_expert_sft_v3\\n    role: baseline\\n    result: eval_sft_fast 20% but RAGEN val 0%\\n  depends_on:\\n  - D020\\n  - D021\\n- id: D023\\n  date: 2026-05-15 03:16 UTC\\n  summary: exp021 RAGEN 格式 SFT 验证通过（25% success），批准 exp022 GRPO\\n  rationale: exp021 在 RAGEN val 中 success=25%, action_is_valid=87.5%，全部达标。对比 exp019b\\n    在 RAGEN val 中 0% success，证明格式对齐是根因且修复生效。25% baseline 是目前最强起点，配合加强的 KL 约束（0.1→0.5）应能避免\\n    exp020b 的 entropy 坍缩。\\n  related_experiments:\\n  - exp_id: exp021_ragen_sft_v4\\n    role: evidence\\n    result: RAGEN val success=25%, action_is_valid=87.5%\\n  - exp_id: exp019b_expert_sft_v3\\n    role: baseline\\n    result: RAGEN val success=0%\\n  - exp_id: exp020b_grpo_from_sft\\n    role: negative\\n    result: train success 18.75%→4.69%, entropy collapse\\n  depends_on:\\n  - D021\\n  - D022\\n- id: D024\\n  date: 2026-05-15 03:21 UTC\\n  summary: exp021 结论降级为 inconclusive，exp022 暂不 kill 等 step 0 val 确认\\n  rationale: exp021 两次独立 eval 严重矛盾：4-episode val_before_train 25% success vs ~16-episode\\n    eval 6.25% success。4-episode 估计方差过大不可靠，25% 结果很可能是高方差幸运值。exp022 基于该不可靠数据启动，但已在运行中——让\\n    step 0 val_before_train 给出更可靠的 baseline 数字再决定是否 kill，避免白白浪费已投入的启动时间。同时 Reviewer\\n    指出 exp022 的 val env_groups=8 override 可能未生效（config dump 显示 4），需立即验证。\\n  related_experiments:\\n  - exp_id: exp021_ragen_sft_v4\\n    role: trigger\\n    result: inconclusive — 4-ep 25% vs 16-ep 6.25%\\n  - exp_id: exp022_grpo_from_sft_v4\\n    role: at_risk\\n    result: running, awaiting step 0 val confirmation\\n  depends_on:\\n  - D023\\n- id: D025\\n  date: 2026-05-15 05:14 UTC\\n  summary: Sparse binary GRPO 路线终止。三次一致退化（exp020b/exp022/exp023c），KL 仅 0.0005 时 success\\n    已退化，算法与稀疏 reward 结构性不匹配。Pivot 到两条并行路线：(1) success-gated dense reward GRPO，(2)\\n    GiGPO cherry-pick\\n  rationale: '三次 GRPO 实验（exp020b kl=0.1, exp022 kl=0.5, exp023c kl=0.5 serial）均呈现同一模式：entropy\\n    收缩 + success 退化 + KL 极低（策略几乎未移动就已退化）。根因：sparse binary reward（0/10）下绝大多数 GRPO group\\n    全零 reward → advantage≈0 → 有效梯度来自极少数成功 episode → 不足以引导策略改进。kl_loss_coef 从 0.1 到\\n    0.5 仅减缓退化速度未改变方向。这是算法-任务结构性不匹配，非超参问题。\\n\\n\\n    两条 pivot 路线：\\n\\n    (1) Success-gated dense reward：从 exp021 checkpoint（25% success）出发，给 valid_action\\n    加 bonus 但仅在 episode 成功时给。exp013f 失败原因是 unconditional bonus → reward gaming；success-gating\\n    消除独立最大化路径。代码改动小，可当天启动。\\n\\n    (2) GiGPO cherry-pick：step-level advantage estimation 提供更密集的信号，解决 credit assignment。已有迁移方案（3-5天），作为更彻底的解决方案。'\\n  related_experiments:\\n  - exp_id: exp020b_grpo_from_sft\\n    role: evidence\\n    result: 'failed: entropy collapse 61%, success→0%'\\n  - exp_id: exp022_grpo_from_sft_v4\\n    role: evidence\\n    result: 'killed: step 0 action_is_valid 48.75%'\\n  - exp_id: exp023c_grpo_serial\\n    role: evidence\\n    result: 'failed: 8 steps success 29.7%→23.4%, disk full crash'\\n  - exp_id: exp013f\\n    role: lesson\\n    result: unconditional dense reward → gaming\\n  depends_on:\\n  - D022\\n  - D023\\n  - D024\\n- id: D026\\n  date: 2026-05-15 05:15 UTC\\n  summary: GRPO in RAGEN 确认失败（3/3），pivot 到 verl-agent GiGPO cherry-pick（Plan C）\\n  rationale: 三次 GRPO 实验（exp020b/exp022/exp023c）一致表现为 entropy 坍缩 + success 退化。但 Self-Guide\\n    论文证明 GRPO 在 ALFWorld 上可以达到 72.7%（verl-agent 框架），说明问题不是 GRPO+sparse reward 本身，而是\\n    RAGEN 框架。RAGEN 的 full-history concatenation 导致 context 随步数爆炸，1.7B 模型在长 context\\n    下推理质量退化。verl-agent 的 step-independent rollout 保持 context 恒定。IDEA_BRIEF 原始设计也指定\\n    verl-agent。采用 Plan C（cherry-pick GiGPO + 核心 rollout 机制，3-5 天），避免 Plan A/B 的 2-4\\n    周全量迁移风险。\\n  related_experiments:\\n  - exp_id: exp020b_grpo_from_sft\\n    role: evidence\\n    result: 'failed: entropy collapse, success 18.75%→4.69%'\\n  - exp_id: exp022_grpo_from_sft_v4\\n    role: evidence\\n    result: 'killed: step 0 action_is_valid 48.75%'\\n  - exp_id: exp023c_grpo_serial\\n    role: evidence\\n    result: 'failed: step 9 disk full, 8 steps showed success 29.7%→23.4%, entropy\\n      shrinking'\\n  depends_on:\\n  - D022\\n  - D023\\n  - D024\\n- id: D027\\n  date: 2026-05-15 05:25 UTC\\n  summary: Kill exp024 (success-gated GRPO) — D026 已终止 RAGEN GRPO 路线，success-gated\\n    不解决 context 爆炸根因\\n  rationale: Reviewer 审查报告指出决策链冲突：D026 已明确 pivot 到 verl-agent GiGPO 并终止 RAGEN GRPO\\n    路线，但 exp024 仍是 RAGEN GRPO（仅改 reward 为 success-gated）。三点判断：(1) success-gated reward\\n    不解决 RAGEN full-history concatenation 导致的 context 爆炸——这是 exp020b/022/023c 三次退化的共因；(2)\\n    D013 之前已因 bootstrap 问题否决 success-gated（success≈0% 退化为 sparse），当前 baseline 6.25%\\n    仍然很低；(3) 3/3 RAGEN GRPO 退化 pattern 下第 4 次仅改 reward 极不可能成功。GPU 应腾出用于 verl-agent\\n    GiGPO cherry-pick 准备。\\n  related_experiments:\\n  - exp_id: exp024\\n    role: killed\\n    result: D026后应终止，step 0/30 刚启动\\n  - exp_id: exp020b_grpo_from_sft\\n    role: evidence\\n    result: RAGEN GRPO 退化 1/3\\n  - exp_id: exp022_grpo_from_sft_v4\\n    role: evidence\\n    result: RAGEN GRPO 退化 2/3\\n  - exp_id: exp023c_grpo_serial\\n    role: evidence\\n    result: RAGEN GRPO 退化 3/3\\n  depends_on:\\n  - D026\\n  - D025\\n- id: D028\\n  date: 2026-05-15 08:32 UTC\\n  summary: 终止 verl-agent 直接运行尝试，全力转向 Track B cherry-pick（步独立 rollout + GiGPO 整合到 RAGEN）\\n  rationale: 'verl-agent 在 bjb1-17606 上 6 次启动失败（exp025→exp025b×3→dry run v7/v8/threadopt），根因是\\n    AutoDL 容器 cgroup pids.max=20480 限制。Ray 集群 + FSDP + vLLM TP 的线程总数超过此限制，即使单 GPU\\n    降级配置也在训练阶段崩溃。AutoDL 无法调整 pids.max，暂无非容器化服务器可用。继续在同一配置重试无意义。\\n\\n\\n    Track B cherry-pick 是可行路径：将 step-independent rollout + GiGPO 算法整合到 RAGEN 代码库（不依赖\\n    Ray，已验证可在此服务器运行）。Track B 分析报告已完成（gigpo_cherry_pick_plan.md），方案明确（~480 行新增 + ~200\\n    行修改，8 文件，3-5 天）。\\n\\n\\n    附带收获：verl-agent val_before_train 产出了 Qwen3-1.7B raw baseline（success=6.2%，与 RAGEN\\n    SFT 后的 6.25% 接近），确认模型基础能力跨框架一致，训练算法是关键差异。'\\n  related_experiments:\\n  - exp_id: exp025\\n    role: evidence\\n    result: 'failed: conda env 错误'\\n  - exp_id: exp025b\\n    role: evidence\\n    result: 'failed: 3次启动失败（vllm模块/Ray GCS/EAGAIN）'\\n  - exp_id: exp025c\\n    role: evidence\\n    result: 未提交，threadopt dryrun 训练阶段崩溃\\n  depends_on:\\n  - D026\\n  - D027\\n- id: D029\\n  date: 2026-05-15 11:14 UTC\\n  summary: exp026 registry 被 cron 误标 DONE(failed)，实际训练仍在运行；速度修正为 30-60min/step（总计\\n    75-150h）\\n  rationale: Cron 5 次检查因 WANDB_MODE=disabled 无法读取指标，自动判定进程死亡并标记 failed。但 PID 存活、GPU\\n    双卡 100% 利用率、日志持续写入。DONE→RUNNING 转换被 registry 禁止，需在训练真正完成后手动更新 conclusion。速度估算从之前的\\n    21min/step 修正为 30-60min/step（step 0 含 val_before_train 耗时 ~40min），150 steps 预计\\n    3-6 天完成。教训：后续实验必须启用 W&B 或 sentinel file 避免 cron 误判。\\n  related_experiments:\\n  - exp_id: exp026_step_independent_grpo\\n    role: subject\\n    result: running (registry incorrectly shows failed)\\n  depends_on:\\n  - D028\\n- id: D030\\n  date: 2026-05-15 11:50 UTC\\n  summary: exp026 等待期并行实现 B-IAVR 核心机制代码（action-change gating），不再空等 baseline 结果\\n  rationale: Reviewer 战略审查指出：50 个实验全在 pipeline debugging，核心 B-IAVR 选择性验证机制零实现。即使 exp026\\n    成功（weak story），真正的论文实验（有/无 selective verification ablation）还没开始。利用 3-6 天训练等待期提前铺核心代码，exp026\\n    出结果后可直接进入核心实验阶段，压缩整体时间线。\\n  related_experiments:\\n  - exp_id: exp026_step_independent_grpo\\n    role: baseline\\n    result: running\\n  - exp_id: exp020b_grpo_from_sft\\n    role: evidence\\n    result: failed - entropy collapse\\n  - exp_id: exp022_grpo_from_sft_v4\\n    role: evidence\\n    result: failed - entropy collapse\\n  - exp_id: exp023c_grpo_serial\\n    role: evidence\\n    result: failed - entropy collapse\\n  depends_on:\\n  - D029\\n  - D028\\n- id: D031\\n  date: 2026-05-15 12:13 UTC\\n  summary: B-IAVR 代码审查通过（Reviewer info），Phase B 前必须解决两个 warning：&lt;VERIFY> special token\\n    注册 + a_pre 推理开销量化\\n  rationale: Reviewer 审查 B-IAVR 核心代码：reward 公式/Lagrangian 更新/模块化设计/52 个测试全通过，与 IDEA_BRIEF\\n    一致。但 &lt;VERIFY> 若被 tokenizer 拆为 8 个子 token 会显著增加学习难度（必须注册为 special token）；a_pre\\n    每次 verify step 额外一次 greedy decode 可能增加 15-30% 步耗时（需 dry run 量化）。这两项是 Phase B 集成前的硬性前置。\\n  related_experiments:\\n  - exp_id: exp026_step_independent_grpo\\n    role: baseline_for_phase_b\\n    result: running\\n  depends_on:\\n  - D030\\n- id: D032\\n  date: 2026-05-15 12:33 UTC\\n  summary: exp026 前 2 步训练指标强正向（success 6.25%→32.81%，entropy 未 collapse），等 step 5 val\\n    做 MVP 判定\\n  rationale: 从 Ray worker stdout logs 提取到训练指标，解决了之前的盲飞问题。Step 1 train success 21.88%\\n    已超 MVP 目标（20%），但 train ≠ val，需等 step 5 val（test_freq=5）确认。Entropy 上升（0.267→0.317）而非\\n    collapse，与之前 3 次 RAGEN GRPO 失败形成鲜明对比，确认 step-independent context + step-level\\n    credit assignment 是关键因素。MVP 判定标准：val success ≥ 20% → complete_mvp()。\\n  related_experiments:\\n  - exp_id: exp026_step_independent_grpo\\n    role: subject\\n    result: train success 32.81% at step 2, awaiting step 5 val\\n  depends_on:\\n  - D029\\n  - D030\\n- id: D033\\n  date: 2026-05-15 13:02 UTC\\n  summary: exp026 registry 误判修复：cron 因 WANDB_MODE=disabled + 监控错误 PID 误标 DONE(failed)，实际训练正常运行（PID\\n    781795）。已重置 RUNNING 并修正监控。后续实验硬规则：禁止 WANDB_MODE=disabled\\n  rationale: 两个根因：(1) WANDB_MODE=disabled 导致 cron 无 sentinel/metrics 可检测；(2) 监控了 shell\\n    wrapper PID 778562 而非实际训练进程 PID 781795。Reviewer 交叉验证确认 step 1-2 指标真实。修复后 cron\\n    间隔 300s 监控正确 PID + log_path。教训沉淀：所有实验必须启用 W&B 以确保 cron 可监控。\\n  related_experiments:\\n  - exp_id: exp026_step_independent_grpo\\n    role: affected\\n    result: registry reset to RUNNING, actual training healthy\\n  depends_on:\\n  - D029\\n  - D032\\n- id: D034\\n  date: 2026-05-15 13:38 UTC\\n  summary: 建立两级阈值：MVP=20% val（训练可行性 checkpoint），论文 baseline 最低要求=50% val（B-IAVR 的\\n    always-on baseline 需与 Self-Guide 72.7% 可比才有说服力）\\n  rationale: Reviewer 独立评估指出：Self-Guide 在 ALFWorld 上 Qwen3-1.7B GRPO baseline 已达 72.7%，20%\\n    val 处于所有已发表 baseline 底部。step-independent rollout 是 verl-agent cherry-pick 不算本项目贡献，论文贡献必须来自\\n    B-IAVR。在弱 agent（20%）上证明选择性验证的 cost-efficiency 没有说服力——需要 baseline 至少 50-60% 才能让\\n    B-IAVR 的 Pareto efficiency claim 有意义。MVP 阈值保持 20% 不变（证明 GRPO 在 RAGEN 能跑），但内部明确论文可行性需要\\n    val 收敛到更高水平。Reviewer 估计 150 步训练后 val 可达 60-70%，与 Self-Guide no-SG baseline 可比。\\n  related_experiments:\\n  - exp_id: exp026_step_independent_grpo\\n    role: baseline\\n    result: train 32.81% @ step 2, val pending\\n  depends_on:\\n  - D032\\n  - D033\\n- id: D035\\n  date: 2026-05-15 14:01 UTC\\n  summary: exp026 训练不稳定（step 2 峰值 32.81% → step 4 归零），准备 exp027 调参重跑；save_freq 必须降至\\n    5\\n  rationale: Step 4 success=0%, pass@16=0。非 entropy collapse（entropy 稳定 0.387），而是\\n    step 3 负梯度过度纠正导致保守退化（KL 回落至 0.054，action_is_valid 反升至 71.7%）。LR=1e-6 对 step-level\\n    reward 的高方差梯度过大。save_freq=25 导致 step 2 的 32.81% 峰值无 checkpoint 可恢复——这是最大损失。exp027\\n    方向：降 LR（→5e-7）、升 KL coef（0.01→0.04）、save_freq=5。等 step 5 val 确认后正式切换。\\n  related_experiments:\\n  - exp_id: exp026_step_independent_grpo\\n    role: evidence\\n    result: 'training unstable: peak 32.81% at step 2, collapsed to 0% at step 4'\\n  depends_on:\\n  - D032\\n- id: D036\\n  date: 2026-05-15 14:07 UTC\\n  summary: Reviewer critical 确认 exp026 GRPO 死亡螺旋：step 4 success=0%，KL→0.0025 策略回退到\\n    reference，exp027 需针对性解决稀疏奖励崩塌\\n  rationale: Reviewer 独立核实训练指标：step 2 峰值 32.81% 后单调下降，step 4 完全崩塌（64 rollout 全失败）。KL\\n    单调递减说明策略不是发散而是回退到 reference，固定 KL penalty 无效。exp027 必须引入 dynamic sampling（过滤零奖励\\n    batch）+ 调整 clip ratio + 可能加 entropy bonus 维持探索。已向 Agent 发送 exp027 设计修正指令。\\n  related_experiments:\\n  - exp_id: exp026_step_independent_grpo\\n    role: primary\\n    result: collapsing\\n  - exp_id: exp027_stable_grpo\\n    role: next\\n    result: preparing\\n  depends_on:\\n  - D035\\n- id: D037\\n  date: 2026-05-15 15:17 UTC\\n  summary: exp027 val 判定阈值：<20% fail、20-25% weak (=SFT)、30%+ proceed Phase B。Reviewer\\n    指出 GRPO 从未在 val 超越 SFT baseline，train-val gap 是系统性风险。\\n  rationale: 'Reviewer pass/fail 评估揭示关键事实：51 个实验中所有 GRPO 的 val success 均为 0-12.5%，而\\n    SFT (exp019b) 已达 20%。exp026 的 32.81% 是 train success，已知 train-val 差距巨大（exp023c:\\n    train 29.7% vs val 6.25%）。因此 exp027 的判定必须基于 val success：(1) val<20% → MVP 失败，需\\n    pivot（换服务器跑 verl-agent 原版 or 重评项目）；(2) val 20-25% → GRPO 仅匹配 SFT，RL 训练贡献为零，需重新评估\\n    Phase B 是否建在 SFT 上；(3) val≥30% → GRPO 首次超越 SFT，Phase B 有意义的 baseline，proceed。A\\n    类会议需 val≥40% + 第二环境 + 模型规模实验，预估 500-800 GPU-h。'\\n  related_experiments:\\n  - exp_id: exp027_stable_grpo\\n    role: 被判定对象\\n    result: running\\n  - exp_id: exp026_step_independent_grpo\\n    role: 前置实验\\n    result: negative\\n  - exp_id: exp019b_expert_sft_v3\\n    role: SFT baseline对照\\n    result: success\\n  depends_on:\\n  - D036\\n  - D034\\n- id: D038\\n  date: 2026-05-15 15:17 UTC\\n  summary: Reviewer 评估 exp027 pass/fail 论文可行性：修正 claim 强度阈值，确认 val success 是唯一判定标准\\n  rationale: 'Reviewer 指出关键事实：GRPO 从未在 val 上超越 SFT baseline（RAGEN 框架内 6.25%）。exp026\\n    的 32.81% 是 train success 不是 val success，train-val 差距系统性存在（exp023c: train 29.7%\\n    vs val 6.25%）。但 Reviewer 混淆了两个 eval 框架：exp019b 的 20% 是 eval_sft_fast（非 RAGEN eval），RAGEN\\n    框架内 SFT baseline 是 6.25%（exp021 C003-compliant 16ep eval）。因此 exp027 val ≥ 20%\\n    = 3.2× SFT baseline，仍是有意义的 RL 贡献，不是\\\"仅匹配 SFT\\\"。但 Reviewer 对 A 类会议的要求评估（Phase B +\\n    ablation + 第二环境 + scaling = 500-800 GPU-h）是合理的。结论：val success 是唯一判定标准，train success\\n    仅作 training dynamics 参考；MVP 20% 的门槛在 RAGEN eval 框架下仍然有效且有意义。'\\n  related_experiments:\\n  - exp_id: exp027_stable_grpo\\n    role: subject\\n    result: running\\n  - exp_id: exp026_step_independent_grpo\\n    role: evidence\\n    result: negative\\n  - exp_id: exp021_ragen_sft_v4\\n    role: baseline\\n    result: negative\\n  - exp_id: exp019b_expert_sft_v3\\n    role: baseline\\n    result: success\\n  depends_on:\\n  - D036\\n  - D034\\n- id: D039\\n  date: 2026-05-15 16:57 UTC\\n  summary: 论文 framing 方向锁定：cost-efficiency story，不走 performance story；ARES 为主要竞争对标\\n  rationale: Related work survey + Reviewer 评估揭示：ALFWorld SOTA 88-93%，我们最好 6.25%，即使\\n    exp027 达 40% 仍是 bottom tier，performance story 死路。唯一可行路径是 cost-efficiency framing——\\\"在接近\\n    Self-Guide 性能的前提下，通过 RL-trained selective verification 减少 verification 开销\\\"。ARES\\n    (arXiv 2603.07915) 是最近竞争者（per-step adaptive computation），差异化点：(1) binary verify/not-verify\\n    决策更简洁可解释 vs ARES 连续 effort selection，(2) action-change 作为 environment-grounded\\n    reward signal vs ARES 的 SFT router，(3) interactive agent 场景 vs general reasoning。前提条件：baseline\\n    必须 ≥50%（接近 Self-Guide 72.7%），否则 cost-efficiency claim 无意义。\\n  related_experiments:\\n  - exp_id: exp027_stable_grpo\\n    role: MVP gating\\n    result: running\\n  - exp_id: exp026_step_independent_grpo\\n    role: evidence for step-independent approach\\n    result: negative (peak 32.81% then collapsed)\\n  - exp_id: exp021_ragen_sft_v4\\n    role: SFT baseline\\n    result: 6.25% success\\n  depends_on:\\n  - D038\\n  - D037\\n- id: D040\\n  date: 2026-05-15 18:27 UTC\\n  summary: 修正 exp027 step 3 判定框架为三层阈值，Plan B kl_coef 上调至 0.015-0.02，中期评估 adaptive\\n    KL\\n  rationale: Reviewer 独立评估确认 step 2 KL 0.058→0.413 (7x) 为强警告信号，kl_coef=0.005 约束过弱。exp026(KL\\n    collapse)+exp027(KL spike) 揭示固定 kl_coef 的 Goldilocks zone 极窄。修正：(1) 三层判定——绿(success≥10%+KL<0.3)、黄(success≥6.25%+KL\\n    0.3-0.6，准备 Plan B)、红(success<6.25%或KL>0.6，终止)；(2) Plan B kl_coef 从 0.01-0.02 收窄至\\n    0.015-0.02（0.01 在 exp026 已失败）；(3) 增加 entropy(<0.15=collapse)/pass@16(<0.5=零批次风险)/grad_norm(>25=不稳定)\\n    三个辅助监控维度；(4) 中期评估 adaptive KL 实现成本。\\n  related_experiments:\\n  - exp_id: exp027_stable_grpo\\n    role: primary\\n    result: step2 KL spike 0.413, success drop to 10.16%\\n  - exp_id: exp026_step_independent_grpo\\n    role: reference\\n    result: 'symmetric failure: KL collapse to 0.0025'\\n  depends_on:\\n  - D037\\n- id: D041\\n  date: 2026-05-15 19:50 UTC\\n  summary: exp027 瓶颈诊断为 sparse reward 学习信号不足而非 KL 不稳定；Plan B(adaptive KL) 降级，Plan\\n    D(GiGPO/step-level credit) 升为首选备选路线\\n  rationale: Reviewer 独立评估：(1) train success 连续两步 10.16%=plateau，pass@16 从 100%→50%\\n    说明仅 4/8 env groups 有学习信号；(2) exp026(太激进crash)+exp027(太保守plateau)构成稳定性-效率 dilemma，纯超参调整无法解决；(3)\\n    adaptive KL 解决的是 KL 振荡，但 KL 已自修正（0.413→0.248），不是当前瓶颈；(4) Self-Guide 同模型同环境达 72.7%，差异在\\n    step-level dense reward vs binary sparse reward；(5) GiGPO/step-level credit 打破\\n    plateau 概率 40-70% vs 当前 recipe 15-25%。决策：exp027 跑到 step 10（早停条件 train≤12%），并行准备\\n    Plan D。\\n  related_experiments:\\n  - exp_id: exp027_stable_grpo\\n    role: primary\\n    result: step2-3 train success plateau at 10.16%, pass@16 declining\\n  - exp_id: exp026_step_independent_grpo\\n    role: reference\\n    result: aggressive config crashed, complementary failure mode\\n  depends_on:\\n  - D040\\n  - D037\\n- id: D042\\n  date: 2026-05-15 19:50 UTC\\n  summary: 采纳 Reviewer 建议：exp027 跑到 step 10 评估，同时并行准备 Plan D（GiGPO/step-level credit\\n    assignment），不再把 adaptive KL 作为首选 Plan B\\n  rationale: Reviewer 独立评估 exp027 中期趋势：train success 连续两步 10.16% plateau，pass@16 从\\n    100%→50% 持续下滑，50 步内 val 突破 20% 概率 <10%。核心瓶颈已从 KL 不稳定（已自修正）转为学习信号密度不足——sparse binary\\n    reward + GRPO 在 8 env groups 下信号太稀疏。Adaptive KL 只解决 KL 振荡不解决信号密度问题。Self-Guide\\n    论文用同模型同环境达 72.7%，差异在 co-evolving internal reward（step-level dense reward）。Plan\\n    D（GiGPO/step-level credit）估计 40-55% 概率达 20% val，远高于当前 recipe 的 15-25%。决策：(1) exp027\\n    继续到 step 10（~12h），如 train success ≤12% 终止；(2) 立即并行准备 Plan D 代码和方案；(3) Adaptive\\n    KL 降级为 Plan D 的辅助选项而非独立方案。\\n  related_experiments:\\n  - exp_id: exp027_stable_grpo\\n    role: primary\\n    result: step 3 绿区但 plateau at 10.16%, pass@16 下滑\\n  - exp_id: exp026_step_independent_grpo\\n    role: reference\\n    result: 对称失败模式：KL collapse vs KL spike\\n  depends_on:\\n  - D040\\n  - D037\\n\", \"total_chars\": 30851, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "9e6472f4-e280-4dc1-a60d-b476cb3df709",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 43\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-13 17:33 UTC\\\\n  summary: MVP 选择 ALFWorld + Qwen3-1.7B 单环境验证 B-IAVR 核心假设\\\\n  rationale: ALFWorld 离散动作空间使 action_changed 信号最清晰，semantic canonicalization 简单（verb,object,receptacle三元组）。Qwen3-1.7B\\\\n    有充分 headroom（+8.6pp on ALFWorld）。MVP 只需验证\\\\\\\"agent 能学会选择性验证\\\\\\\"这一核心假设，不需要跨环境/跨模型。2×GPU\\\\n    足够 1.7B+LoRA 训练。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-13 18:39 UTC\\\\n  summary: Phase A 使用全量微调（非 LoRA），匹配 Self-Guide 原始论文设置\\\\n  rationale: Self-Guide 原文用全量微调 GRPO。1.7B 模型在 94GB VRAM 下全量微调显存仅 38.5GB，完全可行。匹配 baseline\\\\n    设置确保公平对比。IDEA_BRIEF 提及 LoRA 是基于 H100 80GB 的资源估算，RTX PRO 6000 94GB 无需节省。\\\\n  related_experiments:\\\\n  - exp_id: exp_001\\\\n    role: Phase A baseline\\\\n    result: running\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-13 23:55 UTC\\\\n  summary: Kill exp003，Phase A bootstrap 失败确认，等待 invalid action 根因诊断后决定修复方向\\\\n  rationale: 'exp003 step 1: invalid_action=95.3%, pg_loss≈0, 每步 1.6h（100步=160h）。GRPO\\\\n    从 0.125% valid action 中无法获得有效学习信号。Qwen3 无独立 Instruct 版，Plan B 失效。需先诊断 invalid\\\\n    action 根因（格式冲突 / token 问题 / prompt 不兼容）再选修复路径。'\\\\n  related_experiments:\\\\n  - exp_id: exp003\\\\n    role: primary\\\\n    result: failed - bootstrap failure, 95% invalid actions, pg_loss≈0\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-14 00:10 UTC\\\\n  summary: 采用方案 A（修改解析器适配 Qwen3 格式）+ prompt 增强 + 速度优化，解决 bootstrap 失败\\\\n  rationale: 根因确认：Qwen3-1.7B 原生输出 &lt;think>...&lt;/think> 后直接跟自然语言，不生成 &lt;answer> 标签。RAGEN\\\\n    解析器正则要求 &lt;answer> 导致 95% invalid。方案 A 最快（1-2h 改代码）、最低风险（不换模型不加训练阶段），同时优化速度（关闭 collapse\\\\n    multi_turn 省 35% 步耗时 + 减 traj/step）。\\\\n  related_experiments:\\\\n  - exp_id: exp003\\\\n    role: diagnostic\\\\n    result: '32/32 samples confirm: no &lt;answer> tag in Qwen3 output'\\\\n  depends_on:\\\\n  - D003\\\\n- id: D005\\\\n  date: 2026-05-14 02:56 UTC\\\\n  summary: exp007 borderline 但不 pivot SFT，提高 LR 到 5e-6 重跑 GRPO\\\\n  rationale: exp007 step 10 action_is_valid=8.35%，技术上触发预设 kill 条件（<10%），但：(1) 趋势明确上升\\\\n    4.01%→8.35%（+0.48pp/step），线性外推 ~step 14 即突破 10%；(2) success 从 0%→6.25%，GRPO 确实在学习；(3)\\\\n    manager_invalid 6.46%→1.56%，解析器修复有效；(4) 崩溃是 /tmp 磁盘满（基础设施），非算法失败；(5) SFT warmup\\\\n    需额外收集 expert trajectories + 训练周期，开销大。因此override kill 条件，选择提高 LR（1e-6→5e-6）重跑 GRPO\\\\n    30 步，save_freq=5，同时修复所有基础设施问题（RAY_TMPDIR、/tmp 清理）。新 kill 条件：step 10 action_is_valid\\\\n    < 15%（因 LR 提高 5x，预期收敛更快）。\\\\n  related_experiments:\\\\n  - exp_id: exp007\\\\n    role: evidence\\\\n    result: step 10 action_is_valid=8.35%, success=6.25%, 因磁盘满崩溃于 step 11, checkpoint\\\\n      全部丢失\\\\n  depends_on:\\\\n  - D004\\\\n- id: D006\\\\n  date: 2026-05-14 03:02 UTC\\\\n  summary: 撤回 exp008 (LR 5e-6)，改用 SFT warmup 再接 GRPO\\\\n  rationale: Agent 正确指出 action_is_valid 低的根因不是 LR 不够高，而是 Qwen3-1.7B 缺乏 ALFWorld 命令语义知识——92%\\\\n    的动作语法正确但语义无效（不是合法 ALFWorld 命令）。提高 LR 只能加速已有信号的收敛，无法从根本解决命令词汇缺失。SFT warmup 直接教模型\\\\n    ALFWorld 命令格式和语义，GRPO 再优化策略，是更高效的路径。SFT 计划已就绪（artifacts/sft_warmup_plan.md），总成本\\\\n    ~8h（SFT 2h + GRPO 6h），可接受。\\\\n  related_experiments:\\\\n  - exp_id: exp007\\\\n    role: evidence\\\\n    result: 10 步 action_is_valid 仅 8.35%，语法正确但语义无效，指向命令知识缺失而非学习速度问题\\\\n  depends_on:\\\\n  - D005\\\\n- id: D007\\\\n  date: 2026-05-14 05:40 UTC\\\\n  summary: Kill exp011，改 reward function（连续score+降format penalty+group_size 16），从\\\\n    step 5 checkpoint 恢复\\\\n  rationale: Reward 分析确认：format_penalty(-0.1/turn)在零成功 group 中劫持 GRPO 梯度，模型只学格式不学任务（action_is_valid\\\\n    68% + success 0%）。A1 连续 score 给部分完成的轨迹提供梯度信号；A2 降 format_penalty 到 -0.01 避免淹没任务信号；B1\\\\n    group_size 8→16 提高正信号 group 比例（32%→53%）。从 step 5 恢复因其仍有 1.6% success 残余。\\\\n  related_experiments:\\\\n  - exp_id: exp010\\\\n    role: evidence\\\\n    result: failed - reward analysis revealed format penalty hijacking GRPO gradient\\\\n  - exp_id: exp011\\\\n    role: killed\\\\n    result: same reward config as exp010, will repeat collapse pattern\\\\n  depends_on:\\\\n  - D006\\\\n- id: D008\\\\n  date: 2026-05-14 05:41 UTC\\\\n  summary: Reviewer 确认 exp010 reward shaping 分析正确；A2(降 format_penalty)为 P0，A1(进度奖励)需先验证\\\\n    infos[\\\\\\\"score\\\\\\\"] 粒度\\\\n  rationale: Reviewer 独立验证了代码引用和根因诊断。新发现：env.py:137 未请求 score=True，AlfWorld 不同任务类型的\\\\n    score 粒度未知。A2（format_penalty→0 或 -0.01）风险最低——KL loss 已提供格式压力（SFT 模型 90% valid），penalty\\\\n    冗余且有害。exp011 从 step 10 恢复无 reward 修改=浪费算力，已在 D007 中 kill。\\\\n  related_experiments:\\\\n  - exp_id: exp010\\\\n    role: analysis_source\\\\n    result: failed\\\\n  - exp_id: exp011\\\\n    role: killed\\\\n    result: wasteful_resume_from_step10\\\\n  depends_on: []\\\\n- id: D009\\\\n  date: 2026-05-14 06:34 UTC\\\\n  summary: 强制 pre-flight checklist：每次实验提交前必须验证入口点、磁盘、参数兼容性、checkpoint 路径\\\\n  rationale: 18 个实验仅 1 成功，多数失败为可避免的工程问题（错误入口点、磁盘满、格式不兼容）。exp012 再次因用错入口点（agent_proxy\\\\n    vs train.py）失败。引入 pre-flight checklist 防止此类重复失败。\\\\n  related_experiments:\\\\n  - exp_id: exp012\\\\n    role: trigger\\\\n    result: failed - wrong entry point\\\\n  - exp_id: exp007\\\\n    role: prior failure\\\\n    result: failed - disk full\\\\n  - exp_id: exp003\\\\n    role: prior failure\\\\n    result: failed - format incompatibility\\\\n  depends_on:\\\\n  - D006\\\\n  - D008\\\\n- id: D010\\\\n  date: 2026-05-14 07:41 UTC\\\\n  summary: Kill exp012b（零梯度死锁），引入 dense reward shaping 设计 exp013，下调 MVP pass 标准至 success\\\\n    ≥ 20%\\\\n  rationale: 两位 Reviewer 独立确认：exp012b step 6-7 pg_loss=0, success=0%, pass@16=0%,\\\\n    advantages 全零。format_penalty=0 消除了组内 reward 方差，GRPO 无梯度信号。继续跑浪费 ~10.6 GPU-hours。核心问题是\\\\n    sparse binary reward + 弱基础模型 + GRPO 方差依赖 = 冷启动死锁。方向（SFT→GRPO）未被证伪，但需要 reward shaping\\\\n    打破死锁。76% MVP 标准不现实（Self-Guide 是非 RL 方法），下调至 20% 证明 GRPO 能学到有意义策略。\\\\n  related_experiments:\\\\n  - exp_id: exp012b\\\\n    role: trigger\\\\n    result: zero gradient deadlock - pg_loss=0, success=0%\\\\n  - exp_id: exp010\\\\n    role: comparison\\\\n    result: format_penalty=-0.1 had success=4.7% but gradient hijacking\\\\n  - exp_id: exp008_sft\\\\n    role: baseline\\\\n    result: SFT taught format compliance but not task strategy\\\\n  depends_on:\\\\n  - D008\\\\n  - D009\\\\n- id: D011\\\\n  date: 2026-05-14 07:41 UTC\\\\n  summary: Kill exp012b（零梯度死锁确认），引入 dense reward shaping，下调 MVP pass 标准至 success ≥\\\\n    20%\\\\n  rationale: Reviewer critical 确认：format_penalty=0 + binary reward + 0% success =\\\\n    零梯度死锁（pg_loss=0.0），模型完全不更新。exp010 的 format_penalty=-0.1 至少创造了 reward 方差但方向错误。根本问题是\\\\n    ALFWorld sparse binary reward + GRPO 在基础模型太弱时无法工作。解决方案：加 step-level dense reward\\\\n    shaping（子目标奖励），方向正确且创造梯度信号。76% 目标来自 Self-Guide 论文的非 RL 方法，30 步 GRPO 不可达，MVP pass\\\\n    下调至 success ≥ 20% + 明确上升趋势。\\\\n  related_experiments:\\\\n  - exp_id: exp012b\\\\n    role: trigger\\\\n    result: step 6-7 train success=0%, pg_loss=0.0, 零梯度\\\\n  - exp_id: exp010\\\\n    role: 对照\\\\n    result: format_penalty=-0.1 时 step 1 success=4.7% 但后续崩塌\\\\n  - exp_id: exp008_sft\\\\n    role: 基础\\\\n    result: SFT warmup 成功，action_is_valid 68-72%\\\\n  depends_on:\\\\n  - D008\\\\n  - D009\\\\n- id: D012\\\\n  date: 2026-05-14 12:40 UTC\\\\n  summary: 'exp013f negative: dense reward gaming — 下一步 success-gated bonus + 降低 bonus\\\\n    比例'\\\\n  rationale: exp013f 完成 30 步，dense reward (valid_action_bonus=0.15) 解决了 collapse（grad_norm\\\\n    稳定 1.7-8.15）但引发 reward gaming：action_is_valid 60%→97.5% 而 success 归零，score_max\\\\n    从 10+ 塌缩到 4.5。模型学会独立最大化 dense reward（29步×0.15=4.35）放弃高风险 success（10.0）。核心问题：dense\\\\n    reward 可被独立最大化。修复方向：(1) success-gated bonus 消除独立最大化路径 (2) 降低 bonus 到 0.01 测试弱信号是否足够\\\\n    (3) 前 N 步 warmup 后撤掉 bonus。优先级 exp014c > exp014a > exp014b。\\\\n  related_experiments:\\\\n  - exp_id: exp013f\\\\n    role: primary\\\\n    result: negative - reward gaming\\\\n  - exp_id: exp012b\\\\n    role: baseline\\\\n    result: negative - catastrophic collapse\\\\n  depends_on:\\\\n  - D011\\\\n- id: D013\\\\n  date: 2026-05-14 12:47 UTC\\\\n  summary: D012 修订：放弃 success-gated bonus（bootstrap 问题），改走 sparse GRPO + 训练稳定性修复\\\\n  rationale: Success-gated bonus 在 success≈0% 时退化为 sparse reward，无法解决冷启动。而 exp012b\\\\n    step 6 success=8.59% 证明 sparse GRPO 有信号，collapse（grad_norm 1.48→0.09）可能是 LR 过高\\\\n    / KL 过低导致的单步更新过激，不是 reward sparsity。方案 B（sparse GRPO + 极低 LR 1e-7 + KL 0.1 + gradient\\\\n    clipping）直接解决 collapse 且不引入新 reward hacking 风险。\\\\n  related_experiments:\\\\n  - exp_id: exp012b\\\\n    role: evidence\\\\n    result: step 6 success=8.59% proves sparse signal exists; collapse at step 7 was\\\\n      training instability\\\\n  - exp_id: exp013f\\\\n    role: evidence\\\\n    result: dense reward gaming confirms reward shaping risks\\\\n  depends_on:\\\\n  - D012\\\\n- id: D014\\\\n  date: 2026-05-14 13:44 UTC\\\\n  summary: Kill exp015（LR 1e-7 过保守，连续 3 步零梯度），启动 exp016 LR=5e-7 折中方案\\\\n  rationale: exp015 step 1-2 有梯度信号（pg_loss>0, success 3-5%），验证了 D013 的 collapse 修复。但\\\\n    step 3-5 连续零梯度，LR=1e-7 的参数更新量约 5e-12，模型行为无可观测变化。Kill 条件已满足。LR=1e-6（exp012b）collapse，LR=1e-7（exp015）不学习，取折中\\\\n    LR=5e-7 + 保留 KL=0.1 + grad_clip=1.0。从 exp015 step 5 checkpoint 恢复（保留 step 1-2\\\\n    的微小更新）。\\\\n  related_experiments:\\\\n  - exp_id: exp015\\\\n    role: primary\\\\n    result: kill - LR too conservative, 3 consecutive zero-gradient steps\\\\n  - exp_id: exp012b\\\\n    role: reference\\\\n    result: LR 1e-6 collapsed at step 7\\\\n  depends_on:\\\\n  - D013\\\\n- id: D015\\\\n  date: 2026-05-14 14:55 UTC\\\\n  summary: Kill exp016 — reward function 完全失效，12 步零 reward 信号，GPU 空转\\\\n  rationale: exp016 step 12/30，所有 step 的 raw_reward/advantages/returns 均为 0。Step 7\\\\n    出现 4.7% success 但 reward 仍为 0，说明 reward function 未正确将 success 映射到 reward。grad_norm\\\\n    ~0.85 仅来自 entropy loss，模型无 policy gradient 信号。疑似 checkpoint resume 后 reward config\\\\n    丢失。继续运行浪费 GPU。\\\\n  related_experiments:\\\\n  - exp_id: exp016\\\\n    role: subject\\\\n    result: killed — reward function broken\\\\n  depends_on:\\\\n  - D014\\\\n- id: D016\\\\n  date: 2026-05-14 14:57 UTC\\\\n  summary: Pivot to Expert SFT warmup — GRPO 在 base success ~1-2% 下无法工作，LR 搜索区间穷尽\\\\n  rationale: Reviewer critical 分析确认：exp016 step 7 pg_loss=0.000151 证明 reward function\\\\n    本身可用，但 7 步中仅 1 步有 success（14%），步骤 8-12 连续 5 步零梯度。反推 base success rate ~1-2%，GRPO\\\\n    在此 sparsity 下无法产生有效学习。LR 搜索已覆盖 1e-6（collapse）→ 5e-7（无效学习）→ 1e-7（零梯度），区间穷尽。Pivot\\\\n    到 expert SFT：用 ALFWorld HandCodedTWAgent 收集的 expert trajectories（当前 ~61-70%）做\\\\n    SFT warmup，将 base success 提升到 10-15% 后再上 sparse GRPO。\\\\n  related_experiments:\\\\n  - exp_id: exp016\\\\n    role: evidence\\\\n    result: 6/7 steps zero gradient, base success ~1-2%\\\\n  - exp_id: exp015\\\\n    role: evidence\\\\n    result: LR=1e-7 zero gradients after step 3\\\\n  - exp_id: exp012b\\\\n    role: evidence\\\\n    result: LR=1e-6 catastrophic collapse\\\\n  depends_on:\\\\n  - D015\\\\n  - D014\\\\n  - D013\\\\n- id: D017\\\\n  date: 2026-05-14 15:20 UTC\\\\n  summary: D015 误诊纠正 — reward pipeline 正常，exp016 失败原因是 base success 太稀疏（1/8 步有信号）\\\\n  rationale: Reviewer 逐行核实 exp016.log：Step 7 critic/score/mean=0.46875（= 3/64 × 10.0）、critic/score/max=10.0、pg_loss=0.000151、grad_norm=2.0，reward\\\\n    function 完全正确。Agent 报告的 raw_reward=0 来自 es_manager 的 info.get('raw_reward', 0.0)\\\\n    日志 artifact，ALFWorld env info 不含此 key。NaiveRewardManager 检测到 rm_scores 后 pass-through，agent_trainer.py:779\\\\n    不是覆写。D016 Expert SFT pivot 仍成立，理由修正为 base success ~4.7%（仅 1/8 步有 success）太稀疏。\\\\n  related_experiments:\\\\n  - exp_id: exp016\\\\n    role: evidence\\\\n    result: reward pipeline confirmed working; killed due to sparse success, not bug\\\\n  depends_on:\\\\n  - D015\\\\n  - D016\\\\n- id: D018\\\\n  date: 2026-05-14 16:37 UTC\\\\n  summary: exp017 eval 5% success（低于 10% 阈值），采用方案 B+C：修复数据格式 + 从 exp008_sft checkpoint\\\\n    继续微调\\\\n  rationale: 'exp017 SFT eval: 5% success (1/20)，format_ok 从 100% 降至 75%，action_is_valid\\\\n    从 90% 降至 63.8%。25% episodes parse 失败（1 步退出）。expert trajectory 格式与 RAGEN &lt;think>/&lt;answer>\\\\n    不完全匹配，SFT 学到任务知识但破坏了 format 合规性。方案：(1) 修复 expert data 格式对齐 RAGEN template (2)\\\\n    从 exp008_sft checkpoint 开始微调（已有 100% format_ok），用较低 LR 防止遗忘 format。预计 ~1.5h。方案\\\\n    A（直接 GRPO）信号改善极小（5% vs 4.7%），方案 D 工程量太大。'\\\\n  related_experiments:\\\\n  - exp_id: exp017_expert_sft\\\\n    role: evidence\\\\n    result: 5% success, format_ok 75%, below 10% threshold\\\\n  - exp_id: exp008_sft\\\\n    role: baseline\\\\n    result: 0% success but 100% format_ok, 90% action_is_valid\\\\n  depends_on:\\\\n  - D016\\\\n  - D017\\\\n- id: D019\\\\n  date: 2026-05-14 16:48 UTC\\\\n  summary: Kill exp019 — move→put 替换方向错误，admissible_commands 中是 move 不是 put\\\\n  rationale: Reviewer critical 确认：ALFWorld handcoded expert 代码 5 种任务类型全部用 \\\\\\\"move {}\\\\n    to {}\\\\\\\" 检查 admissible_commands，RAGEN env.py action_is_available 检查 action in admissible_commands。fix_expert_sft_format.py\\\\n    将 2157 条正确的 \\\\\\\"move\\\\\\\" 替换为 \\\\\\\"put in/on\\\\\\\"，教模型产生不在 admissible_commands 中的动作，会进一步恶化 action_is_valid。正确修复方向：保留\\\\n    \\\\\\\"move\\\\\\\" 原样，在 observation 中添加 admissible actions 列表后缀。\\\\n  related_experiments:\\\\n  - exp_id: exp019_expert_sft_v2\\\\n    role: subject\\\\n    result: killed — trained on incorrectly modified data (move→put)\\\\n  depends_on:\\\\n  - D018\\\\n- id: D020\\\\n  date: 2026-05-14 21:53 UTC\\\\n  summary: exp019b SFT eval 通过（20% success），启动 GRPO 训练\\\\n  rationale: exp019b 三项指标全部达标：success=20%, format_ok=100%, action_is_valid=85.3%。admissible\\\\n    actions augmentation 是关键因素（exp017 无→5%, exp019b 有→20%）。SFT checkpoint 已提供足够 base\\\\n    success rate，GRPO 应有足够非零 reward groups 产生有效梯度。从 exp019b checkpoint 启动 sparse GRPO\\\\n    是 MVP gate 最后一步。\\\\n  related_experiments:\\\\n  - exp_id: exp019b_expert_sft_v3\\\\n    role: evidence\\\\n    result: success=20%, format_ok=100%, action_is_valid=85.3%\\\\n  - exp_id: exp017_expert_sft\\\\n    role: baseline\\\\n    result: success=5%, format_ok=75% (无 admissible actions)\\\\n  depends_on:\\\\n  - D018\\\\n  - D019\\\\n- id: D021\\\\n  date: 2026-05-14 22:34 UTC\\\\n  summary: exp020 系列 0% success 根因确认：SFT 训练格式与 RAGEN 格式不匹配，走方案 B 重训\\\\n  rationale: 同一 checkpoint 在 eval_sft_fast 中 20% success，在 RAGEN 中 0%。根因三个：(1) system\\\\n    prompt 矛盾（RAGEN 说不要标签又说要标签）(2) observation 格式完全不同（RAGEN 有 Turn N/State/Reward\\\\n    包装，SFT 数据没有）(3) temperature 差异。RAGEN 的多轮结构是 GRPO rollout 必需的，不能去掉。正确方案是将 SFT 数据转换为\\\\n    RAGEN 格式重训，而非改 RAGEN 适配 SFT。\\\\n  related_experiments:\\\\n  - exp_id: exp020_grpo_from_sft\\\\n    role: evidence\\\\n    result: AssertionError, 未运行\\\\n  - exp_id: exp020b_grpo_from_sft\\\\n    role: evidence\\\\n    result: val_before_train success=0%, action_is_valid=16.7%\\\\n  - exp_id: exp020c_grpo_from_sft\\\\n    role: evidence\\\\n    result: hydra config error\\\\n  - exp_id: exp020d_grpo_from_sft\\\\n    role: evidence\\\\n    result: killed, 同 exp020b 配置\\\\n  depends_on:\\\\n  - D020\\\\n- id: D022\\\\n  date: 2026-05-15 01:07 UTC\\\\n  summary: exp020b GRPO 失败，确认 eval mismatch 是根因，恢复 D021 RAGEN 格式重训路线\\\\n  rationale: exp020b 30步中跑了22步，train success从18.75%降到4.69%，val success始终0%，entropy坍缩61%。核心问题不是GRPO算法，而是SFT模型在RAGEN多轮框架下表现与eval_sft_fast完全不同（0%\\\\n    vs 20%）。之前Reviewer修正认为\\\\\\\"0%是样本量问题\\\\\\\"是错误的——22步训练确认了系统性不一致。D021（将SFT数据转换为RAGEN格式重训）是正确方向，恢复执行。\\\\n  related_experiments:\\\\n  - exp_id: exp020b_grpo_from_sft\\\\n    role: evidence\\\\n    result: train success 18.75%→4.69%, val success=0%, entropy collapse\\\\n  - exp_id: exp019b_expert_sft_v3\\\\n    role: baseline\\\\n    result: eval_sft_fast 20% but RAGEN val 0%\\\\n  depends_on:\\\\n  - D020\\\\n  - D021\\\\n- id: D023\\\\n  date: 2026-05-15 03:16 UTC\\\\n  summary: exp021 RAGEN 格式 SFT 验证通过（25% success），批准 exp022 GRPO\\\\n  rationale: exp021 在 RAGEN val 中 success=25%, action_is_valid=87.5%，全部达标。对比 exp019b\\\\n    在 RAGEN val 中 0% success，证明格式对齐是根因且修复生效。25% baseline 是目前最强起点，配合加强的 KL 约束（0.1→0.5）应能避免\\\\n    exp020b 的 entropy 坍缩。\\\\n  related_experiments:\\\\n  - exp_id: exp021_ragen_sft_v4\\\\n    role: evidence\\\\n    result: RAGEN val success=25%, action_is_valid=87.5%\\\\n  - exp_id: exp019b_expert_sft_v3\\\\n    role: baseline\\\\n    result: RAGEN val success=0%\\\\n  - exp_id: exp020b_grpo_from_sft\\\\n    role: negative\\\\n    result: train success 18.75%→4.69%, entropy collapse\\\\n  depends_on:\\\\n  - D021\\\\n  - D022\\\\n- id: D024\\\\n  date: 2026-05-15 03:21 UTC\\\\n  summary: exp021 结论降级为 inconclusive，exp022 暂不 kill 等 step 0 val 确认\\\\n  rationale: exp021 两次独立 eval 严重矛盾：4-episode val_before_train 25% success vs ~16-episode\\\\n    eval 6.25% success。4-episode 估计方差过大不可靠，25% 结果很可能是高方差幸运值。exp022 基于该不可靠数据启动，但已在运行中——让\\\\n    step 0 val_before_train 给出更可靠的 baseline 数字再决定是否 kill，避免白白浪费已投入的启动时间。同时 Reviewer\\\\n    指出 exp022 的 val env_groups=8 override 可能未生效（config dump 显示 4），需立即验证。\\\\n  related_experiments:\\\\n  - exp_id: exp021_ragen_sft_v4\\\\n    role: trigger\\\\n    result: inconclusive — 4-ep 25% vs 16-ep 6.25%\\\\n  - exp_id: exp022_grpo_from_sft_v4\\\\n    role: at_risk\\\\n    result: running, awaiting step 0 val confirmation\\\\n  depends_on:\\\\n  - D023\\\\n- id: D025\\\\n  date: 2026-05-15 05:14 UTC\\\\n  summary: Sparse binary GRPO 路线终止。三次一致退化（exp020b/exp022/exp023c），KL 仅 0.0005 时 success\\\\n    已退化，算法与稀疏 reward 结构性不匹配。Pivot 到两条并行路线：(1) success-gated dense reward GRPO，(2)\\\\n    GiGPO cherry-pick\\\\n  rationale: '三次 GRPO 实验（exp020b kl=0.1, exp022 kl=0.5, exp023c kl=0.5 serial）均呈现同一模式：entropy\\\\n    收缩 + success 退化 + KL 极低（策略几乎未移动就已退化）。根因：sparse binary reward（0/10）下绝大多数 GRPO group\\\\n    全零 reward → advantage≈0 → 有效梯度来自极少数成功 episode → 不足以引导策略改进。kl_loss_coef 从 0.1 到\\\\n    0.5 仅减缓退化速度未改变方向。这是算法-任务结构性不匹配，非超参问题。\\\\n\\\\n\\\\n    两条 pivot 路线：\\\\n\\\\n    (1) Success-gated dense reward：从 exp021 checkpoint（25% success）出发，给 valid_action\\\\n    加 bonus 但仅在 episode 成功时给。exp013f 失败原因是 unconditional bonus → reward gaming；success-gating\\\\n    消除独立最大化路径。代码改动小，可当天启动。\\\\n\\\\n    (2) GiGPO cherry-pick：step-level advantage estimation 提供更密集的信号，解决 credit assignment。已有迁移方案（3-5天），作为更彻底的解决方案。'\\\\n  related_experiments:\\\\n  - exp_id: exp020b_grpo_from_sft\\\\n    role: evidence\\\\n    result: 'failed: entropy collapse 61%, success→0%'\\\\n  - exp_id: exp022_grpo_from_sft_v4\\\\n    role: evidence\\\\n    result: 'killed: step 0 action_is_valid 48.75%'\\\\n  - exp_id: exp023c_grpo_serial\\\\n    role: evidence\\\\n    result: 'failed: 8 steps success 29.7%→23.4%, disk full crash'\\\\n  - exp_id: exp013f\\\\n    role: lesson\\\\n    result: unconditional dense reward → gaming\\\\n  depends_on:\\\\n  - D022\\\\n  - D023\\\\n  - D024\\\\n- id: D026\\\\n  date: 2026-05-15 05:15 UTC\\\\n  summary: GRPO in RAGEN 确认失败（3/3），pivot 到 verl-agent GiGPO cherry-pick（Plan C）\\\\n  rationale: 三次 GRPO 实验（exp020b/exp022/exp023c）一致表现为 entropy 坍缩 + success 退化。但 Self-Guide\\\\n    论文证明 GRPO 在 ALFWorld 上可以达到 72.7%（verl-agent 框架），说明问题不是 GRPO+sparse reward 本身，而是\\\\n    RAGEN 框架。RAGEN 的 full-history concatenation 导致 context 随步数爆炸，1.7B 模型在长 context\\\\n    下推理质量退化。verl-agent 的 step-independent rollout 保持 context 恒定。IDEA_BRIEF 原始设计也指定\\\\n    verl-agent。采用 Plan C（cherry-pick GiGPO + 核心 rollout 机制，3-5 天），避免 Plan A/B 的 2-4\\\\n    周全量迁移风险。\\\\n  related_experiments:\\\\n  - exp_id: exp020b_grpo_from_sft\\\\n    role: evidence\\\\n    result: 'failed: entropy collapse, success 18.75%→4.69%'\\\\n  - exp_id: exp022_grpo_from_sft_v4\\\\n    role: evidence\\\\n    result: 'killed: step 0 action_is_valid 48.75%'\\\\n  - exp_id: exp023c_grpo_serial\\\\n    role: evidence\\\\n    result: 'failed: step 9 disk full, 8 steps showed success 29.7%→23.4%, entropy\\\\n      shrinking'\\\\n  depends_on:\\\\n  - D022\\\\n  - D023\\\\n  - D024\\\\n- id: D027\\\\n  date: 2026-05-15 05:25 UTC\\\\n  summary: Kill exp024 (success-gated GRPO) — D026 已终止 RAGEN GRPO 路线，success-gated\\\\n    不解决 context 爆炸根因\\\\n  rationale: Reviewer 审查报告指出决策链冲突：D026 已明确 pivot 到 verl-agent GiGPO 并终止 RAGEN GRPO\\\\n    路线，但 exp024 仍是 RAGEN GRPO（仅改 reward 为 success-gated）。三点判断：(1) success-gated reward\\\\n    不解决 RAGEN full-history concatenation 导致的 context 爆炸——这是 exp020b/022/023c 三次退化的共因；(2)\\\\n    D013 之前已因 bootstrap 问题否决 success-gated（success≈0% 退化为 sparse），当前 baseline 6.25%\\\\n    仍然很低；(3) 3/3 RAGEN GRPO 退化 pattern 下第 4 次仅改 reward 极不可能成功。GPU 应腾出用于 verl-agent\\\\n    GiGPO cherry-pick 准备。\\\\n  related_experiments:\\\\n  - exp_id: exp024\\\\n    role: killed\\\\n    result: D026后应终止，step 0/30 刚启动\\\\n  - exp_id: exp020b_grpo_from_sft\\\\n    role: evidence\\\\n    result: RAGEN GRPO 退化 1/3\\\\n  - exp_id: exp022_grpo_from_sft_v4\\\\n    role: evidence\\\\n    result: RAGEN GRPO 退化 2/3\\\\n  - exp_id: exp023c_grpo_serial\\\\n    role: evidence\\\\n    result: RAGEN GRPO 退化 3/3\\\\n  depends_on:\\\\n  - D026\\\\n  - D025\\\\n- id: D028\\\\n  date: 2026-05-15 08:32 UTC\\\\n  summary: 终止 verl-agent 直接运行尝试，全力转向 Track B cherry-pick（步独立 rollout + GiGPO 整合到 RAGEN）\\\\n  rationale: 'verl-agent 在 bjb1-17606 上 6 次启动失败（exp025→exp025b×3→dry run v7/v8/threadopt），根因是\\\\n    AutoDL 容器 cgroup pids.max=20480 限制。Ray 集群 + FSDP + vLLM TP 的线程总数超过此限制，即使单 GPU\\\\n    降级配置也在训练阶段崩溃。AutoDL 无法调整 pids.max，暂无非容器化服务器可用。继续在同一配置重试无意义。\\\\n\\\\n\\\\n    Track B cherry-pick 是可行路径：将 step-independent rollout + GiGPO 算法整合到 RAGEN 代码库（不依赖\\\\n    Ray，已验证可在此服务器运行）。Track B 分析报告已完成（gigpo_cherry_pick_plan.md），方案明确（~480 行新增 + ~200\\\\n    行修改，8 文件，3-5 天）。\\\\n\\\\n\\\\n    附带收获：verl-agent val_before_train 产出了 Qwen3-1.7B raw baseline（success=6.2%，与 RAGEN\\\\n    SFT 后的 6.25% 接近），确认模型基础能力跨框架一致，训练算法是关键差异。'\\\\n  related_experiments:\\\\n  - exp_id: exp025\\\\n    role: evidence\\\\n    result: 'failed: conda env 错误'\\\\n  - exp_id: exp025b\\\\n    role: evidence\\\\n    result: 'failed: 3次启动失败（vllm模块/Ray GCS/EAGAIN）'\\\\n  - exp_id: exp025c\\\\n    role: evidence\\\\n    result: 未提交，threadopt dryrun 训练阶段崩溃\\\\n  depends_on:\\\\n  - D026\\\\n  - D027\\\\n- id: D029\\\\n  date: 2026-05-15 11:14 UTC\\\\n  summary: exp026 registry 被 cron 误标 DONE(failed)，实际训练仍在运行；速度修正为 30-60min/step（总计\\\\n    75-150h）\\\\n  rationale: Cron 5 次检查因 WANDB_MODE=disabled 无法读取指标，自动判定进程死亡并标记 failed。但 PID 存活、GPU\\\\n    双卡 100% 利用率、日志持续写入。DONE→RUNNING 转换被 registry 禁止，需在训练真正完成后手动更新 conclusion。速度估算从之前的\\\\n    21min/step 修正为 30-60min/step（step 0 含 val_before_train 耗时 ~40min），150 steps 预计\\\\n    3-6 天完成。教训：后续实验必须启用 W&B 或 sentinel file 避免 cron 误判。\\\\n  related_experiments:\\\\n  - exp_id: exp026_step_independent_grpo\\\\n    role: subject\\\\n    result: running (registry incorrectly shows failed)\\\\n  depends_on:\\\\n  - D028\\\\n- id: D030\\\\n  date: 2026-05-15 11:50 UTC\\\\n  summary: exp026 等待期并行实现 B-IAVR 核心机制代码（action-change gating），不再空等 baseline 结果\\\\n  rationale: Reviewer 战略审查指出：50 个实验全在 pipeline debugging，核心 B-IAVR 选择性验证机制零实现。即使 exp026\\\\n    成功（weak story），真正的论文实验（有/无 selective verification ablation）还没开始。利用 3-6 天训练等待期提前铺核心代码，exp026\\\\n    出结果后可直接进入核心实验阶段，压缩整体时间线。\\\\n  related_experiments:\\\\n  - exp_id: exp026_step_independent_grpo\\\\n    role: baseline\\\\n    result: running\\\\n  - exp_id: exp020b_grpo_from_sft\\\\n    role: evidence\\\\n    result: failed - entropy collapse\\\\n  - exp_id: exp022_grpo_from_sft_v4\\\\n    role: evidence\\\\n    result: failed - entropy collapse\\\\n  - exp_id: exp023c_grpo_serial\\\\n    role: evidence\\\\n    result: failed - entropy collapse\\\\n  depends_on:\\\\n  - D029\\\\n  - D028\\\\n- id: D031\\\\n  date: 2026-05-15 12:13 UTC\\\\n  summary: B-IAVR 代码审查通过（Reviewer info），Phase B 前必须解决两个 warning：&lt;VERIFY> special token\\\\n    注册 + a_pre 推理开销量化\\\\n  rationale: Reviewer 审查 B-IAVR 核心代码：reward 公式/Lagrangian 更新/模块化设计/52 个测试全通过，与 IDEA_BRIEF\\\\n    一致。但 &lt;VERIFY> 若被 tokenizer 拆为 8 个子 token 会显著增加学习难度（必须注册为 special token）；a_pre\\\\n    每次 verify step 额外一次 greedy decode 可能增加 15-30% 步耗时（需 dry run 量化）。这两项是 Phase B 集成前的硬性前置。\\\\n  related_experiments:\\\\n  - exp_id: exp026_step_independent_grpo\\\\n    role: baseline_for_phase_b\\\\n    result: running\\\\n  depends_on:\\\\n  - D030\\\\n- id: D032\\\\n  date: 2026-05-15 12:33 UTC\\\\n  summary: exp026 前 2 步训练指标强正向（success 6.25%→32.81%，entropy 未 collapse），等 step 5 val\\\\n    做 MVP 判定\\\\n  rationale: 从 Ray worker stdout logs 提取到训练指标，解决了之前的盲飞问题。Step 1 train success 21.88%\\\\n    已超 MVP 目标（20%），但 train ≠ val，需等 step 5 val（test_freq=5）确认。Entropy 上升（0.267→0.317）而非\\\\n    collapse，与之前 3 次 RAGEN GRPO 失败形成鲜明对比，确认 step-independent context + step-level\\\\n    credit assignment 是关键因素。MVP 判定标准：val success ≥ 20% → complete_mvp()。\\\\n  related_experiments:\\\\n  - exp_id: exp026_step_independent_grpo\\\\n    role: subject\\\\n    result: train success 32.81% at step 2, awaiting step 5 val\\\\n  depends_on:\\\\n  - D029\\\\n  - D030\\\\n- id: D033\\\\n  date: 2026-05-15 13:02 UTC\\\\n  summary: exp026 registry 误判修复：cron 因 WANDB_MODE=disabled + 监控错误 PID 误标 DONE(failed)，实际训练正常运行（PID\\\\n    781795）。已重置 RUNNING 并修正监控。后续实验硬规则：禁止 WANDB_MODE=disabled\\\\n  rationale: 两个根因：(1) WANDB_MODE=disabled 导致 cron 无 sentinel/metrics 可检测；(2) 监控了 shell\\\\n    wrapper PID 778562 而非实际训练进程 PID 781795。Reviewer 交叉验证确认 step 1-2 指标真实。修复后 cron\\\\n    间隔 300s 监控正确 PID + log_path。教训沉淀：所有实验必须启用 W&B 以确保 cron 可监控。\\\\n  related_experiments:\\\\n  - exp_id: exp026_step_independent_grpo\\\\n    role: affected\\\\n    result: registry reset to RUNNING, actual training healthy\\\\n  depends_on:\\\\n  - D029\\\\n  - D032\\\\n- id: D034\\\\n  date: 2026-05-15 13:38 UTC\\\\n  summary: 建立两级阈值：MVP=20% val（训练可行性 checkpoint），论文 baseline 最低要求=50% val（B-IAVR 的\\\\n    always-on baseline 需与 Self-Guide 72.7% 可比才有说服力）\\\\n  rationale: Reviewer 独立评估指出：Self-Guide 在 ALFWorld 上 Qwen3-1.7B GRPO baseline 已达 72.7%，20%\\\\n    val 处于所有已发表 baseline 底部。step-independent rollout 是 verl-agent cherry-pick 不算本项目贡献，论文贡献必须来自\\\\n    B-IAVR。在弱 agent（20%）上证明选择性验证的 cost-efficiency 没有说服力——需要 baseline 至少 50-60% 才能让\\\\n    B-IAVR 的 Pareto efficiency claim 有意义。MVP 阈值保持 20% 不变（证明 GRPO 在 RAGEN 能跑），但内部明确论文可行性需要\\\\n    val 收敛到更高水平。Reviewer 估计 150 步训练后 val 可达 60-70%，与 Self-Guide no-SG baseline 可比。\\\\n  related_experiments:\\\\n  - exp_id: exp026_step_independent_grpo\\\\n    role: baseline\\\\n    result: train 32.81% @ step 2, val pending\\\\n  depends_on:\\\\n  - D032\\\\n  - D033\\\\n- id: D035\\\\n  date: 2026-05-15 14:01 UTC\\\\n  summary: exp026 训练不稳定（step 2 峰值 32.81% → step 4 归零），准备 exp027 调参重跑；save_freq 必须降至\\\\n    5\\\\n  rationale: Step 4 success=0%, pass@16=0。非 entropy collapse（entropy 稳定 0.387），而是\\\\n    step 3 负梯度过度纠正导致保守退化（KL 回落至 0.054，action_is_valid 反升至 71.7%）。LR=1e-6 对 step-level\\\\n    reward 的高方差梯度过大。save_freq=25 导致 step 2 的 32.81% 峰值无 checkpoint 可恢复——这是最大损失。exp027\\\\n    方向：降 LR（→5e-7）、升 KL coef（0.01→0.04）、save_freq=5。等 step 5 val 确认后正式切换。\\\\n  related_experiments:\\\\n  - exp_id: exp026_step_independent_grpo\\\\n    role: evidence\\\\n    result: 'training unstable: peak 32.81% at step 2, collapsed to 0% at step 4'\\\\n  depends_on:\\\\n  - D032\\\\n- id: D036\\\\n  date: 2026-05-15 14:07 UTC\\\\n  summary: Reviewer critical 确认 exp026 GRPO 死亡螺旋：step 4 success=0%，KL→0.0025 策略回退到\\\\n    reference，exp027 需针对性解决稀疏奖励崩塌\\\\n  rationale: Reviewer 独立核实训练指标：step 2 峰值 32.81% 后单调下降，step 4 完全崩塌（64 rollout 全失败）。KL\\\\n    单调递减说明策略不是发散而是回退到 reference，固定 KL penalty 无效。exp027 必须引入 dynamic sampling（过滤零奖励\\\\n    batch）+ 调整 clip ratio + 可能加 entropy bonus 维持探索。已向 Agent 发送 exp027 设计修正指令。\\\\n  related_experiments:\\\\n  - exp_id: exp026_step_independent_grpo\\\\n    role: primary\\\\n    result: collapsing\\\\n  - exp_id: exp027_stable_grpo\\\\n    role: next\\\\n    result: preparing\\\\n  depends_on:\\\\n  - D035\\\\n- id: D037\\\\n  date: 2026-05-15 15:17 UTC\\\\n  summary: exp027 val 判定阈值：<20% fail、20-25% weak (=SFT)、30%+ proceed Phase B。Reviewer\\\\n    指出 GRPO 从未在 val 超越 SFT baseline，train-val gap 是系统性风险。\\\\n  rationale: 'Reviewer pass/fail 评估揭示关键事实：51 个实验中所有 GRPO 的 val success 均为 0-12.5%，而\\\\n    SFT (exp019b) 已达 20%。exp026 的 32.81% 是 train success，已知 train-val 差距巨大（exp023c:\\\\n    train 29.7% vs val 6.25%）。因此 exp027 的判定必须基于 val success：(1) val<20% → MVP 失败，需\\\\n    pivot（换服务器跑 verl-agent 原版 or 重评项目）；(2) val 20-25% → GRPO 仅匹配 SFT，RL 训练贡献为零，需重新评估\\\\n    Phase B 是否建在 SFT 上；(3) val≥30% → GRPO 首次超越 SFT，Phase B 有意义的 baseline，proceed。A\\\\n    类会议需 val≥40% + 第二环境 + 模型规模实验，预估 500-800 GPU-h。'\\\\n  related_experiments:\\\\n  - exp_id: exp027_stable_grpo\\\\n    role: 被判定对象\\\\n    result: running\\\\n  - exp_id: exp026_step_independent_grpo\\\\n    role: 前置实验\\\\n    result: negative\\\\n  - exp_id: exp019b_expert_sft_v3\\\\n    role: SFT baseline对照\\\\n    result: success\\\\n  depends_on:\\\\n  - D036\\\\n  - D034\\\\n- id: D038\\\\n  date: 2026-05-15 15:17 UTC\\\\n  summary: Reviewer 评估 exp027 pass/fail 论文可行性：修正 claim 强度阈值，确认 val success 是唯一判定标准\\\\n  rationale: 'Reviewer 指出关键事实：GRPO 从未在 val 上超越 SFT baseline（RAGEN 框架内 6.25%）。exp026\\\\n    的 32.81% 是 train success 不是 val success，train-val 差距系统性存在（exp023c: train 29.7%\\\\n    vs val 6.25%）。但 Reviewer 混淆了两个 eval 框架：exp019b 的 20% 是 eval_sft_fast（非 RAGEN eval），RAGEN\\\\n    框架内 SFT baseline 是 6.25%（exp021 C003-compliant 16ep eval）。因此 exp027 val ≥ 20%\\\\n    = 3.2× SFT baseline，仍是有意义的 RL 贡献，不是\\\\\\\"仅匹配 SFT\\\\\\\"。但 Reviewer 对 A 类会议的要求评估（Phase B +\\\\n    ablation + 第二环境 + scaling = 500-800 GPU-h）是合理的。结论：val success 是唯一判定标准，train success\\\\n    仅作 training dynamics 参考；MVP 20% 的门槛在 RAGEN eval 框架下仍然有效且有意义。'\\\\n  related_experiments:\\\\n  - exp_id: exp027_stable_grpo\\\\n    role: subject\\\\n    result: running\\\\n  - exp_id: exp026_step_independent_grpo\\\\n    role: evidence\\\\n    result: negative\\\\n  - exp_id: exp021_ragen_sft_v4\\\\n    role: baseline\\\\n    result: negative\\\\n  - exp_id: exp019b_expert_sft_v3\\\\n    role: baseline\\\\n    result: success\\\\n  depends_on:\\\\n  - D036\\\\n  - D034\\\\n- id: D039\\\\n  date: 2026-05-15 16:57 UTC\\\\n  summary: 论文 framing 方向锁定：cost-efficiency story，不走 performance story；ARES 为主要竞争对标\\\\n  rationale: Related work survey + Reviewer 评估揭示：ALFWorld SOTA 88-93%，我们最好 6.25%，即使\\\\n    exp027 达 40% 仍是 bottom tier，performance story 死路。唯一可行路径是 cost-efficiency framing——\\\\\\\"在接近\\\\n    Self-Guide 性能的前提下，通过 RL-trained selective verification 减少 verification 开销\\\\\\\"。ARES\\\\n    (arXiv 2603.07915) 是最近竞争者（per-step adaptive computation），差异化点：(1) binary verify/not-verify\\\\n    决策更简洁可解释 vs ARES 连续 effort selection，(2) action-change 作为 environment-grounded\\\\n    reward signal vs ARES 的 SFT router，(3) interactive agent 场景 vs general reasoning。前提条件：baseline\\\\n    必须 ≥50%（接近 Self-Guide 72.7%），否则 cost-efficiency claim 无意义。\\\\n  related_experiments:\\\\n  - exp_id: exp027_stable_grpo\\\\n    role: MVP gating\\\\n    result: running\\\\n  - exp_id: exp026_step_independent_grpo\\\\n    role: evidence for step-independent approach\\\\n    result: negative (peak 32.81% then collapsed)\\\\n  - exp_id: exp021_ragen_sft_v4\\\\n    role: SFT baseline\\\\n    result: 6.25% success\\\\n  depends_on:\\\\n  - D038\\\\n  - D037\\\\n- id: D040\\\\n  date: 2026-05-15 18:27 UTC\\\\n  summary: 修正 exp027 step 3 判定框架为三层阈值，Plan B kl_coef 上调至 0.015-0.02，中期评估 adaptive\\\\n    KL\\\\n  rationale: Reviewer 独立评估确认 step 2 KL 0.058→0.413 (7x) 为强警告信号，kl_coef=0.005 约束过弱。exp026(KL\\\\n    collapse)+exp027(KL spike) 揭示固定 kl_coef 的 Goldilocks zone 极窄。修正：(1) 三层判定——绿(success≥10%+KL<0.3)、黄(success≥6.25%+KL\\\\n    0.3-0.6，准备 Plan B)、红(success<6.25%或KL>0.6，终止)；(2) Plan B kl_coef 从 0.01-0.02 收窄至\\\\n    0.015-0.02（0.01 在 exp026 已失败）；(3) 增加 entropy(<0.15=collapse)/pass@16(<0.5=零批次风险)/grad_norm(>25=不稳定)\\\\n    三个辅助监控维度；(4) 中期评估 adaptive KL 实现成本。\\\\n  related_experiments:\\\\n  - exp_id: exp027_stable_grpo\\\\n    role: primary\\\\n    result: step2 KL spike 0.413, success drop to 10.16%\\\\n  - exp_id: exp026_step_independent_grpo\\\\n    role: reference\\\\n    result: 'symmetric failure: KL collapse to 0.0025'\\\\n  depends_on:\\\\n  - D037\\\\n- id: D041\\\\n  date: 2026-05-15 19:50 UTC\\\\n  summary: exp027 瓶颈诊断为 sparse reward 学习信号不足而非 KL 不稳定；Plan B(adaptive KL) 降级，Plan\\\\n    D(GiGPO/step-level credit) 升为首选备选路线\\\\n  rationale: Reviewer 独立评估：(1) train success 连续两步 10.16%=plateau，pass@16 从 100%→50%\\\\n    说明仅 4/8 env groups 有学习信号；(2) exp026(太激进crash)+exp027(太保守plateau)构成稳定性-效率 dilemma，纯超参调整无法解决；(3)\\\\n    adaptive KL 解决的是 KL 振荡，但 KL 已自修正（0.413→0.248），不是当前瓶颈；(4) Self-Guide 同模型同环境达 72.7%，差异在\\\\n    step-level dense reward vs binary sparse reward；(5) GiGPO/step-level credit 打破\\\\n    plateau 概率 40-70% vs 当前 recipe 15-25%。决策：exp027 跑到 step 10（早停条件 train≤12%），并行准备\\\\n    Plan D。\\\\n  related_experiments:\\\\n  - exp_id: exp027_stable_grpo\\\\n    role: primary\\\\n    result: step2-3 train success plateau at 10.16%, pass@16 declining\\\\n  - exp_id: exp026_step_independent_grpo\\\\n    role: reference\\\\n    result: aggressive config crashed, complementary failure mode\\\\n  depends_on:\\\\n  - D040\\\\n  - D037\\\\n- id: D042\\\\n  date: 2026-05-15 19:50 UTC\\\\n  summary: 采纳 Reviewer 建议：exp027 跑到 step 10 评估，同时并行准备 Plan D（GiGPO/step-level credit\\\\n    assignment），不再把 adaptive KL 作为首选 Plan B\\\\n  rationale: Reviewer 独立评估 exp027 中期趋势：train success 连续两步 10.16% plateau，pass@16 从\\\\n    100%→50% 持续下滑，50 步内 val 突破 20% 概率 <10%。核心瓶颈已从 KL 不稳定（已自修正）转为学习信号密度不足——sparse binary\\\\n    reward + GRPO 在 8 env groups 下信号太稀疏。Adaptive KL 只解决 KL 振荡不解决信号密度问题。Self-Guide\\\\n    论文用同模型同环境达 72.7%，差异在 co-evolving internal reward（step-level dense reward）。Plan\\\\n    D（GiGPO/step-level credit）估计 40-55% 概率达 20% val，远高于当前 recipe 的 15-25%。决策：(1) exp027\\\\n    继续到 step 10（~12h），如 train success ≤12% 终止；(2) 立即并行准备 Plan D 代码和方案；(3) Adaptive\\\\n    KL 降级为 Plan D 的辅助选项而非独立方案。\\\\n  related_experiments:\\\\n  - exp_id: exp027_stable_grpo\\\\n    role: primary\\\\n    result: step 3 绿区但 plateau at 10.16%, pass@16 下滑\\\\n  - exp_id: exp026_step_independent_grpo\\\\n    role: reference\\\\n    result: 对称失败模式：KL collapse vs KL spike\\\\n  depends_on:\\\\n  - D040\\\\n  - D037\\\\n\\\", \\\"total_chars\\\": 30851, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/decisions.yaml\", \"content\": \"_next_id: 43\\ndecisions:\\n- id: D001\\n  date: 2026-05-13 17:33 UTC\\n  summary: MVP 选择 ALFWorld + Qwen3-1.7B 单环境验证 B-IAVR 核心假设\\n  rationale: ALFWorld 离散动作空间使 action_changed 信号最清晰，semantic canonicalization 简单（verb,object,receptacle三元组）。Qwen3-1.7B\\n    有充分 headroom（+8.6pp on ALFWorld）。MVP 只需验证\\\"agent 能学会选择性验证\\\"这一核心假设，不需要跨环境/跨模型。2×GPU\\n    足够 1.7B+LoRA 训练。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-13 18:39 UTC\\n  summary: Phase A 使用全量微调（非 LoRA），匹配 Self-Guide 原始论文设置\\n  rationale: Self-Guide 原文用全量微调 GRPO。1.7B 模型在 94GB VRAM 下全量微调显存仅 38.5GB，完全可行。匹配 baseline\\n    设置确保公平对比。IDEA_BRIEF 提及 LoRA 是基于 H100 80GB 的资源估算，RTX PRO 6000 94GB 无需节省。\\n  related_experiments:\\n  - exp_id: exp_001\\n    role: Phase A baseline\\n    result: running\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-13 23:55 UTC\\n  summary: Kill exp003，Phase A bootstrap 失败确认，等待 invalid action 根因诊断后决定修复方向\\n  rationale: 'exp003 step 1: invalid_action=95.3%, pg_loss≈0, 每步 1.6h（100步=160h）。GRPO\\n    从 0.125% valid action 中无法获得有效学习信号。Qwen3 无独立 Instruct 版，Plan B 失效。需先诊断 invalid\\n    action 根因（格式冲突 / token 问题 / prompt 不兼容）再选修复路径。'\\n  related_experiments:\\n  - exp_id: exp003\\n    role: primary\\n    result: failed - bootstrap failure, 95% invalid actions, pg_loss≈0\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-14 00:10 UTC\\n  summary: 采用方案 A（修改解析器适配 Qwen3 格式）+ prompt 增强 + 速度优化，解决 bootstrap 失败\\n  rationale: 根因确认：Qwen3-1.7B 原生输出 &lt;think>...&lt;/think> 后直接跟自然语言，不生成 &lt;answer> 标签。RAGEN\\n    解析器正则要求 &lt;answer> 导致 95% invalid。方案 A 最快（1-2h 改代码）、最低风险（不换模型不加训练阶段），同时优化速度（关闭 collapse\\n    multi_turn 省 35% 步耗时 + 减 traj/step）。\\n  related_experiments:\\n  - exp_id: exp003\\n    role: diagnostic\\n    result: '32/32 samples confirm: no &lt;answer> tag in Qwen3 output'\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-14 02:56 UTC\\n  summary: exp007 borderline 但不 pivot SFT，提高 LR 到 5e-6 重跑 GRPO\\n  rationale: exp007 step 10 action_is_valid=8.35%，技术上触发预设 kill 条件（<10%），但：(1) 趋势明确上升\\n    4.01%→8.35%（+0.48pp/step），线性外推 ~step 14 即突破 10%；(2) success 从 0%→6.25%，GRPO 确实在学习；(3)\\n    manager_invalid 6.46%→1.56%，解析器修复有效；(4) 崩溃是 /tmp 磁盘满（基础设施），非算法失败；(5) SFT warmup\\n    需额外收集 expert trajectories + 训练周期，开销大。因此override kill 条件，选择提高 LR（1e-6→5e-6）重跑 GRPO\\n    30 步，save_freq=5，同时修复所有基础设施问题（RAY_TMPDIR、/tmp 清理）。新 kill 条件：step 10 action_is_valid\\n    < 15%（因 LR 提高 5x，预期收敛更快）。\\n  related_experiments:\\n  - exp_id: exp007\\n    role: evidence\\n    result: step 10 action_is_valid=8.35%, success=6.25%, 因磁盘满崩溃于 step 11, checkpoint\\n      全部丢失\\n  depends_on:\\n  - D004\\n- id: D006\\n  date: 2026-05-14 03:02 UTC\\n  summary: 撤回 exp008 (LR 5e-6)，改用 SFT warmup 再接 GRPO\\n  rationale: Agent 正确指出 action_is_valid 低的根因不是 LR 不够高，而是 Qwen3-1.7B 缺乏 ALFWorld 命令语义知识——92%\\n    的动作语法正确但语义无效（不是合法 ALFWorld 命令）。提高 LR 只能加速已有信号的收敛，无法从根本解决命令词汇缺失。SFT warmup 直接教模型\\n    ALFWorld 命令格式和语义，GRPO 再优化策略，是更高效的路径。SFT 计划已就绪（artifacts/sft_warmup_plan.md），总成本\\n    ~8h（SFT 2h + GRPO 6h），可接受。\\n  related_experiments:\\n  - exp_id: exp007\\n    role: evidence\\n    result: 10 步 action_is_valid 仅 8.35%，语法正确但语义无效，指向命令知识缺失而非学习速度问题\\n  depends_on:\\n  - D005\\n- id: D007\\n  date: 2026-05-14 05:40 UTC\\n  summary: Kill exp011，改 reward function（连续score+降format penalty+group_size 16），从\\n    step 5 checkpoint 恢复\\n  rationale: Reward 分析确认：format_penalty(-0.1/turn)在零成功 group 中劫持 GRPO 梯度，模型只学格式不学任务（action_is_valid\\n    68% + success 0%）。A1 连续 score 给部分完成的轨迹提供梯度信号；A2 降 format_penalty 到 -0.01 避免淹没任务信号；B1\\n    group_size 8→16 提高正信号 group 比例（32%→53%）。从 step 5 恢复因其仍有 1.6% success 残余。\\n  related_experiments:\\n  - exp_id: exp010\\n    role: evidence\\n    result: failed - reward analysis revealed format penalty hijacking GRPO gradient\\n  - exp_id: exp011\\n    role: killed\\n    result: same reward config as exp010, will repeat collapse pattern\\n  depends_on:\\n  - D006\\n- id: D008\\n  date: 2026-05-14 05:41 UTC\\n  summary: Reviewer 确认 exp010 reward shaping 分析正确；A2(降 format_penalty)为 P0，A1(进度奖励)需先验证\\n    infos[\\\"score\\\"] 粒度\\n  rationale: Reviewer 独立验证了代码引用和根因诊断。新发现：env.py:137 未请求 score=True，AlfWorld 不同任务类型的\\n    score 粒度未知。A2（format_penalty→0 或 -0.01）风险最低——KL loss 已提供格式压力（SFT 模型 90% valid），penalty\\n    冗余且有害。exp011 从 step 10 恢复无 reward 修改=浪费算力，已在 D007 中 kill。\\n  related_experiments:\\n  - exp_id: exp010\\n    role: analysis_source\\n    result: failed\\n  - exp_id: exp011\\n    role: killed\\n    result: wasteful_resume_from_step10\\n  depends_on: []\\n- id: D009\\n  date: 2026-05-14 06:34 UTC\\n  summary: 强制 pre-flight checklist：每次实验提交前必须验证入口点、磁盘、参数兼容性、checkpoint 路径\\n  rationale: 18 个实验仅 1 成功，多数失败为可避免的工程问题（错误入口点、磁盘满、格式不兼容）。exp012 再次因用错入口点（agent_proxy\\n    vs train.py）失败。引入 pre-flight checklist 防止此类重复失败。\\n  related_experiments:\\n  - exp_id: exp012\\n    role: trigger\\n    result: failed - wrong entry point\\n  - exp_id: exp007\\n    role: prior failure\\n    result: failed - disk full\\n  - exp_id: exp003\\n    role: prior failure\\n    result: failed - format incompatibility\\n  depends_on:\\n  - D006\\n  - D008\\n- id: D010\\n  date: 2026-05-14 07:41 UTC\\n  summary: Kill exp012b（零梯度死锁），引入 dense reward shaping 设计 exp013，下调 MVP pass 标准至 success\\n    ≥ 20%\\n  rationale: 两位 Reviewer 独立确认：exp012b step 6-7 pg_loss=0, success=0%, pass@16=0%,\\n    advantages 全零。format_penalty=0 消除了组内 reward 方差，GRPO 无梯度信号。继续跑浪费 ~10.6 GPU-hours。核心问题是\\n    sparse binary reward + 弱基础模型 + GRPO 方差依赖 = 冷启动死锁。方向（SFT→GRPO）未被证伪，但需要 reward shaping\\n    打破死锁。76% MVP 标准不现实（Self-Guide 是非 RL 方法），下调至 20% 证明 GRPO 能学到有意义策略。\\n  related_experiments:\\n  - exp_id: exp012b\\n    role: trigger\\n    result: zero gradient deadlock - pg_loss=0, success=0%\\n  - exp_id: exp010\\n    role: comparison\\n    result: format_penalty=-0.1 had success=4.7% but gradient hijacking\\n  - exp_id: exp008_sft\\n    role: baseline\\n    result: SFT taught format compliance but not task strategy\\n  depends_on:\\n  - D008\\n  - D009\\n- id: D011\\n  date: 2026-05-14 07:41 UTC\\n  summary: Kill exp012b（零梯度死锁确认），引入 dense reward shaping，下调 MVP pass 标准至 success ≥\\n    20%\\n  rationale: Reviewer critical 确认：format_penalty=0 + binary reward + 0% success =\\n    零梯度死锁（pg_loss=0.0），模型完全不更新。exp010 的 format_penalty=-0.1 至少创造了 reward 方差但方向错误。根本问题是\\n    ALFWorld sparse binary reward + GRPO 在基础模型太弱时无法工作。解决方案：加 step-level dense reward\\n    shaping（子目标奖励），方向正确且创造梯度信号。76% 目标来自 Self-Guide 论文的非 RL 方法，30 步 GRPO 不可达，MVP pass\\n    下调至 success ≥ 20% + 明确上升趋势。\\n  related_experiments:\\n  - exp_id: exp012b\\n    role: trigger\\n    result: step 6-7 train success=0%, pg_loss=0.0, 零梯度\\n  - exp_id: exp010\\n    role: 对照\\n    result: format_penalty=-0.1 时 step 1 success=4.7% 但后续崩塌\\n  - exp_id: exp008_sft\\n    role: 基础\\n    result: SFT warmup 成功，action_is_valid 68-72%\\n  depends_on:\\n  - D008\\n  - D009\\n- id: D012\\n  date: 2026-05-14 12:40 UTC\\n  summary: 'exp013f negative: dense reward gaming — 下一步 success-gated bonus + 降低 bonus\\n    比例'\\n  rationale: exp013f 完成 30 步，dense reward (valid_action_bonus=0.15) 解决了 collapse（grad_norm\\n    稳定 1.7-8.15）但引发 reward gaming：action_is_valid 60%→97.5% 而 success 归零，score_max\\n    从 10+ 塌缩到 4.5。模型学会独立最大化 dense reward（29步×0.15=4.35）放弃高风险 success（10.0）。核心问题：dense\\n    reward 可被独立最大化。修复方向：(1) success-gated bonus 消除独立最大化路径 (2) 降低 bonus 到 0.01 测试弱信号是否足够\\n    (3) 前 N 步 warmup 后撤掉 bonus。优先级 exp014c > exp014a > exp014b。\\n  related_experiments:\\n  - exp_id: exp013f\\n    role: primary\\n    result: negative - reward gaming\\n  - exp_id: exp012b\\n    role: baseline\\n    result: negative - catastrophic collapse\\n  depends_on:\\n  - D011\\n- id: D013\\n  date: 2026-05-14 12:47 UTC\\n  summary: D012 修订：放弃 success-gated bonus（bootstrap 问题），改走 sparse GRPO + 训练稳定性修复\\n  rationale: Success-gated bonus 在 success≈0% 时退化为 sparse reward，无法解决冷启动。而 exp012b\\n    step 6 success=8.59% 证明 sparse GRPO 有信号，collapse（grad_norm 1.48→0.09）可能是 LR 过高\\n    / KL 过低导致的单步更新过激，不是 reward sparsity。方案 B（sparse GRPO + 极低 LR 1e-7 + KL 0.1 + gradient\\n    clipping）直接解决 collapse 且不引入新 reward hacking 风险。\\n  related_experiments:\\n  - exp_id: exp012b\\n    role: evidence\\n    result: step 6 success=8.59% proves sparse signal exists; collapse at step 7 was\\n      training instability\\n  - exp_id: exp013f\\n    role: evidence\\n    result: dense reward gaming confirms reward shaping risks\\n  depends_on:\\n  - D012\\n- id: D014\\n  date: 2026-05-14 13:44 UTC\\n  summary: Kill exp015（LR 1e-7 过保守，连续 3 步零梯度），启动 exp016 LR=5e-7 折中方案\\n  rationale: exp015 step 1-2 有梯度信号（pg_loss>0, success 3-5%），验证了 D013 的 collapse 修复。但\\n    step 3-5 连续零梯度，LR=1e-7 的参数更新量约 5e-12，模型行为无可观测变化。Kill 条件已满足。LR=1e-6（exp012b）collapse，LR=1e-7（exp015）不学习，取折中\\n    LR=5e-7 + 保留 KL=0.1 + grad_clip=1.0。从 exp015 step 5 checkpoint 恢复（保留 step 1-2\\n    的微小更新）。\\n  related_experiments:\\n  - exp_id: exp015\\n    role: primary\\n    result: kill - LR too conservative, 3 consecutive zero-gradient steps\\n  - exp_id: exp012b\\n    role: reference\\n    result: LR 1e-6 collapsed at step 7\\n  depends_on:\\n  - D013\\n- id: D015\\n  date: 2026-05-14 14:55 UTC\\n  summary: Kill exp016 — reward function 完全失效，12 步零 reward 信号，GPU 空转\\n  rationale: exp016 step 12/30，所有 step 的 raw_reward/advantages/returns 均为 0。Step 7\\n    出现 4.7% success 但 reward 仍为 0，说明 reward function 未正确将 success 映射到 reward。grad_norm\\n    ~0.85 仅来自 entropy loss，模型无 policy gradient 信号。疑似 checkpoint resume 后 reward config\\n    丢失。继续运行浪费 GPU。\\n  related_experiments:\\n  - exp_id: exp016\\n    role: subject\\n    result: killed — reward function broken\\n  depends_on:\\n  - D014\\n- id: D016\\n  date: 2026-05-14 14:57 UTC\\n  summary: Pivot to Expert SFT warmup — GRPO 在 base success ~1-2% 下无法工作，LR 搜索区间穷尽\\n  rationale: Reviewer critical 分析确认：exp016 step 7 pg_loss=0.000151 证明 reward function\\n    本身可用，但 7 步中仅 1 步有 success（14%），步骤 8-12 连续 5 步零梯度。反推 base success rate ~1-2%，GRPO\\n    在此 sparsity 下无法产生有效学习。LR 搜索已覆盖 1e-6（collapse）→ 5e-7（无效学习）→ 1e-7（零梯度），区间穷尽。Pivot\\n    到 expert SFT：用 ALFWorld HandCodedTWAgent 收集的 expert trajectories（当前 ~61-70%）做\\n    SFT warmup，将 base success 提升到 10-15% 后再上 sparse GRPO。\\n  related_experiments:\\n  - exp_id: exp016\\n    role: evidence\\n    result: 6/7 steps zero gradient, base success ~1-2%\\n  - exp_id: exp015\\n    role: evidence\\n    result: LR=1e-7 zero gradients after step 3\\n  - exp_id: exp012b\\n    role: evidence\\n    result: LR=1e-6 catastrophic collapse\\n  depends_on:\\n  - D015\\n  - D014\\n  - D013\\n- id: D017\\n  date: 2026-05-14 15:20 UTC\\n  summary: D015 误诊纠正 — reward pipeline 正常，exp016 失败原因是 base success 太稀疏（1/8 步有信号）\\n  rationale: Reviewer 逐行核实 exp016.log：Step 7 critic/score/mean=0.46875（= 3/64 × 10.0）、critic/score/max=10.0、pg_loss=0.000151、grad_norm=2.0，reward\\n    function 完全正确。Agent 报告的 raw_reward=0 来自 es_manager 的 info.get('raw_reward', 0.0)\\n    日志 artifact，ALFWorld env info 不含此 key。NaiveRewardManager 检测到 rm_scores 后 pass-through，agent_trainer.py:779\\n    不是覆写。D016 Expert SFT pivot 仍成立，理由修正为 base success ~4.7%（仅 1/8 步有 success）太稀疏。\\n  related_experiments:\\n  - exp_id: exp016\\n    role: evidence\\n    result: reward pipeline confirmed working; killed due to sparse success, not bug\\n  depends_on:\\n  - D015\\n  - D016\\n- id: D018\\n  date: 2026-05-14 16:37 UTC\\n  summary: exp017 eval 5% success（低于 10% 阈值），采用方案 B+C：修复数据格式 + 从 exp008_sft checkpoint\\n    继续微调\\n  rationale: 'exp017 SFT eval: 5% success (1/20)，format_ok 从 100% 降至 75%，action_is_valid\\n    从 90% 降至 63.8%。25% episodes parse 失败（1 步退出）。expert trajectory 格式与 RAGEN &lt;think>/&lt;answer>\\n    不完全匹配，SFT 学到任务知识但破坏了 format 合规性。方案：(1) 修复 expert data 格式对齐 RAGEN template (2)\\n    从 exp008_sft checkpoint 开始微调（已有 100% format_ok），用较低 LR 防止遗忘 format。预计 ~1.5h。方案\\n    A（直接 GRPO）信号改善极小（5% vs 4.7%），方案 D 工程量太大。'\\n  related_experiments:\\n  - exp_id: exp017_expert_sft\\n    role: evidence\\n    result: 5% success, format_ok 75%, below 10% threshold\\n  - exp_id: exp008_sft\\n    role: baseline\\n    result: 0% success but 100% format_ok, 90% action_is_valid\\n  depends_on:\\n  - D016\\n  - D017\\n- id: D019\\n  date: 2026-05-14 16:48 UTC\\n  summary: Kill exp019 — move→put 替换方向错误，admissible_commands 中是 move 不是 put\\n  rationale: Reviewer critical 确认：ALFWorld handcoded expert 代码 5 种任务类型全部用 \\\"move {}\\n    to {}\\\" 检查 admissible_commands，RAGEN env.py action_is_available 检查 action in admissible_commands。fix_expert_sft_format.py\\n    将 2157 条正确的 \\\"move\\\" 替换为 \\\"put in/on\\\"，教模型产生不在 admissible_commands 中的动作，会进一步恶化 action_is_valid。正确修复方向：保留\\n    \\\"move\\\" 原样，在 observation 中添加 admissible actions 列表后缀。\\n  related_experiments:\\n  - exp_id: exp019_expert_sft_v2\\n    role: subject\\n    result: killed — trained on incorrectly modified data (move→put)\\n  depends_on:\\n  - D018\\n- id: D020\\n  date: 2026-05-14 21:53 UTC\\n  summary: exp019b SFT eval 通过（20% success），启动 GRPO 训练\\n  rationale: exp019b 三项指标全部达标：success=20%, format_ok=100%, action_is_valid=85.3%。admissible\\n    actions augmentation 是关键因素（exp017 无→5%, exp019b 有→20%）。SFT checkpoint 已提供足够 base\\n    success rate，GRPO 应有足够非零 reward groups 产生有效梯度。从 exp019b checkpoint 启动 sparse GRPO\\n    是 MVP gate 最后一步。\\n  related_experiments:\\n  - exp_id: exp019b_expert_sft_v3\\n    role: evidence\\n    result: success=20%, format_ok=100%, action_is_valid=85.3%\\n  - exp_id: exp017_expert_sft\\n    role: baseline\\n    result: success=5%, format_ok=75% (无 admissible actions)\\n  depends_on:\\n  - D018\\n  - D019\\n- id: D021\\n  date: 2026-05-14 22:34 UTC\\n  summary: exp020 系列 0% success 根因确认：SFT 训练格式与 RAGEN 格式不匹配，走方案 B 重训\\n  rationale: 同一 checkpoint 在 eval_sft_fast 中 20% success，在 RAGEN 中 0%。根因三个：(1) system\\n    prompt 矛盾（RAGEN 说不要标签又说要标签）(2) observation 格式完全不同（RAGEN 有 Turn N/State/Reward\\n    包装，SFT 数据没有）(3) temperature 差异。RAGEN 的多轮结构是 GRPO rollout 必需的，不能去掉。正确方案是将 SFT 数据转换为\\n    RAGEN 格式重训，而非改 RAGEN 适配 SFT。\\n  related_experiments:\\n  - exp_id: exp020_grpo_from_sft\\n    role: evidence\\n    result: AssertionError, 未运行\\n  - exp_id: exp020b_grpo_from_sft\\n    role: evidence\\n    result: val_before_train success=0%, action_is_valid=16.7%\\n  - exp_id: exp020c_grpo_from_sft\\n    role: evidence\\n    result: hydra config error\\n  - exp_id: exp020d_grpo_from_sft\\n    role: evidence\\n    result: killed, 同 exp020b 配置\\n  depends_on:\\n  - D020\\n- id: D022\\n  date: 2026-05-15 01:07 UTC\\n  summary: exp020b GRPO 失败，确认 eval mismatch 是根因，恢复 D021 RAGEN 格式重训路线\\n  rationale: exp020b 30步中跑了22步，train success从18.75%降到4.69%，val success始终0%，entropy坍缩61%。核心问题不是GRPO算法，而是SFT模型在RAGEN多轮框架下表现与eval_sft_fast完全不同（0%\\n    vs 20%）。之前Reviewer修正认为\\\"0%是样本量问题\\\"是错误的——22步训练确认了系统性不一致。D021（将SFT数据转换为RAGEN格式重训）是正确方向，恢复执行。\\n  related_experiments:\\n  - exp_id: exp020b_grpo_from_sft\\n    role: evidence\\n    result: train success 18.75%→4.69%, val success=0%, entropy collapse\\n  - exp_id: exp019b_expert_sft_v3\\n    role: baseline\\n    result: eval_sft_fast 20% but RAGEN val 0%\\n  depends_on:\\n  - D020\\n  - D021\\n- id: D023\\n  date: 2026-05-15 03:16 UTC\\n  summary: exp021 RAGEN 格式 SFT 验证通过（25% success），批准 exp022 GRPO\\n  rationale: exp021 在 RAGEN val 中 success=25%, action_is_valid=87.5%，全部达标。对比 exp019b\\n    在 RAGEN val 中 0% success，证明格式对齐是根因且修复生效。25% baseline 是目前最强起点，配合加强的 KL 约束（0.1→0.5）应能避免\\n    exp020b 的 entropy 坍缩。\\n  related_experiments:\\n  - exp_id: exp021_ragen_sft_v4\\n    role: evidence\\n    result: RAGEN val success=25%, action_is_valid=87.5%\\n  - exp_id: exp019b_expert_sft_v3\\n    role: baseline\\n    result: RAGEN val success=0%\\n  - exp_id: exp020b_grpo_from_sft\\n    role: negative\\n    result: train success 18.75%→4.69%, entropy collapse\\n  depends_on:\\n  - D021\\n  - D022\\n- id: D024\\n  date: 2026-05-15 03:21 UTC\\n  summary: exp021 结论降级为 inconclusive，exp022 暂不 kill 等 step 0 val 确认\\n  rationale: exp021 两次独立 eval 严重矛盾：4-episode val_before_train 25% success vs ~16-episode\\n    eval 6.25% success。4-episode 估计方差过大不可靠，25% 结果很可能是高方差幸运值。exp022 基于该不可靠数据启动，但已在运行中——让\\n    step 0 val_before_train 给出更可靠的 baseline 数字再决定是否 kill，避免白白浪费已投入的启动时间。同时 Reviewer\\n    指出 exp022 的 val env_groups=8 override 可能未生效（config dump 显示 4），需立即验证。\\n  related_experiments:\\n  - exp_id: exp021_ragen_sft_v4\\n    role: trigger\\n    result: inconclusive — 4-ep 25% vs 16-ep 6.25%\\n  - exp_id: exp022_grpo_from_sft_v4\\n    role: at_risk\\n    result: running, awaiting step 0 val confirmation\\n  depends_on:\\n  - D023\\n- id: D025\\n  date: 2026-05-15 05:14 UTC\\n  summary: Sparse binary GRPO 路线终止。三次一致退化（exp020b/exp022/exp023c），KL 仅 0.0005 时 success\\n    已退化，算法与稀疏 reward 结构性不匹配。Pivot 到两条并行路线：(1) success-gated dense reward GRPO，(2)\\n    GiGPO cherry-pick\\n  rationale: '三次 GRPO 实验（exp020b kl=0.1, exp022 kl=0.5, exp023c kl=0.5 serial）均呈现同一模式：entropy\\n    收缩 + success 退化 + KL 极低（策略几乎未移动就已退化）。根因：sparse binary reward（0/10）下绝大多数 GRPO group\\n    全零 reward → advantage≈0 → 有效梯度来自极少数成功 episode → 不足以引导策略改进。kl_loss_coef 从 0.1 到\\n    0.5 仅减缓退化速度未改变方向。这是算法-任务结构性不匹配，非超参问题。\\n\\n\\n    两条 pivot 路线：\\n\\n    (1) Success-gated dense reward：从 exp021 checkpoint（25% success）出发，给 valid_action\\n    加 bonus 但仅在 episode 成功时给。exp013f 失败原因是 unconditional bonus → reward gaming；success-gating\\n    消除独立最大化路径。代码改动小，可当天启动。\\n\\n    (2) GiGPO cherry-pick：step-level advantage estimation 提供更密集的信号，解决 credit assignment。已有迁移方案（3-5天），作为更彻底的解决方案。'\\n  related_experiments:\\n  - exp_id: exp020b_grpo_from_sft\\n    role: evidence\\n    result: 'failed: entropy collapse 61%, success→0%'\\n  - exp_id: exp022_grpo_from_sft_v4\\n    role: evidence\\n    result: 'killed: step 0 action_is_valid 48.75%'\\n  - exp_id: exp023c_grpo_serial\\n    role: evidence\\n    result: 'failed: 8 steps success 29.7%→23.4%, disk full crash'\\n  - exp_id: exp013f\\n    role: lesson\\n    result: unconditional dense reward → gaming\\n  depends_on:\\n  - D022\\n  - D023\\n  - D024\\n- id: D026\\n  date: 2026-05-15 05:15 UTC\\n  summary: GRPO in RAGEN 确认失败（3/3），pivot 到 verl-agent GiGPO cherry-pick（Plan C）\\n  rationale: 三次 GRPO 实验（exp020b/exp022/exp023c）一致表现为 entropy 坍缩 + success 退化。但 Self-Guide\\n    论文证明 GRPO 在 ALFWorld 上可以达到 72.7%（verl-agent 框架），说明问题不是 GRPO+sparse reward 本身，而是\\n    RAGEN 框架。RAGEN 的 full-history concatenation 导致 context 随步数爆炸，1.7B 模型在长 context\\n    下推理质量退化。verl-agent 的 step-independent rollout 保持 context 恒定。IDEA_BRIEF 原始设计也指定\\n    verl-agent。采用 Plan C（cherry-pick GiGPO + 核心 rollout 机制，3-5 天），避免 Plan A/B 的 2-4\\n    周全量迁移风险。\\n  related_experiments:\\n  - exp_id: exp020b_grpo_from_sft\\n    role: evidence\\n    result: 'failed: entropy collapse, success 18.75%→4.69%'\\n  - exp_id: exp022_grpo_from_sft_v4\\n    role: evidence\\n    result: 'killed: step 0 action_is_valid 48.75%'\\n  - exp_id: exp023c_grpo_serial\\n    role: evidence\\n    result: 'failed: step 9 disk full, 8 steps showed success 29.7%→23.4%, entropy\\n      shrinking'\\n  depends_on:\\n  - D022\\n  - D023\\n  - D024\\n- id: D027\\n  date: 2026-05-15 05:25 UTC\\n  summary: Kill exp024 (success-gated GRPO) — D026 已终止 RAGEN GRPO 路线，success-gated\\n    不解决 context 爆炸根因\\n  rationale: Reviewer 审查报告指出决策链冲突：D026 已明确 pivot 到 verl-agent GiGPO 并终止 RAGEN GRPO\\n    路线，但 exp024 仍是 RAGEN GRPO（仅改 reward 为 success-gated）。三点判断：(1) success-gated reward\\n    不解决 RAGEN full-history concatenation 导致的 context 爆炸——这是 exp020b/022/023c 三次退化的共因；(2)\\n    D013 之前已因 bootstrap 问题否决 success-gated（success≈0% 退化为 sparse），当前 baseline 6.25%\\n    仍然很低；(3) 3/3 RAGEN GRPO 退化 pattern 下第 4 次仅改 reward 极不可能成功。GPU 应腾出用于 verl-agent\\n    GiGPO cherry-pick 准备。\\n  related_experiments:\\n  - exp_id: exp024\\n    role: killed\\n    result: D026后应终止，step 0/30 刚启动\\n  - exp_id: exp020b_grpo_from_sft\\n    role: evidence\\n    result: RAGEN GRPO 退化 1/3\\n  - exp_id: exp022_grpo_from_sft_v4\\n    role: evidence\\n    result: RAGEN GRPO 退化 2/3\\n  - exp_id: exp023c_grpo_serial\\n    role: evidence\\n    result: RAGEN GRPO 退化 3/3\\n  depends_on:\\n  - D026\\n  - D025\\n- id: D028\\n  date: 2026-05-15 08:32 UTC\\n  summary: 终止 verl-agent 直接运行尝试，全力转向 Track B cherry-pick（步独立 rollout + GiGPO 整合到 RAGEN）\\n  rationale: 'verl-agent 在 bjb1-17606 上 6 次启动失败（exp025→exp025b×3→dry run v7/v8/threadopt），根因是\\n    AutoDL 容器 cgroup pids.max=20480 限制。Ray 集群 + FSDP + vLLM TP 的线程总数超过此限制，即使单 GPU\\n    降级配置也在训练阶段崩溃。AutoDL 无法调整 pids.max，暂无非容器化服务器可用。继续在同一配置重试无意义。\\n\\n\\n    Track B cherry-pick 是可行路径：将 step-independent rollout + GiGPO 算法整合到 RAGEN 代码库（不依赖\\n    Ray，已验证可在此服务器运行）。Track B 分析报告已完成（gigpo_cherry_pick_plan.md），方案明确（~480 行新增 + ~200\\n    行修改，8 文件，3-5 天）。\\n\\n\\n    附带收获：verl-agent val_before_train 产出了 Qwen3-1.7B raw baseline（success=6.2%，与 RAGEN\\n    SFT 后的 6.25% 接近），确认模型基础能力跨框架一致，训练算法是关键差异。'\\n  related_experiments:\\n  - exp_id: exp025\\n    role: evidence\\n    result: 'failed: conda env 错误'\\n  - exp_id: exp025b\\n    role: evidence\\n    result: 'failed: 3次启动失败（vllm模块/Ray GCS/EAGAIN）'\\n  - exp_id: exp025c\\n    role: evidence\\n    result: 未提交，threadopt dryrun 训练阶段崩溃\\n  depends_on:\\n  - D026\\n  - D027\\n- id: D029\\n  date: 2026-05-15 11:14 UTC\\n  summary: exp026 registry 被 cron 误标 DONE(failed)，实际训练仍在运行；速度修正为 30-60min/step（总计\\n    75-150h）\\n  rationale: Cron 5 次检查因 WANDB_MODE=disabled 无法读取指标，自动判定进程死亡并标记 failed。但 PID 存活、GPU\\n    双卡 100% 利用率、日志持续写入。DONE→RUNNING 转换被 registry 禁止，需在训练真正完成后手动更新 conclusion。速度估算从之前的\\n    21min/step 修正为 30-60min/step（step 0 含 val_before_train 耗时 ~40min），150 steps 预计\\n    3-6 天完成。教训：后续实验必须启用 W&B 或 sentinel file 避免 cron 误判。\\n  related_experiments:\\n  - exp_id: exp026_step_independent_grpo\\n    role: subject\\n    result: running (registry incorrectly shows failed)\\n  depends_on:\\n  - D028\\n- id: D030\\n  date: 2026-05-15 11:50 UTC\\n  summary: exp026 等待期并行实现 B-IAVR 核心机制代码（action-change gating），不再空等 baseline 结果\\n  rationale: Reviewer 战略审查指出：50 个实验全在 pipeline debugging，核心 B-IAVR 选择性验证机制零实现。即使 exp026\\n    成功（weak story），真正的论文实验（有/无 selective verification ablation）还没开始。利用 3-6 天训练等待期提前铺核心代码，exp026\\n    出结果后可直接进入核心实验阶段，压缩整体时间线。\\n  related_experiments:\\n  - exp_id: exp026_step_independent_grpo\\n    role: baseline\\n    result: running\\n  - exp_id: exp020b_grpo_from_sft\\n    role: evidence\\n    result: failed - entropy collapse\\n  - exp_id: exp022_grpo_from_sft_v4\\n    role: evidence\\n    result: failed - entropy collapse\\n  - exp_id: exp023c_grpo_serial\\n    role: evidence\\n    result: failed - entropy collapse\\n  depends_on:\\n  - D029\\n  - D028\\n- id: D031\\n  date: 2026-05-15 12:13 UTC\\n  summary: B-IAVR 代码审查通过（Reviewer info），Phase B 前必须解决两个 warning：&lt;VERIFY> special token\\n    注册 + a_pre 推理开销量化\\n  rationale: Reviewer 审查 B-IAVR 核心代码：reward 公式/Lagrangian 更新/模块化设计/52 个测试全通过，与 IDEA_BRIEF\\n    一致。但 &lt;VERIFY> 若被 tokenizer 拆为 8 个子 token 会显著增加学习难度（必须注册为 special token）；a_pre\\n    每次 verify step 额外一次 greedy decode 可能增加 15-30% 步耗时（需 dry run 量化）。这两项是 Phase B 集成前的硬性前置。\\n  related_experiments:\\n  - exp_id: exp026_step_independent_grpo\\n    role: baseline_for_phase_b\\n    result: running\\n  depends_on:\\n  - D030\\n- id: D032\\n  date: 2026-05-15 12:33 UTC\\n  summary: exp026 前 2 步训练指标强正向（success 6.25%→32.81%，entropy 未 collapse），等 step 5 val\\n    做 MVP 判定\\n  rationale: 从 Ray worker stdout logs 提取到训练指标，解决了之前的盲飞问题。Step 1 train success 21.88%\\n    已超 MVP 目标（20%），但 train ≠ val，需等 step 5 val（test_freq=5）确认。Entropy 上升（0.267→0.317）而非\\n    collapse，与之前 3 次 RAGEN GRPO 失败形成鲜明对比，确认 step-independent context + step-level\\n    credit assignment 是关键因素。MVP 判定标准：val success ≥ 20% → complete_mvp()。\\n  related_experiments:\\n  - exp_id: exp026_step_independent_grpo\\n    role: subject\\n    result: train success 32.81% at step 2, awaiting step 5 val\\n  depends_on:\\n  - D029\\n  - D030\\n- id: D033\\n  date: 2026-05-15 13:02 UTC\\n  summary: exp026 registry 误判修复：cron 因 WANDB_MODE=disabled + 监控错误 PID 误标 DONE(failed)，实际训练正常运行（PID\\n    781795）。已重置 RUNNING 并修正监控。后续实验硬规则：禁止 WANDB_MODE=disabled\\n  rationale: 两个根因：(1) WANDB_MODE=disabled 导致 cron 无 sentinel/metrics 可检测；(2) 监控了 shell\\n    wrapper PID 778562 而非实际训练进程 PID 781795。Reviewer 交叉验证确认 step 1-2 指标真实。修复后 cron\\n    间隔 300s 监控正确 PID + log_path。教训沉淀：所有实验必须启用 W&B 以确保 cron 可监控。\\n  related_experiments:\\n  - exp_id: exp026_step_independent_grpo\\n    role: affected\\n    result: registry reset to RUNNING, actual training healthy\\n  depends_on:\\n  - D029\\n  - D032\\n- id: D034\\n  date: 2026-05-15 13:38 UTC\\n  summary: 建立两级阈值：MVP=20% val（训练可行性 checkpoint），论文 baseline 最低要求=50% val（B-IAVR 的\\n    always-on baseline 需与 Self-Guide 72.7% 可比才有说服力）\\n  rationale: Reviewer 独立评估指出：Self-Guide 在 ALFWorld 上 Qwen3-1.7B GRPO baseline 已达 72.7%，20%\\n    val 处于所有已发表 baseline 底部。step-independent rollout 是 verl-agent cherry-pick 不算本项目贡献，论文贡献必须来自\\n    B-IAVR。在弱 agent（20%）上证明选择性验证的 cost-efficiency 没有说服力——需要 baseline 至少 50-60% 才能让\\n    B-IAVR 的 Pareto efficiency claim 有意义。MVP 阈值保持 20% 不变（证明 GRPO 在 RAGEN 能跑），但内部明确论文可行性需要\\n    val 收敛到更高水平。Reviewer 估计 150 步训练后 val 可达 60-70%，与 Self-Guide no-SG baseline 可比。\\n  related_experiments:\\n  - exp_id: exp026_step_independent_grpo\\n    role: baseline\\n    result: train 32.81% @ step 2, val pending\\n  depends_on:\\n  - D032\\n  - D033\\n- id: D035\\n  date: 2026-05-15 14:01 UTC\\n  summary: exp026 训练不稳定（step 2 峰值 32.81% → step 4 归零），准备 exp027 调参重跑；save_freq 必须降至\\n    5\\n  rationale: Step 4 success=0%, pass@16=0。非 entropy collapse（entropy 稳定 0.387），而是\\n    step 3 负梯度过度纠正导致保守退化（KL 回落至 0.054，action_is_valid 反升至 71.7%）。LR=1e-6 对 step-level\\n    reward 的高方差梯度过大。save_freq=25 导致 step 2 的 32.81% 峰值无 checkpoint 可恢复——这是最大损失。exp027\\n    方向：降 LR（→5e-7）、升 KL coef（0.01→0.04）、save_freq=5。等 step 5 val 确认后正式切换。\\n  related_experiments:\\n  - exp_id: exp026_step_independent_grpo\\n    role: evidence\\n    result: 'training unstable: peak 32.81% at step 2, collapsed to 0% at step 4'\\n  depends_on:\\n  - D032\\n- id: D036\\n  date: 2026-05-15 14:07 UTC\\n  summary: Reviewer critical 确认 exp026 GRPO 死亡螺旋：step 4 success=0%，KL→0.0025 策略回退到\\n    reference，exp027 需针对性解决稀疏奖励崩塌\\n  rationale: Reviewer 独立核实训练指标：step 2 峰值 32.81% 后单调下降，step 4 完全崩塌（64 rollout 全失败）。KL\\n    单调递减说明策略不是发散而是回退到 reference，固定 KL penalty 无效。exp027 必须引入 dynamic sampling（过滤零奖励\\n    batch）+ 调整 clip ratio + 可能加 entropy bonus 维持探索。已向 Agent 发送 exp027 设计修正指令。\\n  related_experiments:\\n  - exp_id: exp026_step_independent_grpo\\n    role: primary\\n    result: collapsing\\n  - exp_id: exp027_stable_grpo\\n    role: next\\n    result: preparing\\n  depends_on:\\n  - D035\\n- id: D037\\n  date: 2026-05-15 15:17 UTC\\n  summary: exp027 val 判定阈值：<20% fail、20-25% weak (=SFT)、30%+ proceed Phase B。Reviewer\\n    指出 GRPO 从未在 val 超越 SFT baseline，train-val gap 是系统性风险。\\n  rationale: 'Reviewer pass/fail 评估揭示关键事实：51 个实验中所有 GRPO 的 val success 均为 0-12.5%，而\\n    SFT (exp019b) 已达 20%。exp026 的 32.81% 是 train success，已知 train-val 差距巨大（exp023c:\\n    train 29.7% vs val 6.25%）。因此 exp027 的判定必须基于 val success：(1) val<20% → MVP 失败，需\\n    pivot（换服务器跑 verl-agent 原版 or 重评项目）；(2) val 20-25% → GRPO 仅匹配 SFT，RL 训练贡献为零，需重新评估\\n    Phase B 是否建在 SFT 上；(3) val≥30% → GRPO 首次超越 SFT，Phase B 有意义的 baseline，proceed。A\\n    类会议需 val≥40% + 第二环境 + 模型规模实验，预估 500-800 GPU-h。'\\n  related_experiments:\\n  - exp_id: exp027_stable_grpo\\n    role: 被判定对象\\n    result: running\\n  - exp_id: exp026_step_independent_grpo\\n    role: 前置实验\\n    result: negative\\n  - exp_id: exp019b_expert_sft_v3\\n    role: SFT baseline对照\\n    result: success\\n  depends_on:\\n  - D036\\n  - D034\\n- id: D038\\n  date: 2026-05-15 15:17 UTC\\n  summary: Reviewer 评估 exp027 pass/fail 论文可行性：修正 claim 强度阈值，确认 val success 是唯一判定标准\\n  rationale: 'Reviewer 指出关键事实：GRPO 从未在 val 上超越 SFT baseline（RAGEN 框架内 6.25%）。exp026\\n    的 32.81% 是 train success 不是 val success，train-val 差距系统性存在（exp023c: train 29.7%\\n    vs val 6.25%）。但 Reviewer 混淆了两个 eval 框架：exp019b 的 20% 是 eval_sft_fast（非 RAGEN eval），RAGEN\\n    框架内 SFT baseline 是 6.25%（exp021 C003-compliant 16ep eval）。因此 exp027 val ≥ 20%\\n    = 3.2× SFT baseline，仍是有意义的 RL 贡献，不是\\\"仅匹配 SFT\\\"。但 Reviewer 对 A 类会议的要求评估（Phase B +\\n    ablation + 第二环境 + scaling = 500-800 GPU-h）是合理的。结论：val success 是唯一判定标准，train success\\n    仅作 training dynamics 参考；MVP 20% 的门槛在 RAGEN eval 框架下仍然有效且有意义。'\\n  related_experiments:\\n  - exp_id: exp027_stable_grpo\\n    role: subject\\n    result: running\\n  - exp_id: exp026_step_independent_grpo\\n    role: evidence\\n    result: negative\\n  - exp_id: exp021_ragen_sft_v4\\n    role: baseline\\n    result: negative\\n  - exp_id: exp019b_expert_sft_v3\\n    role: baseline\\n    result: success\\n  depends_on:\\n  - D036\\n  - D034\\n- id: D039\\n  date: 2026-05-15 16:57 UTC\\n  summary: 论文 framing 方向锁定：cost-efficiency story，不走 performance story；ARES 为主要竞争对标\\n  rationale: Related work survey + Reviewer 评估揭示：ALFWorld SOTA 88-93%，我们最好 6.25%，即使\\n    exp027 达 40% 仍是 bottom tier，performance story 死路。唯一可行路径是 cost-efficiency framing——\\\"在接近\\n    Self-Guide 性能的前提下，通过 RL-trained selective verification 减少 verification 开销\\\"。ARES\\n    (arXiv 2603.07915) 是最近竞争者（per-step adaptive computation），差异化点：(1) binary verify/not-verify\\n    决策更简洁可解释 vs ARES 连续 effort selection，(2) action-change 作为 environment-grounded\\n    reward signal vs ARES 的 SFT router，(3) interactive agent 场景 vs general reasoning。前提条件：baseline\\n    必须 ≥50%（接近 Self-Guide 72.7%），否则 cost-efficiency claim 无意义。\\n  related_experiments:\\n  - exp_id: exp027_stable_grpo\\n    role: MVP gating\\n    result: running\\n  - exp_id: exp026_step_independent_grpo\\n    role: evidence for step-independent approach\\n    result: negative (peak 32.81% then collapsed)\\n  - exp_id: exp021_ragen_sft_v4\\n    role: SFT baseline\\n    result: 6.25% success\\n  depends_on:\\n  - D038\\n  - D037\\n- id: D040\\n  date: 2026-05-15 18:27 UTC\\n  summary: 修正 exp027 step 3 判定框架为三层阈值，Plan B kl_coef 上调至 0.015-0.02，中期评估 adaptive\\n    KL\\n  rationale: Reviewer 独立评估确认 step 2 KL 0.058→0.413 (7x) 为强警告信号，kl_coef=0.005 约束过弱。exp026(KL\\n    collapse)+exp027(KL spike) 揭示固定 kl_coef 的 Goldilocks zone 极窄。修正：(1) 三层判定——绿(success≥10%+KL<0.3)、黄(success≥6.25%+KL\\n    0.3-0.6，准备 Plan B)、红(success<6.25%或KL>0.6，终止)；(2) Plan B kl_coef 从 0.01-0.02 收窄至\\n    0.015-0.02（0.01 在 exp026 已失败）；(3) 增加 entropy(<0.15=collapse)/pass@16(<0.5=零批次风险)/grad_norm(>25=不稳定)\\n    三个辅助监控维度；(4) 中期评估 adaptive KL 实现成本。\\n  related_experiments:\\n  - exp_id: exp027_stable_grpo\\n    role: primary\\n    result: step2 KL spike 0.413, success drop to 10.16%\\n  - exp_id: exp026_step_independent_grpo\\n    role: reference\\n    result: 'symmetric failure: KL collapse to 0.0025'\\n  depends_on:\\n  - D037\\n- id: D041\\n  date: 2026-05-15 19:50 UTC\\n  summary: exp027 瓶颈诊断为 sparse reward 学习信号不足而非 KL 不稳定；Plan B(adaptive KL) 降级，Plan\\n    D(GiGPO/step-level credit) 升为首选备选路线\\n  rationale: Reviewer 独立评估：(1) train success 连续两步 10.16%=plateau，pass@16 从 100%→50%\\n    说明仅 4/8 env groups 有学习信号；(2) exp026(太激进crash)+exp027(太保守plateau)构成稳定性-效率 dilemma，纯超参调整无法解决；(3)\\n    adaptive KL 解决的是 KL 振荡，但 KL 已自修正（0.413→0.248），不是当前瓶颈；(4) Self-Guide 同模型同环境达 72.7%，差异在\\n    step-level dense reward vs binary sparse reward；(5) GiGPO/step-level credit 打破\\n    plateau 概率 40-70% vs 当前 recipe 15-25%。决策：exp027 跑到 step 10（早停条件 train≤12%），并行准备\\n    Plan D。\\n  related_experiments:\\n  - exp_id: exp027_stable_grpo\\n    role: primary\\n    result: step2-3 train success plateau at 10.16%, pass@16 declining\\n  - exp_id: exp026_step_independent_grpo\\n    role: reference\\n    result: aggressive config crashed, complementary failure mode\\n  depends_on:\\n  - D040\\n  - D037\\n- id: D042\\n  date: 2026-05-15 19:50 UTC\\n  summary: 采纳 Reviewer 建议：exp027 跑到 step 10 评估，同时并行准备 Plan D（GiGPO/step-level credit\\n    assignment），不再把 adaptive KL 作为首选 Plan B\\n  rationale: Reviewer 独立评估 exp027 中期趋势：train success 连续两步 10.16% plateau，pass@16 从\\n    100%→50% 持续下滑，50 步内 val 突破 20% 概率 <10%。核心瓶颈已从 KL 不稳定（已自修正）转为学习信号密度不足——sparse binary\\n    reward + GRPO 在 8 env groups 下信号太稀疏。Adaptive KL 只解决 KL 振荡不解决信号密度问题。Self-Guide\\n    论文用同模型同环境达 72.7%，差异在 co-evolving internal reward（step-level dense reward）。Plan\\n    D（GiGPO/step-level credit）估计 40-55% 概率达 20% val，远高于当前 recipe 的 15-25%。决策：(1) exp027\\n    继续到 step 10（~12h），如 train success ≤12% 终止；(2) 立即并行准备 Plan D 代码和方案；(3) Adaptive\\n    KL 降级为 Plan D 的辅助选项而非独立方案。\\n  related_experiments:\\n  - exp_id: exp027_stable_grpo\\n    role: primary\\n    result: step 3 绿区但 plateau at 10.16%, pass@16 下滑\\n  - exp_id: exp026_step_independent_grpo\\n    role: reference\\n    result: 对称失败模式：KL collapse vs KL spike\\n  depends_on:\\n  - D040\\n  - D037\\n\", \"total_chars\": 30851, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01XbpLcVNBokP46kL3GhcGGQ`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "writing_plan.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "d7b7d0c5-5b3e-461f-8dd5-3fdbb2e89797",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015h7ejCG7mjJqMS2omKGx5t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8008,
+      "cache_read_input_tokens": 25510,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8008
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T20:09:15.407Z_
+
+<details><summary>↩ Tool result · `toolu_01XbpLcVNBokP46kL3GhcGGQ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No writing_plan.yaml found for 'cost-verify-agent-rl'.\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "67d8f40d-4a44-4b3f-9b1e-e9d46367cebd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No writing_plan.yaml found for 'cost-verify-agent-rl'.\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"No writing_plan.yaml found for 'cost-verify-agent-rl'.\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture. Let me write the method draft. Key points to incorporate:
+
+1. **Problem Formulation (3.1)**: POMDP formulation, binary verification decision, action-change signal, verification cost model, objective function
+2. **B-IAVR Method (3.2)**: Selective verification policy, reward design (task success + action-change + cost), GRPO/GiGPO training, Self-Guide integration
+3. **Comparison with Related Methods (3.3)**: vs ARES, vs Thinkless, vs Derailer-Rerailer
+
+
+4. **Implementation Details**: Using Qwen3-1.7B on ALFWorld with step-independent rollouts to handle sparse reward challenges, GiGPO for step-level credit assignment, building on the Self-Guide framework foundation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "f20bf088-cd9d-478c-9f06-a31c5f3c1923",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N3BS8HK9iEr6mn5WwcE72t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17172,
+      "cache_read_input_tokens": 33518,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17172
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+Now I have full context. Writing the method draft.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "e1088373-975f-4c35-b053-c63a9634a1a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N3BS8HK9iEr6mn5WwcE72t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17172,
+      "cache_read_input_tokens": 33518,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17172
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014CBVGPPLoiUM8tL5dBM4nw`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/docs/ 2>/dev/null || echo \"NO_DIR\"",
+  "description": "Check if docs directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "4d7d04a1-524c-431b-b74c-1dc0bf2b6ce5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N3BS8HK9iEr6mn5WwcE72t",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17172,
+      "cache_read_input_tokens": 33518,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17172
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T20:09:26.751Z_
+
+<details><summary>↩ Tool result · `toolu_014CBVGPPLoiUM8tL5dBM4nw`</summary>
+
+```text
+adaptive_kl_assessment.md
+ares_analysis.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "583c93a8-0621-4820-a8fc-99ee09c64f7f",
+  "tool_use_result": {
+    "stdout": "adaptive_kl_assessment.md\nares_analysis.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — Write · `toolu_016E6x6FgrGSdvvdvxSfUaRD`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/docs/method_draft.md",
+  "content": "# 3. Method\n\n## 3.1 Problem Formulation\n\n### Interactive Agent as POMDP\n\nWe formalize the interactive agent task as a Partially Observable Markov Decision Process (POMDP) $\\mathcal{M} = \\langle \\mathcal{S}, \\mathcal{A}, \\mathcal{O}, T, O, R, \\gamma \\rangle$, where $\\mathcal{S}$ is the state space of the environment (e.g., object locations and states in a household), $\\mathcal{A}$ is the action space (e.g., natural language commands such as `go to shelf 1`, `take mug 2`), $\\mathcal{O}$ is the observation space (textual descriptions of the environment), $T: \\mathcal{S} \\times \\mathcal{A} \\rightarrow \\Delta(\\mathcal{S})$ is the transition function, $O: \\mathcal{S} \\rightarrow \\Delta(\\mathcal{O})$ is the observation function, $R: \\mathcal{S} \\times \\mathcal{A} \\rightarrow \\mathbb{R}$ is the reward function, and $\\gamma$ is the discount factor.\n\nAt each timestep $t$, the agent receives observation $o_t \\in \\mathcal{O}$ and selects action $a_t \\in \\mathcal{A}$ according to its policy $\\pi_\\phi(a_t \\mid h_t)$, where $h_t = (o_1, a_1, \\ldots, o_t)$ is the interaction history. The episode terminates upon task completion (success) or after a maximum number of steps $T_{\\max}$.\n\n### Verification Decision\n\nAt each step $t$, in addition to the primary action $a_t$, the agent makes a binary verification decision:\n$$d_t \\in \\{0, 1\\}$$\nwhere $d_t = 1$ triggers a self-verification subroutine and $d_t = 0$ skips verification. When $d_t = 1$, the agent re-examines its current observation and proposed action, potentially revising $a_t$ to an alternative $a_t'$.\n\nWe parameterize the verification policy as $\\pi_\\theta(d_t \\mid s_t)$, where $s_t$ is a compact representation of the agent's state at step $t$ (including the current observation, proposed action, and task context). In practice, $\\pi_\\theta$ is realized by augmenting the agent's action space with a special control token $\\langle\\text{VERIFY}\\rangle$ that precedes the action output, such that the language model generates either $\\langle\\text{VERIFY}\\rangle\\, a_t$ or $\\langle\\text{SKIP}\\rangle\\, a_t$ at each step.\n\n### Action-Change Signal\n\nWe define the **action-change indicator** as the primary signal for verification informativeness:\n$$\\Delta a_t = \\mathbb{1}\\left[a_t^{\\text{post}} \\neq a_t^{\\text{pre}}\\right]$$\nwhere $a_t^{\\text{pre}}$ is the action the agent would have taken without verification (obtained via a single greedy decode pass), and $a_t^{\\text{post}}$ is the action after the verification subroutine. Equality is assessed via semantic canonicalization (e.g., mapping actions to $\\langle \\text{verb}, \\text{object}, \\text{receptacle} \\rangle$ tuples in ALFWorld) to avoid spurious mismatches from surface-form variation.\n\nThe key insight is that **most self-verification is confirmatory rather than corrective** \\cite{self-verification-dilemma-2026}. When $\\Delta a_t = 0$, the verification consumed compute without altering behavior---it was uninformative. When $\\Delta a_t = 1$, the verification produced a behavioral change, indicating it carried decision-relevant information.\n\n### Verification Cost Model\n\nEach verification incurs a fixed cost $c_{\\text{verify}}$ (proportional to the additional inference tokens required). The total verification cost for an episode of length $T$ is:\n$$C_{\\text{total}} = \\sum_{t=1}^{T} d_t \\cdot c_{\\text{verify}}$$\n\nIn practice, $c_{\\text{verify}}$ corresponds to the additional forward pass needed for the verification subroutine (re-observation, re-reasoning, and potential action revision), which approximately doubles the per-step inference cost.\n\n&lt;!-- [中文注释] Director 决策点：c_verify 是固定常数还是与 step 相关的变量？当前设定为固定值，但如果 verification 长度变化大可能需要 token-level cost -->\n\n### Objective\n\nThe goal of B-IAVR is to learn a verification policy $\\pi_\\theta$ that maximizes task success while minimizing verification cost. We formulate this as a constrained optimization problem:\n$$\\max_\\theta \\; \\mathbb{E}_{\\pi_\\theta, \\pi_\\phi}\\left[\\sum_{t=1}^{T} R(s_t, a_t)\\right] \\quad \\text{s.t.} \\quad \\mathbb{E}_{\\pi_\\theta}\\left[C_{\\text{total}}\\right] \\leq C_{\\text{budget}}$$\n\nwhere $C_{\\text{budget}}$ is the verification budget constraint. In practice, we relax this to an unconstrained objective via Lagrangian relaxation (Section 3.2).\n\n\n## 3.2 B-IAVR: Selective Self-Verification via RL\n\n### Overview\n\nB-IAVR (**B**inary **I**nformative **A**ction **V**erification via **R**L) trains a language model agent to decide *when* to invoke self-verification, using action change as a reward signal for verification informativeness. The method consists of three components: (1) a selective verification policy that makes per-step binary verify/skip decisions, (2) a composite reward function combining task success, verification informativeness, and cost, and (3) an RL training procedure based on GRPO with optional GiGPO extension for step-level credit assignment.\n\n### Selective Verification Policy\n\nThe agent's generation at each step $t$ is structured as:\n$$\\pi(d_t, a_t \\mid h_t) = \\pi_\\theta(d_t \\mid h_t) \\cdot \\pi_\\phi(a_t \\mid h_t, d_t)$$\n\nWhen the model generates $\\langle\\text{VERIFY}\\rangle$, a verification subroutine is triggered:\n1. The agent produces a preliminary action $a_t^{\\text{pre}}$ via greedy decoding from the current state.\n2. The verification module re-examines the observation $o_t$, the proposed action $a_t^{\\text{pre}}$, and the task goal $g$, generating a verification rationale.\n3. Based on the rationale, the agent either confirms $a_t^{\\text{pre}}$ or revises it to $a_t^{\\text{post}}$.\n\nWhen $\\langle\\text{SKIP}\\rangle$ is generated, $a_t^{\\text{pre}}$ is directly executed without verification.\n\nIn practice, $\\pi_\\theta$ and $\\pi_\\phi$ share the same language model backbone, with the verification decision encoded as a special token prefix. This avoids the overhead of maintaining separate models and allows end-to-end RL training.\n\n&lt;!-- [中文注释] Director 决策点：verification subroutine 的具体 prompt 设计需要确认——是 re-observe environment 还是 re-reason on existing observation？当前写为 re-examine observation，但如果 re-observe 有不同 cost implications -->\n\n### Reward Design\n\nThe reward function combines three components to balance task performance, verification quality, and cost:\n\n**Task success reward.** A binary episode-level reward indicating whether the task was completed:\n$$r_{\\text{task}} = \\begin{cases} r_+ & \\text{if task completed successfully} \\\\ 0 & \\text{otherwise} \\end{cases}$$\n\n**Action-change reward.** A step-level reward given when verification produces a behavioral change, serving as a proxy for verification informativeness:\n$$r_{\\text{ac}, t} = \\alpha \\cdot d_t \\cdot \\Delta a_t$$\nwhere $\\alpha > 0$ controls the magnitude of the informativeness bonus. This reward is only assigned at steps where verification is triggered ($d_t = 1$) and the action changes ($\\Delta a_t = 1$).\n\n**Verification cost penalty.** A step-level penalty for each verification invocation:\n$$r_{\\text{cost}, t} = -\\gamma_c \\cdot d_t$$\nwhere $\\gamma_c > 0$ is the per-verification cost coefficient.\n\nThe **combined reward** for an episode is:\n$$R = r_{\\text{task}} + \\sum_{t=1}^{T}\\left(\\beta \\cdot r_{\\text{ac}, t} + r_{\\text{cost}, t}\\right)$$\n$$= r_{\\text{task}} + \\sum_{t=1}^{T} d_t \\left(\\beta \\cdot \\alpha \\cdot \\Delta a_t - \\gamma_c\\right)$$\n\nwhere $\\beta$ balances the informativeness bonus against the cost penalty. The cost coefficient $\\gamma_c$ is updated via dual gradient ascent to enforce the budget constraint:\n$$\\gamma_c \\leftarrow \\gamma_c + \\eta_\\gamma \\left(\\mathbb{E}[C_{\\text{total}}] - C_{\\text{budget}}\\right)$$\n\nThis Lagrangian formulation allows the agent to learn a cost-performance tradeoff without hand-tuning $\\gamma_c$.\n\n&lt;!-- [中文注释] Director 决策点：α 和 β 的关系是否冗余？当前公式 β·α·Δa_t 可以简化为单一系数。保留两个是为了区分 action-change signal 的 base magnitude (α) 和 informativeness-vs-task 的 tradeoff (β)。如果觉得过度参数化，可以合并 -->\n\n**Interaction between action-change reward and task success.** Note that $r_{\\text{ac}}$ is not gated on task success. A verification that changes the action is informative regardless of episode outcome---even in failed episodes, action changes driven by verification reveal that the agent's initial action was uncertain, providing useful training signal. This design choice avoids the bootstrap problem encountered with success-gated rewards when base success rates are low [TBD: cite exp013f gaming / D012-D013 analysis].\n\n### Training with GRPO\n\nWe train $\\pi_\\theta$ using Group Relative Policy Optimization (GRPO) \\cite{shao2024deepseekmath}, which estimates advantages from groups of rollouts without requiring a learned value function.\n\nFor each training step, we sample $G$ groups of $K$ rollouts per task instance. Within each group $g$, the advantage of rollout $k$ is computed as:\n$$\\hat{A}^{(g)}_k = \\frac{R^{(g)}_k - \\text{mean}(\\{R^{(g)}_j\\}_{j=1}^K)}{\\text{std}(\\{R^{(g)}_j\\}_{j=1}^K) + \\epsilon}$$\n\nThe GRPO objective with KL regularization is:\n$$\\mathcal{L}_{\\text{GRPO}}(\\theta) = -\\mathbb{E}_{g,k}\\left[\\min\\left(\\rho_t \\hat{A}^{(g)}_k, \\; \\text{clip}(\\rho_t, 1-\\varepsilon, 1+\\varepsilon) \\hat{A}^{(g)}_k\\right)\\right] + \\lambda_{\\text{KL}} \\, D_{\\text{KL}}(\\pi_\\theta \\| \\pi_{\\text{ref}})$$\n\nwhere $\\rho_t = \\frac{\\pi_\\theta(a_t | h_t)}{\\pi_{\\text{ref}}(a_t | h_t)}$ is the importance ratio and $\\pi_{\\text{ref}}$ is the reference policy (initialized from the SFT checkpoint).\n\n**Step-independent context.** Following the rollout design of verl-agent \\cite{selfguide2026}, we employ step-independent context for multi-turn rollouts: at each step, the model receives only the current observation and task context rather than the full interaction history. This prevents context length explosion in long-horizon tasks and maintains consistent inference quality across steps---a critical factor for training stability in interactive agent settings.\n\n&lt;!-- [中文注释] Director 决策点：step-independent context 是否需要更详细的描述？这实际上是 exp026 成功的关键技术因素（vs RAGEN full-history 三次 entropy collapse），但如果论文 framing 不强调框架差异可以简写 -->\n\n### Extension: GiGPO for Step-Level Credit Assignment\n\n[TBD: GiGPO details]\n\nA known limitation of episode-level GRPO is that the advantage $\\hat{A}^{(g)}_k$ is shared across all steps within a rollout, providing no step-level credit assignment. In multi-turn agent tasks where episodes span 10--30 steps, this leads to high variance and slow learning---a single failed step can assign negative advantage to all preceding correct actions.\n\nGiGPO (Group-in-Group Policy Optimization) \\cite{feng2025gigpo} addresses this via a nested group structure. For each step $t$ within a rollout, GiGPO constructs a *step-level group* by comparing the outcomes of rollouts that share the same prefix up to step $t-1$ but diverge at step $t$:\n$$\\hat{A}^{\\text{step}}_t = \\frac{R_t^{>} - \\text{mean}(\\{R^{>}_j\\})}{\\text{std}(\\{R^{>}_j\\}) + \\epsilon}$$\nwhere $R_t^{>}$ denotes the cumulative reward from step $t$ onward. This provides dense, step-level learning signal without requiring a learned critic.\n\nIn the B-IAVR context, GiGPO is particularly well-suited because:\n\n1. **Verification decisions are step-level.** The verify/skip decision at step $t$ has localized impact---GiGPO can attribute the outcome change to the specific verification decision rather than spreading credit across the entire episode.\n2. **Action-change reward is already step-level.** The reward $r_{\\text{ac},t}$ naturally aligns with GiGPO's step-level advantage structure, providing dense reward signal at the granularity where credit assignment operates.\n3. **Sparse task reward benefits from decomposition.** When the episode-level task reward $r_{\\text{task}}$ is binary and sparse, GiGPO's step-level groups break the learning signal into denser components, mitigating the cold-start problem observed with pure GRPO on sparse rewards.\n\n[TBD: exp result --- GiGPO vs GRPO training curves, convergence speed comparison]\n\n### Self-Guide Integration\n\nB-IAVR builds upon the Self-Guide framework \\cite{selfguide2026}, which co-evolves a task policy and an internal reward model through iterative RL training. Specifically, Self-Guide trains a policy $\\pi_\\phi$ alongside an internal evaluator $V_\\psi$ that scores intermediate states, providing denser reward signal than the sparse environment reward alone.\n\nWe extend Self-Guide by introducing the verification decision layer: the internal evaluator $V_\\psi(s_t)$ serves as an additional input feature to the verification policy $\\pi_\\theta(d_t \\mid s_t, V_\\psi(s_t))$. Intuitively, when the internal evaluator assigns low confidence to the current state (indicating the agent is uncertain about its action), verification is more likely to be informative. This creates a natural trigger mechanism:\n\n$$P(d_t = 1) \\uparrow \\quad \\text{when} \\quad V_\\psi(s_t) \\text{ is low (uncertain)}$$\n\nThe co-evolution property of Self-Guide ensures that as the task policy improves, the internal evaluator also calibrates, leading to a progressively refined verification trigger that adapts to the agent's evolving competence.\n\n[TBD: exp result --- Self-Guide internal reward correlation with action-change frequency]\n\n&lt;!-- [中文注释] Director 决策点：Self-Guide integration 的描述深度——当前写了 V_ψ 作为 verification trigger 的机制，但实际实现可能更简单（直接用 token logits confidence 而非独立 V_ψ）。需要确认最终实现方案后 revise -->\n\n\n## 3.3 Comparison with Related Methods\n\nWe position B-IAVR against three categories of related methods: adaptive reasoning effort, selective verification, and self-correction in agents.\n\n### vs ARES: Adaptive Reasoning Effort Selection\n\nARES \\cite{yang2026ares} trains an SFT-initialized router to allocate continuous reasoning effort per step, optimized via GRPO with a combined outcome and token-efficiency reward. B-IAVR differs in three fundamental aspects:\n\n| Dimension | ARES | B-IAVR (Ours) |\n|-----------|------|----------------|\n| **Decision type** | Continuous effort level | Binary verify/skip |\n| **Training signal** | Pre-defined quality metrics + token efficiency | Action change (behavioral) |\n| **Data requirement** | Difficulty-annotated data for SFT bootstrap | Environment interaction only |\n| **Scope** | General reasoning tasks | Interactive agent tasks |\n\nThe binary decision in B-IAVR offers two advantages: (1) it is more interpretable---one can directly audit *which steps* were verified and *whether* the verification changed behavior, and (2) it avoids the need for difficulty annotations, as the action-change signal is self-supervised from the agent's own behavioral variation.\n\nConversely, ARES's continuous allocation is more flexible for tasks where \"partial verification\" makes sense. B-IAVR's binary design is motivated by the interactive agent setting, where verification is a discrete subroutine (re-observe environment, re-reason, potentially revise) that is either invoked or not.\n\n### vs Thinkless: Learning When to Think\n\nThinkless \\cite{du2025thinkless} uses RL to train a control token that decides whether to invoke extended thinking (chain-of-thought) before answering. While methodologically parallel to B-IAVR (both learn a binary computation trigger via RL), they address different settings:\n\n- **Single-turn vs multi-turn.** Thinkless operates on single-turn QA; B-IAVR on multi-step interactive agent trajectories where each decision depends on environment feedback.\n- **Computation type.** Thinkless controls *internal reasoning* (thinking tokens); B-IAVR controls *external verification* (re-observation of the environment), grounding the signal in behavioral change rather than token-level computation.\n- **Reward signal.** Thinkless uses task correctness; B-IAVR introduces the action-change signal as a verification-specific informativeness measure.\n\n### vs Derailer-Rerailer: Adaptive Verification for Reasoning\n\nDerailer-Rerailer \\cite{wan2025derailer-rerailer} uses a heuristic instability signal to detect \"derailed\" reasoning steps and trigger correction. Compared to B-IAVR:\n\n- **Heuristic vs learned.** Derailer-Rerailer relies on hand-designed instability metrics; B-IAVR learns the verification trigger end-to-end via RL. This eliminates the need for task-specific heuristic engineering and allows the trigger to adapt as the policy improves.\n- **Reasoning chains vs agent trajectories.** Derailer-Rerailer operates on single-turn reasoning chains; B-IAVR on multi-turn agent trajectories with environment interaction. The environment provides a concrete grounding signal (observation changes) absent in pure reasoning settings.\n- **Correction scope.** Derailer-Rerailer re-generates from the derailed step; B-IAVR's verification may confirm or revise a single action, preserving the trajectory structure.\n\n### vs Sherlock: Reliable Agentic Workflow Execution\n\nSherlock \\cite{sherlock2025} applies selective verification to agentic *workflows* (DAG-structured task plans) using offline counterfactual analysis and speculative execution. The key distinction is the level of abstraction: Sherlock verifies workflow nodes (coarse-grained, offline planning); B-IAVR verifies individual agent actions (fine-grained, online decision-making). The two approaches are complementary---Sherlock could serve as a workflow-level planner while B-IAVR handles step-level verification within each workflow node.\n\n[TBD: exp result --- ablation table comparing B-IAVR with always-on / no-verify / random-$p$ / confidence-threshold baselines]\n\n&lt;!-- [中文注释] Director 决策点：3.3 节的对比深度是否合适？当前对 ARES 最详细（主要竞争者），Thinkless/Derailer-Rerailer/Sherlock 较简洁。如果 page budget 紧张，Sherlock 段可以移到 Related Work -->\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "15fa8740-cd7b-456f-aaf6-daaa444600a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PpBiw1nHJ3VCkehyQKUk6J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 521,
+      "cache_read_input_tokens": 50690,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 521
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T20:11:19.949Z_
+
+<details><summary>↩ Tool result · `toolu_016E6x6FgrGSdvvdvxSfUaRD`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/docs/method_draft.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "d3f91274-0f7c-4f85-aac7-aeb150921557",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/docs/method_draft.md",
+    "content": "# 3. Method\n\n## 3.1 Problem Formulation\n\n### Interactive Agent as POMDP\n\nWe formalize the interactive agent task as a Partially Observable Markov Decision Process (POMDP) $\\mathcal{M} = \\langle \\mathcal{S}, \\mathcal{A}, \\mathcal{O}, T, O, R, \\gamma \\rangle$, where $\\mathcal{S}$ is the state space of the environment (e.g., object locations and states in a household), $\\mathcal{A}$ is the action space (e.g., natural language commands such as `go to shelf 1`, `take mug 2`), $\\mathcal{O}$ is the observation space (textual descriptions of the environment), $T: \\mathcal{S} \\times \\mathcal{A} \\rightarrow \\Delta(\\mathcal{S})$ is the transition function, $O: \\mathcal{S} \\rightarrow \\Delta(\\mathcal{O})$ is the observation function, $R: \\mathcal{S} \\times \\mathcal{A} \\rightarrow \\mathbb{R}$ is the reward function, and $\\gamma$ is the discount factor.\n\nAt each timestep $t$, the agent receives observation $o_t \\in \\mathcal{O}$ and selects action $a_t \\in \\mathcal{A}$ according to its policy $\\pi_\\phi(a_t \\mid h_t)$, where $h_t = (o_1, a_1, \\ldots, o_t)$ is the interaction history. The episode terminates upon task completion (success) or after a maximum number of steps $T_{\\max}$.\n\n### Verification Decision\n\nAt each step $t$, in addition to the primary action $a_t$, the agent makes a binary verification decision:\n$$d_t \\in \\{0, 1\\}$$\nwhere $d_t = 1$ triggers a self-verification subroutine and $d_t = 0$ skips verification. When $d_t = 1$, the agent re-examines its current observation and proposed action, potentially revising $a_t$ to an alternative $a_t'$.\n\nWe parameterize the verification policy as $\\pi_\\theta(d_t \\mid s_t)$, where $s_t$ is a compact representation of the agent's state at step $t$ (including the current observation, proposed action, and task context). In practice, $\\pi_\\theta$ is realized by augmenting the agent's action space with a special control token $\\langle\\text{VERIFY}\\rangle$ that precedes the action output, such that the language model generates either $\\langle\\text{VERIFY}\\rangle\\, a_t$ or $\\langle\\text{SKIP}\\rangle\\, a_t$ at each step.\n\n### Action-Change Signal\n\nWe define the **action-change indicator** as the primary signal for verification informativeness:\n$$\\Delta a_t = \\mathbb{1}\\left[a_t^{\\text{post}} \\neq a_t^{\\text{pre}}\\right]$$\nwhere $a_t^{\\text{pre}}$ is the action the agent would have taken without verification (obtained via a single greedy decode pass), and $a_t^{\\text{post}}$ is the action after the verification subroutine. Equality is assessed via semantic canonicalization (e.g., mapping actions to $\\langle \\text{verb}, \\text{object}, \\text{receptacle} \\rangle$ tuples in ALFWorld) to avoid spurious mismatches from surface-form variation.\n\nThe key insight is that **most self-verification is confirmatory rather than corrective** \\cite{self-verification-dilemma-2026}. When $\\Delta a_t = 0$, the verification consumed compute without altering behavior---it was uninformative. When $\\Delta a_t = 1$, the verification produced a behavioral change, indicating it carried decision-relevant information.\n\n### Verification Cost Model\n\nEach verification incurs a fixed cost $c_{\\text{verify}}$ (proportional to the additional inference tokens required). The total verification cost for an episode of length $T$ is:\n$$C_{\\text{total}} = \\sum_{t=1}^{T} d_t \\cdot c_{\\text{verify}}$$\n\nIn practice, $c_{\\text{verify}}$ corresponds to the additional forward pass needed for the verification subroutine (re-observation, re-reasoning, and potential action revision), which approximately doubles the per-step inference cost.\n\n&lt;!-- [中文注释] Director 决策点：c_verify 是固定常数还是与 step 相关的变量？当前设定为固定值，但如果 verification 长度变化大可能需要 token-level cost -->\n\n### Objective\n\nThe goal of B-IAVR is to learn a verification policy $\\pi_\\theta$ that maximizes task success while minimizing verification cost. We formulate this as a constrained optimization problem:\n$$\\max_\\theta \\; \\mathbb{E}_{\\pi_\\theta, \\pi_\\phi}\\left[\\sum_{t=1}^{T} R(s_t, a_t)\\right] \\quad \\text{s.t.} \\quad \\mathbb{E}_{\\pi_\\theta}\\left[C_{\\text{total}}\\right] \\leq C_{\\text{budget}}$$\n\nwhere $C_{\\text{budget}}$ is the verification budget constraint. In practice, we relax this to an unconstrained objective via Lagrangian relaxation (Section 3.2).\n\n\n## 3.2 B-IAVR: Selective Self-Verification via RL\n\n### Overview\n\nB-IAVR (**B**inary **I**nformative **A**ction **V**erification via **R**L) trains a language model agent to decide *when* to invoke self-verification, using action change as a reward signal for verification informativeness. The method consists of three components: (1) a selective verification policy that makes per-step binary verify/skip decisions, (2) a composite reward function combining task success, verification informativeness, and cost, and (3) an RL training procedure based on GRPO with optional GiGPO extension for step-level credit assignment.\n\n### Selective Verification Policy\n\nThe agent's generation at each step $t$ is structured as:\n$$\\pi(d_t, a_t \\mid h_t) = \\pi_\\theta(d_t \\mid h_t) \\cdot \\pi_\\phi(a_t \\mid h_t, d_t)$$\n\nWhen the model generates $\\langle\\text{VERIFY}\\rangle$, a verification subroutine is triggered:\n1. The agent produces a preliminary action $a_t^{\\text{pre}}$ via greedy decoding from the current state.\n2. The verification module re-examines the observation $o_t$, the proposed action $a_t^{\\text{pre}}$, and the task goal $g$, generating a verification rationale.\n3. Based on the rationale, the agent either confirms $a_t^{\\text{pre}}$ or revises it to $a_t^{\\text{post}}$.\n\nWhen $\\langle\\text{SKIP}\\rangle$ is generated, $a_t^{\\text{pre}}$ is directly executed without verification.\n\nIn practice, $\\pi_\\theta$ and $\\pi_\\phi$ share the same language model backbone, with the verification decision encoded as a special token prefix. This avoids the overhead of maintaining separate models and allows end-to-end RL training.\n\n&lt;!-- [中文注释] Director 决策点：verification subroutine 的具体 prompt 设计需要确认——是 re-observe environment 还是 re-reason on existing observation？当前写为 re-examine observation，但如果 re-observe 有不同 cost implications -->\n\n### Reward Design\n\nThe reward function combines three components to balance task performance, verification quality, and cost:\n\n**Task success reward.** A binary episode-level reward indicating whether the task was completed:\n$$r_{\\text{task}} = \\begin{cases} r_+ & \\text{if task completed successfully} \\\\ 0 & \\text{otherwise} \\end{cases}$$\n\n**Action-change reward.** A step-level reward given when verification produces a behavioral change, serving as a proxy for verification informativeness:\n$$r_{\\text{ac}, t} = \\alpha \\cdot d_t \\cdot \\Delta a_t$$\nwhere $\\alpha > 0$ controls the magnitude of the informativeness bonus. This reward is only assigned at steps where verification is triggered ($d_t = 1$) and the action changes ($\\Delta a_t = 1$).\n\n**Verification cost penalty.** A step-level penalty for each verification invocation:\n$$r_{\\text{cost}, t} = -\\gamma_c \\cdot d_t$$\nwhere $\\gamma_c > 0$ is the per-verification cost coefficient.\n\nThe **combined reward** for an episode is:\n$$R = r_{\\text{task}} + \\sum_{t=1}^{T}\\left(\\beta \\cdot r_{\\text{ac}, t} + r_{\\text{cost}, t}\\right)$$\n$$= r_{\\text{task}} + \\sum_{t=1}^{T} d_t \\left(\\beta \\cdot \\alpha \\cdot \\Delta a_t - \\gamma_c\\right)$$\n\nwhere $\\beta$ balances the informativeness bonus against the cost penalty. The cost coefficient $\\gamma_c$ is updated via dual gradient ascent to enforce the budget constraint:\n$$\\gamma_c \\leftarrow \\gamma_c + \\eta_\\gamma \\left(\\mathbb{E}[C_{\\text{total}}] - C_{\\text{budget}}\\right)$$\n\nThis Lagrangian formulation allows the agent to learn a cost-performance tradeoff without hand-tuning $\\gamma_c$.\n\n&lt;!-- [中文注释] Director 决策点：α 和 β 的关系是否冗余？当前公式 β·α·Δa_t 可以简化为单一系数。保留两个是为了区分 action-change signal 的 base magnitude (α) 和 informativeness-vs-task 的 tradeoff (β)。如果觉得过度参数化，可以合并 -->\n\n**Interaction between action-change reward and task success.** Note that $r_{\\text{ac}}$ is not gated on task success. A verification that changes the action is informative regardless of episode outcome---even in failed episodes, action changes driven by verification reveal that the agent's initial action was uncertain, providing useful training signal. This design choice avoids the bootstrap problem encountered with success-gated rewards when base success rates are low [TBD: cite exp013f gaming / D012-D013 analysis].\n\n### Training with GRPO\n\nWe train $\\pi_\\theta$ using Group Relative Policy Optimization (GRPO) \\cite{shao2024deepseekmath}, which estimates advantages from groups of rollouts without requiring a learned value function.\n\nFor each training step, we sample $G$ groups of $K$ rollouts per task instance. Within each group $g$, the advantage of rollout $k$ is computed as:\n$$\\hat{A}^{(g)}_k = \\frac{R^{(g)}_k - \\text{mean}(\\{R^{(g)}_j\\}_{j=1}^K)}{\\text{std}(\\{R^{(g)}_j\\}_{j=1}^K) + \\epsilon}$$\n\nThe GRPO objective with KL regularization is:\n$$\\mathcal{L}_{\\text{GRPO}}(\\theta) = -\\mathbb{E}_{g,k}\\left[\\min\\left(\\rho_t \\hat{A}^{(g)}_k, \\; \\text{clip}(\\rho_t, 1-\\varepsilon, 1+\\varepsilon) \\hat{A}^{(g)}_k\\right)\\right] + \\lambda_{\\text{KL}} \\, D_{\\text{KL}}(\\pi_\\theta \\| \\pi_{\\text{ref}})$$\n\nwhere $\\rho_t = \\frac{\\pi_\\theta(a_t | h_t)}{\\pi_{\\text{ref}}(a_t | h_t)}$ is the importance ratio and $\\pi_{\\text{ref}}$ is the reference policy (initialized from the SFT checkpoint).\n\n**Step-independent context.** Following the rollout design of verl-agent \\cite{selfguide2026}, we employ step-independent context for multi-turn rollouts: at each step, the model receives only the current observation and task context rather than the full interaction history. This prevents context length explosion in long-horizon tasks and maintains consistent inference quality across steps---a critical factor for training stability in interactive agent settings.\n\n&lt;!-- [中文注释] Director 决策点：step-independent context 是否需要更详细的描述？这实际上是 exp026 成功的关键技术因素（vs RAGEN full-history 三次 entropy collapse），但如果论文 framing 不强调框架差异可以简写 -->\n\n### Extension: GiGPO for Step-Level Credit Assignment\n\n[TBD: GiGPO details]\n\nA known limitation of episode-level GRPO is that the advantage $\\hat{A}^{(g)}_k$ is shared across all steps within a rollout, providing no step-level credit assignment. In multi-turn agent tasks where episodes span 10--30 steps, this leads to high variance and slow learning---a single failed step can assign negative advantage to all preceding correct actions.\n\nGiGPO (Group-in-Group Policy Optimization) \\cite{feng2025gigpo} addresses this via a nested group structure. For each step $t$ within a rollout, GiGPO constructs a *step-level group* by comparing the outcomes of rollouts that share the same prefix up to step $t-1$ but diverge at step $t$:\n$$\\hat{A}^{\\text{step}}_t = \\frac{R_t^{>} - \\text{mean}(\\{R^{>}_j\\})}{\\text{std}(\\{R^{>}_j\\}) + \\epsilon}$$\nwhere $R_t^{>}$ denotes the cumulative reward from step $t$ onward. This provides dense, step-level learning signal without requiring a learned critic.\n\nIn the B-IAVR context, GiGPO is particularly well-suited because:\n\n1. **Verification decisions are step-level.** The verify/skip decision at step $t$ has localized impact---GiGPO can attribute the outcome change to the specific verification decision rather than spreading credit across the entire episode.\n2. **Action-change reward is already step-level.** The reward $r_{\\text{ac},t}$ naturally aligns with GiGPO's step-level advantage structure, providing dense reward signal at the granularity where credit assignment operates.\n3. **Sparse task reward benefits from decomposition.** When the episode-level task reward $r_{\\text{task}}$ is binary and sparse, GiGPO's step-level groups break the learning signal into denser components, mitigating the cold-start problem observed with pure GRPO on sparse rewards.\n\n[TBD: exp result --- GiGPO vs GRPO training curves, convergence speed comparison]\n\n### Self-Guide Integration\n\nB-IAVR builds upon the Self-Guide framework \\cite{selfguide2026}, which co-evolves a task policy and an internal reward model through iterative RL training. Specifically, Self-Guide trains a policy $\\pi_\\phi$ alongside an internal evaluator $V_\\psi$ that scores intermediate states, providing denser reward signal than the sparse environment reward alone.\n\nWe extend Self-Guide by introducing the verification decision layer: the internal evaluator $V_\\psi(s_t)$ serves as an additional input feature to the verification policy $\\pi_\\theta(d_t \\mid s_t, V_\\psi(s_t))$. Intuitively, when the internal evaluator assigns low confidence to the current state (indicating the agent is uncertain about its action), verification is more likely to be informative. This creates a natural trigger mechanism:\n\n$$P(d_t = 1) \\uparrow \\quad \\text{when} \\quad V_\\psi(s_t) \\text{ is low (uncertain)}$$\n\nThe co-evolution property of Self-Guide ensures that as the task policy improves, the internal evaluator also calibrates, leading to a progressively refined verification trigger that adapts to the agent's evolving competence.\n\n[TBD: exp result --- Self-Guide internal reward correlation with action-change frequency]\n\n&lt;!-- [中文注释] Director 决策点：Self-Guide integration 的描述深度——当前写了 V_ψ 作为 verification trigger 的机制，但实际实现可能更简单（直接用 token logits confidence 而非独立 V_ψ）。需要确认最终实现方案后 revise -->\n\n\n## 3.3 Comparison with Related Methods\n\nWe position B-IAVR against three categories of related methods: adaptive reasoning effort, selective verification, and self-correction in agents.\n\n### vs ARES: Adaptive Reasoning Effort Selection\n\nARES \\cite{yang2026ares} trains an SFT-initialized router to allocate continuous reasoning effort per step, optimized via GRPO with a combined outcome and token-efficiency reward. B-IAVR differs in three fundamental aspects:\n\n| Dimension | ARES | B-IAVR (Ours) |\n|-----------|------|----------------|\n| **Decision type** | Continuous effort level | Binary verify/skip |\n| **Training signal** | Pre-defined quality metrics + token efficiency | Action change (behavioral) |\n| **Data requirement** | Difficulty-annotated data for SFT bootstrap | Environment interaction only |\n| **Scope** | General reasoning tasks | Interactive agent tasks |\n\nThe binary decision in B-IAVR offers two advantages: (1) it is more interpretable---one can directly audit *which steps* were verified and *whether* the verification changed behavior, and (2) it avoids the need for difficulty annotations, as the action-change signal is self-supervised from the agent's own behavioral variation.\n\nConversely, ARES's continuous allocation is more flexible for tasks where \"partial verification\" makes sense. B-IAVR's binary design is motivated by the interactive agent setting, where verification is a discrete subroutine (re-observe environment, re-reason, potentially revise) that is either invoked or not.\n\n### vs Thinkless: Learning When to Think\n\nThinkless \\cite{du2025thinkless} uses RL to train a control token that decides whether to invoke extended thinking (chain-of-thought) before answering. While methodologically parallel to B-IAVR (both learn a binary computation trigger via RL), they address different settings:\n\n- **Single-turn vs multi-turn.** Thinkless operates on single-turn QA; B-IAVR on multi-step interactive agent trajectories where each decision depends on environment feedback.\n- **Computation type.** Thinkless controls *internal reasoning* (thinking tokens); B-IAVR controls *external verification* (re-observation of the environment), grounding the signal in behavioral change rather than token-level computation.\n- **Reward signal.** Thinkless uses task correctness; B-IAVR introduces the action-change signal as a verification-specific informativeness measure.\n\n### vs Derailer-Rerailer: Adaptive Verification for Reasoning\n\nDerailer-Rerailer \\cite{wan2025derailer-rerailer} uses a heuristic instability signal to detect \"derailed\" reasoning steps and trigger correction. Compared to B-IAVR:\n\n- **Heuristic vs learned.** Derailer-Rerailer relies on hand-designed instability metrics; B-IAVR learns the verification trigger end-to-end via RL. This eliminates the need for task-specific heuristic engineering and allows the trigger to adapt as the policy improves.\n- **Reasoning chains vs agent trajectories.** Derailer-Rerailer operates on single-turn reasoning chains; B-IAVR on multi-turn agent trajectories with environment interaction. The environment provides a concrete grounding signal (observation changes) absent in pure reasoning settings.\n- **Correction scope.** Derailer-Rerailer re-generates from the derailed step; B-IAVR's verification may confirm or revise a single action, preserving the trajectory structure.\n\n### vs Sherlock: Reliable Agentic Workflow Execution\n\nSherlock \\cite{sherlock2025} applies selective verification to agentic *workflows* (DAG-structured task plans) using offline counterfactual analysis and speculative execution. The key distinction is the level of abstraction: Sherlock verifies workflow nodes (coarse-grained, offline planning); B-IAVR verifies individual agent actions (fine-grained, online decision-making). The two approaches are complementary---Sherlock could serve as a workflow-level planner while B-IAVR handles step-level verification within each workflow node.\n\n[TBD: exp result --- ablation table comparing B-IAVR with always-on / no-verify / random-$p$ / confidence-threshold baselines]\n\n&lt;!-- [中文注释] Director 决策点：3.3 节的对比深度是否合适？当前对 ARES 最详细（主要竞争者），Thinkless/Derailer-Rerailer/Sherlock 较简洁。如果 page budget 紧张，Sherlock 段可以移到 Related Work -->\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_018cBwt6L2Mc5vggRtTt8DSq`</summary>
+
+```json
+{
+  "name": "Method Section Draft v1",
+  "type": "paper",
+  "description": "B-IAVR Method section 初稿骨架：3.1 Problem Formulation (POMDP + verification decision + action-change signal + cost model)、3.2 B-IAVR Method (selective verification policy + reward design + GRPO/GiGPO training + Self-Guide integration)、3.3 Comparison with Related Methods (vs ARES/Thinkless/Derailer-Rerailer/Sherlock)",
+  "project": "cost-verify-agent-rl",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/docs/method_draft.md",
+  "tags": [
+    "paper",
+    "method",
+    "draft-v1"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "2b7615f6-4861-4509-82fc-07d22a5b85b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M6GDaQoAoHc5etdybZMBx3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5431,
+      "cache_read_input_tokens": 51211,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5431
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T20:11:26.116Z_
+
+<details><summary>↩ Tool result · `toolu_018cBwt6L2Mc5vggRtTt8DSq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_6bc766\", \"name\": \"Method Section Draft v1\", \"type\": \"paper\", \"description\": \"B-IAVR Method section 初稿骨架：3.1 Problem Formulation (POMDP + verification decision + action-change signal + cost model)、3.2 B-IAVR Method (selective verification policy + reward design + GRPO/GiGPO training + Self-Guide integration)、3.3 Comparison with Related Methods (vs ARES/Thinkless/Derailer-Rerailer/Sherlock)\", \"path\": \"projects/cost-verify-agent-rl/artifacts/_project/paper/method_draft.md\", \"url\": null, \"project\": \"cost-verify-agent-rl\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T20:11:26.039228+00:00\", \"tags\": [\"paper\", \"method\", \"draft-v1\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "43f386db-8cc8-42e9-99e2-3a6e00f4b507",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_6bc766\\\", \\\"name\\\": \\\"Method Section Draft v1\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"B-IAVR Method section 初稿骨架：3.1 Problem Formulation (POMDP + verification decision + action-change signal + cost model)、3.2 B-IAVR Method (selective verification policy + reward design + GRPO/GiGPO training + Self-Guide integration)、3.3 Comparison with Related Methods (vs ARES/Thinkless/Derailer-Rerailer/Sherlock)\\\", \\\"path\\\": \\\"projects/cost-verify-agent-rl/artifacts/_project/paper/method_draft.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"cost-verify-agent-rl\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T20:11:26.039228+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"method\\\", \\\"draft-v1\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_6bc766\", \"name\": \"Method Section Draft v1\", \"type\": \"paper\", \"description\": \"B-IAVR Method section 初稿骨架：3.1 Problem Formulation (POMDP + verification decision + action-change signal + cost model)、3.2 B-IAVR Method (selective verification policy + reward design + GRPO/GiGPO training + Self-Guide integration)、3.3 Comparison with Related Methods (vs ARES/Thinkless/Derailer-Rerailer/Sherlock)\", \"path\": \"projects/cost-verify-agent-rl/artifacts/_project/paper/method_draft.md\", \"url\": null, \"project\": \"cost-verify-agent-rl\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T20:11:26.039228+00:00\", \"tags\": [\"paper\", \"method\", \"draft-v1\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+已写入 `artifacts/docs/method_draft.md` 并注册。
+
+**内容概览：**
+
+- **3.1 Problem Formulation** — POMDP 建模、binary verification decision $d_t$、action-change indicator $\Delta a_t$（含语义 canonicalization）、verification cost model、Lagrangian 松弛目标函数
+- **3.2 B-IAVR Method** — selective verification policy（$\langle\text{VERIFY}\rangle$/$\langle\text{SKIP}\rangle$ control token）、三组分 reward（task success + action-change + cost penalty，含 dual gradient ascent 更新 $\gamma_c$）、GRPO 训练（含 step-independent context 描述）、GiGPO 扩展占位（解释了 nested group structure 如何匹配 verification 的 step-level 特性）、Self-Guide integration（$V_\psi$ 作为 verification trigger）
+- **3.3 Comparison** — ARES（最详细，四维度表格）、Thinkless、Derailer-Rerailer、Sherlock
+
+**占位符：** `[TBD: exp result]` × 2、`[TBD: GiGPO details]` × 1。中文注释标记了 5 个 Director 决策点（$c_{\text{verify}}$ 固定/变量、verification subroutine 设计、$\alpha$/$\beta$ 合并、step-independent context 描述深度、Self-Guide 实现方案、3.3 Sherlock 是否移到 Related Work）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "uuid": "fe4c1b1d-0091-4eb8-9e36-9ed55d401f7e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y5zT21SThByLc8biy9cMTc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 675,
+      "cache_read_input_tokens": 56642,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 675
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 30_
+
+已写入 `artifacts/docs/method_draft.md` 并注册。
+
+**内容概览：**
+
+- **3.1 Problem Formulation** — POMDP 建模、binary verification decision $d_t$、action-change indicator $\Delta a_t$（含语义 canonicalization）、verification cost model、Lagrangian 松弛目标函数
+- **3.2 B-IAVR Method** — selective verification policy（$\langle\text{VERIFY}\rangle$/$\langle\text{SKIP}\rangle$ control token）、三组分 reward（task success + action-change + cost penalty，含 dual gradient ascent 更新 $\gamma_c$）、GRPO 训练（含 step-independent context 描述）、GiGPO 扩展占位（解释了 nested group structure 如何匹配 verification 的 step-level 特性）、Self-Guide integration（$V_\psi$ 作为 verification trigger）
+- **3.3 Comparison** — ARES（最详细，四维度表格）、Thinkless、Derailer-Rerailer、Sherlock
+
+**占位符：** `[TBD: exp result]` × 2、`[TBD: GiGPO details]` × 1。中文注释标记了 5 个 Director 决策点（$c_{\text{verify}}$ 固定/变量、verification subroutine 设计、$\alpha$/$\beta$ 合并、step-independent context 描述深度、Self-Guide 实现方案、3.3 Sherlock 是否移到 Related Work）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 155850,
+  "duration_api_ms": 156666,
+  "num_turns": 11,
+  "stop_reason": "end_turn",
+  "session_id": "d34dc37a-7acf-4234-b2b3-78bd2fc2c49d",
+  "total_cost_usd": 0.5962035000000001,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 45476,
+    "cache_read_input_tokens": 253589,
+    "output_tokens": 7314,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 45476,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 431,
+        "cache_read_input_tokens": 56642,
+        "cache_creation_input_tokens": 675,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 675
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2179,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0022789999999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 7314,
+      "cacheReadInputTokens": 253589,
+      "cacheCreationInputTokens": 45476,
+      "webSearchRequests": 0,
+      "costUSD": 0.5939245000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "1b6d1627-ba13-4a0a-9b17-9a4f5d153152"
+}
+```
+
+</details>
+
+---

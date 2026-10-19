@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "071ff8066bce43edabec",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp020c log check",
+  "task_key": "worker_diagnose_exp020c-log-check_20260514T221700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp020c-log-check_20260514T221700_result.json",
+    "occurrence": 1,
+    "bytes": 1496,
+    "sha256": "dd6d8ce99ac3c0a399c590a68f926dd703ecbb81a94b8175019ad8802e55c90a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### exp020c: 启动失败 ❌\n\n**Hydra 配置错误**，进程已退出（tmux session DEAD）：\n\n```\nomegaconf.errors.ConfigAttributeError: Key 'enable_response_mask' is not in struct\n    full_key: actor_rollout_ref.model.enable_response_mask\n\nhydra.errors.ConfigCompositionException: Could not override 'actor_rollout_ref.model.enable_response_mask'.\nTo append to your config use +actor_rollout_ref.model.enable_response_mask=false\nEXIT_CODE=1\n```\n\n**原因**：启动命令中用了 `actor_rollout_ref.model.enable_response_mask=false`，但该 key 在 config struct 中不存在。Hydra 要求用 `+` 前缀追加新 key。\n\n### exp020b: 停在 step 0\n\n最后日志显示完成了 validation eval（AlfworldSG pass@1=0.0），然后打印了：\n```\nTraining Progress:   0%|          | 0/30 [00:00<?, ?it/s]\n```\n即 exp020b 在训练开始前（step 0/30）被停止。\n\n### GPU 状态\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| cuda:0 | 0% | 41685 / 97887 MiB |\n| cuda:1 | 0% | 41771 / 97887 MiB |\n\nGPU 利用率 0% 但各占 ~42GB 显存——说明有残留进程占着显存但没在计算。可能是 exp020c 崩溃后的 orphan 进程。\n\n### 修复 exp020c\n\n启动命令中把 `actor_rollout_ref.model.enable_response_mask=false` 改为 `+actor_rollout_ref.model.enable_response_mask=false`（加 `+` 前缀），或者从启动命令中去掉这个参数。需要我修复后重新启动吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp020c-log-check.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "2bffb754d58e887630ab",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "research scienceworld grpo prep",
+  "task_key": "worker_research_scienceworld_grpo_prep_20260520T061757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_scienceworld_grpo_prep_20260520T061757.log",
+    "occurrence": 1,
+    "bytes": 854860,
+    "sha256": "f6a85307e35a32ac252914846f923b09137bf78beddd18cb7e184b1d1069016e"
+  },
+  "statistics": {
+    "messages": 224,
+    "user_turns": 0,
+    "tool_calls": 90,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 90,
+      "tool_result": 90,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 224,
+      "chunks": [
+        {
+          "path": "2bffb754d58e887630ab-part-0001.json",
+          "message_count": 164
+        },
+        {
+          "path": "2bffb754d58e887630ab-part-0002.json",
+          "message_count": 60
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-scienceworld-grpo-prep.md"
+}

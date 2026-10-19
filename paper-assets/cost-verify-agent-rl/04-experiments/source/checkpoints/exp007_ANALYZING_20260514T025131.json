@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp007",
+  "project": "cost-verify-agent-rl",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:12:06.008Z",
+    "updated_at": "2026-05-14T02:51:31.927Z",
+    "spec": {
+      "hypothesis": "Parser fix + prompt enhancement + speed optimization (collapse_detection off) enables GRPO learning signal with <50% invalid_action",
+      "model_name": "Qwen3-1.7B",
+      "server": "bjb1-17606",
+      "data_path": "/root/autodl-tmp/alfworld/",
+      "data_count": "3553 (train split)",
+      "seed": {
+        "train": 10000,
+        "val": 123
+      },
+      "description": "Phase A fixed: parser adapts Qwen3 format (fallback regex) + prompt enhancement (direct ALFWorld commands) + collapse_detection off + 30 steps + 64 traj/step + 30 max_turns",
+      "parent": "exp003",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export ALFWORLD_DATA=/root/autodl-tmp/alfworld && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name=_alfworld_exp007_fixed 2>&1 | tee /root/autodl-tmp/exp007_formal.log\"",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp_007/",
+      "log_path": "/root/autodl-tmp/exp007_formal.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T02:51:31.895Z"
+    }
+  },
+  "timestamp": "2026-05-14T02:51:31.945340+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19a467b25193bebd3371",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops p0 cleanup",
+  "task_key": "worker_ops_p0-cleanup_20260515T060431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_p0-cleanup_20260515T060431_result.json",
+    "occurrence": 1,
+    "bytes": 550,
+    "sha256": "1f2cdc6b1658a847fee8c584bf2bab71395fddf07ccb7e2846399e241dcdde87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成，汇报如下：\n\n| 项目 | 结果 |\n|------|------|\n| **exp024 tmux session** | 存在，已 kill。内含活跃的 train.py 进程（PID 455719）一并终止 |\n| **PID 441057** (test_env_thread_safety.py) | 存在，已 kill |\n| **GPU 0** | 空闲 — 0 MiB / 97887 MiB, 0% utilization |\n| **GPU 1** | 空闲 — 0 MiB / 97887 MiB, 0% utilization |\n| **磁盘** | 根分区 7.8G/30G (26%), 数据盘 135G/250G (54%) |\n| **残留训练进程** | 无 |\n\n两块 RTX PRO 6000 (96GB) 已完全释放，可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-p0-cleanup.md"
+}

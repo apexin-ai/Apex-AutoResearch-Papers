@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp028a_recipe_fix",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:08:53.131Z",
+    "updated_at": "2026-05-15T21:08:53.131Z"
+  },
+  "timestamp": "2026-05-15T21:08:53.273979+00:00",
+  "trigger": "update_registry"
+}

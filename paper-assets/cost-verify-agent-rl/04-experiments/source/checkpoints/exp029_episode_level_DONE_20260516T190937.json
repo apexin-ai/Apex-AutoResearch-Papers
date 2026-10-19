@@ -1,0 +1,74 @@
+{
+  "exp_id": "exp029_episode_level",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 2,
+    "created_at": "2026-05-16T08:49:53.280Z",
+    "updated_at": "2026-05-16T19:09:36.941Z",
+    "hypothesis": "Episode-level 训练（context_window_mode: full）解决 step_independent h=2 的信用分配缺陷，模型能学到跨步规划策略，val success 不再停滞于 baseline。",
+    "parent": "exp028c_selfguide_recipe",
+    "notes": "当前运行: PID 889859, W&B 6d4oml60。正确日志: /root/autodl-tmp/exp029_restart.log。Step 1 完成(30m10s/step)，step 2 进行中。TMPDIR=/root/autodl-tmp/tmp, WANDB_DIR=/root/autodl-tmp/wandb。val env_groups=32。ETA 全部 100 steps ≈ 50h。",
+    "server": "bjb1-17606",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-17606",
+      "gpu": "cuda:0,cuda:1",
+      "started_at": "2026-05-16T09:49:15.902Z",
+      "finished_at": "2026-05-16T19:09:35.532Z",
+      "training_hours": 9.34
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-16T16:10:46.393Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T16:10:47.902736+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T18:24:49.059842+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "第6次启动 (PID 886626)。彻底修复：kill 所有 cleanup loop 进程(878019+885880)，ps aux grep 确认无残留。TMPDIR=/root/autodl-tmp/tmp, WANDB_DIR=/root/autodl-tmp/wandb。/tmp 重建 17G 可用。val env_groups=32。"
+      }
+    },
+    "wandb_run_id": "6d4oml60",
+    "metrics": {
+      "step_0_val": {
+        "success": 12.5,
+        "pass_at_1": 12.5,
+        "action_is_valid": 78.3,
+        "episodes": 32,
+        "note": "当前 run (W&B 6d4oml60) val_before_train"
+      },
+      "step_1_train": {
+        "success": 17.97,
+        "pass_at_8": 56.25,
+        "action_is_valid": 68.24,
+        "action_is_effective": 99.47,
+        "num_actions": 42.03,
+        "entropy": 0.02775,
+        "kl_loss": 0.000915,
+        "pg_loss": -4.59e-05,
+        "grad_norm": 1.267,
+        "score_mean": 1.797,
+        "response_length": 7112,
+        "response_length_max": 16381,
+        "time_s": 1810,
+        "note": "当前 run。success 17.97% > baseline 12.5%。entropy/grad_norm 正常（full mode token-mean 量纲）"
+      }
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-16T19:09:37.125526+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp029_seed7_high_kl_step5_ood_v3",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:29:19.729Z",
+    "updated_at": "2026-05-23T01:15:50.235Z",
+    "hypothesis": "D134 协议 re-eval (retry): high_kl step5 checkpoint OOD eval. v2 因 GPU 显存不足 OOM crash (seed100 训练初始化阶段临时占用 cuda:2 显存). 现在 GPU 2/3 完全空闲, 重新提交. 原始 eval 得 8.21% (11/134).",
+    "parent": "exp029_seed7_high_kl_step5_ood_v2",
+    "spec": {
+      "command": "bash -c \"cd /root/cost-verify-agent-rl/RAGEN && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && WANDB_DIR=/root/autodl-tmp/wandb_tmp python train.py --config-name _alfworld_seed7_high_kl_step5_ood_eval_westd enable_response_mask=false actor_rollout_ref.model.enable_response_mask=false\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "310594",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_seed7_high_kl_step5_ood_v3.log",
+      "submitted_at": "2026-05-23T00:32:01.057Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "metrics": {
+      "ood_pass_at_1": 0.097,
+      "ood_count": "13/134",
+      "action_is_valid": 0.6518,
+      "num_actions_avg": 45.92,
+      "best_at_8": 5.8,
+      "best_at_32": 9.71
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-23T01:15:50.555094+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03935f9991989f7eb512",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp028 penalty mechanism",
+  "task_key": "worker_code_exp028_penalty_mechanism_20260515T202841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp028_penalty_mechanism_20260515T202841_result.json",
+    "occurrence": 1,
+    "bytes": 1593,
+    "sha256": "e2069fa3725aee2a067b24a09af8a3c6ad781bed1d62df8dc43b3b1ad0c47b90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "导入正常。\n\n---\n\n## 总结\n\n### 数据流追踪结果\n\n**`invalid_action_penalty_coef=0.1` 已在 exp027 中生效。** 路径：\n\n```\nenv.action_is_valid → es_manager.history.info → ctx_manager.non_tensor_batch[\"is_action_valid\"]\n→ assign_step_rewards(-0.1/invalid) → discounted_returns → compute_grpo_step_advantage\n→ 覆写 GRPO outcome advantage → 最终 advantages\n```\n\nexp027 config 中没有显式设置 `invalid_action_penalty_coef`，但代码默认值为 0.1（`agent_trainer.py:1467`），所以 penalty 实际上一直在工作。\n\n### 代码修改\n\n新增 `reward_include_step_penalties` 功能（`agent_trainer.py`）：\n- 将累积 step penalty 注入 `token_level_rewards`（episode-level reward）\n- 使 GRPO outcome advantage 和 GiGPO episode advantage 也能区分不同失败 trajectory\n- 只修改 `token_level_rewards`，不修改 `non_tensor_batch[\"reward\"]`，避免与 `assign_step_rewards` 双重计算\n- 默认关闭，完全向后兼容\n- 8/8 新增测试通过，17/17 GiGPO 现有测试通过\n\n### exp028a 配置\n\n```yaml\nalgorithm:\n  invalid_action_penalty_coef: 0.1        # 显式声明\n  reward_include_step_penalties: true      # 新功能\n```\n\n### 残余问题\n\n对于\"valid but useless\"动作（动作在 admissible_actions 中但无法推进任务），penalty 不生效，失败 episode 仍可能零方差。这需要额外的 reward shaping（如 progress reward）来解决，不在本次修改范围内。\n\n报告已写入 `artifacts/exp027_penalty_dataflow_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp028-penalty-mechanism.md"
+}

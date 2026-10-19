@@ -1,0 +1,2 @@
+Server path: /root/cost-verify-agent-rl/scripts/convert_sft_data.py
+Output: /root/autodl-tmp/sft_data/alfworld_sft_ragen.jsonl (1200 examples)

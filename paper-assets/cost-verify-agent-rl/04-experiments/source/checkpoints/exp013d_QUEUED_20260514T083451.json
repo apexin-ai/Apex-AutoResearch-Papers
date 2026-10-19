@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp013d",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:34:37.036Z",
+    "updated_at": "2026-05-14T08:34:51.330Z",
+    "hypothesis": "exp013b/c 内存修复重试。Dense reward shaping (valid_action_bonus=0.15) 已验证有效 (reward_std=1.608>0)。修复: env_groups 8→4 (64并发, 峰值~158GB < 220GB cgroup限制) + RAY_object_store_memory=30GB。",
+    "parent": "exp013c",
+    "notes": "内存修复: env_groups 8→4 (并发128→64), RAY_object_store_memory=30GB。峰值内存~158GB，220GB cgroup安全。其余同exp013b: valid_action_bonus=0.15, kl=0.01, format_penalty=0, group_size=16, resume step 5。"
+  },
+  "timestamp": "2026-05-14T08:34:51.377408+00:00",
+  "trigger": "update_registry"
+}

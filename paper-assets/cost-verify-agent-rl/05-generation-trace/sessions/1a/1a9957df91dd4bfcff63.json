@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a9957df91dd4bfcff63",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis sw info loss bjb1",
+  "task_key": "worker_analysis_sw_info_loss_bjb1_20260520T190842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sw_info_loss_bjb1_20260520T190842_result.json",
+    "occurrence": 1,
+    "bytes": 2751,
+    "sha256": "edebc69cb6b6f7fde7cc666aca64b3a4cd2eb3d83684d954e943d97319ddf72d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No W&B run found. Both conditions completed. Here are the results:\n\n## 结果摘要\n- **Full context success rate**: 34.8% (31/89)\n- **h=2 success rate**: 4.5% (4/89)\n- **Delta**: **30.3 pp** (34.8% → 4.5%)\n- **Episodes completed**: 89 full / 89 h=2 (identify-life-stages-2 只有 2 variations，所以总数 89 而非 90)\n- **W&B run**: N/A\n- **AvgScore**: full=26.7, h=2=17.4\n- **Runtime**: full=5932s (66.7s/ep), h=2=2770s (31.1s/ep)\n\n## Per-task breakdown\n\n| Task | Full Rate | h=2 Rate | Delta |\n|------|-----------|----------|-------|\n| boil | 33.3% | 0.0% | -33.3 |\n| change-the-state-of-matter-of | 66.7% | 0.0% | -66.7 |\n| chemistry-mix | 33.3% | 0.0% | -33.3 |\n| chemistry-mix-paint-secondary-color | 0.0% | 0.0% | 0 |\n| chemistry-mix-paint-tertiary-color | 0.0% | 0.0% | 0 |\n| find-animal | **100.0%** | 0.0% | **-100** |\n| find-living-thing | **100.0%** | 0.0% | **-100** |\n| find-non-living-thing | **100.0%** | **66.7%** | -33.3 |\n| find-plant | 0.0% | 0.0% | 0 |\n| freeze | 0.0% | 0.0% | 0 |\n| grow-fruit | 0.0% | 0.0% | 0 |\n| grow-plant | 0.0% | 0.0% | 0 |\n| identify-life-stages-1 | 33.3% | 0.0% | -33.3 |\n| identify-life-stages-2 | 0.0% | 0.0% | 0 |\n| inclined-plane-determine-angle | 33.3% | 0.0% | -33.3 |\n| inclined-plane-friction-named | 0.0% | 0.0% | 0 |\n| inclined-plane-friction-unnamed | 66.7% | 0.0% | -66.7 |\n| lifespan-longest-lived | 66.7% | 33.3% | -33.3 |\n| lifespan-longest+shortest | **100.0%** | 0.0% | **-100** |\n| lifespan-shortest-lived | 66.7% | 33.3% | -33.3 |\n| measure-melting-known | 33.3% | 0.0% | -33.3 |\n| measure-melting-unknown | 33.3% | 0.0% | -33.3 |\n| melt | 0.0% | 0.0% | 0 |\n| mendelian-genetics-known | 33.3% | 0.0% | -33.3 |\n| mendelian-genetics-unknown | 33.3% | 0.0% | -33.3 |\n| power-component | 66.7% | 0.0% | -66.7 |\n| power-component-renewable | 0.0% | 0.0% | 0 |\n| test-conductivity | 33.3% | 0.0% | -33.3 |\n| test-conductivity-unknown | 0.0% | 0.0% | 0 |\n| use-thermometer | 0.0% | 0.0% | 0 |\n\nh=2 仅解决了 4 个 episode：find-non-living-thing ×2, lifespan-longest-lived ×1, lifespan-shortest-lived ×1。这些都是相对简单的分类/查找任务。\n\n## Conclusion: **success**\n## Reasoning: h=2 windowing 导致 success rate 从 34.8% 暴跌至 4.5%（-30.3 pp），hypothesis confirmed——step-independent 训练下的信息丢失在 ScienceWorld 上同样严重。尤其是 find-animal/find-living-thing/lifespan-longest+shortest 三个 full context 下 100% 的任务在 h=2 下直接归零，说明这些任务强依赖历史 context。\n\n## 与 ALFWorld info loss 对比\n日志中无 ALFWorld 参考数据。需从其他实验日志或 memory.md 中获取 ALFWorld 的 info loss 数据进行对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sw-info-loss-bjb1.md"
+}

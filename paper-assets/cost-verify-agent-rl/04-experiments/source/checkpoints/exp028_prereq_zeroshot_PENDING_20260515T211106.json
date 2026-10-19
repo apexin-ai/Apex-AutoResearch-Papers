@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp028_prereq_zeroshot",
+  "project": "cost-verify-agent-rl",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:11:06.120Z",
+    "updated_at": "2026-05-15T21:11:06.120Z"
+  },
+  "timestamp": "2026-05-15T21:11:06.240492+00:00",
+  "trigger": "update_registry"
+}

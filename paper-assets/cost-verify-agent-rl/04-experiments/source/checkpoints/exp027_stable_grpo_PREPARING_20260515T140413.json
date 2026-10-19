@@ -1,0 +1,41 @@
+{
+  "exp_id": "exp027_stable_grpo",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:04:13.123Z",
+    "updated_at": "2026-05-15T14:04:13.123Z",
+    "spec": {
+      "name": "Step-independent GRPO with stabilized hyperparams",
+      "hypothesis": "exp026 在 step 2 达峰 32.81% 后因 LR 过高+KL 过低导致过度纠正→保守退化→step 4 归零。exp027 调参修复：LR 5e-7(减半)、KL 0.04(4x)、entropy bonus 0.01(防保守)、save_freq 5(保留早期峰值)。50 步快速验证稳定性。Pass: success ≥20% 且无连续 2 步归零。",
+      "command": "bash /root/cost-verify-agent-rl/scripts/run_exp027_stable_grpo.sh",
+      "server": "bjb1-17606",
+      "data_path": "RAGEN expert data (same as exp021/026)",
+      "data_count": "16 train tasks / 128 val tasks per epoch",
+      "model_name": "Qwen3-1.7B (SFT checkpoint: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4)",
+      "seed": 0,
+      "framework": "RAGEN + cherry-picked step-independent rollout",
+      "algorithm": "GRPO + step-independent rollout + discounted returns",
+      "key_params": {
+        "lr": 5e-07,
+        "kl_loss_coef": 0.04,
+        "entropy_coeff": 0.01,
+        "save_freq": 5,
+        "total_training_steps": 50,
+        "test_freq": 5,
+        "context_window_mode": "step_independent",
+        "step_independent_history_length": 5,
+        "gamma": 0.95,
+        "group_size": 8,
+        "invalid_action_penalty_coef": 0.1,
+        "max_turn": 50,
+        "WANDB_MODE": "enabled"
+      }
+    }
+  },
+  "timestamp": "2026-05-15T14:04:13.270702+00:00",
+  "trigger": "update_registry"
+}

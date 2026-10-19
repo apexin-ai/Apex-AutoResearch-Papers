@@ -1,0 +1,36 @@
+{
+  "exp_id": "sw_info_loss_bjb1",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:38:54.097Z",
+    "updated_at": "2026-05-20T16:39:22.135Z",
+    "hypothesis": "ScienceWorld SFT model under h=2 windowing shows significant performance degradation vs full context (T=0 deterministic), quantifying information loss (M1) cross-environment on bjb1",
+    "parent": "scienceworld_sft_eval_v2",
+    "spec": {
+      "command": "python eval_scienceworld_info_loss.py --checkpoint /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface --history_length {-1,2} --temperature 0 --max_variations 3 --tensor_parallel_size 2",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "229078",
+      "log_path": "~/runs/cost-verify-agent-rl/sw_info_loss_bjb1.log",
+      "submitted_at": "2026-05-20T16:39:02.613Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "scienceworld dev split",
+      "data_count": "30 task types x 3 variations = 90 episodes per condition",
+      "model_name": "qwen3_scienceworld_sft",
+      "seed": "deterministic (T=0)",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface",
+      "eval_data": "scienceworld dev split, 3 variations per task"
+    }
+  },
+  "timestamp": "2026-05-20T16:39:22.363294+00:00",
+  "trigger": "update_registry"
+}

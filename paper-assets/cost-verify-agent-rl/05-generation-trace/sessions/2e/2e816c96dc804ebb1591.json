@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e816c96dc804ebb1591",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code intervention c hard cap",
+  "task_key": "worker_code_intervention_c_hard_cap_20260521T210801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_intervention_c_hard_cap_20260521T210801_result.json",
+    "occurrence": 1,
+    "bytes": 1522,
+    "sha256": "5a9c2b45a52e64c11ba20e030e463908a877911396a3c1b9286aaa069d63c0bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已提交。汇报产出：\n\n### 1. agent_trainer.py Revert\n- 已删除 lines 1545-1558 的 `_lp_coef`/`_lp_threshold` 响应长度惩罚代码块（14行）\n- grep 确认 `_lp_coef`、`response_length_penalty` 在文件中无残留\n- 其他功能代码（GiGPO、step_rewards、B-IAVR 等）保持不动\n\n### 2. Hard Cap 机制调研\n- **`max_turn`**：在 `agent_proxy.py:259` 通过 `for i in range(max_turn)` 控制最大交互轮数，机制完善，直接可用\n- **`response_length`**：在 `VllmWrapperWg` 中作为 `max_tokens` 传入 vLLM SamplingParams，控制 per-turn 生成上限\n- **`max_response_length`**（data 级）：仅在 verl 单轮 setup 中使用，不影响 agent proxy 多轮流程，无需设置\n- **方案**：`response_length: 512` + `max_turn: 20`，最坏情况总 trajectory ≤ 10,240 tokens（原 1024×50 = 51,200）\n\n### 3. Config 参数\n\n| 参数 | 值 | 对比 Seed 7 |\n|------|-----|------------|\n| seed.train | 999 | 相同 |\n| total_training_steps | 7 | 7 vs 15 |\n| response_length | 512 | 512 vs 1024 |\n| max_turn | 20 | 20 vs 50 |\n| kl_loss_coef | 0.01 | 相同 |\n| response_length_penalty_coef | 0 | 安全措施 |\n| val env_groups | 32 | ≥16（满足 C003） |\n\n### 4. 训练提交确认\n- **PID**: 788147\n- **Server**: westd-47453\n- **GPU**: cuda:0, cuda:1\n- **tmux session**: `intervention-c-hard-cap`\n- **Log**: `~/runs/cost-verify-agent-rl/intervention-c-hard-cap.log`\n- **W&B experiment**: `intervention-c-hard-cap`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-intervention-c-hard-cap.md"
+}

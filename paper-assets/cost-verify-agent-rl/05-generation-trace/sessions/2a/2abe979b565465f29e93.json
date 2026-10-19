@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2abe979b565465f29e93",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research inference diff diagnosis",
+  "task_key": "worker_research_inference-diff-diagnosis_20260515T042541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_inference-diff-diagnosis_20260515T042541_result.json",
+    "occurrence": 1,
+    "bytes": 1126,
+    "sha256": "de1657067d41d7f00f98b79881bcc86c225a5f5b5eb336b6f6e923af0a14eb5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告已写入 `artifacts/inference_diff_diagnosis.md`。\n\n**核心发现**（导致 action_is_valid 从 87.5% → 68.75% 的主因）：\n\n1. **System prompt 自相矛盾** — RAGEN 的 AlfworldSG env_instruction 说\"Do NOT wrap the action in any tags\"，但 ctx_manager 在每轮 user content 中又说\"Always output: `<think>...<answer>...</answer>`\"。SFT eval 一致要求 `<answer>` tags。模型收到矛盾指令，输出格式混乱。\n\n2. **User content 格式 OOD** — SFT 模型训练时见的是裸 observation，RAGEN 在每轮加了 `Turn N:`、`You have X actions left`、FORMAT_PROMPT、LENGTH_PROMPT 等模板文本，加上 turn 间的 `Reward:` 反馈。输入分布偏移直接降低输出质量。\n\n3. **top_p=1.0 vs 0.95** — RAGEN val 未设 top_p，默认 1.0（无 nucleus sampling），增加采到无效 action 的概率。\n\n**修复优先级**：\n1. 下个实验加 `val_kwargs.top_p: 0.95`\n2. 统一 AlfworldSG env_instruction 的 `<answer>` tag 指令与 SFT 训练一致\n3. 评估 ctx_manager user content 格式是否需要与 SFT 训练对齐"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-inference-diff-diagnosis.md"
+}

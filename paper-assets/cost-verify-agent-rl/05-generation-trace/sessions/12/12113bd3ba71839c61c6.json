@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12113bd3ba71839c61c6",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "monitor exp013f ray worker logs",
+  "task_key": "worker_monitor_exp013f-ray-worker-logs_20260514T095141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp013f-ray-worker-logs_20260514T095141_result.json",
+    "occurrence": 1,
+    "bytes": 664,
+    "sha256": "7834a75ad3cdf5caa0a66e2c9fd177b0819c4d77e071872d66981ffdaae0da74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 step 的数据都拿到了。\n\n## exp013f 训练指标\n\n| 指标 | Step 6 | Step 7 |\n|------|--------|--------|\n| **pg_loss** | 7.140e-05 | -2.467e-06 |\n| **grad_norm** | 2.2289 | 1.7483 |\n| **ppo_kl** | 0.001682 | 0.000617 |\n| **entropy** | 0.09588 | 0.10335 |\n| **pg_clipfrac** | 0.002555 | 0.002556 |\n\n补充关键指标：\n- **success rate**: step 6 = 1.56%, step 7 = 7.81%\n- **pass@16**: 均为 25%\n- **kl_loss**: step 6 = -0.02213, step 7 = 0.01257\n- **time_per_step**: step 6 = 289.6s, step 7 = 585.2s\n- **throughput**: step 6 = 420.7 tok/s, step 7 = 191.5 tok/s\n\n训练进度：7/30 steps (23%)，进程存活中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp013f-ray-worker-logs.md"
+}

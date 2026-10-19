@@ -1,0 +1,45 @@
+paper_key: "du2025thinkless"
+title: "Thinkless: LLM Learns When to Think"
+venue: "NeurIPS 2025"
+full_text_available: false
+
+research:
+  baselines:
+    - "DeepSeek-R1-Distill (always thinking)"
+    - "Qwen2.5-Instruct (no thinking)"
+    - "random think/no-think selection"
+    - "difficulty-based heuristic routing"
+    - "STILL-3 / thinking budget baselines"
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "thinking token ratio (% queries using <think>)", direction: "lower_better"}
+    - {name: "total tokens generated", direction: "lower_better"}
+    - {name: "latency / wall-clock time", direction: "lower_better"}
+  datasets:
+    - {name: "GSM8K", size: "1.3K test"}
+    - {name: "MATH500", size: "500 test"}
+    - {name: "AIME 2024", size: "30 problems"}
+    - {name: "LiveCodeBench", size: "N/A"}
+    - {name: "MMLU-Pro", size: "N/A"}
+  ablation_dimensions:
+    - "<think> vs. <no_think> token control mechanism"
+    - "GRPO vs. PPO training"
+    - "reward design for efficiency"
+    - "temperature / sampling strategy"
+    - "base model choice (Qwen2.5 variants)"
+  training_recipe:
+    optimizer: "AdamW"
+    lr: "1e-6"
+    hardware: "8x A100 or H100 (N/A exact)"
+    method: "GRPO-based RL training with two special control tokens <think> and <no_think>; model learns to prepend appropriate token based on query difficulty; efficiency reward penalizes unnecessary thinking; correctness reward ensures quality maintained"
+  method_family: "adaptive thinking / on-demand chain-of-thought via RL with control tokens"
+
+positioning:
+  core_claim: "Training LLMs with RL using <think>/<no_think> control tokens allows the model to learn when extended reasoning is necessary, reducing thinking overhead by ~50% on math benchmarks while maintaining near-full accuracy"
+  key_results: "Reduces thinking token usage by ~50% on GSM8K-level problems; near-parity with always-thinking baseline on hard problems (MATH500, AIME); significant latency reduction"
+  limitations: ["N/A"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c0f819cb75fe07b3e8f",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops v9d kill and eval prep",
+  "task_key": "worker_ops_v9d_kill_and_eval_prep_20260520T092826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_v9d_kill_and_eval_prep_20260520T092826_result.json",
+    "occurrence": 1,
+    "bytes": 1252,
+    "sha256": "6869c5632b70bf16fe7b44df7c4fd74a26958de24e5bd760d98ec46ad53e9007"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### GPU 状态：已清理干净\n| GPU | Util | Memory Used | Total |\n|-----|------|-------------|-------|\n| 0 | 0% | 0 MiB | 97887 MiB |\n| 1 | 0% | 0 MiB | 97887 MiB |\n| 2 | 0% | 0 MiB | 97887 MiB |\n| 3 | 0% | 0 MiB | 97887 MiB |\n\n4 张卡全部释放，可立即使用。\n\n### Step 10 Checkpoint 结构\n`/root/autodl-tmp/checkpoints/8b-cell-c-v9/global_step_10/actor/`\n\n- **FSDP shards 完整**：4 个 `model_world_size_4_rank_*.pt`（每个 ~8.2GB）+ 4 个 optim shards + 4 个 extra_state\n- **`huggingface/` 目录**：有 `config.json`、tokenizer 文件（`tokenizer.json`, `vocab.json`, `merges.txt` 等），**但没有 `.safetensors` 或 `.bin` 权重文件**\n\n**结论**：checkpoint 保存时只合并了 tokenizer/config 到 huggingface/，没有将 FSDP shards 合并为 HuggingFace 格式权重。**不能直接用于 eval**，需要先做 FSDP → HF 权重合并（从 4 个 `model_world_size_4_rank_*.pt` 合并出 `model.safetensors`）。\n\n### Eval 配置\n- `_alfworld_8b_v9d_ood_eval.yaml` — 不存在\n- `_alfworld_8b_det_eval*.yaml` — 不存在\n\n需要新建 eval 配置。\n\n### 磁盘\n`/root/autodl-tmp`: 250G 总量，145G 已用（58%），106G 可用。空间充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-v9d-kill-and-eval-prep.md"
+}

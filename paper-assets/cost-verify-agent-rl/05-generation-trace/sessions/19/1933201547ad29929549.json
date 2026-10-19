@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1933201547ad29929549",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose westd gpu status check",
+  "task_key": "worker_diagnose_westd-gpu-status-check_20260519T003455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd-gpu-status-check_20260519T003455_result.json",
+    "occurrence": 1,
+    "bytes": 1118,
+    "sha256": "8b88b9af033225f2d3452239384220225cdb1a85f26e1c941e0d23ee2b53c4bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**westd-47453 全部 4 张 GPU 状态：全部在用**\n\n| GPU | 利用率 | 显存 (MiB) | 温度 | PID | 进程 | 运行时间 |\n|-----|--------|-----------|------|-----|------|---------|\n| 0 | 100% | 96949 / 97887 | 59°C | 421310 | actor_rollout_update_actor | 1h36m |\n| 1 | 100% | 97041 / 97887 | 55°C | 421311 | actor_rollout_update_actor | 1h36m |\n| 2 | 99% | 36059 / 97887 | 67°C | 41416 | actor_rollout_compute_log_prob | 6h58m |\n| 3 | 96% | 36059 / 97887 | 69°C | 41417 | actor_rollout_compute_log_prob | 6h58m |\n\n**cuda:0,1 — exp029_seed2_westd_resume**\n- 主进程 PID 414163 存活，运行 1h36m\n- 当前处于 **training 阶段，step 26**（不是 eval）\n- step 25 已完成 checkpoint 保存（`/root/autodl-tmp/checkpoints/exp029-seed2/global_step_25/`）\n- train/success: 73.4%，pass@8: 100%\n\n**cuda:2,3 — hsweep_h10_seed1**\n- PID 41416, 41417，运行 6h58m\n- 进程类型为 `actor_rollout_compute_log_prob`（ref model log prob 计算）\n- 显存 36GB/卡，利用率 96-99%\n\n结论：Director 说 2/4 在用不准确，**4 张卡全部满载运行**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-gpu-status-check.md"
+}

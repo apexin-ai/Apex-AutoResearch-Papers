@@ -1,0 +1,72 @@
+{
+  "exp_id": "exp026_step_independent_grpo",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:34:33.675Z",
+    "updated_at": "2026-05-15T11:07:28.010Z",
+    "spec": {
+      "command": "bash -c \"ray stop --force; pkill -9 -f ray; pkill -9 -f vllm; sleep 3; rm -rf /tmp/ray/session_*; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl && bash scripts/run_exp026_step_independent_grpo.sh\"",
+      "server": "bjb1-17606",
+      "gpu": "cuda:0,cuda:1",
+      "pid": 778562,
+      "log_path": "~/runs/cost-verify-agent-rl/exp026_step_independent_grpo.log",
+      "submitted_at": "2026-05-15T10:28:31.867Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "RAGEN expert data (same as exp021)",
+      "data_count": "16 train tasks / 128 val tasks per epoch",
+      "model_name": "Qwen3-1.7B (SFT checkpoint: /root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final/)",
+      "seed": 0,
+      "framework": "RAGEN + cherry-picked step-independent rollout",
+      "algorithm": "GRPO + step-independent rollout + discounted returns",
+      "key_params": {
+        "context_window_mode": "step_independent",
+        "step_independent_history_length": 5,
+        "kl_loss_coef": 0.01,
+        "kl_loss_type": "low_var_kl",
+        "lr": 1e-06,
+        "group_size": 8,
+        "gamma": 0.95,
+        "invalid_action_penalty_coef": 0.1,
+        "max_turn": 50,
+        "total_training_steps": 150,
+        "test_freq": 5,
+        "save_freq": 25,
+        "val_before_train": true,
+        "use_turn_scores": true,
+        "WANDB_MODE": "disabled"
+      },
+      "wall_clock_seconds": 2336.1,
+      "gpu_hours": 0.65
+    },
+    "server": "bjb1-17606",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-17606",
+      "gpu": "cuda:0,cuda:1",
+      "started_at": "2026-05-15T09:35:34.249Z",
+      "finished_at": "2026-05-15T11:07:27.171Z",
+      "training_hours": 1.53
+    },
+    "notes": "Dry run 验证通过。正式训练已运行 21+ 小时，双 GPU 96% 利用率。估算 ~60/150 steps 完成。Cron 两次误报（进程仍在运行）：tqdm 用 \\r 不产生新 log 行 + WANDB_MODE=disabled 无远程指标。val_before_train: success=6.25%, action_is_valid=63.1%。无 error/traceback/OOM。监控盲点：无法从 log 读取当前 step 或训练指标。",
+    "metrics": {
+      "val_before_train_success": 0.0625,
+      "val_before_train_action_is_valid": 0.631,
+      "val_before_train_action_is_effective": 0.879,
+      "val_before_train_episodes": 16,
+      "val_before_train_pass_at_1": 0.0625,
+      "truncation_count_val": 25
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T11:07:28.010Z"
+  },
+  "timestamp": "2026-05-15T11:07:28.099336+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "165f30ca865d8b472e6b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "check exp028c status",
+  "task_key": "worker_check_exp028c_status_20260515T232755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp028c_status_20260515T232755_result.json",
+    "occurrence": 1,
+    "bytes": 1625,
+    "sha256": "27e5e71911f2892c5c7fe5a0c03c432d6fa446d692ae5541cfdb32d8c494062a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp028c_selfguide_recipe 状态\n\n### 进程\n| PID | 角色 | 运行时间 |\n|-----|------|---------|\n| 824675 | 主进程 (bash) | 2h10m |\n| 828110 | Ray Worker | 2h10m |\n| 828111 | Ray Worker | 2h10m |\n\n所有进程存活，无 OOM。\n\n### GPU\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 0% | 48,379 / 97,887 MiB |\n| 1 | 0% | 48,379 / 97,887 MiB |\n\n利用率 0% 但各占 ~48GB VRAM — 正处于 step 3 的 rollout/环境交互阶段（非 GPU 密集），正常。\n\n### 训练进度\n**Step 2/100 (2%)** — 已运行 1h46m，预计剩余 ~86h（~3.6 天），每 step ~53 分钟。\n\n### 关键指标对比\n\n| 指标 | Step 1 | Step 2 | 趋势 |\n|------|--------|--------|------|\n| **success_rate** | 13.3% | 6.25% | ↓ 下降 |\n| **pass@8** | 37.5% | 25.0% | ↓ 下降 |\n| action_is_valid | 76.4% | 83.2% | ↑ 改善 |\n| action_is_effective | 96.4% | 97.9% | ↑ 改善 |\n| entropy | 0.263 | 0.247 | ↓ 略降 |\n| **kl_loss** | 0.013 | **0.171** | ↑↑ 跃升 13x |\n| pg_loss | 0.008 | 0.007 | → 稳定 |\n| grad_norm | 16.9 | 17.3 | → 稳定 |\n| num_actions | 45.6 | 47.2 | → 稳定 |\n| response_length (mean) | 700.6 | 651.5 | ↓ 略降 |\n\n### 注意事项\n1. **success_rate 下降**：13.3% → 6.25%，仅 2 步数据，方差大，暂不报警\n2. **kl_loss 跃升 13 倍**（0.013 → 0.171）：策略偏移显著，需持续观察。kl_coef 仍为 0.01，若 KL 继续攀升可能需要干预\n3. 日志中大量 `Skipping non-numeric metric 'anchor_obs'` 警告，无害，不影响训练\n4. 无报错、无 OOM、无进程崩溃"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp028c-status-copy-2.md"
+}

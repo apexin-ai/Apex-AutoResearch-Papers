@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01a970c9ff41fd4f46f1",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh seed7 checkpoint fix",
+  "task_key": "worker_ssh_seed7_checkpoint_fix_20260522T222603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_seed7_checkpoint_fix_20260522T222603_result.json",
+    "occurrence": 1,
+    "bytes": 941,
+    "sha256": "e85380635ba8ab3e109d70ff14c235f0d7dd6951be37af05bc6155154a7329b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n### bjb1-17606\n\n**seed7 checkpoint 状态：**\n| 目录 | 状态 |\n|------|------|\n| `qwen_exp029_seed7_high_kl_step5_hf` | 已存在（无需重命名） |\n| `qwen_exp029_seed7_high_kl_step7_hf` | 刚完成重命名 (从 `exp029_seed7_high_kl_step7_hf`) |\n| `exp029_seed7_high_kl_step5_hf` | 旧目录仍在，可清理 |\n| `seed7-step5-mask-check` | 调试目录 |\n\n**GPU 状态：** 两张卡均空闲（0 MiB / 97887 MiB）\n\n### westd-47453\n\n**seed7 checkpoint 副本完整：**\n- `/root/autodl-tmp/checkpoints/qwen_exp029_seed7_high_kl_step5_hf`\n- `/root/autodl-tmp/checkpoints/qwen_exp029_seed7_high_kl_step7_hf`\n- `/root/autodl-tmp/checkpoints/exp029_seed7_high_kl_step5_hf`（旧名副本）\n- `/root/autodl-tmp/checkpoints/exp029_seed7_high_kl_step7_hf`（旧名副本）\n\nwestd 上 qwen_ 前缀版本均已存在，无需操作。bjb1 的 step7 已修复，seed7 eval 可以重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-seed7-checkpoint-fix.md"
+}

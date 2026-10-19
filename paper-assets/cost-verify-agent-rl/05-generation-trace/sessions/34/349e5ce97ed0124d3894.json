@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "349e5ce97ed0124d3894",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "director / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_8.md",
+    "occurrence": 1,
+    "bytes": 4050,
+    "sha256": "fa41605c0663131943b46d8e4eed689a919f496340c20c67dd8cbea9b09b2d90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_messages\nupdated: '2026-05-15T15:26:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 bjb1-17606 的 cuda:0, cuda:1（C001 约束），严禁使用其他设备号\n- exp027 正在训练中（PID 789790），不得 kill 或干扰，这是 24h deadline 的关键实验\n- RAGEN eval 必须 ≥16 episodes（C003 约束），4-episode 结果不可信（exp021 教训：4ep 25% vs 16ep 6.25%）\n- train success ≠ val success，存在系统性差距（exp023c: train 29.7% vs val 6.25%），论文 claim 只能基于 val\n- conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不是 venv\n- AutoDL cgroup pids.max=20480，verl-agent 直接运行已证伪（D028），不要再尝试\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606 (connect.bjb1.seetacloud.com)，root 用户\n- 工作目录：`/root/cost-verify-agent-rl`\n- Python：`/root/miniconda3/bin/python`（conda base）\n- 模型：Qwen3-1.7B，SFT checkpoint `/root/autodl-tmp/checkpoints/exp021_ragen_sft_v4/final/`\n- W&B：run y7jiibqk（exp027），无全局 WANDB_API_KEY 环境变量，需命令行传入\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：exp027_stable_grpo PID 789790，tmux=exp027_stable_grpo，cuda:0+cuda:1\n- Cron：180s 轮询监控 PID 789790 + wandb_run_id y7jiibqk\n- 分析脚本已部署：`/root/cost-verify-agent-rl/analyze_training.py`\n- Checkpoint eval 脚本：`/root/cost-verify-agent-rl/scripts/eval_checkpoint.sh` + `eval_checkpoint.py`\n\n### 3. 📊 当前状态\n刚完成三件事：(1) 检查 Agent 的 3 个 CPU 并行任务产出（失败模式分析、文献调研、分析脚本）；(2) 处理 Reviewer 的 pass/fail 论文可行性评估并修正其 eval 框架混淆（D038）；(3) Agent 完成分析脚本部署 + D031 B-IAVR warnings 修复 + checkpoint eval 脚本准备。\n\n- RUNNING：exp027_stable_grpo（step-independent GRPO 稳定性验证，50 步，val_before_train=6.25% 已完成，等待训练步产出）\n- PENDING：exp025c 等人工审批（但 verl-agent 路线已终止 D028，实际不会执行）\n- 等待：cron 180s 回调报告 exp027 前 5 步 KL 值；KL < 0.005 需立即汇报\n\n### 4. 📋 待办\n- cron 报告 exp027 前 5 步指标 → 检查 KL（< 0.005 = 策略冻结，需中途调参）、entropy（collapse 检测）、success rate\n- exp027 step 5 checkpoint 生成 → 用 `eval_checkpoint.sh` 跑独立 val eval（如 GPU 显存允许并行）\n- exp027 val success ≥ 20% → `complete_mvp()`，启动 post-mvp-kickoff skill（写 paper_framing.md → experiment_plan.yaml → dream_simulate → update_roadmap）\n- exp027 val success < 20% 且训练结束 → 向 Manager 申请无 cgroup 限制的服务器跑 verl-agent 原版（`director_post_to_manager`，列 GPU 类型+时长+费用+理由）\n- Reviewer D031 注意事项（非 blocking）：Phase B 集成时验证 `register_verify_special_token` 是否覆盖 Qwen3 已有 additional_special_tokens\n\n### 5. 🎯 战略上下文\n- 项目处于 MVP 验证阶段，核心假设：step-independent rollout + GRPO 能让 Qwen3-1.7B 在 ALFWorld val 达 ≥20%（3.2× SFT baseline 6.25%）\n- 决策链：D025/D026 终止 RAGEN 全历史 GRPO → D028 终止 verl-agent 直接运行 → cherry-pick step-independent rollout → D036 exp026 死亡螺旋确认 → D038 修正 claim 阈值\n- 文献调研已完成（`related_work_survey.md`），B-IAVR 新颖性成立，定位是 cost-efficiency 不是 raw accuracy\n- A 类会议需要 Phase B + ablation + 第二环境 + scaling ≈ 500-800 GPU-h（当前硬件 10-17 天）\n- 最容易判断错的事：(1) 不要把 exp026 的 32.81% train success 当作\"方法达到 32%\"——那是 train 不是 val；(2) exp019b 的 20% 是 eval_sft_fast 不是 RAGEN eval，RAGEN 框架下 SFT baseline 是 6.25%；(3) 用户已明确表示 MVP 拖延过久（2026-05-15），24h deadline 是硬的\n- B-IAVR 核心代码已完成且 Reviewer 通过（D031），D031 两个 warnings 已修复，等 MVP 通过后进入 Phase B\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8.md"
+}

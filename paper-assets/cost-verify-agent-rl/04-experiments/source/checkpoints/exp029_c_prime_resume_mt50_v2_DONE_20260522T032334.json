@@ -1,0 +1,51 @@
+{
+  "exp_id": "exp029_c_prime_resume_mt50_v2",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T02:28:34.487Z",
+    "updated_at": "2026-05-22T03:23:34.435Z",
+    "hypothesis": "C' resume from step 5 with max_turn=50, optimizer_offload=false. Retry of exp029_c_prime_resume_mt50 which crashed due to optimizer_offload device mismatch. If step 6-7 train_success recovers >15%, trajectory cap approach is salvageable. If <10%, max_turn=25 training damage is irreversible.",
+    "parent": "exp029_intervention_c_prime",
+    "spec": {
+      "command": "cd /root/cost-verify-agent-rl && CUDA_VISIBLE_DEVICES=0,1 RAY_TMPDIR=/root/autodl-tmp/ray_tmp python train.py --config-name _alfworld_c_prime_resume_mt50",
+      "server": "bjb1",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "376153",
+      "data_path": "ALFWorld episode-level",
+      "data_count": 134,
+      "model_name": "Qwen3-1.5B",
+      "seed": 999,
+      "checkpoint_source": "exp029_intervention_c_prime global_step_5",
+      "eval_data": "ALFWorld valid_unseen 32 episodes",
+      "wandb_run_id": "u6jn1njs",
+      "resume_from": "/root/autodl-tmp/checkpoints/exp029_intervention_c_prime/global_step_5/",
+      "optimizer_offload": false,
+      "max_turn": 50,
+      "total_training_steps": 7,
+      "save_freq": 5,
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp029_intervention_c_prime/global_step_7/",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_c_prime_resume_mt50.log"
+    },
+    "failure_reason": "SSH check failed 5x — last error: Unknown server 'bjb1'. Available: ['bjb1-17606', 'cqa1-21977', 'home-1x5090', 'westd-47453']",
+    "conclusion": "negative",
+    "completed_at": "2026-05-22T02:40:21.815Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T02:40:27.125663+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-22T03:23:34.762759+00:00",
+  "trigger": "update_registry"
+}

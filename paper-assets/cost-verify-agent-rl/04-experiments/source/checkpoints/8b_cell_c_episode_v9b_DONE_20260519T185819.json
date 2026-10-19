@@ -1,0 +1,68 @@
+{
+  "exp_id": "8b_cell_c_episode_v9b",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T18:36:02.652Z",
+    "updated_at": "2026-05-19T18:58:19.550Z",
+    "hypothesis": "FSDP2 + CPUOffloadPolicy 解决 8B Cell C backward OOM（v7 缺口 3.7 GiB）。v9 失败于 NotImplementedError（train.py 不识别 fsdp2 strategy），已修复：train.py 接受 fsdp2 + critic.strategy=fsdp2。重试。",
+    "parent": "8b_cell_c_episode_v9",
+    "server": "westd-47453",
+    "gpu": "cuda:0,cuda:1,cuda:2,cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-47453",
+      "gpu": "cuda:0,cuda:1,cuda:2,cuda:3",
+      "started_at": "2026-05-19T18:36:15.510Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && export WANDB_PROJECT=cost-verify-agent-rl && export CUDA_VISIBLE_DEVICES=0,1,2,3 && python train.py --config-name _alfworld_8b_cell_c_v9\"",
+      "finished_at": "2026-05-19T18:56:35.614Z",
+      "training_hours": 0.34
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && export WANDB_PROJECT=cost-verify-agent-rl && export CUDA_VISIBLE_DEVICES=0,1,2,3 && python train.py --config-name _alfworld_8b_cell_c_v9\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "157729",
+      "data_count": 8810,
+      "model_name": "Qwen3-8B",
+      "seed": 42,
+      "wandb_run_id": "7xfef8p6",
+      "log_path": "~/runs/cost-verify-agent-rl/8b_cell_c_episode_v9b.log",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/8b-cell-c-v9/",
+      "hyperparams": {
+        "strategy": "fsdp2",
+        "offload_policy": true,
+        "activation_offload": true,
+        "ppo_mini_batch_size": 4,
+        "gpu_memory_utilization": 0.25,
+        "max_model_len": 16384,
+        "use_ref": false,
+        "reward": "episode-level"
+      }
+    },
+    "pid": "157729",
+    "log_path": "~/runs/cost-verify-agent-rl/8b_cell_c_episode_v9b.log",
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T18:56:37.556Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T18:56:40.574889+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-19T18:58:19.738739+00:00",
+  "trigger": "update_registry"
+}

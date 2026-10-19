@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp013b",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:15:44.247Z",
+    "updated_at": "2026-05-14T08:16:59.352Z",
+    "hypothesis": "Dense reward shaping: valid_action_bonus=0.5 per valid action + success_reward=10.0 (1:20比值)。每步有效动作获得 0.5 奖励提供持续 GRPO 学习信号，解决 sparse binary reward 导致的零梯度死锁。format_penalty=0，从 step 5 checkpoint 恢复 GRPO 30 步。",
+    "parent": "exp013",
+    "notes": "D011批准dense reward shaping方案。代码改动：env.py step()中action_is_available时追加0.5 bonus，AlfworldSG_Dense tag，新config _alfworld_exp013b_dense_reward.yaml。Dry-run通过，C002 pre-flight通过。等fix-bonus-validate Worker验证后提交。Kill/go: step 1-2 reward_std>0且pg_loss≠0→继续; step 10 success=0+valid不涨→kill。"
+  },
+  "timestamp": "2026-05-14T08:16:59.444736+00:00",
+  "trigger": "update_registry"
+}

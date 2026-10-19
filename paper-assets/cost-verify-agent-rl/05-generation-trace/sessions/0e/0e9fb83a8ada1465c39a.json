@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e9fb83a8ada1465c39a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "edit failure unification table fix",
+  "task_key": "worker_edit_failure_unification_table_fix_20260517T053143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_edit_failure_unification_table_fix_20260517T053143_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "93d2cd0eb2a0d6b2e26e3d75a6ebdc7d20d9e72a1901a6b794500842a577b83f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "四处修改全部完成：\n\n1. **exp026 Key Evidence** → \"GRPO assigns identical group-relative advantage to all h-step windows; non-terminal windows's actions are uncorrelated with episode outcome → gradient signal is noise\" ✓\n2. **exp013f Key Evidence** → \"In step-independent mode, per-window bonus (0.3) is the only causally linked reward signal; episode success (10.0) is distributed identically across all windows regardless of action quality → model optimizes window-local bonus\" ✓\n3. **\"28.125% stable success\"** → \"28.125% at step 15 (single seed, N=32 episodes)\" ✓ (出现在 Summary 和 Diagnostic Timeline 第7点两处均已替换)\n4. **\"D045 recipe gap analysis was wrong\"** → \"D045 recipe gap analysis was incomplete\" ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/edit-failure-unification-table-fix.md"
+}

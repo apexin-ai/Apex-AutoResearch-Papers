@@ -1,0 +1,47 @@
+{
+  "exp_id": "exp025",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:52:48.190Z",
+    "updated_at": "2026-05-15T07:15:24.448Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/verl-agent && bash examples/grpo_trainer/run_alfworld_exp025.sh\"",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "555182",
+      "log_path": "~/runs/cost-verify-agent-rl/exp025.log",
+      "submitted_at": "2026-05-15T07:13:01.394Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 143.1,
+      "gpu_hours": 0.08
+    },
+    "notes": "模型 confound: 论文用 Qwen2.5-1.5B-Instruct，我们用 Qwen3-1.7B。这是框架验证（verl-agent GRPO 能否在 ALFWorld 上训练出 >20% success），不是严格复现论文数字。模型差异可能影响绝对 success rate，但不影响框架可行性判断。save_freq=25（每 25 epoch 存一次 checkpoint，防磁盘满崩溃丢进度，exp007/exp023c 教训）。",
+    "server": "bjb1-17606",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-17606",
+      "gpu": "cuda:0,cuda:1",
+      "started_at": "2026-05-15T07:11:50.984Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/verl-agent && bash examples/grpo_trainer/run_alfworld_exp025.sh\"",
+      "finished_at": "2026-05-15T07:15:22.435Z",
+      "training_hours": 0.06
+    },
+    "pid": "555182",
+    "log_path": "~/runs/cost-verify-agent-rl/exp025.log",
+    "failure_reason": "ModuleNotFoundError): \u001b[36mray::TaskRunner.run()\u001b[39m (pid=558304, ip=172.17.0.6, actor_id=24667def1adfcfac90bff00a01000000, repr=<main_ppo.TaskRunner object at 0x7fecfb7f76b0>)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T07:15:24.448Z"
+  },
+  "timestamp": "2026-05-15T07:15:24.548428+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3490d408f4b06e987fc4",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops westd kill restart c prime ood",
+  "task_key": "worker_ops_westd_kill_restart_c_prime_ood_20260522T003523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_kill_restart_c_prime_ood_20260522T003523_result.json",
+    "occurrence": 1,
+    "bytes": 276,
+    "sha256": "edee337906a98c8ad404c2bffddac61ae41637463a0df6acfddd97a08ce2dd3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval is running:\n\n- **PID**: 57960 (tmux session: `c_prime_step5_ood_eval`)\n- **GPU 0**: 8149 MiB used, model loaded\n- **GPU 1-3**: untouched (0 MiB)\n- **Progress**: TaskRunner active, processing episodes\n- vLLM loaded, wandb connected, iteration underway"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-kill-restart-c-prime-ood.md"
+}

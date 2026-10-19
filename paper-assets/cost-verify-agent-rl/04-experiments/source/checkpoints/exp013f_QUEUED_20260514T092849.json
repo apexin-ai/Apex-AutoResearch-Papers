@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp013f",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:21:46.227Z",
+    "updated_at": "2026-05-14T09:28:49.873Z",
+    "hypothesis": "exp013e 崩溃修复。Director 诊断: (1) Ray MemoryMonitor 阈值 224GB > cgroup 220GB 导致资源管理错误 → RAY_memory_monitor_refresh_ms=0 禁用 (2) 15 个旧 Ray session 残留 → 全部清理 (3) RAY_SYSTEM_MEMORY=210GB 限制可见内存 (4) val env_groups 16→4 降低过渡压力 (5) HYDRA_FULL_ERROR=1 + Ray log 自动备份。Dense reward shaping (valid_action_bonus=0.15, kl_loss_coef=0.01), 从 step 5 checkpoint 恢复。",
+    "parent": "exp013e"
+  },
+  "timestamp": "2026-05-14T09:28:49.939179+00:00",
+  "trigger": "update_registry"
+}

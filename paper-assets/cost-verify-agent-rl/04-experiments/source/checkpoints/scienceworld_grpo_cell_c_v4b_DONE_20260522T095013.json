@@ -1,0 +1,43 @@
+{
+  "exp_id": "scienceworld_grpo_cell_c_v4b",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T04:11:39.662Z",
+    "updated_at": "2026-05-22T09:50:13.200Z",
+    "hypothesis": "ScienceWorld episode-level GRPO (Cell C) with task filtering (21/30 tasks with SFT success >10%), group_size=16, JVM -Xmx8g. Retry of v4 which failed due to model_path missing 'qwen' (symlink fix applied). Cross-environment validation of episode-level RL.",
+    "parent": "scienceworld_grpo_cell_c_v4",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && RAY_TMPDIR=/root/autodl-tmp/tmp/ray CUDA_VISIBLE_DEVICES=0,1 python train.py --config-name _scienceworld_cell_c_grpo_v4",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "386364",
+      "log_path": "~/runs/cost-verify-agent-rl/scienceworld_grpo_cell_c_v4.log",
+      "data_path": "ScienceWorld 21/30 filtered tasks (SFT success >10%)",
+      "data_count": 21,
+      "model_name": "Qwen3-1.7B (ScienceWorld SFT)",
+      "seed": 20000,
+      "checkpoint_source": "qwen3_scienceworld_sft/huggingface",
+      "eval_data": "ScienceWorld full 30 tasks (dev)",
+      "kill_reason": "Director D124: step 2 response_length 从 646 爆到 13140, collapse detected. Kill to free GPU for seed 42 training and v5 redesign.",
+      "metrics_at_kill": {
+        "step": 2,
+        "success": 0,
+        "score": 13.01,
+        "response_length_mean": 13140,
+        "kl_loss": 0.471,
+        "action_is_valid": 0.559
+      }
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-22T09:50:13.200Z"
+  },
+  "timestamp": "2026-05-22T09:50:13.530859+00:00",
+  "trigger": "update_registry"
+}

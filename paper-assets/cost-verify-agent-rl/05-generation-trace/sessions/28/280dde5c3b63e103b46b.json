@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "280dde5c3b63e103b46b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "kill exp028c emergency",
+  "task_key": "worker_kill_exp028c_emergency_20260516T080953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_kill_exp028c_emergency_20260516T080953_result.json",
+    "occurrence": 1,
+    "bytes": 628,
+    "sha256": "078a06f0db299fdaa8d503615f0cb3b56aa9864cb47d27e8887a19a050797889"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n- **进程终止**: 3 个 PID 全部 killed 确认\n- **GPU 释放**: 两卡均 0 MiB / 0% 利用率\n- **Checkpoints**: global_step_5 (21GB) 和 global_step_10 (21GB) 均完整\n- **Val 崩溃确认**: step 0 → 6.25%, step 5 → 6.25%, **step 10 → 0%**（所有 best@N 全 0）\n- **Train 崩溃趋势**: step 7 success=21.9% → step 11-12 降至 6-7%, pass@8 从 56% 降到 19-25%\n- **关键异常信号**: step 5 kl_loss spike (0.824), step 11 ppo_kl 异常低 (0.002), entropy 持续萎缩\n\n报告已写入 `artifacts/exp028c_selfguide_recipe/intermediate/kill_and_metrics.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/kill-exp028c-emergency.md"
+}

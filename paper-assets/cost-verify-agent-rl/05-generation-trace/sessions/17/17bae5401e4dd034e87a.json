@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17bae5401e4dd034e87a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp013e",
+  "task_key": "worker_code_exp013e_20260514T090337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp013e_20260514T090337_result.json",
+    "occurrence": 1,
+    "bytes": 486,
+    "sha256": "9e6ee8744f3ca592e30ab107db91bbc8614a4fcc306a4f95bbb83d0b4d674020"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp013e 已成功启动，正在加载 checkpoint 和初始化训练。\n\n**状态汇总：**\n- PID: 298696 (主进程), Ray workers: 302146, 302147\n- GPU: cuda:0 47877 MiB, cuda:1 47885 MiB (各占 ~49%)\n- Ray object_store_memory: 30GB (32212254720) ✓ — 核心修复已生效\n- Config: exp013b_dense_reward + Hydra overrides (实验名/checkpoint 路径)\n- 从 exp008_grpo/global_step_5 恢复，目标 30 步\n- 日志: `/tmp/exp013e.log`\n- Registry: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp013e.md"
+}

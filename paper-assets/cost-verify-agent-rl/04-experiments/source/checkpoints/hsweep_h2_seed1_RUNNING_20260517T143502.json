@@ -1,0 +1,108 @@
+{
+  "exp_id": "hsweep_h2_seed1",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:37:11.061Z",
+    "updated_at": "2026-05-17T14:35:02.086Z",
+    "hypothesis": "Step-independent GRPO with h=2 (minimal context, N=25 windows per episode) will catastrophically collapse due to advantage sign misattribution: early windows retain only γ^24=0.95^24≈29% of terminal return, and all windows in failed episodes receive undifferentiated negative advantage regardless of action quality",
+    "parent": "exp029_episode_level",
+    "spec": {
+      "command": "bash /root/cost-verify-agent-rl/scripts/launch_hsweep.sh 2 1",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "920380",
+      "model_name": "Qwen3-1.7B (SFT checkpoint: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4)",
+      "data_path": "RAGEN expert data (same as exp029)",
+      "data_count": "16 train tasks / 128 val tasks",
+      "seed": 10000,
+      "log_path": "~/runs/cost-verify-agent-rl/hsweep_h2_s1.log",
+      "algorithm": "GRPO + step_independent (h=2)",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4",
+      "eval_data": "N/A (training experiment, not eval)",
+      "key_params": {
+        "context_window_mode": "step_independent",
+        "step_independent_history_length": 2,
+        "total_training_steps": 15,
+        "test_freq": 5,
+        "save_freq": 5,
+        "gamma": 0.95,
+        "kl_loss_coef": 0.01,
+        "group_size": 8
+      }
+    },
+    "metrics": {
+      "train_step": 9,
+      "total_steps": 15,
+      "wandb_run_id": "7o9bjszm",
+      "step1": {
+        "success": 0.1875,
+        "pass_at_8": 0.4375,
+        "invalid_action": 0.027
+      },
+      "step2": {
+        "success": 0.1484,
+        "pass_at_8": 0.5,
+        "invalid_action": 0.02
+      },
+      "step3": {
+        "success": 0.1875,
+        "pass_at_8": 0.625,
+        "invalid_action": 0.028
+      },
+      "step4": {
+        "success": 0.0547,
+        "pass_at_8": 0.25,
+        "invalid_action": 0.264
+      },
+      "step5": {
+        "success": 0.0156,
+        "pass_at_8": 0.0625,
+        "invalid_action": 0.369
+      },
+      "step6": {
+        "success": 0.0313,
+        "pass_at_8": 0.25,
+        "invalid_action": 0.471
+      },
+      "step7": {
+        "success": 0.0469,
+        "pass_at_8": 0.1875,
+        "invalid_action": 0.502
+      },
+      "step8": {
+        "success": 0.0156,
+        "pass_at_8": 0.125,
+        "invalid_action": 0.542
+      },
+      "step9": {
+        "success": 0,
+        "pass_at_8": 0,
+        "invalid_action": 0.641
+      },
+      "val_step0": {
+        "success": 0,
+        "reward_mean": 0
+      },
+      "val_step5": {
+        "success": 0.0313,
+        "invalid_action": 0.781
+      },
+      "checkpoint": "global_step_5",
+      "gpu_util": "95-96%",
+      "collapse_onset": "step3→step4",
+      "pid": 920380,
+      "elapsed_hours": 7.1
+    },
+    "plan_id": "plan_002",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T14:35:02.240689+00:00",
+  "trigger": "update_registry"
+}

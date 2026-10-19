@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14da1e95cff7640a782a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code fix sft convert and rerun",
+  "task_key": "worker_code_fix_sft_convert_and_rerun_20260514T031707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_sft_convert_and_rerun_20260514T031707_result.json",
+    "occurrence": 1,
+    "bytes": 1345,
+    "sha256": "60c44953305bca0ebfaa55b821ca422cda1cb413a63e2fcf4ac060fde08f18b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。产出报告：\n\n---\n\n### 修复 diff\n\n**Bug 1 — Action 提取**（从正则反推改为 tool_calls 直接提取）:\n```diff\n- action = extract_action(tool_text)\n- if action is None:\n-     return None, \"extract_fail\", []\n+ tool_calls = msgs[i].get(\"tool_calls\")\n+ if not tool_calls:\n+     return None, \"no_tool_calls\", []\n+ try:\n+     action = json.loads(tool_calls[0][\"function\"][\"arguments\"])[\"action\"]\n+ except (KeyError, json.JSONDecodeError, IndexError):\n+     return None, \"tool_calls_parse_fail\", []\n```\n删除了 `extract_action()` 函数（~30 行正则逻辑）。\n\n**Bug 2 — System prompt 缺前缀**:\n```diff\n- RAGEN_SYSTEM_PROMPT = \"\"\"You are an expert agent in the ALFRED...\n+ RAGEN_SYSTEM_PROMPT = \"\"\"You're a helpful assistant. You are an expert agent in the ALFRED...\n```\n\n### 转换统计\n\n| 指标 | 值 |\n|------|-----|\n| 总数 | 1200 |\n| 成功转换 | **1200（100%，0 过滤）** |\n| 平均 turns | 9.6 |\n| Max/Min turns | 24 / 4 |\n| System prompt | `\"You're a helpful assistant. You are an expert agent...\"` ✓ |\n\n### Dry-run 结果\n\n| 指标 | 值 |\n|------|-----|\n| Step 1 loss | 2.9302 |\n| Step 2 loss | 2.9621 |\n| 训练状态 | **成功** |\n\n### 清理\n\n旧 checkpoint `exp008_sft/checkpoint-75` 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-sft-convert-and-rerun.md"
+}

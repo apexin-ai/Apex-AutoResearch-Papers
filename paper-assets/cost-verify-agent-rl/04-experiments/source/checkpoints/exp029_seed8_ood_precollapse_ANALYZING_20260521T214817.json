@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp029_seed8_ood_precollapse",
+  "project": "cost-verify-agent-rl",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T21:12:56.344Z",
+    "updated_at": "2026-05-21T21:48:16.982Z",
+    "hypothesis": "Seed 8 (collapse seed) pre-collapse checkpoint (step 5) retains OOD generalization ability before response_length explosion, testing whether early GRPO training generalizes to unseen ALFWorld tasks",
+    "parent": "exp029_seed8",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=3 python train.py --config-name _alfworld_exp029_seed8_ood_precollapse'",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "801623",
+      "log_path": "/root/autodl-tmp/runs/exp029_seed8_ood_precollapse.log",
+      "data_path": "AlfworldSG_OOD",
+      "data_count": 134,
+      "model_name": "Qwen3-1.5B",
+      "seed": 1024,
+      "checkpoint_source": "exp029_seed8 step 5 FSDP->HF",
+      "eval_data": "AlfworldSG_OOD valid_unseen 134 tasks"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "ood_success_rate": 0.1194,
+      "ood_pass_at_1": 0.1194,
+      "ood_num_actions": 44.92,
+      "ood_action_is_valid": 0.5754,
+      "ood_action_is_effective": 1,
+      "ood_response_length": 6503.04,
+      "eval_tasks": 134,
+      "eval_time_seconds": 1430.88
+    },
+    "notes": "Seed 8 pre-collapse (step 5) OOD eval completed. OOD success rate: 11.94% (134 tasks). Log found in Ray worker output (worker-343a9768...808429.out), not in dedicated log file. Wandb run: bpmk7i8r. No tmux session remaining."
+  },
+  "timestamp": "2026-05-21T21:48:17.250942+00:00",
+  "trigger": "update_registry"
+}

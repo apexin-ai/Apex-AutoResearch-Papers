@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1535c344d1abe4e951ac",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code exp016 config",
+  "task_key": "worker_code_exp016-config_20260514T134552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp016-config_20260514T134552_result.json",
+    "occurrence": 1,
+    "bytes": 1239,
+    "sha256": "e8b4b4238bb56c668e210af650117e0b040cb8ea6d2788c6c3ab2a000f1c272b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。以下是 exp016 审批摘要：\n\n---\n\n### exp016 Pre-flight 结果\n\n| 检查项 | 状态 |\n|--------|------|\n| Checkpoint `/root/autodl-tmp/checkpoints/exp015/global_step_5/actor/` | 存在（含 model/optim/extra_state 分片） |\n| 磁盘 `/root/autodl-tmp` | 184GB 可用 (27%) |\n| 配置文件 | `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp016_lr_compromise.yaml` |\n| 启动脚本 | `/root/cost-verify-agent-rl/scripts/run_exp016.sh` |\n| Dry-run | VALIDATED OK |\n\n### exp016 vs exp015 差异\n\n| 参数 | exp015 | exp016 |\n|------|--------|--------|\n| `lr` | 1e-7 | **5e-7** |\n| `resume_mode` | disable | **resume_path** |\n| `resume_from_path` | (无) | **/root/autodl-tmp/checkpoints/exp015/global_step_5** |\n| 其余参数 | — | 完全一致 |\n\n### 启动命令\n\n```bash\nnohup bash /root/cost-verify-agent-rl/scripts/run_exp016.sh > /root/runs/cost-verify-agent-rl/exp016.log 2>&1 &\n```\n\n### ⚠️ 阻塞问题\n\n**exp015 仍在运行**（PID 334705，含 Ray 集群和 WorkerDict workers），未被 kill。两个实验共享 `CUDA_VISIBLE_DEVICES=0,1`，必须先终止 exp015 才能启动 exp016。\n\n等待指令：是否 kill exp015 并启动 exp016？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp016-config.md"
+}

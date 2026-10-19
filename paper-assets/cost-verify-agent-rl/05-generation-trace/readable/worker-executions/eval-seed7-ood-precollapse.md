@@ -1,0 +1,3013 @@
+# eval seed7 ood precollapse
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 63
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/workers/worker_eval_seed7_ood_precollapse_20260521T211356.log`
+- **Structured JSON:** [`24bb0829d5c76e42998e.json`](../../sessions/24/24bb0829d5c76e42998e.json)
+
+## Before a recorded user message
+
+63 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "9e2610d9-5303-4b7f-a27d-2cac8cdfbfb8",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779402600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "0559186b-953a-46ed-9c1c-efca1a2f7a94",
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break down this task:
+
+1. Confirm Seed 7 step 5 FSDP checkpoint exists on westd
+2. Convert FSDP→HF on westd
+3. Transfer to bjb1
+4. Create qwen symlink if needed
+5. Create OOD eval config
+6. Submit training job on bjb1
+7. Update registry
+
+Let me start with Step 1: checking the checkpoint on westd, and also search for existing OOD configs and the conversion script in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "5926561c-9190-40aa-96ff-7a5a1f22835c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F3Beq5L6WVyaiPz2tbELHo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13771,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13771
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始执行 Seed 7 pre-collapse checkpoint OOD eval 任务。先并行探测 westd 上的 checkpoint 和相关文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "b433c52e-638b-4b22-b8e6-b386636555b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F3Beq5L6WVyaiPz2tbELHo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13771,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13771
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01FaWT6S2eavc5b82GXy9NHN`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "112cccbf-4474-4072-b872-fb30cf4c8afb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F3Beq5L6WVyaiPz2tbELHo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13771,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13771
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T21:14:12.296Z_
+
+<details><summary>↩ Tool result · `toolu_01FaWT6S2eavc5b82GXy9NHN`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "0c0e69d6-457b-4d42-8ba8-8c2976db76b7",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+并行探测：westd 上 checkpoint 是否存在、转换脚本位置、已有 OOD eval config。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "29d2c075-247e-4fd5-b23e-dd6b597642d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DXXBAw784Y8UibZwYfCDRb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2499,
+      "cache_read_input_tokens": 25612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2499
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QokivjjHzeQACxSUBDUsLD`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "ls -la /root/autodl-tmp/checkpoints/exp029-seed7/global_step_5/actor/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "72fc5b49-4c44-4fe4-bb0f-f5a1a50f7387",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DXXBAw784Y8UibZwYfCDRb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2499,
+      "cache_read_input_tokens": 25612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2499
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017hqQtn9QVKUkpmHBWrxXR2`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root/autodl-tmp/cost-verify-agent-rl -name \"convert_fsdp_to_hf.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "4e522e28-e364-4ef7-bf13-6f59ad654e48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DXXBAw784Y8UibZwYfCDRb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2499,
+      "cache_read_input_tokens": 25612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2499
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T21:14:17.837Z_
+
+<details><summary>↩ Tool result · `toolu_01QokivjjHzeQACxSUBDUsLD`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/checkpoints/exp029-seed7/global_step_5/actor/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.28}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "8a4fc5a1-5e14-4a90-a6af-7464f71ce45e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/checkpoints/exp029-seed7/global_step_5/actor/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.28}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/checkpoints/exp029-seed7/global_step_5/actor/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.28}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T21:14:18.371Z_
+
+<details><summary>↩ Tool result · `toolu_017hqQtn9QVKUkpmHBWrxXR2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/cost-verify-agent-rl/RAGEN/scripts/convert_fsdp_to_hf.py\\n/root/autodl-tmp/cost-verify-agent-rl/scripts/convert_fsdp_to_hf.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "c56d940f-ea1e-40d8-9c33-9dbfb4d6eb9b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/cost-verify-agent-rl/RAGEN/scripts/convert_fsdp_to_hf.py\\\\n/root/autodl-tmp/cost-verify-agent-rl/scripts/convert_fsdp_to_hf.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/cost-verify-agent-rl/RAGEN/scripts/convert_fsdp_to_hf.py\\n/root/autodl-tmp/cost-verify-agent-rl/scripts/convert_fsdp_to_hf.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XtMKnEZMctSNMkwqSqY2Ut`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config -name \"*ood*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "1ddcf976-e9cc-4ccd-9f5c-d59c08d3235a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DXXBAw784Y8UibZwYfCDRb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2499,
+      "cache_read_input_tokens": 25612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2499
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T21:14:18.887Z_
+
+<details><summary>↩ Tool result · `toolu_01XtMKnEZMctSNMkwqSqY2Ut`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_factorial_h2_reeval_sg_ood.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed2_reeval_ood.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed2_reeval_ood_1gpu.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_7b_sft_eval_ood.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed2_reeval_ood_v4.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_v9d_ood_eval.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed3_ood_final.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_final.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed6_ood_final.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_sft_baseline_ood_eval.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_sft_baseline_ood_eval.yaml.bak\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_sft_baseline_ood_eval_v2.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed6_ood_eval.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed4_ood_eval.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "f4990194-abf4-44aa-88e8-5e7087a52f9c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_factorial_h2_reeval_sg_ood.yaml\\\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed2_reeval_ood.yaml\\\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed2_reeval_ood_1gpu.yaml\\\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_7b_sft_eval_ood.yaml\\\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed2_reeval_ood_v4.yaml\\\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_v9d_ood_eval.yaml\\\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed3_ood_final.yaml\\\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_final.yaml\\\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed6_ood_final.yaml\\\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_sft_baseline_ood_eval.yaml\\\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_sft_baseline_ood_eval.yaml.bak\\\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_sft_baseline_ood_eval_v2.yaml\\\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed6_ood_eval.yaml\\\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml\\\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed4_ood_eval.yaml\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_factorial_h2_reeval_sg_ood.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed2_reeval_ood.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed2_reeval_ood_1gpu.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_7b_sft_eval_ood.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed2_reeval_ood_v4.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_v9d_ood_eval.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed3_ood_final.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_final.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed6_ood_final.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_sft_baseline_ood_eval.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_sft_baseline_ood_eval.yaml.bak\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_sft_baseline_ood_eval_v2.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed6_ood_eval.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_eval.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed4_ood_eval.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016DfgYzjL4DaRhvZdzGtYeV`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/cost-verify-agent-rl/RAGEN/config -name \"*ood*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "4b3f6644-5289-46a9-8d54-a10a5dd15658",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DXXBAw784Y8UibZwYfCDRb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2499,
+      "cache_read_input_tokens": 25612,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2499
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T21:14:20.022Z_
+
+<details><summary>↩ Tool result · `toolu_016DfgYzjL4DaRhvZdzGtYeV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed2_ood_step15.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_factorial_h2_reeval_sg_ood.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_hsweep_h2_seed2_reeval_ood.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed3_ood.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "3345d7d9-94d2-4199-b85b-6e5efca0e120",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed2_ood_step15.yaml\\\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_factorial_h2_reeval_sg_ood.yaml\\\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_hsweep_h2_seed2_reeval_ood.yaml\\\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed3_ood.yaml\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed2_ood_step15.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_factorial_h2_reeval_sg_ood.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_hsweep_h2_seed2_reeval_ood.yaml\\n/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed3_ood.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The checkpoint path `/root/autodl-tmp/checkpoints/exp029-seed7/global_step_5/actor/` doesn't exist on westd. I need to find where the Seed 7 checkpoints actually are. Let me search for them. Also, the conversion script exists at two locations on westd. Let me find the actual checkpoint location.
+
+Let me also look at an existing OOD config to use as a template. Let me check the seed4 or seed5 OOD config since those are similar.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "b09c1a52-e839-419e-a333-e4e4f9f74157",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MoSSJje4x7YnUoPKW42iCP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1791,
+      "cache_read_input_tokens": 28111,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1791
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+Checkpoint 路径不存在，需要找到实际位置。并行搜索 checkpoint 和读取参考 config。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "ed86ee06-5fcd-4b86-9273-ccd7100cd83f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MoSSJje4x7YnUoPKW42iCP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1791,
+      "cache_read_input_tokens": 28111,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1791
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PUGuvEBSHsFQZD7XLSQzHh`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root/autodl-tmp/checkpoints -maxdepth 2 -type d -name \"*seed7*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "c510f83a-1fad-4928-a9f7-1837e7522889",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MoSSJje4x7YnUoPKW42iCP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1791,
+      "cache_read_input_tokens": 28111,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1791
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T21:14:27.143Z_
+
+<details><summary>↩ Tool result · `toolu_01PUGuvEBSHsFQZD7XLSQzHh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "5518f47a-6656-430d-88a8-4904e221a5ad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011KSM1CacgL7S1SkRKCMUPL`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root/autodl-tmp -maxdepth 4 -type d -name \"*seed7*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "da6e849b-9411-4cb2-acf9-089f1bdd4edc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MoSSJje4x7YnUoPKW42iCP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1791,
+      "cache_read_input_tokens": 28111,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1791
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T21:14:28.105Z_
+
+<details><summary>↩ Tool result · `toolu_011KSM1CacgL7S1SkRKCMUPL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "60aa0a22-d2eb-4e0f-8b46-1ab55aecda31",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KZBKD3LvSN3vBXv8E1TrD9`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed5_ood_final.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "8db74244-458c-4526-83ea-84cc62e28fb6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MoSSJje4x7YnUoPKW42iCP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1791,
+      "cache_read_input_tokens": 28111,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1791
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T21:14:28.691Z_
+
+<details><summary>↩ Tool result · `toolu_01KZBKD3LvSN3vBXv8E1TrD9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# OOD final eval for exp029 seed5 (episode-level GRPO, seed=456)\\n# Checkpoint: global_step_15 (final step)\\n# Eval: 134 AlfworldSG_OOD tasks (valid_unseen)\\n\\ndefaults:\\n- base\\n\\nhydra:\\n  searchpath:\\n  - pkg://verl.trainer.config\\n\\nseed:\\n  train: 456\\n  val: 789\\n\\nmodel_path: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\\n\\nsystem:\\n  CUDA_VISIBLE_DEVICES: \\\"0,1\\\"\\n\\nmicro_batch_size_per_gpu: 1\\nppo_mini_batch_size: 16\\n\\ndata:\\n  train_batch_size: 128\\n\\ntrainer:\\n  project_name: cost-verify-agent-rl\\n  experiment_name: exp029-seed5-ood-final\\n  total_training_steps: 1\\n  n_gpus_per_node: 2\\n  val_before_train: true\\n  test_freq: 999\\n  save_freq: 999\\n  local_log_dir: \\\"/root/autodl-tmp/checkpoints/exp029-seed5-ood-final/\\\"\\n  default_local_dir: \\\"/root/autodl-tmp/checkpoints/exp029-seed5-ood-final/\\\"\\n  logger: ['console', 'wandb']\\n  max_actor_ckpt_to_keep: 1\\n  resume_mode: \\\"resume_path\\\"\\n  resume_from_path: \\\"/root/autodl-tmp/checkpoints/exp029-seed5/global_step_15\\\"\\n\\nactor_rollout_ref:\\n  model:\\n    override_config:\\n      attn_implementation: sdpa\\n    enable_gradient_checkpointing: true\\n  actor:\\n    fsdp_config:\\n      optimizer_offload: false\\n    use_ref: true\\n    use_torch_compile: false\\n    use_kl_loss: true\\n    kl_loss_coef: 0.01\\n    kl_loss_type: low_var_kl\\n    entropy_coeff: 0.001\\n    clip_ratio_low: 0.2\\n    clip_ratio_high: 0.28\\n    loss_agg_mode: \\\"token-mean\\\"\\n    grad_clip: 1.0\\n    ppo_max_token_len_per_gpu: 65536\\n    optim:\\n      lr: 1e-6\\n  ref:\\n    use_torch_compile: false\\n    log_prob_max_token_len_per_gpu: 65536\\n  rollout:\\n    response_length: 1024\\n    gpu_memory_utilization: 0.35\\n    enable_chunked_prefill: true\\n    max_model_len: 20480\\n    temperature: 1.0\\n    max_num_batched_tokens: 20480\\n    enforce_eager: true\\n    val_kwargs:\\n      do_sample: true\\n      temperature: 0.4\\n\\nalgorithm:\\n  adv_estimator: grpo\\n  gamma: 0.95\\n  high_level_gamma: 0.95\\n  norm_adv_by_std_in_grpo: true\\n\\nagent_proxy:\\n  context_window_mode: full\\n  max_context_window: -1\\n  step_independent_history_length: 2\\n  max_turn: 50\\n  max_actions_per_turn: 1\\n  max_prompt_length: 16384\\n  use_turn_scores: true\\n\\ncollapse_detection:\\n  multi_turn_enabled: false\\n\\nes_manager:\\n  format_penalty: 0\\n  train:\\n    env_groups: 16\\n    group_size: 8\\n    env_configs:\\n      tags: [\\\"AlfworldSG\\\"]\\n      n_groups: [16]\\n  val:\\n    env_groups: 134\\n    group_size: 1\\n    env_configs:\\n      tags: [\\\"AlfworldSG_OOD\\\"]\\n      n_groups: [134]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "9bc67b4d-0fe0-456e-847b-cebb51624ecf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# OOD final eval for exp029 seed5 (episode-level GRPO, seed=456)\\\\n# Checkpoint: global_step_15 (final step)\\\\n# Eval: 134 AlfworldSG_OOD tasks (valid_unseen)\\\\n\\\\ndefaults:\\\\n- base\\\\n\\\\nhydra:\\\\n  searchpath:\\\\n  - pkg://verl.trainer.config\\\\n\\\\nseed:\\\\n  train: 456\\\\n  val: 789\\\\n\\\\nmodel_path: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\\\\n\\\\nsystem:\\\\n  CUDA_VISIBLE_DEVICES: \\\\\\\"0,1\\\\\\\"\\\\n\\\\nmicro_batch_size_per_gpu: 1\\\\nppo_mini_batch_size: 16\\\\n\\\\ndata:\\\\n  train_batch_size: 128\\\\n\\\\ntrainer:\\\\n  project_name: cost-verify-agent-rl\\\\n  experiment_name: exp029-seed5-ood-final\\\\n  total_training_steps: 1\\\\n  n_gpus_per_node: 2\\\\n  val_before_train: true\\\\n  test_freq: 999\\\\n  save_freq: 999\\\\n  local_log_dir: \\\\\\\"/root/autodl-tmp/checkpoints/exp029-seed5-ood-final/\\\\\\\"\\\\n  default_local_dir: \\\\\\\"/root/autodl-tmp/checkpoints/exp029-seed5-ood-final/\\\\\\\"\\\\n  logger: ['console', 'wandb']\\\\n  max_actor_ckpt_to_keep: 1\\\\n  resume_mode: \\\\\\\"resume_path\\\\\\\"\\\\n  resume_from_path: \\\\\\\"/root/autodl-tmp/checkpoints/exp029-seed5/global_step_15\\\\\\\"\\\\n\\\\nactor_rollout_ref:\\\\n  model:\\\\n    override_config:\\\\n      attn_implementation: sdpa\\\\n    enable_gradient_checkpointing: true\\\\n  actor:\\\\n    fsdp_config:\\\\n      optimizer_offload: false\\\\n    use_ref: true\\\\n    use_torch_compile: false\\\\n    use_kl_loss: true\\\\n    kl_loss_coef: 0.01\\\\n    kl_loss_type: low_var_kl\\\\n    entropy_coeff: 0.001\\\\n    clip_ratio_low: 0.2\\\\n    clip_ratio_high: 0.28\\\\n    loss_agg_mode: \\\\\\\"token-mean\\\\\\\"\\\\n    grad_clip: 1.0\\\\n    ppo_max_token_len_per_gpu: 65536\\\\n    optim:\\\\n      lr: 1e-6\\\\n  ref:\\\\n    use_torch_compile: false\\\\n    log_prob_max_token_len_per_gpu: 65536\\\\n  rollout:\\\\n    response_length: 1024\\\\n    gpu_memory_utilization: 0.35\\\\n    enable_chunked_prefill: true\\\\n    max_model_len: 20480\\\\n    temperature: 1.0\\\\n    max_num_batched_tokens: 20480\\\\n    enforce_eager: true\\\\n    val_kwargs:\\\\n      do_sample: true\\\\n      temperature: 0.4\\\\n\\\\nalgorithm:\\\\n  adv_estimator: grpo\\\\n  gamma: 0.95\\\\n  high_level_gamma: 0.95\\\\n  norm_adv_by_std_in_grpo: true\\\\n\\\\nagent_proxy:\\\\n  context_window_mode: full\\\\n  max_context_window: -1\\\\n  step_independent_history_length: 2\\\\n  max_turn: 50\\\\n  max_actions_per_turn: 1\\\\n  max_prompt_length: 16384\\\\n  use_turn_scores: true\\\\n\\\\ncollapse_detection:\\\\n  multi_turn_enabled: false\\\\n\\\\nes_manager:\\\\n  format_penalty: 0\\\\n  train:\\\\n    env_groups: 16\\\\n    group_size: 8\\\\n    env_configs:\\\\n      tags: [\\\\\\\"AlfworldSG\\\\\\\"]\\\\n      n_groups: [16]\\\\n  val:\\\\n    env_groups: 134\\\\n    group_size: 1\\\\n    env_configs:\\\\n      tags: [\\\\\\\"AlfworldSG_OOD\\\\\\\"]\\\\n      n_groups: [134]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"# OOD final eval for exp029 seed5 (episode-level GRPO, seed=456)\\n# Checkpoint: global_step_15 (final step)\\n# Eval: 134 AlfworldSG_OOD tasks (valid_unseen)\\n\\ndefaults:\\n- base\\n\\nhydra:\\n  searchpath:\\n  - pkg://verl.trainer.config\\n\\nseed:\\n  train: 456\\n  val: 789\\n\\nmodel_path: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\\n\\nsystem:\\n  CUDA_VISIBLE_DEVICES: \\\"0,1\\\"\\n\\nmicro_batch_size_per_gpu: 1\\nppo_mini_batch_size: 16\\n\\ndata:\\n  train_batch_size: 128\\n\\ntrainer:\\n  project_name: cost-verify-agent-rl\\n  experiment_name: exp029-seed5-ood-final\\n  total_training_steps: 1\\n  n_gpus_per_node: 2\\n  val_before_train: true\\n  test_freq: 999\\n  save_freq: 999\\n  local_log_dir: \\\"/root/autodl-tmp/checkpoints/exp029-seed5-ood-final/\\\"\\n  default_local_dir: \\\"/root/autodl-tmp/checkpoints/exp029-seed5-ood-final/\\\"\\n  logger: ['console', 'wandb']\\n  max_actor_ckpt_to_keep: 1\\n  resume_mode: \\\"resume_path\\\"\\n  resume_from_path: \\\"/root/autodl-tmp/checkpoints/exp029-seed5/global_step_15\\\"\\n\\nactor_rollout_ref:\\n  model:\\n    override_config:\\n      attn_implementation: sdpa\\n    enable_gradient_checkpointing: true\\n  actor:\\n    fsdp_config:\\n      optimizer_offload: false\\n    use_ref: true\\n    use_torch_compile: false\\n    use_kl_loss: true\\n    kl_loss_coef: 0.01\\n    kl_loss_type: low_var_kl\\n    entropy_coeff: 0.001\\n    clip_ratio_low: 0.2\\n    clip_ratio_high: 0.28\\n    loss_agg_mode: \\\"token-mean\\\"\\n    grad_clip: 1.0\\n    ppo_max_token_len_per_gpu: 65536\\n    optim:\\n      lr: 1e-6\\n  ref:\\n    use_torch_compile: false\\n    log_prob_max_token_len_per_gpu: 65536\\n  rollout:\\n    response_length: 1024\\n    gpu_memory_utilization: 0.35\\n    enable_chunked_prefill: true\\n    max_model_len: 20480\\n    temperature: 1.0\\n    max_num_batched_tokens: 20480\\n    enforce_eager: true\\n    val_kwargs:\\n      do_sample: true\\n      temperature: 0.4\\n\\nalgorithm:\\n  adv_estimator: grpo\\n  gamma: 0.95\\n  high_level_gamma: 0.95\\n  norm_adv_by_std_in_grpo: true\\n\\nagent_proxy:\\n  context_window_mode: full\\n  max_context_window: -1\\n  step_independent_history_length: 2\\n  max_turn: 50\\n  max_actions_per_turn: 1\\n  max_prompt_length: 16384\\n  use_turn_scores: true\\n\\ncollapse_detection:\\n  multi_turn_enabled: false\\n\\nes_manager:\\n  format_penalty: 0\\n  train:\\n    env_groups: 16\\n    group_size: 8\\n    env_configs:\\n      tags: [\\\"AlfworldSG\\\"]\\n      n_groups: [16]\\n  val:\\n    env_groups: 134\\n    group_size: 1\\n    env_configs:\\n      tags: [\\\"AlfworldSG_OOD\\\"]\\n      n_groups: [134]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The checkpoint path with "seed7" doesn't exist in `/root/autodl-tmp/checkpoints/`. Let me search more broadly - maybe the exp029 seed 7 checkpoints are named differently.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "b5036c3c-1e53-456f-8cee-a255b6296ccf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VoUV9URJ89HUEAPaTTmTXU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2060,
+      "cache_read_input_tokens": 29902,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2060
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+没找到 seed7 目录。扩大搜索范围。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "418bedd0-5776-4ff0-bbef-b1b78a75d1fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VoUV9URJ89HUEAPaTTmTXU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2060,
+      "cache_read_input_tokens": 29902,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2060
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DGLYK2ZN8pNfGxzSwZ5hqG`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "ls /root/autodl-tmp/checkpoints/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "6b9760e9-9733-4207-aa43-8cb2f5eb9a13",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VoUV9URJ89HUEAPaTTmTXU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2060,
+      "cache_read_input_tokens": 29902,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2060
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T21:14:33.610Z_
+
+<details><summary>↩ Tool result · `toolu_01DGLYK2ZN8pNfGxzSwZ5hqG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"7b-sft-eval-ood\\n7b-zeroshot-eval\\n8b-cell-c\\nexp029-seed4\\nexp029-seed5\\nexp029-seed6\\nexp029-seed8\\nexp029_seed3\\ngae_baseline\\nqwen3_8b_sft_v1\\nqwen3_exp021_ragen_sft_v4\\nqwen_exp029_seed4_step15_hf\\nqwen_exp029_seed5_step10_hf\\nqwen_exp029_seed6_step15_hf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "4c2099c1-5e5a-4326-bdbb-d418d84afc7c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"7b-sft-eval-ood\\\\n7b-zeroshot-eval\\\\n8b-cell-c\\\\nexp029-seed4\\\\nexp029-seed5\\\\nexp029-seed6\\\\nexp029-seed8\\\\nexp029_seed3\\\\ngae_baseline\\\\nqwen3_8b_sft_v1\\\\nqwen3_exp021_ragen_sft_v4\\\\nqwen_exp029_seed4_step15_hf\\\\nqwen_exp029_seed5_step10_hf\\\\nqwen_exp029_seed6_step15_hf\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"7b-sft-eval-ood\\n7b-zeroshot-eval\\n8b-cell-c\\nexp029-seed4\\nexp029-seed5\\nexp029-seed6\\nexp029-seed8\\nexp029_seed3\\ngae_baseline\\nqwen3_8b_sft_v1\\nqwen3_exp021_ragen_sft_v4\\nqwen_exp029_seed4_step15_hf\\nqwen_exp029_seed5_step10_hf\\nqwen_exp029_seed6_step15_hf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PV6VCJCM4o8LHLiFMQotys`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root/autodl-tmp -maxdepth 5 -type d -name \"global_step_5\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "a93c6c2d-0529-4b32-b1b6-df1e8684be21",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VoUV9URJ89HUEAPaTTmTXU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2060,
+      "cache_read_input_tokens": 29902,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2060
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T21:14:34.078Z_
+
+<details><summary>↩ Tool result · `toolu_01PV6VCJCM4o8LHLiFMQotys`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "0a5f04f1-2b37-4e0f-9199-852607117f0c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's no `exp029-seed7` directory in `/root/autodl-tmp/checkpoints/`. The seed 7 experiment checkpoint doesn't seem to exist on westd. Let me check if seed 7 was run somewhere else or if the checkpoints are elsewhere on the filesystem.
+
+Let me check for any seed7-related files or directories.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "23d28770-c4e9-4928-b2c7-a87d00fd3d5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDSZthQVGCG2m9iyKegaVN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 31962,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 686
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+没有 exp029-seed7 目录。搜索 seed7 相关文件和 registry 中的 exp029_seed7 记录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "ac2ea03c-d333-4773-a893-e2c7e06eed63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDSZthQVGCG2m9iyKegaVN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 31962,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 686
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XsKi1HY3pPsq9bnecYEFw9`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root/autodl-tmp -maxdepth 4 -type d -name \"*seed7*\" -o -type d -name \"*seed-7*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "04f91641-093c-4b4c-8a3d-24639c91d38b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDSZthQVGCG2m9iyKegaVN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 31962,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 686
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T21:14:40.134Z_
+
+<details><summary>↩ Tool result · `toolu_01XsKi1HY3pPsq9bnecYEFw9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "44d9c3a7-62c7-4b17-b19f-7f280b4c8a5c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Kr3fMiTDmN3FbCJe6zihzs`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "filters": {
+    "exp_id": "exp029_seed7"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "2236451a-34be-45f6-bf30-20d8714eb8d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LDSZthQVGCG2m9iyKegaVN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 31962,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 686
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T21:14:40.718Z_
+
+<details><summary>↩ Tool result · `toolu_01Kr3fMiTDmN3FbCJe6zihzs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4217}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "72748a8c-48b0-43a3-970c-3fa65951dd71",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4217}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4217}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No seed7 directory anywhere on westd, and no registry entry for exp029_seed7. Let me check if there's any seed7 config, any seed=789 experiment, or if seed 7 was perhaps run on bjb1 instead. Also let me check the registry for any exp029 experiments to understand what seeds exist.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "6d02d026-fbb6-4f3d-bd11-8994c1e1e885",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017pGjKahuNtah9beT3zDmzZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 580,
+      "cache_read_input_tokens": 32648,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 580
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+westd 上完全没有 seed7 相关目录，registry 也没有 exp029_seed7 记录。查看所有 exp029 实验和 seed8 的情况。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "f8339f72-a912-4385-977e-835695de96ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017pGjKahuNtah9beT3zDmzZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 580,
+      "cache_read_input_tokens": 32648,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 580
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_012HbDNkCXzopiKUpm3xBqyZ`</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "filters": {
+    "status": "DONE"
+  },
+  "fields": [
+    "exp_id",
+    "status",
+    "conclusion",
+    "spec"
+  ],
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "5a89d2ae-01fa-4bbb-9584-0e36d3c1cf83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017pGjKahuNtah9beT3zDmzZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 580,
+      "cache_read_input_tokens": 32648,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 580
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T21:14:47.813Z_
+
+<details><summary>↩ Tool result · `toolu_012HbDNkCXzopiKUpm3xBqyZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp029_seed7_high_kl\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed7_high_kl\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"334159\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed7_high_kl.log\", \"submitted_at\": \"2026-05-21T17:01:50Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"ALFWorld episode-level\", \"data_count\": \"134 tasks\", \"model_name\": \"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\", \"seed\": 999, \"kl_loss_coef\": 0.1, \"total_steps\": 7, \"checkpoint_source\": \"qwen3_exp021_ragen_sft_v4 (SFT base)\", \"eval_data\": \"N/A (training experiment)\", \"note\": \"3rd submit: 1st stuck on disk full, 2nd crashed on Ray node kill. GPU now clean.\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/\", \"wall_clock_seconds\": 14409.7, \"gpu_hours\": 8.01}, \"conclusion\": \"negative\"}, \"exp029_seed8\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=2,3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed8_episode\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\", \"cuda:3\"], \"pid\": \"462991\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed8.log\", \"submitted_at\": \"2026-05-21T15:53:08.498Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"ALFWorld episode-level\", \"data_count\": \"134 tasks\", \"model_name\": \"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\", \"seed\": 1024, \"wandb_run_id\": \"c0l6e7vd\", \"wall_clock_seconds\": 18181.2, \"gpu_hours\": 10.1}, \"conclusion\": \"negative\"}, \"exp029_seed7_len_penalty\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed7_len_penalty\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"495138\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed7_len_penalty.log\", \"submitted_at\": \"2026-05-21T16:19:03.754Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"ALFWorld episode-level\", \"data_count\": \"134 tasks\", \"model_name\": \"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\", \"seed\": 999, \"response_length_penalty_coef\": 0.5, \"response_length_penalty_threshold\": 1000, \"total_steps\": 7, \"checkpoint_source\": \"qwen3_exp021_ragen_sft_v4 (SFT base)\", \"eval_data\": \"N/A (training experiment)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp029-seed7-len-penalty/\", \"wall_clock_seconds\": 15672.0, \"gpu_hours\": 8.71}, \"conclusion\": \"negative\"}, \"exp029_seed4_v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed4_episode\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"302056\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed4_v2.log\", \"submitted_at\": \"2026-05-21T08:42:11.524Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wandb_run_id\": \"fb1o765g\", \"data_path\": \"ALFWorld episode-level\", \"data_count\": \"134 tasks\", \"model_name\": \"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\", \"seed\": 123, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp029-seed4/global_step_15/\", \"wall_clock_seconds\": 28357.4, \"gpu_hours\": 15.75}, \"conclusion\": \"negative\"}, \"exp029_seed7\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed7_episode\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"226699\", \"data_path\": \"ALFWorld episode-level\", \"data_count\": \"134 tasks\", \"model_name\": \"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\", \"seed\": 999, \"wandb_run_id\": \"p6vwsrfk\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed7.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp029-seed7/global_step_5/\"}, \"conclusion\": \"negative\"}, \"exp029_seed6_ood_eval\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=2 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed6_ood_eval\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\"], \"pid\": \"291159\", \"data_path\": \"AlfworldSG_OOD (134 valid_unseen tasks)\", \"data_count\": 134, \"model_name\": \"Qwen3-1.5B (episode GRPO seed=789, step 15)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/exp029-seed6/global_step_15_hf\", \"eval_data\": \"AlfworldSG_OOD 134 tasks, τ=0.4\"}, \"conclusion\": \"failed\"}, \"sft_baseline_ood_eval_v2\": {\"status\": \"DONE\", \"spec\": {\"checkpoint_path\": \"N/A (val_only eval)\", \"log_path\": \"/tmp/eval_sft_baseline_ood.log\", \"model_name\": \"Qwen3-1.5B SFT (qwen3_exp021_ragen_sft_v4)\"}, \"conclusion\": \"success\"}, \"exp029_seed5_ood_eval\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed5_ood_eval\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:3\"], \"pid\": \"375913\", \"data_path\": \"AlfworldSG_OOD (134 valid_unseen tasks)\", \"data_count\": 134, \"model_name\": \"Qwen3-1.5B (episode GRPO seed=456, step 10, partial training)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen_exp029_seed5_step10_hf (symlink to global_step_10_hf)\", \"eval_data\": \"AlfworldSG_OOD 134 tasks, τ=0.4\", \"log_path\": \"/tmp/exp029_seed5_ood_eval.log\", \"wandb_run_id\": \"u4zste0d\", \"note\": \"Started via ssh_execute before submit_training_job mandate, no cron monitoring\", \"checkpoint_path\": \"N/A (val_only eval)\"}, \"conclusion\": \"success\"}, \"exp029_seed6_ood_eval_v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=2 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed6_ood_eval\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\"], \"pid\": \"342378\", \"data_path\": \"AlfworldSG_OOD (134 valid_unseen tasks)\", \"data_count\": 134, \"model_name\": \"Qwen3-1.5B (episode GRPO seed=789, step 15)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen_exp029_seed6_step15_hf (symlink to global_step_15_hf)\", \"eval_data\": \"AlfworldSG_OOD 134 tasks, τ=0.4\", \"log_path\": \"/tmp/exp029_seed6_ood_eval_v2.log\"}, \"conclusion\": \"success\"}, \"exp029_seed6_v3\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=2,3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed6_episode\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\", \"cuda:3\"], \"pid\": \"920749\", \"wandb_run_id\": \"2bbyvsdr\", \"data_path\": \"ALFWorld episode-level\", \"data_count\": \"134 tasks\", \"model_name\": \"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\", \"seed\": 789}, \"conclusion\": \"success\"}, \"exp029_seed5_v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed5_episode\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"879704\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed5_v2.log\", \"submitted_at\": \"2026-05-21T08:08:23.448Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wandb_run_id\": \"yyoghk1f\", \"data_path\": \"ALFWorld episode-level\", \"data_count\": \"134 tasks\", \"model_name\": \"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\", \"seed\": 456, \"wall_clock_seconds\": 14348.5, \"gpu_hours\": 7.97}, \"conclusion\": \"failed\"}, \"sft_baseline_ood_eval\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=2 python train.py --config-name _alfworld_sft_baseline_ood_eval\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\"], \"pid\": \"156291\", \"log_path\": \"~/runs/cost-verify-agent-rl/sft_baseline_ood_eval.log\", \"submitted_at\": \"2026-05-21T11:57:07.885Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wandb_run_id\": \"bdnhzq9u\", \"data_path\": \"ALFWorld valid_unseen 134 OOD tasks\", \"data_count\": 134, \"model_name\": \"qwen3_exp021_ragen_sft_v4 (1.7B SFT)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4/\", \"eval_data\": \"AlfworldSG_OOD 134 tasks, τ=0.4\", \"wall_clock_seconds\": 1198.8, \"gpu_hours\": 0.33}, \"conclusion\": \"failed\"}, \"exp029_seed6_episode\": {\"status\": \"DONE\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config config/_alfworld_exp029_seed6_episode.yaml\", \"server\": \"westd-47453\", \"gpu_ids\": [0, 1], \"pid\": 697721, \"data_path\": \"ALFWorld train split (3553 games)\", \"data_count\": 3553, \"model_name\": \"qwen3-1.7B (exp021 SFT v4)\", \"seed\": \"train=789, val=321\", \"wandb_run_id\": \"nagp1pi4\", \"tmux_session\": \"exp029_seed6\", \"note\": \"CUDA_VISIBLE_DEVICES was NOT set, Ray workers leaked to GPU 0,1 instead of intended 2,3\"}, \"conclusion\": \"failed\"}, \"exp029_seed5_episode\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp && export WANDB_DIR=/root/autodl-tmp/wandb && export WANDB_TMPDIR=/root/autodl-tmp/tmp && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed5_episode\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"683267\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed5_episode.log\", \"submitted_at\": \"2026-05-21T02:45:01.624Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"AlfworldSG (16 env_groups x 8 group_size)\", \"data_count\": 128, \"model_name\": \"Qwen3-1.7B (exp021 SFT v4)\", \"seed\": 456, \"checkpoint_source\": \"qwen3_exp021_ragen_sft_v4\", \"eval_data\": \"AlfworldSG 32 val tasks (in-distribution)\", \"wall_clock_seconds\": 17691.2, \"gpu_hours\": 9.83}, \"conclusion\": \"failed\"}, \"exp029_seed4_episode\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp && mkdir -p /root/autodl-tmp/tmp && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed4_episode\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"283470\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed4_episode.log\", \"submitted_at\": \"2026-05-21T02:40:45.415Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"AlfworldSG (built-in)\", \"data_count\": \"128 episodes/step (8 env_groups x 8 group_size train, 32 val)\", \"model_name\": \"Qwen3-1.7B (SFT v4)\", \"seed\": \"train=123, val=456\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\", \"eval_data\": \"AlfworldSG val 32 episodes\", \"wall_clock_seconds\": 17946.2, \"gpu_hours\": 9.97}, \"conclusion\": \"failed\"}, \"scienceworld_grpo_cell_c_v3\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _scienceworld_cell_c_grpo\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\", \"cuda:3\"], \"pid\": \"88226\", \"log_path\": \"~/runs/cost-verify-agent-rl/scienceworld_grpo_cell_c_v3.log\", \"submitted_at\": \"2026-05-20T18:23:38.661Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"ScienceWorldSG (30 task types)\", \"data_count\": 128, \"model_name\": \"Qwen3-1.7B (ScienceWorld SFT checkpoint)\", \"seed\": 10000, \"checkpoint_source\": \"qwen3_scienceworld_sft\", \"eval_data\": \"ScienceWorldSG 30 task types (dev split)\", \"checkpoint_path\": \"N/A (negative, no useful checkpoint)\", \"wall_clock_seconds\": 30077.7, \"gpu_hours\": 16.71}, \"conclusion\": \"negative\"}, \"exp029_seed3_ood_v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed3_ood_final'\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"530289\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed3_ood_v2.log\", \"submitted_at\": \"2026-05-21T00:39:27.902Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"AlfworldSG_OOD (134 valid_unseen tasks)\", \"data_count\": 134, \"model_name\": \"qwen3_exp021_ragen_sft_v4\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/exp029-seed3/global_step_15\", \"eval_data\": \"AlfworldSG_OOD\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 7227.7, \"gpu_hours\": 4.02}, \"conclusion\": \"success\"}, \"exp029_seed3_v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp && export WANDB_DIR=/root/autodl-tmp/wandb && export WANDB_TMPDIR=/root/autodl-tmp/tmp && cd /root/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_episode_level seed.train=42 seed.val=123 trainer.total_training_steps=15 trainer.experiment_name=exp029-seed3-episode-level trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp029-seed3/ trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp029-seed3/\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"991448\", \"log_path\": \"/root/runs/cost-verify-agent-rl/exp029_seed3_v2.log\", \"submitted_at\": \"2026-05-20T17:09:29.872Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"AlfworldSG (16 train groups x 8, 32 val groups x 1)\", \"data_count\": 128, \"model_name\": \"Qwen3-1.7B SFT (qwen3_exp021_ragen_sft_v4)\", \"seed\": \"42/123\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\", \"eval_data\": \"AlfworldSG 32 val episodes\", \"wall_clock_seconds\": 20809.1, \"gpu_hours\": 11.56, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp029-seed3/global_step_15/\"}, \"conclusion\": \"success\"}, \"exp029_seed3_ood\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"... python train.py --config-name _alfworld_exp029_seed3_ood\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"265901\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed3_ood.log\", \"submitted_at\": \"2026-05-20T19:57:11.483Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"qwen3_exp021_ragen_sft_v4\", \"seed\": 3, \"data_path\": \"AlfworldSG_OOD (134 valid_unseen)\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/exp029-seed3/global_step_5\", \"eval_data\": \"AlfworldSG_OOD (134 valid_unseen tasks)\", \"data_count\": 134, \"checkpoint_path\": \"N/A (eval failed)\", \"failure_reason\": \"RuntimeError: FSDP checkpoint device mismatch - optimizer step found tensors on cuda:0 and cpu. RAGEN train.py runs optimizer step during eval flow, incompatible with FSDP 2-GPU checkpoint loaded on different topology.\", \"wall_clock_seconds\": 4362.4, \"gpu_hours\": 2.42}, \"conclusion\": \"failed\"}, \"sw_info_loss_bjb1\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python eval_scienceworld_info_loss.py --checkpoint /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface --history_length {-1,2} --temperature 0 --max_variations 3 --tensor_parallel_size 2\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"229078\", \"log_path\": \"~/runs/cost-verify-agent-rl/sw_info_loss_bjb1.log\", \"submitted_at\": \"2026-05-20T16:39:02.613Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"scienceworld dev split\", \"data_count\": \"30 task types x 3 variations = 90 episodes per condition\", \"model_name\": \"qwen3_scienceworld_sft\", \"seed\": \"deterministic (T=0)\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface\", \"eval_data\": \"scienceworld dev split, 3 variations per task\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 9082.3, \"gpu_hours\": 5.05}, \"conclusion\": \"success\"}, \"scienceworld_grpo_cell_c_v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl JAVA_TOOL_OPTIONS='-Xmx4g' python train.py --config-name _scienceworld_cell_c_grpo\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\", \"cuda:3\"], \"pid\": \"920065\", \"log_path\": \"~/runs/cost-verify-agent-rl/scienceworld_grpo_cell_c_v2.log\", \"submitted_at\": \"2026-05-20T15:41:18.991Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:2\", \"cuda:3\"], \"data_path\": \"scienceworld (30 tasks)\", \"data_count\": 128, \"model_name\": \"qwen3_scienceworld_sft\", \"seed\": 10000, \"checkpoint_source\": \"qwen3_scienceworld_sft\", \"eval_data\": \"scienceworld dev split\", \"wall_clock_seconds\": 9746.5, \"gpu_hours\": 5.41}, \"conclusion\": \"failed\"}, \"exp029_seed3_episode\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python train.py --config-name _alfworld_exp029_episode_level seed=42 trainer.total_training_steps=15\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"980051\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed3_episode.log\", \"submitted_at\": \"2026-05-20T17:03:22.094Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"AlfworldSG (16 train groups x 8, 32 val groups x 1)\", \"data_count\": 128, \"model_name\": \"Qwen3-1.7B SFT (qwen3_exp021_ragen_sft_v4)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\", \"eval_data\": \"AlfworldSG 32 val episodes\", \"wall_clock_seconds\": 242.6, \"gpu_hours\": 0.13}, \"conclusion\": \"failed\"}, \"scienceworld_grpo_cell_c\": {\"status\": \"DONE\", \"spec\": {\"command\": \"cd /root/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _scienceworld_cell_c_grpo\", \"server\": \"westd-47453\", \"gpu\": \"cuda:2,3\", \"pid\": 766820, \"wandb_run_id\": \"sx7h864t\", \"data_path\": \"ScienceWorldSG\", \"data_count\": 30, \"model_name\": \"Qwen3-1.7B (ScienceWorld SFT checkpoint)\", \"seed\": 42, \"checkpoint_source\": \"scienceworld_sft\", \"eval_data\": \"ScienceWorldSG 30 task types (dev split)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/scienceworld_cell_c/\", \"log_path\": \"/root/runs/cost-verify-agent-rl/scienceworld_cell_c.log\", \"hyperparams\": {\"total_training_steps\": 15, \"context_window_mode\": \"full\", \"env_groups\": 16, \"group_size\": 8, \"ppo_mini_batch_size\": 8, \"ppo_max_token_len_per_gpu\": 16384, \"optimizer_offload\": true, \"lr\": 1e-06, \"n_gpus_per_node\": 2}, \"notes\": \"ScienceWorld Cell C: episode-level full context. Expected to learn without collapse, proving fix generalizes.\"}, \"conclusion\": \"failed\"}, \"scienceworld_info_loss_h2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"sw_info_loss_full_v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python eval_scienceworld_info_loss.py --checkpoint qwen3_scienceworld_sft --temperature 0 --history_length -1 --tensor_parallel_size 2 --max_model_len 16384\", \"server\": \"westd-47453\", \"data_path\": \"ScienceWorldSG dev split\", \"data_count\": \"89 episodes\", \"model_name\": \"qwen3_scienceworld_sft\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen3_scienceworld_sft/huggingface\", \"eval_data\": \"ScienceWorldSG dev, max_variations=3, T=0, full context\", \"gpu\": \"cuda:0,1\", \"pid\": 875971}, \"conclusion\": \"failed\"}, \"scienceworld_info_loss_full\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python3 eval_scienceworld_info_loss.py --temperature 0 --history_length -1 --max_variations 3 --tensor_parallel_size 2\", \"server\": \"westd-47453\", \"data_path\": \"ScienceWorldSG dev split\", \"data_count\": \"~90 episodes\", \"model_name\": \"qwen3_scienceworld_sft\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen3_scienceworld_sft/huggingface\", \"eval_data\": \"ScienceWorldSG dev, max_variations=3\"}, \"conclusion\": \"failed\"}, \"scienceworld_sft_eval_v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python /root/cost-verify-agent-rl/eval_scienceworld.py --temperature 0.4 --resume --episode_timeout 300\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"195853\", \"data_path\": \"scienceworld dev split\", \"data_count\": 1796, \"model_name\": \"Qwen3-1.7B (ScienceWorld SFT)\", \"seed\": 42, \"log_path\": \"/tmp/eval_scienceworld_v2_resumed.log\", \"checkpoint_source\": \"scienceworld_sft/global_step_448\", \"eval_data\": \"ScienceWorld dev split, 1796 episodes, 30 task types\", \"checkpoint_path\": \"N/A (eval only)\"}, \"conclusion\": \"success\"}, \"scienceworld_grpo_cell_a\": {\"status\": \"DONE\", \"spec\": {\"command\": \"cd /root/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _scienceworld_cell_a_grpo\", \"server\": \"westd-47453\", \"gpu\": \"cuda:0,1\", \"pid\": 759987, \"wandb_run_id\": \"f1c4g6dk\", \"data_path\": \"ScienceWorldSG\", \"data_count\": 30, \"model_name\": \"Qwen3-1.7B (ScienceWorld SFT checkpoint)\", \"seed\": 42, \"checkpoint_source\": \"scienceworld_sft\", \"eval_data\": \"ScienceWorldSG 30 task types (dev split)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/scienceworld-cell-a/global_step_15\", \"log_path\": \"/root/cost-verify-agent-rl/RAGEN/wandb/run-20260520_204440-f1c4g6dk/files/output.log\", \"hyperparams\": {\"total_training_steps\": 15, \"context_window_mode\": \"step_independent\", \"step_independent_history_length\": 2, \"env_groups\": 16, \"group_size\": 8, \"ppo_mini_batch_size\": 8, \"ppo_max_token_len_per_gpu\": 16384, \"optimizer_offload\": true, \"lr\": 1e-06, \"n_gpus_per_node\": 2}, \"notes\": \"ScienceWorld Cell A: step-independent h=2. Expected to show collapse, proving it generalizes beyond ALFWorld.\"}, \"conclusion\": \"negative\"}, \"8b_v9d_ood_eval_v5\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && sed -i 's/env_groups: 234/env_groups: 134/' /root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_v9d_ood_eval.yaml && echo '=== env_groups/n_groups after sed fix ===' && grep -n -E 'env_groups|n_groups' /root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_v9d_ood_eval.yaml && cd /root/cost-verify-agent-rl/RAGEN && export WANDB_PROJECT=cost-verify-agent-rl && python train.py --config-name _alfworld_8b_v9d_ood_eval\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": \"737225\", \"log_path\": \"~/runs/cost-verify-agent-rl/8b_v9d_ood_eval_v5.log\", \"submitted_at\": \"2026-05-20T10:26:02.004Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 3256.8, \"gpu_hours\": 3.62}, \"conclusion\": \"success\"}, \"8b_v9d_ood_eval_v4\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && echo aW1wb3J0IHJlCnBhdGggPSAnL3Jvb3QvY29zdC12ZXJpZnktYWdlbnQtcmwvUkFHRU4vY29uZmlnL19hbGZ3b3JsZF84Yl92OWRfb29kX2V2YWwueWFtbCcKdGV4dCA9IG9wZW4ocGF0aCkucmVhZCgpCnRleHQgPSByZS5zdWIocidwcG9fbWluaV9iYXRjaF9zaXplOlxzKlxkKycsICdwcG9fbWluaV9iYXRjaF9zaXplOiA0JywgdGV4dCkKdGV4dCA9IHJlLnN1YihyJ2Vudl9ncm91cHM6XHMqXGQrJywgJ2Vudl9ncm91cHM6IDInLCB0ZXh0LCBjb3VudD0xKQpuZXcgPSByZS5zdWIocicobl9ncm91cHM6XHMqXFspXGQrKFxdKScsIGxhbWJkYSBtOiBtLmdyb3VwKDEpICsgJzInICsgbS5ncm91cCgyKSwgdGV4dCwgY291bnQ9MSkKaWYgbmV3ID09IHRleHQ6CiAgICBuZXcgPSByZS5zdWIocicobl9ncm91cHM6W15cbl0qXG5ccyotXHMqKVxkKycsIGxhbWJkYSBtOiBtLmdyb3VwKDEpICsgJzInLCB0ZXh0LCBjb3VudD0xKQp0ZXh0ID0gbmV3Cm9wZW4ocGF0aCwgJ3cnKS53cml0ZSh0ZXh0KQpwcmludCgnRklYRUQnKQo= | base64 -d > /tmp/fix_ood.py && python3 /tmp/fix_ood.py && grep -n -E 'ppo_mini_batch_size|env_groups|group_size|n_groups' /root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_v9d_ood_eval.yaml && cd /root/cost-verify-agent-rl/RAGEN && export WANDB_PROJECT=cost-verify-agent-rl && python train.py --config-name _alfworld_8b_v9d_ood_eval\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": \"728499\", \"log_path\": \"~/runs/cost-verify-agent-rl/8b_v9d_ood_eval_v4.log\", \"submitted_at\": \"2026-05-20T10:15:20.931Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 144.6, \"gpu_hours\": 0.16}, \"conclusion\": \"failed\"}}, \"count\": 30, \"total\": 112, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4654}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "6236935e-221f-452f-8f4d-4ada4865f835",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp029_seed7_high_kl\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed7_high_kl\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": \\\"334159\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/exp029_seed7_high_kl.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T17:01:50Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"ALFWorld episode-level\\\", \\\"data_count\\\": \\\"134 tasks\\\", \\\"model_name\\\": \\\"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\\\", \\\"seed\\\": 999, \\\"kl_loss_coef\\\": 0.1, \\\"total_steps\\\": 7, \\\"checkpoint_source\\\": \\\"qwen3_exp021_ragen_sft_v4 (SFT base)\\\", \\\"eval_data\\\": \\\"N/A (training experiment)\\\", \\\"note\\\": \\\"3rd submit: 1st stuck on disk full, 2nd crashed on Ray node kill. GPU now clean.\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/\\\", \\\"wall_clock_seconds\\\": 14409.7, \\\"gpu_hours\\\": 8.01}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp029_seed8\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=2,3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed8_episode\\\\\\\"\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"pid\\\": \\\"462991\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/exp029_seed8.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T15:53:08.498Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"ALFWorld episode-level\\\", \\\"data_count\\\": \\\"134 tasks\\\", \\\"model_name\\\": \\\"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\\\", \\\"seed\\\": 1024, \\\"wandb_run_id\\\": \\\"c0l6e7vd\\\", \\\"wall_clock_seconds\\\": 18181.2, \\\"gpu_hours\\\": 10.1}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp029_seed7_len_penalty\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed7_len_penalty\\\\\\\"\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": \\\"495138\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/exp029_seed7_len_penalty.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T16:19:03.754Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"ALFWorld episode-level\\\", \\\"data_count\\\": \\\"134 tasks\\\", \\\"model_name\\\": \\\"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\\\", \\\"seed\\\": 999, \\\"response_length_penalty_coef\\\": 0.5, \\\"response_length_penalty_threshold\\\": 1000, \\\"total_steps\\\": 7, \\\"checkpoint_source\\\": \\\"qwen3_exp021_ragen_sft_v4 (SFT base)\\\", \\\"eval_data\\\": \\\"N/A (training experiment)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp029-seed7-len-penalty/\\\", \\\"wall_clock_seconds\\\": 15672.0, \\\"gpu_hours\\\": 8.71}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp029_seed4_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed4_episode\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": \\\"302056\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/exp029_seed4_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T08:42:11.524Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wandb_run_id\\\": \\\"fb1o765g\\\", \\\"data_path\\\": \\\"ALFWorld episode-level\\\", \\\"data_count\\\": \\\"134 tasks\\\", \\\"model_name\\\": \\\"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\\\", \\\"seed\\\": 123, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp029-seed4/global_step_15/\\\", \\\"wall_clock_seconds\\\": 28357.4, \\\"gpu_hours\\\": 15.75}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp029_seed7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed7_episode\\\\\\\"\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": \\\"226699\\\", \\\"data_path\\\": \\\"ALFWorld episode-level\\\", \\\"data_count\\\": \\\"134 tasks\\\", \\\"model_name\\\": \\\"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\\\", \\\"seed\\\": 999, \\\"wandb_run_id\\\": \\\"p6vwsrfk\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/exp029_seed7.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp029-seed7/global_step_5/\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp029_seed6_ood_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=2 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed6_ood_eval\\\\\\\"\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"291159\\\", \\\"data_path\\\": \\\"AlfworldSG_OOD (134 valid_unseen tasks)\\\", \\\"data_count\\\": 134, \\\"model_name\\\": \\\"Qwen3-1.5B (episode GRPO seed=789, step 15)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/exp029-seed6/global_step_15_hf\\\", \\\"eval_data\\\": \\\"AlfworldSG_OOD 134 tasks, τ=0.4\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"sft_baseline_ood_eval_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"N/A (val_only eval)\\\", \\\"log_path\\\": \\\"/tmp/eval_sft_baseline_ood.log\\\", \\\"model_name\\\": \\\"Qwen3-1.5B SFT (qwen3_exp021_ragen_sft_v4)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp029_seed5_ood_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed5_ood_eval\\\\\\\"\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"375913\\\", \\\"data_path\\\": \\\"AlfworldSG_OOD (134 valid_unseen tasks)\\\", \\\"data_count\\\": 134, \\\"model_name\\\": \\\"Qwen3-1.5B (episode GRPO seed=456, step 10, partial training)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/qwen_exp029_seed5_step10_hf (symlink to global_step_10_hf)\\\", \\\"eval_data\\\": \\\"AlfworldSG_OOD 134 tasks, τ=0.4\\\", \\\"log_path\\\": \\\"/tmp/exp029_seed5_ood_eval.log\\\", \\\"wandb_run_id\\\": \\\"u4zste0d\\\", \\\"note\\\": \\\"Started via ssh_execute before submit_training_job mandate, no cron monitoring\\\", \\\"checkpoint_path\\\": \\\"N/A (val_only eval)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp029_seed6_ood_eval_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=2 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed6_ood_eval\\\\\\\"\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"342378\\\", \\\"data_path\\\": \\\"AlfworldSG_OOD (134 valid_unseen tasks)\\\", \\\"data_count\\\": 134, \\\"model_name\\\": \\\"Qwen3-1.5B (episode GRPO seed=789, step 15)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/qwen_exp029_seed6_step15_hf (symlink to global_step_15_hf)\\\", \\\"eval_data\\\": \\\"AlfworldSG_OOD 134 tasks, τ=0.4\\\", \\\"log_path\\\": \\\"/tmp/exp029_seed6_ood_eval_v2.log\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp029_seed6_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=2,3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed6_episode\\\\\\\"\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"pid\\\": \\\"920749\\\", \\\"wandb_run_id\\\": \\\"2bbyvsdr\\\", \\\"data_path\\\": \\\"ALFWorld episode-level\\\", \\\"data_count\\\": \\\"134 tasks\\\", \\\"model_name\\\": \\\"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\\\", \\\"seed\\\": 789}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp029_seed5_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed5_episode\\\\\\\"\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": \\\"879704\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/exp029_seed5_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T08:08:23.448Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wandb_run_id\\\": \\\"yyoghk1f\\\", \\\"data_path\\\": \\\"ALFWorld episode-level\\\", \\\"data_count\\\": \\\"134 tasks\\\", \\\"model_name\\\": \\\"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\\\", \\\"seed\\\": 456, \\\"wall_clock_seconds\\\": 14348.5, \\\"gpu_hours\\\": 7.97}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"sft_baseline_ood_eval\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=2 python train.py --config-name _alfworld_sft_baseline_ood_eval\\\\\\\"\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"156291\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/sft_baseline_ood_eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T11:57:07.885Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wandb_run_id\\\": \\\"bdnhzq9u\\\", \\\"data_path\\\": \\\"ALFWorld valid_unseen 134 OOD tasks\\\", \\\"data_count\\\": 134, \\\"model_name\\\": \\\"qwen3_exp021_ragen_sft_v4 (1.7B SFT)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4/\\\", \\\"eval_data\\\": \\\"AlfworldSG_OOD 134 tasks, τ=0.4\\\", \\\"wall_clock_seconds\\\": 1198.8, \\\"gpu_hours\\\": 0.33}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp029_seed6_episode\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config config/_alfworld_exp029_seed6_episode.yaml\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu_ids\\\": [0, 1], \\\"pid\\\": 697721, \\\"data_path\\\": \\\"ALFWorld train split (3553 games)\\\", \\\"data_count\\\": 3553, \\\"model_name\\\": \\\"qwen3-1.7B (exp021 SFT v4)\\\", \\\"seed\\\": \\\"train=789, val=321\\\", \\\"wandb_run_id\\\": \\\"nagp1pi4\\\", \\\"tmux_session\\\": \\\"exp029_seed6\\\", \\\"note\\\": \\\"CUDA_VISIBLE_DEVICES was NOT set, Ray workers leaked to GPU 0,1 instead of intended 2,3\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp029_seed5_episode\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp && export WANDB_DIR=/root/autodl-tmp/wandb && export WANDB_TMPDIR=/root/autodl-tmp/tmp && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed5_episode\\\\\\\"\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": \\\"683267\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/exp029_seed5_episode.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T02:45:01.624Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"AlfworldSG (16 env_groups x 8 group_size)\\\", \\\"data_count\\\": 128, \\\"model_name\\\": \\\"Qwen3-1.7B (exp021 SFT v4)\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"qwen3_exp021_ragen_sft_v4\\\", \\\"eval_data\\\": \\\"AlfworldSG 32 val tasks (in-distribution)\\\", \\\"wall_clock_seconds\\\": 17691.2, \\\"gpu_hours\\\": 9.83}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp029_seed4_episode\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp && mkdir -p /root/autodl-tmp/tmp && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed4_episode\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": \\\"283470\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/exp029_seed4_episode.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T02:40:45.415Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"AlfworldSG (built-in)\\\", \\\"data_count\\\": \\\"128 episodes/step (8 env_groups x 8 group_size train, 32 val)\\\", \\\"model_name\\\": \\\"Qwen3-1.7B (SFT v4)\\\", \\\"seed\\\": \\\"train=123, val=456\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\\\", \\\"eval_data\\\": \\\"AlfworldSG val 32 episodes\\\", \\\"wall_clock_seconds\\\": 17946.2, \\\"gpu_hours\\\": 9.97}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"scienceworld_grpo_cell_c_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _scienceworld_cell_c_grpo\\\\\\\"\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"pid\\\": \\\"88226\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/scienceworld_grpo_cell_c_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T18:23:38.661Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"ScienceWorldSG (30 task types)\\\", \\\"data_count\\\": 128, \\\"model_name\\\": \\\"Qwen3-1.7B (ScienceWorld SFT checkpoint)\\\", \\\"seed\\\": 10000, \\\"checkpoint_source\\\": \\\"qwen3_scienceworld_sft\\\", \\\"eval_data\\\": \\\"ScienceWorldSG 30 task types (dev split)\\\", \\\"checkpoint_path\\\": \\\"N/A (negative, no useful checkpoint)\\\", \\\"wall_clock_seconds\\\": 30077.7, \\\"gpu_hours\\\": 16.71}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp029_seed3_ood_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed3_ood_final'\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": \\\"530289\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/exp029_seed3_ood_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T00:39:27.902Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"AlfworldSG_OOD (134 valid_unseen tasks)\\\", \\\"data_count\\\": 134, \\\"model_name\\\": \\\"qwen3_exp021_ragen_sft_v4\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/exp029-seed3/global_step_15\\\", \\\"eval_data\\\": \\\"AlfworldSG_OOD\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"wall_clock_seconds\\\": 7227.7, \\\"gpu_hours\\\": 4.02}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp029_seed3_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp && export WANDB_DIR=/root/autodl-tmp/wandb && export WANDB_TMPDIR=/root/autodl-tmp/tmp && cd /root/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_episode_level seed.train=42 seed.val=123 trainer.total_training_steps=15 trainer.experiment_name=exp029-seed3-episode-level trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp029-seed3/ trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp029-seed3/\\\\\\\"\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": \\\"991448\\\", \\\"log_path\\\": \\\"/root/runs/cost-verify-agent-rl/exp029_seed3_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:09:29.872Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"AlfworldSG (16 train groups x 8, 32 val groups x 1)\\\", \\\"data_count\\\": 128, \\\"model_name\\\": \\\"Qwen3-1.7B SFT (qwen3_exp021_ragen_sft_v4)\\\", \\\"seed\\\": \\\"42/123\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\\\", \\\"eval_data\\\": \\\"AlfworldSG 32 val episodes\\\", \\\"wall_clock_seconds\\\": 20809.1, \\\"gpu_hours\\\": 11.56, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/exp029-seed3/global_step_15/\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp029_seed3_ood\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"... python train.py --config-name _alfworld_exp029_seed3_ood\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": \\\"265901\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/exp029_seed3_ood.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T19:57:11.483Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"qwen3_exp021_ragen_sft_v4\\\", \\\"seed\\\": 3, \\\"data_path\\\": \\\"AlfworldSG_OOD (134 valid_unseen)\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/exp029-seed3/global_step_5\\\", \\\"eval_data\\\": \\\"AlfworldSG_OOD (134 valid_unseen tasks)\\\", \\\"data_count\\\": 134, \\\"checkpoint_path\\\": \\\"N/A (eval failed)\\\", \\\"failure_reason\\\": \\\"RuntimeError: FSDP checkpoint device mismatch - optimizer step found tensors on cuda:0 and cpu. RAGEN train.py runs optimizer step during eval flow, incompatible with FSDP 2-GPU checkpoint loaded on different topology.\\\", \\\"wall_clock_seconds\\\": 4362.4, \\\"gpu_hours\\\": 2.42}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"sw_info_loss_bjb1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_scienceworld_info_loss.py --checkpoint /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface --history_length {-1,2} --temperature 0 --max_variations 3 --tensor_parallel_size 2\\\", \\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": \\\"229078\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/sw_info_loss_bjb1.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T16:39:02.613Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"scienceworld dev split\\\", \\\"data_count\\\": \\\"30 task types x 3 variations = 90 episodes per condition\\\", \\\"model_name\\\": \\\"qwen3_scienceworld_sft\\\", \\\"seed\\\": \\\"deterministic (T=0)\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface\\\", \\\"eval_data\\\": \\\"scienceworld dev split, 3 variations per task\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"wall_clock_seconds\\\": 9082.3, \\\"gpu_hours\\\": 5.05}, \\\"conclusion\\\": \\\"success\\\"}, \\\"scienceworld_grpo_cell_c_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl JAVA_TOOL_OPTIONS='-Xmx4g' python train.py --config-name _scienceworld_cell_c_grpo\\\\\\\"\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"pid\\\": \\\"920065\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/scienceworld_grpo_cell_c_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T15:41:18.991Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"data_path\\\": \\\"scienceworld (30 tasks)\\\", \\\"data_count\\\": 128, \\\"model_name\\\": \\\"qwen3_scienceworld_sft\\\", \\\"seed\\\": 10000, \\\"checkpoint_source\\\": \\\"qwen3_scienceworld_sft\\\", \\\"eval_data\\\": \\\"scienceworld dev split\\\", \\\"wall_clock_seconds\\\": 9746.5, \\\"gpu_hours\\\": 5.41}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp029_seed3_episode\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train.py --config-name _alfworld_exp029_episode_level seed=42 trainer.total_training_steps=15\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": \\\"980051\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/exp029_seed3_episode.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:03:22.094Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"AlfworldSG (16 train groups x 8, 32 val groups x 1)\\\", \\\"data_count\\\": 128, \\\"model_name\\\": \\\"Qwen3-1.7B SFT (qwen3_exp021_ragen_sft_v4)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\\\", \\\"eval_data\\\": \\\"AlfworldSG 32 val episodes\\\", \\\"wall_clock_seconds\\\": 242.6, \\\"gpu_hours\\\": 0.13}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"scienceworld_grpo_cell_c\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _scienceworld_cell_c_grpo\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": \\\"cuda:2,3\\\", \\\"pid\\\": 766820, \\\"wandb_run_id\\\": \\\"sx7h864t\\\", \\\"data_path\\\": \\\"ScienceWorldSG\\\", \\\"data_count\\\": 30, \\\"model_name\\\": \\\"Qwen3-1.7B (ScienceWorld SFT checkpoint)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"scienceworld_sft\\\", \\\"eval_data\\\": \\\"ScienceWorldSG 30 task types (dev split)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/scienceworld_cell_c/\\\", \\\"log_path\\\": \\\"/root/runs/cost-verify-agent-rl/scienceworld_cell_c.log\\\", \\\"hyperparams\\\": {\\\"total_training_steps\\\": 15, \\\"context_window_mode\\\": \\\"full\\\", \\\"env_groups\\\": 16, \\\"group_size\\\": 8, \\\"ppo_mini_batch_size\\\": 8, \\\"ppo_max_token_len_per_gpu\\\": 16384, \\\"optimizer_offload\\\": true, \\\"lr\\\": 1e-06, \\\"n_gpus_per_node\\\": 2}, \\\"notes\\\": \\\"ScienceWorld Cell C: episode-level full context. Expected to learn without collapse, proving fix generalizes.\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"scienceworld_info_loss_h2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"sw_info_loss_full_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_scienceworld_info_loss.py --checkpoint qwen3_scienceworld_sft --temperature 0 --history_length -1 --tensor_parallel_size 2 --max_model_len 16384\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"data_path\\\": \\\"ScienceWorldSG dev split\\\", \\\"data_count\\\": \\\"89 episodes\\\", \\\"model_name\\\": \\\"qwen3_scienceworld_sft\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/qwen3_scienceworld_sft/huggingface\\\", \\\"eval_data\\\": \\\"ScienceWorldSG dev, max_variations=3, T=0, full context\\\", \\\"gpu\\\": \\\"cuda:0,1\\\", \\\"pid\\\": 875971}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"scienceworld_info_loss_full\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 eval_scienceworld_info_loss.py --temperature 0 --history_length -1 --max_variations 3 --tensor_parallel_size 2\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"data_path\\\": \\\"ScienceWorldSG dev split\\\", \\\"data_count\\\": \\\"~90 episodes\\\", \\\"model_name\\\": \\\"qwen3_scienceworld_sft\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/qwen3_scienceworld_sft/huggingface\\\", \\\"eval_data\\\": \\\"ScienceWorldSG dev, max_variations=3\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"scienceworld_sft_eval_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python /root/cost-verify-agent-rl/eval_scienceworld.py --temperature 0.4 --resume --episode_timeout 300\\\", \\\"server\\\": \\\"bjb1-17606\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"pid\\\": \\\"195853\\\", \\\"data_path\\\": \\\"scienceworld dev split\\\", \\\"data_count\\\": 1796, \\\"model_name\\\": \\\"Qwen3-1.7B (ScienceWorld SFT)\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"/tmp/eval_scienceworld_v2_resumed.log\\\", \\\"checkpoint_source\\\": \\\"scienceworld_sft/global_step_448\\\", \\\"eval_data\\\": \\\"ScienceWorld dev split, 1796 episodes, 30 task types\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"scienceworld_grpo_cell_a\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"cd /root/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _scienceworld_cell_a_grpo\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": \\\"cuda:0,1\\\", \\\"pid\\\": 759987, \\\"wandb_run_id\\\": \\\"f1c4g6dk\\\", \\\"data_path\\\": \\\"ScienceWorldSG\\\", \\\"data_count\\\": 30, \\\"model_name\\\": \\\"Qwen3-1.7B (ScienceWorld SFT checkpoint)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"scienceworld_sft\\\", \\\"eval_data\\\": \\\"ScienceWorldSG 30 task types (dev split)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/scienceworld-cell-a/global_step_15\\\", \\\"log_path\\\": \\\"/root/cost-verify-agent-rl/RAGEN/wandb/run-20260520_204440-f1c4g6dk/files/output.log\\\", \\\"hyperparams\\\": {\\\"total_training_steps\\\": 15, \\\"context_window_mode\\\": \\\"step_independent\\\", \\\"step_independent_history_length\\\": 2, \\\"env_groups\\\": 16, \\\"group_size\\\": 8, \\\"ppo_mini_batch_size\\\": 8, \\\"ppo_max_token_len_per_gpu\\\": 16384, \\\"optimizer_offload\\\": true, \\\"lr\\\": 1e-06, \\\"n_gpus_per_node\\\": 2}, \\\"notes\\\": \\\"ScienceWorld Cell A: step-independent h=2. Expected to show collapse, proving it generalizes beyond ALFWorld.\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"8b_v9d_ood_eval_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && sed -i 's/env_groups: 234/env_groups: 134/' /root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_v9d_ood_eval.yaml && echo '=== env_groups/n_groups after sed fix ===' && grep -n -E 'env_groups|n_groups' /root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_v9d_ood_eval.yaml && cd /root/cost-verify-agent-rl/RAGEN && export WANDB_PROJECT=cost-verify-agent-rl && python train.py --config-name _alfworld_8b_v9d_ood_eval\\\\\\\"\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"pid\\\": \\\"737225\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/8b_v9d_ood_eval_v5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T10:26:02.004Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"wall_clock_seconds\\\": 3256.8, \\\"gpu_hours\\\": 3.62}, \\\"conclusion\\\": \\\"success\\\"}, \\\"8b_v9d_ood_eval_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && echo aW1wb3J0IHJlCnBhdGggPSAnL3Jvb3QvY29zdC12ZXJpZnktYWdlbnQtcmwvUkFHRU4vY29uZmlnL19hbGZ3b3JsZF84Yl92OWRfb29kX2V2YWwueWFtbCcKdGV4dCA9IG9wZW4ocGF0aCkucmVhZCgpCnRleHQgPSByZS5zdWIocidwcG9fbWluaV9iYXRjaF9zaXplOlxzKlxkKycsICdwcG9fbWluaV9iYXRjaF9zaXplOiA0JywgdGV4dCkKdGV4dCA9IHJlLnN1YihyJ2Vudl9ncm91cHM6XHMqXGQrJywgJ2Vudl9ncm91cHM6IDInLCB0ZXh0LCBjb3VudD0xKQpuZXcgPSByZS5zdWIocicobl9ncm91cHM6XHMqXFspXGQrKFxdKScsIGxhbWJkYSBtOiBtLmdyb3VwKDEpICsgJzInICsgbS5ncm91cCgyKSwgdGV4dCwgY291bnQ9MSkKaWYgbmV3ID09IHRleHQ6CiAgICBuZXcgPSByZS5zdWIocicobl9ncm91cHM6W15cbl0qXG5ccyotXHMqKVxkKycsIGxhbWJkYSBtOiBtLmdyb3VwKDEpICsgJzInLCB0ZXh0LCBjb3VudD0xKQp0ZXh0ID0gbmV3Cm9wZW4ocGF0aCwgJ3cnKS53cml0ZSh0ZXh0KQpwcmludCgnRklYRUQnKQo= | base64 -d > /tmp/fix_ood.py && python3 /tmp/fix_ood.py && grep -n -E 'ppo_mini_batch_size|env_groups|group_size|n_groups' /root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_v9d_ood_eval.yaml && cd /root/cost-verify-agent-rl/RAGEN && export WANDB_PROJECT=cost-verify-agent-rl && python train.py --config-name _alfworld_8b_v9d_ood_eval\\\\\\\"\\\", \\\"server\\\": \\\"westd-47453\\\", \\\"gpu\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"pid\\\": \\\"728499\\\", \\\"log_path\\\": \\\"~/runs/cost-verify-agent-rl/8b_v9d_ood_eval_v4.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T10:15:20.931Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 144.6, \\\"gpu_hours\\\": 0.16}, \\\"conclusion\\\": \\\"failed\\\"}}, \\\"count\\\": 30, \\\"total\\\": 112, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4654}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp029_seed7_high_kl\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed7_high_kl\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"334159\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed7_high_kl.log\", \"submitted_at\": \"2026-05-21T17:01:50Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"ALFWorld episode-level\", \"data_count\": \"134 tasks\", \"model_name\": \"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\", \"seed\": 999, \"kl_loss_coef\": 0.1, \"total_steps\": 7, \"checkpoint_source\": \"qwen3_exp021_ragen_sft_v4 (SFT base)\", \"eval_data\": \"N/A (training experiment)\", \"note\": \"3rd submit: 1st stuck on disk full, 2nd crashed on Ray node kill. GPU now clean.\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/\", \"wall_clock_seconds\": 14409.7, \"gpu_hours\": 8.01}, \"conclusion\": \"negative\"}, \"exp029_seed8\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=2,3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed8_episode\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\", \"cuda:3\"], \"pid\": \"462991\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed8.log\", \"submitted_at\": \"2026-05-21T15:53:08.498Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"ALFWorld episode-level\", \"data_count\": \"134 tasks\", \"model_name\": \"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\", \"seed\": 1024, \"wandb_run_id\": \"c0l6e7vd\", \"wall_clock_seconds\": 18181.2, \"gpu_hours\": 10.1}, \"conclusion\": \"negative\"}, \"exp029_seed7_len_penalty\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed7_len_penalty\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"495138\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed7_len_penalty.log\", \"submitted_at\": \"2026-05-21T16:19:03.754Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"ALFWorld episode-level\", \"data_count\": \"134 tasks\", \"model_name\": \"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\", \"seed\": 999, \"response_length_penalty_coef\": 0.5, \"response_length_penalty_threshold\": 1000, \"total_steps\": 7, \"checkpoint_source\": \"qwen3_exp021_ragen_sft_v4 (SFT base)\", \"eval_data\": \"N/A (training experiment)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp029-seed7-len-penalty/\", \"wall_clock_seconds\": 15672.0, \"gpu_hours\": 8.71}, \"conclusion\": \"negative\"}, \"exp029_seed4_v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed4_episode\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"302056\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed4_v2.log\", \"submitted_at\": \"2026-05-21T08:42:11.524Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wandb_run_id\": \"fb1o765g\", \"data_path\": \"ALFWorld episode-level\", \"data_count\": \"134 tasks\", \"model_name\": \"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\", \"seed\": 123, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp029-seed4/global_step_15/\", \"wall_clock_seconds\": 28357.4, \"gpu_hours\": 15.75}, \"conclusion\": \"negative\"}, \"exp029_seed7\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed7_episode\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"226699\", \"data_path\": \"ALFWorld episode-level\", \"data_count\": \"134 tasks\", \"model_name\": \"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\", \"seed\": 999, \"wandb_run_id\": \"p6vwsrfk\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed7.log\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp029-seed7/global_step_5/\"}, \"conclusion\": \"negative\"}, \"exp029_seed6_ood_eval\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=2 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed6_ood_eval\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\"], \"pid\": \"291159\", \"data_path\": \"AlfworldSG_OOD (134 valid_unseen tasks)\", \"data_count\": 134, \"model_name\": \"Qwen3-1.5B (episode GRPO seed=789, step 15)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/exp029-seed6/global_step_15_hf\", \"eval_data\": \"AlfworldSG_OOD 134 tasks, τ=0.4\"}, \"conclusion\": \"failed\"}, \"sft_baseline_ood_eval_v2\": {\"status\": \"DONE\", \"spec\": {\"checkpoint_path\": \"N/A (val_only eval)\", \"log_path\": \"/tmp/eval_sft_baseline_ood.log\", \"model_name\": \"Qwen3-1.5B SFT (qwen3_exp021_ragen_sft_v4)\"}, \"conclusion\": \"success\"}, \"exp029_seed5_ood_eval\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed5_ood_eval\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:3\"], \"pid\": \"375913\", \"data_path\": \"AlfworldSG_OOD (134 valid_unseen tasks)\", \"data_count\": 134, \"model_name\": \"Qwen3-1.5B (episode GRPO seed=456, step 10, partial training)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen_exp029_seed5_step10_hf (symlink to global_step_10_hf)\", \"eval_data\": \"AlfworldSG_OOD 134 tasks, τ=0.4\", \"log_path\": \"/tmp/exp029_seed5_ood_eval.log\", \"wandb_run_id\": \"u4zste0d\", \"note\": \"Started via ssh_execute before submit_training_job mandate, no cron monitoring\", \"checkpoint_path\": \"N/A (val_only eval)\"}, \"conclusion\": \"success\"}, \"exp029_seed6_ood_eval_v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=2 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed6_ood_eval\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\"], \"pid\": \"342378\", \"data_path\": \"AlfworldSG_OOD (134 valid_unseen tasks)\", \"data_count\": 134, \"model_name\": \"Qwen3-1.5B (episode GRPO seed=789, step 15)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen_exp029_seed6_step15_hf (symlink to global_step_15_hf)\", \"eval_data\": \"AlfworldSG_OOD 134 tasks, τ=0.4\", \"log_path\": \"/tmp/exp029_seed6_ood_eval_v2.log\"}, \"conclusion\": \"success\"}, \"exp029_seed6_v3\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=2,3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed6_episode\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\", \"cuda:3\"], \"pid\": \"920749\", \"wandb_run_id\": \"2bbyvsdr\", \"data_path\": \"ALFWorld episode-level\", \"data_count\": \"134 tasks\", \"model_name\": \"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\", \"seed\": 789}, \"conclusion\": \"success\"}, \"exp029_seed5_v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed5_episode\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"879704\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed5_v2.log\", \"submitted_at\": \"2026-05-21T08:08:23.448Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wandb_run_id\": \"yyoghk1f\", \"data_path\": \"ALFWorld episode-level\", \"data_count\": \"134 tasks\", \"model_name\": \"Qwen3-1.5B (qwen3_exp021_ragen_sft_v4)\", \"seed\": 456, \"wall_clock_seconds\": 14348.5, \"gpu_hours\": 7.97}, \"conclusion\": \"failed\"}, \"sft_baseline_ood_eval\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=2 python train.py --config-name _alfworld_sft_baseline_ood_eval\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\"], \"pid\": \"156291\", \"log_path\": \"~/runs/cost-verify-agent-rl/sft_baseline_ood_eval.log\", \"submitted_at\": \"2026-05-21T11:57:07.885Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wandb_run_id\": \"bdnhzq9u\", \"data_path\": \"ALFWorld valid_unseen 134 OOD tasks\", \"data_count\": 134, \"model_name\": \"qwen3_exp021_ragen_sft_v4 (1.7B SFT)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4/\", \"eval_data\": \"AlfworldSG_OOD 134 tasks, τ=0.4\", \"wall_clock_seconds\": 1198.8, \"gpu_hours\": 0.33}, \"conclusion\": \"failed\"}, \"exp029_seed6_episode\": {\"status\": \"DONE\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config config/_alfworld_exp029_seed6_episode.yaml\", \"server\": \"westd-47453\", \"gpu_ids\": [0, 1], \"pid\": 697721, \"data_path\": \"ALFWorld train split (3553 games)\", \"data_count\": 3553, \"model_name\": \"qwen3-1.7B (exp021 SFT v4)\", \"seed\": \"train=789, val=321\", \"wandb_run_id\": \"nagp1pi4\", \"tmux_session\": \"exp029_seed6\", \"note\": \"CUDA_VISIBLE_DEVICES was NOT set, Ray workers leaked to GPU 0,1 instead of intended 2,3\"}, \"conclusion\": \"failed\"}, \"exp029_seed5_episode\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp && export WANDB_DIR=/root/autodl-tmp/wandb && export WANDB_TMPDIR=/root/autodl-tmp/tmp && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed5_episode\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"683267\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed5_episode.log\", \"submitted_at\": \"2026-05-21T02:45:01.624Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"AlfworldSG (16 env_groups x 8 group_size)\", \"data_count\": 128, \"model_name\": \"Qwen3-1.7B (exp021 SFT v4)\", \"seed\": 456, \"checkpoint_source\": \"qwen3_exp021_ragen_sft_v4\", \"eval_data\": \"AlfworldSG 32 val tasks (in-distribution)\", \"wall_clock_seconds\": 17691.2, \"gpu_hours\": 9.83}, \"conclusion\": \"failed\"}, \"exp029_seed4_episode\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp && mkdir -p /root/autodl-tmp/tmp && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed4_episode\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"283470\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed4_episode.log\", \"submitted_at\": \"2026-05-21T02:40:45.415Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"AlfworldSG (built-in)\", \"data_count\": \"128 episodes/step (8 env_groups x 8 group_size train, 32 val)\", \"model_name\": \"Qwen3-1.7B (SFT v4)\", \"seed\": \"train=123, val=456\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\", \"eval_data\": \"AlfworldSG val 32 episodes\", \"wall_clock_seconds\": 17946.2, \"gpu_hours\": 9.97}, \"conclusion\": \"failed\"}, \"scienceworld_grpo_cell_c_v3\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _scienceworld_cell_c_grpo\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\", \"cuda:3\"], \"pid\": \"88226\", \"log_path\": \"~/runs/cost-verify-agent-rl/scienceworld_grpo_cell_c_v3.log\", \"submitted_at\": \"2026-05-20T18:23:38.661Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"ScienceWorldSG (30 task types)\", \"data_count\": 128, \"model_name\": \"Qwen3-1.7B (ScienceWorld SFT checkpoint)\", \"seed\": 10000, \"checkpoint_source\": \"qwen3_scienceworld_sft\", \"eval_data\": \"ScienceWorldSG 30 task types (dev split)\", \"checkpoint_path\": \"N/A (negative, no useful checkpoint)\", \"wall_clock_seconds\": 30077.7, \"gpu_hours\": 16.71}, \"conclusion\": \"negative\"}, \"exp029_seed3_ood_v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed3_ood_final'\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"530289\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed3_ood_v2.log\", \"submitted_at\": \"2026-05-21T00:39:27.902Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"AlfworldSG_OOD (134 valid_unseen tasks)\", \"data_count\": 134, \"model_name\": \"qwen3_exp021_ragen_sft_v4\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/exp029-seed3/global_step_15\", \"eval_data\": \"AlfworldSG_OOD\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 7227.7, \"gpu_hours\": 4.02}, \"conclusion\": \"success\"}, \"exp029_seed3_v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp && export WANDB_DIR=/root/autodl-tmp/wandb && export WANDB_TMPDIR=/root/autodl-tmp/tmp && cd /root/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_episode_level seed.train=42 seed.val=123 trainer.total_training_steps=15 trainer.experiment_name=exp029-seed3-episode-level trainer.local_log_dir=/root/autodl-tmp/checkpoints/exp029-seed3/ trainer.default_local_dir=/root/autodl-tmp/checkpoints/exp029-seed3/\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"991448\", \"log_path\": \"/root/runs/cost-verify-agent-rl/exp029_seed3_v2.log\", \"submitted_at\": \"2026-05-20T17:09:29.872Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"AlfworldSG (16 train groups x 8, 32 val groups x 1)\", \"data_count\": 128, \"model_name\": \"Qwen3-1.7B SFT (qwen3_exp021_ragen_sft_v4)\", \"seed\": \"42/123\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\", \"eval_data\": \"AlfworldSG 32 val episodes\", \"wall_clock_seconds\": 20809.1, \"gpu_hours\": 11.56, \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/exp029-seed3/global_step_15/\"}, \"conclusion\": \"success\"}, \"exp029_seed3_ood\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"... python train.py --config-name _alfworld_exp029_seed3_ood\\\"\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"265901\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed3_ood.log\", \"submitted_at\": \"2026-05-20T19:57:11.483Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"qwen3_exp021_ragen_sft_v4\", \"seed\": 3, \"data_path\": \"AlfworldSG_OOD (134 valid_unseen)\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/exp029-seed3/global_step_5\", \"eval_data\": \"AlfworldSG_OOD (134 valid_unseen tasks)\", \"data_count\": 134, \"checkpoint_path\": \"N/A (eval failed)\", \"failure_reason\": \"RuntimeError: FSDP checkpoint device mismatch - optimizer step found tensors on cuda:0 and cpu. RAGEN train.py runs optimizer step during eval flow, incompatible with FSDP 2-GPU checkpoint loaded on different topology.\", \"wall_clock_seconds\": 4362.4, \"gpu_hours\": 2.42}, \"conclusion\": \"failed\"}, \"sw_info_loss_bjb1\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python eval_scienceworld_info_loss.py --checkpoint /root/autodl-tmp/checkpoints/scienceworld_sft/huggingface --history_length {-1,2} --temperature 0 --max_variations 3 --tensor_parallel_size 2\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"229078\", \"log_path\": \"~/runs/cost-verify-agent-rl/sw_info_loss_bjb1.log\", \"submitted_at\": \"2026-05-20T16:39:02.613Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"scienceworld dev split\", \"data_count\": \"30 task types x 3 variations = 90 episodes per condition\", \"model_name\": \"qwen3_scienceworld_sft\", \"seed\": \"deterministic (T=0)\", \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface\", \"eval_data\": \"scienceworld dev split, 3 variations per task\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 9082.3, \"gpu_hours\": 5.05}, \"conclusion\": \"success\"}, \"scienceworld_grpo_cell_c_v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl JAVA_TOOL_OPTIONS='-Xmx4g' python train.py --config-name _scienceworld_cell_c_grpo\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:2\", \"cuda:3\"], \"pid\": \"920065\", \"log_path\": \"~/runs/cost-verify-agent-rl/scienceworld_grpo_cell_c_v2.log\", \"submitted_at\": \"2026-05-20T15:41:18.991Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:2\", \"cuda:3\"], \"data_path\": \"scienceworld (30 tasks)\", \"data_count\": 128, \"model_name\": \"qwen3_scienceworld_sft\", \"seed\": 10000, \"checkpoint_source\": \"qwen3_scienceworld_sft\", \"eval_data\": \"scienceworld dev split\", \"wall_clock_seconds\": 9746.5, \"gpu_hours\": 5.41}, \"conclusion\": \"failed\"}, \"exp029_seed3_episode\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python train.py --config-name _alfworld_exp029_episode_level seed=42 trainer.total_training_steps=15\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"980051\", \"log_path\": \"~/runs/cost-verify-agent-rl/exp029_seed3_episode.log\", \"submitted_at\": \"2026-05-20T17:03:22.094Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"AlfworldSG (16 train groups x 8, 32 val groups x 1)\", \"data_count\": 128, \"model_name\": \"Qwen3-1.7B SFT (qwen3_exp021_ragen_sft_v4)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\", \"eval_data\": \"AlfworldSG 32 val episodes\", \"wall_clock_seconds\": 242.6, \"gpu_hours\": 0.13}, \"conclusion\": \"failed\"}, \"scienceworld_grpo_cell_c\": {\"status\": \"DONE\", \"spec\": {\"command\": \"cd /root/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _scienceworld_cell_c_grpo\", \"server\": \"westd-47453\", \"gpu\": \"cuda:2,3\", \"pid\": 766820, \"wandb_run_id\": \"sx7h864t\", \"data_path\": \"ScienceWorldSG\", \"data_count\": 30, \"model_name\": \"Qwen3-1.7B (ScienceWorld SFT checkpoint)\", \"seed\": 42, \"checkpoint_source\": \"scienceworld_sft\", \"eval_data\": \"ScienceWorldSG 30 task types (dev split)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/scienceworld_cell_c/\", \"log_path\": \"/root/runs/cost-verify-agent-rl/scienceworld_cell_c.log\", \"hyperparams\": {\"total_training_steps\": 15, \"context_window_mode\": \"full\", \"env_groups\": 16, \"group_size\": 8, \"ppo_mini_batch_size\": 8, \"ppo_max_token_len_per_gpu\": 16384, \"optimizer_offload\": true, \"lr\": 1e-06, \"n_gpus_per_node\": 2}, \"notes\": \"ScienceWorld Cell C: episode-level full context. Expected to learn without collapse, proving fix generalizes.\"}, \"conclusion\": \"failed\"}, \"scienceworld_info_loss_h2\": {\"status\": \"DONE\", \"conclusion\": \"killed\"}, \"sw_info_loss_full_v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python eval_scienceworld_info_loss.py --checkpoint qwen3_scienceworld_sft --temperature 0 --history_length -1 --tensor_parallel_size 2 --max_model_len 16384\", \"server\": \"westd-47453\", \"data_path\": \"ScienceWorldSG dev split\", \"data_count\": \"89 episodes\", \"model_name\": \"qwen3_scienceworld_sft\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen3_scienceworld_sft/huggingface\", \"eval_data\": \"ScienceWorldSG dev, max_variations=3, T=0, full context\", \"gpu\": \"cuda:0,1\", \"pid\": 875971}, \"conclusion\": \"failed\"}, \"scienceworld_info_loss_full\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python3 eval_scienceworld_info_loss.py --temperature 0 --history_length -1 --max_variations 3 --tensor_parallel_size 2\", \"server\": \"westd-47453\", \"data_path\": \"ScienceWorldSG dev split\", \"data_count\": \"~90 episodes\", \"model_name\": \"qwen3_scienceworld_sft\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen3_scienceworld_sft/huggingface\", \"eval_data\": \"ScienceWorldSG dev, max_variations=3\"}, \"conclusion\": \"failed\"}, \"scienceworld_sft_eval_v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python /root/cost-verify-agent-rl/eval_scienceworld.py --temperature 0.4 --resume --episode_timeout 300\", \"server\": \"bjb1-17606\", \"gpu\": [\"cuda:0\", \"cuda:1\"], \"pid\": \"195853\", \"data_path\": \"scienceworld dev split\", \"data_count\": 1796, \"model_name\": \"Qwen3-1.7B (ScienceWorld SFT)\", \"seed\": 42, \"log_path\": \"/tmp/eval_scienceworld_v2_resumed.log\", \"checkpoint_source\": \"scienceworld_sft/global_step_448\", \"eval_data\": \"ScienceWorld dev split, 1796 episodes, 30 task types\", \"checkpoint_path\": \"N/A (eval only)\"}, \"conclusion\": \"success\"}, \"scienceworld_grpo_cell_a\": {\"status\": \"DONE\", \"spec\": {\"command\": \"cd /root/cost-verify-agent-rl/RAGEN && WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _scienceworld_cell_a_grpo\", \"server\": \"westd-47453\", \"gpu\": \"cuda:0,1\", \"pid\": 759987, \"wandb_run_id\": \"f1c4g6dk\", \"data_path\": \"ScienceWorldSG\", \"data_count\": 30, \"model_name\": \"Qwen3-1.7B (ScienceWorld SFT checkpoint)\", \"seed\": 42, \"checkpoint_source\": \"scienceworld_sft\", \"eval_data\": \"ScienceWorldSG 30 task types (dev split)\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/scienceworld-cell-a/global_step_15\", \"log_path\": \"/root/cost-verify-agent-rl/RAGEN/wandb/run-20260520_204440-f1c4g6dk/files/output.log\", \"hyperparams\": {\"total_training_steps\": 15, \"context_window_mode\": \"step_independent\", \"step_independent_history_length\": 2, \"env_groups\": 16, \"group_size\": 8, \"ppo_mini_batch_size\": 8, \"ppo_max_token_len_per_gpu\": 16384, \"optimizer_offload\": true, \"lr\": 1e-06, \"n_gpus_per_node\": 2}, \"notes\": \"ScienceWorld Cell A: step-independent h=2. Expected to show collapse, proving it generalizes beyond ALFWorld.\"}, \"conclusion\": \"negative\"}, \"8b_v9d_ood_eval_v5\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && sed -i 's/env_groups: 234/env_groups: 134/' /root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_v9d_ood_eval.yaml && echo '=== env_groups/n_groups after sed fix ===' && grep -n -E 'env_groups|n_groups' /root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_v9d_ood_eval.yaml && cd /root/cost-verify-agent-rl/RAGEN && export WANDB_PROJECT=cost-verify-agent-rl && python train.py --config-name _alfworld_8b_v9d_ood_eval\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": \"737225\", \"log_path\": \"~/runs/cost-verify-agent-rl/8b_v9d_ood_eval_v5.log\", \"submitted_at\": \"2026-05-20T10:26:02.004Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 3256.8, \"gpu_hours\": 3.62}, \"conclusion\": \"success\"}, \"8b_v9d_ood_eval_v4\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && echo aW1wb3J0IHJlCnBhdGggPSAnL3Jvb3QvY29zdC12ZXJpZnktYWdlbnQtcmwvUkFHRU4vY29uZmlnL19hbGZ3b3JsZF84Yl92OWRfb29kX2V2YWwueWFtbCcKdGV4dCA9IG9wZW4ocGF0aCkucmVhZCgpCnRleHQgPSByZS5zdWIocidwcG9fbWluaV9iYXRjaF9zaXplOlxzKlxkKycsICdwcG9fbWluaV9iYXRjaF9zaXplOiA0JywgdGV4dCkKdGV4dCA9IHJlLnN1YihyJ2Vudl9ncm91cHM6XHMqXGQrJywgJ2Vudl9ncm91cHM6IDInLCB0ZXh0LCBjb3VudD0xKQpuZXcgPSByZS5zdWIocicobl9ncm91cHM6XHMqXFspXGQrKFxdKScsIGxhbWJkYSBtOiBtLmdyb3VwKDEpICsgJzInICsgbS5ncm91cCgyKSwgdGV4dCwgY291bnQ9MSkKaWYgbmV3ID09IHRleHQ6CiAgICBuZXcgPSByZS5zdWIocicobl9ncm91cHM6W15cbl0qXG5ccyotXHMqKVxkKycsIGxhbWJkYSBtOiBtLmdyb3VwKDEpICsgJzInLCB0ZXh0LCBjb3VudD0xKQp0ZXh0ID0gbmV3Cm9wZW4ocGF0aCwgJ3cnKS53cml0ZSh0ZXh0KQpwcmludCgnRklYRUQnKQo= | base64 -d > /tmp/fix_ood.py && python3 /tmp/fix_ood.py && grep -n -E 'ppo_mini_batch_size|env_groups|group_size|n_groups' /root/cost-verify-agent-rl/RAGEN/config/_alfworld_8b_v9d_ood_eval.yaml && cd /root/cost-verify-agent-rl/RAGEN && export WANDB_PROJECT=cost-verify-agent-rl && python train.py --config-name _alfworld_8b_v9d_ood_eval\\\"\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"pid\": \"728499\", \"log_path\": \"~/runs/cost-verify-agent-rl/8b_v9d_ood_eval_v4.log\", \"submitted_at\": \"2026-05-20T10:15:20.931Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 144.6, \"gpu_hours\": 0.16}, \"conclusion\": \"failed\"}}, \"count\": 30, \"total\": 112, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4654}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CrVVjxAVV7rR5qgdnKD921`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "ls -la /root/autodl-tmp/checkpoints/exp029-seed8/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "0355ab58-1c3b-457d-8d4c-61248d0f08d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017pGjKahuNtah9beT3zDmzZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 580,
+      "cache_read_input_tokens": 32648,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 580
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-21T21:14:48.258Z_
+
+<details><summary>↩ Tool result · `toolu_01CrVVjxAVV7rR5qgdnKD921`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x  3 root root   80 May 22 05:12 .\\ndrwxr-xr-x 13 root root 4096 May 22 05:03 ..\\ndrwxr-xr-x  3 root root   27 May 22 01:57 global_step_5\\n-rw-r--r--  1 root root    1 May 22 01:57 latest_checkpointed_iteration.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "90e156f4-6bbf-4f45-bd19-40c7404dcafe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8\\\\ndrwxr-xr-x  3 root root   80 May 22 05:12 .\\\\ndrwxr-xr-x 13 root root 4096 May 22 05:03 ..\\\\ndrwxr-xr-x  3 root root   27 May 22 01:57 global_step_5\\\\n-rw-r--r--  1 root root    1 May 22 01:57 latest_checkpointed_iteration.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x  3 root root   80 May 22 05:12 .\\ndrwxr-xr-x 13 root root 4096 May 22 05:03 ..\\ndrwxr-xr-x  3 root root   27 May 22 01:57 global_step_5\\n-rw-r--r--  1 root root    1 May 22 01:57 latest_checkpointed_iteration.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RJM7FMXw3Vvo9HbHqVryj7`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config -name \"*seed7*\" -o -name \"*seed8*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "d1995def-5ad6-4fcd-befc-8315957670d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017pGjKahuNtah9beT3zDmzZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 580,
+      "cache_read_input_tokens": 32648,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 580
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T21:14:49.202Z_
+
+<details><summary>↩ Tool result · `toolu_01RJM7FMXw3Vvo9HbHqVryj7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed7_episode.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed8_episode.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed7_len_penalty.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "da4094f2-995d-4bd9-8585-ef93b51b0b35",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed7_episode.yaml\\\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed8_episode.yaml\\\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed7_len_penalty.yaml\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed7_episode.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed8_episode.yaml\\n/root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_seed7_len_penalty.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings:
+
+1. Registry shows `exp029_seed7` ran on `westd-47453` with checkpoint path `/root/autodl-tmp/checkpoints/exp029-seed7/global_step_5/`
+2. But the directory `/root/autodl-tmp/checkpoints/exp029-seed7/` doesn't exist on westd!
+3. However, `exp029-seed8` directory DOES exist and has `global_step_5`
+4. Wait - that was the `ls` of `exp029-seed8` I saw. Let me re-check.
+
+
+5. Looking at the full directory listing, I see exp029-seed4, seed5, seed6, and seed8 are there, but seed7 is missing - it was either deleted or never saved properly. Though there are variants like `exp029_seed7_high_kl` and `exp029_seed7_len_penalty` that ran on different machines.
+
+Checking those variants, they have their own checkpoint directories on bjb1 and westd respectively. The original seed7 experiment marked as negative probably had its checkpoint cleaned up to free space, so I need to figure out if the step 5 checkpoint still exists anywhere or if it's been lost.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "246a528e-8fd7-461b-a076-9d571855a88a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RLN51KZdYBMnXAZThfS7vt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12804,
+      "cache_read_input_tokens": 33228,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12804
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+Registry 记录 exp029_seed7 的 checkpoint 在 `/root/autodl-tmp/checkpoints/exp029-seed7/global_step_5/`（westd），但该目录不存在。可能已被清理。让我在 bjb1 也搜索一下，并在 westd 做更广泛搜索。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "98aa5f74-10e7-45b6-8b2b-efcdf5bfcebd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RLN51KZdYBMnXAZThfS7vt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12804,
+      "cache_read_input_tokens": 33228,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12804
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01P89zoHDFEtbvLvrH8iMhy4`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "find /root/autodl-tmp -maxdepth 5 -type d -name \"*exp029*seed7*\" -o -type d -name \"*seed7*exp029*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "821ea2b5-8557-48a5-9c74-e750331c8774",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RLN51KZdYBMnXAZThfS7vt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12804,
+      "cache_read_input_tokens": 33228,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12804
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-21T21:15:05.722Z_
+
+<details><summary>↩ Tool result · `toolu_01P89zoHDFEtbvLvrH8iMhy4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "85f271a5-540e-4b33-af0a-73a6f515d0aa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BxGeKkJ2JdnXgg7jE49FDy`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "ls -la /root/autodl-tmp/checkpoints/exp029-seed7-high-kl/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "96b397b7-8953-4c02-a68f-0e0d0c132724",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RLN51KZdYBMnXAZThfS7vt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12804,
+      "cache_read_input_tokens": 33228,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12804
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T21:15:06.630Z_
+
+<details><summary>↩ Tool result · `toolu_01BxGeKkJ2JdnXgg7jE49FDy`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "11e2b15a-abed-4791-8dc8-574ea28e382f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PwssiMCm1VGYGAFK5QumQR`</summary>
+
+```json
+{
+  "server": "westd-47453",
+  "command": "ls -la /root/autodl-tmp/checkpoints/exp029-seed7-len-penalty/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "253a0b50-8ef0-4957-8e30-61442e42947d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RLN51KZdYBMnXAZThfS7vt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12804,
+      "cache_read_input_tokens": 33228,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12804
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-21T21:15:07.569Z_
+
+<details><summary>↩ Tool result · `toolu_01PwssiMCm1VGYGAFK5QumQR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/checkpoints/exp029-seed7-len-penalty/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "1fdfdc1d-a0a7-47b3-8679-114594b554df",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/checkpoints/exp029-seed7-len-penalty/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/checkpoints/exp029-seed7-len-penalty/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01N67iHUX1A9zvS68vXuR8k2`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/autodl-tmp/checkpoints -maxdepth 3 -type d -name \"*seed7*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "21c05597-956a-4632-8c2c-12b7b96b540b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RLN51KZdYBMnXAZThfS7vt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12804,
+      "cache_read_input_tokens": 33228,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12804
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-21T21:15:07.968Z_
+
+<details><summary>↩ Tool result · `toolu_01N67iHUX1A9zvS68vXuR8k2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints/exp029-seed7-high-kl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "8a521610-2790-47e8-8743-69a065af04f1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/checkpoints/exp029-seed7-high-kl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints/exp029-seed7-high-kl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting findings:
+1. On westd: No seed7 checkpoint directories exist at all. The original exp029-seed7, high-kl, and len-penalty checkpoints were all cleaned up.
+2. On bjb1: There IS an `exp029-seed7-high-kl` directory. But that's the high KL variant, not the original seed7 experiment.
+
+The task specifically says the pre-collapse checkpoint from exp029_seed7 (step 5). The registry shows this was run on westd-47453 with checkpoint_path `/root/autodl-tmp/checkpoints/exp029-seed7/global_step_5/`. 
+
+The original checkpoint on westd has been deleted, which is a problem. The high-kl variant exists on bjb1, but that's a different experiment with different hyperparameters. I should check what's actually in that directory and also look into whether wandb might have saved any artifacts from the original run.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "00e15ec9-1813-4e4a-bc21-76793c71a70e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016HsobfTchDjVz5NMoiYjAM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1611,
+      "cache_read_input_tokens": 46032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1611
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+原始 exp029_seed7 checkpoint 在 westd 上已被清理。bjb1 上只有 `exp029-seed7-high-kl`（不同实验）。让我确认 bjb1 上的情况。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "8b269f64-16de-4241-a447-d901af6f6a0f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016HsobfTchDjVz5NMoiYjAM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1611,
+      "cache_read_input_tokens": 46032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1611
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MkZN49H2UK4py1qnSCqXSY`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "ls -la /root/autodl-tmp/checkpoints/exp029-seed7-high-kl/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "228ae8d6-8cd9-4ee4-bedb-06d35de9a80f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016HsobfTchDjVz5NMoiYjAM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1611,
+      "cache_read_input_tokens": 46032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1611
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-21T21:15:18.602Z_
+
+<details><summary>↩ Tool result · `toolu_01MkZN49H2UK4py1qnSCqXSY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x 4 root root  105 May 22 04:46 .\\ndrwxr-xr-x 6 root root 4096 May 22 00:36 ..\\ndrwxr-xr-x 3 root root   27 May 22 03:43 global_step_5\\ndrwxr-xr-x 3 root root   27 May 22 04:46 global_step_7\\n-rw-r--r-- 1 root root    1 May 22 04:47 latest_checkpointed_iteration.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "1d560c06-e5c6-4c32-b8a9-e07213c2fcbd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8\\\\ndrwxr-xr-x 4 root root  105 May 22 04:46 .\\\\ndrwxr-xr-x 6 root root 4096 May 22 00:36 ..\\\\ndrwxr-xr-x 3 root root   27 May 22 03:43 global_step_5\\\\ndrwxr-xr-x 3 root root   27 May 22 04:46 global_step_7\\\\n-rw-r--r-- 1 root root    1 May 22 04:47 latest_checkpointed_iteration.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x 4 root root  105 May 22 04:46 .\\ndrwxr-xr-x 6 root root 4096 May 22 00:36 ..\\ndrwxr-xr-x 3 root root   27 May 22 03:43 global_step_5\\ndrwxr-xr-x 3 root root   27 May 22 04:46 global_step_7\\n-rw-r--r-- 1 root root    1 May 22 04:47 latest_checkpointed_iteration.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01E6VGaBwt8D4upt3t5QBfqn`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/autodl-tmp/checkpoints/exp029-seed7-high-kl -maxdepth 2 -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "066a3c07-6546-4683-82dd-1d9d9d98946e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016HsobfTchDjVz5NMoiYjAM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1611,
+      "cache_read_input_tokens": 46032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1611
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-21T21:15:19.230Z_
+
+<details><summary>↩ Tool result · `toolu_01E6VGaBwt8D4upt3t5QBfqn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints/exp029-seed7-high-kl\\n/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/global_step_5\\n/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/global_step_5/actor\\n/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/global_step_7\\n/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/global_step_7/actor\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "2a072b0a-1ab4-4f7b-aa7b-46f6c85544e3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/checkpoints/exp029-seed7-high-kl\\\\n/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/global_step_5\\\\n/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/global_step_5/actor\\\\n/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/global_step_7\\\\n/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/global_step_7/actor\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints/exp029-seed7-high-kl\\n/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/global_step_5\\n/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/global_step_5/actor\\n/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/global_step_7\\n/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/global_step_7/actor\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So the situation is:
+
+1. **exp029_seed7** (original, seed=999, standard KL 0.01) ran on westd → checkpoint deleted
+2. **exp029_seed7_high_kl** (seed=999, KL 0.1) ran on bjb1 → has checkpoints at global_step_5 and global_step_7 on bjb1
+
+The task asks for "Seed 7 崩溃 seed 的 pre-collapse checkpoint (step 5)". The original exp029_seed7 was the one that collapsed, not the high_kl variant. But the original checkpoint is gone.
+
+
+The required FSDP checkpoint from the original exp029_seed7 run has been deleted from westd, so I can't retrieve the pre-collapse checkpoint at step 5. The only available seed7 checkpoint is from the high_kl variant on bjb1, which is a different experiment configuration.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "bd001069-7a44-45c1-9121-a4b19e493e1d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013D6CMdLEr54BR8Sxj7ZnEc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1113,
+      "cache_read_input_tokens": 47643,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1113
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+**阻塞**：exp029_seed7 原始 FSDP checkpoint（`/root/autodl-tmp/checkpoints/exp029-seed7/global_step_5/`，westd）已被删除，两台服务器均不存在。
+
+当前可用的 seed7 相关 checkpoint：
+- **exp029_seed7_high_kl** 在 bjb1：`/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/global_step_5/actor/` 和 `global_step_7/actor/`
+  - 但这是**不同实验**（KL coef=0.1 vs 原始 0.01），不是任务要求的原始 seed7 崩溃实验
+
+westd 上现存 checkpoint 目录：
+```
+exp029-seed4, exp029-seed5, exp029-seed6, exp029-seed8, exp029_seed3
+qwen_exp029_seed4_step15_hf, qwen_exp029_seed5_step10_hf, qwen_exp029_seed6_step15_hf
+```
+
+**选项**：
+1. 任务无法按原计划执行（原始 seed7 checkpoint 已丢失）
+2. 改用 exp029_seed7_high_kl step 5 做 OOD eval（已在 bjb1 上，省去传输，但 hypothesis 需调整为 high-KL 变体的 OOD 泛化）
+3. 重新跑 exp029_seed7 训练获取 checkpoint（耗时 ~4h）
+
+需要你决定如何处理。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "uuid": "d845608c-0c82-434f-87e8-59334f7e4367",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013D6CMdLEr54BR8Sxj7ZnEc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1113,
+      "cache_read_input_tokens": 47643,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1113
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 63_
+
+**阻塞**：exp029_seed7 原始 FSDP checkpoint（`/root/autodl-tmp/checkpoints/exp029-seed7/global_step_5/`，westd）已被删除，两台服务器均不存在。
+
+当前可用的 seed7 相关 checkpoint：
+- **exp029_seed7_high_kl** 在 bjb1：`/root/autodl-tmp/checkpoints/exp029-seed7-high-kl/global_step_5/actor/` 和 `global_step_7/actor/`
+  - 但这是**不同实验**（KL coef=0.1 vs 原始 0.01），不是任务要求的原始 seed7 崩溃实验
+
+westd 上现存 checkpoint 目录：
+```
+exp029-seed4, exp029-seed5, exp029-seed6, exp029-seed8, exp029_seed3
+qwen_exp029_seed4_step15_hf, qwen_exp029_seed5_step10_hf, qwen_exp029_seed6_step15_hf
+```
+
+**选项**：
+1. 任务无法按原计划执行（原始 seed7 checkpoint 已丢失）
+2. 改用 exp029_seed7_high_kl step 5 做 OOD eval（已在 bjb1 上，省去传输，但 hypothesis 需调整为 high-KL 变体的 OOD 泛化）
+3. 重新跑 exp029_seed7 训练获取 checkpoint（耗时 ~4h）
+
+需要你决定如何处理。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 93051,
+  "duration_api_ms": 91664,
+  "num_turns": 22,
+  "stop_reason": "end_turn",
+  "session_id": "bc02ae33-ce98-4ca0-9426-b5ebdf6b43dd",
+  "total_cost_usd": 0.5062522500000001,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 36915,
+    "cache_read_input_tokens": 286979,
+    "output_tokens": 5155,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 36915,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 880,
+        "cache_read_input_tokens": 47643,
+        "cache_creation_input_tokens": 1113,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1113
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 3004,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0031090000000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 5155,
+      "cacheReadInputTokens": 286979,
+      "cacheCreationInputTokens": 36915,
+      "webSearchRequests": 0,
+      "costUSD": 0.50314325,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "71b8e65a-7e06-4bc8-8740-ea6ea08a4426"
+}
+```
+
+</details>
+
+---

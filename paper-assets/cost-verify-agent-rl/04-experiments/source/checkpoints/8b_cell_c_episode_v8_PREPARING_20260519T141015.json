@@ -1,0 +1,14 @@
+{
+  "exp_id": "8b_cell_c_episode_v8",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:10:15.655Z",
+    "updated_at": "2026-05-19T14:10:15.655Z"
+  },
+  "timestamp": "2026-05-19T14:10:15.837444+00:00",
+  "trigger": "update_registry"
+}

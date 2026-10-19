@@ -1,0 +1,118 @@
+{
+  "exp_id": "exp029_episode_level",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T08:49:53.280Z",
+    "updated_at": "2026-05-17T04:36:43.074Z",
+    "hypothesis": "Episode-level 训练（context_window_mode: full）解决 step_independent h=2 的信用分配缺陷，模型能学到跨步规划策略，val success 不再停滞于 baseline。",
+    "parent": "exp028c_selfguide_recipe",
+    "notes": "第8次启动。PID 896477, tmux session exp029_episode_level。OOM 修复：ppo_mini_batch_size 32→16。submit_training_job 管理（tmux 持久化 + cron 自动监控）。日志: ~/runs/cost-verify-agent-rl/exp029_episode_level.log。TMPDIR=/root/autodl-tmp/tmp（/tmp→数据盘符号链接）。val env_groups=32。",
+    "server": "bjb1-17606",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-17606",
+      "gpu": "cuda:0,cuda:1",
+      "started_at": "2026-05-16T09:49:15.902Z",
+      "finished_at": "2026-05-16T19:20:32.435Z",
+      "training_hours": 9.52
+    },
+    "failure_reason": null,
+    "completed_at": null,
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T16:10:47.902736+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T18:24:49.059842+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T19:09:41.491953+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T19:20:35.794556+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "metrics": {
+          "step_0_val": {
+            "success": 12.5,
+            "pass_at_1": 12.5,
+            "action_is_valid": 78.3,
+            "episodes": 32,
+            "note": "当前 run (W&B 6d4oml60) val_before_train"
+          },
+          "step_1_train": {
+            "success": 17.97,
+            "pass_at_8": 56.25,
+            "action_is_valid": 68.24,
+            "action_is_effective": 99.47,
+            "num_actions": 42.03,
+            "entropy": 0.02775,
+            "kl_loss": 0.000915,
+            "pg_loss": -4.59e-05,
+            "grad_norm": 1.267,
+            "score_mean": 1.797,
+            "response_length": 7112,
+            "response_length_max": 16381,
+            "time_s": 1810,
+            "note": "当前 run。success 17.97% > baseline 12.5%。entropy/grad_norm 正常（full mode token-mean 量纲）"
+          }
+        },
+        "notes": "当前运行: PID 889859, W&B 6d4oml60。正确日志: /root/autodl-tmp/exp029_restart.log。Step 1 完成(30m10s/step)，step 2 进行中。TMPDIR=/root/autodl-tmp/tmp, WANDB_DIR=/root/autodl-tmp/wandb。val env_groups=32。ETA 全部 100 steps ≈ 50h。"
+      }
+    },
+    "conclusion": "success",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp && export WANDB_DIR=/root/autodl-tmp/wandb && export WANDB_TMPDIR=/root/autodl-tmp/tmp && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_exp029_episode_level\"",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "902342",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_episode_level.log",
+      "submitted_at": "2026-05-16T20:12:30.835Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/exp029/global_step_15/actor/huggingface"
+    },
+    "metrics": {
+      "current_step": 15,
+      "total_steps": 100,
+      "progress_pct": 15,
+      "step5_val_success": 0.25,
+      "step10_val_success": 0.25,
+      "step15_val_success": 0.28125,
+      "step15_val_pass_at_1": 0.28125,
+      "step15_val_pass_at_2": 0.469,
+      "step15_val_pass_at_4": 0.726,
+      "step15_val_pass_at_8": 0.929,
+      "step15_val_pass_at_16": 0.996,
+      "step15_val_action_is_valid": 0.5452,
+      "step15_val_action_is_effective": 0.7672,
+      "step15_val_manager_invalid_action": 0.2328,
+      "step15_train_success": 0.4375,
+      "step15_train_pass_at_8": 0.75,
+      "elapsed_hours": 7.35,
+      "eta_completion": "2026-05-19T03:00:00Z"
+    }
+  },
+  "timestamp": "2026-05-17T04:36:43.210965+00:00",
+  "trigger": "update_registry"
+}

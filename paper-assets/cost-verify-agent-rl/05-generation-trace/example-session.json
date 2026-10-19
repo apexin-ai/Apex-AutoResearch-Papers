@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0",
+  "id": "5f192c79fe2bd57ee0e6",
+  "project": "cost-verify-agent-rl",
+  "kind": "conversation",
+  "title": "Reviewer 2 coordination",
+  "task_key": "feishu_group_oc_648eaf83d2b24d445764257cf6a55525_reviewer_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/feishu_group_oc_648eaf83d2b24d445764257cf6a55525_reviewer_2.jsonl",
+    "occurrence": 1,
+    "bytes": 582418,
+    "sha256": "5d0e491b9f3d258ff234ae50f90e53116e8544f10062f67d7cb73889aa02b7de"
+  },
+  "readable_path": "readable/conversations/reviewer-2-coordination.md",
+  "paper_title": "Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction",
+  "preview_selection": {
+    "round": 1,
+    "total_source_events": 540,
+    "policy": "First bounded recorded conversation round with user, assistant, tool call, and tool result; 5–70 events and under 160 KB. Not a scientific-quality ranking."
+  },
+  "statistics": {
+    "messages": 6,
+    "user_turns": 1,
+    "tool_calls": 2,
+    "roles": {
+      "user": 1,
+      "tool_call": 2,
+      "tool_result": 2,
+      "assistant": 1
+    }
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T00:28:21.217901+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n[Dream 审稿任务 — Reviewer 2：新颖性 + 相关工作]\n\n论文标题：Episode-Level RL for Multi-Turn Agents: Why Step-Independent Training Fails and How to Fix It\n\n论文摘要：本文识别了 step-independent reward assignment 在 multi-turn agent RL 训练中的根本失败模式——credit assignment decay（γ^(T-h) → 0），提出 episode-level GRPO 作为解决方案。在 ALFWorld 和 ScienceWorld 上用 Qwen3-1.7B 实验，episode-level 训练达到 24.3%±6.0% success vs step-independent 的 0%。h-sweep 揭示 h<5 时存在 sharp cliff。优势泛化到 ScienceWorld (15% vs 2%) 和 Qwen3-7B (38% vs 5%)。\n\n论文结构概览（8页）：\n- §1 Introduction：4 contributions listed — (1) identify credit assignment decay, (2) episode-level GRPO achieves 24.3%, (3) h-sweep with cliff at h=5, (4) cross-env and cross-scale validation\n- §2 Related Work：4 paragraphs covering RL for LM agents (RAGEN, AgentQ), multi-turn frameworks (Self-Guide 72.7%, ReflAct, ARES), credit assignment in RL (TD, eligibility traces, HER), adaptive computation (Thinkless)\n- §3 Method：problem formulation, credit assignment decay analysis (γ^(T-h)), episode-level GRPO (Eq.3)\n- §4 Experiments：7 tables covering h-sweep, multi-seed, mechanism analysis, verification ablation, cross-env, model scale, per-task breakdown\n- §5 Discussion：relationship to RAGEN, model capacity as separate bottleneck, practical guidance, limitations, future directions\n- §6 Conclusion\n- References：10 entries total — [1] RAGEN 2025, [2] Self-Guide 2026, [3] ARES 2026, [4] Thinkless NeurIPS 2025, [5] ReflAct EMNLP 2025, [6] ALFWorld ICLR 2021, [7] ScienceWorld EMNLP 2022, [8] DeepSeekMath 2024, [9] Qwen 2024, [10] Sutton & Barto 2018\n\n实验设计参考（review_context.yaml）：\n论文原本计划 16 个实验，但最终放弃了 selective verification 方向的多个实验（plan_005 到 plan_013 中大部分），因为统计结果不支持。论文叙事从 \"selective verification\" 转型为 \"pure training methodology\"。\n\n你的审查侧重：\n- **新颖性**：与现有工作的差异化是否清晰、贡献点是否独立成立\n- **相关工作**：文献覆盖是否充分、重要 baseline 是否漏引、定位是否准确\n- **Story 一致性**：论证逻辑是否自洽（intro/abstract/conclusion 的 claim 不能与 method/experiments 矛盾）\n\n具体关注点：\n1. 核心贡献是 \"use full episode context for GRPO training\" —— 这是否足够构成一篇顶会论文的 novelty？episode-level reward assignment 在传统 RL 中是 default，论文是否充分论证了为什么这在 LLM agent RL 中被遗忘/忽略？\n2. Related Work 只有 10 references，对于 top ML venue 显著偏少。关键缺失：\n   - AgentQ 只提名字未给引用\n   - 没有引用 PPO/REINFORCE 等基础 RL 算法\n   - 没有引用 GAE (Generalized Advantage Estimation) 这个直接相关的 credit assignment 方法\n   - 没有引用 hindsight experience replay (HER) 的具体论文\n   - 没有引用其他 multi-turn LLM agent training 工作（如 WebAgent、AgentTuning、FireAct 等）\n3. Self-Guide 达到 72.7% on ALFWorld with Qwen-1.7B，而本文 episode-level 只有 25%——论文如何 position 自己？Discussion 中提到 \"model capacity is separate bottleneck\" 但 Self-Guide 用同样大小的模型达到了远高的性能\n4. 论文 claim \"identify credit assignment decay as root cause\" 但 γ^(T-h) decay 是基础 RL 教科书内容——novelty 是否仅在于 \"指出 RAGEN 的默认配置有问题\"？\n5. Story 一致性：Introduction 说 \"episode-level GRPO eliminates this bottleneck\"，但 25% success 表明还有其他 major bottlenecks——claim 是否 overclaimed？\n6. Future directions 提到 selective verification 需要 >40% base agent——这暗示当前工作是一个 stepping stone 而非 standalone contribution\n\n请基于论文内容独立评判，不要假设论文结果的质量高低。\n\n**不要评判**：方法实现细节/实验设计（那是 Reviewer 1 的范围）、格式/排版。\n\n请通过 `review_reviewer_post_to_director(text, reviewer_id=\"2\", project=\"cost-verify-agent-rl\", dream_id=\"20260516T235255\")` 汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_648eaf83d2b24d445764257cf6a55525:reviewer_2",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T00:28:57.199873+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_648eaf83d2b24d445764257cf6a55525:reviewer_2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__review_reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T00:28:57.400933+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_648eaf83d2b24d445764257cf6a55525:reviewer_2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 201
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T00:30:12.373829+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_648eaf83d2b24d445764257cf6a55525:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 总体评分\n**Overall**: 4/10 (Reject)\n**一句话总结**: 核心贡献是对已知 RL 原理在特定框架中的应用修正，新颖性不足以支撑顶会独立论文；相关工作严重欠缺，story 存在多处自相矛盾。\n\n## 官方维度打分（NeurIPS/ICML 标准）\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Novelty | 2/4 | 核心洞察是教科书级 RL 知识在特定实现中的 rediscovery |\n| Soundness | 2/4 | 方法本身 sound，但 claim 与证据不匹配 |\n| Significance | 2/4 | 对 RAGEN 用户有实用价值，但 scope 过窄 |\n| Clarity | 3/4 | 论证逻辑清晰，但 positioning 有误导性 |\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] 核心新颖性不足：episode-level reward 是传统 RL 的 default，非 contribution\n- 具体位置：§3 Method, Contribution (1) \"identify credit assignment decay\"\n- 问题：γ^(T-h) → 0 当 T 大时奖励信号衰减，这是 Sutton & Barto (2018) [10] 第 13 章 eligibility traces 的基础内容。论文自己引用了这本教科书，却将教科书内容包装为\"识别了根本失败模式\"。在传统 RL 中，episode-level return（即 REINFORCE）一直是 default 做法，不使用 per-step discounting 来处理 sparse terminal reward 是标准实践。本文的实际贡献是：**发现 RAGEN 框架的默认配置在 multi-turn 场景下有 bug-like behavior**，并通过使用 episode-level aggregation 修复。这更接近一个 technical report 或 workshop paper 级别的贡献，而非顶会的方法论创新。\n- 为什么影响接收：如果核心 contribution 是将已知原理应用到特定框架，审稿人会质疑 intellectual novelty。论文需要论证为什么这个\"已知问题\"在 LLM agent RL 这个新 context 下有 non-trivial 的新洞察。\n- 建议修改方向：(a) 深入分析为什么 LLM agent 社区默认采用了 step-independent training（是框架设计问题？是对 chat-level RL 的错误类比？），提供 community-level 的 root cause analysis；(b) 提出超越简单 episode-level aggregation 的方法（如 adaptive discounting, learned credit assignment）来增加方法贡献。\n\n**N2** [critical] 相关工作严重不足：10 篇引用无法支撑顶会论文\n- 具体位置：§2 Related Work, References 列表\n- 问题：顶会论文通常有 30-50+ 引用。10 篇引用意味着文献调研严重不充分。关键缺失包括：\n  - **基础 RL 算法**：未引用 PPO (Schulman et al. 2017)、REINFORCE (Williams 1992)、A2C/A3C——这些是 GRPO 的对比基础\n  - **GAE** (Schulman et al. 2015)：本文核心问题是 credit assignment，GAE 是该领域最直接相关的方法，完全未提及\n  - **HER** (Andrychowicz et al. 2017)：§2 提到 hindsight experience replay 但未给出具体引用\n  - **AgentQ**：正文提到名字但无引用条目\n  - **Multi-turn LLM agent training**：WebAgent (Gur et al. 2023), AgentTuning (Zeng et al. 2023), FireAct (Chen et al. 2023), Reflexion (Shinn et al. 2023) 等重要工作未引用\n  - **GRPO 原始论文**：DeepSeekMath [8] 可能不是 GRPO 的首次提出，需要确认引用链\n  - **Reward shaping / potential-based shaping** (Ng et al. 1999)：与 credit assignment 直接相关\n- 为什么影响接收：审稿人会认为作者对领域了解不够深入，无法判断贡献的真实增量。特别是缺少 GAE 引用是致命的——GAE 本身就是解决 credit assignment 和 variance 的标准方法，论文需要解释为什么不直接用 GAE。\n- 建议修改方向：系统补充上述引用，并在 §2 中增加至少两个 subsection：(a) \"Credit Assignment in RL\" 覆盖 GAE/eligibility traces/reward shaping；(b) \"LLM Agent Training\" 覆盖 WebAgent/AgentTuning/FireAct/Reflexion 等。\n\n**N3** [critical] 与 Self-Guide 的对比逻辑自相矛盾\n- 具体位置：§2 (Self-Guide 72.7%), §5 Discussion (\"model capacity is separate bottleneck\")\n- 问题：Self-Guide 使用 Qwen-1.7B 在 ALFWorld 上达到 72.7%，而本文 episode-level GRPO 用同样模型只达到 24.3%。论文在 Discussion 中用 \"model capacity as separate bottleneck\" 来解释低性能，但这个论点被 Self-Guide 的存在直接反驳——**同样大小的模型在同样的环境上可以达到 3 倍的性能**。这说明：\n  - 要么本文方法不如 Self-Guide 有效（positioning 问题）\n  - 要么两者解决不同子问题，需要明确说明差异（如 Self-Guide 可能用了不同的 training data/episodes/curriculum）\n  - 要么 model capacity 论点不成立\n  无论哪种情况，当前论文的 framing 都有问题。\n- 为什么影响接收：审稿人会直接质疑：如果同模型已有 72.7% 的方法，为什么我要关注一个 24.3% 的方法？论文必须回答这个问题。\n- 建议修改方向：(a) 详细分析 Self-Guide 和本文方法的本质区别（training paradigm? data requirement? supervision signal?）；(b) 如果 Self-Guide 需要额外监督/数据，明确说明本文方法的 advantage 在于更低的监督需求；(c) 考虑在 Self-Guide 的 training pipeline 中加入 episode-level GRPO 作为 complementary experiment。\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] Claim overclaiming：\"eliminates this bottleneck\" vs 25% success\n- 具体位置：§1 Introduction\n- 问题：Introduction claim \"episode-level GRPO eliminates this bottleneck\"，但 24.3% success rate 表明 75% 的情况下 agent 仍然失败。\"Eliminates\" 暗示问题被解决，实际上只是从 0% → 25%。更准确的表述应该是 \"addresses\" 或 \"mitigates\"。此外，如果 bottleneck 被 \"eliminated\"，那 75% 失败的原因是什么？论文需要明确区分 credit assignment bottleneck 和其他 bottlenecks（exploration, model capacity, task complexity）。\n- 建议：将 \"eliminates\" 改为 \"mitigates\" 或 \"addresses\"；增加对剩余 failure modes 的分析。\n\n**W2** [warning] Contribution (1) 与 Contribution (3) 存在冗余/循环论证\n- 具体位置：§1 Contributions list\n- 问题：Contribution (1) 是 \"identify credit assignment decay\"，Contribution (3) 是 \"h-sweep with cliff at h=5\"。但 h-sweep 本身就是 credit assignment decay 的实验验证——当 h 小于某阈值时，γ^(T-h) 衰减到 0。这两个 contribution 本质上是同一个发现的理论表述和实验验证，不应计为两个独立贡献。\n- 建议：合并为一个 contribution \"We identify and empirically characterize credit assignment decay, showing a sharp performance cliff at h<5\"。\n\n**W3** [warning] Future directions 暴露当前工作的 stepping-stone 定位\n- 具体位置：§5 Discussion, future directions\n- 问题：提到 \"selective verification 需要 >40% base agent\"，暗示当前工作是为后续研究铺路。顶会论文应该是 self-contained 的 contribution。如果作者自己都认为这是一个 stepping stone，审稿人会问：为什么不等到有更完整的 story 再投稿？\n- 建议：重新 frame future directions，强调当前工作的独立价值（如 training methodology insight 对社区的直接贡献），而非暗示\"真正的贡献在下一篇论文\"。\n\n**W4** [warning] 论文叙事转型痕迹可能残留\n- 具体位置：全文（基于 review_context.yaml 信息）\n- 问题：论文从 \"selective verification\" 转型为 \"pure training methodology\"，需要确认：(a) Abstract/Introduction 是否还有 verification 相关的 framing 残留；(b) 实验设计是否有为 verification 准备但对当前 story 不必要的内容；(c) future directions 中提到 selective verification 是否过于突兀（读者没有前文铺垫）。\n- 建议：全文审查是否有叙事不一致的痕迹。\n\n## 小问题（不影响接收）\n- AgentQ 在正文中被提及但 References 中无对应条目，属于引用错误\n- §2 提到 \"HER\" 但未引 Andrychowicz et al. 2017 原始论文\n\n## 主要优势\n- 问题定义清晰：step-independent training 在 long-horizon 任务中失败的现象被清楚展示\n- 实验设计系统：h-sweep 提供了 controlled comparison，multi-seed 提供了统计可靠性\n- 实用价值：对使用 RAGEN/GRPO 训练 multi-turn agent 的研究者有直接指导意义\n- 跨环境和跨规模验证增强了发现的普适性\n\n## 总结判断\n\n本文的核心问题在于 **novelty bar**：将教科书级的 RL 知识（episode-level return 优于 step-level discounted reward for sparse terminal reward）应用到一个特定框架（RAGEN + GRPO）中，虽然有实用价值，但不构成顶会级别的方法论贡献。相关工作的严重欠缺（10 引用，缺少 GAE/PPO/REINFORCE/HER 等核心引用）进一步削弱了论文的学术 rigor。与 Self-Guide (72.7%) 的性能差距未被充分解释，使得论文的 positioning 存在根本性漏洞。\n\n建议：(a) 大幅扩充 related work；(b) 增加与 Self-Guide 的深度对比分析；(c) 考虑将论文 reposition 为 empirical study/analysis paper 而非 method paper；(d) 或者在方法层面增加超越简单 episode-level aggregation 的贡献（如 learned credit assignment, adaptive horizon）。",
+              "reviewer_id": "2",
+              "project": "cost-verify-agent-rl"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T00:30:16.190914+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_648eaf83d2b24d445764257cf6a55525:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_648eaf83d2b24d445764257cf6a55525:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3817
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T00:30:22.118400+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿意见已提交给 Review Director。\n\n核心判断：**Reject (4/10)**。三个 critical 问题：\n1. 新颖性不足——episode-level reward 是传统 RL default，贡献本质是发现 RAGEN 框架的配置问题\n2. 相关工作严重欠缺——10 篇引用，缺 GAE/PPO/REINFORCE/HER/WebAgent/AgentTuning 等核心文献\n3. 与 Self-Guide (72.7% vs 24.3% 同模型同环境) 的性能差距未解释，\"model capacity bottleneck\" 论点被直接反驳"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_648eaf83d2b24d445764257cf6a55525:reviewer_2"
+          },
+          "id": "event-000006"
+        }
+      ],
+      "message_count": 6
+    }
+  ]
+}

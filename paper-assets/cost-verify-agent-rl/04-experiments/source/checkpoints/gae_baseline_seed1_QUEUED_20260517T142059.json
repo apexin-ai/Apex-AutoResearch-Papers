@@ -1,0 +1,30 @@
+{
+  "exp_id": "gae_baseline_seed1",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:05:31.533Z",
+    "updated_at": "2026-05-17T14:20:59.367Z",
+    "hypothesis": "REINFORCE++ (running-mean baseline, no critic) provides modest improvement over episode-level GRPO due to per-token advantage normalization. Fallback from GAE due to TRL 1.1.0 removing AutoModelForCausalLMWithValueHead (critic head unavailable).",
+    "parent": "exp029_episode_level",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp && export WANDB_DIR=/root/autodl-tmp/wandb && export WANDB_TMPDIR=/root/autodl-tmp/tmp && export HYDRA_FULL_ERROR=1 && cd /root/cost-verify-agent-rl/RAGEN && python train.py --config-name _alfworld_reinforce_pp_baseline\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "40262",
+      "log_path": "~/runs/cost-verify-agent-rl/gae_baseline_seed1.log",
+      "submitted_at": "2026-05-17T14:13:51.378Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-17T14:20:59.505554+00:00",
+  "trigger": "update_registry"
+}

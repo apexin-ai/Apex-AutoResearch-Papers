@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d5a37c686d3b8e8bc60",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops kill exp029 deploy h20 bjb1",
+  "task_key": "worker_ops_kill-exp029-deploy-h20-bjb1_20260518T180531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-exp029-deploy-h20-bjb1_20260518T180531_result.json",
+    "occurrence": 1,
+    "bytes": 824,
+    "sha256": "64cf83c04c05c46ccc40a7208cc125ecacc3be491b018d830e043eeae4447888"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，进入 step 0/15。\n\n## 报告\n\n| 项目 | 状态 |\n|------|------|\n| **exp029_seed2 kill** | 已 kill PID 66897，ray 已清理，无残留进程。checkpoints/logs 保留 |\n| **h=20 config** | 使用已有 `_alfworld_hsweep_h20.yaml`，修改 `val_before_train: false`、`max_actor_ckpt_to_keep: 3` |\n| **训练启动** | PID **71823**，tmux session `hsweep_h20_seed1` |\n| **W&B run** | `hsweep-h20-seed1`，run ID **qoan2ma6** |\n| **W&B URL** | `https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/qoan2ma6` |\n| **Log path** | `~/runs/cost-verify-agent-rl/hsweep_h20_seed1.log` |\n| **磁盘** | `/root/autodl-tmp` 103GB 可用（60% 使用） |\n\n**Config 关键参数**: model=Qwen3 1.72B (SFT v4), h=20, seed=10000, 15 steps, GRPO, lr=1e-6, GPU 0,1, max_ckpt=3"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-exp029-deploy-h20-bjb1.md"
+}

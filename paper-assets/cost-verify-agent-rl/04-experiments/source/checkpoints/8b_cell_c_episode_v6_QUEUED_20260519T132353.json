@@ -1,0 +1,16 @@
+{
+  "exp_id": "8b_cell_c_episode_v6",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:23:28.445Z",
+    "updated_at": "2026-05-19T13:23:52.910Z",
+    "hypothesis": "8B Cell C episode-level with use_ref=False, max_model_len=16384 (up from 8192 which was too short for some prompts), no expandable_segments (incompatible with vLLM CuMemAllocator). v5 proved OOM is solved and VLLM inits successfully; v6 fixes the remaining prompt length issue. If backward pass succeeds, Cell C at 8B scale provides the positive control for scale-invariant information loss analysis.",
+    "parent": "8b_cell_c_episode_v5"
+  },
+  "timestamp": "2026-05-19T13:23:53.105852+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3339d5bddc7e4a8798bc",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "experiment seed3 ood bjb1",
+  "task_key": "worker_experiment_seed3-ood-bjb1_20260520T192250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_seed3-ood-bjb1_20260520T192250_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "3e3855478a909414b03a0bef1bfaf187a7f2f4e69c224549b0a449786d0bbfe8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**已完成：**\n- westd-47453 上确认 `exp029-seed3/global_step_5` checkpoint 存在（21GB，FSDP 2-GPU 格式）\n- 通过 SSH 密钥 + SCP 将 checkpoint 从 westd 传输到 bjb1（~30 分钟）\n- 在 bjb1 创建 OOD eval 配置 `_alfworld_exp029_seed3_ood.yaml`（基于已验证的 exp029 reeval 模板）\n- 提交 eval job `exp029_seed3_ood` 到 bjb1-17606 (cuda:0,1)，tmux session `exp029_seed3_ood`\n- 验证启动：config 加载正确、Ray 初始化完成、模型 safetensors 加载完成、checkpoint resume path 正确\n- Registry 更新：exp029_seed3_ood → RUNNING，parent=exp029_seed3_v2\n- 清理 westd 上的临时 SSH 密钥\n\n**Eval 参数：**\n- Checkpoint: exp029-seed3 global_step_5（episode-level GRPO，2 GPU FSDP）\n- 134 OOD tasks (AlfworldSG_OOD, valid_unseen), T=0.4, group_size=1\n- 2 GPU, env_groups=16 (train) / 134 (val)\n- 超时: 8h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-seed3-ood-bjb1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10aa6e3cbd8453bb96bd",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analyze exp029 seed6 v3",
+  "task_key": "worker_analyze_exp029_seed6_v3_20260521T130011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp029_seed6_v3_20260521T130011_result.json",
+    "occurrence": 1,
+    "bytes": 742,
+    "sha256": "23ae62513fc4300b27f3293eb0f119657be19bb37bbea27cea778fd73a001f76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n**exp029_seed6_v3: SUCCESS**\n\n核心结果：\n- Val success: 9.4% → 21.9% → 28.1% → 28.1% (step 0/5/10/15)，单调上升后 step 10-15 持平\n- Train reward 从 0.70 持续升到 8.91，无 collapse\n- Response length 从 14910 缩短到 3329，agent 学会更高效行动\n- KL 全程 < 0.008，训练稳定\n- Checkpoint: `/root/autodl-tmp/checkpoints/exp029-seed6/global_step_15/actor/`\n\n与其他 seed 对比：Seed 6 (28.1%) 是三个已完成 seed 中 val 最低的（Seed 1: ~43%, Seed 3: ~40.6%），差距 12-15pp。但 hypothesis 成立——无 collapse、有 consistent learning。\n\n建议下一步：对 global_step_15 跑 OOD eval，等 Seed 4/5 完成后汇总 5 seeds 方差。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp029-seed6-v3.md"
+}

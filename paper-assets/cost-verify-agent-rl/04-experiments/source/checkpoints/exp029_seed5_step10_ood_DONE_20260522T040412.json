@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp029_seed5_step10_ood",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:59:30.305Z",
+    "updated_at": "2026-05-22T04:04:11.713Z",
+    "spec": {
+      "command": "cd /root/cost-verify-agent-rl && CUDA_VISIBLE_DEVICES=0 python RAGEN/eval/eval_ood.py --checkpoint_path /root/autodl-tmp/checkpoints/qwen_seed5_step10_hf --max_turn 50 --num_episodes 134 --temperature 0.4",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "382718",
+      "log_path": "/root/autodl-tmp/tmp/ood_eval_seed5.log",
+      "submitted_at": "2026-05-22T02:06:30.360Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "ALFWorld OOD 134 tasks",
+      "data_count": 134,
+      "model_name": "Qwen3-1.5B (seed5 step10)",
+      "seed": 5,
+      "checkpoint_source": "exp029_seed5 global_step_10_hf (SCP from westd)",
+      "eval_data": "ALFWorld OOD 134 tasks",
+      "checkpoint_path": "/root/autodl-tmp/checkpoints/qwen_seed5_step10_hf",
+      "wall_clock_seconds": 7061.4,
+      "gpu_hours": 1.96
+    },
+    "hypothesis": "OOD eval for seed 5 step 10 checkpoint. Seed 5 is a stable (non-collapsed) seed. OOD success rate establishes the generalization baseline for healthy seeds at step 10, contributing to paper Table 1.",
+    "conclusion": "success",
+    "metrics": {
+      "ood_success_rate": 0.3731,
+      "ood_tasks": 134,
+      "server": "bjb1-17606",
+      "note": "reproducibility run (SCP from westd), original eval=29.10% on westd"
+    },
+    "completed_at": "2026-05-22T04:04:11.713Z"
+  },
+  "timestamp": "2026-05-22T04:04:12.012217+00:00",
+  "trigger": "update_registry"
+}

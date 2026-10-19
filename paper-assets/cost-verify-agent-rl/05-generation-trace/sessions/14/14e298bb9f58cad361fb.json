@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14e298bb9f58cad361fb",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_2_1778740938.md",
+  "task_key": "loop_2_1778740938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778740938.md",
+    "occurrence": 1,
+    "bytes": 4175,
+    "sha256": "851599a541a5943520c762ea46696cdeba440ec67a9a7b7173a1d6b66c1c62b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-14T06:21:37+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 bjb1-17606 的 cuda:0 + cuda:1（白名单 gpu_ids）\n- 训练启动命令**必须**同时 export TMPDIR=/root/autodl-tmp/tmp/ 和 RAY_TMPDIR=/root/autodl-tmp/ray_tmp（三次 /tmp 崩溃教训：exp007 Ray session files, exp010 fast_downward libdownward.so）\n- GRPO checkpoint 路径含 \"qwen\" 才能启用 response_mask（symlink `/root/autodl-tmp/checkpoints/qwen3_sft_final` → `exp008_sft/final`）\n- exp012 提交前必须 dry-run 1 step 确认 group_size=16 不 OOM（2×94GB 卡）\n- 不要从 step 10 checkpoint 恢复——模型已丧失任务完成能力，用 step 5 或 SFT checkpoint\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606，2× RTX PRO 6000 Blackwell 94GB\n- 工作目录：`/root/cost-verify-agent-rl/RAGEN/`\n- Python：`/root/miniconda3/bin/python`，conda base（不是 venv）\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：SFT checkpoint `/root/autodl-tmp/checkpoints/qwen3_sft_final`（symlink → exp008_sft/final）\n- GRPO checkpoints：`/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5/` 和 `global_step_10/`\n- SFT 数据：`/root/autodl-tmp/sft_data/alfworld_sft_ragen.jsonl`（1200 条）\n- ALFWorld 数据：`/root/autodl-tmp/alfworld/`（3553 train games）\n- HF cache：未特别设置\n- 活跃进程：**无**（exp011 已 kill，GPU 空闲）\n- Worker 在跑：`worker_code_reward-fix-exp012_20260514T060151`（reward 修复 + dry-run）\n\n### 3. 📊 当前状态\n**刚做完**：\n- Kill exp011（Director D007 指令，reward shaping 导致 success 崩塌）\n- Reward 分析完成（`artifacts/exp010_reward_analysis.md`）：format_penalty -0.1 在零成功 group 中劫持 GRPO 梯度，模型学\"合法命令\"而非\"完成任务\"\n- B-IAVR a_pre wiring bug 已修（68/68 tests pass）\n- Phase B 文献调研 + 代码就绪性审查完成\n\n**正在等**：\n- `worker_code_reward-fix-exp012` 回调 — 正在实现 reward 修复（A1 连续 score, A2 format_penalty→-0.01, B1 group_size→16）+ exp012 config + dry-run\n- Worker 完成后需要：检查 dry-run 结果 → 提交 exp012 审批 → 启动训练\n\n**Registry**：\n- exp010 DONE/failed（step 11 /tmp 崩溃 + success 崩塌）\n- exp011 DONE/failed（D007 kill，reward 问题未修复）\n- 其余全 DONE\n\n### 4. 📋 待办\n- `worker_code_reward-fix-exp012` 回调到达 → 检查 dry-run 结果（OOM? reward 值合理?）→ 创建 exp012 registry → 提交审批 → Director 批准后 `submit_on_allocated` 启动\n- exp012 启动后 → 前 5 步监控 ppo_kl > 0.1 / entropy < 0.01 / score_mean 连续 5 步下降\n- exp012 step 10 → 汇报中间指标（重点 success_rate 是否 > 0）\n- exp012 step 15（从 step 5 算跑了 10 步）→ kill 条件：success_rate < 5%\n- exp012 完成 → on-experiment-done → 如果 success ≥ 76% 启动 Phase B（B-IAVR）\n- Phase B 启动前 → FSDP→HF checkpoint 转换 + 更新 `_alfworld_phase_b.yaml`\n\n### 5. 🎯 战略上下文\n- **项目方向**：训练 agent 学会\"何时验证\"（B-IAVR），Phase A 是 always-on self-guidance baseline，目标 ALFWorld success ≥ 76%\n- **决策链**：D001(MVP选型) → D002(全量微调) → D003-D004(parser fix) → D005(提高LR,撤回) → D006(SFT warmup) → D007(kill exp011, reward fix) → D008(Reviewer确认A2为P0)\n- **核心教训**：GRPO + 稀疏 reward + format_penalty = 灾难。format_penalty 在零成功 group 中成为唯一梯度信号，把模型拉向\"合法但无效\"的策略。连续 score reward 是关键修复\n- **易错点**：\n  1. 不要假设 `infos[\"score\"]` 一定存在或是连续值——worker 需要先验证，不存在则用替代方案\n  2. group_size=16 可能在 94GB 卡上刚好够或不够——必须 dry-run 确认\n  3. 从 step 5 恢复需要 `resume_mode=resume_path`，不是默认的 auto——而且 step 5 checkpoint 在 `exp008_grpo/` 目录（不是 exp010/exp011 目录）\n  4. `/tmp` 问题已修复（TMPDIR + RAY_TMPDIR 写入 .bashrc），但启动命令仍要显式 export 以防 .bashrc 未被 source\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778740938.md"
+}

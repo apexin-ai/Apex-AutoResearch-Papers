@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp029_seed7_high_kl_step7_ood_v2",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T23:07:22.441Z",
+    "updated_at": "2026-05-23T00:28:05.174Z",
+    "hypothesis": "D134 协议 re-eval: high_kl step7 checkpoint (KL 10x intervention, 2 extra steps) OOD eval with enable_think=true, enable_response_mask=false, full context, T=0.4. 原始 eval 得 12.69% (17/134). 验证 D134 协议下是否一致。",
+    "parent": "exp029_seed7_high_kl_step5_ood_v2",
+    "spec": {
+      "command": "bash -c \"cd /root/cost-verify-agent-rl/RAGEN && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && WANDB_DIR=/root/autodl-tmp/wandb_tmp python train.py --config-name _alfworld_seed7_high_kl_step7_ood_eval_westd enable_response_mask=false actor_rollout_ref.model.enable_response_mask=false\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "243894",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_seed7_high_kl_step7_ood_v2.log",
+      "submitted_at": "2026-05-22T23:08:50.348Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-23T00:28:05.490177+00:00",
+  "trigger": "update_registry"
+}

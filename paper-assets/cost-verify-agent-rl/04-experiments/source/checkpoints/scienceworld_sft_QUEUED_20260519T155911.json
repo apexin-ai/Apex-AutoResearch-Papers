@@ -1,0 +1,15 @@
+{
+  "exp_id": "scienceworld_sft",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:35:00.255Z",
+    "updated_at": "2026-05-19T15:59:11.730Z",
+    "hypothesis": "ScienceWorld 1.7B SFT 训练，为后续 GRPO 实验提供 base checkpoint。验证 SFT 训练 pipeline 可泛化到第二个交互环境（ALFWorld 之外），支撑跨环境 RL 训练失败机制对比（Cell A vs Cell C）。数据：3592 train / 1796 val expert trajectories。"
+  },
+  "timestamp": "2026-05-19T15:59:11.931279+00:00",
+  "trigger": "update_registry"
+}

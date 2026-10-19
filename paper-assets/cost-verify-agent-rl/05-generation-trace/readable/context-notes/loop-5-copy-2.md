@@ -1,0 +1,83 @@
+# agent / loop_5.md
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/agent/loop_5.md`
+- **Structured JSON:** [`f46828a0a592347a4eb4.json`](../../sessions/f4/f46828a0a592347a4eb4.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 5
+reason: idle_timeout
+updated: '2026-05-14T15:50:59+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 服务器只有 **bjb1-17606**，账号 **root**，GPU 为 **2× RTX PRO 6000 Blackwell 94GB**（cuda:0, cuda:1）
+- 项目配置里 **没有 gpu_ids 白名单**，但历史实验全部使用 cuda:0+cuda:1，不要用其他设备
+- `/root/autodl-tmp` 磁盘 **95% 已满**（exp013f 完成时仅剩 4.1GB）——任何新实验前必须清理旧 checkpoint
+- 启动脚本必须包含完整环境变量集（TMPDIR、RAY_memory_monitor_refresh_ms=0、RAY_SYSTEM_MEMORY=210GB、ALFWORLD_DATA、HYDRA_FULL_ERROR=1），缺任何一个都可能崩溃，详见 memory.md "Ray 基础设施完整修复清单"
+- **exp014a/b/c 已被 D013 kill**，不要复活。Dense reward shaping 路线已放弃，当前路线是 Expert SFT → Sparse GRPO
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: bjb1-17606，工作目录 `/root/cost-verify-agent-rl`，代码子目录 `/root/cost-verify-agent-rl/RAGEN`
+- **Python**: `/root/miniconda3/bin/python`（conda base 环境，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）
+- **模型**: Qwen3-1.7B 原始权重 + SFT checkpoint `/root/autodl-tmp/checkpoints/exp008_sft/final`（symlink `qwen3_sft_final`）
+- **GRPO checkpoint**: `/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5`（多个实验的恢复起点）
+- **数据**: ALFWorld `/root/autodl-tmp/alfworld/`（3553 train games）；SFT 数据 `/root/autodl-tmp/sft_data/alfworld_sft_ragen.jsonl`（1200 条）；Expert trajectory `/root/autodl-tmp/expert_trajectories/sft_data/train.jsonl`（2460 条）
+- **HF cache**: 未显式设置，注意 autodl-tmp 磁盘快满
+- **活跃进程**: exp017_expert_sft RUNNING（PID 353947，cron 监控中，在 bjb1-17606 上）
+- **活跃 Worker**: `worker_validate_move-vs-put-admissible_20260514T154927`（running，验证 move vs put admissible actions）
+
+### 3. 📊 当前状态
+
+**刚完成的关键转折（D016）**：经过 exp012b→exp015→exp016 三次纯 sparse GRPO 实验均失败，确认根因是 base model success rate 太低（val ~4.7%, train ~0%），GRPO 在大多数 group 中无差异化信号。Director 批准 **Pivot to Expert SFT warmup** 路线。
+
+**当前在跑**:
+- **exp017_expert_sft** (RUNNING): 用 PDDL expert trajectory 数据（2460 条）SFT Qwen3-1.7B instruct，LR=2e-5, 3 epochs。Pass 标准: success ≥ 10%。Cron 在监控，PID 353947。
+- **exp018_sft_grpo** (PREPARING): 从 exp017 SFT checkpoint 开始纯 sparse GRPO。依赖 exp017 完成。
+
+**等待中**:
+- exp017 cron 回调（SFT 预计 ~30min 完成，可能已接近完成）
+- Worker `validate_move-vs-put-admissible` 回调
+
+**Registry 状态**: 32 个实验，1 success（exp008_sft）、1 negative（exp013f）、12 failed、若干 killed/preparing。
+
+### 4. 📋 待办（条件触发式）
+- **exp017 cron 回调（DONE/success）** → spawn Worker eval SFT checkpoint（134 tasks full eval），success ≥ 10% 则立即准备 exp018_sft_grpo 提交
+- **exp017 cron 回调（DONE/failed）** → 诊断失败原因，可能需要调 LR 或数据格式
+- **exp017 success ≥ 10% 确认** → 更新 exp018_sft_grpo 的 checkpoint 路径、提交审批
+- **exp017 success < 10%** → 考虑增大数据量或调整 SFT 策略，汇报 Director
+- **Worker validate_move-vs-put-admissible 完成** → 读取结果，更新 memory.md
+- **磁盘清理**：exp018 启动前必须清理旧 checkpoint（exp012_grpo、exp013b_grpo、exp013e 等），目前只剩 ~4GB
+
+### 5. 🎯 战略上下文
+
+**核心实验演进链**:
+exp003(format fail) → exp007(parser fix, /tmp crash) → exp008_sft(SFT warmup, ✅ action_is_valid 90%) → exp010(GRPO, success collapse) → exp012b(reward fix, collapse at step7) → exp013f(dense reward, gaming ❌) → exp015(sparse LR=1e-7, 零梯度) → exp016(LR=5e-7, 仍无信号) → **exp017(Expert SFT pivot, 当前)**
+
+**关键决策链**: D016 是转折点——从"调 GRPO 超参"转向"用更好的 SFT 数据提升 base success rate"。Expert trajectory（PDDL solver 生成，2460 条）比之前的公开数据集（1200 条）质量更高。
+
+**最容易判断错的事**:
+1. **不要把 exp008_sft 和 exp017_expert_sft 混淆**：exp008 用公开 SFT 数据（1200 条），exp017 用 PDDL expert trajectory（2460 条）——数据来源和质量完全不同
+2. **不要复活 dense reward 路线**（exp013f/exp014a/b/c）——D012/D013 已确认 reward gaming 是死路
+3. **reward pipeline 没有 bug**（memory.md 有详细记录）——WandB 中 `raw_reward=0` 是日志 artifact，实际 reward 通过 `critic/score/*` 正确传递
+4. **磁盘几乎满了**——任何新实验前必须清理，否则会重现 exp007/exp010 的 /tmp 崩溃
+5. **Phase B (B-IAVR) 代码就绪但被 Phase A 阻塞**——不要跳过 Phase A 直接启动 Phase B
+
+
+---

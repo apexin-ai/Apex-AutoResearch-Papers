@@ -1,0 +1,1151 @@
+# code exp029 config
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 39
+- **Recorded user turns:** 0
+- **Tool calls:** 19
+- **Original source:** `logs/chats/worker_code_exp029_config_20260516T083041.jsonl`
+- **Structured JSON:** [`064dbc7b83c6580f79f5.json`](../../sessions/06/064dbc7b83c6580f79f5.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+39 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T08:33:23.533127+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T08:33:23.533491+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T08:33:23.533722+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /root/cost-verify-agent-rl/configs/_alfworld_exp028c_selfguide_recipe.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat /root/cost-verify-agent-rl/configs/_alfworld_exp028c_selfguide_recipe.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-16T08:33:23.533884+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/cost-verify-agent-rl/configs/_alfworld_exp028c_selfguide_recipe.yaml: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T08:33:23.534066+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/cost-verify-agent-rl/configs/ -name \"*028c*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "find /root/cost-verify-agent-rl/configs/ -name \"*028c*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T08:33:23.534429+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/cost-verify-agent-rl/configs/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T08:33:23.534580+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/cost-verify-agent-rl -type d -name \"configs\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "find /root/cost-verify-agent-rl -type d -name \"configs\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T08:33:23.534787+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/cost-verify-agent-rl/RAGEN/verl/recipe/deepeyes/configs\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T08:33:23.534977+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/cost-verify-agent-rl -name \"*028c*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "find /root/cost-verify-agent-rl -name \"*028c*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T08:33:23.535176+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp028c_selfguide_recipe.yaml\\n/root/cost-verify-agent-rl/scripts/run_exp028c_selfguide_recipe.sh\\n/root/cost-verify-agent-rl/artifacts/exp028c_selfguide_recipe\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T08:33:23.535408+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp028c_selfguide_recipe.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat /root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp028c_selfguide_recipe.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T08:33:23.535725+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# exp028c: Self-Guide Recipe Alignment\\n# 基于 exp027 调参，9 项改动（来自 Self-Guide / GiGPO 论文参数对齐）：\\n#   1. ppo_mini_batch_size: 32 → 128 (框架断言限制: trajectory-level check 要求 <= env_groups*group_size)\\n#   2. total_training_steps: 50 → 100 (延长训练)\\n#   3. LR: 5e-7 → 1e-6 (论文标准 LR)\\n#   4. kl_loss_coef: 0.005 → 0.01 (加强 KL 约束)\\n#   5. env_groups: 8 → 16 (更多 rollout 多样性)\\n#   6. group_size: 16 → 8 (总 rollouts 保持 128)\\n#   7. entropy_coeff: 0.01 → 0.001 (降低 entropy bonus)\\n#   8. step_independent_history_length: 5 → 2 (更短上下文窗口)\\n#   9. loss_agg_mode: seq-mean-token-mean → token-mean (简化 loss 聚合)\\n#\\n# 不变：model_path = SFT checkpoint, gamma=0.95, clip_ratio=0.2, max_grad_norm=1.0\\n# mini_batch 冲突检查：step_independent 模式下 128 trajectories 展开为 ~3200 训练样本，\\n#   mini_batch=128 (框架 assert 限制，实际 step_independent 样本 ~3200)，无冲��。\\n\\ndefaults:\\n  - base\\n\\nhydra:\\n  searchpath:\\n    - pkg://verl.trainer.config\\n\\nmodel_path: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\\n\\nsystem:\\n  CUDA_VISIBLE_DEVICES: \\\"0,1\\\"\\n\\nmicro_batch_size_per_gpu: 1\\nppo_mini_batch_size: 128\\n\\ntrainer:\\n  project_name: cost-verify-agent-rl\\n  experiment_name: exp028c-alfworld-selfguide-recipe\\n  total_training_steps: 100\\n  n_gpus_per_node: 2\\n  val_before_train: True\\n  test_freq: 5\\n  save_freq: 5\\n  local_log_dir: \\\"/root/autodl-tmp/checkpoints/exp028c/\\\"\\n  default_local_dir: \\\"/root/autodl-tmp/checkpoints/exp028c/\\\"\\n  logger: ['console', 'wandb']\\n  max_actor_ckpt_to_keep: 10\\n  resume_mode: \\\"disable\\\"\\n\\nactor_rollout_ref:\\n  model:\\n    override_config:\\n      attn_implementation: sdpa\\n  actor:\\n    use_ref: True\\n    use_torch_compile: False\\n    use_kl_loss: True\\n    kl_loss_coef: 0.01\\n    kl_loss_type: low_var_kl\\n    entropy_coeff: 0.001\\n    clip_ratio_low: 0.2\\n    clip_ratio_high: 0.28\\n    loss_agg_mode: \\\"token-mean\\\"\\n    grad_clip: 1.0\\n    optim:\\
+…[truncated 1115 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T08:33:23.536030+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/cost-verify-agent-rl/RAGEN/config -name \"base*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "find /root/cost-verify-agent-rl/RAGEN/config -name \"base*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T08:33:23.536236+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/cost-verify-agent-rl/RAGEN/config/base.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T08:33:23.536416+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /root/cost-verify-agent-rl/RAGEN/config/base.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat /root/cost-verify-agent-rl/RAGEN/config/base.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T08:33:23.536740+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"defaults:\\n  - ppo_trainer\\n  - envs\\n\\nsystem:\\n  CUDA_VISIBLE_DEVICES: \\\"0\\\"\\n\\nseed:\\n  train: 10000\\n  val: 123\\n\\nmicro_batch_size_per_gpu: 1\\nlog_prob_micro_batch_size_per_gpu: ${micro_batch_size_per_gpu}\\nppo_mini_batch_size: 32\\nmodel_path: Qwen/Qwen2.5-3B-Instruct\\nenable_response_mask: True # Enabling response mask could improve stability of rollout/old_log_prob, as P(st|history) are no longer calculated in loss here. See https://docs.google.com/document/d/1bg7obeiKTExuHHBl5uOiSpec5uLDZ2Tgvxy6li5pHX4/edit?usp=sharing for more details.\\ngrpo_advantage_length_weight: False # if you do not enable this and critic/advantage_estimator is GRPO, and the critic/advantages/mean is too low, then you can try enabling this to encourage reasoning and forbid collapse\\n\\nlora:\\n  rank: 0\\n  alpha: 64\\n  target_modules: all-linear\\n\\nactor_rollout_ref:\\n  model:\\n    path: ${model_path}\\n    lora_rank: ${lora.rank}\\n    lora_alpha: ${lora.alpha}\\n    target_modules: ${lora.target_modules}\\n  actor:\\n    ppo_mini_batch_size: ${ppo_mini_batch_size}  # by default, ppo_mini_batch_size = train_batch_size / 4\\n    ppo_micro_batch_size_per_gpu: ${micro_batch_size_per_gpu}\\n    use_ref: True\\n    entropy_coeff: 0.001\\n    use_kl_loss: False\\n    kl_loss_coef: 0.000\\n    kl_loss_type: kl\\n    clip_ratio_low: 0.2\\n    clip_ratio_high: 0.28\\n    grpo_advantage_length_weight: ${grpo_advantage_length_weight}\\n    filter_loss_scaling: \\\"none\\\" # \\\"none\\\", \\\"linear\\\", \\\"sqrt\\\"\\n    # Loss aggregation mode: \\\"token-mean\\\" (default), \\\"seq-mean-token-mean\\\" (GRPO), \\\"seq-mean-token-sum\\\" (Dr. GRPO)\\n    loss_agg_mode: \\\"token-mean\\\"\\n    optim:\\n      betas: [0.9, 0.999]\\n      lr: 1e-6\\n  ref:\\n    log_prob_micro_batch_size_per_gpu: ${log_prob_micro_batch_size_per_gpu}\\n  rollout:\\n    name: vllm\\n    load_format: auto  # load from huggingface inste
+…[truncated 5708 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T08:33:23.537029+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/cost-verify-agent-rl/RAGEN/config -name \"ppo_trainer*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "find /root/cost-verify-agent-rl/RAGEN/config -name \"ppo_trainer*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T08:33:23.537228+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T08:33:23.537413+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/cost-verify-agent-rl -path \"*/config/*ppo*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "find /root/cost-verify-agent-rl -path \"*/config/*ppo*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T08:33:23.537618+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/cost-verify-agent-rl/RAGEN/verl/examples/split_placement/config/ppo_trainer_split.yaml\\n/root/cost-verify-agent-rl/RAGEN/verl/tests/trainer/config/legacy_ppo_megatron_trainer.yaml\\n/root/cost-verify-agent-rl/RAGEN/verl/tests/trainer/config/legacy_ppo_trainer.yaml\\n/root/cost-verify-agent-rl/RAGEN/verl/verl/trainer/config/_generated_ppo_megatron_trainer.yaml\\n/root/cost-verify-agent-rl/RAGEN/verl/verl/trainer/config/_generated_ppo_trainer.yaml\\n/root/cost-verify-agent-rl/RAGEN/verl/verl/trainer/config/ppo_megatron_trainer.yaml\\n/root/cost-verify-agent-rl/RAGEN/verl/verl/trainer/config/ppo_trainer.yaml\\n/root/cost-verify-agent-rl/RAGEN/verl/recipe/fully_async_policy/config/fully_async_ppo_megatron_trainer.yaml\\n/root/cost-verify-agent-rl/RAGEN/verl/recipe/fully_async_policy/config/fully_async_ppo_trainer.yaml\\n/root/cost-verify-agent-rl/RAGEN/verl/recipe/one_step_off_policy/config/one_step_off_ppo_megatron_trainer.yaml\\n/root/cost-verify-agent-rl/RAGEN/verl/recipe/one_step_off_policy/config/one_step_off_ppo_trainer.yaml\\n/root/cost-verify-agent-rl/RAGEN/verl/recipe/sppo/config/sppo_trainer.yaml\\n/root/cost-verify-agent-rl/RAGEN/verl/recipe/transfer_queue/config/transfer_queue_ppo_trainer.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T08:33:23.537838+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep -n \"max_token_len\\|forward_max\" /root/cost-verify-agent-rl/RAGEN/verl/verl/trainer/config/ppo_trainer.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "grep -n \"max_token_len\\|forward_max\" /root/cost-verify-agent-rl/RAGEN/verl/verl/trainer/config/ppo_trainer.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T08:33:23.537977+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T08:33:23.538118+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep -n \"max_token_len\" /root/cost-verify-agent-rl/RAGEN/verl/verl/trainer/config/ppo_trainer.yaml",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "grep -n \"max_token_len\" /root/cost-verify-agent-rl/RAGEN/verl/verl/trainer/config/ppo_trainer.yaml",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T08:33:23.538266+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T08:33:23.538386+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep -rn \"max_token_len\" /root/cost-verify-agent-rl/RAGEN/config/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "grep -rn \"max_token_len\" /root/cost-verify-agent-rl/RAGEN/config/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T08:33:23.538505+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T08:33:23.538656+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat /root/cost-verify-agent-rl/scripts/run_exp028c_selfguide_recipe.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat /root/cost-verify-agent-rl/scripts/run_exp028c_selfguide_recipe.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T08:33:23.538845+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -euo pipefail\\n\\n# exp028c: Self-Guide Recipe Alignment\\n\\necho \\\"=== [PRE-FLIGHT] exp028c: selfguide recipe ===\\\"\\n\\n# --- Model ---\\nMODEL=\\\"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\\\"\\nif [ ! -f \\\"$MODEL/config.json\\\" ]; then\\n    echo \\\"[ERROR] Model not found: $MODEL\\\"\\n    exit 1\\nfi\\necho \\\"[OK] Model: SFT checkpoint (qwen3_exp021_ragen_sft_v4)\\\"\\n\\n# --- Disk ---\\necho \\\"[PRE-FLIGHT] Disk space:\\\"\\ndf -h /root/autodl-tmp/ | tail -1\\nAVAIL=$(df --output=avail /root/autodl-tmp/ | tail -1 | tr -d ' ')\\nif [ \\\"$AVAIL\\\" -lt 52428800 ]; then\\n    echo \\\"[ERROR] Less than 50GB available on /root/autodl-tmp/\\\"\\n    exit 1\\nfi\\necho \\\"[OK] Disk space sufficient\\\"\\n\\n# --- GPU ---\\necho \\\"[PRE-FLIGHT] GPU status:\\\"\\nnvidia-smi --query-gpu=index,name,memory.total,memory.used --format=csv,noheader\\necho \\\"\\\"\\n\\n# --- Config file ---\\nCONFIG_FILE=\\\"/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp028c_selfguide_recipe.yaml\\\"\\nif [ ! -f \\\"$CONFIG_FILE\\\" ]; then\\n    echo \\\"[ERROR] Config not found: $CONFIG_FILE\\\"\\n    exit 1\\nfi\\necho \\\"[OK] Config file exists\\\"\\n\\n# --- Environment ---\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR\\nexport ALFWORLD_DATA=/root/autodl-tmp/alfworld\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport RAY_memory_monitor_refresh_ms=0\\nexport RAY_SYSTEM_MEMORY=210000000000\\nexport HYDRA_FULL_ERROR=1\\nexport CUDA_VISIBLE_DEVICES=0,1\\nexport WANDB_PROJECT=cost-verify-agent-rl\\nexport WANDB_NAME=exp028c_selfguide_recipe\\nexport WANDB_MODE=online\\n\\n# --- Output directory ---\\nmkdir -p /root/autodl-tmp/checkpoints/exp028c/\\nmkdir -p ~/runs/cost-verify-agent-rl/\\n\\necho \\\"=== [PRE-FLIGHT] All checks passed. Starting training... ===\\\"\\n\\ncd /root/cost-verify-agent-
+…[truncated 281 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T08:33:23.539058+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat > /root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml << 'EOF'\n# exp029: Episode-Level GRPO (full context window)\n# 核心改动 vs exp028c: context_window_mode step_independent → full\n# 其余参数完全一致（控制变量实验）\n#\n# 配套调整（因 full 模式产生更长序列）：\n#   1. context_window_mode: step_independent → full\n#   2. max_prompt_length: 4096 → 16384（容纳 50-turn episode）\n#   3. max_model_len: 8192 → 16384\n#   4. max_num_batched_tokens: 8192 → 16384\n#   5. gpu_memory_utilization: 0.4 → 0.92（长序列需更多显存）\n#   6. ppo_mini_batch_size: 128 → 32（full 模式样本数=episode数=128，mini_batch 不能等于总量）\n#   7. 添加 ppo_max_token_len_per_gpu: 65536（适应长序列）\n\ndefaults:\n  - base\n\nhydra:\n  searchpath:\n    - pkg://verl.trainer.config\n\nmodel_path: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\n\nsystem:\n  CUDA_VISIBLE_DEVICES: \"0,1\"\n\nmicro_batch_size_per_gpu: 1\nppo_mini_batch_size: 32\n\ntrainer:\n  project_name: cost-verify-agent-rl\n  experiment_name: exp029-alfworld-episode-level\n  total_training_steps: 100\n  n_gpus_per_node: 2\n  val_before_train: True\n  test_freq: 5\n  save_freq: 5\n  local_log_dir: \"/root/autodl-tmp/checkpoints/exp029/\"\n  default_local_dir: \"/root/autodl-tmp/checkpoints/exp029/\"\n  logger: ['console', 'wandb']\n  max_actor_ckpt_to_keep: 10\n  resume_mode: \"disable\"\n\nactor_rollout_ref:\n  model:\n    override_config:\n      attn_implementation: sdpa\n  actor:\n    use_ref: True\n    use_torch_compile: False\n    use_kl_loss: True\n    kl_loss_coef: 0.01\n    kl_loss_type: low_var_kl\n    entropy_coeff: 0.001\n    clip_ratio_low: 0.2\n    clip_ratio_high: 0.28\n    loss_agg_mode: \"token-mean\"\n    grad_clip: 1.0\n    ppo_max_token_len_per_gpu: 65536\n    optim:\n      lr: 1e-6\n  ref:\n    use_torch_compile: False\n    log_prob_max_token_len_per_gpu: 65536\n  rollout:\n    response_length: 1024\n    gpu_memory_utilization: 0.92\n    max_model_len: 16384\n    temperature: 1.0\n    max_num_batched_tokens: 16384\n    enforce_eager: True\n    val_kwargs:\n      do_sample: True\n      temperature: 0.4\n\nalgorithm:\n  adv_estimator: grpo\n  gamma: 0.95\n  high_level_gamma: 0.95\n  norm_adv_by_std_in_grpo: True\n\nagent_proxy:\n  context_window_mode: \"full\"\n  max_context_window: -1\n  step_independent_history_length: 2\n  max_turn: 50\n  max_actions_per_turn: 1\n  max_prompt_length: 16384\n  use_turn_scores: True\n\ncollapse_detection:\n  multi_turn_enabled: false\n\nes_manager:\n  format_penalty: 0\n  train:\n    env_groups: 16\n    group_size: 8\n    env_configs:\n      tags: [\"AlfworldSG\"]\n      n_groups: [16]\n  val:\n    env_groups: 140\n    group_size: 1\n    env_configs:\n      tags: [\"AlfworldSG\"]\n      n_groups: [140]\nEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat > /root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml << 'EOF'\n# exp029: Episode-Level GRPO (full context window)\n# 核心改动 vs exp028c: context_window_mode step_independent → full\n# 其余参数完全一致（控制变量实验）\n#\n# 配套调整（因 full 模式产生更长序列）：\n#   1. context_window_mode: step_independent → full\n#   2. max_prompt_length: 4096 → 16384（容纳 50-turn episode）\n#   3. max_model_len: 8192 → 16384\n#   4. max_num_batched_tokens: 8192 → 16384\n#   5. gpu_memory_utilization: 0.4 → 0.92（长序列需更多显存）\n#   6. ppo_mini_batch_size: 128 → 32（full 模式样本数=episode数=128，mini_batch 不能等于总量）\n#   7. 添加 ppo_max_token_len_per_gpu: 65536（适应长序列）\n\ndefaults:\n  - base\n\nhydra:\n  searchpath:\n    - pkg://verl.trainer.config\n\nmodel_path: /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\n\nsystem:\n  CUDA_VISIBLE_DEVICES: \"0,1\"\n\nmicro_batch_size_per_gpu: 1\nppo_mini_batch_size: 32\n\ntrainer:\n  project_name: cost-verify-agent-rl\n  experiment_name: exp029-alfworld-episode-level\n  total_training_steps: 100\n  n_gpus_per_node: 2\n  val_before_train: True\n  test_freq: 5\n  save_freq: 5\n  local_log_dir: \"/root/autodl-tmp/checkpoints/exp029/\"\n  default_local_dir: \"/root/autodl-tmp/checkpoints/exp029/\"\n  logger: ['console', 'wandb']\n  max_actor_ckpt_to_keep: 10\n  resume_mode: \"disable\"\n\nactor_rollout_ref:\n  model:\n    override_config:\n      attn_implementation: sdpa\n  actor:\n    use_ref: True\n    use_torch_compile: False\n    use_kl_loss: True\n    kl_loss_coef: 0.01\n    kl_loss_type: low_var_kl\n    entropy_coeff: 0.001\n    clip_ratio_low: 0.2\n    clip_ratio_high: 0.28\n    loss_agg_mode: \"token-mean\"\n    grad_clip: 1.0\n    ppo_max_token_len_per_gpu: 65536\n    optim:\n      lr: 1e-6\n  ref:\n    use_torch_compile: False\n    log_prob_max_token_len_per_gpu: 65536\n  rollout:\n    response_length: 1024\n    gpu_memory_utilization: 0.92\n    max_model_len: 16384\n    temperature: 1.0\n    max_num_batched_tokens: 16384\n    enforce_eager: True\n    val_kwargs:\n      do_sample: True\n      temperature: 0.4\n\nalgorithm:\n  adv_estimator: grpo\n  gamma: 0.95\n  high_level_gamma: 0.95\n  norm_adv_by_std_in_grpo: True\n\nagent_proxy:\n  context_window_mode: \"full\"\n  max_context_window: -1\n  step_independent_history_length: 2\n  max_turn: 50\n  max_actions_per_turn: 1\n  max_prompt_length: 16384\n  use_turn_scores: True\n\ncollapse_detection:\n  multi_turn_enabled: false\n\nes_manager:\n  format_penalty: 0\n  train:\n    env_groups: 16\n    group_size: 8\n    env_configs:\n      tags: [\"AlfworldSG\"]\n      n_groups: [16]\n  val:\n    env_groups: 140\n    group_size: 1\n    env_configs:\n      tags: [\"AlfworldSG\"]\n      n_groups: [140]\nEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T08:33:23.539227+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T08:33:23.539371+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cat > /root/cost-verify-agent-rl/scripts/run_exp029_episode_level.sh << 'EOF'\n#!/bin/bash\nset -euo pipefail\n\n# exp029: Episode-Level GRPO (full context window)\n# 核心改动 vs exp028c: context_window_mode step_independent → full\n# 其余参数完全一致（控制变量实验）\n\necho \"=== [PRE-FLIGHT] exp029: episode-level GRPO ===\"\n\n# --- Model ---\nMODEL=\"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\"\nif [ ! -f \"$MODEL/config.json\" ]; then\n    echo \"[ERROR] Model not found: $MODEL\"\n    exit 1\nfi\necho \"[OK] Model: SFT checkpoint (qwen3_exp021_ragen_sft_v4)\"\n\n# --- Disk ---\necho \"[PRE-FLIGHT] Disk space:\"\ndf -h /root/autodl-tmp/ | tail -1\nAVAIL=$(df --output=avail /root/autodl-tmp/ | tail -1 | tr -d ' ')\nif [ \"$AVAIL\" -lt 52428800 ]; then\n    echo \"[ERROR] Less than 50GB available on /root/autodl-tmp/\"\n    exit 1\nfi\necho \"[OK] Disk space sufficient\"\n\n# --- GPU ---\necho \"[PRE-FLIGHT] GPU status:\"\nnvidia-smi --query-gpu=index,name,memory.total,memory.used --format=csv,noheader\necho \"\"\n\n# --- Config file ---\nCONFIG_FILE=\"/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml\"\nif [ ! -f \"$CONFIG_FILE\" ]; then\n    echo \"[ERROR] Config not found: $CONFIG_FILE\"\n    exit 1\nfi\necho \"[OK] Config file exists\"\n\n# --- Environment ---\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR\nexport ALFWORLD_DATA=/root/autodl-tmp/alfworld\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport RAY_memory_monitor_refresh_ms=0\nexport RAY_SYSTEM_MEMORY=210000000000\nexport HYDRA_FULL_ERROR=1\nexport CUDA_VISIBLE_DEVICES=0,1\nexport WANDB_PROJECT=cost-verify-agent-rl\nexport WANDB_NAME=exp029_episode_level\nexport WANDB_MODE=online\n\n# --- Output directory ---\nmkdir -p /root/autodl-tmp/checkpoints/exp029/\nmkdir -p ~/runs/cost-verify-agent-rl/\n\necho \"=== [PRE-FLIGHT] All checks passed. Starting training... ===\"\n\ncd /root/cost-verify-agent-rl/RAGEN\npython train.py --config-name _alfworld_exp029_episode_level 2>&1 | tee ~/runs/cost-verify-agent-rl/exp029_episode_level.log\n\necho \"EXIT_CODE=$?\"\nEOF\nchmod +x /root/cost-verify-agent-rl/scripts/run_exp029_episode_level.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cat > /root/cost-verify-agent-rl/scripts/run_exp029_episode_level.sh << 'EOF'\n#!/bin/bash\nset -euo pipefail\n\n# exp029: Episode-Level GRPO (full context window)\n# 核心改动 vs exp028c: context_window_mode step_independent → full\n# 其余参数完全一致（控制变量实验）\n\necho \"=== [PRE-FLIGHT] exp029: episode-level GRPO ===\"\n\n# --- Model ---\nMODEL=\"/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4\"\nif [ ! -f \"$MODEL/config.json\" ]; then\n    echo \"[ERROR] Model not found: $MODEL\"\n    exit 1\nfi\necho \"[OK] Model: SFT checkpoint (qwen3_exp021_ragen_sft_v4)\"\n\n# --- Disk ---\necho \"[PRE-FLIGHT] Disk space:\"\ndf -h /root/autodl-tmp/ | tail -1\nAVAIL=$(df --output=avail /root/autodl-tmp/ | tail -1 | tr -d ' ')\nif [ \"$AVAIL\" -lt 52428800 ]; then\n    echo \"[ERROR] Less than 50GB available on /root/autodl-tmp/\"\n    exit 1\nfi\necho \"[OK] Disk space sufficient\"\n\n# --- GPU ---\necho \"[PRE-FLIGHT] GPU status:\"\nnvidia-smi --query-gpu=index,name,memory.total,memory.used --format=csv,noheader\necho \"\"\n\n# --- Config file ---\nCONFIG_FILE=\"/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml\"\nif [ ! -f \"$CONFIG_FILE\" ]; then\n    echo \"[ERROR] Config not found: $CONFIG_FILE\"\n    exit 1\nfi\necho \"[OK] Config file exists\"\n\n# --- Environment ---\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR\nexport ALFWORLD_DATA=/root/autodl-tmp/alfworld\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport RAY_memory_monitor_refresh_ms=0\nexport RAY_SYSTEM_MEMORY=210000000000\nexport HYDRA_FULL_ERROR=1\nexport CUDA_VISIBLE_DEVICES=0,1\nexport WANDB_PROJECT=cost-verify-agent-rl\nexport WANDB_NAME=exp029_episode_level\nexport WANDB_MODE=online\n\n# --- Output directory ---\nmkdir -p /root/autodl-tmp/checkpoints/exp029/\nmkdir -p ~/runs/cost-verify-agent-rl/\n\necho \"=== [PRE-FLIGHT] All checks passed. Starting training... ===\"\n\ncd /root/cost-verify-agent-rl/RAGEN\npython train.py --config-name _alfworld_exp029_episode_level 2>&1 | tee ~/runs/cost-verify-agent-rl/exp029_episode_level.log\n\necho \"EXIT_CODE=$?\"\nEOF\nchmod +x /root/cost-verify-agent-rl/scripts/run_exp029_episode_level.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T08:33:23.539528+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-16T08:33:23.539699+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "cd /root/cost-verify-agent-rl/RAGEN && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"from omegaconf import OmegaConf; c = OmegaConf.load('config/_alfworld_exp029_episode_level.yaml'); print('OK:', c.agent_proxy.context_window_mode, c.es_manager.val.env_groups, c.ppo_mini_batch_size, c.actor_rollout_ref.rollout.gpu_memory_utilization, c.actor_rollout_ref.rollout.max_model_len)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "cd /root/cost-verify-agent-rl/RAGEN && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"from omegaconf import OmegaConf; c = OmegaConf.load('config/_alfworld_exp029_episode_level.yaml'); print('OK:', c.agent_proxy.context_window_mode, c.es_manager.val.env_groups, c.ppo_mini_batch_size, c.actor_rollout_ref.rollout.gpu_memory_utilization, c.actor_rollout_ref.rollout.max_model_len)\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T08:33:23.539843+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"OK: full 140 32 0.92 16384\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-16T08:33:23.540004+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "artifacts/exp029_episode_level/intermediate/config_diff.md",
+  "content": "# exp029 vs exp028c 配置差异\n\n## 核心改动\n| 参数 | exp028c | exp029 | 原因 |\n|------|---------|--------|------|\n| `agent_proxy.context_window_mode` | step_independent | **full** | 切换到 episode-level 训练 |\n| `agent_proxy.max_context_window` | 5 | **-1** | full 模式使用完整历史 |\n| `agent_proxy.max_prompt_length` | 4096 | **16384** | 容纳 50-turn episode (~15000 tokens) |\n\n## 配套调整（因长序列）\n| 参数 | exp028c | exp029 | 原因 |\n|------|---------|--------|------|\n| `actor_rollout_ref.rollout.max_model_len` | 8192 | **16384** | 匹配 episode 长度 |\n| `actor_rollout_ref.rollout.max_num_batched_tokens` | 8192 | **16384** | 匹配 max_model_len |\n| `actor_rollout_ref.rollout.gpu_memory_utilization` | 0.4 | **0.92** | 长序列需更多显存 |\n| `ppo_mini_batch_size` | 128 | **32** | full 模式样本数=128(=16×8)，mini_batch 不能等于总量 |\n| `actor.ppo_max_token_len_per_gpu` | (default) | **65536** | 适应长序列 |\n| `ref.log_prob_max_token_len_per_gpu` | (default) | **65536** | 适应长序列 |\n\n## 命名/路径更新\n| 参数 | exp028c | exp029 |\n|------|---------|--------|\n| `trainer.experiment_name` | exp028c-alfworld-selfguide-recipe | exp029-alfworld-episode-level |\n| `trainer.local_log_dir` | /root/autodl-tmp/checkpoints/exp028c/ | /root/autodl-tmp/checkpoints/exp029/ |\n| `trainer.default_local_dir` | /root/autodl-tmp/checkpoints/exp028c/ | /root/autodl-tmp/checkpoints/exp029/ |\n\n## 保持不变的关键参数\n- model_path: qwen3_exp021_ragen_sft_v4 (SFT checkpoint)\n- total_training_steps: 100\n- LR: 1e-6, kl_loss_coef: 0.01, entropy_coeff: 0.001\n- gamma: 0.95, clip_ratio: 0.2/0.28\n- loss_agg_mode: token-mean\n- train env_groups: 16, group_size: 8 (128 trajectories)\n- val env_groups: 140 (全部 valid_seen)\n- response_length: 1024, max_turn: 50\n- test_freq: 5, save_freq: 5\n\n## 产出文件\n- 配置: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml`\n- 启动脚本: `/root/cost-verify-agent-rl/scripts/run_exp029_episode_level.sh`\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "file": "artifacts/exp029_episode_level/intermediate/config_diff.md",
+    "content": "# exp029 vs exp028c 配置差异\n\n## 核心改动\n| 参数 | exp028c | exp029 | 原因 |\n|------|---------|--------|------|\n| `agent_proxy.context_window_mode` | step_independent | **full** | 切换到 episode-level 训练 |\n| `agent_proxy.max_context_window` | 5 | **-1** | full 模式使用完整历史 |\n| `agent_proxy.max_prompt_length` | 4096 | **16384** | 容纳 50-turn episode (~15000 tokens) |\n\n## 配套调整（因长序列）\n| 参数 | exp028c | exp029 | 原因 |\n|------|---------|--------|------|\n| `actor_rollout_ref.rollout.max_model_len` | 8192 | **16384** | 匹配 episode 长度 |\n| `actor_rollout_ref.rollout.max_num_batched_tokens` | 8192 | **16384** | 匹配 max_model_len |\n| `actor_rollout_ref.rollout.gpu_memory_utilization` | 0.4 | **0.92** | 长序列需更多显存 |\n| `ppo_mini_batch_size` | 128 | **32** | full 模式样本数=128(=16×8)，mini_batch 不能等于总量 |\n| `actor.ppo_max_token_len_per_gpu` | (default) | **65536** | 适应长序列 |\n| `ref.log_prob_max_token_len_per_gpu` | (default) | **65536** | 适应长序列 |\n\n## 命名/路径更新\n| 参数 | exp028c | exp029 |\n|------|---------|--------|\n| `trainer.experiment_name` | exp028c-alfworld-selfguide-recipe | exp029-alfworld-episode-level |\n| `trainer.local_log_dir` | /root/autodl-tmp/checkpoints/exp028c/ | /root/autodl-tmp/checkpoints/exp029/ |\n| `trainer.default_local_dir` | /root/autodl-tmp/checkpoints/exp028c/ | /root/autodl-tmp/checkpoints/exp029/ |\n\n## 保持不变的关键参数\n- model_path: qwen3_exp021_ragen_sft_v4 (SFT checkpoint)\n- total_training_steps: 100\n- LR: 1e-6, kl_loss_coef: 0.01, entropy_coeff: 0.001\n- gamma: 0.95, clip_ratio: 0.2/0.28\n- loss_agg_mode: token-mean\n- train env_groups: 16, group_size: 8 (128 trajectories)\n- val env_groups: 140 (全部 valid_seen)\n- response_length: 1024, max_turn: 50\n- test_freq: 5, save_freq: 5\n\n## 产出文件\n- 配置: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml`\n- 启动脚本: `/root/cost-verify-agent-rl/scripts/run_exp029_episode_level.sh`\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T08:33:23.540159+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file 'artifacts/exp029_episode_level/intermediate/config_diff.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T08:33:23.540336+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "mkdir -p /root/cost-verify-agent-rl/artifacts/exp029_episode_level/intermediate && cat > /root/cost-verify-agent-rl/artifacts/exp029_episode_level/intermediate/config_diff.md << 'EOF'\n# exp029 vs exp028c 配置差异\n\n## 核心改动\n| 参数 | exp028c | exp029 | 原因 |\n|------|---------|--------|------|\n| `agent_proxy.context_window_mode` | step_independent | **full** | 切换到 episode-level 训练 |\n| `agent_proxy.max_context_window` | 5 | **-1** | full 模式使用完整历史 |\n| `agent_proxy.max_prompt_length` | 4096 | **16384** | 容纳 50-turn episode (~15000 tokens) |\n\n## 配套调整（因长序列）\n| 参数 | exp028c | exp029 | 原因 |\n|------|---------|--------|------|\n| `actor_rollout_ref.rollout.max_model_len` | 8192 | **16384** | 匹配 episode 长度 |\n| `actor_rollout_ref.rollout.max_num_batched_tokens` | 8192 | **16384** | 匹配 max_model_len |\n| `actor_rollout_ref.rollout.gpu_memory_utilization` | 0.4 | **0.92** | 长序列需更多显存 |\n| `ppo_mini_batch_size` | 128 | **32** | full 模式样本数=128(=16x8)，mini_batch 不能等于总量 |\n| `actor.ppo_max_token_len_per_gpu` | (default) | **65536** | 适应长序列 |\n| `ref.log_prob_max_token_len_per_gpu` | (default) | **65536** | 适应长序列 |\n\n## 命名/路径更新\n| 参数 | exp028c | exp029 |\n|------|---------|--------|\n| `trainer.experiment_name` | exp028c-alfworld-selfguide-recipe | exp029-alfworld-episode-level |\n| `trainer.local_log_dir` | .../exp028c/ | .../exp029/ |\n| `trainer.default_local_dir` | .../exp028c/ | .../exp029/ |\n\n## 保持不变的关键参数\n- model_path, total_training_steps, LR, kl_loss_coef, entropy_coeff\n- gamma, clip_ratio, loss_agg_mode, train env (16x8), val (140x1)\n- response_length: 1024, max_turn: 50, test_freq: 5\nEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb1-17606",
+    "command": "mkdir -p /root/cost-verify-agent-rl/artifacts/exp029_episode_level/intermediate && cat > /root/cost-verify-agent-rl/artifacts/exp029_episode_level/intermediate/config_diff.md << 'EOF'\n# exp029 vs exp028c 配置差异\n\n## 核心改动\n| 参数 | exp028c | exp029 | 原因 |\n|------|---------|--------|------|\n| `agent_proxy.context_window_mode` | step_independent | **full** | 切换到 episode-level 训练 |\n| `agent_proxy.max_context_window` | 5 | **-1** | full 模式使用完整历史 |\n| `agent_proxy.max_prompt_length` | 4096 | **16384** | 容纳 50-turn episode (~15000 tokens) |\n\n## 配套调整（因长序列）\n| 参数 | exp028c | exp029 | 原因 |\n|------|---------|--------|------|\n| `actor_rollout_ref.rollout.max_model_len` | 8192 | **16384** | 匹配 episode 长度 |\n| `actor_rollout_ref.rollout.max_num_batched_tokens` | 8192 | **16384** | 匹配 max_model_len |\n| `actor_rollout_ref.rollout.gpu_memory_utilization` | 0.4 | **0.92** | 长序列需更多显存 |\n| `ppo_mini_batch_size` | 128 | **32** | full 模式样本数=128(=16x8)，mini_batch 不能等于总量 |\n| `actor.ppo_max_token_len_per_gpu` | (default) | **65536** | 适应长序列 |\n| `ref.log_prob_max_token_len_per_gpu` | (default) | **65536** | 适应长序列 |\n\n## 命名/路径更新\n| 参数 | exp028c | exp029 |\n|------|---------|--------|\n| `trainer.experiment_name` | exp028c-alfworld-selfguide-recipe | exp029-alfworld-episode-level |\n| `trainer.local_log_dir` | .../exp028c/ | .../exp029/ |\n| `trainer.default_local_dir` | .../exp028c/ | .../exp029/ |\n\n## 保持不变的关键参数\n- model_path, total_training_steps, LR, kl_loss_coef, entropy_coeff\n- gamma, clip_ratio, loss_agg_mode, train env (16x8), val (140x1)\n- response_length: 1024, max_turn: 50, test_freq: 5\nEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T08:33:23.540493+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp029_config_20260516T083041",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-16T08:33:23.540666+00:00_
+
+完成。产出：
+
+- **配置文件**: `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_exp029_episode_level.yaml`
+- **启动脚本**: `/root/cost-verify-agent-rl/scripts/run_exp029_episode_level.sh`
+- **Diff 报告**: `/root/cost-verify-agent-rl/artifacts/exp029_episode_level/intermediate/config_diff.md`
+
+验证结果: `OK: full 140 32 0.92 16384` — 所有关键参数正确。
+
+注意：配置实际路径在 `RAGEN/config/` 而非任务描述中的 `configs/`，启动脚本入口点已对齐 exp028c（`cd RAGEN && python train.py --config-name ...`）。训练未启动。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_exp029_config_20260516T083041"
+}
+```
+
+</details>
+
+---

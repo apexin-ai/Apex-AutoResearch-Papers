@@ -1,0 +1,27 @@
+{
+  "exp_id": "scienceworld_info_loss_full",
+  "project": "cost-verify-agent-rl",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:21:15.269Z",
+    "updated_at": "2026-05-20T14:33:41.162Z",
+    "hypothesis": "ScienceWorld SFT model with full context at T=0 achieves significantly higher success rate than h=2, quantifying information loss (Mechanism 1) in a second environment beyond ALFWorld",
+    "parent": "8b_det_eval_full",
+    "spec": {
+      "command": "python3 eval_scienceworld_info_loss.py --temperature 0 --history_length -1 --max_variations 3 --tensor_parallel_size 2",
+      "server": "westd-47453",
+      "data_path": "ScienceWorldSG dev split",
+      "data_count": "~90 episodes",
+      "model_name": "qwen3_scienceworld_sft",
+      "seed": 0,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen3_scienceworld_sft/huggingface",
+      "eval_data": "ScienceWorldSG dev, max_variations=3"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-20T14:33:41.429784+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0313cb182891b3b461b0",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diag eval variance check",
+  "task_key": "worker_diag_eval_variance_check_20260523T195812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_eval_variance_check_20260523T195812_result.json",
+    "occurrence": 1,
+    "bytes": 1141,
+    "sha256": "3084cc4a034c350d9e9b63ac6e19cf7b72114f8236228cad842a2b3842ed0c71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**结论：eval 正常运行中，无需干预。**\n\n### GPU 状态\n- GPU 0: 56461/97887 MiB 已用（58%），利用率瞬时 0%（采样间隙，正常）\n\n### 进程状态\n| 角色 | PID | 启动时间 | 状态 |\n|------|-----|---------|------|\n| 总调度 `run_eval_variance.sh` | 46190 | 02:40 | 运行中 |\n| 当前 eval `train.py evalvar-seed7hk-s0` | 57842 | 03:49 | 运行中，CPU 4.5% |\n| `ray::TaskRunner.run` | 59882 | 03:50 | 运行中，CPU 78.2% |\n| `ray::WorkerDict.generate` | 60058 | 03:50 | 运行中，CPU 34.7% |\n| Ray IDLE workers | 多个 | 03:50 | 待命 |\n\n### 进度（summary.log）\n- seed300 s0 — 完成\n- seed300 s1 — 完成\n- seed300 s2 — 完成（耗时 23min）\n- **seed7hk s0 — 03:49:50 启动，当前正在运行**（第 4/9 轮）\n- seed7hk s1, s2, 第三个 checkpoint 的 3 轮 — 待执行\n\n### 其他\n- PID 42499（h-sweep 残留）已不存在\n- 日志最后更新：03:53，显示 wandb run `zcqqnd4c` 已初始化，WorkerDict 正在加载模型权重进入推理阶段\n- 每轮约 23 分钟，剩余 5 轮预计约 2 小时完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-eval-variance-check.md"
+}

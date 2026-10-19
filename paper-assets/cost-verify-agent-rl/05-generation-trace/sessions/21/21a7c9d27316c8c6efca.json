@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21a7c9d27316c8c6efca",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops start factorial seed2",
+  "task_key": "worker_ops_start-factorial-seed2_20260518T102137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_start-factorial-seed2_20260518T102137_result.json",
+    "occurrence": 1,
+    "bytes": 821,
+    "sha256": "5f70b7c7957444ee17a32fba8a8e8d37848940862853150312095abf2b8a36f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功，已进入 val_before_train 阶段。\n\n**汇报：**\n\n| 项目 | 值 |\n|---|---|\n| **主 PID** | 505305 (train.py), Ray workers: 511799 (TaskRunner), 512432/512433 (WorkerDict) |\n| **GPU 0** | 4731 MiB / 97887 MiB (ray::WorkerDict) |\n| **GPU 1** | 4731 MiB / 97887 MiB (ray::WorkerDict) |\n| **W&B run ID** | `d3irreww` |\n| **W&B URL** | https://wandb.ai/xiaoyucorynne-/cost-verify-agent-rl/runs/d3irreww |\n| **Config 路径** | `/root/cost-verify-agent-rl/RAGEN/config/_alfworld_factorial_h2_episode_adv_seed2.yaml` |\n| **tmux session** | `factorial_seed2` |\n| **状态** | 模型已加载到 GPU，W&B 已连接，正在执行 val_before_train（134 OOD envs 加载中） |\n| **错误** | 无（tokenizer regex warning 和 FSDP deprecation warning 均为已知无害警告） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-start-factorial-seed2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e173e875da0614f13af",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_3_1778752201.md",
+  "task_key": "loop_3_1778752201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778752201.md",
+    "occurrence": 1,
+    "bytes": 3491,
+    "sha256": "94aacc34599af1c64cd8f3261655ddd331f81ac0db2c34ef46f401ca67c60133"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-14T09:34:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-17606 cuda:0, cuda:1（仅此 2 张，不可用其他卡）\n- 训练启动必须带 `export TMPDIR=/root/autodl-tmp/tmp/ && mkdir -p $TMPDIR`（根分区 /tmp 只有 30GB，exp007/exp010 两次因此崩溃）\n- conda 环境不是 venv：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- checkpoint 目录不可被多个实验同时写入（exp009 教训）\n- `agent_proxy.py` 入口有 vLLM 版本兼容问题（`disable_mm_preprocessor_cache`），exp012 因此崩溃，Worker 正在修复中——修复确认前不要用此入口重提交\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606，账号 root\n- 工作目录：`/root/cost-verify-agent-rl/RAGEN/`\n- Python：`/root/miniconda3/bin/python`（Python 3.12，conda base env）\n- 模型：SFT checkpoint `/root/autodl-tmp/checkpoints/exp008_sft/final`（symlink `qwen3_sft_final`），GRPO step 5 checkpoint `/root/autodl-tmp/checkpoints/exp008_grpo/global_step_5/`\n- 数据：ALFWorld `/root/autodl-tmp/alfworld/`（3553 games），SFT 数据 `/root/autodl-tmp/sft_data/alfworld_sft_ragen.jsonl`（1200 条）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：无（exp012 已崩溃，2 张 GPU 空闲）\n- Worker：`worker_diagnose_exp012_20260514T063149`（诊断修复 vLLM 兼容问题，等待回调）\n\n### 3. 📊 当前状态\nexp012（format_penalty=0 + group_size=16，纯 A2 实验）启动即崩溃——vLLM `EngineArgs` 不认识 `disable_mm_preprocessor_cache` 参数。已派 Worker SSH 到服务器诊断修复，等回调。\n\nRegistry 关键状态：\n- exp012: DONE/failed（vLLM 兼容，0 训练步）\n- exp011: DONE/killed（reward shaping 问题，D007 决策 kill）\n- exp010: DONE/failed（/tmp 磁盘满 step 11，但有 10 步数据：success 崩塌 4.7%→0%）\n- exp008_sft: DONE/success（action_is_valid 90%，唯一成功实验）\n\n已完成：registry 更新、飞书结果卡片、Director 汇报、memory.md 写入新失败模式。\n等待：Worker `diagnose:exp012` 回调。\n\n### 4. 📋 待办\n- Worker diagnose:exp012 回调 → 确认修复内容 → 创建新实验 exp013（或重用 exp012 配置）重新提交到 cuda:0+cuda:1，命令需包含修复后的入口\n- 如果 Worker 修复失败（vLLM 升级破坏 veRL 管线）→ 改用 `train.py` 入口而非 `agent_proxy.py`，需要将 exp012 的 reward 修改（format_penalty=0）适配到 train.py 的 config 格式\n- exp012 重跑成功后 → 按 on-experiment-done skill 处理结果，关注 success_rate 是否不再崩塌\n\n### 5. 🎯 战略上下文\n- 核心链路：D001(ALFWorld+Qwen3-1.7B) → D004(parser fix) → D006(SFT warmup) → D007/D008(kill reward shaping 问题，A2=降 format_penalty)\n- 当前瓶颈：exp010 发现 format_penalty=-0.1 劫持 GRPO 梯度导致 success 崩塌。exp012 是修复验证（format_penalty=0），但因 vLLM 兼容问题未跑出来\n- Phase A 判定标准：ALFWorld success_rate ≥ 76%（匹配 Self-Guide 论文）\n- Phase B (B-IAVR) 代码就绪（68/68 测试通过），被 Phase A checkpoint 阻塞\n- 易错点：`agent_proxy.py` 和 `train.py` 是两个不同入口，vLLM 调用方式不同。之前所有成功运行的实验都用 `train.py`。exp012 首次用 `agent_proxy.py` 就撞上兼容问题——如果 Worker 修不好，回退到 `train.py` 入口是安全的\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778752201.md"
+}

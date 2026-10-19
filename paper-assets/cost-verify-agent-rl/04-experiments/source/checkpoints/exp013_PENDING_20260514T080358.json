@@ -1,0 +1,18 @@
+{
+  "exp_id": "exp013",
+  "project": "cost-verify-agent-rl",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:02:52.275Z",
+    "updated_at": "2026-05-14T08:03:58.301Z",
+    "hypothesis": "kl_loss_coef 0.01→0.05 防止 GRPO policy update 过激导致 catastrophic collapse。exp012b step 6 证明模型能力足够 (success=8.59%)，问题在训练稳定性。加强 KL 约束限制每步 policy 偏移幅度。",
+    "parent": "exp012b",
+    "notes": "D011设计。唯一实际变更: kl_loss_coef 0.01→0.05（LR 在 exp012 中已是 1e-6，非 Director 预期的 5e-6）。format_penalty=0, group_size=16 保持。Resume from step 5。Config: _alfworld_exp013_lr_kl_fix.yaml。Dry-run通过，pre-flight全绿。",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-14T08:03:58.355027+00:00",
+  "trigger": "update_registry"
+}

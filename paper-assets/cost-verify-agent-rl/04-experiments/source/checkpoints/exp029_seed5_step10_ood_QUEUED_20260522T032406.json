@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp029_seed5_step10_ood",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T01:59:30.305Z",
+    "updated_at": "2026-05-22T03:24:05.970Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && PYTHONUNBUFFERED=1 RAY_USE_MULTIPROCESSING_CPU_COUNT=1 RAY_PORT=6379 python train.py --config-name _alfworld_exp029_seed5_ood_eval\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "123174",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_seed5_step10_ood.log",
+      "submitted_at": "2026-05-22T02:06:30.360Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "OOD eval for seed 5 step 10 checkpoint. Seed 5 is a stable (non-collapsed) seed. OOD success rate establishes the generalization baseline for healthy seeds at step 10, contributing to paper Table 1."
+  },
+  "timestamp": "2026-05-22T03:24:06.293151+00:00",
+  "trigger": "update_registry"
+}

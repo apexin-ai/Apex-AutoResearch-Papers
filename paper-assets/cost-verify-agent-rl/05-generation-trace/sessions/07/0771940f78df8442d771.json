@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0771940f78df8442d771",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_4_1778773859.md",
+  "task_key": "loop_4_1778773859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778773859.md",
+    "occurrence": 1,
+    "bytes": 4592,
+    "sha256": "5970a9329e89660cf56221425f4f4f1356269a800130d7d5f37763d10f5f4982"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T15:50:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 bjb1-17606 的 cuda:0, cuda:1。项目配置无 gpu_ids 字段，但历史实验全部在这两张卡上，不得使用其他卡\n- 磁盘：/root/autodl-tmp 上次报 95% full（4.1GB 剩余），exp013f checkpoint 30 步占满。大操作前必须先查磁盘\n- 训练入口必须是 `python train.py`，不是 `python -m ragen.llm_agent.agent_proxy`（exp012 踩过）\n- WandB 中 `raw_reward` 和 `episodic_return` 是日志 artifact（恒 0），看 `critic/score/*` 才是真实 reward\n- exp014a/b/c 已被 Director 撤销（D013），不要复活\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606（2× RTX PRO 6000 Blackwell 94GB），account=root\n- 工作目录：/root/cost-verify-agent-rl（RAGEN 在 /root/cost-verify-agent-rl/RAGEN）\n- Python：/root/miniconda3/bin/python（conda base 环境，不用 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：原始 Qwen3-1.7B + SFT checkpoint /root/autodl-tmp/checkpoints/exp008_sft/final（symlink qwen3_sft_final）\n- Expert SFT 数据：/root/autodl-tmp/expert_trajectories/sft_data/train.jsonl（2460 条 PDDL expert trajectory）\n- ALFWorld 数据：/root/autodl-tmp/alfworld（3553 train games）\n- HF cache：默认位置（未显式设 HF_HOME）\n- 必需环境变量：TMPDIR=/root/autodl-tmp/tmp/, ALFWORLD_DATA=/root/autodl-tmp/alfworld, RAY_memory_monitor_refresh_ms=0, RAY_SYSTEM_MEMORY=210000000000, HYDRA_FULL_ERROR=1\n- 活跃进程：exp017_expert_sft（PID 353947，cron 监控中）\n- Worker 运行中：worker_validate_move-vs-put-admissible（验证 expert trajectory 中 move vs put 的 admissible action 问题）\n\n### 3. 📊 当前状态\n**刚做完**：exp016 失败分析 → 确认 reward pipeline 正常 → 根因是 sparse reward 冷启动（base success ~4.7% train 接近 0%）→ Director D016 批准 pivot 到 Expert SFT warmup → 收集 PDDL expert trajectory 2460 条 → 启动 exp017_expert_sft\n\n**Registry 活跃实验**：\n- **exp017_expert_sft (RUNNING)**：用 2460 条 PDDL expert trajectory SFT Qwen3-1.7B，LR=2e-5, 3 epochs, batch_size=4, grad_accum=4。Pass 标准: success ≥ 10%。PID 353947，cron 监控中\n- **exp018_sft_grpo (PREPARING)**：exp017 SFT checkpoint → sparse GRPO 30 步。LR=5e-7, kl_loss_coef=0.1, max_grad_norm=1.0, won=10.0。等 exp017 完成\n\n**等待中**：\n- exp017 cron 回调（训练完成/失败）\n- worker_validate_move-vs-put-admissible 回调（检查 expert trajectory 数据质量）\n\n### 4. 📋 待办（条件触发式）\n- exp017 cron 回调 success → spawn worker 跑 eval（134 tasks），验证 success ≥ 10% → 通过则立即准备 exp018_sft_grpo 提交审批\n- exp017 cron 回调 failed → 检查日志，大概率磁盘满或 OOM，清理后重提交\n- exp017 eval success < 10% → 检查 expert trajectory 数据质量（move vs put 问题？），可能需要增加数据量或调 LR\n- exp018 提交前 → 确认磁盘空间（上次 4.1GB 剩余），可能需要清理旧 checkpoint（exp013f 30 步 checkpoint 可删）\n- worker_validate_move-vs-put-admissible 回调 → 如发现数据问题，需在 exp017 完成前修复数据并重跑 SFT\n\n### 5. 🎯 战略上下文\n**项目核心**：训练 agent 学会\"何时验证\"（B-IAVR + Lagrangian 预算控制），基于 Self-Guide 扩展。当前卡在 Phase A（Always-On Self-Guidance 基线），Phase B 代码就绪但等 Phase A checkpoint。\n\n**决策链**：\n- D006: SFT warmup 解决格式问题 → exp008_sft success（action_is_valid 8%→90%）\n- D010-D011: format_penalty 劫持梯度 → 移除\n- D012-D013: dense reward gaming → 放弃 dense reward，回归 sparse\n- D014-D015: sparse GRPO LR 搜索（1e-6 collapse, 1e-7 零梯度, 5e-7 仍无信号）→ 根因是 base success 太低\n- D016: **pivot to Expert SFT**——用 PDDL expert trajectory 提升 base success rate，使 GRPO 有足够非零 reward group\n\n**易错点**：\n- 不要再尝试纯 sparse GRPO（exp012b/exp015/exp016 三次验证均失败，根因是 base success 太低而非 LR 问题）\n- exp008_sft 用的是公开数据集 1200 条（教格式），exp017 用的是 PDDL expert 2460 条（教策略）——这是两个不同层次的 SFT\n- 磁盘是定时炸弹——/root/autodl-tmp 95% full，大实验前必须清理旧 checkpoint\n- 备选 RL 方案（SPEAR/DAPO/AR3PO）已调研完成，如 Expert SFT → GRPO 仍失败，下一步是这些方案，不是继续调 LR\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778773859.md"
+}

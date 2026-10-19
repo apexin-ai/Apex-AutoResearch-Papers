@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0467f5c864f21a074eb1",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "reviewer / loop_11.md",
+  "task_key": "loop_11",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_11.md",
+    "occurrence": 1,
+    "bytes": 3304,
+    "sha256": "e02307cc1631ddc2a04b70d63ac5c9401a2b34c87ad533a54d0b6cd4acc0676d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: max_messages\nupdated: '2026-05-16T12:22:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1（仅 2 张卡，bjb1-17606 只有这两张 RTX PRO 6000 Blackwell 98GB）\n- 训练进程必须用 CUDA_VISIBLE_DEVICES=0,1，越界即 critical\n- alfworld_memory.py 有格式冲突（format_prompt 用 `<answer>` tags vs AlfworldSG env_instruction 无 `<answer>` tags）——D051 P1 项，exp029 启动前必须确认解析器兼容性\n- W&B entity/project 未配置在项目 config 中，fetch_wandb_metrics 会失败——跳过 W&B 交叉验证\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-17606(root)，工作目录 /root/cost-verify-agent-rl\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 模型：/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4（SFT checkpoint，Qwen3-1.7B）\n- 数据：ALFWORLD_DATA=/root/autodl-tmp/alfworld\n- Checkpoints：/root/autodl-tmp/checkpoints/exp028c/（global_step_5, global_step_10）\n- 训练日志：~/runs/cost-verify-agent-rl/\n- 活跃进程：**无**（exp028c 已终止，GPU 空闲）\n- exp029 配置就绪：RAGEN/config/_alfworld_exp029_episode_level.yaml + scripts/run_exp029_episode_level.sh\n\n### 3. 📊 当前状态\n刚审完 worker_fix_exp029_config_and_dryrun。关键修正：gpu_memory_utilization 0.92→0.5，max_model_len 16384→20480。**Dryrun 未执行**（日志文件不存在）。\n\nRegistry:\n- exp029_episode_level: **PENDING**（配置就绪，未启动）\n- exp028c_selfguide_recipe: DONE/failed（灾难性崩溃，step_10_val=0%）\n- 其余 54 个实验均 DONE\n\n等待中：Director 决策是否启动 exp029（我已 post 了 3 个 warning：gpu_mem 已修、registry notes 描述过时说 0.92、格式冲突未修）。\n\n### 4. 📋 待办\n- exp029 启动通知到来 → 立即 ssh_read_only 确认 PID 在 cuda:0/1、日志开始写入、初始 val 是否正常（期望 val success ≈ 6.25% = baseline）\n- step_5_val 出来 → 这是第一个决策点。若 ≥10% 说明 episode-level 有效；若仍 6.25% 则可能有代码路径问题（full 模式可能未真正生效——检查日志中 batch_size 是否 =128 而非 ~3200）\n- 若 OOM 出现 → 检查是 rollout 阶段还是 training 阶段，建议调 gpu_memory_utilization 或 ppo_max_token_len_per_gpu\n- 格式冲突问题若未修 → 观察 step_0_val action_is_valid 是否骤降（若从 74.5% 暴跌说明格式 mismatch 导致 reward parsing 失败）\n\n### 5. 🎯 战略上下文\n- 决策链：D037(MVP≥20%) → D044(SFT有用) → D045(exp027 failed) → D050(recipe gap) → D051(exp028c 非有效 Self-Guide 复现) → D052(终止 exp028c, 灾难性崩溃)\n- exp029 是 **唯一活跃的 MVP 路径**。若 episode-level 也失败，项目可能需要更根本的方向调整（D051 还有 P1: self-guidance reward 缺失）\n- 核心判断标准：full 模式下 batch_size 应 = 128（episode 数），不是 ~3200（step 数）。如果日志显示 batch_size >> 128，说明代码仍走了 step_independent 路径\n- exp028c 的教训：train success 振荡不代表学习，val 才是真信号。best@k 改善但 pass@1 停滞 = 高方差无策略\n- 易错点：registry notes 说 gpu_memory_utilization=0.92 但实际 config 已改为 0.5——不要被 notes 误导\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-copy-3.md"
+}

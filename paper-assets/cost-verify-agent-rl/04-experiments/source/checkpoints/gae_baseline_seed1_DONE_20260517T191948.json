@@ -1,0 +1,60 @@
+{
+  "exp_id": "gae_baseline_seed1",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:05:31.533Z",
+    "updated_at": "2026-05-17T19:19:48.391Z",
+    "hypothesis": "REINFORCE++ (running-mean baseline, no critic) provides modest improvement over episode-level GRPO due to per-token advantage normalization. Fallback from GAE due to TRL 1.1.0 removing AutoModelForCausalLMWithValueHead (critic head unavailable).",
+    "parent": "exp029_episode_level",
+    "spec": {
+      "command": "python train.py --config-name _alfworld_reinforce_pp_baseline",
+      "server": "westd-47453",
+      "gpu": "cuda:0,1",
+      "pid": 40267,
+      "wandb_run_id": "dt79qyd9",
+      "model_name": "Qwen3-1.7B",
+      "seed": 42,
+      "data_path": "ALFWorld",
+      "data_count": "134 train tasks",
+      "val_episodes": 32,
+      "checkpoint_path": "N/A (killed at step 11/15)",
+      "log_path": "~/runs/cost-verify-agent-rl/gae_baseline_seed1.log"
+    },
+    "metrics": {
+      "wandb_run_id": "dt79qyd9",
+      "pid": 40267,
+      "val_step0": {
+        "success": 0.0625,
+        "action_is_valid": 0.7796
+      },
+      "val_step5": {
+        "success": 0.125,
+        "action_is_valid": 0.6926
+      },
+      "val_step10": {
+        "success": 0.125,
+        "pass_at_1": 0.125,
+        "reward_mean": 1.25
+      },
+      "train_step9": {
+        "success": 0.0313,
+        "action_is_valid": 0.6033,
+        "pass_at_8": 0.25
+      },
+      "server": "westd-47453",
+      "gpu": "cuda:0,1",
+      "method": "reinforce_plus_plus",
+      "fallback_reason": "TRL 1.1.0 removed AutoModelForCausalLMWithValueHead",
+      "current_step": "11/15"
+    },
+    "notes": "实际运行 REINFORCE++ (adv_estimator=reinforce_plus_plus_baseline)，非 GAE。GAE 因 TRL 1.1.0 移除 AutoModelForCausalLMWithValueHead 不可用 (D060)。",
+    "conclusion": "killed",
+    "completed_at": "2026-05-17T19:19:48.391Z"
+  },
+  "timestamp": "2026-05-17T19:19:48.511424+00:00",
+  "trigger": "update_registry"
+}

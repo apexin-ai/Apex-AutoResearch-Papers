@@ -1,0 +1,167 @@
+paper_key: "wei2025webagent-r1"
+title: "WebAgent-R1: Training Web Agents via End-to-End Multi-Turn Reinforcement Learning"
+venue: "EMNLP 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "Behavior Cloning (SFT)"
+    - "Filtered BC"
+    - "AWR (Advantage Weighted Regression)"
+    - "DigiRL"
+    - "WebRL"
+    - "GPT-4o (prompting)"
+    - "GPT-4o-Turbo (prompting)"
+    - "OpenAI o3 (prompting)"
+    - "OpenAI o4-mini (prompting)"
+    - "Qwen2.5-32B (prompting)"
+    - "QwQ-32B (prompting)"
+  metrics:
+    - {name: "Task Success Rate (%)", direction: "higher_better"}
+  datasets:
+    - {name: "WebArena-Lite", size: "165 eval tasks, 647 training tasks, 5 domains (Reddit, GitLab, CMS, Map, Shopping)"}
+    - {name: "WebVoyager (OOD eval)", size: "5 domains (Allrecipes, Amazon, Arxiv, Coursera, Google Map), 25 tasks per domain"}
+  ablation_dimensions:
+    - "BC initialization (R1 vs R1-Zero: with/without SFT warmup)"
+    - "Long-CoT reasoning (R1 vs R1-CoT: standard SFT vs long-CoT SFT before RL)"
+    - "Thinking-format prompting (with vs without thinking tags)"
+    - "Test-time scaling (varying max interaction count)"
+  training_recipe:
+    sft_phase:
+      data: "9,460 expert trajectories"
+      optimizer: "AdamW (implied)"
+      lr: "5e-5"
+      batch_size: 128
+      scheduler: "cosine with 5% warmup"
+      precision: "bf16"
+    rl_phase:
+      algorithm: "M-GRPO (Multi-turn GRPO)"
+      lr: "1e-6 (constant)"
+      batch_size: 16
+      kl_coefficient: 0.001
+      clip_ratio: 0.2
+      max_context: "16,384 tokens"
+      max_new_tokens: "1,024"
+      reward: "binary success/failure (rule-based)"
+    hardware: "8x A100 GPUs, DeepSpeed ZeRO-3, FlashAttention-2, gradient checkpointing"
+  method_family: "Multi-turn on-policy RL for LLM agents (GRPO-based)"
+
+positioning:
+  core_claim: "End-to-end on-policy multi-turn RL (M-GRPO) with dynamic context compression can train small open-source LLMs to outperform proprietary reasoning models on web agent tasks, provided behavior cloning initialization is used."
+  key_results: >
+    Qwen-2.5-3B: 6.1% -> 33.9% SR on WebArena-Lite;
+    Llama-3.1-8B: 8.5% -> 44.8% SR, surpassing OpenAI o3 (39.4%) and WebRL (42.4%);
+    OOD generalization: 8.8% -> 32.0% average on WebVoyager (5 unseen domains)
+  limitations:
+    - "Text-only input; no visual/screenshot information"
+    - "Relies on rule-based outcome rewards; not applicable to open-ended tasks with ambiguous goals"
+    - "Fixed predefined action space (click, type); cannot dynamically adapt to unseen operations"
+    - "Safety concerns with administrative access in production environments"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Contrasts RL's proven success in single-turn reasoning (math, coding) against its underexploration in multi-turn interactive web agent settings -- positions a clear gap."
+  tension: >
+    Three compounding problems: (1) existing methods use off-policy/offline RL which misaligns with dynamic web environments,
+    (2) multi-turn HTML contexts create prohibitive memory overhead for on-policy training,
+    (3) prior approaches require additional components (replay buffers, outcome reward models) that add complexity and fragility.
+  key_insight: >
+    On-policy end-to-end RL is fundamentally better suited to interactive settings because the agent learns from its own current behavior
+    in response to environmental state changes. The key enabler is dynamic context compression that makes multi-turn on-policy training
+    tractable by simplifying earlier observations while preserving complete action history.
+  argument_chain: >
+    RL success in single-turn tasks (DeepSeek-R1) -> gap in multi-turn interactive settings ->
+    off-policy methods have environment mismatch problem -> propose on-policy M-GRPO ->
+    solve scalability via dynamic context compression + parallel rollout ->
+    BC initialization is critical (R1-Zero fails) -> achieve SOTA on WebArena-Lite ->
+    validate with OOD generalization + test-time scaling analysis
+  contribution_framing: >
+    Three contributions: (1) end-to-end multi-turn RL framework with dynamic compression and parallel rollout,
+    (2) M-GRPO algorithm achieving large improvements (specific numbers cited),
+    (3) extensive analyses on BC role, thinking prompting, test-time scaling, and long-CoT reasoning.
+  intro_structure: >
+    ~4 paragraphs: P1 establishes RL success in LLMs but notes single-turn limitation;
+    P2 highlights web task challenges and existing approaches' constraints (off-policy, replay buffers);
+    P3 argues for on-policy RL advantages in dynamic environments;
+    P4 introduces WebAgent-R1 with three mechanisms and previews results.
+  notable_technique: >
+    Effective use of "stacking limitations" -- layers three problems (off-policy mismatch, memory overhead, extra components)
+    to make the proposed unified solution feel necessary rather than incremental. The R1-Zero ablation
+    (training RL from scratch fails at 5.7%) serves as a powerful negative result that validates the BC+RL pipeline.
+
+figures:
+  figure_count: 10
+  figure1:
+    type: "teaser_result"
+    description: "Grouped bar chart comparing task success rates on WebArena-Lite across prompting baselines (general + reasoning models) and finetuning methods, with WebAgent-R1 variants highlighted."
+    narrative_role: "Immediately establishes the main result: small finetuned models surpass proprietary reasoning models. Provides the 'punchline' upfront to motivate reading the method."
+    design_elements: ["color-coded method categories", "grouped by approach type", "model size annotation"]
+    visual_style: "Clean grouped bar chart with distinct color families for prompting vs finetuning methods. WebAgent-R1 bars visually prominent through contrasting color."
+  result_figures:
+    - figure_id: "Figure 1"
+      viz_type: "grouped_bar_chart"
+      what_compared: "Success rates across prompting (general, reasoning) and finetuning methods on WebArena-Lite"
+      how_gain_highlighted: "WebAgent-R1 bars use distinct color, positioned last in each group for visual emphasis"
+      design_note: "Effective categorization of baselines into prompting-general, prompting-reasoning, and finetuning groups makes the comparison multi-dimensional"
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "Test-time scaling: success rate vs maximum interaction count for different methods"
+      how_gain_highlighted: "WebAgent-R1 line consistently above baselines, showing steeper improvement with more interactions"
+      design_note: "Demonstrates a scaling property (more interactions -> better performance), appealing to the test-time compute narrative"
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "multi_panel_line_plots"
+      dimensions_varied: ["R1 vs R1-Zero vs R1-CoT variants", "success rate / response length / interaction count"]
+      design_note: "Three-panel layout (a,b,c) showing success rate, response length, and interaction count across training iterations for each variant. Enables simultaneous comparison of performance and behavioral changes."
+    - figure_id: "Figure 3"
+      viz_type: "multi_panel_line_plots"
+      dimensions_varied: ["reward", "trajectory length", "number of interactions over training iterations"]
+      design_note: "Vertical dashed lines partition training into three annotated phases (skill acquisition, exploration, stabilization). Effective for telling the 'learning story' of the agent."
+  figure_narrative_role: >
+    Figure 1 (teaser result) -> Figure 2 (method overview) -> Figure 3 (training dynamics) ->
+    Figure 4 (ablation variants) -> Figure 5 (test-time scaling) -> Figures 6-10 (qualitative examples per domain).
+    Follows a classic flow: result hook -> how it works -> how it learns -> what matters -> scaling behavior -> concrete examples.
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "domains x success_rate"
+    row_organization: "by_category"
+    col_organization: "grouped_by_domain"
+    highlight_strategy: "bold_best per category (implied)"
+    statistical_reporting: "single run success rate percentage"
+    num_baselines: 13
+    categories: ["Prompting - General (5 models)", "Prompting - Reasoning (3 models)", "Finetuning - Qwen2.5-3B (2 methods)", "Finetuning - Llama3.1-8B (6 methods)"]
+    columns: ["Reddit", "GitLab", "CMS", "Map", "Shopping", "Average SR"]
+    key_numbers:
+      webagent_r1_qwen3b: "33.9% avg (26.3/53.3/48.6/26.9/24.4 per domain)"
+      webagent_r1_llama8b: "44.8% avg (47.4/56.7/57.1/23.1/44.4 per domain)"
+      best_prompting_o3: "39.4% avg"
+      best_prior_finetuning_webrl: "42.4% avg"
+    design_note: "Organized by method category (prompting-general, prompting-reasoning, finetuning by base model). Per-domain breakdown reveals that gains are domain-dependent (e.g., weak on Map for Llama). Category headers within the table aid readability."
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["thinking format (with/without)", "base model (Qwen-3B, Llama-8B, o4-mini)"]
+      variation_style: "full_numbers"
+      key_numbers:
+        thinking_boost_o4mini: "15.9% -> 36.9% (+21pp)"
+        thinking_boost_qwen3b: "3.2% -> 6.1% (+2.9pp)"
+        thinking_boost_llama8b: "4.8% -> 8.5% (+3.7pp)"
+      design_note: "Also reports response length and interaction count, showing thinking format increases interaction depth (more exploration steps), not just quality per step."
+    - table_id: "Table 1"
+      what_varied: ["method properties: trial-and-error, on-policy, replay-buffer-free, self-sufficient"]
+      variation_style: "checkmark_grid"
+      design_note: "Feature comparison table positioning WebAgent-R1 as the only method with all four desirable properties (all checkmarks). Effective for method differentiation."
+  supplementary_tables:
+    - table_id: "Table 4"
+      content: "OOD evaluation on WebVoyager across 5 unseen domains (Allrecipes, Amazon, Arxiv, Coursera, Google Map)"
+      key_numbers: "Prompting 8.8% -> SFT 12.0% -> WebAgent-R1 32.0% average"
+      reason: "Demonstrates generalization beyond training distribution; placed in main text as a key selling point"
+    - table_id: "Table 5"
+      content: "Qualitative comparison of model outputs between WebAgent-R1 and WebAgent-R1-CoT showing detailed thinking process examples"
+      reason: "Illustrates behavioral differences between standard and long-CoT variants"
+    in_appendix: false
+    note: "All tables appear in the main paper body. Figures 6-10 serve as appendix-style qualitative examples."

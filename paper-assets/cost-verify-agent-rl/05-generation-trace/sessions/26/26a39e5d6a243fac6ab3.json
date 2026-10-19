@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26a39e5d6a243fac6ab3",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh urgent audit enable think westd",
+  "task_key": "worker_ssh_urgent_audit_enable_think_westd_20260522T195845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_audit_enable_think_westd_20260522T195845_result.json",
+    "occurrence": 1,
+    "bytes": 2667,
+    "sha256": "64df86abe0864287276e8f5f77f08ffb0b5367c39f7cd76758d047425890ff15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。以下是完整结果。\n\n---\n\n## enable_think 审计结果\n\n### Config 层\n\n| 来源 | enable_think | 备注 |\n|------|------------|------|\n| `base.yaml:142` | **True** | 默认值 |\n| `eval.yaml:58` | **True** | |\n| `_alfworld_8b_v9d_ood_eval.yaml` | **False** | 8B Cell C 的 OOD eval config |\n| Cell A/C configs | **False** | 8B 实验 |\n\n### v2 RAGEN Eval（即 Table 1 数据来源，25-31%）\n\n| Seed | enable_think | 来源 | OOD Success | Episodes |\n|------|-------------|------|-------------|----------|\n| seed4 step15 | **True** | v2 config dump `agent_proxy.enable_think: True` | **30.6%** | 134 |\n| seed5 step10 | **True** | v2 config dump `agent_proxy.enable_think: True` | **25.4%** | 134 |\n| seed6 step15 | **True** | v2 config dump `agent_proxy.enable_think: True` | **29.1%** | 134 |\n\n**结论：三个 seed 的 v2 RAGEN eval 全部 `enable_think=True`，与训练一致。Table 1 在 enable_think 维度是安全的。**\n\n### table1_ood Standalone Eval（交叉验证，数值显著更低）\n\n| Seed | enable_think | OOD Success | 状态 |\n|------|-------------|-------------|------|\n| seed4 step15 | **N/A（脚本无此参数）** | **6.7%** (9/134) | 完成 |\n| seed5 step10 | **N/A** | **14.2%** (19/134) | 完成 |\n| seed6 step15 | **N/A** | **incomplete** (93/134) | 中断 |\n\n### ⚠️ 新发现的问题\n\nstandalone eval (`eval_checkpoint.py`) 与 RAGEN eval 的 **3 个关键差异**导致结果巨大落差（6.7-14.2% vs 25-31%）：\n\n1. **Context window**: standalone 用 `HISTORY_LENGTH=5` 滑动窗口，RAGEN 用 `context_window_mode=full`（全部历史）\n2. **Response prefix**: RAGEN 在生成后给 response 加 `<think>` 前缀存入对话历史（`ctx_manager.py:1614`），standalone 不做此处理\n3. **Prompt format**: standalone 的 action 不加 `<answer>` tags（`</think>` 后直接输出 action），RAGEN 用 `<think>...<answer>...` 格式\n4. **Chat template**: tokenizer_config.json 无自定义 chat_template，`apply_chat_template` 未传 `enable_thinking` 参数（两边行为一致，都用 Qwen3 默认）\n\n这些差异意味着 standalone eval 数值不能直接替换 v2 RAGEN eval 的 Table 1 数据。如果 Table 1 使用 v2 数据则无问题；如果想用 standalone eval 验证，需要用 `eval_checkpoint_full_context.py`（全上下文版）重跑。\n\n---\n\n## seed200 v3 状态\n\n- **PID 129823**: alive, 运行时间 ~56 分钟\n- **Config**: `_alfworld_exp029_seed200_episode`, CUDA_VISIBLE_DEVICES=2,3\n- **GPU 占用**: PID 132938 (45072 MiB) + PID 132939 (45774 MiB), 两张卡活跃\n- **状态**: 正常运行中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-audit-enable-think-westd.md"
+}

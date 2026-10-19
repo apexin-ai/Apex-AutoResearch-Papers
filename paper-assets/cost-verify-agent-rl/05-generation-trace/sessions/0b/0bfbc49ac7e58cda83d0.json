@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bfbc49ac7e58cda83d0",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code 7b rl config prep",
+  "task_key": "worker_code_7b-rl-config-prep_20260519T074116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_7b-rl-config-prep_20260519T074116_result.json",
+    "occurrence": 1,
+    "bytes": 1348,
+    "sha256": "fb18c6579a49c0d2bdd22890608a3823074ecce84c99a28e8884f8ea983d2769"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "YAML 格式正确，checkpoint 路径存在（7 个 safetensors 分片）。\n\n**配置文件路径**：\n- `RAGEN/config/_alfworld_8b_cell_a.yaml` — Cell A (step-independent h=2)\n- `RAGEN/config/_alfworld_8b_cell_c.yaml` — Cell C (episode-level full context)\n\n**与 1.7B 配置的关键差异**：\n\n| 参数 | 1.7B | 8B |\n|---|---|---|\n| model_path | qwen3_exp021_ragen_sft_v4 | qwen3_8b_sft_v1/checkpoint-231/ |\n| n_gpus_per_node | 2 | 4 |\n| CUDA_VISIBLE_DEVICES | 0,1 | 0,1,2,3 |\n| enable_gradient_checkpointing | 隐式 True (default) | 显式 True |\n| optimizer_offload | True | True |\n| ppo_max_token_len_per_gpu | 65536 | 32768 (减半) |\n| log_prob_max_token_len_per_gpu | 65536 | 32768 (减半) |\n| enable_think | True (default) | False |\n\n**Cell A vs Cell C 差异**（与 1.7B 一致）：\n\n| 参数 | Cell A | Cell C |\n|---|---|---|\n| context_window_mode | step_independent | full |\n| step_independent_history_length | 2 | 2 (不生效) |\n| total_training_steps | 15 | 30 |\n| experiment_name | 8b-cell-a-step-independent-h2 | 8b-cell-c-episode-level |\n| checkpoint 目录 | 8b-cell-a/ | 8b-cell-c/ |\n\n**潜在 OOM 降级方案**（如果 96GB 卡仍不够）：\n1. `ppo_mini_batch_size: 16 → 8`\n2. `ppo_max_token_len_per_gpu: 32768 → 16384`\n3. `es_manager.train.env_groups: 16 → 8`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-7b-rl-config-prep.md"
+}

@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp012b",
+  "project": "cost-verify-agent-rl",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:44:22.570Z",
+    "updated_at": "2026-05-14T06:44:51.789Z",
+    "hypothesis": "format_penalty=0 + group_size=16，从 step 5 checkpoint 恢复 GRPO 训练。纯 A2 实验（D010）：隔离 format penalty 对 success 崩塌的影响。exp012 的基础设施修复重试（vLLM 参数兼容已修复）。",
+    "parent": "exp012",
+    "notes": "D010指令重试。exp012 因 vLLM 0.18.1 不支持 disable_mm_preprocessor_cache 参数启动即崩。诊断 Worker 确认 alfworld 训练入口不涉及该参数（仅 ap_webshop.py 有残留），dry-run 通过。使用相同配置 _alfworld_exp012_reward_fix 重新提交。",
+    "spec": {
+      "server": "bjb1-17606",
+      "account": "root",
+      "gpu_ids": [
+        "cuda:0",
+        "cuda:1"
+      ]
+    }
+  },
+  "timestamp": "2026-05-14T06:44:51.825007+00:00",
+  "trigger": "update_registry"
+}

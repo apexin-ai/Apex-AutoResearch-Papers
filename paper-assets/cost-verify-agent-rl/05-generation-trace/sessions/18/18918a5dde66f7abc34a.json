@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18918a5dde66f7abc34a",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "code analyze advantage log",
+  "task_key": "worker_code_analyze-advantage-log_20260517T160047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_analyze-advantage-log_20260517T160047_result.json",
+    "occurrence": 1,
+    "bytes": 1242,
+    "sha256": "8341530f4b1bc04d9afb38881dd6b37d23494ebc609615a976ae5c8a07d76062"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本完善完成，dry-run 全部通过。关键结果：\n\n**Analysis 3 修复后**：\n- Step return 完美遵循 γ^k 衰减：**R² = 1.0000, gamma = 0.9500**（与理论一致）\n- Advantage magnitude 衰减：R² = 0.6368, gamma_fit = 0.8877（中等拟合，说明 advantage 大致跟随 return 但受 batch 归一化影响）\n\n**总体结论**：\n| 指标 | 值 | 含义 |\n|------|-----|------|\n| Sign vs Outcome | r=0.317 | 中等，非主导 |\n| Sign vs Local Quality | r=0.432 | 更强 |\n| Advantage vs Return (continuous) | r=0.901 | 极强 |\n| Return decay R² | 1.000 | 理论验证通过 |\n| Within-ep variance (fail) | 6.9e-5 | 失败 episode 内部几乎无分化 |\n\n**结论**：step_independent 模式下 advantage 主要由 local quality (step_return) 决定，sign misattribution 不是主导模式。但失败 episode 内部方差极低（6.9e-5 vs 总方差 0.0026），说明**失败 episode 内部信号极弱**——所有失败窗口获得几乎相同的负 advantage，无法区分\"差一点成功\"和\"完全错误\"。\n\n脚本位于 `/root/cost-verify-agent-rl/scripts/analyze_advantage_log.py`，可视化输出在 `/root/runs/cost-verify-agent-rl/hsweep_h2_seed2/analysis/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-analyze-advantage-log-copy-2.md"
+}

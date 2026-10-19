@@ -1,0 +1,43 @@
+paper_key: "wan2025derailer-rerailer"
+title: "Derailer-Rerailer: Adaptive Verification for Efficient and Reliable LM Reasoning"
+venue: "ACL 2025 Findings"
+full_text_available: false
+
+research:
+  baselines:
+    - "standard CoT without verification"
+    - "self-consistency (majority voting)"
+    - "process reward model (PRM) verification"
+    - "outcome reward model (ORM) verification"
+    - "full verification at every step"
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "verification cost (tokens/calls)", direction: "lower_better"}
+    - {name: "error detection rate", direction: "higher_better"}
+    - {name: "false positive rate", direction: "lower_better"}
+  datasets:
+    - {name: "GSM8K", size: "1.3K test"}
+    - {name: "MATH", size: "5K test"}
+    - {name: "SVAMP", size: "N/A"}
+    - {name: "AQuA", size: "N/A"}
+  ablation_dimensions:
+    - "derailer detector threshold"
+    - "rerailer correction mechanism"
+    - "step-level vs. solution-level detection"
+    - "adaptive vs. fixed verification frequency"
+  training_recipe:
+    optimizer: "N/A"
+    lr: "N/A"
+    hardware: "N/A"
+    method: "Two-component system: Derailer detects when reasoning goes off-track (error detection), Rerailer corrects the trajectory; verification is applied adaptively only when derailer signals potential error, reducing unnecessary verification calls"
+  method_family: "adaptive verification / error detection and correction in LM reasoning"
+
+positioning:
+  core_claim: "Separating error detection (Derailer) from error correction (Rerailer) enables adaptive verification that applies costly verification only when the reasoning is likely derailed, achieving reliable reasoning at lower cost than uniform verification"
+  key_results: "N/A (specific numbers not confirmed from abstract)"
+  limitations: ["N/A"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

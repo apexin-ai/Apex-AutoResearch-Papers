@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20bfe75f795b8b0f0dab",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analysis advantage ratio multistep",
+  "task_key": "worker_analysis_advantage_ratio_multistep_20260524T234830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_advantage_ratio_multistep_20260524T234830_result.json",
+    "occurrence": 1,
+    "bytes": 1601,
+    "sha256": "cadb74bfaa6ac1590370d63b180541c6d67ad039dd0c2aa1d9210619fa5186b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 四个目标时间点（hsweep_h2_seed2）\n\n| Step | Ratio |Â_correct| / |Â_wrong| | n_correct | n_wrong | |Â_correct| | |Â_wrong| |\n|------|------|-----------|---------|-------------|-----------|\n| 1 | **N/A** | 0 | 200 | — | — |\n| 5 | **2.6360** | 30 | 170 | 0.025291 | 0.009594 |\n| 10 | **2.1570** | 4 | 196 | 0.037390 | 0.017334 |\n| 15 | **5.6396** | 30 | 170 | 0.035052 | 0.006215 |\n\n### 完整 15 步趋势\n\n| Step | Ratio | n_c | n_w |\n|------|-------|-----|-----|\n| 1 | N/A | 0 | 200 |\n| 2 | 9.54 | 20 | 180 |\n| 3 | N/A | 0 | 200 |\n| 4 | N/A | 0 | 200 |\n| 5 | 2.64 | 30 | 170 |\n| 6 | 4.13 | 32 | 168 |\n| 7 | N/A | 0 | 200 |\n| 8 | 5.40 | 15 | 185 |\n| 9 | 26.25 | 4 | 196 |\n| 10 | 2.16 | 4 | 196 |\n| 11 | N/A | 0 | 200 |\n| 12 | 6.47 | 9 | 191 |\n| 13 | 12.53 | 4 | 196 |\n| 14 | 2.54 | 100 | 100 |\n| 15 | 5.64 | 30 | 170 |\n\n### 关键发现\n\n1. **Step 1 无 correct 样本**（所有 200 条 step_return ≤ 0），无法计算 ratio。\n2. **Ratio 始终 > 1**（所有可计算的 step 均在 2.16–26.25 范围），说明 |Â_correct| 持续大于 |Â_wrong|，correct actions 始终获得更大的 advantage 幅度。\n3. **之前报告的 step 5 ratio ≈ 1.32 无法复现**——实际值为 2.64，差距显著。可能之前用了不同的分组逻辑或不同的数据源。\n4. **Seed1 数据不存在**，无法做双 seed 对比。\n5. Step 14 是唯一 n_correct = n_wrong = 100 的步，ratio 仍为 2.54。n_correct 波动极大（0–100），correct 样本极度稀疏（多数 step 只有 0–30 个）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-advantage-ratio-multistep.md"
+}

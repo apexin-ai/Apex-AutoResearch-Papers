@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp017_expert_sft",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T15:36:28.291Z",
+    "updated_at": "2026-05-14T15:41:37.425Z",
+    "hypothesis": "Expert SFT: 用 PDDL expert trajectory 数据 SFT Qwen3-1.7B instruct 模型，提升 ALFWorld baseline success rate，为后续 GRPO 提供更好的冷启动点。LR=2e-5, 3 epochs, batch_size=4, grad_accum=4。Pass 标准: success ≥ 10%。",
+    "parent": "exp008_sft"
+  },
+  "timestamp": "2026-05-14T15:41:37.477293+00:00",
+  "trigger": "update_registry"
+}

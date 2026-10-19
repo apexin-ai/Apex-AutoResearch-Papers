@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "231b78b04233dff19251",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops scienceworld grpo preflight",
+  "task_key": "worker_ops_scienceworld_grpo_preflight_20260520T095834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scienceworld_grpo_preflight_20260520T095834_result.json",
+    "occurrence": 1,
+    "bytes": 1140,
+    "sha256": "d9935790a541ed924c9f9df4c0351c19b7437823da23827bd1b4c8139d634243"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Pre-flight 检查结果\n\n| # | 检查项 | 状态 | 详情 |\n|---|--------|------|------|\n| 1 | Config: `_scienceworld_cell_a_grpo.yaml` | **PASS** | 存在，2283 bytes，今天 14:31 更新 |\n| 1 | Config: `_scienceworld_cell_c_grpo.yaml` | **PASS** | 存在，2276 bytes，今天 14:33 更新 |\n| 2 | SFT Checkpoint | **PASS** | `model_path` 指向 `/root/autodl-tmp/checkpoints/scienceworld_sft/huggingface/`（非 `global_step_448`），内含 2 个 safetensors 分片 + config.json + tokenizer 全套文件 |\n| 3 | 磁盘空间 | **PASS** | `/root/autodl-tmp/` 剩余 **61GB**，GRPO 预估需 ~50GB，余量充足 |\n| 4 | GPU 环境 | **PASS** | 2× NVIDIA RTX PRO 6000 Blackwell，PyTorch CUDA 正常 |\n| 5 | `envs.yaml` 含 ScienceWorldSG | **PASS** | 位于 `config/envs.yaml`，定义了 `env_type: scienceworld`, `max_actions_per_traj: 100` |\n| 6 | Dry-run Config 加载 | **PASS** | Hydra compose 成功，`experiment_name = scienceworld-cell-a-h2`（有 Hydra version_base 警告，不影响运行） |\n\n**6/6 全部通过，无 blocker。** Cell A 就绪，eval_v2 完成后可零延迟提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scienceworld-grpo-preflight.md"
+}

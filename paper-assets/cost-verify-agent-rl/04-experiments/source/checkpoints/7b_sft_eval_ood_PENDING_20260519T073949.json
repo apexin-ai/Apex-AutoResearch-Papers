@@ -1,0 +1,16 @@
+{
+  "exp_id": "7b_sft_eval_ood",
+  "project": "cost-verify-agent-rl",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:39:26.088Z",
+    "updated_at": "2026-05-19T07:39:49.129Z",
+    "hypothesis": "Evaluate Qwen3-8B SFT checkpoint (7b_sft_v1, loss=0.0355, acc=98.56%) on ALFWorld OOD 134 tasks. Establishes 8B SFT baseline for subsequent RL experiments (Cell A vs Cell C). If success rate significantly higher than 1.7B SFT baseline (~6.25%), confirms model scale advantage for SFT; if similar, the 1.7B findings generalize.",
+    "parent": "7b_sft_v1"
+  },
+  "timestamp": "2026-05-19T07:39:49.301639+00:00",
+  "trigger": "update_registry"
+}

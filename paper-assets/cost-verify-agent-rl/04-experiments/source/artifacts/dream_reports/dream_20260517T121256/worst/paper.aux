@@ -1,0 +1,67 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Multi-Turn LLM Agent RL}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}GRPO and Step-Independent Training}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Generalized Advantage Estimation}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Failure Mode Taxonomy}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Mechanism 1: Advantage Sign Misattribution}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Mechanism 2: Policy Information Loss}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Mechanism 3: Entropy Collapse}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Mechanism 4: Bandit-Level Credit Insufficiency}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{3}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Episode-Level Training: Necessary but Not Sufficient}{3}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Episode-level GRPO convergence trajectory. Training success continues rising while validation plateaus, indicating bandit-level credit is insufficient for generalization.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:convergence}{{1}{4}{Episode-level GRPO convergence trajectory. Training success continues rising while validation plateaus, indicating bandit-level credit is insufficient for generalization}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Context Window Ablation}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:hsweep}{{5.2}{4}{Context Window Ablation}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Context window $h$-sweep (step 15, 3 seeds). Smaller windows increase collapse probability rather than creating a clean threshold.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:hsweep}{{2}{4}{Context window $h$-sweep (step 15, 3 seeds). Smaller windows increase collapse probability rather than creating a clean threshold}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Multi-Seed Replication}{4}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Credit Granularity Spectrum: GAE Comparison}{4}{subsection.5.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Multi-seed episode-level GRPO (step 15). High variance reflects sensitivity to initial rollout quality in GRPO's group normalization.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:multiseed}{{3}{5}{Multi-seed episode-level GRPO (step 15). High variance reflects sensitivity to initial rollout quality in GRPO's group normalization}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Credit granularity comparison (step 15, 3 seeds). Per-token credit (GAE) substantially outperforms bandit-level credit (episode-level GRPO).}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:gae}{{4}{5}{Credit granularity comparison (step 15, 3 seeds). Per-token credit (GAE) substantially outperforms bandit-level credit (episode-level GRPO)}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Mechanistic Verification}{5}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:mechanism}{{5.5}{5}{Mechanistic Verification}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Mechanism verification ($h$=2, step 5). Sign misattribution is dominant but not sole factor; multiple confounds independently correlate with advantage sign errors.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:mechanism}{{5}{5}{Mechanism verification ($h$=2, step 5). Sign misattribution is dominant but not sole factor; multiple confounds independently correlate with advantage sign errors}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Confound analysis: multiple factors independently correlate with advantage sign, forming a multi-factor failure landscape.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:confounds}{{6}{6}{Confound analysis: multiple factors independently correlate with advantage sign, forming a multi-factor failure landscape}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Task Complexity Analysis}{6}{subsection.5.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Per-task-type breakdown (episode-level, 5-seed mean). Performance correlates negatively with task complexity ($r$=$-$0.62) and positively with episode length ($r$=0.48).}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:tasktype}{{7}{6}{Per-task-type breakdown (episode-level, 5-seed mean). Performance correlates negatively with task complexity ($r$=$-$0.62) and positively with episode length ($r$=0.48)}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Reward Shaping Under Sparse Credit}{6}{subsection.5.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Valid action bonus ablation. Dense auxiliary reward improves format compliance but hurts task success under episode-level bandit credit.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:bonus}{{8}{7}{Valid action bonus ablation. Dense auxiliary reward improves format compliance but hurts task success under episode-level bandit credit}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Verification Value and Selective Strategies}{7}{subsection.5.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Verification strategies comparison. All selective approaches underperform always-on at 25\% base agent quality, indicating selective verification requires stronger base agents.}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:verify}{{9}{7}{Verification strategies comparison. All selective approaches underperform always-on at 25\% base agent quality, indicating selective verification requires stronger base agents}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Cross-Framework Comparison}{7}{subsection.5.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces ARES (SFT) vs B-IAVR (RL) for selective verification. SFT with oracle labels dominates RL with noisy intrinsic reward at weak agent quality.}}{7}{table.10}\protected@file@percent }
+\newlabel{tab:ares}{{10}{7}{ARES (SFT) vs B-IAVR (RL) for selective verification. SFT with oracle labels dominates RL with noisy intrinsic reward at weak agent quality}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.10}Generalization: Environment and Scale}{7}{subsection.5.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Scaling comparison. Larger models partially mitigate credit assignment failure through stronger in-context learning, but the problem persists.}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:scaling}{{11}{8}{Scaling comparison. Larger models partially mitigate credit assignment failure through stronger in-context learning, but the problem persists}{table.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Actionable Design Guidelines}{8}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Why Does the Community Default to Step-Independent?}{8}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Limitations and Future Work}{8}{subsection.6.3}\protected@file@percent }
+\bibstyle{plain}
+\bibcite{grpo}{1}
+\bibcite{ragen}{2}
+\bibcite{alfworld}{3}
+\bibcite{scienceworld}{4}
+\bibcite{gae}{5}
+\bibcite{selfguide}{6}
+\bibcite{ares}{7}
+\bibcite{thinkless}{8}
+\bibcite{reflact}{9}
+\bibcite{ppo}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{section.7}\protected@file@percent }
+\gdef \@abspage@last{9}

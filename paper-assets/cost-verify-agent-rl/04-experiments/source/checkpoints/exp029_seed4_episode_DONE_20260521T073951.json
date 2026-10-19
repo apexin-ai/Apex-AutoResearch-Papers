@@ -1,0 +1,46 @@
+{
+  "exp_id": "exp029_seed4_episode",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:40:45.734Z",
+    "updated_at": "2026-05-21T07:39:51.644Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export TMPDIR=/root/autodl-tmp/tmp && mkdir -p /root/autodl-tmp/tmp && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=0,1 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_exp029_seed4_episode\"",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "283470",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_seed4_episode.log",
+      "submitted_at": "2026-05-21T02:40:45.415Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "AlfworldSG (built-in)",
+      "data_count": "128 episodes/step (8 env_groups x 8 group_size train, 32 val)",
+      "model_name": "Qwen3-1.7B (SFT v4)",
+      "seed": "train=123, val=456",
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4",
+      "eval_data": "AlfworldSG val 32 episodes",
+      "wall_clock_seconds": 17946.2,
+      "gpu_hours": 9.97
+    },
+    "hypothesis": "Episode-level GRPO (seed=123) avoids collapse and learns consistently, providing third seed for cross-seed robustness evidence. Seed 1 val~43%, Seed 3 val~40.6%.",
+    "parent": "exp029_seed3_v2",
+    "metrics": {
+      "failure_reason": "bjb1 disk full at step 8, save_freq=999 means no checkpoint saved",
+      "steps_completed": 8,
+      "exit_code": 1
+    },
+    "checkpoint_path": "none - save_freq=999, no checkpoint saved before crash",
+    "conclusion": "failed",
+    "completed_at": "2026-05-21T07:39:51.644Z"
+  },
+  "timestamp": "2026-05-21T07:39:51.893945+00:00",
+  "trigger": "update_registry"
+}

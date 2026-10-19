@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "115c721eab3d59fa8c2d",
+  "project": "cost-verify-agent-rl",
+  "kind": "history",
+  "title": "agent / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4.md",
+    "occurrence": 1,
+    "bytes": 4930,
+    "sha256": "761be97a1092dcdb003d756cc6e3fa844f511826b283a9d8a1abdb1b5811a481"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T12:42:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 cuda:0, cuda:1** @ bjb1-17606（RTX PRO 6000 Blackwell 94GB × 2）\n- **磁盘告急**：/root/autodl-tmp 95% 已用（仅剩 4.1GB）。下一个实验**必须先清理旧 checkpoint**（exp012_grpo、exp013b_grpo、exp013e 等），否则写入即崩\n- submit_training_job 启动命令必须包含完整环境变量（见基础设施快照），缺任一个都会复现历史崩溃\n- exp013f 结论是 **negative**，按 red-section 规范必须先产出 Framing 调整提案 → Director 审批，**禁止直接跑下一个实验**\n- cgroup 内存限制 220GB，Ray object_store_memory 硬编码 30GB（train.py:203），不可改大\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：bjb1-17606，2× RTX PRO 6000 Blackwell 94GB\n- **工作目录**：/root/cost-verify-agent-rl/RAGEN（训练入口 `python train.py --config-name=<cfg>`）\n- **Python**：/root/miniconda3/bin/python（conda base 环境，不是 venv）\n- **激活命令**：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**：\n  - SFT checkpoint: /root/autodl-tmp/checkpoints/exp008_sft/final（symlink qwen3_sft_final）\n  - GRPO step 5 checkpoint: /root/autodl-tmp/checkpoints/exp008_grpo/global_step_5\n  - exp013f checkpoint: /root/autodl-tmp/checkpoints/exp013f/global_step_30\n- **数据**：/root/autodl-tmp/alfworld/（3553 train games），SFT 数据 /root/autodl-tmp/sft_data/alfworld_sft_ragen.jsonl（1200 条）\n- **必需环境变量**（启动脚本模板）：\n  ```\n  TMPDIR=/root/autodl-tmp/tmp/\n  ALFWORLD_DATA=/root/autodl-tmp/alfworld\n  RAY_memory_monitor_refresh_ms=0\n  RAY_SYSTEM_MEMORY=210000000000\n  HYDRA_FULL_ERROR=1\n  ```\n- **活跃进程**：无。无 tmux session、无 cron 任务。GPU 空闲。\n\n### 3. 📊 当前状态\n**刚完成**：exp013f 30/30 步训练完成，结论 **negative**（dense reward gaming）。action_is_valid 60%→97.5% 但 success 始终 0-8%→0%。模型最大化 valid_action_bonus（累计 4.5）而忽略 success_reward（10.0）。D012 已记录。\n\n**Registry 摘要**：\n- 25 个实验，0 个 RUNNING，0 个 QUEUED/ALLOCATED\n- 成功：exp008_sft（SFT warmup，action_is_valid 90%）\n- 负向：exp013f（dense reward gaming）\n- 其余全部 failed/killed（基础设施问题或 reward 设计问题）\n- 多个 PREPARING 状态的旧实验（exp005/exp008/exp007_dryrun/exp_003* 系列）是历史残留，可忽略\n\n**等待中**：无 Worker 回调、无 Cron、无 Director 决策。exp013f negative 的 Framing 调整提案**尚未产出**——这是本 session 未完成的关键任务。\n\n### 4. 📋 待办（条件触发式）\n- **立即（新 session 启动后第一件事）**→ 产出 exp013f 的 red-section Framing 调整提案，发 `main_agent_post_to_director`。提案必须包含 3 种 narrative 备选 + 下一步实验方案\n- **磁盘清理**（在提交任何新实验前）→ spawn worker 清理 /root/autodl-tmp 旧 checkpoint（exp012_grpo、exp013b_grpo、exp013e、exp013d 等），释放至少 50GB\n- **Director 审批 Framing 提案后** → 按审批方向设计 exp014（大概率是 success-gated reward 或 curriculum learning）\n- **如果 Director 选 success-gated reward 方向** → 需改 RAGEN 代码：valid_action_bonus 只在 trajectory 最终 success 时发放（或 bonus 与 success 概率挂钩）\n- **如果 Director 选 curriculum/expert-SFT 加强方向** → 需更多 SFT 数据（当前 1200 条，目标 5000+），可能用 expert trajectory 生成\n- **Phase B 启动条件**：Phase A success ≥ 20% → FSDP→HF 转换（脚本就绪 scripts/convert_fsdp_to_hf.py）→ Phase B 配置更新 → 提交\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D004: Qwen3 格式修复 → D006: SFT warmup → D007/D008: format_penalty 劫持梯度 → D010: sparse reward 冷启动死锁 → D011: dense reward shaping → D012: **reward gaming**\n- 这条链证明了：(1) GRPO 学习能力没问题（action_is_valid 可以从 8%→97.5%）；(2) 问题在 reward 设计——sparse 太难、dense 太容易 game\n\n**最容易判断错的事**：\n- **不要以为再调 valid_action_bonus 比例就能解决**。问题不是比例（从 0.5 调到 0.15 只是推迟了 gaming），而是 dense reward 可以被独立最大化。下一步必须是**结构性改变**（success-gated / curriculum / 子目标 reward）\n- **不要跳过 Framing 提案直接跑实验**——这是 L1 红线（negative 结果必须先走 red-section）\n- **不要忽略磁盘问题**——4.1GB 剩余空间，任何新实验都会立即写满\n- Phase B 代码虽然就绪（68 tests pass），但完全被 Phase A 阻塞，不要试图绕过\n- ALFWorld score 是纯二值 0/1（memory.md 已记录），不存在中间进度信号，这是整个 reward shaping 困境的根源\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-copy-2.md"
+}

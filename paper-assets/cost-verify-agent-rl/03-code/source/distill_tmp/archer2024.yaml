@@ -1,0 +1,31 @@
+paper_key: "archer2024"
+title: "ArCHer: Training Language Model Agents via Hierarchical Multi-Turn RL"
+venue: "ICML 2024"
+full_text_available: false
+
+research:
+  baselines: ["single-turn RL methods", "PPO-based agent training"]
+  metrics:
+    - {name: "task success rate", direction: "higher_better"}
+    - {name: "sample efficiency", direction: "higher_better"}
+  datasets:
+    - {name: "web interaction tasks", size: "N/A"}
+    - {name: "tool use tasks", size: "N/A"}
+    - {name: "customer support tasks", size: "N/A"}
+  ablation_dimensions: ["hierarchical decomposition", "model scale (up to 7B)"]
+  training_recipe:
+    optimizer: "N/A"
+    lr: "N/A"
+    hardware: "N/A"
+    method: "Hierarchical RL: high-level off-policy value-based RL aggregates rewards across utterances; low-level RL trains token policies within each turn; preserves flexibility of single-turn RL (e.g., PPO)"
+  method_family: "hierarchical multi-turn RL for LLM agents"
+
+positioning:
+  core_claim: "A hierarchical RL framework decomposing multi-turn agent training into high-level (across-utterance value learning) and low-level (within-turn token policy) achieves ~100x sample efficiency over existing methods while scaling with model size."
+  key_results: "~100x sample efficiency over existing methods; performance improves with model scale up to 7B parameters"
+  limitations: ["N/A"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

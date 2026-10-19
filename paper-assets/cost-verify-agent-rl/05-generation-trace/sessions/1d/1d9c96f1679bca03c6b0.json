@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d9c96f1679bca03c6b0",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "train scienceworld sft bjb1",
+  "task_key": "worker_train_scienceworld_sft_bjb1_20260524T042113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_scienceworld_sft_bjb1_20260524T042113_result.json",
+    "occurrence": 1,
+    "bytes": 1319,
+    "sha256": "a8715b744b849f77c0521df180d22d5240195376a4e46b8bda2fdb93e3b2893e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**无法启动。** 详细情况：\n\n### GPU 问题（阻塞）\nnvidia-smi 只显示 **1 张 GPU（cuda:0）**，已被 `actor_rollout_update_actor`（hsweep）占用 44394/97887 MiB、GPU-Util 97%。**没有 cuda:1。** 服务器上物理可见只有 1 张 RTX PRO 6000。\n\n### SFT 数据（缺失）\n`/root/autodl-tmp/expert_sft/scienceworld_sft_train.jsonl` **不存在**。现有 4 版 expert_sft 数据（v1-v4, 共 2460-2546 行）全是 **ALFWorld** 的，不是 ScienceWorld。\n\n### 可用组件\n| 组件 | 状态 | 路径 |\n|------|------|------|\n| 数据生成脚本 | 存在（westd 备份） | `/root/autodl-tmp/westd_backup/cost-verify-agent-rl/generate_scienceworld_sft.py` |\n| scienceworld 包 | 已安装 | `import scienceworld` 成功 |\n| SFT 训练脚本 | 存在 | `/root/cost-verify-agent-rl/scripts/sft_train.py`（单卡 HF Trainer） |\n| Base model | 存在 | `/root/autodl-tmp/models/Qwen/Qwen3-1___7B/` |\n| 磁盘 | 97GB 可用 | `/root/autodl-tmp/` |\n\n### 需要决定\n1. **GPU 怎么解决？** 等 hsweep 跑完腾出 cuda:0？还是用别的服务器？还是服务器实际有 2 卡但被 CUDA_VISIBLE_DEVICES 限制了？\n2. **数据生成可以先跑**（不需要 GPU，纯 CPU），生成 ScienceWorld SFT 数据。是否现在先启动数据生成？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-scienceworld-sft-bjb1-copy-2.md"
+}

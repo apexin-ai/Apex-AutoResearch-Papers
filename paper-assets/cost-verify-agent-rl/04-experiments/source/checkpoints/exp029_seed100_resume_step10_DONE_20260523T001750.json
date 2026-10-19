@@ -1,0 +1,69 @@
+{
+  "exp_id": "exp029_seed100_resume_step10",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T22:02:03.794Z",
+    "updated_at": "2026-05-23T00:17:50.519Z",
+    "hypothesis": "seed100 从 step5 (OOD 11.2%) 继续训练到 step10，ID 性能应持续提升（reward 上升、KL 合理），为后续 OOD eval 验证 later-emerging generalization 提供健康 checkpoint",
+    "parent": "exp029_seed100_episode",
+    "server": "westd-47453",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-47453",
+      "gpu": "cuda:0,cuda:1",
+      "started_at": "2026-05-22T22:05:42.875Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && RAY_ADDRESS='' RAY_TMPDIR=/root/autodl-tmp/ray_seed100 WANDB_DIR=/root/autodl-tmp/wandb_tmp VLLM_WORKER_MULTIPROC_METHOD=spawn python train.py --config-name _alfworld_exp029_seed100_resume_step10\"",
+      "finished_at": "2026-05-23T00:12:58.812Z",
+      "training_hours": 2.12
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && RAY_ADDRESS='' RAY_TMPDIR=/root/autodl-tmp/ray_seed100 WANDB_DIR=/root/autodl-tmp/wandb_tmp VLLM_WORKER_MULTIPROC_METHOD=spawn python train.py --config-name _alfworld_exp029_seed100_resume_step10\"",
+      "server": "westd-47453",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "209450",
+      "data_path": "AlfworldSG",
+      "data_count": 134,
+      "model_name": "Qwen/Qwen2.5-3B-Instruct",
+      "seed": 100,
+      "checkpoint_source": "/root/autodl-tmp/checkpoints/exp029-seed100/global_step_5/",
+      "resume_from_step": 5,
+      "total_steps": 10,
+      "save_freq": 5
+    },
+    "pid": "209450",
+    "log_path": "~/runs/cost-verify-agent-rl/exp029_seed100_resume_step10.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T00:13:03.938093+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/checkpoints/exp029-seed100/global_step_10/actor/",
+    "metrics": {
+      "id_eval_success_step5": 0.3125,
+      "id_eval_success_step10": 0.375,
+      "id_eval_reward_mean_step5": 3.125,
+      "id_eval_reward_mean_step10": 3.75,
+      "final_ppo_kl": 0.00246,
+      "final_entropy_loss": 0.081,
+      "final_grad_norm": 3.974,
+      "final_critic_score_mean": 4.531,
+      "wandb_run_id": "xbiw0zde"
+    },
+    "completed_at": "2026-05-23T00:17:50.520Z"
+  },
+  "timestamp": "2026-05-23T00:17:50.886106+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21d32800b498445a705e",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ops v9d fix save contents",
+  "task_key": "worker_ops_v9d_fix_save_contents_20260520T062711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_v9d_fix_save_contents_20260520T062711_result.json",
+    "occurrence": 1,
+    "bytes": 464,
+    "sha256": "3b1d0dc25d1bc13ff65adeb968d84fff35fcb23de2e9827c713ae2ad31fd17bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，验证通过：\n\n| 检查项 | 结果 |\n|--------|------|\n| global_step_5 删除 | 已删除，目录只剩 `latest_checkpointed_iteration.txt` |\n| 磁盘空间 | 184GB 可用（27% 使用） |\n| trainer 层 save_contents | 已删除 |\n| actor.checkpoint.save_contents | 已添加，位于 `actor_rollout_ref.actor.checkpoint` 下，值 `[\"model\", \"extra\"]` |\n| 训练进程 PID 549487 | 运行中，已跑 58 分 19 秒 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-v9d-fix-save-contents.md"
+}

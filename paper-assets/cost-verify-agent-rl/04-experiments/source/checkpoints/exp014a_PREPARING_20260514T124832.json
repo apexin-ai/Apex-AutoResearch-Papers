@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp014a",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:45:27.347Z",
+    "updated_at": "2026-05-14T12:48:32.253Z",
+    "hypothesis": "Success-Gated Dense Reward: valid_action_bonus=0.15 只在 group 内至少一条 trajectory success 时才给。消除 reward gaming 的独立最大化路径——没有 success 就没有 bonus，模型必须探索 success。success_reward=10.0, format_penalty=0, 从 exp008 step 5 checkpoint 恢复, GRPO 30 步。",
+    "parent": "exp013f",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-14T12:48:32.317855+00:00",
+  "trigger": "update_registry"
+}

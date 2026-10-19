@@ -1,0 +1,790 @@
+# cron hook sft baseline ood eval v2
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 26
+- **Recorded user turns:** 1
+- **Tool calls:** 12
+- **Original source:** `logs/chats/cron_hook_sft_baseline_ood_eval_v2.jsonl`
+- **Structured JSON:** [`e6c585040bfd6d81ac4f.json`](../../sessions/e6/e6c585040bfd6d81ac4f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+26 recorded events
+
+### User
+
+_source line 1 · 2026-05-21T13:45:30.620215+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: sft_baseline_ood_eval_v2
+- project: cost-verify-agent-rl
+- server: westd-47453
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-21T13:45:42.619868+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-21T13:45:42.670431+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T13:45:45.691138+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T13:45:46.211543+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T13:45:46.866426+00:00_
+
+Error: result (229,015 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-52cd6885/824566ee-f3de-4832-a419-24c0272f503d/tool-results/mcp-agent-ml-research-read_registry-1779371146640.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-52cd6885/824566ee-f3de-4832-a419-24c0272f503d/tool-results/mcp-agent-ml-research-read_registry-1779371146640.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1175
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T13:45:46.917086+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-21T13:45:47.171725+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "cost-verify-agent-rl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T13:45:51.685836+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"exp029_seed4_v2\", \"success\": true, \"actions\": [\"Job still running (pid=302056)\"]}, {\"exp_id\": \"exp029_seed7\", \"success\": true, \"actions\": [\"Job still running (pid=226699)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 5474
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T13:45:51.736773+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-21T13:45:28Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 127 个实验 — DONE 104, PREPARING 21, RUNNING 2\\n**DONE 分布**: failed 51, killed 18, negative 10, success 25\\n\\n### GPU 占用\\n- **实际运行**: 4 张 — bjb1-17606:cuda:0(exp029_seed4_v2), bjb1-17606:cuda:1(exp029_seed4_v2), westd-47453:cuda:0(exp029_seed7), westd-47453:cuda:1(exp029_seed7)\\n\\n### 💾 磁盘余量\\n- **bjb1-17606**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\n- **westd-47453**:\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/init`: 150M/150M 可用（已用 1%）\\n  - `/usr/bin/nvidia-smi`: 813G/879G 可用（已用 3%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `exp029_seed4_v2` | bjb1-17606 | cuda:0,cuda:1 | 302056 | `~/runs/cost-verify-agent-rl/exp029_seed4_v2.log` |\\n| `exp029_seed7` | westd-47453 | cuda:0,cuda:1 | 226699 | `~/runs/cost-verify-agent-rl/exp029_seed7.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `sft_baseline_ood_eval_v2` [failed] — 2026-05-21T13:45:26 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp029_seed6_ood_eval` [failed] — 2026-05-21T13:36:19\\n- `exp029_seed6_v3` [success] — 2026-05-21T13:06:12 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `sft_baseline_ood_eval` [failed] — 2026-05-21T12:17:06 — Ray worker leaked to GPU 0 (M043), killed to protect Seed 5 training. Same root \\n- `exp029_seed5_v2` [failed] — 2026-05-21T12:16:59 — OOM at step 12 due to SFT eval Ray worker GPU leak (M043). Process 196655 (eval)\\n\\n### 🔴 最近失败原因 (top 3)\\n- `sft_baseline_ood_eval_v2`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp029_seed6_ood_eval`: _(
+…[truncated 6477 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 4819
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T13:45:51.737390+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/ROADMAP.md\", \"content\": \"# cost-verify-agent-rl — Research Dashboard\\n\\n> 最后更新: 2026-05-21 08:27 UTC | 更新原因: 三个 seed 全部上线运行，GPU 隔离修复确认\\n\\n## 核心方向\\nStep-independent agent RL 的双机制信用分配病理诊断（信息丢失 M1 + 符号错误归因 M2）+ episode-level 修复。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research + 审稿进行中（Group C 独立审稿）\\n- **论文**: v16 已编译，新增 Figure 2 (cross-scale) + Figure 3 (附录)，主文 8 页，一致性检查通过\\n- **核心 claim**: 1.7B 双 seed (10.4%/23.9%) + 8B 单 seed (90.3%) + ScienceWorld 崩溃验证 ✅\\n- **多 seed 扩展**: 目标 5-seed mean±std 增强 robustness\\n  - Seed 1: ✅ OOD 23.88%\\n  - Seed 3: ✅ OOD 10.45%\\n  - Seed 4 v2: 🟢 RUNNING (bjb1 cuda:0,1) — 内存 99.2%，backward pass 中\\n  - Seed 5 v2: 🟢 RUNNING (westd cuda:0,1) — 100% util，rollout 阶段\\n  - Seed 6 v3: 🟢 RUNNING (westd cuda:2,3) — 模型加载中，Ray 隔离已修复 (RAY_ADDRESS=local)\\n- **FSDP→HF 转换**: 脚本已就绪（convert_fsdp_to_hf.py），训练完成后运行即可\\n\\n## GPU 状态\\n| 服务器 | GPU | 状态 | 实验 |\\n|--------|-----|------|------|\\n| bjb1-17606 | cuda:0,1 | 🟢 RUNNING | Seed 4 v2 (mem 99.2%) |\\n| westd-47453 | cuda:0,1 | 🟢 RUNNING | Seed 5 v2 (100% util) |\\n| westd-47453 | cuda:2,3 | 🟢 RUNNING | Seed 6 v3 (初始化中) |\\n\\n## 近期任务\\n- [x] bjb1 磁盘清理（62G 已释放）\\n- [x] 论文新增 Figure 2 + Figure 3\\n- [x] 论文审计修复（$T$→$τ$、缩写展开、措辞修正）\\n- [x] Seed 6 v3 孤儿 Ray workers 清除 + GPU 隔离修复 (RAY_ADDRESS=local)\\n- [ ] **监控 save_contents 磁盘风险**（westd 113GB / bjb1 75GB，需确认 checkpoint 不含 optimizer）\\n- [ ] 训练完成后：FSDP→HF 转换 + OOD eval（134-task）× 3 seeds\\n- [ ] 更新论文 Table 1 为 5-seed mean±std\\n- [ ] 补充 1.7B SFT baseline OOD 数据点（eval only）\\n\\n## GPU 预算\\n本项目分配 6 GPU（bjb1 ×2 + westd ×4）。**6/6 全部在用。**\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D112 | 2026-05-21 | 跨 seed 鲁棒性风险已知但不改方向：5 个完成/进行中的 seed 中无一 true colla | exp029_seed4_v2, exp029_seed6_v3, exp029_seed7 |\\n| D111 | 2026-05-21 | Seed 5 因 SFT eval Ray 泄漏 OOM 死亡（step 12）；不重启 seed= | 
+…[truncated 1139 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 4565
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-21T13:45:59.417389+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "filters": "{'exp_id': 'sft_baseline_ood_eval_v2'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "filters": "{'exp_id': 'sft_baseline_ood_eval_v2'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T13:46:00.421747+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3652}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1004
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-21T13:46:00.422188+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T13:46:00.924803+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/.claude/sessions/agent_52cd6885.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "Read",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-21T13:46:01.125900+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "cost-verify-agent-rl",
+  "filters": "{'exp_id': 'sft_baseline_ood_eval'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "cost-verify-agent-rl",
+    "filters": "{'exp_id': 'sft_baseline_ood_eval'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T13:46:01.528325+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.426}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-21T13:46:06.445076+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T13:46:10.208778+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "Glob",
+  "elapsed_ms": 3763
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-21T13:46:10.510875+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-52cd6885/824566ee-f3de-4832-a419-24c0272f503d/tool-results/mcp-agent-ml-research-read_registry-1779371146640.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Find sft_baseline_ood_eval_v2\nfor eid, exp in exps.items():\n    if 'sft_baseline_ood_eval' in eid:\n        print(f'=== {eid} ===')\n        print(json.dumps(exp, indent=2, ensure_ascii=False))\n        print()\n\"",
+  "description": "Extract sft_baseline_ood_eval experiments from registry dump"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl--claude-sessions-agent-52cd6885/824566ee-f3de-4832-a419-24c0272f503d/tool-results/mcp-agent-ml-research-read_registry-1779371146640.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Find sft_baseline_ood_eval_v2\nfor eid, exp in exps.items():\n    if 'sft_baseline_ood_eval' in eid:\n        print(f'=== {eid} ===')\n        print(json.dumps(exp, indent=2, ensure_ascii=False))\n        print()\n\"",
+    "description": "Extract sft_baseline_ood_eval experiments from registry dump"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T13:46:10.764727+00:00_
+
+=== sft_baseline_ood_eval_v2 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-21T13:25:37.537Z",
+  "updated_at": "2026-05-21T13:45:26.298Z",
+  "hypothesis": "1.7B SFT baseline (qwen3_exp021_ragen_sft_v4) OOD performance on 134 valid_unseen tasks (τ=0.4). Fills Table 1 SFT baseline row. Retry of failed sft_baseline_ood_eval (M043 Ray leak).",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_sft_baseline_ood_eval_v2\"",
+    "server": "westd-47453",
+    "gpu": [
+      "cuda:3"
+    ],
+    "pid": "282634",
+    "data_path": "AlfworldSG_OOD (134 valid_unseen tasks)",
+    "data_count": 134,
+    "model_name": "qwen3_exp021_ragen_sft_v4 (1.7B SFT baseline)",
+    "seed": 42,
+    "checkpoint_source": "/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4/",
+    "eval_data": "AlfworldSG_OOD 134 tasks, τ=0.4"
+  },
+  "reproduce": {
+    "finished_at": "2026-05-21T13:45:24.568Z"
+  },
+  "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+  "conclusion": "failed",
+  "completed_at": "2026-05-21T13:45:26.298Z",
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_failed",
+        "action": "agent",
+        "ts": "2026-05-21T13:45:30.088937+00:00"
+      }
+    ]
+  }
+}
+
+=== sft_baseline_ood_eval ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-21T10:55:22.862Z",
+  "updated_at": "2026-05-21T12:17:06.640Z",
+  "hypothesis": "1.7B SFT baseline (qwen3_exp021_ragen_sft_v4) OOD performance on 134 valid_unseen tasks. Fills Table 1 '---' cell. Expected low OOD (~5-10%) as SFT lacks GRPO generalization.",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/cost-verify-agent-rl/RAGEN && CUDA_VISIBLE_DEVICES=2 python train.py
+…[truncated 940 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "Bash",
+  "elapsed_ms": 253
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-21T13:46:28.012440+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T13:46:28.063155+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-21T13:46:45.854721+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "diagnose:sft_baseline_ood_eval_v2",
+  "project": "cost-verify-agent-rl",
+  "task_prompt": "## 任务：诊断 sft_baseline_ood_eval_v2 实验失败原因\n\n### 背景\n实验 `sft_baseline_ood_eval_v2` 在 westd-47453 上运行约 20 分钟后异常退出，没有产生有效的 W&B metrics。Cron 系统检测到进程死亡 5 次后自动标记为 failed。\n\n这是一个 **OOD eval 任务**（非训练），用 SFT baseline checkpoint 在 134 个 valid_unseen 任务上评估。\n\n### 实验信息\n- **服务器**: westd-47453\n- **命令**: `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_sft_baseline_ood_eval_v2\"`\n- **GPU**: cuda:3 (物理 GPU 3)\n- **PID**: 282634（已死）\n- **创建时间**: 2026-05-21T13:25:37Z\n- **死亡时间**: ~2026-05-21T13:45:24Z（约 20 分钟）\n- **前一次失败**: sft_baseline_ood_eval (v1) 因 Ray worker 泄漏到 GPU 0 被杀。v2 已加 RAY_ADDRESS=local 隔离\n\n### 当前 westd-47453 上运行的实验\n- exp029_seed7: cuda:0,1, pid=226699（仍在运行，不要干扰）\n\n### 你要做的事\n1. SSH 到 westd-47453，**只用 ssh_read_only**：\n   - 查看日志：`cat ~/runs/cost-verify-agent-rl/sft_baseline_ood_eval_v2.log | tail -200`\n   - 查看 tmux session 是否还在：`tmux list-sessions 2>/dev/null | grep sft_baseline`\n   - 查看进程是否有 core dump 或 OOM 迹象：`dmesg | tail -50`\n   - 检查 GPU 3 当前状态：`nvidia-smi`\n   - 检查 checkpoint 是否存在：`ls -la /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4/`\n   - 检查配置文件：`cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_sft_baseline_ood_eval_v2.yaml` 或类似路径\n   - 检查磁盘空间：`df -h /root/autodl-tmp`\n\n2. 分析失败原因，重点关注：\n   - OOM（GPU 3 只有一张卡跑 eval，内存可能不够？）\n   - Ray 相关错误（即使设了 RAY_ADDRESS=local 也可能有问题）\n   - 配置错误（config 文件路径/内容有误？）\n   - 磁盘满\n   - Python 异常 / 依赖缺失\n\n3. 输出诊断结论：\n   - 根因是什么\n   - 是否可以重试，重试需要改什么\n   - 建议的修复方案\n",
+  "tool_groups": "['ssh']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "diagnose:sft_baseline_ood_eval_v2",
+    "project": "cost-verify-agent-rl",
+    "task_prompt": "## 任务：诊断 sft_baseline_ood_eval_v2 实验失败原因\n\n### 背景\n实验 `sft_baseline_ood_eval_v2` 在 westd-47453 上运行约 20 分钟后异常退出，没有产生有效的 W&B metrics。Cron 系统检测到进程死亡 5 次后自动标记为 failed。\n\n这是一个 **OOD eval 任务**（非训练），用 SFT baseline checkpoint 在 134 个 valid_unseen 任务上评估。\n\n### 实验信息\n- **服务器**: westd-47453\n- **命令**: `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/cost-verify-agent-rl/RAGEN && RAY_ADDRESS=local CUDA_VISIBLE_DEVICES=3 WANDB_PROJECT=cost-verify-agent-rl python train.py --config-name _alfworld_sft_baseline_ood_eval_v2\"`\n- **GPU**: cuda:3 (物理 GPU 3)\n- **PID**: 282634（已死）\n- **创建时间**: 2026-05-21T13:25:37Z\n- **死亡时间**: ~2026-05-21T13:45:24Z（约 20 分钟）\n- **前一次失败**: sft_baseline_ood_eval (v1) 因 Ray worker 泄漏到 GPU 0 被杀。v2 已加 RAY_ADDRESS=local 隔离\n\n### 当前 westd-47453 上运行的实验\n- exp029_seed7: cuda:0,1, pid=226699（仍在运行，不要干扰）\n\n### 你要做的事\n1. SSH 到 westd-47453，**只用 ssh_read_only**：\n   - 查看日志：`cat ~/runs/cost-verify-agent-rl/sft_baseline_ood_eval_v2.log | tail -200`\n   - 查看 tmux session 是否还在：`tmux list-sessions 2>/dev/null | grep sft_baseline`\n   - 查看进程是否有 core dump 或 OOM 迹象：`dmesg | tail -50`\n   - 检查 GPU 3 当前状态：`nvidia-smi`\n   - 检查 checkpoint 是否存在：`ls -la /root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4/`\n   - 检查配置文件：`cat /root/autodl-tmp/cost-verify-agent-rl/RAGEN/config/_alfworld_sft_baseline_ood_eval_v2.yaml` 或类似路径\n   - 检查磁盘空间：`df -h /root/autodl-tmp`\n\n2. 分析失败原因，重点关注：\n   - OOM（GPU 3 只有一张卡跑 eval，内存可能不够？）\n   - Ray 相关错误（即使设了 RAY_ADDRESS=local 也可能有问题）\n   - 配置错误（config 文件路径/内容有误？）\n   - 磁盘满\n   - Python 异常 / 依赖缺失\n\n3. 输出诊断结论：\n   - 根因是什么\n   - 是否可以重试，重试需要改什么\n   - 建议的修复方案\n",
+    "tool_groups": "['ssh']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T13:46:48.992395+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_sft_baseline_ood_eval_v2_20260521T134646\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl/logs/workers/worker_diagnose_sft_baseline_ood_eval_v2_20260521T134646.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnose_sft_baseline_ood_eval_v2_20260521T134646 started. Use get_worker_status('worker_diagnose_sft_baseline_ood_eval_v2_20260521T134646') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_baseline_ood_eval_v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3137
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-21T13:46:55.405330+00:00_
+
+已派 Worker 去 westd-47453 查日志诊断 `sft_baseline_ood_eval_v2` 失败原因。同时注意到近期还有一个 `exp029_seed6_ood_eval` 也失败了——也是 OOD eval 类任务。等 Worker 回调后一并分析根因和修复方案。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:sft_baseline_ood_eval_v2"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,63 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Multi-turn RL for LLM agents.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Self-verification for agents.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Credit assignment in RL.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Problem Analysis: Why Step-Independent RL Fails}{3}{section.3}\protected@file@percent }
+\newlabel{sec:mechanism}{{3}{3}{Problem Analysis: Why Step-Independent RL Fails}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Setup: Step-Independent vs Episode-Level GRPO}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Mechanism 1: Policy Information Loss}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Mechanism 2: Advantage Sign Misattribution}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Empirical Verification}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:empirical_verification}{{3.4}{3}{Empirical Verification}{subsection.3.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Advantage sign attribution analysis ($h=2$, 256 episodes, 3200 windows). Sign-vs-outcome correlation is strong ($r=0.87$) while sign-vs-local-quality correlation is weak ($r=0.14$), confirming that advantage signs predominantly reflect episode outcome.}}{4}{table.caption.4}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:sign_attribution}{{1}{4}{Advantage sign attribution analysis ($h=2$, 256 episodes, 3200 windows). Sign-vs-outcome correlation is strong ($r=0.87$) while sign-vs-local-quality correlation is weak ($r=0.14$), confirming that advantage signs predominantly reflect episode outcome}{table.caption.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-window advantage statistics stratified by episode outcome.}}{4}{table.caption.5}\protected@file@percent }
+\newlabel{tab:advantage_stats}{{2}{4}{Per-window advantage statistics stratified by episode outcome}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Within-episode advantage uniformity comparison.}}{4}{table.caption.6}\protected@file@percent }
+\newlabel{tab:sign_control}{{3}{4}{Within-episode advantage uniformity comparison}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Method: Episode-Level GRPO}{4}{section.4}\protected@file@percent }
+\newlabel{sec:method}{{4}{4}{Method: Episode-Level GRPO}{section.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments}{5}{section.5}\protected@file@percent }
+\newlabel{sec:experiments}{{5}{5}{Experiments}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Setup}{5}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Episode-Level Convergence}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:convergence}{{5.2}{5}{Episode-Level Convergence}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Episode-level GRPO training trajectory (single seed). Plateau onset at step 30.}}{5}{table.caption.7}\protected@file@percent }
+\newlabel{tab:convergence}{{4}{5}{Episode-level GRPO training trajectory (single seed). Plateau onset at step 30}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Multi-Seed Replication}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Context Window Sweep (h-Sweep)}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:hsweep}{{5.4}{5}{Context Window Sweep (h-Sweep)}{subsection.5.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Multi-seed episode-level GRPO results (converged). 95\% CI: [28.4\%, 40.4\%].}}{6}{table.caption.8}\protected@file@percent }
+\newlabel{tab:multiseed}{{5}{6}{Multi-seed episode-level GRPO results (converged). 95\% CI: [28.4\%, 40.4\%]}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Context window sweep results (15 steps, 3 seeds each). $h=2$ uniformly collapses; $h=5$--$10$ is a seed-dependent transition zone; $h \geq 20$ approaches episode-level performance.}}{6}{table.caption.9}\protected@file@percent }
+\newlabel{tab:hsweep}{{6}{6}{Context window sweep results (15 steps, 3 seeds each). $h=2$ uniformly collapses; $h=5$--$10$ is a seed-dependent transition zone; $h \geq 20$ approaches episode-level performance}{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Action validity at step 15 across context window sizes.}}{6}{table.caption.10}\protected@file@percent }
+\newlabel{tab:hsweep_validity}{{7}{6}{Action validity at step 15 across context window sizes}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}GAE Baseline Comparison}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:gae}{{5.5}{6}{GAE Baseline Comparison}{subsection.5.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Credit assignment method comparison (step 15, 3 seeds). GAE($\lambda =0.95$) provides an additional 12.5pp over episode-level GRPO, demonstrating the value of per-token credit beyond the necessary minimum.}}{7}{table.caption.11}\protected@file@percent }
+\newlabel{tab:gae}{{8}{7}{Credit assignment method comparison (step 15, 3 seeds). GAE($\lambda =0.95$) provides an additional 12.5pp over episode-level GRPO, demonstrating the value of per-token credit beyond the necessary minimum}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Per-Task-Type Analysis}{7}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:pertask}{{5.6}{7}{Per-Task-Type Analysis}{subsection.5.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Per-task-type breakdown. Step-independent failure is most severe for longer tasks ($r=-0.82$ between average steps and episode-level advantage magnitude).}}{7}{table.caption.12}\protected@file@percent }
+\newlabel{tab:pertask}{{9}{7}{Per-task-type breakdown. Step-independent failure is most severe for longer tasks ($r=-0.82$ between average steps and episode-level advantage magnitude)}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Verification Ablation}{7}{subsection.5.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Verification and reward shaping ablations. Self-verification provides +12.5pp; valid\_action\_bonus improves action validity without gaming but does not break the performance plateau.}}{8}{table.caption.13}\protected@file@percent }
+\newlabel{tab:verify_ablation}{{10}{8}{Verification and reward shaping ablations. Self-verification provides +12.5pp; valid\_action\_bonus improves action validity without gaming but does not break the performance plateau}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Preliminary Results: Selective Verification}{8}{section.6}\protected@file@percent }
+\newlabel{sec:selective}{{6}{8}{Preliminary Results: Selective Verification}{section.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Selective verification comparison. B-IAVR reduces verification 28\% with 3.1pp success cost; no method dominates the Pareto frontier.}}{8}{table.caption.14}\protected@file@percent }
+\newlabel{tab:selective}{{11}{8}{Selective verification comparison. B-IAVR reduces verification 28\% with 3.1pp success cost; no method dominates the Pareto frontier}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{9}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why does the community default to step-independent?}{9}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Relationship to Turn-PPO.}{9}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Relationship to GAGPO and HiPER.}{9}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{9}{section.8}\protected@file@percent }
+\gdef \@abspage@last{10}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1074e4315d58f024f9db",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diagnose exp020b final results",
+  "task_key": "worker_diagnose_exp020b-final-results_20260515T005413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp020b-final-results_20260515T005413_result.json",
+    "occurrence": 1,
+    "bytes": 2214,
+    "sha256": "156515271767044d241c64527c6065b820e41394a9132583965916e735cf47e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp020b GRPO 训练状态汇总\n\n### 1. 进程状态：**正在运行**\n\n- `train.py` 进程活跃（PID 385982），启动时间 06:12 UTC\n- Ray GCS server + 多个 `ray::IDLE` worker + `ray::TaskRunner.run` + 2× `ray::WorkerDict` 均在运行\n- 无 error/OOM/killed\n\n### 2. GPU 使用\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 100% | 48857 MiB |\n| 1 | 100% | 48769 MiB |\n\n### 3. 训练进度：**21/30 steps (70%)**\n\n当前在 step 21，已运行约 2h36m，预计剩余 ~1h11m。\n\n### 4. 逐步 metrics（关键指标）\n\n| Step | train success | val success | pg_loss | ppo_kl | entropy | grad_norm | critic/score/mean |\n|------|--------------|-------------|---------|--------|---------|-----------|-------------------|\n| 0 (init val) | — | 0.0 | — | — | — | — | — |\n| 1 | **0.1875** | — | 6.39e-5 | 9.30e-5 | 0.107 | 2.777 | 1.875 |\n| 20 | **0.125** | **0.0** | -6.71e-4 | 0.00918 | 0.045 | 5.577 | 1.25 |\n\n**观察：**\n- train success 从 step 1 的 18.75% 下降到 step 20 的 12.5%\n- val success 始终为 **0.0**（4 个 val 环境全部失败）\n- entropy 从 0.107 下降到 0.045（策略在坍缩）\n- ppo_kl 从 ~0 增长到 0.0092（策略偏离 reference 中）\n- pass@16 (train) 始终为 1.0（说明多样性足够，至少有解，只是 greedy/平均太差）\n\n### 5. Checkpoints\n\n```\n/root/autodl-tmp/checkpoints/exp020b/\n├── global_step_5/   (空目录)\n├── global_step_10/  (actor/)\n├── global_step_15/  (actor/)\n├── global_step_20/  (actor/ — 含 model .pt, optimizer .pt, huggingface config)\n└── latest_checkpointed_iteration.txt → \"20\"\n```\n\n每 5 步保存一次，最新 checkpoint 为 step 20，包含完整的 FSDP sharded model + optimizer state。\n\n### 6. 错误\n\n**无任何 error/exception/OOM/traceback。** 训练运行完全正常。\n\n---\n\n### 结论\n\n训练**仍在运行中**，尚未跑完 30 步（当前 21/30）。预计约 1 小时后完成。但 **val success rate 为 0，train success rate 也在下降（18.75% → 12.5%），entropy 持续降低** — 模型正在经历策略坍缩，GRPO 训练效果不佳。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp020b-final-results.md"
+}

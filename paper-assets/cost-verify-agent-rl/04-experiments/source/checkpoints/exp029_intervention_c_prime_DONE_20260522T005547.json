@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp029_intervention_c_prime",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T21:36:15.938Z",
+    "updated_at": "2026-05-22T00:55:47.445Z",
+    "hypothesis": "Trajectory-level token cap (12000 tokens across all turns) will reduce cost per trajectory while maintaining task success rate, because most successful ALFWorld episodes complete within 12 turns (~12K tokens) and the cap only truncates inefficient long-running failures.",
+    "parent": "exp029_seed7",
+    "spec": {
+      "command": "python train.py --config-name _alfworld_intervention_c_prime",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "347250",
+      "log_path": "~/runs/cost-verify-agent-rl/exp029_intervention_c_prime.log",
+      "submitted_at": "2026-05-21T22:02:36.943Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "ALFWorld episode-level",
+      "data_count": 134,
+      "model_name": "Qwen3-1.5B",
+      "seed": 999,
+      "checkpoint_source": "qwen3_exp021_ragen_sft_v4 (SFT base)",
+      "eval_data": "ALFWorld valid_unseen 32 episodes",
+      "checkpoint_path": "unknown - crashed during checkpoint save (disk full)",
+      "wall_clock_seconds": 7072.1,
+      "gpu_hours": 3.93
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-22T00:00:29.004Z",
+    "notes": "All 7 training steps completed. Crash during final checkpoint save (disk full /tmp/ray). W&B run: zndyygbn. CRITICAL FINDING: trajectory cap (12000) was NEVER triggered — aborted_ratio=0 throughout all 7 steps. response_length/mean=8198 (final), response_length/max=13322 (includes env tokens, model tokens ≈9600 < 12000 cap). Step 5 metrics: response_length/mean=8327, val≈21.9% success. Step 5 checkpoint intact and converted to HF (on both bjb1 and westd). The 12000 cap was not restrictive enough — this run is functionally equivalent to uncapped training with max_turn=25."
+  },
+  "timestamp": "2026-05-22T00:55:47.816390+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,18 @@
+{
+  "exp_id": "exp021_sft_ragen_format",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:35:48.559Z",
+    "updated_at": "2026-05-15T02:11:46.204Z",
+    "hypothesis": "Two-stage SFT with RAGEN-format data (v4). From exp008_sft checkpoint, fine-tune with v4 data (RAGEN Turn/State/Reward structure, fixed system prompt with consistent <answer> tag instruction). LR=5e-6, 2 epochs. Validate via RAGEN val_before_train (not eval_sft_fast). Pass: RAGEN val success >= 10%, action_is_valid >= 85%.",
+    "parent": "exp019b_expert_sft_v3",
+    "notes": "被 exp021_ragen_sft_v4 取代。",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T02:11:46.272325+00:00",
+  "trigger": "update_registry"
+}

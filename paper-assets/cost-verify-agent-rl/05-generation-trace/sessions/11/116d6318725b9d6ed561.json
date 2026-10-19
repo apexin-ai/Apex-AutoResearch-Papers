@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "116d6318725b9d6ed561",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh kill rsync and list hf",
+  "task_key": "worker_ssh_kill_rsync_and_list_hf_20260523T043651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_rsync_and_list_hf_20260523T043651_result.json",
+    "occurrence": 1,
+    "bytes": 1269,
+    "sha256": "e30956567f2848e7394f9169b2094dbb4250264fb90b6f39fc30838ec9a0105d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. rsync 终止确认\n4 个 rsync 相关进程（372886/372887/372894/372895）已全部终止，当前无 rsync 运行。\n\n### 2. HF 格式 checkpoint 盘点\n\n位置：`/root/autodl-tmp/checkpoints/`（项目目录下无 checkpoints 目录）\n\n| Checkpoint | 大小 |\n|---|---|\n| `qwen_exp029_seed8_step5_hf` | 3.8G |\n| `intervention_c_hard_cap_step7_hf` | 3.8G |\n| `intervention_c_hard_cap_step5_hf` | 3.8G |\n| `exp029_seed7_high_kl_step7_hf` | 3.8G |\n| `exp029_seed7_high_kl_step5_hf` | 3.8G |\n| `qwen_c_prime_step5_hf` | 3.8G |\n| `exp029_seed2_step15_hf` | 3.8G |\n| `exp029_seed42_step5_hf` | 3.8G |\n| `exp029_seed100_step5_hf` | 6.5G |\n| `qwen_exp029_seed100_step10_hf` | 3.8G |\n\n**有效 checkpoint：10 个**，总计约 **40.1G**。\n\n另有 11 个 `0` 字节的空目录（多为 `qwen_` 前缀的符号链接或空壳），列表：\n`qwen_exp029_seed6_step15_hf`, `qwen_exp029_seed5_step10_hf`, `qwen_exp029_seed4_step15_hf`, `qwen_intervention_c_hard_cap_step7_hf`, `qwen_intervention_c_hard_cap_step5_hf`, `qwen_exp029_seed7_high_kl_step7_hf`, `qwen_exp029_seed7_high_kl_step5_hf`, `qwen_seed2048_step5_hf`, `qwen_exp029_seed2_step15_hf`, `qwen_exp029_seed42_step5_hf`, `qwen_exp029_seed100_step5_hf`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-rsync-and-list-hf.md"
+}

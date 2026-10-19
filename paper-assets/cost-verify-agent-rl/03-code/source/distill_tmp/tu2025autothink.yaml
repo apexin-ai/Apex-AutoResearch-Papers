@@ -1,0 +1,46 @@
+paper_key: "tu2025autothink"
+title: "Learning When to Think: Shaping Adaptive Reasoning in R1-Style Models via Multi-Stage RL"
+venue: "NeurIPS 2025"
+full_text_available: false
+
+research:
+  baselines:
+    - "DeepSeek-R1 (always-on extended thinking)"
+    - "standard SFT without thinking tokens"
+    - "Qwen2.5-Instruct"
+    - "uniform think/no-think policy"
+    - "budget forcing / token-budget prompting"
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "average thinking tokens", direction: "lower_better"}
+    - {name: "thinking token reduction rate", direction: "higher_better"}
+    - {name: "accuracy on easy problems", direction: "higher_better"}
+    - {name: "accuracy on hard problems", direction: "higher_better"}
+  datasets:
+    - {name: "GSM8K", size: "8.5K test"}
+    - {name: "MATH500", size: "500 test"}
+    - {name: "AIME", size: "N/A"}
+    - {name: "AMC", size: "N/A"}
+    - {name: "LiveCodeBench", size: "N/A"}
+  ablation_dimensions:
+    - "stage-1 vs. stage-2 vs. combined training"
+    - "difficulty estimation accuracy"
+    - "think/no-think routing threshold"
+    - "reward shaping for frugality"
+    - "R1-style vs. non-R1 base model"
+  training_recipe:
+    optimizer: "AdamW"
+    lr: "N/A"
+    hardware: "N/A"
+    method: "Multi-stage RL: Stage 1 trains model to solve problems with or without <think> tokens using RL with correctness reward; Stage 2 introduces efficiency reward penalizing unnecessary thinking; model learns to route easy queries to direct answer and hard queries to extended reasoning"
+  method_family: "adaptive thinking / selective chain-of-thought via multi-stage reinforcement learning"
+
+positioning:
+  core_claim: "Multi-stage RL can teach R1-style models to adaptively decide when to engage extended thinking versus direct answering, substantially reducing thinking token usage on easy problems with minimal accuracy loss"
+  key_results: "N/A (specific numbers not confirmed from abstract)"
+  limitations: ["N/A"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,29 @@
+paper_key: "ava2026"
+title: "Anytime Verified Agents: Adaptive Compute Allocation for Reliable LLM Reasoning under Budget Constraints"
+venue: "TMLR 2026"
+full_text_available: false
+
+research:
+  baselines: ["fixed compute allocation", "uniform verification strategies"]
+  metrics:
+    - {name: "reasoning accuracy", direction: "higher_better"}
+    - {name: "compute cost", direction: "lower_better"}
+    - {name: "reliability under budget", direction: "higher_better"}
+  datasets: []
+  ablation_dimensions: ["budget levels", "compute allocation strategy", "verification mechanism"]
+  training_recipe:
+    optimizer: "N/A"
+    lr: "N/A"
+    hardware: "N/A"
+    method: "Adaptive compute allocation for LLM reasoning agents — dynamically decides how much compute to spend on verification based on budget constraints; anytime property allows stopping at any point with a valid verified answer"
+  method_family: "adaptive compute / verified reasoning"
+
+positioning:
+  core_claim: "Adaptive compute allocation enables reliable LLM reasoning agents that can produce verified answers at any budget level, balancing reasoning quality against computational cost."
+  key_results: "N/A (paper not found on arXiv; details inferred from title)"
+  limitations: ["N/A"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

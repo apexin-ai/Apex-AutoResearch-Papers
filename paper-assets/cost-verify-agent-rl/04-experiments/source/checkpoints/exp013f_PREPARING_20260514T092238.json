@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp013f",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:21:46.227Z",
+    "updated_at": "2026-05-14T09:22:38.344Z",
+    "hypothesis": "exp013e 基础设施修复重试。新增: (1) HYDRA_FULL_ERROR=1 获取完整堆栈 (2) 崩溃后自动备份 Ray session logs 到 /root/autodl-tmp/logs/ (3) 考虑降 train env_groups 到 2 解决 val→train 内存峰值。其余同 exp013e: dense reward shaping (valid_action_bonus=0.15, kl_loss_coef=0.01, success_reward=10.0), 从 step 5 checkpoint 恢复。",
+    "parent": "exp013e"
+  },
+  "timestamp": "2026-05-14T09:22:38.394898+00:00",
+  "trigger": "update_registry"
+}

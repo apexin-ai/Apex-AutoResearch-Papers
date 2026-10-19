@@ -1,0 +1,33 @@
+paper_key: "istar2025"
+title: "Agentic Reinforcement Learning with Implicit Step Rewards"
+venue: "ICLR 2026"
+full_text_available: false
+
+research:
+  baselines: ["standard RL without step-level credit assignment", "explicit process reward methods"]
+  metrics:
+    - {name: "task success rate", direction: "higher_better"}
+    - {name: "sample efficiency", direction: "higher_better"}
+    - {name: "step-level reward", direction: "higher_better"}
+    - {name: "episode-level reward", direction: "higher_better"}
+  datasets:
+    - {name: "WebShop", size: "N/A"}
+    - {name: "VisualSokoban", size: "N/A"}
+    - {name: "SOTOPIA", size: "N/A"}
+  ablation_dimensions: ["implicit vs explicit step rewards", "DPO trajectory objective", "combination with episode-level advantages"]
+  training_recipe:
+    optimizer: "N/A"
+    lr: "N/A"
+    hardware: "N/A"
+    method: "iStar — alternating optimization of implicit process reward model (via trajectory-based DPO objective) alongside policy; step-level rewards combined with episode-level advantages for policy updates; no additional rollouts or explicit step labels required"
+  method_family: "agentic RL with implicit process rewards"
+
+positioning:
+  core_claim: "Implicit step rewards via a jointly-optimized process reward model solve the credit assignment problem in agentic RL without requiring additional rollouts or explicit step-level labels, achieving SOTA with higher sample efficiency."
+  key_results: "State-of-the-art results on WebShop, VisualSokoban, and SOTOPIA with higher sample efficiency and training stability"
+  limitations: ["N/A"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

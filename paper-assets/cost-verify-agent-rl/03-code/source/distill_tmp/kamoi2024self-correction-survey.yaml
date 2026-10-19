@@ -1,0 +1,28 @@
+paper_key: "kamoi2024self-correction-survey"
+title: "When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: ["various self-correction frameworks from surveyed papers"]
+  metrics:
+    - {name: "self-correction success rate", direction: "higher_better"}
+  datasets:
+    - {name: "multiple benchmarks from surveyed papers", size: "N/A"}
+  ablation_dimensions: ["feedback source (self-evaluation vs external)", "task type", "fine-tuning scale"]
+  training_recipe:
+    optimizer: "N/A"
+    lr: "N/A"
+    hardware: "N/A"
+    method: "Critical survey; categorizes self-correction research questions and provides experimental design checklist"
+  method_family: "self-correction / self-refinement survey"
+
+positioning:
+  core_claim: "No prior work demonstrates successful self-correction with prompted LLM feedback alone (except specially suited tasks); self-correction works with reliable external feedback or large-scale fine-tuning"
+  key_results: "Three key findings: (1) prompted self-correction fails in general, (2) external feedback enables self-correction, (3) large-scale fine-tuning enables self-correction"
+  limitations: ["N/A"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06e548fef205e67a171b",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "ssh check collapsed seed fsdp checkpoints",
+  "task_key": "worker_ssh_check_collapsed_seed_fsdp_checkpoints_20260522T220352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_collapsed_seed_fsdp_checkpoints_20260522T220352_result.json",
+    "occurrence": 1,
+    "bytes": 740,
+    "sha256": "beb8219064debbe45c8f2919d442340698efff4ddb571a08d0bde022f6361624"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果明确：\n\n```\nseed2048: FSDP checkpoint 不存在, 仅有空目录 seed2048_step5_ood_eval (0B), 含 optimizer: 否 ❌\nseed42:   FSDP checkpoint 不存在, 仅有 HF 格式 qwen_exp029_seed42_step5_hf (3.8GB safetensors), 含 optimizer: 否 ❌\nseed8:    FSDP checkpoint 不存在, 仅有 HF 格式 qwen_exp029_seed8_step5_hf (3.8GB safetensors) + 空目录 exp029_seed8_ood_precollapse (0B), 含 optimizer: 否 ❌\n```\n\n3 个 collapsed seeds 均无 FSDP 训练 checkpoint。整个服务器上唯一含 optimizer states 的 FSDP checkpoint 是 `exp029-seed100/global_step_5/`（21GB）。这 3 个 seed 无法 resume 训练，只能从头重跑或从 HF weights 初始化（但会丢失 optimizer states）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-collapsed-seed-fsdp-checkpoints.md"
+}

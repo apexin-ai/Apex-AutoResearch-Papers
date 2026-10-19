@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "0ce6a3ac4aa3dc65154c",
+  "project": "cost-verify-agent-rl",
+  "kind": "worker",
+  "title": "infra gamma sweep westd",
+  "task_key": "worker_infra_gamma-sweep-westd_20260517T134959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gamma-sweep-westd_20260517T134959.log",
+    "occurrence": 1,
+    "bytes": 696911,
+    "sha256": "53fd29774792bb087b60efcdd31a4e095e90131aa361fdaa0338d774a6092846"
+  },
+  "statistics": {
+    "messages": 371,
+    "user_turns": 0,
+    "tool_calls": 134,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 99,
+      "tool_call": 134,
+      "tool_result": 134,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 371,
+      "chunks": [
+        {
+          "path": "0ce6a3ac4aa3dc65154c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0ce6a3ac4aa3dc65154c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0ce6a3ac4aa3dc65154c-part-0003.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-gamma-sweep-westd.md"
+}

@@ -1,0 +1,3 @@
+2026-05-17 00:15:26,015 INFO    core.tools.feishu  create_chat: name='审稿-cost-verify-agent-rl' → chat_id=oc_648eaf83d2b24d445764257cf6a55525
+2026-05-17 00:15:26,018 INFO    core.tools.dream  [dream] auto-created Group C for project=cost-verify-agent-rl: oc_648eaf83d2b24d445764257cf6a55525
+2026-05-17 00:15:26,156 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0509_1/config/mcp_config_dream_review_director.json

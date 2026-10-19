@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2155cf9ccb4731cea218",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "research citation verification urgent",
+  "task_key": "worker_research_citation-verification-urgent_20260518T034753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_citation-verification-urgent_20260518T034753_result.json",
+    "occurrence": 1,
+    "bytes": 965,
+    "sha256": "93254fa69c20347629aa941b44f6480d5a613e23c563f3ba420ef08c53506fb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。报告已写入 `artifacts/citation_verification_report.md`。\n\n**核心结论：0 篇 hallucinated，4 篇完全准确，4 篇部分准确需修正措辞。**\n\n需要修正的 4 处问题：\n\n| 论文 | 问题 | 修正 |\n|------|------|------|\n| **GRPO-λ** | Lemma 1 实际是 value difference bound，非 \"normalized advantage bias\"；论文不用 \"systematic misattribution\" | 改述 Lemma 1 内容；删除 misattribution 措辞 |\n| **OAR** | 论文不用 \"advantage misattribution\"，用的是 \"reward aliasing\" 和 \"coarse-grained credit assignment\" | 替换术语 |\n| **Decoupled Credit** | ICLR 2026 状态是 under review，非已录用 | 标注 \"(under review)\" |\n| **RAGEN** | \"20/10 步 collapse\" 不准确，实际 collapse 在 training step ~170/110 | 区分 episode length 和 training steps |\n\n另外 IRC 的 \"6.5pp\" 数字未在 HTML 全文中找到确切对应，建议也核实一下。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-citation-verification-urgent.md"
+}

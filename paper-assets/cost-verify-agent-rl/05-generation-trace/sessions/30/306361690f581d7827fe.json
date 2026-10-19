@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "306361690f581d7827fe",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "analyze exp029 seed3 v2",
+  "task_key": "worker_analyze_exp029_seed3_v2_20260520T225903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp029_seed3_v2_20260520T225903_result.json",
+    "occurrence": 1,
+    "bytes": 874,
+    "sha256": "8aa06ab3c9bec62f137dc60fa715cef1ff52f595dde474a61d432ce070c0315f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已注册。汇总：\n\n**exp029_seed3_v2 训练结果（15/15 步完成）**\n\n| 指标 | Step 0 (init) | Step 5 | Step 10 | Step 15 (final) |\n|------|:---:|:---:|:---:|:---:|\n| Val Success | 6.25% | 21.88% | 28.13% | **40.63%** |\n| Val Reward@32 | 0.625 | 2.1875 | 2.8125 | **4.0625** |\n| Train Success | — | 20.31% | 38.28% | **54.69%** |\n| Train Pass@8 | — | 75.00% | 75.00% | **93.75%** |\n| Response Length | — | 10942 | 9028 | **7505** |\n| Collapse MI | — | 0.123 | 0.132 | **0.227** |\n\n- **Checkpoints**: step 5/10/15 各 21GB，均完整（2 rank model + optimizer + tokenizer）\n- **W&B Run**: `0t58u17b`，数据已存 local\n- **EXIT_CODE=129**: 仅 W&B teardown BrokenPipeError，训练本身成功\n- **无 collapse**：MI 持续上升\n\n报告已写入 `artifacts/exp029_seed3_v2/report/exp029_seed3_v2_analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp029-seed3-v2.md"
+}

@@ -1,0 +1,2632 @@
+# diagnose exp029 real crash
+
+**Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 57
+- **Recorded user turns:** 0
+- **Tool calls:** 24
+- **Original source:** `logs/workers/worker_diagnose_exp029_real_crash_20260516T191610.log`
+- **Structured JSON:** [`b80832fbde88c6e0a448.json`](../../sessions/b8/b80832fbde88c6e0a448.json)
+
+## Before a recorded user message
+
+57 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_1/projects/cost-verify-agent-rl",
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "c87b9d64-2b38-467c-babf-b26931a8093a",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-6/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-1-projects-cost-verify-agent-rl/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778975400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "27b9ecf5-ddc7-429c-98cb-3b6f11a0e8c6",
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to diagnose why exp029 (PID 889859) died. I need to run several ssh_read_only commands on the server bjb1-17606. Let me load the MCP tool schema first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "a9155674-5028-48dc-94b6-b2d207b8eaff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nudj8WH6XtWhUE1fLFj8aZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11581,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11581
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_015uEy5gGaJVTnQabik31pry`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "65312450-b9bf-4a89-a52e-4688fa365ebb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nudj8WH6XtWhUE1fLFj8aZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11581,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11581
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T19:16:23.579Z_
+
+<details><summary>↩ Tool result · `toolu_015uEy5gGaJVTnQabik31pry`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "01a883dd-4f59-4ee9-947c-2ca39c672c71",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me run the diagnostic commands. I'll run them in parallel since they're independent.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "c4f217f0-e810-40ba-ab6f-8de869fd15f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SvmUUXszBmd8vfqNUVYLSp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 492,
+      "cache_read_input_tokens": 23422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 492
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019ijZb8nYaU2WyXbfpS9ij4`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "ps -p 889859 -o pid,etime= 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "8493dc31-bfd2-4939-b045-fa48c73c73a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SvmUUXszBmd8vfqNUVYLSp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 492,
+      "cache_read_input_tokens": 23422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 492
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T19:16:27.674Z_
+
+<details><summary>↩ Tool result · `toolu_019ijZb8nYaU2WyXbfpS9ij4`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "f3297cb6-5f54-4e34-8457-8919acaf5005",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EBAopCLXwHj7FcJLU823kf`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "nvidia-smi --query-gpu=utilization.gpu,memory.used --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "ee655cd5-d64f-47a6-98f2-2ff63e45136a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SvmUUXszBmd8vfqNUVYLSp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 492,
+      "cache_read_input_tokens": 23422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 492
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XhW8Ymk28sM9WDyMi1jsKX`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "tail -80 /root/autodl-tmp/exp029_restart.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "00e2a3ee-acda-4915-a2af-324c9c5cba58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SvmUUXszBmd8vfqNUVYLSp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 492,
+      "cache_read_input_tokens": 23422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 492
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T19:16:29.752Z_
+
+<details><summary>↩ Tool result · `toolu_01EBAopCLXwHj7FcJLU823kf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0 %, 38169 MiB\\n0 %, 38149 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "c33ba504-9cd8-4e65-b81a-f94d7b685069",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0 %, 38169 MiB\\\\n0 %, 38149 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0 %, 38169 MiB\\n0 %, 38149 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T19:16:30.174Z_
+
+<details><summary>↩ Tool result · `toolu_01XhW8Ymk28sM9WDyMi1jsKX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    )\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py\\\", line 1609, in fit\\n    actor_output = self.actor_rollout_wg.update_actor(batch)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/ray/base.py\\\", line 48, in __call__\\n    output = ray.get(output)\\n             ^^^^^^^^^^^^^^^\\n           ^^^^^^^^^^^^^^^^^^^\\n           ^^^^^^^^^^^^^^^^^^^^^\\n                                  ^^^^^^^^^^^^^^^^^^^\\nray.exceptions.RayTaskError(OutOfMemoryError): \\u001b[36mray::WorkerDict.actor_rollout_update_actor()\\u001b[39m (pid=890045, ip=172.17.0.6, actor_id=fb0896b48315dbb8775108c401000000, repr=&lt;verl.single_controller.ray.base.WorkerDict object at 0x7f8b17b860f0>)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/ray/base.py\\\", line 700, in func\\n    return getattr(self.worker_dict[key], name)(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/base/decorator.py\\\", line 442, in inner\\n    return func(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/transferqueue_utils.py\\\", line 199, in dummy_inner\\n    return func(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/profile.py\\\", line 256, in wrapper\\n    return func(self_instance, *args, **kwargs_inner)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/ragen/workers/fsdp_workers.py\\\", line 169, in update_actor\\n    output = self.actor.update_policy(data)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/performance.py\\\", line 105, in f\\n    return self.log(decorated_function, *args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/performance.py\\\", line 118, in log\\n    output = func(*args, **kwargs)\\n             ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/ragen/workers/actor/dp_actor.py\\\", line 468, in update_policy\\n    loss.backward()\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/_tensor.py\\\", line 630, in backward\\n    torch.autograd.backward(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/__init__.py\\\", line 364, in backward\\n    _engine_run_backward(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py\\\", line 865, in _engine_run_backward\\n    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.27 GiB. GPU 0 has a total capacity of 94.97 GiB of which 3.87 GiB is free. Including non-PyTorch memory, this process has 55.41 GiB memory in use. Process 895286 has 35.66 GiB memory in use. Of the allocated memory 85.49 GiB is allocated by PyTorch, with 71.70 MiB allocated in private pools (e.g., CUDA Graphs), and 115.79 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\n\\nSet the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m Unhandled error (suppress with 'RAY_IGNORE_UNHANDLED_ERRORS=1'): \\u001b[36mray::WorkerDict.actor_rollout_update_actor()\\u001b[39m (pid=890046, ip=172.17.0.6, actor_id=ec7464797a18b2690ce3deca01000000, repr=&lt;verl.single_controller.ray.base.WorkerDict object at 0x7fd3ebc05a00>)\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/ray/base.py\\\", line 700, in func\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     return getattr(self.worker_dict[key], name)(*args, **kwargs)\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/base/decorator.py\\\", line 442, in inner\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     return func(*args, **kwargs)\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/transferqueue_utils.py\\\", line 199, in dummy_inner\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     return func(*args, **kwargs)\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/profile.py\\\", line 256, in wrapper\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     return func(self_instance, *args, **kwargs_inner)\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/cost-verify-agent-rl/RAGEN/ragen/workers/fsdp_workers.py\\\", line 169, in update_actor\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     output = self.actor.update_policy(data)\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/performance.py\\\", line 105, in f\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     return self.log(decorated_function, *args, **kwargs)\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/performance.py\\\", line 118, in log\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     output = func(*args, **kwargs)\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m              ^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/cost-verify-agent-rl/RAGEN/ragen/workers/actor/dp_actor.py\\\", line 468, in update_policy\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     loss.backward()\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/_tensor.py\\\", line 630, in backward\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     torch.autograd.backward(\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/__init__.py\\\", line 364, in backward\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     _engine_run_backward(\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py\\\", line 865, in _engine_run_backward\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.27 GiB. GPU 0 has a total capacity of 94.97 GiB of which 3.87 GiB is free. Including non-PyTorch memory, this process has 55.41 GiB memory in use. Process 895287 has 35.66 GiB memory in use. Of the allocated memory 85.49 GiB is allocated by PyTorch, with 71.70 MiB allocated in private pools (e.g., CUDA Graphs), and 115.79 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "367e95b2-f2b0-4f14-8ef0-e4c676cf096f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    )\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py\\\\\\\", line 1609, in fit\\\\n    actor_output = self.actor_rollout_wg.update_actor(batch)\\\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/ray/base.py\\\\\\\", line 48, in __call__\\\\n    output = ray.get(output)\\\\n             ^^^^^^^^^^^^^^^\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n           ^^^^^^^^^^^^^^^^^^^^^\\\\n                                  ^^^^^^^^^^^^^^^^^^^\\\\nray.exceptions.RayTaskError(OutOfMemoryError): \\\\u001b[36mray::WorkerDict.actor_rollout_update_actor()\\\\u001b[39m (pid=890045, ip=172.17.0.6, actor_id=fb0896b48315dbb8775108c401000000, repr=&lt;verl.single_controller.ray.base.WorkerDict object at 0x7f8b17b860f0>)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/ray/base.py\\\\\\\", line 700, in func\\\\n    return getattr(self.worker_dict[key], name)(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/base/decorator.py\\\\\\\", line 442, in inner\\\\n    return func(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/transferqueue_utils.py\\\\\\\", line 199, in dummy_inner\\\\n    return func(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/profile.py\\\\\\\", line 256, in wrapper\\\\n    return func(self_instance, *args, **kwargs_inner)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/ragen/workers/fsdp_workers.py\\\\\\\", line 169, in update_actor\\\\n    output = self.actor.update_policy(data)\\\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/performance.py\\\\\\\", line 105, in f\\\\n    return self.log(decorated_function, *args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/performance.py\\\\\\\", line 118, in log\\\\n    output = func(*args, **kwargs)\\\\n             ^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/ragen/workers/actor/dp_actor.py\\\\\\\", line 468, in update_policy\\\\n    loss.backward()\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/_tensor.py\\\\\\\", line 630, in backward\\\\n    torch.autograd.backward(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/__init__.py\\\\\\\", line 364, in backward\\\\n    _engine_run_backward(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py\\\\\\\", line 865, in _engine_run_backward\\\\n    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.27 GiB. GPU 0 has a total capacity of 94.97 GiB of which 3.87 GiB is free. Including non-PyTorch memory, this process has 55.41 GiB memory in use. Process 895286 has 35.66 GiB memory in use. Of the allocated memory 85.49 GiB is allocated by PyTorch, with 71.70 MiB allocated in private pools (e.g., CUDA Graphs), and 115.79 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\\\n\\\\nSet the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m Unhandled error (suppress with 'RAY_IGNORE_UNHANDLED_ERRORS=1'): \\\\u001b[36mray::WorkerDict.actor_rollout_update_actor()\\\\u001b[39m (pid=890046, ip=172.17.0.6, actor_id=ec7464797a18b2690ce3deca01000000, repr=&lt;verl.single_controller.ray.base.WorkerDict object at 0x7fd3ebc05a00>)\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m   File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/ray/base.py\\\\\\\", line 700, in func\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m     return getattr(self.worker_dict[key], name)(*args, **kwargs)\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m   File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/base/decorator.py\\\\\\\", line 442, in inner\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m     return func(*args, **kwargs)\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m   File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/transferqueue_utils.py\\\\\\\", line 199, in dummy_inner\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m     return func(*args, **kwargs)\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m   File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/profile.py\\\\\\\", line 256, in wrapper\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m     return func(self_instance, *args, **kwargs_inner)\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m   File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/ragen/workers/fsdp_workers.py\\\\\\\", line 169, in update_actor\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m     output = self.actor.update_policy(data)\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m   File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/performance.py\\\\\\\", line 105, in f\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m     return self.log(decorated_function, *args, **kwargs)\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m   File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/performance.py\\\\\\\", line 118, in log\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m     output = func(*args, **kwargs)\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m              ^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m   File \\\\\\\"/root/cost-verify-agent-rl/RAGEN/ragen/workers/actor/dp_actor.py\\\\\\\", line 468, in update_policy\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m     loss.backward()\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m   File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/_tensor.py\\\\\\\", line 630, in backward\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m     torch.autograd.backward(\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m   File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/__init__.py\\\\\\\", line 364, in backward\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m     _engine_run_backward(\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m   File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py\\\\\\\", line 865, in _engine_run_backward\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.27 GiB. GPU 0 has a total capacity of 94.97 GiB of which 3.87 GiB is free. Including non-PyTorch memory, this process has 55.41 GiB memory in use. Process 895287 has 35.66 GiB memory in use. Of the allocated memory 85.49 GiB is allocated by PyTorch, with 71.70 MiB allocated in private pools (e.g., CUDA Graphs), and 115.79 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    )\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/ragen/trainer/agent_trainer.py\\\", line 1609, in fit\\n    actor_output = self.actor_rollout_wg.update_actor(batch)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/ray/base.py\\\", line 48, in __call__\\n    output = ray.get(output)\\n             ^^^^^^^^^^^^^^^\\n           ^^^^^^^^^^^^^^^^^^^\\n           ^^^^^^^^^^^^^^^^^^^^^\\n                                  ^^^^^^^^^^^^^^^^^^^\\nray.exceptions.RayTaskError(OutOfMemoryError): \\u001b[36mray::WorkerDict.actor_rollout_update_actor()\\u001b[39m (pid=890045, ip=172.17.0.6, actor_id=fb0896b48315dbb8775108c401000000, repr=&lt;verl.single_controller.ray.base.WorkerDict object at 0x7f8b17b860f0>)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/ray/base.py\\\", line 700, in func\\n    return getattr(self.worker_dict[key], name)(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/base/decorator.py\\\", line 442, in inner\\n    return func(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/transferqueue_utils.py\\\", line 199, in dummy_inner\\n    return func(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/profile.py\\\", line 256, in wrapper\\n    return func(self_instance, *args, **kwargs_inner)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/ragen/workers/fsdp_workers.py\\\", line 169, in update_actor\\n    output = self.actor.update_policy(data)\\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/performance.py\\\", line 105, in f\\n    return self.log(decorated_function, *args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/performance.py\\\", line 118, in log\\n    output = func(*args, **kwargs)\\n             ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/cost-verify-agent-rl/RAGEN/ragen/workers/actor/dp_actor.py\\\", line 468, in update_policy\\n    loss.backward()\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/_tensor.py\\\", line 630, in backward\\n    torch.autograd.backward(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/__init__.py\\\", line 364, in backward\\n    _engine_run_backward(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py\\\", line 865, in _engine_run_backward\\n    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.27 GiB. GPU 0 has a total capacity of 94.97 GiB of which 3.87 GiB is free. Including non-PyTorch memory, this process has 55.41 GiB memory in use. Process 895286 has 35.66 GiB memory in use. Of the allocated memory 85.49 GiB is allocated by PyTorch, with 71.70 MiB allocated in private pools (e.g., CUDA Graphs), and 115.79 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\n\\nSet the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m Unhandled error (suppress with 'RAY_IGNORE_UNHANDLED_ERRORS=1'): \\u001b[36mray::WorkerDict.actor_rollout_update_actor()\\u001b[39m (pid=890046, ip=172.17.0.6, actor_id=ec7464797a18b2690ce3deca01000000, repr=&lt;verl.single_controller.ray.base.WorkerDict object at 0x7fd3ebc05a00>)\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/ray/base.py\\\", line 700, in func\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     return getattr(self.worker_dict[key], name)(*args, **kwargs)\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/single_controller/base/decorator.py\\\", line 442, in inner\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     return func(*args, **kwargs)\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/transferqueue_utils.py\\\", line 199, in dummy_inner\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     return func(*args, **kwargs)\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/profile.py\\\", line 256, in wrapper\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     return func(self_instance, *args, **kwargs_inner)\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/cost-verify-agent-rl/RAGEN/ragen/workers/fsdp_workers.py\\\", line 169, in update_actor\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     output = self.actor.update_policy(data)\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/performance.py\\\", line 105, in f\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     return self.log(decorated_function, *args, **kwargs)\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/cost-verify-agent-rl/RAGEN/verl/verl/utils/profiler/performance.py\\\", line 118, in log\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     output = func(*args, **kwargs)\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m              ^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/cost-verify-agent-rl/RAGEN/ragen/workers/actor/dp_actor.py\\\", line 468, in update_policy\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     loss.backward()\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/_tensor.py\\\", line 630, in backward\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     torch.autograd.backward(\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/__init__.py\\\", line 364, in backward\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     _engine_run_backward(\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m   File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py\\\", line 865, in _engine_run_backward\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.27 GiB. GPU 0 has a total capacity of 94.97 GiB of which 3.87 GiB is free. Including non-PyTorch memory, this process has 55.41 GiB memory in use. Process 895287 has 35.66 GiB memory in use. Of the allocated memory 85.49 GiB is allocated by PyTorch, with 71.70 MiB allocated in private pools (e.g., CUDA Graphs), and 115.79 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016wE4DSnM2ptTBCBLpHQC9e`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep -i \"error\" /root/autodl-tmp/exp029_restart.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "bca38fe1-4daf-4bc3-819e-0a2a0d489764",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SvmUUXszBmd8vfqNUVYLSp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 492,
+      "cache_read_input_tokens": 23422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 492
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T19:16:30.643Z_
+
+<details><summary>↩ Tool result · `toolu_016wE4DSnM2ptTBCBLpHQC9e`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"config: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 1e-06, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig', 'wrap_policy': {'min_num_params': 0}, 'param_offload': False, 'optimizer_offload': False, 'offload_policy': False, 'reshard_after_forward': True, 'fsdp_size': -1, 'forward_prefetch': False, 'model_dtype': 'fp32', 'use_orig_params': False, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'use_torch_compile': True, 'entropy_checkpointing': False, 'forward_only': False, 'strategy': 'fsdp', 'dtype': 'bfloat16'}, '_target_': 'verl.workers.config.FSDPActorConfig', 'strategy': 'fsdp', 'ppo_mini_batch_size': '${ppo_mini_batch_size}', 'ppo_micro_batch_size': None, 'ppo_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'use_dynamic_bsz': False, 'ppo_max_token_len_per_gpu': 65536, 'clip_ratio': 0.2, 'clip_ratio_low': 0.2, 'clip_ratio_high': 0.28, 'freeze_vision_tower': False, 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig', 'loss_mode': 'vanilla', 'clip_cov_ratio': 0.0002, 'clip_cov_lb': 1.0, 'clip_cov_ub': 5.0, 'kl_cov_ratio': 0.0002, 'ppo_kl_coef': 0.1}, 'clip_ratio_c': 3.0, 'loss_agg_mode': 'token-mean', 'entropy_coeff': 0.001, 'use_kl_loss': True, 'use_torch_compile': False, 'kl_loss_coef': 0.01, 'kl_loss_type': 'low_var_kl', 'ppo_epochs': 1, 'shuffle': False, 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig', 'save_contents': ['model', 'optimizer', 'extra'], 'load_contents': '${.save_contents}', 'async_save': False}, 'use_fused_kernels': '${oc.select:actor_rollout_ref.model.use_fused_kernels,false}', 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig', 'contents': [], 'level': 'level1', 'analysis': True, 'discrete': False}, 'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig', 'step_start': 0, 'step_end': None}, 'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig', 'trace_alloc_max_entries': '${oc.select:global_profiler.global_tool_config.torch_memory.trace_alloc_max_entries,100000}', 'stack_depth': '${oc.select:global_profiler.global_tool_config.torch_memory.stack_depth,32}'}}}, 'grad_clip': 1.0, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'entropy_checkpointing': False, 'use_remove_padding': '${oc.select:actor_rollout_ref.model.use_remove_padding,false}', 'use_ref': True, 'grpo_advantage_length_weight': '${grpo_advantage_length_weight}', 'filter_loss_scaling': 'none'}, 'ref': {'strategy': '${actor_rollout_ref.actor.strategy}', 'use_torch_compile': False, 'log_prob_micro_batch_size': None, 'log_prob_micro_batch_size_per_gpu': '${log_prob_micro_batch_size_per_gpu}', 'log_prob_use_dynamic_bsz': '${oc.select:actor_rollout_ref.actor.use_dynamic_bsz,false}', 'log_prob_max_token_len_per_gpu': 65536, 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': \\n\\n... [截断: 输出过长，省略 32095 字符] ...\\n\\ndow': -1, 'batch_adjust_mode': 'copy', 'max_turn': 50, 'action_sep': '||', 'max_actions_per_turn': 1, 'use_turn_scores': True, 'enable_think': True, 'reward_normalization': {'grouping': 'state', 'method': 'identity'}, 'step_independent_history_length': 2, 'max_prompt_length': 16384}, 'collapse_detection': {'compute_freq': 5, 'micro_batch_size': 128, 'first_turn_enabled': True, 'multi_turn_enabled': False, 'num_samples': 64}, 'es_manager': {'format_penalty': 0, 'train': {'env_groups': 16, 'group_size': 8, 'env_configs': {'tags': ['AlfworldSG'], 'n_groups': [16]}}, 'val': {'env_groups': 32, 'group_size': 1, 'env_configs': {'tags': ['AlfworldSG'], 'n_groups': [32]}}}, 'ctx_manager': {'generation': {'gen_config': {'response_length': '${actor_rollout_ref.rollout.response_length}', 'temperature': '${actor_rollout_ref.rollout.temperature}', 'top_p': '${actor_rollout_ref.rollout.top_p}', 'top_k': '${actor_rollout_ref.rollout.top_k}', 'kwargs': None}}}}2026-05-17 02:19:10,294\\tWARNING utils.py:461 -- Detecting docker specified CPUs. In previous versions of Ray, CPU detection in containers was incorrect. Please ensure that Ray has enough CPUs allocated. As a temporary workaround to revert to the prior behavior, set `RAY_USE_MULTIPROCESSING_CPU_COUNT=1` as an env var before starting Ray. Set the env var: `RAY_DISABLE_DOCKER_CPU_WARNING=1` to mute this warning.\\n/root/miniconda3/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m           'truncation': 'error',\\nError executing job with overrides: []\\nray.exceptions.RayTaskError(OutOfMemoryError): \\u001b[36mray::TaskRunner.run()\\u001b[39m (pid=889859, ip=172.17.0.6, actor_id=b58f20aed523cb92fcea901d01000000, repr=&lt;train.TaskRunner object at 0x7ff5ba5eea50>)\\nray.exceptions.RayTaskError(OutOfMemoryError): \\u001b[36mray::WorkerDict.actor_rollout_update_actor()\\u001b[39m (pid=890045, ip=172.17.0.6, actor_id=fb0896b48315dbb8775108c401000000, repr=&lt;verl.single_controller.ray.base.WorkerDict object at 0x7f8b17b860f0>)\\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.27 GiB. GPU 0 has a total capacity of 94.97 GiB of which 3.87 GiB is free. Including non-PyTorch memory, this process has 55.41 GiB memory in use. Process 895286 has 35.66 GiB memory in use. Of the allocated memory 85.49 GiB is allocated by PyTorch, with 71.70 MiB allocated in private pools (e.g., CUDA Graphs), and 115.79 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\nSet the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m Unhandled error (suppress with 'RAY_IGNORE_UNHANDLED_ERRORS=1'): \\u001b[36mray::WorkerDict.actor_rollout_update_actor()\\u001b[39m (pid=890046, ip=172.17.0.6, actor_id=ec7464797a18b2690ce3deca01000000, repr=&lt;verl.single_controller.ray.base.WorkerDict object at 0x7fd3ebc05a00>)\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.27 GiB. GPU 0 has a total capacity of 94.97 GiB of which 3.87 GiB is free. Including non-PyTorch memory, this process has 55.41 GiB memory in use. Process 895287 has 35.66 GiB memory in use. Of the allocated memory 85.49 GiB is allocated by PyTorch, with 71.70 MiB allocated in private pools (e.g., CUDA Graphs), and 115.79 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "074274bd-3a11-4291-bd95-d2b49a681f99",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"config: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 1e-06, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig', 'wrap_policy': {'min_num_params': 0}, 'param_offload': False, 'optimizer_offload': False, 'offload_policy': False, 'reshard_after_forward': True, 'fsdp_size': -1, 'forward_prefetch': False, 'model_dtype': 'fp32', 'use_orig_params': False, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'use_torch_compile': True, 'entropy_checkpointing': False, 'forward_only': False, 'strategy': 'fsdp', 'dtype': 'bfloat16'}, '_target_': 'verl.workers.config.FSDPActorConfig', 'strategy': 'fsdp', 'ppo_mini_batch_size': '${ppo_mini_batch_size}', 'ppo_micro_batch_size': None, 'ppo_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'use_dynamic_bsz': False, 'ppo_max_token_len_per_gpu': 65536, 'clip_ratio': 0.2, 'clip_ratio_low': 0.2, 'clip_ratio_high': 0.28, 'freeze_vision_tower': False, 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig', 'loss_mode': 'vanilla', 'clip_cov_ratio': 0.0002, 'clip_cov_lb': 1.0, 'clip_cov_ub': 5.0, 'kl_cov_ratio': 0.0002, 'ppo_kl_coef': 0.1}, 'clip_ratio_c': 3.0, 'loss_agg_mode': 'token-mean', 'entropy_coeff': 0.001, 'use_kl_loss': True, 'use_torch_compile': False, 'kl_loss_coef': 0.01, 'kl_loss_type': 'low_var_kl', 'ppo_epochs': 1, 'shuffle': False, 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig', 'save_contents': ['model', 'optimizer', 'extra'], 'load_contents': '${.save_contents}', 'async_save': False}, 'use_fused_kernels': '${oc.select:actor_rollout_ref.model.use_fused_kernels,false}', 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig', 'contents': [], 'level': 'level1', 'analysis': True, 'discrete': False}, 'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig', 'step_start': 0, 'step_end': None}, 'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig', 'trace_alloc_max_entries': '${oc.select:global_profiler.global_tool_config.torch_memory.trace_alloc_max_entries,100000}', 'stack_depth': '${oc.select:global_profiler.global_tool_config.torch_memory.stack_depth,32}'}}}, 'grad_clip': 1.0, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'entropy_checkpointing': False, 'use_remove_padding': '${oc.select:actor_rollout_ref.model.use_remove_padding,false}', 'use_ref': True, 'grpo_advantage_length_weight': '${grpo_advantage_length_weight}', 'filter_loss_scaling': 'none'}, 'ref': {'strategy': '${actor_rollout_ref.actor.strategy}', 'use_torch_compile': False, 'log_prob_micro_batch_size': None, 'log_prob_micro_batch_size_per_gpu': '${log_prob_micro_batch_size_per_gpu}', 'log_prob_use_dynamic_bsz': '${oc.select:actor_rollout_ref.actor.use_dynamic_bsz,false}', 'log_prob_max_token_len_per_gpu': 65536, 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': \\\\n\\\\n... [截断: 输出过长，省略 32095 字符] ...\\\\n\\\\ndow': -1, 'batch_adjust_mode': 'copy', 'max_turn': 50, 'action_sep': '||', 'max_actions_per_turn': 1, 'use_turn_scores': True, 'enable_think': True, 'reward_normalization': {'grouping': 'state', 'method': 'identity'}, 'step_independent_history_length': 2, 'max_prompt_length': 16384}, 'collapse_detection': {'compute_freq': 5, 'micro_batch_size': 128, 'first_turn_enabled': True, 'multi_turn_enabled': False, 'num_samples': 64}, 'es_manager': {'format_penalty': 0, 'train': {'env_groups': 16, 'group_size': 8, 'env_configs': {'tags': ['AlfworldSG'], 'n_groups': [16]}}, 'val': {'env_groups': 32, 'group_size': 1, 'env_configs': {'tags': ['AlfworldSG'], 'n_groups': [32]}}}, 'ctx_manager': {'generation': {'gen_config': {'response_length': '${actor_rollout_ref.rollout.response_length}', 'temperature': '${actor_rollout_ref.rollout.temperature}', 'top_p': '${actor_rollout_ref.rollout.top_p}', 'top_k': '${actor_rollout_ref.rollout.top_k}', 'kwargs': None}}}}2026-05-17 02:19:10,294\\\\tWARNING utils.py:461 -- Detecting docker specified CPUs. In previous versions of Ray, CPU detection in containers was incorrect. Please ensure that Ray has enough CPUs allocated. As a temporary workaround to revert to the prior behavior, set `RAY_USE_MULTIPROCESSING_CPU_COUNT=1` as an env var before starting Ray. Set the env var: `RAY_DISABLE_DOCKER_CPU_WARNING=1` to mute this warning.\\\\n/root/miniconda3/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m           'truncation': 'error',\\\\nError executing job with overrides: []\\\\nray.exceptions.RayTaskError(OutOfMemoryError): \\\\u001b[36mray::TaskRunner.run()\\\\u001b[39m (pid=889859, ip=172.17.0.6, actor_id=b58f20aed523cb92fcea901d01000000, repr=&lt;train.TaskRunner object at 0x7ff5ba5eea50>)\\\\nray.exceptions.RayTaskError(OutOfMemoryError): \\\\u001b[36mray::WorkerDict.actor_rollout_update_actor()\\\\u001b[39m (pid=890045, ip=172.17.0.6, actor_id=fb0896b48315dbb8775108c401000000, repr=&lt;verl.single_controller.ray.base.WorkerDict object at 0x7f8b17b860f0>)\\\\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.27 GiB. GPU 0 has a total capacity of 94.97 GiB of which 3.87 GiB is free. Including non-PyTorch memory, this process has 55.41 GiB memory in use. Process 895286 has 35.66 GiB memory in use. Of the allocated memory 85.49 GiB is allocated by PyTorch, with 71.70 MiB allocated in private pools (e.g., CUDA Graphs), and 115.79 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\\\nSet the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m Unhandled error (suppress with 'RAY_IGNORE_UNHANDLED_ERRORS=1'): \\\\u001b[36mray::WorkerDict.actor_rollout_update_actor()\\\\u001b[39m (pid=890046, ip=172.17.0.6, actor_id=ec7464797a18b2690ce3deca01000000, repr=&lt;verl.single_controller.ray.base.WorkerDict object at 0x7fd3ebc05a00>)\\\\n\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.27 GiB. GPU 0 has a total capacity of 94.97 GiB of which 3.87 GiB is free. Including non-PyTorch memory, this process has 55.41 GiB memory in use. Process 895287 has 35.66 GiB memory in use. Of the allocated memory 85.49 GiB is allocated by PyTorch, with 71.70 MiB allocated in private pools (e.g., CUDA Graphs), and 115.79 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"config: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 1e-06, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig', 'wrap_policy': {'min_num_params': 0}, 'param_offload': False, 'optimizer_offload': False, 'offload_policy': False, 'reshard_after_forward': True, 'fsdp_size': -1, 'forward_prefetch': False, 'model_dtype': 'fp32', 'use_orig_params': False, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'use_torch_compile': True, 'entropy_checkpointing': False, 'forward_only': False, 'strategy': 'fsdp', 'dtype': 'bfloat16'}, '_target_': 'verl.workers.config.FSDPActorConfig', 'strategy': 'fsdp', 'ppo_mini_batch_size': '${ppo_mini_batch_size}', 'ppo_micro_batch_size': None, 'ppo_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'use_dynamic_bsz': False, 'ppo_max_token_len_per_gpu': 65536, 'clip_ratio': 0.2, 'clip_ratio_low': 0.2, 'clip_ratio_high': 0.28, 'freeze_vision_tower': False, 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig', 'loss_mode': 'vanilla', 'clip_cov_ratio': 0.0002, 'clip_cov_lb': 1.0, 'clip_cov_ub': 5.0, 'kl_cov_ratio': 0.0002, 'ppo_kl_coef': 0.1}, 'clip_ratio_c': 3.0, 'loss_agg_mode': 'token-mean', 'entropy_coeff': 0.001, 'use_kl_loss': True, 'use_torch_compile': False, 'kl_loss_coef': 0.01, 'kl_loss_type': 'low_var_kl', 'ppo_epochs': 1, 'shuffle': False, 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig', 'save_contents': ['model', 'optimizer', 'extra'], 'load_contents': '${.save_contents}', 'async_save': False}, 'use_fused_kernels': '${oc.select:actor_rollout_ref.model.use_fused_kernels,false}', 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig', 'contents': [], 'level': 'level1', 'analysis': True, 'discrete': False}, 'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig', 'step_start': 0, 'step_end': None}, 'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig', 'trace_alloc_max_entries': '${oc.select:global_profiler.global_tool_config.torch_memory.trace_alloc_max_entries,100000}', 'stack_depth': '${oc.select:global_profiler.global_tool_config.torch_memory.stack_depth,32}'}}}, 'grad_clip': 1.0, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'entropy_checkpointing': False, 'use_remove_padding': '${oc.select:actor_rollout_ref.model.use_remove_padding,false}', 'use_ref': True, 'grpo_advantage_length_weight': '${grpo_advantage_length_weight}', 'filter_loss_scaling': 'none'}, 'ref': {'strategy': '${actor_rollout_ref.actor.strategy}', 'use_torch_compile': False, 'log_prob_micro_batch_size': None, 'log_prob_micro_batch_size_per_gpu': '${log_prob_micro_batch_size_per_gpu}', 'log_prob_use_dynamic_bsz': '${oc.select:actor_rollout_ref.actor.use_dynamic_bsz,false}', 'log_prob_max_token_len_per_gpu': 65536, 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': \\n\\n... [截断: 输出过长，省略 32095 字符] ...\\n\\ndow': -1, 'batch_adjust_mode': 'copy', 'max_turn': 50, 'action_sep': '||', 'max_actions_per_turn': 1, 'use_turn_scores': True, 'enable_think': True, 'reward_normalization': {'grouping': 'state', 'method': 'identity'}, 'step_independent_history_length': 2, 'max_prompt_length': 16384}, 'collapse_detection': {'compute_freq': 5, 'micro_batch_size': 128, 'first_turn_enabled': True, 'multi_turn_enabled': False, 'num_samples': 64}, 'es_manager': {'format_penalty': 0, 'train': {'env_groups': 16, 'group_size': 8, 'env_configs': {'tags': ['AlfworldSG'], 'n_groups': [16]}}, 'val': {'env_groups': 32, 'group_size': 1, 'env_configs': {'tags': ['AlfworldSG'], 'n_groups': [32]}}}, 'ctx_manager': {'generation': {'gen_config': {'response_length': '${actor_rollout_ref.rollout.response_length}', 'temperature': '${actor_rollout_ref.rollout.temperature}', 'top_p': '${actor_rollout_ref.rollout.top_p}', 'top_k': '${actor_rollout_ref.rollout.top_k}', 'kwargs': None}}}}2026-05-17 02:19:10,294\\tWARNING utils.py:461 -- Detecting docker specified CPUs. In previous versions of Ray, CPU detection in containers was incorrect. Please ensure that Ray has enough CPUs allocated. As a temporary workaround to revert to the prior behavior, set `RAY_USE_MULTIPROCESSING_CPU_COUNT=1` as an env var before starting Ray. Set the env var: `RAY_DISABLE_DOCKER_CPU_WARNING=1` to mute this warning.\\n/root/miniconda3/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m           'truncation': 'error',\\nError executing job with overrides: []\\nray.exceptions.RayTaskError(OutOfMemoryError): \\u001b[36mray::TaskRunner.run()\\u001b[39m (pid=889859, ip=172.17.0.6, actor_id=b58f20aed523cb92fcea901d01000000, repr=&lt;train.TaskRunner object at 0x7ff5ba5eea50>)\\nray.exceptions.RayTaskError(OutOfMemoryError): \\u001b[36mray::WorkerDict.actor_rollout_update_actor()\\u001b[39m (pid=890045, ip=172.17.0.6, actor_id=fb0896b48315dbb8775108c401000000, repr=&lt;verl.single_controller.ray.base.WorkerDict object at 0x7f8b17b860f0>)\\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.27 GiB. GPU 0 has a total capacity of 94.97 GiB of which 3.87 GiB is free. Including non-PyTorch memory, this process has 55.41 GiB memory in use. Process 895286 has 35.66 GiB memory in use. Of the allocated memory 85.49 GiB is allocated by PyTorch, with 71.70 MiB allocated in private pools (e.g., CUDA Graphs), and 115.79 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\nSet the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m Unhandled error (suppress with 'RAY_IGNORE_UNHANDLED_ERRORS=1'): \\u001b[36mray::WorkerDict.actor_rollout_update_actor()\\u001b[39m (pid=890046, ip=172.17.0.6, actor_id=ec7464797a18b2690ce3deca01000000, repr=&lt;verl.single_controller.ray.base.WorkerDict object at 0x7fd3ebc05a00>)\\n\\u001b[36m(TaskRunner pid=889859)\\u001b[0m torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.27 GiB. GPU 0 has a total capacity of 94.97 GiB of which 3.87 GiB is free. Including non-PyTorch memory, this process has 55.41 GiB memory in use. Process 895287 has 35.66 GiB memory in use. Of the allocated memory 85.49 GiB is allocated by PyTorch, with 71.70 MiB allocated in private pools (e.g., CUDA Graphs), and 115.79 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H8GhTHzuj8NeJfmBiMGw2z`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep -i \"exception\" /root/autodl-tmp/exp029_restart.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "c77a1fdd-150d-451a-be6a-7bc992d455dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SvmUUXszBmd8vfqNUVYLSp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 492,
+      "cache_read_input_tokens": 23422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 492
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T19:16:31.337Z_
+
+<details><summary>↩ Tool result · `toolu_01H8GhTHzuj8NeJfmBiMGw2z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ray.exceptions.RayTaskError(OutOfMemoryError): \\u001b[36mray::TaskRunner.run()\\u001b[39m (pid=889859, ip=172.17.0.6, actor_id=b58f20aed523cb92fcea901d01000000, repr=&lt;train.TaskRunner object at 0x7ff5ba5eea50>)\\nray.exceptions.RayTaskError(OutOfMemoryError): \\u001b[36mray::WorkerDict.actor_rollout_update_actor()\\u001b[39m (pid=890045, ip=172.17.0.6, actor_id=fb0896b48315dbb8775108c401000000, repr=&lt;verl.single_controller.ray.base.WorkerDict object at 0x7f8b17b860f0>)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "cfedf7fb-4873-4501-af2b-0a6d986419cb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ray.exceptions.RayTaskError(OutOfMemoryError): \\\\u001b[36mray::TaskRunner.run()\\\\u001b[39m (pid=889859, ip=172.17.0.6, actor_id=b58f20aed523cb92fcea901d01000000, repr=&lt;train.TaskRunner object at 0x7ff5ba5eea50>)\\\\nray.exceptions.RayTaskError(OutOfMemoryError): \\\\u001b[36mray::WorkerDict.actor_rollout_update_actor()\\\\u001b[39m (pid=890045, ip=172.17.0.6, actor_id=fb0896b48315dbb8775108c401000000, repr=&lt;verl.single_controller.ray.base.WorkerDict object at 0x7f8b17b860f0>)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"ray.exceptions.RayTaskError(OutOfMemoryError): \\u001b[36mray::TaskRunner.run()\\u001b[39m (pid=889859, ip=172.17.0.6, actor_id=b58f20aed523cb92fcea901d01000000, repr=&lt;train.TaskRunner object at 0x7ff5ba5eea50>)\\nray.exceptions.RayTaskError(OutOfMemoryError): \\u001b[36mray::WorkerDict.actor_rollout_update_actor()\\u001b[39m (pid=890045, ip=172.17.0.6, actor_id=fb0896b48315dbb8775108c401000000, repr=&lt;verl.single_controller.ray.base.WorkerDict object at 0x7f8b17b860f0>)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DCgMdumxGzJjQtpy5ABS9v`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep -i \"killed\" /root/autodl-tmp/exp029_restart.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "58958b83-a38e-492f-9e7d-acd34001f1ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SvmUUXszBmd8vfqNUVYLSp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 492,
+      "cache_read_input_tokens": 23422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 492
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T19:16:32.266Z_
+
+<details><summary>↩ Tool result · `toolu_01DCgMdumxGzJjQtpy5ABS9v`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "ab09f1c4-cabe-4c9f-a67b-7b1026c5c082",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018Sjx2bhns7M44Zfsj66RFc`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "dmesg",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "7d2c916c-72b4-44ae-bc46-75e07233200a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SvmUUXszBmd8vfqNUVYLSp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 492,
+      "cache_read_input_tokens": 23422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 492
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T19:16:32.395Z_
+
+<details><summary>↩ Tool result · `toolu_018Sjx2bhns7M44Zfsj66RFc`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'dmesg' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "190888dc-e1f0-499f-843f-165be4f2b025",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'dmesg' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'dmesg' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014VrW1aifYC3nf8WLUH8N18`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "df -h /tmp /root/autodl-tmp",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "37434f09-0b3f-4de4-8ff7-040fda22a13d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SvmUUXszBmd8vfqNUVYLSp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 492,
+      "cache_read_input_tokens": 23422,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 492
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T19:16:33.170Z_
+
+<details><summary>↩ Tool result · `toolu_014VrW1aifYC3nf8WLUH8N18`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G  200G   51G  80% /root/autodl-tmp\\n/dev/md0        250G  200G   51G  80% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "b3e542c6-6a97-4fe9-a83a-228de9f159d0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  200G   51G  80% /root/autodl-tmp\\\\n/dev/md0        250G  200G   51G  80% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\n/dev/md0        250G  200G   51G  80% /root/autodl-tmp\\n/dev/md0        250G  200G   51G  80% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+Now let me check what step it was on and whether checkpoints were saved.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "67234d2b-43a4-4453-bfa6-6769af5606e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R67D5zgDMtEfYyFc43mguZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8386,
+      "cache_read_input_tokens": 23914,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8386
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WHAMF3kCUTXuiK8apBeaee`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep -i \"step\\|saving\\|checkpoint\" /root/autodl-tmp/exp029_restart.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "cd12dba7-6142-4851-a0cf-ca93f185b8f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R67D5zgDMtEfYyFc43mguZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8386,
+      "cache_read_input_tokens": 23914,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8386
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T19:16:38.234Z_
+
+<details><summary>↩ Tool result · `toolu_01WHAMF3kCUTXuiK8apBeaee`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "0e29e172-fd27-4657-82b4-d7d6ab167636",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017nsny39Z4ThGnXG1C2vnmM`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/autodl-tmp -maxdepth 3 -name \"*.pt\" -newer /root/autodl-tmp/exp029_restart.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "ac392933-5da2-4d68-9e06-bef51766c99a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R67D5zgDMtEfYyFc43mguZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8386,
+      "cache_read_input_tokens": 23914,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8386
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T19:16:39.877Z_
+
+<details><summary>↩ Tool result · `toolu_017nsny39Z4ThGnXG1C2vnmM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "3d1c1afd-916b-4fe0-a8f9-be0dba4b0847",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PtEoFZ9U6YKjhHJJkZDnhe`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/autodl-tmp -maxdepth 3 -type d -name \"*exp029*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "572b6798-8f4d-49a3-9e07-04408afc3813",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R67D5zgDMtEfYyFc43mguZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8386,
+      "cache_read_input_tokens": 23914,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8386
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T19:16:40.806Z_
+
+<details><summary>↩ Tool result · `toolu_01PtEoFZ9U6YKjhHJJkZDnhe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints/exp029_dryrun2\\n/root/autodl-tmp/checkpoints/exp029\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "6c620910-5d92-4fb9-bc70-b4e1dc1b2ea7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/checkpoints/exp029_dryrun2\\\\n/root/autodl-tmp/checkpoints/exp029\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints/exp029_dryrun2\\n/root/autodl-tmp/checkpoints/exp029\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DDvpuMwKc7JKwKXnNhsP3F`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep -i \"update_actor\\|training step\\|global_step\\|iter\" /root/autodl-tmp/exp029_restart.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "eacdb0f2-d9ab-474e-b36e-902d161f246f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R67D5zgDMtEfYyFc43mguZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8386,
+      "cache_read_input_tokens": 23914,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8386
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T19:16:41.159Z_
+
+<details><summary>↩ Tool result · `toolu_01DDvpuMwKc7JKwKXnNhsP3F`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "0e2fdd77-b82b-4740-b2a2-b2816a7c283c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YAuXxgmG9HPxA6gmFNU1Tg`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep -i \"step\" /root/autodl-tmp/exp029_restart.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "23c9f633-d835-4587-aee9-666a1f74cfaf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NWabNWRf8BLDSrPkix1Qj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1078,
+      "cache_read_input_tokens": 32300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1078
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T19:16:45.296Z_
+
+<details><summary>↩ Tool result · `toolu_01YAuXxgmG9HPxA6gmFNU1Tg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"config: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 1e-06, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig', 'wrap_policy': {'min_num_params': 0}, 'param_offload': False, 'optimizer_offload': False, 'offload_policy': False, 'reshard_after_forward': True, 'fsdp_size': -1, 'forward_prefetch': False, 'model_dtype': 'fp32', 'use_orig_params': False, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'use_torch_compile': True, 'entropy_checkpointing': False, 'forward_only': False, 'strategy': 'fsdp', 'dtype': 'bfloat16'}, '_target_': 'verl.workers.config.FSDPActorConfig', 'strategy': 'fsdp', 'ppo_mini_batch_size': '${ppo_mini_batch_size}', 'ppo_micro_batch_size': None, 'ppo_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'use_dynamic_bsz': False, 'ppo_max_token_len_per_gpu': 65536, 'clip_ratio': 0.2, 'clip_ratio_low': 0.2, 'clip_ratio_high': 0.28, 'freeze_vision_tower': False, 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig', 'loss_mode': 'vanilla', 'clip_cov_ratio': 0.0002, 'clip_cov_lb': 1.0, 'clip_cov_ub': 5.0, 'kl_cov_ratio': 0.0002, 'ppo_kl_coef': 0.1}, 'clip_ratio_c': 3.0, 'loss_agg_mode': 'token-mean', 'entropy_coeff': 0.001, 'use_kl_loss': True, 'use_torch_compile': False, 'kl_loss_coef': 0.01, 'kl_loss_type': 'low_var_kl', 'ppo_epochs': 1, 'shuffle': False, 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig', 'save_contents': ['model', 'optimizer', 'extra'], 'load_contents': '${.save_contents}', 'async_save': False}, 'use_fused_kernels': '${oc.select:actor_rollout_ref.model.use_fused_kernels,false}', 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig', 'contents': [], 'level': 'level1', 'analysis': True, 'discrete': False}, 'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig', 'step_start': 0, 'step_end': None}, 'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig', 'trace_alloc_max_entries': '${oc.select:global_profiler.global_tool_config.torch_memory.trace_alloc_max_entries,100000}', 'stack_depth': '${oc.select:global_profiler.global_tool_config.torch_memory.stack_depth,32}'}}}, 'grad_clip': 1.0, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'entropy_checkpointing': False, 'use_remove_padding': '${oc.select:actor_rollout_ref.model.use_remove_padding,false}', 'use_ref': True, 'grpo_advantage_length_weight': '${grpo_advantage_length_weight}', 'filter_loss_scaling': 'none'}, 'ref': {'strategy': '${actor_rollout_ref.actor.strategy}', 'use_torch_compile': False, 'log_prob_micro_batch_size': None, 'log_prob_micro_batch_size_per_gpu': '${log_prob_micro_batch_size_per_gpu}', 'log_prob_use_dynamic_bsz': '${oc.select:actor_rollout_ref.actor.use_dynamic_bsz,false}', 'log_prob_max_token_len_per_gpu': 65536, 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': \\n\\n... [截断: 输出过长，省略 41486 字符] ...\\n\\nrn_sample/reasoning_entropy_seq_est:5.656557559967041 - collapse_first_turn_sample/marginal_std:0.2992485463619232 - collapse_first_turn_sample/marginal_std_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_seq:0.18151746690273285 - collapse_first_turn_sample/marginal_std_ema:0.2992485463619232 - collapse_first_turn_sample/marginal_std_ema_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore_ema:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_ema_seq:0.18151746690273285 - timing_s/collapse_first_turn_step:34.12130979821086 - train/batch_size:128 - train/num_mini_batches:4 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1796875) - train/AlfworldSG/num_actions:np.float64(42.03125) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.5625) - train/AlfworldSG/manager_invalid_action:np.float64(0.0053515625) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(42.03125) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.032619047619047624) - train/response_length:7112.4296875 - actor/entropy:0.027751293033361435 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0009145660151261836) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(-4.593515768647194e-05) - actor/pg_clipfrac:np.float64(0.0007804164113167644) - actor/ppo_kl:np.float64(-2.0315203460796738e-05) - actor/pg_clipfrac_lower:np.float64(2.7646198077491135e-06) - actor/entropy_loss:np.float64(0.05552189869922586) - actor/grad_norm:np.float64(1.2670800238847733) - critic/score/mean:1.796875 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.796875 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.23779939115047455 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.23779939115047455 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.6201848983764648 - response_length/mean:12689.1875 - response_length/max:16381.0 - response_length/min:1504.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:12689.1875 - response_length_non_aborted/max:16381.0 - response_length_non_aborted/min:1504.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:0.0078125 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.0078125 - timing_s/gen:1222.9311301931739 - timing_s/collapse_metrics:34.12137207761407 - timing_s/filter:0.002637965604662895 - timing_s/old_log_prob:68.79819860123098 - timing_s/ref:70.1415223479271 - timing_s/adv:0.007519327104091644 - timing_s/update_actor:412.2839732952416 - timing_s/step:1808.6144918818027 - timing_per_token_ms/update_actor:0.25383552400648535 - timing_per_token_ms/ref:0.04318482219304877 - timing_per_token_ms/gen:0.7529362659850499 - timing_per_token_ms/adv:4.629508928974173e-06 - perf/total_num_tokens:1624217 - perf/time_per_step:1808.6144918818027 - perf/throughput:449.0224443325279 - timing_s/train_step:1774.4931198041886 - timing_s/eval_step:0.0 - timing_s/train_total:1774.4931198041886 - timing_s/eval_total:0.0 - timing_s/collapse_total:34.12137207761407 - timing_s/collapse_first_turn_total:34.12130979821086 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:1808.6416084766388\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "a2be7615-3b71-40e0-aafe-b17054fb86bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"config: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 1e-06, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig', 'wrap_policy': {'min_num_params': 0}, 'param_offload': False, 'optimizer_offload': False, 'offload_policy': False, 'reshard_after_forward': True, 'fsdp_size': -1, 'forward_prefetch': False, 'model_dtype': 'fp32', 'use_orig_params': False, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'use_torch_compile': True, 'entropy_checkpointing': False, 'forward_only': False, 'strategy': 'fsdp', 'dtype': 'bfloat16'}, '_target_': 'verl.workers.config.FSDPActorConfig', 'strategy': 'fsdp', 'ppo_mini_batch_size': '${ppo_mini_batch_size}', 'ppo_micro_batch_size': None, 'ppo_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'use_dynamic_bsz': False, 'ppo_max_token_len_per_gpu': 65536, 'clip_ratio': 0.2, 'clip_ratio_low': 0.2, 'clip_ratio_high': 0.28, 'freeze_vision_tower': False, 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig', 'loss_mode': 'vanilla', 'clip_cov_ratio': 0.0002, 'clip_cov_lb': 1.0, 'clip_cov_ub': 5.0, 'kl_cov_ratio': 0.0002, 'ppo_kl_coef': 0.1}, 'clip_ratio_c': 3.0, 'loss_agg_mode': 'token-mean', 'entropy_coeff': 0.001, 'use_kl_loss': True, 'use_torch_compile': False, 'kl_loss_coef': 0.01, 'kl_loss_type': 'low_var_kl', 'ppo_epochs': 1, 'shuffle': False, 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig', 'save_contents': ['model', 'optimizer', 'extra'], 'load_contents': '${.save_contents}', 'async_save': False}, 'use_fused_kernels': '${oc.select:actor_rollout_ref.model.use_fused_kernels,false}', 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig', 'contents': [], 'level': 'level1', 'analysis': True, 'discrete': False}, 'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig', 'step_start': 0, 'step_end': None}, 'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig', 'trace_alloc_max_entries': '${oc.select:global_profiler.global_tool_config.torch_memory.trace_alloc_max_entries,100000}', 'stack_depth': '${oc.select:global_profiler.global_tool_config.torch_memory.stack_depth,32}'}}}, 'grad_clip': 1.0, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'entropy_checkpointing': False, 'use_remove_padding': '${oc.select:actor_rollout_ref.model.use_remove_padding,false}', 'use_ref': True, 'grpo_advantage_length_weight': '${grpo_advantage_length_weight}', 'filter_loss_scaling': 'none'}, 'ref': {'strategy': '${actor_rollout_ref.actor.strategy}', 'use_torch_compile': False, 'log_prob_micro_batch_size': None, 'log_prob_micro_batch_size_per_gpu': '${log_prob_micro_batch_size_per_gpu}', 'log_prob_use_dynamic_bsz': '${oc.select:actor_rollout_ref.actor.use_dynamic_bsz,false}', 'log_prob_max_token_len_per_gpu': 65536, 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': \\\\n\\\\n... [截断: 输出过长，省略 41486 字符] ...\\\\n\\\\nrn_sample/reasoning_entropy_seq_est:5.656557559967041 - collapse_first_turn_sample/marginal_std:0.2992485463619232 - collapse_first_turn_sample/marginal_std_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_seq:0.18151746690273285 - collapse_first_turn_sample/marginal_std_ema:0.2992485463619232 - collapse_first_turn_sample/marginal_std_ema_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore_ema:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_ema_seq:0.18151746690273285 - timing_s/collapse_first_turn_step:34.12130979821086 - train/batch_size:128 - train/num_mini_batches:4 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1796875) - train/AlfworldSG/num_actions:np.float64(42.03125) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.5625) - train/AlfworldSG/manager_invalid_action:np.float64(0.0053515625) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(42.03125) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.032619047619047624) - train/response_length:7112.4296875 - actor/entropy:0.027751293033361435 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0009145660151261836) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(-4.593515768647194e-05) - actor/pg_clipfrac:np.float64(0.0007804164113167644) - actor/ppo_kl:np.float64(-2.0315203460796738e-05) - actor/pg_clipfrac_lower:np.float64(2.7646198077491135e-06) - actor/entropy_loss:np.float64(0.05552189869922586) - actor/grad_norm:np.float64(1.2670800238847733) - critic/score/mean:1.796875 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.796875 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.23779939115047455 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.23779939115047455 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.6201848983764648 - response_length/mean:12689.1875 - response_length/max:16381.0 - response_length/min:1504.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:12689.1875 - response_length_non_aborted/max:16381.0 - response_length_non_aborted/min:1504.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:0.0078125 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.0078125 - timing_s/gen:1222.9311301931739 - timing_s/collapse_metrics:34.12137207761407 - timing_s/filter:0.002637965604662895 - timing_s/old_log_prob:68.79819860123098 - timing_s/ref:70.1415223479271 - timing_s/adv:0.007519327104091644 - timing_s/update_actor:412.2839732952416 - timing_s/step:1808.6144918818027 - timing_per_token_ms/update_actor:0.25383552400648535 - timing_per_token_ms/ref:0.04318482219304877 - timing_per_token_ms/gen:0.7529362659850499 - timing_per_token_ms/adv:4.629508928974173e-06 - perf/total_num_tokens:1624217 - perf/time_per_step:1808.6144918818027 - perf/throughput:449.0224443325279 - timing_s/train_step:1774.4931198041886 - timing_s/eval_step:0.0 - timing_s/train_total:1774.4931198041886 - timing_s/eval_total:0.0 - timing_s/collapse_total:34.12137207761407 - timing_s/collapse_first_turn_total:34.12130979821086 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:1808.6416084766388\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"config: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 1e-06, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig', 'wrap_policy': {'min_num_params': 0}, 'param_offload': False, 'optimizer_offload': False, 'offload_policy': False, 'reshard_after_forward': True, 'fsdp_size': -1, 'forward_prefetch': False, 'model_dtype': 'fp32', 'use_orig_params': False, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'use_torch_compile': True, 'entropy_checkpointing': False, 'forward_only': False, 'strategy': 'fsdp', 'dtype': 'bfloat16'}, '_target_': 'verl.workers.config.FSDPActorConfig', 'strategy': 'fsdp', 'ppo_mini_batch_size': '${ppo_mini_batch_size}', 'ppo_micro_batch_size': None, 'ppo_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'use_dynamic_bsz': False, 'ppo_max_token_len_per_gpu': 65536, 'clip_ratio': 0.2, 'clip_ratio_low': 0.2, 'clip_ratio_high': 0.28, 'freeze_vision_tower': False, 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig', 'loss_mode': 'vanilla', 'clip_cov_ratio': 0.0002, 'clip_cov_lb': 1.0, 'clip_cov_ub': 5.0, 'kl_cov_ratio': 0.0002, 'ppo_kl_coef': 0.1}, 'clip_ratio_c': 3.0, 'loss_agg_mode': 'token-mean', 'entropy_coeff': 0.001, 'use_kl_loss': True, 'use_torch_compile': False, 'kl_loss_coef': 0.01, 'kl_loss_type': 'low_var_kl', 'ppo_epochs': 1, 'shuffle': False, 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig', 'save_contents': ['model', 'optimizer', 'extra'], 'load_contents': '${.save_contents}', 'async_save': False}, 'use_fused_kernels': '${oc.select:actor_rollout_ref.model.use_fused_kernels,false}', 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig', 'contents': [], 'level': 'level1', 'analysis': True, 'discrete': False}, 'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig', 'step_start': 0, 'step_end': None}, 'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig', 'trace_alloc_max_entries': '${oc.select:global_profiler.global_tool_config.torch_memory.trace_alloc_max_entries,100000}', 'stack_depth': '${oc.select:global_profiler.global_tool_config.torch_memory.stack_depth,32}'}}}, 'grad_clip': 1.0, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'entropy_checkpointing': False, 'use_remove_padding': '${oc.select:actor_rollout_ref.model.use_remove_padding,false}', 'use_ref': True, 'grpo_advantage_length_weight': '${grpo_advantage_length_weight}', 'filter_loss_scaling': 'none'}, 'ref': {'strategy': '${actor_rollout_ref.actor.strategy}', 'use_torch_compile': False, 'log_prob_micro_batch_size': None, 'log_prob_micro_batch_size_per_gpu': '${log_prob_micro_batch_size_per_gpu}', 'log_prob_use_dynamic_bsz': '${oc.select:actor_rollout_ref.actor.use_dynamic_bsz,false}', 'log_prob_max_token_len_per_gpu': 65536, 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': \\n\\n... [截断: 输出过长，省略 41486 字符] ...\\n\\nrn_sample/reasoning_entropy_seq_est:5.656557559967041 - collapse_first_turn_sample/marginal_std:0.2992485463619232 - collapse_first_turn_sample/marginal_std_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_seq:0.18151746690273285 - collapse_first_turn_sample/marginal_std_ema:0.2992485463619232 - collapse_first_turn_sample/marginal_std_ema_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore_ema:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_ema_seq:0.18151746690273285 - timing_s/collapse_first_turn_step:34.12130979821086 - train/batch_size:128 - train/num_mini_batches:4 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1796875) - train/AlfworldSG/num_actions:np.float64(42.03125) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.5625) - train/AlfworldSG/manager_invalid_action:np.float64(0.0053515625) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(42.03125) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.032619047619047624) - train/response_length:7112.4296875 - actor/entropy:0.027751293033361435 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0009145660151261836) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(-4.593515768647194e-05) - actor/pg_clipfrac:np.float64(0.0007804164113167644) - actor/ppo_kl:np.float64(-2.0315203460796738e-05) - actor/pg_clipfrac_lower:np.float64(2.7646198077491135e-06) - actor/entropy_loss:np.float64(0.05552189869922586) - actor/grad_norm:np.float64(1.2670800238847733) - critic/score/mean:1.796875 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.796875 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.23779939115047455 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.23779939115047455 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.6201848983764648 - response_length/mean:12689.1875 - response_length/max:16381.0 - response_length/min:1504.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:12689.1875 - response_length_non_aborted/max:16381.0 - response_length_non_aborted/min:1504.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:0.0078125 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.0078125 - timing_s/gen:1222.9311301931739 - timing_s/collapse_metrics:34.12137207761407 - timing_s/filter:0.002637965604662895 - timing_s/old_log_prob:68.79819860123098 - timing_s/ref:70.1415223479271 - timing_s/adv:0.007519327104091644 - timing_s/update_actor:412.2839732952416 - timing_s/step:1808.6144918818027 - timing_per_token_ms/update_actor:0.25383552400648535 - timing_per_token_ms/ref:0.04318482219304877 - timing_per_token_ms/gen:0.7529362659850499 - timing_per_token_ms/adv:4.629508928974173e-06 - perf/total_num_tokens:1624217 - perf/time_per_step:1808.6144918818027 - perf/throughput:449.0224443325279 - timing_s/train_step:1774.4931198041886 - timing_s/eval_step:0.0 - timing_s/train_total:1774.4931198041886 - timing_s/eval_total:0.0 - timing_s/collapse_total:34.12137207761407 - timing_s/collapse_first_turn_total:34.12130979821086 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:1808.6416084766388\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KqdHitWJHdwsHY2xCYWyq4`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "ls -lt /root/autodl-tmp/checkpoints/exp029",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "ade37a4d-6e58-4f06-b980-600d46d68f77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NWabNWRf8BLDSrPkix1Qj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1078,
+      "cache_read_input_tokens": 32300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1078
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T19:16:46.125Z_
+
+<details><summary>↩ Tool result · `toolu_01KqdHitWJHdwsHY2xCYWyq4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1500\\n-rw-r--r-- 1 root root 1535497 May 17 00:01 train_restart.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "3da570ee-49cf-491f-96b3-7e5a0e18388e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1500\\\\n-rw-r--r-- 1 root root 1535497 May 17 00:01 train_restart.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 1500\\n-rw-r--r-- 1 root root 1535497 May 17 00:01 train_restart.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VEkjMLYpMBK5Gwy378X7G7`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep \"saving\" /root/autodl-tmp/exp029_restart.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "f085ea9a-8b80-42dc-8d7f-dbcc2a679036",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016NWabNWRf8BLDSrPkix1Qj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1078,
+      "cache_read_input_tokens": 32300,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1078
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T19:16:46.542Z_
+
+<details><summary>↩ Tool result · `toolu_01VEkjMLYpMBK5Gwy378X7G7`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "3e3d5225-fac8-4b75-99ab-b59463823947",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0136zq4mbHMeLdLTqdv9zgDX`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep \"step\" /root/autodl-tmp/exp029_restart.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "f607743e-3ca9-4c42-a2da-535e14ef8a41",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R2J89RRyjRRnkg86Gm4s91",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4096,
+      "cache_read_input_tokens": 33378,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4096
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VzUaYSHSKfu1Dzd8AYx29Z`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/autodl-tmp/checkpoints/exp029 -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "74b37a27-6efe-4e23-8898-13b61b37e8e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R2J89RRyjRRnkg86Gm4s91",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4096,
+      "cache_read_input_tokens": 33378,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4096
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T19:16:50.320Z_
+
+<details><summary>↩ Tool result · `toolu_0136zq4mbHMeLdLTqdv9zgDX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"config: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 1e-06, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig', 'wrap_policy': {'min_num_params': 0}, 'param_offload': False, 'optimizer_offload': False, 'offload_policy': False, 'reshard_after_forward': True, 'fsdp_size': -1, 'forward_prefetch': False, 'model_dtype': 'fp32', 'use_orig_params': False, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'use_torch_compile': True, 'entropy_checkpointing': False, 'forward_only': False, 'strategy': 'fsdp', 'dtype': 'bfloat16'}, '_target_': 'verl.workers.config.FSDPActorConfig', 'strategy': 'fsdp', 'ppo_mini_batch_size': '${ppo_mini_batch_size}', 'ppo_micro_batch_size': None, 'ppo_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'use_dynamic_bsz': False, 'ppo_max_token_len_per_gpu': 65536, 'clip_ratio': 0.2, 'clip_ratio_low': 0.2, 'clip_ratio_high': 0.28, 'freeze_vision_tower': False, 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig', 'loss_mode': 'vanilla', 'clip_cov_ratio': 0.0002, 'clip_cov_lb': 1.0, 'clip_cov_ub': 5.0, 'kl_cov_ratio': 0.0002, 'ppo_kl_coef': 0.1}, 'clip_ratio_c': 3.0, 'loss_agg_mode': 'token-mean', 'entropy_coeff': 0.001, 'use_kl_loss': True, 'use_torch_compile': False, 'kl_loss_coef': 0.01, 'kl_loss_type': 'low_var_kl', 'ppo_epochs': 1, 'shuffle': False, 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig', 'save_contents': ['model', 'optimizer', 'extra'], 'load_contents': '${.save_contents}', 'async_save': False}, 'use_fused_kernels': '${oc.select:actor_rollout_ref.model.use_fused_kernels,false}', 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig', 'contents': [], 'level': 'level1', 'analysis': True, 'discrete': False}, 'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig', 'step_start': 0, 'step_end': None}, 'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig', 'trace_alloc_max_entries': '${oc.select:global_profiler.global_tool_config.torch_memory.trace_alloc_max_entries,100000}', 'stack_depth': '${oc.select:global_profiler.global_tool_config.torch_memory.stack_depth,32}'}}}, 'grad_clip': 1.0, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'entropy_checkpointing': False, 'use_remove_padding': '${oc.select:actor_rollout_ref.model.use_remove_padding,false}', 'use_ref': True, 'grpo_advantage_length_weight': '${grpo_advantage_length_weight}', 'filter_loss_scaling': 'none'}, 'ref': {'strategy': '${actor_rollout_ref.actor.strategy}', 'use_torch_compile': False, 'log_prob_micro_batch_size': None, 'log_prob_micro_batch_size_per_gpu': '${log_prob_micro_batch_size_per_gpu}', 'log_prob_use_dynamic_bsz': '${oc.select:actor_rollout_ref.actor.use_dynamic_bsz,false}', 'log_prob_max_token_len_per_gpu': 65536, 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': \\n\\n... [截断: 输出过长，省略 41486 字符] ...\\n\\nrn_sample/reasoning_entropy_seq_est:5.656557559967041 - collapse_first_turn_sample/marginal_std:0.2992485463619232 - collapse_first_turn_sample/marginal_std_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_seq:0.18151746690273285 - collapse_first_turn_sample/marginal_std_ema:0.2992485463619232 - collapse_first_turn_sample/marginal_std_ema_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore_ema:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_ema_seq:0.18151746690273285 - timing_s/collapse_first_turn_step:34.12130979821086 - train/batch_size:128 - train/num_mini_batches:4 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1796875) - train/AlfworldSG/num_actions:np.float64(42.03125) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.5625) - train/AlfworldSG/manager_invalid_action:np.float64(0.0053515625) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(42.03125) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.032619047619047624) - train/response_length:7112.4296875 - actor/entropy:0.027751293033361435 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0009145660151261836) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(-4.593515768647194e-05) - actor/pg_clipfrac:np.float64(0.0007804164113167644) - actor/ppo_kl:np.float64(-2.0315203460796738e-05) - actor/pg_clipfrac_lower:np.float64(2.7646198077491135e-06) - actor/entropy_loss:np.float64(0.05552189869922586) - actor/grad_norm:np.float64(1.2670800238847733) - critic/score/mean:1.796875 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.796875 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.23779939115047455 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.23779939115047455 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.6201848983764648 - response_length/mean:12689.1875 - response_length/max:16381.0 - response_length/min:1504.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:12689.1875 - response_length_non_aborted/max:16381.0 - response_length_non_aborted/min:1504.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:0.0078125 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.0078125 - timing_s/gen:1222.9311301931739 - timing_s/collapse_metrics:34.12137207761407 - timing_s/filter:0.002637965604662895 - timing_s/old_log_prob:68.79819860123098 - timing_s/ref:70.1415223479271 - timing_s/adv:0.007519327104091644 - timing_s/update_actor:412.2839732952416 - timing_s/step:1808.6144918818027 - timing_per_token_ms/update_actor:0.25383552400648535 - timing_per_token_ms/ref:0.04318482219304877 - timing_per_token_ms/gen:0.7529362659850499 - timing_per_token_ms/adv:4.629508928974173e-06 - perf/total_num_tokens:1624217 - perf/time_per_step:1808.6144918818027 - perf/throughput:449.0224443325279 - timing_s/train_step:1774.4931198041886 - timing_s/eval_step:0.0 - timing_s/train_total:1774.4931198041886 - timing_s/eval_total:0.0 - timing_s/collapse_total:34.12137207761407 - timing_s/collapse_first_turn_total:34.12130979821086 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:1808.6416084766388\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "6798de5c-bc78-4c1d-92af-cf4c43688677",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"config: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 1e-06, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig', 'wrap_policy': {'min_num_params': 0}, 'param_offload': False, 'optimizer_offload': False, 'offload_policy': False, 'reshard_after_forward': True, 'fsdp_size': -1, 'forward_prefetch': False, 'model_dtype': 'fp32', 'use_orig_params': False, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'use_torch_compile': True, 'entropy_checkpointing': False, 'forward_only': False, 'strategy': 'fsdp', 'dtype': 'bfloat16'}, '_target_': 'verl.workers.config.FSDPActorConfig', 'strategy': 'fsdp', 'ppo_mini_batch_size': '${ppo_mini_batch_size}', 'ppo_micro_batch_size': None, 'ppo_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'use_dynamic_bsz': False, 'ppo_max_token_len_per_gpu': 65536, 'clip_ratio': 0.2, 'clip_ratio_low': 0.2, 'clip_ratio_high': 0.28, 'freeze_vision_tower': False, 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig', 'loss_mode': 'vanilla', 'clip_cov_ratio': 0.0002, 'clip_cov_lb': 1.0, 'clip_cov_ub': 5.0, 'kl_cov_ratio': 0.0002, 'ppo_kl_coef': 0.1}, 'clip_ratio_c': 3.0, 'loss_agg_mode': 'token-mean', 'entropy_coeff': 0.001, 'use_kl_loss': True, 'use_torch_compile': False, 'kl_loss_coef': 0.01, 'kl_loss_type': 'low_var_kl', 'ppo_epochs': 1, 'shuffle': False, 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig', 'save_contents': ['model', 'optimizer', 'extra'], 'load_contents': '${.save_contents}', 'async_save': False}, 'use_fused_kernels': '${oc.select:actor_rollout_ref.model.use_fused_kernels,false}', 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig', 'contents': [], 'level': 'level1', 'analysis': True, 'discrete': False}, 'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig', 'step_start': 0, 'step_end': None}, 'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig', 'trace_alloc_max_entries': '${oc.select:global_profiler.global_tool_config.torch_memory.trace_alloc_max_entries,100000}', 'stack_depth': '${oc.select:global_profiler.global_tool_config.torch_memory.stack_depth,32}'}}}, 'grad_clip': 1.0, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'entropy_checkpointing': False, 'use_remove_padding': '${oc.select:actor_rollout_ref.model.use_remove_padding,false}', 'use_ref': True, 'grpo_advantage_length_weight': '${grpo_advantage_length_weight}', 'filter_loss_scaling': 'none'}, 'ref': {'strategy': '${actor_rollout_ref.actor.strategy}', 'use_torch_compile': False, 'log_prob_micro_batch_size': None, 'log_prob_micro_batch_size_per_gpu': '${log_prob_micro_batch_size_per_gpu}', 'log_prob_use_dynamic_bsz': '${oc.select:actor_rollout_ref.actor.use_dynamic_bsz,false}', 'log_prob_max_token_len_per_gpu': 65536, 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': \\\\n\\\\n... [截断: 输出过长，省略 41486 字符] ...\\\\n\\\\nrn_sample/reasoning_entropy_seq_est:5.656557559967041 - collapse_first_turn_sample/marginal_std:0.2992485463619232 - collapse_first_turn_sample/marginal_std_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_seq:0.18151746690273285 - collapse_first_turn_sample/marginal_std_ema:0.2992485463619232 - collapse_first_turn_sample/marginal_std_ema_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore_ema:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_ema_seq:0.18151746690273285 - timing_s/collapse_first_turn_step:34.12130979821086 - train/batch_size:128 - train/num_mini_batches:4 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1796875) - train/AlfworldSG/num_actions:np.float64(42.03125) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.5625) - train/AlfworldSG/manager_invalid_action:np.float64(0.0053515625) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(42.03125) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.032619047619047624) - train/response_length:7112.4296875 - actor/entropy:0.027751293033361435 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0009145660151261836) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(-4.593515768647194e-05) - actor/pg_clipfrac:np.float64(0.0007804164113167644) - actor/ppo_kl:np.float64(-2.0315203460796738e-05) - actor/pg_clipfrac_lower:np.float64(2.7646198077491135e-06) - actor/entropy_loss:np.float64(0.05552189869922586) - actor/grad_norm:np.float64(1.2670800238847733) - critic/score/mean:1.796875 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.796875 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.23779939115047455 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.23779939115047455 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.6201848983764648 - response_length/mean:12689.1875 - response_length/max:16381.0 - response_length/min:1504.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:12689.1875 - response_length_non_aborted/max:16381.0 - response_length_non_aborted/min:1504.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:0.0078125 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.0078125 - timing_s/gen:1222.9311301931739 - timing_s/collapse_metrics:34.12137207761407 - timing_s/filter:0.002637965604662895 - timing_s/old_log_prob:68.79819860123098 - timing_s/ref:70.1415223479271 - timing_s/adv:0.007519327104091644 - timing_s/update_actor:412.2839732952416 - timing_s/step:1808.6144918818027 - timing_per_token_ms/update_actor:0.25383552400648535 - timing_per_token_ms/ref:0.04318482219304877 - timing_per_token_ms/gen:0.7529362659850499 - timing_per_token_ms/adv:4.629508928974173e-06 - perf/total_num_tokens:1624217 - perf/time_per_step:1808.6144918818027 - perf/throughput:449.0224443325279 - timing_s/train_step:1774.4931198041886 - timing_s/eval_step:0.0 - timing_s/train_total:1774.4931198041886 - timing_s/eval_total:0.0 - timing_s/collapse_total:34.12137207761407 - timing_s/collapse_first_turn_total:34.12130979821086 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:1808.6416084766388\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"config: {'actor_rollout_ref': {'actor': {'optim': {'_target_': 'verl.workers.config.FSDPOptimizerConfig', 'optimizer': 'AdamW', 'optimizer_impl': 'torch.optim', 'lr': 1e-06, 'lr_warmup_steps_ratio': 0.0, 'total_training_steps': -1, 'weight_decay': 0.01, 'lr_warmup_steps': -1, 'betas': [0.9, 0.999], 'clip_grad': 1.0, 'min_lr_ratio': 0.0, 'num_cycles': 0.5, 'lr_scheduler_type': 'constant', 'warmup_style': None, 'override_optimizer_config': None}, 'fsdp_config': {'_target_': 'verl.workers.config.FSDPEngineConfig', 'wrap_policy': {'min_num_params': 0}, 'param_offload': False, 'optimizer_offload': False, 'offload_policy': False, 'reshard_after_forward': True, 'fsdp_size': -1, 'forward_prefetch': False, 'model_dtype': 'fp32', 'use_orig_params': False, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'use_torch_compile': True, 'entropy_checkpointing': False, 'forward_only': False, 'strategy': 'fsdp', 'dtype': 'bfloat16'}, '_target_': 'verl.workers.config.FSDPActorConfig', 'strategy': 'fsdp', 'ppo_mini_batch_size': '${ppo_mini_batch_size}', 'ppo_micro_batch_size': None, 'ppo_micro_batch_size_per_gpu': '${micro_batch_size_per_gpu}', 'use_dynamic_bsz': False, 'ppo_max_token_len_per_gpu': 65536, 'clip_ratio': 0.2, 'clip_ratio_low': 0.2, 'clip_ratio_high': 0.28, 'freeze_vision_tower': False, 'policy_loss': {'_target_': 'verl.workers.config.PolicyLossConfig', 'loss_mode': 'vanilla', 'clip_cov_ratio': 0.0002, 'clip_cov_lb': 1.0, 'clip_cov_ub': 5.0, 'kl_cov_ratio': 0.0002, 'ppo_kl_coef': 0.1}, 'clip_ratio_c': 3.0, 'loss_agg_mode': 'token-mean', 'entropy_coeff': 0.001, 'use_kl_loss': True, 'use_torch_compile': False, 'kl_loss_coef': 0.01, 'kl_loss_type': 'low_var_kl', 'ppo_epochs': 1, 'shuffle': False, 'checkpoint': {'_target_': 'verl.trainer.config.CheckpointConfig', 'save_contents': ['model', 'optimizer', 'extra'], 'load_contents': '${.save_contents}', 'async_save': False}, 'use_fused_kernels': '${oc.select:actor_rollout_ref.model.use_fused_kernels,false}', 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': {'_target_': 'verl.utils.profiler.config.NPUToolConfig', 'contents': [], 'level': 'level1', 'analysis': True, 'discrete': False}, 'torch': {'_target_': 'verl.utils.profiler.config.TorchProfilerToolConfig', 'step_start': 0, 'step_end': None}, 'torch_memory': {'_target_': 'verl.utils.profiler.config.TorchMemoryToolConfig', 'trace_alloc_max_entries': '${oc.select:global_profiler.global_tool_config.torch_memory.trace_alloc_max_entries,100000}', 'stack_depth': '${oc.select:global_profiler.global_tool_config.torch_memory.stack_depth,32}'}}}, 'grad_clip': 1.0, 'ulysses_sequence_parallel_size': 1, 'entropy_from_logits_with_chunking': False, 'entropy_checkpointing': False, 'use_remove_padding': '${oc.select:actor_rollout_ref.model.use_remove_padding,false}', 'use_ref': True, 'grpo_advantage_length_weight': '${grpo_advantage_length_weight}', 'filter_loss_scaling': 'none'}, 'ref': {'strategy': '${actor_rollout_ref.actor.strategy}', 'use_torch_compile': False, 'log_prob_micro_batch_size': None, 'log_prob_micro_batch_size_per_gpu': '${log_prob_micro_batch_size_per_gpu}', 'log_prob_use_dynamic_bsz': '${oc.select:actor_rollout_ref.actor.use_dynamic_bsz,false}', 'log_prob_max_token_len_per_gpu': 65536, 'profiler': {'_target_': 'verl.utils.profiler.ProfilerConfig', 'tool': '${oc.select:global_profiler.tool,null}', 'enable': False, 'all_ranks': False, 'ranks': [], 'save_path': '${oc.select:global_profiler.save_path,null}', 'tool_config': {'nsys': {'_target_': 'verl.utils.profiler.config.NsightToolConfig', 'discrete': '${oc.select:global_profiler.global_tool_config.nsys.discrete}'}, 'npu': \\n\\n... [截断: 输出过长，省略 41486 字符] ...\\n\\nrn_sample/reasoning_entropy_seq_est:5.656557559967041 - collapse_first_turn_sample/marginal_std:0.2992485463619232 - collapse_first_turn_sample/marginal_std_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_seq:0.18151746690273285 - collapse_first_turn_sample/marginal_std_ema:0.2992485463619232 - collapse_first_turn_sample/marginal_std_ema_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore_ema:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_ema_seq:0.18151746690273285 - timing_s/collapse_first_turn_step:34.12130979821086 - train/batch_size:128 - train/num_mini_batches:4 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1796875) - train/AlfworldSG/num_actions:np.float64(42.03125) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.5625) - train/AlfworldSG/manager_invalid_action:np.float64(0.0053515625) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(42.03125) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.032619047619047624) - train/response_length:7112.4296875 - actor/entropy:0.027751293033361435 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0009145660151261836) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(-4.593515768647194e-05) - actor/pg_clipfrac:np.float64(0.0007804164113167644) - actor/ppo_kl:np.float64(-2.0315203460796738e-05) - actor/pg_clipfrac_lower:np.float64(2.7646198077491135e-06) - actor/entropy_loss:np.float64(0.05552189869922586) - actor/grad_norm:np.float64(1.2670800238847733) - critic/score/mean:1.796875 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.796875 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.23779939115047455 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.23779939115047455 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.6201848983764648 - response_length/mean:12689.1875 - response_length/max:16381.0 - response_length/min:1504.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:12689.1875 - response_length_non_aborted/max:16381.0 - response_length_non_aborted/min:1504.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:0.0078125 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.0078125 - timing_s/gen:1222.9311301931739 - timing_s/collapse_metrics:34.12137207761407 - timing_s/filter:0.002637965604662895 - timing_s/old_log_prob:68.79819860123098 - timing_s/ref:70.1415223479271 - timing_s/adv:0.007519327104091644 - timing_s/update_actor:412.2839732952416 - timing_s/step:1808.6144918818027 - timing_per_token_ms/update_actor:0.25383552400648535 - timing_per_token_ms/ref:0.04318482219304877 - timing_per_token_ms/gen:0.7529362659850499 - timing_per_token_ms/adv:4.629508928974173e-06 - perf/total_num_tokens:1624217 - perf/time_per_step:1808.6144918818027 - perf/throughput:449.0224443325279 - timing_s/train_step:1774.4931198041886 - timing_s/eval_step:0.0 - timing_s/train_total:1774.4931198041886 - timing_s/eval_total:0.0 - timing_s/collapse_total:34.12137207761407 - timing_s/collapse_first_turn_total:34.12130979821086 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:1808.6416084766388\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T19:16:50.746Z_
+
+<details><summary>↩ Tool result · `toolu_01VzUaYSHSKfu1Dzd8AYx29Z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints/exp029\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "02925d66-dd7e-40c6-a258-4dc5a46678c7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/checkpoints/exp029\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/checkpoints/exp029\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me look at the wandb logs for the step info and check if there's any checkpoint saved.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "3e8382c9-306d-47f1-88b6-640b1e91095f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0162nyF7sNuX2Wd89YnqNPJm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3867,
+      "cache_read_input_tokens": 37474,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3867
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013i3pdnLbHjYSb36eoUt1pH`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "find /root/autodl-tmp/wandb -name \"output.log\" -newer /root/autodl-tmp/exp029_restart.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "f392b0a2-381e-4a8a-bb14-ed145c5d432a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0162nyF7sNuX2Wd89YnqNPJm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3867,
+      "cache_read_input_tokens": 37474,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3867
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-16T19:16:55.386Z_
+
+<details><summary>↩ Tool result · `toolu_013i3pdnLbHjYSb36eoUt1pH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "903a2513-82d1-4b18-a318-3994a67a2ba7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Eo5K8vARCFCHzzNxhm4LbP`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "ls -la /root/autodl-tmp/checkpoints/exp029",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "5cdbf3e9-17a8-4b5d-a0f8-117079d026a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0162nyF7sNuX2Wd89YnqNPJm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3867,
+      "cache_read_input_tokens": 37474,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3867
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-16T19:16:56.069Z_
+
+<details><summary>↩ Tool result · `toolu_01Eo5K8vARCFCHzzNxhm4LbP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1504\\ndrwxr-xr-x  2 root root      39 May 16 23:26 .\\ndrwxr-xr-x 16 root root    4096 May 16 23:26 ..\\n-rw-r--r--  1 root root 1535497 May 17 00:01 train_restart.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "0eeb6ad2-6af2-439f-828d-72e16b547595",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1504\\\\ndrwxr-xr-x  2 root root      39 May 16 23:26 .\\\\ndrwxr-xr-x 16 root root    4096 May 16 23:26 ..\\\\n-rw-r--r--  1 root root 1535497 May 17 00:01 train_restart.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 1504\\ndrwxr-xr-x  2 root root      39 May 16 23:26 .\\ndrwxr-xr-x 16 root root    4096 May 16 23:26 ..\\n-rw-r--r--  1 root root 1535497 May 17 00:01 train_restart.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013f4TybZ9SxMVz7FVkwLoNK`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep \"train_step\\|Step\\|global_steps\" /root/autodl-tmp/exp029_restart.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "7cae23f8-1056-4e3a-a0fe-57a91603f173",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W2NngnRzDVEQ2VHUeJcko8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 576,
+      "cache_read_input_tokens": 41341,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 576
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T19:17:01.920Z_
+
+<details><summary>↩ Tool result · `toolu_013f4TybZ9SxMVz7FVkwLoNK`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "763bf0fa-255b-4178-b285-5b42930c8ab5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NeS3LEGUmdkP7w5tKsK68r`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep \"global_steps\" /root/autodl-tmp/exp029_restart.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "1f2a28de-090e-4646-86ff-f67c504aaa85",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ESa5FNMNpf9JUskd3kLENJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 223,
+      "cache_read_input_tokens": 41917,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 223
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-16T19:17:05.870Z_
+
+<details><summary>↩ Tool result · `toolu_01NeS3LEGUmdkP7w5tKsK68r`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "16d57df9-14cb-435a-a5bb-49ab61480b6f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015pS4HDKbCGMNJFCcGcdTuy`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep \"Step \" /root/autodl-tmp/exp029_restart.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "3f03781e-40c6-4508-82a6-176518ffce44",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ESa5FNMNpf9JUskd3kLENJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 223,
+      "cache_read_input_tokens": 41917,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 223
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-16T19:17:06.289Z_
+
+<details><summary>↩ Tool result · `toolu_015pS4HDKbCGMNJFCcGcdTuy`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "27db100b-bfd5-4a82-96d0-89e956e7a6ab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012Pj9yBbFkcGCE9FUceyEa4`</summary>
+
+```json
+{
+  "server": "bjb1-17606",
+  "command": "grep \"timing_s/train_total\" /root/autodl-tmp/exp029_restart.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "82aab5af-12ec-445e-a7db-c66481ab36ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UExoi8sdYRACgtkaDg8cFu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 545,
+      "cache_read_input_tokens": 42140,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 545
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-16T19:17:09.633Z_
+
+<details><summary>↩ Tool result · `toolu_012Pj9yBbFkcGCE9FUceyEa4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=889859)\\u001b[0m step:1 - collapse/first_turn_num_total:128 - collapse/first_turn_num_valid:128 - collapse/first_turn_valid_rate:1.0 - collapse_first_turn_sample/mi_estimate:0.19211174547672272 - collapse_first_turn_sample/mi_upper_bound:2.772588722239781 - collapse_first_turn_sample/matched_log_prob_mean:-0.1563212126493454 - collapse_first_turn_sample/marginal_log_prob_mean:-0.3484329581260681 - collapse_first_turn_sample/mi_seq_estimate:1.0814712047576904 - collapse_first_turn_sample/retrieval_accuracy@2:0.59375 - collapse_first_turn_sample/retrieval_chance_level@2:0.25 - collapse_first_turn_sample/retrieval_above_chance@2:0.34375 - collapse_first_turn_sample/retrieval_accuracy@4:0.875 - collapse_first_turn_sample/retrieval_chance_level@4:0.5 - collapse_first_turn_sample/retrieval_above_chance@4:0.375 - collapse_first_turn_sample/retrieval_accuracy@8:0.96875 - collapse_first_turn_sample/retrieval_chance_level@8:1.0 - collapse_first_turn_sample/retrieval_above_chance@8:-0.03125 - collapse_first_turn_sample/retrieval_accuracy:0.59375 - collapse_first_turn_sample/retrieval_chance_level:0.125 - collapse_first_turn_sample/retrieval_above_chance:0.46875 - collapse_first_turn_sample/conditional_entropy_est:0.1563212126493454 - collapse_first_turn_sample/reasoning_entropy_est:0.3484329581260681 - collapse_first_turn_sample/conditional_entropy_seq_est:4.5750861167907715 - collapse_first_turn_sample/reasoning_entropy_seq_est:5.656557559967041 - collapse_first_turn_sample/marginal_std:0.2992485463619232 - collapse_first_turn_sample/marginal_std_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_seq:0.18151746690273285 - collapse_first_turn_sample/marginal_std_ema:0.2992485463619232 - collapse_first_turn_sample/marginal_std_ema_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore_ema:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_ema_seq:0.18151746690273285 - timing_s/collapse_first_turn_step:34.12130979821086 - train/batch_size:128 - train/num_mini_batches:4 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1796875) - train/AlfworldSG/num_actions:np.float64(42.03125) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.5625) - train/AlfworldSG/manager_invalid_action:np.float64(0.0053515625) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(42.03125) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.032619047619047624) - train/response_length:7112.4296875 - actor/entropy:0.027751293033361435 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0009145660151261836) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(-4.593515768647194e-05) - actor/pg_clipfrac:np.float64(0.0007804164113167644) - actor/ppo_kl:np.float64(-2.0315203460796738e-05) - actor/pg_clipfrac_lower:np.float64(2.7646198077491135e-06) - actor/entropy_loss:np.float64(0.05552189869922586) - actor/grad_norm:np.float64(1.2670800238847733) - critic/score/mean:1.796875 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.796875 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.23779939115047455 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.23779939115047455 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.6201848983764648 - response_length/mean:12689.1875 - response_length/max:16381.0 - response_length/min:1504.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:12689.1875 - response_length_non_aborted/max:16381.0 - response_length_non_aborted/min:1504.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:0.0078125 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.0078125 - timing_s/gen:1222.9311301931739 - timing_s/collapse_metrics:34.12137207761407 - timing_s/filter:0.002637965604662895 - timing_s/old_log_prob:68.79819860123098 - timing_s/ref:70.1415223479271 - timing_s/adv:0.007519327104091644 - timing_s/update_actor:412.2839732952416 - timing_s/step:1808.6144918818027 - timing_per_token_ms/update_actor:0.25383552400648535 - timing_per_token_ms/ref:0.04318482219304877 - timing_per_token_ms/gen:0.7529362659850499 - timing_per_token_ms/adv:4.629508928974173e-06 - perf/total_num_tokens:1624217 - perf/time_per_step:1808.6144918818027 - perf/throughput:449.0224443325279 - timing_s/train_step:1774.4931198041886 - timing_s/eval_step:0.0 - timing_s/train_total:1774.4931198041886 - timing_s/eval_total:0.0 - timing_s/collapse_total:34.12137207761407 - timing_s/collapse_first_turn_total:34.12130979821086 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:1808.6416084766388\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "257cc784-91d3-435d-b2b4-98f9bc9b86ff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\u001b[36m(TaskRunner pid=889859)\\\\u001b[0m step:1 - collapse/first_turn_num_total:128 - collapse/first_turn_num_valid:128 - collapse/first_turn_valid_rate:1.0 - collapse_first_turn_sample/mi_estimate:0.19211174547672272 - collapse_first_turn_sample/mi_upper_bound:2.772588722239781 - collapse_first_turn_sample/matched_log_prob_mean:-0.1563212126493454 - collapse_first_turn_sample/marginal_log_prob_mean:-0.3484329581260681 - collapse_first_turn_sample/mi_seq_estimate:1.0814712047576904 - collapse_first_turn_sample/retrieval_accuracy@2:0.59375 - collapse_first_turn_sample/retrieval_chance_level@2:0.25 - collapse_first_turn_sample/retrieval_above_chance@2:0.34375 - collapse_first_turn_sample/retrieval_accuracy@4:0.875 - collapse_first_turn_sample/retrieval_chance_level@4:0.5 - collapse_first_turn_sample/retrieval_above_chance@4:0.375 - collapse_first_turn_sample/retrieval_accuracy@8:0.96875 - collapse_first_turn_sample/retrieval_chance_level@8:1.0 - collapse_first_turn_sample/retrieval_above_chance@8:-0.03125 - collapse_first_turn_sample/retrieval_accuracy:0.59375 - collapse_first_turn_sample/retrieval_chance_level:0.125 - collapse_first_turn_sample/retrieval_above_chance:0.46875 - collapse_first_turn_sample/conditional_entropy_est:0.1563212126493454 - collapse_first_turn_sample/reasoning_entropy_est:0.3484329581260681 - collapse_first_turn_sample/conditional_entropy_seq_est:4.5750861167907715 - collapse_first_turn_sample/reasoning_entropy_seq_est:5.656557559967041 - collapse_first_turn_sample/marginal_std:0.2992485463619232 - collapse_first_turn_sample/marginal_std_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_seq:0.18151746690273285 - collapse_first_turn_sample/marginal_std_ema:0.2992485463619232 - collapse_first_turn_sample/marginal_std_ema_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore_ema:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_ema_seq:0.18151746690273285 - timing_s/collapse_first_turn_step:34.12130979821086 - train/batch_size:128 - train/num_mini_batches:4 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1796875) - train/AlfworldSG/num_actions:np.float64(42.03125) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.5625) - train/AlfworldSG/manager_invalid_action:np.float64(0.0053515625) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(42.03125) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.032619047619047624) - train/response_length:7112.4296875 - actor/entropy:0.027751293033361435 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0009145660151261836) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(-4.593515768647194e-05) - actor/pg_clipfrac:np.float64(0.0007804164113167644) - actor/ppo_kl:np.float64(-2.0315203460796738e-05) - actor/pg_clipfrac_lower:np.float64(2.7646198077491135e-06) - actor/entropy_loss:np.float64(0.05552189869922586) - actor/grad_norm:np.float64(1.2670800238847733) - critic/score/mean:1.796875 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.796875 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.23779939115047455 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.23779939115047455 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.6201848983764648 - response_length/mean:12689.1875 - response_length/max:16381.0 - response_length/min:1504.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:12689.1875 - response_length_non_aborted/max:16381.0 - response_length_non_aborted/min:1504.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:0.0078125 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.0078125 - timing_s/gen:1222.9311301931739 - timing_s/collapse_metrics:34.12137207761407 - timing_s/filter:0.002637965604662895 - timing_s/old_log_prob:68.79819860123098 - timing_s/ref:70.1415223479271 - timing_s/adv:0.007519327104091644 - timing_s/update_actor:412.2839732952416 - timing_s/step:1808.6144918818027 - timing_per_token_ms/update_actor:0.25383552400648535 - timing_per_token_ms/ref:0.04318482219304877 - timing_per_token_ms/gen:0.7529362659850499 - timing_per_token_ms/adv:4.629508928974173e-06 - perf/total_num_tokens:1624217 - perf/time_per_step:1808.6144918818027 - perf/throughput:449.0224443325279 - timing_s/train_step:1774.4931198041886 - timing_s/eval_step:0.0 - timing_s/train_total:1774.4931198041886 - timing_s/eval_total:0.0 - timing_s/collapse_total:34.12137207761407 - timing_s/collapse_first_turn_total:34.12130979821086 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:1808.6416084766388\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\u001b[36m(TaskRunner pid=889859)\\u001b[0m step:1 - collapse/first_turn_num_total:128 - collapse/first_turn_num_valid:128 - collapse/first_turn_valid_rate:1.0 - collapse_first_turn_sample/mi_estimate:0.19211174547672272 - collapse_first_turn_sample/mi_upper_bound:2.772588722239781 - collapse_first_turn_sample/matched_log_prob_mean:-0.1563212126493454 - collapse_first_turn_sample/marginal_log_prob_mean:-0.3484329581260681 - collapse_first_turn_sample/mi_seq_estimate:1.0814712047576904 - collapse_first_turn_sample/retrieval_accuracy@2:0.59375 - collapse_first_turn_sample/retrieval_chance_level@2:0.25 - collapse_first_turn_sample/retrieval_above_chance@2:0.34375 - collapse_first_turn_sample/retrieval_accuracy@4:0.875 - collapse_first_turn_sample/retrieval_chance_level@4:0.5 - collapse_first_turn_sample/retrieval_above_chance@4:0.375 - collapse_first_turn_sample/retrieval_accuracy@8:0.96875 - collapse_first_turn_sample/retrieval_chance_level@8:1.0 - collapse_first_turn_sample/retrieval_above_chance@8:-0.03125 - collapse_first_turn_sample/retrieval_accuracy:0.59375 - collapse_first_turn_sample/retrieval_chance_level:0.125 - collapse_first_turn_sample/retrieval_above_chance:0.46875 - collapse_first_turn_sample/conditional_entropy_est:0.1563212126493454 - collapse_first_turn_sample/reasoning_entropy_est:0.3484329581260681 - collapse_first_turn_sample/conditional_entropy_seq_est:4.5750861167907715 - collapse_first_turn_sample/reasoning_entropy_seq_est:5.656557559967041 - collapse_first_turn_sample/marginal_std:0.2992485463619232 - collapse_first_turn_sample/marginal_std_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_seq:0.18151746690273285 - collapse_first_turn_sample/marginal_std_ema:0.2992485463619232 - collapse_first_turn_sample/marginal_std_ema_seq:5.956945419311523 - collapse_first_turn_sample/mi_zscore_ema:0.6398424506187439 - collapse_first_turn_sample/mi_zscore_ema_seq:0.18151746690273285 - timing_s/collapse_first_turn_step:34.12130979821086 - train/batch_size:128 - train/num_mini_batches:4 - train/rollout_attempts:1 - rollout/empty_after_filter:0.0 - rollout/consecutive_empty_after_filter_steps:0.0 - train/AlfworldSG/success:np.float64(0.1796875) - train/AlfworldSG/num_actions:np.float64(42.03125) - train/AlfworldSG/episodic_return:np.float64(0.0) - train/AlfworldSG/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/anchor_obs:np.float64(0.0) - train/AlfworldSG/raw_reward:np.float64(0.0) - train/AlfworldSG/pass@8:np.float64(0.5625) - train/AlfworldSG/manager_invalid_action:np.float64(0.0053515625) - train/charts/avg_episode_return:0.0 - train/AlfworldSG/non-zero/success:np.float64(1.0) - train/AlfworldSG/non-zero/num_actions:np.float64(42.03125) - train/AlfworldSG/non-zero/action_is_effective:np.float64(0.9946484375) - train/AlfworldSG/non-zero/action_is_valid:np.float64(0.6823677357456139) - train/AlfworldSG/non-zero/pass@8:np.float64(1.0) - train/AlfworldSG/non-zero/manager_invalid_action:np.float64(0.032619047619047624) - train/response_length:7112.4296875 - actor/entropy:0.027751293033361435 - trainer/gradient_analysis_only:0.0 - actor/kl_loss:np.float64(0.0009145660151261836) - actor/kl_coef:np.float64(0.01) - actor/pg_loss:np.float64(-4.593515768647194e-05) - actor/pg_clipfrac:np.float64(0.0007804164113167644) - actor/ppo_kl:np.float64(-2.0315203460796738e-05) - actor/pg_clipfrac_lower:np.float64(2.7646198077491135e-06) - actor/entropy_loss:np.float64(0.05552189869922586) - actor/grad_norm:np.float64(1.2670800238847733) - critic/score/mean:1.796875 - critic/score/max:10.0 - critic/score/min:0.0 - critic/rewards/mean:1.796875 - critic/rewards/max:10.0 - critic/rewards/min:0.0 - critic/advantages/mean:-0.23779939115047455 - critic/advantages/max:2.4748730659484863 - critic/advantages/min:-1.6201848983764648 - critic/returns/mean:-0.23779939115047455 - critic/returns/max:2.4748730659484863 - critic/returns/min:-1.6201848983764648 - response_length/mean:12689.1875 - response_length/max:16381.0 - response_length/min:1504.0 - response_length/clip_ratio:0.0078125 - response_length_non_aborted/mean:12689.1875 - response_length_non_aborted/max:16381.0 - response_length_non_aborted/min:1504.0 - response_length_non_aborted/clip_ratio:0.0078125 - response/aborted_ratio:0.0 - prompt_length/mean:0.0078125 - prompt_length/max:1.0 - prompt_length/min:0.0 - prompt_length/clip_ratio:0.0078125 - timing_s/gen:1222.9311301931739 - timing_s/collapse_metrics:34.12137207761407 - timing_s/filter:0.002637965604662895 - timing_s/old_log_prob:68.79819860123098 - timing_s/ref:70.1415223479271 - timing_s/adv:0.007519327104091644 - timing_s/update_actor:412.2839732952416 - timing_s/step:1808.6144918818027 - timing_per_token_ms/update_actor:0.25383552400648535 - timing_per_token_ms/ref:0.04318482219304877 - timing_per_token_ms/gen:0.7529362659850499 - timing_per_token_ms/adv:4.629508928974173e-06 - perf/total_num_tokens:1624217 - perf/time_per_step:1808.6144918818027 - perf/throughput:449.0224443325279 - timing_s/train_step:1774.4931198041886 - timing_s/eval_step:0.0 - timing_s/train_total:1774.4931198041886 - timing_s/eval_total:0.0 - timing_s/collapse_total:34.12137207761407 - timing_s/collapse_first_turn_total:34.12130979821086 - timing_s/collapse_multi_turn_total:0.0 - timing_s/total:1808.6416084766388\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+## 诊断结果
+
+**崩溃原因**: **CUDA OOM (显存不足)**
+
+`loss.backward()` 阶段尝试分配 9.27 GiB 失败。GPU 0 总共 94.97 GiB，本进程已用 55.41 GiB，另一个进程 (PID 895286/895287) 占用 35.66 GiB，仅剩 3.87 GiB 空闲。
+
+错误发生在 `dp_actor.py:468` → `update_policy` → `loss.backward()`，即 actor 梯度计算阶段。
+
+**最后完成的 step**: **Step 1**（rollout + old_log_prob + ref + advantage 全部完成，update_actor 进行到 backward 时 OOM）
+
+关键指标快照（step 1 训练数据）：
+- train/AlfworldSG/success: 17.97%
+- train/AlfworldSG/pass@8: 56.25%
+- batch_size: 128, num_mini_batches: 4
+- response_length/mean: 12689
+
+**Checkpoint**: 无。`/root/autodl-tmp/checkpoints/exp029` 目录只有 `train_restart.log`，没有模型文件。
+
+**GPU 当前状态**: 两块 GPU 各占用 ~38 GiB（残留显存未释放）。
+
+**根因**: 共享 GPU 上另一进程占 35.66 GiB 导致本项目 backward 时显存不够。或者 batch_size=128 + response_length ~12K tokens + 4 mini-batches 在 backward 阶段的激活梯度超出了单 GPU 剩余容量。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "uuid": "9a367c49-4d27-41ca-880a-9f3eeec93e31",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rh81yMoJpLTR5bJr3xBT6Z",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2427,
+      "cache_read_input_tokens": 42685,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2427
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 57_
+
+## 诊断结果
+
+**崩溃原因**: **CUDA OOM (显存不足)**
+
+`loss.backward()` 阶段尝试分配 9.27 GiB 失败。GPU 0 总共 94.97 GiB，本进程已用 55.41 GiB，另一个进程 (PID 895286/895287) 占用 35.66 GiB，仅剩 3.87 GiB 空闲。
+
+错误发生在 `dp_actor.py:468` → `update_policy` → `loss.backward()`，即 actor 梯度计算阶段。
+
+**最后完成的 step**: **Step 1**（rollout + old_log_prob + ref + advantage 全部完成，update_actor 进行到 backward 时 OOM）
+
+关键指标快照（step 1 训练数据）：
+- train/AlfworldSG/success: 17.97%
+- train/AlfworldSG/pass@8: 56.25%
+- batch_size: 128, num_mini_batches: 4
+- response_length/mean: 12689
+
+**Checkpoint**: 无。`/root/autodl-tmp/checkpoints/exp029` 目录只有 `train_restart.log`，没有模型文件。
+
+**GPU 当前状态**: 两块 GPU 各占用 ~38 GiB（残留显存未释放）。
+
+**根因**: 共享 GPU 上另一进程占 35.66 GiB 导致本项目 backward 时显存不够。或者 batch_size=128 + response_length ~12K tokens + 4 mini-batches 在 backward 阶段的激活梯度超出了单 GPU 剩余容量。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 68064,
+  "duration_api_ms": 67165,
+  "num_turns": 25,
+  "stop_reason": "end_turn",
+  "session_id": "94737b50-289b-4de4-96c4-84c3cb281dc3",
+  "total_cost_usd": 0.45735574999999995,
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 33271,
+    "cache_read_input_tokens": 330412,
+    "output_tokens": 3304,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 33271,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 480,
+        "cache_read_input_tokens": 42685,
+        "cache_creation_input_tokens": 2427,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2427
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1426,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001536,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 14,
+      "outputTokens": 3304,
+      "cacheReadInputTokens": 330412,
+      "cacheCreationInputTokens": 33271,
+      "webSearchRequests": 0,
+      "costUSD": 0.45581974999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "c8dfb5f7-69da-470e-90b9-97ca20b8797b"
+}
+```
+
+</details>
+
+---

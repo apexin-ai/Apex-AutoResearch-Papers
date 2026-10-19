@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp029_seed7_response_mask_check",
+  "project": "cost-verify-agent-rl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T19:07:08.807Z",
+    "updated_at": "2026-05-22T19:07:16.237Z",
+    "hypothesis": "Ablation: eval seed7 step5 (pre-collapse) with enable_response_mask=true (134 OOD tasks, T=0.4). Tests whether response_mask=true degrades OOD performance. Fallback from seed5 (checkpoint not on bjb1)."
+  },
+  "timestamp": "2026-05-22T19:07:16.841261+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16f08e7d178013cc90ad",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "eval exp029 seed100 step5 ood eval",
+  "task_key": "worker_eval_exp029_seed100_step5_ood_eval_20260522T203627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp029_seed100_step5_ood_eval_20260522T203627_result.json",
+    "occurrence": 1,
+    "bytes": 602,
+    "sha256": "ce0b6124f8063e2f8841e47b691121c7282c4006354478cfcb5e648ad2042575"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**seed100 OOD eval 已在运行中，无需重复提交。**\n\n状态汇总：\n- **tmux session**: `seed100_ood`（PID 172445，04:22 启动）\n- **GPU**: cuda:0（90GB/98GB，100% utilization）\n- **wandb**: `seed100-step5-ood-eval` (run ID: `e8eg7ql0`)\n- **阶段**: 初始化完成（模型加载 + vLLM engine + wandb），进入 val rollout\n- **D134 协议**: 全部 7 项参数已从 runtime config dump 验证通过\n- **Registry**: `exp029_seed100_step5_ood_eval` → RUNNING（spec 完整填充）\n\n同服务器还有 seed200 episode 训练在 GPU 2,3 上并行运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp029-seed100-step5-ood-eval.md"
+}

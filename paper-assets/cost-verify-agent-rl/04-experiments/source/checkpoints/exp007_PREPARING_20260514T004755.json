@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp007",
+  "project": "cost-verify-agent-rl",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:12:06.008Z",
+    "updated_at": "2026-05-14T00:47:55.139Z",
+    "spec": {
+      "hypothesis": "Parser fix + prompt enhancement + speed optimization (collapse_detection off) enables GRPO learning signal with <50% invalid_action",
+      "model_name": "Qwen3-1.7B",
+      "server": "bjb1-17606",
+      "data_path": "/root/autodl-tmp/alfworld/",
+      "data_count": "3553 (train split)",
+      "seed": {
+        "train": 10000,
+        "val": 123
+      },
+      "parent": "exp003",
+      "description": "Phase A fixed: parser adapts Qwen3 format + prompt enhancement + collapse_detection off + 30 steps + 64 traj/step + 30 max_turns",
+      "dryrun_results": {
+        "manager_invalid_action": 0.065,
+        "action_is_valid": 0.054,
+        "action_is_effective": 0.935,
+        "success": 0,
+        "step_time_min": 12,
+        "checkpoint_save": "failed_disk_full"
+      },
+      "dryrun_conclusion": "Parser fix effective (95.3%→6.5% invalid). Speed 12min/step (vs 95min). action_is_valid low (5.4%) but expected for untrained base model. Approved for 30-step training."
+    }
+  },
+  "timestamp": "2026-05-14T00:47:55.162059+00:00",
+  "trigger": "update_registry"
+}

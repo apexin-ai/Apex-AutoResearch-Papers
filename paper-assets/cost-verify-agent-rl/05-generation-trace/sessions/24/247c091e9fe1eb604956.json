@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "247c091e9fe1eb604956",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "diag save contents disk risk",
+  "task_key": "worker_diag_save_contents_disk_risk_20260521T083854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_save_contents_disk_risk_20260521T083854_result.json",
+    "occurrence": 1,
+    "bytes": 2668,
+    "sha256": "e36395f357042ef106f0822a977bb61c6bcd06db74b0a6f4ee5991d5e62910be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。汇总报告如下：\n\n---\n\n## 磁盘风险评估报告\n\n### 1. save_contents 配置\n\n| Seed | YAML 中显式设置 | 解析后实际值 | save_freq | max_ckpt_to_keep |\n|------|----------------|-------------|-----------|------------------|\n| Seed 4 (bjb1) | 未设置 | `[model, optimizer]` (verl 默认) | 5 | **3** |\n| Seed 5 (westd) | 未设置 | `[model, optimizer]` (verl 默认) | 5 | 10 |\n| Seed 6 (westd) | 未设置 | `[model, optimizer]` (verl 默认) | 5 | 10 |\n\n三个 seed **都没有显式设置 `save_contents`**。verl 默认值为 `[\"model\", \"optimizer\", \"extra\"]`，hydra 解析后为 `[model, optimizer]`。**optimizer 包含在内。**\n\n### 2. verl 默认行为\n\n`verl/trainer/config/config.py:36`: `save_contents = [\"model\", \"optimizer\", \"extra\"]`\n\n`hf_model` 不在默认列表中，`global_step_X_hf` 目录是**手动创建**的（bjb1 上的 `global_step_5_hf` 时间戳晚于 checkpoint 4.5 小时），训练过程不会自动生成。\n\n### 3. 每个 checkpoint 实际大小（已验证）\n\n| 组件 | 大小 |\n|------|------|\n| model (2 ranks × 3.8GB) | 7.6GB |\n| optimizer (2 ranks × 6.5GB) | 13.0GB |\n| extra + huggingface/tokenizer | ~16MB |\n| **合计** | **~21GB** |\n\n### 4. 磁盘风险评估\n\n#### bjb1-17606 (Seed 4) — ✅ 安全\n\n| 项目 | 数值 |\n|------|------|\n| 可用空间 | 73GB (`/root/autodl-tmp`) |\n| 已保存 | step 5 = 21GB + step_5_hf = 3.8GB (手动) |\n| 剩余需求 | step 10 + step 15 = 42GB |\n| 剩余空间 | 73 - 42 = **31GB 余量** |\n\n#### westd-47453 (Seed 5 + 6) — ❌ 会磁盘满\n\n| 项目 | 数值 |\n|------|------|\n| 可用空间 | 107GB (`/root/autodl-tmp`) |\n| 已保存 | 0 (尚未到 step 5) |\n| 总需求 | 2 seeds × 3 checkpoints × 21GB = **126GB** |\n| **缺口** | **19GB** |\n\n### 5. 缓解方案\n\n**westd 上可清理的空间：**\n\n| 路径 | 大小 | 说明 |\n|------|------|------|\n| `/root/autodl-tmp/checkpoints/exp029-seed3/` | **66GB** | 已完成的旧实验（含 step 5/10/15 + 15_hf） |\n| `/root/autodl-tmp/checkpoints/scienceworld_sft/` | 7.6GB | 旧 SFT checkpoint |\n| 多个空目录 | 0 | gae_baseline, 7b-*, 8b-cell-c 等 |\n| `/root/autodl-tmp/checkpoints/qwen3_exp021_ragen_sft_v4` | 3.3GB | ⚠️ **禁删** — 三个 seed 的 base model |\n\n**推荐操作**：立即删除 `exp029-seed3/`（66GB），释放后总可用 173GB，满足 126GB 需求并留 47GB 余量。\n\n**时间窗口**：训练尚未到 step 5，但需要在第一个 checkpoint 产生前完成清理。按每步训练时间估算，窗口有限。\n\n是否要执行清理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-save-contents-disk-risk.md"
+}

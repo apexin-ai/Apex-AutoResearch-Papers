@@ -1,0 +1,224 @@
+{
+  "exp_id": "scienceworld_sft_eval_v2",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-19T18:50:45.230Z",
+    "updated_at": "2026-05-20T14:15:37.390Z",
+    "hypothesis": "SFT-trained model on ScienceWorld can achieve meaningful task completion rates across diverse science tasks, establishing a baseline for subsequent RL fine-tuning comparison.",
+    "parent": "scienceworld_sft_eval",
+    "reproduce": {
+      "finished_at": "2026-05-19T23:59:52.638Z"
+    },
+    "failure_reason": null,
+    "completed_at": "2026-05-19T23:59:54.217Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T23:59:57.500015+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "metrics": {
+          "episodes_completed": 409,
+          "episodes_total": 1796,
+          "progress_pct": 22.8,
+          "success_count": 158,
+          "success_rate": 0.386,
+          "speed_ep_per_min": 1.56
+        }
+      }
+    },
+    "spec": {
+      "command": "python /root/cost-verify-agent-rl/eval_scienceworld.py --temperature 0.4 --resume --episode_timeout 300",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "195853",
+      "data_path": "scienceworld dev split",
+      "data_count": 1796,
+      "model_name": "Qwen3-1.7B (ScienceWorld SFT)",
+      "seed": 42,
+      "log_path": "/tmp/eval_scienceworld_v2_resumed.log",
+      "checkpoint_source": "scienceworld_sft/global_step_448",
+      "eval_data": "ScienceWorld dev split, 1796 episodes, 30 task types",
+      "checkpoint_path": "N/A (eval only)"
+    },
+    "metrics": {
+      "total_episodes": 1796,
+      "success_count": 540,
+      "overall_success_rate": 0.301,
+      "timeouts": 0,
+      "errors": 0,
+      "avg_score": 20.9,
+      "avg_steps_per_episode": 28.7,
+      "total_time_seconds": 51462,
+      "split": "dev",
+      "temperature": 0.4,
+      "per_task_type": {
+        "boil": {
+          "n": 7,
+          "succ": 0,
+          "rate": 0
+        },
+        "change-the-state-of-matter-of": {
+          "n": 7,
+          "succ": 1,
+          "rate": 0.143
+        },
+        "chemistry-mix": {
+          "n": 8,
+          "succ": 0,
+          "rate": 0
+        },
+        "chemistry-mix-paint-secondary-color": {
+          "n": 9,
+          "succ": 2,
+          "rate": 0.222
+        },
+        "chemistry-mix-paint-tertiary-color": {
+          "n": 9,
+          "succ": 0,
+          "rate": 0
+        },
+        "find-animal": {
+          "n": 75,
+          "succ": 37,
+          "rate": 0.493
+        },
+        "find-living-thing": {
+          "n": 75,
+          "succ": 49,
+          "rate": 0.653
+        },
+        "find-non-living-thing": {
+          "n": 75,
+          "succ": 58,
+          "rate": 0.773
+        },
+        "find-plant": {
+          "n": 75,
+          "succ": 9,
+          "rate": 0.12
+        },
+        "freeze": {
+          "n": 7,
+          "succ": 0,
+          "rate": 0
+        },
+        "grow-fruit": {
+          "n": 31,
+          "succ": 2,
+          "rate": 0.065
+        },
+        "grow-plant": {
+          "n": 31,
+          "succ": 0,
+          "rate": 0
+        },
+        "identify-life-stages-1": {
+          "n": 3,
+          "succ": 0,
+          "rate": 0
+        },
+        "identify-life-stages-2": {
+          "n": 2,
+          "succ": 0,
+          "rate": 0
+        },
+        "inclined-plane-determine-angle": {
+          "n": 42,
+          "succ": 7,
+          "rate": 0.167
+        },
+        "inclined-plane-friction-named-surfaces": {
+          "n": 346,
+          "succ": 83,
+          "rate": 0.24
+        },
+        "inclined-plane-friction-unnamed-surfaces": {
+          "n": 40,
+          "succ": 10,
+          "rate": 0.25
+        },
+        "lifespan-longest-lived": {
+          "n": 31,
+          "succ": 28,
+          "rate": 0.903
+        },
+        "lifespan-longest-lived-then-shortest-lived": {
+          "n": 31,
+          "succ": 28,
+          "rate": 0.903
+        },
+        "lifespan-shortest-lived": {
+          "n": 31,
+          "succ": 21,
+          "rate": 0.677
+        },
+        "measure-melting-point-known-substance": {
+          "n": 109,
+          "succ": 25,
+          "rate": 0.229
+        },
+        "measure-melting-point-unknown-substance": {
+          "n": 75,
+          "succ": 27,
+          "rate": 0.36
+        },
+        "melt": {
+          "n": 7,
+          "succ": 1,
+          "rate": 0.143
+        },
+        "mendelian-genetics-known-plant": {
+          "n": 30,
+          "succ": 8,
+          "rate": 0.267
+        },
+        "mendelian-genetics-unknown-plant": {
+          "n": 120,
+          "succ": 35,
+          "rate": 0.292
+        },
+        "power-component": {
+          "n": 5,
+          "succ": 3,
+          "rate": 0.6
+        },
+        "power-component-renewable-vs-nonrenewable-energy": {
+          "n": 5,
+          "succ": 0,
+          "rate": 0
+        },
+        "test-conductivity": {
+          "n": 225,
+          "succ": 35,
+          "rate": 0.156
+        },
+        "test-conductivity-of-unknown-substances": {
+          "n": 150,
+          "succ": 44,
+          "rate": 0.293
+        },
+        "use-thermometer": {
+          "n": 135,
+          "succ": 27,
+          "rate": 0.2
+        }
+      },
+      "results_json_path": "/root/autodl-tmp/checkpoints/scienceworld_sft/eval_results_dev_v2.json"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T14:15:37.615323+00:00",
+  "trigger": "update_registry"
+}

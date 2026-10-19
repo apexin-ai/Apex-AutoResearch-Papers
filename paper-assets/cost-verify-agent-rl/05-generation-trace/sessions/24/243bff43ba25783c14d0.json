@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "243bff43ba25783c14d0",
+  "project": "cost-verify-agent-rl",
+  "kind": "result",
+  "title": "urgent phase1 full cleanup",
+  "task_key": "worker_urgent_phase1_full_cleanup_20260521T210225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_phase1_full_cleanup_20260521T210225_result.json",
+    "occurrence": 1,
+    "bytes": 1501,
+    "sha256": "b619bc3d638d6ae7b073bc66f063e08790e4021cafa224d8b835cd7eb9c92d3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n```\n=== westd 清理 ===\nGPU 残留进程: 已清理 (PID 769407, GPU 0, 90458 MiB)\n磁盘: 清理前 47 GB → 清理后 110 GB (删了 exp029-seed7 21G + exp029-seed7-len-penalty 41G + ray sessions 1.5G)\nGPU 状态: GPU 0=0 MiB, GPU 1=0 MiB, GPU 2=0 MiB, GPU 3=0 MiB\n\n=== bjb1 清理 ===\nhigh_kl: 已结束（无 GPU 进程）\nGPU 状态: GPU 0=0 MiB, GPU 1=0 MiB\n磁盘: 80 GB 可用\n\n=== Phase 2 准备 ===\nmax_new_tokens 位置:\n  - agent_proxy.py:74 — max_tokens=ro_config.response_length (per-turn，每次 LLM 调用)\n  - base.yaml:56 — response_length: 400 (single-turn response length)\n  - config/envs.yaml — max_tokens: 100~512 (仅用于 prompt 提示词，不控制 rollout)\n  - base.yaml:90 — max_response_length: null (per-trajectory 上限，当前未启用)\n当前值: 400 tokens per turn (base.yaml default)\nlen_penalty 代码: 仍在（未 revert）— agent_trainer.py 有大量 diff，包括 step_rewards import、_adjust_token_rewards_with_step_penalties 函数、compute_advantage 新增参数 (invalid_action_penalty_coef, reward_include_step_penalties 等)\n\n=== Seed 4 HF checkpoint ===\n存在 — /root/autodl-tmp/checkpoints/exp029-seed4/global_step_15_hf/ (3.8G)\nsymlink: qwen_exp029_seed4_step15_hf → exp029-seed4/global_step_15_hf\n\n=== 崩溃 seed step 5 checkpoint ===\nSeed 7 step 5: 存在 (actor/ 子目录, 非 HF 格式)\nSeed 8 step 5: 存在 (actor/ 子目录, 非 HF 格式)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-phase1-full-cleanup.md"
+}

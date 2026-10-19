@@ -1,0 +1,48 @@
+{
+  "exp_id": "exp025b",
+  "project": "cost-verify-agent-rl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:34:34.283Z",
+    "updated_at": "2026-05-15T07:39:01.024Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate /root/autodl-tmp/conda-envs/verl-agent && cd /root/autodl-tmp/verl-agent && bash examples/grpo_trainer/run_alfworld_exp025.sh\"",
+      "server": "bjb1-17606",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "614229",
+      "log_path": "~/runs/cost-verify-agent-rl/exp025b.log",
+      "submitted_at": "2026-05-15T07:36:44.668Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 136.4,
+      "gpu_hours": 0.08
+    },
+    "parent": "exp025",
+    "notes": "崩溃原因: Ray GCS server 启动失败 — St12system_error: Resource temporarily unavailable。ray.init() 连接 GCS 超时。可能根因: (1) 残留 Ray 进程占端口/共享内存 (2) /dev/shm 不足。需 ray stop --force + 清理后重试。",
+    "server": "bjb1-17606",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "bjb1-17606",
+      "gpu": "cuda:0,cuda:1",
+      "started_at": "2026-05-15T07:35:49.952Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate /root/autodl-tmp/conda-envs/verl-agent && cd /root/autodl-tmp/verl-agent && bash examples/grpo_trainer/run_alfworld_exp025.sh\"",
+      "finished_at": "2026-05-15T07:38:59.743Z",
+      "training_hours": 0.05
+    },
+    "pid": "614229",
+    "log_path": "~/runs/cost-verify-agent-rl/exp025b.log",
+    "conclusion": "failed",
+    "failure_reason": "Traceback → /resource_tracker.py\", line 89, in _stop File \"/root/autodl-tmp/conda-envs/verl-agent/lib/python3.12/site-packages/multiprocess/resource_tracker.py\", line 102, in _stop_locked AttributeError: '_thread.RLock' object has no attribute '_recursion_count'",
+    "completed_at": "2026-05-15T07:39:01.024Z"
+  },
+  "timestamp": "2026-05-15T07:39:01.124977+00:00",
+  "trigger": "update_registry"
+}

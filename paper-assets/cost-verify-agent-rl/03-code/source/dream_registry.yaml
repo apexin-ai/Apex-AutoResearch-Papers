@@ -1,0 +1,179 @@
+dreams:
+  dream_20260516T235255:
+    dream_id: dream_20260516T235255
+    project: cost-verify-agent-rl
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Evaluate dual contribution (episode-level training methodology + selective
+      verification). Key uncertainty: will episode-level training converge high enough
+      (≥40%) to support cost-efficiency story? Is the episode-level insight novel
+      enough standalone?'
+    what_if: []
+    pid: 901389
+    chat_id: oc_4ebf0fb2d0159caa355a1a855f5ac59f
+    card_message_id: om_x100b6fa47bba7ca8b2fddb3c240c7d7
+    started_at: '2026-05-16T23:52:55+00:00'
+    updated_at: '2026-05-17T00:31:34+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: d0ceea5ccf850de4af21110a998374f5b8008fac58c7c7fc9d657289e4e853ee
+  dream_20260517T121206:
+    dream_id: dream_20260517T121206
+    project: cost-verify-agent-rl
+    status: cancelled
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Post-novelty-check framing: sign misattribution as formal concept (differentiated
+      from Turn-PPO/HCAPO), P(correct|update) quantification, dual mechanism separation,
+      contrarian episode-level solution. Theory refined post-D058. Evaluate with updated
+      experiment plan including γ-sweep, K-sweep, ScienceWorld transfer.'
+    what_if: []
+    pid: null
+    chat_id: oc_4ebf0fb2d0159caa355a1a855f5ac59f
+    card_message_id: om_x100b6faf47aa48a0b18336fe77511ab
+    started_at: '2026-05-17T12:12:06+00:00'
+    updated_at: '2026-05-17T12:12:42+00:00'
+    stages_completed: []
+    error: manually cancelled to break ws-blocking retry loop
+    context_hash: 1abe643c59e92847758cec7a4745119b95d44c05af649f05df769d8afac30649
+  dream_20260517T121256:
+    dream_id: dream_20260517T121256
+    project: cost-verify-agent-rl
+    status: cancelled
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Post-novelty-check framing: sign misattribution as formal concept (differentiated
+      from Turn-PPO/HCAPO), P(correct|update) quantification, dual mechanism separation,
+      contrarian episode-level solution. Theory refined post-D058. Evaluate with updated
+      experiment plan including γ-sweep, K-sweep, ScienceWorld transfer.'
+    what_if: []
+    pid: null
+    chat_id: oc_4ebf0fb2d0159caa355a1a855f5ac59f
+    card_message_id: om_x100b6faf424644a0b390bf71ddba401
+    started_at: '2026-05-17T12:12:56+00:00'
+    updated_at: '2026-05-17T12:56:35+00:00'
+    stages_completed:
+    - imagine
+    - write
+    error: manually cancelled to break ws-blocking retry loop
+    context_hash: 1abe643c59e92847758cec7a4745119b95d44c05af649f05df769d8afac30649
+  dream_20260517T125649:
+    dream_id: dream_20260517T125649
+    project: cost-verify-agent-rl
+    status: cancelled
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Post-novelty-check framing: sign misattribution as formal concept (differentiated
+      from Turn-PPO/HCAPO), P(correct|update) quantification, dual mechanism separation,
+      contrarian episode-level solution. Theory refined post-D058. Evaluate with updated
+      experiment plan including γ-sweep, K-sweep, ScienceWorld transfer.'
+    what_if: []
+    pid: null
+    chat_id: oc_4ebf0fb2d0159caa355a1a855f5ac59f
+    card_message_id: om_x100b6fafffeda4a8b18f15915c8a3e6
+    started_at: '2026-05-17T12:56:49+00:00'
+    updated_at: '2026-05-17T12:58:42+00:00'
+    stages_completed: []
+    error: manually cancelled to break ws-blocking retry loop
+    context_hash: e6c4647343a228177a39537ea514a0c5008c98f4d507e88fd778833f559ce06e
+  dream_20260517T125856:
+    dream_id: dream_20260517T125856
+    project: cost-verify-agent-rl
+    status: cancelled
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Post-novelty-check framing: sign misattribution as formal concept (differentiated
+      from Turn-PPO/HCAPO), P(correct|update) quantification, dual mechanism separation,
+      contrarian episode-level solution. Theory refined post-D058. Evaluate with updated
+      experiment plan including γ-sweep, K-sweep, ScienceWorld transfer.'
+    what_if: []
+    pid: null
+    chat_id: oc_4ebf0fb2d0159caa355a1a855f5ac59f
+    card_message_id: om_x100b6faff7dd8cacb16be1423d269de
+    started_at: '2026-05-17T12:58:56+00:00'
+    updated_at: '2026-05-17T13:00:36+00:00'
+    stages_completed: []
+    error: manually cancelled to break ws-blocking retry loop
+    context_hash: e6c4647343a228177a39537ea514a0c5008c98f4d507e88fd778833f559ce06e
+  dream_20260517T130051:
+    dream_id: dream_20260517T130051
+    project: cost-verify-agent-rl
+    status: cancelled
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Post-novelty-check framing: sign misattribution as formal concept (differentiated
+      from Turn-PPO/HCAPO), P(correct|update) quantification, dual mechanism separation,
+      contrarian episode-level solution. Theory refined post-D058. Evaluate with updated
+      experiment plan including γ-sweep, K-sweep, ScienceWorld transfer.'
+    what_if: []
+    pid: null
+    chat_id: oc_4ebf0fb2d0159caa355a1a855f5ac59f
+    card_message_id: om_x100b6faf8efa14acb2b06ee2456b17d
+    started_at: '2026-05-17T13:00:51+00:00'
+    updated_at: '2026-05-17T13:02:47+00:00'
+    stages_completed: []
+    error: manually cancelled to break ws-blocking retry loop
+    context_hash: e6c4647343a228177a39537ea514a0c5008c98f4d507e88fd778833f559ce06e
+  dream_20260517T130311:
+    dream_id: dream_20260517T130311
+    project: cost-verify-agent-rl
+    status: cancelled
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Post-novelty-check framing: sign misattribution as formal concept (differentiated
+      from Turn-PPO/HCAPO), P(correct|update) quantification, dual mechanism separation,
+      contrarian episode-level solution. Theory refined post-D058. Evaluate with updated
+      experiment plan including γ-sweep, K-sweep, ScienceWorld transfer.'
+    what_if: []
+    pid: null
+    chat_id: oc_4ebf0fb2d0159caa355a1a855f5ac59f
+    card_message_id: om_x100b6faf863afcbcb2fbb2068779331
+    started_at: '2026-05-17T13:03:11+00:00'
+    updated_at: '2026-05-17T13:03:16+00:00'
+    stages_completed: []
+    error: manually cancelled to break ws-blocking retry loop
+    context_hash: e6c4647343a228177a39537ea514a0c5008c98f4d507e88fd778833f559ce06e
+  dream_20260517T133129:
+    dream_id: dream_20260517T133129
+    project: cost-verify-agent-rl
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Post-novelty-check framing with updated competitive positioning: sign
+      misattribution as deeper mechanistic characterization (not just "uniform advantage"),
+      P(correct|update) quantification, dual mechanism separation, contrarian episode-level
+      solution. Evaluate with updated experiment plan including γ-sweep, K-sweep,
+      ScienceWorld transfer. Key question: does the contrarian positioning hold against
+      Turn-PPO/GAGPO/HiPER competitors?'
+    what_if: []
+    pid: 4671
+    chat_id: oc_4ebf0fb2d0159caa355a1a855f5ac59f
+    card_message_id: om_x100b6fa87de8a4b4b4c6ed0ea137192
+    started_at: '2026-05-17T13:31:29+00:00'
+    updated_at: '2026-05-17T14:22:06+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: e6c4647343a228177a39537ea514a0c5008c98f4d507e88fd778833f559ce06e
